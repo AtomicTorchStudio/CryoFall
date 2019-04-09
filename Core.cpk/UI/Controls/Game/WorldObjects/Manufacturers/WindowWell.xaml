@@ -1,0 +1,60 @@
+﻿<manufacturers:WindowWellBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.WindowWell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:manufacturers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowWell, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <Rectangle Fill="{StaticResource LiquidIconWater}"
+                       HorizontalAlignment="Center"
+                       Width="18"
+                       Height="18"
+                       Margin="6,0,0,1" />
+
+            <StackPanel Orientation="Horizontal">
+                <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
+                                                HorizontalAlignment="Left" MaxWidth="100"
+                                                VerticalAlignment="Center"
+                                                DesignTimeSlotsCount="1" />
+
+                <core:ValueBarControl
+                    Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
+                    Foreground="{StaticResource LiquidBrushWater}"
+                    Margin="0,0,-6,0"
+                    Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />
+
+                <core:ValueBarControl
+                    Value="{Binding ViewModelLiquidContainerState.Amount}"
+                    MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
+                    Foreground="{StaticResource LiquidBrushWater}"
+                    Margin="26,0,20,0"
+                    Style="{StaticResource LiquidMediumValueBar}" />
+
+                <!--<TextBlock Text="Output" Style="{StaticResource TextBlockStyleCraftingCaption}" />-->
+                <controls:ItemsContainerControl
+                    Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                    HorizontalAlignment="Left" MaxWidth="100"
+                    VerticalAlignment="Center"
+                    DesignTimeSlotsCount="1" />
+            </StackPanel>
+
+            <!-- Text: Drink -->
+            <Button Content="{x:Static loc:CoreStrings.Button_Drink}"
+                    Command="{Binding CommandDrink}"
+                    Margin="0,23,0,0" Focusable="False" />
+
+        </StackPanel>
+
+    </core:WindowMenuWithInventory>
+</manufacturers:WindowWellBase>

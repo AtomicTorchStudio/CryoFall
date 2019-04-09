@@ -1,0 +1,126 @@
+﻿Scripts/ClientComponents/Input/GameButton@CancelOrClose:
+Annuler ou fermer
+
+Scripts/ClientComponents/Input/GameButton@MoveUp:
+Déplacement haut
+
+Scripts/ClientComponents/Input/GameButton@MoveLeft:
+Déplacement gauche
+
+Scripts/ClientComponents/Input/GameButton@MoveDown:
+Déplacement bas
+
+Scripts/ClientComponents/Input/GameButton@MoveRight:
+Déplacement droite
+
+Scripts/ClientComponents/Input/GameButton@RunTemporary:
+Courir (maintenu)
+
+Scripts/ClientComponents/Input/GameButton@RunToggle:
+Courir (bascule)
+
+Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
+Action—utiliser objet
+
+Scripts/ClientComponents/Input/GameButton@ActionInteract:
+Action—interagir
+
+Scripts/ClientComponents/Input/GameButton@ItemReload:
+Recharger l'objet
+
+Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
+Bascule mode objet/munitions
+
+Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
+Éclairage casque
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot1:
+Emplacement 1
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot2:
+Emplacement 2
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot3:
+Emplacement 3
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot4:
+Emplacement 4
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot5:
+Emplacement 5
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot6:
+Emplacement 6
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot7:
+Emplacement 7
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
+Emplacement 8
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
+Emplacement 9
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
+Emplacement 10
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
+Zoom avant caméra
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
+Zoom arrière caméra
+
+Scripts/ClientComponents/Input/GameButton@OpenChat:
+Discussion
+
+Scripts/ClientComponents/Input/GameButton@InventoryMenu:
+Inventaire
+
+Scripts/ClientComponents/Input/GameButton@CraftingMenu:
+Artisanat
+
+Scripts/ClientComponents/Input/GameButton@MapMenu:
+Carte
+
+Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
+Construction
+
+Scripts/ClientComponents/Input/GameButton@SkillsMenu:
+Compétences
+
+Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
+Technologies
+
+Scripts/ClientComponents/Input/GameButton@SocialMenu:
+Social
+
+Scripts/ClientComponents/Input/GameButton@QuestsMenu:
+Quêtes
+
+Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
+Console de développement
+
+Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
+Outils de débogage
+
+Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
+Activer / désactiver mode plein écran
+
+Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
+Capture d'écran
+
+Scripts/ClientComponents/Input/GameButton@ContainerSort:
+Trier le contenant
+
+Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
+Prendre tous les objets
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
+Mêmes objets qu'en bas
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
+Mêmes objets qu'en haut
+
+Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
+Afficher revendication territoriale et barres de santé
+

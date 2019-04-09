@@ -1,0 +1,126 @@
+﻿Scripts/ClientComponents/Input/GameButton@CancelOrClose:
+취소 또는 닫기
+
+Scripts/ClientComponents/Input/GameButton@MoveUp:
+위로 이동
+
+Scripts/ClientComponents/Input/GameButton@MoveLeft:
+왼쪽으로 이동
+
+Scripts/ClientComponents/Input/GameButton@MoveDown:
+아래로 이동
+
+Scripts/ClientComponents/Input/GameButton@MoveRight:
+오른쪽으로 이동
+
+Scripts/ClientComponents/Input/GameButton@RunTemporary:
+달리기 (누르고 있기)
+
+Scripts/ClientComponents/Input/GameButton@RunToggle:
+달리기 (토글)
+
+Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
+행동-아이템 사용
+
+Scripts/ClientComponents/Input/GameButton@ActionInteract:
+행동-상호 작용
+
+Scripts/ClientComponents/Input/GameButton@ItemReload:
+아이템 재충전
+
+Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
+아이템 모드 전환/탄약 전환
+
+Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
+헬멧 전등 토글
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot1:
+슬롯 #1
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot2:
+슬롯 #2
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot3:
+슬롯 #3
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot4:
+슬롯 #4
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot5:
+슬롯 #5
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot6:
+슬롯 #6
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot7:
+슬롯 #7
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
+슬롯 #8
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
+슬롯 #9
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
+슬롯 #10
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
+카메라 확대
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
+카메라 축소
+
+Scripts/ClientComponents/Input/GameButton@OpenChat:
+채팅
+
+Scripts/ClientComponents/Input/GameButton@InventoryMenu:
+인벤토리
+
+Scripts/ClientComponents/Input/GameButton@CraftingMenu:
+제작
+
+Scripts/ClientComponents/Input/GameButton@MapMenu:
+지도
+
+Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
+건설
+
+Scripts/ClientComponents/Input/GameButton@SkillsMenu:
+스킬
+
+Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
+기술
+
+Scripts/ClientComponents/Input/GameButton@SocialMenu:
+소셜
+
+Scripts/ClientComponents/Input/GameButton@QuestsMenu:
+퀘스트
+
+Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
+개발자 콘솔
+
+Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
+디버그 도구
+
+Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
+전체 화면 토글
+
+Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
+스크린샷 찍기
+
+Scripts/ClientComponents/Input/GameButton@ContainerSort:
+컨테이너 정렬
+
+Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
+모든 아이템 획득
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
+공통 아래로 이동
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
+공통 아이템 위로 이동
+
+Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
+점유한 토지 및 체력 막대 표시
+

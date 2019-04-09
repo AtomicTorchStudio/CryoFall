@@ -1,0 +1,308 @@
+﻿<core:BaseUserControlWithWindow
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations.WindowTradingStationLotEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations.Data"
+    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:tooltips="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelTradingStationLotEditor, IsDesignTimeCreatable=True}"
+    FontSize="13" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <core:BaseUserControlWithWindow.Resources>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="MinWidth" Value="40" />
+            <Setter Property="Margin" Value="0,3" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="TextBlockItemsListCaptionStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="ItemsListBoxStyle" TargetType="ListBox">
+            <Setter Property="Margin" Value="0,5" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Margin="-2" Columns="5" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Rectangle Fill="{Binding Icon}"
+                                   UseLayoutRounding="True"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
+                        <Setter Property="Margin" Value="2" />
+                        <Setter Property="Width" Value="45" />
+                        <Setter Property="Height" Value="45" />
+                        <Setter Property="Focusable" Value="False" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Grid>
+                                        <Border x:Name="Border"
+                                                CornerRadius="3"
+                                                Background="#FF262626"
+                                                ui:ToolTipServiceExtend.ToolTip="{Binding Name}">
+                                            <ContentPresenter />
+                                        </Border>
+
+                                        <Border x:Name="BorderSelected"
+                                                BorderBrush="{StaticResource BrushColor7}"
+                                                BorderThickness="1.5"
+                                                CornerRadius="3" />
+                                    </Grid>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="BorderSelected" Property="Visibility"
+                                                    Value="Collapsed" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </core:BaseUserControlWithWindow.Resources>
+
+    <core:GameWindow x:Name="GameWindow"
+                     FocusOnControl="{Binding ElementName=ButtonCancel}"
+                     CloseByEscapeKey="True"
+                     Padding="10"
+                     Width="480"
+                     Height="478">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="0.75*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" VerticalAlignment="Top" Padding="0">
+                    <Border.Background>
+                        <SolidColorBrush Color="{StaticResource ColorAlt0}" Opacity="0.6" />
+                    </Border.Background>
+                    <core:TextBoxSearch SearchText="{Binding SearchText}" />
+                </Border>
+
+                <!-- Text: EXISTING ITEMS -->
+                <TextBlock Grid.Row="1"
+                           Text="{x:Static loc:CoreStrings.WindowTradingStationLotEditor_ListTitleExistingItems}"
+                           Style="{StaticResource TextBlockItemsListCaptionStyle}"
+                           Margin="0,3,0,-2"
+                           Visibility="{Binding ExistingItemsList, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
+
+                <ListBox Grid.Row="2"
+                         ItemsSource="{Binding ExistingItemsList}"
+                         SelectedItem="{Binding SelectedProtoItemViewModel, Mode=TwoWay}"
+                         Style="{StaticResource ItemsListBoxStyle}"
+                         Visibility="{Binding ExistingItemsList, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
+                         MaxHeight="195" />
+
+                <!-- Text: ALL ITEMS -->
+                <TextBlock Grid.Row="3"
+                           Text="{x:Static loc:CoreStrings.WindowTradingStationLotEditor_ListTitleAllItems}"
+                           Style="{StaticResource TextBlockItemsListCaptionStyle}"
+                           Margin="0,1,0,-2" />
+
+                <ListBox Grid.Row="4"
+                         ItemsSource="{Binding AllItemsList}"
+                         SelectedItem="{Binding SelectedProtoItemViewModel, Mode=TwoWay}"
+                         Style="{StaticResource ItemsListBoxStyle}" />
+            </Grid>
+
+            <Control Style="{StaticResource ControlVerticalSeparator}"
+                     Grid.Column="1"
+                     Grid.Row="0"
+                     Grid.RowSpan="2" />
+
+            <StackPanel Grid.Column="2"
+                        Grid.Row="0"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
+
+                <!-- Text: Selected lot item -->
+                <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationLotEditor_SelectedLotItem}"
+                           FontWeight="Bold" />
+
+                <StackPanel Orientation="Horizontal"
+                            Background="Transparent"
+                            Visibility="{Binding SelectedProtoItem, Converter={StaticResource NullToHiddenVisibilityConverter}}">
+                    <Border Background="#AA000000"
+                            BorderBrush="#33BBBBBB"
+                            BorderThickness="1"
+                            CornerRadius="3"
+                            Padding="3"
+                            Margin="0,2,0,5"
+                            HorizontalAlignment="Left">
+                        <Rectangle Fill="{Binding Icon}" Width="48" Height="48" />
+                    </Border>
+                    <TextBlock Text="{Binding SelectedProtoItem.Name}"
+                               FontWeight="Bold"
+                               TextWrapping="Wrap"
+                               TextTrimming="None"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0" />
+                    <ui:ToolTipServiceExtend.ToolTip>
+                        <tooltips:ItemTooltipControl ProtoItem="{Binding SelectedProtoItem}" />
+                    </ui:ToolTipServiceExtend.ToolTip>
+                </StackPanel>
+
+                <Grid HorizontalAlignment="Left"
+                      Margin="10,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!-- Text: Quantity -->
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="{x:Static loc:CoreStrings.WindowTradingStationLotEditor_Quantity}" />
+                    <TextBox Grid.Row="0"
+                             Grid.Column="2"
+                             Text="{Binding LotQuantity,UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="4" />
+
+                    <StackPanel Grid.Row="1"
+                                Grid.Column="0"
+                                Orientation="Horizontal"
+                                Background="Transparent"
+                                ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.TradingTooltip_CoinsShiny}">
+                        <!-- Text: Price -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationLotEditor_Price}" />
+                        <TextBlock Text=" " />
+                        <Rectangle Fill="{Binding IconCoinShiny}" UseLayoutRounding="True" Width="18" Height="18" />
+                    </StackPanel>
+                    <TextBox Grid.Row="1"
+                             Grid.Column="2"
+                             Text="{Binding PriceCoinShiny,UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="3" />
+
+                    <StackPanel Grid.Row="2"
+                                Grid.Column="0"
+                                Orientation="Horizontal"
+                                Background="Transparent"
+                                ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.TradingTooltip_CoinsPenny}">
+                        <!-- Text: Price -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationLotEditor_Price}" />
+                        <TextBlock Text=" " />
+                        <Rectangle Fill="{Binding IconCoinPenny}" UseLayoutRounding="True" Width="18" Height="18" />
+                    </StackPanel>
+                    <TextBox Grid.Row="2"
+                             Grid.Column="2"
+                             Text="{Binding PriceCoinPenny,UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="3" />
+                </Grid>
+
+            </StackPanel>
+
+            <Grid Grid.Column="2"
+                  Grid.Row="1"
+                  Margin="0,10,0,0"
+                  HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!-- Text: Reset -->
+                <Button Grid.ColumnSpan="3"
+                        Content="{x:Static loc:CoreStrings.Button_Reset}"
+                        Focusable="False"
+                        Command="{Binding CommandReset}"
+                        Padding="0"
+                        Width="96"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,7" />
+
+                <!-- Text: Save -->
+                <Button Grid.Row="1"
+                        Grid.Column="0"
+                        Content="{x:Static loc:CoreStrings.Button_Save}"
+                        Focusable="False"
+                        Command="{Binding CommandSave}"
+                        Padding="0"
+                        MinWidth="50"
+                        HorizontalAlignment="Stretch" />
+
+                <!-- Text: Cancel -->
+                <Button Grid.Row="1"
+                        Grid.Column="2"
+                        Content="{x:Static loc:CoreStrings.Button_Cancel}"
+                        Focusable="False"
+                        x:Name="ButtonCancel"
+                        Command="{Binding CommandCancel}"
+                        Padding="0"
+                        MinWidth="50"
+                        HorizontalAlignment="Stretch" />
+            </Grid>
+
+        </Grid>
+
+    </core:GameWindow>
+
+</core:BaseUserControlWithWindow>

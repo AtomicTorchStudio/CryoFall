@@ -1,0 +1,6 @@
+﻿Scripts/Perks/PerkClaimDeposits@Name:
+Beanspruche Öl- und Lithiumvorkommen
+
+Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
+Maximale Anzahl von Land Claims: {0}
+

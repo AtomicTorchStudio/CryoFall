@@ -1,0 +1,191 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:helpers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Helpers">
+
+    <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <helpers:BoolToHiddenVisibilityConverter x:Key="BoolToHiddenVisibilityConverter" />
+    <helpers:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+    <helpers:NullToHiddenVisibilityConverter x:Key="NullToHiddenVisibilityConverter" />
+    <helpers:EmptyCollectionToVisibilityConverter x:Key="EmptyCollectionToVisibilityConverter" />
+    <helpers:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
+    <helpers:BoolReverseConverter x:Key="BoolReverseConverter" />
+    <helpers:InstanceToBooleanConverter x:Key="InstanceToBooleanConverter" />
+    <helpers:NumberToHexStringConverter x:Key="NumberToHexStringConverter" />
+
+    <Style TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="{x:Null}" />
+    </Style>
+
+    <Style TargetType="{x:Type core:RootViewbox}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="UseLayoutRounding" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type core:RootViewbox}">
+                    <Canvas Background="{x:Null}">
+                        <ContentPresenter x:Name="ContentPresenter" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ContentControl">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{x:Null}" />
+    </Style>
+
+    <Style TargetType="{x:Type core:Scalebox}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type core:Scalebox}">
+                    <Canvas>
+                        <ContentPresenter x:Name="ContentPresenter" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type core:UIScalePanel}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type core:UIScalePanel}">
+                    <ContentControl x:Name="LayoutRoot">
+                        <ContentPresenter />
+                    </ContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type core:ScreenScalePanel}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type core:ScreenScalePanel}">
+                    <ContentControl x:Name="LayoutRoot">
+                        <ContentPresenter />
+                    </ContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type core:TableControl}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="ColumnsSpacingWidth" Value="10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type core:TableControl}">
+                    <Grid x:Name="LayoutRoot">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="{TemplateBinding ColumnsSpacingWidth}" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Please note that these durations should match
+         GameWindow open/close storyboard durations from DefaultStyles.xaml -->
+    <Duration x:Key="OverlayOpenDuration">0:0:0.15</Duration>
+    <Duration x:Key="OverlayCloseDuration">0:0:0.085</Duration>
+    <CubicEase x:Key="OverlayOpenEasingFunction" EasingMode="EaseOut" />
+    <CubicEase x:Key="OverlayCloseEasingFunction" EasingMode="EaseOut" />
+
+    <ControlTemplate x:Key="DefaultBackgroundOverlayControlTemplate"
+                     TargetType="{x:Type core:GameWindowBackgroundOverlay}">
+        <Rectangle x:Name="LayoutRoot"
+                   IsHitTestVisible="true">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="Black" Opacity="0" />
+            </Rectangle.Fill>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="VisualStateGroup">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition To="Shown"
+                                          GeneratedDuration="{StaticResource OverlayOpenDuration}"
+                                          GeneratedEasingFunction="{StaticResource OverlayOpenEasingFunction}" />
+                        <VisualTransition To="Hidden"
+                                          GeneratedDuration="{StaticResource OverlayCloseDuration}"
+                                          GeneratedEasingFunction="{StaticResource OverlayCloseEasingFunction}" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Shown">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                           Storyboard.TargetName="LayoutRoot">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).Opacity"
+                                                           Storyboard.TargetName="LayoutRoot">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0.25" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hidden">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).Opacity"
+                                                           Storyboard.TargetName="LayoutRoot">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                           Storyboard.TargetName="LayoutRoot">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Rectangle>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type core:GameWindowBackgroundOverlay}">
+        <Setter Property="Template" Value="{StaticResource DefaultBackgroundOverlayControlTemplate}" />
+    </Style>
+
+    <Style TargetType="{x:Type core:LabelWithButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type core:LabelWithButton}">
+                    <Grid VerticalAlignment="Center"
+                          SnapsToDevicePixels="False">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="border"
+                                Grid.Column="0"
+                                MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                Margin="0,0,3,0"
+                                Padding="3,0,3,0"
+                                Background="{DynamicResource LabelActionControlBackround}"
+                                BorderBrush="{DynamicResource LabelActionControlColor}"
+                                BorderThickness="1"
+                                CornerRadius="3">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="{TemplateBinding TextKey}"
+                                       Foreground="{DynamicResource LabelActionControlColor}" />
+                        </Border>
+                        <ContentPresenter Grid.Column="1"
+                                          VerticalAlignment="Center" />
+                        <!--TextTrimming="CharacterEllipsis"-->
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

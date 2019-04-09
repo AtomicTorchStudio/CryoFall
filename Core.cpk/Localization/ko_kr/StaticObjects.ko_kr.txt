@@ -1,0 +1,861 @@
+﻿Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationCannotDropItemThere:
+그곳에 아이템을 떨어뜨릴 수 없습니다.
+
+Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationNoFreeSpaceToDrop:
+아이템 떨어뜨릴 공간 없음
+
+Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
+땅에 떨어져 있는 아이템
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
+제한된 구역에는 지을 수 없습니다.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnCliffOrSlope:
+절벽이나 경사면에는 지을 수 없습니다.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFarmPlot:
+농경지에는 지을 수 없습니다.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFloor:
+바닥에는 지을 수 없습니다.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCreaturesNearby:
+근처에 생명체가 있습니다.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNoFreeSpace:
+빈 공간 없음.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
+지면이 단단하지 않음.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
+플레이어가 해당 칸에 있습니다!
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSlope:
+건설 불가 - 절벽 또는 경사면과 너무 가까움.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
+건설 불가 - 물과 너무 가까움.
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
+구성
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Deconstruct:
+해체
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
+조사
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
+수집
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
+상호 작용
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Loot:
+약탈하기
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
+열기
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
+줍기
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
+강제로 열기
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
+쓰기
+
+Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
+열수구
+
+Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
+열수구 (무한)
+
+Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
+유전
+
+Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
+유전 (무한)
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
+채굴용 폭약
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombModern@Name:
+현대식 폭탄
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombPrimitive@Name:
+구식 폭탄
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
+공진 폭탄
+
+Scripts/StaticObjects/Loot/ObjectCorpse@Name:
+사체
+
+Scripts/StaticObjects/Loot/ObjectLootCrateFood@Name:
+식량 보급 상자
+
+Scripts/StaticObjects/Loot/ObjectLootCrateHightech@Name:
+첨단 기술 상자
+
+Scripts/StaticObjects/Loot/ObjectLootCrateIndustrial@Name:
+공업 상자
+
+Scripts/StaticObjects/Loot/ObjectLootCrateMedical@Name:
+의료 상자
+
+Scripts/StaticObjects/Loot/ObjectLootCrateMilitary@Name:
+군용 상자
+
+Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
+보급 상자
+
+Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
+풀
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
+큰 쓰레기 더미
+
+Scripts/StaticObjects/Loot/ObjectLootStone@Name:
+돌
+
+Scripts/StaticObjects/Loot/ObjectLootTwigs@Name:
+잔가지
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageFormatLootFromAnotherPlayer:
+{0}님으로부터 약탈
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageLootFromCurrentPlayer:
+전리품
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Message:
+{0}님이 떨어진 아이템을 살펴 보는 중...
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Title:
+당신의 아이템이 약탈당하고 있습니다
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Message:
+{0}님이 당신의 떨어진 모든 아이템을 가져갔습니다. 지도에서 표시가 삭제되었습니다.
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Title:
+아이템을 약탈당했습니다!
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@Name:
+플레이어 전리품
+
+Scripts/StaticObjects/Loot/Base/ProtoObjectLoot@NotificationUseRightMouseButtonToPickup:
+주우려면 마우스 오른쪽 버튼을 누르세요.
+
+Scripts/StaticObjects/Minerals/ObjectMineralClay@Name:
+점토
+
+Scripts/StaticObjects/Minerals/ObjectMineralCoal@Name:
+석탄
+
+Scripts/StaticObjects/Minerals/ObjectMineralCopper@Name:
+구리 매장지
+
+Scripts/StaticObjects/Minerals/ObjectMineralIron@Name:
+철 매장지
+
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
+소형 프라그늄 노드
+
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
+프라그뮴 원천
+
+Scripts/StaticObjects/Minerals/ObjectMineralSalt@Name:
+소금
+
+Scripts/StaticObjects/Minerals/ObjectMineralSaltpeter@Name:
+초석 매장지
+
+Scripts/StaticObjects/Minerals/ObjectMineralSand@Name:
+규사 매장지
+
+Scripts/StaticObjects/Minerals/ObjectMineralStone@Name:
+돌
+
+Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
+황 매장지
+
+Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
+이 자원을 채굴하려면 곡괭이를 사용하세요.
+
+Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
+틈
+
+Scripts/StaticObjects/Special/ObjectCharredGround@Name:
+불 타버린 땅
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
+나무통보다 용량이 더 크고 견고합니다. 다량의 액체를 저장하는 데 유용합니다.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Name:
+금속통
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Description:
+액체를 저장하는 데 유용한 나무통입니다. 간단하고 쉽게 조립할 수 있습니다.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Name:
+나무통
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
+이 구조물에 대미지를 주려면 무기나 도구를 사용하세요.
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
+설명 없음.
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
+업그레이드 설명 없음.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBed@Description:
+침낭보다 훨씬 편안합니다.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBed@Name:
+침대
+
+Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Description:
+죽은 뒤에 지정한 장소에서 부활할 수 있도록 기지에 침낭을 배치하십시오.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Name:
+침낭
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Message:
+`이것을 당신의 현재 잠자리로 만드시겠습니까?
+[br]부활 지점으로 설정됩니다.`
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Title:
+주인 없는 잠자리
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AlreadyHasOwner:
+이미 주인이 있는 잠자리입니다.
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AnotherPlayersLandClaim:
+잠자리가 다른 플레이어의 토지 점유 범위 내에 있습니다.
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageBedBelongsToCurrentPlayer:
+당신의 잠자리
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageFormatBedBelongsToAnotherPlayer:
+{0}님의[br]잠자리
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@NotificationBedClaimedSuccessfully:
+이제 이 잠자리가 부활 지점으로 설정되었습니다.
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryBuildings@Name:
+구조물
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryDecorations@Name:
+장식
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
+식량
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
+공업
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryLights@Name:
+광원
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
+기타
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryStorage@Name:
+보관소
+
+Scripts/StaticObjects/Structures/ConstructionSite/ObjectConstructionSite@Name:
+공사장
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Description:
+방어구와 옷 등을 만들 수 있습니다.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Name:
+방어구 작업대
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Description:
+대부분의 복합적 화학 물질을 처리하여 많은 아이템을 만들 수 있습니다.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Name:
+화학 실험실
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Description:
+끓이거나 튀길 필요 없는 간단한 식사와 요리를 만들 수 있습니다.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Name:
+조리대
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Description:
+씨앗 자루나 비료 등 농사와 관련된 다양한 아이템을 만들 때 사용됩니다.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Name:
+농사 작업대
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Description:
+다양한 의료 아이템을 만들 수 있게 됩니다.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Name:
+의료 연구실
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Description:
+다양한 무기와 물자, 탄약을 만들 때 사용됩니다.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Name:
+무기 작업대
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Description:
+다양한 아이템을 만들 때 사용됩니다. 일반적인 제작소의 역할을 합니다. 또한 손으로 만드는 모든 제조법도 포함됩니다.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
+작업대
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
+단순한 나무 상자보다 용량이 더 크며, 파괴하기가 더 어렵습니다.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
+철제 상자
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
+아이템을 보관하는 데 있어서 가장 좋은 방법 중 하나. 대부분의 온갖 상황에서도 아이템을 안전하게 보관하여, 상자 중 용량이 가장 큽니다.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
+상철 상자
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
+대량의 아이템을 편리하고 안전하게 보관할 수 있는 추가적인 대형 상자.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
+큰 상자
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
+자신이 가진 것들은 보관하는 가장 단순한 상자입니다. 쉽게 파괴됩니다.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
+나무 상자
+
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Description:
+수년 동안 모은 전리품을 전시하기 위해 항상 박물관을 열고 싶으셨다구요? 이제 그것이 가능해졌습니다!
+
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
+진열장
+
+Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
+아무리 강력한 폭탄이라도 견딜 수 있도록 장갑을 두른 금고. 만들기는 쉽지 않지만, 귀중품의 안전을 확실하게 보장해 줍니다.
+
+Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
+장갑 금고
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
+이 화려한 바닥 깔개를 깔면, 어떤 공간이라도 사람들에게 더 따뜻하고 좋은 느낌을 주게 됩니다.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+바닥 깔개
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
+적들에게 당신이 만만한 사람이 아니라는 걸 보여주세요. 무단 침입자는 용납할 수 없습니다!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
+해골 스파이크
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatue@Description:
+자신의 부를 보여주는 진정한 증거. 부자들 중에서도 가장 부유한 사람들만이 이것을 만들어 세울 수 있습니다.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatue@Name:
+황금 조각상
+
+Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
+바닥이 이미 장식되어 있습니다.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
+대부분의 침입자들을 막는 훌륭한 방어책. 하지만 폭탄은 거의 막아주지 못합니다.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
+철문
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Description:
+강철에게는 그에 걸맞는 대우를 해주어야 할 필요가 있습니다. 아주 강력한 폭탄 외에는 그 어떤 것이 와도 한치 찌그러지지 않을 겁니다.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Name:
+강철문
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Description:
+초대받지 않은 손님을 막아주는 단순한 보호 수단. 하지만 굳은 결심을 한 적에게는 거의 무용지물이나 다름 없습니다.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
+나무 문
+
+Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
+다양한 농작물과 식물들을 재배하는 데 사용되는 땅입니다. 농경지는 비옥한 땅에만 만들 수 있습니다.
+
+Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
+농경지
+
+Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+집을 꾸미거나 그밖의 다른 목적으로 사용할 수 있는 꽃을 키울 수 있습니다. 어디든 만들어 놓을 수 있습니다.
+
+Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+화분
+
+Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
+이 땅은 농사에 적합하지 않습니다.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Description:
+흔치 않은 스타일이긴 하지만, 그래도 멋집니다.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Name:
+벽돌 바닥
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Description:
+단순하며 실용적입니다. 공장 바닥이나 군사 기지에 어울립니다.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Name:
+시멘트 바닥
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Description:
+고풍스런 성의 분위기가 물씬 풍겨 옵니다. 돌벽과 궁합이 잘 맞습니다.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Name:
+돌 바닥
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Description:
+집에 즐겁고 아늑한 느낌을 줍니다. 나무 벽과 잘 어울립니다.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Name:
+나무 바닥
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Description:
+증발을 주된 냉각 방식으로 사용하는 초기의 냉장고. 현대의 냉장고만큼 효과적이지는 않지만, 음식을 더 오래 신선하게 유지할 수 있습니다.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
+초기의 냉장고
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
+상하기 쉬운 음식을 대량으로 저장할 수 있는 편리한 방법. 냉장고에 넣어두면 음식이 더 오래 신선하게 유지됩니다. 내장된 태양광 발전기를 사용합니다.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
+대형 냉장고
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
+상하기 쉬운 음식을 저장할 수 있는 편리한 방법. 냉장고에 넣어두면 음식이 더 오래 신선하게 유지됩니다. 내장된 태양광 발전기를 사용합니다.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
+소형 냉장고
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
+다른 생존자들이 주변에 어떤 것을 건설하거나 해체하는 것을 막아줌으로써 당신의 기지를 더 안전하게 해줍니다. 또한 토지 점유소는 시간이 흘러도 구조물이 노후되지 않도록 해줍니다.
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Name:
+토지 점유소 (1 단계)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@DescriptionUpgrade:
+보호 영역, 구조물의 온전성 및 파괴 지연 최대치 증가.
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@Name:
+토지 점유소 (2 단계)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT3@Name:
+토지 점유소 (3 단계)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
+토지 점유소 (4 단계)
+
+Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
+토지 점유 영역
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorAreaIntersection:
+업그레이드를 하면 다른 플레이어의 토지 점유소와 교차점이 만들어지게 됩니다.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorRequirementsNotSatisfied:
+업그레이드 조건이 충족되지 않았습니다.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNotFounder:
+당신의 토지 점유소가 아닙니다.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNoActiveInteraction:
+토지 점유소 창을 다시 열고 시도해주세요.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@DialogCannotUpgrade:
+업그레이드 불가
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationDontHaveAccess:
+이 토지 점유소에 접근할 수 없습니다.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Message:
+토지 점유소가 업그레이드되었습니다.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Title:
+성공적으로 업그레이드 완료
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
+전기 스탠드. 아무리 큰 공간이라 하더라도 밝게 비춰주는 강력한 백색광을 발합니다. 일회용 배터리를 사용합니다.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
+대형 스탠드
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Description:
+단순한 석유 연소식 스탠드. 노란 빛을 발하여 어느 공간이라도 더욱 아늑한 느낌을 줍니다.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
+석유 연소식 스탠드
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
+전기 스탠드의 소형판. 크기가 작아도 꽤 밝습이다. 일회용 배터리를 사용합니다.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
+소형 스탠드
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
+기본적인 광원이지만, 더 중요한 기능은 튀긴 고기와 같은 단순한 요리를 할 수 있다는 것입니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Name:
+모닥불
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
+여러 금속으로 주화를 만들 때 사용됩니다. 또한 주화를 녹여 주괴로 되돌릴 수도 있습니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
+주화 주조
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
+말린 버섯이나 고기와 같은 특정한 제품이나 음식을 만들 수 있습니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Name:
+건조함
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Description:
+다양한 술과 혼합 음료를 만들 수 있습니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Name:
+발효통
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Description:
+광석을 녹여서 주괴로 만들거나 몇 가지 원자재들을 처리할 수 있습니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
+용광로
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
+추출기에는 온천이 필요합니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
+온천에서 리튬 소금을 추출할 수 있습니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
+리튬 소금 추출기
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
+어떤 종류의 유기물이라도 비료로 만들 수 있습니다. 완전한 유기농 비료로 말이죠.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
+비료함
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@ErrorRequiresOilSeep:
+펌프에는 유전이 필요합니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
+유전 위에 설치되어 직접 원유를 추출합니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
+오일펌프
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
+원유를 연료나 광물유와 같이 더욱 유용하게 정제합니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Name:
+정유 공장
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
+대부분의 요리 활동에 사용됩니다. 모닥불보다 훨씬 더 좋은 식사를 만들어 낼 수 있습니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
+조리용 난로
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
+소량의 물을 모을 수 있도록 설계된 단순한 물 수집기. 왜인지는 모르겠지만, 사막이나 그밖의 암석 지대에서는 제기능을 못합니다...
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
+물 수집기
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
+깨끗한 물을 무한히 제공해 줍니다. 이제 더 이상 목말라 죽진 않을 겁니다. 왜인지는 모르겠지만, 사막이나 그밖의 암석 지대에서는 제기능을 못합니다...
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
+우물
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
+이러한 지형에는 빗물막이에 접근할 수 없습니다.
+
+Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
+모든 종류의 인공 두뇌학적 임플란트를 설치하거나 제거할 수 있는 특수 자동화 의료소.
+
+Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
+의료소
+
+Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
+원치한는 아이템을 즉시 처분할 수 있습니다. 영원히 말이죠!
+
+Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
+쓰레기통
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
+모두가 볼 수 있는 그림을 표시할 수 있습니다. 뒷면에 태양 전지판이 부착되어 있어, 외부 전원이 필요 없습니다.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Name:
+디지털 표지판
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Description:
+내구도가 높은 금속 표지판. 다른 표지판과 같이 유용하지만, 파괴하기는 어려워졌습니다.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Name:
+철제 표지판
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Description:
+기억하고 싶거나 다른 플레이어들에게 알리고 싶은 것들을 모두 써넣을 수 있는 편리한 나무 표지판.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Name:
+나무 표지판
+
+Scripts/StaticObjects/Structures/Signs/Base/ProtoObjectSign@NotificationCannotEditSignWhenNotAreaOwner:
+`다른 플레이어의 점유 영역 내에 있는
+[br]표지판은 수정할 수 없습니다.`
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Description:
+자동화된 대형 거래소. 다양한 아이템을 다른 생존자들과 편리하게 거래할 수 있습니다. 사거나 팔 아이템을 설정할 수 있습니다.
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Name:
+대형 거래소
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Description:
+자동화된 거래소. 다양한 아이템을 다른 생존자들과 편리하게 거래할 수 있습니다. 사거나 팔 아이템을 설정할 수 있습니다.
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Name:
+소형 거래소
+
+Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNothingForSale:
+이곳에서는 판매 불가
+
+Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNoTradingLots:
+이곳에는 거래소 없음
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorCannotInteract:
+상호 작용 불가 (거리가 너무 멀거나 장애물 존재)
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotFound:
+거래소를 찾을 수 없습니다.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotActive:
+거래소가 활성화되어 있지 않습니다.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorWrongMode:
+잘못된 거래 모드.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnPlayer:
+팔 수 있는 아이템이 부족합니다.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnStation:
+사고자 하는 아이템이 거래소에 부족합니다.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnPlayer:
+이 아이템을 구매할 만큼의 돈이 부족합니다.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnStation:
+거래소에 있는 돈이 부족하여 아이템을 구매할 수 없습니다.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnPlayerForPurchasedItem:
+구매한 아이템을 위한 충분한 공간이 없습니다.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnStationForSoldItem:
+거래소에 판매하고자 하는 아이템을 보관할 공간이 부족합니다.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Available:
+가능
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@OutOfStock:
+품절
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoMoney:
+돈 없음
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoSpace:
+공간 없음
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Disabled:
+불가
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
+금속으로 보강된 단단한 벽돌 벽. 침입자를 막아주고, 귀중품을 안전하게 지켜줍니다. 폭탄도 어느정도 견딜 수 있습니다.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Name:
+벽돌벽
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
+추가 지지대로 보강된 두꺼운 콘크리트 벽. 다른 방어 구조물들에 비해 내구도가 훨씬 뛰어납니다.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
+콘크리트벽
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
+나무벽보다는 훨씬 낫습니다. 대부분의 침입자들을 막아주긴 하지만, 제대로 장비를 갖춘 침입자들에겐 속수무책입니다.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Name:
+돌벽
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Description:
+주변의 동물들과 사람들에 대비한 기본적인 방어 수단. 가장 기본적인 무기에 대해서만 막아줍니다.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Name:
+나무벽
+
+Scripts/StaticObjects/Structures/Walls/Base/ObjectWallDestroyed@Name:
+파괴된 벽
+
+Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationPlantNotMatured:
+`아직 숙성되지 않았습니다.
+[br]아직 수확할 수 없습니다.`
+
+Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationUseRightMouseButtonToInteract:
+{0}을(를) 하려면 마우스 오른쪽 버튼을 누르세요.
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushCoffee@Name:
+커피
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushOilpod@Name:
+석유꼬투리
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushPurple@Name:
+베리 덤불 (보라색)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushRed@Name:
+베리 덤불 (빨간색)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@ErrorNoFruit:
+열매가 없습니다!
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@Name:
+수구
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYellow@Name:
+베리 덤불 (노란색)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYucca@Name:
+유카
+
+Scripts/StaticObjects/Vegetation/Bushes/Base/ProtoObjectBush@ErrorNoBerries:
+베리가 없습니다!
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantBellPepper@Name:
+피망
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCarrot@Name:
+당근
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantChiliPepper@Name:
+고추
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCorn@Name:
+옥수수
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCucumber@Name:
+오이
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
+파란색 세이지
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
+도깨비꽃
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
+오구린
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
+담배
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTomato@Name:
+토마토
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
+밀
+
+Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
+농경지가 필요합니다.
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
+초록색 약초
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbPurple@Name:
+보라색 약초
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbRed@Name:
+빨간색 약초
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPennyBun@Name:
+그물 버섯
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPink@Name:
+분홍색 버섯
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomRust@Name:
+녹버섯
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallPineapple@Name:
+파인애플
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallSugarcane@Name:
+사탕수수
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
+가시덤불
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
+바나나 나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
+자작나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
+비레비폴리아 나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
+선인장
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
+죽은 나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
+두리안 나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
+쓰러진 나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
+참나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
+야자나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
+소나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
+소나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
+미루나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
+고무나무
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
+나무 그루터기
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
+나무 그루터기
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
+열대 나무
+
+Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
+이 나무를 베려면 도끼를 사용하세요.
+

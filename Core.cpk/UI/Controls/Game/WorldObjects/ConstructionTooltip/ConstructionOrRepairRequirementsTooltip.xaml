@@ -1,0 +1,43 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ConstructionTooltip.ConstructionOrRepairRequirementsTooltip"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ConstructionTooltip.Data"
+    mc:Ignorable="d"
+    VerticalAlignment="Bottom"
+    Focusable="False"
+    d:DataContext="{d:DesignInstance data:ViewModelConstructionBuildRequirementsTooltip, IsDesignTimeCreatable=True}">
+
+    <Grid MinWidth="128" MinHeight="192">
+        <!--<TextBlock Text="{Binding Title}"
+                   Foreground="#FFFFCC00"
+                   FontSize="24"
+                   FontFamily="{StaticResource CondensedFontFamily}"
+                   FontWeight="Bold"
+                   noesis:Text.Stroke="Black"
+                   noesis:Text.StrokeThickness="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   TextAlignment="Center" />-->
+
+        <Canvas Width="128"
+                Margin="2.5,176,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Stretch"
+                IsHitTestVisible="False">
+            <Border Width="128">
+                <controls:RequiredItemsPanelControl Items="{Binding StageRequiredItems}"
+                                                    CountMultiplier="{Binding StageCountRemains}"
+                                                    IconSize="60"
+                                                    FontSize="17"
+                                                    HorizontalAlignment="Center"
+                                                    TextStrokeThickness="2" />
+            </Border>
+        </Canvas>
+    </Grid>
+
+</base:BaseUserControl>

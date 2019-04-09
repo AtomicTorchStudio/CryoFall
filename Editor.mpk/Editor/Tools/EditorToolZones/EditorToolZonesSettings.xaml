@@ -1,0 +1,188 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolZones.EditorToolZonesSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolZones"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="200"
+    d:DataContext="{d:DesignInstance data:ViewModelEditorToolZonesSettings, d:IsDesignTimeCreatable=True}">
+
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Editor/EditorStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <ControlTemplate x:Key="EyeCheckboxStyle" TargetType="{x:Type CheckBox}">
+                <Border Background="Transparent" Padding="{TemplateBinding Padding}">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Ellipse x:Name="Circle" Width="8" Height="8" HorizontalAlignment="Center"
+                                 VerticalAlignment="Center" UseLayoutRounding="False">
+                            <Ellipse.Fill>
+                                <SolidColorBrush Color="{Binding Color}" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Path x:Name="path"
+                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                              Data="M466.075,161.525c-205.6,0-382.8,121.2-464.2,296.1c-2.5,5.3-2.5,11.5,0,16.9c81.4,174.899,258.601,296.1,464.2,296.1   s382.8-121.2,464.2-296.1c2.5-5.3,2.5-11.5,0-16.9C848.875,282.725,671.675,161.525,466.075,161.525z M466.075,676.226   c-116.1,0-210.1-94.101-210.1-210.101c0-116.1,94.1-210.1,210.1-210.1c116.1,0,210.1,94.1,210.1,210.1   S582.075,676.226,466.075,676.226z"
+                              Stretch="Uniform"
+                              StrokeThickness="1">
+                            <Path.Fill>
+                                <SolidColorBrush Color="{Binding Color}" />
+                            </Path.Fill>
+                            <Path.Stroke>
+                                <SolidColorBrush Color="#AA000000" Opacity="1" />
+                            </Path.Stroke>
+                        </Path>
+                    </Grid>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="MouseOver" />
+                            <VisualState x:Name="Pressed" />
+                            <VisualState x:Name="Disabled" />
+                        </VisualStateGroup>
+                        <VisualStateGroup x:Name="CheckStates">
+                            <VisualStateGroup.Transitions>
+                                <VisualTransition From="Unchecked" GeneratedDuration="0:0:0.05" To="Checked" />
+                                <VisualTransition From="Checked" GeneratedDuration="0:0:0.05" To="Unchecked" />
+                                <VisualTransition From="Checked" GeneratedDuration="0:0:0.05"
+                                                  To="Indeterminate" />
+                                <VisualTransition From="Indeterminate" GeneratedDuration="0:0:0.05"
+                                                  To="Unchecked" />
+                            </VisualStateGroup.Transitions>
+                            <VisualState x:Name="Checked" />
+                            <VisualState x:Name="Unchecked">
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames BeginTime="0"
+                                                                   Storyboard.TargetName="Circle"
+                                                                   Storyboard.TargetProperty="(Shape.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <ColorAnimationUsingKeyFrames
+                                        Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)"
+                                        Storyboard.TargetName="path">
+                                        <EasingColorKeyFrame Value="#55000000" KeyTime="0" />
+                                    </ColorAnimationUsingKeyFrames>
+                                    <ColorAnimationUsingKeyFrames
+                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                        Storyboard.TargetName="path">
+                                        <EasingColorKeyFrame Value="#55AAAAAA" KeyTime="0" />
+                                    </ColorAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </VisualState>
+                            <VisualState x:Name="Indeterminate" />
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Border>
+            </ControlTemplate>
+
+        </ResourceDictionary>
+    </base:BaseUserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Brush: " VerticalAlignment="Center" Foreground="{StaticResource BrushColor6}" />
+            <ComboBox
+                ItemsSource="{Binding BrushShapes}"
+                DisplayMemberPath="Description"
+                SelectedItem="{Binding SelectedBrushShape}"
+                Width="90" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+            <TextBlock Text="Brush size: " VerticalAlignment="Center" Foreground="{StaticResource BrushColor6}" />
+            <ComboBox
+                ItemsSource="{Binding BrushSizes}"
+                SelectedItem="{Binding SelectedBrushSize}"
+                Width="50" />
+        </StackPanel>
+
+        <CheckBox Content="Apply only on the same height level"
+                  IsChecked="{Binding IsAllowZoneChangeOnlyOnTheSameHeight}"
+                  Margin="0,5,0,0" />
+
+        <CheckBox Content="Apply only on the same tile proto"
+                  IsChecked="{Binding IsAllowZoneChangeOnlyOnTheSameTileProto}"
+                  Margin="0,5,0,0" />
+
+        <CheckBox Content="Fill mode (terrain -> zone)"
+                  IsChecked="{Binding IsFillZoneMode}"
+                  Margin="0,5,0,0" />
+
+        <TextBlock Text="Zones" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Foreground="{StaticResource BrushColor6}" Margin="0,10,0,0"
+                   FontWeight="Bold" />
+
+        <TextBlock Text="When a zone is selected, press LMB to paint and RMB to clear it in world."
+                   Foreground="{StaticResource BrushColor6}" TextWrapping="Wrap" HorizontalAlignment="Left"
+                   Margin="0,0,0,5" />
+
+        <ListBox MinHeight="100"
+                 MaxHeight="325"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Stretch"
+                 ItemsSource="{Binding Zones}"
+                 SelectedItem="{Binding SelectedZoneForBrush}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox IsChecked="{Binding IsRendered}"
+                                  Focusable="False"
+                                  Grid.Column="0"
+                                  Template="{StaticResource EyeCheckboxStyle}"
+                                  Width="24"
+                                  Padding="1"
+                                  Margin="0,0,3,0" />
+
+                        <TextBlock Text="{Binding Name}"
+                                   Margin="0,1,0,0"
+                                   FontWeight="Bold"
+                                   FontSize="10"
+                                   Grid.Column="1" />
+                        <!-- Under cursor indicator -->
+                        <Path Grid.Column="2"
+                              HorizontalAlignment="Right"
+                              Visibility="{Binding VisibilityIsUnderCursor}"
+                              Width="12"
+                              Fill="White"
+                              Data="M 259.63354,718.54442 1.260357,-2.3797657 709.40074,281.6214 506.20555,377.87175 770.00282,641.66901 641.66901,770.00282 367.17727,502.64073 Z"
+                              Stretch="Uniform" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ListBox>
+
+        <Button Content="Invoke selected zone scripts (init)"
+                Command="{Binding CommandInvokeSelectedZoneScriptsAsInitial}"
+                Style="{StaticResource EditorButtonStyle}" />
+
+        <Button Content="Invoke selected zone scripts (timer)"
+                Command="{Binding CommandInvokeSelectedZoneScriptsAsTimer}"
+                Style="{StaticResource EditorButtonStyle}" />
+
+        <Button Content="Delete selected zone objects"
+                Command="{Binding CommandDeleteSelectedZoneObjects}"
+                Style="{StaticResource EditorButtonStyle}" />
+
+        <Button Content="Clear selected zone"
+                Command="{Binding CommandClearSelectedZone}"
+                Style="{StaticResource EditorButtonStyle}" />
+    </StackPanel>
+
+</base:BaseUserControl>

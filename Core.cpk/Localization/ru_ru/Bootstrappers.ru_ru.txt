@@ -1,0 +1,17 @@
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+`Не удалось подключиться к мастер-серверу.
+[br]Убедитесь, что вы подключены к сети и что ваш файервол
+[br]или провайдер не блокируют ваше подключение.`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Title:
+Не удается подключиться к мастер-серверу
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_MessageFormat:
+`Для игры на сервере требуются следующие моды:
+[br]{0}
+[br][br]Чтобы присоединиться, загрузите и установите эти моды.
+[br]Их можно найти на официальных форумах: http://forums.atomictorch.com/index.php?board=24.0`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_Title:
+Не удается подключиться: отсутствуют модификации
+

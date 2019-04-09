@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <OutputPath>.temp\bin\</OutputPath>
+    <BaseIntermediateOutputPath>.temp\obj\</BaseIntermediateOutputPath>
+    <TargetFramework>net471</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />  
+
+  <PropertyGroup>    
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+    <!--workaround for https://github.com/dotnet/standard/issues/504-->
+    <!--also https://github.com/dotnet/standard/issues/552 -->
+    <_HasReferenceToSystemRuntime>true</_HasReferenceToSystemRuntime>
+
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+
+    <OutputType>Library</OutputType>    
+    <!-- Suppress output DLL/PDB - commented out (because we're using project references and this will broke building dependent projects) -->
+    <!-- <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>-->
+    <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
+
+    <DebugSymbols>true</DebugSymbols>
+    <DebuggerFlavor>DebuggerCryoFallEditor</DebuggerFlavor>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Configuration">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_LibsAsProjects|AnyCPU'" />
+
+  <PropertyGroup>
+    <DefineCommonManagedCapabilities>false</DefineCommonManagedCapabilities>
+  </PropertyGroup>
+
+  <!-- Redefine common managed capabilites (because we've disabled them above in DefineCommonManagedCapabilities) -->
+  <ItemGroup>
+    <ProjectCapability Include="UseFileGlobs"/>
+
+    <!-- DependenciesTree capability lights up a Dependencies tree node and it's sub node providers-->
+    <ProjectCapability Include="DependenciesTree" />
+    <!-- Commented out: we don't need debugger launch profiles -->
+    <!-- <ProjectCapability Include="LaunchProfiles" /> -->
+    <ProjectCapability Include="NoGeneralDependentFileIcon"/>
+
+    <!--
+          List of capabilities below is adding back common capabilities defined in imported targets.
+          We disabled them with the property DefineCommonCapabilities=false to get rid of default
+          References capability, but everything else we want back.
+        -->
+    <ProjectCapability Include="AssemblyReferences;                              
+                                ProjectReferences;
+                                PackageReferences;
+                                SharedProjectReferences;                              
+                                OutputGroups;
+                                AllTargetOutputGroups;
+                                VisualStudioWellKnownOutputGroups;
+                                SingleFileGenerators;
+                                SourceItemsFromImports;
+                                UserSourceItems;
+                                LanguageService;
+                                AppSettings" />
+
+    <!-- Reference Manager capabilities -->
+    <ProjectCapability Include="ReferenceManagerAssemblies;
+                                ReferenceManagerBrowse;
+                                ReferenceManagerProjects;
+                                ReferenceManagerSharedProjects" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectCapability Include="AtomicTorch.GameEngine.ModProject" />
+    <ProjectCapability Include="DynamicDependentFile" />
+    <ProjectCapability Include="WindowsXaml;WindowsXamlPage;WindowsXamlCodeBehind;WindowsXamlResourceDictionary;WindowsXamlUserControl" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- This is a workaround for issue described in https://github.com/Microsoft/VSProjectSystem/issues/261
+         I'm very not sure about this hack but so far it works properly to us -->
+    <PropertyPageSchema Include="$(ManagedXamlResourcesDirectory)ProjectItemsSchema.xaml" />
+
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)Rules\ProjectItemsSchema.xaml" />
+
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)Rules\Page.xaml">
+      <Context>File;BrowseObject</Context>
+    </PropertyPageSchema>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+    <!-- Please note - these package references should be added as dependencies to NuGet specification -->
+    <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.2" />
+    <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
+  </ItemGroup>
+
+  <Choose>  
+    <When Condition="'$(Configuration)' == 'Debug_LibsAsProjects'">    
+        <!-- Reference GameApi real projects -->
+        <ItemGroup>
+            <ProjectReference Include="..\..\AtomicTorch.CBND\GameApi\GameApi.WPF.Stubs\AtomicTorch.CBND.GameApi.WPF.Stubs.csproj" />
+            <ProjectReference Include="..\..\AtomicTorch.CBND\GameApi\GameApi.WPF\AtomicTorch.CBND.GameApi.WPF.csproj" />
+            <ProjectReference Include="..\..\AtomicTorch.GameEngine\AtomicTorch.GameEngine.Common.Primitives\AtomicTorch.GameEngine.Common.Primitives.csproj" />
+        </ItemGroup>
+    </When>
+    <Otherwise>
+        <!-- Reference GameApi DLLs only -->
+        <PropertyGroup>
+            <LibsGameApi>$(MSBuildThisFileDirectory)LibsGameApi\</LibsGameApi>            
+        </PropertyGroup>        
+        <ItemGroup>
+            <Reference Include="AtomicTorch.CBND.GameApi.WPF">
+              <HintPath>$(LibsGameApi)AtomicTorch.CBND.GameApi.WPF.dll</HintPath>
+            </Reference>
+            <Reference Include="AtomicTorch.CBND.GameApi.WPF.Stubs">
+              <HintPath>$(LibsGameApi)AtomicTorch.CBND.GameApi.WPF.Stubs.dll</HintPath>
+            </Reference>
+            <Reference Include="AtomicTorch.GameEngine.Common.Primitives">
+              <HintPath>$(LibsGameApi)AtomicTorch.GameEngine.Common.Primitives.dll</HintPath>
+            </Reference>
+        </ItemGroup>
+     </Otherwise>
+  </Choose>  
+    
+  <!-- Items include -->
+  <ItemGroup>
+    <None Remove="**\*.*" />
+    <Content Remove="**\*.*" />
+    <Page Remove="**\*.*" />
+    <Compile Remove="**\*.*" />
+
+    <None Include="**\*.*" Exclude="*.*;.*\**;packages\**;LibsGameApi\**;**\*.cs;**\*.xaml" />
+    <None Include="License.txt" />
+    <None Include="Header.xml" />       
+
+    <Compile Include="**\*.cs" Exclude=".*\**" />
+    <Page Include="**\*.xaml" Exclude=".*\**">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>    
+    
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+
+</Project>

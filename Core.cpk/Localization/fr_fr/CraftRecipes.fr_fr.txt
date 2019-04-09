@@ -1,0 +1,99 @@
+﻿Scripts/CraftRecipes/HandCrafting/RecipeFillBottleWithWaterbulb@Name:
+Remplir la bouteille avec l'aquabulbe
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+Remplir le tonneau avec l'essence
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:
+Remplir le tonneau avec l'huile minérale
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddPetroleum@Name:
+Remplir le tonneau avec le pétrole brut
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddWater@Name:
+Remplir le tonneau avec l'eau
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveGasoline@Name:
+Remplir le bidon avec l'essence du tonneau
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveMineralOil@Name:
+Remplir le bidon avec l'huile minérale du tonneau
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemovePetroleum@Name:
+Remplir le bidon avec le pétrole brut du tonneau
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveWater@Name:
+Remplir le bidon avec l'eau du tonneau
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromLogs@Name:
+Sous-produit de la combustion des bûches
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromPlanks@Name:
+Sous-produit de la combustion des planches
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
+Sous-produit de la combustion des brindilles
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
+Faire bouillir l'eau (coûteux)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
+Lampant (graisse animale)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
+Champignons grillés (cèpes)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
+Champignons grillés (rouillettes)
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
+Recyclage de penny
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
+Recyclage de pièce scintillante
+
+Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
+Sels de lithium de l'extracteur de minerai de lithium
+
+Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
+Remplir le bidon avec le pétrole brut de la pompe à pétrole
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
+Ajouter le pétrole brut du bidon dans la raffinerie
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryGasolineCanister@Name:
+Remplir le bidon avec l'essence de la raffinerie
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanister@Name:
+Remplir le bidon avec l'huile minérale de la raffinerie
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
+Faire bouillir l'eau
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesOrange@Name:
+Confiture de baies (baies orange)
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesRed@Name:
+Confiture de baies (baies rouges)
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesViolet@Name:
+Confiture de baies (baies violettes)
+
+Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
+Remplir la bouteille avec l'eau du puits
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromPyrite@Name:
+Acide sulfurique (de la pyrite)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromSulfur@Name:
+Acide sulfurique (du soufre)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeCampFuelSynthetic@Name:
+Lampant (synthétique)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeToxin@Name:
+Extraction de toxine
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeCanisterPetroleum@Name:
+Bidon de pétrole (des pétrogousses)
+

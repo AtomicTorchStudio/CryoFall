@@ -1,0 +1,99 @@
+﻿Scripts/CraftRecipes/HandCrafting/RecipeFillBottleWithWaterbulb@Name:
+Encha o frasco com aquabulbo
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+Encha o barril com gasolina
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:
+Encha o barril com óleo mineral
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddPetroleum@Name:
+Encha o barril com petróleo bruto
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddWater@Name:
+Encha o barril com água
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveGasoline@Name:
+Encha o reservatório com combustível a gasolina do barril
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveMineralOil@Name:
+Encha o reservatório com óleo mineral do barril
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemovePetroleum@Name:
+Encha o reservatório com petróleo bruto do barril
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveWater@Name:
+Encha a garrafa com água do barril
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromLogs@Name:
+Subproduto da queima de lenha
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromPlanks@Name:
+Subproduto da queima de tábuas
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
+Subproduto da queima de gravetos
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
+Ferver a água (desperdício)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
+Combustível (gordura animal)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
+Cogumelos assados (boletus)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
+Cogumelos assados (porcino)
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
+Reciclar moeda de centavo
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
+Reciclar cintilante
+
+Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
+Sais de lítio do extrator de minério de lítio
+
+Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
+Encha o reservatório com óleo de petróleo bruto da bomba de óleo
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
+Adicione óleo de petróleo bruto do reservatório à refinaria de petróleo
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryGasolineCanister@Name:
+Encha o reservatório com combustível gasolina da refinaria de petróleo
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanister@Name:
+Encha o reservatório com óleo mineral da refinaria de petróleo
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
+Ferver água
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesOrange@Name:
+Geleia (frutinhas laranjas)
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesRed@Name:
+Geleia (frutinhas vermelhas)
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesViolet@Name:
+Geleia (frutinhas violetas)
+
+Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
+Encher a garrafa com água do poço
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromPyrite@Name:
+Ácido sulfúrico (de pirita)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromSulfur@Name:
+Ácido sulfúrico (de enxofre)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeCampFuelSynthetic@Name:
+Combustível (sintético)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeToxin@Name:
+Extração de toxinas
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeCanisterPetroleum@Name:
+Reservatório de petróleo (de petrovagens)
+

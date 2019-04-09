@@ -1,0 +1,126 @@
+﻿Scripts/ClientComponents/Input/GameButton@CancelOrClose:
+Cancelar o cerrar
+
+Scripts/ClientComponents/Input/GameButton@MoveUp:
+Moverse hacia arriba
+
+Scripts/ClientComponents/Input/GameButton@MoveLeft:
+Moverse a la izquierda
+
+Scripts/ClientComponents/Input/GameButton@MoveDown:
+Moverse hacia abajo
+
+Scripts/ClientComponents/Input/GameButton@MoveRight:
+Moverse hacia la derecha
+
+Scripts/ClientComponents/Input/GameButton@RunTemporary:
+Correr (mantener)
+
+Scripts/ClientComponents/Input/GameButton@RunToggle:
+Correr (sí/no)
+
+Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
+Acción: Usar objeto
+
+Scripts/ClientComponents/Input/GameButton@ActionInteract:
+Acción: Interactuar
+
+Scripts/ClientComponents/Input/GameButton@ItemReload:
+Recargar objeto
+
+Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
+Cambiar modo/Cambiar munición
+
+Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
+Luz del casco Sí/No
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot1:
+Ranura 1
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot2:
+Ranura 2
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot3:
+Ranura 3
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot4:
+Ranura 4
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot5:
+Ranura 5
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot6:
+Ranura 6
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot7:
+Ranura 7
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
+Ranura 8
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
+Ranura 9
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
+Ranura 10
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
+Acercar cámara
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
+Alejar cámara
+
+Scripts/ClientComponents/Input/GameButton@OpenChat:
+Chat
+
+Scripts/ClientComponents/Input/GameButton@InventoryMenu:
+Inventario
+
+Scripts/ClientComponents/Input/GameButton@CraftingMenu:
+Fabricación
+
+Scripts/ClientComponents/Input/GameButton@MapMenu:
+Mapa
+
+Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
+Construcción
+
+Scripts/ClientComponents/Input/GameButton@SkillsMenu:
+Habilidades
+
+Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
+Tecnologías
+
+Scripts/ClientComponents/Input/GameButton@SocialMenu:
+Social
+
+Scripts/ClientComponents/Input/GameButton@QuestsMenu:
+Misiones
+
+Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
+Consola de desarrollo
+
+Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
+Herramientas debug
+
+Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
+Pantalla completa Sí/No
+
+Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
+Hacer captura de pantalla
+
+Scripts/ClientComponents/Input/GameButton@ContainerSort:
+Ordenar contenedor
+
+Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
+Coger todos los objetos
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
+Aunar objetos abajo
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
+Aunar objetos arriba
+
+Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
+Mostrar terrenos adjudicados y barras de salud
+

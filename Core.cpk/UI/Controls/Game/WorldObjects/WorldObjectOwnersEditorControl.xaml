@@ -1,0 +1,120 @@
+﻿<ui:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WorldObjectOwnersEditorControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
+    d:DataContext="{d:DesignInstance data:ViewModelWorldObjectOwnersEditor, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <StackPanel Orientation="Vertical"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+        <TextBlock Text="{Binding Title}"
+                   FontSize="14"
+                   Foreground="White" />
+
+        <ScrollViewer Margin="0,0,0,5"
+                      MaxHeight="150"
+                      VerticalAlignment="Top"
+                      CanContentScroll="True">
+            <Grid>
+                <TextBlock Text="{Binding EmptyListMessage}"
+                           Visibility="{Binding Owners,Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}"
+                           FontSize="12"
+                           Foreground="{StaticResource BrushColor6}"
+                           MaxWidth="160"
+                           TextWrapping="Wrap" />
+
+                <ItemsControl ItemsSource="{Binding Owners}"
+                              Background="Transparent"
+                              Visibility="{Binding Owners,Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
+                              Margin="2,0,0,0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel IsItemsHost="True" Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel x:Name="OwnerEntryStackPanel"
+                                        Background="Transparent"
+                                        Orientation="Horizontal"
+                                        Margin="0,2">
+                                <!-- Bullet point -->
+                                <Ellipse Width="6"
+                                         Height="6"
+                                         Fill="{StaticResource BrushColor6}"
+                                         VerticalAlignment="Center"
+                                         Margin="0,0,3,0" />
+
+                                <TextBlock Text="{Binding Name}"
+                                           FontSize="14"
+                                           FontWeight="Bold"
+                                           Foreground="{StaticResource BrushColor6}"
+                                           VerticalAlignment="Center" />
+
+                                <ContentControl
+                                    Visibility="{Binding IsMouseOver, ElementName=OwnerEntryStackPanel, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <Button Command="{Binding CommandRemove}"
+                                            CommandParameter="{Binding Name}"
+                                            Visibility="{Binding RemoveButtonVisibility}"
+                                            ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.ObjectOwnersList_RemoveOwner}"
+                                            FontSize="10"
+                                            Margin="6,0,0,0"
+                                            Padding="2"
+                                            MinWidth="0"
+                                            MinHeight="0"
+                                            Focusable="False">
+                                        <Control Style="{StaticResource CrossControlStyle}" />
+                                    </Button>
+                                </ContentControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </ScrollViewer>
+
+        <Grid Margin="0,5,0,0"
+              Visibility="{Binding CanEditOwners, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Orientation="Vertical"
+                        Margin="0,5,0,0">
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="0,0,0,2">
+                    <!-- Text: Add player -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.ObjectOwnersList_AddPlayer}"
+                               FontSize="14"
+                               Foreground="White" />
+                    <TextBlock Text=": "
+                               FontSize="14"
+                               Foreground="White" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="{Binding NewOnwerName}"
+                             FontSize="14"
+                             Width="120" />
+                    <!-- Text: Add -->
+                    <Button Content="{x:Static loc:CoreStrings.Button_Add}"
+                            Command="{Binding CommandAddNewOwner}"
+                            MinWidth="0"
+                            Height="16"
+                            Padding="10,0"
+                            Margin="5,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <!-- Text: Only the owner can add and remove access. -->
+        <TextBlock Text="{x:Static loc:CoreStrings.ObjectOwnersList_OnlyOwnerCanAdd}"
+                   Foreground="{StaticResource BrushColor5}"
+                   Visibility="{Binding CanEditOwners, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                   TextWrapping="Wrap" />
+    </StackPanel>
+
+</ui:BaseUserControl>

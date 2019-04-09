@@ -1,0 +1,118 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolWorldSize.EditorToolWorldSizeSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolWorldSize"
+    xmlns:brushes="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="150"
+    d:DataContext="{d:DesignInstance data:ViewModelEditorToolWorldSizeSettings, d:IsDesignTimeCreatable=True}">
+
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary Source="/Editor/EditorStyles.xaml" />
+    </base:BaseUserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <!-- Map stats -->
+        <TextBlock Text="Map stats" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" />
+
+        <Grid Margin="0,5,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Offset: " VerticalAlignment="Center" Foreground="{StaticResource BrushColor6}"
+                       HorizontalAlignment="Right" />
+            <TextBlock Text="Size: " Grid.Row="1" VerticalAlignment="Center" Foreground="{StaticResource BrushColor6}"
+                       HorizontalAlignment="Right" />
+
+            <TextBlock Text="{Binding WorldOffsetText}" Grid.Column="2" VerticalAlignment="Center"
+                       Foreground="{StaticResource BrushColor6}" HorizontalAlignment="Left" />
+            <TextBlock Text="{Binding WorldSizeText}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"
+                       Foreground="{StaticResource BrushColor6}" HorizontalAlignment="Left" />
+
+        </Grid>
+
+
+        <Line Stroke="{StaticResource BrushColor5}" Stretch="Fill" Width="170" X1="0" X2="1" Margin="0,10,0,5" />
+
+
+        <!-- Map expansion tool -->
+        <TextBlock Text="Map expansion" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" />
+
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+            <TextBlock Text="Expand side: " VerticalAlignment="Center" Foreground="{StaticResource BrushColor6}" />
+            <ComboBox
+                ItemsSource="{Binding ExtensionSidesCollection}"
+                DisplayMemberPath="Description"
+                SelectedItem="{Binding ExtensionSelectedSide}"
+                Width="90" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5">
+            <TextBlock Text="Expand by: " VerticalAlignment="Center" Foreground="{StaticResource BrushColor6}" />
+            <ComboBox
+                ItemsSource="{Binding SizesCollection}"
+                DisplayMemberPath="Description"
+                SelectedItem="{Binding ExtensionSelectedSize}"
+                Width="90" />
+        </StackPanel>
+
+        <Button Content="Apply"
+                Command="{Binding CommandApplyWorldSizeSideExpansion}"
+                Style="{StaticResource EditorButtonStyle}" />
+
+
+        <Line Stroke="{StaticResource BrushColor5}" Stretch="Fill" Width="170" X1="0" X2="1" Margin="0,10,0,5" />
+
+
+        <!-- Map slice-expansion tool -->
+        <TextBlock Text="Map slice-expansion" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" />
+
+        <TextBlock
+            Text="Use this tool to insert an empty area. Please note it will be added to the LEFT and UP from the specified offset."
+            Foreground="White"
+            HorizontalAlignment="Left"
+            TextAlignment="Left"
+            FontSize="10"
+            TextWrapping="Wrap"
+            Width="160"
+            Margin="0,2" />
+
+        <brushes:SelectLocationControl ViewModel="{Binding ViewModelSelectWorldSizeSliceExpansionLocation}" />
+
+        <Button Content="Apply"
+                Command="{Binding CommandApplyWorldSizeSliceExpansion}"
+                Style="{StaticResource EditorButtonStyle}" />
+
+
+        <Line Stroke="{StaticResource BrushColor5}" Stretch="Fill" Width="170" X1="0" X2="1" Margin="0,10,0,5" />
+
+
+        <!-- Map optimization tool -->
+        <TextBlock Text="Map optimization" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" />
+
+        <StackPanel Orientation="Horizontal" Margin="0,5">
+            <TextBlock Text="Padding size: " VerticalAlignment="Center" Foreground="{StaticResource BrushColor6}" />
+            <ComboBox
+                ItemsSource="{Binding SizesCollection}"
+                DisplayMemberPath="Description"
+                SelectedItem="{Binding SelectedPaddingSize}"
+                Width="90" />
+        </StackPanel>
+
+        <Button Content="Apply"
+                Command="{Binding CommandApplyWorldSizeOptimization}"
+                Style="{StaticResource EditorButtonStyle}" />
+
+    </StackPanel>
+</base:BaseUserControl>

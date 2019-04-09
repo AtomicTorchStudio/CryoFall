@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<root>
+  <game>CryoFall</game>
+  <id>core</id>
+  <title>Core Game Data for CryoFall</title>
+  <author>AtomicTorch Studio</author>
+  <description>Base mod for CryoFall. Contains all required game data to play the game.</description>
+  <!-- we never update this -->
+  <version>1.0.0</version>
+  <!-- we never update this -->
+  <updated>18.04.2016</updated>
+  <!-- Mod type: 1=server, 2=client+server, 3=client -->
+  <!-- Please note: mods of type 1 are ignored on client (cannot see and activate them)
+                    mods of type 2 are enabled automatically when you're connecting to the server using them
+                    mods of type 3 are ignored on server (cannot see and activate them) -->
+  <modtype>2</modtype>
+</root>

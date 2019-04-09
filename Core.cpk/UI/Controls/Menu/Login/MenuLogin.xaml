@@ -1,0 +1,128 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Login.MenuLogin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:menu="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Login"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Login.Data"
+    xmlns:steam="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam"
+    mc:Ignorable="d"
+    d:DesignHeight="768" d:DesignWidth="1024"
+    Background="Black"
+    Panel.ZIndex="9001"
+    Focusable="True"
+    d:DataContext="{d:DesignInstance data:ViewModelMenuLogin, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:language="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Language">
+
+    <ContentControl Background="{StaticResource MainMenuBackgroundTiledBrush}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+        <Grid>
+            <language:CurrentLanguageDisplayControl HorizontalAlignment="Right"
+                                                    VerticalAlignment="Top"
+                                                    Margin="0,12,12,0" />
+
+            <core:Scalebox Scale="0.75">
+                <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition MinHeight="420" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0"
+                           Source="/UI/Images/Logo/logo_cryofall_256_flat.png"
+                           Stretch="Uniform"
+                           SnapsToDevicePixels="False"
+                           Width="650" />
+
+                    <ContentControl Grid.Row="2"
+                                    VerticalAlignment="Center"
+                                    Margin="15"
+                                    Style="{StaticResource MainMenuWidgetStyle}"
+                                    FontFamily="{StaticResource DefaultFontFamily}"
+                                    Padding="20"
+                                    Width="400">
+                        <Grid>
+                            <ContentControl Visibility="{Binding VisibilityLoginAtomicTorchAccountForm}">
+                                <menu:LoginAtomicTorchFormControl />
+                            </ContentControl>
+
+                            <ContentControl Visibility="{Binding VisibilitySteamAccountLinking}">
+                                <steam:UnregisteredSteamAccountWelcomeControl />
+                            </ContentControl>
+
+                            <ContentControl Visibility="{Binding VisibilitySelectUsernameControl}">
+                                <menu:SelectUsernameFormControl />
+                            </ContentControl>
+
+                            <ContentControl Visibility="{Binding VisibilityConnectingControl}">
+                                <StackPanel Orientation="Vertical">
+                                    <!-- Text: Connecting... -->
+                                    <TextBlock Text="{x:Static loc:CoreStrings.TitleConnecting}"
+                                               Foreground="White"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               FontFamily="{StaticResource CondensedFontFamily}"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,0,0,10" />
+                                    <core:LoadingDisplayControl Width="64" Height="64" HorizontalAlignment="Center"
+                                                                Margin="0,15" />
+                                </StackPanel>
+                            </ContentControl>
+
+                            <ContentControl Visibility="{Binding VisibilitySteamError}">
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0,-5">
+                                    <!-- Text: Steam Client Error -->
+                                    <TextBlock
+                                        Foreground="{StaticResource BrushColor6}"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        FontFamily="{StaticResource CondensedFontFamily}"
+                                        HorizontalAlignment="Center"
+                                        Text="{x:Static loc:CoreStrings.MenuLogin_SteamError_Title}" />
+
+                                    <!-- Text: Please quit the game, restart the Steam Client and launch the game again. -->
+                                    <TextBlock
+                                        Text="{x:Static loc:CoreStrings.MenuLogin_SteamError_Message}"
+                                        Foreground="{StaticResource BrushColorLabelForeground}"
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        FontFamily="{StaticResource CondensedFontFamily}"
+                                        HorizontalAlignment="Center"
+                                        TextAlignment="Left"
+                                        TextWrapping="Wrap"
+                                        Margin="0,7,0,0" />
+
+                                    <!-- Text: Quit -->
+                                    <Button Content="{x:Static loc:CoreStrings.Button_Quit}"
+                                            Command="{Binding CommandQuit}"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,12,0,0"
+                                            IsTabStop="True"
+                                            FontSize="18" />
+                                </StackPanel>
+                            </ContentControl>
+
+                        </Grid>
+                    </ContentControl>
+
+                    <Image Grid.Row="4"
+                           Source="/UI/Images/Logo/logo_atomictorch_256.png"
+                           Stretch="Uniform"
+                           SnapsToDevicePixels="False"
+                           Width="200"
+                           Height="200" />
+                </Grid>
+            </core:Scalebox>
+        </Grid>
+    </ContentControl>
+</base:BaseUserControl>

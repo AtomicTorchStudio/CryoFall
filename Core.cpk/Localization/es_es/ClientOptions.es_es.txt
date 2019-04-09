@@ -1,0 +1,192 @@
+﻿Scripts/ClientOptions/Audio/AudioOptionMuteAudioWhenUnfocused@Name:
+Silenciar en segundo plano
+
+Scripts/ClientOptions/Audio/AudioOptionsCategory@Name:
+Sonido
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeAmbient@Name:
+Volumen ambiente
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeMaster@Name:
+Volumen maestro
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeMusic@Name:
+Volumen de música
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeSounds@Name:
+Volumen de sonido
+
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCategory:
+General
+
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
+Controles
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
+Activar igual
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
+`¡Importante! Estás a punto de activar el modo de desarrollo.
+[br][br]
+Usar determinadas características del modo de desarrollo puede romper el juego.
+[br][br]
+A menos que tengas muy claro lo que estás haciendo, te recomendamos que NO lo hagas.
+[br]`
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
+Modo de desarrollo
+
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
+`Mostrar consejo de
+interacción con objetos`
+
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
+`Mostrar consejo de
+nombre de los objetos`
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
+Zoom de cámara
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
+Selección de objeto de acceso rápido
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
+Usa la rueda de scroll para
+
+Scripts/ClientOptions/General/GeneralOptionsCategory@Name:
+General
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Png:
+PNG (más calidad)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Jpeg95:
+JPEG
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Name:
+Formato de capturas
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Actual:
+Actual (usar la resolución actual)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Closest:
+Cercana (la más próxima a la básica)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
+Resolución de capturas
+
+Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
+Tamaño interfaz
+
+Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
+Oclusión ambiental
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
+Nada
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx2:
+MSAA x2
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx4:
+MSAA x4
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx8:
+MSAA x8
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@Name:
+Antialiasing
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.VSync:
+Sincronía vertical (recomendado)
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.DisplayRefreshRate:
+Acorde a la tasa de refresco
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.Off:
+Ilimitados (necesita mucha potencia)
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@Name:
+Límite de FPS
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Normal:
+Original (mejor calidad)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale15:
+Reducir x1,5 (más rápido)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale2:
+Reducir x2 (lo más rápido)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
+Resolución de renderizado
+
+Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
+Vídeo
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
+Pantalla completa
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Windowed:
+En ventana
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@Name:
+Modo de pantalla
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Message:
+`Se ha modificado la resolución de sprites de la imagen.
+[br]El juego tiene que reiniciarse para poder aplicar los cambios.
+[br]Reinicia el juego manualmente.`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Title:
+Se necesita reiniciar
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Button:
+Continuar de todas formas
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_MessageFormat:
+`Intentas elegir un modo de resolución para los sprites que es superior al modo recomendado.
+[br]
+[*] Modo recomendado: [b]{0}[/b]
+[*] Modo elegido: [b]{1}[/b]
+[br]
+[br]El modo seleccionado requiere más capacidad de VRAM de la que puede ofrecer tu GPU. Esto podría provocar tirones en el juego y una tasa de frames bastante baja.`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:
+Se ha elegido un ajuste demasiado elevado
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Ultra:
+Ultra 4K
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.High:
+Alta
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Low:
+Baja (borroso, poco preciso)
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Name:
+`Resolución de sprites
+(requiere reinicio)`
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.High:
+Altos (recomendado)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Medium:
+Normales
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Low:
+Bajos
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.None:
+Nada (no recomendado)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Name:
+Detalles del terreno
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.PPAA:
+Forzar PPAA (bajo)
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.MSAA:
+MSAA automático (lo mejor)
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@Name:
+Antialiasing de interfaz
+

@@ -1,0 +1,23 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars.CharacterHealthBarControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    IsHitTestVisible="False"
+    d:DataContext="{d:DesignInstance data:ViewModelCharacterHealthBarControl, IsDesignTimeCreatable=True}">
+
+    <core:ValueBarControl
+        Background="#88330000"
+        BorderBrush="#CCBB0000"
+        BarBrush="#CCFF0000"
+        DataContext="{Binding StatBar}"
+        MaxValue="{Binding ValueMax}"
+        Value="{Binding ValueCurrent}"
+        Style="{StaticResource WorldObjectValueBarControlStyle}" />
+
+</base:BaseUserControl>

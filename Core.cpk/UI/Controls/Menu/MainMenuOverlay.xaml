@@ -1,0 +1,362 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.MainMenuOverlay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:home="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Home"
+    xmlns:currentGame="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.CurrentGame"
+    xmlns:options="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options"
+    xmlns:extras="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras"
+    xmlns:quit="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Quit"
+    xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers"
+    xmlns:menu="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:language="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Language"
+    mc:Ignorable="d"
+    d:DesignWidth="1366"
+    d:DesignHeight="768"
+    Panel.ZIndex="9000"
+    KeyboardNavigation.TabNavigation="Cycle"
+    d:DataContext="{d:DesignInstance menu:ViewModelMainMenuOverlay, IsDesignTimeCreatable=True}"
+    UseLayoutRounding="False">
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type core:TabControlCached}" x:Key="TabControlMenuOverlay">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
+                <Setter Property="Background" Value="{x:Null}" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type core:TabControlCached}">
+                            <Grid KeyboardNavigation.TabNavigation="Local">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="45" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Content -->
+                                <Grid x:Name="ContentGrid"
+                                      Grid.Row="2"
+                                      MaxWidth="1200"
+                                      MaxHeight="630" />
+
+                                <!-- Header -->
+                                <Grid Grid.Row="0">
+                                    <Border Background="{StaticResource MenuBackgroundBrush}"
+                                            IsHitTestVisible="False">
+                                        <Rectangle
+                                            Fill="{StaticResource MenuBackgroundHorizontalGradientBrush}"
+                                            RenderTransformOrigin="0.5,0.5">
+                                            <Rectangle.RenderTransform>
+                                                <ScaleTransform ScaleY="-1" />
+                                            </Rectangle.RenderTransform>
+                                        </Rectangle>
+                                    </Border>
+
+                                    <Grid HorizontalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Source="/UI/Images/Logo/logo_cryofall_128_flat.png"
+                                               Grid.Column="0"
+                                               Margin="10,5,40,5"
+                                               Stretch="Uniform"
+                                               SnapsToDevicePixels="False" />
+
+                                        <Viewbox Grid.Column="2"
+                                                 KeyboardNavigation.TabIndex="1"
+                                                 Margin="0,0,10,0"
+                                                 Stretch="Uniform"
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Stretch">
+                                            <ItemsPresenter
+                                                VerticalAlignment="Stretch"
+                                                HorizontalAlignment="Right"
+                                                SnapsToDevicePixels="False"
+                                                MinHeight="54" />
+                                        </Viewbox>
+
+                                        <language:CurrentLanguageDisplayControl Grid.Column="3"
+                                                                                HorizontalAlignment="Left"
+                                                                                VerticalAlignment="Top"
+                                                                                Margin="25,11,0,0" />
+                                    </Grid>
+
+                                    <Rectangle Fill="{StaticResource WidgetBorderBrush}"
+                                               Height="0.667"
+                                               Margin="0,1,0,0"
+                                               UseLayoutRounding="False"
+                                               VerticalAlignment="Bottom" />
+                                </Grid>
+
+                                <!-- Footer -->
+                                <Grid Grid.Row="4">
+                                    <Border Background="{StaticResource MenuBackgroundBrush}">
+                                        <Grid>
+                                            <Grid.Resources>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Foreground" Value="#FFEEEEEE" />
+                                                    <Setter Property="FontFamily"
+                                                            Value="{StaticResource CondensedFontFamily}" />
+                                                    <Setter Property="FontSize" Value="12" />
+                                                    <Setter Property="FontWeight" Value="Normal" />
+                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                </Style>
+                                            </Grid.Resources>
+
+                                            <Rectangle
+                                                Fill="{StaticResource MenuBackgroundHorizontalGradientBrush}" />
+
+                                            <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                                            <TextBlock Margin="5,0,0,0"
+                                                       Foreground="#99FFFFFF">
+                                                <Run>CryoFall&#x2122;, RENKEI&#x2122; Engine &#x00A9; by AtomicTorch Studio Pte. Ltd.</Run>
+                                                <LineBreak />
+                                                <Run>&#x00A9; 2019 Daedalic Entertainment GmbH. All rights reserved. </Run>
+                                                <Hyperlink Foreground="#99FFFFFF"
+                                                           Command="{Binding CommandOpenDaedalicPrivacyPolicy}">
+                                                    Privacy Policy.
+                                                </Hyperlink>
+                                            </TextBlock>
+
+                                            <TextBlock Text="{Binding GameVersion}"
+                                                       HorizontalAlignment="Center"
+                                                       Foreground="#AAFFFFFF" />
+
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                                                        Margin="0,0,10,0">
+                                                <!-- Text: You are logged in as -->
+                                                <TextBlock
+                                                    Text="{x:Static loc:CoreStrings.MainMenuOverlay_YouAreLoggedInAs}" />
+                                                <TextBlock Text=": " />
+                                                <TextBlock Text="{Binding Username}"
+                                                           FontWeight="Bold"
+                                                           Margin="0,0,5,0" />
+
+                                                <Button Command="{Binding CommandLogout}"
+                                                        MinWidth="1"
+                                                        MinHeight="1"
+                                                        Padding="5,3"
+                                                        Margin="0,5"
+                                                        Visibility="{Binding CommandLogoutVisibility}"
+                                                        Focusable="False">
+                                                    <Button.Content>
+                                                        <!-- Text: Logout -->
+                                                        <TextBlock FontWeight="Bold"
+                                                                   FontSize="13"
+                                                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                                                   Text="{x:Static loc:CoreStrings.MainMenuOverlay_Button_Logout}" />
+                                                    </Button.Content>
+                                                </Button>
+
+                                                <Button Command="{Binding CommandOpenLinkSteamAccountWindow}"
+                                                        MinWidth="1"
+                                                        MinHeight="1"
+                                                        Padding="5,3"
+                                                        Margin="0,5"
+                                                        Visibility="{Binding CommandLinkSteamAccountVisibility}"
+                                                        Focusable="False">
+                                                    <Button.Content>
+                                                        <!-- Text: Link account -->
+                                                        <TextBlock FontWeight="Bold"
+                                                                   FontSize="13"
+                                                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                                                   Text="{x:Static loc:CoreStrings.MainMenuOverlay_Button_LinkAccount}" />
+                                                    </Button.Content>
+                                                </Button>
+                                            </StackPanel>
+
+                                            <Rectangle Fill="{StaticResource WidgetBorderBrush}"
+                                                       Height="0.667"
+                                                       UseLayoutRounding="False"
+                                                       VerticalAlignment="Top" />
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <StackPanel IsItemsHost="True" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Style for top bar menu items -->
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundTabSwitched}" />
+                <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
+                <Setter Property="UseLayoutRounding" Value="False" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Padding" Value="10,0" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}">
+                            <Border x:Name="Border"
+                                    Background="Transparent">
+                                <Grid x:Name="HeaderGroup" VerticalAlignment="Center">
+                                    <ContentPresenter x:Name="HeaderPresenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      ContentSource="Header" />
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" TargetName="Border">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="{StaticResource ColorAlt7}" Opacity="0.15" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" TargetName="Border">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="{StaticResource ColorAlt7}" Opacity="0.25" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="TextElement.Foreground" TargetName="HeaderPresenter">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="{StaticResource ColorAlt7}" Opacity="0.5" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="TabItemHeader" TargetType="{x:Type TabItem}"
+                   BasedOn="{StaticResource {x:Type TabItem}}">
+                <Setter Property="Padding" Value="40,0" />
+                <Setter Property="FontSize" Value="21" />
+            </Style>
+
+            <Style x:Key="TabItemDelimiterStyle" TargetType="{x:Type TabItem}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="UseLayoutRounding" Value="False" />
+                <Setter Property="IsHitTestVisible" Value="False" />
+                <Setter Property="Focusable" Value="False" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <!-- Horizontal margin is specially set as overkill value:
+                                 we don't want to take any space with this element,
+                                 we want it to have 0 logical width -->
+                            <Line StrokeThickness="1.5" Y2="1"
+                                  Stretch="Fill" Margin="-10,1">
+                                <Line.Stroke>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#000094CC" Offset="0" />
+                                        <GradientStop Color="#FF0094CC" Offset="0.5" />
+                                        <GradientStop Color="#000094CC" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Line.Stroke>
+                            </Line>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </base:BaseUserControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          Background="#BB000000"
+          Focusable="True">
+        <Rectangle Fill="{StaticResource MainMenuBackgroundTiledBrush}" />
+
+        <!-- Tab control with header and content presenter -->
+        <core:TabControlCached Style="{StaticResource TabControlMenuOverlay}"
+                               SelectedItem="{Binding SelectedTab}"
+                               KeyboardNavigation.TabNavigation="None"
+                               KeyboardNavigation.ControlTabNavigation="None">
+
+            <TabItem Style="{StaticResource TabItemDelimiterStyle}" />
+
+            <!-- Text: HOME -->
+            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabHome}" IsSelected="True"
+                     Style="{StaticResource TabItemHeader}">
+                <home:MenuHome />
+            </TabItem>
+
+            <TabItem Style="{StaticResource TabItemDelimiterStyle}" />
+
+            <!-- Text: CURRENT GAME -->
+            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabCurrentGame}"
+                     IsSelected="{Binding IsCurrentGameTabSelected, Mode=TwoWay}"
+                     Visibility="{Binding IsCurrentGameTabVisible, Mode=TwoWay}"
+                     Style="{StaticResource TabItemHeader}">
+                <currentGame:MenuCurrentGame />
+            </TabItem>
+
+            <TabItem Style="{StaticResource TabItemDelimiterStyle}"
+                     Visibility="{Binding IsCurrentGameTabVisible, Mode=TwoWay}" />
+
+            <!-- Text: SERVERS -->
+            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabServers}"
+                     Style="{StaticResource TabItemHeader}"
+                     Visibility="{Binding IsServersMenuVisible}">
+                <servers:MenuServers />
+            </TabItem>
+
+            <TabItem Style="{StaticResource TabItemDelimiterStyle}" />
+
+            <!-- Text: OPTIONS -->
+            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabOptions}"
+                     IsSelected="{Binding IsOptionsMenuSelected, Mode=TwoWay}"
+                     Style="{StaticResource TabItemHeader}">
+                <options:MenuOptions x:Name="MenuOptions" />
+            </TabItem>
+
+            <TabItem Style="{StaticResource TabItemDelimiterStyle}" />
+
+            <!-- Text: CREDITS -->
+            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabCredits}"
+                     IsSelected="{Binding IsExtrasMenuSelected, Mode=TwoWay}"
+                     Style="{StaticResource TabItemHeader}">
+                <extras:MenuExtras
+                    IsEnabled="{Binding IsExtrasMenuSelected}" />
+            </TabItem>
+
+            <TabItem Style="{StaticResource TabItemDelimiterStyle}" />
+
+            <!-- Text: QUIT -->
+            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabQuit}"
+                     Style="{StaticResource TabItemHeader}">
+                <quit:MenuQuit />
+            </TabItem>
+
+            <TabItem Style="{StaticResource TabItemDelimiterStyle}" />
+
+        </core:TabControlCached>
+
+    </Grid>
+
+</base:BaseUserControl>

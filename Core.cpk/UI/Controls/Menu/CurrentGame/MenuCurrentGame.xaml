@@ -1,0 +1,117 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.CurrentGame.MenuCurrentGame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.CurrentGame.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance data:ViewModelMenuCurrentGame, IsDesignTimeCreatable=True}"
+    d:DesignWidth="1300" d:DesignHeight="660" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <ContentControl Style="{StaticResource MainMenuWidgetStyle}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="12">
+        <Grid>
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Visibility="{Binding VisibilityConnected}"
+                        Width="220">
+
+                <TextBlock Text="{Binding ServerName}"
+                           FontSize="16"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,0" />
+
+                <Border CornerRadius="1"
+                        HorizontalAlignment="Center"
+                        Padding="2"
+                        BorderThickness="1"
+                        BorderBrush="{StaticResource WidgetBorderBrush}"
+                        Margin="0,5">
+                    <Rectangle Width="160"
+                               Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                               Fill="{Binding Icon}" />
+                </Border>
+
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0"
+                                Orientation="Horizontal">
+                        <!-- Text: Address -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.ServerAddress}" />
+                        <TextBlock Text=":" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding ServerAddress}"
+                               Grid.Row="0"
+                               Grid.Column="2"
+                               HorizontalAlignment="Right" />
+
+                    <StackPanel Grid.Row="1" Grid.Column="0"
+                                Orientation="Horizontal">
+                        <!-- Text: Ping -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.ServerPing}" />
+                        <TextBlock Text=":" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding PingAverageMilliseconds}"
+                               Grid.Row="1"
+                               Grid.Column="2"
+                               HorizontalAlignment="Right" />
+                </Grid>
+
+                <core:FormattedTextBlock Content="{Binding ServerDescription}" />
+
+                <!-- Text: Show welcome message -->
+                <Button Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_ShowWelcomeMessage}"
+                        Command="{Binding CommandShowWelcomeMessage}"
+                        Margin="0,10,0,0" />
+
+                <!-- Text: Disconnect -->
+                <Button Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_Disconnect}"
+                        Command="{Binding CommandDisconnect}"
+                        Margin="0,10" />
+            </StackPanel>
+
+            <StackPanel Visibility="{Binding VisibilityNotConnected}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="15">
+                <!-- Text: Not connected. -->
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuCurrentGame_NotConnected}" FontSize="16" />
+            </StackPanel>
+
+            <StackPanel Visibility="{Binding VisibilityEditorMode}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical"
+                        Margin="15">
+                <!-- ReSharper disable CanExtractXamlLocalizableStringXaml -->
+                <TextBlock Text="Editor mode"
+                           FontSize="16"
+                           TextWrapping="Wrap"
+                           MaxWidth="250"
+                           TextAlignment="Center"
+                           Margin="0,-5,0,5" />
+                <TextBlock Text="You cannot disconnect from the internal server."
+                           FontSize="12"
+                           TextWrapping="Wrap"
+                           MaxWidth="250"
+                           TextAlignment="Center" />
+                <!-- ReSharper restore CanExtractXamlLocalizableStringXaml -->
+            </StackPanel>
+        </Grid>
+    </ContentControl>
+</base:BaseUserControl>

@@ -1,0 +1,42 @@
+﻿Scripts/Tiles/TileBarren@Name:
+Estéril
+
+Scripts/Tiles/TileBeachBoreal@Name:
+Praia (boreal)
+
+Scripts/Tiles/TileBeachTemperate@Name:
+Praia (temperada)
+
+Scripts/Tiles/TileClay@Name:
+Poço de argila
+
+Scripts/Tiles/TileForestBoreal@Name:
+Floresta (boreal)
+
+Scripts/Tiles/TileForestTemperate@Name:
+Floresta (temperada)
+
+Scripts/Tiles/TileForestTropical@Name:
+Floresta (tropical)
+
+Scripts/Tiles/TileLakeShore@Name:
+Margem do lago
+
+Scripts/Tiles/TileMeadows@Name:
+Prados
+
+Scripts/Tiles/TileRocky@Name:
+Rochoso
+
+Scripts/Tiles/TileRuins@Name:
+Ruínas
+
+Scripts/Tiles/TileSaltFlats@Name:
+Salinas
+
+Scripts/Tiles/TileWaterLake@Name:
+Água (lago)
+
+Scripts/Tiles/TileWaterSea@Name:
+Água (mar)
+

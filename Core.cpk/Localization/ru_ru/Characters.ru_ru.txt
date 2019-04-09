@@ -1,0 +1,57 @@
+﻿Scripts/Characters/Mobs/MobBear@Name:
+Медведь
+
+Scripts/Characters/Mobs/MobChicken@Name:
+Курица
+
+Scripts/Characters/Mobs/MobCloakedLizard@Name:
+Плащеносная ящерица
+
+Scripts/Characters/Mobs/MobCrab@Name:
+Краб
+
+Scripts/Characters/Mobs/MobCrawler@Name:
+Ползун
+
+Scripts/Characters/Mobs/MobHoneyBadger@Name:
+Медоед
+
+Scripts/Characters/Mobs/MobHyena@Name:
+Гиена
+
+Scripts/Characters/Mobs/MobPangolin@Name:
+Панголин
+
+Scripts/Characters/Mobs/MobScorpion@Name:
+Скорпион
+
+Scripts/Characters/Mobs/MobSnakeBlue@Name:
+Синяя змея
+
+Scripts/Characters/Mobs/MobSnakeBrown@Name:
+Бурая змея
+
+Scripts/Characters/Mobs/MobSnakeGreen@Name:
+Зеленая змея
+
+Scripts/Characters/Mobs/MobStarfish@Name:
+Морская звезда
+
+Scripts/Characters/Mobs/MobTropicalBoar@Name:
+Бородавочник
+
+Scripts/Characters/Mobs/MobTurtle@Name:
+Черепаха
+
+Scripts/Characters/Mobs/MobWildBoar@Name:
+Кабан
+
+Scripts/Characters/Mobs/MobWolf@Name:
+Волк
+
+Scripts/Characters/Player/PlayerCharacter@Name:
+Персонаж
+
+Scripts/Characters/Player/PlayerCharacterSpectator@Name:
+Персонаж в режиме наблюдателя
+

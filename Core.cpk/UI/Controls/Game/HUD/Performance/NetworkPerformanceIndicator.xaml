@@ -1,0 +1,142 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.NetworkPerformanceIndicator"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:performance="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelNetworkPerformanceStats, IsDesignTimeCreatable=True}"
+    Background="Transparent" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <base:BaseUserControl.Resources>
+        <Geometry x:Key="PathCompleteFill">M 234,237 V 57 h 43 V 237 Z M 167,117 h 43 v 120 h -43 z m -66,60 h 43 v 60 h -43 z</Geometry>
+    </base:BaseUserControl.Resources>
+
+    <performance:IndicatorControl>
+        <performance:IndicatorControl.DisplayNone>
+            <ControlTemplate>
+                <Path Fill="#99EEEEEE"
+                      Data="{StaticResource PathCompleteFill}"
+                      Stretch="Uniform" />
+            </ControlTemplate>
+        </performance:IndicatorControl.DisplayNone>
+
+        <performance:IndicatorControl.DisplayGreen>
+            <ControlTemplate>
+                <Path Fill="#9900FF00"
+                      Data="{StaticResource PathCompleteFill}"
+                      Stretch="Uniform" />
+            </ControlTemplate>
+        </performance:IndicatorControl.DisplayGreen>
+
+        <performance:IndicatorControl.DisplayYellow>
+            <ControlTemplate>
+                <Grid>
+                    <Path Fill="#44AA8800"
+                          Data="{StaticResource PathCompleteFill}"
+                          Stretch="Uniform" />
+                    <Path Fill="#DDFFEE00"
+                          Data="M 234,448 V 268 h 43 v 180 z m 38,-175 h -33 v 170 h 33 z m -105,55 h 43 v 120 h -43 z m -66,60 h 43 v 60 h -43 z"
+                          Stretch="Uniform" />
+                </Grid>
+            </ControlTemplate>
+        </performance:IndicatorControl.DisplayYellow>
+
+        <performance:IndicatorControl.DisplayRed>
+            <ControlTemplate>
+                <Grid>
+                    <Path Fill="#44880000"
+                          Data="{StaticResource PathCompleteFill}"
+                          Stretch="Uniform" />
+                    <Path Fill="#DDEE0000"
+                          Data="M 234,668 V 488 h 43 v 180 z m 38,-175 h -33 v 170 h 33 z m -105,55 h 43 v 120 h -43 z m 5,115 h 33 V 553 h -33 z m -71,-55 h 43 v 60 h -43 z"
+                          Stretch="Uniform" />
+                </Grid>
+            </ControlTemplate>
+        </performance:IndicatorControl.DisplayRed>
+    </performance:IndicatorControl>
+
+    <base:ToolTipServiceExtend.ToolTip>
+        <ContentControl MaxWidth="350">
+            <ContentControl.Resources>
+                <ControlTemplate x:Key="MetricPresenter">
+                    <StackPanel Orientation="Vertical"
+                                d:DataContext="{d:DesignInstance data:ViewModelPerformanceMetric}"
+                                Margin="0,1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Title}"
+                                       FontWeight="Bold" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Value}"
+                                           Foreground="{Binding MetricBrush}"
+                                           FontWeight="Bold" />
+                                <TextBlock Text="{Binding UnitsText}"
+                                           Foreground="{Binding MetricBrush}"
+                                           FontWeight="Bold" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Border BorderBrush="#66000000"
+                                BorderThickness="1"
+                                Background="#33000000"
+                                CornerRadius="5"
+                                Margin="0,0,0,5"
+                                Visibility="{Binding IssueDescription, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}">
+                            <Grid>
+                                <Border Opacity="0.3"
+                                        CornerRadius="5">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{Binding MetricBrush.Color}"
+                                                         Opacity="0.4" />
+                                    </Border.Background>
+                                </Border>
+                                <core:FormattedTextBlock Content="{Binding IssueDescription}"
+                                                         FontSize="11"
+                                                         Margin="5,3" />
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </ControlTemplate>
+            </ContentControl.Resources>
+            <StackPanel Orientation="Vertical"
+                        Margin="0,0,0,3">
+
+                <Control DataContext="{Binding PingGame}"
+                         Template="{StaticResource MetricPresenter}" />
+
+                <Control DataContext="{Binding PingAverage}"
+                         Template="{StaticResource MetricPresenter}" />
+
+                <Control DataContext="{Binding PingFluctuationRange}"
+                         Template="{StaticResource MetricPresenter}" />
+
+                <Control DataContext="{Binding PingJitter}"
+                         Template="{StaticResource MetricPresenter}" />
+
+                <Control Style="{StaticResource ControlHorizontalSeparator}"
+                         Visibility="{Binding AreExtraPanelsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                         Margin="0,5" />
+
+                <!-- Suggestions -->
+                <core:FormattedTextBlock
+                    Content="{x:Static loc:CoreStrings.Network_Suggestions}"
+                    TextWrapping="Wrap"
+                    Foreground="{StaticResource BrushColorAltLabelForeground}"
+                    Visibility="{Binding IsSuggestionsPanelVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                <!-- Performance is fine -->
+                <core:FormattedTextBlock
+                    Content="{x:Static loc:CoreStrings.Network_Perfect}"
+                    TextWrapping="Wrap"
+                    Foreground="{StaticResource BrushColorAltLabelForeground}"
+                    Visibility="{Binding IsAllGoodPanelVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+            </StackPanel>
+        </ContentControl>
+    </base:ToolTipServiceExtend.ToolTip>
+
+</base:BaseUserControl>

@@ -1,0 +1,50 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays.ItemSlotDurabilityOverlayControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelItemDurability, IsDesignTimeCreatable=True}"
+    VerticalAlignment="Top"
+    HorizontalAlignment="Left"
+    Margin="3,3,0,0"
+    IsHitTestVisible="False">
+
+    <core:ValueBarControl
+        Value="{Binding DurabilityCurrent}"
+        MaxValue="{Binding DurabilityMax}"
+        Background="Transparent"
+        BorderBrush="{Binding Brush}"
+        BorderThickness="1"
+        Margin="0"
+        Width="10"
+        Height="10"
+        Padding="1"
+        IsDisplayLabel="False"
+        IsDisplayTooltip="False">
+        <core:ValueBarControl.LayoutTransform>
+            <RotateTransform Angle="-90" />
+        </core:ValueBarControl.LayoutTransform>
+
+        <core:ValueBarControl.Template>
+            <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
+                <Grid x:Name="LayoutRoot">
+                    <Border x:Name="Border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5" />
+                    <ContentPresenter
+                        Margin="{TemplateBinding Padding}"
+                        HorizontalAlignment="Left" />
+                </Grid>
+            </ControlTemplate>
+        </core:ValueBarControl.Template>
+        <Border Background="{Binding Brush}" CornerRadius="4" />
+    </core:ValueBarControl>
+</base:BaseUserControl>

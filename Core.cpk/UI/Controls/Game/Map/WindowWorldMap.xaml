@@ -1,0 +1,19 @@
+﻿<core:BaseWindowMenu
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.WindowWorldMap"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:map="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map"
+    mc:Ignorable="d"
+    d:DesignHeight="80" d:DesignWidth="850">
+
+    <core:GameWindow x:Name="GameWindow"
+                     Width="{StaticResource GameMenuBigWindowWidth}"
+                     Height="{StaticResource GameMenuBigWindowHeight}"
+                     FocusOnControl="{Binding ElementName=GameWindow}"
+                     Padding="0">
+        <map:ControlWorldMap x:Name="ControlWorldMap" />
+    </core:GameWindow>
+</core:BaseWindowMenu>

@@ -1,0 +1,192 @@
+﻿Scripts/ClientOptions/Audio/AudioOptionMuteAudioWhenUnfocused@Name:
+다른 프로그램으로 전환시 음소거
+
+Scripts/ClientOptions/Audio/AudioOptionsCategory@Name:
+오디오
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeAmbient@Name:
+환경음 볼륨
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeMaster@Name:
+마스터 볼륨
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeMusic@Name:
+음악 볼륨
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeSounds@Name:
+사운드 볼륨
+
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCategory:
+일반
+
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
+컨트롤
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
+무시하고 활성화
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
+`경고! 개발자 모드를 활성화시키는 설정입니다.
+[br][br]
+개발자 모드의 특정 기능을 사용하면 게임에 문제가 발생할 수도 있습니다.
+[br][br]
+이 설정에 익숙하지 않으신 분이라면, 추천드리지 않습니다.
+[br]`
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
+개발자 모드
+
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
+`오브젝트 상호 작용
+말풍선 표시`
+
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
+`오브젝트 이름
+말풍선 표시`
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
+카메라 확대/축소
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
+아이템 단축막대
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
+스크롤 휠
+
+Scripts/ClientOptions/General/GeneralOptionsCategory@Name:
+일반
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Png:
+PNG (무손실)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Jpeg95:
+JPEG
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Name:
+스크린샷 포맷
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Actual:
+실제 (현재 해상도 사용)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Closest:
+최근접 (가장 근접한 표준 해상도 사용)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
+스크린샷 해상도
+
+Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
+UI 크기
+
+Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
+주변 폐색
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
+없음
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx2:
+MSAA x2
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx4:
+MSAA x4
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx8:
+MSAA x8
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@Name:
+안티 앨리어싱
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.VSync:
+수직 동기화 (권장)
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.DisplayRefreshRate:
+모니터 화면 주사율
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.Off:
+무제한 (매우 높은 전력 소모)
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@Name:
+FPS 제한
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Normal:
+원본 (최고 품질)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale15:
+다운스케일 x1.5 (빠름)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale2:
+다운스케일 x2 (가장 빠름)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
+렌더링 해상도
+
+Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
+비디오
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
+전체 화면
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Windowed:
+창 모드
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@Name:
+화면 모드
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Message:
+`스프라이트 해상도 비디오 설정이 변경되었습니다.
+[br]변경 사항을 적용하려면 게임을 다시 시작해야 합니다.
+[br]게임을 수동으로 다시 시작해주십시오.`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Title:
+재시작 필요
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Button:
+무시하고 계속하기
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_MessageFormat:
+`권장 모드보다 높은 스프라이트 해상도 모드를 선택하였습니다.
+[br]
+[*] 권장 모드: [b]{0}[/b]
+[*] 선택 모드: [b]{1}[/b]
+[br]
+[br]선택한 모드는 소유하고 있는 GPU 보다 더 많은 VRAM 용량을 필요로 합니다. 이로 인해 이미지가 끊기고, 프레임률이 낮아질 수 있습니다.`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:
+너무 높은 설정이 선택되었습니다
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Ultra:
+울트라 4K
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.High:
+높음
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Low:
+낮음 (흐릿, 비정밀)
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Name:
+`스프라이트 해상도
+(재시작 필요)`
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.High:
+높음 (권장)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Medium:
+보통
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Low:
+낮음
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.None:
+없음 (권장하지 않음)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Name:
+지형 디테일
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.PPAA:
+강제 PPAA (낮음)
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.MSAA:
+자동 MSAA (최고)
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@Name:
+UI 안티 앨리어싱
+

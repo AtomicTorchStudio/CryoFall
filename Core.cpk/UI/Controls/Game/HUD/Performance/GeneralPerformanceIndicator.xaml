@@ -1,0 +1,157 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.GeneralPerformanceIndicator"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:performance="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    x:Name="UserControl"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelGeneralPerformanceStats, IsDesignTimeCreatable=True}"
+    Background="Transparent" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <performance:IndicatorControl>
+        <performance:IndicatorControl.Resources>
+            <Geometry x:Key="PathNone">m 603,212 v -3 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 3 H 448 v -3 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 3 h -5 V 102 h 5 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 143 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 5 V 212 Z M 448,121 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z M 586,107 H 452 v 99 h 134 z m 17,14 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z M 512.286,172.455 550.13,116 566,124.591 518.39,197 H 507.4 L 472,152.818 485.429,141.773 Z M 568,95 H 434 v 3 h -8 v 9 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 3 h -5 V 90 h 5 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 143 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 5 v 8 H 568 Z M 550,82 H 416 v 3 h -8 v 9 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 3 h -5 V 77 h 5 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 143 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 5 v 8 h -22 z</Geometry>
+        </performance:IndicatorControl.Resources>
+
+        <performance:IndicatorControl.DisplayNone>
+            <ControlTemplate>
+                <Path Fill="#99EEEEEE"
+                      Data="{StaticResource PathNone}"
+                      Stretch="Uniform" />
+            </ControlTemplate>
+        </performance:IndicatorControl.DisplayNone>
+
+        <performance:IndicatorControl.DisplayGreen>
+            <ControlTemplate>
+                <Path Fill="#9900FF00"
+                      Data="{StaticResource PathNone}"
+                      Stretch="Uniform" />
+            </ControlTemplate>
+        </performance:IndicatorControl.DisplayGreen>
+
+        <performance:IndicatorControl.DisplayYellow>
+            <ControlTemplate>
+                <Path Fill="#DDFFEE00"
+                      Data="m 603,426 v -3 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 3 H 448 v -3 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 3 h -5 V 316 h 5 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 143 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 5 V 426 Z M 448,335 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z M 586,321 H 452 v 99 h 134 z m 17,14 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m -72,-52.622 -4.825,38.9 h -15.459 l -4.711,-38.9 V 329.012 H 531 Z m -0.8,65.633 H 506.867 V 393.2 h 23.324 v 20.815 z M 568,309 H 434 v 3 h -8 v 9 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 3 h -5 V 304 h 5 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 143 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 5 v 8 H 568 Z M 550,296 H 416 v 3 h -8 v 9 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 3 h -5 V 291 h 5 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 143 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 5 v 8 h -22 z"
+                      Stretch="Uniform" />
+            </ControlTemplate>
+        </performance:IndicatorControl.DisplayYellow>
+
+        <performance:IndicatorControl.DisplayRed>
+            <ControlTemplate>
+                <Path Fill="#DDEE0000"
+                      Data="m 603,656 v -3 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 3 H 448 v -3 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 3 h -5 V 546 h 5 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 143 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 5 V 656 Z M 448,565 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z M 586,551 H 452 v 99 h 134 z m 17,14 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m 0,22 a 2,2 0 0 0 -2,-2 h -8 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 z m -114,-52.622 -4.825,38.9 h -15.459 l -4.711,-38.9 V 559.012 H 489 Z m -0.8,65.633 H 464.867 V 623.2 h 23.324 v 20.815 z m 42.8,-65.633 -4.825,38.9 h -15.459 l -4.711,-38.9 V 559.012 H 531 Z m -0.8,65.633 H 506.867 V 623.2 h 23.324 v 20.815 z m 43.8,-65.633 -4.825,38.9 h -15.459 l -4.711,-38.9 V 559.012 H 574 Z m -0.8,65.633 H 549.867 V 623.2 h 23.324 v 20.815 z M 568,539 H 434 v 3 h -8 v 9 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 3 h -5 V 534 h 5 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 143 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 5 v 8 H 568 Z M 550,526 H 416 v 3 h -8 v 9 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 6 a 2,2 0 0 0 2,2 h 6 v 12 h -6 a 2,2 0 0 0 -2,2 v 3 h -5 V 521 h 5 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 143 v 3 a 2,2 0 0 0 2,2 h 8 a 2,2 0 0 0 2,-2 v -3 h 5 v 8 h -22 z"
+                      Stretch="Uniform" />
+            </ControlTemplate>
+        </performance:IndicatorControl.DisplayRed>
+    </performance:IndicatorControl>
+
+    <base:ToolTipServiceExtend.ToolTip>
+        <ContentControl MaxWidth="350">
+            <ContentControl.Resources>
+                <ControlTemplate x:Key="MetricIssuePresenter">
+                    <Border BorderBrush="#66000000"
+                            BorderThickness="1"
+                            Background="#33000000"
+                            CornerRadius="5"
+                            Margin="0,0,0,5"
+                            d:DataContext="{d:DesignInstance data:ViewModelPerformanceMetric}"
+                            Visibility="{Binding IssueDescription, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}">
+                        <Grid>
+                            <Border Opacity="0.3"
+                                    CornerRadius="5">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding MetricBrush.Color}" Opacity="0.4" />
+                                </Border.Background>
+                            </Border>
+                            <core:FormattedTextBlock Content="{Binding IssueDescription}"
+                                                     FontSize="11"
+                                                     Margin="5,3" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+
+                <ControlTemplate x:Key="MetricPresenter">
+                    <StackPanel Orientation="Vertical"
+                                d:DataContext="{d:DesignInstance data:ViewModelPerformanceMetric}"
+                                Margin="0,1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Title}"
+                                       FontWeight="Bold" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Value}"
+                                           Foreground="{Binding MetricBrush}"
+                                           FontWeight="Bold" />
+                                <TextBlock Text="{Binding UnitsText}"
+                                           Foreground="{Binding MetricBrush}"
+                                           FontWeight="Bold" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Control Template="{StaticResource MetricIssuePresenter}" />
+                    </StackPanel>
+                </ControlTemplate>
+            </ContentControl.Resources>
+            <StackPanel Orientation="Vertical"
+                        Margin="0,0,0,3">
+
+                <Control DataContext="{Binding FpsAverage}"
+                         Template="{StaticResource MetricPresenter}" />
+
+                <ContentControl Visibility="{Binding VramUsageVisibility}">
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding VramUsage.Title}"
+                                       FontWeight="Bold" />
+                            <StackPanel Orientation="Horizontal">
+                                <!-- ReSharper disable CanExtractXamlLocalizableStringXaml -->
+                                <TextBlock Text="{Binding VramUsage.Value}"
+                                           Foreground="{Binding VramUsage.MetricBrush}"
+                                           FontWeight="Bold" />
+                                <TextBlock Text=" MB / "
+                                           Foreground="{Binding VramUsage.MetricBrush}"
+                                           FontWeight="Bold" />
+                                <TextBlock Text="{Binding VramBudget}"
+                                           Foreground="{Binding VramUsage.MetricBrush}"
+                                           FontWeight="Bold" />
+                                <TextBlock Text=" MB"
+                                           Foreground="{Binding VramUsage.MetricBrush}"
+                                           FontWeight="Bold" />
+                                <!-- ReSharper restore CanExtractXamlLocalizableStringXaml -->
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Control Template="{StaticResource MetricIssuePresenter}"
+                                 DataContext="{Binding VramUsage}" />
+                    </StackPanel>
+                </ContentControl>
+
+                <Control Style="{StaticResource ControlHorizontalSeparator}"
+                         Visibility="{Binding AreExtraPanelsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                         Margin="0,5" />
+
+                <!-- Suggestions -->
+                <core:FormattedTextBlock
+                    Content="{x:Static loc:CoreStrings.Performance_Suggestions}"
+                    TextWrapping="Wrap"
+                    Foreground="{StaticResource BrushColorAltLabelForeground}"
+                    Visibility="{Binding IsSuggestionsPanelVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                <!-- Performance is fine -->
+                <core:FormattedTextBlock
+                    Content="{x:Static loc:CoreStrings.Performance_Perfect}"
+                    TextWrapping="Wrap"
+                    Foreground="{StaticResource BrushColorAltLabelForeground}"
+                    Visibility="{Binding IsAllGoodPanelVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+            </StackPanel>
+        </ContentControl>
+    </base:ToolTipServiceExtend.ToolTip>
+
+</base:BaseUserControl>

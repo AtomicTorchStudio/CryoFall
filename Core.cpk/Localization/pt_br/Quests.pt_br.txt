@@ -1,0 +1,513 @@
+﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
+Construir: {0}
+
+Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
+Concluir grupo tecnológico: {0}
+
+Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
+no(a) {0}
+
+Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
+Produzir
+
+Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
+Destruir: {0}
+
+Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
+Recolher: {0}
+
+Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
+Colher: {0}
+
+Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
+Equipar: {0}
+
+Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
+Aprender habilidade: {0} para o nível {1}
+
+Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
+Aprender habilidades: {0} para o nível {1}
+
+Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
+Desbloquear grupo de tecnologia: {0}
+
+Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
+Desbloquear {0} grupos de tecnologia: {1}
+
+Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
+Aprender tecnologia: {0} (localiza-se no grupo {1})
+
+Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
+Matar: {0}
+
+Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
+Fazer: {0}
+
+Scripts/Quests/Requirements/RequirementRun@DescriptionText:
+Correr por 10 metros
+
+Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
+Organizar itens do inventário
+
+Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
+Usar: {0}
+
+Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
+Visitar: {0}
+
+Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
+Visitar: {0}
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+Você pode designar seu ponto de ressurgimento colocando um saco de dormir. Da próxima vez que seu personagem ressurgir, aparecerá lá.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
+`[*] O saco de dormir localiza-se na categoria "Outros”, no menu de construção.
+[*] A melhor estratégia é colocar o saco de dormir em casa ou na base para que você possa ressurgir "em casa".
+[*] Para o seu primeiro saco de dormir, tente encontrar um local tranquilo, longe dos outros jogadores, onde mais tarde possa usar de base. Agora, se você precisar deslocá-lo mais para frente, não se preocupe.`
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
+Construir um saco de dormir
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
+Agora que você tem uma caixa de ferramentas, dá para começar a criar as diferentes estruturas desbloqueadas no menu de tecnologia. Vamos começar com uma fogueira, que pode ser usada para cozinhar.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
+`[*] Para acessar rapidamente o [b]menu de construir[/b] pressione "Tab", caso não tenha alterado os controles.
+[*] O menu construir pode ter [b]diversas páginas[/b] com diferentes [b]tipos de construção[/b], contanto que você desbloqueie novas estruturas.
+[*] É possível usar caixas de ferramentas não apenas para [b]construir[/b] estruturas, mas também para [b]repará-las[/b].`
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
+Construir uma fogueira
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Description:
+Chegou a hora de pegar madeira! Encontre uma árvore e use seu machado para cortar.
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Hints:
+`[*] É necessário colocar o machado na [b]barra de acesso[/b]. Abra o inventário e arraste o machado criado para qualquer espaço da barra de acesso abaixo; em seguida, feche o inventário.
+[*] Agora, você pode [b]selecioná-lo[/b] pressionando o botão numérico correspondente ou clicando nele com o mouse (quando o inventário estiver fechado).
+[*] Por padrão, o [b]botão esquerdo do mouse[/b] sempre usa o item que você está segurando, ao passo que o [b]botão direito do mouse[/b] interage com um objeto no mundo.`
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Name:
+Cortar uma árvore
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@TaskEatAnyFood:
+Comer qualquer comida
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Description:
+Agora que você construiu uma fogueira, é possível usá-la para cozinhar comidas básicas. Se tiver cogumelos ou carne, cozinhe-os para ficarem mais nutritivos e seguros para o consumo.
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
+`[*] Você pode ver [b]todas as receitas possíveis[/b] em uma fogueira se pressionar "Procurar receitas".
+[*] A fim de cozinhar alguma coisa, é preciso [b]selecionar a receita apropriada[/b].
+[*] Para funcionar, as fogueiras exigem [b]combustível[/b]. Coloque [b]madeira ou carvão[/b] no espaço do combustível.
+[*] Mais tarde, será possível aprender [b]novas receitas[/b] no [b]menu de tecnologia[/b].
+[*] Pode-se usar qualquer item (inclusive comida) diretamente [b]do inventário[/b] ou colocando-o na [b]barra de acesso[/b] e usando no jogo.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
+Cozinhar qualquer comida
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
+Agora que você tem recursos, dá para começar a produzir. Primeiro, produza uma corda. Depois, quando estiver pronta, produza um machado.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
+`[*] Se você não alterou os atalhos padrão do teclado, pode abrir rapidamente o menu de produção com "C" e o inventário com "E".`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
+Produzir um machado
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
+Garimpar diferentes minerais oferece acesso aos mais valiosos recursos de CryoFall. Para poder extrair esses minerais, você precisa produzir uma picareta.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
+`[*] Use o menu de produção (o padrão é "C") para produzir uma picareta.
+[*] Talvez você precise produzir uma corda, se não tiver nenhuma.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
+Produzir uma picareta
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Description:
+Para começar a construir estruturas (como a sua casa), você precisa de uma caixa de ferramentas. As caixas de ferramentas são a principal ferramenta de construção em CryoFall.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Hints:
+`[*] Use seu menu de produção e produza uma caixa de ferramentas.
+[*] Talvez você precise produzir uma corda, se não tiver nenhuma.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Name:
+Produzir uma caixa de ferramentas
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Description:
+Muita gente comete o erro de tentar viajar de noite, na mais completa escuridão. Não tem sentido desperdiçar a vida assim, quando se é possível simplesmente usar uma tocha ou uma lanterna.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Hints:
+`[*] Para usar uma tocha, basta colocá-la na [b]barra de acesso[/b] e ativá-la como qualquer outro item.
+[*] Mais tarde, será possível desbloquear muitos outros tipos de fontes de luz, tanto portáteis quanto estacionárias.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Name:
+Produzir e usar uma tocha
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Description:
+Você precisa juntar recursos para produzir ferramentas básicas de produção.
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
+`[*] Você [b]pode pegar itens[/b] do chão, como [u]pedras[/u], [u]galhos[/u] e [u]grama[/u].
+[*] Basta clicar com o [b]botão direito[/b] em um item no chão para ele ser adicionado ao seu inventário.`
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
+Juntar recursos
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
+`Para ter acesso a mais estruturas, você precisa desbloquear "edifícios básicos" no menu de tecnologia.`
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
+`[*] Se você não tiver alterado os controles, é possível acessar rapidamente o menu de tecnologias pressionando "G".
+[*] São necessários [b]PA[/b] (pontos de aprendizagem) para desbloquear qualquer nó de tecnologia.
+[*] Pontos de aprendizagem são obtidos a partir de qualquer atividade significativa, sendo diretamente proporcionais ao seu ganho de experiência em habilidades.`
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
+Aprender tecnologia básica de construção
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
+Extrair pedra
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Description:
+Vamos aproveitar esta picareta. Garimpe alguns minerais para ver o que consegue. Também será preciso extrair pedras de rochas maiores.
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
+`[*] Como qualquer outra ferramenta utilizável, você precisa colocar a picareta na [b]barra de acesso[/b].
+[*] O melhor lugar de se encontrar nós minerais fica nas [b]montanhas[/b]. Use o mapa (o atalho padrão é "M") para descobrir um bom lugar.
+[*] Diferentes minerais exigem tempo de garimpo diverso e oferecem tipos de recursos variados.
+[*] A melhor maneira de conseguir [b]grandes quantidades[/b] de pedra é [b]garimpando[/b] de grandes rochas.
+[*] Se sua habilidade em mineração for alta o suficiente, certos minerais também podem dar itens mais raros, como pedras preciosas ou pepitas de ouro.`
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
+Garimpar qualquer mineral
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
+Para aproveitar CryoFall ao máximo, tem mais umas coisas que você precisa saber, como organizar qualquer inventário e fazer o personagem correr!
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
+`[*] Para organizar seu inventário, basta abri-lo e pressionar o [u]botão do meio do mouse[/u] ou a [u]tecla Z[/u] (se você não alterou os controles) enquanto passa o mouse sobre a grade do inventário. É possível classificar [b]QUALQUER[/b] grade do inventário assim (por exemplo, baús).
+[*] Para correr, basta simplesmente segurar a [u]tecla Shift[/u] enquanto se move. Teste correr por alguns metros. Correr é excelente para fugir de predadores perigosos.`
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
+Executar ações básicas
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
+Colher o fruto do aquabulbo
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Description:
+É hora de aprender a garantir uma fonte básica de água. Quando este planeta foi terraformado, uma das primeiras plantas a serem cultivadas foi o arbusto do aquabulbo. Eles fornecem uma boa fonte de água limpa e de fácil acesso.
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Hints:
+`[*] Aquabulbos germinam em quase todos os biomas, mas podem ser mais comumente encontrados em [b]prados de biomas temperados[/b].
+[*] Como acontece com qualquer planta e comida em geral, estragam rapidamente; assim, em vez de armazenadas para mais tarde, essas plantas devem ser colhidas e consumidas logo que você precisar de água.`
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Name:
+Encontrar uma fonte de água básica
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Description:
+A bancada de trabalho funciona como a principal estação de produção para a maioria das receitas em CryoFall. Ao estabelecer uma nova base, deve ser prioridade construir uma.
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Hints:
+[*] No menu de tecnologia, é possível visualizar todas as receitas criadas. Esta informação aparece abaixo do nome da receita.
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Name:
+Desbloquear e construir uma bancada de trabalho
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@TaskPlantAnySeeds:
+Plantar qualquer semente
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
+A agricultura é uma ótima forma sustentável de obter grandes quantidades de comida. É hora de sujar as mãos!
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
+`[*] É uma boa ideia construir sua fazenda [b]dentro[/b] da proteção de suas muralhas, já que outros sobreviventes podem resolver colher suas plantações no seu lugar :)
+[*] O tempo de maturidade de diferentes plantas varia, assim como a produtividade da safra e outras propriedades.
+[*] Posteriormente, será possível pesquisar melhores fertilizantes e outras coisas para aumentar a eficiência da sua fazenda.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
+Construir uma fazenda
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Description:
+No comecinho, as tochas exercem um papel essencial, mas com certeza você vai querer melhorar para alguma coisa que ofereça um raio de luz maior e seja mais conveniente de usar. Está na hora de construir uma lanterna e uma luminária de piso!
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
+`[*] As lanternas oferecem um [b]raio de luz muito maior[/b], além de uma luz mais estável, se comparadas às tochas.
+[*] Tanto as lanternas quanto as luminárias de piso usam o combustível para produzir luz, podendo [b]ser recarregadas muitas vezes[/b], ao contrário das tochas, que apenas queimam até se esgotar.
+[*] Existem duas maneiras de produzir o combustível (também conhecido como óleo de lâmpada): gordura animal ou derivados de petróleo.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
+Fontes de luz
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
+`É muito importante entender como proteger a própria base! Se você não fizer isso direito, é muito fácil que sobreviventes mais astutos invadam-na.
+[br]
+[br]O ponto mais importante é usar direito a posse de terra para garantir que sua base fique bem protegida. Para planejar melhor a construção da base, antes de erguer muros, portas ou outras estruturas, deve-se primeiro estabelecer a posse da terra.
+[br]
+[br]Depois que a posse de terra já estiver colocada, você pode começar a construir muros em torno dela. É fundamental pôr muros [b][u]dentro[/u][/b] da área de proteção de terras; caso contrário, qualquer outro sobrevivente poderia [b]desconstruí-la em segundos[/b].
+[br]
+[br]A área de posse também pode ser expandida para proteger mais terreno, e é possível aumentar a espessura do muro com camadas adicionais para garantir maior proteção. Em geral, duas camadas são suficientes para que a maioria dos atacantes deixem sua base em paz, a menos que você tenha algo particularmente valioso lá.
+[br]
+[br]É aconselhável ter pelo menos duas portas na base, mas mais é ainda melhor.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Hints:
+`[*] Para interagir com a estrutura de posse de terra, abra o respectivo menu de mesmo nome. Nele, constam informações detalhadas sobre a posse e como melhorá-la para níveis mais altos.
+[*] Estruturas fora da posse de terra se deterioram rapidamente ao longo de um ou dois dias. Lembre-se de construir única e exclusivamente dentro da área da posse de terra.
+[*] Contanto que esteja dentro de sua posse de terreno, é possível desconstruir rapidamente qualquer estrutura com um pé de cabra (no Nível 1 de Construção).
+[*] Você não precisa pôr todas as estações de produção e outras estruturas dentro da base. Como não há nada para roubar nelas, os outros jogadores deixarão essas estruturas em paz. Assim, você economiza muito espaço para colocar estruturas muito mais importantes na base, como baús ou fundições.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Name:
+Construir uma base permanente
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Description:
+Para que serve colher toda essa comida sem poder armazenar para mais tarde? Felizmente, também existe uma solução para isso.
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Hints:
+`[*] As geladeiras evitam que a comida estrague, mantendo-a fresca e consumível por mais tempo. Quanto melhor a geladeira, maior esse efeito.
+[*] O tempo até o vencimento de alguma comida depende do tipo. Carne estraga bem rápido, ao passo que comida enlatada pode ser armazenada por eras.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Name:
+Construir uma geladeira simples
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Description:
+Para fundir cobre e outros metais, é preciso desbloquear e construir uma fornalha. Os metais são a base e o principal recurso de todos os processos industriais em CryoFall.
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Hints:
+`[*] No menu de tecnologia, é possível ver todas as receitas criadas. Esta informação aparece abaixo do nome da receita.
+[*] Você precisará garimpar alguns nós de minério de cobre para conseguir o minério necessário para a fundição.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Name:
+Construir uma fornalha e fundir cobre
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseMulch:
+Usar adubo
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseWateringCan:
+Use regador
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Description:
+Regando com regularidade e usando fertilizante, você pode melhorar a velocidade de crescimento das plantas.
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Hints:
+`[*] Regar as plantas com regularidade é a melhor maneira de acelerar o crescimento delas. Além de água, esta ação não custa outros recursos.
+[*] Você pode reencher o regador tanto em um coletor de água quanto em um poço. Com um regador selecionado na barra de acesso, basta clicar com o botão esquerdo sobre eles.
+[*] Para produzir adubo, simplesmente derrube qualquer item orgânico (plantas, comida estragada, etc.) e espere se decomporem.
+[*] Adubo não apenas é algo de fácil de se, como também é um fertilizante natural. Pode ser usado para acelerar o crescimento de quaisquer plantas.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Name:
+Eficiência agrícola
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Description:
+Para sobreviver e prosperar, é necessário ter acesso fácil a grandes quantidades de água. Não apenas para beber, mas também para fins industriais.
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Hints:
+`[*] Em qualquer [b]praia ou costa[/b], é muito fácil encontrar uma quantidade quase ilimitada de [b]areia[/b].
+[*] [b]Cinzas[/b] são conseguidas depois de queimar madeira, especialmente galhos.
+[*] Já que a água é usada em muitas receitas diferentes, deve-se sempre armazenar uma boa quantidade para quando precisar dela.
+[*] Em vez de usar um coletor de água, também é possível ferver a água do lago para purificá-la e prepará-la para beber ou para usar na produção de coisas.
+[*] Os poços são muito mais eficazes do que simples coletores de água.
+[*] Você pode ferver água salgada do oceano para extrair sal.`
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Name:
+Garantir uma fonte de água melhor
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
+Batalhas difíceis resultarão em perda de vida. Para sanar isso, faça remédios diferentes que recuperarão vida e curarão quaisquer doenças. Você não vai durar muito usando apenas ervinhas verdes.
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
+`[*] Existem muitos tipos de remédios diferentes em CryoFall. Alguns recuperam vida, outros curam doenças específicas ou oferecem outros benefícios.
+[*] Preparar remédios avançados exige aprender receitas e tecnologias específicas.
+[*] O remédio herbal fica na categoria culinária.
+[*] É possível colher casca de árvore derrubando-se certos tipos de árvores.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
+Colher ervas e fazer remédios
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Description:
+Alcançar tecnologias de nível superior exige o domínio das tecnologias iniciais.
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Hints:
+[*] Para ter acesso a tecnologias, receitas e estruturas mais complexas, é necessário desbloquear os níveis mais altos dos grupos tecnológicos.
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
+Dominar Tecnologias: parte 1
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
+Matar qualquer criatura
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCreature:
+Saquear qualquer criatura
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Description:
+A faca é uma ótima arma inicial para usar contra feras menos perigosas. Antes de produzir algo mais substancial, é sempre bom ter uma.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
+[*] Toda arma em CryoFall tem [b]propriedades especiais[/b]. Por exemplo, facas têm maior chance de causar sangramento, ao passo que armas contundentes podem quebrar ossos ou atordoar o inimigo.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
+Produzir uma faca e matar qualquer criatura
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
+Está na hora de arranjar uma proteção melhor.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
+`[*] Você pode desbloquear todas as tecnologias relevantes no grupo de tecnologia "Ataque e Defesa".
+[*] Talvez a armadura de madeira não seja a melhor opção por aí, mas ainda é barata de produzir e, com certeza, muito melhor que a armadura de pano.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
+Produzir e equipar uma armadura melhor
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Description:
+Correr sem nenhuma proteção pode seguramente levar a uma morte rápida. É sempre uma boa ideia ter uma armadura, mesmo que básica. Pesquise, produza e equipe armaduras básicas de pano.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
+`[*] Talvez a armadura de pano não ofereça muita proteção, mas é barata de se produzir e, com certeza, melhor que nada.
+[*] Existem [b]tipos de dano distintos[/b], e cada armadura diferente oferece valores diversos de proteção contra cada um deles. Você pode ver essas informações na tela do inventário.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
+Produzir e equipar uma armadura de pano
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
+Esmagar caveiras com uma maça é legal, mas às vezes você quer algo com alcance. Especialmente se enfrentar adversários mais sérios.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
+`[*] Você pode desbloquear todas as tecnologias relevantes no grupo de tecnologia "Ataque e Defesa".
+[*] Para produzir cartuchos de papel, será necessário produzir [b]pólvora[/b] e [b]papel[/b] primeiro.
+[*] Existem [b]tipos de dano distintos[/b], e cada armadura diferente oferece valores diversos de proteção contra cada um deles. Você pode ver essas informações na tela do inventário.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
+Produzir uma arma de arremesso
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
+Todo bioma diferente possui fauna e flora únicas associadas a ele, além de outras propriedades. Para aproveitar o máximo dos biomas, é uma boa ideia familiarizar-se com cada um dos básicos.
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Hints:
+`[*] Nos prados, há uma grande quantidade de arbustos, ervas e outras plantas úteis para extrair.
+[*] É possível encontrar vários animais aquáticos perto das costas.`
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Name:
+Explorar os biomas: parte 1
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Description:
+Biomas diversos têm diferentes recursos e animais que nele habitam. É uma boa ideia explorar ao redor da base o máximo possível para ver o que está disponível.
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Hints:
+`[*] O bioma das montanhas rochosas é uma ótima maneira de encontrar muitos depósitos minerais.
+[*] Os poços de argila são considerados a principal fonte de grandes quantidades de argila para construção.
+[*] A floresta boreal pode ser encontrada no norte do continente.`
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Name:
+Explorar os biomas: parte 2
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
+Existem itens medicinais muito melhores disponíveis por aí; porém, numa situação complicada, é possível usar apenas algumas ervas verdes para recuperar um pouco de vida.
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
+`[*] A erva verde é o item medicinal do tipo mais básico, sendo relativamente fácil de conseguir.
+[*] É possível encontrar ervas e outras pequenas plantas crescendo em grande quantidade, normalmente em prados na floresta.
+[*] Se você tem um monte de ervas verdes sobrecarregando seus baús, é possível usá-las na condição em que se encontram, mas é aconselhável usá-las para produzir itens medicinais decentes.`
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
+Encontrar e usar uma erva verde
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
+É hora de ir caçar! Para começar, é melhor evitar animais mais perigosos, mas o que não falta por aí é opção.
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Hints:
+`[*] Você pode esperar um espólio diferente de cada animal. Sua habilidade de caça também desempenha um papel significativo nisso.
+[*] Caçar é uma ótima maneira de ganhar mais experiência e pontos de aprendizagem.
+[*] Não faça isso na vida real :(`
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Name:
+Mestre caçador: parte 1
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
+Está na hora de caçar mais ainda! Existem mais animais e monstros por aí, esperando para ser encontrados.
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
+`[*] Cada animal e monstro tem uma área própria onde costuma ser encontrado. Tente explorar o mundo para ver todas as diferentes criaturas que o habitam.
+[*] Dependendo do nível de periculosidade de um animal ou monstro específico, você receberá quantidades diferentes de experiência de caça.`
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
+Mestre caçador: parte 2
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
+Desbloquear qualquer habilidade
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Description:
+Cada nova habilidade em CryoFall é desbloqueada quando se gasta tempo realizando atividades específicas em uma determinada área. Desbloquear cada vez mais habilidades é uma boa estratégia de longo prazo, já que elas melhoram sua proficiência nos respectivos campos.
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
+[*] Altos níveis de habilidade não só melhoram a proficiência geral no campo, mas também oferecem vantagens especiais inacessíveis de outra forma.
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
+Aprender algumas habilidades
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
+Avanços na indústria e na construção exigem fundamentos científicos, especialmente em química.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Hints:
+[*] Química é uma das áreas da ciência mais importantes, sendo recomendada para a maioria dos sobreviventes.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Name:
+Construir um laboratório de química
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Description:
+A ciência médica dá acesso a uma série de possibilidades e efeitos muito úteis, além da capacidade de tratar ferimentos e doenças.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Hints:
+[*] Níveis mais altos de tecnologia médica dão acesso a itens de cura mais poderosos e outros remédios.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Name:
+Construir um laboratório médico
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Description:
+Neste ponto, pode ser uma boa ideia concluir todas as tecnologias do Nível 2, a fim de servirem de base sólida para maior especialização em uma determinada área.
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
+`[*] É relativamente barato desbloquear as tecnologias iniciais (Nível 1 e 2), por isso é sempre uma boa ideia aprender todas elas.
+[*] Quanto às tecnologias avançadas (Nível 3 e superiores), é preferível especializar-se em apenas algumas. Em vez de tentar aprender todas, reflita sobre quais são as mais importantes para você.`
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
+Dominar Tecnologias: parte 2
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
+Existem também alguns biomas de mais difícil acesso, que apresentam maiores desafios, mas que oferecem recursos exclusivos.
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
+`[*] Os biomas estéreis são lar de muitos animais do deserto.
+[*] As salinas podem ser uma ótima fonte de grandes quantidades de sal.`
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
+Explorar os biomas: parte 3
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
+Ruínas antigas são o melhor lugar para encontrar certos recursos e componentes raros. É sempre uma boa ideia explorá-las de vez em quando, especialmente se você tiver os equipamentos necessários.
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
+`[*] Existem diferentes tipos de ruínas: residenciais (N1), industriais (N2), militares (N2) e científicas (N3).
+[*] A dificuldade das ruínas varia de N1, explorada por qualquer um, a N3, exigindo os melhores equipamentos e remédios de CryoFall.
+[*] Explorar ruínas é a única maneira de conseguir determinados itens raros. A chance de encontrá-los depende da dificuldade da ruína em questão, podendo os itens mais valiosos ser encontrados apenas em ruínas N3.`
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
+Explorar ruínas antigas
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
+Hora de ainda mais caça! Desta vez, com animais mais perigosos.
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Hints:
+[*] Cuidado, esses animais são agressivos, sendo melhor caçá-los com armas de longo alcance decentes.
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Name:
+Mestre caçador: parte 3
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Description:
+Está na hora da caça ao extremo! Desta vez, nem mesmo apenas animais!
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
+[*] Cuidado, essas feras são extremamente agressivas e perigosas. Para ter alguma chance, você precisará de armas de longo alcance poderosas e armaduras decentes.
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
+Mestre caçador: parte 4
+

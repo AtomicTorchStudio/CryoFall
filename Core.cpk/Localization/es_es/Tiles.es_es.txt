@@ -1,0 +1,42 @@
+﻿Scripts/Tiles/TileBarren@Name:
+Árido
+
+Scripts/Tiles/TileBeachBoreal@Name:
+Playa (boreal)
+
+Scripts/Tiles/TileBeachTemperate@Name:
+Playa (templada)
+
+Scripts/Tiles/TileClay@Name:
+Foso de arcilla
+
+Scripts/Tiles/TileForestBoreal@Name:
+Bosque (boreal)
+
+Scripts/Tiles/TileForestTemperate@Name:
+Bosque (templado)
+
+Scripts/Tiles/TileForestTropical@Name:
+Bosque (tropical)
+
+Scripts/Tiles/TileLakeShore@Name:
+Orilla de lago
+
+Scripts/Tiles/TileMeadows@Name:
+Prados
+
+Scripts/Tiles/TileRocky@Name:
+Rocosa
+
+Scripts/Tiles/TileRuins@Name:
+Ruinas
+
+Scripts/Tiles/TileSaltFlats@Name:
+Salinas
+
+Scripts/Tiles/TileWaterLake@Name:
+Agua (lago)
+
+Scripts/Tiles/TileWaterSea@Name:
+Agua (mar)
+

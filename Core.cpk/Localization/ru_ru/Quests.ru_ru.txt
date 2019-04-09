@@ -1,0 +1,513 @@
+﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
+Построить: {0}
+
+Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
+Изучить древо технологий: {0}
+
+Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
+место: {0}
+
+Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
+Изготовить
+
+Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
+Уничтожить: {0}
+
+Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
+Собрать: {0}
+
+Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
+Найти: {0}
+
+Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
+Надеть: {0}
+
+Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
+Изучить навык: {0} до {1} ур.
+
+Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
+Изучить навыки: {0} до {1} ур.
+
+Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
+Открыть древо технологий: {0}
+
+Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
+Открыть {0} шт. древ технологий: {1}
+
+Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
+Изучить технологию: {0} (в древе {1})
+
+Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
+Убить: {0}
+
+Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
+Произвести: {0}
+
+Scripts/Quests/Requirements/RequirementRun@DescriptionText:
+Пробежать 10 метров
+
+Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
+Сортировать предметы инвентаря
+
+Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
+Применить: {0}
+
+Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
+Посетить: {0}
+
+Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
+Посетить: {0}
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+Вы можете выбрать место возрождения, расположив там спальный мешок. При следующем возрождении ваш персонаж появится там.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
+`[*] Спальный мешок находится в меню строительства, в категории "Другое".
+[*] Лучше всего разместить спальный мешок в своем доме или на базе, чтобы возродиться "дома".
+[*] Подыщите спокойное место, где в будущем вы сможете построить базу, подальше от других игроков. Позднее вы сможете переместить спальный мешок.`
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
+Разложить спальный мешок
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
+Теперь, когда у вас есть набор инструментов, можно возводить разные постройки, которые стали доступны в меню технологий. Давайте разведем костер, на котором можно будет готовить пищу.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
+`[*] Нажмите клавишу "Tab" для быстрого доступа к [b]меню построек[/b], если вы не меняли управление.
+[*] Меню построек состоит из [b]нескольких страниц[/b] с разными [b]видами построек[/b], которые вы открываете по мере прохождения игры.
+[*] С помощью набора инструментов можно не только [b]строить[/b] здания, но и [b]ремонтировать[/b] их.`
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
+Собрать костер
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Description:
+Пора нарубить дров! Найдите дерево и срубите его топором.
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Hints:
+`[*] Поместите топор на [b]панель предметов[/b]. Откройте инвентарь и перетащите сделанный вами топор в слот на панели предметов ниже, а затем закройте инвентарь.
+[*] Теперь вы можете [b]выбрать[/b] его, нажав клавишу с соответствующей цифрой или щелкнув по нему мышью (при закрытом инвентаре).
+[*] По умолчанию щелчок [b]левой кнопкой мыши[/b] — использование предмета, который вы держите, а щелчок [b]правой кнопкой мыши[/b] — взаимодействие с объектами мира.`
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Name:
+Срубить дерево
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@TaskEatAnyFood:
+Съесть любую пищу
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Description:
+Теперь, когда костер разведен, вы можете приготовить на нем простую еду. Если у вас есть грибы или мясо, можно поджарить их, чтобы получить более питательное и безопасное блюдо.
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
+`[*] [b]Все возможные рецепты[/b] можно увидеть в меню костра, если нажать "Просмотр рецептов".
+[*] Чтобы начать готовку, необходимо [b]выбрать нужный рецепт[/b].
+[*] Чтобы костер горел, требуется [b]топливо[/b]. Разместите в слоте топлива [b]дерево или древесный уголь[/b].
+[*] Позже вы сможете изучить [b]новые рецепты[/b] в [b]меню технологий[/b].
+[*] Можно использовать любой предмет (в том числе пищу) прямо [b]из инвентаря[/b] или разместить его на [b]панели предметов[/b] и применять в процессе игры.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
+Приготовить любую пищу
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
+Теперь, когда у вас появились ресурсы, можно что-то изготовить. Для начала сделайте веревку. С ее помощью можно будет смастерить топор.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
+`[*] Если вы не меняли управление по умолчанию, то вы можете быстро открыть меню крафтинга, нажав клавишу "C", а инвентарь — нажав клавишу "E".`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
+Изготовить топор
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
+Добыча разных минералов позволит получить большинство ценных ресурсов в этой игре. Для того чтобы добывать минералы, требуется изготовить кирку.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
+`[*] Откройте меню крафтинга (клавиша "C" по умолчанию) и сделайте кирку.
+[*] Возможно, для этого вам придется изготовить веревку, если у вас ее нет.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
+Изготовить кирку
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Description:
+Для строительства зданий (например, дома) вам потребуется набор инструментов. В этой игре без набора инструментов ничего не построишь.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Hints:
+`[*] Откройте меню крафтинга и создайте набор инструментов.
+[*] Возможно, сначала вам придется изготовить веревку, если у вас ее нет.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Name:
+Изготовить набор инструментов
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Description:
+Не повторяйте ошибки тех, кто пытался ориентироваться в полной темноте. Зачем страдать, если всегда можно изготовить факел или лампу!
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Hints:
+`[*] Чтобы использовать факел, разместите его на [b]панели предметов[/b] и активируйте, как любой другой предмет.
+[*] Позже вы сможете создавать другие виды источников света, переносные и стационарные.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Name:
+Изготовить и использовать факел
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Description:
+Для изготовления основных инструментов необходимо собрать ресурсы.
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
+`[*] Вы можете [b]подбирать предметы[/b], лежащие на земле, например [u]камни[/u], [u]ветки[/u] и [u]траву[/u].
+[*] Просто щелкните [b]правой кнопкой мыши[/b] по предмету на земле — и он окажется в вашем инвентаре.`
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
+Собрать ресурсы
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
+`Чтобы получить доступ к зданиям, необходимо изучить "Базовые постройки" в меню технологий.`
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
+`[*] Нажмите клавишу "G" для быстрого доступа к меню технологий, если вы не меняли управление.
+[*] Чтобы открыть любую технологию, требуются [b]ОТ[/b] (очки технологий).
+[*] Очки технологий можно получить за любую осмысленную деятельность. Они прямо пропорциональны полученному опыту при использовании навыков.`
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
+Изучить базовые постройки
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
+Добыть камень
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Description:
+Пора пустить в ход кирку. Попробуйте добыть какие-нибудь минералы. Также необходимо добыть камень из крупных булыжников.
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
+`[*] Поместите кирку на [b]панель предметов[/b], как и любой другой используемый инструмент.
+[*] Месторождения минералов чаще всего встречаются в [b]горах[/b]. Найдите подходящее место с помощью карты (клавиша "M" по умолчанию).
+[*] Добыча разных минералов занимает разное время, при этом они дают различные виды ресурсов.
+[*] Чтобы получить [b]очень много[/b] камня, [b]добывайте его[/b], разбивая большие булыжники.
+[*] Если ваш навык добычи достаточно высок, в минералах могут попадаться вкрапления самоцветов и золотые слитки.`
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
+Добыть любые минералы
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
+Есть еще несколько вещей, которые помогут вам облегчить игру в CryoFall: например, сортировка предметов в инвентаре и умение быстро бегать!
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
+`[*] Чтобы отсортировать предметы в инвентаре, просто откройте его и нажмите [u]среднюю кнопку мыши[/u] или [u]клавишу "Z"[/u] (если вы не меняли управление), удерживая курсор на сетке инвентаря. Вот так можно сортировать [b]ЛЮБУЮ[/b] сетку инвентаря (например, ящики).
+[*] Для быстрого бега (или просто бега) нажмите и удерживайте [u]клавишу "Shift"[/u] при перемещении. Попробуйте пробежать несколько метров. Это поможет вам убегать от хищников.`
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
+Выполнить базовые действия
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
+Собрать водянику
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Description:
+Настало время узнать, как хранить воду. При терраформировании этой планеты одним из первых привезенных растений стали кусты водяники. Они являются доступным источником чистой воды.
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Hints:
+`[*] Водяника растет почти во всех природных зонах, но чаще всего она встречается на [b]лугах умеренной климатической зоны[/b].
+[*] Как и любые растения и продукты, она быстро портится, поэтому ее плоды разумнее сорвать и употребить на месте, чем отправить на хранение.`
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Name:
+Найти базовый источник воды
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Description:
+На верстаке вы создаете по рецептам все, что вам нужно для игры CryoFall. На новой базе перво-наперво постройте верстак.
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Hints:
+[*] В меню технологий можно увидеть, где и какой рецепт можно создать. Это указано прямо под названием рецепта.
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Name:
+Открыть и построить верстак
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@TaskPlantAnySeeds:
+Посадить любые семена
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
+Фермерство — лучший способ получить большое количество пищи. Не бойтесь замарать руки!
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
+`[*] Разумно построить ферму [b]внутри[/b] защитного периметра стен, чтобы другие выжившие не собрали ваш урожай за вас :)
+[*] У разных растений свой срок созревания, количество урожаев и другие важные параметры.
+[*] Позже вы сможете открыть полезные удобрения и прочие способы повышения эффективности фермы.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
+Построить ферму
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Description:
+Факел хорош на начальном этапе, но настало время создать светильник, дающий больше света и более удобный в использовании. Изготовьте фонарь и напольную лампу!
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
+`[*] Фонари дают [b]больший радиус света[/b], а еще их свет стабильнее по сравнению с факелами.
+[*] Для фонарей и напольных ламп используется ламповое масло. При этом их [b]можно заправлять много раз[/b] в отличие от факелов, которые просто сгорают до конца.
+[*] Ламповое масло можно добывать двумя способами: из животного жира или из нефтяных продуктов.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
+Источники света
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
+`Очень важно знать, как правильно защищать свою базу! Если этого не сделать, вас ограбят более ушлые выжившие.
+[br]
+[br]Главное в этом деле — правильно использовать зону контроля для гарантии защиты базы. На этапе планирования базы необходимо разместить точку зоны контроля еще до того, как возводить стены, двери и прочие постройки.
+[br]
+[br]Разместив точку зоны контроля в удобном месте, можно начинать возводить стены вокруг нее. Самое главное: стройте стены [b][u]внутри[/u][/b] территории, защищенной точкой зоны контроля; в противном случае другие выжившие [b]смогут быстро разобрать их словно собственные[/b].
+[br]
+[br]Зону контроля можно расширять, чтобы получить больше земли под защитой, а стены укреплять несколькими дополнительными слоями, увеличивая их надежность. В целом, достаточно двух слоев, чтобы защититься от большинства обычных грабителей, если только вы не храните на базе что-то очень ценное.
+[br]
+[br]Рекомендуется сделать по меньшей мере две двери на базе, а если получится, то и больше.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Hints:
+`[*] Откройте меню зоны контроля с помощью точки зоны контроля. Здесь можно прочитать сопутствующую информацию или улучшить ее до более высокого уровня.
+[*] Здания, построенные вне зоны контроля, быстро придут в негодность (за день-два реального времени). Поэтому возводите постройки только внутри зоны контроля.
+[*] Разобрать любое здание можно быстро и удобно с помощью лома (доступно в технологиях ранга 1), если оно находится внутри вашей зоны контроля.
+[*] Необязательно размещать все постройки внутри базы. Поскольку в большинстве построек нечего красть, другие игроки, скорее всего, не тронут их. А вы сможете сэкономить свободное пространство на базе и установить там более полезные объекты, например ящики и плавильни.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Name:
+Построить постоянную базу
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Description:
+Зачем собирать всю эту еду, если ее негде хранить? К счастью, у нас есть ответ на этот вопрос.
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Hints:
+`[*] Холодильники помогают дольше сохранять пищу свежей. Чем лучше холодильник, тем он эффективней.
+[*] Разные виды пищи могут храниться разное количество времени. Мясо портится очень быстро, а консервы могут храниться годами.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Name:
+Построить простой холодильник
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Description:
+Необходимо открыть и построить плавильную печь, чтобы плавить медь и другие металлы, которые являются базовым ресурсом и основой для всех производственных процессов в CryoFall.
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Hints:
+`[*] В меню технологий можно увидеть, где и какой рецепт можно создать. Это указано прямо под названием рецепта.
+[*] Необходимо разработать несколько месторождений меди, чтобы добыть руды и выплавить медь.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Name:
+Построить плавильную печь и выплавить медь
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseMulch:
+Использовать перегной
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseWateringCan:
+Использовать лейку
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Description:
+Растения будут расти быстрее, если регулярно поливать и удобрять их.
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Hints:
+`[*] Чтобы растения росли быстрее, необходимо их регулярно поливать. Для этого требуется только вода.
+[*] Наполнить лейку можно в водосборнике или в колодце. Просто щелкните по ним левой кнопкой мыши, выбрав лейку на панели предметов.
+[*] Чтобы сделать перегной, просто бросьте в ящик любую органику (растения, испорченную еду и пр.) и подождите, когда они сгниют.
+[*] Перегной — простое в изготовлении натуральное удобрение. Его можно использовать для того, чтобы ускорить рост любого растения.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Name:
+Эффективное фермерство
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Description:
+Чтобы выживать и процветать, вам потребуется много воды. Она нужна не только для питья, но и для производства.
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Hints:
+`[*] Практически бесконечный запас [b]песка[/b] можно найти на любом [b]речном или морском берегу[/b].
+[*] [b]Пепел[/b] можно получить после сгорания дров и особенно веток.
+[*] Вода требуется для многих рецептов, поэтому лучше иметь большие запасы воды на случай необходимости.
+[*] Можно не использовать водосборник, а набрать и прокипятить воду из озера, чтобы использовать ее потом для питья и изготовления разных вещей.
+[*] Колодцы более эффективны, чем водосборники.
+[*] Можно кипятить морскую воду, чтобы добывать соль.`
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Name:
+Найти источник воды получше
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
+Во время боя вы можете потерять здоровье. Чтобы иметь возможность восстанавливать здоровье и исцелять недуги, необходимо готовить различные лекарства. На одних только травках долго не протянуть.
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
+`[*] В игре CryoFall есть много видов лекарств. Одни помогут восстановить здоровье, другие — избавить от определенных недугов или принести пользу организму.
+[*] Чтобы приготовить улучшенные виды лекарств, необходимо знать специальные рецепты и технологии.
+[*] Лекарства на основе лечебных трав можно найти в разделе готовки.
+[*] Древесную кору можно получить при рубке некоторых видов деревьев.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
+Собрать травы и приготовить лекарство
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Description:
+Для изучения технологий высокого уровня необходимо освоить более ранние технологии.
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Hints:
+[*] Открывайте высокие уровни в меню технологий, чтобы получить доступ к более сложным технологиям, рецептам и постройкам.
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
+Изучение технологий: часть первая
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
+Убить любое существо
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCreature:
+Собрать добычу с любого существа
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Description:
+Ножи — оружие ранних этапов, которое эффективно против не очень опасных тварей. Всегда носите с собой нож, пока не сможете изготовить более мощное оружие.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
+[*] У каждого оружия в CryoFall есть [b]особые свойства[/b]. Например, нож с высокой вероятностью вызовет кровотечение, а ударное оружие может оглушить врага или сломать ему кости.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
+Изготовить нож и убить любое существо
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
+Пора обзавестись защитой получше.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
+`[*] Все соответствующие технологии находятся в ветви технологий "Атака и защита".
+[*] Деревянная броня — не самый лучший вариант, зато она проста в изготовлении и защищает лучше, чем тканевая броня.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
+Изготовить и надеть броню получше
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Description:
+Если будете бегать повсюду без какой-либо защиты, то вскоре погибнете. Даже простейшая броня обеспечивает неплохую защиту. Исследуйте, изготовьте и используйте простую тканевую броню.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
+`[*] Тканевая броня обеспечивает самый базовый уровень защиты, зато она проста в изготовлении и все-таки лучше, чем ничего.
+[*] Существуют [b]разные виды урона[/b], а разные типы брони обладают определенным уровнем защиты от каждого из них. Подробнее об этом можно прочитать на экране инвентаря.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
+Изготовить и использовать тканевую броню
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
+Булавой можно легко проломить череп, но иногда лучше разить врагов на расстоянии. Особенно если приходится сражаться с серьезным противником.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
+`[*] Все соответствующие технологии находятся в ветви технологий "Атака и защита".
+[*] Чтобы изготовить бумажные патроны, сначала необходимо изготовить [b]порох[/b] и [b]бумагу[/b].
+[*] Существуют [b]разные виды урона[/b], а разные типы брони обладают определенным уровнем защиты от каждого из них. Подробнее об этом можно прочитать на экране инвентаря.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
+Изготовить стрелковое оружие
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
+Помимо определенных свойств, каждая климатическая зона обладает уникальной флорой и фауной. Вам следует хорошенько изучить каждую зону, чтобы впоследствии использовать их максимально эффективно.
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Hints:
+`[*] На лугах растет много кустов, травы и прочих растений, которые нужно будет собирать.
+[*] На берегах водится много водных животных.`
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Name:
+Исследование климатических зон: часть первая
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Description:
+В каждой климатической зоне встречаются разные ресурсы и разные виды животных, которые там обитают. Постарайтесь исследовать как можно большее пространство вокруг вашей базы, чтобы узнать, что вы можете добыть.
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Hints:
+`[*] В скалистых горах можно отыскать много месторождений минералов.
+[*] Глиняные ямы — отличный источник глины для возведения разных построек.
+[*] Северные леса расположены на севере континента.`
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Name:
+Исследование климатических зон: часть вторая
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
+В будущем вы сможете изготавливать более эффективные лекарства, но пока можно использовать зеленую траву, чтобы восстановить небольшой объем здоровья.
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
+`[*] Зеленая трава — основной компонент лекарственных препаратов, при этом ее легко собирать.
+[*] Обычно травы и небольшие растения можно отыскать на полянах в лесу.
+[*] Если ваши хранилища ломятся от зеленой травы, то можно использовать ее в сыром виде. Но гораздо эффективней приготовить из нее различные лекарства.`
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
+Найти и использовать зеленую траву
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
+Пора отправляться на охоту! Новичкам лучше избегать опасных животных, но здесь водятся и более безобидные звери.
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Hints:
+`[*] С каждого животного можно получить разную добычу. Также на результат очень влияет ваш навык охоты.
+[*] Охота — отличный способ набраться опыта и получить очки технологий.
+[*] Пожалуйста, не занимайтесь охотой в реальной жизни! :(`
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Name:
+Мастерство охотника: часть первая
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
+Пора снова отправляться на охоту! Вас ждут другие животные и чудовища.
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
+`[*] Каждое животное и чудовище обитает в определенном ареале, и именно там их следует искать. Исследуйте мир и постарайтесь запомнить, где какие существа встречаются.
+[*] За охоту вы будете получать разное количество опыта охоты, в зависимости от опасности убитой твари.`
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
+Мастерство охотника: часть вторая
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
+Откройте любой навык
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Description:
+Каждый новый навык в CryoFall можно открыть, если некоторое время выполнять определенные действия, связанные с этим навыком. Открывать больше навыков — это перспективная стратегия, поскольку так вы станете опытным мастером в разных сферах.
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
+[*] Высокий уровень навыка не только повышает ваше мастерство, но и дает вам особые качества, которые не доступны другими путями.
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
+Изучить некоторые навыки
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
+Изучение точных наук, особенно химии, помогает добиться успехов в производстве и строительстве.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Hints:
+[*] Химия — одна из самых важных наук, ею стоит овладеть всем.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Name:
+Построить химическую лабораторию
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Description:
+Медицина открывает доступ не только к исцелению ран и лечению болезней, но и к полезным эффектам и новым возможностям.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Hints:
+[*] Высокие уровни медицинской технологии дают доступ к более эффективным препаратам и другим целебным средствам.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Name:
+Построить медицинскую лабораторию
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Description:
+На этом этапе разумно завершить все технологии ранга 2, чтобы получить возможность для дальнейшей специализации в любой интересной вам технологической ветке.
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
+`[*] Ранние технологии (ранга 1 и 2) легко открыть, поэтому имеет смысл изучить их все.
+[*] Из продвинутых технологий (ранга 3 и выше) лучше освоить только некоторые. Решите сами, какие из них более ценные для вас, и не тратьте силы на изучение всего подряд.`
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
+Изучение технологий: часть вторая
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
+Существуют климатические зоны, до которых нелегко добраться, зато в награду там можно добыть уникальные ресурсы.
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
+`[*] В пустоши обитают пустынные животные.
+[*] Солончаки — это ценный источник большого количества соли.`
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
+Исследование климатических зон: часть третья
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
+В старых руинах можно отыскать редкие компоненты и особые ресурсы. Наткнувшись на такое место, обязательно исследуйте его, особенно если у вас есть необходимое снаряжение.
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
+`[*] Руины бывают разных типов: жилые (ранг 1), промышленные (ранг 2), военные (ранг 2) и научные (ранг 3).
+[*] Уровень сложности руин начинается с первого уровня, который может посетить каждый, и заканчивается третьим уровнем, для исследования которого необходимо специальное оборудование и медицинские средства.
+[*] Некоторые редкие предметы можно найти только в руинах. Вероятность нахождения зависит от уровня сложности. Например, наиболее ценные вещи можно отыскать только в руинах третьего уровня.`
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
+Исследовать старые руины
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
+Пора снова отправляться на охоту! На этот раз ваша цель — опасные животные.
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Hints:
+[*] Будьте осторожны — эти животные очень агрессивны, поэтому охотиться на них лучше с помощью стрелкового оружия.
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Name:
+Мастерство охотника: часть третья
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Description:
+Пора снова отправляться на охоту! На этот раз ваша цель — не обычные животные!
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
+[*] Будьте осторожны — эти твари невероятно агрессивны и опасны! Чтобы справиться с ними, вам понадобится мощное стрелковое оружие и хорошая броня.
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
+Мастерство охотника: часть четвертая
+

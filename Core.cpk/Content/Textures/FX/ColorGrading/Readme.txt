@@ -1,0 +1,1 @@
+To get color grading template and settings please go to <Game Folder>\Tools\Photoshop Color Grading

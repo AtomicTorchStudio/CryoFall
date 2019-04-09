@@ -1,0 +1,57 @@
+﻿Scripts/Characters/Mobs/MobBear@Name:
+곰
+
+Scripts/Characters/Mobs/MobChicken@Name:
+닭
+
+Scripts/Characters/Mobs/MobCloakedLizard@Name:
+목도리도마뱀
+
+Scripts/Characters/Mobs/MobCrab@Name:
+게
+
+Scripts/Characters/Mobs/MobCrawler@Name:
+크롤러
+
+Scripts/Characters/Mobs/MobHoneyBadger@Name:
+벌꿀오소리
+
+Scripts/Characters/Mobs/MobHyena@Name:
+하이에나
+
+Scripts/Characters/Mobs/MobPangolin@Name:
+천산갑
+
+Scripts/Characters/Mobs/MobScorpion@Name:
+전갈
+
+Scripts/Characters/Mobs/MobSnakeBlue@Name:
+푸른 뱀
+
+Scripts/Characters/Mobs/MobSnakeBrown@Name:
+갈색 뱀
+
+Scripts/Characters/Mobs/MobSnakeGreen@Name:
+초록 뱀
+
+Scripts/Characters/Mobs/MobStarfish@Name:
+불가사리
+
+Scripts/Characters/Mobs/MobTropicalBoar@Name:
+열대 멧돼지
+
+Scripts/Characters/Mobs/MobTurtle@Name:
+거북이
+
+Scripts/Characters/Mobs/MobWildBoar@Name:
+멧돼지
+
+Scripts/Characters/Mobs/MobWolf@Name:
+늑대
+
+Scripts/Characters/Player/PlayerCharacter@Name:
+플레이어 캐릭터
+
+Scripts/Characters/Player/PlayerCharacterSpectator@Name:
+관전 모드 플레이어 캐릭터
+

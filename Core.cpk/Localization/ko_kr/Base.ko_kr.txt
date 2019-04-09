@@ -1,0 +1,150 @@
+﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
+기절 상태일 때는 상호 작용할 수 없습니다.
+
+Scripts/Base/Stats/StatName@HealthMax:
+최대 체력
+
+Scripts/Base/Stats/StatName@StaminaMax:
+최대 스태미나
+
+Scripts/Base/Stats/StatName@FoodMax:
+최대 식량
+
+Scripts/Base/Stats/StatName@WaterMax:
+최대 수(水)량
+
+Scripts/Base/Stats/StatName@MoveSpeed:
+이동 속도
+
+Scripts/Base/Stats/StatName@MoveSpeedRunMultiplier:
+달리기 속도
+
+Scripts/Base/Stats/StatName@DamageAdd:
+추가 대미지
+
+Scripts/Base/Stats/StatName@RunningStaminaConsumptionPerSecond:
+달리기 중 스태미나 소모
+
+Scripts/Base/Stats/StatName@StaminaRegenerationPerSecond:
+스태미나 자동 회복량
+
+Scripts/Base/Stats/StatName@HealthRegenerationPerSecond:
+체력 자동 회복량
+
+Scripts/Base/Stats/StatName@MiningSpeed:
+채굴 속도
+
+Scripts/Base/Stats/StatName@WoodcuttingSpeed:
+벌목 속도
+
+Scripts/Base/Stats/StatName@ForagingSpeed:
+채집 속도
+
+Scripts/Base/Stats/StatName@BuildingSpeed:
+건설/해체 속도
+
+Scripts/Base/Stats/StatName@SearchingExtraLoot:
+뒤적질 전리품 추가 획득률
+
+Scripts/Base/Stats/StatName@HuntingExtraLoot:
+사냥 전리품 추가 획득률
+
+Scripts/Base/Stats/StatName@FarmingTasksSpeed:
+농사 속도
+
+Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
+식물 생장 속도
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
+대미지 보너스
+
+Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
+대미지 보너스
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+대미지 보너스
+
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+대미지 보너스
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+대미지 보너스
+
+Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
+특별 효과 확률
+
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+특별 효과 확률
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+특별 효과 확률
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+특별 효과 확률
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+특별 효과 확률
+
+Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
+내구도 감소 속도
+
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+내구도 감소 속도
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+내구도 감소 속도
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+내구도 감소 속도
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+내구도 감소 속도
+
+Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
+재장전 소요 시간
+
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+재장전 소요 시간
+
+Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
+에너지 소모량
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
+재장전 소요 시간
+
+Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
+재장전 소요 시간
+
+Scripts/Base/Stats/StatName@LearningPointsRetainedAfterDeath:
+사망 후 LP 보존량
+
+Scripts/Base/Stats/StatName@CraftingSpeed:
+제작 속도
+
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+폭탄 설치 소요 시간
+
+Scripts/Base/Stats/StatName@HuntingLootingSpeed:
+전리품 획득 속도
+
+Scripts/Base/Stats/StatName@ImplantDegradationFromDamageMultiplier:
+피격 시, 임플란트 내구도 감소량
+
+Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
+설치된 임플란트 내구도 감소 속도
+
+Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
+식량 소모 속도
+
+Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
+물 소모 속도
+
+Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
+분당 에너지 충전 자동 회복량
+
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+상한 음식 섭취 능력
+
+Scripts/Base/Stats/StatName@SearchingSpeed:
+탐색 속도
+

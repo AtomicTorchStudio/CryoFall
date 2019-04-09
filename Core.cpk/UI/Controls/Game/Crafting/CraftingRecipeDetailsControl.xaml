@@ -1,0 +1,71 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.CraftingRecipeDetailsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:crafting="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data"
+    mc:Ignorable="d"
+    d:DesignWidth="224"
+    d:DataContext="{d:DesignInstance data:ViewModelCraftingMenuRecipeDetails, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <controls:RequiredItemsPanelControl Grid.Row="0" MaxWidth="340"
+                                            Items="{Binding InputItems}"
+                                            CountMultiplier="{Binding CountToCraft}"
+                                            MinSlotsCount="8"
+                                            FontSize="13" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="9" />
+            </Grid.ColumnDefinitions>
+
+            <Viewbox Stretch="Uniform">
+                <crafting:CraftingCountSelectorControl DataContext="{Binding}" />
+            </Viewbox>
+
+            <Control Grid.Column="1" Template="{StaticResource ControlTemplateArrow}" Width="20" Height="20" />
+
+            <Viewbox Grid.Column="2" Stretch="Uniform">
+                <Button Command="{Binding CommandCraft}"
+                        Padding="0"
+                        Focusable="False"
+                        HorizontalAlignment="Right"
+                        IsEnabled="{Binding IsCanCraft}"
+                        Height="36">
+                    <Button.Content>
+                        <!-- Text: CRAFT -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.CraftingRecipeDetails_ButtonStartCraft}"
+                                   FontSize="17"
+                                   LineHeight="17"
+                                   Margin="0,-2,0,0" />
+                    </Button.Content>
+                </Button>
+            </Viewbox>
+        </Grid>
+
+        <controls:RequiredItemsPanelControl Grid.Row="2"
+                                            MaxWidth="340"
+                                            Items="{Binding OutputItems}"
+                                            CountMultiplier="{Binding CountToCraft}"
+                                            MinSlotsCount="8"
+                                            IsChecksItemAvailability="False"
+                                            FontSize="13" />
+
+
+    </Grid>
+</base:BaseUserControl>

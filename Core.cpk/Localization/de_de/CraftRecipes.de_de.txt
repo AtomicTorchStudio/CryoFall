@@ -1,0 +1,99 @@
+﻿Scripts/CraftRecipes/HandCrafting/RecipeFillBottleWithWaterbulb@Name:
+Fülle Flasche mit Wasserknolle
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+Fülle Fass mit Benzin
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:
+Fülle Fass mit Mineralöl
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddPetroleum@Name:
+Fülle Fass mit unbehandeltem Erdöl
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddWater@Name:
+Fülle Fass mit Wasser
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveGasoline@Name:
+Fülle Kanister mit Benzin aus Fass
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveMineralOil@Name:
+Fülle Kanister mit Mineralöl aus Fass
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemovePetroleum@Name:
+Fülle Kanister mit unbehandeltem Erdöl aus Fass
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveWater@Name:
+Fülle Flasche mit Wasser aus Fass
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromLogs@Name:
+Nebenprodukt aus brennenden Holzstämmen
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromPlanks@Name:
+Nebenprodukt aus brennenden Holzplanken
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
+Nebenprodukt aus brennenden Zweigen
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
+Koche Wasser (verschwenderisch)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
+Brennmaterial (tierisches Fett)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
+Geröstete Pilze (Steinpilze)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
+Geröstete Pilze (Rostpilze)
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
+Pennymünze recyclen
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
+Glänzende Münze recyclen
+
+Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
+Lithiumsalze aus Lithiumerzextraktor
+
+Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
+Fülle Kanister mit unbehandeltem Erdöl aus Ölpumpe
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
+Unbehandeltes Erdöl aus Kanister zu Ölraffinerie hinzufügen
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryGasolineCanister@Name:
+Fülle Kanister mit Benzin aus Ölraffinerie
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanister@Name:
+Fülle Kanister mit Mineralöl aus Ölraffinerie
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
+Koche Wasser
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesOrange@Name:
+Beerenmarmelade (orangene Beeren)
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesRed@Name:
+Beerenmarmelade (rote Beeren)
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesViolet@Name:
+Beerenmarmelade (violette Beeren)
+
+Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
+Fülle Flasche mit Wasser aus Brunnen
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromPyrite@Name:
+Schwefelsäure (aus Pyrit)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromSulfur@Name:
+Schwefelsäure (aus Schwefel)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeCampFuelSynthetic@Name:
+Brennmaterial (synthetisch)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeToxin@Name:
+Giftextraktion
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeCanisterPetroleum@Name:
+Erdölkanister (aus Ölschoten)
+

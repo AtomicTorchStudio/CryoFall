@@ -1,0 +1,50 @@
+﻿<manufacturers:WindowMulchboxBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.WindowMulchbox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:manufacturers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowMulchbox, IsDesignTimeCreatable=True}">
+    <manufacturers:WindowMulchboxBase.Resources>
+        <SolidColorBrush x:Key="BrushOrganic" Color="#FF664433" />
+    </manufacturers:WindowMulchboxBase.Resources>
+
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <StackPanel Orientation="Horizontal">
+
+                <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                DesignTimeSlotsCount="1" />
+
+                <core:ValueBarControl
+                    Value="{Binding OrganicAmount}"
+                    MaxValue="{Binding OrganicCapacity}"
+                    Margin="20,0,20,0"
+                    Style="{StaticResource LiquidMediumValueBar}" Foreground="{StaticResource BrushOrganic}" />
+
+                <Grid Visibility="{Binding ProgressBarVisibility}" Margin="-6,0,0,0">
+                    <core:ValueBarControl
+                        Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
+                        Style="{StaticResource ItemSlotCraftingProgressVerticalBar}"
+                        Foreground="{StaticResource BrushOrganic}" />
+                </Grid>
+
+                <controls:ItemsContainerControl
+                    Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    DesignTimeSlotsCount="1" />
+            </StackPanel>
+
+        </StackPanel>
+    </core:WindowMenuWithInventory>
+</manufacturers:WindowMulchboxBase>

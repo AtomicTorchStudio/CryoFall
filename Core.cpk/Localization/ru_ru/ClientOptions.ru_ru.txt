@@ -1,0 +1,189 @@
+﻿Scripts/ClientOptions/Audio/AudioOptionMuteAudioWhenUnfocused@Name:
+Выкл. звук в фоновом режиме
+
+Scripts/ClientOptions/Audio/AudioOptionsCategory@Name:
+Аудио
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeAmbient@Name:
+Громкость окружения
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeMaster@Name:
+Общая громкость
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeMusic@Name:
+Громкость музыки
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeSounds@Name:
+Громкость звуков
+
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCategory:
+Общее
+
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
+Управление
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
+Включить
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
+`Внимание! Вы собираетесь включить режим разработчика.
+[br][br]
+Некоторые функции этого режима могут привести к сбою в игре.
+[br][br]
+Включайте этот режим, только если вы действительно знаете, что делаете.
+[br]`
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
+Режим разработчика
+
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
+Подсказки о[br]взаимодействии
+
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
+Подсказки с[br]названием объекта
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
+Приближение камеры
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
+Выбор на панели предметов
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
+Колесико мыши
+
+Scripts/ClientOptions/General/GeneralOptionsCategory@Name:
+Общие
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Png:
+PNG (без потерь)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Jpeg95:
+JPEG
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Name:
+Формат скриншота
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Actual:
+Текущее разрешение
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Closest:
+Ближайшее стандартное разрешение
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
+Разрешение скриншота
+
+Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
+Размер интерфейса
+
+Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
+Дополнительное затенение
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
+Нет
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx2:
+MSAA x2
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx4:
+MSAA x4
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx8:
+MSAA x8
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@Name:
+Сглаживание
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.VSync:
+Вертикальная синхронизация (рекомендуется)
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.DisplayRefreshRate:
+По частоте обновления экрана
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.Off:
+Без ограничений (лишнее потребление энергии)
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@Name:
+Ограничение FPS
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Normal:
+Оригинальное (лучшее качество)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale15:
+Снизить x1,5 (выше производительность)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale2:
+Снизить x2 (наивысшая производительность)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
+Разрешение рендера
+
+Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
+Видео
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
+На весь экран
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Windowed:
+В окне
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@Name:
+Режим экрана
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Message:
+`Параметры разрешения были изменены.
+[br]Для принятия изменений требуется перезапустить игру.
+[br]Пожалуйста, перезапустите игру вручную.`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Title:
+Требуется перезапуск
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Button:
+Все-таки продолжить
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_MessageFormat:
+`Вы пытаетесь выбрать режим разрешения объектов выше рекомендуемого.
+[br]
+[*] Рекомендуемый режим: [b]{0}[/b]
+[*] Выбранный режим: [b]{1}[/b]
+[br]
+[br]Выбранный режим требует большей емкости VRAM, чем есть у вашего GPU. Частота кадров может быть низкой, изображение может притормаживать.`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:
+Выбраны слишком высокие параметры
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Ultra:
+Ultra 4K
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.High:
+Высокое
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Low:
+Низкое (размытие, нечеткость)
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Name:
+Разрешение текстур[br](требуется перезапуск)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.High:
+Высокая (рекомендуется)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Medium:
+Средняя
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Low:
+Низкая
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.None:
+Минимальная (не рекомендуется)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Name:
+Детализация ландшафта
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.PPAA:
+Только PPAA (ниже качество)
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.MSAA:
+Auto MSAA (лучшее качество)
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@Name:
+Сглаживание интерфейса
+

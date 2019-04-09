@@ -1,0 +1,135 @@
+﻿Scripts/Skills/Categories/SkillCategoryAgriculture@Name:
+Agriculture
+
+Scripts/Skills/Categories/SkillCategoryCombat@Name:
+Combat
+
+Scripts/Skills/Categories/SkillCategoryMisc@Name:
+Divers
+
+Scripts/Skills/Categories/SkillCategoryPersonal@Name:
+Personnel
+
+Scripts/Skills/Categories/SkillCategoryProduction@Name:
+Production
+
+Scripts/Skills/Categories/SkillCategoryTechnical@Name:
+Technique
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Flags.AdditionalYield:
+Chance de récolte supplémentaire
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
+De meilleures techniques agricoles vous permettent d'augmenter votre efficacité, la vitesse de croissance des plants, la vitesse de maturation, et même parfois d'avoir une récolte supplémentaire.
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
+Exploitation agricole
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
+Chance de récolte supplémentaire
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
+La compréhension de la flore de la planète améliore votre vitesse de récolte et vous octroie des chances d'obtenir des récoltes en plus.
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Name:
+Cueillette
+
+Scripts/Skills/Skills/Agriculture/SkillHunting@Description:
+Être un chasseur augmente vos chances de tirer plus de choses utilisables de chacune de vos proies.
+
+Scripts/Skills/Skills/Agriculture/SkillHunting@Name:
+Chasse
+
+Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Description:
+Gagner de l'expérience avec les armes conventionnelles vous permet de vous accoutumer à leurs nuances et vous rend capable de les utiliser plus efficacement.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Name:
+Armes conventionnelles
+
+Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Description:
+Utiliser plus souvent des armes à énergie vous permet de mieux comprendre leur fonctionnement, ce qui améliore leur efficacité globale.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Name:
+Armes à énergie
+
+Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Description:
+Utiliser des armes exotiques au combat vous permet de mieux appréhender leurs secrets, et vous aide ainsi à maximiser leur potentiel.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Name:
+Armes exotiques
+
+Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Description:
+L'utilisation d'armes lourdes vous entraîne à agir plus efficacement, ce qui vous ouvre de nouvelles possibilités d'infliger des dégâts.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Name:
+Armes lourdes
+
+Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Description:
+L'usage continu d'armes de corps à corps vous amène à exceller avec ce type d'armes. Votre efficacité et les dégâts infligés s'en trouvent augmentés.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
+Armes de corps à corps
+
+Scripts/Skills/Skills/Misc/SkillSearching@Flags.ChanceToFindRareItems:
+Chance de trouver des objets rares
+
+Scripts/Skills/Skills/Misc/SkillSearching@Description:
+L'attention aux détails les plus infimes augmente vos chances de découvrir des objets supplémentaires.
+
+Scripts/Skills/Skills/Misc/SkillSearching@Name:
+Recherche
+
+Scripts/Skills/Skills/Personal/SkillAthletics@Description:
+L'entraînement permet à votre corps de s'habituer à courir sur de longues distances. La conséquence directe est que vous utilisez moins d'énergie pour sprinter.
+
+Scripts/Skills/Skills/Personal/SkillAthletics@Name:
+Athlétisme
+
+Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Description:
+L'exposition permanente de votre corps à des technologies cybernétiques a permis à votre système immunitaire de s'habituer à leur présence.
+
+Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Name:
+Affinité cybernétique
+
+Scripts/Skills/Skills/Personal/SkillLearning@Description:
+Survivre en environnement inconnu dans un monde extra-terrestre est difficile, mais cela offre des opportunités uniques d'apprendre des choses à côté desquelles vous seriez passé dans un autre contexte.
+
+Scripts/Skills/Skills/Personal/SkillLearning@Name:
+Apprentissage
+
+Scripts/Skills/Skills/Personal/SkillSurvival@Description:
+Augmente vos chances de rester en vie en améliorant votre maximum de santé, ainsi que vos réserves en nourriture, en eau et en énergie. Cela vous rend bien plus difficile à tuer !
+
+Scripts/Skills/Skills/Personal/SkillSurvival@Name:
+Survie
+
+Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
+Chance de meilleur rendement
+
+Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Chance de trouver des gemmes
+
+Scripts/Skills/Skills/Production/SkillMining@Description:
+Une meilleure connaissance des gisements de minerai augmente votre vitesse d'excavation, le rendement, ainsi que vos chances de découvrir des ressources rares. Ne s'applique que lorsque vous utilisez une pioche.
+
+Scripts/Skills/Skills/Production/SkillMining@Name:
+Extraction minière
+
+Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
+Un bon entraînement et une meilleure compréhension de cette profession augmentent votre vitesse de coupe. Ne s'applique que lorsque vous utilisez une hache.
+
+Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
+Coupe du bois
+
+Scripts/Skills/Skills/Technical/SkillBuilding@Description:
+L'amélioration de votre maîtrise augmente votre vitesse de construction. S'applique à toutes les tâches (construction, réparation) effectuées avec une boîte à outils.
+
+Scripts/Skills/Skills/Technical/SkillBuilding@Name:
+Construction
+
+Scripts/Skills/Skills/Technical/SkillCrafting@Description:
+Fabriquer des objets de plus en plus complexes tout en comprenant leur structure est un bon moyen d'apprendre les principes de fonctionnement des diverses technologies.
+
+Scripts/Skills/Skills/Technical/SkillCrafting@Name:
+Artisanat
+

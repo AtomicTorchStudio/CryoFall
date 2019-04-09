@@ -1,0 +1,23 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.HUDPerformanceIndicatorsPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:performance="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance"
+    xmlns:hud="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD"
+    Margin="7,7,0,0"
+    VerticalAlignment="Top"
+    HorizontalAlignment="Left"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    Panel.ZIndex="8899">
+
+    <StackPanel Orientation="Horizontal">
+        <hud:HUDGameTimeIndicator Width="45" />
+        <performance:NetworkPerformanceIndicator Margin="5,0,0,0" />
+        <performance:GeneralPerformanceIndicator Margin="10,0,0,0" />
+    </StackPanel>
+
+</base:BaseUserControl>

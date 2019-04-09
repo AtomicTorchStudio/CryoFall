@@ -1,0 +1,84 @@
+﻿Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
+j
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixHours:
+h
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
+m
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
+s
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
+`Version réseau incompatible.
+[br]Vous et le serveur utilisez peut-être des mods différents.`
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@MasterServerDisallowed:
+Le Serveur Maître a refusé cette connexion. Veuillez réessayer ou relancer le jeu.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ReasonUnknown:
+Erreur inconnue. Veuillez réessayer.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerFull:
+Le serveur est actuellement au maximum de sa capacité. Veuillez attendre qu'un autre joueur parte, puis essayez à nouveau de rejoindre le serveur.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerUnreachable:
+Le serveur de jeu est injoignable. Raisons possibles : redémarrage du serveur, arrêt du serveur, configuration de votre pare-feu, problème réseau, etc. Veuillez réessayer dans quelques minutes.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ShutdownScheduled:
+Le serveur de jeu est en train de redémarrer, ou est sur le point d'être arrêté.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleConnectionRejectedByServer:
+Connexion rejetée
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleDefault:
+Connexion au serveur de jeu impossible
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@AccountBlocked:
+Votre compte est bloqué.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@DefaultTitle:
+Échec d'identification
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Message:
+`Un e-mail avec le lien d'activation a été envoyé sur votre
+[br]compte et devrait vous parvenir sous peu.
+[br]Consultez vos e-mails et cliquez sur le lien d'activation, puis revenez au jeu pour continuer.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Title:
+Votre nouveau compte doit être activé !
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@GameNotOwned:
+Vous n'êtes pas propriétaire du jeu sur votre compte.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@IncorrectEmailOrPassword:
+E-mail ou mot de passe incorrect.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UnknownError:
+Erreur inconnue. Veuillez réessayer.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Message:
+Les détails utilisateur fournis sont déjà associés à un autre compte Steam.[br]Vous ne pouvez pas associer ce compte AtomicTorch.com avec le compte Steam actuel.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Title:
+Impossible de lier les comptes
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameInvalid_Title:
+Nom d'utilisateur invalide
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
+`Exigences pour les noms :
+[*] entre [b]3[/b] et [b]24[/b] caractères de long
+[*] [b]peuvent[/b] contenir des lettres, des chiffres, des tirets ou des underscores
+[*] [b]ne peuvent pas[/b] contenir d'espace, ou tout autre caractère
+[*] doivent commencer et se finir par [b]une lettre[/b] ou [b]un chiffre[/b]
+[*] [b]ne doivent pas[/b] contenir plusieurs [b]-[/b] ou [b]_[/b] d'affilée`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
+`Le nom d'utilisateur choisi est déjà utilisé par quelqu'un d'autre.
+[br]Veuillez en choisir un autre.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Title:
+Nom d'utilisateur déjà utilisé
+

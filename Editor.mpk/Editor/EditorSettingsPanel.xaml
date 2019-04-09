@@ -1,0 +1,44 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.Editor.EditorSettingsPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="100" d:DesignWidth="200"
+    d:DataContext="{d:DesignInstance data:ViewModelEditorSettingsPanel, IsDesignTimeCreatable=True}">
+
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary Source="EditorStyles.xaml" />
+    </base:BaseUserControl.Resources>
+
+    <Border Style="{StaticResource EditorPanelStyle}">
+        <StackPanel Orientation="Vertical">
+
+            <!-- Pointed world position display -->
+            <StackPanel Orientation="Horizontal" Margin="0,-3,0,3">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Text="Cursor tile: X=" />
+                <TextBlock Text="{Binding CursorWorldPositionX}" />
+                <TextBlock Text=" Y=" />
+                <TextBlock Text="{Binding CursorWorldPositionY}" />
+            </StackPanel>
+
+            <!-- Various checkboxes -->
+            <CheckBox Content="Grid" IsChecked="{Binding IsGridEnabled}" />
+            <CheckBox Content="Guides" IsChecked="{Binding IsGuidesEnabled}" Margin="0,5,0,0" />
+            <CheckBox Content="Terrain blending" IsChecked="{Binding IsTerrainBlendingEnabled}" Margin="0,5,0,0" />
+            <CheckBox Content="Terrain decals" IsChecked="{Binding IsTerrainDecalsEnabled}" Margin="0,5,0,0" />
+            <CheckBox Content="Physics visualizer" IsChecked="{Binding IsPhysicsSpaceVisualizerEnabled}"
+                      Margin="0,5,0,0" />
+        </StackPanel>
+    </Border>
+</base:BaseUserControl>

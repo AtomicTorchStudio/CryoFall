@@ -1,0 +1,65 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.ServerTabItemHeaderControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    x:Name="UserControl"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <Grid DataContext="{Binding ElementName=UserControl}"
+          HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="32" />
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Icon -->
+        <Border Grid.Column="1" Width="28" Height="28" VerticalAlignment="Center">
+            <Rectangle Fill="{Binding Icon}" UseLayoutRounding="True" Margin="-4" />
+        </Border>
+
+        <StackPanel Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Margin="0,1,3,0"
+                    Visibility="{Binding VisibilityDetails, ElementName=UserControl}">
+            <!-- Title -->
+            <TextBlock Text="{Binding Text}"
+                       FontSize="13"
+                       LineHeight="18"
+                       Foreground="White"
+                       FontFamily="{StaticResource CondensedFontFamily}"
+                       FontWeight="Bold"
+                       TextWrapping="NoWrap" />
+
+            <!-- Servers count -->
+            <StackPanel Orientation="Horizontal" Margin="0,-3,12,0"
+                        UseLayoutRounding="False">
+                <!-- Text: Servers -->
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServersCount}"
+                           FontSize="9"
+                           LineHeight="9"
+                           Foreground="#FFCCCCCC"
+                           FontFamily="{StaticResource CondensedFontFamily}"
+                           FontWeight="Bold"
+                           TextWrapping="NoWrap" />
+                <TextBlock Text=": "
+                           FontSize="9"
+                           LineHeight="9"
+                           Foreground="#FFCCCCCC"
+                           FontFamily="{StaticResource CondensedFontFamily}"
+                           FontWeight="Bold" />
+                <TextBlock Text="{Binding ServersCount}"
+                           FontSize="9"
+                           LineHeight="9"
+                           Foreground="#FFCCCCCC"
+                           FontFamily="{StaticResource CondensedFontFamily}"
+                           FontWeight="Bold"
+                           TextWrapping="NoWrap" />
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</base:BaseUserControl>

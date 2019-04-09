@@ -1,0 +1,186 @@
+﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+Du hast Stimulanzien zu dir genommen. Deine Ausdauerregeneration ist beschleunigt.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
+Energieschub
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Description:
+Du hast wirksame Heilmedizin zu dir genommen. Dein Körper regeneriert die verlorene Gesundheit schnell.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Name:
+Beschleunigte Heilung
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
+Du hast etwas Medizin zu dir genommen. Dein Körper heilt allmählich.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
+Heilung
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
+Du stehst unter dem Einfluss einer Stimulanz, die dich vorübergehend stärker macht. Aufgaben, die Kraft erfordern, fallen dir nun leichter.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
+Erhöhte Stärke
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Description:
+Du hast vor kurzem eine deftige Mahlzeit zu dir genommen. Du fühlst dich großartig. Jede Aufgabe, die du angehst, fällt dir leichter.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
+Gesättigt
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
+Du blutest. Wenn du die Wunde nicht versorgst, wirst du kontinuierlich an Gesundheit verlieren. Kleine Blutungen heilen von selbst. Ernsthafte Verletzungen können jedoch eine Versorgung durch Verbände oder blutstillende Medikamente erfordern.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Name:
+Blutung
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
+Dein Wohlbefinden wird durch ein defektes Implantat im Körper erheblich beeinträchtigt. Deine maximale Gesundheit (HP) wird dadurch gesenkt.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
+Defektes Implantat
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
+Du hast dir das Bein gebrochen, was deine Bewegungsfähigkeit einschränkt. Jeder Versuch, mit einem gebrochenen Bein zu laufen, führt zu starken Schmerzen. Benutze eine Schiene, um den Bruch zu heilen.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
+Gebrochenes Bein
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
+Angriff bei Benommenheit unmöglich.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
+Du bist benommen! Warte einen Moment, um wieder Herr deiner Sinne zu werden.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
+Benommen
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
+Du bist einem hohen Maß an Hitze aus einer nahegelegenen Hitzequelle ausgesetzt. Verlasse das Gebiet umgehend, um weiteren Schaden zu vermeiden.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Name:
+Hitze
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
+Du verhungerst!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
+Hunger
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
+Nahrungs- und Wasseraufnahme unmöglich.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Description:
+Du fühlst dich nicht allzu gut ... Während dir übel ist, kannst du weder essen noch trinken. Warte einen Moment oder nehme eine Medizin gegen Übelkeit ein.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Name:
+Übelkeit
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Description:
+Du leidest starke Schmerzen, was deine Ausdauerregeneration beeinträchtigt und die Regeneration deiner Gesundheit verhindert. Finde ein Schmerzmittel oder beiße dich durch.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
+Starke Schmerzen
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Description:
+Du befindest dich unter dem Einfluss eines starken PSI-Felds, das dir den Verstand raubt. Verlasse das betroffene Gebiet oder benutze PSI-blockierende Medizin, um weiteren Schaden zu vermeiden.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
+PSI-Einfluss
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
+Du leidest an einer dich langsam tötenden radioaktiven Verstrahlung. Finde ein Medikament gegen Verstrahlung, um deine Symptome zu lindern.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Name:
+Radioaktive Verstrahlung
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Description:
+Nachdem du deinen Bruch geschient hast, heilt dieser allmählich ab. In deinem derzeitigen Zustand kannst du damit jedoch nicht wirklich rennen. Nur Geduld.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Name:
+Geschientes Bein
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Description:
+Du leidest unter starkem Wassermangel!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Name:
+Durst
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Description:
+Du bist gefährlichen Giftstoffen ausgesetzt. Benutze antitoxische Medizin, um einen weiteren Verlust deiner Gesundheit zu verhindern.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
+Giftstoffe
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
+Du fühlst dich schwach. Vielleicht ist es eine gute Idee, gefährliche Situationen, z. B. radioaktive Strahlung, zu meiden.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
+Geschwächt
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Description:
+Ein oder mehrere Teile deiner Ausrüstung befinden sich in schlechtem Zustand und könnten bald zu Bruch gehen.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
+Kaputte Ausrüstung
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
+Du bist sturzbetrunken. Kein Wunder, dass du deine eigenen Schuhe anschreien willst ...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Description:
+Du hast getrunken ...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Name:
+Betrunken
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
+Du bist berauscht. Aus irgendeinem Grund fühlst du dich wirklich glücklich ...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
+Berauscht
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
+Du hast zu viel Medizin zu dir genommen und deshalb gesundheitlichen Schaden davongetragen.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
+Du hast in zu kurzer Zeit zu viel Medizin zu dir genommen. Gedulde dich ein wenig oder trage gesundheitlichen Schaden davon. Diese Warnung zu ignorieren, könnte tödlich für dich enden.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
+Übermäßiger Gebrauch von Medizin
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
+Du befindest dich derzeit unter dem Einfluss blutstillender Medizin, die den Schweregrad jeder erhaltenen blutenden Wunde vermindert.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Name:
+Schutz vor Blutungen
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Description:
+Du hast dich mit hitzeresistentem Gel eingerieben, das jeglichen Hitzeschaden durch Umwelteinflüsse stark vermindert.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Name:
+Hitzeschutz
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Description:
+Du stehst derzeit unter dem Einfluss starker Schmerzmittel. Du fühlst keinen Schmerz, egal ob es dir nun gefällt oder nicht.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Name:
+Schutz vor Schmerzen
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Description:
+Du bist derzeit vor PSI-Einflüssen geschützt und brauchst deren Folgen weniger zu fürchten.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Name:
+PSI-Schutz
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Description:
+Du bist derzeit vor radioaktiver Strahlung geschützt und brauchst deren Folgen weniger zu fürchten.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Name:
+Schutz vor radioaktiver Strahlung
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Description:
+Du bist derzeit vor Giftstoffen geschützt und brauchst deren Folgen weniger zu fürchten.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Name:
+Schutz vor Giftstoffen
+

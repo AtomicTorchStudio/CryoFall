@@ -1,0 +1,139 @@
+﻿<tradingStations:WindowTradingStationUserBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations.WindowTradingStationUser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations.Data"
+    xmlns:tradingStations="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations"
+    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:tooltips="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowTradingStationUser, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <tradingStations:WindowTradingStationUserBase.Resources>
+        <ResourceDictionary Source="TradingStationResources.xaml" />
+    </tradingStations:WindowTradingStationUserBase.Resources>
+
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="78" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid HorizontalAlignment="Center"
+                  VerticalAlignment="Bottom">
+                <StackPanel Orientation="Vertical"
+                            Visibility="{Binding IsStationSellingMode, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <!-- Text: For sale -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationUser_SellingMode_Title}"
+                               FontSize="17"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource BrushColor7}" />
+                    <!-- Text: This trading station is selling the following items: -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationUser_SellingMode_Message}"
+                               FontSize="12"
+                               Foreground="White"
+                               FontWeight="Bold" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                            Visibility="{Binding IsStationSellingMode, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                    <!-- Text: Buying -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationUser_BuyingMode_Title}"
+                               FontSize="17"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource BrushColor7}" />
+                    <!-- Text: This trading station is buying the following items: -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowTradingStationUser_BuyingMode_Message}"
+                               FontSize="12"
+                               Foreground="White"
+                               FontWeight="Bold" />
+                </StackPanel>
+            </Grid>
+
+            <ContentControl Grid.Row="1">
+                <ContentControl.LayoutTransform>
+                    <ScaleTransform ScaleX="1.2" ScaleY="1.2" />
+                </ContentControl.LayoutTransform>
+                <ItemsControl HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              x:Name="ItemsControl"
+                              ItemsSource="{Binding Lots}"
+                              MaxHeight="150">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel IsItemsHost="True" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="{StaticResource BrushColorAlt0}"
+                                    BorderThickness="1"
+                                    CornerRadius="3"
+                                    Padding="3"
+                                    Margin="5"
+                                    Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <StackPanel Orientation="Vertical"
+                                            HorizontalAlignment="Stretch">
+                                    <Control Template="{StaticResource TradingLotIconWithTooltip}" />
+
+                                    <StackPanel Orientation="Vertical"
+                                                HorizontalAlignment="Center"
+                                                Margin="0,3">
+                                        <StackPanel Orientation="Horizontal"
+                                                    Background="Transparent"
+                                                    ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.TradingTooltip_CoinsShiny}">
+                                            <Rectangle Fill="{Binding IconCoinShiny}" UseLayoutRounding="True"
+                                                       Width="16"
+                                                       Height="16" />
+                                            <TextBlock Text="{Binding PriceCoinShiny}"
+                                                       Style="{StaticResource TextBlockPriceStyle}" />
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    Background="Transparent"
+                                                    ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.TradingTooltip_CoinsPenny}">
+                                            <Rectangle Fill="{Binding IconCoinPenny}" UseLayoutRounding="True"
+                                                       Width="16"
+                                                       Height="16" />
+                                            <TextBlock Text="{Binding PriceCoinPenny}"
+                                                       Style="{StaticResource TextBlockPriceStyle}" />
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <!-- Text: Buy -->
+                                    <Button Content="{x:Static loc:CoreStrings.WindowTradingStationUser_Button_Buy}"
+                                            Command="{Binding CommandBuy}"
+                                            Visibility="{Binding DataContext.IsStationSellingMode, ElementName=ItemsControl, Converter={StaticResource BoolToVisibilityConverter}}"
+                                            FontSize="11"
+                                            Padding="0,1"
+                                            MinWidth="0"
+                                            MinHeight="0"
+                                            HorizontalAlignment="Stretch"
+                                            Focusable="False" />
+
+                                    <!-- Text: Sell -->
+                                    <Button Content="{x:Static loc:CoreStrings.WindowTradingStationUser_Button_Sell}"
+                                            Command="{Binding CommandSell}"
+                                            Visibility="{Binding DataContext.IsStationSellingMode, ElementName=ItemsControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                            FontSize="11"
+                                            Padding="0,1"
+                                            MinWidth="0"
+                                            MinHeight="0"
+                                            HorizontalAlignment="Stretch"
+                                            Focusable="False" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ContentControl>
+
+        </Grid>
+    </core:WindowMenuWithInventory>
+</tradingStations:WindowTradingStationUserBase>

@@ -1,0 +1,42 @@
+﻿Scripts/Tiles/TileBarren@Name:
+불모지
+
+Scripts/Tiles/TileBeachBoreal@Name:
+해변 (아한대)
+
+Scripts/Tiles/TileBeachTemperate@Name:
+해변 (온대)
+
+Scripts/Tiles/TileClay@Name:
+점토 채취장
+
+Scripts/Tiles/TileForestBoreal@Name:
+숲 (아한대)
+
+Scripts/Tiles/TileForestTemperate@Name:
+숲 (온대)
+
+Scripts/Tiles/TileForestTropical@Name:
+숲 (열대)
+
+Scripts/Tiles/TileLakeShore@Name:
+호숫가
+
+Scripts/Tiles/TileMeadows@Name:
+초원
+
+Scripts/Tiles/TileRocky@Name:
+암석 지대
+
+Scripts/Tiles/TileRuins@Name:
+유적
+
+Scripts/Tiles/TileSaltFlats@Name:
+소금 평지
+
+Scripts/Tiles/TileWaterLake@Name:
+물 (호수)
+
+Scripts/Tiles/TileWaterSea@Name:
+물 (바다)
+

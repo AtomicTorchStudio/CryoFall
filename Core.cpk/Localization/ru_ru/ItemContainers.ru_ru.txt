@@ -1,0 +1,21 @@
+﻿Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationCannotEquip:
+Нельзя надеть
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationRemoveFullBody:
+Сначала нужно снять костюм.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationRemoveOtherEquipment:
+Сначала нужно снять другое снаряжение.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Message:
+Для установки импланта необходимо использовать медицинскую станцию.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Title:
+Невозможно установить
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Message:
+Для удаления импланта необходимо использовать медицинскую станцию.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
+Невозможно удалить
+

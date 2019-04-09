@@ -1,0 +1,1918 @@
+﻿Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Description:
+Эта модификация боеприпасов 10 мм специально разработана для повышения бронебойности. Идеально подходят против бронированных целей, но менее эффективны против биологических целей.
+
+Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Name:
+Бронебойные патроны 10 мм
+
+Scripts/Items/Ammo/ItemAmmo10mmBlank@Description:
+Специальные холостые боеприпасы 10 мм. Можно использовать для военных учений или отпугивания чужаков.
+
+Scripts/Items/Ammo/ItemAmmo10mmBlank@Name:
+Холостые патроны 10 мм
+
+Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Description:
+Модификация боеприпасов 10 мм, предназначенная для поражения биологических целей. Снаряд расширяется при ударе, обеспечивая более высокую останавливающую силу и урон. Абсолютно неэффективны против бронированных целей.
+
+Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Name:
+Экспансивные патроны 10 мм
+
+Scripts/Items/Ammo/ItemAmmo10mmStandard@Description:
+Универсальные боеприпасы 10 мм, предназначенные для поражения различных целей.
+
+Scripts/Items/Ammo/ItemAmmo10mmStandard@Name:
+Стандартные патроны 10 мм
+
+Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Description:
+У крупной картечи хороший баланс между предельным разлетом и проникающей способностью. Однако порох, используемый в качестве боезаряда, выделяет меньше энергии, чем нитроцеллюлоза, снижая эффективность этих боеприпасов.
+
+Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Name:
+Заряд картечи 12-го калибра
+
+Scripts/Items/Ammo/ItemAmmo12gaPellets@Description:
+Дробь разлетается по большой области, поэтому она эффективна против незащищённой живой силы и, особенно, групп врагов. И совсем не эффективна против бронированных целей.
+
+Scripts/Items/Ammo/ItemAmmo12gaPellets@Name:
+Заряд дроби 12-го калибра
+
+Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Description:
+Эти патроны наполнены крупной солью и в первую очередь предназначены для отпугивания чужаков и воров, а не для реальных боевых действий. Они наносят очень мало урона, но если уж в вас попали... то вам будет нестерпимо больно.
+
+Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
+Патроны 12-го калибра с солью
+
+Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
+Пули имеют более высокую останавливающую силу, чем дробь, и используются против различных целей. Благодаря массивности пули эффективны даже против хорошо бронированных целей.
+
+Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
+Пули 12-го калибра
+
+Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Description:
+Мощные боеприпасы калибра .300 с бронебойными свойствами.
+
+Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
+Бронебойные патроны калибра .300
+
+Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
+Мощные зажигательные боеприпасы калибра .300.
+
+Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
+Зажигательные патроны калибра .300
+
+Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
+Простые безоболочечные пули 8 мм. Для их производства используются базовые материалы и способ изготовления, поэтому их точность и убойная сила очень низки.
+
+Scripts/Items/Ammo/ItemAmmo8mmStandard@Name:
+Стандартные боеприпасы 8 мм
+
+Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
+Модифицированные боеприпасы 8 мм, содержащие закрытую полость с концентрированным токсином, высвобождающимся при попадании в цель.
+
+Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
+Боеприпасы 8 мм с токсином
+
+Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
+Простейшие боеприпасы. Подходят только против слабых целей, зато дешевы и просты в изготовлении.
+
+Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
+Бумажные патроны
+
+Scripts/Items/Base/ItemUseCaptions@Decrypt:
+Расшифровать
+
+Scripts/Items/Base/ItemUseCaptions@Drink:
+Выпить
+
+Scripts/Items/Base/ItemUseCaptions@Eat:
+Съесть
+
+Scripts/Items/Base/ItemUseCaptions@Read:
+Прочитать
+
+Scripts/Items/Base/ItemUseCaptions@Use:
+Использовать
+
+Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
+Журнал данных (зашифрованный)
+
+Scripts/Items/Devices/ItemBiomaterialCollector@NotificationNoEmptyVials:
+Нет пустых пробирок для сбора биоматериала
+
+Scripts/Items/Devices/ItemBiomaterialCollector@Description:
+Специальное устройство для сбора биологических материалов животных и других существ. Для использования требуются пустые пробирки.
+
+Scripts/Items/Devices/ItemBiomaterialCollector@Name:
+Коллектор биоматериала
+
+Scripts/Items/Devices/ItemPowerBankLarge@Description:
+Хранит большой объем энергии. От экипированных аккумуляторов можно заряжать любые приборы и энергетическое оружие.
+
+Scripts/Items/Devices/ItemPowerBankLarge@Name:
+Большой аккумулятор
+
+Scripts/Items/Devices/ItemPowerBankStandard@Description:
+Стандартный аккумулятор. От экипированных аккумуляторов можно заряжать любые приборы и энергетическое оружие.
+
+Scripts/Items/Devices/ItemPowerBankStandard@Name:
+Стандартный аккумулятор
+
+Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
+Улучшенная броня для агрессивной окружающей среды, идеальна для защиты в бою и для ношения во вредной среде.
+
+Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
+Броня A.P.A.R.T.
+
+Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Штурмовой шлем
+
+Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
+Специальная штурмовая броня, обеспечивающая надежную защиту от вражеского огня, не в ущерб другим своим качествам.
+
+Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
+Штурмовая куртка
+
+Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
+Штурмовые штаны
+
+Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
+Налобный фонарь не надет
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentDevice@NotificationCannotUseDirectly_Message:
+Все приборы, находящиеся в слотах устройств, используются автоматически.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentDevice@NotificationCannotUseDirectly_Title:
+Нельзя использовать напрямую
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationCannotRefillWhileOn_Message:
+Выключите перед заправкой.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationCannotRefillWhileOn_Title:
+Невозможно заправить
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFuel_Message:
+Требуется заправка.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFuel_Title:
+Нет топлива
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
+Чтобы включить фонарь на шлеме, наденьте этот предмет и нажмите [{0}].
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
+кнопка не задана
+
+Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
+Закрытый костяной шлем
+
+Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
+Рогатый костяной шлем
+
+Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
+Костяная броня дает неплохую защиту, имея невысокую стоимость, и может быть полезна на начальном этапе.
+
+Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
+Костяная куртка
+
+Scripts/Items/Equipment/Bone/ItemBonePants@Name:
+Костяные штаны
+
+Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
+Не самый привлекательный наряд, зато он спасет вас в трудную минуту. Защищает от окружающей среды лучше, чем ближайшие альтернативы.
+
+Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
+Плетеный доспех
+
+Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+Плетеный шлем
+
+Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
+Плетеные штаны
+
+Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
+Тканевая шапка
+
+Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
+Тканевые штаны
+
+Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
+На самом деле не дает никакой защиты. Может, хотя бы спасает от комаров?
+
+Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Тканевая рубашка
+
+Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
+Неплохая защита на раннем этапе, особенно хорошо укрывает от холода. И недорогая, и удобная!
+
+Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
+Дубленка
+
+Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Меховая шапка с хвостом
+
+Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+Папаха
+
+Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Шапка-ушанка
+
+Scripts/Items/Equipment/Fur/ItemFurPants@Name:
+Меховые штаны
+
+Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Роскошное золотое убранство. Для истинных правителей.
+
+Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
+Золотой доспех
+
+Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Золотая корона
+
+Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
+Золотые штаны
+
+Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+Специально разработанный костюм, защищающий от всех видов агрессивной окружающей среды. Не стоит использовать в бою, так как он быстро потеряет герметичность.
+
+Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+Костюм химзащиты
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
+Ковбойская шляпа
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
+Шлем пилота
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
+Пиратская шляпа
+
+Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
+Кожаная броня дает хорошую общую защиту и незаменима на ранних этапах исследований.
+
+Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
+Кожаная куртка
+
+Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
+Кожаные штаны
+
+Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
+Металлическая броня хорошо защищает от физических атак, но почти бесполезна против агрессивной окружающей среды.
+
+Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
+Металлический доспех
+
+Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
+Закрытый металлический шлем
+
+Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
+Металлический шлем с черепом
+
+Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
+Металлические поножи
+
+Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+Армейский шлем
+
+Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
+Эта броня изготовлена из усовершенствованных материалов, поэтому она прекрасно защищает от стрелкового оружия малого калибра и других не высокотехнологичных видов оружия.
+
+Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
+Армейская куртка
+
+Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
+Армейские штаны
+
+Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
+Удобный шлем с портативным источником света, который освобождает руки. Требуются одноразовые батарейки.
+
+Scripts/Items/Equipment/Misc/ItemHelmetMiner@Name:
+Шахтерская каска
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Description:
+Легкий тактический шлем с очками ночного видения, которые обеспечивают отличную видимость ночью. Требуются одноразовые батарейки.
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
+Прибор ночного видения
+
+Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
+Каска защищает голову от простых ударов, обломков, электрошока и других опасностей.
+
+Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
+Каска
+
+Scripts/Items/Equipment/Misc/ItemRespirator@Description:
+Простой респиратор, защищающий от радиоактивных частиц и опасных газов. И больше ни от чего.
+
+Scripts/Items/Equipment/Misc/ItemRespirator@Name:
+Респиратор
+
+Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
+Экспериментальная броня, состоящая из прагмиевой кристаллической решётки на основе из тонких металлических пластин. Очень легкая и долговечная.
+
+Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+Прагмиевая броня
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
+Плотная подбитая ткань, которая на удивление неплохо защищает от всех видов урона и воздействий окружающей среды.
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
+Гамбезон
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+Стеганая шапка
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
+Стеганый шлем
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
+Стеганые поножи
+
+Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
+Голь на выдумки хитра. Не самый удобный предмет облачения, зато неплохо защищающий на ранних этапах.
+
+Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
+Деревянный доспех
+
+Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+Деревянный шлем
+
+Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
+Деревянная защита ног
+
+Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
+Специальное взрывное устройство, которое при первом же применении помогает добыть большое количество минералов. Необходимо установить рядом с месторождением минералов.
+
+Scripts/Items/Explosives/Bombs/ItemBombMining@Name:
+Шахтёрская взрывчатка
+
+Scripts/Items/Explosives/Bombs/ItemBombModern@Description:
+Сильное взрывное устройство для подрыва укрепленных построек.
+
+Scripts/Items/Explosives/Bombs/ItemBombModern@Name:
+Современная бомба
+
+Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Description:
+Примитивное взрывное устройство, с помощью которого можно проделать брешь в стене или укреплении. Для достижения максимального эффекта необходимо активировать как можно ближе к цели.
+
+Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Name:
+Примитивная бомба
+
+Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
+Специальная бомба, использующая уникальные свойства прагмиума для нанесения сквозного урона стенам и дверям, расположенным вплотную. Эффективна против хорошо укрепленных баз. Не повреждает другие строения.
+
+Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
+Резонансная бомба
+
+Scripts/Items/Food/ItemBanana@Description:
+Любая обезьяна может достать банан, но только люди могут достичь звезд.
+
+Scripts/Items/Food/ItemBanana@Name:
+Банан
+
+Scripts/Items/Food/ItemBeer@Description:
+Холодный и освежающий напиток. Это светлое пиво сварено из зерна высокого качества.
+
+Scripts/Items/Food/ItemBeer@Name:
+Пиво
+
+Scripts/Items/Food/ItemBellPepper@Description:
+Слабое, но вкусное подобие настоящего острого перца. Добавляется в разные блюда.
+
+Scripts/Items/Food/ItemBellPepper@Name:
+Перец
+
+Scripts/Items/Food/ItemBerriesOrange@Description:
+Вкусные оранжевые ягоды.
+
+Scripts/Items/Food/ItemBerriesOrange@Name:
+Ягоды
+
+Scripts/Items/Food/ItemBerriesRed@Description:
+Вкусные красные ягоды.
+
+Scripts/Items/Food/ItemBerriesRed@Name:
+Ягоды
+
+Scripts/Items/Food/ItemBerriesViolet@Description:
+Вкусные фиолетовые ягоды.
+
+Scripts/Items/Food/ItemBerriesViolet@Name:
+Ягоды
+
+Scripts/Items/Food/ItemBottleWater@Description:
+Можно пить для утоления жажды. Или использовать для приготовления разных блюд.
+
+Scripts/Items/Food/ItemBottleWater@Name:
+Бутылка с питьевой водой
+
+Scripts/Items/Food/ItemBottleWaterSalty@Description:
+Соленая морская вода. Не утоляет, а скорее разжигает жажду. Можно выпарить воду, чтобы получить соль.
+
+Scripts/Items/Food/ItemBottleWaterSalty@Name:
+Бутылка с соленой водой
+
+Scripts/Items/Food/ItemBottleWaterStale@Description:
+Затхлая вода из озера. Ее необходимо прокипятить, прежде чем использовать. Зато потом она может спасти вас от обезвоживания.
+
+Scripts/Items/Food/ItemBottleWaterStale@Name:
+Бутылка с затхлой водой
+
+Scripts/Items/Food/ItemBread@Description:
+Батон белого хлеба. После такого углеводного взрыва придется выйти на пробежку!
+
+Scripts/Items/Food/ItemBread@Name:
+Батон хлеба
+
+Scripts/Items/Food/ItemCactusDrink@Description:
+Сок, выжатый из мякоти кактусов. На вкус настоящая гадость, но если очень хочется пить, то сойдет.
+
+Scripts/Items/Food/ItemCactusDrink@Name:
+Сок кактуса
+
+Scripts/Items/Food/ItemCactusFlesh@Description:
+Сочная мякоть кактуса. Не самое аппетитное блюдо, но если очень хочется есть, то сойдет.
+
+Scripts/Items/Food/ItemCactusFlesh@Name:
+Мякоть кактуса
+
+Scripts/Items/Food/ItemCannedBeans@Description:
+Не очень вкусная еда, зато спасет вас от голодной смерти.
+
+Scripts/Items/Food/ItemCannedBeans@Name:
+Консервированные бобы
+
+Scripts/Items/Food/ItemCannedFish@Description:
+Наверное, это тунец? Хороший источник омега-3.
+
+Scripts/Items/Food/ItemCannedFish@Name:
+Рыбные консервы
+
+Scripts/Items/Food/ItemCannedMeat@Description:
+Консервированное мясо непонятного происхождения. Ну, хотя бы упаковано на славу.
+
+Scripts/Items/Food/ItemCannedMeat@Name:
+Мясные консервы
+
+Scripts/Items/Food/ItemCarrot@Description:
+Оранжевый овощ, богатый каротином.
+
+Scripts/Items/Food/ItemCarrot@Name:
+Морковь
+
+Scripts/Items/Food/ItemCarrotGrilled@Description:
+Простая пища, зато с огоньком.
+
+Scripts/Items/Food/ItemCarrotGrilled@Name:
+Морковка-гриль
+
+Scripts/Items/Food/ItemChiliBeans@Description:
+Типичная еда холостяка.
+
+Scripts/Items/Food/ItemChiliBeans@Name:
+Фасоль в соусе чили
+
+Scripts/Items/Food/ItemChiliPepper@NotificationSpicy:
+Ой! Остро!
+
+Scripts/Items/Food/ItemChiliPepper@Description:
+Популярная приправа к разным блюдам, которая добавляет остроты и вкуса.
+
+Scripts/Items/Food/ItemChiliPepper@Name:
+Перец чили
+
+Scripts/Items/Food/ItemCoffeeBeans@NotificationEatingCoffeeBadIdea:
+Пожалуй, жевать сырые кофейные зерна — не самая лучшая идея...
+
+Scripts/Items/Food/ItemCoffeeBeans@Description:
+Используются для приготовления самого известного и традиционного напитка во всей галактике.
+
+Scripts/Items/Food/ItemCoffeeBeans@Name:
+Кофейные зерна
+
+Scripts/Items/Food/ItemCoffeeBerries@Description:
+Можно есть сырыми, а можно прожарить, чтобы приготовить кофейные зерна.
+
+Scripts/Items/Food/ItemCoffeeBerries@Name:
+Кофейные ягоды
+
+Scripts/Items/Food/ItemCoffeeCup@Description:
+Чашка горячего эспрессо. Теперь у вас будет больше сил, чтобы делать всякие глупости.
+
+Scripts/Items/Food/ItemCoffeeCup@Name:
+Чашка кофе
+
+Scripts/Items/Food/ItemCorn@Description:
+Зерновое растение с вкусными початками, которое так любят авторы ужастиков.
+
+Scripts/Items/Food/ItemCorn@Name:
+Кукуруза
+
+Scripts/Items/Food/ItemCornOnCob@Description:
+Кто же не любит вареную кукурузу в початках? Кстати, почему она так называется, она же не внутри початков?
+
+Scripts/Items/Food/ItemCornOnCob@Name:
+Кукуруза в початках
+
+Scripts/Items/Food/ItemCucumber@Description:
+Водянистый овощ, который вселяет страх в кошек.
+
+Scripts/Items/Food/ItemCucumber@Name:
+Огурец
+
+Scripts/Items/Food/ItemCucumbersPickled@Description:
+Вкусные и хрустящие маринованные огурчики.
+
+Scripts/Items/Food/ItemCucumbersPickled@Name:
+Маринованные огурцы
+
+Scripts/Items/Food/ItemDrinkEnergy@Description:
+Энергетический напиток, популярный в этой галактике. Дает сильный прилив энергии.
+
+Scripts/Items/Food/ItemDrinkEnergy@Name:
+Энергетик
+
+Scripts/Items/Food/ItemDrinkHerbal@Description:
+Популярный напиток на травах. Очень полезен для здоровья, особенно для выведения токсинов из организма.
+
+Scripts/Items/Food/ItemDrinkHerbal@Name:
+Травяной напиток
+
+Scripts/Items/Food/ItemDrinkSoft@Description:
+Прохладительный напиток, который считается самым популярным безалкогольным напитком в этом секторе галактики последние семьсот лет.
+
+Scripts/Items/Food/ItemDrinkSoft@Name:
+Прохладительный напиток
+
+Scripts/Items/Food/ItemDurian@Description:
+У этого тропического фрукта есть поклонники и ненавистники, третьего не дано. Но все признают, что у него уникальный вкус и запах.
+
+Scripts/Items/Food/ItemDurian@Name:
+Дуриан
+
+Scripts/Items/Food/ItemEggsBoiled@Description:
+Вареные яйца. Полезнее, чем жареные!
+
+Scripts/Items/Food/ItemEggsBoiled@Name:
+Вареные яйца
+
+Scripts/Items/Food/ItemEggsFried@Description:
+Жареные яйца. Или яичница-глазунья.
+
+Scripts/Items/Food/ItemEggsFried@Name:
+Жареные яйца
+
+Scripts/Items/Food/ItemEggsRaw@Description:
+Вкусные в вареном или жареном виде. Сырыми есть не рекомендуется, это может кончиться пищевым отравлением.
+
+Scripts/Items/Food/ItemEggsRaw@Name:
+Яйца животных
+
+Scripts/Items/Food/ItemJamBerries@Description:
+Вкусное ягодное варенье.
+
+Scripts/Items/Food/ItemJamBerries@Name:
+Варенье
+
+Scripts/Items/Food/ItemLiquor@Description:
+Фруктовый ликер насыщенного рубинового цвета. Пьется легко, невзирая на высокий градус алкоголя.
+
+Scripts/Items/Food/ItemLiquor@Name:
+Ликер
+
+Scripts/Items/Food/ItemMeatCharred@Description:
+Мясо, приготовленное на открытом огне. Не лучший способ готовки мяса, зато оно вкуснее, чем сырое.
+
+Scripts/Items/Food/ItemMeatCharred@Name:
+Обгорелое мясо
+
+Scripts/Items/Food/ItemMeatJerky@Description:
+Высушенное и вяленое мясо. Вкусное, хотя и недостаточно сочное. Зато его можно долго хранить, и оно не испортится.
+
+Scripts/Items/Food/ItemMeatJerky@Name:
+Вяленое мясо
+
+Scripts/Items/Food/ItemMeatRaw@Description:
+Сырое мясо, которое можно по-разному приготовить. Вот только не нужно есть его сырым...
+
+Scripts/Items/Food/ItemMeatRaw@Name:
+Сырое мясо
+
+Scripts/Items/Food/ItemMeatRoasted@Description:
+Запеченное мясо с петрушкой. Постойте, откуда взялась петрушка? Загадка!
+
+Scripts/Items/Food/ItemMeatRoasted@Name:
+Запеченное мясо
+
+Scripts/Items/Food/ItemMREImprovised@Description:
+Мясо, приготовленное из простых ингредиентов и соли в качестве консерванта. Может храниться долгое время.
+
+Scripts/Items/Food/ItemMREImprovised@Name:
+Солонина
+
+Scripts/Items/Food/ItemMushroomPennyBun@Description:
+Съедобный гриб. Можно есть сырым, но жареным или в составе рагу он гораздо вкуснее.
+
+Scripts/Items/Food/ItemMushroomPennyBun@Name:
+Белый гриб
+
+Scripts/Items/Food/ItemMushroomPink@Description:
+Невероятно ядовитые грибы. Они даже светятся ночью от яда.
+
+Scripts/Items/Food/ItemMushroomPink@Name:
+Неежки розовые
+
+Scripts/Items/Food/ItemMushroomRust@Description:
+Эти грибы называются ржавенками за их насыщенный рыжий цвет. Очень вкусные в готовом виде, но очень ядовитые — в сыром.
+
+Scripts/Items/Food/ItemMushroomRust@Name:
+Ржавенка
+
+Scripts/Items/Food/ItemOgurin@Description:
+Странный фрукт огурин, почти безвкусный. Выведен из огурцов.
+
+Scripts/Items/Food/ItemOgurin@Name:
+Огурин
+
+Scripts/Items/Food/ItemPieBerry@Description:
+Аппетитный ягодный пирог. По рецепту любимой бабушки.
+
+Scripts/Items/Food/ItemPieBerry@Name:
+Ягодный пирог
+
+Scripts/Items/Food/ItemPineapple@Description:
+Сладкий и немного резкий на вкус тропический фрукт. Можно есть в сыром виде или использовать в разных блюдах. Кто-то даже добавляет его в пиццу.
+
+Scripts/Items/Food/ItemPineapple@Name:
+Ананас
+
+Scripts/Items/Food/ItemRoastedMushrooms@Description:
+Вкусные жареные грибы.
+
+Scripts/Items/Food/ItemRoastedMushrooms@Name:
+Жареные грибы
+
+Scripts/Items/Food/ItemSaladFruit@Description:
+Фруктовый салат. Сладкий, полезный, питательный!
+
+Scripts/Items/Food/ItemSaladFruit@Name:
+Фруктовый салат
+
+Scripts/Items/Food/ItemSaladVegetable@Description:
+Овощной салат. Очень полезный и на удивление сытный!
+
+Scripts/Items/Food/ItemSaladVegetable@Name:
+Овощной салат
+
+Scripts/Items/Food/ItemSandwich@Description:
+Мягкий хлеб, сочное мясо и овощи — классическое сочетание!
+
+Scripts/Items/Food/ItemSandwich@Name:
+Сэндвич
+
+Scripts/Items/Food/ItemStew@Description:
+Вкусное мясное рагу с грибами.
+
+Scripts/Items/Food/ItemStew@Name:
+Рагу с мясом и грибами
+
+Scripts/Items/Food/ItemSugar@Description:
+Белый, сладкий. Добавляется в разные блюда. Можно есть и так, но лучше не стоит.
+
+Scripts/Items/Food/ItemSugar@Name:
+Сахар
+
+Scripts/Items/Food/ItemTequila@Description:
+Отличный ликер, приготовленный из встречающихся в пустыне растений.
+
+Scripts/Items/Food/ItemTequila@Name:
+Текила
+
+Scripts/Items/Food/ItemTincture@Description:
+Травяная настойка, обладающая всевозможными полезными эффектами - и для улучшения здоровья в целом.
+
+Scripts/Items/Food/ItemTincture@Name:
+Настойка
+
+Scripts/Items/Food/ItemTomato@Description:
+А вы знаете, что помидоры — это на самом деле ягоды, а не овощи?
+
+Scripts/Items/Food/ItemTomato@Name:
+Помидор
+
+Scripts/Items/Food/ItemVodka@Description:
+Огненный напиток богов. Чрезмерное употребление ведет к печальным последствиям, так что знайте меру. А еще водка вызывает обезвоживание. И нет, она не защищает от радиации.
+
+Scripts/Items/Food/ItemVodka@Name:
+Водка
+
+Scripts/Items/Food/ItemWaterbulb@Description:
+Ягода водяники. Содержит чистую питьевую воду.
+
+Scripts/Items/Food/ItemWaterbulb@Name:
+Водяника
+
+Scripts/Items/Food/ItemWine@Description:
+Хмельной нектар, приготовленный из лучшего винограда (или его эквивалента). С изысканным вкусом и ароматом.
+
+Scripts/Items/Food/ItemWine@Name:
+Вино
+
+Scripts/Items/Food/ItemYucca@Description:
+Пища для выживания в пустыне. Необходимо сначала приготовить.
+
+Scripts/Items/Food/ItemYucca@Name:
+Юкка
+
+Scripts/Items/Food/ItemYuccaCharred@Description:
+По крайней мере от голода вы не умрете.
+
+Scripts/Items/Food/ItemYuccaCharred@Name:
+Обгоревшая юкка
+
+Scripts/Items/Food/ItemYuccaFried@Description:
+Хорошо приготовленная юкка. Конечно, это не блюдо высокой кухни, зато оно вкусное и довольно питательное.
+
+Scripts/Items/Food/ItemYuccaFried@Name:
+Жареная юкка
+
+Scripts/Items/Generic/ItemAcidNitric@Description:
+Бутылка азотной кислоты.
+
+Scripts/Items/Generic/ItemAcidNitric@Name:
+Азотная кислота
+
+Scripts/Items/Generic/ItemAcidSulfuric@Description:
+Бутылка серной кислоты.
+
+Scripts/Items/Generic/ItemAcidSulfuric@Name:
+Серная кислота
+
+Scripts/Items/Generic/ItemAnimalFat@Description:
+Жир, добытый из животных. Применяется при готовке пищи и в производстве.
+
+Scripts/Items/Generic/ItemAnimalFat@Name:
+Животный жир
+
+Scripts/Items/Generic/ItemAramidFiber@Description:
+Невероятно прочное искусственное волокно с высоким модулем упругости. Используется для изготовления брони и для других целей.
+
+Scripts/Items/Generic/ItemAramidFiber@Name:
+Арамидное волокно
+
+Scripts/Items/Generic/ItemAsh@Description:
+Пепел от сожженной древесины.
+
+Scripts/Items/Generic/ItemAsh@Name:
+Пепел
+
+Scripts/Items/Generic/ItemBallisticPlate@Description:
+Тяжелая, почти непробиваемая композитная пластина, предназначенная для защиты от большинства видов обычного и экзотического оружия.
+
+Scripts/Items/Generic/ItemBallisticPlate@Name:
+Бронепластина
+
+Scripts/Items/Generic/ItemBatteryDisposable@Description:
+Простая одноразовая батарейка. Хранит не очень большой объем энергии, но дешевая и простая в изготовлении. Может использоваться для подзарядки электронных устройств или аккумуляторов.
+
+Scripts/Items/Generic/ItemBatteryDisposable@Name:
+Одноразовая батарейка
+
+Scripts/Items/Generic/ItemBatteryHeavyDuty@Description:
+Мощная одноразовая батарея. Хранит значительно больше энергии, чем маленькая батарейка, используется для быстрой подзарядки аккумуляторов или электронных устройств.
+
+Scripts/Items/Generic/ItemBatteryHeavyDuty@Name:
+Мощная батарейка
+
+Scripts/Items/Generic/ItemBlackpowder@Description:
+Обычный порох, также известный как черный порох. Изготавливается из простых ингредиентов.
+
+Scripts/Items/Generic/ItemBlackpowder@Name:
+Порох
+
+Scripts/Items/Generic/ItemBones@Description:
+Кости животных.
+
+Scripts/Items/Generic/ItemBones@Name:
+Кости
+
+Scripts/Items/Generic/ItemBottleEmpty@Description:
+Просто пустая бутылка. В ней можно хранить воду.
+
+Scripts/Items/Generic/ItemBottleEmpty@Name:
+Пустая бутылка
+
+Scripts/Items/Generic/ItemBricks@Description:
+Строительный материал для возведения зданий и стен.
+
+Scripts/Items/Generic/ItemBricks@Name:
+Кирпичи
+
+Scripts/Items/Generic/ItemCampFuel@Description:
+Ламповое масло, которое можно применять для разных источников света, использующих этот вид топлива.
+
+Scripts/Items/Generic/ItemCampFuel@Name:
+Ламповое масло
+
+Scripts/Items/Generic/ItemCanisterEmpty@Description:
+Пустая металлическая канистра. В ней можно хранить летучие жидкости.
+
+Scripts/Items/Generic/ItemCanisterEmpty@Name:
+Пустая канистра
+
+Scripts/Items/Generic/ItemCanisterGasoline@Description:
+Канистра с бензином.
+
+Scripts/Items/Generic/ItemCanisterGasoline@Name:
+Канистра бензина
+
+Scripts/Items/Generic/ItemCanisterMineralOil@Description:
+Канистра с минеральным маслом.
+
+Scripts/Items/Generic/ItemCanisterMineralOil@Name:
+Канистра минерального масла
+
+Scripts/Items/Generic/ItemCanisterPetroleum@Description:
+Канистра сырой нефти. Нефть может быть переработана в другие компоненты.
+
+Scripts/Items/Generic/ItemCanisterPetroleum@Name:
+Канистра нефти
+
+Scripts/Items/Generic/ItemCement@Description:
+Сухая цементная смесь используется в строительстве в качестве связывающего агента.
+
+Scripts/Items/Generic/ItemCement@Name:
+Сухая цементная смесь
+
+Scripts/Items/Generic/ItemCharcoal@Description:
+Древесный уголь остается после сгорания древесины. Можно использовать в качестве топлива.
+
+Scripts/Items/Generic/ItemCharcoal@Name:
+Древесный уголь
+
+Scripts/Items/Generic/ItemClay@Description:
+Глина — это природное вещество, применяющееся в строительстве.
+
+Scripts/Items/Generic/ItemClay@Name:
+Глина
+
+Scripts/Items/Generic/ItemCoal@Description:
+Уголь, добытый при разработках или в месторождении. Используется в качестве топлива.
+
+Scripts/Items/Generic/ItemCoal@Name:
+Уголь
+
+Scripts/Items/Generic/ItemCoinPenny@Description:
+Мелкие монеты низкого номинала. За них можно купить что-нибудь недорогое в торговом автомате или у других выживших.
+
+Scripts/Items/Generic/ItemCoinPenny@Name:
+Медяк
+
+Scripts/Items/Generic/ItemCoinShiny@Description:
+Монеты крупного достоинства. За них можно купить что-нибудь в торговом автомате или у товарищей по несчастью.
+
+Scripts/Items/Generic/ItemCoinShiny@Name:
+Золотой
+
+Scripts/Items/Generic/ItemComponentsElectronic@Description:
+Различные электронные компоненты, необходимые для создания электронных устройств. Их можно добыть в заброшенных научных постройках.
+
+Scripts/Items/Generic/ItemComponentsElectronic@Name:
+Электронные компоненты
+
+Scripts/Items/Generic/ItemComponentsHighTech@Description:
+Улучшенные высокотехнологичные компоненты для создания сложных устройств.
+
+Scripts/Items/Generic/ItemComponentsHighTech@Name:
+Высокотехнологичные компоненты
+
+Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Description:
+Химические вещества, необходимые для производства.
+
+Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Name:
+Промышленные химикаты
+
+Scripts/Items/Generic/ItemComponentsMechanical@Description:
+Различные механические компоненты, необходимые для сборки сложных механизмов.
+
+Scripts/Items/Generic/ItemComponentsMechanical@Name:
+Механические компоненты
+
+Scripts/Items/Generic/ItemComponentsOptical@Description:
+Усовершенствованные оптические компоненты промышленного и военного назначения.
+
+Scripts/Items/Generic/ItemComponentsOptical@Name:
+Оптические компоненты
+
+Scripts/Items/Generic/ItemComponentsPharmaceutical@Description:
+Химико-фармацевтические препараты, из которых можно изготавливать различные лекарства.
+
+Scripts/Items/Generic/ItemComponentsPharmaceutical@Name:
+Фармацевтические препараты
+
+Scripts/Items/Generic/ItemComponentsWeapon@Description:
+Различные части оружия, из которых можно собрать более совершенное вооружение.
+
+Scripts/Items/Generic/ItemComponentsWeapon@Name:
+Компоненты оружия
+
+Scripts/Items/Generic/ItemExplosives@Description:
+Взрывчатое вещество, которое используется для создания различных взрывных устройств.
+
+Scripts/Items/Generic/ItemExplosives@Name:
+Взрывчатка
+
+Scripts/Items/Generic/ItemFertilizer@ShortDescriptionText:
+`Повышает скорость роста на {0}%
+[br]Повышает урожайность`
+
+Scripts/Items/Generic/ItemFertilizer@Description:
+Значительно повышает скорость роста растения и увеличивает его урожайность.
+
+Scripts/Items/Generic/ItemFertilizer@Name:
+Удобрение
+
+Scripts/Items/Generic/ItemFibers@Description:
+Натуральные и искусственные волокна. Из них можно сплести веревку или нить. Изготавливаются из травы или других растений.
+
+Scripts/Items/Generic/ItemFibers@Name:
+Волокна
+
+Scripts/Items/Generic/ItemFirelog@Description:
+Специально разработанные искусственные дрова. Горят во много раз дольше, чем обычные дрова.
+
+Scripts/Items/Generic/ItemFirelog@Name:
+Топливные поленья
+
+Scripts/Items/Generic/ItemFlowerBlueSage@Description:
+Красивое растение, которое можно использовать для изготовления некоторых лекарств.
+
+Scripts/Items/Generic/ItemFlowerBlueSage@Name:
+Синий шалфей
+
+Scripts/Items/Generic/ItemFlowerOni@Description:
+Цветок, названный в честь красного демона.
+
+Scripts/Items/Generic/ItemFlowerOni@Name:
+Красноцвет
+
+Scripts/Items/Generic/ItemFluxPowder@Description:
+Порошковый флюс, используется в металлургии для производства высококачественного металла.
+
+Scripts/Items/Generic/ItemFluxPowder@Name:
+Порошковый флюс
+
+Scripts/Items/Generic/ItemFoodRotten@Description:
+Напрочь испорченная пища.
+
+Scripts/Items/Generic/ItemFoodRotten@Name:
+Гнилая пища
+
+Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
+Специально формулированные и сформированные гранулы нитроцеллюлозы, разработанные для особо мощного оружия.
+
+Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
+Формулированный порох
+
+Scripts/Items/Generic/ItemFur@Description:
+Мех животных. Из него можно сшить теплую зимнюю одежду.
+
+Scripts/Items/Generic/ItemFur@Name:
+Мех
+
+Scripts/Items/Generic/ItemGemDiamond@Description:
+Сверкающий белый алмаз!
+
+Scripts/Items/Generic/ItemGemDiamond@Name:
+Алмаз
+
+Scripts/Items/Generic/ItemGemEmerald@Description:
+Сверкающий зеленый изумруд!
+
+Scripts/Items/Generic/ItemGemEmerald@Name:
+Изумруд
+
+Scripts/Items/Generic/ItemGemRuby@Description:
+Сверкающий красный рубин!
+
+Scripts/Items/Generic/ItemGemRuby@Name:
+Рубин
+
+Scripts/Items/Generic/ItemGemSapphire@Description:
+Сверкающий синий сапфир!
+
+Scripts/Items/Generic/ItemGemSapphire@Name:
+Сапфир
+
+Scripts/Items/Generic/ItemGemTopaz@Description:
+Сверкающий желтый топаз!
+
+Scripts/Items/Generic/ItemGemTopaz@Name:
+Топаз
+
+Scripts/Items/Generic/ItemGemTourmaline @Description:
+Сверкающий фиолетовый турмалин!
+
+Scripts/Items/Generic/ItemGemTourmaline @Name:
+Турмалин
+
+Scripts/Items/Generic/ItemGlassRaw@Description:
+Из необработанного стекла можно изготавливать различные стеклянные предметы, например бутылки.
+
+Scripts/Items/Generic/ItemGlassRaw@Name:
+Необработанное стекло
+
+Scripts/Items/Generic/ItemGlue@Description:
+Клей используется при изготовлении многих предметов.
+
+Scripts/Items/Generic/ItemGlue@Name:
+Клей
+
+Scripts/Items/Generic/ItemGoldNugget@Description:
+Мелкие самородки необработанного золота.
+
+Scripts/Items/Generic/ItemGoldNugget@Name:
+Золотые самородки
+
+Scripts/Items/Generic/ItemHygroscopicGranules@Description:
+Специальные гигроскопические гранулы, которые используются для обогащения почвы. Они впитывают влагу из воздуха, избавляя от необходимости поливать растения.
+
+Scripts/Items/Generic/ItemHygroscopicGranules@Name:
+Гигроскопические гранулы
+
+Scripts/Items/Generic/ItemIngotCopper@Description:
+Слитки чистой меди. Медь применяется в разных областях — от производства до электроники.
+
+Scripts/Items/Generic/ItemIngotCopper@Name:
+Медный слиток
+
+Scripts/Items/Generic/ItemIngotGold@Description:
+Небольшой слиток чистого золота.
+
+Scripts/Items/Generic/ItemIngotGold@Name:
+Золотой слиток
+
+Scripts/Items/Generic/ItemIngotIron@Description:
+Слитки низкоуглеродистого железа.
+
+Scripts/Items/Generic/ItemIngotIron@Name:
+Железный слиток
+
+Scripts/Items/Generic/ItemIngotLithium@Description:
+Чистый металлический литий. Обычно хранится в герметичных контейнерах или полностью покрытый маслом.
+
+Scripts/Items/Generic/ItemIngotLithium@Name:
+Слиток лития
+
+Scripts/Items/Generic/ItemIngotSteel@Description:
+Высокоуглеродистая сталь промышленного качества.
+
+Scripts/Items/Generic/ItemIngotSteel@Name:
+Стальной слиток
+
+Scripts/Items/Generic/ItemLeaf@Description:
+Лист... Наверное, он упал с дерева.
+
+Scripts/Items/Generic/ItemLeaf@Name:
+Лист
+
+Scripts/Items/Generic/ItemLeather@Description:
+Кожа животного. Из нее можно сделать кожаную броню.
+
+Scripts/Items/Generic/ItemLeather@Name:
+Кожа
+
+Scripts/Items/Generic/ItemLogs@Description:
+Можно построить что-нибудь. Или приготовить барбекю.
+
+Scripts/Items/Generic/ItemLogs@Name:
+Бревна
+
+Scripts/Items/Generic/ItemMulch@ShortDescriptionText:
+Повышает скорость роста на {0}%
+
+Scripts/Items/Generic/ItemMulch@Description:
+Перегной, образовавшийся из разложившейся органики. Отличное натуральное удобрение.
+
+Scripts/Items/Generic/ItemMulch@Name:
+Перегной
+
+Scripts/Items/Generic/ItemNitrocellulosePowder@Description:
+Нитроцеллюлоза, также известная как бездымный порох. Используется во всех видах современного огнестрельного оружия вместо черного пороха.
+
+Scripts/Items/Generic/ItemNitrocellulosePowder@Name:
+Нитроцеллюлоза
+
+Scripts/Items/Generic/ItemOilpod@Description:
+Несъедобный фрукт, выведенный с помощью генной инженерии. Вместо сока наполнен нефтяными продуктами.
+
+Scripts/Items/Generic/ItemOilpod@Name:
+Нефтяника
+
+Scripts/Items/Generic/ItemOreCopper@Description:
+Из нее можно выплавить чистую медь.
+
+Scripts/Items/Generic/ItemOreCopper@Name:
+Медная руда
+
+Scripts/Items/Generic/ItemOreIron@Description:
+Из нее можно выплавить чистое железо.
+
+Scripts/Items/Generic/ItemOreIron@Name:
+Железная руда
+
+Scripts/Items/Generic/ItemOreLithium@Description:
+Литиевая соль добывается из геотермальных источников, после чего из нее производят чистый металлический литий.
+
+Scripts/Items/Generic/ItemOreLithium@Name:
+Литиевая соль
+
+Scripts/Items/Generic/ItemOrePragmium@Description:
+Очень востребованный минерал. Такого сочетания различных свойств нет ни у одного другого вещества. Прагмий используется в высокотехнологичном снаряжении и даже в качестве источника энергии.
+
+Scripts/Items/Generic/ItemOrePragmium@Name:
+Прагмий
+
+Scripts/Items/Generic/ItemOrePyrite@Description:
+Из пиритной руды при нагревании можно получить серную кислоту.
+
+Scripts/Items/Generic/ItemOrePyrite@Name:
+Пиритная руда
+
+Scripts/Items/Generic/ItemPaper@Description:
+Старая добрая бумага.
+
+Scripts/Items/Generic/ItemPaper@Name:
+Бумага
+
+Scripts/Items/Generic/ItemPlanks@Description:
+Обычно используются в строительстве. Также можно сжечь в качестве топлива.
+
+Scripts/Items/Generic/ItemPlanks@Name:
+Деревянные доски
+
+Scripts/Items/Generic/ItemPlastic@Description:
+Простой пластик. Применяется в производстве.
+
+Scripts/Items/Generic/ItemPlastic@Name:
+Пластик
+
+Scripts/Items/Generic/ItemPotassiumNitrate@Description:
+Нитрат калия, также известный как селитра. Из него изготавливают порох и множество других вещей.
+
+Scripts/Items/Generic/ItemPotassiumNitrate@Name:
+Нитрат калия
+
+Scripts/Items/Generic/ItemPowerCell@Description:
+Маленькая универсальная силовая ячейка, применяется в различных электронных устройствах для хранения энергии. Отдельно от них не используется.
+
+Scripts/Items/Generic/ItemPowerCell@Name:
+Силовая ячейка
+
+Scripts/Items/Generic/ItemRope@Description:
+Простая веревка. Можно использовать разными способами. Лишнюю веревку можно сжечь.
+
+Scripts/Items/Generic/ItemRope@Name:
+Веревка
+
+Scripts/Items/Generic/ItemRubberRaw@Description:
+Натуральный каучук, также известный как латекс. Добывается с каучуковых деревьев. Из него можно изготовить вулканизированную резину.
+
+Scripts/Items/Generic/ItemRubberRaw@Name:
+Натуральный каучук
+
+Scripts/Items/Generic/ItemRubberVulcanized@Description:
+Вулканизированная резина. Идеально подходит для изоляции, также используется для производства различных водонепроницаемых материалов.
+
+Scripts/Items/Generic/ItemRubberVulcanized@Name:
+Резина
+
+Scripts/Items/Generic/ItemSalt@Description:
+Обычная поваренная соль. Используется при готовке еды. В химии это хлорид натрия. Имеет множество способов применения.
+
+Scripts/Items/Generic/ItemSalt@Name:
+Соль
+
+Scripts/Items/Generic/ItemSand@Description:
+Песок годится для производства стекла или в качестве строительного материала.
+
+Scripts/Items/Generic/ItemSand@Name:
+Песок
+
+Scripts/Items/Generic/ItemSolvent@Description:
+Современный усовершенствованный растворитель, совмещающий свойства полярного и неполярного растворителей.
+
+Scripts/Items/Generic/ItemSolvent@Name:
+Растворитель
+
+Scripts/Items/Generic/ItemStone@Description:
+Тяжелый и круглый. Применяется в строительстве. Камни можно найти просто лежащими на земле или добыть в большом количестве, разбивая валуны.
+
+Scripts/Items/Generic/ItemStone@Name:
+Камень
+
+Scripts/Items/Generic/ItemSulfurPowder@Description:
+Чистая сера в виде порошка.
+
+Scripts/Items/Generic/ItemSulfurPowder@Name:
+Порошок серы
+
+Scripts/Items/Generic/ItemTarpaulin@Description:
+Композитный материал, состоящий из плотной ткани и внешнего прорезиненного слоя.
+
+Scripts/Items/Generic/ItemTarpaulin@Name:
+Брезент
+
+Scripts/Items/Generic/ItemThread@Description:
+Нитки нужны для изготовления одежды и других вещей.
+
+Scripts/Items/Generic/ItemThread@Name:
+Нить
+
+Scripts/Items/Generic/ItemTobaccoAged@Description:
+Старые листья табака. Из них можно скрутить хорошие сигары.
+
+Scripts/Items/Generic/ItemTobaccoAged@Name:
+Табак (старый)
+
+Scripts/Items/Generic/ItemTobaccoDried@Description:
+Высушенные листья табака. Из них можно скрутить дешевые сигары или дать им отлежаться и сделать хорошие сигары.
+
+Scripts/Items/Generic/ItemTobaccoDried@Name:
+Табак (высушенный)
+
+Scripts/Items/Generic/ItemTobaccoRaw@Description:
+Свежие листья и стебли табака. Их можно высушить и скрутить в сигары.
+
+Scripts/Items/Generic/ItemTobaccoRaw@Name:
+Табак (свежий)
+
+Scripts/Items/Generic/ItemToxin@Description:
+Химический токсин. Используется для изготовления отравляющих боеприпасов и в медицине.
+
+Scripts/Items/Generic/ItemToxin@Name:
+Токсин
+
+Scripts/Items/Generic/ItemTreebark@Description:
+Ее можно использовать в качестве топлива или для других нужд.
+
+Scripts/Items/Generic/ItemTreebark@Name:
+Древесная кора
+
+Scripts/Items/Generic/ItemTwigs@Description:
+Найденные на земле или сорванные с деревьев. Из них можно сделать примитивные инструменты или просто сжечь в костре.
+
+Scripts/Items/Generic/ItemTwigs@Name:
+Ветки
+
+Scripts/Items/Generic/ItemVialBiomaterial@Description:
+Полная пробирка с биоматериалом. Применяется в кибернетике и медицине, особенно для проведения операций по установке и удалению имплантов.
+
+Scripts/Items/Generic/ItemVialBiomaterial@Name:
+Пробирка с биоматериалом
+
+Scripts/Items/Generic/ItemVialEmpty@Description:
+Пустая пробирка, предназначенная для коллектора биоматериалов.
+
+Scripts/Items/Generic/ItemVialEmpty@Name:
+Пустая пробирка для биоматериалов
+
+Scripts/Items/Generic/ItemWheatFlour@Description:
+Из нее готовят разные виды хлеба и другую выпечку.
+
+Scripts/Items/Generic/ItemWheatFlour@Name:
+Пшеничная мука
+
+Scripts/Items/Generic/ItemWheatGrains@Description:
+Колосья, собранные на пшеничном поле. Из них можно сделать муку или переработать в семена для посева.
+
+Scripts/Items/Generic/ItemWheatGrains@Name:
+Пшеничные зерна
+
+Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
+У вас нет экипированного аккумулятора
+
+Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoRechargingRequired:
+Зарядка не требуется
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@CannotApplyErrorTitle:
+Здесь нельзя применить удобрение
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationFertilizerAlreadyApplied:
+Уже удобрено
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
+Растение уже дало урожай. Нет смысла его удобрять.
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
+Уже полито
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
+Растение скоро даст урожай. Не нужно его поливать.
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
+Невозможно применить здесь
+
+Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
+Специальный фоточувствительный слой сетчатки с высоким динамическим диапазоном, который обеспечивает отличное ночное зрение.
+
+Scripts/Items/Implants/ItemImplantArtificialRetina@Name:
+Имплант сетчатки
+
+Scripts/Items/Implants/ItemImplantArtificialStomach@Description:
+Улучшенная слизистая оболочка желудка с сильнодействующими кислотами и ферментами, которые расщепляют и нейтрализуют большинство вредных веществ. С этим имплантом можно без опаски есть подпорченную пищу и пить грязную воду.
+
+Scripts/Items/Implants/ItemImplantArtificialStomach@Name:
+Имплант желудка
+
+Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Description:
+Использует естественный метаболизм для того, чтобы извлекать энергию непосредственно из АТФ в клетках и преобразовывать в электричество. Заряжает экипированные аккумуляторы. Усиливает голод!
+
+Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Name:
+Имплант АТФ-электрогенерации
+
+Scripts/Items/Implants/ItemImplantBroken@Description:
+В вашем теле остались частицы сломанного импланта. Если вы не извлечете их как можно скорее, добром это не кончится.
+
+Scripts/Items/Implants/ItemImplantBroken@Name:
+Сломанный имплант
+
+Scripts/Items/Implants/ItemImplantHealingGland@Description:
+Усиливает естественную регенерацию за счет производства дополнительных стволовых клеток и изменения химического состава крови.
+
+Scripts/Items/Implants/ItemImplantHealingGland@Name:
+Исцеляющий имплант
+
+Scripts/Items/Implants/ItemImplantMetabolismModulator@Description:
+Повышает эффективность метаболизма за счет сжигания калорий и снижения уровня жидкости в организме.
+
+Scripts/Items/Implants/ItemImplantMetabolismModulator@Name:
+Имплант повышенного метаболизма
+
+Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
+Специальный материал из нановолокон, который вживляется под нижние слои кожи, обеспечивая серьезную дополнительную защиту.
+
+Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
+Имплант нановолокон под кожей
+
+Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
+Вы не страдаете от тошноты. Нет повода принимать это лекарство.
+
+Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Title:
+Нет тошноты
+
+Scripts/Items/Medical/ItemAntiNausea@Description:
+Это лекарство помогает полностью избавиться от тошноты.
+
+Scripts/Items/Medical/ItemAntiNausea@Name:
+Лекарство от тошноты
+
+Scripts/Items/Medical/ItemAntiRadiation@NotificationNoRadiationPoisoning_Message:
+У вас нет радиационного поражения. Нет повода принимать это лекарство.
+
+Scripts/Items/Medical/ItemAntiRadiation@NotificationNoRadiationPoisoning_Title:
+Нет радиационного поражения
+
+Scripts/Items/Medical/ItemAntiRadiation@Description:
+Это лекарство от радиации относится к средствам неотложной помощи и немедленно снимет все эффекты радиационного облучения с вашего тела.
+
+Scripts/Items/Medical/ItemAntiRadiation@Name:
+Лекарство от радиации
+
+Scripts/Items/Medical/ItemAntiRadiationPreExposure@Description:
+Профилактическое средство от радиации, которое не позволит накапливаться в вашем теле радиоактивным веществам и снизит эффект радиоактивного облучения.
+
+Scripts/Items/Medical/ItemAntiRadiationPreExposure@Name:
+Профилактика радиации
+
+Scripts/Items/Medical/ItemAntiToxin@NotificationNoToxins_Message:
+В вашем организме нет токсинов. Нет повода принимать это лекарство.
+
+Scripts/Items/Medical/ItemAntiToxin@NotificationNoToxins_Title:
+Нет токсинов
+
+Scripts/Items/Medical/ItemAntiToxin@Description:
+Это лекарство от токсинов относится к средствам неотложной помощи, оно может немедленно снять все эффекты накопления токсинов в организме.
+
+Scripts/Items/Medical/ItemAntiToxin@Name:
+Лекарство от токсинов
+
+Scripts/Items/Medical/ItemAntiToxinPreExposure@Description:
+Профилактическое средство от токсинов, которое не позволит накапливаться токсинам в вашем теле, а также укрепит иммунитет, чтобы нейтрализовать токсины, попавшие в кровеносную систему.
+
+Scripts/Items/Medical/ItemAntiToxinPreExposure@Name:
+Средство против токсинов
+
+Scripts/Items/Medical/ItemBandage@Description:
+Бинты нужны для того, чтобы остановить кровотечение и помочь ране исцелиться.
+
+Scripts/Items/Medical/ItemBandage@Name:
+Бинт
+
+Scripts/Items/Medical/ItemCigarCheap@Description:
+Дешевая и быстрая в изготовлении сигара. Стимулятор.
+
+Scripts/Items/Medical/ItemCigarCheap@Name:
+Дешевая сигара
+
+Scripts/Items/Medical/ItemCigarNormal@Description:
+Обычная сигара с выраженным вкусом. Стимулятор.
+
+Scripts/Items/Medical/ItemCigarNormal@Name:
+Сигара
+
+Scripts/Items/Medical/ItemCigarPremium@Description:
+Качественная сигара с выраженным вкусом и ароматом. Стимулятор.
+
+Scripts/Items/Medical/ItemCigarPremium@Name:
+Элитная сигара
+
+Scripts/Items/Medical/ItemHeatPreExposure@Description:
+Теплоупорный гель, который снижает термальные воздействия и отражает жар, позволяя на короткий срок входить в зоны с высокой температурой.
+
+Scripts/Items/Medical/ItemHeatPreExposure@Name:
+Теплоупорный гель
+
+Scripts/Items/Medical/ItemHemostatic@NotificationNoBleeding_Message:
+Вы не истекаете кровью. Нет повода принимать кровоостанавливающее лекарство.
+
+Scripts/Items/Medical/ItemHemostatic@NotificationNoBleeding_Title:
+Нет кровотечения
+
+Scripts/Items/Medical/ItemHemostatic@Description:
+Кровоостанавливающее лекарство полностью останавливает кровотечение и частично снижает кровоточивость будущих ран, полученных во время его действия.
+
+Scripts/Items/Medical/ItemHemostatic@Name:
+Кровоостанавливающее лекарство
+
+Scripts/Items/Medical/ItemHerbGreen@Description:
+Лекарственная трава с уникальными исцеляющими и антибактериальными свойствами. Можно использовать просто так, но в приготовленном виде намного эффективнее.
+
+Scripts/Items/Medical/ItemHerbGreen@Name:
+Зеленая трава
+
+Scripts/Items/Medical/ItemHerbPurple@Description:
+Лекарственная трава, с помощью которой можно выводить из организма токсины и другие вредные вещества. Можно использовать просто так, но в приготовленном виде намного эффективнее.
+
+Scripts/Items/Medical/ItemHerbPurple@Name:
+Фиолетовая трава
+
+Scripts/Items/Medical/ItemHerbRed@Description:
+Лекарственная трава с сильным стимулирующим эффектом. Не следует принимать в сыром виде, так как она содержит токсины.
+
+Scripts/Items/Medical/ItemHerbRed@Name:
+Красная трава
+
+Scripts/Items/Medical/ItemMedkit@Description:
+Восстанавливает здоровье со временем, помогает при тошноте и кровотечении, а также включает шину для сломанных костей.
+
+Scripts/Items/Medical/ItemMedkit@Name:
+Универсальная аптечка
+
+Scripts/Items/Medical/ItemNeuralEnhancer@NotificationNeuralEnhancer_Message:
+Вы получили {0} ОТ.
+
+Scripts/Items/Medical/ItemNeuralEnhancer@NotificationNeuralEnhancer_Title:
+Нейронный усилитель
+
+Scripts/Items/Medical/ItemNeuralEnhancer@Description:
+Одноразовый нейронный усилитель, содержащий специально запрограммированных нанороботов. Искусственно расширяет нейронные связи в мозгу, углубляя мыслительный процесс. Мгновенно дает очки технологии при использовании.
+
+Scripts/Items/Medical/ItemNeuralEnhancer@Name:
+Нейронный усилитель
+
+Scripts/Items/Medical/ItemPainkiller@Description:
+Обезболивающее средство полностью снимает и предотвращает любую боль на время своего действия.
+
+Scripts/Items/Medical/ItemPainkiller@Name:
+Обезболивающее средство
+
+Scripts/Items/Medical/ItemPeredozin@NotificationNoMedicineOveruse_Message:
+У вас нет симптомов передозировки. Нет повода принимать передозин.
+
+Scripts/Items/Medical/ItemPeredozin@NotificationNoMedicineOveruse_Title:
+Нет передозировки
+
+Scripts/Items/Medical/ItemPeredozin@NotificationRemovePants_Message:
+Это ректальное средство! Снимайте штаны!
+
+Scripts/Items/Medical/ItemPeredozin@NotificationRemovePants_Title:
+Мешают штаны!
+
+Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Message:
+Вы недавно приняли передозин, и вам кажется, что второй просто не поместится...
+
+Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Title:
+Хватит!
+
+Scripts/Items/Medical/ItemPeredozin@Description:
+Передозин помогает убрать негативные эффекты слишком частого приема сильнодействующих лекарств. Это ректальное средство.
+
+Scripts/Items/Medical/ItemPeredozin@Name:
+Передозин
+
+Scripts/Items/Medical/ItemPsiPreExposure@Description:
+Специальное химическое вещество для нейромодуляции, которое снижает урон, полученный от пси-воздействия.
+
+Scripts/Items/Medical/ItemPsiPreExposure@Name:
+Пси-блокиратор
+
+Scripts/Items/Medical/ItemRemedyHerbal@Description:
+Лекарственный отвар из трав. Восстанавливает здоровье со временем и устраняет тошноту. Кажется, у него нет побочных эффектов.
+
+Scripts/Items/Medical/ItemRemedyHerbal@Name:
+Лекарство из трав
+
+Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
+У нас нет сломанных костей. Нет повода накладывать шину.
+
+Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
+Нет переломов
+
+Scripts/Items/Medical/ItemSplint@Description:
+Шина скрепляет сломанные кости и помогает перелому срастись.
+
+Scripts/Items/Medical/ItemSplint@Name:
+Шина
+
+Scripts/Items/Medical/ItemStimpack@Description:
+Стимпак немедленно лечит, восстанавливая существенное количество ОЗ. Это очень помогает в бою, но избегайте передозировки, которая может привести к серьезным осложнениям.
+
+Scripts/Items/Medical/ItemStimpack@Name:
+Стимпак
+
+Scripts/Items/Medical/ItemStrengthBoostBig@Description:
+Лекарство, увеличивающее силу, делает вас временно сильнее и позволяет легче выполнять задачи, связанные с физической силой.
+
+Scripts/Items/Medical/ItemStrengthBoostBig@Name:
+Стимулятор силы (большой)
+
+Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
+Лекарство, увеличивающее силу, делает вас временно сильнее и позволяет легче выполнять задачи, связанные с физической силой.
+
+Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
+Стимулятор силы (малый)
+
+Scripts/Items/Seeds/ItemSaplingBirch@Description:
+Саженец березы. Можно посадить, чтобы вырастить новое дерево.
+
+Scripts/Items/Seeds/ItemSaplingBirch@Name:
+Саженец березы
+
+Scripts/Items/Seeds/ItemSaplingOak@Description:
+Саженец дуба. Можно посадить, чтобы вырастить новое дерево.
+
+Scripts/Items/Seeds/ItemSaplingOak@Name:
+Саженец дуба
+
+Scripts/Items/Seeds/ItemSaplingPine@Description:
+Саженец ели. Можно посадить, чтобы вырастить новое дерево.
+
+Scripts/Items/Seeds/ItemSaplingPine@Name:
+Саженец ели
+
+Scripts/Items/Seeds/ItemSaplingPineBoreal@Description:
+Саженец северной разновидности сосны. Можно посадить, чтобы вырастить новое дерево.
+
+Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
+Саженец северной сосны
+
+Scripts/Items/Seeds/ItemSaplingPoplar@Description:
+Саженец тополя. Можно посадить, чтобы вырастить новое дерево.
+
+Scripts/Items/Seeds/ItemSaplingPoplar@Name:
+Саженец тополя
+
+Scripts/Items/Seeds/ItemSaplingRubbertree@Description:
+Саженец каучукового дерева. Можно посадить, чтобы вырастить новое дерево.
+
+Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
+Саженец каучукового дерева
+
+Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
+Можно посадить, чтобы вырастить перец.
+
+Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
+Семена перца
+
+Scripts/Items/Seeds/ItemSeedsCarrot@Description:
+Можно посадить, чтобы вырастить морковь.
+
+Scripts/Items/Seeds/ItemSeedsCarrot@Name:
+Семена моркови
+
+Scripts/Items/Seeds/ItemSeedsChiliPepper@Description:
+Можно посадить, чтобы вырастить перец чили.
+
+Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
+Семена перца чили
+
+Scripts/Items/Seeds/ItemSeedsCorn@Description:
+Можно посадить, чтобы вырастить кукурузу.
+
+Scripts/Items/Seeds/ItemSeedsCorn@Name:
+Зерна кукурузы
+
+Scripts/Items/Seeds/ItemSeedsCucumber@Description:
+Можно посадить, чтобы вырастить огурец.
+
+Scripts/Items/Seeds/ItemSeedsCucumber@Name:
+Семена огурца
+
+Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Description:
+Можно посадить, чтобы вырастить синий шалфей.
+
+Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
+Семена синего шалфея
+
+Scripts/Items/Seeds/ItemSeedsFlowerOni@Description:
+Семена красноцвета. Можно посадить, чтобы вырастить больше цветов.
+
+Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
+Семена красноцвета
+
+Scripts/Items/Seeds/ItemSeedsOgurin@Description:
+Огурин — первое растение, модифицированное под условия этой планеты.
+
+Scripts/Items/Seeds/ItemSeedsOgurin@Name:
+Семена огурина
+
+Scripts/Items/Seeds/ItemSeedsTobacco@Description:
+Можно посадить, чтобы вырастить табак.
+
+Scripts/Items/Seeds/ItemSeedsTobacco@Name:
+Семена табака
+
+Scripts/Items/Seeds/ItemSeedsTomato@Description:
+Семена помидора, из которых можно вырастить вкусные помидоры, специально выведенные для этой планеты.
+
+Scripts/Items/Seeds/ItemSeedsTomato@Name:
+Семена помидора
+
+Scripts/Items/Seeds/ItemSeedsWheat@Description:
+Зерна пшеницы, специально подготовленные для посадки.
+
+Scripts/Items/Seeds/ItemSeedsWheat@Name:
+Зерна пшеницы
+
+Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorSoilNotSuitable:
+Этот вид деревьев не растет на этой почве.
+
+Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
+Саженец можно посадить, если между ним и другими деревьями будет хотя бы одна пустая клетка.
+
+Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
+Требуется:
+
+Scripts/Items/Tools/Axes/ItemAxeIron@Description:
+Железный топор отлично рубит деревья. Он более эффективен и крепок по сравнению с каменным топором.
+
+Scripts/Items/Tools/Axes/ItemAxeIron@Name:
+Железный топор
+
+Scripts/Items/Tools/Axes/ItemAxeSteel@Description:
+Стальной топор великолепно рубит деревья. Он более эффективен и крепок по сравнению с железным топором.
+
+Scripts/Items/Tools/Axes/ItemAxeSteel@Name:
+Стальной топор
+
+Scripts/Items/Tools/Axes/ItemAxeStone@Description:
+Каменным топором можно рубить деревья.
+
+Scripts/Items/Tools/Axes/ItemAxeStone@Name:
+Каменный топор
+
+Scripts/Items/Tools/Crowbars/ItemCrowbar@Description:
+Помогает быстро разобрать постройки в вашей зоне контроля.
+
+Scripts/Items/Tools/Crowbars/ItemCrowbar@Name:
+Лом
+
+Scripts/Items/Tools/Lights/ItemFlashlight@Description:
+Нет ничего лучше яркого фонарика. Эта модель дает световой поток мощностью 3000 люмен, если использовать простые одноразовые батарейки.
+
+Scripts/Items/Tools/Lights/ItemFlashlight@Name:
+Фонарик
+
+Scripts/Items/Tools/Lights/ItemOilLamp@Description:
+Переносной светильник удобной формы. Его можно быстро заправить ламповым маслом.
+
+Scripts/Items/Tools/Lights/ItemOilLamp@Name:
+Масляная лампа
+
+Scripts/Items/Tools/Lights/ItemTorch@NotificationBurnedOut:
+Факел догорел.
+
+Scripts/Items/Tools/Lights/ItemTorch@Description:
+Поможет вам пережить ночь. На всякий случай держите под рукой запасной факел.
+
+Scripts/Items/Tools/Lights/ItemTorch@Name:
+Факел
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationCannotRefillWhileOn_Message:
+Выключите перед заправкой.
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationCannotRefillWhileOn_Title:
+Невозможно заправить
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message:
+Требуется заправка.
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
+Нет топлива
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
+Железная кирка используется для добычи минералов. Она более эффективна и крепка по сравнению с каменной киркой.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Name:
+Железная кирка
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeSteel@Description:
+Стальная кирка используется для добычи минералов. Она более эффективна и крепка по сравнению с железной киркой.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeSteel@Name:
+Стальная кирка
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Description:
+Каменная кирка используется для добычи минералов.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
+Каменная кирка
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
+Для того чтобы возвести любую постройку, требуется хороший набор инструментов.
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
+Простой набор инструментов
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Description:
+Для того чтобы возвести любую постройку, требуется хороший набор инструментов.
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
+Набор железных инструментов
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Description:
+Для того чтобы возвести любую постройку, требуется хороший набор инструментов.
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
+Набор стальных инструментов
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Description:
+Медная лейка классической формы. В ней можно хранить больше воды.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Name:
+Медная лейка
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Description:
+Простая лейка из легкого пластика. В ней можно хранить больше воды, чем в других лейках.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Name:
+Пластиковая лейка
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanSteel@Description:
+Лейка, сделанная из тонких листов нержавеющей стали, поэтому довольно легкая. В ней можно хранить большой запас воды.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanSteel@Name:
+Стальная лейка
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Description:
+Простая лейка из примитивных материалов, в ней можно хранить не очень много воды.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Name:
+Деревянная лейка
+
+Scripts/Items/Weapons/Melee/ItemKnifeIron@Description:
+Боевой нож. Также известный как штык-нож.
+
+Scripts/Items/Weapons/Melee/ItemKnifeIron@Name:
+Железный нож
+
+Scripts/Items/Weapons/Melee/ItemKnifeStone@Description:
+Примитивный нож. Покрепче кулаков, но не намного.
+
+Scripts/Items/Weapons/Melee/ItemKnifeStone@Name:
+Каменный нож
+
+Scripts/Items/Weapons/Melee/ItemMaceCopper@Description:
+Деревянная булава с медными усилителями на ударной части.
+
+Scripts/Items/Weapons/Melee/ItemMaceCopper@Name:
+Медная булава
+
+Scripts/Items/Weapons/Melee/ItemMaceIron@Description:
+Ударное оружие, более тяжелое и смертоносное, чем медная дубинка.
+
+Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
+Железная булава
+
+Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
+Нет оружия
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
+Лазерная рапира (синяя)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
+Лазерная рапира (зеленая)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
+Лазерная рапира (фиолетовая)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
+Лазерная рапира (красная)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
+Лазерная рапира (белая)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
+Лазерная рапира (желтая)
+
+Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
+Невероятно мощное оружие ближнего боя. Для его работы нужна энергия.
+
+Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+Примитивный пистолет. Использует бумажные гильзы для патронов. Имеет два заряда, которые можно выпустить очень быстро.
+
+Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+Кремневый пистолет
+
+Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+Пистолет, использующий боеприпасы 10 мм.
+
+Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
+Пистолет
+
+Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+Лазерный пистолет, сжигающий цель мощным импульсом света, в основном в инфракрасном спектре.
+
+Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+Лазерный пистолет
+
+Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+Лазерная винтовка, сжигающая цель мощным импульсом света, в основном в инфракрасном спектре. Скорострельность ее намного выше, чем у лазерного пистолета, за счет повышенного энергопотребления.
+
+Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+Лазерная винтовка
+
+Scripts/Items/Weapons/Ranged/ItemLuger@Description:
+Простой полуавтоматический пистолет. Более дешевое оружие по сравнению с современными видами вооружения.
+
+Scripts/Items/Weapons/Ranged/ItemLuger@Name:
+Люгер
+
+Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
+Тяжелый пулемет, использующий мощные боеприпасы калибра .300.
+
+Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
+Тяжелый пулемет
+
+Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
+Легкий автоматический пистолет, использующий боеприпасы 8 мм.
+
+Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
+Автоматический пистолет
+
+Scripts/Items/Weapons/Ranged/ItemMusket@Description:
+Старый добрый мушкет. Использует бумажные патроны. Более дальнобойный и смертоносный, чем кремневый пистолет.
+
+Scripts/Items/Weapons/Ranged/ItemMusket@Name:
+Мушкет
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
+Плазменный пистолет, выпускающий сгустки плазмы, которые поджигают цель при попадании и наносят ей серьезный урон. Обладает высоким энергопотреблением.
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
+Плазменный пистолет
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+Плазменная винтовка, выпускающая большие сгустки плазмы, которые поджигают цель при попадании и наносят ей обширный урон. Обладает очень высоким энергопотреблением.
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+Плазменная винтовка
+
+Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
+Простое самозарядное стрелковое оружие с вращающимся барабаном, где находятся боеприпасы.
+
+Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
+Револьвер
+
+Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
+Тяжелая крупнокалиберная винтовка, использующая мощные боеприпасы калибра .300.
+
+Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
+Тяжелая винтовка
+
+Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
+Старая верная двустволка. Использует боеприпасы 12-го калибра.
+
+Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
+Двуствольное ружье
+
+Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
+Дробовик с большим боезапасом. Использует боеприпасы 12-го калибра.
+
+Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
+Дробовик
+
+Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
+Пистолет-пулемет, использующий боеприпасы 10 мм.
+
+Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
+Пистолет-пулемет
+

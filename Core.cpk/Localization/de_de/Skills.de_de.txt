@@ -1,0 +1,135 @@
+﻿Scripts/Skills/Categories/SkillCategoryAgriculture@Name:
+Agrarwirtschaft
+
+Scripts/Skills/Categories/SkillCategoryCombat@Name:
+Kampf
+
+Scripts/Skills/Categories/SkillCategoryMisc@Name:
+Sonstiges
+
+Scripts/Skills/Categories/SkillCategoryPersonal@Name:
+Persönlich
+
+Scripts/Skills/Categories/SkillCategoryProduction@Name:
+Produktion
+
+Scripts/Skills/Categories/SkillCategoryTechnical@Name:
+Technisch
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Flags.AdditionalYield:
+Chance auf Mehrertrag
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
+Bessere Anbaumethoden ermöglichen es dir, deine landwirtschaftliche Effizienz zu verbessern, die Wachstumsrate und Reifegeschwindigkeit deiner Ernte zu erhöhen und zudem gelegentlich einen höheren Ertrag zu erzielen.
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
+Landwirtschaft
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
+Chance auf Mehrertrag
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
+Ein Verständnis der Flora des Planeten verbessert deine Erntegeschwindigkeit und die Chance, höhere Erträge zu erzielen.
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Name:
+Nahrungssuche
+
+Scripts/Skills/Skills/Agriculture/SkillHunting@Description:
+Ein guter Jäger zu sein, erhöht deine Chance auf bessere Jagdbeute.
+
+Scripts/Skills/Skills/Agriculture/SkillHunting@Name:
+Jagd
+
+Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Description:
+Je mehr Erfahrung du im Umgang mit konventionellen Schusswaffen erlangst, desto vertrauter und effizienter gehst du mit ihnen um.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Name:
+Konventionelle Waffen
+
+Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Description:
+Je häufiger du Energiewaffen benutzt, desto besser verstehst du ihre Funktionsweise. Das macht dich im Umgang mit ihnen effektiver.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Name:
+Energiewaffen
+
+Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Description:
+Die Verwendung exotischer Waffen im Kampf gewährt dir einen tieferen Einblick in ihre Geheimnisse und gibt dir so ein besseres Verständnis darüber, wie sich ihr Potenzial noch vergrößern lässt.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Name:
+Exotische Waffen
+
+Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Description:
+Die Benutzung schwerer Waffen fördert dein Geschick im Umgang mit ihnen und macht dich so noch explosiver.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Name:
+Schwere Waffen
+
+Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Description:
+Der kontinuierliche Einsatz von Nahkampfwaffen lässt dich im Umgang mit ihnen sicherer werden, was zu erhöhten Schadenswerten und größerer Effizienz führt.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
+Nahkampfwaffen
+
+Scripts/Skills/Skills/Misc/SkillSearching@Flags.ChanceToFindRareItems:
+Chance auf seltene Gegenstände
+
+Scripts/Skills/Skills/Misc/SkillSearching@Description:
+Deine Liebe zum Detail erhöht deine Chance darauf, zusätzliche Gegenstände zu erhalten.
+
+Scripts/Skills/Skills/Misc/SkillSearching@Name:
+Suchen
+
+Scripts/Skills/Skills/Personal/SkillAthletics@Description:
+Training hat deinen Körper daran gewöhnt, lange Strecken zurückzulegen, wodurch du beim Rennen weniger Energie verbrauchst.
+
+Scripts/Skills/Skills/Personal/SkillAthletics@Name:
+Athletik
+
+Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Description:
+Deinen Körper kybernetischer Technologie auszusetzen, hat dich und dein Immunsystem an ihre ständige Anwesenheit gewöhnt.
+
+Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Name:
+Kybernetische Affinität
+
+Scripts/Skills/Skills/Personal/SkillLearning@Description:
+Das Überleben in ungewohnter Umgebung auf einer fremdartigen Welt gestaltet sich mitunter schwierig, bietet dir jedoch einzigartige Möglichkeiten, die dir sonst nicht gegeben wären.
+
+Scripts/Skills/Skills/Personal/SkillLearning@Name:
+Lernen
+
+Scripts/Skills/Skills/Personal/SkillSurvival@Description:
+Erhöht deine Überlebenschancen durch das Verbessern deiner maximalen Gesundheit und deiner Nahrungs-, Wasser- und Energiereserven. Dich kann man nicht so leicht töten!
+
+Scripts/Skills/Skills/Personal/SkillSurvival@Name:
+Überleben
+
+Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
+Chance auf Mehrertrag
+
+Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Chance für den Erhalt von Edelsteinen
+
+Scripts/Skills/Skills/Production/SkillMining@Description:
+Eine bessere Kenntnis von Mineralvorkommen erhöht deine Abbaugeschwindigkeit, deinen Ertrag und die Chance auf seltene Ressourcen. Nur im Zusammenhang mit einer Spitzhacke gültig.
+
+Scripts/Skills/Skills/Production/SkillMining@Name:
+Bergbau
+
+Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
+Training und eine bessere Fachkenntnis erhöhen deine Holzfällgeschwindigkeit. Nur im Zusammenhang mit einer Axt gültig.
+
+Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
+Holzfällerei
+
+Scripts/Skills/Skills/Technical/SkillBuilding@Description:
+Bessere Baufähigkeiten verbessern deine Konstruktionsgeschwindigkeit. Anwendbar auf alle Aufgaben (bauen, reparieren), die mithilfe eines Werkzeugkoffers durchgeführt werden.
+
+Scripts/Skills/Skills/Technical/SkillBuilding@Name:
+Bauen
+
+Scripts/Skills/Skills/Technical/SkillCrafting@Description:
+Die Herstellung immer komplexerer Gegenstände und das Verständnis ihres Aufbaus bieten einen tiefgreifenden Einblick in das Zusammenspiel von Technologie.
+
+Scripts/Skills/Skills/Technical/SkillCrafting@Name:
+Herstellung
+

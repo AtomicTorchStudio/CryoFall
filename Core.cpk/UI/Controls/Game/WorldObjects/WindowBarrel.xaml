@@ -1,0 +1,56 @@
+﻿<worldObjects:WindowBarrelBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WindowBarrel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowBarrel, IsDesignTimeCreatable=True}">
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <Rectangle HorizontalAlignment="Center" Width="18" Height="18" Fill="{Binding LiquidIcon}" Margin="0,0,0,1" />
+
+            <StackPanel Orientation="Horizontal">
+
+                <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                DesignTimeSlotsCount="1" />
+
+                <Grid Visibility="{Binding ProgressBarVisibility}" Margin="0,0,-6,0">
+                    <core:ValueBarControl
+                        Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
+                        IsReversedBar="{Binding IsProgressBarInverted}"
+                        Style="{StaticResource ItemSlotCraftingProgressVerticalBar}">
+                        <core:ValueBarControl.Foreground>
+                            <SolidColorBrush Color="{Binding LiquidColor}" />
+                        </core:ValueBarControl.Foreground>
+                    </core:ValueBarControl>
+                </Grid>
+
+                <core:ValueBarControl
+                    Value="{Binding LiquidAmount}"
+                    MaxValue="{Binding LiquidCapacity}"
+                    Margin="20,0,20,0"
+                    Style="{StaticResource LiquidMediumValueBar}">
+                    <core:ValueBarControl.Foreground>
+                        <SolidColorBrush Color="{Binding LiquidColor}" />
+                    </core:ValueBarControl.Foreground>
+                </core:ValueBarControl>
+
+                <controls:ItemsContainerControl
+                    Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    DesignTimeSlotsCount="1" />
+            </StackPanel>
+
+        </StackPanel>
+    </core:WindowMenuWithInventory>
+</worldObjects:WindowBarrelBase>

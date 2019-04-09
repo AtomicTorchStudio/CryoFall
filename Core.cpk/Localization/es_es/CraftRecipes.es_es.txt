@@ -1,0 +1,99 @@
+﻿Scripts/CraftRecipes/HandCrafting/RecipeFillBottleWithWaterbulb@Name:
+Llena la botella con bulboacuosa
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+Llenar barril con gasolina
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:
+Llenar barril con combustible mineral
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddPetroleum@Name:
+Llenar barril con petróleo crudo
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddWater@Name:
+Llenar barril con agua
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveGasoline@Name:
+Llenar el bidón con gasolina del barril
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveMineralOil@Name:
+Llenar el bidón con combustible mineral del barril
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemovePetroleum@Name:
+Llevar el bidón con petróleo crudo de un barril
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveWater@Name:
+Llena la botella con agua del barril
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromLogs@Name:
+Troncos quemando producto derivado
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromPlanks@Name:
+Tablones quemando producto derivado
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
+Ramas quemando producto derivado
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
+Hervir agua (derroche)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
+Nafta (grasa animal)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
+Champiñones asados (boletus)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
+Champiñones asados (pucciniales)
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
+Reciclar penique
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
+Reciclar moneda brillante
+
+Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
+Sales de litio del extractor de mineral de litio
+
+Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
+Llevar el bidón con petróleo crudo de un depósito
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
+Añadir el petróleo crudo del bidón a la refinería
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryGasolineCanister@Name:
+Llenar el bidón con gasolina de la refinería
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanister@Name:
+Llenar el bidón con combustible mineral de la refinería
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
+Hervir agua
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesOrange@Name:
+Mermelada de bayas (bayas naranjas)
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesRed@Name:
+Mermelada de bayas (bayas rojas)
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesViolet@Name:
+Mermelada de bayas (bayas moradas)
+
+Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
+Llena la botella con agua del pozo
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromPyrite@Name:
+Ácido sulfúrico (de pirita)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromSulfur@Name:
+Ácido sulfúrico (de azufre)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeCampFuelSynthetic@Name:
+Nafta (sintético)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeToxin@Name:
+Extracción de toxinas
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeCanisterPetroleum@Name:
+Bidón de petróleo (de vainas de petróleo)
+

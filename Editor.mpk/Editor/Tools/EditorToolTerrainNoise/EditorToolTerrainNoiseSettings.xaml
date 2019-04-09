@@ -1,0 +1,95 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolTerrainNoise.EditorToolTerrainNoiseSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:brushes="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolTerrainNoise"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelEditorToolTerrainNoiseSettings, IsDesignTimeCreatable=True}">
+
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary Source="/Editor/EditorStyles.xaml" />
+    </base:BaseUserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <brushes:SelectLocationControl ViewModel="{Binding ViewModelLocationSettings}" />
+
+        <Border Background="#FF222222" Padding="5" Margin="5" CornerRadius="3">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Target tile" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-3,0,3"
+                           Foreground="{StaticResource BrushColor6}" />
+
+                <ScrollViewer Style="{StaticResource ItemsScrollViewerStyle}"
+                              MaxHeight="250">
+                    <ItemsControl ItemsSource="{Binding ProtoTilesForTarget}"
+                                  Style="{StaticResource ItemsControlStyleForEditorToolItems}"
+                                  Background="Transparent" />
+                </ScrollViewer>
+            </StackPanel>
+        </Border>
+
+        <Border Background="#FF222222" Padding="5" Margin="5,0,5,5" CornerRadius="3">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Noise tile" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-3,0,3"
+                           Foreground="{StaticResource BrushColor6}" />
+
+                <ScrollViewer Style="{StaticResource ItemsScrollViewerStyle}"
+                              MaxHeight="250">
+                    <ItemsControl ItemsSource="{Binding ProtoTilesForNoise}"
+                                  Style="{StaticResource ItemsControlStyleForEditorToolItems}"
+                                  Background="Transparent" />
+                </ScrollViewer>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Seed" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,2"
+                       Foreground="{StaticResource BrushColor6}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox Text="{Binding Seed}"
+                         Style="{StaticResource EditorTextBoxPositionStyle}"
+                         MinWidth="100"
+                         MaxLength="20"
+                         HorizontalContentAlignment="Center" />
+                <Button Content="#"
+                        Command="{Binding CommandRandomizeSeed}"
+                        CommandParameter="{Binding}"
+                        FontSize="12"
+                        MinWidth="16" Width="16" MinHeight="16" Height="16" Padding="0,-2,0,0"
+                        Margin="3,0,0,0"
+                        Focusable="False" />
+            </StackPanel>
+
+
+            <TextBlock Text="Noise probability" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,2"
+                       Foreground="{StaticResource BrushColor6}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox Text="{Binding NoiseProbability, StringFormat={}{0:F2}}"
+                         Style="{StaticResource EditorTextBoxPositionStyle}"
+                         MinWidth="100"
+                         HorizontalContentAlignment="Center" />
+            </StackPanel>
+
+            <Slider Minimum="0"
+                    Maximum="1"
+                    SmallChange="0.1"
+                    LargeChange="0.1"
+                    TickFrequency="0.1"
+                    TickPlacement="TopLeft"
+                    Width="150"
+                    Value="{Binding NoiseProbability}"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center" />
+        </StackPanel>
+
+        <Button Content="Apply"
+                Command="{Binding CommandApply}"
+                Style="{StaticResource EditorButtonStyle}" />
+    </StackPanel>
+</base:BaseUserControl>

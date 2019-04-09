@@ -1,0 +1,6 @@
+﻿Scripts/Perks/PerkClaimDeposits@Name:
+Reivindicar depósitos de petróleo e lítio
+
+Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
+Número máximo de posses de terra: {0}
+

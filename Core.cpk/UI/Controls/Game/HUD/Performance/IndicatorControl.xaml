@@ -1,0 +1,82 @@
+﻿<base:BaseUserControl x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.IndicatorControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                      xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.Data"
+                      mc:Ignorable="d"
+                      x:Name="UserControl"
+                      Background="Transparent"
+                      d:DesignHeight="300" d:DesignWidth="300"
+                      d:DataContext="{d:DesignInstance data:ViewModelPerformanceStatsBase, IsDesignTimeCreatable=True}"
+                      UseLayoutRounding="False">
+
+    <ContentControl x:Name="LayoutRoot"
+                    Background="Transparent"
+                    Opacity="1"
+                    Height="46"
+                    Margin="-10">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisibilityStates">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition To="Hidden"
+                                      GeneratedDuration="0:0:2.5" />
+                    <VisualTransition To="Normal"
+                                      GeneratedDuration="0:0:0.25" />
+                </VisualStateGroup.Transitions>
+
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="Hidden">
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="LayoutRoot"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0" />
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Control Margin="10">
+            <Control.Template>
+                <ControlTemplate TargetType="Control">
+                    <Grid>
+                        <Control x:Name="ControlDisplayNone"
+                                 Template="{Binding DisplayNone, ElementName=UserControl}"
+                                 Visibility="Collapsed" />
+
+                        <Control x:Name="ControlDisplayGreen"
+                                 Template="{Binding DisplayGreen, ElementName=UserControl}"
+                                 Visibility="Collapsed" />
+
+                        <Control x:Name="ControlDisplayYellow"
+                                 Template="{Binding DisplayYellow, ElementName=UserControl}"
+                                 Visibility="Collapsed" />
+
+                        <Control x:Name="ControlDisplayRed"
+                                 Template="{Binding DisplayRed, ElementName=UserControl}"
+                                 Visibility="Collapsed" />
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IndicatorSeverity}" Value="None">
+                            <Setter TargetName="ControlDisplayNone" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding IndicatorSeverity}" Value="Green">
+                            <Setter TargetName="ControlDisplayGreen" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding IndicatorSeverity}" Value="Yellow">
+                            <Setter TargetName="ControlDisplayYellow" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding IndicatorSeverity}" Value="Red">
+                            <Setter TargetName="ControlDisplayRed" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Control.Template>
+        </Control>
+    </ContentControl>
+</base:BaseUserControl>

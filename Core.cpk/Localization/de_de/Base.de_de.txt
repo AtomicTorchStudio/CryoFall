@@ -1,0 +1,150 @@
+﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
+Keine Interaktion bei Benommenheit möglich.
+
+Scripts/Base/Stats/StatName@HealthMax:
+Maximale Gesundheit
+
+Scripts/Base/Stats/StatName@StaminaMax:
+Maximale Ausdauer
+
+Scripts/Base/Stats/StatName@FoodMax:
+Maximale Nahrung
+
+Scripts/Base/Stats/StatName@WaterMax:
+Maximales Wasser
+
+Scripts/Base/Stats/StatName@MoveSpeed:
+Bewegungsgeschwindigkeit
+
+Scripts/Base/Stats/StatName@MoveSpeedRunMultiplier:
+Laufgeschwindigkeit
+
+Scripts/Base/Stats/StatName@DamageAdd:
+Zusätzlicher Schaden
+
+Scripts/Base/Stats/StatName@RunningStaminaConsumptionPerSecond:
+Erschöpfung der Ausdauer beim Laufen
+
+Scripts/Base/Stats/StatName@StaminaRegenerationPerSecond:
+Regeneration der Ausdauer
+
+Scripts/Base/Stats/StatName@HealthRegenerationPerSecond:
+Regeneration der Gesundheit
+
+Scripts/Base/Stats/StatName@MiningSpeed:
+Abbaugeschwindigkeit
+
+Scripts/Base/Stats/StatName@WoodcuttingSpeed:
+Holzfällgeschwindigkeit
+
+Scripts/Base/Stats/StatName@ForagingSpeed:
+Geschwindigkeit der Nahrungssuche
+
+Scripts/Base/Stats/StatName@BuildingSpeed:
+Bau-/Abrissgeschwindigkeit
+
+Scripts/Base/Stats/StatName@SearchingExtraLoot:
+Chance auf zusätzliche Beute beim Durchsuchen
+
+Scripts/Base/Stats/StatName@HuntingExtraLoot:
+Chance auf zusätzliche Beute beim Jagen
+
+Scripts/Base/Stats/StatName@FarmingTasksSpeed:
+Geschwindigkeit landwirtschaftlicher Aufgaben
+
+Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
+Wachstumsgeschwindigkeit von Pflanzen
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
+Schadensbonus
+
+Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
+Schadensbonus
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+Schadensbonus
+
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+Schadensbonus
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Schadensbonus
+
+Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
+Chance auf Spezialeffekt
+
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+Chance auf Spezialeffekt
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+Chance auf Spezialeffekt
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+Chance auf Spezialeffekt
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+Chance auf Spezialeffekt
+
+Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
+Abnutzungsrate
+
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+Abnutzungsrate
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+Abnutzungsrate
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+Abnutzungsrate
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+Abnutzungsrate
+
+Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
+Nachladezeit
+
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Nachladezeit
+
+Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
+Energieverbrauch
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
+Nachladezeit
+
+Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
+Nachladezeit
+
+Scripts/Base/Stats/StatName@LearningPointsRetainedAfterDeath:
+Nach dem Tod behaltene LP
+
+Scripts/Base/Stats/StatName@CraftingSpeed:
+Fertigungsgeschwindigkeit
+
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Dauer des Legens von Sprengsätzen
+
+Scripts/Base/Stats/StatName@HuntingLootingSpeed:
+Durchsuchungsgeschwindigkeit
+
+Scripts/Base/Stats/StatName@ImplantDegradationFromDamageMultiplier:
+Implantatsabnutzung nach erlittenem Schaden
+
+Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
+Abnutzungsgeschwindigkeit von installierten Implantaten
+
+Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
+Geschwindigkeit der Nahrungsaufnahme
+
+Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
+Geschwindigkeit des Wasserverbrauchs
+
+Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
+Regeneration von Energieladungen (pro Minute)
+
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Fähigkeit zum Verzehr verdorbener Nahrung
+
+Scripts/Base/Stats/StatName@SearchingSpeed:
+Suchgeschwindigkeit
+

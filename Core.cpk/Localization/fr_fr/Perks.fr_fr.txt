@@ -1,0 +1,6 @@
+﻿Scripts/Perks/PerkClaimDeposits@Name:
+Revendiquer les gisements de pétrole et de lithium
+
+Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
+Maximum de territoires revendiqués : {0}
+

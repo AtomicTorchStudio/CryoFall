@@ -1,0 +1,17 @@
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+`클라이언트가 마스터 서버에 연결할 수 없습니다.
+[br]인터넷 연결 상태와 방화벽,
+[br]또는 ISP가 연결을 차단하고 있는 건 아닌지 확인해주십시오.`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Title:
+마스터 서버에 연결할 수 없습니다.
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_MessageFormat:
+`해당 게임 서버에는 다음과 같은 모드가 필요합니다.
+[br]{0}
+[br][br]참가하시려면 모드를 다운로드 후 설치해주십시오.
+[br]공식 포럼에서 모드를 찾아볼 수 있습니다. http://forums.atomictorch.com/index.php?board=24.0`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_Title:
+연결 할 수 없음-모드 누락
+

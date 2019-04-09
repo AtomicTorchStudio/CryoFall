@@ -1,0 +1,9 @@
+﻿<Application x:Class="AtomicTorch.CBND.CoreMod.UI.AppStub"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <!-- This is required for proper work of resource dictionaries during design-time in Visual Studio.
+             Please note: this file and App.xaml.cs are ignored by the game! -->
+        <ResourceDictionary Source="Resources.xaml" />
+    </Application.Resources>
+</Application>

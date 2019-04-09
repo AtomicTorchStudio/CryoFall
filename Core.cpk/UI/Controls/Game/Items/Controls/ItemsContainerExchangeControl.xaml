@@ -1,0 +1,82 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.ItemsContainerExchangeControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data"
+    VerticalAlignment="Center"
+    HorizontalAlignment="Stretch"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800"
+    d:DataContext="{d:DesignInstance data:ViewModelItemsContainerExchange, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <StackPanel VerticalAlignment="Center"
+                HorizontalAlignment="Stretch">
+        <TextBlock Text="{Binding ContainerTitle}"
+                   Visibility="{Binding IsContainerTitleVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                   HorizontalAlignment="Center"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   FontSize="10"
+                   Margin="0,0,0,5" />
+
+        <controls:ItemsContainerControl Container="{Binding Container}"
+                                        DesignTimeSlotsCount="8"
+                                        MaxWidth="436"
+                                        MaxHeight="212"
+                                        HorizontalAlignment="Center" />
+
+        <!-- Container management buttons -->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,3,0,0"
+                    Visibility="{Binding IsManagementButtonsVisibile, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Button Command="{Binding CommandTakeAll}"
+                    Style="{StaticResource SmallButtonStyle}"
+                    Margin="0,0,5,0"
+                    Focusable="False">
+                <!-- Text: Take All -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.ItemsContainer_Button_TakeAll}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="ContainerTakeAll" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </Button>
+            <Button Command="{Binding CommandMatch}"
+                    CommandParameter="Down"
+                    Style="{StaticResource SmallButtonStyle}"
+                    Focusable="False">
+                <!-- Text: Match Down -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.ItemsContainer_Button_MatchDown}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="ContainerMoveItemsMatchDown" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </Button>
+            <Button Command="{Binding CommandMatch}"
+                    CommandParameter="Up"
+                    Style="{StaticResource SmallButtonStyle}"
+                    Margin="5,0,0,0"
+                    Focusable="False">
+                <!-- Text: Match Up -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.ItemsContainer_Button_MatchUp}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="ContainerMoveItemsMatchUp" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </Button>
+            <Button Command="{Binding CommandOpenHelpMenu}"
+                    Style="{StaticResource SmallButtonStyle}"
+                    Margin="25,0,0,0"
+                    Focusable="False">
+                <!-- Text: Shortcuts -->
+                <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_Button_DisplayShortcuts}" Margin="5,0" />
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</base:BaseUserControl>

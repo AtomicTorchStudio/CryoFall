@@ -1,0 +1,862 @@
+﻿Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationCannotDropItemThere:
+Gegenstand kann dort nicht abgelegt werden.
+
+Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationNoFreeSpaceToDrop:
+Kein freier Platz um Gegenstand abzulegen
+
+Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
+Bodenobjekte
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
+Kein Bau in eingeschränkten Bereichen möglich.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnCliffOrSlope:
+Kein Bau auf Klippen oder Abhängen möglich.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFarmPlot:
+Kein Bau auf Farmland möglich.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFloor:
+Kein Bau auf Fußboden möglich.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCreaturesNearby:
+Es befinden sich Lebewesen in der Nähe.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNoFreeSpace:
+Kein freier Platz.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
+Kein fester Boden.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
+Du stehst in der Zelle!
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSlope:
+Kein Bau möglich – zu nah an Klippe oder Abhang gelegen.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
+Kein Bau möglich – zu nah am Wasser.
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
+Konfigurieren
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Deconstruct:
+Dekonstruieren
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
+Untersuchen
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
+Ernten
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
+Interagieren
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Loot:
+Durchsuchen
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
+Öffnen
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
+Aufheben
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
+Aufhebeln
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
+Schreiben
+
+Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
+Thermalquelle
+
+Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
+Thermalquelle (unendlich)
+
+Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
+Ölquelle
+
+Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
+Ölquelle (unendlich)
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
+Minenladung
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombModern@Name:
+Moderne Bombe
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombPrimitive@Name:
+Einfache Bombe
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
+Resonanzbombe
+
+Scripts/StaticObjects/Loot/ObjectCorpse@Name:
+Leiche
+
+Scripts/StaticObjects/Loot/ObjectLootCrateFood@Name:
+Vorratscontainer für Nahrungsmittel
+
+Scripts/StaticObjects/Loot/ObjectLootCrateHightech@Name:
+Hi-Tech-Container
+
+Scripts/StaticObjects/Loot/ObjectLootCrateIndustrial@Name:
+Industriecontainer
+
+Scripts/StaticObjects/Loot/ObjectLootCrateMedical@Name:
+Medizincontainer
+
+Scripts/StaticObjects/Loot/ObjectLootCrateMilitary@Name:
+Militärcontainer
+
+Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
+Vorratscontainer
+
+Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
+Gras
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
+Großer Müllhaufen
+
+Scripts/StaticObjects/Loot/ObjectLootStone@Name:
+Stein
+
+Scripts/StaticObjects/Loot/ObjectLootTwigs@Name:
+Zweige
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageFormatLootFromAnotherPlayer:
+Durchsuche {0}
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageLootFromCurrentPlayer:
+Deine Beute
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Message:
+{0} durchsucht deine fallengelassenen Gegenstände ...
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Title:
+Deine Habe wird geplündert
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Message:
+{0} hat all deine fallengelassenen Gegenstände aufgenommen. Markierung von Karte entfernt.
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Title:
+Deine Gegenstände wurden gestohlen!
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@Name:
+Spielerbeute
+
+Scripts/StaticObjects/Loot/Base/ProtoObjectLoot@NotificationUseRightMouseButtonToPickup:
+Zum Aufheben rechte Maustaste verwenden.
+
+Scripts/StaticObjects/Minerals/ObjectMineralClay@Name:
+Ton
+
+Scripts/StaticObjects/Minerals/ObjectMineralCoal@Name:
+Kohle
+
+Scripts/StaticObjects/Minerals/ObjectMineralCopper@Name:
+Kupfervorkommen
+
+Scripts/StaticObjects/Minerals/ObjectMineralIron@Name:
+Eisenvorkommen
+
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
+Kleine Pragmiumader
+
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
+Pragmiumquelle
+
+Scripts/StaticObjects/Minerals/ObjectMineralSalt@Name:
+Salz
+
+Scripts/StaticObjects/Minerals/ObjectMineralSaltpeter@Name:
+Salpetervorkommen
+
+Scripts/StaticObjects/Minerals/ObjectMineralSand@Name:
+Quarzsandvorkommen
+
+Scripts/StaticObjects/Minerals/ObjectMineralStone@Name:
+Stein
+
+Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
+Schwefelvorkommen
+
+Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
+Benutze eine Spitzhacke, um diese Ressource abzubauen.
+
+Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
+Kluft
+
+Scripts/StaticObjects/Special/ObjectCharredGround@Name:
+Verkohlter Boden
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
+Größer und robuster als Holzfässer. Zur Aufbewahrung großer Mengen von Flüssigkeiten geeignet.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Name:
+Metallfass
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Description:
+Einfaches und leicht herzustellendes Fass, das der Aufbewahrung von Flüssigkeiten dient.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Name:
+Holzfass
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
+Verwende eine Waffe oder ein Werkzeug, um diese Struktur zu beschädigen.
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
+Keine Beschreibung.
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
+Keine Beschreibung der Erweiterung.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBed@Description:
+Besser und komfortabler als ein Schlafsack.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBed@Name:
+Bett
+
+Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Description:
+Platziere den Schlafsack in deiner Basis, um einen Respawn-Punkt einzurichten, der dir nach dem Tod das Respawnen an einem bestimmten Ort ermöglicht.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Name:
+Schlafsack
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Message:
+`Willst du es zu deinem aktuellen Bett machen?
+[br]Es wird so als dein aktiver Respawn-Punkt festgelegt.`
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Title:
+Dieses Bett gehört niemandem
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AlreadyHasOwner:
+Dieses Bett hat bereits einen Besitzer.
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AnotherPlayersLandClaim:
+Das Bett befindet sich im Land Claim eines anderen Spielers.
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageBedBelongsToCurrentPlayer:
+Dieses Bett gehört dir
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageFormatBedBelongsToAnotherPlayer:
+Dieses Bett gehört[br]{0}
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@NotificationBedClaimedSuccessfully:
+Dieses Bett ist nun als dein aktiver Respawn-Punkt festgelegt.
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryBuildings@Name:
+Gebäude
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryDecorations@Name:
+Dekorationen
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
+Nahrung
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
+Industrie
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryLights@Name:
+Licht
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
+Sonstiges
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryStorage@Name:
+Aufbewahrung
+
+Scripts/StaticObjects/Structures/ConstructionSite/ObjectConstructionSite@Name:
+Baustelle
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Description:
+Ermöglicht die Herstellung von Rüstung und Kleidung im Allgemeinen.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Name:
+Rüstungswerkbank
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Description:
+Ermöglicht die Verarbeitung der meisten Arten von komplexen Chemikalien und die Herstellung darauf basierender Gegenstände.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Name:
+Chemiestation
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Description:
+Ermöglicht die Zubereitung einfacher Mahlzeiten und Speisen, die weder gekocht noch gebraten werden müssen.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Name:
+Zubereitungstisch
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Description:
+Ermöglicht die Herstellung landwirtschaftlicher Güter, unter anderem Saatgut und Dünger.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Name:
+Landwirtschaftliche Werkbank
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Description:
+Ermöglicht die Herstellung vieler verschiedener medizinischer Vorräte und Gegenstände.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Name:
+Medizinstation
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Description:
+Zur Herstellung einer Vielzahl von unterschiedlichen Waffen, Vorräten und Munition geeignet.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Name:
+Waffenwerkbank
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Description:
+Wird zur Herstellung verschiedenster Gegenstände benutzt. Dient als universelle Werkstätte. Enthält außerdem alle Rezepturen, die von Hand gefertigt werden können.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
+Werkbank
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
+Bietet mehr Platz als eine einfache Holzkiste und ist schwerer zu zerstören.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
+Eisenkiste
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
+Eine der besten Arten, um Gegenstände zu lagern. Bewahrt deine Sachen in den meisten Situationen sicher auf und bietet den meisten Platz.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
+Stahlkiste
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
+Geräumige Kiste für die bequeme und sichere Aufbewahrung einer großen Menge von Gegenständen.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
+Große Kiste
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
+Dies ist die einfachste Version einer Kiste zur Aufbewahrung deiner Besitztümer. Kann jedoch leicht zerstört werden.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
+Holzkiste
+
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Description:
+Du wolltest schon immer ein Museum eröffnen oder all die Trophäen zur Schau stellen, die du über die Jahre angesammelt hast? Kein Problem!
+
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
+Vitrine
+
+Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
+Schwer gepanzerter Tresor, der sogar den stärksten Explosionen standhalten kann. Nicht einfach in der Herstellung, garantiert jedoch die Sicherheit deiner Wertsachen.
+
+Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
+Panzertresor
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
+Dieser ausgefallene Teppich lässt jeden Raum wärmer und gemütlicher erscheinen.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Teppich
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
+Zeige deinen Feinden, dass du nicht zu Scherzen aufgelegt bist. Hausfriedensbruch wird nicht toleriert!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
+Aufgespießter Totenkopf
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatue@Description:
+Eine wahre Zurschaustellung deines Reichtums. Nur die Reichsten der Reichen können es sich leisten, etwas Derartiges zu bauen.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatue@Name:
+Goldene Statue
+
+Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
+Es gibt bereits eine Fußbodendekoration.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
+Gute Verteidigung gegen die meisten Eindringlinge. Nicht sonderlich beständig, was Sprengstoff anbetrifft.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
+Eisentür
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Description:
+Stahl wird seinem Ruf mit Sicherheit gerecht. Von den stärksten Sprengstoffen einmal abgesehen, hält es nahezu alles aus.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Name:
+Stahltür
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Description:
+Einfacher Schutz gegen ungebetene Besucher. Ein wild entschlossener Gegner würde sich wohl kaum davon abschrecken lassen.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
+Holztür
+
+Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
+Kann zum Anbau einer Vielzahl von Getreide- und anderen Pflanzenarten benutzt werden. Farmland kann nur aus fruchtbarem Boden entstehen.
+
+Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
+Farmland
+
+Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+Kann mit Blumen bepflanzt werden, mit denen du unter anderen dein Haus schmücken kannst. An jedem Ort herstellbar.
+
+Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Blumentopf
+
+Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
+Dieser Bodentyp eignet sich nicht für die Landwirtschaft.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Description:
+Ungewöhnliche stilistische Wahl, aber hübsch sieht es dennoch aus.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Name:
+Ziegelfußboden
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Description:
+Einfach und zweckmäßig. Ideal für Fabrikhallen oder Militärbasen.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Name:
+Betonfußboden
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Description:
+Erzeugt eine gediegene Burgatmosphäre. Passt perfekt zu Steinmauern.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Name:
+Steinfußboden
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Description:
+Lässt dein Haus so richtig schön gemütlich erscheinen. Passt gut zu Holzwänden.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Name:
+Holzfußboden
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Description:
+Primitiver Kühlschrank, dessen Kühlmethode auf dem Prinzip von Verdunstung basiert. Nicht so effektiv wie moderne Kühlschränke, aber hält deine Lebensmittel länger frisch.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
+Primitiver Kühlschrank
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
+Bequeme Art große Mengen von verderblichen Lebensmitteln aufzubewahren. Der Kühlschrank wird diese sehr viel länger frisch halten. Benutzt einen integrierten Solarstromgenerator.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
+Großer Kühlschrank
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
+Bequeme Art verderbliche Lebensmitteln aufzubewahren. Der Kühlschrank wird diese sehr viel länger frisch halten. Benutzt einen integrierten Solarstromgenerator.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
+Kleiner Kühlschrank
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
+Hilft dir dabei, deine Basis zu schützen, indem andere Überlebende davon abgehalten werden, Dinge zu bauen oder einzureißen. Ein Land Claim verhindert außerdem den allmählichen Verfall deiner Konstruktionen.
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Name:
+Land Claim (Rang 1)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@DescriptionUpgrade:
+Erweitert geschützten Bereich, maximale strukturelle Integrität und Zerstörungsverzögerung.
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@Name:
+Land Claim (Rang 2)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT3@Name:
+Land Claim (Rang 3)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
+Land Claim (Rang 4)
+
+Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
+Land Claim-Bereich
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorAreaIntersection:
+Die Erweiterung erzeugt eine Überschneidung mit dem Land Claim einer anderen Person.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorRequirementsNotSatisfied:
+Die Erweiterungsanforderungen werden nicht erfüllt.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNotFounder:
+Du bist nicht der Besitzer dieses Land Claims.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNoActiveInteraction:
+Bitte öffne das Land Claim-Fenster erneut und versuche es noch einmal.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@DialogCannotUpgrade:
+Kann nicht erweitert werden
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationDontHaveAccess:
+Du hast keinen Zugriff auf diesen Land Claim.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Message:
+Land Claim-Konstruktion wurde erweitert.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Title:
+Erfolgreich erweitert
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
+Elektronische Stehlampe. Erzeugt extrem leistungsstarkes weißes Licht, das sogar einen großen Raum perfekt ausleuchten kann. Verwendet Einwegbatterien.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
+Große Stehlampe
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Description:
+Einfache Ölstehlampe. Erzeugt durch ihr hübsches gelbes Licht eine gemütliche Raumatmosphäre.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
+Ölstehlampe
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
+Kleinere Version der elektrischen Stehlampe. Sehr hell angesichts ihrer Größe. Verwendet Einwegbatterien.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
+Kleine Stehlampe
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
+Dient als einfache Lichtquelle und, viel wichtiger noch, ermöglicht das Kochen einfacher Rezepturen, zum Beispiel gebratenes Fleisch.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Name:
+Lagerfeuer
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
+Prägt Münzen aus verschiedenen Metallen. Kann Münzen wieder zu Barren schmelzen.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
+Münzprägungsstätte
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
+Mit diesem Schrank lassen sich bestimmte Arten von Lebensmitteln herstellen, darunter getrocknete Pilze oder Dörrfleisch.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Name:
+Trockenschrank
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Description:
+Das Gärungsfass ermöglicht die Herstellung verschiedener alkoholischer Getränke und Mixturen.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Name:
+Gärungsfass
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Description:
+Kann zum Schmelzen von Erz in Barren und zum Verarbeiten anderer Rohmaterialien verwendet werden.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
+Schmelzofen
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
+Der Extraktor benötigt eine geothermale Quelle.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
+Ermöglicht die Gewinnung von Lithiumsalzen aus Thermalquellen.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
+Lithiumsalzextraktor
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
+Kann zum Kompostieren jedweden organischen Materials verwendet werden. Im Wesentlichen ein Pflanzendünger.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
+Kompostbox
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@ErrorRequiresOilSeep:
+Die Pumpe benötigt eine Ölquelle.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
+Kann auf einer Ölquelle errichtet werden, um rohes Erdöl direkt aus dem Boden zu extrahieren.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
+Ölpumpe
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
+Veredelt unbehandeltes Erdöl in nützlichere Komponenten, unter anderem Brennstoff und Mineralöl.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Name:
+Ölraffinerie
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
+Für die meisten Kochzubereitungen geeignet. Ergibt wesentlich bessere Mahlzeiten als ein Lagerfeuer.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
+Kochherd
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
+Einfacher Wasserkollektor, der kleine Mengen von Wasser sammelt. Funktioniert aus irgendeinem Grund weder in Wüsten noch in anderen felsigen Gegenden ...
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
+Wasserkollektor
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
+Eine unerschöpfliche Frischwasserquelle. Jetzt kannst du nicht mehr verdursten. Funktioniert aus irgendeinem Grund weder in Wüsten noch in anderen felsigen Gegenden ...
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
+Brunnen
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
+Dieser Bodentyp besitzt keinen Zugang zum Grundwasserspiegel.
+
+Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
+Spezielle automatisierte Krankenstation, die zum Installieren oder Entfernen aller Arten von kybernetischen Implantaten verwendet werden kann.
+
+Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
+Krankenstation
+
+Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
+Du kannst diesen Mülleimer dazu verwenden, unerwünschte Gegenstände loszuwerden. Sofort und permanent!
+
+Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
+Mülleimer
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
+Ermöglicht es dir, dem Rest der Welt ein Bild zu zeigen. Nutzt Solarpaneele auf der Rückseite, die die Notwendigkeit einer externen Stromquelle überflüssig machen.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Name:
+Digitales Schild
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Description:
+Die langlebigere Metallversion eines herkömmlichen Schilds. Gleichermaßen nützlich, aber schwieriger durch Vandalen zu beschädigen.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Name:
+Eisenschild
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Description:
+Nützliches Holzschild, auf dem sich Dinge notieren lassen, die man anderen Leuten mitteilen oder an die man sich erinnern möchte.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Name:
+Holzschild
+
+Scripts/StaticObjects/Structures/Signs/Base/ProtoObjectSign@NotificationCannotEditSignWhenNotAreaOwner:
+`Du kannst Schilder in von anderen 
+[br]
+Personen beanspruchten Bereichen nicht verändern.`
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Description:
+Große automatisierte Handelsstation. Verwendbar zum bequemen Handel einer Vielzahl von Gegenständen mit anderen Überlebenden. Kann zum Kauf oder Verkauf von Waren konfiguriert werden.
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Name:
+Große Handelsstation
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Description:
+Automatisierte Handelsstation. Verwendbar zum bequemen Handel von Gegenständen mit anderen Überlebenden. Kann zum Kauf oder Verkauf von Waren konfiguriert werden.
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Name:
+Kleine Handelsstation
+
+Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNothingForSale:
+Kein Verkauf
+
+Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNoTradingLots:
+Keine Warenposten vorhanden
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorCannotInteract:
+Keine Interaktion möglich (zu weit entfernt oder Hindernisse vorhanden).
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotFound:
+Handelsposten unbekannt.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotActive:
+Handelsposten inaktiv.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorWrongMode:
+Falscher Handelsmodus.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnPlayer:
+Nicht genug Artikel zum Verkauf.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnStation:
+Nicht genug Artikel zum Kauf auf Station.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnPlayer:
+Nicht genug Geld zum Kauf dieses Artikels vorhanden.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnStation:
+Nicht genug Geld auf Station vorhanden, um deinen Artikel zu kaufen.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnPlayerForPurchasedItem:
+Nicht genug Platz für gekauften Artikel.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnStationForSoldItem:
+Nicht genug Platz auf Station, um den von dir verkauften Artikel abzulegen.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Available:
+Verfügbar
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@OutOfStock:
+Ausverkauft
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoMoney:
+Kein Geld
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoSpace:
+Kein Platz
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Disabled:
+Deaktiviert
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
+Solide Wand aus metallverstärkten Ziegeln. So bleiben deine Wertsachen sicher und die Eindringlinge draußen. Kann mitunter sogar einer Explosion standhalten.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Name:
+Ziegelmauer
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
+Verstärkte, dicke Betonwand mit zusätzlicher Stützkraft. Wesentlich beständiger als alle anderen Arten von Verteidigungsanlagen.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
+Betonwand
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
+Deutlich besser als eine Holzwand. Sollte die meisten Eindringlinge von Einbruchsversuchen abhalten. Gegen gut ausgerüstete Angreifer lässt sich damit jedoch nicht viel ausrichten.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Name:
+Steinmauer
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Description:
+Ein grundlegender Schutz gegen einheimische Fauna und ... Einheimische. Bietet keinen wirklichen Schutz gegen mehr als nur die einfachsten Waffen.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Name:
+Holzwand
+
+Scripts/StaticObjects/Structures/Walls/Base/ObjectWallDestroyed@Name:
+Zerstörte Wand
+
+Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationPlantNotMatured:
+`Diese Pflanze ist noch nicht reif.
+[br]Du kannst sie noch nicht ernten.`
+
+Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationUseRightMouseButtonToInteract:
+Rechte Maustaste verwenden um zu {0}.
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushCoffee@Name:
+Kaffee
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushOilpod@Name:
+Ölschote
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushPurple@Name:
+Beerenstrauch (violett)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushRed@Name:
+Beerenstrauch (rot)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@ErrorNoFruit:
+Keine Frucht!
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@Name:
+Wasserknollenpflanze
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYellow@Name:
+Beerenstrauch (gelb)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYucca@Name:
+Yucca
+
+Scripts/StaticObjects/Vegetation/Bushes/Base/ProtoObjectBush@ErrorNoBerries:
+Keine Beeren!
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantBellPepper@Name:
+Paprika
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCarrot@Name:
+Karotte
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantChiliPepper@Name:
+Chilischote
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCorn@Name:
+Mais
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCucumber@Name:
+Gurke
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
+Blauer Salbei
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
+Oniblume
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
+Ogurin
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
+Tabak
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTomato@Name:
+Tomate
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
+Weizen
+
+Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
+Erfordert Farmland.
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
+Grünes Heilkraut
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbPurple@Name:
+Violettes Heilkraut
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbRed@Name:
+Rotes Heilkraut
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPennyBun@Name:
+Steinpilz
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPink@Name:
+Rosaner Pilz
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomRust@Name:
+Rostpilz
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallPineapple@Name:
+Ananas
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallSugarcane@Name:
+Zuckerrohr
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
+Dornenstrauch
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
+Bananenbaum
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
+Birke
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
+Eibe
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
+Kaktus
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
+Abgestorbener Baum
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
+Durianbaum
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
+Umgestürzter Baum
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
+Eiche
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
+Palme
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
+Kiefer
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
+Kiefer
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
+Pappel
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
+Gummibaum
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
+Baumstumpf
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
+Baumstumpf
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
+Tropischer Baum
+
+Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
+Verwende eine Axt, um diesen Baum zu fällen.
+

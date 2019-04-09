@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26127.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "AtomicTorch.CBND.CoreMod", "AtomicTorch.CBND.CoreMod.csproj", "{60F67F5B-3F5C-46D4-86CC-41DD997173A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60F67F5B-3F5C-46D4-86CC-41DD997173A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60F67F5B-3F5C-46D4-86CC-41DD997173A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = TRUE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {483B3E29-F68D-42DD-A20D-872443B0F882}
+	EndGlobalSection
+EndGlobal

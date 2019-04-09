@@ -1,0 +1,126 @@
+﻿Scripts/ClientComponents/Input/GameButton@CancelOrClose:
+Отменить или закрыть
+
+Scripts/ClientComponents/Input/GameButton@MoveUp:
+Идти вверх
+
+Scripts/ClientComponents/Input/GameButton@MoveLeft:
+Идти влево
+
+Scripts/ClientComponents/Input/GameButton@MoveDown:
+Идти вниз
+
+Scripts/ClientComponents/Input/GameButton@MoveRight:
+Идти вправо
+
+Scripts/ClientComponents/Input/GameButton@RunTemporary:
+Бег (удерживать)
+
+Scripts/ClientComponents/Input/GameButton@RunToggle:
+Бег (вкл./выкл.)
+
+Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
+Действие: использовать предмет
+
+Scripts/ClientComponents/Input/GameButton@ActionInteract:
+Действие: взаимодействовать
+
+Scripts/ClientComponents/Input/GameButton@ItemReload:
+Перезарядка
+
+Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
+Выбор режима/выбор боеприпасов
+
+Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
+Включение фонаря на шлеме
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot1:
+Слот 1
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot2:
+Слот 2
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot3:
+Слот 3
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot4:
+Слот 4
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot5:
+Слот 5
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot6:
+Слот 6
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot7:
+Слот 7
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
+Слот 8
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
+Слот 9
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
+Слот 10
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
+Приблизить камеру
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
+Отдалить камеру
+
+Scripts/ClientComponents/Input/GameButton@OpenChat:
+Чат
+
+Scripts/ClientComponents/Input/GameButton@InventoryMenu:
+Инвентарь
+
+Scripts/ClientComponents/Input/GameButton@CraftingMenu:
+Крафтинг
+
+Scripts/ClientComponents/Input/GameButton@MapMenu:
+Карта
+
+Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
+Строительство
+
+Scripts/ClientComponents/Input/GameButton@SkillsMenu:
+Навыки
+
+Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
+Технологии
+
+Scripts/ClientComponents/Input/GameButton@SocialMenu:
+Игроки
+
+Scripts/ClientComponents/Input/GameButton@QuestsMenu:
+Квесты
+
+Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
+Консоль разработчика
+
+Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
+Инструменты отладки
+
+Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
+На весь экран
+
+Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
+Сделать скриншот
+
+Scripts/ClientComponents/Input/GameButton@ContainerSort:
+Сортировать контейнер
+
+Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
+Взять все
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
+Убрать похожие вниз
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
+Убрать похожие наверх
+
+Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
+Отображать зону контроля и шкалы здоровья
+

@@ -1,0 +1,329 @@
+﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
+Встаньте у воды, чтобы наполнить бутылку, или зачерпните из колодца.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
+Нет используемого аккумулятора.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NotEnoughCharge:
+Не хватает заряда в аккумуляторах.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
+Невозможно использовать: {0}
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
+`Вы возродитесь в своей постели через {0} сек.
+[br]Или вы можете возродиться в мире прямо сейчас.`
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Title:
+Перезарядка возрождения в постели
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Inaccessible:
+Похоже, постель недоступна (нет свободного места рядом).
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_NoBed:
+У вас больше нет постели.
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Title:
+Невозможно возродиться в постели
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Message:
+Похоже, здесь нет подходящих мест для возрождения.
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Title:
+Невозможно возродиться около постели
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Message:
+Подождите, пока ваш запрос обрабатывается.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Title:
+`Вы уже отправили запрос на помощь с "застреванием"`
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Message:
+Вы не должны передвигаться пока таймер активен. Запрос отклонен.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Title:
+`Запрос на помощь с "застреванием" отклонен`
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Dead:
+Ваш персонаж погиб.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Title:
+`Помощь с "застреванием" невозможна`
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_MessageFormat:
+`Пожалуйста, подождите: {0}
+[br]Не двигайтесь, в противном случае ваш запрос на помощь с "застреванием" будет отклонен.`
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_Title:
+`Отправлен запрос на помощь с "застреванием"`
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Message:
+Теперь вы на свободе! Удачи!
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
+`Проблема с "застреванием" решена`
+
+Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
+Администратор сервера исключил вас из чата. Вы сможете вернуться через {0}
+
+Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
+{0} покинул игру
+
+Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
+{0} присоединился к игре
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
+Вы действительно хотите {0} игрока {1}?
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
+Вы можете разблокировать этого игрока позже, через меню общения.
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
+Общий
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
+Локальный
+
+Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
+Невозможно здесь построить
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationCannotPlace:
+Невозможно разместить
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Message:
+Требуется больше предметов.
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Title:
+Невозможно построить
+
+Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
+Очередь крафтинга уже полна.
+
+Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
+Невозможно добавить новый рецепт
+
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Message:
+Эта земля вам не принадлежит.
+
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Title:
+Невозможно разобрать
+
+Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
+{0} больше ни на что не годится. Зато место освободилось!
+
+Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_Title:
+Предмет разрушен
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_MessageFormat:
+`Для заправки требуется топливо:
+[br]{0}.`
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_Title:
+Невозможно заправить
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNoNeedToRefill:
+Не требуется заправка
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
+Этот предмет не требует заправки.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
+Эта территория другого игрока, или она находится слишком близко к чужой зоне контроля.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
+Пересечение с чужой зоной контроля
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
+`Достигнут лимит разрешенных зон контроля.
+[br]Увеличить их количество можно, изучив новые технологии.`
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
+`Базу атакуют.
+[br]Вы не можете возводить новые постройки, когда на базу нападают.`
+
+Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
+В инвентаре нет свободного места
+
+Scripts/Systems/Notifications/NotificationSystem@NotificationSomeItemsDropped:
+Некоторые вещи выпали на землю!
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageFormat:
+[b]{0}[/b] приглашает вас присоединиться к группе.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
+Примечание: если вы примете приглашение, то [b]покинете[/b] текущую группу.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
+Приглашение в группу
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerAcceptedInviteFormat:
+{0} присоединяется к группе по приглашению игрока {1}
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerInvitedFormat:
+{0} приглашает игрока {1} присоединиться к группе
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerLeftPartyFormat:
+{0} покинул группу
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
+{1} отстранил из группы игрока {0}
+
+Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
+{0} отстранил вас из группы
+
+Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
+Нет приглашения или срок приглашения истек.
+
+Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
+Вы опоздали, группа набрана.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
+Приглашенный игрок не найден.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
+Группа набрана.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySamePartyMember:
+Приглашенный игрок уже в вашей группе.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
+Вы не можете приглашать, т.к. оператор сервера исключил вас из чата.
+
+Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
+Урожай собирать пока не с чего
+
+Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
+СЕРВЕР: резервное копирование мира начнется через {0} сек.
+
+Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
+СЕРВЕР: резервное копирование мира завершено!
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
+Оператор сервера заблокировал вас на этом сервере
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinKicked:
+`Вас временно заблокировали на этом сервере. За подробной информацией обращайтесь к операторам сервера.
+[br][br]Вы сможете снова подключиться к серверу через {0}.`
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhitelist:
+`Оператор этого сервера установил подключение по приглашениям.
+[br]Пожалуйста, читайте описание сервера, чтобы узнать подробности.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessage:
+`Добро пожаловать на официальный сервер CryoFall!
+[br]
+[br]
+[b]Важно:[/b]
+имейте в виду, что официальные серверы нацелены на PvP-игру, и вы можете столкнуться с агрессией со стороны других игроков. Вам придется все время защищаться и быть начеку. Также вы можете объединиться с другими выжившими, чтобы повысить свои шансы на успех.
+[br]
+[br]
+[b]Правила сервера:[/b]
+[*]Проявляйте уважение и вежливость к другим игрокам. Здесь недопустимы любые виды дискриминаций, оскорблений и т.п.
+[*]Выполняйте требования модераторов сервера.
+[*]Воздержитесь от спама и употребления нецензурной лексики.
+[br]
+[br]
+[b]Рекомендации:[/b]
+[br]Мы не можем заставить вас выполнять эти правила, но следование им создаст более дружелюбную атмосферу для всех игроков.
+[*]Не убивайте при первой же встрече других игроков, особенно тех, кто только что присоединился к игре.
+[*]Ничего страшного, если вы напали на базу игрока, но не делайте этого без особой нужды.
+[*]Помогайте новичкам, которые только начинают осваиваться в игре.
+[br]
+[br]Желаем удачи! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
+Добро пожаловать, это {0}
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
+`Сервер отключится через {0}.
+[br]
+[br]Причина:
+[br]{1}
+[br]
+[br]Пожалуйста, найдите безопасное место и отключитесь, иначе вы будете отключены автоматически по истечении указанного времени.`
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_Title:
+Выключение
+
+Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillDiscovered:
+Открыт навык: {0}.
+
+Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLevel:
+{0} уровень {1}.
+
+Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
+`Вы накопили более 50 очков технологий (ОТ). За них можно открыть новые технологии. Помните, что после смерти восстанавливается лишь небольшое количество ОТ.
+[br](щелкните, чтобы открыть меню технологий)`
+
+Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
+Невозможно открыть технологию
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationBoughtTitle:
+Куплено
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMorePennyCoins:
+Требуются медяки: {0}.
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMoreShinyCoins:
+Требуются золотые: {0}.
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationSoldTitle:
+Продано
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotBuy_Title:
+Невозможно купить
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
+Невозможно продать
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
+Пора собирать урожай. Нет смысла поливать сейчас.
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
+Поливать можно только сельскохозяйственные растения.
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_Title:
+Невозможно полить
+
+Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Message:
+Чтобы наполнить, укажите на колодец или поместите бутылки с водой в инвентарь.
+
+Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Title:
+Невозможно наполнить
+
+Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Message:
+Невозможно перезарядить оружие.
+
+Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
+Нет боеприпасов
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
+Открыто для владельцев
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwnersOrAreaOwners:
+Открыто для владельцев или хозяев зоны контроля
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToEveryone:
+Открыто для всех
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
+Всегда закрыто
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
+У вас нет права доступа!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
+Вы не можете изменить список владельцев.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveLastOwner:
+Вы не можете удалить последнего владельца.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveSelf:
+Вы не можете удалить себя из списка владельцев. Попросите другого игрока это сделать.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageFormatPlayerNotFound:
+Игрок с именем [b]{0}[/b] не найден.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
+Вы не являетесь владельцем.
+

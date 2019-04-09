@@ -1,0 +1,85 @@
+﻿Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
+일
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixHours:
+시
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
+분
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
+초
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
+`호환되지 않는 네트워크 버전입니다.
+[br]플레이어와 서버가 서로 다른 모드를 사용하고 있는 것 같습니다.`
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@MasterServerDisallowed:
+마스터 서버가 연결을 거부했습니다. 다시 시도하거나 게임을 다시 시작하십시오.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ReasonUnknown:
+알 수 없는 오류입니다. 다시 시도하십시오.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerFull:
+현재 서버의 용량이 모두 찼습니다. 다음 플레이어가 퇴장할 때까지 기다린 후, 다시 서버에 들어오십시오.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerUnreachable:
+현재 게임 서버에 연결할 수 없습니다. 가능성있는 이유 서버 재부팅, 서버 닫힘, 방화벽 설정, 네트워크 문제 등. 몇 분 후에 다시 시도하십시오.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ShutdownScheduled:
+현재 게임 서버가 재부팅 중이거나 닫혀 있습니다.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleConnectionRejectedByServer:
+연결이 거부되었습니다.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleDefault:
+게임 서버에 연결할 수 없습니다.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@AccountBlocked:
+귀하의 계정이 차단되었습니다.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@DefaultTitle:
+로그인 실패
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Message:
+`활성화 링크가 포함되어 있는 이메일이 
+[br]귀하의 계정으로 전송되었으며 곧 도착할 것입니다.
+[br]활성화 링크를 클릭한 후, 게임을 계속 즐기십시오.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Title:
+새로운 계정은 활성화해야 합니다!
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@GameNotOwned:
+귀하의 계정으로 게임을 소유하고 있지 않습니다.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@IncorrectEmailOrPassword:
+이메일 주소 또는 비밀번호가 잘못되었습니다.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UnknownError:
+알 수 없는 오류입니다. 다시 시도하십시오.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Message:
+`제공된 사용자의 세부 정보에는 이미 (다른) Steam 계정이 연동되어 있습니다.
+[br] 현재 AtomicTorch.com 계정과 Steam 계정을 연결할 수 없습니다.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Title:
+계정을 연결할 수 없습니다.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameInvalid_Title:
+유효하지 않은 사용자 이름
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
+`사용자 이름 조건:
+[*] 글자 개수는 [b]3[/b] ~ [b]24[/b]자까지
+[*] 알파벳, 숫자, 밑줄, 대시 포함 [b]가능[/b]
+[*] 공백이나 다른 문자는 포함 [b]불가능[/b]
+[*] 첫 글자와 마지막 글자는 반드시 [b]알파벳[/b] 또는 [b]숫자[/b]
+[*] 연속으로 여러 개의 [b]-[/b] 또는 [b]_[/b] [b]불가능[/b]`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
+`선택하신 사용자 이름은 이미 다른 플레이어가 사용하고 있습니다.
+[br]다른 사용자 이름을 선택해주십시오.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Title:
+이미 사용 중인 사용자 이름
+

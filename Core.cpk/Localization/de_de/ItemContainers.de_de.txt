@@ -1,0 +1,21 @@
+﻿Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationCannotEquip:
+Kann nicht ausgerüstet werden
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationRemoveFullBody:
+Du musst zunächst jegliche Ganzkörperausrüstung ablegen.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationRemoveOtherEquipment:
+Du musst erst einen anderen Teil deiner Ausrüstung ablegen.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Message:
+Um das Implantat zu installieren, musst du die Krankenstation aufsuchen.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Title:
+Kann nicht installiert werden
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Message:
+Um das Implantat zu entfernen, musst du die Krankenstation aufsuchen.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
+Kann nicht entfernt werden
+

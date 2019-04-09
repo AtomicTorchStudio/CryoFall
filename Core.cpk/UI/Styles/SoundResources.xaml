@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core">
+
+    <!-- Generic sounds-->
+    <core:SoundUI x:Key="SoundButtonMouseEnter" Path="UI/Generic/ButtonEnter" />
+    <core:SoundUI x:Key="SoundButtonMouseClick" Path="UI/Generic/ButtonClick" />
+    <core:SoundUI x:Key="SoundWindowOpening" Path="UI/Generic/WindowOpening" />
+    <core:SoundUI x:Key="SoundWindowClosing" Path="UI/Generic/WindowClosing" />
+    <core:SoundUI x:Key="SoundTabSwitched" Path="UI/Generic/TabSwitched" />
+    <core:SoundUI x:Key="SoundTabEnter" Path="UI/Generic/TabEnter" />
+    <core:SoundUI x:Key="SoundCheckboxClick" Path="UI/Generic/CheckboxClick" />
+    <core:SoundUI x:Key="SoundCheckboxEnter" Path="UI/Generic/CheckboxEnter" />
+    <core:SoundUI x:Key="SoundDropdownClick" Path="UI/Generic/DropdownClick" />
+    <core:SoundUI x:Key="SoundDropdownEnter" Path="UI/Generic/DropdownEnter" />
+    <core:SoundUI x:Key="SoundListElementClick" Path="UI/Generic/ListElementClick" />
+    <core:SoundUI x:Key="SoundListElementEnter" Path="UI/Generic/ListElementEnter" />
+
+    <!-- Container exchange window -->
+    <core:SoundUI x:Key="SoundWindowContainerOpen" Path="UI/Container/Open" />
+    <core:SoundUI x:Key="SoundWindowContainerClose" Path="UI/Container/Close" />
+    <!-- Bag window -->
+    <core:SoundUI x:Key="SoundWindowContainerBagOpen" Path="UI/Container/BagOpen" />
+    <core:SoundUI x:Key="SoundWindowContainerBagClose" Path="UI/Container/BagClose" />
+
+</ResourceDictionary>

@@ -1,0 +1,342 @@
+﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
+Требуется: {0} с {1}% изученных технологий.
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
+Не хватает очков технологий
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
+Технология уже открыта
+
+Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
+Требуется {0} ОТ (имеется только {1}).
+
+Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
+Требуется открытая технология: {0}
+
+Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
+Содержит чертежи всех основных построек и позволяет заложить простую базу.
+
+Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Name:
+Строительство
+
+Scripts/Technologies/Tier1/Construction/TechNodeBasicBuilding@Name:
+Базовые постройки
+
+Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
+Содержит некоторое количество рецептов по приготовлению более питательной пищи.
+
+Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
+Готовка
+
+Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
+Подготовка семян к посадке, изготовление удобрений и многое другое.
+
+Scripts/Technologies/Tier1/Farming/TechGroupFarming@Name:
+Фермерство
+
+Scripts/Technologies/Tier1/Farming/TechNodeFarmingBasics@Name:
+Основы фермерства
+
+Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Description:
+Все базовые промышленные технологии, необходимые для обработки ресурсов и производства.
+
+Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Name:
+Производство
+
+Scripts/Technologies/Tier1/Industry/TechNodeGlassware@Name:
+Стекло
+
+Scripts/Technologies/Tier1/Industry/TechNodeIronTools@Name:
+Железные инструменты
+
+Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
+Выплавка
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Description:
+Содержит чертежи базовых видов оружия, одежды и брони.
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Name:
+Атака и защита
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBoneArmor@Name:
+Костяная броня
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBraidedArmor@Name:
+Плетеная броня
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeClothArmor@Name:
+Тканевая броня
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeWoodArmor@Name:
+Деревянная броня
+
+Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
+Работа с разнообразными химическими соединениями и реакциями.
+
+Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
+Химия
+
+Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
+Более сложные постройки с широкими спектром применения.
+
+Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
+Строительство 2
+
+Scripts/Technologies/Tier2/Construction2/TechNodeStoneConstructions@Name:
+Строительство из камня
+
+Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
+Более сложные кулинарные рецепты для приготовления новых видов блюд.
+
+Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
+Готовка 2
+
+Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
+Улучшенные технологии защиты предоставляют чертежи более качественной брони.
+
+Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Name:
+Защита 2
+
+Scripts/Technologies/Tier2/Defense2/TechNodeFurArmor@Name:
+Меховая броня
+
+Scripts/Technologies/Tier2/Defense2/TechNodeFurHeadgear@Name:
+Меховые головные уборы
+
+Scripts/Technologies/Tier2/Defense2/TechNodeLeatherArmor@Name:
+Кожаная броня
+
+Scripts/Technologies/Tier2/Defense2/TechNodeLeatherHeadgear@Name:
+Кожаные головные уборы
+
+Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
+Стеганая броня
+
+Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
+Стеганые головные уборы
+
+Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
+Сложные технологии фермерства открывают доступ к разнообразным посевам и более эффективным удобрениям.
+
+Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
+Фермерство 2
+
+Scripts/Technologies/Tier2/Farming2/TechNodeComplexCrops@Name:
+Улучшенные посевы
+
+Scripts/Technologies/Tier2/Farming2/TechNodeFarmingProductivity@Name:
+Продуктивность фермерства
+
+Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
+Продвинутые промышленные технологии, необходимые для обработки ресурсов и производства.
+
+Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
+Производство 2
+
+Scripts/Technologies/Tier2/Industry2/TechNodeAdvancedIndustry@Name:
+Улучшенное производство
+
+Scripts/Technologies/Tier2/Industry2/TechNodeBasicElectronics@Name:
+Базовая электроника
+
+Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
+Выплавка стали
+
+Scripts/Technologies/Tier2/Industry2/TechNodeSteelTools@Name:
+Стальные инструменты
+
+Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Description:
+Изготовление различных медицинских средств.
+
+Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Name:
+Медицина
+
+Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Description:
+Улучшенные средства нападения, в том числе более мощное вооружение и боеприпасы.
+
+Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Name:
+Атака 2
+
+Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
+Работа с разнообразными сложными химическими компонентами и реакциями.
+
+Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
+Химия 2
+
+Scripts/Technologies/Tier3/Chemistry2/TechNodeSyntheticMaterials@Name:
+Синтетические материалы
+
+Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
+Работа с валютами и торговыми системами. Позволяет чеканить и перерабатывать монеты, а также строить автоматические торговые станции.
+
+Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Name:
+Торговля
+
+Scripts/Technologies/Tier3/Commerce/TechNodeCoinMinting@Name:
+Чеканка монет
+
+Scripts/Technologies/Tier3/Commerce/TechNodeCoinRecycling@Name:
+Переработка монет
+
+Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Description:
+Продвинутое строительство.
+
+Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
+Строительство 3
+
+Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
+Строительство из кирпича
+
+Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
+Улучшенные технологии защиты.
+
+Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Name:
+Защита 3
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMetalArmor@Name:
+Металлическая броня
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMetalHeadgear@Name:
+Металлические шлемы
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
+Военная броня
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
+Военный шлем
+
+Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
+Улучшенное фермерское хозяйство и широкий выбор растений для посева.
+
+Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
+Фермерство 3
+
+Scripts/Technologies/Tier3/Farming3/TechNodeDecorativeGardening@Name:
+Декоративное садоводство
+
+Scripts/Technologies/Tier3/Farming3/TechNodeSpecializedCrops@Name:
+Специализированное растениеводство
+
+Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
+Улучшенные промышленные технологии, необходимые для более сложной обработки ресурсов и производства.
+
+Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
+Производство 3
+
+Scripts/Technologies/Tier3/Industry3/TechNodeGoldSmelting@Name:
+Плавка золота
+
+Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
+Обеспечивает более широкий выбор передовых медицинских средств.
+
+Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Name:
+Медицина 2
+
+Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Description:
+Усовершенствованные технологии нападения, в том числе полностью автоматическое оружие и более разнообразные боеприпасы.
+
+Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Name:
+Атака 3
+
+Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
+Приготовление алкогольных напитков и тому подобных стимулирующих веществ.
+
+Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
+Стимуляторы
+
+Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoAged@Name:
+Выдержанный табак
+
+Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoProcessing@Name:
+Производство табака
+
+Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
+Технологии, необходимые для использования ресурсов из недр других планет (таких, как эта).
+
+Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
+Ксеногеология
+
+Scripts/Technologies/Tier3/XenoGeology/TechNodeIngotLithium@Name:
+Очистка лития
+
+Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
+Передовые химические процессы и сложные реакции.
+
+Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
+Химия 3
+
+Scripts/Technologies/Tier4/Chemistry3/TechNodeHighEnergySubstances@Name:
+Высокоэнергетические вещества
+
+Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
+Высокотехнологичные постройки.
+
+Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
+Строительство 4
+
+Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
+Бетонные постройки
+
+Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
+Изготовление и применение кибернетических и биологических имплантов.
+
+Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
+Кибернетика
+
+Scripts/Technologies/Tier4/Cybernetics/TechNodeBiomaterialProcessing@Name:
+Работа с биоматериалами
+
+Scripts/Technologies/Tier4/Cybernetics/TechNodeImplantManufacturing@Name:
+Производство имплантов
+
+Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
+Передовые технологии защиты.
+
+Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Name:
+Защита 4
+
+Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
+Штурмовая броня
+
+Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
+Штурмовой шлем
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
+Энергетическое оружие — это новый технологический скачок в будущее по сравнению с обычным вооружением.
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
+Энергетическое оружие
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechNodeLaserWeapons@Name:
+Лазерное оружие
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechNodePlasmaWeapons@Name:
+Плазменное оружие
+
+Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
+Передовые промышленные технологии, необходимые для самых сложных производственных процессов.
+
+Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
+Производство 4
+
+Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Description:
+Работа с драгоценными металлами и камнями.
+
+Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Name:
+Ювелирное дело
+
+Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Description:
+Разработка и применение самых современных медицинских технологий.
+
+Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Name:
+Медицина 3
+
+Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
+Передовые технологии наступления, позволяющие добиться максимальной эффективности от обычного вооружения.
+
+Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
+Атака 4
+
+Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
+Калибр .300
+

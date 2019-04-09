@@ -1,0 +1,32 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolExtras.EditorToolExtrasSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolExtras"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="150"
+    d:DataContext="{d:DesignInstance data:ViewModelEditorToolExtras, d:IsDesignTimeCreatable=True}">
+
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary Source="/Editor/EditorStyles.xaml" />
+    </base:BaseUserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+
+        <Button Content="Items browser"
+                Command="{Binding CommandOpenItemsBrowserWindow}"
+                Style="{StaticResource EditorButtonStyle}" />
+
+        <Button Content="Noise composer"
+                Command="{Binding CommandOpenNoiseComposerWindow}"
+                Style="{StaticResource EditorButtonStyle}" />
+
+        <Button Content="Noise (for ground)"
+                Command="{Binding CommandOpenNoiseForGroundWindow}"
+                Style="{StaticResource EditorButtonStyle}" />
+
+    </StackPanel>
+</base:BaseUserControl>

@@ -1,0 +1,85 @@
+﻿Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
+дн.
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixHours:
+ч.
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
+мин.
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
+сек.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
+`Несовместимая сетевая версия.
+[br]Возможно, вы и сервер используете разные моды.`
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@MasterServerDisallowed:
+Мастер-сервер отклонил это соединение. Пожалуйста, попробуйте снова или перезапустите игру.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ReasonUnknown:
+Неизвестная ошибка. Пожалуйста, попробуйте снова.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerFull:
+В данный момент сервер переполнен. Пожалуйста, подождите, пока другие игроки не покинут игру, затем попробуйте снова.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerUnreachable:
+В настоящее время сервер недоступен. Возможные причины: перезагрузка сервера, отключение сервера, настройки файервола, проблемы с сетью и т. д. Пожалуйста, попробуйте снова через несколько минут.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ShutdownScheduled:
+Игровой сервер в настоящее время перезагружается или готовится к отключению.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleConnectionRejectedByServer:
+Соединение отклонено
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleDefault:
+Не удается подключиться к игровому серверу
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@AccountBlocked:
+Ваша учетная запись заблокирована.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@DefaultTitle:
+Ошибка входа
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Message:
+`Письмо со ссылкой для активации отправлено на вашу
+[br]электронную почту, вы скоро его получите.
+[br]Пожалуйста, откройте свою электронную почту и перейдите по ссылке активации, а затем вернитесь в игру, чтобы продолжить.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Title:
+Ваша новая учетная запись требует активации!
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@GameNotOwned:
+В вашей учетной записи нет этой игры.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@IncorrectEmailOrPassword:
+Неверный адрес электронной почты или пароль.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UnknownError:
+Неизвестная ошибка. Пожалуйста, попробуйте снова.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Message:
+`С указанными данными пользователя уже связана другая учетная запись Steam.
+[br] Нельзя связать эту учетную запись AtomicTorch.com с текущей учетной записью Steam.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Title:
+Не удается связать учетные записи
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameInvalid_Title:
+Неверное имя пользователя
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
+`Требования к имени пользователя:
+[*] должно быть от [b]3[/b] до [b]24[/b] символов в длину
+[*] [b]может[/b] содержать буквы, цифры, знак подчеркивания и тире
+[*] [b]не может[/b] содержать пробел и другие символы
+[*] должно начинаться и заканчиваться [b]буквой[/b] или [b]цифрой[/b]
+[*] [b]не должно[/b] содержать несколько символов [b]-[/b] или [b]_[/b] подряд`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
+`Выбранное имя пользователя уже кем-то используется.
+[br]Пожалуйста, выберите другое имя.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Title:
+Имя пользователя уже используется
+

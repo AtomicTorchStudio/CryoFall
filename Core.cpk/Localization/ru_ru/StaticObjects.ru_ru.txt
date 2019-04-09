@@ -1,0 +1,862 @@
+﻿Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationCannotDropItemThere:
+Невозможно положить предмет здесь.
+
+Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationNoFreeSpaceToDrop:
+Нет свободного места, чтобы положить предмет
+
+Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
+Предметы на земле
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
+Нельзя построить в запретной зоне.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnCliffOrSlope:
+Нельзя построить на склоне или обрыве.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFarmPlot:
+Нельзя построить на фермерском участке.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFloor:
+Нельзя построить на полу.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCreaturesNearby:
+Рядом есть существа.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNoFreeSpace:
+Нет свободного пространства.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
+Нет твердой земли.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
+Вы стоите на этой клетке!
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSlope:
+Нельзя построить — слишком близко к склону или обрыву.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
+Нельзя построить — слишком близко к воде.
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
+Настроить
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Deconstruct:
+Разобрать
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
+Изучить
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
+Собрать
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
+Использовать
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Loot:
+Собрать добычу
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
+Открыть
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
+Подобрать
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
+Вскрыть
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
+Написать
+
+Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
+Геотермальный источник
+
+Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
+Геотермальный источник (бесконечный)
+
+Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
+Месторождение нефти
+
+Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
+Месторождение нефти (бесконечное)
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
+Шахтёрская взрывчатка
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombModern@Name:
+Современная бомба
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombPrimitive@Name:
+Примитивная бомба
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
+Резонансная бомба
+
+Scripts/StaticObjects/Loot/ObjectCorpse@Name:
+Труп
+
+Scripts/StaticObjects/Loot/ObjectLootCrateFood@Name:
+Ящик с провизией
+
+Scripts/StaticObjects/Loot/ObjectLootCrateHightech@Name:
+Научный ящик
+
+Scripts/StaticObjects/Loot/ObjectLootCrateIndustrial@Name:
+Промышленный ящик
+
+Scripts/StaticObjects/Loot/ObjectLootCrateMedical@Name:
+Медицинский ящик
+
+Scripts/StaticObjects/Loot/ObjectLootCrateMilitary@Name:
+Военный ящик
+
+Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
+Ящик с припасами
+
+Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
+Трава
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
+Большая куча мусора
+
+Scripts/StaticObjects/Loot/ObjectLootStone@Name:
+Камень
+
+Scripts/StaticObjects/Loot/ObjectLootTwigs@Name:
+Ветки
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageFormatLootFromAnotherPlayer:
+Лут с игрока {0}
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageLootFromCurrentPlayer:
+Ваш лут
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Message:
+{0} роется в ваших брошенных предметах...
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Title:
+Ваши предметы стали чужой добычей
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Message:
+{0} забирает все брошенные вами предметы. Маркер удален с карты.
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Title:
+Ваши вещи забрали!
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@Name:
+Лут игрока
+
+Scripts/StaticObjects/Loot/Base/ProtoObjectLoot@NotificationUseRightMouseButtonToPickup:
+Чтобы подобрать предмет, используйте правую кнопку мыши.
+
+Scripts/StaticObjects/Minerals/ObjectMineralClay@Name:
+Глина
+
+Scripts/StaticObjects/Minerals/ObjectMineralCoal@Name:
+Уголь
+
+Scripts/StaticObjects/Minerals/ObjectMineralCopper@Name:
+Месторождение меди
+
+Scripts/StaticObjects/Minerals/ObjectMineralIron@Name:
+Месторождение железа
+
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
+Прагмий
+
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
+Источник прагмия
+
+Scripts/StaticObjects/Minerals/ObjectMineralSalt@Name:
+Соль
+
+Scripts/StaticObjects/Minerals/ObjectMineralSaltpeter@Name:
+Месторождение селитры
+
+Scripts/StaticObjects/Minerals/ObjectMineralSand@Name:
+Месторождение кварцевого песка
+
+Scripts/StaticObjects/Minerals/ObjectMineralStone@Name:
+Камень
+
+Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
+Месторождение серы
+
+Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
+Примените кирку, чтобы добыть этот минерал.
+
+Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
+Трещина
+
+Scripts/StaticObjects/Special/ObjectCharredGround@Name:
+Обугленная земля
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
+Более вместительная и крепкая, чем деревянная бочка. Используется для хранения большого объема жидкости.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Name:
+Металлическая бочка
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Description:
+Простая и легкая в изготовлении бочка, в которой можно хранить жидкости.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Name:
+Деревянная бочка
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
+Используйте оружие или инструменты, чтобы повредить эту постройку.
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
+Нет описания.
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
+Нет описания улучшения.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBed@Description:
+Гораздо лучше и удобней спального мешка.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBed@Name:
+Кровать
+
+Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Description:
+Разместите спальный мешок на своей базе - он станет специальным местом вашего возрождения, которое вы сможете выбрать в случае смерти.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Name:
+Спальный мешок
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Message:
+`Хотите назначить это своей текущей постелью?
+[br]Эта постель станет вашим местом возрождения.`
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Title:
+Эта постель никому не принадлежит
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AlreadyHasOwner:
+Эта постель уже кому-то принадлежит.
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AnotherPlayersLandClaim:
+Эта постель расположена в зоне контроля другого игрока.
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageBedBelongsToCurrentPlayer:
+Это ваша постель
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageFormatBedBelongsToAnotherPlayer:
+Это постель игрока[br]{0}
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@NotificationBedClaimedSuccessfully:
+Эта постель теперь назначена вашим местом возрождения.
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryBuildings@Name:
+Строения
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryDecorations@Name:
+Украшения
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
+Питание
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
+Производство
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryLights@Name:
+Освещение
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
+Другое
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryStorage@Name:
+Хранение
+
+Scripts/StaticObjects/Structures/ConstructionSite/ObjectConstructionSite@Name:
+Строительный участок
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Description:
+Позволяет изготавливать одежду и броню.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Name:
+Верстак бронника
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Description:
+Позволяет работать с большинством химикатов и изготавливать на их основе разные вещи.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Name:
+Химическая лаборатория
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Description:
+Позволяет готовить простую пищу и блюда, которые не требуют термической обработки.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Name:
+Кухонный стол
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Description:
+Используется для изготовления вещей, необходимых в фермерстве, например, пакетов с семенами и удобрений.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Name:
+Стол садовода
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Description:
+Позволяет изготавливать различные медицинские препараты и предметы.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Name:
+Медицинская лаборатория
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Description:
+Используется для изготовления разных видов вооружения, снаряжения и боеприпасов.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Name:
+Верстак оружейника
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Description:
+Используется для изготовления разных вещей. Универсальный верстак. Также содержит рецепты всех предметов, которые можно сделать вручную.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
+Верстак
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
+Более вместительный и прочный, чем обычный деревянный ящик.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
+Железный ящик
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
+Одно из лучших мест для хранения. Очень вместительный и прочный, он уцелеет в большинстве случаев.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
+Стальной ящик
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
+Очень большой ящик, в нем удобно и безопасно хранить целую гору вещей.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
+Большой ящик
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
+Самый простой ящик для хранения разных вещей. Увы, его довольно легко уничтожить.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
+Деревянный ящик
+
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Description:
+Всегда мечтали о том, чтобы создать свой музей и показать трофеи, которые вам удалось собрать за все эти годы? Сделайте же это!
+
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
+Музейный стенд
+
+Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
+Тяжелый бронированный сейф, который уцелеет даже при очень сильном взрыве. Его сложно изготовить, зато ваши ценности останутся в сохранности.
+
+Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
+Бронированный сейф
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
+Этот эффектный ковер задает стиль всей комнате.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Напольный ковер
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
+Покажите врагам, что вы шутить не намерены. Незваных гостей ждет суровая кара!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
+Череп на пике
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatue@Description:
+Явите истинное богатство. Только самые зажиточные поселенцы могут позволить себе изготовить нечто подобное.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatue@Name:
+Золотая статуя
+
+Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
+Здесь уже есть напольное украшение.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
+Хорошая защита от большинства грабителей. Правда, ее можно сломать с помощью взрывчатки.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
+Железная дверь
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Description:
+Сталь не нуждается в представлении. Ее способен повредить только очень мощный взрыв.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Name:
+Стальная дверь
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Description:
+Простая защита от нежелательных посетителей. Правда, она не остановит целеустремленного грабителя.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
+Деревянная дверь
+
+Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
+Здесь можно выращивать зерновые и другие растения. Фермерский участок можно разбить только на плодородной почве.
+
+Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
+Фермерский участок
+
+Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+В нем можно выращивать цветы для украшения дома или для любых других целей. Можно размещать где угодно.
+
+Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Цветочный горшок
+
+Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
+Этот тип почвы не подходит для сельского хозяйства.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Description:
+Необычное дизайнерское решение, но выглядит замечательно.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Name:
+Кирпичный пол
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Description:
+Просто и практично. Идеальное напольное покрытие для завода или военной базы.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Name:
+Бетонный пол
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Description:
+Создает приятную атмосферу замка. Гармонирует с каменными стенами.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Name:
+Каменный пол
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Description:
+Ваш дом сразу же станет уютным и красивым. Гармонирует с деревянными стенами.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Name:
+Деревянный пол
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Description:
+Примитивный холодильник, в котором используется испарение как основной способ охлаждения. Не так эффективен, как современные модели, но однозначно помогает дольше сохранять еду свежей.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
+Испаритель
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
+В нем можно хранить большое количество скоропортящейся пищи. Холодильник долго сохраняет ее свежей. Для работы используются встроенные солнечные батареи.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
+Большой холодильник
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
+В нем можно хранить скоропортящуюся пищу. Холодильник долго сохраняет ее свежей. Для работы используются встроенные солнечные батареи.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
+Малый холодильник
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
+Защищает вашу базу, не позволяя другим игрокам строить или разбирать что-либо на выделенной территории. Также постройки в зоне контроля не будут портиться со временем.
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Name:
+Точка контроля (Ранг 1)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@DescriptionUpgrade:
+Увеличивает защищенную территорию, прочность построек и длительность задержки уничтожения.
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@Name:
+Точка контроля (Ранг 2)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT3@Name:
+Точка контроля (Ранг 3)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
+Точка контроля (Ранг 4)
+
+Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
+Зона контроля
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorAreaIntersection:
+Улучшение вызовет пересечение с зоной контроля другого игрока.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorRequirementsNotSatisfied:
+Не выполнены требования к улучшению.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNotFounder:
+Это не ваша зона контроля.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNoActiveInteraction:
+Пожалуйста, откройте окно точки контроля заново и повторите попытку.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@DialogCannotUpgrade:
+Невозможно улучшить
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationDontHaveAccess:
+У вас нет доступа к этой зоне контроля.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Message:
+Точка зоны контроля улучшена.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Title:
+Успешное улучшение
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
+Электрический напольный светильник. Испускает очень мощный белый свет, освещающий даже большие помещения. Использует одноразовые батарейки.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
+Большая напольная лампа
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Description:
+Простой напольный масляный светильник. Дает приятный желтый свет, делая любое помещение более уютным.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
+Масляная напольная лампа
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
+Небольшой электрический напольный светильник. Довольно яркий для своего размера. Использует одноразовые батарейки.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
+Малая напольная лампа
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
+Служит базовым источником света и, что более важно, позволяет готовить простую пищу, например, жареное мясо.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Name:
+Костер
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
+Используется для чеканки монет из разных металлов. Также позволяет переплавлять монеты в слитки.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
+Пресс для чеканки монет
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
+С помощью этого шкафа можно готовить особые виды продовольствия, например, сушеные грибы и мясо.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Name:
+Сушильный шкаф
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Description:
+Бродильный чан позволяет готовить различные алкогольные напитки и их производные.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Name:
+Бродильный чан
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Description:
+Позволяет переплавлять руду в металлические слитки и работать с другим сырьем.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
+Плавильная печь
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
+Для работы экстрактора нужен геотермальный источник.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
+Позволяет извлекать литиевую соль из геотермальных источников.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
+Экстрактор лития
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
+Позволяет превратить любую органическую материю в перегной. Источник органических удобрений.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
+Ящик с перегноем
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@ErrorRequiresOilSeep:
+Для работы насоса требуется месторождение нефти.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
+Устанавливается на месторождении нефти, позволяя добывать сырую нефть прямо из земли.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
+Нефтекачалка
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
+Очищает сырую нефть и производит более полезные компоненты, например топливо и минеральное масло.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Name:
+Очистное сооружение
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
+Используется в основном для готовки. С ее помощью можно приготовить более питательную пищу, чем на костре.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
+Кухонная плита
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
+Простой водосборник, в который можно собрать немного воды. Почему-то бесполезен в пустыне или в горной местности...
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
+Водосборник
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
+Неиссякаемый источник питьевой воды. Теперь смерть от жажды вам не грозит. Почему-то бесполезен в пустыне или в горной местности...
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
+Колодец
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
+Этот тип почвы не позволяет достать до грунтовых вод.
+
+Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
+Специальная автоматическая медицинская станция, с помощью которой можно устанавливать и удалять разные кибернетические импланты.
+
+Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
+Медицинская станция
+
+Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
+Выбрасывайте ненужные вещи в этот мусорный бак, чтобы избавиться от них. Навсегда!
+
+Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
+Мусорный бак
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
+Позволяет демонстрировать окружающим какое-либо изображение. Использует солнечные батареи на задней панели, поэтому подзаряжать его не нужно.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Name:
+Электронный знак
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Description:
+Металлический вариант знака. Служит для тех же целей, зато теперь вандалом сложнее его сломать.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Name:
+Железный знак
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Description:
+Деревянный знак, на котором можно написать что-то, чтобы не забыть, или сообщить какую-то информацию окружающим.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Name:
+Деревянный знак
+
+Scripts/StaticObjects/Structures/Signs/Base/ProtoObjectSign@NotificationCannotEditSignWhenNotAreaOwner:
+`Нельзя изменять знаки
+[br]
+внутри чужой частной зоны.`
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Description:
+Большая автоматическая торговая станция. Позволяет обмениваться предметами на продажу с другими выжившими. Можно настроить на покупки или продажу.
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Name:
+Большая торговая станция
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Description:
+Автоматическая торговая станция. Позволяет обмениваться предметами на продажу с другими выжившими. Можно настроить на покупки или продажу.
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Name:
+Малая торговая станция
+
+Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNothingForSale:
+Нет ничего на продажу
+
+Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNoTradingLots:
+Нет товаров
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorCannotInteract:
+Невозможно взаимодействовать (слишком далеко или есть препятствие).
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotFound:
+Товар не найден.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotActive:
+Товар недоступен.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorWrongMode:
+Неверный торговый режим.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnPlayer:
+Недостаточно предметов для продажи.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnStation:
+Недостаточно предметов на станции для покупки.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnPlayer:
+Недостаточно денег для покупки предмета.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnStation:
+Недостаточно денег на станции для покупки вашего предмета.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnPlayerForPurchasedItem:
+Недостаточно места для купленного предмета.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnStationForSoldItem:
+Недостаточно места на станции для хранения предмета, который вы хотите продать.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Available:
+Доступно
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@OutOfStock:
+Нет в наличии
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoMoney:
+Нет денег
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoSpace:
+Нет места
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Disabled:
+Выключено
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
+Надежная кирпичная стена, укрепленная металлом. Поможет сохранить ценные вещи и не допустить грабителей. Она даже способна частично выдержать взрыв.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Name:
+Кирпичная стена
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
+Толстая укрепленная стена из бетона с дополнительной поддержкой. Значительно крепче прочих защитных сооружений.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
+Бетонная стена
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
+Значительно крепче, чем деревянная стена. Задержит большую часть грабителей, но против хорошо экипированного мародера она не устоит.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Name:
+Каменная стена
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Description:
+Самая простая защита от местной фауны... и местных жителей. Защищает только от самых простых видов оружия.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Name:
+Деревянная стена
+
+Scripts/StaticObjects/Structures/Walls/Base/ObjectWallDestroyed@Name:
+Разрушенная стена
+
+Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationPlantNotMatured:
+`Это растение еще не созрело.
+[br]Урожай собирать рано.`
+
+Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationUseRightMouseButtonToInteract:
+Правая кнопка мыши: {0}.
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushCoffee@Name:
+Кофе
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushOilpod@Name:
+Нефтяника
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushPurple@Name:
+Куст ягод (фиолетовые)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushRed@Name:
+Куст ягод (красные)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@ErrorNoFruit:
+Плодов нет!
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@Name:
+Куст водяники
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYellow@Name:
+Куст ягод (желтые)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYucca@Name:
+Юкка
+
+Scripts/StaticObjects/Vegetation/Bushes/Base/ProtoObjectBush@ErrorNoBerries:
+Нет ягод!
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantBellPepper@Name:
+Перец
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCarrot@Name:
+Морковь
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantChiliPepper@Name:
+Перец чили
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCorn@Name:
+Кукуруза
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCucumber@Name:
+Огурец
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
+Синий шалфей
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
+Красноцвет
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
+Огурин
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
+Табак
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTomato@Name:
+Помидор
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
+Пшеница
+
+Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
+Требуется фермерский участок.
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
+Зеленая трава
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbPurple@Name:
+Фиолетовая трава
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbRed@Name:
+Красная трава
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPennyBun@Name:
+Белый гриб
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPink@Name:
+Неежки розовые
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomRust@Name:
+Ржавенка
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallPineapple@Name:
+Ананас
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallSugarcane@Name:
+Сахарный тростник
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
+Колючий куст
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
+Банановая пальма
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
+Береза
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
+Юкка
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
+Кактус
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
+Засохшее дерево
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
+Дуриан
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
+Упавшее дерево
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
+Дуб
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
+Пальма
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
+Сосна
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
+Северная сосна
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
+Тополь
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
+Каучуковое дерево
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
+Пенек
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
+Пенек
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
+Тропическое дерево
+
+Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
+Чтобы срубить это дерево, используйте топор.
+

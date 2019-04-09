@@ -1,0 +1,42 @@
+﻿Scripts/Tiles/TileBarren@Name:
+Aride
+
+Scripts/Tiles/TileBeachBoreal@Name:
+Plage (boréale)
+
+Scripts/Tiles/TileBeachTemperate@Name:
+Plage (tempérée)
+
+Scripts/Tiles/TileClay@Name:
+Carrière d'argile
+
+Scripts/Tiles/TileForestBoreal@Name:
+Forêt (boréale)
+
+Scripts/Tiles/TileForestTemperate@Name:
+Forêt (tempérée)
+
+Scripts/Tiles/TileForestTropical@Name:
+Forêt (tropicale)
+
+Scripts/Tiles/TileLakeShore@Name:
+Rivage de lac
+
+Scripts/Tiles/TileMeadows@Name:
+Prairie
+
+Scripts/Tiles/TileRocky@Name:
+Rocheux
+
+Scripts/Tiles/TileRuins@Name:
+Ruines
+
+Scripts/Tiles/TileSaltFlats@Name:
+Salants
+
+Scripts/Tiles/TileWaterLake@Name:
+Eau (lac)
+
+Scripts/Tiles/TileWaterSea@Name:
+Eau (mer)
+

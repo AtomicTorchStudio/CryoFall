@@ -1,0 +1,343 @@
+﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
+{0}의 연구된 기술이 {1}% 이상이어야 합니다
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
+학습 포인트 부족
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
+이미 잠금 해제된 기술
+
+Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
+{0} 학습 포인트 필요 (현재 {1}).
+
+Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
+`필요한 잠금 해제된 기술: {0}
+`
+
+Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
+모든 기본 건물 유형의 설계도가 포함되어 있으며, 단순한 기지를 만들 수 있습니다.
+
+Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Name:
+건설
+
+Scripts/Technologies/Tier1/Construction/TechNodeBasicBuilding@Name:
+기본 건물
+
+Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
+더 좋은 음식 아이템을 만들기 위한 많은 조리법이 포함되어 있습니다.
+
+Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
+요리
+
+Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
+씨앗, 기본적인 비료 등을 만들 수 있습니다.
+
+Scripts/Technologies/Tier1/Farming/TechGroupFarming@Name:
+농사
+
+Scripts/Technologies/Tier1/Farming/TechNodeFarmingBasics@Name:
+농사의 기본
+
+Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Description:
+생산과 제조를 성공적으로 수행하기 위해 필요한 모든 기본적인 공업 기술.
+
+Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Name:
+공업
+
+Scripts/Technologies/Tier1/Industry/TechNodeGlassware@Name:
+유리 제품
+
+Scripts/Technologies/Tier1/Industry/TechNodeIronTools@Name:
+철제 도구
+
+Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
+제련
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Description:
+기본적인 무기, 옷, 방어구의 설계도를 제공해줍니다.
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Name:
+공격 & 방어
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBoneArmor@Name:
+뼈 방어구
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBraidedArmor@Name:
+편조 방어구
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeClothArmor@Name:
+천 방어구
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeWoodArmor@Name:
+나무 방어구
+
+Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
+다양한 화학적 화합물과 반응을 통해 연구합니다.
+
+Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
+화학
+
+Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
+이용적 가치의 폭이 훨씬 넓은 더 복잡한 구조물.
+
+Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
+건설 2
+
+Scripts/Technologies/Tier2/Construction2/TechNodeStoneConstructions@Name:
+석조물
+
+Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
+새롭고 다양한 음식을 만들 수 있는 더욱 발전된 조리법.
+
+Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
+요리 2
+
+Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
+더 좋은 방어구 설계도를 제공하는 향상된 보호 기술.
+
+Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Name:
+방어 2
+
+Scripts/Technologies/Tier2/Defense2/TechNodeFurArmor@Name:
+모피 방어구
+
+Scripts/Technologies/Tier2/Defense2/TechNodeFurHeadgear@Name:
+모피 쓰개
+
+Scripts/Technologies/Tier2/Defense2/TechNodeLeatherArmor@Name:
+가죽 방어구
+
+Scripts/Technologies/Tier2/Defense2/TechNodeLeatherHeadgear@Name:
+가죽 쓰개
+
+Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
+누비 방어구
+
+Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
+누비 쓰개
+
+Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
+더 다양한 농작물과 더 좋은 비료를 연구하기 위한 복합적 농사 기술.
+
+Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
+농사 2
+
+Scripts/Technologies/Tier2/Farming2/TechNodeComplexCrops@Name:
+복합 농작물
+
+Scripts/Technologies/Tier2/Farming2/TechNodeFarmingProductivity@Name:
+농사 생산량
+
+Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
+더 많은 공정과 응용을 가능하게 하는 향상된 공업 기술.
+
+Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
+공업 2
+
+Scripts/Technologies/Tier2/Industry2/TechNodeAdvancedIndustry@Name:
+첨단 공업
+
+Scripts/Technologies/Tier2/Industry2/TechNodeBasicElectronics@Name:
+기본 전자 기술
+
+Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
+강철 제련
+
+Scripts/Technologies/Tier2/Industry2/TechNodeSteelTools@Name:
+강철제 도구
+
+Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Description:
+다양한 의료 아이템 제조.
+
+Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Name:
+의학
+
+Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Description:
+더욱 강력한 화기와 탄약 종류가 포함되어 있는 발전된 공격 도구.
+
+Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Name:
+공격 2
+
+Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
+복합적이고 다양한 화학적 화합물과 반응을 통해 연구합니다.
+
+Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
+화학 2
+
+Scripts/Technologies/Tier3/Chemistry2/TechNodeSyntheticMaterials@Name:
+합성 소재
+
+Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
+돈과 관련되어 있으며 거래를 가능하게 해줍니다. 주화의 주조 및 재활용과 자동화된 거래소를 지을 수 있습니다.
+
+Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Name:
+상업
+
+Scripts/Technologies/Tier3/Commerce/TechNodeCoinMinting@Name:
+주화 주조
+
+Scripts/Technologies/Tier3/Commerce/TechNodeCoinRecycling@Name:
+주화 재활용
+
+Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Description:
+발전된 구조물.
+
+Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
+건설 3
+
+Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
+벽돌조 건축물
+
+Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
+발전된 보호 기술.
+
+Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Name:
+방어 3
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMetalArmor@Name:
+금속 방어구
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMetalHeadgear@Name:
+금속 쓰개
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
+군용 방어구
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
+군용 쓰개
+
+Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
+발전된 농사 기술 및 더 다양해진 농작물.
+
+Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
+농사 3
+
+Scripts/Technologies/Tier3/Farming3/TechNodeDecorativeGardening@Name:
+장식 원예
+
+Scripts/Technologies/Tier3/Farming3/TechNodeSpecializedCrops@Name:
+특수작물
+
+Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
+더 복합적인 공정과 응용을 가능하게 하는 발전된 공업 기술.
+
+Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
+공업 3
+
+Scripts/Technologies/Tier3/Industry3/TechNodeGoldSmelting@Name:
+금 제련
+
+Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
+더욱 다양한 발전된 의료 아이템 제조 가능.
+
+Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Name:
+의학 2
+
+Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Description:
+완전 자동 화기와 더욱 다양해진 탄약 종류를 포함한 고도로 발전된 공격 기술.
+
+Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Name:
+공격 3
+
+Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
+술을 양조하는 것과 비슷한 부류의 일.
+
+Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
+오락
+
+Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoAged@Name:
+담베 숙성
+
+Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoProcessing@Name:
+담배 가공
+
+Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
+외계의 자원을 이용하기 위해 필요한 기술.
+
+Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
+외계지질학
+
+Scripts/Technologies/Tier3/XenoGeology/TechNodeIngotLithium@Name:
+리튬 정제
+
+Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
+발전된 화학적 공정과 복합적 반응.
+
+Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
+화학 3
+
+Scripts/Technologies/Tier4/Chemistry3/TechNodeHighEnergySubstances@Name:
+고에너지 물질
+
+Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
+최첨단 건설.
+
+Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
+건설 4
+
+Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
+콘크리트 건축물
+
+Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
+인공 두뇌학 및 생물학적 임플란트의 제조와 적용.
+
+Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
+인공 두뇌학
+
+Scripts/Technologies/Tier4/Cybernetics/TechNodeBiomaterialProcessing@Name:
+생체 적합 물질 가공
+
+Scripts/Technologies/Tier4/Cybernetics/TechNodeImplantManufacturing@Name:
+임플란트 제조
+
+Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
+최첨단 보호 기술.
+
+Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Name:
+방어 4
+
+Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
+돌격용 방어구
+
+Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
+돌격용 쓰개
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
+에너지 무기는 재래식 무기로부터 새로운 기술적 비약을 이루어낸 무기입니다.
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
+에너지 무기
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechNodeLaserWeapons@Name:
+레이저 무기
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechNodePlasmaWeapons@Name:
+플라스마 무기
+
+Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
+가장 복잡한 기술 공정을 가능하게 하는 최첨단 공업 기술.
+
+Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
+공업 4
+
+Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Description:
+귀금속과 보석을 재료로 사용합니다.
+
+Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Name:
+세공술
+
+Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Description:
+최신 의료 기술의 개발과 적용.
+
+Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Name:
+의학 3
+
+Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
+재래식 화기의 잠재력을 최대한 끌어올리는 최첨단 공격 기술.
+
+Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
+공격 4
+
+Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
+.300 구경
+

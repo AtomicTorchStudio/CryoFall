@@ -1,0 +1,332 @@
+﻿namespace AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.AmbientOcclusion;
+    using AtomicTorch.CBND.CoreMod.StaticObjects;
+    using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
+
+    public class ComponentObjectGroundItemsContainerRenderer : ClientComponent
+    {
+        private const float ItemOnGroundScaleMultiplier = 0.33f;
+
+        private const float TextureObjectSackScale = 0.5f;
+
+        private static readonly IRenderingClientService Rendering = Api.Client.Rendering;
+
+        private readonly Dictionary<IItem, SlotRenderer> slotRenderers
+            = new Dictionary<IItem, SlotRenderer>();
+
+        private bool isObjectSackMode;
+
+        private IClientItemsContainer itemsContainer;
+
+        private IComponentSpriteRenderer spriteRenderObjectSack;
+
+        public void Setup(IItemsContainer setItemsContainer)
+        {
+            if (this.itemsContainer != null)
+            {
+                throw new Exception("Items container is already assigned");
+            }
+
+            this.itemsContainer = (IClientItemsContainer)setItemsContainer;
+            this.EventsSubscribe();
+            this.RebuildAll();
+        }
+
+        public override void Update(double deltaTime)
+        {
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            this.DestroyAllRenderers();
+            this.EventsUnsubscribe();
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            this.EventsSubscribe();
+            this.RebuildAll();
+        }
+
+        private void CreateSpriteRenderer(IItem item)
+        {
+            var protoItem = (IProtoItem)item.ProtoGameObject;
+            var icon = protoItem.GroundIcon;
+            var spriteRenderer = Rendering.CreateSpriteRenderer(
+                this.SceneObject,
+                icon,
+                // draw over floor and occlusion layers
+                drawOrder: DrawOrder.Occlusion + 1);
+
+            var occlusionRenderer = ClientAmbientOcclusion.CreateOcclusionRenderer(
+                this.SceneObject,
+                icon,
+                extractMaskFromColor: true);
+
+            spriteRenderer.PositionOffset = this.GetDrawOffset(item);
+            spriteRenderer.SpritePivotPoint = (0.5, 0);
+            spriteRenderer.Scale = protoItem.GroundIconScale * ItemOnGroundScaleMultiplier;
+
+            occlusionRenderer.PositionOffset = spriteRenderer.PositionOffset;
+            occlusionRenderer.SpritePivotPoint = spriteRenderer.SpritePivotPoint;
+            occlusionRenderer.Scale = spriteRenderer.Scale;
+
+            var slotRenderer = new SlotRenderer(spriteRenderer, occlusionRenderer);
+            this.slotRenderers.Add(item, slotRenderer);
+        }
+
+        private void DestroyAllRenderers()
+        {
+            this.isObjectSackMode = false;
+
+            foreach (var componentSpriteRenderer in this.slotRenderers)
+            {
+                componentSpriteRenderer.Value.Destroy();
+            }
+
+            this.slotRenderers.Clear();
+
+            this.spriteRenderObjectSack?.Destroy();
+            this.spriteRenderObjectSack = null;
+        }
+
+        private void EventsSubscribe()
+        {
+            if (this.itemsContainer == null)
+            {
+                return;
+            }
+
+            this.itemsContainer.ItemAdded += this.ItemAddedHandler;
+            this.itemsContainer.ItemRemoved += this.ItemRemovedHandler;
+            this.itemsContainer.ItemsReset += this.ItemsResetHandler;
+        }
+
+        private void EventsUnsubscribe()
+        {
+            if (this.itemsContainer == null)
+            {
+                return;
+            }
+
+            this.itemsContainer.ItemAdded -= this.ItemAddedHandler;
+            this.itemsContainer.ItemRemoved -= this.ItemRemovedHandler;
+            this.itemsContainer.ItemsReset -= this.ItemsResetHandler;
+        }
+
+        private Vector2D GetDrawOffset(IItem item)
+        {
+            var allItems = this.itemsContainer.Items;
+            var virtualSlotId = 0;
+            // let's find the slot
+            foreach (var otherItem in allItems)
+            {
+                if (otherItem == item)
+                {
+                    break;
+                }
+
+                virtualSlotId++;
+            }
+
+            var occupiedSlotsCount = this.itemsContainer.OccupiedSlotsCount;
+
+            if (occupiedSlotsCount <= 1)
+            {
+                // center
+                return (0.5, 0.25);
+            }
+
+            if (occupiedSlotsCount <= 2)
+            {
+                // side-by-side two items
+                switch (virtualSlotId)
+                {
+                    case 0:
+                        return (0.25, 0.25);
+                    case 1:
+                        return (0.75, 0.25);
+                }
+            }
+
+            if (occupiedSlotsCount <= 3)
+            {
+                // triangle layout
+                switch (virtualSlotId)
+                {
+                    case 0:
+                        return (0.5, 0.5);
+                    case 1:
+                        return (0.75, 0.05);
+                    case 2:
+                        return (0.25, 0.05);
+                }
+            }
+
+            // quad layout (that's right, only first 4 objects of container can be drawn this way)
+            Vector2D drawOffset;
+            switch (virtualSlotId)
+            {
+                case 0:
+                    drawOffset = (0.25, 0.55);
+                    break;
+                case 1:
+                    drawOffset = (0.75, 0.55);
+                    break;
+                case 2:
+                    drawOffset = (0.25, 0.05);
+                    break;
+                case 3:
+                    drawOffset = (0.75, 0.05);
+                    break;
+                default:
+                    // drop by center
+                    drawOffset = (0.5, 0.25);
+                    break;
+            }
+
+            return drawOffset;
+        }
+
+        private void ItemAddedHandler(IItem item)
+        {
+            this.RefreshIsObjectsSackMode();
+            if (this.isObjectSackMode)
+            {
+                return;
+            }
+
+            this.CreateSpriteRenderer(item);
+            this.UpdateDrawOffsets();
+        }
+
+        private void ItemRemovedHandler(IItem item, byte slotId)
+        {
+            var wasObjectsSackMode = this.isObjectSackMode;
+            this.RefreshIsObjectsSackMode();
+            if (this.isObjectSackMode)
+            {
+                return;
+            }
+
+            if (wasObjectsSackMode)
+            {
+                // sack destroyed - show items on ground
+                this.RebuildAll();
+                return;
+            }
+
+            // an item was removed and it was not an object sack - remove the renderer for this item slot
+            if (!this.slotRenderers.TryGetValue(item, out var renderer))
+            {
+                // renderer is not created for the specified slot
+                return;
+            }
+
+            renderer.Destroy();
+            this.slotRenderers.Remove(item);
+        }
+
+        private void ItemsResetHandler()
+        {
+            this.RebuildAll();
+        }
+
+        private void RebuildAll()
+        {
+            if (this.itemsContainer == null)
+            {
+                return;
+            }
+
+            this.DestroyAllRenderers();
+
+            this.RefreshIsObjectsSackMode();
+
+            if (this.isObjectSackMode)
+            {
+                return;
+            }
+
+            foreach (var item in this.itemsContainer.Items.Take(4))
+            {
+                this.CreateSpriteRenderer(item);
+            }
+        }
+
+        private void RefreshIsObjectsSackMode()
+        {
+            var newIsObjectSackMode = this.itemsContainer.OccupiedSlotsCount > 4;
+            if (this.isObjectSackMode == newIsObjectSackMode)
+            {
+                return;
+            }
+
+            this.DestroyAllRenderers();
+            this.isObjectSackMode = newIsObjectSackMode;
+
+            if (!this.isObjectSackMode)
+            {
+                return;
+            }
+
+            this.spriteRenderObjectSack = Rendering.CreateSpriteRenderer(
+                this.SceneObject,
+                ObjectGroundItemsContainer.TextureResourceSack,
+                drawOrder: DrawOrder.Default,
+                positionOffset: (0.5, 0.5),
+                spritePivotPoint: (0.5, 0.5),
+                scale: TextureObjectSackScale);
+
+            this.spriteRenderObjectSack.DrawOrderOffsetY = -0.125f;
+        }
+
+        private void UpdateDrawOffsets()
+        {
+            foreach (var pair in this.slotRenderers)
+            {
+                var drawOffset = this.GetDrawOffset(pair.Key);
+                var slotRenderer = pair.Value;
+                slotRenderer.Renderer.PositionOffset = drawOffset;
+
+                if (slotRenderer.RendererOcclusion != null)
+                {
+                    slotRenderer.RendererOcclusion.PositionOffset = drawOffset;
+                }
+            }
+        }
+
+        private struct SlotRenderer
+        {
+            [NotNull]
+            public readonly IComponentSpriteRenderer Renderer;
+
+            [CanBeNull]
+            public readonly IComponentSpriteRenderer RendererOcclusion;
+
+            public SlotRenderer(IComponentSpriteRenderer renderer, IComponentSpriteRenderer rendererOcclusion)
+            {
+                this.Renderer = renderer;
+                this.RendererOcclusion = rendererOcclusion;
+            }
+
+            public void Destroy()
+            {
+                this.Renderer.Destroy();
+                this.RendererOcclusion?.Destroy();
+            }
+        }
+    }
+}

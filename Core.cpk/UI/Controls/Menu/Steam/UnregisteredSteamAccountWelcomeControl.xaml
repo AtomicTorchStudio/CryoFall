@@ -1,0 +1,102 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.UnregisteredSteamAccountWelcomeControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.Data"
+    xmlns:steam="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance data:ViewModelSteamAccountLinkingWelcome, IsDesignTimeCreatable=True}"
+    Foreground="White" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <base:BaseUserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </base:BaseUserControl.Resources>
+
+    <Grid VerticalAlignment="Top"
+          KeyboardNavigation.TabNavigation="Cycle">
+        <!-- Steam account mode selection -->
+        <Grid Visibility="{Binding ViewVisibilityModeSelection}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <WrapPanel Orientation="Horizontal"
+                       Margin="0,-2,0,10"
+                       HorizontalAlignment="Center"
+                       MaxWidth="320">
+                <!-- Text: It seems you are launching CryoFall for the first time... -->
+                <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.UnregisteredSteamAccountWelcome_Title}" />
+            </WrapPanel>
+
+            <!-- Buttons block -->
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="2"
+                        VerticalAlignment="Bottom"
+                        Margin="0,10,0,0">
+                <!-- Text: Link to my existing AtomicTorch account -->
+                <Button
+                    Content="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch}"
+                    Command="{Binding CommandOpenAccountLinkingForm}"
+                    IsTabStop="True"
+                    FontSize="18"
+                    HorizontalAlignment="Center"
+                    MinWidth="324" />
+
+                <!-- Text: Create new AtomicTorch account -->
+                <Button
+                    Content="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount}"
+                    Command="{Binding CommandOpenRegisterAccountForm}"
+                    Margin="0,13,0,0"
+                    IsTabStop="True"
+                    FontSize="18"
+                    HorizontalAlignment="Center"
+                    MinWidth="324" />
+
+                <!-- Text: Proceed without creating an account -->
+                <Button
+                    Content="{x:Static loc:CoreStrings.UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAccount}"
+                    Command="{Binding CommandProceedWithoutAccount}"
+                    Margin="0,13,0,0"
+                    IsTabStop="True"
+                    FontSize="18"
+                    HorizontalAlignment="Center"
+                    MinWidth="324" />
+
+                <!--<Button Content="Quit"
+                        Command="{Binding CommandQuit}"
+                        Margin="0,20,0,0"
+                        IsTabStop="True"
+                        FontSize="18"
+                        HorizontalAlignment="Center" />-->
+
+                <StackPanel Orientation="Vertical"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Center">
+                    <TextBlock
+                        Text="{x:Static loc:CoreStrings.WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist}"
+                        FontSize="14"
+                        Foreground="#FFCFCFCF" />
+                    <steam:SteamAccountLinkingBenefitsDescriptionControl />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <!-- Steam account linking form -->
+        <steam:LinkSteamAccountFormControl Visibility="{Binding ViewVisibilityAccountLinkingForm}"
+                                           CommandBack="{Binding CommandResetMenu}" />
+
+        <!-- Steam account registration form -->
+        <steam:SteamAccountRegisterOrLinkFormControl Visibility="{Binding ViewVisibilityAccountRegistrationForm}"
+                                                     CommandBack="{Binding CommandResetMenu}" />
+    </Grid>
+</base:BaseUserControl>

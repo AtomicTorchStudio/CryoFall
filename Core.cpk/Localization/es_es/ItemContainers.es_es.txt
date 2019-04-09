@@ -1,0 +1,21 @@
+﻿Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationCannotEquip:
+No se puede equipar
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationRemoveFullBody:
+Debes quitar primero el equipo de cuerpo entero.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationRemoveOtherEquipment:
+Debes quitar primero el otro equipo.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Message:
+Debes usar el puesto médico para instalar el implante.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Title:
+No se puede instalar
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Message:
+Debes usar el puesto médico para quitar el implante.
+
+Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
+No se puede quitar
+

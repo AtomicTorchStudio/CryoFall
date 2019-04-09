@@ -1,0 +1,340 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Home.MenuHome"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:servicesClient="clr-namespace:AtomicTorch.CBND.GameApi.ServicesClient;assembly=AtomicTorch.CBND.GameApi.WPF"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data1="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data"
+    xmlns:data2="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Home.Data"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance data2:ViewModelMenuHome, IsDesignTimeCreatable=True}"
+    d:DesignWidth="1340" d:DesignHeight="630" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UI/Styles/MenuServersStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- ReSharper disable Xaml.RedundantResource -->
+            <!-- Override columns width for recent servers list -->
+            <system:Double x:Key="ServerIconSize">28</system:Double>
+            <GridLength x:Key="ColumnWidthServerIcon">28</GridLength>
+            <GridLength x:Key="ColumnWidthPing">50</GridLength>
+            <GridLength x:Key="ColumnWidthPlayers">80</GridLength>
+            <GridLength x:Key="ColumnWidthFavorite">40</GridLength>
+            <!-- ReSharper restore Xaml.RedundantResource -->
+
+            <Style x:Key="DateTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="Foreground" Value="#FFCCCCCC" />
+            </Style>
+
+            <data2:DateToStringConverter x:Key="DateToStringConverter" />
+
+            <Style TargetType="{x:Type core:HyperlinkControl}">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type core:HyperlinkControl}">
+                            <Grid>
+                                <ContentPresenter x:Name="ContentPresenter" />
+                                <Border x:Name="BorderOverlay" CornerRadius="3" Background="#44AACCFF"
+                                        Visibility="Collapsed" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="BorderOverlay" Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <ControlTemplate x:Key="HistoryServersListDataTemplate">
+                <Grid d:DataContext="{d:DesignInstance data1:ViewModelServersList}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <ListBox Grid.Row="2"
+                             ItemsSource="{Binding ServersList}"
+                             Style="{StaticResource ServersListBoxStyle}"
+                             SelectedItem="{Binding SelectedServer}"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             ItemTemplate="{StaticResource ServerInfoEntryTemplate}"
+                             ItemContainerStyle="{StaticResource ServersListBoxContainerStyle}" />
+
+                    <StackPanel Grid.Row="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical"
+                                Visibility="{Binding ListEmptyVisibility}">
+                        <!-- Server history is empty -->
+                        <core:FormattedTextBlock
+                            Content="{x:Static loc:CoreStrings.MenuHome_ServerHistoryEmpty}"
+                            Style="{StaticResource ServersLoadingTextBlockStyle}"
+                            TextAlignment="Center"
+                            FontSize="11" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2"
+                                HorizontalAlignment="Center"
+                                Orientation="Vertical"
+                                Visibility="{Binding LoadingDisplayVisibility}">
+                        <!-- Text: Loading... -->
+                        <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.TitleLoading}"
+                                                 Style="{StaticResource ServersLoadingTextBlockStyle}" />
+                    </StackPanel>
+                </Grid>
+            </ControlTemplate>
+
+        </ResourceDictionary>
+    </base:BaseUserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource MainMenuWidgetStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <!-- Text: News -->
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuHome_News}"
+                           Style="{StaticResource MainMenuWidgetTextBlockHeaderStyle}" />
+                <Control Grid.Row="1" Template="{StaticResource MainMenuWidgetLineTemplate}" />
+                <ScrollViewer Grid.Row="2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible"
+                              Margin="0,3,-2,0">
+                    <ItemsControl ItemsSource="{Binding NewsItemsList}" Background="Transparent" Margin="0,-5,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical"
+                                            d:DataContext="{d:DesignInstance servicesClient:RssFeedEntry}"
+                                            Margin="0,5,0,5">
+                                    <core:HyperlinkControl Content="{Binding Title}" FontSize="17" Url="{Binding Url}"
+                                                           Foreground="White" />
+
+                                    <TextBlock Margin="0,-1,0,0"
+                                               Text="{Binding Date, Converter={StaticResource DateToStringConverter}}"
+                                               Style="{StaticResource DateTextBlockStyle}" />
+
+                                    <TextBlock Text="{Binding Description}"
+                                               FontSize="12"
+                                               TextWrapping="Wrap"
+                                               FontFamily="{StaticResource DefaultFontFamily}"
+                                               Foreground="White" />
+
+                                    <!-- Text: Read more... -->
+                                    <core:HyperlinkControl Content="{x:Static loc:CoreStrings.MenuHome_ReadMore}"
+                                                           Url="{Binding Url}" FontSize="11" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </ContentControl>
+
+        <ContentControl Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource MainMenuWidgetStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <!-- Text: Forums -->
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuHome_Forums}"
+                           Style="{StaticResource MainMenuWidgetTextBlockHeaderStyle}" />
+                <Control Grid.Row="1" Template="{StaticResource MainMenuWidgetLineTemplate}" />
+
+                <ScrollViewer Grid.Row="2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible"
+                              Margin="0,3,-2,0">
+                    <ItemsControl ItemsSource="{Binding ForumsItemsList}" Background="Transparent" Margin="0,-3,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical"
+                                            d:DataContext="{d:DesignInstance servicesClient:RssFeedEntry}"
+                                            Margin="0,3,0,3">
+                                    <core:HyperlinkControl Url="{Binding Url}" Foreground="White">
+                                        <core:HyperlinkControl.Content>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis"
+                                                           FontSize="14" />
+                                                <StackPanel Orientation="Horizontal" Margin="1,-2,0,0">
+                                                    <TextBlock Style="{StaticResource DateTextBlockStyle}"
+                                                               FontSize="10">
+                                                        <TextBlock.Text>
+                                                            <Binding Path="Date"
+                                                                     Converter="{StaticResource DateToStringConverter}"
+                                                                     ConverterParameter="d MMM HH:mm" />
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                    <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                                                    <TextBlock Text="  &#x2014;  "
+                                                               Style="{StaticResource DateTextBlockStyle}"
+                                                               FontSize="10" />
+                                                    <TextBlock Text="{Binding Author}"
+                                                               Style="{StaticResource DateTextBlockStyle}"
+                                                               FontSize="10"
+                                                               FontWeight="Bold" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </core:HyperlinkControl.Content>
+                                    </core:HyperlinkControl>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </ContentControl>
+
+        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3"
+                        Style="{StaticResource MainMenuWidgetStyle}" Padding="0">
+            <Image Source="/UI/Images/Backgrounds/MainMenuArt.jpg" Stretch="UniformToFill" />
+        </ContentControl>
+
+        <core:HyperlinkControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3"
+                               HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                               Url="https://trello.com/b/B5ckffAW"
+                               Margin="20"
+                               base:ToolTipServiceExtend.ToolTip="CryoFall Development Roadmap">
+            <Image Source="/UI/Images/Icons/Social/btn_roadmap.png" Stretch="Uniform" Width="60" Opacity="0.667" />
+        </core:HyperlinkControl>
+
+        <ContentControl Grid.Row="3" Grid.Column="1" Style="{StaticResource MainMenuWidgetStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <!-- Text: Recent servers -->
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuHome_RecentServers}"
+                           Style="{StaticResource MainMenuWidgetTextBlockHeaderStyle}" />
+                <Control Grid.Row="1"
+                         Template="{StaticResource MainMenuWidgetLineTemplate}" />
+                <Control Grid.Row="2"
+                         DataContext="{Binding HistoryServers}"
+                         Template="{StaticResource HistoryServersListDataTemplate}"
+                         VerticalAlignment="Stretch"
+                         Margin="0,3,-2,0" />
+            </Grid>
+        </ContentControl>
+
+        <ContentControl Grid.Row="3" Grid.Column="2" Style="{StaticResource MainMenuWidgetStyle}">
+            <Grid VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <!-- Text: Social -->
+                <TextBlock Text="{x:Static loc:CoreStrings.MenuHome_Social}"
+                           Style="{StaticResource MainMenuWidgetTextBlockHeaderStyle}" />
+                <Control Grid.Row="1" Template="{StaticResource MainMenuWidgetLineTemplate}" />
+
+                <Grid Grid.Row="2" VerticalAlignment="Stretch" Margin="0,5,0,2">
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type Rectangle}">
+                            <Setter Property="Width" Value="36" />
+                            <Setter Property="Height" Value="36" />
+                            <Setter Property="Fill" Value="#99FFFFFF" />
+                        </Style>
+
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="FontSize" Value="15" />
+                            <Setter Property="Margin" Value="5,0,0,0" />
+                        </Style>
+
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="5" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <core:HyperlinkControl Grid.Row="0" Grid.Column="0"
+                                           Url="https://atomictorch.com">
+                        <Image Source="/UI/Images/Icons/Social/btn_Blog.png" Stretch="Uniform" />
+                    </core:HyperlinkControl>
+
+                    <core:HyperlinkControl Grid.Row="2" Grid.Column="0"
+                                           Url="http://forums.atomictorch.com">
+                        <Image Source="/UI/Images/Icons/Social/btn_Forums.png" Stretch="Uniform" />
+                    </core:HyperlinkControl>
+
+                    <core:HyperlinkControl Grid.Row="0" Grid.Column="2"
+                                           Url="https://www.youtube.com/user/AtomicTorchStudio">
+                        <Image Source="/UI/Images/Icons/Social/btn_YouTube.png" />
+                    </core:HyperlinkControl>
+
+
+                    <core:HyperlinkControl Grid.Row="2" Grid.Column="2"
+                                           Url="https://www.facebook.com/daedalic">
+                        <Image Source="/UI/Images/Icons/Social/btn_FB.png" />
+                    </core:HyperlinkControl>
+
+                    <core:HyperlinkControl Grid.Row="0" Grid.Column="4"
+                                           Url="https://twitter.com/AtomicTorch">
+                        <Image Source="/UI/Images/Icons/Social/btn_Twitter.png" />
+                    </core:HyperlinkControl>
+
+
+                    <core:HyperlinkControl Grid.Row="2" Grid.Column="4"
+                                           Url="https://cryofall.gamepedia.com">
+                        <Image Source="/UI/Images/Icons/Social/btn_wiki.png" />
+                    </core:HyperlinkControl>
+
+
+                    <core:HyperlinkControl Grid.Row="0" Grid.Column="6"
+                                           Url="https://www.reddit.com/r/cryofall">
+                        <Image Source="/UI/Images/Icons/Social/btn_Reddit.png" />
+                    </core:HyperlinkControl>
+
+                    <core:HyperlinkControl Grid.Row="2" Grid.Column="6"
+                                           Url="https://discord.gg/pRMGjRz">
+                        <Image Source="/UI/Images/Icons/Social/btn_discord.png" />
+                    </core:HyperlinkControl>
+
+                </Grid>
+            </Grid>
+        </ContentControl>
+    </Grid>
+</base:BaseUserControl>

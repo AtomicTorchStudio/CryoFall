@@ -1,0 +1,150 @@
+﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
+Нельзя взаимодействовать при оглушении.
+
+Scripts/Base/Stats/StatName@HealthMax:
+Макс. здоровье
+
+Scripts/Base/Stats/StatName@StaminaMax:
+Макс. выносливость
+
+Scripts/Base/Stats/StatName@FoodMax:
+Макс. пища
+
+Scripts/Base/Stats/StatName@WaterMax:
+Макс. вода
+
+Scripts/Base/Stats/StatName@MoveSpeed:
+Скорость перемещения
+
+Scripts/Base/Stats/StatName@MoveSpeedRunMultiplier:
+Скорость бега
+
+Scripts/Base/Stats/StatName@DamageAdd:
+Дополнительный урон
+
+Scripts/Base/Stats/StatName@RunningStaminaConsumptionPerSecond:
+Снижение выносливости при беге
+
+Scripts/Base/Stats/StatName@StaminaRegenerationPerSecond:
+Восстановление выносливости
+
+Scripts/Base/Stats/StatName@HealthRegenerationPerSecond:
+Восстановление здоровья
+
+Scripts/Base/Stats/StatName@MiningSpeed:
+Скорость добычи
+
+Scripts/Base/Stats/StatName@WoodcuttingSpeed:
+Скорость рубки леса
+
+Scripts/Base/Stats/StatName@ForagingSpeed:
+Скорость собирательства
+
+Scripts/Base/Stats/StatName@BuildingSpeed:
+Скорость строительства/сноса
+
+Scripts/Base/Stats/StatName@SearchingExtraLoot:
+Шанс найти больше добычи в ящиках
+
+Scripts/Base/Stats/StatName@HuntingExtraLoot:
+Шанс найти больше добычи с врагов
+
+Scripts/Base/Stats/StatName@FarmingTasksSpeed:
+Скорость фермерских задач
+
+Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
+Скорость роста растений
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
+Бонус к урону
+
+Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
+Бонус к урону
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+Бонус к урону
+
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+Бонус к урону
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Бонус к урону
+
+Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
+Шанс особого эффекта
+
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+Шанс особого эффекта
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+Шанс особого эффекта
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+Шанс особого эффекта
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+Шанс особого эффекта
+
+Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
+Скорость износа
+
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+Скорость износа
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+Скорость износа
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+Скорость износа
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+Скорость износа
+
+Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
+Время перезарядки
+
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Время перезарядки
+
+Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
+Потребление энергии
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
+Время перезарядки
+
+Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
+Время перезарядки
+
+Scripts/Base/Stats/StatName@LearningPointsRetainedAfterDeath:
+Остаток ОТ в случае смерти
+
+Scripts/Base/Stats/StatName@CraftingSpeed:
+Скорость крафтинга
+
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Время установки взрывчатки
+
+Scripts/Base/Stats/StatName@HuntingLootingSpeed:
+Скорость сбора добычи
+
+Scripts/Base/Stats/StatName@ImplantDegradationFromDamageMultiplier:
+Износ импланта от полученного урона
+
+Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
+Скорость износа установленного импланта
+
+Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
+Скорость потребления пищи
+
+Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
+Скорость потребления воды
+
+Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
+Восстановление заряда энергии (в мин.)
+
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Способность есть испорченную еду
+
+Scripts/Base/Stats/StatName@SearchingSpeed:
+Скорость поиска
+

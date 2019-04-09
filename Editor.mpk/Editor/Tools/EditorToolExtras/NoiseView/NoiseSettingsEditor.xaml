@@ -1,0 +1,140 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolExtras.NoiseView.NoiseSettingsEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolExtras.NoiseView.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="600" d:DesignWidth="220"
+    d:DataContext="{d:DesignInstance data:ViewModelNoiseSettings, d:IsDesignTimeCreatable=True}">
+
+    <StackPanel Orientation="Vertical">
+        <!-- Header -->
+        <Grid Visibility="{Binding IsDisplayHeader, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <CheckBox IsChecked="{Binding IsEnabled}"
+                      Focusable="False"
+                      Margin="0" />
+            <TextBlock Grid.Column="1"
+                       Text="Noise"
+                       FontWeight="Bold"
+                       FontSize="13"
+                       Margin="2,1,0,0" />
+
+            <Button Grid.Column="2"
+                    Content="Clone"
+                    Command="{Binding CommandClone}"
+                    CommandParameter="{Binding}"
+                    Visibility="{Binding CommandClone, Converter={StaticResource NullToVisibilityConverter}}"
+                    FontSize="12"
+                    Height="20"
+                    MinWidth="20"
+                    MinHeight="20"
+                    Padding="3,0"
+                    Focusable="False"
+                    Margin="5,0,0,0" />
+
+            <Button Grid.Column="3"
+                    Content="Delete"
+                    Command="{Binding CommandDelete}"
+                    CommandParameter="{Binding}"
+                    Visibility="{Binding CommandDelete, Converter={StaticResource NullToVisibilityConverter}}"
+                    FontSize="12"
+                    Height="20"
+                    MinWidth="20"
+                    MinHeight="20"
+                    Padding="3,0"
+                    Focusable="False"
+                    Margin="5,0,0,0" />
+
+            <Button Grid.Column="5"
+                    Command="{Binding CommandCollapse}"
+                    FontSize="16"
+                    FontFamily="{StaticResource MonospacedFontFamily}"
+                    Width="20"
+                    Height="20"
+                    MinWidth="20"
+                    MinHeight="20"
+                    Padding="0,-2,0,0"
+                    Margin="0"
+                    Focusable="False"
+                    HorizontalAlignment="Right">
+                <Button.Content>
+                    <Grid>
+                        <TextBlock Text="+"
+                                   Visibility="{Binding IsCollapsed, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        <TextBlock Text="-"
+                                   Visibility="{Binding IsCollapsed, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
+                    </Grid>
+                </Button.Content>
+            </Button>
+        </Grid>
+
+        <!-- Noise settings controls -->
+        <StackPanel Orientation="Vertical"
+                    Visibility="{Binding IsCollapsed, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    Margin="0,3,0,0">
+
+            <StackPanel
+                Visibility="{Binding IsDisplayCombineModeSetting, Converter={StaticResource BoolToVisibilityConverter}}"
+                Orientation="Vertical">
+                <TextBlock Text="Combine mode" />
+                <ComboBox ItemsSource="{Binding CombineModes}"
+                          SelectedItem="{Binding SelectedCombineMode}"
+                          DisplayMemberPath="Description"
+                          Width="65"
+                          FontSize="10"
+                          FontWeight="Bold" />
+            </StackPanel>
+
+            <TextBlock Text="Seed" />
+            <TextBox Text="{Binding Seed, UpdateSourceTrigger=LostFocus}" />
+
+            <TextBlock Text="Scale" />
+            <TextBox Text="{Binding Scale, UpdateSourceTrigger=LostFocus}" />
+            <Slider Value="{Binding Scale}"
+                    Minimum="1"
+                    Maximum="500"
+                    SmallChange="0.1"
+                    LargeChange="0.1"
+                    IsSnapToTickEnabled="True"
+                    TickFrequency="0.1" />
+
+            <TextBlock Text="Persistance" />
+            <TextBox Text="{Binding Persistance, UpdateSourceTrigger=LostFocus}" />
+            <Slider Value="{Binding Persistance}"
+                    Minimum="0"
+                    Maximum="1"
+                    SmallChange="0.1"
+                    LargeChange="0.1"
+                    IsSnapToTickEnabled="True"
+                    TickFrequency="0.1" />
+
+            <TextBlock Text="Octaves" />
+            <TextBox Text="{Binding Octaves, UpdateSourceTrigger=LostFocus}" />
+            <Slider Value="{Binding Octaves}"
+                    Minimum="1"
+                    Maximum="7" />
+
+            <TextBlock Text="Lacunarity" />
+            <TextBox Text="{Binding Lacunarity, UpdateSourceTrigger=LostFocus}" />
+            <Slider Value="{Binding Lacunarity}"
+                    Minimum="1"
+                    Maximum="5"
+                    SmallChange="0.1"
+                    LargeChange="0.1"
+                    IsSnapToTickEnabled="True"
+                    TickFrequency="0.1" />
+        </StackPanel>
+    </StackPanel>
+
+</base:BaseUserControl>

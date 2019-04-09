@@ -1,0 +1,126 @@
+﻿Scripts/ClientComponents/Input/GameButton@CancelOrClose:
+Abbrechen oder schließen
+
+Scripts/ClientComponents/Input/GameButton@MoveUp:
+Vorwärts bewegen
+
+Scripts/ClientComponents/Input/GameButton@MoveLeft:
+Nach links bewegen
+
+Scripts/ClientComponents/Input/GameButton@MoveDown:
+Rückwärts bewegen
+
+Scripts/ClientComponents/Input/GameButton@MoveRight:
+Nach rechts bewegen
+
+Scripts/ClientComponents/Input/GameButton@RunTemporary:
+Rennen (Halten)
+
+Scripts/ClientComponents/Input/GameButton@RunToggle:
+Rennen (Ein/Aus)
+
+Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
+Handlung – Objekt benutzen
+
+Scripts/ClientComponents/Input/GameButton@ActionInteract:
+Handlung – Interagieren
+
+Scripts/ClientComponents/Input/GameButton@ItemReload:
+Nachladen
+
+Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
+Modus/Munition Ändern
+
+Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
+Helmlicht Ein/Aus
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot1:
+Slot #1
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot2:
+Slot #2
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot3:
+Slot #3
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot4:
+Slot #4
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot5:
+Slot #5
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot6:
+Slot #6
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot7:
+Slot #7
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
+Slot #8
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
+Slot #9
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
+Slot #10
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
+Kamera heranzoomen
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
+Kamera herauszoomen
+
+Scripts/ClientComponents/Input/GameButton@OpenChat:
+Chat
+
+Scripts/ClientComponents/Input/GameButton@InventoryMenu:
+Inventar
+
+Scripts/ClientComponents/Input/GameButton@CraftingMenu:
+Werkstatt
+
+Scripts/ClientComponents/Input/GameButton@MapMenu:
+Karte
+
+Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
+Konstruktion
+
+Scripts/ClientComponents/Input/GameButton@SkillsMenu:
+Fähigkeiten
+
+Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
+Technologien
+
+Scripts/ClientComponents/Input/GameButton@SocialMenu:
+Social
+
+Scripts/ClientComponents/Input/GameButton@QuestsMenu:
+Quests
+
+Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
+Entwicklerkonsole
+
+Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
+Debug-Tools
+
+Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
+Vollbildmodus an/aus
+
+Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
+Screenshot erfassen
+
+Scripts/ClientComponents/Input/GameButton@ContainerSort:
+Container sortieren
+
+Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
+Alle Gegenstände nehmen
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
+Unten zusammenfügen
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
+Oben zusammenfügen
+
+Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
+Land Claim und Gesundheitsbalken anzeigen
+

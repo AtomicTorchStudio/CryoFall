@@ -1,0 +1,57 @@
+﻿Scripts/Characters/Mobs/MobBear@Name:
+Bär
+
+Scripts/Characters/Mobs/MobChicken@Name:
+Huhn
+
+Scripts/Characters/Mobs/MobCloakedLizard@Name:
+Kragenechse
+
+Scripts/Characters/Mobs/MobCrab@Name:
+Krabbe
+
+Scripts/Characters/Mobs/MobCrawler@Name:
+Spinnentier
+
+Scripts/Characters/Mobs/MobHoneyBadger@Name:
+Honigdachs
+
+Scripts/Characters/Mobs/MobHyena@Name:
+Hyäne
+
+Scripts/Characters/Mobs/MobPangolin@Name:
+Schuppentier
+
+Scripts/Characters/Mobs/MobScorpion@Name:
+Skorpion
+
+Scripts/Characters/Mobs/MobSnakeBlue@Name:
+Blaue Schlange
+
+Scripts/Characters/Mobs/MobSnakeBrown@Name:
+Braune Schlange
+
+Scripts/Characters/Mobs/MobSnakeGreen@Name:
+Grüne Schlange
+
+Scripts/Characters/Mobs/MobStarfish@Name:
+Seestern
+
+Scripts/Characters/Mobs/MobTropicalBoar@Name:
+Tropenwildschwein
+
+Scripts/Characters/Mobs/MobTurtle@Name:
+Schildkröte
+
+Scripts/Characters/Mobs/MobWildBoar@Name:
+Wildschwein
+
+Scripts/Characters/Mobs/MobWolf@Name:
+Wolf
+
+Scripts/Characters/Player/PlayerCharacter@Name:
+Spielcharakter
+
+Scripts/Characters/Player/PlayerCharacterSpectator@Name:
+Spielcharakter im Zuschauermodus
+

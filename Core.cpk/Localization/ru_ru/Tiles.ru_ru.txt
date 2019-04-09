@@ -1,0 +1,42 @@
+﻿Scripts/Tiles/TileBarren@Name:
+Пустошь
+
+Scripts/Tiles/TileBeachBoreal@Name:
+Берег (север)
+
+Scripts/Tiles/TileBeachTemperate@Name:
+Берег (умеренный климат)
+
+Scripts/Tiles/TileClay@Name:
+Глиняная яма
+
+Scripts/Tiles/TileForestBoreal@Name:
+Лес (север)
+
+Scripts/Tiles/TileForestTemperate@Name:
+Лес (умеренный климат)
+
+Scripts/Tiles/TileForestTropical@Name:
+Лес (тропики)
+
+Scripts/Tiles/TileLakeShore@Name:
+Берег озера
+
+Scripts/Tiles/TileMeadows@Name:
+Луга
+
+Scripts/Tiles/TileRocky@Name:
+Скалы
+
+Scripts/Tiles/TileRuins@Name:
+Руины
+
+Scripts/Tiles/TileSaltFlats@Name:
+Солончаки
+
+Scripts/Tiles/TileWaterLake@Name:
+Вода (озеро)
+
+Scripts/Tiles/TileWaterSea@Name:
+Вода (море)
+

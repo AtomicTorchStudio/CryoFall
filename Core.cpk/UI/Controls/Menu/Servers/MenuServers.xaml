@@ -1,0 +1,429 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.MenuServers"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data"
+    xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    Width="950"
+    d:DataContext="{d:DesignInstance data:ViewModelMenuServers, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UI/Styles/MenuServersStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type core:TabControlCached}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
+                <Setter Property="Background" Value="{x:Null}" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type core:TabControlCached}">
+                            <Grid KeyboardNavigation.TabNavigation="Local">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <ItemsPresenter Grid.Row="0" KeyboardNavigation.TabIndex="1"
+                                                VerticalAlignment="Stretch"
+                                                HorizontalAlignment="Stretch"
+                                                Margin="-5,0" />
+
+                                <Grid x:Name="ContentGrid" Grid.Row="2" HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <DockPanel IsItemsHost="True" HorizontalAlignment="Stretch" />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <ControlTemplate x:Key="ServersListDataTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Control Grid.Row="1" Style="{StaticResource MultiplayerTableHeaderControlStyle}" Margin="5,0,14,5"
+                             Visibility="{Binding ListNotEmptyVisibility}" />
+
+                    <ListBox Grid.Row="2"
+                             ItemsSource="{Binding ServersList}"
+                             Style="{StaticResource ServersListBoxStyle}"
+                             SelectedItem="{Binding SelectedServer}"
+                             Visibility="{Binding ListNotEmptyVisibility}"
+                             ItemTemplate="{StaticResource ServerInfoEntryTemplate}"
+                             ItemContainerStyle="{StaticResource ServersListBoxContainerStyle}" />
+
+                    <StackPanel Grid.Row="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical"
+                                Visibility="{Binding ListEmptyVisibility}">
+                        <!-- Text: No servers in this list -->
+                        <core:FormattedTextBlock
+                            Content="{x:Static loc:CoreStrings.MenuServers_NoServersInThisList}"
+                            Style="{StaticResource ServersLoadingTextBlockStyle}"
+                            FontSize="14"
+                            FontFamily="{StaticResource CondensedFontFamily}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2"
+                                Orientation="Vertical"
+                                Visibility="{Binding LoadingDisplayVisibility}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <core:LoadingDisplayControl Width="48" Height="48"
+                                                    HorizontalAlignment="Center"
+                                                    Margin="0,0,0,10" />
+                        <!-- Text: Awaiting server list... -->
+                        <core:FormattedTextBlock
+                            Content="{x:Static loc:CoreStrings.MenuServers_AwaitingServerList}"
+                            Style="{StaticResource ServersLoadingTextBlockStyle}"
+                            FontSize="14"
+                            FontFamily="{StaticResource CondensedFontFamily}" />
+                    </StackPanel>
+                </Grid>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="SelectedServerInfoControlTemplate" TargetType="ContentControl">
+                <Border Visibility="{Binding SelectedServerVisibility}">
+                    <Grid DataContext="{Binding SelectedServer}"
+                          d:DataContext="{d:DesignInstance data:ViewModelServerInfoListEntry, IsDesignTimeCreatable=True}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                            <TextBlock Text="{Binding ViewModelServerInfo.Title}" FontSize="16" FontWeight="Bold"
+                                       TextWrapping="Wrap"
+                                       Margin="0,5,0,7" />
+
+                            <Grid>
+                                <Border CornerRadius="1" HorizontalAlignment="Center"
+                                        Padding="2"
+                                        BorderThickness="1"
+                                        BorderBrush="{StaticResource WidgetBorderBrush}">
+                                    <Rectangle
+                                        Width="160"
+                                        Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                                        Fill="{Binding ViewModelServerInfo.Icon}" />
+                                </Border>
+
+                                <core:LoadingDisplayControl Width="32" Height="32"
+                                                            Visibility="{Binding ViewModelServerInfo.LoadingDisplayVisibility}"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center" />
+                            </Grid>
+
+                            <Grid Margin="0,10">
+                                <Grid.Resources>
+                                    <ResourceDictionary>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="FontSize" Value="13" />
+                                            <Setter Property="TextWrapping" Value="Wrap" />
+                                        </Style>
+                                    </ResourceDictionary>
+                                </Grid.Resources>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" Grid.Column="0"
+                                            Orientation="Horizontal">
+                                    <!-- Text: Address -->
+                                    <TextBlock Text="{x:Static loc:CoreStrings.ServerAddress}" />
+                                    <TextBlock Text=": " />
+                                </StackPanel>
+                                <TextBlock Grid.Row="0" Grid.Column="1"
+                                           Text="{Binding ViewModelServerInfo.Address.HostAddress}"
+                                           HorizontalAlignment="Right" TextWrapping="Wrap" />
+
+                                <StackPanel Grid.Row="1" Grid.Column="0"
+                                            Orientation="Horizontal">
+                                    <!-- Text: Public GUID -->
+                                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_PublicGUID}" />
+                                    <TextBlock Text=": " />
+                                </StackPanel>
+                                <TextBlock Grid.Row="1" Grid.Column="1"
+                                           Text="{Binding ViewModelServerInfo.Address.PublicGuid}"
+                                           MaxWidth="100"
+                                           HorizontalAlignment="Right"
+                                           TextWrapping="NoWrap"
+                                           TextTrimming="CharacterEllipsis">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction
+                                                Command="{Binding ViewModelServerInfo.CommandCopyPublicGuidToClipboard}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <base:ToolTipServiceExtend.ToolTip>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding ViewModelServerInfo.Address.PublicGuid}" />
+                                            <!-- Text: Click to copy it! -->
+                                            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ClickToCopy}" />
+                                        </StackPanel>
+                                    </base:ToolTipServiceExtend.ToolTip>
+                                </TextBlock>
+
+                                <StackPanel Grid.Row="2" Grid.Column="0"
+                                            Orientation="Horizontal">
+                                    <!-- Text: Ping -->
+                                    <TextBlock Text="{x:Static loc:CoreStrings.ServerPing}" />
+                                    <TextBlock Text=": " />
+                                </StackPanel>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ViewModelServerInfo.PingText}"
+                                           HorizontalAlignment="Right" />
+
+                                <StackPanel Grid.Row="3" Grid.Column="0"
+                                            Orientation="Horizontal">
+                                    <!-- Text: Players -->
+                                    <TextBlock Text="{x:Static loc:CoreStrings.ServerPlayersCount}" />
+                                    <TextBlock Text=": " />
+                                </StackPanel>
+                                <TextBlock Grid.Row="3" Grid.Column="1"
+                                           Text="{Binding ViewModelServerInfo.PlayersText}"
+                                           HorizontalAlignment="Right" />
+                            </Grid>
+
+                            <!-- Selectable text for description (based on read-only textbox) -->
+                            <ScrollViewer Margin="0,0,-10,10">
+                                <core:FormattedTextBlock Content="{Binding ViewModelServerInfo.Description}" />
+                            </ScrollViewer>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Bottom">
+                            <!-- Text: Join Server -->
+                            <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_JoinServer}"
+                                    Margin="0,5,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding ViewModelServerInfo.CommandJoinServer}"
+                                    CommandParameter="{Binding ViewModelServerInfo}"
+                                    Visibility="{Binding ViewModelServerInfo.JoinServerButtonVisibility}"
+                                    Style="{StaticResource MainMenuButtonStyle}" />
+
+                            <!-- Text: Refresh Server -->
+                            <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_RefreshServer}"
+                                    Margin="0,5,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding ViewModelServerInfo.CommandRefresh}"
+                                    CommandParameter="{Binding ViewModelServerInfo}"
+                                    Visibility="{Binding ViewModelServerInfo.RefreshButtonVisibility}"
+                                    Style="{StaticResource MainMenuButtonStyle}" />
+
+                            <!-- Text: Remove Server -->
+                            <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_RemoveServer}"
+                                    Margin="0,5,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding CommandRemove}"
+                                    CommandParameter="{Binding ViewModelServerInfo}"
+                                    Visibility="{Binding RemoveButtonVisibility}"
+                                    Style="{StaticResource MainMenuButtonStyle}" />
+
+                            <!-- Text: Edit Address -->
+                            <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_EditAddress}"
+                                    Margin="0,5,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding CommandEdit}"
+                                    CommandParameter="{Binding ViewModelServerInfo}"
+                                    Visibility="{Binding EditButtonVisibility}"
+                                    Style="{StaticResource MainMenuButtonStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+
+        </ResourceDictionary>
+    </base:BaseUserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.4*" />
+        </Grid.ColumnDefinitions>
+
+        <ContentControl Style="{StaticResource MainMenuWidgetStyle}">
+
+            <core:TabControlCached Margin="0,3,0,0">
+                <TabItem
+                    DataContext="{Binding PublicServers}"
+                    IsSelected="{Binding IsActive, Mode=TwoWay}">
+                    <TabItem.Header>
+                        <!-- Text: Official -->
+                        <servers:ServerTabItemHeaderControl
+                            Text="{x:Static loc:CoreStrings.MenuServers_ListTitleOfficial}"
+                            IconImageSource="/UI/Images/Icons/MenuServers/Official.png"
+                            ServersCount="{Binding ServersCount}"
+                            MinWidth="110" />
+                    </TabItem.Header>
+                    <Control Template="{StaticResource ServersListDataTemplate}" />
+                </TabItem>
+
+                <TabItem
+                    DataContext="{Binding CommunityServers}"
+                    IsSelected="{Binding IsActive, Mode=TwoWay}">
+                    <TabItem.Header>
+                        <!-- Text: Community -->
+                        <servers:ServerTabItemHeaderControl
+                            Text="{x:Static loc:CoreStrings.MenuServers_ListTitleCommunity}"
+                            IconImageSource="/UI/Images/Icons/MenuServers/Community.png"
+                            ServersCount="{Binding ServersCount}"
+                            MinWidth="110" />
+                    </TabItem.Header>
+                    <Control Template="{StaticResource ServersListDataTemplate}" />
+                </TabItem>
+
+                <TabItem
+                    DataContext="{Binding ModdedServers}"
+                    IsSelected="{Binding IsActive, Mode=TwoWay}">
+                    <TabItem.Header>
+                        <!-- Text: Modded -->
+                        <servers:ServerTabItemHeaderControl
+                            Text="{x:Static loc:CoreStrings.MenuServers_ListTitleModded}"
+                            IconImageSource="/UI/Images/Icons/MenuServers/Modded.png"
+                            ServersCount="{Binding ServersCount}"
+                            MinWidth="110" />
+                    </TabItem.Header>
+                    <Control Template="{StaticResource ServersListDataTemplate}" />
+                </TabItem>
+
+                <TabItem
+                    DockPanel.Dock="Right"
+                    DataContext="{Binding HistoryServers}"
+                    IsSelected="{Binding IsActive, Mode=TwoWay}">
+                    <TabItem.Header>
+                        <!-- Text: Recent -->
+                        <servers:ServerTabItemHeaderControl
+                            Text="{x:Static loc:CoreStrings.MenuServers_ListTitleRecent}"
+                            IconImageSource="/UI/Images/Icons/MenuServers/History.png"
+                            ServersCount="{Binding ServersCount}"
+                            VisibilityDetails="Collapsed"
+                            base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.MenuServers_ListTitleRecent}" />
+                    </TabItem.Header>
+                    <Control Template="{StaticResource ServersListDataTemplate}" />
+                </TabItem>
+
+                <TabItem
+                    DockPanel.Dock="Right"
+                    DataContext="{Binding FavoriteServers}"
+                    IsSelected="{Binding IsActive, Mode=TwoWay}">
+                    <TabItem.Header>
+                        <!-- Text: Favorite -->
+                        <servers:ServerTabItemHeaderControl
+                            Text="{x:Static loc:CoreStrings.MenuServers_ListTitleFavorite}"
+                            IconImageSource="/UI/Images/Icons/MenuServers/Favorite.png"
+                            ServersCount="{Binding ServersCount}"
+                            VisibilityDetails="Collapsed"
+                            base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.MenuServers_ListTitleFavorite}" />
+                    </TabItem.Header>
+                    <Control Template="{StaticResource ServersListDataTemplate}" />
+                </TabItem>
+
+                <TabItem
+                    DockPanel.Dock="Right"
+                    DataContext="{Binding CustomServers}"
+                    IsSelected="{Binding IsActive, Mode=TwoWay}">
+                    <TabItem.Header>
+                        <!-- Text: Custom -->
+                        <servers:ServerTabItemHeaderControl
+                            Text="{x:Static loc:CoreStrings.MenuServers_ListTitleCustom}"
+                            IconImageSource="/UI/Images/Icons/MenuServers/Custom.png"
+                            ServersCount="{Binding ServersCount}"
+                            VisibilityDetails="Collapsed"
+                            base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.MenuServers_ListTitleCustom}" />
+                    </TabItem.Header>
+                    <Control Template="{StaticResource ServersListDataTemplate}" />
+                </TabItem>
+
+                <TabItem DockPanel.Dock="Right"
+                         IsEnabled="False" />
+
+            </core:TabControlCached>
+        </ContentControl>
+
+        <ContentControl Grid.Column="1" Style="{StaticResource MainMenuWidgetStyle}">
+            <Viewbox Stretch="Uniform">
+                <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Top"
+                      MinHeight="600"
+                      Width="200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+
+                    <ContentControl Foreground="White" Template="{StaticResource SelectedServerInfoControlTemplate}" />
+
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="2"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Stretch">
+
+                        <!-- Text: Add Custom Server -->
+                        <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_AddCustomServer}"
+                                Command="{Binding CommandAddCustomServer}"
+                                Visibility="{Binding Path=CustomServers.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                                HorizontalAlignment="Stretch"
+                                Style="{StaticResource MainMenuButtonStyle}" />
+
+                        <!-- Text: Clear list -->
+                        <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_ClearList}"
+                                Command="{Binding CommandClearHistory}"
+                                Visibility="{Binding Path=HistoryServers.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                                HorizontalAlignment="Stretch"
+                                Margin="0,5,0,0"
+                                Style="{StaticResource MainMenuButtonStyle}" />
+
+                        <!-- Text: Clear list -->
+                        <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_ClearList}"
+                                Command="{Binding CommandClearFavorites}"
+                                Visibility="{Binding Path=FavoriteServers.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                                HorizontalAlignment="Stretch"
+                                Margin="0,5,0,0"
+                                Style="{StaticResource MainMenuButtonStyle}" />
+
+                        <!-- Text: Refresh All -->
+                        <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_RefreshAll}"
+                                Command="{Binding CommandRefreshAll}"
+                                HorizontalAlignment="Stretch"
+                                Margin="0,5,0,0"
+                                Style="{StaticResource MainMenuButtonStyle}" />
+
+                    </StackPanel>
+                </Grid>
+            </Viewbox>
+        </ContentControl>
+    </Grid>
+</base:BaseUserControl>

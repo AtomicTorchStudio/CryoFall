@@ -1,0 +1,17 @@
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+`O cliente não conseguiu estabelecer uma conexão com o servidor mestre.
+[br]Verifique se a Internet está conectada, e se seu firewall
+[br]ou ISP não está bloqueando a conexão.`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Title:
+Não é possível conectar-se ao servidor mestre
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_MessageFormat:
+`Este servidor de jogo requer os seguintes mods:
+[br]{0}
+[br][br]Baixe e instale estes mods para poder entrar.
+[br]Encontre mods nos fóruns oficiais: http://forums.atomictorch.com/index.php?board=24.0`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_Title:
+Não é possível estabelecer conexão — mods inexistentes
+

@@ -1,0 +1,6 @@
+﻿Scripts/Perks/PerkClaimDeposits@Name:
+석유 및 리튬 매장지 점유
+
+Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
+지을 수 있는 토지 점유소 최대 개수: {0}
+

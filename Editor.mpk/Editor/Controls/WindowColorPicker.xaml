@@ -1,0 +1,105 @@
+﻿<core:BaseUserControlWithWindow
+    x:Class="AtomicTorch.CBND.CoreMod.Editor.Controls.WindowColorPicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core;assembly=Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Controls.Data"
+    x:Name="UserControl"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowColorPicker, d:IsDesignTimeCreatable=True}">
+    <core:BaseUserControlWithWindow.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="{StaticResource MonospacedFontFamily}" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="Margin" Value="2,0" />
+            <Setter Property="Width" Value="25" />
+            <Setter Property="MinWidth" Value="25" />
+        </Style>
+
+        <Style TargetType="Slider" BasedOn="{StaticResource {x:Type Slider}}">
+            <Setter Property="Margin" Value="0,-6,0,-4" />
+            <Setter Property="Width" Value="150" />
+        </Style>
+    </core:BaseUserControlWithWindow.Resources>
+
+    <core:GameWindow x:Name="GameWindow"
+                     FocusOnControl="{Binding ElementName=GameWindow}"
+                     Padding="10"
+                     Width="330"
+                     Height="240">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Border Width="96"
+                    Height="96"
+                    BorderThickness="1"
+                    BorderBrush="White"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <Border.Background>
+                    <SolidColorBrush Color="{Binding Color}" />
+                </Border.Background>
+            </Border>
+
+            <StackPanel Grid.Row="0"
+                        Grid.Column="1"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="R=" />
+                    <TextBox
+                        Text="{Binding R, UpdateSourceTrigger=LostFocus, Converter={StaticResource NumberToHexStringConverter}}" />
+                </StackPanel>
+                <Slider Value="{Binding R}" Minimum="0" Maximum="255" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="G=" />
+                    <TextBox
+                        Text="{Binding G, UpdateSourceTrigger=LostFocus, Converter={StaticResource NumberToHexStringConverter}}" />
+                </StackPanel>
+                <Slider Value="{Binding G}" Minimum="0" Maximum="255" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="B=" />
+                    <TextBox
+                        Text="{Binding B, UpdateSourceTrigger=LostFocus, Converter={StaticResource NumberToHexStringConverter}}" />
+                </StackPanel>
+                <Slider Value="{Binding B}" Minimum="0" Maximum="255" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,10,0,0">
+                <Button Content="Apply" Command="{Binding CommandCloseOk,ElementName=GameWindow}" Margin="0,0,10,0" />
+                <Button Content="Cancel" Command="{Binding CommandCloseCancel,ElementName=GameWindow}" />
+            </StackPanel>
+        </Grid>
+
+    </core:GameWindow>
+</core:BaseUserControlWithWindow>

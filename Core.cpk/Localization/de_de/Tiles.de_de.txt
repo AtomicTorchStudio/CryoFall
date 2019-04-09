@@ -1,0 +1,42 @@
+﻿Scripts/Tiles/TileBarren@Name:
+Ödland
+
+Scripts/Tiles/TileBeachBoreal@Name:
+Strand (nördlich)
+
+Scripts/Tiles/TileBeachTemperate@Name:
+Strand (gemäßigt)
+
+Scripts/Tiles/TileClay@Name:
+Tongrube
+
+Scripts/Tiles/TileForestBoreal@Name:
+Wald (nördlich)
+
+Scripts/Tiles/TileForestTemperate@Name:
+Wald (gemäßigt)
+
+Scripts/Tiles/TileForestTropical@Name:
+Wald (tropisch)
+
+Scripts/Tiles/TileLakeShore@Name:
+Seeufer
+
+Scripts/Tiles/TileMeadows@Name:
+Wiesen
+
+Scripts/Tiles/TileRocky@Name:
+Felsenlandschaft
+
+Scripts/Tiles/TileRuins@Name:
+Ruinen
+
+Scripts/Tiles/TileSaltFlats@Name:
+Salztonebenen
+
+Scripts/Tiles/TileWaterLake@Name:
+Wasser (See)
+
+Scripts/Tiles/TileWaterSea@Name:
+Wasser (Meer)
+

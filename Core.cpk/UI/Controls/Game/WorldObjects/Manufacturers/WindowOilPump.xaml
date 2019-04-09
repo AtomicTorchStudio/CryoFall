@@ -1,0 +1,131 @@
+﻿<manufacturers:WindowOilPumpBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.WindowOilPump"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:fuelBurningIndicator="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.FuelBurningIndicator"
+    xmlns:manufacturers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowOilPump, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Canvas Margin="-15,-21,0,0"
+                        HorizontalAlignment="Center">
+                    <Rectangle Fill="{StaticResource LiquidIconPetroleum}"
+                               Width="18"
+                               Height="18" />
+                </Canvas>
+
+                <StackPanel Orientation="Horizontal" Margin="2,0,0,0">
+
+                    <Grid Margin="0,-14,10,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Vertical" Grid.Row="0" VerticalAlignment="Top">
+                            <!-- Text: Input -->
+                            <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                                       Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,4,0" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <controls:ItemsContainerControl
+                                    Container="{Binding ViewModelManufacturingState.ContainerInput}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    DesignTimeSlotsCount="1" />
+                                <core:ValueBarControl
+                                    Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
+                                    Foreground="{StaticResource LiquidBrushPetroleum}"
+                                    Margin="0,0,-6,0"
+                                    Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical"
+                                    Grid.Row="2"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Left">
+                            <Canvas
+                                DataContext="{Binding ViewModelBurningFuel}"
+                                Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <fuelBurningIndicator:FuelBurningIndicator
+                                    FuelIcon="{Binding FuelIcon}"
+                                    FuelColor="{Binding FuelColor}"
+                                    Canvas.Left="-24"
+                                    Canvas.Top="41" />
+                            </Canvas>
+
+                            <!-- Text: Fuel -->
+                            <TextBlock Text="{x:Static loc:CoreStrings.TitleFuel}"
+                                       Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                       HorizontalAlignment="Center"
+                                       Margin="0" />
+
+                            <controls:ItemsContainerControl
+                                Container="{Binding ViewModelFuelBurningState.ContainerFuel}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                DesignTimeSlotsCount="1" />
+                            <core:ValueBarControl
+                                Value="{Binding ViewModelFuelBurningState.FuelUsageCurrentValue}"
+                                MaxValue="{Binding ViewModelFuelBurningState.FuelUsageMaxValue}"
+                                Foreground="{StaticResource BrushFuel}"
+                                Margin="0,0,0,-6"
+                                Style="{StaticResource ItemSlotCraftingProgressHorizontalBar}" />
+                        </StackPanel>
+
+                    </Grid>
+
+                    <core:ValueBarControl
+                        Value="{Binding ViewModelLiquidContainerState.Amount}"
+                        MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
+                        Foreground="{StaticResource LiquidBrushPetroleum}"
+                        Margin="15,0"
+                        Style="{StaticResource LiquidMediumValueBar}" />
+
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                        <!-- Text: Output -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0" />
+                        <controls:ItemsContainerControl
+                            Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                            MaxWidth="100"
+                            DesignTimeSlotsCount="1" />
+                    </StackPanel>
+
+                </StackPanel>
+            </StackPanel>
+
+            <Control Style="{StaticResource ControlVerticalSeparator}" Grid.Column="1" />
+
+            <manufacturers:DepositCapacityStatsControl
+                Grid.Column="2"
+                DataContext="{Binding ViewModelDepositCapacityStatsControl}"
+                BarBrush="{StaticResource LiquidBrushPetroleum}" />
+        </Grid>
+
+    </core:WindowMenuWithInventory>
+</manufacturers:WindowOilPumpBase>

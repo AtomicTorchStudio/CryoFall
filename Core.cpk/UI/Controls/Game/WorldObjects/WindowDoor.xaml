@@ -1,0 +1,44 @@
+﻿<worldObjects:WindowDoorBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WindowDoor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowDoor, IsDesignTimeCreatable=True}"
+    FontWeight="Bold">
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Margin="0,20,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="36" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center">
+                    <worldObjects:WorldObjectOwnersEditorControl DataContext="{Binding ViewModelOwnersEditor}"
+                                                                 Margin="2,0,0,5" />
+                </StackPanel>
+
+                <Control Style="{StaticResource ControlVerticalSeparator}"
+                         Grid.Column="1" />
+
+                <StackPanel Orientation="Vertical"
+                            Grid.Column="2"
+                            VerticalAlignment="Center">
+                    <worldObjects:WorldObjectAccessModeEditorControl DataContext="{Binding ViewModelAccessModeEditor}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+    </core:WindowMenuWithInventory>
+</worldObjects:WindowDoorBase>

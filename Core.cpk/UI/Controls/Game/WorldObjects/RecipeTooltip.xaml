@@ -1,0 +1,75 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.RecipeTooltip"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    mc:Ignorable="d"
+    x:Name="UserControl"
+    d:DesignHeight="300" d:DesignWidth="300">
+    <Viewbox x:Name="LayoutRoot" Stretch="Uniform" MaxHeight="250" MaxWidth="250">
+
+        <Grid Width="220">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <controls:RequiredItemsPanelControl Grid.Row="0" MaxWidth="340"
+                                                Items="{Binding InputItems}"
+                                                CountMultiplier="{Binding CountToCraft}"
+                                                MinSlotsCount="8"
+                                                IsChecksItemAvailability="False"
+                                                FontSize="13" />
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <!-- Recipe duration -->
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center"
+                            Margin="0,0,5,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../../../Images/Icons/Clock.png"
+                               VerticalAlignment="Center"
+                               Margin="0,0,1,0"
+                               Width="22"
+                               Height="22" />
+                        <TextBlock Text="{Binding ViewModelRecipe.DurationText}"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Foreground="{StaticResource BrushColor7}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Arrow -->
+                <Path Data="m15,0 L30,15 L20,15 L20,30 L10,30 L10,15 L0,15z"
+                      RenderTransformOrigin="0.5,0.5"
+                      VerticalAlignment="Center">
+                    <Path.Fill>
+                        <LinearGradientBrush Opacity="0.5">
+                            <GradientStop Color="{StaticResource ColorAlt4}" />
+                            <GradientStop Color="{StaticResource ColorAlt7}" Offset="1" />
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                    <Path.RenderTransform>
+                        <ScaleTransform ScaleY="-1" ScaleX="1.1" />
+                    </Path.RenderTransform>
+                </Path>
+            </StackPanel>
+
+            <controls:RequiredItemsPanelControl Grid.Row="2" MaxWidth="340"
+                                                Items="{Binding OutputItems}"
+                                                CountMultiplier="{Binding CountToCraft}"
+                                                MinSlotsCount="8"
+                                                IsChecksItemAvailability="False"
+                                                FontSize="13" />
+
+
+        </Grid>
+
+    </Viewbox>
+</base:BaseUserControl>

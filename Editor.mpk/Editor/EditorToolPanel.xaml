@@ -1,0 +1,62 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.Editor.EditorToolPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="400" d:DesignWidth="190"
+    d:DataContext="{d:DesignInstance data:ViewModelEditorToolsPanel, IsDesignTimeCreatable=True}"
+    MinWidth="138">
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="EditorStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </base:BaseUserControl.Resources>
+
+    <Border Style="{StaticResource EditorPanelStyle}"
+            DataContext="{Binding SelectedTool}"
+            Visibility="{Binding ItemsVisibility, FallbackValue=Collapsed}">
+        <Grid VerticalAlignment="Top"
+              HorizontalAlignment="Stretch"
+              Background="Transparent"
+              IsHitTestVisible="True">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!-- Items filters -->
+            <ItemsControl Grid.Row="0"
+                          ItemsSource="{Binding FiltersCollection}"
+                          Visibility="{Binding FiltersVisibility}"
+                          Style="{StaticResource ItemsControlStyleForEditorToolItems}"
+                          Background="Transparent"
+                          Margin="0,0,0,5" />
+
+            <!-- Items search -->
+            <TextBox Grid.Row="1"
+                     Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     FontSize="12"
+                     HorizontalAlignment="Stretch"
+                     Margin="0,0,0,5" />
+
+            <!-- Items -->
+            <ScrollViewer Grid.Row="2"
+                          Style="{StaticResource ItemsScrollViewerStyle}">
+                <ItemsControl ItemsSource="{Binding FilteredItemsCollection}"
+                              Style="{StaticResource ItemsControlStyleForEditorToolItems}"
+                              Background="Transparent" />
+            </ScrollViewer>
+
+        </Grid>
+    </Border>
+</base:BaseUserControl>

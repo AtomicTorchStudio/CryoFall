@@ -1,0 +1,1508 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AtomicTorch.GameEngine.Common.Primitives</name>
+    </assembly>
+    <members>
+        <member name="T:AtomicTorch.GameEngine.Common.DataStructures.ArrayWithWeights`1">
+            <summary>
+            Special collection class for getting items with expected frequency.
+            Randomicity is determined by the frequency of each element.
+            </summary>
+            <typeparam name="T">
+            Element type (should be wrapped into <see cref="T:AtomicTorch.GameEngine.Common.Primitives.ValueWithWeight`1" /> when providing
+            to the constructor of this class).
+            </typeparam>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.DataStructures.ArrayWithWeights`1.items">
+            <summary>
+            This array contains entries ordered by ProbabilityTotalTarget (in range [0;1]) in ascending order.
+            It allows fast and precise lookup by random value (in range [0;1])
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.DataStructures.ArrayWithWeights`1.GetNonRandomFirst">
+            <summary>
+            Use this only for optimization purpose (when you checked Count property before and it's exactly 1).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AtomicTorch.GameEngine.Common.DataStructures.FastSortedList`2">
+            <summary>
+            Represents a collection of associated keys and values
+            that are sorted by the keys and are accessible by key
+            and by index.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.GameEngine.Common.DataStructures.FreezableListWrapper`1">
+            <summary>
+            Special collection to avoid "collection modified" exceptions during enumeration.
+            It copies all the elements to cached list on enumeration start and then using this list.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.GameEngine.Common.DataStructures.ListDictionary`2">
+            <summary>
+            Dictionary optimized for faster lookups of small objects.
+            Doesn't use hash codes.
+            Please use only when items count small (less than ~16 items),
+            otherwise the regular Dictionary is much faster.
+            Please note: the properties Keys and Values returning ICollection's are not implemented.
+            The same properties returning IEnumerable's are implemented.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.GameEngine.Common.DataStructures.ReadOnlyListDictionary`2">
+            <summary>
+            Read-only dictionary optimized for faster lookups of small objects.
+            Doesn't use hash codes.
+            Please use only when items count small (less than ~16 items),
+            otherwise the regular Dictionary is much faster.
+            Please note: the properties Keys and Values returning ICollection's are not implemented.
+            The same properties returning IEnumerable's are implemented.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Extensions.DictionaryExtensions.TryAddOrUpdate``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,``1,System.Func{``1,``1,``1})">
+            <param name="combineValueFunc">Example: (a, b) => a + b</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Extensions.DictionaryExtensions.TryAddOrUpdate``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1,System.Func{``1,``1,``1})">
+            <param name="combineValueFunc">Example: (a, b) => a + b</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Extensions.EnumerableExtensions.Batch``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Batches the source sequence into sized buckets.
+            </summary>
+            <typeparam name="TSource">Type of elements in <paramref name="source" /> sequence.</typeparam>
+            <param name="source">The source sequence.</param>
+            <param name="size">Size of buckets.</param>
+            <returns>A sequence of equally sized buckets containing elements of the source collection.</returns>
+            <remarks>
+            This operator uses deferred execution and streams its results (buckets and bucket content).
+            </remarks>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Extensions.EnumerableExtensions.Batch``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{System.Collections.Generic.IEnumerable{``0},``1})">
+            <summary>
+            Batches the source sequence into sized buckets and applies a projection to each bucket.
+            </summary>
+            <typeparam name="TSource">Type of elements in <paramref name="source" /> sequence.</typeparam>
+            <typeparam name="TResult">Type of result returned by <paramref name="resultSelector" />.</typeparam>
+            <param name="source">The source sequence.</param>
+            <param name="size">Size of buckets.</param>
+            <param name="resultSelector">The projection to apply to each bucket.</param>
+            <returns>A sequence of projections on equally sized buckets containing elements of the source collection.</returns>
+            <remarks>
+            This operator uses deferred execution and streams its results (buckets and bucket content).
+            </remarks>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Extensions.EnumerableExtensions.ChangeSize``1(``0[],System.Int32)">
+            <summary>
+            Change array size. It will copy old array entries (it will NOT copy entries with index > newLength).
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Extensions.EnumerableExtensions.ProcessAndRemove``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            It's like foreach, but if func returns false, item will be removed on end of this method
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <param name="needRemoveFunc"></param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Extensions.EnumerableExtensions.TakeAtPercent``1(System.Collections.Generic.IList{``0},System.Single)">
+            <summary>
+            Take element at percent position (value from 0 to 1, inclusive).
+            For example list.TakeAtPercent(0) will return first element and list.TakeAtPercent(0.5) will return middle element.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.GameEngine.Common.Extensions.HexadecimalStringExtension">
+            <summary>
+            By Tomalak
+            http://stackoverflow.com/questions/311165/how-do-you-convert-byte-array-to-hexadecimal-string-and-vice-versa/311179#311179
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Extensions.StringExtensions.TrimNewLinesAndSpaces(System.String)">
+            <summary>
+            Removes \t \r \n and trim spaces.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Extensions.TopologicalSortExtensions.TopologicalSort``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``0}},System.Boolean)">
+            <summary>
+            The algorithm is based on http://stackoverflow.com/a/11027096
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Helpers.FilePathHelper.StripFilePathExtension(System.String)">
+            <summary>
+            Gets the file path without the extension.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Helpers.PositionHashHelper.GetHashDouble(System.UInt32,System.UInt32,System.UInt32)">
+            <returns>Hash value (bigger than zero, but less than 1).</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Helpers.PositionHashHelper.GetHashUInt32(System.UInt32,System.UInt32,System.UInt32)">
+            <returns>Hash value.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Helpers.RandomHelper.NextDouble">
+            <summary>
+            Returns double value from 0.0 to 0.99999999999999978
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Helpers.RandomHelper.NextFloat">
+            <summary>
+            Returns float value from 0.0f to ~0.99999999999999978f
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Helpers.RandomHelper.NextFloat(System.Random)">
+            <summary>
+            Returns float value from 0.0f to 1.0f
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Helpers.SequenceNumberHelper.GetRelativeSequenceNumberForByte(System.Byte,System.Byte)">
+            <summary>
+            Imagine we have a sequence of numbers (in current case, byte type).
+            It can overflow, i.e. 255+1=0.
+            With this method we could easily calculate difference between two numbers.
+            For example, difference between 0 and 1 is 1, as well as between 1 and 2, but also between 255 and 0.
+            </summary>
+            <returns>Relative sequence number.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Helpers.TypeHelper.TryParsePrimitiveType(System.String,System.Type,System.Object@)">
+            <summary>
+            Parse primitive type value from string.
+            Useful when no exception throwing is acceptable (typeDescriptor.TryConvertFrom() will throw exception anyway, but this
+            method will not).
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Logging.LogHelper.AppendStackTraceToMessage(System.Text.StringBuilder,System.Diagnostics.StackTrace,System.Func{System.Diagnostics.StackFrame,System.Boolean})">
+            <param name="stringBuilder">String builder to append stack trace to.</param>
+            <param name="stackTrace">If true the stacktrace will be cleaned from extra calls.</param>
+            <param name="stackTraceFrameFilterFunc">Func returning true if stack frame should be logged.</param>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Logging.LogSeverity.Debug">
+            <summary>
+            Debug info (very verbose).
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Logging.LogSeverity.Info">
+            <summary>
+            Info (unimportant).
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Logging.LogSeverity.Important">
+            <summary>
+            Important.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Logging.LogSeverity.Warning">
+            <summary>
+            Warning.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Logging.LogSeverity.Error">
+            <summary>
+            Error.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Logging.LogSeverity.Dev">
+            <summary>
+            This is a special log severity which is used for development-related messages.
+            Should not be used in release builds.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.GameEngine.Common.Primitives.AtomicGuid">
+            <summary>
+            AtomicTorch Guid implementation.
+            Guid is 128-bit number.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.GameEngine.Common.Primitives.AutoStringBuilder">
+            <summary>
+            This class has implicit casting from string and string builder and was designed to reduce memory pressure on
+            logging and other systems which are actively using the strings concatenation.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4">
+            <summary>
+            Represents the right-handed 4x4 floating point matrix, which can store translation, scale and rotation information.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Identity">
+            <summary>
+            Returns the identity matrix.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M11">
+            <summary>
+            A first row and first column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M12">
+            <summary>
+            A first row and second column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M13">
+            <summary>
+            A first row and third column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M14">
+            <summary>
+            A first row and fourth column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M21">
+            <summary>
+            A second row and first column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M22">
+            <summary>
+            A second row and second column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M23">
+            <summary>
+            A second row and third column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M24">
+            <summary>
+            A second row and fourth column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M31">
+            <summary>
+            A third row and first column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M32">
+            <summary>
+            A third row and second column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M33">
+            <summary>
+            A third row and third column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M34">
+            <summary>
+            A third row and fourth column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M41">
+            <summary>
+            A fourth row and first column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M42">
+            <summary>
+            A fourth row and second column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M43">
+            <summary>
+            A fourth row and third column value.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M44">
+            <summary>
+            A fourth row and fourth column value.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructs a matrix.
+            </summary>
+            <param name="m11">A first row and first column value.</param>
+            <param name="m12">A first row and second column value.</param>
+            <param name="m13">A first row and third column value.</param>
+            <param name="m14">A first row and fourth column value.</param>
+            <param name="m21">A second row and first column value.</param>
+            <param name="m22">A second row and second column value.</param>
+            <param name="m23">A second row and third column value.</param>
+            <param name="m24">A second row and fourth column value.</param>
+            <param name="m31">A third row and first column value.</param>
+            <param name="m32">A third row and second column value.</param>
+            <param name="m33">A third row and third column value.</param>
+            <param name="m34">A third row and fourth column value.</param>
+            <param name="m41">A fourth row and first column value.</param>
+            <param name="m42">A fourth row and second column value.</param>
+            <param name="m43">A fourth row and third column value.</param>
+            <param name="m44">A fourth row and fourth column value.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.#ctor(AtomicTorch.GameEngine.Common.Primitives.Vector4,AtomicTorch.GameEngine.Common.Primitives.Vector4,AtomicTorch.GameEngine.Common.Primitives.Vector4,AtomicTorch.GameEngine.Common.Primitives.Vector4)">
+            <summary>
+            Constructs a matrix.
+            </summary>
+            <param name="row1">A first row of the created matrix.</param>
+            <param name="row2">A second row of the created matrix.</param>
+            <param name="row3">A third row of the created matrix.</param>
+            <param name="row4">A fourth row of the created matrix.</param>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Backward">
+            <summary>
+            The backward vector formed from the third row M31, M32, M33 elements.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Down">
+            <summary>
+            The down vector formed from the second row -M21, -M22, -M23 elements.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Forward">
+            <summary>
+            The forward vector formed from the third row -M31, -M32, -M33 elements.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Left">
+            <summary>
+            The left vector formed from the first row -M11, -M12, -M13 elements.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Right">
+            <summary>
+            The right vector formed from the first row M11, M12, M13 elements.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Rotation">
+            <summary>
+            Rotation stored in this matrix.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Scale">
+            <summary>
+            Scale stored in this matrix.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Translation">
+            <summary>
+            Position stored in this matrix.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Up">
+            <summary>
+            The upper vector formed from the second row M21, M22, M23 elements.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Add(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> which contains sum of two matrixes.
+            </summary>
+            <param name="matrix1">The first matrix to add.</param>
+            <param name="matrix2">The second matrix to add.</param>
+            <returns>The result of the matrix addition.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Add(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> which contains sum of two matrixes.
+            </summary>
+            <param name="matrix1">The first matrix to add.</param>
+            <param name="matrix2">The second matrix to add.</param>
+            <param name="result">The result of the matrix addition as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateFromAxisAngle(AtomicTorch.GameEngine.Common.Primitives.Vector3,System.Single)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> which contains the rotation moment around specified axis.
+            </summary>
+            <param name="axis">The axis of rotation.</param>
+            <param name="angle">The angle of rotation in radians.</param>
+            <returns>The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateFromAxisAngle(AtomicTorch.GameEngine.Common.Primitives.Vector3@,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> which contains the rotation moment around specified axis.
+            </summary>
+            <param name="axis">The axis of rotation.</param>
+            <param name="angle">The angle of rotation in radians.</param>
+            <param name="result">The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateFromQuaternion(AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Creates a new rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> from a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+            <param name="quaternion"><see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> of rotation moment.</param>
+            <returns>The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateFromQuaternion(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> from a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+            <param name="quaternion"><see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> of rotation moment.</param>
+            <param name="result">The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateFromYawPitchRoll(System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> from the specified yaw, pitch and roll values.
+            </summary>
+            <param name="yaw">The yaw rotation value in radians.</param>
+            <param name="pitch">The pitch rotation value in radians.</param>
+            <param name="roll">The roll rotation value in radians.</param>
+            <returns>The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+            <remarks>
+            For more information about yaw, pitch and roll visit http://en.wikipedia.org/wiki/Euler_angles.
+            </remarks>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateFromYawPitchRoll(System.Single,System.Single,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> from the specified yaw, pitch and roll values.
+            </summary>
+            <param name="yaw">The yaw rotation value in radians.</param>
+            <param name="pitch">The pitch rotation value in radians.</param>
+            <param name="roll">The roll rotation value in radians.</param>
+            <param name="result">The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> as an output parameter.</param>
+            <remarks>
+            For more information about yaw, pitch and roll visit http://en.wikipedia.org/wiki/Euler_angles.
+            </remarks>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateLookAt(AtomicTorch.GameEngine.Common.Primitives.Vector3,AtomicTorch.GameEngine.Common.Primitives.Vector3,AtomicTorch.GameEngine.Common.Primitives.Vector3)">
+            <summary>
+            Creates a new viewing <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="cameraPosition">Position of the camera.</param>
+            <param name="cameraTarget">Lookup vector of the camera.</param>
+            <param name="cameraUpVector">The direction of the upper edge of the camera.</param>
+            <returns>The viewing <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateLookAt(AtomicTorch.GameEngine.Common.Primitives.Vector3@,AtomicTorch.GameEngine.Common.Primitives.Vector3@,AtomicTorch.GameEngine.Common.Primitives.Vector3@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new viewing <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="cameraPosition">Position of the camera.</param>
+            <param name="cameraTarget">Lookup vector of the camera.</param>
+            <param name="cameraUpVector">The direction of the upper edge of the camera.</param>
+            <param name="result">The viewing <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateOrthographic(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for orthographic view.
+            </summary>
+            <param name="width">Width of the viewing volume.</param>
+            <param name="height">Height of the viewing volume.</param>
+            <param name="zNearPlane">Depth of the near plane.</param>
+            <param name="zFarPlane">Depth of the far plane.</param>
+            <returns>The new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for orthographic view.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateOrthographic(System.Single,System.Single,System.Single,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for orthographic view.
+            </summary>
+            <param name="width">Width of the viewing volume.</param>
+            <param name="height">Height of the viewing volume.</param>
+            <param name="zNearPlane">Depth of the near plane.</param>
+            <param name="zFarPlane">Depth of the far plane.</param>
+            <param name="result">The new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for orthographic view as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateOrthographicOffCenter(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for customized orthographic view.
+            </summary>
+            <param name="left">Lower x-value at the near plane.</param>
+            <param name="right">Upper x-value at the near plane.</param>
+            <param name="bottom">Lower y-coordinate at the near plane.</param>
+            <param name="top">Upper y-value at the near plane.</param>
+            <param name="zNearPlane">Depth of the near plane.</param>
+            <param name="zFarPlane">Depth of the far plane.</param>
+            <returns>The new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for customized orthographic view.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateOrthographicOffCenter(AtomicTorch.GameEngine.Common.Primitives.RectangleInt,System.Single,System.Single)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for customized orthographic view.
+            </summary>
+            <param name="viewingVolume">The viewing volume.</param>
+            <param name="zNearPlane">Depth of the near plane.</param>
+            <param name="zFarPlane">Depth of the far plane.</param>
+            <returns>The new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for customized orthographic view.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateOrthographicOffCenter(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for customized orthographic view.
+            </summary>
+            <param name="left">Lower x-value at the near plane.</param>
+            <param name="right">Upper x-value at the near plane.</param>
+            <param name="bottom">Lower y-coordinate at the near plane.</param>
+            <param name="top">Upper y-value at the near plane.</param>
+            <param name="zNearPlane">Depth of the near plane.</param>
+            <param name="zFarPlane">Depth of the far plane.</param>
+            <param name="result">
+            The new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for customized orthographic view as an output
+            parameter.
+            </param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreatePerspective(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for perspective view.
+            </summary>
+            <param name="width">Width of the viewing volume.</param>
+            <param name="height">Height of the viewing volume.</param>
+            <param name="nearPlaneDistance">Distance to the near plane.</param>
+            <param name="farPlaneDistance">Distance to the far plane.</param>
+            <returns>The new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for perspective view.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreatePerspective(System.Single,System.Single,System.Single,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for perspective view.
+            </summary>
+            <param name="width">Width of the viewing volume.</param>
+            <param name="height">Height of the viewing volume.</param>
+            <param name="nearPlaneDistance">Distance to the near plane.</param>
+            <param name="farPlaneDistance">Distance to the far plane.</param>
+            <param name="result">The new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for perspective view as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreatePerspectiveFieldOfView(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for perspective view with field of view.
+            </summary>
+            <param name="fieldOfView">Field of view in the y direction in radians.</param>
+            <param name="aspectRatio">Width divided by height of the viewing volume.</param>
+            <param name="nearPlaneDistance">Distance to the near plane.</param>
+            <param name="farPlaneDistance">Distance to the far plane.</param>
+            <returns>The new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for perspective view with FOV.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreatePerspectiveFieldOfView(System.Single,System.Single,System.Single,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for perspective view with field of view.
+            </summary>
+            <param name="fieldOfView">Field of view in the y direction in radians.</param>
+            <param name="aspectRatio">Width divided by height of the viewing volume.</param>
+            <param name="nearPlaneDistance">Distance of the near plane.</param>
+            <param name="farPlaneDistance">Distance of the far plane.</param>
+            <param name="result">The new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for perspective view with FOV as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreatePerspectiveOffCenter(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for customized perspective view.
+            </summary>
+            <param name="left">Lower x-value at the near plane.</param>
+            <param name="right">Upper x-value at the near plane.</param>
+            <param name="bottom">Lower y-coordinate at the near plane.</param>
+            <param name="top">Upper y-value at the near plane.</param>
+            <param name="nearPlaneDistance">Distance to the near plane.</param>
+            <param name="farPlaneDistance">Distance to the far plane.</param>
+            <returns>The new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for customized perspective view.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreatePerspectiveOffCenter(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new projection <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for customized perspective view.
+            </summary>
+            <param name="left">Lower x-value at the near plane.</param>
+            <param name="right">Upper x-value at the near plane.</param>
+            <param name="bottom">Lower y-coordinate at the near plane.</param>
+            <param name="top">Upper y-value at the near plane.</param>
+            <param name="nearPlaneDistance">Distance to the near plane.</param>
+            <param name="farPlaneDistance">Distance to the far plane.</param>
+            <param name="result">The new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> for customized perspective view as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateRotationX(System.Single)">
+            <summary>
+            Creates a new rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around X axis.
+            </summary>
+            <param name="radians">Angle in radians.</param>
+            <returns>The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around X axis.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateRotationX(System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around X axis.
+            </summary>
+            <param name="radians">Angle in radians.</param>
+            <param name="result">The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around X axis as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateRotationY(System.Single)">
+            <summary>
+            Creates a new rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around Y axis.
+            </summary>
+            <param name="radians">Angle in radians.</param>
+            <returns>The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around Y axis.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateRotationY(System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around Y axis.
+            </summary>
+            <param name="radians">Angle in radians.</param>
+            <param name="result">The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around Y axis as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateRotationZ(System.Single)">
+            <summary>
+            Creates a new rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around Z axis.
+            </summary>
+            <param name="radians">Angle in radians.</param>
+            <returns>The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around Z axis.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateRotationZ(System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around Z axis.
+            </summary>
+            <param name="radians">Angle in radians.</param>
+            <param name="result">The rotation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> around Z axis as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateScale(System.Single)">
+            <summary>
+            Creates a new scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="scale">Scale value for all three axises.</param>
+            <returns>The scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateScale(System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="scale">Scale value for all three axises.</param>
+            <param name="result">The scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateScale(System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="xScale">Scale value for X axis.</param>
+            <param name="yScale">Scale value for Y axis.</param>
+            <param name="zScale">Scale value for Z axis.</param>
+            <returns>The scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateScale(System.Single,System.Single,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="xScale">Scale value for X axis.</param>
+            <param name="yScale">Scale value for Y axis.</param>
+            <param name="zScale">Scale value for Z axis.</param>
+            <param name="result">The scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateScale(AtomicTorch.GameEngine.Common.Primitives.Vector3)">
+            <summary>
+            Creates a new scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="scales"><see cref="T:AtomicTorch.GameEngine.Common.Primitives.Vector3" /> representing x,y and z scale values.</param>
+            <returns>The scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateScale(AtomicTorch.GameEngine.Common.Primitives.Vector3@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="scales"><see cref="T:AtomicTorch.GameEngine.Common.Primitives.Vector3" /> representing x,y and z scale values.</param>
+            <param name="result">The scaling <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateTranslation(System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new translation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="xPosition">X coordinate of translation.</param>
+            <param name="yPosition">Y coordinate of translation.</param>
+            <param name="zPosition">Z coordinate of translation.</param>
+            <returns>The translation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateTranslation(AtomicTorch.GameEngine.Common.Primitives.Vector3@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new translation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="position">X,Y and Z coordinates of translation.</param>
+            <param name="result">The translation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateTranslation(AtomicTorch.GameEngine.Common.Primitives.Vector3)">
+            <summary>
+            Creates a new translation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="position">X,Y and Z coordinates of translation.</param>
+            <returns>The translation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateTranslation(System.Single,System.Single,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new translation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="xPosition">X coordinate of translation.</param>
+            <param name="yPosition">Y coordinate of translation.</param>
+            <param name="zPosition">Z coordinate of translation.</param>
+            <param name="result">The translation <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateWorld(AtomicTorch.GameEngine.Common.Primitives.Vector3,AtomicTorch.GameEngine.Common.Primitives.Vector3,AtomicTorch.GameEngine.Common.Primitives.Vector3)">
+            <summary>
+            Creates a new world <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="position">The position vector.</param>
+            <param name="forward">The forward direction vector.</param>
+            <param name="up">The upward direction vector. Usually <see cref="!:Vector3.Up" />.</param>
+            <returns>The world <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.CreateWorld(AtomicTorch.GameEngine.Common.Primitives.Vector3@,AtomicTorch.GameEngine.Common.Primitives.Vector3@,AtomicTorch.GameEngine.Common.Primitives.Vector3@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new world <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="position">The position vector.</param>
+            <param name="forward">The forward direction vector.</param>
+            <param name="up">The upward direction vector. Usually <see cref="!:Vector3.Up" />.</param>
+            <param name="result">The world <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Divide(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Divides the elements of a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> by the elements of another matrix.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="matrix2">Divisor <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <returns>The result of dividing the matrix.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Divide(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Divides the elements of a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> by the elements of another matrix.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="matrix2">Divisor <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="result">The result of dividing the matrix as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Divide(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,System.Single)">
+            <summary>
+            Divides the elements of a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> by a scalar.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="divider">Divisor scalar.</param>
+            <returns>The result of dividing a matrix by a scalar.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Divide(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Divides the elements of a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> by a scalar.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="divider">Divisor scalar.</param>
+            <param name="result">The result of dividing a matrix by a scalar as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Invert(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> which contains inversion of the specified matrix.
+            </summary>
+            <param name="matrix">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <returns>The inverted matrix.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Invert(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> which contains inversion of the specified matrix.
+            </summary>
+            <param name="matrix">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="result">The inverted matrix as output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Lerp(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,System.Single)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> that contains linear interpolation of the values in specified matrixes.
+            </summary>
+            <param name="matrix1">The first <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="matrix2">The second <see cref="!:Vector2" />.</param>
+            <param name="amount">Weighting value(between 0.0 and 1.0).</param>
+            <returns>>The result of linear interpolation of the specified matrixes.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Lerp(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> that contains linear interpolation of the values in specified matrixes.
+            </summary>
+            <param name="matrix1">The first <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="matrix2">The second <see cref="!:Vector2" />.</param>
+            <param name="amount">Weighting value(between 0.0 and 1.0).</param>
+            <param name="result">The result of linear interpolation of the specified matrixes as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Multiply(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> that contains a multiplication of two matrix.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="matrix2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <returns>Result of the matrix multiplication.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Multiply(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> that contains a multiplication of two matrix.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="matrix2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="result">Result of the matrix multiplication as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Multiply(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,System.Single)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> that contains a multiplication of <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> and a scalar.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="scaleFactor">Scalar value.</param>
+            <returns>Result of the matrix multiplication with a scalar.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Multiply(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,System.Single,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> that contains a multiplication of <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> and a scalar.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="scaleFactor">Scalar value.</param>
+            <param name="result">Result of the matrix multiplication with a scalar as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Negate(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Returns a matrix with the all values negated.
+            </summary>
+            <param name="matrix">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <returns>Result of the matrix negation.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Negate(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Returns a matrix with the all values negated.
+            </summary>
+            <param name="matrix">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="result">Result of the matrix negation as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.op_Addition(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Adds two matrixes.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the left of the add sign.</param>
+            <param name="matrix2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the right of the add sign.</param>
+            <returns>Sum of the matrixes.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.op_Division(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Divides the elements of a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> by the elements of another <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the left of the div sign.</param>
+            <param name="matrix2">Divisor <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the right of the div sign.</param>
+            <returns>The result of dividing the matrixes.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.op_Division(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,System.Single)">
+            <summary>
+            Divides the elements of a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> by a scalar.
+            </summary>
+            <param name="matrix">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the left of the div sign.</param>
+            <param name="divider">Divisor scalar on the right of the div sign.</param>
+            <returns>The result of dividing a matrix by a scalar.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.op_Equality(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Compares whether two <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> instances are equal without any tolerance.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the left of the equal sign.</param>
+            <param name="matrix2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the right of the equal sign.</param>
+            <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.op_Inequality(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Compares whether two <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> instances are not equal without any tolerance.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the left of the not equal sign.</param>
+            <param name="matrix2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the right of the not equal sign.</param>
+            <returns><c>true</c> if the instances are not equal; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.op_Multiply(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Multiplies two matrixes.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the left of the mul sign.</param>
+            <param name="matrix2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the right of the mul sign.</param>
+            <returns>Result of the matrix multiplication.</returns>
+            <remarks>
+            Using matrix multiplication algorithm - see http://en.wikipedia.org/wiki/Matrix_multiplication.
+            </remarks>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.op_Multiply(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,System.Single)">
+            <summary>
+            Multiplies the elements of matrix by a scalar.
+            </summary>
+            <param name="matrix">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the left of the mul sign.</param>
+            <param name="scaleFactor">Scalar value on the right of the mul sign.</param>
+            <returns>Result of the matrix multiplication with a scalar.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.op_Subtraction(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Subtracts the values of one <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> from another <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="matrix1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the left of the sub sign.</param>
+            <param name="matrix2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the right of the sub sign.</param>
+            <returns>Result of the matrix subtraction.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.op_UnaryNegation(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Inverts values in the specified <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="matrix">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> on the right of the sub sign.</param>
+            <returns>Result of the inversion.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Subtract(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> that contains subtraction of one matrix from another.
+            </summary>
+            <param name="matrix1">The first <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="matrix2">The second <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <returns>The result of the matrix subtraction.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Subtract(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> that contains subtraction of one matrix from another.
+            </summary>
+            <param name="matrix1">The first <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="matrix2">The second <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <param name="result">The result of the matrix subtraction as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.ToFloatArray(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Copy the values of specified <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> to the float array.
+            </summary>
+            <param name="matrix">The source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</param>
+            <returns>The array which matrix values will be stored.</returns>
+            <remarks>
+            Required for OpenGL 2.0 projection matrix stuff.
+            </remarks>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Transpose(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Swap the matrix rows and columns.
+            </summary>
+            <param name="matrix">The matrix for transposing operation.</param>
+            <returns>The new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> which contains the transposing result.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Transpose(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@)">
+            <summary>
+            Swap the matrix rows and columns.
+            </summary>
+            <param name="matrix">The matrix for transposing operation.</param>
+            <param name="result">The new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> which contains the transposing result as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Decompose(AtomicTorch.GameEngine.Common.Primitives.Vector3@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.Vector3@)">
+            <summary>
+            Decomposes this matrix to translation, rotation and scale elements. Returns <c>true</c> if matrix can be decomposed;
+            <c>false</c> otherwise.
+            </summary>
+            <param name="scale">Scale vector as an output parameter.</param>
+            <param name="rotation">Rotation quaternion as an output parameter.</param>
+            <param name="translation">Translation vector as an output parameter.</param>
+            <returns><c>true</c> if matrix can be decomposed; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Determinant">
+            <summary>
+            Returns a determinant of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <returns>Determinant of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /></returns>
+            <remarks>
+            See more about determinant here - http://en.wikipedia.org/wiki/Determinant.
+            </remarks>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Equals(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Compares whether current instance is equal to specified <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> without any tolerance.
+            </summary>
+            <param name="other">The <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> to compare.</param>
+            <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.Equals(System.Object)">
+            <summary>
+            Compares whether current instance is equal to specified <see cref="T:System.Object" /> without any tolerance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare.</param>
+            <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.GetHashCode">
+            <summary>
+            Gets the hash code of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <returns>Hash code of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> representation of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" /> in the format:
+            {M11:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M11" />] M12:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M12" />] M13:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M13" />] M14:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M14" />]}
+            {M21:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M21" />] M12:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M22" />] M13:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M23" />] M14:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M24" />]}
+            {M31:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M31" />] M32:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M32" />] M33:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M33" />] M34:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M34" />]}
+            {M41:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M41" />] M42:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M42" />] M43:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M43" />] M44:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.M44" />]}
+            </summary>
+            <returns>A <see cref="T:System.String" /> representation of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4.FindDeterminants(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@)">
+            <summary>
+            Helper method for using the Laplace expansion theorem using two rows expansions to calculate major and
+            minor determinants of a 4x4 matrix. This method is used for inverting a matrix.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Identity">
+            <summary>
+            Returns a quaternion representing no rotation.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.W">
+            <summary>
+            The rotation component of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.X">
+            <summary>
+            The x coordinate of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Y">
+            <summary>
+            The y coordinate of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+        </member>
+        <member name="F:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Z">
+            <summary>
+            The z coordinate of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructs a quaternion with X, Y, Z and W from four values.
+            </summary>
+            <param name="x">The x coordinate in 3d-space.</param>
+            <param name="y">The y coordinate in 3d-space.</param>
+            <param name="z">The z coordinate in 3d-space.</param>
+            <param name="w">The rotation component.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.#ctor(AtomicTorch.GameEngine.Common.Primitives.Vector3,System.Single)">
+            <summary>
+            Constructs a quaternion with X, Y, Z from <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Vector3" /> and rotation component from a scalar.
+            </summary>
+            <param name="value">The x, y, z coordinates in 3d-space.</param>
+            <param name="w">The rotation component.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.#ctor(AtomicTorch.GameEngine.Common.Primitives.Vector4)">
+            <summary>
+            Constructs a quaternion from <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Vector4" />.
+            </summary>
+            <param name="value">The x, y, z coordinates in 3d-space and the rotation component.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Add(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains the sum of two quaternions.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <returns>The result of the quaternion addition.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Add(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains the sum of two quaternions.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="result">The result of the quaternion addition as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Concatenate(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains concatenation between two quaternion.
+            </summary>
+            <param name="value1">The first <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> to concatenate.</param>
+            <param name="value2">The second <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> to concatenate.</param>
+            <returns>The result of rotation of <paramref name="value1" /> followed by <paramref name="value2" /> rotation.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Concatenate(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains concatenation between two quaternion.
+            </summary>
+            <param name="value1">The first <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> to concatenate.</param>
+            <param name="value2">The second <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> to concatenate.</param>
+            <param name="result">
+            The result of rotation of <paramref name="value1" /> followed by <paramref name="value2" />
+            rotation as an output parameter.
+            </param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Conjugate(AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains conjugated version of the specified quaternion.
+            </summary>
+            <param name="value">The quaternion which values will be used to create the conjugated version.</param>
+            <returns>The conjugate version of the specified quaternion.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Conjugate(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains conjugated version of the specified quaternion.
+            </summary>
+            <param name="value">The quaternion which values will be used to create the conjugated version.</param>
+            <param name="result">The conjugated version of the specified quaternion as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.CreateFromAxisAngle(AtomicTorch.GameEngine.Common.Primitives.Vector3,System.Single)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> from the specified axis and angle.
+            </summary>
+            <param name="axis">The axis of rotation.</param>
+            <param name="angle">The angle in radians.</param>
+            <returns>The new quaternion builded from axis and angle.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.CreateFromAxisAngle(AtomicTorch.GameEngine.Common.Primitives.Vector3@,System.Single,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> from the specified axis and angle.
+            </summary>
+            <param name="axis">The axis of rotation.</param>
+            <param name="angle">The angle in radians.</param>
+            <param name="result">The new quaternion builded from axis and angle as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.CreateFromRotationMatrix(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> from the specified <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="matrix">The rotation matrix.</param>
+            <returns>A quaternion composed from the rotation part of the matrix.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.CreateFromRotationMatrix(AtomicTorch.GameEngine.Common.Primitives.Matrix4x4@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> from the specified <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Matrix4x4" />.
+            </summary>
+            <param name="matrix">The rotation matrix.</param>
+            <param name="result">A quaternion composed from the rotation part of the matrix as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.CreateFromYawPitchRoll(System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> from the specified yaw, pitch and roll angles.
+            </summary>
+            <param name="yaw">Yaw around the y axis in radians.</param>
+            <param name="pitch">Pitch around the x axis in radians.</param>
+            <param name="roll">Roll around the z axis in radians.</param>
+            <returns>A new quaternion from the concatenated yaw, pitch, and roll angles.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.CreateFromYawPitchRoll(System.Single,System.Single,System.Single,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> from the specified yaw, pitch and roll angles.
+            </summary>
+            <param name="yaw">Yaw around the y axis in radians.</param>
+            <param name="pitch">Pitch around the x axis in radians.</param>
+            <param name="roll">Roll around the z axis in radians.</param>
+            <param name="result">A new quaternion from the concatenated yaw, pitch, and roll angles as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Divide(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Divides a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> by the other <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Divisor <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <returns>The result of dividing the quaternions.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Divide(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Divides a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> by the other <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Divisor <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="result">The result of dividing the quaternions as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Dot(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Returns a dot product of two quaternions.
+            </summary>
+            <param name="quaternion1">The first quaternion.</param>
+            <param name="quaternion2">The second quaternion.</param>
+            <returns>The dot product of two quaternions.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Dot(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,System.Single@)">
+            <summary>
+            Returns a dot product of two quaternions.
+            </summary>
+            <param name="quaternion1">The first quaternion.</param>
+            <param name="quaternion2">The second quaternion.</param>
+            <param name="result">The dot product of two quaternions as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Inverse(AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Returns the inverse quaternion which represents the opposite rotation.
+            </summary>
+            <param name="quaternion">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <returns>The inverse quaternion.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Inverse(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Returns the inverse quaternion which represents the opposite rotation.
+            </summary>
+            <param name="quaternion">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="result">The inverse quaternion as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Lerp(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF,System.Single)">
+            <summary>
+            Performs a linear blend between two quaternions.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="amount">
+            The blend amount where 0 returns <paramref name="quaternion1" /> and 1
+            <paramref name="quaternion2" />.
+            </param>
+            <returns>The result of linear blending between two quaternions.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Lerp(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,System.Single,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Performs a linear blend between two quaternions.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="amount">
+            The blend amount where 0 returns <paramref name="quaternion1" /> and 1
+            <paramref name="quaternion2" />.
+            </param>
+            <param name="result">The result of linear blending between two quaternions as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Multiply(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains a multiplication of two quaternions.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <returns>The result of the quaternion multiplication.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Multiply(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,System.Single)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains a multiplication of <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> and a scalar.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="scaleFactor">Scalar value.</param>
+            <returns>The result of the quaternion multiplication with a scalar.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Multiply(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,System.Single,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains a multiplication of <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> and a scalar.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="scaleFactor">Scalar value.</param>
+            <param name="result">The result of the quaternion multiplication with a scalar as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Multiply(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains a multiplication of two quaternions.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="result">The result of the quaternion multiplication as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Negate(AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Flips the sign of the all the quaternion components.
+            </summary>
+            <param name="quaternion">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <returns>The result of the quaternion negation.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Negate(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Flips the sign of the all the quaternion components.
+            </summary>
+            <param name="quaternion">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="result">The result of the quaternion negation as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Normalize(AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Scales the quaternion magnitude to unit length.
+            </summary>
+            <param name="quaternion">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <returns>The unit length quaternion.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Normalize(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Scales the quaternion magnitude to unit length.
+            </summary>
+            <param name="quaternion">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="result">The unit length quaternion an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.op_Addition(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Adds two quaternions.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> on the left of the add sign.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> on the right of the add sign.</param>
+            <returns>Sum of the vectors.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.op_Division(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Divides a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> by the other <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> on the left of the div sign.</param>
+            <param name="quaternion2">Divisor <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> on the right of the div sign.</param>
+            <returns>The result of dividing the quaternions.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.op_Equality(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Compares whether two <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> instances are equal.
+            </summary>
+            <param name="quaternion1"><see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> instance on the left of the equal sign.</param>
+            <param name="quaternion2"><see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> instance on the right of the equal sign.</param>
+            <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.op_Inequality(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Compares whether two <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> instances are not equal.
+            </summary>
+            <param name="quaternion1"><see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> instance on the left of the not equal sign.</param>
+            <param name="quaternion2"><see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> instance on the right of the not equal sign.</param>
+            <returns><c>true</c> if the instances are not equal; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.op_Multiply(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Multiplies two quaternions.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> on the left of the mul sign.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> on the right of the mul sign.</param>
+            <returns>Result of the quaternions multiplication.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.op_Multiply(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,System.Single)">
+            <summary>
+            Multiplies the components of quaternion by a scalar.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Vector3" /> on the left of the mul sign.</param>
+            <param name="scaleFactor">Scalar value on the right of the mul sign.</param>
+            <returns>Result of the quaternion multiplication with a scalar.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.op_Subtraction(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Subtracts a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> from a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Vector3" /> on the left of the sub sign.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Vector3" /> on the right of the sub sign.</param>
+            <returns>Result of the quaternion subtraction.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.op_UnaryNegation(AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Flips the sign of the all the quaternion components.
+            </summary>
+            <param name="quaternion">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> on the right of the sub sign.</param>
+            <returns>The result of the quaternion negation.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Slerp(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF,System.Single)">
+            <summary>
+            Performs a spherical linear blend between two quaternions.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="amount">
+            The blend amount where 0 returns <paramref name="quaternion1" /> and 1
+            <paramref name="quaternion2" />.
+            </param>
+            <returns>The result of spherical linear blending between two quaternions.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Slerp(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,System.Single,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Performs a spherical linear blend between two quaternions.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="amount">
+            The blend amount where 0 returns <paramref name="quaternion1" /> and 1
+            <paramref name="quaternion2" />.
+            </param>
+            <param name="result">The result of spherical linear blending between two quaternions as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Subtract(AtomicTorch.GameEngine.Common.Primitives.QuaternionF,AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains subtraction of one <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> from another.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <returns>The result of the quaternion subtraction.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Subtract(AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@,AtomicTorch.GameEngine.Common.Primitives.QuaternionF@)">
+            <summary>
+            Creates a new <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> that contains subtraction of one <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> from another.
+            </summary>
+            <param name="quaternion1">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="quaternion2">Source <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</param>
+            <param name="result">The result of the quaternion subtraction as an output parameter.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Conjugate">
+            <summary>
+            Transforms this quaternion into its conjugated version.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Equals(System.Object)">
+            <summary>
+            Compares whether current instance is equal to specified <see cref="T:System.Object" />.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare.</param>
+            <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Equals(AtomicTorch.GameEngine.Common.Primitives.QuaternionF)">
+            <summary>
+            Compares whether current instance is equal to specified <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+            <param name="other">The <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> to compare.</param>
+            <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.GetHashCode">
+            <summary>
+            Gets the hash code of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.
+            </summary>
+            <returns>Hash code of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Length">
+            <summary>
+            Returns the magnitude of the quaternion components.
+            </summary>
+            <returns>The magnitude of the quaternion components.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.LengthSquared">
+            <summary>
+            Returns the squared magnitude of the quaternion components.
+            </summary>
+            <returns>The squared magnitude of the quaternion components.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Normalize">
+            <summary>
+            Scales the quaternion magnitude to unit length.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> representation of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" /> in the format:
+            {X:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.X" />] Y:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Y" />] Z:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.Z" />] W:[<see cref="F:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.W" />]}
+            </summary>
+            <returns>A <see cref="T:System.String" /> representation of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.QuaternionF" />.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.QuaternionF.ToVector4">
+            <summary>
+            Gets a <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Vector4" /> representation for this object.
+            </summary>
+            <returns>A <see cref="T:AtomicTorch.GameEngine.Common.Primitives.Vector4" /> representation for this object.</returns>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.RectangleF.Bottom">
+            <summary>
+            Please note that the top edge is Bottom+Height (Y axis is up).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.RectangleF.Top">
+            <summary>
+            Please note that the top edge is Bottom+Height (Y axis is up).
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleF.Inflate(System.Single,System.Single)">
+            <summary>
+            Adjusts the edges of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.RectangleF" /> by specified horizontal and vertical amounts.
+            </summary>
+            <param name="horizontalAmount">Value to adjust the left and right edges.</param>
+            <param name="verticalAmount">Value to adjust the top and bottom edges.</param>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.Bottom">
+            <summary>
+            Please note that the top edge is Bottom+Height (Y axis is up).
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.Top">
+            <summary>
+            Please note that the top edge is Bottom+Height (Y axis is up).
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.Inflate(System.Int32,System.Int32)">
+            <summary>
+            Adjusts the edges of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.RectangleInt" /> by specified horizontal and vertical amounts.
+            </summary>
+            <param name="horizontalAmount">Value to adjust the left and right edges.</param>
+            <param name="verticalAmount">Value to adjust the top and bottom edges.</param>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.IntersectsLoose(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
+            <summary>
+            Will check intersection non-inclusive (so if edges touches this method will not consider this as an intersection).
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.GameEngine.Common.Primitives.Vector2D">
+            <summary>
+            Vector2 using double-precision for coordinates
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.GameEngine.Common.Primitives.Vector2F">
+            <summary>
+            Vector2 using single-precision for coordinates
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Vector3.Dot(AtomicTorch.GameEngine.Common.Primitives.Vector3,AtomicTorch.GameEngine.Common.Primitives.Vector3)">
+            <summary>
+            Returns a dot product of two vectors.
+            </summary>
+            <param name="value1">The first vector.</param>
+            <param name="value2">The second vector.</param>
+            <returns>The dot product of two vectors.</returns>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.Vector3.Lerp(AtomicTorch.GameEngine.Common.Primitives.Vector3,AtomicTorch.GameEngine.Common.Primitives.Vector3,System.Single)">
+            <summary>
+            lerps between two vectors
+            </summary>
+            <param name="a">first vec</param>
+            <param name="b">second vec</param>
+            <param name="lerp">lerp value</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

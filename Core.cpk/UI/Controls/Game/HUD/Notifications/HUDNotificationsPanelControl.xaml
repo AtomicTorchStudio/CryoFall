@@ -1,0 +1,17 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications.HUDNotificationsPanelControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:notifications="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications"
+    mc:Ignorable="d">
+    <StackPanel x:Name="StackPanel" Orientation="Vertical">
+        <notifications:HUDNotificationControl />
+        <notifications:HUDNotificationControl />
+        <notifications:HUDNotificationControl />
+        <notifications:HUDNotificationControl />
+        <notifications:HUDNotificationControl />
+    </StackPanel>
+</base:BaseUserControl>

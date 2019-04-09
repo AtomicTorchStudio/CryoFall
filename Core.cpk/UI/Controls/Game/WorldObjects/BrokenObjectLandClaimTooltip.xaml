@@ -1,0 +1,66 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.BrokenObjectLandClaimTooltip"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    Foreground="{StaticResource TooltipForegroundBrush}"
+    FontWeight="Bold"
+    FontSize="14"
+    Focusable="False"
+    IsHitTestVisible="False"
+    d:DataContext="{d:DesignInstance data:ViewModelBrokenObjectLandClaimTooltip, IsDesignTimeCreatable=True}"
+    Visibility="{Binding Visibility}"
+    Margin="0,-8,0,0" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <base:BaseUserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style x:Key="BarTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="noesis:Text.Stroke" Value="#99000000" />
+            <Setter Property="noesis:Text.StrokeThickness" Value="2.5" />
+        </Style>
+    </base:BaseUserControl.Resources>
+
+    <Border
+        x:Name="LayoutRoot"
+        Width="224"
+        CornerRadius="3">
+
+        <StackPanel Orientation="Vertical">
+            <ContentControl Foreground="#FFFF9900" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <!-- Text: Destroyed in -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.BrokenObjectLandClaimTooltip_TitleDestroyCountdown}"
+                               Style="{StaticResource BarTextStyle}" />
+                    <TextBlock Text=": "
+                               Style="{StaticResource BarTextStyle}" />
+                    <TextBlock Text="{Binding DestroyTimeText}"
+                               Style="{StaticResource BarTextStyle}" />
+                </StackPanel>
+            </ContentControl>
+
+            <core:ValueBarControl
+                Background="#88331900"
+                BorderBrush="#CCBB6600"
+                BarBrush="#CCFF9900"
+                MaxValue="100"
+                Value="{Binding DestroyTimeoutEndsTimePercent}"
+                Style="{StaticResource WorldObjectValueBarControlStyle}"
+                HorizontalAlignment="Center" />
+        </StackPanel>
+
+    </Border>
+
+</base:BaseUserControl>

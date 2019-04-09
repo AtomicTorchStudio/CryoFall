@@ -1,0 +1,58 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.DepositTooltipControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    mc:Ignorable="d"
+    IsHitTestVisible="False"
+    d:DataContext="{d:DesignInstance data:ViewModelDepositCapacityStatsControl, IsDesignTimeCreatable=True}">
+
+    <Border Background="{StaticResource TooltipBackgroundBrush}"
+            BorderBrush="{StaticResource TooltipBorderBrush}"
+            BorderThickness="{StaticResource TooltipBorderThickness}"
+            Padding="6,2,6,5"
+            CornerRadius="3">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="{Binding DepositTitle}"
+                       Foreground="#FFF1F1F1"
+                       FontSize="27"
+                       FontWeight="Bold"
+                       FontFamily="{StaticResource CondensedFontFamily}"
+                       noesis:Text.Stroke="Black"
+                       noesis:Text.StrokeThickness="3"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center" />
+
+            <!--<manufacturers:DepositCapacityStatsControl Margin="0,5,0,0"
+                                                       HorizontalAlignment="Center"
+                                                       BarBrush="#FFF1F1F1" />-->
+
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        Margin="0,1,0,0">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                        <Setter Property="noesis:Text.Stroke" Value="Black" />
+                        <Setter Property="noesis:Text.StrokeThickness" Value="2" />
+                    </Style>
+                </StackPanel.Resources>
+                <!-- Text: This deposit will be depleted in: -->
+                <TextBlock Text="{x:Static loc:CoreStrings.DepositCapacityStats_Message}"
+                           Visibility="{Binding DepletedInPrefixVisibility}" />
+
+                <TextBlock Text="{Binding DepletionDurationText}"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</base:BaseUserControl>

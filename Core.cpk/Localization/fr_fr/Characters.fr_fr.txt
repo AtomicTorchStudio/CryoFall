@@ -1,0 +1,57 @@
+﻿Scripts/Characters/Mobs/MobBear@Name:
+Ours
+
+Scripts/Characters/Mobs/MobChicken@Name:
+Poulet
+
+Scripts/Characters/Mobs/MobCloakedLizard@Name:
+Lézard tacheté
+
+Scripts/Characters/Mobs/MobCrab@Name:
+Crabe
+
+Scripts/Characters/Mobs/MobCrawler@Name:
+Rampant
+
+Scripts/Characters/Mobs/MobHoneyBadger@Name:
+Ratel
+
+Scripts/Characters/Mobs/MobHyena@Name:
+Hyène
+
+Scripts/Characters/Mobs/MobPangolin@Name:
+Pangolin
+
+Scripts/Characters/Mobs/MobScorpion@Name:
+Scorpion
+
+Scripts/Characters/Mobs/MobSnakeBlue@Name:
+Serpent bleu
+
+Scripts/Characters/Mobs/MobSnakeBrown@Name:
+Serpent brun
+
+Scripts/Characters/Mobs/MobSnakeGreen@Name:
+Serpent vert
+
+Scripts/Characters/Mobs/MobStarfish@Name:
+Étoile de mer
+
+Scripts/Characters/Mobs/MobTropicalBoar@Name:
+Cochon tropical
+
+Scripts/Characters/Mobs/MobTurtle@Name:
+Tortue
+
+Scripts/Characters/Mobs/MobWildBoar@Name:
+Cochon sauvage
+
+Scripts/Characters/Mobs/MobWolf@Name:
+Loup
+
+Scripts/Characters/Player/PlayerCharacter@Name:
+Personnage joueur
+
+Scripts/Characters/Player/PlayerCharacterSpectator@Name:
+Personnage joueur en mode Spectateur
+

@@ -1,0 +1,194 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies.TechTreeControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:technologies="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies"
+    mc:Ignorable="d"
+    d:DesignHeight="800" d:DesignWidth="850"
+    d:DataContext="{d:DesignInstance data:ViewModelTechTreeControl, IsDesignTimeCreatable=True}">
+    <base:BaseUserControl.Resources>
+        <!-- Please note - these resources are used in C# code also -->
+        <system:Double x:Key="NodeSize">50</system:Double>
+        <system:Double x:Key="NodeVerticalSpacing">35</system:Double>
+        <Thickness x:Key="NodeMargin">16,0</Thickness>
+        <Thickness x:Key="NodeBorderThickness">1</Thickness>
+        <system:Double x:Key="NodeCornerRadiusNumber">3</system:Double>
+        <CornerRadius x:Key="NodeCornerRadiusSides">3</CornerRadius>
+        <Thickness x:Key="TreeViewMargin">-8,-9,-8,-3</Thickness>
+
+        <system:Double x:Key="NodeLinkThickness">1</system:Double>
+        <system:Double x:Key="NodeLinkArrowWidth">7</system:Double>
+        <system:Double x:Key="NodeLinkArrowWidthHalfNegated">-3.5</system:Double>
+        <system:Double x:Key="NodeLinkArrowHeight">6</system:Double>
+
+        <SolidColorBrush x:Key="BrushLockedNodeOverlayBrush" Color="Black" Opacity="0.4" />
+        <SolidColorBrush x:Key="BrushMouseOverHighlightBrush" Color="White" Opacity="0.25" />
+
+        <SolidColorBrush x:Key="BrushUnlocked" Color="{StaticResource ColorAlt6}" />
+        <SolidColorBrush x:Key="BrushLocked" Color="#FF555555" />
+        <SolidColorBrush x:Key="BrushCanUnlock" Color="{StaticResource ColorAlt4}" />
+        <SolidColorBrush x:Key="BrushCanUnlockMouseOver" Color="{StaticResource Color6}" />
+
+        <!-- Template for node -->
+        <DataTemplate DataType="{x:Type data:ViewModelTechNode}">
+            <Button Command="{Binding CommandOnNodeSelect}"
+                    CommandParameter="{Binding}"
+                    Width="{StaticResource NodeSize}"
+                    Height="{StaticResource NodeSize}"
+                    Margin="{StaticResource NodeMargin}"
+                    Focusable="False"
+                    SnapsToDevicePixels="False">
+                <base:ToolTipServiceExtend.ToolTip>
+                    <technologies:TechNodeTooltipControl />
+                </base:ToolTipServiceExtend.ToolTip>
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                        <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundListElementClick}" />
+                        <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundListElementEnter}" />
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border CornerRadius="{StaticResource NodeCornerRadiusSides}"
+                                                IsHitTestVisible="False">
+                                            <Border.Background>
+                                                <SolidColorBrush Color="{StaticResource ColorAlt7}" Opacity="0.1" />
+                                            </Border.Background>
+                                        </Border>
+
+                                        <Border x:Name="BorderHighlight"
+                                                CornerRadius="{StaticResource NodeCornerRadiusSides}"
+                                                Visibility="Collapsed"
+                                                IsHitTestVisible="False">
+                                            <Border.Background>
+                                                <SolidColorBrush Color="{StaticResource Color7}" Opacity="0.25" />
+                                            </Border.Background>
+                                        </Border>
+
+                                        <Rectangle Fill="{Binding Icon}"
+                                                   RadiusX="{StaticResource NodeCornerRadiusNumber}"
+                                                   RadiusY="{StaticResource NodeCornerRadiusNumber}"
+                                                   Margin="2"
+                                                   IsHitTestVisible="False" />
+
+                                        <Rectangle x:Name="IconOverlayNodeLocked"
+                                                   Fill="{StaticResource BrushLockedNodeOverlayBrush}"
+                                                   RadiusX="{StaticResource NodeCornerRadiusNumber}"
+                                                   RadiusY="{StaticResource NodeCornerRadiusNumber}"
+                                                   Margin="0.5"
+                                                   IsHitTestVisible="False" />
+
+                                        <Border x:Name="Border"
+                                                CornerRadius="{StaticResource NodeCornerRadiusSides}"
+                                                Background="Transparent"
+                                                BorderThickness="{StaticResource NodeBorderThickness}" />
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding IsUnlocked}" Value="True">
+                                            <Setter TargetName="IconOverlayNodeLocked"
+                                                    Property="Visibility"
+                                                    Value="Collapsed" />
+                                            <Setter TargetName="Border"
+                                                    Property="BorderBrush"
+                                                    Value="{StaticResource BrushUnlocked}" />
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding IsUnlocked}"
+                                                     Value="False">
+                                            <Setter TargetName="IconOverlayNodeLocked"
+                                                    Property="Visibility"
+                                                    Value="Visible" />
+                                            <Setter TargetName="Border"
+                                                    Property="BorderBrush"
+                                                    Value="{StaticResource BrushLocked}" />
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding CanUnlock}"
+                                                     Value="True">
+                                            <Setter TargetName="Border"
+                                                    Property="BorderBrush"
+                                                    Value="{StaticResource BrushCanUnlock}" />
+                                        </DataTrigger>
+
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding CanUnlock}"
+                                                           Value="True" />
+                                                <Condition
+                                                    Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}"
+                                                    Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter TargetName="BorderHighlight"
+                                                    Property="Visibility"
+                                                    Value="Visible" />
+                                            <Setter TargetName="Border"
+                                                    Property="BorderBrush"
+                                                    Value="{StaticResource BrushCanUnlockMouseOver}" />
+                                        </MultiDataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </DataTemplate>
+
+        <!-- Template for node link (from current node up to its parent) -->
+        <DataTemplate DataType="{x:Type data:ViewModelTechNodeLink}">
+            <Canvas>
+                <Path x:Name="Path"
+                      StrokeThickness="{StaticResource NodeLinkThickness}"
+                      Data="{Binding Path}" />
+                <!-- arrow -->
+                <Path x:Name="Arrow"
+                      Width="{StaticResource NodeLinkArrowWidth}"
+                      Height="{StaticResource NodeLinkArrowHeight}"
+                      Stretch="Fill"
+                      Data="M0,0 L3,6 6,0z"
+                      Canvas.Left="{StaticResource NodeLinkArrowWidthHalfNegated}" />
+            </Canvas>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding IsUnlocked}" Value="True">
+                    <Setter TargetName="Path" Property="Stroke" Value="{StaticResource BrushUnlocked}" />
+                    <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource BrushUnlocked}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsUnlocked}" Value="False">
+                    <Setter TargetName="Path" Property="Stroke" Value="{StaticResource BrushLocked}" />
+                    <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource BrushLocked}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CanUnlock}" Value="True">
+                    <Setter TargetName="Path" Property="Stroke" Value="{StaticResource BrushCanUnlock}" />
+                    <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource BrushCanUnlock}" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </base:BaseUserControl.Resources>
+
+    <core:PanningPanel x:Name="PanningPanel"
+                       IsAutoCalculatingMinZoom="True"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       Margin="{StaticResource TreeViewMargin}"
+                       PanningWidth="{Binding TreeWidth}"
+                       PanningHeight="{Binding TreeHeight}"
+                       ItemsSource="{Binding Items}">
+        <ItemsControl.ItemContainerStyle>
+            <Style TargetType="ContentPresenter" d:DataContext="{d:DesignInstance data:ViewModelTechNode}">
+                <Setter Property="Canvas.Left" Value="{Binding PositionX}" />
+                <Setter Property="Canvas.Top" Value="{Binding PositionY}" />
+                <Setter Property="Canvas.ZIndex" Value="{Binding PositionZ}" />
+            </Style>
+        </ItemsControl.ItemContainerStyle>
+    </core:PanningPanel>
+
+</base:BaseUserControl>

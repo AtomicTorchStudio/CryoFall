@@ -1,0 +1,186 @@
+﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+Has usado estimulantes, por lo que se acelera tu regeneración de vigor.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
+Subidón de energía
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Description:
+Has usado una potente medicina curativa y tu cuerpo está recuperando rápidamente la salud perdida.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Name:
+Curación veloz
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
+Has usado medicamentos y tu cuerpo se recupera poco a poco.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
+Curación
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
+Estás bajo los efectos de un estimulante que te vuelve temporalmente más fuerte. Te será más fácil llevar a cabo tareas que requieran fuerza.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
+Fuerza aumentada
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Description:
+Hace poco has comido muy bien y te encuentras de maravilla. Todo lo que hagas te resultará más fácil.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
+Estómago lleno
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
+Estás sangrando. Si no tratas tus heridas, seguirás perdiendo salud sin parar. Las heridas pequeñas dejarán de sangrar por sí solas, pero para las más graves necesitarás vendas o medicamentos hemostáticos.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Name:
+Sangrando
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
+Añadir un implante roto a tu cuerpo afecta drásticamente a tu bienestar. Como resultado, tu salud máxima (PS) se verá reducida.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
+Implante roto
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
+Te has roto una pierna, lo cual afecta a tu capacidad de movimiento. Sufrirás un dolor intenso al intentar correr con una pierna rota. Usa una tablilla para curar la fractura.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
+Pierna rota
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
+No se puede atacar estando aturdido.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
+¡Sufres aturdimiento! Tardarás un ratito en recuperarte.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
+Aturdimiento
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
+Te estás exponiendo al calor muy elevado que emite una fuente cercana. Abandona inmediatamente la zona si no quieres sufrir más daños.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Name:
+Calor
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
+¡Te estás muriendo de hambre!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
+Hambre
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
+No puedes ni comer ni beber.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Description:
+No te encuentras muy bien... Mientras tengas náuseas, no podrás ni comer ni beber. Espera un poco o toma medicamentos contra las náuseas.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Name:
+Náuseas
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Description:
+Sufres un dolor intenso, lo cual reduce la regeneración de vigor e impide la regeneración de salud. Encuentra analgésicos o sé fuerte.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
+Dolor intenso
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Description:
+Estás bajo la influencia de un potente campo psi que te está enloqueciendo. Sal de la zona afectada o usa algún medicamento que bloquee los campos psi para evitar sufrir más daños.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
+Influencia psi
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
+La radiación te está envenenando, lo cual te está matando lentamente. Encuentra medicación para la radiación para reducir sus efectos.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Name:
+Envenenamiento por radiación
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Description:
+Has usado una tablilla en la fractura y esta se está curando lentamente. Eso, sí, no vas a poder correr con la pierna en ese estado. Dale tiempo a curarse.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Name:
+Pierna entablillada
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Description:
+¡Estás sufriendo una grave deshidratación!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Name:
+Sed
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Description:
+Te has expuesto a toxinas peligrosas. Usa un medicamento antitoxinas que impida que sigas perdiendo salud.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
+Toxinas
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
+Te sientes muy débil. Puede que sea buena idea evitar exponerte a elementos peligrosos, tales como la radiación.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
+Debilidad
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Description:
+Uno o más de los objetos de tu equipo tienen poca durabilidad y podrían romperse pronto.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
+Equipo roto
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
+Has estado bebiendo como un pez. Es normal que ahora te apetezca gritarles a los zapatos...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Description:
+Has estado bebiendo...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Name:
+Borrachera
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
+Algo te ha provocado un colocón. Por algún motivo, te sientes muy feliz...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
+Colocón
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
+Has abusado de los objetos médicos y, por tanto, has sufrido daños a la salud.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
+Has usado demasiados medicamentos en un período de tiempo muy breve. No abuses si no quieres sufrir consecuencias negativas en la salud. Ignorar este aviso podría ser letal.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
+Abuso de medicamentos
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
+Estás bajo los efectos de un medicamento hemostático, lo cual reduce la gravedad de todas las hemorragias que te produzcan.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Name:
+Protección contra hemorragias
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Description:
+Te has cubierto con un gel resistente al calor, el cual reduce notablemente el daño término que puedas sufrir del entorno.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Name:
+Protección al calor
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Description:
+Ahora mismo, estás bajo los efectos de unos analgésicos muy fuertes. Te guste o no, no sientes ningún dolor.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Name:
+Protección al dolor
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Description:
+Ahora mismo, estás bajo los efectos de una protección al psi, por lo que cualquier exposición al psi te afectará menos.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Name:
+Protección al psi
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Description:
+En estos momentos, estás bajo los efectos de una protección a la radiación. Te afectará menos toda exposición a la radiación que tengas a partir de ahora.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Name:
+Protección a la radiación
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Description:
+En estos momentos estás bajo los efectos de una protección a toxinas, por lo que exponerte a nuevas toxinas te afectará menos.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Name:
+Protección a toxinas
+

@@ -1,0 +1,276 @@
+﻿<manufacturers:WindowManufacturerBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.WindowManufacturer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:crafting="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting"
+    xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
+    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:fuelBurningIndicator="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.FuelBurningIndicator"
+    xmlns:manufacturers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers"
+    xmlns:data1="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data"
+    xmlns:data2="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data2:ViewModelWindowManufacturer, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <core:BaseUserControlWithWindow.Resources>
+
+        <Style x:Key="StyleControlRecipeInfo" TargetType="Control">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,2" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColorAlt7}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate d:DataContext="{d:DesignInstance data1:ViewModelCraftingRecipe}">
+                        <Grid Background="Transparent">
+                            <StackPanel Orientation="Horizontal">
+                                <Border
+                                    BorderThickness="0.5"
+                                    CornerRadius="3"
+                                    Padding="2"
+                                    VerticalAlignment="Center">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{StaticResource ColorAlt0}" Opacity="0.5" />
+                                    </Border.Background>
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="{StaticResource ColorAlt5}" Opacity="0.5" />
+                                    </Border.BorderBrush>
+                                    <Rectangle Fill="{Binding Icon}" Width="32" Height="32" />
+                                </Border>
+
+                                <TextBlock Text="{Binding Title}"
+                                           TextWrapping="Wrap"
+                                           TextTrimming="CharacterEllipsis"
+                                           Margin="5,0,0,0"
+                                           MaxWidth="90"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                            <ui:ToolTipServiceExtend.ToolTip>
+                                <worldObjects:RecipeTooltip Recipe="{Binding}" />
+                            </ui:ToolTipServiceExtend.ToolTip>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ManufacturerButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="MinHeight" Value="20" />
+            <Setter Property="MinWidth" Value="132" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Margin" Value="0,5,0,0" />
+            <Setter Property="Focusable" Value="False" />
+        </Style>
+
+    </core:BaseUserControlWithWindow.Resources>
+
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+        <Grid>
+            <Grid Visibility="{Binding ViewModelManufacturingState.VisibilityPrimary}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="{Binding VerticalAlignment}"
+                  Margin="50,10,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="182" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical">
+                    <!-- Text: Input -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               Margin="0" />
+                    <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
+                                                    HorizontalAlignment="Left" />
+
+                    <Canvas
+                        DataContext="{Binding ViewModelBurningFuel}"
+                        Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <fuelBurningIndicator:FuelBurningIndicator
+                            FuelIcon="{Binding FuelIcon}"
+                            FuelColor="{Binding FuelColor}"
+                            Canvas.Left="74"
+                            Canvas.Top="61" />
+                    </Canvas>
+
+                    <!-- Text: Fuel -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.TitleFuel}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               Visibility="{Binding VisibilityFuelControls}" />
+                    <core:ValueBarControl
+                        Value="{Binding ViewModelFuelBurningState.FuelUsageCurrentValue}"
+                        MaxValue="{Binding ViewModelFuelBurningState.FuelUsageMaxValue}"
+                        Width="{Binding ActualWidth, ElementName=ItemsContainerControlOutput}"
+                        Foreground="{StaticResource BrushFuel}"
+                        Visibility="{Binding VisibilityFuelControls}"
+                        Height="10"
+                        Margin="0,3"
+                        Style="{StaticResource ItemSlotCraftingProgressHorizontalBar}" />
+                    <controls:ItemsContainerControl Container="{Binding ViewModelFuelBurningState.ContainerFuel}"
+                                                    Visibility="{Binding VisibilityFuelControls}"
+                                                    HorizontalAlignment="Left" />
+
+                    <!-- Text: Output -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}" />
+                    <core:ValueBarControl
+                        Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
+                        Width="{Binding ActualWidth, ElementName=ItemsContainerControlOutput}"
+                        Foreground="#FF66BB00"
+                        Height="10"
+                        Margin="0,3"
+                        Style="{StaticResource ItemSlotCraftingProgressHorizontalBar}" />
+                    <controls:ItemsContainerControl x:Name="ItemsContainerControlOutput"
+                                                    Container="{Binding ViewModelManufacturingState.ContainerOutput}"
+                                                    HorizontalAlignment="Left" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="2"
+                            Orientation="Vertical"
+                            HorizontalAlignment="Stretch"
+                            Visibility="{Binding ViewModelManufacturingState.VisibilityRecipesSelection}"
+                            Margin="0,14,0,0">
+
+                    <!-- Text: Browse recipes -->
+                    <Button Content="{x:Static loc:CoreStrings.Button_BrowseRecipes}"
+                            Style="{StaticResource ManufacturerButtonStyle}"
+                            Command="{Binding ViewModelManufacturingState.CommandBrowseRecipes}"
+                            Margin="0,0,0,5" />
+
+                    <StackPanel
+                        Visibility="{Binding ViewModelManufacturingState.SelectedRecipe, Converter={StaticResource NullToVisibilityConverter}}"
+                        Orientation="Vertical"
+                        Margin="0,5,0,0">
+                        <!-- Text: Current recipe -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_CurrentRecipe}"
+                                   Margin="0"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   FontSize="12" />
+
+                        <Control DataContext="{Binding ViewModelManufacturingState.SelectedRecipeViewModel}"
+                                 Style="{StaticResource StyleControlRecipeInfo}" />
+                    </StackPanel>
+
+                    <!-- Text: No available space in the output! -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_ErrorNoAvailableSpaceInOutput}"
+                               Visibility="{Binding ViewModelManufacturingState.IsContainerOutputFull, Converter={StaticResource BoolToVisibilityConverter}}"
+                               Margin="0,5,0,0"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               Foreground="{StaticResource BrushColor6}"
+                               FontSize="12"
+                               TextWrapping="Wrap" />
+
+
+                    <Grid
+                        Visibility="{Binding ViewModelManufacturingState.IsInputMatchSelectedRecipe, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                        Margin="0,5,0,0">
+                        <!-- Text: Input items don't match the current recipe! -->
+                        <TextBlock
+                            Text="{x:Static loc:CoreStrings.WindowManufacturer_ErrorInputItemsDontMatchCurrentRecipe}"
+                            Margin="0"
+                            Visibility="{Binding ViewModelManufacturingState.BestMatchingRecipe, Converter={StaticResource NullToVisibilityConverter}}"
+                            Style="{StaticResource TextBlockStyleCraftingCaption}"
+                            Foreground="{StaticResource BrushColor6}"
+                            FontSize="12"
+                            TextWrapping="Wrap" />
+
+                        <!-- Text: Input items don't match any recipe! -->
+                        <TextBlock
+                            Text="{x:Static loc:CoreStrings.WindowManufacturer_ErrorInputItemsDontMatchAnyRecipe}"
+                            Margin="0"
+                            Visibility="{Binding ViewModelManufacturingState.BestMatchingRecipe, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Reverse}"
+                            Style="{StaticResource TextBlockStyleCraftingCaption}"
+                            Foreground="{StaticResource BrushColor6}"
+                            FontSize="12"
+                            TextWrapping="Wrap" />
+                    </Grid>
+
+                    <!-- Text: Not enough input items for current recipe! -->
+                    <TextBlock
+                        Text="{x:Static loc:CoreStrings.WindowManufacturer_ErrorNotEnoughInputItemsForCurrentRecipe}"
+                        Visibility="{Binding ViewModelManufacturingState.IsInputNotEnoughItems, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Margin="0,5,0,0"
+                        Style="{StaticResource TextBlockStyleCraftingCaption}"
+                        Foreground="{StaticResource BrushColor6}"
+                        FontSize="12"
+                        TextWrapping="Wrap" />
+
+                    <ContentControl
+                        Visibility="{Binding ViewModelManufacturingState.IsInputNotEnoughItems, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                        <!-- Text: Fuel required! -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_FuelRequired}"
+                                   Visibility="{Binding IsNeedFuel, Converter={StaticResource BoolToVisibilityConverter}}"
+                                   Margin="0,5,0,0"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   Foreground="{StaticResource BrushColor6}"
+                                   FontSize="12"
+                                   TextWrapping="Wrap" />
+                    </ContentControl>
+
+                    <StackPanel
+                        Visibility="{Binding ViewModelManufacturingState.BestMatchingRecipe, Converter={StaticResource NullToVisibilityConverter}}"
+                        Orientation="Vertical"
+                        Margin="0,5,0,0">
+                        <!-- Text: Best matching recipe -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_BestMatchingRecipe}"
+                                   Margin="0"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   FontSize="12" />
+
+                        <Control DataContext="{Binding ViewModelManufacturingState.BestMatchingRecipeViewModel}"
+                                 Style="{StaticResource StyleControlRecipeInfo}" />
+
+                        <!-- Text: Apply matching recipe -->
+                        <Button Content="{x:Static loc:CoreStrings.WindowManufacturer_Button_ApplyMatchingRecipe}"
+                                Style="{StaticResource ManufacturerButtonStyle}"
+                                Command="{Binding ViewModelManufacturingState.CommandApplyBestMatchingRecipe}" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <Grid Visibility="{Binding ViewModelManufacturingState.VisibilityRecipesBrowser}"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="274" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource PlayerMenuContainerWithLinesFirstColumnWidth}" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <crafting:CraftingRecipesListControl
+                    ViewModel="{Binding ViewModelManufacturingState.RecipesBrowserViewModel}"
+                    HorizontalAlignment="Stretch"
+                    Margin="10,10,0,0" />
+
+                <worldObjects:RecipesBrowserRecipeDetails
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Recipe="{Binding ViewModelManufacturingState.RecipesBrowserViewModel.SelectedRecipe}"
+                    CommandRecipeSelected="{Binding ViewModelManufacturingState.CommandSelectRecipeFromBrowser}"
+                    CommandCancel="{Binding ViewModelManufacturingState.CommandCloseRecipesBrowser}"
+                    Margin="10,10,0,0" />
+
+                <Control Grid.Column="0"
+                         Grid.RowSpan="2"
+                         Grid.ColumnSpan="2"
+                         Template="{StaticResource PlayerMenuContainerWithLines}" />
+            </Grid>
+        </Grid>
+    </core:WindowMenuWithInventory>
+</manufacturers:WindowManufacturerBase>

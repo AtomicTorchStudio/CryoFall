@@ -1,0 +1,60 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.ItemTooltipControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelItemTooltip, IsDesignTimeCreatable=True}"
+    MaxWidth="325">
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Fill="{Binding Icon}"
+                   Grid.Column="2"
+                   Width="96"
+                   Height="96"
+                   UseLayoutRounding="True" />
+
+        <StackPanel Grid.Column="0"
+                    Orientation="Vertical">
+            <TextBlock Text="{Binding Name}"
+                       FontWeight="Bold"
+                       FontSize="13"
+                       TextWrapping="Wrap" />
+
+            <TextBlock Text="{Binding Description}"
+                       TextWrapping="Wrap"
+                       FontSize="12" />
+
+            <ItemsControl Visibility="{Binding InfoControls, Converter={StaticResource NullToVisibilityConverter}}"
+                          ItemsSource="{Binding InfoControls}"
+                          Margin="0,10,0,0">
+                <ItemsControl.Template>
+                    <ControlTemplate>
+                        <ItemsPresenter />
+                    </ControlTemplate>
+                </ItemsControl.Template>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" Margin="0,-1" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding}" Margin="0,1" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+    </Grid>
+
+</base:BaseUserControl>

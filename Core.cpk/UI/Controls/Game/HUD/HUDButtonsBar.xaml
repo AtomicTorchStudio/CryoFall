@@ -1,0 +1,279 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.HUDButtonsBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data"
+    xmlns:hud="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance data:ViewModelHUD, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="{x:Type hud:HUDButton}">
+                <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="Focusable" Value="False" />
+                <Setter Property="Width" Value="48" />
+                <Setter Property="Height" Value="51" />
+                <Setter Property="Margin" Value="3,0" />
+                <Setter Property="Padding" Value="0,0,0,2" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type hud:HUDButton}">
+                            <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5">
+                                <Grid.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </Grid.RenderTransform>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="ExpandingStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition GeneratedDuration="0:0:0.1">
+                                                <VisualTransition.GeneratedEasingFunction>
+                                                    <CubicEase EasingMode="EaseInOut" />
+                                                </VisualTransition.GeneratedEasingFunction>
+                                            </VisualTransition>
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Collapsed">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames
+                                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)"
+                                                    Storyboard.TargetName="grid">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="-8" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Expanded" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Border Background="#99000000"
+                                        CornerRadius="0,0,5,5" />
+                                <Border BorderBrush="{StaticResource WidgetBorderBrush}"
+                                        BorderThickness="1,0,1,1"
+                                        CornerRadius="0,0,5,5">
+                                    <Grid>
+                                        <Border CornerRadius="0,0,5,5" Margin="-1,0,-1,-1">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" Opacity="0.75" StartPoint="0.5,0">
+                                                    <GradientStop
+                                                        Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
+                                                        Offset="1" />
+                                                    <GradientStop
+                                                        Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <Border x:Name="BorderHighlight" CornerRadius="0,0,5,5" Visibility="Collapsed">
+                                            <Border.Background>
+                                                <SolidColorBrush Color="#FF6DB6FF" Opacity="0.3" />
+                                            </Border.Background>
+                                        </Border>
+                                        <!--<Border x:Name="BorderMouseOver" CornerRadius="0,0,5,5" Visibility="Collapsed">
+                                            <Border.Background>
+                                                <SolidColorBrush Color="#FF6DB6FF" Opacity="0.2" />
+                                            </Border.Background>
+                                        </Border>-->
+                                    </Grid>
+                                </Border>
+                                <Button Command="{TemplateBinding Command}"
+                                        Style="{x:Null}"
+                                        VerticalAlignment="Bottom"
+                                        Margin="{TemplateBinding Padding}">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <ContentPresenter />
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Rectangle x:Name="Icon" Fill="{TemplateBinding BrushNormal}" Width="40"
+                                               Height="40" />
+                                </Button>
+                            </Grid>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <!--<Setter TargetName="BorderMouseOver" Property="Visibility" Value="Visible" />-->
+                                    <!--<Setter TargetName="Icon" Property="Fill"
+                                            Value="{Binding BrushHighlighted, RelativeSource={RelativeSource TemplatedParent}}" />-->
+                                </Trigger>
+
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="BorderHighlight" Property="Visibility" Value="Visible" />
+                                    <Setter TargetName="Icon" Property="Fill"
+                                            Value="{Binding BrushHighlighted, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </base:BaseUserControl.Resources>
+
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+        <hud:HUDButton DataContext="{Binding MenuInventory}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Equipment -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Equipment}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="InventoryMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_equipment.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_equipment_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuCrafting}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Crafting -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Crafting}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="CraftingMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_craft.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_craft_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuSkills}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Skills -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Skills}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="SkillsMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_skills.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_skills_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuTechTree}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Technologies -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Technologies}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="TechnologiesMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_blueprints.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_blueprints_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuMap}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Map -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Map}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="MapMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_map.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_map_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuSocial}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Social -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.MenuHome_Social}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="SocialMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_social.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_social_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuQuests}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Quests -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Quests}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="QuestsMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_quests.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_quests_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuConstruction}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Construction -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Construction}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="ConstructionMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_building.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_building_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+    </StackPanel>
+</base:BaseUserControl>

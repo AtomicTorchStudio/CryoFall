@@ -1,0 +1,125 @@
+﻿<core:BaseUserControlWithWindow
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.DataLogs.WindowDataLog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.DataLogs.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="80" d:DesignWidth="850"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowDataLog, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <core:BaseUserControlWithWindow.Resources>
+
+        <Style x:Key="HeaderLeft" TargetType="TextBlock">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,0,0,2" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="{StaticResource MonospacedFontFamily}" />
+            <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
+        </Style>
+
+        <Style x:Key="HeaderRight" TargetType="TextBlock" BasedOn="{StaticResource HeaderLeft}">
+            <Setter Property="Foreground" Value="{StaticResource BrushColorAlt7}" />
+        </Style>
+
+    </core:BaseUserControlWithWindow.Resources>
+
+    <core:GameWindow x:Name="GameWindow"
+                     Width="420"
+                     Height="{StaticResource GameMenuStandardWindowHeight}"
+                     FocusOnControl="{Binding ElementName=ButtonClose}"
+                     Padding="0"
+                     SoundOpening="{x:Null}">
+        <!-- please note - we don't play opening window sound as the DataLog sound played instead -->
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.OpacityMask>
+                    <LinearGradientBrush Opacity="1" SpreadMethod="Repeat" StartPoint="0,0"
+                                         EndPoint="0,2" MappingMode="Absolute">
+                        <GradientStop Color="#AAFFFFFF" Offset="0" />
+                        <GradientStop Color="#FFFFFFFF" Offset="0.5" />
+                        <GradientStop Color="#AAFFFFFF" Offset="1" />
+                    </LinearGradientBrush>
+                </Grid.OpacityMask>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <!-- Text: From -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowDataLog_From}" Style="{StaticResource HeaderLeft}" />
+                    <TextBlock Text=": " Style="{StaticResource HeaderLeft}" />
+                    <TextBlock Text="{Binding FromPerson}" Style="{StaticResource HeaderRight}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <!-- Text: Location -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowDataLog_Location}"
+                               Style="{StaticResource HeaderLeft}" />
+                    <TextBlock Text=": " Style="{StaticResource HeaderLeft}" />
+                    <TextBlock Text="{Binding FromLocation}" Style="{StaticResource HeaderRight}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal"
+                            Margin="0,15,0,0">
+                    <TextBlock />
+                    <!-- Text: To -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowDataLog_To}" Style="{StaticResource HeaderLeft}" />
+                    <TextBlock Text=": " Style="{StaticResource HeaderLeft}" />
+                    <TextBlock Text="{Binding ToPerson}" Style="{StaticResource HeaderRight}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal">
+                    <!-- Text: Location -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowDataLog_Location}"
+                               Style="{StaticResource HeaderLeft}" />
+                    <TextBlock Text=": " Style="{StaticResource HeaderLeft}" />
+                    <TextBlock Text="{Binding ToLocation}" Style="{StaticResource HeaderRight}" />
+                </StackPanel>
+
+                <Grid Grid.Row="4"
+                      Margin="0,20,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Text: Content -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowDataLog_Content}"
+                                   Style="{StaticResource HeaderLeft}" />
+                        <TextBlock Text=":" Style="{StaticResource HeaderLeft}" />
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" Margin="20,5,20,0" VerticalScrollBarVisibility="Visible">
+                        <core:FormattedTextBlock
+                            Content="{Binding Text}"
+                            TextWrapping="Wrap"
+                            FontSize="16"
+                            FontFamily="{StaticResource MonospacedFontFamily}"
+                            FontWeight="Normal"
+                            Foreground="{StaticResource BrushColorAlt7}"
+                            Margin="0" />
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+
+            <!-- Text: Close -->
+            <Button Grid.Row="1"
+                    x:Name="ButtonClose"
+                    Content="{x:Static loc:CoreStrings.Button_Close}"
+                    Command="{Binding CommandCloseOk, ElementName=GameWindow}" />
+        </Grid>
+    </core:GameWindow>
+</core:BaseUserControlWithWindow>

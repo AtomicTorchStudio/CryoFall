@@ -1,0 +1,105 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.SteamAccountRegisterOrLinkFormControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.Data"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance data:ViewModelSteamAccountRegisterOrLinkFormControl, IsDesignTimeCreatable=True}"
+    x:Name="UserControl" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <Grid x:Name="LayoutRoot"
+          VerticalAlignment="Top"
+          KeyboardNavigation.TabNavigation="Cycle">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <WrapPanel Orientation="Horizontal"
+                   Margin="0,-2,0,10"
+                   HorizontalAlignment="Center"
+                   MaxWidth="400">
+            <!-- Text: AtomicTorch.com account registration
+                [br](for your Steam ID). -->
+            <core:FormattedTextBlock
+                Content="{x:Static loc:CoreStrings.SteamAccountRegisterOrLinkForm_Title}"
+                HorizontalAlignment="Left" />
+        </WrapPanel>
+
+        <StackPanel Grid.Row="1">
+            <!-- Text: Email -->
+            <TextBlock Text="{x:Static loc:CoreStrings.Field_Email}"
+                       Margin="0"
+                       Padding="0,0,5,3"
+                       FontSize="14" />
+            <TextBox Margin="0,0,0,5"
+                     IsTabStop="True"
+                     Text="{Binding Email, Mode=TwoWay}"
+                     services:FocusService.MoveFocusOnEnterKey="True"
+                     FontSize="18"
+                     Height="34" />
+
+            <core:FormattedTextBlock
+                Foreground="{StaticResource BrushColorRed7}"
+                Content="{Binding EmailRegistrationErrorMessage}"
+                TextWrapping="Wrap"
+                Visibility="{Binding EmailRegistrationErrorMessage, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"
+                Margin="0,5" />
+
+            <!-- Text: Confirm Email -->
+            <TextBlock Text="{x:Static loc:CoreStrings.SteamAccountRegisterOrLinkForm_ConfirmEmail}"
+                       Margin="0"
+                       Padding="0,5,5,3"
+                       FontSize="14" />
+            <TextBox Margin="0,0,0,5"
+                     IsTabStop="True"
+                     Text="{Binding EmailConfirm, Mode=TwoWay}"
+                     services:FocusService.MoveFocusOnEnterKey="True"
+                     FontSize="18"
+                     Height="34" />
+
+            <!-- Text: Password -->
+            <TextBlock Padding="0,5,5,3"
+                       Text="{x:Static loc:CoreStrings.Field_Password}"
+                       FontSize="14" />
+            <ContentControl Content="{Binding PasswordInputControl}"
+                            IsTabStop="False"
+                            FontFamily="{StaticResource MonospacedFontFamily}"
+                            FontSize="23"
+                            Height="34" />
+
+            <CheckBox IsChecked="{Binding IsAcceptTermsOfService}"
+                      Margin="0,15,0,0">
+                <CheckBox.Content>
+                    <!-- Checkbox text: I accept license agreement... -->
+                    <core:FormattedTextBlock
+                        Content="{x:Static loc:CoreStrings.SteamAccountRegisterOrLinkForm_CheckboxAcceptLicenseAgreement}" />
+                </CheckBox.Content>
+            </CheckBox>
+        </StackPanel>
+
+        <!-- Buttons block -->
+        <Grid Grid.Row="2" VerticalAlignment="Bottom" Margin="0,20,0,0">
+            <!-- Text: Continue -->
+            <Button Content="{x:Static loc:CoreStrings.Button_Continue}"
+                    Command="{Binding CommandRegisterAccount}"
+                    IsTabStop="True"
+                    FontSize="18"
+                    HorizontalAlignment="Left" />
+
+            <!-- Text: Cancel -->
+            <Button Command="{Binding CommandBack, ElementName=UserControl}"
+                    Margin="0"
+                    Content="{x:Static loc:CoreStrings.Button_Cancel}"
+                    IsTabStop="True"
+                    FontSize="18"
+                    HorizontalAlignment="Right" />
+        </Grid>
+    </Grid>
+</base:BaseUserControl>

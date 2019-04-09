@@ -1,0 +1,26 @@
+﻿<?xml
+    version="1.0"
+    encoding="utf-8"?>
+
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<ProjectSchemaDefinitions
+    xmlns="http://schemas.microsoft.com/build/2009/properties">
+    
+    <!-- XAML -->      
+    <ContentType
+        Name="Page"
+        DisplayName="XAML Page"
+        ItemType="Page">
+        <ContentType.Metadata>
+			<NameValuePair Name="DependentExtensions" Value=".xaml.cs" />
+			<NameValuePair Name="DefaultMetadata_SubType" Value="Designer" />
+			<NameValuePair Name="DefaultMetadata_Generator" Value="MSBuild:Compile" />
+		</ContentType.Metadata>        
+    </ContentType>
+
+    <ItemType Name="Page" DisplayName="Page" />
+
+    <FileExtension Name=".xaml" ContentType="Page" />
+
+
+</ProjectSchemaDefinitions>

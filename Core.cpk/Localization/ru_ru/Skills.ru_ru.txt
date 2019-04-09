@@ -1,0 +1,135 @@
+﻿Scripts/Skills/Categories/SkillCategoryAgriculture@Name:
+Сельское хозяйство
+
+Scripts/Skills/Categories/SkillCategoryCombat@Name:
+Боевые
+
+Scripts/Skills/Categories/SkillCategoryMisc@Name:
+Прочие
+
+Scripts/Skills/Categories/SkillCategoryPersonal@Name:
+Личные
+
+Scripts/Skills/Categories/SkillCategoryProduction@Name:
+Производство
+
+Scripts/Skills/Categories/SkillCategoryTechnical@Name:
+Технические
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Flags.AdditionalYield:
+Шанс получить больше урожая
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
+Продвинутые технологии фермерства позволяют вам повысить эффективность работ, скорость роста растений, скорость созревания и даже иногда получать дополнительный урожай.
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
+Фермерство
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
+Шанс получить больше урожая
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
+Знания о флоре этой планеты позволяют вам повысить скорость роста растений и даже иногда получить дополнительный урожай.
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Name:
+Собирательство
+
+Scripts/Skills/Skills/Agriculture/SkillHunting@Description:
+Хорошие охотники получают больше добычи с каждого убитого животного.
+
+Scripts/Skills/Skills/Agriculture/SkillHunting@Name:
+Охота
+
+Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Description:
+Чем опытнее вы в обращении с обычным оружием, тем лучше вы знаете все его особенности и можете эффективней его применять.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Name:
+Обычное оружие
+
+Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Description:
+Чем чаще вы используете энергетическое оружие, тем лучше понимаете, как оно работает, и можете применять его более эффективно.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Name:
+Энергетическое оружие
+
+Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Description:
+Используя экзотичное оружие в бою, вы узнаете его особенности и секреты, одновременно понимая, как максимально эффективно раскрыть его потенциал.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Name:
+Экзотическое оружие
+
+Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Description:
+Применяя тяжелое оружие, вы улучшаете свой навык обращения с ним и получаете дополнительные возможности по нанесению урона.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Name:
+Тяжелое оружие
+
+Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Description:
+Постоянно используя оружие ближнего боя, вы совершенствуете свое мастерство, повышая эффективность его применения и наносимый урон.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
+Оружие ближнего боя
+
+Scripts/Skills/Skills/Misc/SkillSearching@Flags.ChanceToFindRareItems:
+Шанс найти редкие предметы
+
+Scripts/Skills/Skills/Misc/SkillSearching@Description:
+Повышенное внимание к малоприметным деталям повышает ваши шансы найти редкие предметы.
+
+Scripts/Skills/Skills/Misc/SkillSearching@Name:
+Поиск
+
+Scripts/Skills/Skills/Personal/SkillAthletics@Description:
+Тренировки укрепляют ваше тело, вам привычно преодолевать большие расстояния бегом — вы расходуете меньше сил во время бега и способны бежать дольше без передышки.
+
+Scripts/Skills/Skills/Personal/SkillAthletics@Name:
+Атлетика
+
+Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Description:
+Постоянно внедряя в свое тело кибернетические технологии, вы делаете свою иммунную систему более приспособленной к ним.
+
+Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Name:
+Кибернетическая связь
+
+Scripts/Skills/Skills/Personal/SkillLearning@Description:
+Нелегко выживать в непривычной окружающей среде чуждого мира, но это уникальная возможность освоить то, что вы никогда бы не стали изучать.
+
+Scripts/Skills/Skills/Personal/SkillLearning@Name:
+Обучаемость
+
+Scripts/Skills/Skills/Personal/SkillSurvival@Description:
+Повышайте свои шансы выжить, укрепляя максимальный уровень здоровья, энергии, резервов воды и пищи. И тогда из вас получится настоящий крепкий орешек!
+
+Scripts/Skills/Skills/Personal/SkillSurvival@Name:
+Выживаемость
+
+Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
+Шанс добыть больше минералов
+
+Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Шанс найти самородки при добыче минералов
+
+Scripts/Skills/Skills/Production/SkillMining@Description:
+Чем больше вы знаете о месторождениях, тем выше скорость добычи, объем полученных минералов и шанс найти редкие ресурсы. Действует только при использовании кирки.
+
+Scripts/Skills/Skills/Production/SkillMining@Name:
+Добыча минералов
+
+Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
+Опытный и понимающий лесоруб быстрее рубит деревья. Действует только при использовании топора.
+
+Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
+Рубка леса
+
+Scripts/Skills/Skills/Technical/SkillBuilding@Description:
+Высокий уровень строительного навыка помогает строить быстрее. Действует для всех задач (строительства и ремонта), где используется набор инструментов.
+
+Scripts/Skills/Skills/Technical/SkillBuilding@Name:
+Строительство
+
+Scripts/Skills/Skills/Technical/SkillCrafting@Description:
+Изготовление все более сложных вещей и понимание механизма их работы — отличный способ узнать, как устроены все технологии этого мира.
+
+Scripts/Skills/Skills/Technical/SkillCrafting@Name:
+Крафтинг
+

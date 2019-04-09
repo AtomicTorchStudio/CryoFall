@@ -1,0 +1,89 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolGenerator.EditorToolGeneratorSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:brushes="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolGenerator"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelEditorToolGeneratorSettings, IsDesignTimeCreatable=True}">
+
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary Source="/Editor/EditorStyles.xaml" />
+    </base:BaseUserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <brushes:SelectLocationControl ViewModel="{Binding ViewModelLocationSettings}" />
+
+        <Border Background="#FF222222" Padding="5" Margin="5" CornerRadius="3">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Start height" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-3,0,3"
+                           Foreground="{StaticResource BrushColor6}" />
+
+                <TextBox Text="{Binding StartHeight}" Style="{StaticResource EditorTextBoxPositionStyle}"
+                         HorizontalAlignment="Center" />
+
+                <TextBlock Text="Height distribution" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,3"
+                           Foreground="{StaticResource BrushColor6}" />
+
+                <Button Content="+"
+                        Command="{Binding CommandAddHeightSetting}"
+                        MinWidth="40" Width="40" MinHeight="16" Height="16" Padding="0,-4,0,0"
+                        Margin="0,0,0,2"
+                        Focusable="False" />
+
+                <ItemsControl ItemsSource="{Binding HeightSettings}" HorizontalAlignment="Center">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0,1">
+                                <TextBox Text="{Binding MaxValue}" Style="{StaticResource EditorTextBoxPositionStyle}" />
+                                <Button Content="-"
+                                        Command="{Binding CommandDelete}"
+                                        CommandParameter="{Binding}"
+                                        MinWidth="16" Width="16" MinHeight="16" Height="16" Padding="0,-4,0,0"
+                                        Margin="3,0,0,0"
+                                        Focusable="False" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button Content="+"
+                        Command="{Binding CommandAddHeightSetting}"
+                        CommandParameter="end"
+                        MinWidth="40" Width="40" MinHeight="16" Height="16" Padding="0,-4,0,0"
+                        Margin="0,2,0,0"
+                        Focusable="False" />
+            </StackPanel>
+
+        </Border>
+        <!--<TextBlock Text="Select generation algorithm" />-->
+
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Seed" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,2"
+                       Foreground="{StaticResource BrushColor6}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox Text="{Binding Seed}"
+                         Style="{StaticResource EditorTextBoxPositionStyle}"
+                         MinWidth="100"
+                         MaxLength="20"
+                         HorizontalContentAlignment="Center" />
+                <Button Content="#"
+                        Command="{Binding CommandRandomizeSeed}"
+                        CommandParameter="{Binding}"
+                        FontSize="12"
+                        MinWidth="16" Width="16" MinHeight="16" Height="16" Padding="0,-2,0,0"
+                        Margin="3,0,0,0"
+                        Focusable="False" />
+            </StackPanel>
+        </StackPanel>
+
+        <Button Content="Generate"
+                Command="{Binding CommandApply}"
+                Style="{StaticResource EditorButtonStyle}" />
+    </StackPanel>
+</base:BaseUserControl>

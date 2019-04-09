@@ -1,0 +1,1918 @@
+﻿Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Description:
+높은 장갑 관통력을 위해 특별히 디자인된 10mm 탄의 개조판.
+
+Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Name:
+10mm 장갑 관통탄
+
+Scripts/Items/Ammo/ItemAmmo10mmBlank@Description:
+10mm 특수 공포탄. 군사 훈련 또는 침입자를 겁주는 데 사용됩니다.
+
+Scripts/Items/Ammo/ItemAmmo10mmBlank@Name:
+10mm 공포탄
+
+Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Description:
+생물 표적을 위해 특별히 디자인된 10mm 탄의 개조판. 발사체는 충돌 시, 팽창하여 훨씬 더 높은 저지력과 대미지를 제공해 줍니다. 장갑 표적에 전적으로 효과적입니다.
+
+Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Name:
+10mm 할로우 포인트탄
+
+Scripts/Items/Ammo/ItemAmmo10mmStandard@Description:
+다양한 표적에 대해 일반적으로 사용되도록 설계된 범용 10mm 탄.
+
+Scripts/Items/Ammo/ItemAmmo10mmStandard@Name:
+10mm 표준탄
+
+Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Description:
+벅샷의 거대한 구슬들이 확산력과 관통력 사이의 균형을 잘 유지해줍니다. 그러나 추진체로 니트로셀룰로오스보다 추진력이 약한 흑색 화약을 사용하여 탄약의 효과가 제한됩니다.
+
+Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Name:
+12 구경 벅샷
+
+Scripts/Items/Ammo/ItemAmmo12gaPellets@Description:
+더 넓게 퍼져 보다 작은 생물 표적, 특히 적 무리에 이상적인 펠릿입니다. 장갑 표적에 매우 효과적입니다.
+
+Scripts/Items/Ammo/ItemAmmo12gaPellets@Name:
+12 구경 펠릿
+
+Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Description:
+탄피가 굵은 소금으로 채워져 있으며, 실제 전투보다는 침입자와 좀도둑에게 겁을 주기 위해 디자인되었습니다. 대미지는 아주 낮지만, 만약 당신이 맞기라도 한다면... 그 고통은 이루 말로 다 할 수 없을 겁니다.
+
+Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
+12 구경 소금탄
+
+Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
+슬러그는 펠릿보다 훨씬 높은 저지력을 제공하며, 다양한 표적에 대해 사용됩니다. 높은 질량 덕분에 장갑 표적에도 효과적입니다.
+
+Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
+12 구경 슬러그
+
+Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Description:
+장갑 관통 능력이 있는 중화기 반물질 .300 탄
+
+Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
+.300 장갑 관통탄
+
+Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
+중화기 반물질 .300 소이탄
+
+Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
+.300 소이탄
+
+Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
+단순한 8mm 무탄피탄. 간단한 소재와 제작 기술을 사용하여 정확도와 화력이 상당히 낮습니다.
+
+Scripts/Items/Ammo/ItemAmmo8mmStandard@Name:
+8mm standard 표준탄
+
+Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
+충돌시 폭발하는 농축된 소량의 독성 물질이 밀폐된 공간에 들어 있는 8mm 탄의 개조판.
+
+Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
+8mm 독소탄
+
+Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
+기본적인 총기 탄약. 약한 표적에만 적합하지만, 값싸고 생산하기 쉽습니다.
+
+Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
+페이퍼 카트리지
+
+Scripts/Items/Base/ItemUseCaptions@Decrypt:
+암호 해독
+
+Scripts/Items/Base/ItemUseCaptions@Drink:
+마시기
+
+Scripts/Items/Base/ItemUseCaptions@Eat:
+먹기
+
+Scripts/Items/Base/ItemUseCaptions@Read:
+읽기
+
+Scripts/Items/Base/ItemUseCaptions@Use:
+사용
+
+Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
+데이터 기록 (암호화)
+
+Scripts/Items/Devices/ItemBiomaterialCollector@NotificationNoEmptyVials:
+생체 적합 물질 수집 위한 빈 유리병 없음
+
+Scripts/Items/Devices/ItemBiomaterialCollector@Description:
+동물 및 다른 생명체로부터 생체 적합 물질을 추출하기 위한 특수 장치. 작동시키기 위해서는 빈 생체 적합 물질 유리병이 필요합니다.
+
+Scripts/Items/Devices/ItemBiomaterialCollector@Name:
+생체 적합 물질 수집기
+
+Scripts/Items/Devices/ItemPowerBankLarge@Description:
+이동 중에도 편리하게 사용할 수 있도록 많은 양의 전력이 저장되어 있습니다. 모든 장치 및 에너지 무기에 사용할 수 있습니다.
+
+Scripts/Items/Devices/ItemPowerBankLarge@Name:
+대용량 보조 배터리
+
+Scripts/Items/Devices/ItemPowerBankStandard@Description:
+기본 양방향 보조 배터리. 이동 중에도 편리하게 사용할 수 있도록 전력이 저장되어 있습니다. 모든 장치 및 에너지 무기에 사용할 수 있습니다.
+
+Scripts/Items/Devices/ItemPowerBankStandard@Name:
+기본 보조 배터리
+
+Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
+전투 및 주위 환경 방어 능력이 이상적으로 조화를 이룬 고급 환경 방호 갑옷.
+
+Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
+A.P.A.R.T. 슈트
+
+Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+돌격 방어 헬멧
+
+Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
+이 특수 돌격 방어구는 다른 무엇보다도 적의 사격에 대해 놀라운 방어력을 제공합니다.
+
+Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
+돌격 방어 재킷
+
+Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
+돌격 방어 바지
+
+Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
+장비된 헬멧 전등 없음
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentDevice@NotificationCannotUseDirectly_Message:
+모든 장치는 장치 슬롯에 장착되면 자동으로 사용됩니다.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentDevice@NotificationCannotUseDirectly_Title:
+직접 사용할 수 없음
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationCannotRefillWhileOn_Message:
+다시 채우기 전에 전원을 끄십시오.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationCannotRefillWhileOn_Title:
+다시 채울 수 없음
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFuel_Message:
+다시 채워야 합니다.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFuel_Title:
+연료 고갈
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
+헬멧 전등을 키려면, 해당 아이템을 장비하고 [{0}] 키를 누르십시오.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
+버튼이 설정되지 않음
+
+Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
+밀폐 뼈 헬멧
+
+Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
+뿔 뼈 헬멧
+
+Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
+뼈 방어구는 가격이 적당하고, 적당한 방어력을 제공하여 초기에 매우 유용합니다.
+
+Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
+뼈 재킷
+
+Scripts/Items/Equipment/Bone/ItemBonePants@Name:
+뼈 바지
+
+Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
+외관이 아주 멋지진 않지만, 만약의 경우에는 당신을 보호해 줄 겁니다. 가장 가까운 대안보다는 더 나은 환경 방호를 제공해 줍니다.
+
+Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
+편조 갑옷
+
+Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+편조 헬멧
+
+Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
+편조 바지
+
+Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
+천 모자
+
+Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
+천 바지
+
+Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
+실질적인 방어력을 제공하진 않습니다. 어쩌면 모기는 막아 줄지도 모르죠.
+
+Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+천 셔츠
+
+Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
+쓸만한 초기의 갑옷. 특히 감기를 막는 데 적합합니다. 아주 비싸지도 않으며, 편안한 착용감을 선사합니다!
+
+Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
+모피 코트
+
+Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+꼬리 달린 모피 모자
+
+Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+코사크 모자
+
+Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+우샨카 모자
+
+Scripts/Items/Equipment/Fur/ItemFurPants@Name:
+모비 바지
+
+Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+아주 화려한 황금 복장. 진정한 통치자에게 적합합니다.
+
+Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
+황금 갑옷
+
+Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+황금 왕관
+
+Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
+황금 바지
+
+Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+대부분의 환경적 위험으로부터 착용자를 보호하도록 특수 디자인된 옷. 전투에서 사용하면 금방 원래의 형태를 잃게 됩니다.
+
+Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+방호복
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
+카우보이 모자
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
+조종사 모자
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
+해적 모자
+
+Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
+가죽 방어구는 전반적인 방어 기능이 뛰어나며, 초기의 발전 단계에 이상적입니다.
+
+Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
+가죽 재킷
+
+Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
+가죽 바지
+
+Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
+금속 방어구는 물리적인 공격에는 큰 방어력을 제공해주지만, 환경적 위험에 대한 보호는 거의 제공하지 않습니다.
+
+Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
+금속 갑옷
+
+Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
+밀폐 금속 헬멧
+
+Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
+금속 해골 헬멧
+
+Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
+금속 다리 갑옷
+
+Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+군용 헬멧
+
+Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
+이 방어구의 제작에 사용되는 고급 소재는 소형 및 기본 무기에 대항하기에 이상적입니다.
+
+Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
+군용 재킷
+
+Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
+군용 바지
+
+Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
+휴대용 발광체가 달려 있어서 손이 자유로워 지는 편리한 헬멧. 일회용 배터리가 필요합니다.
+
+Scripts/Items/Equipment/Misc/ItemHelmetMiner@Name:
+광부 헬멧
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Description:
+야간에도 완벽한 시야 확보가 가능한 특수 야간 투시경이 장착된 가벼운 전술 헬멧. 일회용 배터리가 필요합니다.
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
+야간 투시경
+
+Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
+안전 헬멧은 충격, 파편, 감전 및 기타 위험으로부터 머리를 보호해 줍니다.
+
+Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
+안전 헬멧
+
+Scripts/Items/Equipment/Misc/ItemRespirator@Description:
+방사성 입자 및 유해 가스를 걸러낼 수 있도록 디자인 된 기본 방독면. 다른 보호 기능은 제공하지 않습니다.
+
+Scripts/Items/Equipment/Misc/ItemRespirator@Name:
+방독면
+
+Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
+기본 틀인 얇은 금속판을 프라그뮴 격자에 결합한 시험용 방어구. 매우 가볍고 내구도가 뛰어납니다.
+
+Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+프라그뮴 갑옷
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
+모든 종류의 대미지 및 환경적 영향으로부터 놀라울 정도로 좋은 보호 수준을 제공하는 두껍게 덧댄 천.
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
+누비 코트
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+누비 모자
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
+누비 헬멧
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
+누비 바지
+
+Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
+필요는 발명의 어머니입니다. 편안하면서도 초기의 방어구 중 괜찮은 방어력을 제공합니다.
+
+Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
+나무 갑옷
+
+Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+나무 헬멧
+
+Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
+나무 바지
+
+Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
+한 번에 많은 양의 광물을 채굴하도록 설계된 특수 폭발 장치. 발굴하고 싶은 광물의 노드 옆에 설치해야 합니다.
+
+Scripts/Items/Explosives/Bombs/ItemBombMining@Name:
+채굴용 폭약
+
+Scripts/Items/Explosives/Bombs/ItemBombModern@Description:
+보강된 구조물을 파괴하도록 고안된 고성능 폭발 장치.
+
+Scripts/Items/Explosives/Bombs/ItemBombModern@Name:
+현대식 폭탄
+
+Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Description:
+벽이나 그밖의 방어 시설을 파괴하는 데 사용되는 구식 폭탄. 최고의 효과를 내려면 최대한 목표물 가까이에서 사용해야 합니다.
+
+Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Name:
+구식 폭탄
+
+Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
+한 번에 여러 겹의 벽이나 문을 파괴하기 위해 프라그뮴의 독특한 특성을 이용하여 만들어진 특수 폭탄. 특히 방어 시설이 잘 구비된 기지를 파괴하는 데 효과적입니다. 그밖의 다른 구조물에는 아무 영향도 주지 않습니다.
+
+Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
+공진 폭탄
+
+Scripts/Items/Food/ItemBanana@Description:
+어떤 원숭이든지 바나나에 닿을 수 있지만, 오직 인간만이 별에 닿을 수 있습니다.
+
+Scripts/Items/Food/ItemBanana@Name:
+바나나
+
+Scripts/Items/Food/ItemBeer@Description:
+상쾌하고 시원합니다. 이 순한 맥주는 고품질의 곡물로 양조됩니다.
+
+Scripts/Items/Food/ItemBeer@Name:
+맥주
+
+Scripts/Items/Food/ItemBellPepper@Description:
+실제 고추와 비교하면 초라하지만 맛 좋은 유사품. 다양한 요리에 사용됩니다.
+
+Scripts/Items/Food/ItemBellPepper@Name:
+피망
+
+Scripts/Items/Food/ItemBerriesOrange@Description:
+맛있는 주황색 베리.
+
+Scripts/Items/Food/ItemBerriesOrange@Name:
+베리
+
+Scripts/Items/Food/ItemBerriesRed@Description:
+맛있는 빨간색 베리.
+
+Scripts/Items/Food/ItemBerriesRed@Name:
+베리
+
+Scripts/Items/Food/ItemBerriesViolet@Description:
+맛있는 보라색 베리.
+
+Scripts/Items/Food/ItemBerriesViolet@Name:
+베리
+
+Scripts/Items/Food/ItemBottleWater@Description:
+수분 보충 및 다양한 요리에 사용 됩니다.
+
+Scripts/Items/Food/ItemBottleWater@Name:
+청정수가 담긴 병
+
+Scripts/Items/Food/ItemBottleWaterSalty@Description:
+짜디 짠 바닷물. 수분을 공급해주기 보단, 갈증을 가져옵니다. 증발시켜 소금을 추출할 수 있습니다.
+
+Scripts/Items/Food/ItemBottleWaterSalty@Name:
+바닷물이 담긴 병
+
+Scripts/Items/Food/ItemBottleWaterStale@Description:
+호수에서 떠온 더러운 물. 안전을 위해 끓여 먹어야 합니다. 갈증을 약간 해소시켜 줍니다.
+
+Scripts/Items/Food/ItemBottleWaterStale@Name:
+더러운 물이 담긴 병
+
+Scripts/Items/Food/ItemBread@Description:
+흰색 빵 덩어리. 탄수화물로만 이루어져 있습니다!
+
+Scripts/Items/Food/ItemBread@Name:
+식빵
+
+Scripts/Items/Food/ItemCactusDrink@Description:
+선인장의 과육을 짜내서 만든 음료. 맛은 형편 없지만, 다른 선택지가 없을 때 갈증을 해소시켜 줍니다.
+
+Scripts/Items/Food/ItemCactusDrink@Name:
+선인장 음료
+
+Scripts/Items/Food/ItemCactusFlesh@Description:
+수분이 많은 선인장의 과육. 그다지 먹고 싶지 않게 생겼지만, 비상시에 당신을 구해줄 것입니다.
+
+Scripts/Items/Food/ItemCactusFlesh@Name:
+선인장 과육
+
+Scripts/Items/Food/ItemCannedBeans@Description:
+이 주변의 가장 맛있는 음식은 아니지만, 허기에서 벗어날 수 있습니다.
+
+Scripts/Items/Food/ItemCannedBeans@Name:
+콩 통조림
+
+Scripts/Items/Food/ItemCannedFish@Description:
+어쩌면 참치일지도 모릅니다. 오메가 3를 섭취해보십시오.
+
+Scripts/Items/Food/ItemCannedFish@Name:
+생선 통조림
+
+Scripts/Items/Food/ItemCannedMeat@Description:
+재료를 알 수 없는 고기 통조림. 그래도 겉 포장은 꽤 괜찮아 보입니다.
+
+Scripts/Items/Food/ItemCannedMeat@Name:
+고기 통조림
+
+Scripts/Items/Food/ItemCarrot@Description:
+카로틴이 풍부한 주황색 야채.
+
+Scripts/Items/Food/ItemCarrot@Name:
+당근
+
+Scripts/Items/Food/ItemCarrotGrilled@Description:
+간단하지만 불 같은 요리.
+
+Scripts/Items/Food/ItemCarrotGrilled@Name:
+당근 구이
+
+Scripts/Items/Food/ItemChiliBeans@Description:
+궁극의 독신남 요리.
+
+Scripts/Items/Food/ItemChiliBeans@Name:
+매운 고추 콩
+
+Scripts/Items/Food/ItemChiliPepper@NotificationSpicy:
+앗! 매워!
+
+Scripts/Items/Food/ItemChiliPepper@Description:
+매운 맛과 향을 요리에 더 해주는 인기 많은 재료.
+
+Scripts/Items/Food/ItemChiliPepper@Name:
+고추
+
+Scripts/Items/Food/ItemCoffeeBeans@NotificationEatingCoffeeBadIdea:
+생 원두를 먹는 게 가장 현명한 생각은 아니었을 겁니다...
+
+Scripts/Items/Food/ItemCoffeeBeans@Description:
+은하계에서 가장 널리 퍼져있는 전통 음료 중 하나를 만드는 데 사용됩니다.
+
+Scripts/Items/Food/ItemCoffeeBeans@Name:
+원두
+
+Scripts/Items/Food/ItemCoffeeBerries@Description:
+그대로 먹거나 원두를 만들기 위해 오븐에서 구울 수 있습니다.
+
+Scripts/Items/Food/ItemCoffeeBerries@Name:
+커피 열매
+
+Scripts/Items/Food/ItemCoffeeCup@Description:
+뜨거운 에스프레소 한 잔. 당신에게 에너지를 공급하여 더 많은 멍청한 일을 하도록 도와줍니다.
+
+Scripts/Items/Food/ItemCoffeeCup@Name:
+커피 한 잔
+
+Scripts/Items/Food/ItemCorn@Description:
+공포 소설 작가가 특히 좋아하는 맛있는 곡물.
+
+Scripts/Items/Food/ItemCorn@Name:
+옥수수
+
+Scripts/Items/Food/ItemCornOnCob@Description:
+옥수숫대에 붙은 뜨거운 옥수수를 좋아하지 않는 사람이 있을까요? 근데 옥수숫대가 뭘까요?
+
+Scripts/Items/Food/ItemCornOnCob@Name:
+통 옥수수
+
+Scripts/Items/Food/ItemCucumber@Description:
+고양이들에게 두려움을 심어주는 수분이 많이 함유된 채소.
+
+Scripts/Items/Food/ItemCucumber@Name:
+오이
+
+Scripts/Items/Food/ItemCucumbersPickled@Description:
+달콤하고 아삭거리는 피클.
+
+Scripts/Items/Food/ItemCucumbersPickled@Name:
+오이 피클
+
+Scripts/Items/Food/ItemDrinkEnergy@Description:
+은하계 전역에서 인기 있는 에너지 음료. 당신에게 엄청난 에너지를 선사합니다.
+
+Scripts/Items/Food/ItemDrinkEnergy@Name:
+에너지 음료
+
+Scripts/Items/Food/ItemDrinkHerbal@Description:
+허브 성분이 함유된 대중적인 음료. 건강에 좋으며, 특히 몸을 해독하는 데 도움을 줄 수 있습니다.
+
+Scripts/Items/Food/ItemDrinkHerbal@Name:
+허브 음료
+
+Scripts/Items/Food/ItemDrinkSoft@Description:
+7 세기 넘게 핵심 부문에서 가장 인기 있는 음료로 선정된 청량음료.
+
+Scripts/Items/Food/ItemDrinkSoft@Name:
+청량음료
+
+Scripts/Items/Food/ItemDurian@Description:
+세상에는 이 열대 과일을 사랑하거나 혐오하는, 두 분류의 사람이 있습니다. 하지만 분명한 건, 이 과일이 독특한 맛과 향기를 가지고 있다는 것입니다.
+
+Scripts/Items/Food/ItemDurian@Name:
+두리안
+
+Scripts/Items/Food/ItemEggsBoiled@Description:
+삶은 알. 삶은 건 튀긴 것보다 건강에 좋습니다!
+
+Scripts/Items/Food/ItemEggsBoiled@Name:
+삶은 알
+
+Scripts/Items/Food/ItemEggsFried@Description:
+튀긴 알. 반숙으로 익혔습니다.
+
+Scripts/Items/Food/ItemEggsFried@Name:
+튀긴 알
+
+Scripts/Items/Food/ItemEggsRaw@Description:
+어떻게 요리해도 맛있습니다. 날로 먹으면 식중독에 걸릴 수 있습니다.
+
+Scripts/Items/Food/ItemEggsRaw@Name:
+동물의 알
+
+Scripts/Items/Food/ItemJamBerries@Description:
+베리로 만든 맛있는 잼.
+
+Scripts/Items/Food/ItemJamBerries@Name:
+베리 잼
+
+Scripts/Items/Food/ItemLiquor@Description:
+루비색을 띄는 아름다운 과일주. 도수 높지만 쉽게 넘어갑니다.
+
+Scripts/Items/Food/ItemLiquor@Name:
+술
+
+Scripts/Items/Food/ItemMeatCharred@Description:
+생불에 요리된 고기. 고기를 요리하는 가장 좋은 방법은 아니지만, 적어도 날로 먹는 것보단 좋습니다.
+
+Scripts/Items/Food/ItemMeatCharred@Name:
+불에 태운 고기
+
+Scripts/Items/Food/ItemMeatJerky@Description:
+고기를 육포로 만들기 위해 말린 것. 맛있지만 수분이 매우 적습니다. 잘 상하지 않아서 오래 보관할 수 있습니다.
+
+Scripts/Items/Food/ItemMeatJerky@Name:
+육포
+
+Scripts/Items/Food/ItemMeatRaw@Description:
+생고기. 다양한 방법으로 요리할 수 있습니다. 생으로 먹는 건 별로 좋은 생각이 아닙니다.
+
+Scripts/Items/Food/ItemMeatRaw@Name:
+생고기
+
+Scripts/Items/Food/ItemMeatRoasted@Description:
+파슬리를 곁들인 구운 고기. 파슬리는 어디서 왔을까요? 수수께끼입니다!
+
+Scripts/Items/Food/ItemMeatRoasted@Name:
+구운 고기
+
+Scripts/Items/Food/ItemMREImprovised@Description:
+몇 가지 간단한 재료로 요리되며, 주요 방부제로 소금이 사용됩니다. 잘 상하지 않아서 오래 보관할 수 있습니다.
+
+Scripts/Items/Food/ItemMREImprovised@Name:
+즉석 전투 식량
+
+Scripts/Items/Food/ItemMushroomPennyBun@Description:
+식용 버섯. 그냥 먹을 수도 있지만, 스튜에 넣거나 요리하면 더 맛있습니다.
+
+Scripts/Items/Food/ItemMushroomPennyBun@Name:
+그물 버섯
+
+Scripts/Items/Food/ItemMushroomPink@Description:
+엄청나게 독성이 강한 버섯. 독성 물질 때문에 밤에 빛을 발합니다.
+
+Scripts/Items/Food/ItemMushroomPink@Name:
+분홍색 버섯
+
+Scripts/Items/Food/ItemMushroomRust@Description:
+이 버섯은 어두운 색 때문에 녹버섯이라는 이름으로 불립니다. 요리하면 아주 맛있지만, 날 것에는 독이 있어서 위험합니다.
+
+Scripts/Items/Food/ItemMushroomRust@Name:
+녹버섯
+
+Scripts/Items/Food/ItemOgurin@Description:
+이상하게 생긴 오구린 열매... 아주 맛 없습니다. 오이를 유전자 조작하여 만들어졌습니다.
+
+Scripts/Items/Food/ItemOgurin@Name:
+오구린 열매
+
+Scripts/Items/Food/ItemPieBerry@Description:
+군침 도는 베리 파이. 어릴 때 할머니가 만들어 준 것과 비슷합니다.
+
+Scripts/Items/Food/ItemPieBerry@Name:
+베리 파이
+
+Scripts/Items/Food/ItemPineapple@Description:
+달콤하면서도 쌉싸름한 열대 과일. 생으로 먹거나 다양한 요리에 사용할 수 있습니다. 어떤 이들은 심지어 피자에도 잘 어울린다고 말합니다.
+
+Scripts/Items/Food/ItemPineapple@Name:
+파인애플
+
+Scripts/Items/Food/ItemRoastedMushrooms@Description:
+맛있게 구워진 버섯.
+
+Scripts/Items/Food/ItemRoastedMushrooms@Name:
+구운 버섯
+
+Scripts/Items/Food/ItemSaladFruit@Description:
+여러 과일을 섞은 샐러드. 달콤하고 건강하며, 배를 채워줍니다!
+
+Scripts/Items/Food/ItemSaladFruit@Name:
+과일 샐러드
+
+Scripts/Items/Food/ItemSaladVegetable@Description:
+여러 채소를 섞은 샐러드. 아주 건강하며 놀라울 정도로 많은 포만감을 줍니다!
+
+Scripts/Items/Food/ItemSaladVegetable@Name:
+채소 샐러드
+
+Scripts/Items/Food/ItemSandwich@Description:
+부드러운 빵, 육즙 많은 고기, 채소. 이 세 가지가 함께하면 유구한 전통을 자랑하는 샌드위치가 됩니다!
+
+Scripts/Items/Food/ItemSandwich@Name:
+샌드위치
+
+Scripts/Items/Food/ItemStew@Description:
+버섯이 들어 간 맛있는 고기 스튜.
+
+Scripts/Items/Food/ItemStew@Name:
+버섯 고기 스튜
+
+Scripts/Items/Food/ItemSugar@Description:
+맛은 달콤하며 색은 하얗습니다. 다양한 음식에 사용할 수 있습니다. 그냥 먹어도 되지만, 그다지 좋은 생각은 아닙니다.
+
+Scripts/Items/Food/ItemSugar@Name:
+설탕
+
+Scripts/Items/Food/ItemTequila@Description:
+사막에서 발견된 식물로 증류한 아름다운 술.
+
+Scripts/Items/Food/ItemTequila@Name:
+테킬라
+
+Scripts/Items/Food/ItemTincture@Description:
+이 허브 팅크는 건강 증진을 포함한 수많은 긍정적인 효과를 제공합니다.
+
+Scripts/Items/Food/ItemTincture@Name:
+팅크
+
+Scripts/Items/Food/ItemTomato@Description:
+토마토가 과일이 아니라 채소라는 사실, 알고 계셨나요?
+
+Scripts/Items/Food/ItemTomato@Name:
+토마토
+
+Scripts/Items/Food/ItemVodka@Description:
+얼얼한 신들의 액체. 너무 많이 마시면 좋지 않습니다. 또한 수분을 빼앗아 갑니다. 그리고 분명한 건, 방사능 해독에 도움되지 않습니다.
+
+Scripts/Items/Food/ItemVodka@Name:
+보드카
+
+Scripts/Items/Food/ItemWaterbulb@Description:
+수구 식물의 열매. 마실 수 있는 깨끗한 물이 들어있습니다.
+
+Scripts/Items/Food/ItemWaterbulb@Name:
+수구 열매
+
+Scripts/Items/Food/ItemWine@Description:
+최고의 포도(또는 그와 동등한 수준)로 만든 신들의 장엄한 음료입니다. 더할 나위 없이 훌륭한 맛과 향기가 일품입니다.
+
+Scripts/Items/Food/ItemWine@Name:
+와인
+
+Scripts/Items/Food/ItemYucca@Description:
+사막의 생존 음식. 요리해서 먹어야 합니다.
+
+Scripts/Items/Food/ItemYucca@Name:
+유카
+
+Scripts/Items/Food/ItemYuccaCharred@Description:
+비상 시에 먹으면, 적어도 굶어 죽진 않을 겁니다.
+
+Scripts/Items/Food/ItemYuccaCharred@Name:
+불에 태운 유카
+
+Scripts/Items/Food/ItemYuccaFried@Description:
+요리가 잘 된 유카 열매. 최고 수준의 요리는 아니지만 맛이 좋으며, 유용한 영양소를 제공해줍니다.
+
+Scripts/Items/Food/ItemYuccaFried@Name:
+튀긴 유카
+
+Scripts/Items/Generic/ItemAcidNitric@Description:
+질산이 든 병.
+
+Scripts/Items/Generic/ItemAcidNitric@Name:
+질산
+
+Scripts/Items/Generic/ItemAcidSulfuric@Description:
+황산이 든 병.
+
+Scripts/Items/Generic/ItemAcidSulfuric@Name:
+황산
+
+Scripts/Items/Generic/ItemAnimalFat@Description:
+동물에게서 추출한 기름. 요리나 공업에 유용하게 사용됩니다.
+
+Scripts/Items/Generic/ItemAnimalFat@Name:
+동물의 기름
+
+Scripts/Items/Generic/ItemAramidFiber@Description:
+탄성 계수가 높아 매우 질긴 합성 섬유. 방어구 생산이나 그밖의 다양한 용도로 사용됩니다.
+
+Scripts/Items/Generic/ItemAramidFiber@Name:
+아라미드 섬유
+
+Scripts/Items/Generic/ItemAsh@Description:
+나무를 태우고 남은 재.
+
+Scripts/Items/Generic/ItemAsh@Name:
+재
+
+Scripts/Items/Generic/ItemBallisticPlate@Description:
+대부분의 재래식 및 신식 무기를 막을 수 있도록 설계된 무겁고 거의 뚫리지 않는 합성판.
+
+Scripts/Items/Generic/ItemBallisticPlate@Name:
+방탄판
+
+Scripts/Items/Generic/ItemBatteryDisposable@Description:
+단순한 일회용 배터리. 많은 전력이 저장되어 있진 않지만, 값싸고 만들기 쉽습니다. 전자 장치 또는 보조 배터리를 충전하는 데 사용됩니다.
+
+Scripts/Items/Generic/ItemBatteryDisposable@Name:
+일회용 배터리
+
+Scripts/Items/Generic/ItemBatteryHeavyDuty@Description:
+대용량 일회용 배터리. 작은 배터리 보다 더 많은 전력이 저장되어 있으며, 전자 장치 또는 보조 배터리를 빠르게 충전하는 데 사용됩니다.
+
+Scripts/Items/Generic/ItemBatteryHeavyDuty@Name:
+대용량 보조 배터리
+
+Scripts/Items/Generic/ItemBlackpowder@Description:
+흑색 화약이라고도 불리는 평범한 화약. 간단한 소재로 쉽게 만들 수 있습니다.
+
+Scripts/Items/Generic/ItemBlackpowder@Name:
+흑색 화약
+
+Scripts/Items/Generic/ItemBones@Description:
+동물의 뼈.
+
+Scripts/Items/Generic/ItemBones@Name:
+뼈
+
+Scripts/Items/Generic/ItemBottleEmpty@Description:
+그냥 빈 병. 물 따위를 담을 수 있습니다.
+
+Scripts/Items/Generic/ItemBottleEmpty@Name:
+빈 병
+
+Scripts/Items/Generic/ItemBricks@Description:
+건물 및 벽의 건설 자재.
+
+Scripts/Items/Generic/ItemBricks@Name:
+벽돌
+
+Scripts/Items/Generic/ItemCampFuel@Description:
+캠프 연료 (등유라고도 불림)는 다양한 광원에 연료로 사용됩니다.
+
+Scripts/Items/Generic/ItemCampFuel@Name:
+캠프 연료
+
+Scripts/Items/Generic/ItemCanisterEmpty@Description:
+비어 있는 금속 용기. 휘발성 액체를 담을 수 있습니다.
+
+Scripts/Items/Generic/ItemCanisterEmpty@Name:
+빈 용기
+
+Scripts/Items/Generic/ItemCanisterGasoline@Description:
+휘발유가 담긴 용기.
+
+Scripts/Items/Generic/ItemCanisterGasoline@Name:
+휘발유 용기
+
+Scripts/Items/Generic/ItemCanisterMineralOil@Description:
+광물유가 담긴 용기.
+
+Scripts/Items/Generic/ItemCanisterMineralOil@Name:
+광물유 용기
+
+Scripts/Items/Generic/ItemCanisterPetroleum@Description:
+원유가 담긴 용기. 정유하여 다양한 성분을 추출해낼 수 있습니다.
+
+Scripts/Items/Generic/ItemCanisterPetroleum@Name:
+원유 용기
+
+Scripts/Items/Generic/ItemCement@Description:
+건조 시멘트 혼합물은 결합재로써 건설에 유용하게 사용됩니다.
+
+Scripts/Items/Generic/ItemCement@Name:
+건조 시멘트 혼합물
+
+Scripts/Items/Generic/ItemCharcoal@Description:
+숯은 나무를 태우고 남은 부산물입니다. 연료로 사용됩니다.
+
+Scripts/Items/Generic/ItemCharcoal@Name:
+숯
+
+Scripts/Items/Generic/ItemClay@Description:
+점토는 건설에 유용하게 사용되는 자연 발생 물질입니다.
+
+Scripts/Items/Generic/ItemClay@Name:
+점토
+
+Scripts/Items/Generic/ItemCoal@Description:
+석탄은 땅이나 탄광에서 채굴됩니다. 좋은 연료로 사용됩니다.
+
+Scripts/Items/Generic/ItemCoal@Name:
+석탄
+
+Scripts/Items/Generic/ItemCoinPenny@Description:
+액면가가 낮은 주화. 거래 기계에서 값싼 아이템을 구매하거나 다른 생존자들과 직접 거래하는 데 사용됩니다.
+
+Scripts/Items/Generic/ItemCoinPenny@Name:
+티끌 주화
+
+Scripts/Items/Generic/ItemCoinShiny@Description:
+액면가가 높은 주화. 거래 기계에서 값싼 아이템을 구매하거나 다른 생존자들과 직접 거래하는 데 사용됩니다.
+
+Scripts/Items/Generic/ItemCoinShiny@Name:
+반짝 주화
+
+Scripts/Items/Generic/ItemComponentsElectronic@Description:
+전자 장치를 만드는 데 필요한 다양한 전자 부품. 버려진 과학 기지에서 쉽게 뒤져서 찾을 수 있습니다.
+
+Scripts/Items/Generic/ItemComponentsElectronic@Name:
+전자 부품
+
+Scripts/Items/Generic/ItemComponentsHighTech@Description:
+매우 복잡한 장치를 만들기 위해 필요한 고급 첨단 부품.
+
+Scripts/Items/Generic/ItemComponentsHighTech@Name:
+첨단 부품
+
+Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Description:
+공업에 유용하게 사용 되는 각종 약품.
+
+Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Name:
+공업 약품
+
+Scripts/Items/Generic/ItemComponentsMechanical@Description:
+다양하고 복잡한 기계 장치를 조립하는 데 필요한 여러 가지 기계 부품.
+
+Scripts/Items/Generic/ItemComponentsMechanical@Name:
+기계 부품
+
+Scripts/Items/Generic/ItemComponentsOptical@Description:
+광범위한 공업용 및 군용 목적을 지닌 다양한 첨단 광부품.
+
+Scripts/Items/Generic/ItemComponentsOptical@Name:
+광부품
+
+Scripts/Items/Generic/ItemComponentsPharmaceutical@Description:
+다양한 약을 제작하는 데 사용되는 제약용 화학 약품.
+
+Scripts/Items/Generic/ItemComponentsPharmaceutical@Name:
+제약용 화학 약품
+
+Scripts/Items/Generic/ItemComponentsWeapon@Description:
+고급 무기를 조립하는 데 필요한 다양한 무기 부품.
+
+Scripts/Items/Generic/ItemComponentsWeapon@Name:
+무기 부품
+
+Scripts/Items/Generic/ItemExplosives@Description:
+다양한 폭발 장치를 만드는 데 사용할 수 있는 고폭탄 소재.
+
+Scripts/Items/Generic/ItemExplosives@Name:
+폭발물
+
+Scripts/Items/Generic/ItemFertilizer@ShortDescriptionText:
+`생장 속도 {0}% 향상
+[br]수확량 증가`
+
+Scripts/Items/Generic/ItemFertilizer@Description:
+농작물의 생장 속도와 수확량을 획기적으로 향상시킵니다.
+
+Scripts/Items/Generic/ItemFertilizer@Name:
+비료
+
+Scripts/Items/Generic/ItemFibers@Description:
+천연 또는 합성 섬유. 밧줄이나 실을 만드는 데 유용합니다. 풀이나 특정 식물들을 모아서 얻을 수 있습니다.
+
+Scripts/Items/Generic/ItemFibers@Name:
+섬유
+
+Scripts/Items/Generic/ItemFirelog@Description:
+특수한 방법으로 인위적으로 만들어진 통나무. 천연 통나무보다 더 오래 갑니다.
+
+Scripts/Items/Generic/ItemFirelog@Name:
+불통나무
+
+Scripts/Items/Generic/ItemFlowerBlueSage@Description:
+아름다우며 특정 약을 만드는 데 유용합니다.
+
+Scripts/Items/Generic/ItemFlowerBlueSage@Name:
+파란색 세이지
+
+Scripts/Items/Generic/ItemFlowerOni@Description:
+빨간색 도깨비꽃. 붉은 도깨비에서 이름을 따왔습니다.
+
+Scripts/Items/Generic/ItemFlowerOni@Name:
+도깨비꽃
+
+Scripts/Items/Generic/ItemFluxPowder@Description:
+융제 가루는 고품질의 금속을 만들기 위한 야금에 유용합니다.
+
+Scripts/Items/Generic/ItemFluxPowder@Name:
+융제 가루
+
+Scripts/Items/Generic/ItemFoodRotten@Description:
+이 음식은 완전히 상했습니다.
+
+Scripts/Items/Generic/ItemFoodRotten@Name:
+부패한 음식
+
+Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
+고성능 화기용으로 고안되어 특별히 만들어진 니트로셀룰로오스 과립.
+
+Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
+제형 화약
+
+Scripts/Items/Generic/ItemFur@Description:
+동물의 털가죽. 따뜻한 겨울 옷을 만드는 데 유용합니다.
+
+Scripts/Items/Generic/ItemFur@Name:
+모피
+
+Scripts/Items/Generic/ItemGemDiamond@Description:
+반짝이는 순백의 다이아몬드!
+
+Scripts/Items/Generic/ItemGemDiamond@Name:
+다이아몬드
+
+Scripts/Items/Generic/ItemGemEmerald@Description:
+반짝이는 초록의 에메랄드!
+
+Scripts/Items/Generic/ItemGemEmerald@Name:
+에메랄드
+
+Scripts/Items/Generic/ItemGemRuby@Description:
+반짝이는 붉은 루비!
+
+Scripts/Items/Generic/ItemGemRuby@Name:
+루비
+
+Scripts/Items/Generic/ItemGemSapphire@Description:
+반짝이는 푸른 사파이어!
+
+Scripts/Items/Generic/ItemGemSapphire@Name:
+사파이어
+
+Scripts/Items/Generic/ItemGemTopaz@Description:
+반짝이는 노란 토파즈!
+
+Scripts/Items/Generic/ItemGemTopaz@Name:
+토파즈
+
+Scripts/Items/Generic/ItemGemTourmaline @Description:
+반짝이는 보랏빛 투르말린!
+
+Scripts/Items/Generic/ItemGemTourmaline @Name:
+투르말린
+
+Scripts/Items/Generic/ItemGlassRaw@Description:
+가공되지 않은 유리는 병과 같은 다양한 유리 제품을 만드는 데 사용됩니다.
+
+Scripts/Items/Generic/ItemGlassRaw@Name:
+가공되지 않은 유리
+
+Scripts/Items/Generic/ItemGlue@Description:
+접착제는 무엇을 만들 때 다양하게 사용됩니다.
+
+Scripts/Items/Generic/ItemGlue@Name:
+접착제
+
+Scripts/Items/Generic/ItemGoldNugget@Description:
+작은 생금 덩어리.
+
+Scripts/Items/Generic/ItemGoldNugget@Name:
+금덩이
+
+Scripts/Items/Generic/ItemHygroscopicGranules@Description:
+토양에 수분을 보충하는 데 사용할 수 있는 특수 고흡습성 과립. 이 과립은 공기 중의 수분을 끌어오기 때문에 농작물에 물을 주지 않아도 됩니다.
+
+Scripts/Items/Generic/ItemHygroscopicGranules@Name:
+흡습성 과립
+
+Scripts/Items/Generic/ItemIngotCopper@Description:
+순수한 구리괴. 구리는 공업에서 전자에 이르기까지 다양한 분야에서 사용되고 있습니다.
+
+Scripts/Items/Generic/ItemIngotCopper@Name:
+구리괴
+
+Scripts/Items/Generic/ItemIngotGold@Description:
+순금으로 만들어진 작은 금괴.
+
+Scripts/Items/Generic/ItemIngotGold@Name:
+금괴
+
+Scripts/Items/Generic/ItemIngotIron@Description:
+탄소 함량이 상대적으로 적은 철괴.
+
+Scripts/Items/Generic/ItemIngotIron@Name:
+철괴
+
+Scripts/Items/Generic/ItemIngotLithium@Description:
+순수한 금속 리튬. 일반적으로 진공 밀봉된 용기에 보관하거나 석유에 담가서 보관합니다.
+
+Scripts/Items/Generic/ItemIngotLithium@Name:
+리튬괴
+
+Scripts/Items/Generic/ItemIngotSteel@Description:
+탄소 함량이 높은 공업용 강종.
+
+Scripts/Items/Generic/ItemIngotSteel@Name:
+강철괴
+
+Scripts/Items/Generic/ItemLeaf@Description:
+이파리... 아마도 나뭇잎일 겁니다.
+
+Scripts/Items/Generic/ItemLeaf@Name:
+잎
+
+Scripts/Items/Generic/ItemLeather@Description:
+동물의 가죽. 가죽 방어구 제작에 유용하게 사용됩니다.
+
+Scripts/Items/Generic/ItemLeather@Name:
+가죽
+
+Scripts/Items/Generic/ItemLogs@Description:
+건설 자재 및 바베큐에 좋습니다.
+
+Scripts/Items/Generic/ItemLogs@Name:
+통나무
+
+Scripts/Items/Generic/ItemMulch@ShortDescriptionText:
+생장 속도 {0}% 향상
+
+Scripts/Items/Generic/ItemMulch@Description:
+비료는 분해된 유기재로 만들어져 있습니다. 좋은 천연 유기농 비료, 그 자체입니다.
+
+Scripts/Items/Generic/ItemMulch@Name:
+비료
+
+Scripts/Items/Generic/ItemNitrocellulosePowder@Description:
+니트로셀룰로오스는 무연 화약이라고도 불립니다. 현대의 모든 화기는 흑색 화약 대신 이것을 사용합니다.
+
+Scripts/Items/Generic/ItemNitrocellulosePowder@Name:
+니트로셀룰로오스 화약
+
+Scripts/Items/Generic/ItemOilpod@Description:
+특수한 유전자 변형으로 만들어진 식용에 적합하지 않은 열매. 고농도 석유 제품 및 파생품이 들어 있습니다.
+
+Scripts/Items/Generic/ItemOilpod@Name:
+석유꼬투리 열매
+
+Scripts/Items/Generic/ItemOreCopper@Description:
+순동으로 제련할 수 있습니다.
+
+Scripts/Items/Generic/ItemOreCopper@Name:
+동광석
+
+Scripts/Items/Generic/ItemOreIron@Description:
+순철로 제련할 수 있습니다.
+
+Scripts/Items/Generic/ItemOreIron@Name:
+철광석
+
+Scripts/Items/Generic/ItemOreLithium@Description:
+리튬 소금은 열수구에서 추출되며, 순수한 금속 리튬으로 가공됩니다.
+
+Scripts/Items/Generic/ItemOreLithium@Name:
+리튬 소금
+
+Scripts/Items/Generic/ItemOrePragmium@Description:
+수요가 매우 높은 광물. 다른 평범한 물질에는 없는 고유한 특성들을 가지고 있습니다. 프라그뮴은 첨단 장비나 전력원을 만드는 데 사용됩니다.
+
+Scripts/Items/Generic/ItemOrePragmium@Name:
+프라그뮴
+
+Scripts/Items/Generic/ItemOrePyrite@Description:
+황철광은 가열하여 황산으로 가공할 수 있습니다.
+
+Scripts/Items/Generic/ItemOrePyrite@Name:
+황철광
+
+Scripts/Items/Generic/ItemPaper@Description:
+평범한 종이.
+
+Scripts/Items/Generic/ItemPaper@Name:
+종이
+
+Scripts/Items/Generic/ItemPlanks@Description:
+주로 건설 자재로 사용됩니다. 또한 연료로 사용할 수도 있습니다.
+
+Scripts/Items/Generic/ItemPlanks@Name:
+나무 판자
+
+Scripts/Items/Generic/ItemPlastic@Description:
+가공되지 않은 플라스틱. 공업에 유용하게 사용됩니다.
+
+Scripts/Items/Generic/ItemPlastic@Name:
+플라스틱
+
+Scripts/Items/Generic/ItemPotassiumNitrate@Description:
+질산칼륨은 초석이라는 이름으로도 알려져 있습니다. 화약을 만들거나 그 밖의 다양한 것들을 만드는 데 사용됩니다.
+
+Scripts/Items/Generic/ItemPotassiumNitrate@Name:
+질산칼륨
+
+Scripts/Items/Generic/ItemPowerCell@Description:
+다양한 전자 장치에 사용되며 에너가 저장되어 있는 소형 범용 전지. 이것만 사용할 순 없습니다.
+
+Scripts/Items/Generic/ItemPowerCell@Name:
+전지
+
+Scripts/Items/Generic/ItemRope@Description:
+평범한 밧줄. 다양한 용도로 사용할 수 있습니다. 사용하고 남은 밧줄은 태울 수 있습니다.
+
+Scripts/Items/Generic/ItemRope@Name:
+밧줄
+
+Scripts/Items/Generic/ItemRubberRaw@Description:
+천연 고무, 라텍스 수지라고도 합니다. 고무 나무에서 추출됩니다. 화학적인 방법을 통해 가황 고무로 바꿀 수 있습니다.
+
+Scripts/Items/Generic/ItemRubberRaw@Name:
+천연 고무
+
+Scripts/Items/Generic/ItemRubberVulcanized@Description:
+가황 고무. 절연체 또는 기타 방수 자재 를 만들기에 이상적입니다.
+
+Scripts/Items/Generic/ItemRubberVulcanized@Name:
+고무
+
+Scripts/Items/Generic/ItemSalt@Description:
+평범한 식용 소금... 당연히 음식에 넣을 수 있습니다. 화학자들에게는 NaCl로 알려져 있습니다. 다양한 방면에 사용됩니다.
+
+Scripts/Items/Generic/ItemSalt@Name:
+소금
+
+Scripts/Items/Generic/ItemSand@Description:
+모래는 유리를 만들거나 건설 자재로 사용할 수 있습니다.
+
+Scripts/Items/Generic/ItemSand@Name:
+모래
+
+Scripts/Items/Generic/ItemSolvent@Description:
+극성 및 비극성 용매의 성질을 결합하여 특수 제작된 첨단 용매.
+
+Scripts/Items/Generic/ItemSolvent@Name:
+용매
+
+Scripts/Items/Generic/ItemStone@Description:
+둥글고 무거운... 돌. 건설에 유용합니다. 땅에 놓여 있는 것을 주워서 얻거나 다량으로 채굴할 수 있습니다.
+
+Scripts/Items/Generic/ItemStone@Name:
+돌
+
+Scripts/Items/Generic/ItemSulfurPowder@Description:
+가루 형태의 순수한 황.
+
+Scripts/Items/Generic/ItemSulfurPowder@Name:
+황 분말
+
+Scripts/Items/Generic/ItemTarpaulin@Description:
+두껍게 짜여진 천의 표면에 고무층을 처리한 복합 소재.
+
+Scripts/Items/Generic/ItemTarpaulin@Name:
+방수포
+
+Scripts/Items/Generic/ItemThread@Description:
+이 실은 옷을 만들거나 다양한 용도로 사용됩니다.
+
+Scripts/Items/Generic/ItemThread@Name:
+실
+
+Scripts/Items/Generic/ItemTobaccoAged@Description:
+숙성된 담뱃잎. 고급 담배로 만들 수 있습니다.
+
+Scripts/Items/Generic/ItemTobaccoAged@Name:
+담배 (숙성)
+
+Scripts/Items/Generic/ItemTobaccoDried@Description:
+말린 담뱃잎. 싸구려 담배를 만들거나 더 오래 숙성하여 고급 담배로 만들 수 있습니다.
+
+Scripts/Items/Generic/ItemTobaccoDried@Name:
+담뱃잎 (건조)
+
+Scripts/Items/Generic/ItemTobaccoRaw@Description:
+생 담뱃잎과 꼬투리. 말려서 담배로 만들 수 있습니다.
+
+Scripts/Items/Generic/ItemTobaccoRaw@Name:
+담배 (생)
+
+Scripts/Items/Generic/ItemToxin@Description:
+화학적 독성 물질. 독성 물질을 담은 탄약을 만들거나 약을 만드는 데 사용할 수 있습니다.
+
+Scripts/Items/Generic/ItemToxin@Name:
+독성 물질
+
+Scripts/Items/Generic/ItemTreebark@Description:
+나무에서 얻은 나무껍질. 태우거나 다른 용도로 사용할 수 있습니다.
+
+Scripts/Items/Generic/ItemTreebark@Name:
+나무껍질
+
+Scripts/Items/Generic/ItemTwigs@Description:
+땅바닥에 떨어져 있거나 나무에서 꺾어서 모은 잔가지. 간단한 도구를 만들거나 불에 태울 수 있습니다.
+
+Scripts/Items/Generic/ItemTwigs@Name:
+잔가지
+
+Scripts/Items/Generic/ItemVialBiomaterial@Description:
+인공 두뇌학과 의학, 특히 임플란트를 설치하고 제거하는 작업을 수행하는 데 사용됩니다.
+
+Scripts/Items/Generic/ItemVialBiomaterial@Name:
+생체 적합 물질 유리병
+
+Scripts/Items/Generic/ItemVialEmpty@Description:
+생체 적합 물질 추출 장치와 함께 사용하도록 설계된 빈 유리병.
+
+Scripts/Items/Generic/ItemVialEmpty@Name:
+빈 생체 적합 물질 유리병
+
+Scripts/Items/Generic/ItemWheatFlour@Description:
+다양한 빵과 과자를 구울 수 있습니다.
+
+Scripts/Items/Generic/ItemWheatFlour@Name:
+밀가루
+
+Scripts/Items/Generic/ItemWheatGrains@Description:
+밀밭에서 수확된 낟알. 밀가루로 가공하거나 심을 수 있습니다.
+
+Scripts/Items/Generic/ItemWheatGrains@Name:
+밀 낟알
+
+Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
+장비된 보조 배터리가 없습니다
+
+Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoRechargingRequired:
+충전 필요 없음
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@CannotApplyErrorTitle:
+이곳에 비료 사용할 수 없음
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationFertilizerAlreadyApplied:
+이미 비료를 뿌렸습니다
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
+농작물을 수확할 준비가 되었습니다. 비료를 더 뿌릴 필요가 없습니다.
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
+이미 물을 줬습니다
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
+농작물을 수확할 준비가 되었습니다. 물을 더 줄 필요가 없습니다.
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
+이곳에 적용할 수 없음
+
+Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
+밤에도 거의 완벽한 시력을 제공하는 HDR 지원 고감광 특수 망막층.
+
+Scripts/Items/Implants/ItemImplantArtificialRetina@Name:
+인공 망막 임플란트
+
+Scripts/Items/Implants/ItemImplantArtificialStomach@Description:
+더 튼튼한 위벽과 대부분의 유해 물질을 분해하거나 중화시키는 더욱 강력한 위산과 효소가 포함되어 있어서 위의 능력이 향상됩니다. 이로 인해 거의 상한 음식을 먹을 수 있고, 아무 걱정 없이 더러운 물을 마실 수 있게 됩니다.
+
+Scripts/Items/Implants/ItemImplantArtificialStomach@Name:
+인공 위 임플란트
+
+Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Description:
+자연적 신진 대사를 이용하여 세포의 ATP에서 직접 에너지를 추출하고 이로인해 증가한 허기를 희생하여 이를 전기 에너지로 변환합니다. 효과를 보려면 장착된 보조 배터리가 필요합니다.
+
+Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Name:
+ATP 에너지 추출 임플란트
+
+Scripts/Items/Implants/ItemImplantBroken@Description:
+몸에 부서진 임플란트 조각이 남아있습니다. 조각은 아무 도움도 주지 않으며, 최대한 빨리 제거해야 합니다.
+
+Scripts/Items/Implants/ItemImplantBroken@Name:
+부서진 임플란트
+
+Scripts/Items/Implants/ItemImplantHealingGland@Description:
+줄기 세포를 추가적으로 만들어내고 혈액의 화학 성분을 조절하여 자연적 재생 능력을 향상시킵니다.
+
+Scripts/Items/Implants/ItemImplantHealingGland@Name:
+회복선 임플란트
+
+Scripts/Items/Implants/ItemImplantMetabolismModulator@Description:
+신진대사의 효율성을 향상시켜서 신체의 칼로리 및 체액 소모를 줄입니다.
+
+Scripts/Items/Implants/ItemImplantMetabolismModulator@Name:
+신진대사 조절 임플란트
+
+Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
+이 특수 나노 섬유 소재는 표피층 아래에 결합되어 뛰어난 보호 능력을 제공합니다.
+
+Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
+나노 섬유 피부 임플란트
+
+Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
+속이 메스껍지 않습니다. 지금 이 약을 사용하는 건 아무 의미가 없습니다.
+
+Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Title:
+메스껍지 않음
+
+Scripts/Items/Medical/ItemAntiNausea@Description:
+이 약은 메스꺼운 증상을 완전히 제거하는 데 도움이 됩니다.
+
+Scripts/Items/Medical/ItemAntiNausea@Name:
+메스꺼움 방지약
+
+Scripts/Items/Medical/ItemAntiRadiation@NotificationNoRadiationPoisoning_Message:
+방사능에 중독되어 있지 않습니다. 지금 이 약을 사용하는 건 아무 의미가 없습니다.
+
+Scripts/Items/Medical/ItemAntiRadiation@NotificationNoRadiationPoisoning_Title:
+방사능에 중독되어 있지 않음
+
+Scripts/Items/Medical/ItemAntiRadiation@Description:
+이 응급 방사능 피폭 치료제는 신체에 누적된 방사능의 모든 영향을 즉시 감소시킬 수 있습니다.
+
+Scripts/Items/Medical/ItemAntiRadiation@Name:
+항방사능약
+
+Scripts/Items/Medical/ItemAntiRadiationPreExposure@Description:
+방사능 사전 방지제는 신체에 방사성 핵종이 축적되는 것을 방지하고 전리 방사선의 영향을 완화하는 데 도움을 줍니다.
+
+Scripts/Items/Medical/ItemAntiRadiationPreExposure@Name:
+방사능 노출 사전 방지제
+
+Scripts/Items/Medical/ItemAntiToxin@NotificationNoToxins_Message:
+독성 물질에 중독되지 않았습니다. 지금 이 약을 사용하는 건 아무 의미가 없습니다.
+
+Scripts/Items/Medical/ItemAntiToxin@NotificationNoToxins_Title:
+독성 물질 없음
+
+Scripts/Items/Medical/ItemAntiToxin@Description:
+응급 독성 물질 노출 치료제는 신체에 누적된 독성 물질의 모든 영향을 즉시 감소시킬 수 있습니다.
+
+Scripts/Items/Medical/ItemAntiToxin@Name:
+항독제
+
+Scripts/Items/Medical/ItemAntiToxinPreExposure@Description:
+독성 물질 노출 사전 방지제는 신체에 독성 물질이 흡수되는 것을 막고 면역 체계를 강화시켜 혈류로 들어가는 독성 물지리의 영향을 완화시키는 데 사용됩니다.
+
+Scripts/Items/Medical/ItemAntiToxinPreExposure@Name:
+독성 물질 노출 사전 방지제
+
+Scripts/Items/Medical/ItemBandage@Description:
+붕대는 지혈 및 상처 치료에 도움이 됩니다.
+
+Scripts/Items/Medical/ItemBandage@Name:
+붕대
+
+Scripts/Items/Medical/ItemCigarCheap@Description:
+저렴하고 빠르게 만들어진 담배. 자극제.
+
+Scripts/Items/Medical/ItemCigarCheap@Name:
+싸구려 담배
+
+Scripts/Items/Medical/ItemCigarNormal@Description:
+향이 좋은 담배. 자극제.
+
+Scripts/Items/Medical/ItemCigarNormal@Name:
+담배
+
+Scripts/Items/Medical/ItemCigarPremium@Description:
+절묘한 향과 맛을 지닌 고급 담배. 자극제.
+
+Scripts/Items/Medical/ItemCigarPremium@Name:
+고급 담배
+
+Scripts/Items/Medical/ItemHeatPreExposure@Description:
+내열성 젤을 바르면 직접적인 열 전달을 방지하고 복사열을 반사하여 짧은 시간 동안은 고열 지대에 들어가도 괜찮아집니다.
+
+Scripts/Items/Medical/ItemHeatPreExposure@Name:
+내열성 젤
+
+Scripts/Items/Medical/ItemHemostatic@NotificationNoBleeding_Message:
+출혈 상태가 아닙니다. 지금은 지혈제를 사용할 필요가 없습니다.
+
+Scripts/Items/Medical/ItemHemostatic@NotificationNoBleeding_Title:
+출혈 없음
+
+Scripts/Items/Medical/ItemHemostatic@Description:
+지혈제를 사용하면 출혈이 완전히 멈추고, 그 효과가 지속되는 동안에 발생하는 출혈을 감소시킵니다.
+
+Scripts/Items/Medical/ItemHemostatic@Name:
+지혈제
+
+Scripts/Items/Medical/ItemHerbGreen@Description:
+독특한 치유력과 향균성을 지닌 약초. 그대로 사용할 수도 있지만, 약으로 만들어 제대로 섭취하면 효과가 훨씬 높아집니다.
+
+Scripts/Items/Medical/ItemHerbGreen@Name:
+초록색 약초
+
+Scripts/Items/Medical/ItemHerbPurple@Description:
+독성 물질과 그밖의 이상 물질들을 제거하여 신체에 도움을 주는 약초. 그대로 사용할 수도 있지만, 약으로 만들어 제대로 섭취하면 효과가 훨씬 높아집니다.
+
+Scripts/Items/Medical/ItemHerbPurple@Name:
+보라색 약초
+
+Scripts/Items/Medical/ItemHerbRed@Description:
+강한 자극 효과를 지닌 약초. 독성 물질이 포함되어 있으므로 그대로 섭취하면 안 됩니다.
+
+Scripts/Items/Medical/ItemHerbRed@Name:
+빨간색 약초
+
+Scripts/Items/Medical/ItemMedkit@Description:
+일체형 구급 상자. 천천히 체력을 회복시켜주고, 메스꺼움과 출혈을 없애주며, 부러진 뼈를 위한 부목도 포함되어 있습니다.
+
+Scripts/Items/Medical/ItemMedkit@Name:
+구급 상자
+
+Scripts/Items/Medical/ItemNeuralEnhancer@NotificationNeuralEnhancer_Message:
+{0} LP를 얻었습니다.
+
+Scripts/Items/Medical/ItemNeuralEnhancer@NotificationNeuralEnhancer_Title:
+신경 강화제
+
+Scripts/Items/Medical/ItemNeuralEnhancer@Description:
+이 일회용 신경 강화제에는 사전 프로그래밍된 나노 기기가 포함되어 있습니다. 인위적으로 뇌의 신경 연결 연결을 확장하여 사고의 복잡성을 증가시킵니다. 사용 즉시 학습 포인트를 획득합니다.
+
+Scripts/Items/Medical/ItemNeuralEnhancer@Name:
+신경 강화제
+
+Scripts/Items/Medical/ItemPainkiller@Description:
+진통제를 사용하면 모든 통증을 완전하게 제거하고 효과가 지속되는 동안 예방할 수 있습니다.
+
+Scripts/Items/Medical/ItemPainkiller@Name:
+진통제
+
+Scripts/Items/Medical/ItemPeredozin@NotificationNoMedicineOveruse_Message:
+약물 남용 증상을 가지고 있지 않습니다. 지금은 페레도진을 사용할 필요가 없습니다.
+
+Scripts/Items/Medical/ItemPeredozin@NotificationNoMedicineOveruse_Title:
+약물 남용 증상 없음
+
+Scripts/Items/Medical/ItemPeredozin@NotificationRemovePants_Message:
+이것은 관장약입니다. 우선 팬티를 벗으세요!
+
+Scripts/Items/Medical/ItemPeredozin@NotificationRemovePants_Title:
+팬티 비켜!
+
+Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Message:
+이미 페레도진을 사용했습니다. 한 번 더 사용하는 건 좋지 않을 것 같습니다...
+
+Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Title:
+과유불급!
+
+Scripts/Items/Medical/ItemPeredozin@Description:
+페레도진은 강한 약품 아이템을 자주 사용하였을 때 나타나는 부정적인 효과를 완화하는 데 도움을 줍니다. 직장으로 투여해야 합니다.
+
+Scripts/Items/Medical/ItemPeredozin@Name:
+페레도진
+
+Scripts/Items/Medical/ItemPsiPreExposure@Description:
+초능력장 노출로 인한 신경 손상을 완화시키는 데 도움이 되는 특수 신경 조절 화학 물질.
+
+Scripts/Items/Medical/ItemPsiPreExposure@Name:
+초능력 차단제
+
+Scripts/Items/Medical/ItemRemedyHerbal@Description:
+자가 약초 치료. 체력을 일부 회복시키고 메스꺼움을 제거합니다. 아마 부작용은 없을 겁니다.
+
+Scripts/Items/Medical/ItemRemedyHerbal@Name:
+약초 치료
+
+Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
+뼈가 부러지지 않았습니다. 지금은 부목을 사용할 필요가 없습니다.
+
+Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
+골절 없음
+
+Scripts/Items/Medical/ItemSplint@Description:
+부목은 부러진 뼈를 접골한 후에 치료하는 데 사용됩니다.
+
+Scripts/Items/Medical/ItemSplint@Name:
+부목
+
+Scripts/Items/Medical/ItemStimpack@Description:
+스팀팩은 적정 수준의 체력을 거의 즉시 회복하는 데 사용됩니다. 전투 중에 특히 유용하지만, 심각한 합병증을 유발할 수 있으니 남용해서는 안 됩니다.
+
+Scripts/Items/Medical/ItemStimpack@Name:
+스팀팩
+
+Scripts/Items/Medical/ItemStrengthBoostBig@Description:
+근력강화제을 사용하면 일시적으로 힘이 강해져, 신체 활동의 효율이 향상됩니다.
+
+Scripts/Items/Medical/ItemStrengthBoostBig@Name:
+근력강화제 (대)
+
+Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
+근력강화제을 사용하면 일시적으로 힘이 강해져, 신체 활동의 효율이 향상됩니다.
+
+Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
+근력강화제 (소)
+
+Scripts/Items/Seeds/ItemSaplingBirch@Description:
+자작나무 묘목. 새 나무를 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSaplingBirch@Name:
+자작나무 묘목
+
+Scripts/Items/Seeds/ItemSaplingOak@Description:
+참나무 묘목. 새 나무를 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSaplingOak@Name:
+참나무 묘목
+
+Scripts/Items/Seeds/ItemSaplingPine@Description:
+소나무 묘목. 새 나무를 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSaplingPine@Name:
+소나무 묘목
+
+Scripts/Items/Seeds/ItemSaplingPineBoreal@Description:
+북부 지방에서 자라는 소나무 묘목. 새 나무를 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
+아한대 소나무 묘목
+
+Scripts/Items/Seeds/ItemSaplingPoplar@Description:
+미루나무 묘목. 새 나무를 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSaplingPoplar@Name:
+미루나무 묘목
+
+Scripts/Items/Seeds/ItemSaplingRubbertree@Description:
+고무나무 묘목. 새 나무를 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
+고무나무 묘목
+
+Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
+피망을 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
+피망씨
+
+Scripts/Items/Seeds/ItemSeedsCarrot@Description:
+당근을 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSeedsCarrot@Name:
+당근씨
+
+Scripts/Items/Seeds/ItemSeedsChiliPepper@Description:
+고추를 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
+고추씨
+
+Scripts/Items/Seeds/ItemSeedsCorn@Description:
+옥수수를 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSeedsCorn@Name:
+옥수수씨
+
+Scripts/Items/Seeds/ItemSeedsCucumber@Description:
+오이를 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSeedsCucumber@Name:
+오이씨
+
+Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Description:
+파란색 세이지 꽃을 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
+파란색 세이지씨
+
+Scripts/Items/Seeds/ItemSeedsFlowerOni@Description:
+도깨비꽃씨. 심어서 더 많은 꽃을 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
+도깨비꽃씨
+
+Scripts/Items/Seeds/ItemSeedsOgurin@Description:
+오구린은 이 행성을 위해 특별히 만들어진 최초의 유전자 조작 식물 중 하나였습니다.
+
+Scripts/Items/Seeds/ItemSeedsOgurin@Name:
+오구린씨
+
+Scripts/Items/Seeds/ItemSeedsTobacco@Description:
+담배를 심어서 키울 수 있습니다.
+
+Scripts/Items/Seeds/ItemSeedsTobacco@Name:
+담배씨
+
+Scripts/Items/Seeds/ItemSeedsTomato@Description:
+이 행성을 위해 특별히 선정된 과즙이 매우 많은 토마토의 씨앗.
+
+Scripts/Items/Seeds/ItemSeedsTomato@Name:
+토마토씨
+
+Scripts/Items/Seeds/ItemSeedsWheat@Description:
+심기위해 특별히 마련해 놓은 밀의 씨앗.
+
+Scripts/Items/Seeds/ItemSeedsWheat@Name:
+밀 씨앗
+
+Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorSoilNotSuitable:
+이 품종의 나무는 이러한 토양에서 키울 수 없습니다.
+
+Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
+묘목을 심으려면, 해당 나무와 다른 나무 사이에 적어도 한 개 이상의 타일이 있어야 합니다.
+
+Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
+필요
+
+Scripts/Items/Tools/Axes/ItemAxeIron@Description:
+쇠도끼는 나무를 자르기에 좋습니다. 돌도끼보다 빠르고 내구도가 뛰어납니다.
+
+Scripts/Items/Tools/Axes/ItemAxeIron@Name:
+쇠도끼
+
+Scripts/Items/Tools/Axes/ItemAxeSteel@Description:
+강철도끼는 나무를 자르는 데 있어서 이상적인 도끼입니다. 쇠도끼보다 빠르고 내구도가 뛰어납니다.
+
+Scripts/Items/Tools/Axes/ItemAxeSteel@Name:
+강철도끼
+
+Scripts/Items/Tools/Axes/ItemAxeStone@Description:
+돌도끼는 나무를 자르는 데 사용됩니다.
+
+Scripts/Items/Tools/Axes/ItemAxeStone@Name:
+돌도끼
+
+Scripts/Items/Tools/Crowbars/ItemCrowbar@Description:
+토지 점유소 영역 내 건물을 신속하게 해체하는 데 유용합니다.
+
+Scripts/Items/Tools/Crowbars/ItemCrowbar@Name:
+쇠지렛대
+
+Scripts/Items/Tools/Lights/ItemFlashlight@Description:
+강력한 손전등은 그야 말로 최고입니다. 이 모델은 단순한 일회용 배터리를 사용하면서도 3,000루멘 이상의 빛을 뿜어냅니다.
+
+Scripts/Items/Tools/Lights/ItemFlashlight@Name:
+손전등
+
+Scripts/Items/Tools/Lights/ItemOilLamp@Description:
+편리한 단일 패키지의 휴대용 광원! 캠프 연료로 빠르게 연료를 보충할 수 있습니다.
+
+Scripts/Items/Tools/Lights/ItemOilLamp@Name:
+석유 램프
+
+Scripts/Items/Tools/Lights/ItemTorch@NotificationBurnedOut:
+횃불이 꺼졌습니다.
+
+Scripts/Items/Tools/Lights/ItemTorch@Description:
+횃불은 밤으로부터 당신을 지켜줍니다. 만약을 위해 여분이 있는지 확인하세요.
+
+Scripts/Items/Tools/Lights/ItemTorch@Name:
+횃불
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationCannotRefillWhileOn_Message:
+다시 채우기 전에 전원을 끄십시오.
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationCannotRefillWhileOn_Title:
+다시 채울 수 없음
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message:
+다시 채워야 합니다.
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
+연료 고갈
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
+철곡괭이는 매장된 광물을 채굴하는 데 사용할 수 있습니다. 돌곡괭이보다 빠르고 내구도가 뛰어납니다.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Name:
+철곡괭이
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeSteel@Description:
+강철곡괭이는 매장된 광물을 채굴하는 데 사용할 수 있습니다. 철곡괭이보다 빠르고 내구도가 뛰어납니다.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeSteel@Name:
+강철곡괭이
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Description:
+돌곡괭이는 매장된 광물을 채굴하는 데 사용할 수 있습니다.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
+돌곡괭이
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
+무엇이든 지으려면 좋은 공구함이 필요합니다.
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
+단순한 공구함
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Description:
+무엇이든 지으려면 좋은 공구함이 필요합니다.
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
+철제 공구함
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Description:
+무엇이든 지으려면 좋은 공구함이 필요합니다.
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
+강철제 공구함
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Description:
+구리로 만들어진 전통적인 물뿌리개. 더 많은 물을 담을 수 있습니다.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Name:
+구리 물뿌리개
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Description:
+가벼운 플라스틱으로 만들어진 단순한 물뿌리개. 모든 물뿌리개 중에서 용량이 가장 큽니다.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Name:
+플라스틱 물뿌리개
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanSteel@Description:
+얇은 스테인리스강판으로 제작되어 매우 가볍습니다. 많은 물을 담을 수 있습니다.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanSteel@Name:
+강철 물뿌리개
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Description:
+기본적인 물뿌리개. 꽤 투박하게 만들어져서 많은 물을 담을 수 없습니다.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Name:
+나무 물뿌리개
+
+Scripts/Items/Weapons/Melee/ItemKnifeIron@Description:
+군용 칼. 총검 또는 대검이라고도 불릷니다.
+
+Scripts/Items/Weapons/Melee/ItemKnifeIron@Name:
+쇠칼
+
+Scripts/Items/Weapons/Melee/ItemKnifeStone@Description:
+기본적인 칼. 주먹보단 낫지만 아주 좋지는 않습니다.
+
+Scripts/Items/Weapons/Melee/ItemKnifeStone@Name:
+돌칼
+
+Scripts/Items/Weapons/Melee/ItemMaceCopper@Description:
+나무 메이스의 표면에 구리가 덧씌워진 메이스.
+
+Scripts/Items/Weapons/Melee/ItemMaceCopper@Name:
+구리 메이스
+
+Scripts/Items/Weapons/Melee/ItemMaceIron@Description:
+구리 메이스보다 더 무겁고 치명적인 메이스.
+
+Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
+철 메이스
+
+Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
+무기 없음
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
+레이저 레이피어 (파란색)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
+레이저 레이피어 (초록색)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
+레이저 레이피어 (보라색)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
+레이저 레이피어 (빨간색)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
+레이저 레이피어 (하얀색)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
+레이저 레이피어 (노란색)
+
+Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
+엄청나게 강력한 단거리 무기. 작동시키려면 에너지가 필요합니다.
+
+Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+초창기 권총. 페이퍼 카트리지 방식을 사용합니다. 한 번에 2발이 장전되어 있어, 매우 빨리 발사됩니다.
+
+Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+수발권총
+
+Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+10mm 탄용으로 개발된 권총.
+
+Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
+권총
+
+Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+레이저권총은 주로 적외선 스펙트럼과 같은 고에너지 빛을 강하게 발사하여 목표물을 불태웁니다.
+
+Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+레이저권총
+
+Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+레이저소총은 주로 적외선 스펙트럼과 같은 고에너지 빛을 강하게 발사하여 목표물을 불태웁니다. 더욱 높은 에너지를 소모하여 레이저권총보다 훨씬 빠르게 발사됩니다.
+
+Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+레이저소총
+
+Scripts/Items/Weapons/Ranged/ItemLuger@Description:
+단순한 디자인의 반자동 권총. 현대의 총기에 비해 상대적으로 생산 비용이 저렵합니다.
+
+Scripts/Items/Weapons/Ranged/ItemLuger@Name:
+루거
+
+Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
+.300 탄용으로 개발된 중기관총.
+
+Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
+중기관총
+
+Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
+8mm 탄용으로 개발된 경기관권총.
+
+Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
+기관권총
+
+Scripts/Items/Weapons/Ranged/ItemMusket@Description:
+전통적인 스타일의 머스킷. 페이퍼 카트리지 방식을 사용합니다. 수발권총 보다 더 나은 사거리와 대미지를 자랑합니다.
+
+Scripts/Items/Weapons/Ranged/ItemMusket@Name:
+머스킷
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
+플라스마권총은 충돌시 표적을 태우는 응집 플라스마 덩어리를 형성하고 투사하여 큰 대미지를 줍니다. 높은 전력을 소모합니다.
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
+플라스마권총
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+플라스마소총은 충돌시 표적을 심하게 태우는 대형 응집 플라스마 덩어리를 형성하고 투사하여 막대한 대미지를 줍니다. 매우 높은 전력을 소모합니다.
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+플라스마소총
+
+Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
+탄약이 든 회전식 실린더를 가진 단순한 연발 권총.
+
+Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
+리볼버
+
+Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
+고성능 .300 탄용으로 개발된 반물질 중소총.
+
+Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
+중소총
+
+Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
+연로하신 할아버지의 산탄총. 12구경 탄약을 사용합니다.
+
+Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
+쌍열식 산탄총
+
+Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
+큰 탄창 용량을 지닌 군용 산탄총. 12구경 탄약을 사용합니다.
+
+Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
+군용 산탄총
+
+Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
+10mm 탄용으로 개발된 기관단총.
+
+Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
+기관단총
+

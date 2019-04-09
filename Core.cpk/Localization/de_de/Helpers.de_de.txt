@@ -1,0 +1,85 @@
+﻿Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
+t
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixHours:
+h
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
+m
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
+s
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
+`Inkompatible Netzwerkversion
+[br]Vielleicht benutzen du und der Server verschiedene Mods.`
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@MasterServerDisallowed:
+Master Server hat die Verbindung verweigert. Bitte versuche es noch einmal oder starte das Spiel neu.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ReasonUnknown:
+Unbekannter Fehler. Bitte versuche es noch einmal.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerFull:
+Der Server ist im Moment voll ausgelastet. Bitte warte darauf, dass andere Spieler gehen und versuche dann, dich noch einmal mit dem Server zu verbinden.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerUnreachable:
+Der Game-Server ist derzeit nicht erreichbar. Mögliche Gründe: Server-Reboot, Server-Shutdown, Firewall-Konfiguration, Netzwerkprobleme, etc. Bitte versuche es in ein paar Minuten erneut.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ShutdownScheduled:
+Der Spiel-Server startet gerade neu oder wird heruntergefahren.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleConnectionRejectedByServer:
+Verbindung abgelehnt
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleDefault:
+Keine Verbindung zum Spiel-Server
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@AccountBlocked:
+Dein Konto wurde gesperrt.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@DefaultTitle:
+Fehler bei der Anmeldung
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Message:
+`Eine E-Mail mit dem Aktivierungslink wurde an dein
+[br]E-Mail-Konto gesendet und sollte in Kürze eintreffen.
+[br]Bitte öffne deinen E-Mail-Konto und klicke auf den Aktivierungslink, kehre dann zum Fortfahren ins Spiel zurück.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Title:
+Dein neues Nutzerkonto erfordert eine Aktivierung!
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@GameNotOwned:
+Du besitzt das Spiel nicht auf deinem Nutzerkonto.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@IncorrectEmailOrPassword:
+Falsche E-Mail oder Passwort.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UnknownError:
+Unbekannter Fehler. Bitte versuche es erneut.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Message:
+`Die bereitgestellten Nutzerdaten sind bereits einem (anderen) Steam-Account zugeordnet.
+[br] Du kannst dieses AtomicTorch.com Nutzerkonto nicht dem aktuellen Steam-Account zuordnen.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Title:
+Konten können nicht verknüpft werden
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameInvalid_Title:
+Ungültiger Benutzername
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
+`Anforderungen für Benutzernamen:
+[*] müssen eine Länge von [b]3[/b] bis [b]24[/b] Zeichen besitzen
+[*] [b]dürfen[/b] Buchstaben, Zahlen, Unterstriche und Bindestriche enthalten
+[*] [b]dürfen keine[/b] Leerzeichen oder andere Zeichen enthalten
+[*] müssen mit einem [b]Buchstaben[/b] oder einer [b]Zahl[/b] beginnen und enden
+[*] dürfen [b]keine[/b] mehrfach aufeinanderfolgende [b]-[/b] oder [b]_[/b] enthalten`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
+`Der gewählte Benutzername wird bereits von einer anderen Person verwendet.
+[br]Bitte wähle einen anderen Benutzernamen.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Title:
+Benutzername wird bereits verwendet
+

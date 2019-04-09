@@ -1,0 +1,186 @@
+﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+Вы приняли стимуляторы, ваша выносливость восстанавливается быстрее.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
+Прилив энергии
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Description:
+Вы приняли сильнодействующее лекарство, поэтому вы быстро восстанавливаете здоровье.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Name:
+Быстрое исцеление
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
+Вы приняли лекарство, поэтому ваше тело постепенно исцеляется.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
+Исцеление
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
+Вы находитесь под действием стимулятора, который временно делает вас сильнее. Вам легче выполнять действия, требующие силы.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
+Повышенная сила
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Description:
+Вы поели хорошую еду. И чувствуете себя превосходно. Все задачи выполняются легче.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
+Хорошая пища
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
+Вы истекаете кровью и будете постепенно терять здоровье, если не получите лечения. Слабые кровотечения проходят сами собой, а сильные могут потребовать перевязки или кровоостанавливающих лекарств.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Name:
+Кровотечение
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
+Сломанный имплант в теле вредит вашему здоровью. Ваш максимальный уровень здоровья (ОЗ) снижен.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
+Сломанный имплант
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
+У вас сломана нога, ваши перемещения ограничены. Попытка бежать со сломанной ногой вызовет острую боль. Используйте шину, чтобы срастить перелом.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
+Сломанная нога
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
+Невозможно атаковать при оглушении.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
+Вы оглушены! Потребуется несколько мгновений, чтобы прийти в себя.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
+Оглушение
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
+Вы подвергаетесь перегреву от близкого источника тепла. Немедленно покиньте это место, чтобы не получить больше урона.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Name:
+Перегрев
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
+Вы умираете с голоду!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
+Голод
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
+Невозможно есть или пить.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Description:
+Вам дурно... Вы не можете есть и пить, пока вас мучает тошнота. Подождите какое-то время или примите лекарство от тошноты.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Name:
+Тошнота
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Description:
+Вас терзает боль, снижающая восстановление выносливости и блокирующая исцеление. Терпите или найдите обезболивающие средства.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
+Острая боль
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Description:
+Вы находитесь под действием сильного пси-поля, провоцирующего безумие. Покиньте это место или примите препараты, блокирующие пси-воздействие, чтобы предотвратить дальнейший урон.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
+Пси-воздействие
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
+Вы находитесь под воздействием радиации, которая медленно вас убивает. Найдите средство от радиации, чтобы снизить ее воздействие.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Name:
+Радиационное поражение
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Description:
+Вы наложили шину на перелом, и он постепенно срастается. Правда, вы все еще не можете бегать. Нужно еще потерпеть.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Name:
+Нога в шине
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Description:
+Вы страдаете от обезвоживания!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Name:
+Жажда
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Description:
+Вы пострадали от опасных токсинов. Используйте лекарство от токсинов, чтобы не потерять больше здоровья.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
+Токсины
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
+Вы чувствуете слабость. Вам лучше избегать угрожающих здоровью ситуаций, таких как радиация.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
+Слабость
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Description:
+Один или несколько предметов из снаряжения износились и скоро выйдут из строя.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
+Сломанное снаряжение
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
+Вы набрались по самые брови. Неудивительно, что вы еле держитесь на ногах...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Description:
+Вы хлебнули лишнего...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Name:
+Опьянение
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
+Вы находитесь под кайфом. Вас распирает от счастья без особой причины...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
+Под кайфом
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
+Вы приняли слишком много лекарств, и это не пошло на пользу вашему здоровью.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
+Вы приняли слишком много лекарств за короткий период времени. Остановитесь, или ваше здоровье окажется под угрозой. Все может кончиться летальным исходом.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
+Передозировка
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
+Вы приняли кровоостанавливающее лекарство, которое снизит кровоточивость новых ран.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Name:
+Защита от кровотечения
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Description:
+Вы покрыты теплоупорным гелем, который снижает любые термальные воздействия окружающей среды.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Name:
+Защита от перегрева
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Description:
+Вы находитесь под действием сильных обезболивающих. Вы не чувствуете никакой боли, нравится вам это или нет.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Name:
+Защита от боли
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Description:
+Вы испытываете на себе эффект пси-защиты, и пси-поле воздействует на вас в меньшей степени.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Name:
+Защита от пси-воздействия
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Description:
+Вы испытываете на себе эффект защиты от радиационного поражения, и радиация оказывает меньшее влияние на вас.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Name:
+Защита от радиации
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Description:
+Вы защищены от воздействия токсинов, и токсические вещества оказывают меньшее влияние на вас.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Name:
+Защита от токсинов
+

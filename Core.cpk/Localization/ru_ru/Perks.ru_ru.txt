@@ -1,0 +1,6 @@
+﻿Scripts/Perks/PerkClaimDeposits@Name:
+Постройка точки контроля у месторождений лития и нефти
+
+Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
+Макс. кол-во зон контроля: {0}
+

@@ -1,0 +1,99 @@
+﻿Scripts/CraftRecipes/HandCrafting/RecipeFillBottleWithWaterbulb@Name:
+수구의 물로 병 채우기
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+통에 휘발유 채우기
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:
+통에 광물유 채우기
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddPetroleum@Name:
+통에 원유 채우기
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddWater@Name:
+통에 물 채우기
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveGasoline@Name:
+통에 든 휘발유를 용기에 채우기
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveMineralOil@Name:
+통에 든 광물유를 용기에 채우기
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemovePetroleum@Name:
+통에 든 원유를 용기에 채우기
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveWater@Name:
+통에 든 물을 병에 채우기
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromLogs@Name:
+통나무 연소 부산물
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromPlanks@Name:
+널빤지 연소 부산물
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
+잔가지 연소 부산물
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
+물 끓이기 (낭비)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
+캠프 연료 (동물의 기름)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
+구운 버섯 (그물 버섯)
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
+구운 버섯 (녹버섯)
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
+티끌 주화 재활용
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
+반짝 주화 재활용
+
+Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
+리튬 광석에서 추출한 리튬 소금
+
+Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
+오일펌프에 있는 원유를 용기에 채우기
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
+용기에서 정유 공장으로 원유 옮기기
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryGasolineCanister@Name:
+정유 공장에 있는 휘발유를 용기에 채우기
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanister@Name:
+정유 공장에 있는 광물유를 용기에 채우기
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
+물 끓이기
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesOrange@Name:
+베리 잼 (주황색 베리)
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesRed@Name:
+베리 잼 (빨간색 베리)
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesViolet@Name:
+베리 잼 (보라색 베리)
+
+Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
+우물에 든 물로 병 채우기
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromPyrite@Name:
+황산 (황철석에서 추출)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromSulfur@Name:
+황산 (황에서 추출)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeCampFuelSynthetic@Name:
+캠프 연료 (합성 물질)
+
+Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeToxin@Name:
+독성 물질 추출
+
+Scripts/CraftRecipes/StationCrafting/Workbench/RecipeCanisterPetroleum@Name:
+원유가 든 용기 (석유꼬투리에서 추출)
+

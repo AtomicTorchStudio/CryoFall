@@ -1,0 +1,64 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes.SelectLocationControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:brushes="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.Brushes"
+    mc:Ignorable="d"
+    d:DesignHeight="100" d:DesignWidth="200"
+    d:DataContext="{d:DesignInstance brushes:ViewModelPositionAndSizeSettings, IsDesignTimeCreatable=True}"
+    FontSize="12"
+    x:Name="UserControl">
+
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary Source="/Editor/EditorStyles.xaml" />
+    </base:BaseUserControl.Resources>
+
+    <StackPanel x:Name="LayoutRoot" Orientation="Vertical">
+        <TextBlock Text="Selected area" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-2,0,3"
+                   Foreground="{StaticResource BrushColor6}" />
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="5" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Offset:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Foreground="{StaticResource BrushColor6}" />
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">
+                <TextBlock Text="X=" VerticalAlignment="Center" Foreground="{StaticResource BrushColor7}" />
+                <TextBox Text="{Binding OffsetXLocal, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource EditorTextBoxPositionStyle}" />
+
+                <TextBlock Text="Y=" VerticalAlignment="Center" Margin="5,0,0,0"
+                           Foreground="{StaticResource BrushColor7}" />
+                <TextBox Text="{Binding OffsetYLocal, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource EditorTextBoxPositionStyle}" />
+            </StackPanel>
+
+            <TextBlock Text="Size:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Foreground="{StaticResource BrushColor6}" />
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
+                <TextBlock Text="X=" VerticalAlignment="Center" Foreground="{StaticResource BrushColor7}" />
+                <TextBox Text="{Binding SizeX, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource EditorTextBoxPositionStyle}" />
+
+                <TextBlock Text="Y=" VerticalAlignment="Center" Margin="5,0,0,0"
+                           Foreground="{StaticResource BrushColor7}" />
+                <TextBox Text="{Binding SizeY, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource EditorTextBoxPositionStyle}" />
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</base:BaseUserControl>

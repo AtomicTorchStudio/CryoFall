@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:player="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player"
+                    mc:Ignorable="d">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/UI/Styles/DefaultStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <GridLength x:Key="PlayerMenuContainerWithLinesFirstColumnWidth">300</GridLength>
+
+    <ControlTemplate x:Key="PlayerMenuContainerWithLines">
+        <Grid d:DataContext="{d:DesignInstance player:ViewModelWindowInventory, IsDesignTimeCreatable=True}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="274" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource PlayerMenuContainerWithLinesFirstColumnWidth}" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <controls:ItemsContainerControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                            Container="{Binding ContainerInventory}"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"
+                                            Margin="10,5,0,0"
+                                            DesignTimeSlotsCount="40"
+                                            Padding="0" />
+
+            <Line Grid.Row="0"
+                  Grid.Column="0"
+                  X1="0"
+                  X2="1"
+                  StrokeThickness="1"
+                  Margin="-1,0"
+                  Stroke="{StaticResource WidgetBorderBrush}"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Bottom"
+                  Stretch="Fill"
+                  Grid.ColumnSpan="2" />
+
+            <Line Grid.Row="0"
+                  Grid.Column="0"
+                  Y1="0"
+                  Y2="1"
+                  Margin="0,-1,0,0"
+                  StrokeThickness="1"
+                  Stroke="{StaticResource WidgetBorderBrush}"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Stretch"
+                  Stretch="Fill" />
+        </Grid>
+    </ControlTemplate>
+
+</ResourceDictionary>

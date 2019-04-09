@@ -1,0 +1,342 @@
+﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
+Erfordert {0} mit {1}% der erforschten Technologien.
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
+Nicht genügend Lernpunkte
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
+Diese Technologie wurde bereits freigeschaltet
+
+Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
+Erfordert {0} Lernpunkte (nur {1} verfügbar).
+
+Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
+Erfordert freigeschaltete Technologie: {0}
+
+Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
+Enthält schematische Darstellungen aller einfachen Gebäudetypen und erlaubt es dir, eine einfache Basis zu errichten.
+
+Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Name:
+Konstruktion
+
+Scripts/Technologies/Tier1/Construction/TechNodeBasicBuilding@Name:
+Einfache Gebäude
+
+Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
+Enthält eine Reihe von Rezepten, die die Herstellung besserer Lebensmittel ermöglichen.
+
+Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
+Kochen
+
+Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
+Aufbereitung von Pflanzensamen, herkömmlichem Dünger und mehr.
+
+Scripts/Technologies/Tier1/Farming/TechGroupFarming@Name:
+Landwirtschaft
+
+Scripts/Technologies/Tier1/Farming/TechNodeFarmingBasics@Name:
+Grundlagen der Landwirtschaft
+
+Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Description:
+Alle grundlegenden industriellen Technologien, die für eine erfolgreiche Produktion und Fertigung notwendig sind.
+
+Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Name:
+Industrie
+
+Scripts/Technologies/Tier1/Industry/TechNodeGlassware@Name:
+Glaswaren
+
+Scripts/Technologies/Tier1/Industry/TechNodeIronTools@Name:
+Eisenwerkzeuge
+
+Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
+Verhüttung
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Description:
+Schematische Darstellungen grundlegender Waffen, Kleidung und Rüstung.
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Name:
+Angriff & Verteidigung
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBoneArmor@Name:
+Knochenrüstung
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBraidedArmor@Name:
+Geflochtene Rüstung
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeClothArmor@Name:
+Stoffrüstung
+
+Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeWoodArmor@Name:
+Holzrüstung
+
+Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
+Verarbeitung diverser chemischer Verbindungen und Reaktionen.
+
+Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
+Chemie
+
+Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
+Komplexere Strukturen mit breitgefächerten Anwendungsgebieten.
+
+Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
+Konstruktion 2
+
+Scripts/Technologies/Tier2/Construction2/TechNodeStoneConstructions@Name:
+Steinkonstruktionen
+
+Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
+Fortgeschrittene Kochrezepte für eine Vielzahl von neuen Nahrungsmitteln.
+
+Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
+Kochen 2
+
+Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
+Verbesserte Schutztechnologien für bessere Rüstungsentwürfe.
+
+Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Name:
+Verteidigung 2
+
+Scripts/Technologies/Tier2/Defense2/TechNodeFurArmor@Name:
+Pelzrüstung
+
+Scripts/Technologies/Tier2/Defense2/TechNodeFurHeadgear@Name:
+Kopfbedeckungen aus Pelz
+
+Scripts/Technologies/Tier2/Defense2/TechNodeLeatherArmor@Name:
+Lederrüstung
+
+Scripts/Technologies/Tier2/Defense2/TechNodeLeatherHeadgear@Name:
+Kopfbedeckungen aus Leder
+
+Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
+Gesteppte Rüstung
+
+Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
+Gesteppte Kopfbedeckungen
+
+Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
+Komplexe Anbaumethoden, die das Arbeiten mit vielfältigen Kulturpflanzen und verbesserten Düngemitteln ermöglichen.
+
+Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
+Landwirtschaft 3
+
+Scripts/Technologies/Tier2/Farming2/TechNodeComplexCrops@Name:
+Anspruchsvolle Saat
+
+Scripts/Technologies/Tier2/Farming2/TechNodeFarmingProductivity@Name:
+Landwirtschaftliche Produktivität
+
+Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
+Verbesserte Industrietechnologien, die eine Vielzahl von Industrieprozessen und -anwendungen ermöglichen.
+
+Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
+Industrie 2
+
+Scripts/Technologies/Tier2/Industry2/TechNodeAdvancedIndustry@Name:
+Fortgeschrittene Industrie
+
+Scripts/Technologies/Tier2/Industry2/TechNodeBasicElectronics@Name:
+Grundlegende Elektronik
+
+Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
+Stahlverhüttung
+
+Scripts/Technologies/Tier2/Industry2/TechNodeSteelTools@Name:
+Stahlwerkzeuge
+
+Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Description:
+Herstellung diverser medizinischer Utensilien.
+
+Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Name:
+Medizin
+
+Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Description:
+Fortgeschrittene offensive Utensilien, darunter auch leistungsfähigere Schusswaffen und Munitionstypen.
+
+Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Name:
+Angriff 2
+
+Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
+Die Arbeit mit diversen komplexen chemischen Verbindungen und Reaktionen.
+
+Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
+Chemie 2
+
+Scripts/Technologies/Tier3/Chemistry2/TechNodeSyntheticMaterials@Name:
+Synthetische Materialien
+
+Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
+Die Arbeit mit Währungen und Handel. Ermöglicht das Prägen und Recyclen von Münzen, sowie das Bauen von automatisierten Handelsstationen.
+
+Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Name:
+Handel
+
+Scripts/Technologies/Tier3/Commerce/TechNodeCoinMinting@Name:
+Münzprägung
+
+Scripts/Technologies/Tier3/Commerce/TechNodeCoinRecycling@Name:
+Münzrecycling
+
+Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Description:
+Erweiterte Konstruktionen.
+
+Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
+Konstruktion 3
+
+Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
+Ziegelbauten
+
+Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
+Erweiterte Schutztechnologien.
+
+Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Name:
+Verteidigung 3
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMetalArmor@Name:
+Metallrüstung
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMetalHeadgear@Name:
+Kopfbedeckungen aus Metall
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
+Militärrüstung
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
+Militärische Kopfbedeckungen
+
+Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
+Fortschrittliche Landwirtschaftstechniken und eine noch größere Saatvielfalt.
+
+Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
+Landwirtschaft 3
+
+Scripts/Technologies/Tier3/Farming3/TechNodeDecorativeGardening@Name:
+Dekoratives Gärtnern
+
+Scripts/Technologies/Tier3/Farming3/TechNodeSpecializedCrops@Name:
+Spezialsaat
+
+Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
+Fortschrittliche Industrietechnologien, die eine Vielzahl von Industrieprozessen und -anwendungen ermöglichen.
+
+Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
+Industrie 3
+
+Scripts/Technologies/Tier3/Industry3/TechNodeGoldSmelting@Name:
+Goldverhüttung
+
+Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
+Ermöglicht die Nutzung einer Vielzahl von fortschrittlichen medizinischen Produkten.
+
+Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Name:
+Medizin 2
+
+Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Description:
+Hochentwickelte offensive Technologien, darunter auch vollautomatische Schusswaffen und verschiedenste Arten von Munition.
+
+Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Name:
+Angriff 3
+
+Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
+Das Brauen von alkoholischen Getränken und ähnlichen Dingen.
+
+Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
+Entspannung
+
+Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoAged@Name:
+Tabakreifung
+
+Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoProcessing@Name:
+Tabakverarbeitung
+
+Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
+Notwendige Technologien zur Ressourcenausbeutung fremder Welten.
+
+Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
+Xenogeologie
+
+Scripts/Technologies/Tier3/XenoGeology/TechNodeIngotLithium@Name:
+Lithiumveredelung
+
+Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
+Fortgeschrittene chemische Prozesse und komplexe Verbindungen.
+
+Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
+Chemie 3
+
+Scripts/Technologies/Tier4/Chemistry3/TechNodeHighEnergySubstances@Name:
+Hochenergetische Substanzen
+
+Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
+Hi-Tech-Konstruktionen.
+
+Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
+Konstruktion 4
+
+Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
+Betonkonstruktionen
+
+Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
+Die Herstellung und Anwendung kybernetischer und biologischer Implantate.
+
+Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
+Kybernetik
+
+Scripts/Technologies/Tier4/Cybernetics/TechNodeBiomaterialProcessing@Name:
+Biomaterialverarbeitung
+
+Scripts/Technologies/Tier4/Cybernetics/TechNodeImplantManufacturing@Name:
+Herstellung von Implantaten
+
+Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
+Hi-Tech-Schutztechnologien.
+
+Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Name:
+Verteidigung 4
+
+Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
+Sturmrüstung
+
+Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
+Sturmkopfbedeckungen
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
+Energiewaffen sind eine technologische Weiterentwicklung konventioneller Feuerwaffen.
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
+Energiewaffen
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechNodeLaserWeapons@Name:
+Laserwaffen
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechNodePlasmaWeapons@Name:
+Plasmawaffen
+
+Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
+Industrielle Hi-Tech-Technologien, die den Zugang zu hochkomplexen technischen Prozessen ermöglichen.
+
+Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
+Industrie 4
+
+Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Description:
+Die Arbeit mit Edelmetallen und Schmuck.
+
+Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Name:
+Schmuck
+
+Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Description:
+Die Entwicklung und Anwendung modernster Medizintechnik.
+
+Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Name:
+Medizin 3
+
+Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
+Offensive Hi-Tech-Technologien, die das Maximalpotenzial konventioneller Feuerwaffen ausschöpfen.
+
+Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
+Angriff 4
+
+Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
+Kaliber .300
+

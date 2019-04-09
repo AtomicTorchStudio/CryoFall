@@ -1,0 +1,15 @@
+﻿<Project>
+  <PropertyGroup Label="Configuration">
+    <!-- Please set your mod ID here -->
+    <AssemblyName>Core</AssemblyName>
+    <!-- Please define the C# root namespace for your mod here -->
+    <RootNamespace>AtomicTorch.CBND.CoreMod</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+    <CryoFallSdk>$(ProjectDir)..\CryoFall.Mod.Sdk\</CryoFallSdk>
+    <CryoFallSdk Condition="!Exists('$(CryoFallSdk)')">$(ProjectDir)..\..\..\Core\CryoFall.Mod.Sdk\</CryoFallSdk>
+    <CryoFallSdk Condition="!Exists('$(CryoFallSdk)')">"CryoFall SDK cannot be located. Please ensure the mod csproj is located at CryoFall/Data/Mods"</CryoFallSdk>
+  </PropertyGroup>
+  <Import Project="$(CryoFallSdk)Sdk.props" />
+</Project>

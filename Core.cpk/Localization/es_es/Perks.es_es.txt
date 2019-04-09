@@ -1,0 +1,6 @@
+﻿Scripts/Perks/PerkClaimDeposits@Name:
+Obtener depósitos de litio y petróleo
+
+Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
+Número máximo de terrenos adjudicados: {0}
+

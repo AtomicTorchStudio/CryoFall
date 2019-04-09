@@ -1,0 +1,57 @@
+﻿Scripts/Characters/Mobs/MobBear@Name:
+Oso
+
+Scripts/Characters/Mobs/MobChicken@Name:
+Gallina
+
+Scripts/Characters/Mobs/MobCloakedLizard@Name:
+Lagarto de gorguera
+
+Scripts/Characters/Mobs/MobCrab@Name:
+Cangrejo
+
+Scripts/Characters/Mobs/MobCrawler@Name:
+Acechador
+
+Scripts/Characters/Mobs/MobHoneyBadger@Name:
+Ratel
+
+Scripts/Characters/Mobs/MobHyena@Name:
+Hiena
+
+Scripts/Characters/Mobs/MobPangolin@Name:
+Pangolín
+
+Scripts/Characters/Mobs/MobScorpion@Name:
+Escorpión
+
+Scripts/Characters/Mobs/MobSnakeBlue@Name:
+Serpiente azul
+
+Scripts/Characters/Mobs/MobSnakeBrown@Name:
+Serpiente marrón
+
+Scripts/Characters/Mobs/MobSnakeGreen@Name:
+Serpiente verde
+
+Scripts/Characters/Mobs/MobStarfish@Name:
+Estrella de mar
+
+Scripts/Characters/Mobs/MobTropicalBoar@Name:
+Jabalí tropical
+
+Scripts/Characters/Mobs/MobTurtle@Name:
+Tortuga
+
+Scripts/Characters/Mobs/MobWildBoar@Name:
+Jabalí
+
+Scripts/Characters/Mobs/MobWolf@Name:
+Lobo
+
+Scripts/Characters/Player/PlayerCharacter@Name:
+Personaje del jugador
+
+Scripts/Characters/Player/PlayerCharacterSpectator@Name:
+El personaje del jugador está en el modo Espectador
+

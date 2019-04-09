@@ -1,0 +1,186 @@
+﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+자극제를 사용하여 스태미나 자동 회복 속도가 훨씬 빨라집니다.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
+에너지 러시
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Description:
+강력한 치유제를 사용하여 잃은 체력을 빨리 회복합니다.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Name:
+빠른 치유
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
+치유제를 사용하여 잃은 체력을 천천히 회복합니다.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
+치유
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
+자극제의 영향으로, 일정 시간 동안 더 강해집니다. 힘이 필요한 작업을 보다 쉽게 수행할 수 있습니다.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
+강화된 힘
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Description:
+최근에 충분한 식사를 하게 되었습니다. 기분이 좋아졌습니다. 수행하는 모든 작업이 보다 쉽게 느껴지게 됩니다.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
+포만감
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
+치료를 하지 않으면 계속 체력을 잃게 됩니다. 경미한 출혈은 저절로 사라지지만, 그 보다 훨씬 심각한 부상은 붕대 또는 지혈제의 사용이 필요합니다.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Name:
+출혈
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
+몸에 심어진 망가진 임플란트가 건강에 상당한 영향을 미칩니다. 결과적으로 최대 체력 (HP)가 줄어듭니다.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
+망가진 임플란트
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
+다리가 부러져, 이동력에 영향을 미칩니다. 다리가 부러진 채로 달리게 되면 심각한 통증이 수반됩니다. 부목을 사용하여 골절을 치료하십시오.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
+다리 골절
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
+기절 상태일 때는 공격할 수 없습니다.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
+기절했습니다! 감각이 돌아오려면 잠시 기다려야 합니다.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
+기절
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
+높은 열에 노출되고 있습니다. 더 이상의 대미지를 막기 위해 즉시 해당 지역에서 벗어나십시오.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Name:
+열기
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
+배고파 죽을 지경입니다!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
+배고픔
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
+먹거나 마실 수 없습니다.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Description:
+속이 너무 좋지 않습니다... 아무것도 먹거나 마실 수 없습니다. 잠시 기다리거나 메스꺼움 방지약을 복용하십시오.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Name:
+메스꺼움
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Description:
+심한 통증이 스태미나 자동 회복량을 감소시키고, 체력 자동 회복을 막고 있습니다. 진통제를 찾거나 그냥 참으십시오.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
+심한 통증
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Description:
+강한 초능력장의 영향을 받아 미쳐버리게 됩니다. 초능력장 밖으로 나가거나 초등력 차단 약을 사용하여 추가 피해를 막으십시오.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
+초능력 영향
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
+사람을 천천히 죽이는 방사능 중독으로 고통받고 있습니다. 방사능 치료제를 찾으십시오.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Name:
+방사능 중독
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Description:
+골절 부위에 부목을 고정하여 서서히 낫고 있습니다. 하지만 아직 제대로 달릴 수는 없습니다. 잠시 기다려주십시오.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Name:
+부목을 댄 다리
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Description:
+극심한 탈수증으로 고통받고 있습니다!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Name:
+갈증
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Description:
+위험한 독성 물질에 노출되었습니다. 체력을 보존하려면 해독제를 사용하십시오.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
+독성 물질
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
+평소보다 몸이 약해진 것만 같은 기분이 듭니다. 방사능처럼 유해한 상황에 노출되는 것을 피하는 게 좋을 겁니다.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
+쇠약
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Description:
+한 개 이상의 장비 아이템이 내구도가 낮아, 곧 부서질 수도 있습니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
+부서진 장비
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
+술을 엄청 많이 마셨습니다. 자신의 신발에 시비를 걸 정도면 말 다 한 거겠죠?
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Description:
+술을 마셨습니다...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Name:
+취기
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
+마음이 들떠있습니다. 왠지 행복한 것만 같은 기분이 듭니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
+들뜸
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
+약물 아이템을 과용하여 체력에 대미지를 입었습니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
+단기간에 너무 많은 약물을 사용하였습니다. 휴식을 취하지 않으면, 체력에 부정적인 효과가 가해집니다. 이 경고를 무시할 경우, 치명적인 결과가 나타날 수 있습니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
+약물 남용
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
+현재 지혈제의 효과로, 새로운 출혈 부상으로 부터 받는 고통이 감소합니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Name:
+지혈제
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Description:
+내열성 젤로 뒤덮여 있어서 환경적 요인으로 인한 열 대미지가 크게 감소합니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Name:
+방열제
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Description:
+진통제의 효과로 좋든 싫든 고통을 느끼지 않게 되었습니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Name:
+진통제
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Description:
+초능력 보호제의 효과로 초능력에 노출되더라도 그 영향을 적게 받습니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Name:
+초능력 보호제
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Description:
+방사능 방호제의 효과로 새로 노출되는 방사능의 영향을 적게 받습니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Name:
+방사능 방호제
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Description:
+방독제의 효과로 새로 노출되는 독성 물질의 영향을 적게 받습니다.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Name:
+방독제
+

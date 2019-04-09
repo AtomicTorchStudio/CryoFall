@@ -1,0 +1,84 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                    xmlns:tooltips="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations.Data"
+                    mc:Ignorable="d" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <Style x:Key="TextBlockPriceStyle" TargetType="TextBlock">
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+        <Setter Property="noesis:Text.StrokeThickness" Value="1.5" />
+        <Setter Property="noesis:Text.Stroke" Value="#AA000000" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="2,-1,0,0" />
+    </Style>
+
+    <Style x:Key="TextBlockUnavailableLotStateStyle" TargetType="TextBlock">
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Foreground" Value="{StaticResource BrushColorRed7}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+        <Setter Property="noesis:Text.StrokeThickness" Value="2" />
+        <Setter Property="noesis:Text.Stroke" Value="#AA000000" />
+        <Setter Property="LayoutTransform">
+            <Setter.Value>
+                <RotateTransform Angle="-45" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="TradingLotIconWithTooltip">
+        <Border Background="#AA222222"
+                BorderBrush="#33BBBBBB"
+                BorderThickness="0"
+                Padding="3"
+                CornerRadius="3"
+                d:DataContext="{d:DesignInstance data:ViewModelTradingStationLot, IsDesignTimeCreatable=True}">
+            <Grid>
+                <Rectangle Fill="{Binding Icon}"
+                           Width="48"
+                           Height="48"
+                           UseLayoutRounding="True" />
+
+                <TextBlock Text="{Binding LotQuantity}"
+                           Style="{StaticResource ItemCountTextBlockStyle}" />
+
+                <TextBlock Text="{Binding ProblemText}"
+                           Visibility="{Binding IsAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                           Style="{StaticResource TextBlockUnavailableLotStateStyle}" />
+
+                <ItemsControl
+                    Visibility="{Binding OverlayControls, Converter={StaticResource NullToVisibilityConverter}}"
+                    ItemsSource="{Binding OverlayControls}"
+                    Style="{StaticResource ItemIconOverlayItemsControlStyle}" />
+            </Grid>
+            <ui:ToolTipServiceExtend.ToolTip>
+                <Grid>
+                    <Grid Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <tooltips:ItemTooltipControl
+                            Item="{Binding ItemOnSaleInstance}"
+                            Visibility="{Binding ItemOnSaleInstance, Converter={StaticResource NullToVisibilityConverter}}" />
+
+                        <tooltips:ItemTooltipControl
+                            ProtoItem="{Binding ProtoItem}"
+                            Visibility="{Binding ItemOnSaleInstance, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Reverse}" />
+                    </Grid>
+
+                    <!-- Text: This lot is disabled -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.TradingStationResources_ThisLotIsDisabled}"
+                               Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" />
+                </Grid>
+            </ui:ToolTipServiceExtend.ToolTip>
+        </Border>
+    </ControlTemplate>
+
+</ResourceDictionary>

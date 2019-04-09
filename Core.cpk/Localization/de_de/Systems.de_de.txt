@@ -1,0 +1,329 @@
+﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
+Begebe dich in die Nähe von Wasser oder lege die Flasche in einen Brunnen, um sie aufzufüllen.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
+Keine Powerbank ausgerüstet.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NotEnoughCharge:
+Nicht genug Ladung in der Powerbank vorhanden.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
+{0} kann nicht verwendet werden
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
+`Du kannst in {0} Sek. in deinem Bett respawnen.
+[br]Oder du kannst sofort in der Welt respawnen.`
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Title:
+Zeit bis zum Respawnen im Bett
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Inaccessible:
+Wie es scheint, kann auf das Bett nicht zugegriffen werden (kein freier Platz darum).
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_NoBed:
+Du besitzt kein Bett mehr.
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Title:
+Kann nicht bei Bett respawnen
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Message:
+Es hat den Anschein, dass es keinen passenden Ort gibt, um dich zu respawnen.
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Title:
+Kann nicht nahe des Betts respawnen
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Message:
+Bitte warte, während deine Anfrage verarbeitet wird.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Title:
+Du hast bereits eine Befreiungsanfrage gesendet
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Message:
+Du solltest deinen Charakter nicht bewegen, während der Timer aktiv ist. Deine Befreiungsanfrage wurde abgebrochen.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Title:
+Befreiung abgebrochen
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Dead:
+Dein Charakter ist tot.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Title:
+Befreiung unmöglich
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_MessageFormat:
+`Bitte warte {0}
+[br]Bewege dich nicht oder deine Befreiungsanfrage wird abgebrochen.`
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_Title:
+Befreiung angefordert
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Message:
+Du bist jetzt frei. Viel Spaß!
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
+Befreiung erfolgreich
+
+Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
+Du wurdest vom Server-Administrator aus dem Chat verbannt. Dein Ban läuft ab in: {0}
+
+Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
+{0} hat das Spiel verlassen
+
+Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
+{0} ist dem Spiel beigetreten
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
+Bist du sicher, dass du {1} {0} möchtest?
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
+Du kannst diesen Spieler später im Social-Menü entblocken.
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
+Global
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
+Lokal
+
+Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
+Kein Bau an dieser Stelle möglich
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationCannotPlace:
+Kann nicht platziert werden
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Message:
+Weitere Gegenstände benötigt.
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Title:
+Kein Bau möglich
+
+Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
+Die Handwerkswarteschlange ist voll.
+
+Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
+Neue Rezeptur kann nicht hinzugefügt werden
+
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Message:
+Du bist nicht der Besitzer dieser Landfläche.
+
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Title:
+Kein Abriss möglich
+
+Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
+Dein(e) {0} ist kaputt und ist für immer von dir gegangen.
+
+Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_Title:
+Gegenstand kaputt
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_MessageFormat:
+`Zum Befüllen benötigst du folgenden Brennstoff:
+[br]{0}.`
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_Title:
+Befüllen nicht möglich
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNoNeedToRefill:
+Befüllen nicht notwendig
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
+Dieser Gegenstand lässt sich nicht befüllen.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
+Dieses Gebiet wird von einem anderen Spieler beansprucht oder befindet sich zu nah an einem anderen Land Claim.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
+Überschneidung mit dem Gebiet eines anderen Land Claims
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
+`Du hast alle dir zugeteilten Land Claims aufgebraucht.
+[br]Du kannst diese Anzahl erhöhen, indem du neue Technologien erforschst.`
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
+`Überfall im Gange.
+[br]Du kannst keine neuen Strukturen bauen, während deine Basis angegriffen wird.`
+
+Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
+Kein freier Platz im Inventar
+
+Scripts/Systems/Notifications/NotificationSystem@NotificationSomeItemsDropped:
+Einige Gegenstände wurden fallengelassen!
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageFormat:
+[b]{0}[/b] hat dich in eine Gruppe eingeladen.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
+Bitte beachte: Du [b]verlässt[/b] deine aktuelle Gruppe, wenn du diese Einladung annimmst.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
+Gruppeneinladung
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerAcceptedInviteFormat:
+{0} ist der Gruppe auf Einladung von {1} beigetreten
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerInvitedFormat:
+{0} hat {1} eingeladen, der Gruppe beizutreten
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerLeftPartyFormat:
+{0} hat die Gruppe verlassen
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
+{0} wurde von {1} aus der Gruppe entfernt
+
+Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
+{0} hat dich aus der Gruppe entfernt
+
+Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
+Einladung nicht vorhanden oder abgelaufen.
+
+Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
+Zu spät, die Gruppe ist schon voll.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
+Eingeladener Spieler nicht gefunden.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
+Gruppe ist voll.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySamePartyMember:
+Eingeladener Spieler ist bereits ein Mitglied deiner Gruppe.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
+Du kannst niemanden einladen, da du vom Server-Besitzer stummgeschaltet wurdest.
+
+Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
+Noch keine Ernte möglich
+
+Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
+SERVER: Welt-Backup beginnt in {0} Sekunden.
+
+Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
+SERVER: Welt-Backup abgeschlossen!
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
+Du wurdest vom Serverbetreiber von diesem Server gesperrt
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinKicked:
+`Du wurdest vorübergehend von diesem Server entfernt. Bitte setze sich mit einem Serverbetreiber in Verbindung, um zusätzliche Informationen zu erhalten.
+[br][br]Du kannst dem Server wieder beitreten in {0}.`
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhitelist:
+`Auf diesen Server kann nur per Einladung zugegriffen werden.
+[br]Bitte überprüfe die Serverbeschreibung um mögliche zusätzliche Details zu erhalten.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessage:
+`Willkommen auf dem offiziellen CryoFall Server!
+[br]
+[br]
+[b]Wichtig:[/b]
+Bitte bedenke, dass die offiziellen Server PVP-orientiert sind und du mit Angriffen anderer Spieler rechnen musst. Ergreife angemessene Schutzmaßnahmen und sei stets wachsam. Erwäge außerdem, dich mit anderen Überlebenden zusammenzutun, um deine Chancen zu verbessern.
+[br]
+[br]
+[b]Server-Regeln:[/b]
+[*]Sei respektvoll und höflich im Umgang mit anderen. Wir tolerieren keinerlei Form von Beschimpfungen, Diskriminierung, etc.
+[*]Halte dich an die Anweisungen der Server-Moderatoren.
+[*]Kein Spam oder exzessive Verwendung von Kraftausdrücken im Chat.
+[br]
+[br]
+[b]Empfehlungen:[/b]
+[br]Obwohl wir diese Regeln nicht durchsetzen können, schaffen sie dennoch eine bessere Atmosphäre für alle Spieler.
+[*]Kein KOS (kill on sight – "Dauerkill") von anderen Spielern, insbesondere dann, wenn diese gerade erst dem Spiel beigetreten sind.
+[*]Nichts spricht dagegen, die Basen anderer Spieler zu überfallen – aber griefe niemanden ohne guten Grund.
+[*]Versuche Spielern, die neu sind und das Spiel gerade erst kennenlernen, zu helfen.
+[br]
+[br]Viel Glück! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
+Willkommen bei {0}
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
+`Server wird heruntergefahren in {0}.
+[br]
+[br]Grund:
+[br]{1}
+[br]
+[br]Bitte suche einen sicheren Ort auf und unterbreche deine Verbindung, da du sonst automatisch nach dem Timeout entfernt wirst.`
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_Title:
+Shutdown
+
+Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillDiscovered:
+{0} Fähigkeit entdeckt.
+
+Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLevel:
+{0} Level {1}.
+
+Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
+`Du hast mehr als 50 Lernpunkte (LP) angesammelt. Du solltest erwägen, diese in das Freischalten neuer Technologien zu investieren. Nach dem Tod steht dir nur ein kleiner Teil deiner gesammelten LP zur Verfügung.
+[br](Klicken zum Öffnen des Technologiemenüs)`
+
+Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
+Technologie nicht freischaltbar
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationBoughtTitle:
+Gekauft
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMorePennyCoins:
+Benötigt noch {0} Penny(s).
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMoreShinyCoins:
+Benötigt noch {0} glänzende Münze(n).
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationSoldTitle:
+Verkauft
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotBuy_Title:
+Kein Kauf möglich
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
+Kein Verkauf möglich
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
+Diese Pflanze ist reif für die Ernte. Es hat keinen Zweck, sie jetzt noch zu gießen.
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
+Nur landwirtschaftliche Pflanzen können bewässert werden.
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_Title:
+Kein Bewässern möglich
+
+Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Message:
+Zum Befüllen, mit Brunnen auswählen oder Wasserflaschen im Inventar haben.
+
+Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Title:
+Kein Befüllen möglich
+
+Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Message:
+Kein Nachladen der Waffe möglich.
+
+Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
+Keine Munition
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
+Offen für Eigentümer
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwnersOrAreaOwners:
+Offen für Eigentümer oder Landbesitzer
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToEveryone:
+Offen für jeden
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
+Immer geschlossen
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
+Du besitzt keinen Zugang!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
+Du kannst die Liste der Besitzer nicht bearbeiten.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveLastOwner:
+Du kannst den letzten Eigentümer nicht entfernen.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveSelf:
+Du kannst dich selbst nicht aus der Liste der Eigentümer entfernen. Bitte einen anderen Spieler, dies für dich zu tun.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageFormatPlayerNotFound:
+Spieler mit dem Namen [b]{0}[/b] konnte nicht gefunden werden.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
+Du bist nicht der Eigentümer.
+

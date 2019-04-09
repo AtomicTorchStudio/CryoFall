@@ -1,0 +1,1918 @@
+﻿Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Description:
+Eine speziell angefertigte Modifikation des 10mm Kalibers, die eine hohe Durchschlagskraft besitzt. Ideal gegen gepanzerte Ziele, jedoch weitaus weniger effektiv gegen biologische Ziele.
+
+Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Name:
+10mm panzerbrechende Munition
+
+Scripts/Items/Ammo/ItemAmmo10mmBlank@Description:
+Spezielle 10mm Platzpatronen. Können für militärische Übungen oder zum Vertreiben von Eindringlingen benutzt werden.
+
+Scripts/Items/Ammo/ItemAmmo10mmBlank@Name:
+10mm Platzpatronen
+
+Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Description:
+Eine speziell angefertigte Modifikation des 10mm Kalibers, die für biologische Ziele ausgelegt ist. Das Geschoss dehnt sich beim Aufprall aus und erzeugt so eine hohe Bremswirkung und hohen Schaden. Komplett wirkungslos gegen gepanzerte Ziele.
+
+Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Name:
+10mm Hohlspitzmunition
+
+Scripts/Items/Ammo/ItemAmmo10mmStandard@Description:
+Universell verwendbare 10mm Munition, die für eine Vielzahl an möglichen Zielen ausgelegt ist.
+
+Scripts/Items/Ammo/ItemAmmo10mmStandard@Name:
+10mm Standardmunition
+
+Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Description:
+Schrotkugeln mit grober Körnung, auch Posten genannt, bieten ein gutes Gleichgewicht zwischen Streuung und Durchschlagskraft. Die Verwendung von Schwarzpulver anstatt Cellulosenitrat als Treibladung vermindert jedoch den Wirkungsgrad dieser Art von Munition.
+
+Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Name:
+Kaliber 12 Postenmunition
+
+Scripts/Items/Ammo/ItemAmmo12gaPellets@Description:
+Schrotladungen verteilen sich beim Schießen über eine größere Fläche und sind so ideal für kleine biologische Ziele, insbesondere jedoch für ganze Gruppen von Gegnern. Höchst ineffektiv gegen gepanzerte Ziele.
+
+Scripts/Items/Ammo/ItemAmmo12gaPellets@Name:
+Kaliber 12 Schrotmunition
+
+Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Description:
+Diese Patronen sind mit grobem Salz gefüllt und vor allem dazu gedacht, Eindringlinge und Diebe abzuschrecken, anstatt im Kampf wirklich effektiv zu sein. Sie verursachen kaum Schaden, solltest du jedoch getroffen werden ... ist der Schmerz kaum auszuhalten.
+
+Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
+Kaliber 12 Steinsalzmunition
+
+Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
+Flintenlaufgeschosse, auch Slugs genannt, besitzen eine höhere Bremswirkung als Schrot und können gegen eine ganze Reihe von möglichen Zielen eingesetzt werden. Aufgrund ihres hohen Gewichts sind Slugs auch gegen gepanzerte Ziele effektiv.
+
+Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
+Kaliber 12 Slug-Munition
+
+Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Description:
+Schwere .300 Munition mit großer Reichweite und panzerbrechender Funktion.
+
+Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
+.300 panzerbrechende Munition
+
+Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
+Schwere .300 Brandmunition mit großer Reichweite.
+
+Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
+.300 Brandmunition
+
+Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
+Einfache, nicht-ummantelte 8mm-Patronen. Mit einfachsten Mitteln und Methoden hergestellt, was sich negativ auf Präzision und Durchschlagskraft auswirkt.
+
+Scripts/Items/Ammo/ItemAmmo8mmStandard@Name:
+8mm Standardmunition
+
+Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
+Modifizierte 8mm-Munition mit einem ummantelten Hohlraum, der mit einer kleinen Menge konzentrierten Gifts befüllt ist und beim Aufprall platzt.
+
+Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
+8mm Giftmunition
+
+Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
+Herkömmliche Schusswaffenmunition. Geeignet nur für schwächere Ziele, jedoch einfach und billig in der Produktion.
+
+Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
+Papierpatrone
+
+Scripts/Items/Base/ItemUseCaptions@Decrypt:
+Entschlüsseln
+
+Scripts/Items/Base/ItemUseCaptions@Drink:
+Trinken
+
+Scripts/Items/Base/ItemUseCaptions@Eat:
+Essen
+
+Scripts/Items/Base/ItemUseCaptions@Read:
+Lesen
+
+Scripts/Items/Base/ItemUseCaptions@Use:
+Benutzen
+
+Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
+Daten-Log (verschlüsselt)
+
+Scripts/Items/Devices/ItemBiomaterialCollector@NotificationNoEmptyVials:
+Keine leeren Phiolen zum Sammeln von Biomaterial vorhanden
+
+Scripts/Items/Devices/ItemBiomaterialCollector@Description:
+Spezialgerät für die Gewinnung von Biomaterial von Tieren oder anderen Lebewesen. Leere Biomaterialphiolen zur Benutzung erforderlich.
+
+Scripts/Items/Devices/ItemBiomaterialCollector@Name:
+Biomaterialsammler
+
+Scripts/Items/Devices/ItemPowerBankLarge@Description:
+Speichert große Mengen an Energie für die bequeme Nutzung unterwegs. Jedes Gerät und jede Energiewaffe kann auf ausgerüstete Powerbanks zugreifen.
+
+Scripts/Items/Devices/ItemPowerBankLarge@Name:
+Große Powerbank
+
+Scripts/Items/Devices/ItemPowerBankStandard@Description:
+Gewöhnliche bidirektionale Powerbank. Speichert Energie für die bequeme Nutzung unterwegs. Jedes Gerät und jede Energiewaffe kann auf ausgerüstete Powerbanks zugreifen.
+
+Scripts/Items/Devices/ItemPowerBankStandard@Name:
+Gewöhnliche Powerbank
+
+Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
+Hochentwickelte Umgebungsschutzrüstung, die eine ideale Kombination aus Verteidigung und Abwehr bietet.
+
+Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
+A.P.A.R.T. Anzug
+
+Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Sturmrüstungshelm
+
+Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
+Diese spezielle Sturmrüstung bietet erstaunlich guten Schutz gegen feindlichen Beschuss, ohne dabei Kompromisse einzugehen.
+
+Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
+Sturmrüstungsjacke
+
+Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
+Sturmrüstungshose
+
+Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
+Kein Helmlicht ausgerüstet
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentDevice@NotificationCannotUseDirectly_Message:
+Alle im Geräte-Slot ausgerüsteten Geräte werden automatisch verwendet.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentDevice@NotificationCannotUseDirectly_Title:
+Kann nicht direkt verwendet werden
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationCannotRefillWhileOn_Message:
+Vor dem Nachfüllen ausschalten.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationCannotRefillWhileOn_Title:
+Kann nicht nachgefüllt werden
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFuel_Message:
+Muss nachgefüllt werden.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFuel_Title:
+Brennstoff aufgebraucht
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
+Um das Helmlicht einzuschalten, rüste den Helm bitte aus und drücke die [{0}] Taste.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
+Taste nicht festgelegt
+
+Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
+Geschlossener Knochenhelm
+
+Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
+Gehörnter Knochenhelm
+
+Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
+Bedenkt man einmal den Preis, bietet Knochenrüstung ausreichenden Schutz und könnte sich schon früh als nützlich erweisen.
+
+Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
+Knochenjacke
+
+Scripts/Items/Equipment/Bone/ItemBonePants@Name:
+Knochenhose
+
+Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
+Nicht gerade ein Hingucker, könnte sich aber im Notfall als nützlich erweisen. Bietet besseren Schutz gegen Umwelteinflüsse als vergleichbare Alternativen.
+
+Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
+Geflochtener Brustpanzer
+
+Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+Geflochtener Helm
+
+Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
+Geflochtene Hose
+
+Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
+Stoffmütze
+
+Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
+Stoffhose
+
+Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
+Bietet keinen wirklichen Schutz. Könnte vielleicht eine Mücke abwehren?
+
+Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Stoffshirt
+
+Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
+Eine passable Anfängerrüstung, die besonders gut gegen Kälte schützt. Nicht sonderlich teuer und bequem noch dazu!
+
+Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
+Pelzjacke
+
+Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Pelzmütze mit Fellschwanz
+
+Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+Kosakenmütze
+
+Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Uschanka
+
+Scripts/Items/Equipment/Fur/ItemFurPants@Name:
+Pelzhose
+
+Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Luxuriöse, goldene Gewänder. Eines wahren Herrschers würdig.
+
+Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
+Goldener Brustpanzer
+
+Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Goldene Krone
+
+Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
+Goldene Hose
+
+Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+Ein speziell entwickelter Anzug, der seinen Träger vor den meisten Umweltgefahren schützt. Aufgrund seiner empfindlichen Beschaffenheit für den Kampf ungeeignet.
+
+Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+Schutzanzug
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
+Cowboyhut
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
+Pilotenkappe
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
+Piratenhut
+
+Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
+Lederrüstung bietet einen guten Rundumschutz und ist ein ideales Stück Ausrüstung für Einsteiger.
+
+Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
+Lederjacke
+
+Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
+Lederhose
+
+Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
+Metallrüstung bietet hervorragenden Schutz vor körperlichen Angriffen, schützt jedoch kaum vor Umweltgefahren.
+
+Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
+Metallbrustpanzer
+
+Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
+Geschlossener Metallhelm
+
+Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
+Totenkopfhelm aus Metall
+
+Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
+Metallbeinschienen
+
+Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+Militärhelm
+
+Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
+Die hochentwickelten Materialien, die bei der Herstellung dieser Rüstung benutzt wurden, bieten idealen Schutz gegen Handfeuer- und andere herkömmliche Waffen.
+
+Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
+Militärjacke
+
+Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
+Militärhose
+
+Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
+Ein bequemer Helm, der mit einer tragbaren Lichtquelle ausgestattet ist, die die Hände freihält. Benötigt Einwegbatterien.
+
+Scripts/Items/Equipment/Misc/ItemHelmetMiner@Name:
+Grubenhelm
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Description:
+Leichter taktischer Helm, der mit einer speziellen Nachtsichtbrille ausgestattet ist und so eine nahezu perfekte Sicht im Dunkeln ermöglicht. Benötigt Einwegbatterien.
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
+Nachtsicht
+
+Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
+Sicherheitshelme schützen den Kopf vor Stößen, Geröll, Stromschlägen und anderen grundlegenden Gefahren.
+
+Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
+Sicherheitshelm
+
+Scripts/Items/Equipment/Misc/ItemRespirator@Description:
+Standardmäßige Atemschutzmaske, die radioaktive Partikel und schädliche Gase aus der Luft filtert. Bietet keinerlei anderen Schutz.
+
+Scripts/Items/Equipment/Misc/ItemRespirator@Name:
+Atemschutzmaske
+
+Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
+Experimentelle Rüstung, die ein in dünne Metallplatten eingebettetes Pragmiumgitter als strukturelle Basis benutzt. Sehr leicht und langlebig.
+
+Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+Pragmiumrüstung
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
+Dick gepolsterter Stoff, der einen überraschend hohen Grad an Schutz vor allen gängigen Schadensarten und Umwelteinflüssen bietet.
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
+Steppmantel
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+Gesteppter Hut
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
+Gesteppter Helm
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
+Gesteppte Hose
+
+Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
+Not macht erfinderisch. Nicht sonderlich bequem, bietet jedoch schon früh passablen Schutz.
+
+Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
+Hölzerne Brustplatte
+
+Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+Hölzerner Helm
+
+Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
+Hölzerne Hose
+
+Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
+Ein spezieller Sprengsatz, der dazu gedacht ist, eine große Menge an Mineralien auf einmal freizulegen. Muss neben einem Mineralvorkommen platziert werden.
+
+Scripts/Items/Explosives/Bombs/ItemBombMining@Name:
+Minenladung
+
+Scripts/Items/Explosives/Bombs/ItemBombModern@Description:
+Hochexplosives Gerät zur Sprengung verstärkter Konstruktionen.
+
+Scripts/Items/Explosives/Bombs/ItemBombModern@Name:
+Moderne Bombe
+
+Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Description:
+Einfache Sprengladung, die zum Durchbrechen von Wänden und Befestigungsanlagen genutzt werden kann. Muss für den maximalen Wirkungsgrad so nah wie möglich am Zielobjekt platziert werden.
+
+Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Name:
+Einfache Bombe
+
+Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
+Eine spezielle Bombe, die sich die einzigartigen Eigenschaften von Pragmium zunutze macht, um mehrere Türen und Wandebenen gleichzeitig zu beschädigen. Dazu geeignet, in besonders gut geschützte Basen einzudringen. Hat keinerlei Effekt auf andere Konstruktionen.
+
+Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
+Resonanzbombe
+
+Scripts/Items/Food/ItemBanana@Description:
+Jeder Affe kann nach einer Banane greifen, aber nur Menschen greifen nach den Sternen.
+
+Scripts/Items/Food/ItemBanana@Name:
+Banane
+
+Scripts/Items/Food/ItemBeer@Description:
+Erfrischend und kühl. Dieses bekömmliche Bier wurde aus hochwertigem Getreide gebraut.
+
+Scripts/Items/Food/ItemBeer@Name:
+Bier
+
+Scripts/Items/Food/ItemBellPepper@Description:
+Nicht besonders scharf, aber dennoch lecker. Passt zu vielen Gerichten.
+
+Scripts/Items/Food/ItemBellPepper@Name:
+Paprika
+
+Scripts/Items/Food/ItemBerriesOrange@Description:
+Schmackhafte orangefarbene Beeren.
+
+Scripts/Items/Food/ItemBerriesOrange@Name:
+Beeren
+
+Scripts/Items/Food/ItemBerriesRed@Description:
+Schmackhafte rote Beeren.
+
+Scripts/Items/Food/ItemBerriesRed@Name:
+Beeren
+
+Scripts/Items/Food/ItemBerriesViolet@Description:
+Schmackhafte violette Beeren.
+
+Scripts/Items/Food/ItemBerriesViolet@Name:
+Beeren
+
+Scripts/Items/Food/ItemBottleWater@Description:
+Könnte als Durstlöscher verwendet werden. Außerdem in einer Vielzahl von Handwerksrezepturen nützlich.
+
+Scripts/Items/Food/ItemBottleWater@Name:
+Flasche mit reinem Wasser
+
+Scripts/Items/Food/ItemBottleWaterSalty@Description:
+Salziges Meerwasser. Statt dich zu erfrischen, macht es dich nur noch durstiger. Könnte verdampft werden, um Salz zu gewinnen.
+
+Scripts/Items/Food/ItemBottleWaterSalty@Name:
+Flasche mit Salzwasser
+
+Scripts/Items/Food/ItemBottleWaterStale@Description:
+Abgestandenes Wasser aus einem See. Sollte zunächst abgekocht werden, um es trinkbar zu machen. In der Not könnte es dennoch den Durst stillen.
+
+Scripts/Items/Food/ItemBottleWaterStale@Name:
+Flasche mit abgestandenem Wasser
+
+Scripts/Items/Food/ItemBread@Description:
+Ein Laib Weißbrot. Schau dir nur mal all diese Kohlenhydrate an!
+
+Scripts/Items/Food/ItemBread@Name:
+Brotlaib
+
+Scripts/Items/Food/ItemCactusDrink@Description:
+Getränk aus gepresstem Kaktusfruchtfleisch. Schmeckt furchtbar, wird deinen Durst jedoch in Ermangelung sonstiger Alternativen stillen.
+
+Scripts/Items/Food/ItemCactusDrink@Name:
+Kaktusgetränk
+
+Scripts/Items/Food/ItemCactusFlesh@Description:
+Saftiges Kaktusfruchtfleisch. Nicht wirklich etwas, das man gerne zu sich nimmt, aber dennoch ein Retter in der Not.
+
+Scripts/Items/Food/ItemCactusFlesh@Name:
+Kaktusfleisch
+
+Scripts/Items/Food/ItemCannedBeans@Description:
+Nicht gerade das beste Essen weit und breit, aber es könnte dich vorm Verhungern bewahren.
+
+Scripts/Items/Food/ItemCannedBeans@Name:
+Dosenbohnen
+
+Scripts/Items/Food/ItemCannedFish@Description:
+Höchstwahrscheinlich Thunfisch? Decke deinen Tagesbedarf an Omega-3.
+
+Scripts/Items/Food/ItemCannedFish@Name:
+Fischkonserve
+
+Scripts/Items/Food/ItemCannedMeat@Description:
+Dosenfleisch von zweifelhafter Herkunft. Zumindest die Verpackung ist vertrauenserweckend.
+
+Scripts/Items/Food/ItemCannedMeat@Name:
+Dosenfleisch
+
+Scripts/Items/Food/ItemCarrot@Description:
+Ein orangenes Gemüse reich an Carotin.
+
+Scripts/Items/Food/ItemCarrot@Name:
+Karotte
+
+Scripts/Items/Food/ItemCarrotGrilled@Description:
+Einfache, aber würzige Mahlzeit.
+
+Scripts/Items/Food/ItemCarrotGrilled@Name:
+Gegrillte Karotten
+
+Scripts/Items/Food/ItemChiliBeans@Description:
+Das einzig wahre Junggesellenessen.
+
+Scripts/Items/Food/ItemChiliBeans@Name:
+Chilibohnen
+
+Scripts/Items/Food/ItemChiliPepper@NotificationSpicy:
+Autsch! Ist das scharf!
+
+Scripts/Items/Food/ItemChiliPepper@Description:
+Eine in vielen Gerichten beliebte Zutat, die Würze und Geschmack verleiht.
+
+Scripts/Items/Food/ItemChiliPepper@Name:
+Chilischote
+
+Scripts/Items/Food/ItemCoffeeBeans@NotificationEatingCoffeeBadIdea:
+Vielleicht war es doch keine so gute Idee, rohe Kaffeebohnen zu essen ...
+
+Scripts/Items/Food/ItemCoffeeBeans@Description:
+Kann dazu verwendet werden, eines der beliebtesten, traditionsreichsten Getränke dieser Galaxie zuzubereiten.
+
+Scripts/Items/Food/ItemCoffeeBeans@Name:
+Kaffeebohnen
+
+Scripts/Items/Food/ItemCoffeeBerries@Description:
+Können so verzehrt oder im Ofen zu Kaffeebohnen geröstet werden.
+
+Scripts/Items/Food/ItemCoffeeBerries@Name:
+Kaffeebeeren
+
+Scripts/Items/Food/ItemCoffeeCup@Description:
+Eine Tasse mit heißem Espresso. Hilft dir dabei, noch energiegeladenere Dummheiten zu begehen.
+
+Scripts/Items/Food/ItemCoffeeCup@Name:
+Tasse Kaffee
+
+Scripts/Items/Food/ItemCorn@Description:
+Ein schmackhaftes Getreide, das besonders von Horrorschriftstellern geschätzt wird.
+
+Scripts/Items/Food/ItemCorn@Name:
+Mais
+
+Scripts/Items/Food/ItemCornOnCob@Description:
+Wem schmecken heiße Maiskolben wohl nicht?
+
+Scripts/Items/Food/ItemCornOnCob@Name:
+Maiskolben
+
+Scripts/Items/Food/ItemCucumber@Description:
+Eine wasserreiche Pflanze, die dafür bekannt ist, Katzen in Angst und Schrecken zu versetzen.
+
+Scripts/Items/Food/ItemCucumber@Name:
+Gurke
+
+Scripts/Items/Food/ItemCucumbersPickled@Description:
+Knackige, süße Gürkchen.
+
+Scripts/Items/Food/ItemCucumbersPickled@Name:
+Gewürzgurken
+
+Scripts/Items/Food/ItemDrinkEnergy@Description:
+Ein in der gesamten Galaxis weitverbreiteter Energydrink. Verleiht dir einen wahren Energieschub.
+
+Scripts/Items/Food/ItemDrinkEnergy@Name:
+Energydrink
+
+Scripts/Items/Food/ItemDrinkHerbal@Description:
+Ein beliebtes, aus pflanzlichen Zutaten hergestelltes Getränk. Angeblich gut für die Gesundheit und zum Entgiften des Körpers geeignet.
+
+Scripts/Items/Food/ItemDrinkHerbal@Name:
+Kräutertrank
+
+Scripts/Items/Food/ItemDrinkSoft@Description:
+Ein Erfrischungsgetränk, das seit über sieben Jahrhunderten in Folge zum beliebtesten Getränk des Kernsektors gewählt wurde.
+
+Scripts/Items/Food/ItemDrinkSoft@Name:
+Limonade
+
+Scripts/Items/Food/ItemDurian@Description:
+An der Beliebtheit dieser Tropenfrucht scheiden sich die Geister, aber es lässt sich nicht bestreiten, dass sie über einen einzigartigen Geschmack und Geruch verfügt.
+
+Scripts/Items/Food/ItemDurian@Name:
+Durian
+
+Scripts/Items/Food/ItemEggsBoiled@Description:
+Gekochte Eier. Gekocht ist gesünder als frittiert!
+
+Scripts/Items/Food/ItemEggsBoiled@Name:
+Gekochte Eier
+
+Scripts/Items/Food/ItemEggsFried@Description:
+Spiegeleier. Mit der sonnengelben Seite nach oben.
+
+Scripts/Items/Food/ItemEggsFried@Name:
+Spiegeleier
+
+Scripts/Items/Food/ItemEggsRaw@Description:
+Schmackhaft, ganz gleich ob gebraten oder gekocht. Sollten jedoch nicht roh verzehrt werden, denn das könnte zu einer Lebensmittelvergiftung führen.
+
+Scripts/Items/Food/ItemEggsRaw@Name:
+Tiereier
+
+Scripts/Items/Food/ItemJamBerries@Description:
+Eine leckere Beerenmarmelade.
+
+Scripts/Items/Food/ItemJamBerries@Name:
+Beerenmarmelade
+
+Scripts/Items/Food/ItemLiquor@Description:
+Ein hübscher, rubinroter Fruchtlikör. Ist bekömmlich trotz seines hohen Alkoholgehalts.
+
+Scripts/Items/Food/ItemLiquor@Name:
+Likör
+
+Scripts/Items/Food/ItemMeatCharred@Description:
+Über der offenen Flamme zubereitetes Fleisch. Nicht gerade die beste Art, um Fleisch zuzubereiten, aber immer noch besser als roh.
+
+Scripts/Items/Food/ItemMeatCharred@Name:
+Verkohltes Fleisch
+
+Scripts/Items/Food/ItemMeatJerky@Description:
+Getrocknetes Fleisch, das zu Dörrfleisch verarbeitet wurde. Schmackhaft, macht jedoch sehr durstig. Lässt sich über einen langen Zeitraum aufbewahren, ohne zu verderben.
+
+Scripts/Items/Food/ItemMeatJerky@Name:
+Dörrfleisch
+
+Scripts/Items/Food/ItemMeatRaw@Description:
+Rohes Fleisch. Kann auf vielfältige Art zubereitet werden. Es roh zu verzehren ist vermutlich keine so gute Idee ...
+
+Scripts/Items/Food/ItemMeatRaw@Name:
+Rohes Fleisch
+
+Scripts/Items/Food/ItemMeatRoasted@Description:
+Gebratenes Fleisch garniert mit etwas Petersilie. Wo kommt die Petersilie her? Das bleibt ein Geheimnis!
+
+Scripts/Items/Food/ItemMeatRoasted@Name:
+Gebratenes Fleisch
+
+Scripts/Items/Food/ItemMREImprovised@Description:
+Diese Mahlzeit wurde mithilfe einiger einfacher Zutaten und Salz als wichtigstem Konservierungsmittel zubereitet. Hält sich lang, ohne zu verderben.
+
+Scripts/Items/Food/ItemMREImprovised@Name:
+Improvisierte Feldration
+
+Scripts/Items/Food/ItemMushroomPennyBun@Description:
+Speisepilz. Kann roh verzehrt werden, ist jedoch viel schmackhafter, wenn er gekocht oder in einem Eintopf verarbeitet wird.
+
+Scripts/Items/Food/ItemMushroomPennyBun@Name:
+Steinpilz
+
+Scripts/Items/Food/ItemMushroomPink@Description:
+Extrem giftiger Pilz. So toxisch, dass er im Dunkeln leuchtet.
+
+Scripts/Items/Food/ItemMushroomPink@Name:
+Rosaner Pilz
+
+Scripts/Items/Food/ItemMushroomRust@Description:
+Diese Pilze sind wegen ihrer kräftigen Farbe als Rostpilze bekannt. Gekocht schmecken sie ziemlich gut, im rohen Zustand sind sie jedoch giftig.
+
+Scripts/Items/Food/ItemMushroomRust@Name:
+Rostpilze
+
+Scripts/Items/Food/ItemOgurin@Description:
+Seltsam aussehende Ogurinfrüchte ... recht fad im Geschmack. Aus gentechnisch veränderten Gurken gezüchtet.
+
+Scripts/Items/Food/ItemOgurin@Name:
+Ogurinfrucht
+
+Scripts/Items/Food/ItemPieBerry@Description:
+Ein saftiger Beerenkuchen. Genau wie deine Oma ihn immer gebacken hat.
+
+Scripts/Items/Food/ItemPieBerry@Name:
+Beerenkuchen
+
+Scripts/Items/Food/ItemPineapple@Description:
+Eine süßsaure Tropenfrucht, die roh verzehrt oder als Zutat in diversen Gerichten verarbeitet werden kann. Manche behaupten gar, dass sie sich als Pizzabelag bewährt hat.
+
+Scripts/Items/Food/ItemPineapple@Name:
+Ananas
+
+Scripts/Items/Food/ItemRoastedMushrooms@Description:
+Leckere, gebratene Pilze.
+
+Scripts/Items/Food/ItemRoastedMushrooms@Name:
+Gebratene Pilze
+
+Scripts/Items/Food/ItemSaladFruit@Description:
+Gemischter Obstsalat. Süß, gesund und sättigend!
+
+Scripts/Items/Food/ItemSaladFruit@Name:
+Obstsalat
+
+Scripts/Items/Food/ItemSaladVegetable@Description:
+Gemischter Gemüsesalat. Sehr gesund und erstaunlich sättigend!
+
+Scripts/Items/Food/ItemSaladVegetable@Name:
+Gemüsesalat
+
+Scripts/Items/Food/ItemSandwich@Description:
+Die Mischung aus weichem Brot, saftigem Fleisch und Gemüse ist ein echter Klassiker!
+
+Scripts/Items/Food/ItemSandwich@Name:
+Sandwich
+
+Scripts/Items/Food/ItemStew@Description:
+Leckerer Fleischeintopf verfeinert mit Pilzen.
+
+Scripts/Items/Food/ItemStew@Name:
+Eintopf mit Fleisch und Pilzen
+
+Scripts/Items/Food/ItemSugar@Description:
+Süß und weiß. Findet in einer Vielzahl von Lebensmitteln Anwendung. Kann roh verzehrt werden, wovon jedoch abgeraten wird.
+
+Scripts/Items/Food/ItemSugar@Name:
+Zucker
+
+Scripts/Items/Food/ItemTequila@Description:
+Guter Schnaps, der aus Wüstenpflanzen destilliert wird.
+
+Scripts/Items/Food/ItemTequila@Name:
+Tequila
+
+Scripts/Items/Food/ItemTincture@Description:
+Diese Kräutertinktur kann durch eine Vielzahl von positiven Effekten bestechen, einschließlich einer Verbesserung deiner Gesundheit.
+
+Scripts/Items/Food/ItemTincture@Name:
+Tinktur
+
+Scripts/Items/Food/ItemTomato@Description:
+Wusstest du, dass Tomaten eigentlich Früchte und kein Gemüse sind?
+
+Scripts/Items/Food/ItemTomato@Name:
+Tomate
+
+Scripts/Items/Food/ItemVodka@Description:
+Der feurige Trank der Götter. Missbrauch zieht Konsequenzen nach sich, also konsumiere nicht zu viel davon. Zudem entzieht er dir Wasser. Und nein, gegen Strahlung ist er auch keine große Hilfe.
+
+Scripts/Items/Food/ItemVodka@Name:
+Wodka
+
+Scripts/Items/Food/ItemWaterbulb@Description:
+Frucht der Wasserknollenpflanze. Enthält frisches Trinkwasser.
+
+Scripts/Items/Food/ItemWaterbulb@Name:
+Wasserknollenfrucht
+
+Scripts/Items/Food/ItemWine@Description:
+Königlicher Nektar, der nur aus den feinsten Trauben (oder einem Äquivalent dazu) gewonnen wird. Vorzüglicher Geschmack und feinstes Aroma.
+
+Scripts/Items/Food/ItemWine@Name:
+Wein
+
+Scripts/Items/Food/ItemYucca@Description:
+Überlebensnahrung aus der Wüste. Sollte zunächst gekocht werden.
+
+Scripts/Items/Food/ItemYucca@Name:
+Yucca
+
+Scripts/Items/Food/ItemYuccaCharred@Description:
+Im Ernstfall wird es dich vor dem Hungertod bewahren.
+
+Scripts/Items/Food/ItemYuccaCharred@Name:
+Verkohltes Yucca
+
+Scripts/Items/Food/ItemYuccaFried@Description:
+Gar gekochte Yuccafrucht. Nicht gerade ein Festtagsschmaus, aber es schmeckt gut und versorgt dich mit wertvollen Nährstoffen.
+
+Scripts/Items/Food/ItemYuccaFried@Name:
+Gebratenes Yucca
+
+Scripts/Items/Generic/ItemAcidNitric@Description:
+Flasche mit Salpetersäure.
+
+Scripts/Items/Generic/ItemAcidNitric@Name:
+Salpetersäure
+
+Scripts/Items/Generic/ItemAcidSulfuric@Description:
+Flasche mit Schwefelsäure.
+
+Scripts/Items/Generic/ItemAcidSulfuric@Name:
+Schwefelsäure
+
+Scripts/Items/Generic/ItemAnimalFat@Description:
+Aus Tieren gewonnenes Fett. Könnte zum Kochen oder industriell verwendet werden.
+
+Scripts/Items/Generic/ItemAnimalFat@Name:
+Tierfett
+
+Scripts/Items/Generic/ItemAramidFiber@Description:
+Extrem starke synthetische Faser mit hoher Elastizität. Kann in der Rüstungsfertigung oder für andere Zwecke verwendet werden.
+
+Scripts/Items/Generic/ItemAramidFiber@Name:
+Aramidfaser
+
+Scripts/Items/Generic/ItemAsh@Description:
+Aus verbranntem Holz übriggebliebene Asche.
+
+Scripts/Items/Generic/ItemAsh@Name:
+Asche
+
+Scripts/Items/Generic/ItemBallisticPlate@Description:
+Schwere, fast undurchdringliche Verbundstoffplatte, die entwickelt wurde, um die meisten Arten von konventionellen und exotischen Waffen zu stoppen.
+
+Scripts/Items/Generic/ItemBallisticPlate@Name:
+Ballistische Platte
+
+Scripts/Items/Generic/ItemBatteryDisposable@Description:
+Einfache Einwegbatterie. Speichert nicht sonderlich viel Energie, ist jedoch einfach und billig herzustellen. Kann zum Aufladen elektronischer Geräte oder Powerbanks benutzt werden.
+
+Scripts/Items/Generic/ItemBatteryDisposable@Name:
+Einwegbatterie
+
+Scripts/Items/Generic/ItemBatteryHeavyDuty@Description:
+Leistungsstarke Einwegbatterie. Speichert mehr Energie als kleinere Batterien und kann zum schnellen Aufladen von Powerbanks und elektronischen Geräten verwendet werden.
+
+Scripts/Items/Generic/ItemBatteryHeavyDuty@Name:
+Leistungsstarke Batterie
+
+Scripts/Items/Generic/ItemBlackpowder@Description:
+Herkömmliches Schießpulver, auch bekannt als Schwarzpulver. Kann mit einfachsten Mitteln hergestellt werden.
+
+Scripts/Items/Generic/ItemBlackpowder@Name:
+Schwarzpulver
+
+Scripts/Items/Generic/ItemBones@Description:
+Tierknochen.
+
+Scripts/Items/Generic/ItemBones@Name:
+Knochen
+
+Scripts/Items/Generic/ItemBottleEmpty@Description:
+Eine simple, leere Flasche. Könnte zum Aufbewahren von Wasser verwendet werden.
+
+Scripts/Items/Generic/ItemBottleEmpty@Name:
+Leere Flasche
+
+Scripts/Items/Generic/ItemBricks@Description:
+Baumaterial für Gebäude und Wände.
+
+Scripts/Items/Generic/ItemBricks@Name:
+Ziegel
+
+Scripts/Items/Generic/ItemCampFuel@Description:
+Brennmaterial (auch als Lampenöl bekannt) kann zum Auffüllen verschiedener Lichtquellen verwendet werden, die diese Art von Öl benutzen.
+
+Scripts/Items/Generic/ItemCampFuel@Name:
+Brennmaterial
+
+Scripts/Items/Generic/ItemCanisterEmpty@Description:
+Leerer Metallkanister. Dient zur Aufbewahrung leichtflüchtiger Flüssigkeiten.
+
+Scripts/Items/Generic/ItemCanisterEmpty@Name:
+Leerer Kanister
+
+Scripts/Items/Generic/ItemCanisterGasoline@Description:
+Kanister gefüllt mit Benzin.
+
+Scripts/Items/Generic/ItemCanisterGasoline@Name:
+Benzinkanister
+
+Scripts/Items/Generic/ItemCanisterMineralOil@Description:
+Kanister gefüllt mit Mineralöl.
+
+Scripts/Items/Generic/ItemCanisterMineralOil@Name:
+Mineralölkanister
+
+Scripts/Items/Generic/ItemCanisterPetroleum@Description:
+Kanister gefüllt mit unbehandeltem Erdöl. Das Öl kann in andere Komponenten raffiniert werden.
+
+Scripts/Items/Generic/ItemCanisterPetroleum@Name:
+Erdölkanister
+
+Scripts/Items/Generic/ItemCement@Description:
+Trockenzementmischung gilt im Bauwesen als nützliches Bindemittel.
+
+Scripts/Items/Generic/ItemCement@Name:
+Trockenzementmischung
+
+Scripts/Items/Generic/ItemCharcoal@Description:
+Holzkohle ist ein Nebenprodukt der Holzverbrennung. Kann seinerseits als Brennstoff verwendet werden.
+
+Scripts/Items/Generic/ItemCharcoal@Name:
+Holzkohle
+
+Scripts/Items/Generic/ItemClay@Description:
+Ton ist ein natürlich vorkommender, nützlicher Baustoff.
+
+Scripts/Items/Generic/ItemClay@Name:
+Ton
+
+Scripts/Items/Generic/ItemCoal@Description:
+Kohle, die entweder aus dem Boden oder aus Kohlevorkommen abgebaut wurde. Ist ein hervorragender Brennstoff.
+
+Scripts/Items/Generic/ItemCoal@Name:
+Kohle
+
+Scripts/Items/Generic/ItemCoinPenny@Description:
+Münzen niedrigen Werts. Diese Münzen können zum Kauf preiswerter Produkte in Handelsstationen oder im direkten Handel mit anderen Überlebenden verwendet werden.
+
+Scripts/Items/Generic/ItemCoinPenny@Name:
+Penny
+
+Scripts/Items/Generic/ItemCoinShiny@Description:
+Münzen hohen Werts. Diese Münzen können zum Kauf von Produkten in Handelsstationen oder im direkten Handel mit anderen Überlebenden verwendet werden.
+
+Scripts/Items/Generic/ItemCoinShiny@Name:
+Glänzende Münze
+
+Scripts/Items/Generic/ItemComponentsElectronic@Description:
+Diverse elektronische Komponenten, die zur Herstellung verschiedener elektronischer Geräte dienen. Besonders leicht in verlassenen wissenschaftlichen Außenposten zu finden.
+
+Scripts/Items/Generic/ItemComponentsElectronic@Name:
+Elektronische Komponenten
+
+Scripts/Items/Generic/ItemComponentsHighTech@Description:
+Moderne Hi-Tech-Komponenten zur Herstellung komplexer Geräte.
+
+Scripts/Items/Generic/ItemComponentsHighTech@Name:
+Hi-Tech-Komponenten
+
+Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Description:
+Diverse Chemikalien, die von industriellem Nutzen sind.
+
+Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Name:
+Industriechemikalien
+
+Scripts/Items/Generic/ItemComponentsMechanical@Description:
+Diverse mechanische Komponenten, die zur Montage verschiedenster komplexer Mechanismen notwendig sind.
+
+Scripts/Items/Generic/ItemComponentsMechanical@Name:
+Mechanische Komponenten
+
+Scripts/Items/Generic/ItemComponentsOptical@Description:
+Diverse hochentwickelte optische Komponenten mit einer Vielzahl von industriellen und militärischen Anwendungsgebieten.
+
+Scripts/Items/Generic/ItemComponentsOptical@Name:
+Optische Komponenten
+
+Scripts/Items/Generic/ItemComponentsPharmaceutical@Description:
+Pharmazeutische Chemikalien können zur Herstellung verschiedenster Medikamente verwendet werden.
+
+Scripts/Items/Generic/ItemComponentsPharmaceutical@Name:
+Pharmazeutische Chemikalien
+
+Scripts/Items/Generic/ItemComponentsWeapon@Description:
+Diverse Waffenkomponenten, die zur Herstellung modernster Schusswaffen benötigt werden.
+
+Scripts/Items/Generic/ItemComponentsWeapon@Name:
+Waffenkomponenten
+
+Scripts/Items/Generic/ItemExplosives@Description:
+Hochgradig explosives Material, das zum Bau einer Vielzahl von Sprengkörpern verwendet werden kann.
+
+Scripts/Items/Generic/ItemExplosives@Name:
+Sprengstoff
+
+Scripts/Items/Generic/ItemFertilizer@ShortDescriptionText:
+`Verbessert Wachstums-Geschwindigkeit um {0}%
+[br]Verbessert Ernte`
+
+Scripts/Items/Generic/ItemFertilizer@Description:
+Verbessert die Wachstumsgeschwindigkeit von Pflanzen erheblich und erhöht den Ertrag einer einzelnen Pflanze.
+
+Scripts/Items/Generic/ItemFertilizer@Name:
+Dünger
+
+Scripts/Items/Generic/ItemFibers@Description:
+Organische oder synthetische Fasern. Nützlich in der Herstellung von Seil oder Garn. Kann durch das Sammeln von Gras oder bestimmter anderer Pflanzen gewonnen werden.
+
+Scripts/Items/Generic/ItemFibers@Name:
+Fasern
+
+Scripts/Items/Generic/ItemFirelog@Description:
+Speziell gefertigtes, künstlich hergestelltes Holz. Brennt wesentlich länger als natürlich gewachsene Holzscheite.
+
+Scripts/Items/Generic/ItemFirelog@Name:
+Superzündie
+
+Scripts/Items/Generic/ItemFlowerBlueSage@Description:
+Hübsch anzuschauen und von medizinischem Nutzen.
+
+Scripts/Items/Generic/ItemFlowerBlueSage@Name:
+Blauer Salbei
+
+Scripts/Items/Generic/ItemFlowerOni@Description:
+Rote Oniblume. Benannt nach dem roten Dämon.
+
+Scripts/Items/Generic/ItemFlowerOni@Name:
+Oniblume
+
+Scripts/Items/Generic/ItemFluxPowder@Description:
+Flussmittel findet in der Metallurgie zur Herstellung hochwertiger Metalle Verwendung.
+
+Scripts/Items/Generic/ItemFluxPowder@Name:
+Flussmittel
+
+Scripts/Items/Generic/ItemFoodRotten@Description:
+Dieses Lebensmittel ist gänzlich verdorben.
+
+Scripts/Items/Generic/ItemFoodRotten@Name:
+Verdorbenes Essen
+
+Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
+Speziell angemischtes Cellulosenitratgranulat für Hochleistungsfeuerwaffen.
+
+Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
+Schießpulvermischung
+
+Scripts/Items/Generic/ItemFur@Description:
+Tierfell. Könnte als Basis für warme Winterkleidung dienen.
+
+Scripts/Items/Generic/ItemFur@Name:
+Pelz
+
+Scripts/Items/Generic/ItemGemDiamond@Description:
+Funkelnder weißer Diamant!
+
+Scripts/Items/Generic/ItemGemDiamond@Name:
+Diamant
+
+Scripts/Items/Generic/ItemGemEmerald@Description:
+Funkelnder grüner Smaragd!
+
+Scripts/Items/Generic/ItemGemEmerald@Name:
+Smaragd
+
+Scripts/Items/Generic/ItemGemRuby@Description:
+Funkelnder roter Rubin!
+
+Scripts/Items/Generic/ItemGemRuby@Name:
+Rubin
+
+Scripts/Items/Generic/ItemGemSapphire@Description:
+Funkelnder blauer Saphir!
+
+Scripts/Items/Generic/ItemGemSapphire@Name:
+Saphir
+
+Scripts/Items/Generic/ItemGemTopaz@Description:
+Funkelnder gelber Topas!
+
+Scripts/Items/Generic/ItemGemTopaz@Name:
+Topas
+
+Scripts/Items/Generic/ItemGemTourmaline @Description:
+Funkelnder violetter Turmalin!
+
+Scripts/Items/Generic/ItemGemTourmaline @Name:
+Turmalin
+
+Scripts/Items/Generic/ItemGlassRaw@Description:
+Rohglas findet in der Fertigung vieler gläserner Dinge Anwendung, z.B. Flaschen.
+
+Scripts/Items/Generic/ItemGlassRaw@Name:
+Rohglas
+
+Scripts/Items/Generic/ItemGlue@Description:
+Klebstoff ist in einer Vielzahl von Rezepturen nützlich.
+
+Scripts/Items/Generic/ItemGlue@Name:
+Klebstoff
+
+Scripts/Items/Generic/ItemGoldNugget@Description:
+Unveredelte, kleine Goldklumpen.
+
+Scripts/Items/Generic/ItemGoldNugget@Name:
+Gold-Nuggets
+
+Scripts/Items/Generic/ItemHygroscopicGranules@Description:
+Spezielles, stark feuchtigkeitsbindendes Granulat, das als Bodenzusatz dienen kann. Dieses Granulat entzieht der Luft Feuchtigkeit und macht so die Bewässerung von Pflanzen unnötig.
+
+Scripts/Items/Generic/ItemHygroscopicGranules@Name:
+Feuchtigkeitsbindendes Granulat
+
+Scripts/Items/Generic/ItemIngotCopper@Description:
+Barren aus reinem Kupfer. Kupfer besitzt eine Vielzahl von Anwendungsgebieten, von der Industrie bis hin zur Elektronik.
+
+Scripts/Items/Generic/ItemIngotCopper@Name:
+Kupferbarren
+
+Scripts/Items/Generic/ItemIngotGold@Description:
+Kleiner Barren feinsten Golds.
+
+Scripts/Items/Generic/ItemIngotGold@Name:
+Goldbarren
+
+Scripts/Items/Generic/ItemIngotIron@Description:
+Eisenbarren mit relativ niedrigem Kohlenstoffgehalt.
+
+Scripts/Items/Generic/ItemIngotIron@Name:
+Eisenbarren
+
+Scripts/Items/Generic/ItemIngotLithium@Description:
+Pures Lithiummetall. Wird für gewöhnlich in vakuumversiegelten Behältern oder mit Öl bedeckt aufbewahrt.
+
+Scripts/Items/Generic/ItemIngotLithium@Name:
+Lithiumbarren
+
+Scripts/Items/Generic/ItemIngotSteel@Description:
+Qualitativ hochwertiger Stahl mit hohem Kohlenstoffgehalt.
+
+Scripts/Items/Generic/ItemIngotSteel@Name:
+Stahlbarren
+
+Scripts/Items/Generic/ItemLeaf@Description:
+Ein Blatt ... Stammt wohl von einem Baum.
+
+Scripts/Items/Generic/ItemLeaf@Name:
+Blatt
+
+Scripts/Items/Generic/ItemLeather@Description:
+Tierleder. Könnte bei der Herstellung von Lederrüstung nützlich sein.
+
+Scripts/Items/Generic/ItemLeather@Name:
+Leder
+
+Scripts/Items/Generic/ItemLogs@Description:
+Eignen sich gut als Baumaterial. Auch gut fürs Grillen.
+
+Scripts/Items/Generic/ItemLogs@Name:
+Holzstämme
+
+Scripts/Items/Generic/ItemMulch@ShortDescriptionText:
+Verbessert die Wachstumsgeschwindigkeit um {0}%
+
+Scripts/Items/Generic/ItemMulch@Description:
+Kompost besteht aus zersetztem organischen Material. Eignet sich gut als Pflanzendünger.
+
+Scripts/Items/Generic/ItemMulch@Name:
+Kompost
+
+Scripts/Items/Generic/ItemNitrocellulosePowder@Description:
+Cellulosenitrat ist auch bekannt als rauchloses Pulver. Es wird in allen modernen Schusswaffen anstelle von Schwarzpulver verwendet.
+
+Scripts/Items/Generic/ItemNitrocellulosePowder@Name:
+Cellulosenitrat-Pulver
+
+Scripts/Items/Generic/ItemOilpod@Description:
+Ungenießbare Frucht einer gentechnisch veränderten Pflanzenart. Enthält eine hohe Konzentration von Erdölprodukten und -derivaten.
+
+Scripts/Items/Generic/ItemOilpod@Name:
+Ölschotenfrucht
+
+Scripts/Items/Generic/ItemOreCopper@Description:
+Kann in reines Kupfer geschmolzen werden.
+
+Scripts/Items/Generic/ItemOreCopper@Name:
+Kupfererz
+
+Scripts/Items/Generic/ItemOreIron@Description:
+Kann in reines Eisen geschmolzen werden.
+
+Scripts/Items/Generic/ItemOreIron@Name:
+Eisenerz
+
+Scripts/Items/Generic/ItemOreLithium@Description:
+Lithiumsalze werden aus Thermalquellen gewonnen und können zu reinem Lithiummetall weiterverarbeitet werden.
+
+Scripts/Items/Generic/ItemOreLithium@Name:
+Lithiumsalze
+
+Scripts/Items/Generic/ItemOrePragmium@Description:
+Ein begehrtes Metall, das einzigartige Eigenschaften miteinander verbindet, die in keiner anderen gängigen Substanz vorhanden sind. Pragmium kann zur Herstellung von Hi-Tech-Geräten oder als Energiequelle benutzt werden.
+
+Scripts/Items/Generic/ItemOrePragmium@Name:
+Pragmium
+
+Scripts/Items/Generic/ItemOrePyrite@Description:
+Pyriterz kann durch Erhitzen zu Schwefelsäure verarbeitet werden.
+
+Scripts/Items/Generic/ItemOrePyrite@Name:
+Pyriterz
+
+Scripts/Items/Generic/ItemPaper@Description:
+Gutes altes Papier.
+
+Scripts/Items/Generic/ItemPaper@Name:
+Papier
+
+Scripts/Items/Generic/ItemPlanks@Description:
+Finden oft als Baumaterial Verwendung. Können auch als Brennstoff benutzt werden.
+
+Scripts/Items/Generic/ItemPlanks@Name:
+Holzbretter
+
+Scripts/Items/Generic/ItemPlastic@Description:
+Rohkunststoff. Nützlich in der Industrie.
+
+Scripts/Items/Generic/ItemPlastic@Name:
+Kunststoff
+
+Scripts/Items/Generic/ItemPotassiumNitrate@Description:
+Kaliumnitrat ist auch als Salpeter bekannt. Nützlich zur Herstellung von Schießpulver und einer Vielzahl von anderen Rezepturen.
+
+Scripts/Items/Generic/ItemPotassiumNitrate@Name:
+Kaliumnitrat
+
+Scripts/Items/Generic/ItemPowerCell@Description:
+Kleine, vielseitige Energiezelle, die in einer Vielzahl von elektronischen Geräten als Energiespeicher benutzt wird. Nicht gesondert verwendbar.
+
+Scripts/Items/Generic/ItemPowerCell@Name:
+Energiezelle
+
+Scripts/Items/Generic/ItemRope@Description:
+Ein herkömmliches Seil. Vielseitig einsetzbar. Überschüssiges Seil kann verbrannt werden.
+
+Scripts/Items/Generic/ItemRope@Name:
+Seil
+
+Scripts/Items/Generic/ItemRubberRaw@Description:
+Naturkautschuk, auch als Latexharz bekannt. Aus Gummibäumen gewonnen. Kann durch chemische Prozesse in vulkanisiertes Gummi umgewandelt werden.
+
+Scripts/Items/Generic/ItemRubberRaw@Name:
+Naturkautschuk
+
+Scripts/Items/Generic/ItemRubberVulcanized@Description:
+Vulkanisiertes Gummi. Ideal als Dämmstoff oder zur Herstellung diverser wasserdichter Materialien.
+
+Scripts/Items/Generic/ItemRubberVulcanized@Name:
+Gummi
+
+Scripts/Items/Generic/ItemSalt@Description:
+Herkömmliches Kochsalz ... Kann in der Zubereitung von Speisen verwendet werden. Chemikern als NaCl bekannt. Besitzt eine breite Palette von Anwendungsgebieten.
+
+Scripts/Items/Generic/ItemSalt@Name:
+Salz
+
+Scripts/Items/Generic/ItemSand@Description:
+Sand findet bei der Herstellung von Glas und als Baumaterial Anwendung.
+
+Scripts/Items/Generic/ItemSand@Name:
+Sand
+
+Scripts/Items/Generic/ItemSolvent@Description:
+Speziell entwickeltes Lösungsmittel des Weltraumzeitalters, das die Eigenschaften von polaren und unpolaren Lösungsmitteln miteinander kombiniert.
+
+Scripts/Items/Generic/ItemSolvent@Name:
+Lösungsmittel
+
+Scripts/Items/Generic/ItemStone@Description:
+Stein ... rund und schwer. Nützlich als Baumaterial. Liegt oft einfach auf dem Boden herum oder kann in größeren Mengen abgebaut werden.
+
+Scripts/Items/Generic/ItemStone@Name:
+Stein
+
+Scripts/Items/Generic/ItemSulfurPowder@Description:
+Reiner Schwefel in Pulverform.
+
+Scripts/Items/Generic/ItemSulfurPowder@Name:
+Schwefelpulver
+
+Scripts/Items/Generic/ItemTarpaulin@Description:
+Verbundwerkstoff, der dickes Stoffgewebe mit einer externen Gummischicht kombiniert.
+
+Scripts/Items/Generic/ItemTarpaulin@Name:
+Plane
+
+Scripts/Items/Generic/ItemThread@Description:
+Dieses Garn kann zur Fertigung von Kleidung oder einer Vielzahl von anderen Dingen benutzt werden.
+
+Scripts/Items/Generic/ItemThread@Name:
+Garn
+
+Scripts/Items/Generic/ItemTobaccoAged@Description:
+Gereifte Tabakblätter. Können zu erlesenen Zigarren gerollt werden.
+
+Scripts/Items/Generic/ItemTobaccoAged@Name:
+Tabak (gereift)
+
+Scripts/Items/Generic/ItemTobaccoDried@Description:
+Getrocknete Tabakblätter. Können zu billigen Zigarren verarbeitet werden, oder weiter reifen und zur Herstellung erlesener Zigarren dienen.
+
+Scripts/Items/Generic/ItemTobaccoDried@Name:
+Tabak (getrocknet)
+
+Scripts/Items/Generic/ItemTobaccoRaw@Description:
+Rohtabakblätter und -hülsen. Können getrocknet und zu Zigarren verarbeitet werden.
+
+Scripts/Items/Generic/ItemTobaccoRaw@Name:
+Tabak (roh)
+
+Scripts/Items/Generic/ItemToxin@Description:
+Chemisches Gift. Könnte zur Herstellung von gifthaltiger Munition oder Medizin verwendet werden.
+
+Scripts/Items/Generic/ItemToxin@Name:
+Gift
+
+Scripts/Items/Generic/ItemTreebark@Description:
+Die Rinde einiger Bäume. Kann verbrannt oder für andere Zwecke genutzt werden.
+
+Scripts/Items/Generic/ItemTreebark@Name:
+Baumrinde
+
+Scripts/Items/Generic/ItemTwigs@Description:
+Nur ein paar vom Boden auf- oder von Bäumen abgesammelte Zweige. Könnten bei der Herstellung einfacher Werkzeuge nützlich sein oder als Brennholz dienen.
+
+Scripts/Items/Generic/ItemTwigs@Name:
+Zweige
+
+Scripts/Items/Generic/ItemVialBiomaterial@Description:
+Volle Biomaterialphiole. Wird in der Kybernetik und der Medizin benutzt, insbesondere um Operationen zur Installation und zum Entfernen von Implantaten durchzuführen.
+
+Scripts/Items/Generic/ItemVialBiomaterial@Name:
+Biomaterialphiole
+
+Scripts/Items/Generic/ItemVialEmpty@Description:
+Leere Phiole, die mit dem Biomaterialsammler verwendet wird.
+
+Scripts/Items/Generic/ItemVialEmpty@Name:
+Leere Biomaterialphiole
+
+Scripts/Items/Generic/ItemWheatFlour@Description:
+Findet in vielen Brot- und Backrezepten Anwendung.
+
+Scripts/Items/Generic/ItemWheatFlour@Name:
+Weizenmehl
+
+Scripts/Items/Generic/ItemWheatGrains@Description:
+Geerntetes Getreide vom Weizenfeld. Kann zu Mehl verarbeitet oder ausgesät werden.
+
+Scripts/Items/Generic/ItemWheatGrains@Name:
+Weizen
+
+Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
+Du hast keine Powerbank ausgerüstet
+
+Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoRechargingRequired:
+Kein Aufladen erforderlich
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@CannotApplyErrorTitle:
+Dünger hier nicht verwendbar
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationFertilizerAlreadyApplied:
+Bereits gedüngt
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
+Die Pflanze ist reif für die Ernte. Kein Dünger nötig.
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
+Bereits gewässert
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
+Die Pflanze ist reif für die Ernte. Kein Wasser nötig.
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
+Hier nicht verwendbar
+
+Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
+Spezielle, hochgradig lichtempfindliche Netzhautschicht mit HDR-Unterstützung, die fast perfekte Nachtsicht gewährt.
+
+Scripts/Items/Implants/ItemImplantArtificialRetina@Name:
+Künstliches Netzhautimplantat
+
+Scripts/Items/Implants/ItemImplantArtificialStomach@Description:
+Verstärkt den Magen durch eine verbesserte Magenschleimhaut, wirksamere Magensäure und Enzyme, die die meisten Schadstoffe neutralisieren. Ermöglicht den Verzehr von fast verdorbenen Lebensmitteln und schmutzigem Wasser.
+
+Scripts/Items/Implants/ItemImplantArtificialStomach@Name:
+Künstliches Magenimplantat
+
+Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Description:
+Macht sich den natürlichen Stoffwechsel zunutze, um dem ATP der Zellen Energie zu entziehen und diese auf Kosten verstärkten Appetits in elektrische Energie umzuwandeln. Benötigt eine ausgerüstete Powerbank, um wirksam zu sein.
+
+Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Name:
+ATP-Energieextraktorimplantat
+
+Scripts/Items/Implants/ItemImplantBroken@Description:
+In deinem Körper befinden sich Teile eines defekten Implantats. Das ist nicht sonderlich hilfreich. Du solltest das Implantat so schnell wie möglich entfernen.
+
+Scripts/Items/Implants/ItemImplantBroken@Name:
+Defektes Implantat
+
+Scripts/Items/Implants/ItemImplantHealingGland@Description:
+Steigert den natürlichen Heilungsprozess durch die Produktion zusätzlicher Stammzellen und die Modulation der chemischen Zusammensetzung des Bluts.
+
+Scripts/Items/Implants/ItemImplantHealingGland@Name:
+Heildrüsenimplantat
+
+Scripts/Items/Implants/ItemImplantMetabolismModulator@Description:
+Verbessert die Effizienz des Stoffwechsels und führt so zu einer Reduzierung des körpereigenen Kalorien- und Wasserhaushalts.
+
+Scripts/Items/Implants/ItemImplantMetabolismModulator@Name:
+Stoffwechselmodulationsimplantat
+
+Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
+Dieses spezielle Nanofasermaterial kann in die untere Hautschicht implantiert werden und bietet so erheblichen Schutz.
+
+Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
+Nanofaser-Hautimplantat
+
+Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
+Dir ist nicht übel. Es hat keinen Zweck, diese Medizin jetzt einzunehmen.
+
+Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Title:
+Keine Übelkeit
+
+Scripts/Items/Medical/ItemAntiNausea@Description:
+Diese Medizin beseitigt alle Symptome von Übelkeit.
+
+Scripts/Items/Medical/ItemAntiNausea@Name:
+Anti-Übelkeit
+
+Scripts/Items/Medical/ItemAntiRadiation@NotificationNoRadiationPoisoning_Message:
+Du bist nicht radioaktiv verstrahlt. Es hat keinen Zweck, diese Medizin jetzt einzunehmen.
+
+Scripts/Items/Medical/ItemAntiRadiation@NotificationNoRadiationPoisoning_Title:
+Keine Strahlungsvergiftung
+
+Scripts/Items/Medical/ItemAntiRadiation@Description:
+Dieses Notfallkit gegen Strahlenbelastung kann die Symptome von Strahlenschäden im Körper sofort reduzieren.
+
+Scripts/Items/Medical/ItemAntiRadiation@Name:
+Anti-Strahlung
+
+Scripts/Items/Medical/ItemAntiRadiationPreExposure@Description:
+Dieses vorbeugende Strahlenmedikament kann die Anhäufung von Radionukliden im Körper verhindern und die Symptome ionisierender Strahlung mildern.
+
+Scripts/Items/Medical/ItemAntiRadiationPreExposure@Name:
+Strahlungsprävention
+
+Scripts/Items/Medical/ItemAntiToxin@NotificationNoToxins_Message:
+Es befinden sich keine Giftstoffe in deinem Körper. Es hat keinen Zweck, diese Medizin jetzt einzunehmen.
+
+Scripts/Items/Medical/ItemAntiToxin@NotificationNoToxins_Title:
+Keine Giftstoffe
+
+Scripts/Items/Medical/ItemAntiToxin@Description:
+Dieses Notfallkit gegen Vergiftungserscheinungen kann Vergiftungssymptome des Körpers sofort reduzieren.
+
+Scripts/Items/Medical/ItemAntiToxin@Name:
+Gegengift
+
+Scripts/Items/Medical/ItemAntiToxinPreExposure@Description:
+Dieses vorbeugende Gegengift kann die Aufnahme von Giftstoffen im Körper verhindern und das Immunsystem stärken, um Vergiftungssymptome im Blutkreislauf zu mindern.
+
+Scripts/Items/Medical/ItemAntiToxinPreExposure@Name:
+Giftprävention
+
+Scripts/Items/Medical/ItemBandage@Description:
+Verbände können dabei helfen, Blutungen zu stillen und die Wundheilung zu unterstützen.
+
+Scripts/Items/Medical/ItemBandage@Name:
+Verband
+
+Scripts/Items/Medical/ItemCigarCheap@Description:
+Billige, eilig gerollte Zigarre. Genussmittel.
+
+Scripts/Items/Medical/ItemCigarCheap@Name:
+Billige Zigarre
+
+Scripts/Items/Medical/ItemCigarNormal@Description:
+Herkömmliche Zigarre mit einem vollmundigen Geschmack. Genussmittel.
+
+Scripts/Items/Medical/ItemCigarNormal@Name:
+Zigarre
+
+Scripts/Items/Medical/ItemCigarPremium@Description:
+Erlesene Zigarre mit exquisitem Aroma und Geschmack. Genussmittel.
+
+Scripts/Items/Medical/ItemCigarPremium@Name:
+Premium-Zigarre
+
+Scripts/Items/Medical/ItemHeatPreExposure@Description:
+Hitzeresistentes Gel verhindert eine direkte Wärmeübertragung und reflektiert Hitze. Das macht es möglich, Areale mit hohen Temperaturen für eine kurze Zeit zu betreten.
+
+Scripts/Items/Medical/ItemHeatPreExposure@Name:
+Hitzeresistentes Gel
+
+Scripts/Items/Medical/ItemHemostatic@NotificationNoBleeding_Message:
+Du blutest nicht. Es hat keinen Zweck, jetzt Blutgerinner einzunehmen.
+
+Scripts/Items/Medical/ItemHemostatic@NotificationNoBleeding_Title:
+Keine Blutung
+
+Scripts/Items/Medical/ItemHemostatic@Description:
+Blutgerinner können Blutungen vollständig stillen und jegliche andere Blutungen für die Dauer ihrer Wirkung teilweise verringern.
+
+Scripts/Items/Medical/ItemHemostatic@Name:
+Blutgerinner
+
+Scripts/Items/Medical/ItemHerbGreen@Description:
+Heilpflanze mit einzigartigen heilenden und antibakteriellen Eigenschaften. Kann so verwendet werden, ist jedoch bei richtiger Zubereitung um ein Vielfaches wirksamer.
+
+Scripts/Items/Medical/ItemHerbGreen@Name:
+Grünes Heilkraut
+
+Scripts/Items/Medical/ItemHerbPurple@Description:
+Heilpflanze, die den Körper beim Abbau von Giftstoffen und anderen schädlichen Substanzen unterstützt. Kann so verwendet werden, wirkt bei richtiger Zubereitung jedoch effektiver.
+
+Scripts/Items/Medical/ItemHerbPurple@Name:
+Violettes Heilkraut
+
+Scripts/Items/Medical/ItemHerbRed@Description:
+Heilpflanze mit hochgradig stimulierender Wirkung. Sollte nicht roh verzehrt werden, da sie Giftstoffe enthält.
+
+Scripts/Items/Medical/ItemHerbRed@Name:
+Rotes Heilkraut
+
+Scripts/Items/Medical/ItemMedkit@Description:
+Mehrzweckreiseapotheke. Regeneriert nach und nach die Gesundheit, heilt Übelkeit, stillt Blutungen und enthält sogar eine Schiene für Knochenbrüche.
+
+Scripts/Items/Medical/ItemMedkit@Name:
+MedKit
+
+Scripts/Items/Medical/ItemNeuralEnhancer@NotificationNeuralEnhancer_Message:
+Du hast {0} LP erhalten.
+
+Scripts/Items/Medical/ItemNeuralEnhancer@NotificationNeuralEnhancer_Title:
+Neuraler Verstärker
+
+Scripts/Items/Medical/ItemNeuralEnhancer@Description:
+Dieser einmal verwendbare Neurale Verstärker enthält vorprogrammierte Nanomaschinen. Erweitert Nervenverbindungen im Gehirn und erhöht damit die Gedankenkraft. Gewährt bei Benutzung Lernpunkte.
+
+Scripts/Items/Medical/ItemNeuralEnhancer@Name:
+Neuraler Verstärker
+
+Scripts/Items/Medical/ItemPainkiller@Description:
+Schmerzmittel können verwendet werden, um Schmerzen vollständig zu lindern und ihr Auftreten für die Dauer ihrer Wirkung zu verhindern.
+
+Scripts/Items/Medical/ItemPainkiller@Name:
+Schmerzmittel
+
+Scripts/Items/Medical/ItemPeredozin@NotificationNoMedicineOveruse_Message:
+Du hast keine Symptome von übermäßigem Medizingebrauch. Es hat keinen Zweck, jetzt Peredozin einzunehmen.
+
+Scripts/Items/Medical/ItemPeredozin@NotificationNoMedicineOveruse_Title:
+Kein übermäßiger Gebrauch von Medizin
+
+Scripts/Items/Medical/ItemPeredozin@NotificationRemovePants_Message:
+Dies ist eine rektal einzunehmende Medizin! Zieh zuerst deine Hose aus!
+
+Scripts/Items/Medical/ItemPeredozin@NotificationRemovePants_Title:
+Hose ist im Weg!
+
+Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Message:
+Du hast Peredozin erst vor kurzem verwendet und befürchtest, dass das Nächste nicht hineinpassen wird ...
+
+Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Title:
+Zu viel!
+
+Scripts/Items/Medical/ItemPeredozin@Description:
+Peredozin hilft, die negativen Nachwirkungen häufig eingenommener, starker Medikamente zu lindern. Rektale Anwendung nötig.
+
+Scripts/Items/Medical/ItemPeredozin@Name:
+Peredozin
+
+Scripts/Items/Medical/ItemPsiPreExposure@Description:
+Spezielle neuromodulierende Chemikalie, die durch PSI-Felder ausgelöste Nervenschäden lindern kann.
+
+Scripts/Items/Medical/ItemPsiPreExposure@Name:
+PSI-Blocker
+
+Scripts/Items/Medical/ItemRemedyHerbal@Description:
+Selbstgebrautes pflanzliches Heilmittel. Regeneriert Gesundheit und heilt Übelkeit. Besitzt vermutlich keinerlei Nebenwirkungen.
+
+Scripts/Items/Medical/ItemRemedyHerbal@Name:
+Pflanzliches Heilmittel
+
+Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
+Du hast keine Knochenbrüche. Es hat keinen Zweck, jetzt eine Schiene anzulegen.
+
+Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
+Keine gebrochenen Knochen
+
+Scripts/Items/Medical/ItemSplint@Description:
+Schienen werden verwendet, um Knochenbrüche zu stabilisieren und sie in ihrer Heilung zu unterstützen.
+
+Scripts/Items/Medical/ItemSplint@Name:
+Schiene
+
+Scripts/Items/Medical/ItemStimpack@Description:
+Stimpacks regenerieren in kürzester Zeit eine moderate Menge an Gesundheit. Besonders nützlich während eines Kampfs, jedoch kann eine übermäßige Nutzung zu ernsthaften Komplikationen führen.
+
+Scripts/Items/Medical/ItemStimpack@Name:
+Stimpack
+
+Scripts/Items/Medical/ItemStrengthBoostBig@Description:
+Kraftsteigernde Medizin macht dich vorübergehend stärker und erhöht so deine Leistung während körperlicher Anstrengung.
+
+Scripts/Items/Medical/ItemStrengthBoostBig@Name:
+Stärkeschub (groß)
+
+Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
+Kraftsteigernde Medizin macht dich vorübergehend stärker und erhöht so deine Leistung während körperlicher Anstrengung.
+
+Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
+Stärkeschub (klein)
+
+Scripts/Items/Seeds/ItemSaplingBirch@Description:
+Setzling einer Birke. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSaplingBirch@Name:
+Birkensetzling
+
+Scripts/Items/Seeds/ItemSaplingOak@Description:
+Setzling einer Eiche. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSaplingOak@Name:
+Eichensetzling
+
+Scripts/Items/Seeds/ItemSaplingPine@Description:
+Setzling einer Kiefer. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSaplingPine@Name:
+Kiefernsetzling
+
+Scripts/Items/Seeds/ItemSaplingPineBoreal@Description:
+Setzling der nordischen Variante einer Kiefer. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
+Nordischer Kiefernsetzling
+
+Scripts/Items/Seeds/ItemSaplingPoplar@Description:
+Setzling einer Pappel. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSaplingPoplar@Name:
+Pappelsetzling
+
+Scripts/Items/Seeds/ItemSaplingRubbertree@Description:
+Setzling eines Gummibaums. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
+Gummibaumsetzling
+
+Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
+Können gepflanzt werden, um Paprikaschoten heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
+Paprikasamen
+
+Scripts/Items/Seeds/ItemSeedsCarrot@Description:
+Können gepflanzt werden, um Karotten heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSeedsCarrot@Name:
+Karottensamen
+
+Scripts/Items/Seeds/ItemSeedsChiliPepper@Description:
+Können gepflanzt werden, um Chilischoten heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
+Chilischotensamen
+
+Scripts/Items/Seeds/ItemSeedsCorn@Description:
+Kann gepflanzt werden, um Mais heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSeedsCorn@Name:
+Maissaat
+
+Scripts/Items/Seeds/ItemSeedsCucumber@Description:
+Können gepflanzt werden, um Gurken heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSeedsCucumber@Name:
+Gurkensamen
+
+Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Description:
+Können gepflanzt werden, um blauen Salbei heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
+Samen des Blauen Salbeis
+
+Scripts/Items/Seeds/ItemSeedsFlowerOni@Description:
+Oniblumensamen. Können zum Erhalt weiterer Blumen gepflanzt werden.
+
+Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
+Oniblumensamen
+
+Scripts/Items/Seeds/ItemSeedsOgurin@Description:
+Ogurin war eine der ersten Pflanzen, die speziell für diesen Planeten entwickelt wurden.
+
+Scripts/Items/Seeds/ItemSeedsOgurin@Name:
+Ogurinsamen
+
+Scripts/Items/Seeds/ItemSeedsTobacco@Description:
+Können gepflanzt werden, um Tabak heranwachsen zu lassen.
+
+Scripts/Items/Seeds/ItemSeedsTobacco@Name:
+Tabaksamen
+
+Scripts/Items/Seeds/ItemSeedsTomato@Description:
+Tomatensamen für eine saftige, speziell auf diesen Planeten abgestimmte Tomatensorte.
+
+Scripts/Items/Seeds/ItemSeedsTomato@Name:
+Tomatensamen
+
+Scripts/Items/Seeds/ItemSeedsWheat@Description:
+Speziell aufbereitetes Weizensaatgut, das sofort ausgesät werden kann.
+
+Scripts/Items/Seeds/ItemSeedsWheat@Name:
+Weizensaat
+
+Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorSoilNotSuitable:
+Diese Baumart wächst nicht auf diesem Boden.
+
+Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
+Um diesen Setzling zu pflanzen, muss sich zwischen ihm und anderen Bäumen mindestens eine leere Kachel befinden.
+
+Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
+Erfordert entweder
+
+Scripts/Items/Tools/Axes/ItemAxeIron@Description:
+Eisenaxt, ideal zum Fällen von Bäumen. Schneller und langlebiger als eine Steinaxt.
+
+Scripts/Items/Tools/Axes/ItemAxeIron@Name:
+Eisenaxt
+
+Scripts/Items/Tools/Axes/ItemAxeSteel@Description:
+Stahlaxt, ideal zum Fällen von Bäumen. Schneller und langlebiger als eine Eisenaxt.
+
+Scripts/Items/Tools/Axes/ItemAxeSteel@Name:
+Stahlaxt
+
+Scripts/Items/Tools/Axes/ItemAxeStone@Description:
+Steinaxt zum Fällen von Bäumen.
+
+Scripts/Items/Tools/Axes/ItemAxeStone@Name:
+Steinaxt
+
+Scripts/Items/Tools/Crowbars/ItemCrowbar@Description:
+Nützlich zum schnellen Abriss von Gebäuden, die sich im Bereich deines Land Claims befinden.
+
+Scripts/Items/Tools/Crowbars/ItemCrowbar@Name:
+Brechstange
+
+Scripts/Items/Tools/Lights/ItemFlashlight@Description:
+Nichts geht über eine leistungsstarke Taschenlampe. Dieses Modell leuchtet mit 3.000 Lumen und benutzt herkömmliche Einwegbatterien.
+
+Scripts/Items/Tools/Lights/ItemFlashlight@Name:
+Taschenlampe
+
+Scripts/Items/Tools/Lights/ItemOilLamp@Description:
+Tragbare Lichtquelle in einem praktischen Gehäuse! Kann mit Brennmaterial nachgefüllt werden.
+
+Scripts/Items/Tools/Lights/ItemOilLamp@Name:
+Öllampe
+
+Scripts/Items/Tools/Lights/ItemTorch@NotificationBurnedOut:
+Die Fackel ist ausgebrannt.
+
+Scripts/Items/Tools/Lights/ItemTorch@Description:
+Dies wird dich in der Nacht bei Verstand halten. Stelle sicher, dass du immer einen Ersatz parat hast.
+
+Scripts/Items/Tools/Lights/ItemTorch@Name:
+Fackel
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationCannotRefillWhileOn_Message:
+Vor dem Nachfüllen ausschalten.
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationCannotRefillWhileOn_Title:
+Kann nicht nachgefüllt werden
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message:
+Muss nachgefüllt werden.
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
+Leer
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
+Eiserne Spitzhacke, die zum Abbauen von Bodenschätzen verwendet werden kann. Schneller und langlebiger als eine Spitzhacke aus Stein.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Name:
+Eiserne Spitzhacke
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeSteel@Description:
+Spitzhacke aus Stahl, die zum Abbauen von Bodenschätzen verwendet werden kann. Schneller und langlebiger als eine Spitzhacke aus Eisen.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeSteel@Name:
+Spitzhacke aus Stahl
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Description:
+Spitzhacke aus Stein, die zum Abbauen von Bodenschätzen verwendet werden kann.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
+Spitzhacke aus Stein
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
+Ein guter Werkzeugkoffer ist für jedes Bauprojekt unabkömmlich.
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
+Einfacher Werkzeugkoffer
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Description:
+Ein guter Werkzeugkoffer ist für jedes Bauprojekt unabkömmlich.
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
+Eiserner Werkzeugkoffer
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Description:
+Ein guter Werkzeugkoffer ist für jedes Bauprojekt unabkömmlich.
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
+Werkzeugkoffer aus Stahl
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Description:
+Klassische Kupferversion einer Gießkanne. Kann mehr Wasser fassen.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Name:
+Kupfergießkanne
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Description:
+Einfache Gießkanne aus leichtem Kunststoff. Besitzt das größte Fassungsvermögen aller Gießkannen.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Name:
+Plastikgießkanne
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanSteel@Description:
+Angefertigt aus dünnen, rostfreien Stahlplatten. Leicht. Kann eine große Menge Wasser fassen.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanSteel@Name:
+Stahlgießkanne
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Description:
+Herkömmliche Gießkanne. Einfache Bauweise. Kann wenig Wasser fassen.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Name:
+Holzgießkanne
+
+Scripts/Items/Weapons/Melee/ItemKnifeIron@Description:
+Militärisches Messer. Auch als Schweinepiekser bekannt.
+
+Scripts/Items/Weapons/Melee/ItemKnifeIron@Name:
+Eisenmesser
+
+Scripts/Items/Weapons/Melee/ItemKnifeStone@Description:
+Einfaches Messer. Besser als Fäuste zu gebrauchen, aber nicht um Vieles.
+
+Scripts/Items/Weapons/Melee/ItemKnifeStone@Name:
+Steinmesser
+
+Scripts/Items/Weapons/Melee/ItemMaceCopper@Description:
+Hölzerne Keule mit einer kupferverstärkten Schlagfläche.
+
+Scripts/Items/Weapons/Melee/ItemMaceCopper@Name:
+Kupferstreitkolben
+
+Scripts/Items/Weapons/Melee/ItemMaceIron@Description:
+Schweres und tödlicheres Gegenstück zum Kupferstreitkolben.
+
+Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
+Eisenstreitkolben
+
+Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
+Keine Waffe
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
+Laserrapier (blau)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
+Laserrapier (grün)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
+Laserrapier (violett)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
+Laserrapier (rot)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
+Laserrapier (weiß)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
+Laserrapier (gelb)
+
+Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
+Erstaunlich starke Nahkampfwaffe. Benötigt Energie.
+
+Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+Primitive Pistole. Verwendet Papiermunition. Hält zwei Ladungen, die sehr schnell verschossen werden können.
+
+Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+Steinschlosspistole
+
+Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+Handfeuerwaffe entwickelt für 10mm-Munition.
+
+Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
+Handfeuerwaffe
+
+Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+Die Laserpistole sendet kurze, hochenergetische und größtenteils im Infrarotspektrum erfolgende Lichtimpulse, die ihr Ziel verbrennen.
+
+Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+Laserpistole
+
+Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+Das Lasergewehr sendet kurze, hochenergetische und größtenteils im Infrarotspektrum erfolgende Lichtimpulse, die ihr Ziel verbrennen. Bietet eine sehr viel höhere Feuerrate als die Laserpistole, verbraucht dabei jedoch mehr Energie.
+
+Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+Lasergewehr
+
+Scripts/Items/Weapons/Ranged/ItemLuger@Description:
+Halbautomatische Pistole einfacher Bauweise. Relativ billig in der Herstellung im Vergleich zu modernen Schusswaffen.
+
+Scripts/Items/Weapons/Ranged/ItemLuger@Name:
+Luger
+
+Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
+Schweres Maschinengewehr entwickelt für leistungsstarke .300-Munition.
+
+Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
+Schweres Maschinengewehr
+
+Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
+Leichte Maschinenpistole entwickelt für 8mm-Munition.
+
+Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
+Maschinenpistole
+
+Scripts/Items/Weapons/Ranged/ItemMusket@Description:
+Altbewährte Muskete. Benutzt Papierpatronen. Bietet im Vergleich zu Steinschlosspistolen eine bessere Reichweite und höheren Schaden.
+
+Scripts/Items/Weapons/Ranged/ItemMusket@Name:
+Muskete
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
+Die Plasmapistole bildet und projiziert konzentrierte Plasmapakete, die ein Ziel beim Aufprall verbrennen und so schweren Schaden erzeugen. Hoher Energieverbrauch.
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
+Plasmapistole
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+Das Plasmagewehr bildet und projiziert konzentrierte Plasmapakete, die ein Ziel beim Aufprall verbrennen und so schweren Schaden erzeugen. Sehr hoher Energieverbrauch.
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+Plasmagewehr
+
+Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
+Herkömmliche durchladende Handfeuerwaffe mit einem sich drehenden Munitionszylinder.
+
+Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
+Revolver
+
+Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
+Schweres Anti-Material-Gewehr entwickelt für .300-Munition.
+
+Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
+Schweres Gewehr
+
+Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
+Opas alte Schrotflinte. Benutzt Kaliber 12-Munition.
+
+Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
+Doppelläufige Schrotflinte
+
+Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
+Militärische Schrotflinte mit großer Munitionskapazität. Benutzt Kaliber 12-Munition.
+
+Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
+Militärische Schrotflinte
+
+Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
+Maschinenpistole entwickelt für 10mm-Munition.
+
+Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
+Maschinenpistole
+

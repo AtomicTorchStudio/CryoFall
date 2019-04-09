@@ -1,0 +1,30 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.DefaultCraftingControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:crafting="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance data:ViewModelCraftingMenu, IsDesignTimeCreatable=True}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource PlayerMenuContainerWithLinesFirstColumnWidth}" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <crafting:CraftingRecipesListControl
+            ViewModel="{Binding}"
+            HorizontalAlignment="Stretch"
+            Margin="0,0,10,0" />
+
+        <crafting:CraftingRecipeDetailsControl
+            Grid.Column="1"
+            Margin="4,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ViewModelRecipe="{Binding SelectedRecipe}" />
+    </Grid>
+</base:BaseUserControl>

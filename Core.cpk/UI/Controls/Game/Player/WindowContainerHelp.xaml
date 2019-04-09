@@ -1,0 +1,110 @@
+﻿<core:BaseUserControlWithWindow
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player.WindowContainerHelp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    mc:Ignorable="d"
+    d:DesignHeight="80" d:DesignWidth="850"
+    xmlns:l="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player">
+
+    <core:BaseUserControlWithWindow.Resources>
+        <Style x:Key="Header" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+    </core:BaseUserControlWithWindow.Resources>
+
+    <core:GameWindow x:Name="GameWindow"
+                     Width="510"
+                     FocusOnControl="{Binding ElementName=GameWindow}"
+                     Padding="20,10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        Grid.Row="0"
+                        Grid.Column="0">
+                <!-- Text: Item slot actions -->
+                <TextBlock Style="{StaticResource Header}"
+                           Text="{x:Static l:ContainerHelpStrings.TitleItemSlotActions}" />
+
+                <l:WindowContainerHelpEntry
+                    Title="{x:Static l:ContainerHelpStrings.LeftClickEmptyHand_Title}"
+                    Description="{x:Static l:ContainerHelpStrings.LeftClickEmptyHand_Description}" />
+
+                <l:WindowContainerHelpEntry
+                    Title="{x:Static l:ContainerHelpStrings.RightClickEmptyHand_Title}"
+                    Description="{x:Static l:ContainerHelpStrings.RightClickEmptyHand_Description}" />
+
+                <l:WindowContainerHelpEntry
+                    Title="{x:Static l:ContainerHelpStrings.LeftClickFullHand_Title}"
+                    Description="{x:Static l:ContainerHelpStrings.LeftClickFullHand_Description}" />
+
+                <l:WindowContainerHelpEntry
+                    Title="{x:Static l:ContainerHelpStrings.RightClickFullHand_Title}"
+                    Description="{x:Static l:ContainerHelpStrings.RightClickFullHand_Description}" />
+            </StackPanel>
+
+            <Control Style="{StaticResource ControlVerticalSeparator}"
+                     Grid.Row="0"
+                     Grid.Column="1" />
+
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        Grid.Row="0"
+                        Grid.Column="2">
+                <!-- Text: Shortcuts -->
+                <TextBlock Style="{StaticResource Header}"
+                           Text="{x:Static loc:CoreStrings.ItemsContainer_Button_DisplayShortcuts}" />
+
+                <l:WindowContainerHelpEntry
+                    Title="{x:Static l:ContainerHelpStrings.AltLeftClickOnItem_Title}"
+                    Description="{x:Static l:ContainerHelpStrings.AltLeftClickOnItem_Description}" />
+
+                <l:WindowContainerHelpEntry
+                    Title="{x:Static l:ContainerHelpStrings.AltRightClickOnItem_Title}"
+                    Description="{x:Static l:ContainerHelpStrings.AltRightClickOnItem_Description}" />
+
+                <l:WindowContainerHelpEntry
+                    Title="{x:Static l:ContainerHelpStrings.MiddleClick_Title}"
+                    Description="{x:Static l:ContainerHelpStrings.MiddleClick_Description}" />
+
+                <l:WindowContainerHelpEntry
+                    Title="{x:Static l:ContainerHelpStrings.ShiftLeftClickOnItems_Title}"
+                    Description="{x:Static l:ContainerHelpStrings.ShiftLeftClickOnItems_Description}" />
+
+                <l:WindowContainerHelpEntry
+                    Title="{x:Static l:ContainerHelpStrings.ShiftRightClickOnItems_Title}"
+                    Description="{x:Static l:ContainerHelpStrings.ShiftRightClickOnItems_Description}" />
+
+                <l:WindowContainerHelpEntry
+                    Title="{x:Static l:ContainerHelpStrings.CtrlLeftOrRightClick_Title}"
+                    Description="{x:Static l:ContainerHelpStrings.CtrlLeftOrRightClick_Description}" />
+            </StackPanel>
+
+            <!-- Close button -->
+            <Button Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Command="{Binding CommandCloseOk, ElementName=GameWindow}"
+                    Content="{x:Static loc:CoreStrings.Button_Close}" />
+        </Grid>
+    </core:GameWindow>
+</core:BaseUserControlWithWindow>
