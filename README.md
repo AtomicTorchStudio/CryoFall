@@ -1,5 +1,5 @@
-CryoFall game source code
-=============
+![cryofall_logo_big01](https://user-images.githubusercontent.com/865384/55807472-4c969300-5af3-11e9-8c14-7a99f9915423.png)
+
 This is the source code for [CryoFall](http://cryofall.com) game (doesn't include the engine source code and cannot be used separately from the game). It's also shipped with the game in `<game folder>/Core` folder. Client and Server (and Editor) are all using the same code but Editor also using Editor.mpk mod to provide the editor capabilities.
 
 This repository is created to help with the game modding and also to get feedback and pull requests from our community!
