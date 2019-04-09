@@ -14,7 +14,7 @@ Please follow [the guide on official forums](http://forums.atomictorch.com/index
 Contributing
 -----
 Pull requests are welcome, but it's always best to contact us before you start any work to ensure your contribution could be useful to the project.
-Please make your code compliant with Microsoft recommended coding conventions:
+Please make your code is compliant with Microsoft recommended coding conventions:
 * [General Naming Conventions](https://msdn.microsoft.com/en-us/library/ms229045%28v=vs.110%29.aspx) 
 * [C# Coding Conventions](https://msdn.microsoft.com/en-us/library/ff926074.aspx)
 
