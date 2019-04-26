@@ -80,26 +80,6 @@
                .ConstructionProto
                .StructurePointsMaxForConstructionSite;
 
-        public override void SharedOnDeconstruction(
-            IStaticWorldObject worldObject,
-            ICharacter byCharacter,
-            float oldStructurePoints,
-            float newStructurePoints)
-        {
-            base.SharedOnDeconstruction(worldObject, byCharacter, oldStructurePoints, newStructurePoints);
-            if (byCharacter == null)
-            {
-                return;
-            }
-
-            if (IsServer)
-            {
-                // return items
-                var configBuild = this.GetStructureActiveConfig(worldObject);
-                configBuild.ServerReturnRequiredItems(byCharacter);
-            }
-        }
-
         protected override ITextureResource ClientCreateIcon()
         {
             return new TextureResource("Icons/IconConstructionSite");
@@ -155,6 +135,16 @@
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
         {
             return ObjectsSoundsPresets.ObjectConstructionSite;
+        }
+
+        protected override void ServerOnReturnItemsFromDeconstructionStage(
+            IStaticWorldObject worldObject,
+            ICharacter byCharacter,
+            float oldStructurePoints,
+            float newStructurePoints)
+        {
+            var configBuild = this.GetStructureActiveConfig(worldObject);
+            configBuild.ServerReturnRequiredItems(byCharacter);
         }
 
         protected override void ServerUpdate(ServerUpdateData data)

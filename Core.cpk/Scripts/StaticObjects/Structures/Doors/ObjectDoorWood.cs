@@ -55,7 +55,8 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 5);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 3);
+            repair.AddStageRequiredItem<ItemStone>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

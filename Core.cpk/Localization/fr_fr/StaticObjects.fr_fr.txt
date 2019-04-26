@@ -28,6 +28,9 @@ Pas d'espace libre.
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
 Le terrain n'est pas solide.
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorPlayerNearby:
+Il y a d'autres joueurs à proximité.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
 Vous vous trouvez sur la case !
 

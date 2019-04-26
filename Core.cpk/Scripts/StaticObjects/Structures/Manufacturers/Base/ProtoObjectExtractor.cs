@@ -16,19 +16,19 @@
 
     public abstract class ProtoObjectExtractor
         : ProtoObjectManufacturer<
-            ObjectExtractorPrivateState,
-            ObjectManufacturerPublicState,
-            StaticObjectClientState>
+              ObjectExtractorPrivateState,
+              ObjectManufacturerPublicState,
+              StaticObjectClientState>
     {
         public override bool IsAutoSelectRecipe => true;
 
         public override bool IsFuelProduceByproducts => false;
 
-        protected abstract float LiquidCapacity { get; }
+        public abstract float LiquidCapacity { get; }
+
+        public abstract float LiquidProductionAmountPerSecond { get; }
 
         protected LiquidContainerConfig LiquidContainerConfig { get; private set; }
-
-        protected abstract float LiquidProductionAmountPerSecond { get; }
 
         public override void ServerApplyDecay(IStaticWorldObject worldObject, double deltaTime)
         {
@@ -52,6 +52,15 @@
             var objectDeposit = this.SharedGetDepositWorldObject(data.GameObject.OccupiedTile);
             // force reinitialize deposit to ensure the deposit healthbar will be hidden
             objectDeposit?.ClientInitialize();
+        }
+
+        protected override void ClientDeinitializeStructure(IStaticWorldObject gameObject)
+        {
+            var objectDeposit = this.SharedGetDepositWorldObject(gameObject.OccupiedTile);
+            // force reinitialize deposit to ensure the deposit healthbar will be not hidden
+            objectDeposit?.ClientInitialize();
+
+            base.ClientDeinitializeStructure(gameObject);
         }
 
         protected override void ClientObserving(ClientObjectData data, bool isObserving)

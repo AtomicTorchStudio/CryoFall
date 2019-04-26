@@ -27,6 +27,8 @@
 
         public override double DamageRadius => 9; // large annihilation radius
 
+        public override bool ActivatesRaidModeForLandClaim => false;
+
         public override TimeSpan ExplosionDelay => TimeSpan.FromSeconds(3);
 
         [NotLocalizable]

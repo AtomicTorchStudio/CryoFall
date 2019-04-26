@@ -165,11 +165,6 @@
                 return false;
             }
 
-            if (StatusEffectDazed.SharedIsCharacterDazed(character, Notification_CannotInteractWhileDazed))
-            {
-                return false;
-            }
-
             if (character.GetPublicState<ICharacterPublicState>().IsDead)
             {
                 return false;

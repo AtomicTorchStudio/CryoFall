@@ -31,7 +31,7 @@
         public override string ToString()
         {
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-            return "Craft queue item for " + this.Recipe.Name;
+            return "Craft queue item for " + this.Recipe.ShortId;
         }
     }
 }

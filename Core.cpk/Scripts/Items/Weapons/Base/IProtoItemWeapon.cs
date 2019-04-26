@@ -27,6 +27,8 @@
 
         double ArmorPiercingMultiplier { get; }
 
+        bool CanDamageStructures { get; }
+
         string CharacterAnimationAimingName { get; }
 
         IReadOnlyCollection<IProtoItemAmmo> CompatibleAmmoProtos { get; }
@@ -69,6 +71,11 @@
         ProtoSkillWeapons WeaponSkillProto { get; }
 
         ITextureResource WeaponTextureResource { get; }
+
+        /// <summary>
+        /// Delay (in seconds) when selecting this weapon in hotbar.
+        /// </summary>
+        double ReadyDelayDuration { get; }
 
         string GetCharacterAnimationNameFire(ICharacter character);
 

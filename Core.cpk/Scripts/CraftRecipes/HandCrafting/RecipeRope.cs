@@ -20,7 +20,7 @@
 
             duration = CraftingDuration.Second;
 
-            inputItems.Add<ItemFibers>(count: 20);
+            inputItems.Add<ItemFibers>(count: 10);
 
             outputItems.Add<ItemRope>(count: 1);
         }

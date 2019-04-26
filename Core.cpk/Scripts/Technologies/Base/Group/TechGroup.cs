@@ -129,7 +129,7 @@
                             .Where(n => n.Group == this)
                             .OrderBy(n => n.HierarchyLevel)
                             .ThenBy(n => n.Order)
-                            .ThenBy(n => n.Name)
+                            .ThenBy(n => n.ShortId)
                             .ToList();
 
             var rootNodes = new List<TechNode>();

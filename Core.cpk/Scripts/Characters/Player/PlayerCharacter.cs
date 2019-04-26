@@ -20,10 +20,12 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterStamina;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
+    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.Skills;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Respawn;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -99,6 +101,7 @@
             {
                 // reset game
                 BootstrapperClientGame.Init(null);
+                WindowRespawn.EnsureClosed();
             }
         }
 
@@ -194,6 +197,12 @@
                     // re-create physics on death state change
                     this.SharedCreatePhysics(character);
                     ResetRendering();
+
+                    if (character.IsCurrentClientCharacter
+                        && publicState.IsDead)
+                    {
+                        Menu.CloseAll();
+                    }
                 },
                 clientState);
 
@@ -335,6 +344,11 @@
 
             var character = data.GameObject;
             var publicState = data.PublicState;
+
+            if (!Api.IsEditor)
+            {
+                NewbieProtectionSystem.ServerRegisterNewbie(character);
+            }
 
             publicState.IsMale = true;
             publicState.FaceStyle = SharedCharacterFaceStylesProvider
@@ -514,6 +528,8 @@
 
             // re-select hotbar slot
             SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId);
+
+            WindowRespawn.EnsureClosed();
         }
 
         [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
@@ -547,7 +563,7 @@
                 var character = data.GameObject;
                 var nicknameDisplayControl = new NicknameDisplay();
 
-                nicknameDisplayControl.Setup(character.Name, publicState.IsOnline);
+                nicknameDisplayControl.Setup(character, publicState.IsOnline);
                 nicknameDisplay = Client.UI.AttachControl(
                     character,
                     nicknameDisplayControl,

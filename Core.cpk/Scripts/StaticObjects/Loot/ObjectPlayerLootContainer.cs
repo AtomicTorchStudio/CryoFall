@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
+    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -27,7 +28,7 @@
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public sealed class ObjectPlayerLootContainer
+    public class ObjectPlayerLootContainer
         : ProtoStaticWorldObject
           <ObjectPlayerLootContainer.ObjectPlayerLootContainerPrivateState,
               ObjectPlayerLootContainer.ObjectPlayerLootContainerPublicState,
@@ -57,13 +58,6 @@
         private const double AutoDestroyPostponeSeconds = 60;
 
         private static readonly IItemsServerService ServerItemsService = IsServer ? Server.Items : null;
-
-        private static ObjectPlayerLootContainer instance;
-
-        public ObjectPlayerLootContainer()
-        {
-            instance = this;
-        }
 
         public override double ClientUpdateIntervalSeconds => 1;
 
@@ -120,7 +114,9 @@
 
         public CursorId GetInteractionCursorId(bool isCanInteract)
         {
-            return isCanInteract ? CursorId.PickupPossible : CursorId.PickupImpossible;
+            return isCanInteract
+                       ? CursorId.PickupPossible
+                       : CursorId.PickupImpossible;
         }
 
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
@@ -156,6 +152,35 @@
         public void ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
         {
             // nothing here
+        }
+
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            if (!base.SharedCanInteract(character, worldObject, writeToLog))
+            {
+                return false;
+            }
+
+            if (GetPublicState(worldObject).OwnerName == character.Name)
+            {
+                return true;
+            }
+
+            if (NewbieProtectionSystem.SharedIsNewbie(character))
+            {
+                // newbie cannot pickup other players' loot
+                if (writeToLog)
+                {
+                    NewbieProtectionSystem.SharedShowNewbieCannotDamageOtherPlayersOrLootBags(character,
+                                                                                    isLootBag: true);
+                }
+
+                return false;
+            }
+
+            // non-newbie character can pickup players' loot
+            // please note this validation has an override for derived ObjectPlayerLootContainerProtected
+            return true;
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
@@ -334,10 +359,14 @@
             bool writeWarningsToLog = true)
         {
             IStaticWorldObject objectLootContainer = null;
-            if (instance.CheckTileRequirements(tilePosition, character: null, logErrors: false))
+            var protoLootContainer = NewbieProtectionSystem.SharedIsNewbie(character)
+                                         ? Api.GetProtoEntity<ObjectPlayerLootContainerProtected>()
+                                         : Api.GetProtoEntity<ObjectPlayerLootContainer>();
+
+            if (protoLootContainer.CheckTileRequirements(tilePosition, character: null, logErrors: false))
             {
                 Logger.Important("Creating loot container at " + tilePosition);
-                objectLootContainer = Server.World.CreateStaticWorldObject(instance, tilePosition);
+                objectLootContainer = Server.World.CreateStaticWorldObject(protoLootContainer, tilePosition);
             }
 
             if (objectLootContainer == null)
@@ -457,7 +486,7 @@
                 string.Format(NotificationCurrentPlayerItemsTaken_Message, name),
                 NotificationColor.Bad,
                 this.DefaultTexture,
-                autoHide: true);
+                autoHide: false);
         }
 
         private void ClientRemote_NotifyLootInteraction(string name)
@@ -467,7 +496,7 @@
                 string.Format(NotificationCurrentPlayerItemsBeingLooted_Message, name),
                 NotificationColor.Bad,
                 this.DefaultTexture,
-                autoHide: true);
+                autoHide: false);
         }
 
         public class ObjectPlayerLootContainerPrivateState : StructurePrivateState

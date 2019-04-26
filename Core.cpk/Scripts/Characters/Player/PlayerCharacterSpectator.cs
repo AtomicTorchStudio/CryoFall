@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -48,6 +49,7 @@
             // the order of calls is important here
             Server.Characters.SetSpectatorMode(character, isSpectator: false, reinitilize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacterSpectator>());
+            character.ServerRemoveAllStatusEffects();
         }
 
         public override bool SharedOnDamage(

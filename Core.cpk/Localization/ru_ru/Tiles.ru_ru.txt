@@ -2,10 +2,10 @@
 Пустошь
 
 Scripts/Tiles/TileBeachBoreal@Name:
-Берег (север)
+Пляж (север)
 
 Scripts/Tiles/TileBeachTemperate@Name:
-Берег (умеренный климат)
+Пляж (умеренный климат)
 
 Scripts/Tiles/TileClay@Name:
 Глиняная яма

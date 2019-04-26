@@ -75,6 +75,8 @@
         // one per ProtoZoneSpawnScript instance
         private readonly HashSet<CurrentlyExecutingTaskKey> executingEntries = new HashSet<CurrentlyExecutingTaskKey>();
 
+        private bool hasServerOnObjectSpawnedMethodOverride;
+
         protected ProtoZoneSpawnScript()
         {
             this.DefaultConfiguration = new SpawnConfig(this, densityMultiplier: 1);
@@ -158,9 +160,17 @@
             var spawnList = new SpawnList();
             this.PrepareZoneSpawnScript(triggers, spawnList);
             this.SpawnList = spawnList.ToReadOnly();
+
+            this.hasServerOnObjectSpawnedMethodOverride = this.GetType()
+                                                              .HasOverride(nameof(this.ServerOnObjectSpawned),
+                                                                           isPublic: false);
         }
 
         protected abstract void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList);
+
+        protected virtual void ServerOnObjectSpawned(IGameObjectWithProto spawnedObject)
+        {
+        }
 
         /// <summary>
         /// Server spawn callback (generic).
@@ -394,15 +404,15 @@
             if (paddingToLandClaimAreas == 0)
             {
                 // simply check if the spawn position is claimed
-                return LandClaimSystem.SharedGetAreaAtPosition(spawnPosition) != null;
+                return LandClaimSystem.SharedIsLandClaimedByAnyone(spawnPosition);
             }
 
-            var rectangleInt = new RectangleInt(x: spawnPosition.X - paddingToLandClaimAreas,
-                                                y: spawnPosition.Y - paddingToLandClaimAreas,
-                                                width: paddingToLandClaimAreas,
-                                                height: paddingToLandClaimAreas);
+            var bounds = new RectangleInt(x: spawnPosition.X - paddingToLandClaimAreas,
+                                          y: spawnPosition.Y - paddingToLandClaimAreas,
+                                          width: paddingToLandClaimAreas,
+                                          height: paddingToLandClaimAreas);
 
-            return LandClaimSystem.SharedGetAreaInBounds(rectangleInt) != null;
+            return LandClaimSystem.SharedIsLandClaimedByAnyone(bounds);
         }
 
         private static bool ServerIsAnyPlayerNearby(Vector2Ushort spawnPosition, List<Vector2Ushort> playersPositions)
@@ -511,7 +521,16 @@
                 }
             }
 
-            if (ServerCheckLandClaimAreaPresence(spawnPosition, preset.PaddingToLandClaimAreas))
+            var needToCheckLandClaimPresence = true;
+            if (preset.IsContainsOnlyStaticObjects)
+            {
+                needToCheckLandClaimPresence = !ServerWorldService.GetTile(spawnPosition)
+                                                                  .ProtoTile
+                                                                  .IsRestrictingConstruction;
+            }
+
+            if (needToCheckLandClaimPresence
+                && ServerCheckLandClaimAreaPresence(spawnPosition, preset.PaddingToLandClaimAreas))
             {
                 // the land is claimed by players
                 resultSpawnArea = null;
@@ -988,6 +1007,18 @@
                     }
 
                     return;
+                }
+
+                if (this.hasServerOnObjectSpawnedMethodOverride)
+                {
+                    try
+                    {
+                        this.ServerOnObjectSpawned(spawnedObject);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Exception(ex);
+                    }
                 }
 
                 // spawned successfully

@@ -70,7 +70,7 @@
             }
 
             Logger.Warning(
-                $"Option {this.Name} cannot apply abstract value - type mismatch. Will reset option to the default value");
+                $"Option {this.ShortId} cannot apply abstract value - type mismatch. Will reset option to the default value");
             this.Reset(apply: true);
         }
 

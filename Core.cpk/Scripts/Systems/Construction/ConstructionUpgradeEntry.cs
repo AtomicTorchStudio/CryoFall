@@ -31,6 +31,11 @@
             return this;
         }
 
+        public void ApplyRates(byte multiplier)
+        {
+            this.requiredItems.ApplyRates(multiplier);
+        }
+
         public bool CheckRequirementsSatisfied(ICharacter character)
         {
             if (CreativeModeSystem.SharedIsInCreativeMode(character))

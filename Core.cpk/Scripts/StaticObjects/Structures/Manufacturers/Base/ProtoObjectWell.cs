@@ -20,9 +20,9 @@
 
     public abstract class ProtoObjectWell
         : ProtoObjectManufacturer<
-            ObjectWellPrivateState,
-            ObjectManufacturerPublicState,
-            StaticObjectClientState>
+              ObjectWellPrivateState,
+              ObjectManufacturerPublicState,
+              StaticObjectClientState>
     {
         // water table is a technical term, google it
         public const string ErrorWellNotAllowed = "This ground type doesn't offer access to the water table.";

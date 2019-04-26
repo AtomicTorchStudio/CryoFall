@@ -36,7 +36,7 @@
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
-        public virtual double DurationGatheringSeconds => 3;
+        public virtual double DurationGatheringSeconds => 4;
 
         public override string InteractionTooltipText => InteractionTooltipTexts.PryOpen;
 

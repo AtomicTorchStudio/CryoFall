@@ -41,7 +41,7 @@ Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
 캠프 연료 (동물의 기름)
 
 Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
-구운 버섯 (그물 버섯)
+구운 버섯 (그물버섯)
 
 Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
 구운 버섯 (녹버섯)

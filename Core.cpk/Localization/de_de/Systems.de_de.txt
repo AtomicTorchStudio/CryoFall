@@ -137,9 +137,39 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitE
 `Du hast alle dir zugeteilten Land Claims aufgebraucht.
 [br]Du kannst diese Anzahl erhöhen, indem du neue Technologien erforschst.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
+Du musst zunächst Xenogeologie (Rang 3) erforschen, um Öl-/Lithiumvorkommen zu beanspruchen oder einen Land Claim in der Nähe platzieren zu können.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `Überfall im Gange.
 [br]Du kannst keine neuen Strukturen bauen, während deine Basis angegriffen wird.`
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
+Anfängerschutz ausschalten
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
+Bist du sicher, dass du den Anfängerschutz ausschalten möchtest? Deine Entscheidung kann nicht rückgängig gemacht werden.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
+Du stehst unter Anfängerschutz. Dieser bewahrt dich davor, deine Gegenstände oder Lernpunkte im Falle deines Todes durch einen anderen Spieler zu verlieren. Zudem können die Gegenstände, die du nach dem Tod fallenlässt, nicht von anderen Spielern geplündert werden. Bitte folge den jeweiligen Quests, um die nötigen Werkzeuge und Waffen anzufertigen und errichte so bald wie möglich eine kleine Basis!
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
+Der Anfängerschutz erlischt in:
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
+Während du unter Anfängerschutz stehst, kannst du andere Spieler weder angreifen, noch ihre Taschen oder Gegenstände plündern. Du kannst diesen Schutz jedoch jederzeit im Social-Menü ausschalten.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
+Diese Handlung ist nicht möglich, solange du unter Anfängerschutz stehst. Du kannst diesen Schutz jedoch jederzeit im Social-Menü ausschalten.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
+Diese Tasche steht unter Anfängerschutz und kann nur von ihrem Besitzer aufgehoben werden.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_ProtectionExpired:
+Der Anfängerschutz ist erloschen. Dir steht es nun frei, an PvP-Kämpfen teilzunehmen, aber Vorsicht – im Falle seines Todes lässt dein Charakter all seine Gegenstände fallen.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Title_NewbieProtection:
+Anfängerschutz
 
 Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
 Kein freier Platz im Inventar

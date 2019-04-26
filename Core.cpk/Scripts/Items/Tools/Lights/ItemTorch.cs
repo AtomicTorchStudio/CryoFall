@@ -115,7 +115,7 @@
         {
             lightConfig.Color = LightColors.Torch;
             lightConfig.ScreenOffset = (10, 2);
-            lightConfig.Size = 15;
+            lightConfig.Size = 16;
 
             fuelConfig.FuelCustomIcon = new TextureResource("Icons/IconFire");
             fuelConfig.FuelCapacity = 6.5 * 60; // 6.5 minutes

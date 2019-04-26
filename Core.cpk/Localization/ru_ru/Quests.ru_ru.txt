@@ -2,7 +2,7 @@
 Построить: {0}
 
 Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-Изучить древо технологий: {0}
+Изучить: {0} (древо технологий)
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
 место: {0}
@@ -35,7 +35,7 @@ Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
 Открыть {0} шт. древ технологий: {1}
 
 Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-Изучить технологию: {0} (в древе {1})
+Изучить: {0} (в {1} техн. древе)
 
 Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
 Убить: {0}
@@ -334,10 +334,10 @@ Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
 Изучение технологий: часть первая
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
-Убить любое существо
+Убить любое дикое животное
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCreature:
-Собрать добычу с любого существа
+Собрать добычу
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Description:
 Ножи — оружие ранних этапов, которое эффективно против не очень опасных тварей. Всегда носите с собой нож, пока не сможете изготовить более мощное оружие.
@@ -346,7 +346,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 [*] У каждого оружия в CryoFall есть [b]особые свойства[/b]. Например, нож с высокой вероятностью вызовет кровотечение, а ударное оружие может оглушить врага или сломать ему кости.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
-Изготовить нож и убить любое существо
+Изготовить нож и убить любое дикое животное
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Пора обзавестись защитой получше.

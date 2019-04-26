@@ -17,6 +17,6 @@
 
         void ServerDestroyRequiredItems(ICharacter character);
 
-        void ServerReturnRequiredItems(ICharacter character);
+        void ServerReturnRequiredItems(ICharacter character, byte stagesCount = 1);
     }
 }

@@ -8,6 +8,10 @@
     {
         public readonly BaseChatRoom ChatRoom;
 
+        private readonly Action callbackNeedTabSort;
+
+        private bool isOpened;
+
         private bool isSelected;
 
         public ViewModelChatRoom(BaseChatRoom chatRoom, Action callbackNeedTabSort)
@@ -17,12 +21,29 @@
             chatRoom.ClientMessageAdded += this.ChatRoomClientMessageAddedHandler;
         }
 
-        private readonly Action callbackNeedTabSort;
-
         public bool HasUnreadMessages { get; set; }
 
-        public bool IsOpened { get; set; }
+        public bool IsOpened
+        {
+            get => this.isOpened;
+            set
+            {
+                if (this.isOpened == value)
+                {
+                    return;
+                }
 
+                this.isOpened = value;
+                this.NotifyThisPropertyChanged();
+
+                this.TryResetUnreadFlag();
+            }
+        }
+
+        /// <summary>
+        /// Returns true if this is the currently selected tab.
+        /// Bound via XAML from chat panel control.
+        /// </summary>
         public bool IsSelected
         {
             get => this.isSelected;
@@ -36,10 +57,7 @@
                 this.isSelected = value;
                 this.NotifyThisPropertyChanged();
 
-                if (this.isSelected)
-                {
-                    this.HasUnreadMessages = false;
-                }
+                this.TryResetUnreadFlag();
             }
         }
 
@@ -60,14 +78,22 @@
                 this.callbackNeedTabSort();
             }
 
-            if (this.IsSelected
-                || chatEntry.IsService)
+            if (chatEntry.IsService)
             {
                 return;
             }
 
             this.HasUnreadMessages = true;
             this.IsTabVisible = this.HasUnreadMessages;
+        }
+
+        private void TryResetUnreadFlag()
+        {
+            if (this.isSelected
+                && this.IsOpened)
+            {
+                this.HasUnreadMessages = false;
+            }
         }
     }
 }

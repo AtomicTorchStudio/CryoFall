@@ -13,6 +13,7 @@
                 // trigger on world init
                 .Add(GetTrigger<TriggerWorldInit>())
                 // trigger on time interval
+                // (please note when changing this value to adjust the destruction timeout in ObjectMineralPragmiumNode)
                 .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromMinutes(30)));
 
             spawnList.CreatePreset(interval: 10, padding: 2, useSectorDensity: false)

@@ -1,5 +1,5 @@
 ﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
-{0}의 연구된 기술이 {1}% 이상이어야 합니다
+{0}의 연구된 기술이 {1}% 이상이어야 합니다.
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
 학습 포인트 부족
@@ -279,10 +279,10 @@ Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
 콘크리트 건축물
 
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
-인공 두뇌학 및 생물학적 임플란트의 제조와 적용.
+인공두뇌학 및 생물학적 임플란트의 제조와 적용.
 
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
-인공 두뇌학
+인공두뇌학
 
 Scripts/Technologies/Tier4/Cybernetics/TechNodeBiomaterialProcessing@Name:
 생체 적합 물질 가공
@@ -340,4 +340,7 @@ Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 
 Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
 .300 구경
+
+Scripts/Technologies/Tier4/Offense4/TechNodeAdvancedExplosives@Name:
+최첨단 폭발물
 

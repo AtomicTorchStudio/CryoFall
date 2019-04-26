@@ -82,7 +82,7 @@
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
         }

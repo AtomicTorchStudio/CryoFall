@@ -1,14 +1,14 @@
 ﻿Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
-дн.
+дн
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixHours:
-ч.
+ч
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
-мин.
+м
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
-сек.
+с
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
 `Несовместимая сетевая версия.

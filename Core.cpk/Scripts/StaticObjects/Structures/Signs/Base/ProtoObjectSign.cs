@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
@@ -55,25 +56,25 @@
                 return false;
             }
 
-            if (IsServer
-                && !LandClaimSystem.ServerIsObjectInsideOwnedOfFreeArea(worldObject, character))
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
+                || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
-                // not the land owner
-                if (writeToLog)
-                {
-                    Logger.Warning(
-                        $"Character cannot interact with {worldObject} - not the land owner.",
-                        character);
-
-                    this.CallClient(
-                        character,
-                        _ => _.ClientRemote_OnCannotInteract(worldObject));
-                }
-
-                return false;
+                return true;
             }
 
-            return true;
+            // not the land owner and not in creative mode
+            if (writeToLog)
+            {
+                Logger.Warning(
+                    $"Character cannot interact with {worldObject} - not the land owner.",
+                    character);
+
+                this.CallClient(
+                    character,
+                    _ => _.ClientRemote_OnCannotInteract(worldObject));
+            }
+
+            return false;
         }
 
         BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)

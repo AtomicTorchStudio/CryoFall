@@ -56,5 +56,12 @@
                                  this.ProtoItem,
                                  this.Count);
         }
+
+        public ProtoItemWithCount WithRate(byte rateModifier)
+        {
+            return new ProtoItemWithCount(
+                this.ProtoItem,
+                count: (ushort)Math.Min(ushort.MaxValue, (ulong)this.Count * (ulong)rateModifier));
+        }
     }
 }

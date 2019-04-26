@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -23,6 +24,10 @@
         public override ITextureResource Icon => null;
 
         public override string Name => "No weapon";
+
+        // TODO: the ready cooldown indicator is not displayed over the no-weapon slot
+        // but it still could inherit delay from previous weapon
+        public override double ReadyDelayDuration => 0;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsMelee>();
 
@@ -56,6 +61,11 @@
                 finalDamageMultiplier: 1,
                 rangeMax: 1.2,
                 damageDistribution: new DamageDistribution(DamageType.Impact, proportion: 1));
+        }
+
+        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        {
+            return MaterialHitsSoundPresets.MeleeSoftTissuesOnly;
         }
     }
 }

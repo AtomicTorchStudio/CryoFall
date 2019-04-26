@@ -59,13 +59,13 @@ Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
 Наполнить канистру нефтью из нефтяного насоса
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
-Вылить нефть из канистры в очистное сооружение
+Вылить нефть из канистры на нефтеперерабатывающем заводе
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryGasolineCanister@Name:
-Наполнить канистру бензином в очистном сооружении
+Наполнить канистру бензином на нефтеперерабатывающем заводе
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanister@Name:
-Наполнить канистру минеральным маслом в очистном сооружении
+Наполнить канистру минеральным маслом на нефтеперерабатывающем заводе
 
 Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 Вскипятить воду

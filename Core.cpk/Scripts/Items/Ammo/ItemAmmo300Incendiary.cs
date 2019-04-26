@@ -22,7 +22,7 @@
             }
 
             // guaranteed heat effect
-            damagedCharacter.ServerAddStatusEffect<StatusEffectHeat>(intensity: 0.5);
+            damagedCharacter.ServerAddStatusEffect<StatusEffectHeat>(intensity: 0.4);
         }
 
         protected override void PrepareDamageDescription(
@@ -32,8 +32,8 @@
             out double rangeMax,
             DamageDistribution damageDistribution)
         {
-            damageValue = 35;
-            armorPiercingCoef = 0.35;
+            damageValue = 24;
+            armorPiercingCoef = 0.2;
             finalDamageMultiplier = 1.5;
             rangeMax = 11;
 

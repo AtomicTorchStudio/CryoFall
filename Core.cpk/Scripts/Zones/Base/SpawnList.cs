@@ -49,7 +49,7 @@
                 iterationLimitMinFraction,
                 iterationLimitMaxFraction,
                 isRestrictionPreset: false,
-                useSectorDensity,
+                useSectorDensity: useSectorDensity,
                 paddingToLandClaimAreas);
             this.presets.Add(preset);
             return preset;
@@ -57,7 +57,13 @@
 
         public ObjectSpawnPreset CreateRestrictedPreset()
         {
-            var preset = new ObjectSpawnPreset(0, 0, 0, 0, isRestrictionPreset: true, false, 0);
+            var preset = new ObjectSpawnPreset(interval: 0,
+                                               padding: 0,
+                                               iterationLimitMinFraction: 0,
+                                               iterationLimitMaxFraction: 0,
+                                               isRestrictionPreset: true,
+                                               useSectorDensity: false,
+                                               paddingToLandClaimAreas: 0);
             this.presets.Add(preset);
             return preset;
         }

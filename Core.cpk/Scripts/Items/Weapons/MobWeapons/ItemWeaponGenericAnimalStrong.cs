@@ -16,6 +16,8 @@
 
     public class ItemWeaponGenericAnimalStrong : ProtoItemWeaponMelee
     {
+        public override bool CanDamageStructures => false;
+
         public override string Description => null;
 
         public override ushort DurabilityMax => 0;
@@ -50,11 +52,16 @@
             compatibleAmmoProtos = null;
 
             overrideDamageDescription = new DamageDescription(
-                damageValue: 20,
-                armorPiercingCoef: 0,
+                damageValue: 40,
+                armorPiercingCoef: 0.1,
                 finalDamageMultiplier: 1,
                 rangeMax: 1.5,
                 damageDistribution: new DamageDistribution(DamageType.Impact, 1));
+        }
+
+        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        {
+            return MaterialHitsSoundPresets.MeleeSoftTissuesOnly;
         }
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()

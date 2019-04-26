@@ -110,7 +110,9 @@
                 var damageMultiplier = weaponCache.Character
                                                   .SharedGetFinalStatMultiplier(StatName.WoodcuttingSpeed);
 
-                return protoItemToolWoodCutting.DamageToTree * damageMultiplier;
+                return protoItemToolWoodCutting.DamageToTree
+                       * damageMultiplier
+                       * ToolsConstants.ActionWoodcuttingSpeedMultiplier;
             }
 
             if (weaponCache.ProtoWeapon is ItemNoWeapon)

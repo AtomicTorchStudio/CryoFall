@@ -50,7 +50,7 @@
 
         bool SharedIsTechUnlocked(ICharacter character, bool allowIfAdmin = true);
 
-        void SharedOnDeconstruction(
+        void SharedOnDeconstructionStage(
             IStaticWorldObject worldObject,
             ICharacter byCharacter,
             float oldStructurePoints,

@@ -53,7 +53,7 @@
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemIngotIron>(count: 1);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
         }

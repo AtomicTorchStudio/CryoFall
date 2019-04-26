@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     /// <summary>
     /// This system iterates over all the world objects on the server and applies decay
@@ -22,6 +23,9 @@
         private static readonly IGameServerService ServerGame
             = IsServer ? Server.Game : null;
 
+        private static readonly IWorldServerService ServerWorld
+            = IsServer ? Server.World : null;
+
         private static readonly List<IStaticWorldObject> TempList
             = new List<IStaticWorldObject>(capacity: 100000);
 
@@ -29,10 +33,41 @@
 
         public override string Name => "Structure decay system";
 
+        /// <summary>
+        /// This method is usually used when a land claim building is destroyed
+        /// - to force all the buildings to start decay immediately.
+        /// </summary>
+        public static void ServerBeginDecayForStructuresInArea(RectangleInt areaBounds)
+        {
+            var decayStartTime = ServerGame.FrameTime - StructureConstants.StructuresDecayDelaySeconds;
+
+            for (var x = areaBounds.X; x < areaBounds.X + areaBounds.Width; x++)
+            for (var y = areaBounds.Y; y < areaBounds.Y + areaBounds.Height; y++)
+            {
+                if (x < 0
+                    || y < 0
+                    || x >= ushort.MaxValue
+                    || y >= ushort.MaxValue)
+                {
+                    continue;
+                }
+
+                var staticObjects = ServerWorld.GetStaticObjects(new Vector2Ushort((ushort)x, (ushort)y));
+                foreach (var worldObject in staticObjects)
+                {
+                    if (worldObject.ProtoStaticWorldObject is IProtoObjectStructure)
+                    {
+                        var privateState = worldObject.GetPrivateState<StructurePrivateState>();
+                        privateState.ServerDecayStartTime = decayStartTime;
+                    }
+                }
+            }
+        }
+
         public static void ServerResetDecayTimer(StructurePrivateState privateState)
         {
             privateState.ServerDecayStartTime = ServerGame.FrameTime
-                                                + StructureConstants.StructureDecayDelaySeconds;
+                                                + StructureConstants.StructuresDecayDelaySeconds;
         }
 
         protected override void PrepareSystem()
@@ -72,8 +107,7 @@
             }
 
             // need to decay this object
-            var landClaimArea = LandClaimSystem.SharedGetAreaAtPosition(worldObject.TilePosition);
-            if (landClaimArea != null)
+            if (LandClaimSystem.SharedIsLandClaimedByAnyone(worldObject.TilePosition))
             {
                 // the object is in a land claim area
                 if (!(worldObject.ProtoStaticWorldObject is IProtoObjectLandClaim))
@@ -108,8 +142,7 @@
                 return;
             }
 
-            if (!StructureConstants.IsStructureDecayEnabledInEditor
-                && Api.IsEditor)
+            if (!StructureConstants.IsStructuresDecayEnabled)
             {
                 return;
             }

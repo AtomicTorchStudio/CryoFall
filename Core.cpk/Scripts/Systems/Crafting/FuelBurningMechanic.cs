@@ -147,7 +147,7 @@
                 return;
             }
 
-            Logger.Info($"Fuel will be used for manufacturing {bestFuelItemType} at {objectManufacturer}");
+            Logger.Info($"Fuel will be used for manufacturing {bestFuelItemType.ShortId} at {objectManufacturer}");
 
             // destroy one fuel item
             Api.Server.Items.SetCount(bestFuelItem, bestFuelItem.Count - 1);

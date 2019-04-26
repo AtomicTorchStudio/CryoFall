@@ -36,7 +36,7 @@
         private const int ServerSpawnNodesMaxCountPerIteration = 2; // spawn at max 2 nodes
 
         // Total lifetime of the Pragmium Source.
-        private static readonly double LifetimeTotalDurationSeconds = TimeSpan.FromDays(6).TotalSeconds;
+        private static readonly double LifetimeTotalDurationSeconds = TimeSpan.FromDays(1).TotalSeconds;
 
         private static readonly Lazy<ObjectMineralPragmiumNode> ProtoNodeLazy
             = new Lazy<ObjectMineralPragmiumNode>(GetProtoEntity<ObjectMineralPragmiumNode>);

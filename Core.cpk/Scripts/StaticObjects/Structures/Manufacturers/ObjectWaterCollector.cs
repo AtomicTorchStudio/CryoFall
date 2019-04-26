@@ -59,7 +59,8 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemTwigs>(count: 3);
+            repair.AddStageRequiredItem<ItemStone>(count: 2);
+            repair.AddStageRequiredItem<ItemTwigs>(count: 2);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

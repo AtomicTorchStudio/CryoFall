@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.UI;
@@ -518,10 +519,18 @@
             }
 
             // try move item to the ground items container
-            if (!ServerItemsService.MoveOrSwapItem(item, groundItemsContainer, out _, countToMove: countToDrop))
+            if (!ServerItemsService.MoveOrSwapItem(
+                    item,
+                    groundItemsContainer,
+                    out _,
+                    countToMove: countToDrop,
+                    byCharacter: character))
             {
-                // cannot move - open container UI
-                //this.CallClient(character, _ => _.ClientRemote_OpenContainerExchangeUI(character.TilePosition));
+                if (groundItemsContainer.OccupiedSlotsCount == 0)
+                {
+                    Server.World.DestroyObject(groundItemsContainer.OwnerAsStaticObject);
+                }
+
                 return null;
             }
 
@@ -534,6 +543,21 @@
             }
 
             return groundItemsContainer.OwnerAsStaticObject;
+        }
+
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            if (!base.SharedCanInteract(character, worldObject, writeToLog))
+            {
+                return false;
+            }
+
+            NewbieProtectionSystem.SharedValidateNewbieCannotPickupItemsDuringRaidAnotherArea(
+                character,
+                worldObject.TilePosition,
+                out var isAllowedToPickup,
+                writeToLog);
+            return isAllowedToPickup;
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)

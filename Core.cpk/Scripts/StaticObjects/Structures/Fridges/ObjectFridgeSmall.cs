@@ -31,9 +31,9 @@
                 data.GameObject,
                 new SoundResource("Objects/Structures/ObjectFridge/Active"),
                 isLooped: true,
-                volume: 0.75f,
+                volume: 0.3f,
                 radius: 1f);
-            soundEmitter.CustomMaxDistance = 4;
+            soundEmitter.CustomMaxDistance = 3.5f;
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -57,9 +57,11 @@
             build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            repair.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

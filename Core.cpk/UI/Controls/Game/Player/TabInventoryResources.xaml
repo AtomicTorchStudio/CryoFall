@@ -24,7 +24,9 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <controls:ItemsContainerControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+            <controls:ItemsContainerControl Grid.Row="1" 
+                                            Grid.Column="0" 
+                                            Grid.ColumnSpan="2"
                                             Container="{Binding ContainerInventory}"
                                             VerticalAlignment="Top"
                                             HorizontalAlignment="Left"

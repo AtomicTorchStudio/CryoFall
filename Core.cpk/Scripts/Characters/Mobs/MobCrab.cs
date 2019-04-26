@@ -50,7 +50,7 @@
             base.ServerInitializeCharacterMob(data);
 
             var weaponProto = GetProtoEntity<ItemWeaponCrabClaws>();
-            data.PrivateState.WeaponState.SetWeaponProtoOnly(weaponProto);
+            data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
             data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
         }
 

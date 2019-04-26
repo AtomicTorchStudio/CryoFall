@@ -340,3 +340,6 @@ Attaque 4
 Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
 Calibre 7,62
 
+Scripts/Technologies/Tier4/Offense4/TechNodeAdvancedExplosives@Name:
+Explosifs évolués
+

@@ -64,7 +64,8 @@
                 {
                     // set info from public info - but never overwrite the data already set from the actual server info
                     viewModelServerInfo.Title = publicServerInfo.Title;
-                    viewModelServerInfo.IsModded = publicServerInfo.IsModded;
+                    viewModelServerInfo.IsModded = !publicServerInfo.IsOfficial
+                                                   && publicServerInfo.IsModded;
                     viewModelServerInfo.Version = publicServerInfo.Version;
                     viewModelServerInfo.NetworkProtocolVersion = 0;
                     //viewModelServer.PingMeasurementDone += this.ViewModelServerPingMeasurementDoneHandler;

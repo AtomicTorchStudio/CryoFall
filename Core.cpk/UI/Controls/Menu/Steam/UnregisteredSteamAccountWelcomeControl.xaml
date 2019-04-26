@@ -45,32 +45,40 @@
                         Margin="0,10,0,0">
                 <!-- Text: Link to my existing AtomicTorch account -->
                 <Button
-                    Content="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch}"
                     Command="{Binding CommandOpenAccountLinkingForm}"
                     IsTabStop="True"
                     FontSize="18"
                     HorizontalAlignment="Center"
-                    MinWidth="324" />
+                    MinWidth="360">
+                    <TextBlock
+                        Text="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch}" />
+                </Button>
 
                 <!-- Text: Create new AtomicTorch account -->
                 <Button
-                    Content="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount}"
                     Command="{Binding CommandOpenRegisterAccountForm}"
                     Margin="0,13,0,0"
                     IsTabStop="True"
                     FontSize="18"
                     HorizontalAlignment="Center"
-                    MinWidth="324" />
+                    MinWidth="360">
+                    <TextBlock
+                        Text="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount}" />
+                </Button>
 
                 <!-- Text: Proceed without creating an account -->
                 <Button
-                    Content="{x:Static loc:CoreStrings.UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAccount}"
                     Command="{Binding CommandProceedWithoutAccount}"
                     Margin="0,13,0,0"
                     IsTabStop="True"
                     FontSize="18"
                     HorizontalAlignment="Center"
-                    MinWidth="324" />
+                    MinWidth="360">
+                    <Button.Content>
+                        <TextBlock
+                            Text="{x:Static loc:CoreStrings.UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAccount}" />
+                    </Button.Content>
+                </Button>
 
                 <!--<Button Content="Quit"
                         Command="{Binding CommandQuit}"
@@ -85,7 +93,8 @@
                     <TextBlock
                         Text="{x:Static loc:CoreStrings.WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist}"
                         FontSize="14"
-                        Foreground="#FFCFCFCF" />
+                        Foreground="#FFCFCFCF"
+                        TextWrapping="Wrap" />
                     <steam:SteamAccountLinkingBenefitsDescriptionControl />
                 </StackPanel>
             </StackPanel>

@@ -39,7 +39,7 @@
                 throw new ArgumentException("Experience to add should be larger than zero.", nameof(experience));
             }
 
-            experience *= TechConstants.SkillExperienceMultiplier;
+            experience *= TechConstants.SkillExperienceGainMultiplier;
 
             if (!this.Skills.TryGetValue(skill, out var skillLevelData))
             {

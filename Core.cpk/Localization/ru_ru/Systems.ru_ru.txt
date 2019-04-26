@@ -137,9 +137,39 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitE
 `Достигнут лимит разрешенных зон контроля.
 [br]Увеличить их количество можно, изучив новые технологии.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
+Необходимо исследовать ксеногеологию (ранг 3), чтобы взять под контроль месторождения нефти/лития или разместить точку контроля рядом с ними.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `Базу атакуют.
 [br]Вы не можете возводить новые постройки, когда на базу нападают.`
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
+Отменить защиту новичка
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
+Вы точно хотите отключить защиту новичка? Вы больше не сможете ее включить.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
+Вы под защитой новичка. Она помогает вам не терять вещи и очки технологий, если вашего персонажа убьет другой игрок. К тому же, в случае смерти по другой причине ваши выроненные предметы не заберет другой игрок. Выполняйте квесты, чтобы создать необходимые инструменты и построить небольшую базу как можно скорее!
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
+Защита новичка закончится через:
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
+Под защитой новичка вы не можете атаковать других игроков и забирать себе их выпавшие вещи. Но вы можете отменить защиту в любой момент в меню Игроки.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
+Вы не можете совершить это действие под защитой новичка. Но вы можете отменить защиту в любой момент в меню Игроки.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
+Этот мешок под защитой новичка, только владелец может ее взять.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_ProtectionExpired:
+Защита новичка закончилась. Теперь вы можете участвовать в PvP-боях, но будьте осторожны: ваш персонаж выронит все предметы в случае смерти.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Title_NewbieProtection:
+Защита новичка
 
 Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
 В инвентаре нет свободного места

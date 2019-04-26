@@ -10,6 +10,7 @@
     {
         public const double MaxDuration = 4.0; // 4 seconds
 
+        // TODO: consider removing. It's not used anymore.
         public const string NotificationCannotAttackWhileDazed = "Cannot attack while dazed.";
 
         public override string Description => "You are dazed! Give it a few moments to get your senses back.";
@@ -27,7 +28,6 @@
                 return false;
             }
 
-            // cannot attack while dazed
             if (IsClient)
             {
                 NotificationSystem.ClientShowNotification(

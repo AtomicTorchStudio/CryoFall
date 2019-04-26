@@ -26,6 +26,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:AtomicTorch.GameEngine.Common.DataStructures.CycledArrayStorage`1.MoveNext">
+            <summary>
+            Move the index without adding any element.
+            </summary>
+        </member>
         <member name="T:AtomicTorch.GameEngine.Common.DataStructures.FastSortedList`2">
             <summary>
             Represents a collection of associated keys and values

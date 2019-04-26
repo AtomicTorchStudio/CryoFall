@@ -1,10 +1,10 @@
-﻿namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
+﻿namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
 
-    public class ConsoleAdminSetTimeOfDay : BaseConsoleCommand
+    public class ConsoleWorldSetTimeOfDay : BaseConsoleCommand
     {
         public override string Description =>
             "Forces specified time of day on client or server."
@@ -13,7 +13,7 @@
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
 
-        public override string Name => "admin.setTimeOfDay";
+        public override string Name => "world.setTimeOfDay";
 
         public string Execute(byte? hour = null, byte minute = 0)
         {

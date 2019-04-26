@@ -12,24 +12,33 @@
         public const TechTier MinTier = TechTier.Tier1;
 
         /// <summary>
-        /// This constant determines the gained experience multiplier.
-        /// If you want to make faster skill experience gain (and so faster LP gain)
-        /// you can modify this multiplier to a higher value.
-        /// </summary>
-        public const double SkillExperienceMultiplier = 1.0;
-
-        /// <summary>
-        /// This constant determines the conversion rate between skill experience to learning points.
-        /// Example: with 0.01 conversion rate 100 EXP will result in 1 LP gained.
-        /// </summary>
-        public const double SkillExperienceToLearningPointsConversionMultiplier = 0.01;
-
-        /// <summary>
         /// This constant defines final value for LP gain multiplier at maximum skill level.
         /// This multiplier will fall linearly from 1 at level 0 to the maximum value specified here.
         /// Effectively it reduces LP gain as player raises a particular skill level.
         /// </summary>
         public const double SkillLearningPointMultiplierAtMaximumLevel = 0.25;
+
+        public static readonly double LearningPointsGainMultiplier
+            = ServerRates.Get(
+                "LearningPointsGainMultiplier",
+                defaultValue: 1.0,
+                @"This rate determines the learning points rate
+                  from skills experience and neural enhancer consumable item.");
+
+        public static readonly double SkillExperienceGainMultiplier
+            = ServerRates.Get(
+                "SkillExperienceGainMultiplier",
+                defaultValue: 1.0,
+                @"This rate determines the skill experience gain multiplier.                
+                If you want to make faster or slower skill progression (and so faster LP gain as well)
+                you can modify this multiplier to a higher value.
+                Please note: if you want only to adjust the LP gain only, please edit LearningPointsGainMultiplier.");
+
+        // This rate determines the LP rate between skill experience to learning points.
+        // Example: with 0.01 conversion rate 100 EXP will result in 1 LP gained.
+        // However, it's affected by LearningPointsGainMultiplier which is configured via server rates config.
+        public static readonly double SkillExperienceToLearningPointsConversionMultiplier
+            = 0.01 * LearningPointsGainMultiplier;
 
         public static readonly double[] TierGroupPriceMultiplier =
             new double[(byte)MaxTier]

@@ -10,15 +10,15 @@
         public const double ExperienceAddedPerImplantInstalled = 500.0;
 
         /// <summary>
-        /// Experience added per second while wearing any implant (if two implants are equipped then this value is taken for each,
-        /// basically 2X)
+        /// Experience added per second while wearing any implant
+        /// (if two implants are equipped then this value is taken for each, basically 2x).
         /// </summary>
         public const double ExperienceAddedPerImplantPerSecond = 1.0;
 
         /// <summary>
         /// Experience added when removing any implant (or broken implant).
         /// </summary>
-        public const double ExperienceAddedPerImplantRemoved = 100.0;
+        public const double ExperienceAddedPerImplantUninstalled = 100.0;
 
         public override string Description =>
             "Continuously exposing your body to cybernetic technology made you and your immune system more accustomed to their presence.";

@@ -1,10 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Quests.Data"
-                    xmlns:helpers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Helpers"
+                    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
                     mc:Ignorable="d">
 
     <Style x:Key="QuestRequirementsItemsControlStyle" TargetType="ItemsControl">
@@ -26,13 +25,15 @@
                         <Style TargetType="TextBlock">
                             <Setter Property="FontSize" Value="11" />
                             <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="noesis:Text.Stroke" Value="#AA000000" />
+                            <Setter Property="noesis:Text.StrokeThickness" Value="1" />
                         </Style>
                     </DataTemplate.Resources>
 
                     <StackPanel Orientation="Horizontal"
                                 Margin="0,2"
                                 d:DataContext="{d:DesignInstance data:ViewModelQuestRequirement, IsDesignTimeCreatable=True}">
-                        <!--Bullet point-->
+                        <!-- Bullet point -->
                         <Canvas Width="12" Height="12" Margin="0,0,4,0"
                                 VerticalAlignment="Center">
                             <Ellipse

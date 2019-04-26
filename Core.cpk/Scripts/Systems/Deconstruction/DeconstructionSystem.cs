@@ -112,7 +112,8 @@
             var characterPrivateState = PlayerCharacter.GetPrivateState(character);
             if (characterPrivateState.CurrentActionState != state)
             {
-                throw new Exception("Should be impossible!");
+                Logger.Error("Should be impossible - current action state state doesn't match");
+                return;
             }
 
             characterPrivateState.SetCurrentActionState(null);

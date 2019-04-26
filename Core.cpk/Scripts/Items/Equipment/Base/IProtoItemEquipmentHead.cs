@@ -8,6 +8,8 @@
     {
         bool IsHairVisible { get; }
 
+        bool IsHeadVisible  { get; }
+
         /// <summary>
         /// Sound preset for character sounds played at "head" on various events.
         /// It's supposed to be used to play breathing sounds when character is in idle/moving loop.

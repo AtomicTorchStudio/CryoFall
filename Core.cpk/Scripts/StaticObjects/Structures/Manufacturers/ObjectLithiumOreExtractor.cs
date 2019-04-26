@@ -47,6 +47,10 @@
 
         public override string Description => "Allows extraction of lithium salts from geothermal springs.";
 
+        public override float LiquidCapacity => 100;
+
+        public override float LiquidProductionAmountPerSecond => 1;
+
         public override string Name => "Lithium salts extractor";
 
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
@@ -54,10 +58,6 @@
         public override double ObstacleBlockDamageCoef => 1;
 
         public override float StructurePointsMax => 10000;
-
-        protected override float LiquidCapacity => 100;
-
-        protected override float LiquidProductionAmountPerSecond => 1;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {

@@ -475,6 +475,13 @@
                 // we don't apply any damage on the Client-side
                 return 0;
             }
+            
+            if (!weaponCache.ProtoWeapon?.CanDamageStructures ?? false)
+            {
+                // probably a mob weapon
+                obstacleBlockDamageCoef = 1;
+                return 0;
+            }
 
             return WeaponDamageSystem.ServerCalculateTotalDamage(
                 weaponCache,

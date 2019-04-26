@@ -28,6 +28,9 @@ Sem espaço livre.
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
 Não é um terreno sólido.
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorPlayerNearby:
+Tem outros jogadores por perto.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
 Você está no meio!
 

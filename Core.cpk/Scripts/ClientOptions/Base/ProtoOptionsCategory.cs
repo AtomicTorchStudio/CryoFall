@@ -130,7 +130,7 @@
             if (!this.clientStorage.TryLoad<Dictionary<string, object>>(out var snapshot))
             {
                 Logger.Important(
-                    $"There are no options snapshot for {this.Name} or it cannot be deserialized - applying default values");
+                    $"There are no options snapshot for {this.ShortId} or it cannot be deserialized - applying default values");
                 this.Reset();
                 return;
             }

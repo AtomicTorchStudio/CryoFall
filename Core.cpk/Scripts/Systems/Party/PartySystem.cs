@@ -50,6 +50,11 @@
 
         private static NetworkSyncList<string> clientCurrentPartyMembersList;
 
+        public PartySystem()
+        {
+            PartyConstants.EnsureInitialized();
+        }
+
         public static event Action ClientCurrentPartyChanged;
 
         public static event Action<(string name, bool isAdded)> ClientCurrentPartyMemberAddedOrRemoved;
@@ -242,6 +247,45 @@
                 string.Format(Notification_PlayerLeftPartyFormat, character.Name));
         }
 
+        public static bool SharedArePlayersInTheSameParty(ICharacter characterA, ICharacter characterB)
+        {
+            if (characterA == null
+                || characterB == null
+                || characterA.IsNpc
+                || characterB.IsNpc)
+            {
+                return false;
+            }
+
+            if (characterA == characterB)
+            {
+                return true;
+            }
+
+            if (IsServer)
+            {
+                return ServerGetParty(characterA)
+                       == ServerGetParty(characterB);
+            }
+
+            // on the client the check is more hard as we have to determine who is the current client's character
+            // and then check the party members list
+            if (characterA.IsCurrentClientCharacter)
+            {
+                return ClientGetCurrentPartyMembers()
+                    .Contains(characterB.Name, StringComparer.Ordinal);
+            }
+
+            if (characterB.IsCurrentClientCharacter)
+            {
+                return ClientGetCurrentPartyMembers()
+                    .Contains(characterA.Name, StringComparer.Ordinal);
+            }
+
+            // client cannot check parties for other players
+            return false;
+        }
+
         internal static void ServerRegisterParty(ILogicObject party)
         {
             var members = ServerGetPartyMembersReadOnly(party);
@@ -371,7 +415,7 @@
             }
 
             var members = ServerGetPartyMembersEditable(party);
-            if (members.Count + 1 >= PartyConstants.PartyMembersMax)
+            if (members.Count >= PartyConstants.PartyMembersMax)
             {
                 throw new Exception("Party size exceeded - max " + PartyConstants.PartyMembersMax);
             }
@@ -656,7 +700,7 @@
                 Api.Assert(inviterParty != currentInviteeParty, "Cannot join the same party");
 
                 var inviterPartyMembers = ServerGetPartyMembersReadOnly(inviterParty);
-                if (inviterPartyMembers.Count + 1 >= PartyConstants.PartyMembersMax)
+                if (inviterPartyMembers.Count >= PartyConstants.PartyMembersMax)
                 {
                     return InvitationAcceptResult.ErrorPartyFull;
                 }
@@ -709,7 +753,7 @@
                 }
 
                 var partyMembers = ServerGetPartyMembersReadOnly(party);
-                if (partyMembers.Count + 1 >= PartyConstants.PartyMembersMax)
+                if (partyMembers.Count >= PartyConstants.PartyMembersMax)
                 {
                     return InvitationCreateResult.ErrorPartyFull;
                 }

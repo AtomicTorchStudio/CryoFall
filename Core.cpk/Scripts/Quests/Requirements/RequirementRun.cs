@@ -25,12 +25,6 @@
 
         protected override bool ServerIsSatisfied(ICharacter character, QuestRequirementState state)
         {
-            if (!character.IsOnline)
-            {
-                return false;
-            }
-
-            // check that player character has a running modifier active
             var input = PlayerCharacter.GetPublicState(character).AppliedInput;
             return (input.MoveModes & CharacterMoveModes.ModifierRun)
                    == CharacterMoveModes.ModifierRun;

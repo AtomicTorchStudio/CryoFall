@@ -64,22 +64,7 @@
 
                 return false;
             }
-
-            //does the player have pants equipped?
-            if (ItemsContainerCharacterEquipment.HasLegsOrFullBodyEquipment(character))
-            {
-                if (IsClient)
-                {
-                    NotificationSystem.ClientShowNotification(
-                        NotificationRemovePants_Title,
-                        NotificationRemovePants_Message,
-                        NotificationColor.Bad,
-                        icon: this.Icon);
-                }
-
-                return false;
-            }
-
+            
             // does the player have anal blockage?
             if (character.SharedHasStatusEffect<StatusEffectAnalBlockage>())
             {
@@ -88,6 +73,21 @@
                     NotificationSystem.ClientShowNotification(
                         NotificationTooMuch_Title,
                         NotificationTooMuch_Message,
+                        NotificationColor.Bad,
+                        icon: this.Icon);
+                }
+
+                return false;
+            }
+
+            // does the player have pants equipped?
+            if (ItemsContainerCharacterEquipment.HasLegsOrFullBodyEquipment(character))
+            {
+                if (IsClient)
+                {
+                    NotificationSystem.ClientShowNotification(
+                        NotificationRemovePants_Title,
+                        NotificationRemovePants_Message,
                         NotificationColor.Bad,
                         icon: this.Icon);
                 }

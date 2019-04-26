@@ -11,7 +11,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class ClientWorldMapDroppedItemsVisualizer : IDisposable, IWorldMapVisualizer
+    public class ClientWorldMapDroppedItemsVisualizer : IWorldMapVisualizer
     {
         private readonly NetworkSyncList<Vector2Ushort> droppedItemsLocations;
 

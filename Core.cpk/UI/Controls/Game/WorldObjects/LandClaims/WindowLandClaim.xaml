@@ -121,7 +121,7 @@
 
                                 <Grid HorizontalAlignment="Center">
                                     <Grid
-                                        Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        Visibility="{Binding DataContext.IsOwner, ElementName=WindowMenuWithInventory, Converter={StaticResource BoolToVisibilityConverter}}">
                                         <Grid MinWidth="130"
                                               Visibility="{Binding IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
                                             <Grid.RowDefinitions>
@@ -145,7 +145,6 @@
                                                                                 FontSize="11"
                                                                                 TextStrokeThickness="1"
                                                                                 HorizontalAlignment="Center" />
-                                        </Grid>
 
                                         <!-- Text: Upgrading this structure requires learning relevant technology. -->
                                         <TextBlock
@@ -158,6 +157,7 @@
                                             Margin="3,0"
                                             TextWrapping="Wrap"
                                             Width="150" />
+                                        </Grid>
                                     </Grid>
 
                                     <!-- Text: Only the owner can upgrade this structure. -->

@@ -64,8 +64,7 @@
 
         private void HideSimilarNotifications(HUDNotificationControl notificationControl)
         {
-            var count = this.stackPanelChildren.Count;
-            for (var index = 0; index < count; index++)
+            for (var index = 0; index < this.stackPanelChildren.Count; index++)
             {
                 var control = (HUDNotificationControl)this.stackPanelChildren[index];
                 if (control.IsSame(notificationControl))

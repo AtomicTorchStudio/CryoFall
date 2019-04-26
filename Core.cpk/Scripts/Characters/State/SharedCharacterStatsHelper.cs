@@ -4,9 +4,25 @@
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Extensions;
 
     public static class SharedCharacterStatsHelper
     {
+        public static string GetFullStatTitle(StatName statName)
+        {
+            var title = statName.GetDescription();
+
+            var attributeSkill = statName.GetAttribute<RelatedToSkillAttribute>();
+            var skillName = attributeSkill?.ProtoSkill?.Name;
+            if (skillName == null)
+            {
+                return title;
+            }
+
+            // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+            return $"({skillName}) {title}";
+        }
+
         public static void RefreshCharacterFinalStatsCache(
             IReadOnlyStatsDictionary protoEffects,
             ICharacterPublicState publicState,

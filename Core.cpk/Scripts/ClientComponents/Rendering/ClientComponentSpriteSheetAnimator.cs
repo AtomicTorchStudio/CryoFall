@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
@@ -22,6 +23,8 @@
         public int FrameIndex => this.frameIndex;
 
         public int FramesCount => this.framesTextureResources.Length;
+
+        public bool IsManualUpdate { get; set; }
 
         //public ITextureResource[] FramesTextureResources => this.framesTextureResources;
 
@@ -88,6 +91,27 @@
             return result;
         }
 
+        public void ForceUpdate(double deltaTime)
+        {
+            if (this.framesTextureResources == null)
+            {
+                throw new Exception("Sprite sheet animator is not setup");
+            }
+
+            this.currentTime += deltaTime;
+            this.frameIndex = this.totalDurationSeconds > 0
+                                  ? (int)(this.currentTime % this.totalDurationSeconds / this.frameDurationSeconds)
+                                  : 0;
+            var textureResource = this.framesTextureResources[this.frameIndex];
+            this.spriteRenderer.TextureResource = textureResource;
+            //Api.Logger.Dev("Sprite animation frame: #"
+            //               + this.frameIndex
+            //               + " texture: "
+            //               + textureResource
+            //               + " total duration: "
+            //               + this.currentTime.ToString("F3"));
+        }
+
         public void Reset()
         {
             this.currentTime = 0f;
@@ -96,7 +120,8 @@
         public void Setup(
             IComponentSpriteRenderer spriteRenderer,
             ITextureResource[] framesTextureResources,
-            double frameDurationSeconds)
+            double frameDurationSeconds,
+            bool isManualUpdate = false)
         {
             if (framesTextureResources == null
                 || framesTextureResources.Length == 0)
@@ -108,6 +133,7 @@
             this.framesTextureResources = framesTextureResources;
             this.frameDurationSeconds = frameDurationSeconds;
             this.totalDurationSeconds = frameDurationSeconds * framesTextureResources.Length;
+            this.IsManualUpdate = isManualUpdate;
 
             this.Reset();
 
@@ -116,17 +142,10 @@
 
         public override void Update(double deltaTime)
         {
-            if (this.framesTextureResources == null)
+            if (!this.IsManualUpdate)
             {
-                throw new Exception("Sprite sheet animator is not setup");
+                this.ForceUpdate(deltaTime);
             }
-
-            this.currentTime += deltaTime;
-            this.frameIndex = this.totalDurationSeconds > 0
-                                  ? (int)(this.currentTime % this.totalDurationSeconds / this.frameDurationSeconds)
-                                  : 0;
-            this.spriteRenderer.TextureResource = this.framesTextureResources[this.frameIndex];
-            //Api.Logger.WriteDev("Sprite animation frame: #" + frameIndex + " total duration: " + this.currentTime.ToString("F3"));
         }
 
         protected override void OnEnable()

@@ -15,6 +15,8 @@
 
     public class ItemWeaponGenericAnimalWeak : ProtoItemWeaponMelee
     {
+        public override bool CanDamageStructures => false;
+
         public override string Description => null;
 
         public override ushort DurabilityMax => 0;
@@ -54,6 +56,11 @@
                 finalDamageMultiplier: 1,
                 rangeMax: 1.5,
                 damageDistribution: new DamageDistribution(DamageType.Impact, 1));
+        }
+
+        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        {
+            return MaterialHitsSoundPresets.MeleeSoftTissuesOnly;
         }
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()

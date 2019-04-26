@@ -340,3 +340,6 @@ Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
 Калибр .300
 
+Scripts/Technologies/Tier4/Offense4/TechNodeAdvancedExplosives@Name:
+Улучшенная взрывчатка
+

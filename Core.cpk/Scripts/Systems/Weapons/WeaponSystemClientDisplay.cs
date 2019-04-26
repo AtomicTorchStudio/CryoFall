@@ -99,9 +99,17 @@
 
         public static void OnWeaponShot(ICharacter character)
         {
-            if (character.ProtoGameObject == null)
+            if (character?.ProtoGameObject == null)
             {
-                Api.Logger.Error("Unknown character on OnWeaponShot(): " + character);
+                if (Api.IsEditor)
+                {
+                    Api.Logger.Error("Unknown character on OnWeaponShot(): " + character);
+                }
+                else
+                {
+                    Api.Logger.Warning("Unknown character on OnWeaponShot(): " + character);
+                }
+
                 return;
             }
 

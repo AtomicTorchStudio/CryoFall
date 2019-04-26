@@ -1,9 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters
 {
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterInvincibility;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterStamina;
+    using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -39,6 +41,46 @@
             deliveryMode: DeliveryMode.ReliableSequenced,
             maxUpdatesPerSecond: NetworkMaxStatUpdatesPerSecond)]
         public float StaminaMax { get; private set; } = 100;
+
+        public void ServerReduceHealth(double damage, IProtoGameObject damageSource)
+        {
+            if (damage <= 0)
+            {
+                return;
+            }
+
+            if (damageSource != null)
+            {
+                // it's important to register the damage source before the damage is applied
+                // (to use it in case of the subsequent death)
+                CharacterDamageTrackingSystem.ServerRegisterDamage(damage,
+                                                                   (ICharacter)this.GameObject,
+                                                                   new ServerDamageSourceEntry(damageSource));
+            }
+
+            var newHealth = this.HealthCurrent - damage;
+            this.ServerSetHealthCurrent((float)newHealth);
+        }
+
+        public void ServerReduceHealth(double damage, IGameObjectWithProto damageSource)
+        {
+            if (damage <= 0)
+            {
+                return;
+            }
+
+            if (damageSource != null)
+            {
+                // it's important to register the damage source before the damage is applied
+                // (to use it in case of the subsequent death)
+                CharacterDamageTrackingSystem.ServerRegisterDamage(damage,
+                                                                   (ICharacter)this.GameObject,
+                                                                   new ServerDamageSourceEntry(damageSource));
+            }
+
+            var newHealth = this.HealthCurrent - damage;
+            this.ServerSetHealthCurrent((float)newHealth);
+        }
 
         public virtual void ServerSetCurrentValuesToMaxValues()
         {

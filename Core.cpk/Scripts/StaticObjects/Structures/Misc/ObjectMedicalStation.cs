@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Implants;
+    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
@@ -188,6 +189,8 @@
                 throw new Exception("Not enough biomaterial vials");
             }
 
+            // move to an implant slot in the equipment container 
+            // please note, we're not providing byCharacter arg here to allow this container action
             if (!Server.Items.MoveOrSwapItem(itemToInstall,
                                              containerEquipment,
                                              out _,
@@ -209,6 +212,9 @@
                     ProtoItemBiomaterialVial.Value,
                     -biomaterialRequiredAmount);
             }
+
+            character.ServerAddSkillExperience<SkillCyberneticAffinity>(
+                SkillCyberneticAffinity.ExperienceAddedPerImplantInstalled);
 
             Logger.Info("Implant installed: " + itemToInstall);
         }
@@ -238,7 +244,7 @@
                 throw new Exception("Not enough biomaterial vials");
             }
 
-            // move to inventory
+            // move to inventory (please note, we're not providing byCharacter arg here to allow this container action)
             if (!Server.Items.MoveOrSwapItem(itemToUninstall,
                                              character.SharedGetPlayerContainerInventory(),
                                              out _))
@@ -270,6 +276,9 @@
                     itemToUninstallProto,
                     -1);
             }
+
+            character.ServerAddSkillExperience<SkillCyberneticAffinity>(
+                SkillCyberneticAffinity.ExperienceAddedPerImplantUninstalled);
 
             Logger.Info("Implant uninstalled: " + itemToUninstall);
         }

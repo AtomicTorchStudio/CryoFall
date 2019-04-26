@@ -9,6 +9,9 @@
 
         public override bool IsHairVisible => false;
 
+        // TODO: there is an issue with long beard, add sprite mask clipping and restore this to true
+        public override bool IsHeadVisible => false;
+
         //  please don't translate A.P.A.R.T. abbreviation
         public override string Name => "A.P.A.R.T. suit";
 

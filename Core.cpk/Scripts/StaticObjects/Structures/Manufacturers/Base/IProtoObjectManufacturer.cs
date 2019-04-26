@@ -5,6 +5,16 @@
 
     public interface IProtoObjectManufacturer : IProtoObjectStructure
     {
+        byte ContainerFuelSlotsCount { get; }
+
+        byte ContainerInputSlotsCount { get; }
+
+        byte ContainerOutputSlotsCount { get; }
+
+        bool IsAutoSelectRecipe { get; }
+
+        bool IsFuelProduceByproducts { get; }
+
         void ClientSelectRecipe(IStaticWorldObject worldObject, Recipe recipe);
     }
 }

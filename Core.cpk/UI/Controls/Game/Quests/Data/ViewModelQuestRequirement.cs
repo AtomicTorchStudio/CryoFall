@@ -10,6 +10,8 @@
 
     public class ViewModelQuestRequirement : BaseViewModel
     {
+        private static ulong lastRequirementSatisfiedFrame;
+
         private readonly IQuestRequirement requirement;
 
         private readonly QuestRequirementState requirementState;
@@ -31,7 +33,13 @@
                     this.NotifyPropertyChanged(nameof(this.IsSatisfied));
                     if (isSatisfiedNow)
                     {
-                        Api.Client.Audio.PlayOneShot(new SoundResource("UI/Quests/QuestRequirementSatisfied.ogg"));
+                        // play requirement satisfied sound (not more often than once per frame)
+                        if (lastRequirementSatisfiedFrame != Client.CurrentGame.ServerFrameNumber)
+                        {
+                            lastRequirementSatisfiedFrame = Client.CurrentGame.ServerFrameNumber;
+                            Api.Client.Audio.PlayOneShot(
+                                new SoundResource("UI/Quests/QuestRequirementSatisfied.ogg"));
+                        }
                     }
                 },
                 this);

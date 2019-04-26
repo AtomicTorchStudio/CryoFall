@@ -3,7 +3,9 @@
     using System;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -16,6 +18,8 @@
 
         public override double DamageRadius => 3.1;
 
+        public override bool ActivatesRaidModeForLandClaim => false;
+
         public override TimeSpan ExplosionDelay { get; } = TimeSpan.FromSeconds(3);
 
         public override string Name => "Mining charge";
@@ -23,9 +27,10 @@
         public override double ServerCalculateTotalDamageByExplosive(
             IProtoStaticWorldObject targetStaticWorldObjectProto)
         {
-            if (targetStaticWorldObjectProto is IProtoObjectMineral)
+            if (targetStaticWorldObjectProto is IProtoObjectMineral
+                || targetStaticWorldObjectProto is IProtoObjectDeposit)
             {
-                // the target object is a mineral, deal special damage
+                // the target object is a mineral or deposit, deal special damage
                 return DamageToMinerals;
             }
 

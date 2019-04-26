@@ -8,14 +8,21 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
-    <StackPanel Orientation="Horizontal"
-                Margin="0,3,0,0">
-        <TextBlock
-            Text="{x:Static loc:CoreStrings.SteamAccountLinkingBenefitsDescription_Title}"
-            FontSize="14"
-            Foreground="{StaticResource BrushColorAltLabelForeground}" />
+    <Grid Margin="0,3,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Control Grid.Column="0"
+                 Style="{StaticResource ControlInfoPointStyle}"
+                 VerticalAlignment="Center"
+                 Margin="0,0,5,0" />
 
-        <Control Style="{StaticResource ControlInfoPointStyle}" />
+        <TextBlock Grid.Column="1"
+                   Text="{x:Static loc:CoreStrings.SteamAccountLinkingBenefitsDescription_Title}"
+                   FontSize="14"
+                   Foreground="{StaticResource BrushColorAltLabelForeground}"
+                   TextWrapping="Wrap" />
 
         <base:ToolTipServiceExtend.ToolTip>
             <core:FormattedTextBlock
@@ -27,5 +34,5 @@
                 FontSize="13"
                 FontFamily="{StaticResource CondensedFontFamily}" />
         </base:ToolTipServiceExtend.ToolTip>
-    </StackPanel>
+    </Grid>
 </base:BaseUserControl>

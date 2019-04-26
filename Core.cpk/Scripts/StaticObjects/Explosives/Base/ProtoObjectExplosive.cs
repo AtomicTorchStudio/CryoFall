@@ -27,6 +27,8 @@
     {
         private DamageDescription damageDescriptionCharacters;
 
+        public abstract bool ActivatesRaidModeForLandClaim { get; }
+
         public abstract double DamageRadius { get; }
 
         public virtual TimeSpan ExplosionDelay { get; } = TimeSpan.FromSeconds(5);
@@ -167,7 +169,7 @@
                     damageDistribution);
 
                 this.damageDescriptionCharacters = new DamageDescription(
-                    damageValue,
+                    damageValue * WeaponConstants.DamageExplosivesToCharactersMultiplier,
                     armorPiercingCoef,
                     finalDamageMultiplier,
                     rangeMax: this.DamageRadius,
@@ -180,7 +182,7 @@
                     out var damageValue,
                     out var defencePenetrationCoef);
 
-                this.StructureDamage = damageValue;
+                this.StructureDamage = damageValue * WeaponConstants.DamageExplosivesToStructuresMultiplier;
                 this.StructureDefensePenetrationCoef = MathHelper.Clamp(defencePenetrationCoef, 0, 1);
             }
         }
@@ -251,7 +253,10 @@
 
             Server.World.DestroyObject(worldObject);
 
-            LandClaimSystem.ServerOnRaid(worldObject.TilePosition, this.DamageRadius, character);
+            if (this.ActivatesRaidModeForLandClaim)
+            {
+                LandClaimSystem.ServerOnRaid(worldObject.TilePosition, this.DamageRadius, character);
+            }
         }
     }
 

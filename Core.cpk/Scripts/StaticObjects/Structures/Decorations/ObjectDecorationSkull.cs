@@ -31,8 +31,6 @@
             ConstructionStageConfig build,
             ConstructionStageConfig repair)
         {
-            //category = GetCategory<StructureCategoryBuildings>();
-
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemTwigs>(count: 5);
@@ -42,7 +40,10 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemTwigs>(count: 5);
+            repair.AddStageRequiredItem<ItemTwigs>(count: 4);
+            repair.AddStageRequiredItem<ItemThread>(count: 2);
+            repair.AddStageRequiredItem<ItemBones>(count: 1);
+            repair.AddStageRequiredItem<ItemStone>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

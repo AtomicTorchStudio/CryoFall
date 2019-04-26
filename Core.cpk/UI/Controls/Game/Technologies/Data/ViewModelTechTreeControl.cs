@@ -110,7 +110,7 @@
                     if (this.techGroup != null
                         && this.techGroup.RootNodes.Count == 0)
                     {
-                        Api.Logger.Error($"Incorrect tech group \"{this.techGroup.Name}\" - no nodes");
+                        Api.Logger.Error($"Incorrect tech group \"{this.techGroup.Id}\" - no nodes");
                     }
 
                     this.Nodes = new List<ViewModelTechNode>(0);

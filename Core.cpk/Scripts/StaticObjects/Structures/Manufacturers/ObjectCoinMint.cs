@@ -89,7 +89,9 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemBricks>(count: 10);
+            repair.AddStageRequiredItem<ItemBricks>(count: 5);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 3);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 3);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

@@ -42,9 +42,10 @@
             build.AddStageRequiredItem<ItemIngotIron>(count: 1);
             build.AddStageRequiredItem<ItemPlanks>(count: 2);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 2);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

@@ -74,7 +74,7 @@
 
             this.SceneObject.Position = this.CurrentMouseTilePosition.ToVector2D();
 
-            if (ClientInputManager.IsButtonUp(GameButton.ActionUseCurrentItem))
+            if (ClientInputManager.IsButtonUp(GameButton.ActionUseCurrentItem, evenIfHandled: true))
             {
                 this.OnSelectionEnded();
                 return;

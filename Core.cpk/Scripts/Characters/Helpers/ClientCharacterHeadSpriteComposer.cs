@@ -106,17 +106,31 @@
                                         out helmetBehind);
             }
 
+            var isHeadVisible = protoItemHeadEquipment?.IsHeadVisible ?? true;
+
             // let's combine all the layers (if some elements are null - they will not be rendered)
-            var layers = new List<ComposeLayer>()
+            List<ComposeLayer> layers;
+            if (isHeadVisible)
             {
-                new ComposeLayer(helmetBehind,   spriteQualityOffset),
-                new ComposeLayer(hairBehind,     spriteQualityOffset),
-                new ComposeLayer(faceShapePath,  spriteQualityOffset),
-                new ComposeLayer(faceTopPath,    spriteQualityOffset),
-                new ComposeLayer(faceBottomPath, spriteQualityOffset),
-                new ComposeLayer(hair,           spriteQualityOffset),
-                new ComposeLayer(helmetFront,    spriteQualityOffset),
-            };
+                layers = new List<ComposeLayer>()
+                {
+                    new ComposeLayer(helmetBehind,   spriteQualityOffset),
+                    new ComposeLayer(hairBehind,     spriteQualityOffset),
+                    new ComposeLayer(faceShapePath,  spriteQualityOffset),
+                    new ComposeLayer(faceTopPath,    spriteQualityOffset),
+                    new ComposeLayer(faceBottomPath, spriteQualityOffset),
+                    new ComposeLayer(hair,           spriteQualityOffset),
+                    new ComposeLayer(helmetFront,    spriteQualityOffset)
+                };
+            }
+            else // if head is not visible (defined by head equipment item)
+            {
+                layers = new List<ComposeLayer>()
+                {
+                    new ComposeLayer(helmetBehind, spriteQualityOffset),
+                    new ComposeLayer(helmetFront,  spriteQualityOffset)
+                };
+            }
 
             // load only those layers which had the according file
             layers.RemoveAll(

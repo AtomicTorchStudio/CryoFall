@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Implants;
+    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -153,7 +154,7 @@
                 return;
             }
 
-            // try to degrade durability over time
+            // try to degrade durability over time and give experience for cybernetic affinity skill
             var item = data.GameObject;
             var owner = item.Container?.OwnerAsCharacter;
             if (owner == null
@@ -168,6 +169,9 @@
             durabilityDecrease *= owner.SharedGetFinalStatMultiplier(StatName.ImplantDegradationSpeedMultiplier);
             ItemDurabilitySystem.ServerModifyDurability(item,
                                                         -(int)Math.Floor(durabilityDecrease));
+
+            owner.ServerAddSkillExperience<SkillCyberneticAffinity>(
+                data.DeltaTime * SkillCyberneticAffinity.ExperienceAddedPerImplantPerSecond);
 
             if (!item.IsDestroyed)
             {

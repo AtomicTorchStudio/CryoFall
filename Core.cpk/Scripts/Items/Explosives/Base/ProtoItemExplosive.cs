@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
+    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -78,6 +79,17 @@
 
         public bool SharedValidatePlacement(ICharacter character, Vector2Ushort targetPosition, bool logErrors)
         {
+            if (NewbieProtectionSystem.SharedIsNewbie(character))
+            {
+                if (logErrors)
+                {
+                    Logger.Warning("Newbie cannot plant bombs");
+                    NewbieProtectionSystem.SharedNotifyNewbieCannotPerformAction(character, this);
+                }
+
+                return false;
+            }
+
             // check if there is a direct line of sight
             // check that there are no other objects on the way between them (defined by default layer)
             var physicsSpace = character.PhysicsBody.PhysicsSpace;

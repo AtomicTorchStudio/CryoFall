@@ -17,7 +17,7 @@
         {
             lightConfig.Color = LightColors.Flashlight;
             lightConfig.ScreenOffset = (3, -1);
-            lightConfig.Size = 17;
+            lightConfig.Size = 18;
 
             fuelConfig.FuelTitle = CoreStrings.TitleEnergyCharge;
             fuelConfig.FuelCapacity = 500; // about 8.5 minutes

@@ -23,8 +23,9 @@
 
         // The Node will destroy after this duration if there is no Pragmium Source nearby
         // and there are no characters observing it.
+        // Please note: the value is carefully selected to match with SpawnPragmiumWasteland respawn rate.
         private static readonly double DestructionTimeoutSeconds
-            = TimeSpan.FromMinutes(10).TotalSeconds;
+            = TimeSpan.FromMinutes(29).TotalSeconds;
 
         private TextureResource[] textures;
 

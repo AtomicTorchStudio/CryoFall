@@ -59,9 +59,10 @@
             build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
             build.AddStageRequiredItem<ItemPlastic>(count: 1);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            repair.AddStageRequiredItem<ItemPlastic>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

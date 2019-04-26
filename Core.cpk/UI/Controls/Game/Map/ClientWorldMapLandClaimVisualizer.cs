@@ -16,7 +16,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class ClientWorldMapLandClaimVisualizer : IDisposable, IWorldMapVisualizer
+    public class ClientWorldMapLandClaimVisualizer : IWorldMapVisualizer
     {
         public const string NotificationBaseUnderAttack_MessageFormat
             = @"One of your bases is being raided!
@@ -197,8 +197,8 @@
                 }
 
                 var bounds = LandClaimSystem.SharedGetLandClaimAreaBounds(this.area);
-                var x = bounds.X + bounds.Width / 2;
-                var y = bounds.Y + bounds.Height / 2;
+                var x = bounds.X + bounds.Width / 2.0;
+                var y = bounds.Y + bounds.Height / 2.0;
 
                 // add raid mark control to map
                 this.markRaidNotificationControl = new WorldMapMarkRaid();

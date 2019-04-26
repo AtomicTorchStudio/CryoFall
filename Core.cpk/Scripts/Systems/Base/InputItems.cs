@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems
 {
+    using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -22,7 +23,31 @@
             this.items.Add(new ProtoItemWithCount(protoItem, count));
         }
 
+        public void ApplyRates(byte multiplier)
+        {
+            if (multiplier == 1)
+            {
+                return;
+            }
+
+            if (multiplier < 1)
+            {
+                throw new Exception("Rate modifier cannot be < 1");
+            }
+
+            for (var index = 0; index < this.items.Count; index++)
+            {
+                var entry = this.items[index];
+                this.items[index] = entry.WithRate(multiplier);
+            }
+        }
+
         public IReadOnlyList<ProtoItemWithCount> AsReadOnly()
+        {
+            return this.items;
+        }
+
+        public List<ProtoItemWithCount> GetInternalList()
         {
             return this.items;
         }

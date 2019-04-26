@@ -19,7 +19,10 @@
             <TextBlock Text="{x:Static loc:CoreStrings.DepositCapacityStats_Title}"
                        Style="{StaticResource TextBlockStyleCraftingCaption}"
                        HorizontalAlignment="Center"
-                       Margin="0,-13,0 ,0" />
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       MaxWidth="80"
+                       Margin="0,-13,0,0" />
 
             <core:ValueBarControl
                 Value="{Binding ValueCurrent}"

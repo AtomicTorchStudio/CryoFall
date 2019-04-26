@@ -20,3 +20,5 @@ Icon7
 
 #Spine2D source
 *.spine
+/Core/Content/Animations/Human/Female/
+/Core/Content/Textures/FX/ColorGrading/*.psd

@@ -78,11 +78,12 @@
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="4" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition />
+                            <RowDefinition Height="5" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <!-- Text: Your position -->
@@ -98,14 +99,14 @@
                                    x:Name="TextBlockCurrentPosition" />
 
                         <!-- Text: Pointed position -->
-                        <StackPanel Grid.Row="1"
+                        <StackPanel Grid.Row="2"
                                     Grid.Column="0"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Right">
                             <TextBlock Text="{x:Static loc:CoreStrings.WorldMap_PointedPosition}" />
                             <TextBlock Text=":" />
                         </StackPanel>
-                        <TextBlock Grid.Row="1"
+                        <TextBlock Grid.Row="2"
                                    Grid.Column="2"
                                    x:Name="TextBlockPointedPosition" />
                     </Grid>

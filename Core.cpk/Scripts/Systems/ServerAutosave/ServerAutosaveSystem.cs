@@ -18,7 +18,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.ServerAutosave
         public const string NotificationWorldBackupComplete
             = "SERVER: World backup is complete!";
 
-        private const int AutosavegameIntervalMinutesMax = 60;
+        private const int AutosavegameIntervalMinutesMax = 120;
 
         private const int AutosavegameIntervalMinutesMin = 1;
 

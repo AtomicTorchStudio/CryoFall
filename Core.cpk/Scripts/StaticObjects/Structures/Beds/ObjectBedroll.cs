@@ -44,11 +44,11 @@
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 1;
-            build.StageDurationSeconds = BuildDuration.Instant;
+            build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemTwigs>(count: 20);
             build.AddStageRequiredItem<ItemFibers>(count: 50);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemTwigs>(count: 2);
             repair.AddStageRequiredItem<ItemFibers>(count: 5);

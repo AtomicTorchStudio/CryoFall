@@ -15,7 +15,7 @@
         public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
         {
             damagedCharacter.ServerAddStatusEffect<StatusEffectDazed>(
-                intensity: 0.4 / StatusEffectDazed.MaxDuration); // add effect for 0.4 seconds
+                intensity: 0.4 / StatusEffectDazed.MaxDuration);
         }
 
         protected override void PrepareDamageDescription(

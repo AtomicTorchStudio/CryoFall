@@ -70,6 +70,9 @@ Agua
 UI/CoreStrings@Chat_MessageMenu_Block:
 Bloquear
 
+UI/CoreStrings@Chat_MessageMenu_CopyName:
+Copiar nombre
+
 UI/CoreStrings@Chat_MessageMenu_InviteToParty:
 Invitar al grupo
 
@@ -104,6 +107,9 @@ Podrás desbloquear más recetas en el menú de tecnologías.`
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Recetas desbloqueadas
+
+UI/CoreStrings@CryoFallDevelopmentRoadmap:
+Hoja de ruta del desarrollo de CryoFall
 
 UI/CoreStrings@Defense_Format_Chemical:
 Protección química: {0}
@@ -182,6 +188,9 @@ Misiones
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Skills:
 Habilidades
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Social:
+Social
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
 Tecnologías
@@ -849,6 +858,12 @@ Reap. cerca de cama
 UI/CoreStrings@WindowRespawn_Message:
 Parece que te han obligado a abandonar este mundo cruel... ¡y has perdido todas tus cosas! ¿Quieres vengarte?
 
+UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
+Parece que te ha matado otro jugador. Por suerte, aún tienes la protección para novatos, así que no has perdido ninguno de tus objetos o puntos de aprendizaje. No obstante, ten cuidado... ¡La próxima vez podría ir en serio!
+
+UI/CoreStrings@WindowRespawn_DamageSources:
+Fuentes de daño recientes:
+
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `Hace poco que has reaparecido en la cama.
 [br]Espera a que se [b]recargue[/b] esta opción.`
@@ -1165,6 +1180,24 @@ Pelo
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Arriba
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
+Criatura
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
+Explosión
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleItem:
+Objeto
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleOther:
+Otros
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitlePlayer:
+Jugador
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
+Estado alterado
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 siguiente nivel

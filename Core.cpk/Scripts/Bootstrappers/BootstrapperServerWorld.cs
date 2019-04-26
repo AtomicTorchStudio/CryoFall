@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Bootstrappers
 {
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
@@ -41,6 +42,13 @@
             {
                 ((IProtoObjectVegetation)worldObject.ProtoWorldObject)
                     .ServerSetFullGrown(worldObject);
+            }
+
+            // destroy all land claim buildings as they don't work as intended when simply spawned
+            worldObjects = Server.World.FindStaticWorldObjectsOfProto<IProtoObjectLandClaim>();
+            foreach (var worldObject in Api.Shared.WrapInTempList(worldObjects))
+            {
+                Server.World.DestroyObject(worldObject);
             }
         }
     }

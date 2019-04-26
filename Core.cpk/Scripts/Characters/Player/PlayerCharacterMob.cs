@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
 
     /// <summary>
@@ -10,6 +11,7 @@
     /// </summary>
     public class PlayerCharacterMob : PlayerCharacter
     {
+        [NotLocalizable]
         public override string Name => "Player character in Mob mode";
 
         public override double StatDefaultHealthMax => 200;

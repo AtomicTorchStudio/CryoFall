@@ -90,6 +90,8 @@
 
         public abstract GroundSoundMaterial GroundSoundMaterial { get; }
 
+        public virtual bool IsRestrictingConstruction => false;
+
         public abstract TileKind Kind { get; }
 
         public byte SessionIndex
@@ -472,7 +474,7 @@
         public override string ToString()
         {
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-            return $"Proto Tile \"{this.Name}\"";
+            return $"Proto Tile \"{this.ShortId}\"";
         }
 
         protected virtual ITextureResource ClientSetupTileRendering(Tile tile, IClientSceneObject sceneObject)

@@ -36,5 +36,14 @@
                                  nameof(this.Probability),
                                  this.Probability);
         }
+
+        public OutputItem WithRate(byte rateModifier)
+        {
+            return new OutputItem(
+                this.ProtoItem,
+                count: (ushort)Math.Min(ushort.MaxValue,       (ulong)this.Count * (ulong)rateModifier),
+                countRandom: (ushort)Math.Min(ushort.MaxValue, (ulong)this.CountRandom * (ulong)rateModifier),
+                this.Probability);
+        }
     }
 }

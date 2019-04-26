@@ -1,10 +1,13 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Actions;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
+    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu;
@@ -36,9 +39,46 @@
                     return;
                 }
 
-                currentInteractObject?.ProtoWorldObject.ClientInteractFinish(currentInteractObject);
+                try
+                {
+                    currentInteractObject?.ProtoWorldObject.ClientInteractFinish(currentInteractObject);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Exception(ex);
+                }
+
                 currentInteractObject = value;
-                currentInteractObject?.ProtoWorldObject.ClientInteractStart(currentInteractObject);
+
+                try
+                {
+                    currentInteractObject?.ProtoWorldObject.ClientInteractStart(currentInteractObject);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Exception(ex);
+                }
+
+                if (currentInteractObject == null)
+                {
+                    return;
+                }
+
+                var currentAction = ClientCurrentCharacterHelper.PrivateState.CurrentActionState;
+                if (currentAction?.TargetWorldObject == currentInteractObject)
+                {
+                    // interaction is in progress — don't finish it early
+                    return;
+                }
+
+                try
+                {
+                    currentInteractObject.ProtoWorldObject.ClientInteractFinish(currentInteractObject);
+                }
+                finally
+                {
+                    currentInteractObject = null;
+                }
             }
         }
 
@@ -89,6 +129,17 @@
             }
 
             return null;
+        }
+
+        public static void OnInteractionFinished(IWorldObject worldObject)
+        {
+            if (worldObject == null
+                || CurrentInteractObject != worldObject)
+            {
+                return;
+            }
+
+            CurrentInteractObject = null;
         }
 
         protected override void OnDisable()

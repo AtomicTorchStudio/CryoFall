@@ -28,6 +28,9 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNoFreeSpace:
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
 Нет твердой земли.
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorPlayerNearby:
+Поблизости находятся другие игроки.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
 Вы стоите на этой клетке!
 
@@ -561,10 +564,10 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Нефтекачалка
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
-Очищает сырую нефть и производит более полезные компоненты, например топливо и минеральное масло.
+Перерабатывает сырую нефть в более полезные компоненты, например топливо и минеральное масло.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Name:
-Очистное сооружение
+Нефтеперерабатывающий завод
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
 Используется в основном для готовки. С ее помощью можно приготовить более питательную пищу, чем на костре.

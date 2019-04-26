@@ -5,7 +5,7 @@ Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
 기술 그룹 학습 완료: {0}
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-- {0}
+0
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
 제작:
@@ -14,7 +14,7 @@ Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
 파괴: {0}
 
 Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
-수집: {0}
+채집: {0}
 
 Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
 수집: {0}
@@ -23,10 +23,10 @@ Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
 장비: {0}
 
 Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-스킬 배우기: {0}을 레벨{1} 까지
+스킬 배우기: {0}을 레벨 {1}까지
 
 Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-스킬 배우기: {0}을 레벨{1} 까지
+스킬 배우기: {0}을 레벨 {1}까지
 
 Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
 기술 그룹 잠금 해제: {0}
@@ -44,7 +44,7 @@ Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
 생산: {0}
 
 Scripts/Quests/Requirements/RequirementRun@DescriptionText:
-10 미터 달리기
+10미터 달리기
 
 Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
 인벤토리 아이템 정렬하기
@@ -62,7 +62,7 @@ Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 침낭을 배치하여 부활 지점을 지정할 수 있습니다.
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
-`[*] 침낭은 거설 메뉴의 "기타" 카테고리 하단에 있습니다.
+`[*] 침낭은 건설 메뉴의 "기타" 카테고리 하단에 있습니다.
 [*] "집과 같은 곳"에서 부활할 수 있도록 침낭을 집이나 기지에 배치하는 것이 가장 좋은 전략입니다.
 [*] 첫 번째 침낭은 다른 플레이어들과 멀리 떨어져 있는 조용한 장소에 배치하세요. 그래야 그곳을 나중에 기지로 사용할 수 있습니다. 하지만 나중에 이동해야할 일이 생길지도 모르니, 너무 걱정하지 마세요.`
 
@@ -70,22 +70,22 @@ Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
 침낭 배치
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
-도구함을 갖게 되어, 기술 메뉴에서 잠겨 있지 않은 다른 구조물을 지을 수 있게 되었습니다. 음식을 요리할 수 있는 모닥불을 지어 봅시다.
+공구함을 갖게 되어, 기술 메뉴에서 잠겨 있지 않은 다른 구조물을 지을 수 있게 되었습니다. 음식을 요리할 수 있는 모닥불을 만들어 봅시다.
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
 `[*] 컨트롤을 변경하지 않았다면, "Tab"을 눌러 [b]건설 메뉴[/b]로 빠르게 이동할 수 있습니다
 [*] 더 많은 구조물을 잠금 해제 하였다면, 다양한 [b]건물 유형[/b]을 [b]여러 페이지[/b]로 확인할 수 있습니다.
-[*] 도구함은 구조물을 [b]건설[/b]할 때 뿐만 아니라, [b]수리[/b]할 때도 사용됩니다.`
+[*] 공구함은 구조물을 [b]건설[/b]할 때 뿐만 아니라, [b]수리[/b]할 때도 사용됩니다.`
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
-모닥불 피우기
+모닥불 만들기
 
 Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Description:
 이제 나무를 베어 봅시다! 나무를 찾아 도끼를 사용하여 베어 넘겨보세요.
 
 Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Hints:
-`[*] 도끼를 [b]단축막대[/b]에 넣어야 합니다. 인벤토리를 열고, 제작한 도끼를 하단의 단축막대 슬롯으로 드래그한 후, 인벤토리를 닫으세요..
-[*] 이제 (인벤토리가 닫혀 있을 때) 해당 숫자 버튼을 누르거나 마우스로 클릭하여 도끼를[b]선택[/b]할 수 있습니다.
+`[*] 도끼를 [b]단축막대[/b]에 넣어야 합니다. 인벤토리를 열고, 제작한 도끼를 하단의 단축막대 슬롯으로 드래그한 후, 인벤토리를 닫으세요.
+[*] 이제 (인벤토리가 닫혀 있을 때) 해당 숫자 버튼을 누르거나 마우스로 클릭하여 도끼를 [b]선택[/b]할 수 있습니다.
 [*] 기본 컨트롤 설정 하에서, [b]마우스 왼쪽 버튼[/b]으로 선택되어 있는 아이템을 항상 사용할 수 있고, [b]마우스 오른쪽 버튼[/b]으로 여러 오브젝트와 상호 작용할 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Name:
@@ -98,10 +98,10 @@ Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Description:
 모닥불을 피워서 기본 음식을 요리할 수 있게 되었습니다. 버섯이나 고기를 가지고 있다면, 요리해서 더욱 영양가 있고, 안전한 음식으로 만들 수 있습니다.
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
-`[*] "요리법 찾기"를 누르면 모닥불에서 만들 수 있는 [b]모든 요리법[/b]을 볼 수 있습니다.
-[*] 요리를 하려면, [b]적합한 요리법을 선택[/b]해야 합니다.
+`[*] "조리법 찾기"를 누르면 모닥불에서 만들 수 있는 [b]모든 조리법[/b]을 볼 수 있습니다.
+[*] 요리를 하려면, [b]적합한 조리법을 선택[/b]해야 합니다.
 [*] 모닥불에는 [b]연료[/b]가 있어야 합니다. [b]나무나 숯[/b]을 연료 슬롯에 놓으세요.
-[*] 나중에 [b]기술 메뉴[/b]에서 [b]새로운 요리법[/b]을 배울 수 있게 됩니다.
+[*] 나중에 [b]기술 메뉴[/b]에서 [b]새로운 조리법[/b]을 배울 수 있게 됩니다.
 [*] 모든 아이템 (음식 포함)은 [b]인벤토리[/b]에서 직접 또는 [b]단축막대[/b]에 배치하여 사용할 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
@@ -150,7 +150,7 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Description:
 기본 도구를 만들려면 몇 가지 자원을 모아야 합니다.
 
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
-`[u]돌[/u]이나 [u]잔가지[/u], [u]풀[/u]과 같은 땅에 떨어져 있는 [b]아이템은 주울 수 있습니다[/b].
+`[u]돌[/u]이나 [u]잔가지[/u], [u]풀[/u]과 같이 땅에 떨어져 있는 [b]아이템은 주울 수 있습니다[/b].
 [*] 땅에 떨어져 있는 아이템을 [b]마우스 오른쪽 버튼[/b]으로 간단히 클릭하면, 해당 아이템이 인벤토리에 추가됩니다.`
 
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
@@ -171,7 +171,7 @@ Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
 돌 채굴하기
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Description:
-이 곡괭이를 들어서 사용해봅시다. 광물 몇 개를 채굴하여 무엇을 얻는지 확인하세요. 또한 큰 바위에서도 돌을 얻을 수 있습니다.
+이 곡괭이를 들어서 사용해봅시다. 광물 몇 개를 채굴하여 무엇을 얻는지 확인하세요. 또한, 큰 바위에서도 돌을 얻을 수 있습니다.
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
 `[*] 다른 유용한 도구들과 마찬가지로, 곡괭이를 [b]단축막대[/b]에 넣어야 합니다.
@@ -223,7 +223,7 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
 `[*] 다른 생존자들이 농작물을 가져 갈 수 도 있기 때문에 [b]벽 내부[/b]에 농장을 짓는 것이 좋습니다.
-[*] 모든 농작물은 생장 시간, 수확 가능 횟수, 그밖의 특성이 전부 다릅니다.
+[*] 모든 농작물은 생장 시간, 수확 가능 횟수, 그 밖의 특성이 전부 다릅니다.
 [*] 나중이 되면, 농장의 생산성을 높이기 위해 더 나은 비료와 기타 사항들을 연구할 수 있게 됩니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
@@ -243,18 +243,18 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `기지를 보호하는 방법을 제대로 알아야 합니다! 그렇지 않으면, 교활한 생존자들이 쉽게 공격해 올 수 있기 때문이죠.
 [br]
-[br]기지를 지키기 위해 가장 중요한 것은 토지 점유소를 올바르게 사용하는 것입니다. 더욱 좋은 기지 건설 계획을 위해서는 벽이나 문, 그밖의 구조물들을 배치하기 전에 우선적으로 토지 점유소를 배치해야 합니다.
+[br]기지를 지키기 위해 가장 중요한 것은 토지 점유소를 올바르게 사용하는 것입니다. 더욱 좋은 기지 건설 계획을 위해서는 벽이나 문, 그 밖의 구조물들을 배치하기 전에 우선적으로 토지 점유소를 배치해야 합니다.
 [br]
 [br]토지 점유소가 적절한 위치에 배치가 되면, 그 주위로 벽을 지을 수 있게 됩니다. 토지 점유소의 보호 구역 [b][u]내부[/u][/b]에 벽을 설치하는 것이 대단히 중요합니다. 만약 그렇지 않을 경우, 다른 생존자들이 토지 점유소를 [b]수초 내로 해체[/b]할 수 있습니다.
 [br]
-[br]토지 점유 구역은 더 많은 땅을 보호하기 위해 확장될 수 있으며, 더욱 확실히 보호하기 위해 추가 벽을 설치할 수 있습니다. 일반적으로 벽을 2 겹 설치하면 대부분의 공격자들이 당신의 기지에 매우 가치있는 것이 있지 않은 한, 기지를 공격하지 않습니다.
+[br]토지 점유 구역은 더 많은 땅을 보호하기 위해 확장될 수 있으며, 더욱 확실히 보호하기 위해 추가 벽을 설치할 수 있습니다. 일반적으로 벽을 2겹 설치하면 대부분의 공격자들이 당신의 기지에 매우 가치 있는 것이 있지 않은 한, 기지를 공격하지 않습니다.
 [br]
-[br]기지에 문은 적어도 2 개만 있으면 되지만, 많으면 많을 수록 좋습니다.`
+[br]기지에 문은 적어도 2개만 있으면 되지만, 많으면 많을수록 좋습니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Hints:
 `[*] 토지 점유소와 연결되는 토지 점유 메뉴를 열어 보세요. 그곳에서는 자세한 정보를 보거나 상위 단계로 업그레이드할 수 있습니다.
 [*] 토지 점유 구역 외부의 구조물은 하루나 이틀이 지나면 빠르게 노후되기 시작합니다. 구조물은 반드시 토지 점유 구역 내부에 지어야 합니다.
-[*] 어떠한 구조물이든 토지 점유 구역 내부에 있다면, 쇠지렛대 (1 단계 건설)를 사용하여 빠르고 편리하게 구조물을 해체할 수 있습니다.
+[*] 어떠한 구조물이든 토지 점유 구역 내부에 있다면, 쇠지렛대 (1단계 건설)를 사용하여 빠르고 편리하게 구조물을 해체할 수 있습니다.
 [*] 모든 제작소와 다른 구조물들을 기지 안에 배치할 필요는 없습니다. 일반적으로 다른 플레이어들은 훔쳐갈 것이 없는 곳에는 관심을 가지지 않습니다. 따라서 상자나 제련소와 같이 더 중요한 구조물을 위해 기지 내부 공간을 계획적으로 사용하세요.`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Name:
@@ -299,7 +299,7 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Name:
 농사 효율성
 
 Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Description:
-생존하고 번영하기 위해서는 많은 량의 물에 쉽게 접근할 수 있어야 합니다. 물은 음료 뿐만 아니라 공업 용도로도 사용됩니다.
+생존하고 번영하기 위해서는 많은 양의 물에 쉽게 접근할 수 있어야 합니다. 물은 음료뿐만 아니라 공업 용도로도 사용됩니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Hints:
 `[*] 아무 [b]해변 또는 호숫가[/b]에서나 [b]모래[/b]를 거의 무제한으로 쉽게 찾을 수 있습니다.
@@ -313,7 +313,7 @@ Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Name:
 더 좋은 물 공급 방법 배우기
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
-격력한 전투를 거치면, 체력이 닳게 됩니다. 다양한 약품을 만들어 체력을 회복하고 모든 고통에서 벗어날 수 있습니다. 그저 초록색 약초를 사용하는 것만으로는 충분하지 않습니다.
+격렬한 전투를 거치면, 체력이 닳게 됩니다. 다양한 약품을 만들어 체력을 회복하고 모든 고통에서 벗어날 수 있습니다. 그저 초록색 약초를 사용하는 것만으로는 충분하지 않습니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
 `[*] CryoFall에는 다양한 약품이 있습니다. 체력을 회복시키는 약, 특정 질병을 치료하는 약 등 종류가 매우 다양합니다.
@@ -363,18 +363,18 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Description:
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
 `[*] 천 방어구가 큰 방어력을 제공해주지 않을진 몰라도, 저렴하며, 분명한 건, 아무것도 장비하지 않는 것보다는 훨씬 낫다는 겁니다..
-[*] [b]다양한 대미지 유형[/b]이 있으며, 또한 방어구마다 다른 방어 특성을 가지고 있습니다. 이 정보는 인벤토리 화면에서 확인할 수 있습니다.`
+[*] [b]다양한 대미지 유형[/b]이 있으며, 또한, 방어구마다 다른 방어 특성을 가지고 있습니다. 이 정보는 인벤토리 화면에서 확인할 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
 천 방어구 만들고 장비하기
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
-두개골을 메이스로 부숴버리는 것도 나쁘진 않지만, 때로는 좀 더 멀리서 공격해야할 때도 있습니다. 특히 더 무시무시한 적들을 상대할 때는 말이죠.
+두개골을 메이스로 부숴버리는 것도 나쁘진 않지만, 때로는 좀 더 멀리서 공격해야 할 때도 있습니다. 특히 더 무시무시한 적들을 상대할 때는 말이죠.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
 `[*] "공격 & 방어" 기술 그룹에서 모든 관련 기술들의 잠금을 해제할 수 있습니다.
 [*] 페이퍼 카트리지를 만들려면, 우선 [b]화약[/b]과 [b]종이[/b]를 만들어야 합니다.
-[*] [b]다양한 대미지 유형[/b]이 있으며, 또한 방어구마다 다른 방어 특성을 가지고 있습니다. 이 정보는 인벤토리 화면에서 확인할 수 있습니다.`
+[*] [b]다양한 대미지 유형[/b]이 있으며, 또한, 방어구마다 다른 방어 특성을 가지고 있습니다. 이 정보는 인벤토리 화면에서 확인할 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
 원거리 무기 만들기
@@ -383,7 +383,7 @@ Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
 모든 환경에는 각기 다른 특성을 지닌 고유한 동식물이 살고 있습니다. 그것을 최대한 활용하는 것이 좋습니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Hints:
-`[*] 초원에는 덤불과 허브, 그밖의 식량거리가 많이 있습니다.
+`[*] 초원에는 덤불과 허브, 그 밖의 식량거리가 많이 있습니다.
 [*] 물가 근처에는 많은 수생 동물들을 찾을 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Name:
@@ -405,7 +405,7 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 `[*] 초록색 약초는 모든 약품 중에서도 가장 기본적인 것이며, 상대적으로 손쉽게 얻을 수 있습니다..
-[*] 허브와 그밖의 작은 식물들은 숲의 초원에서 매우 많이 자라고 있습니다.
+[*] 허브와 그 밖의 작은 식물들은 숲의 초원에서 매우 많이 자라고 있습니다.
 [*] 초록색 허브가 상자를 어지럽힐 만큼 너무 많다면, 그대로 사용해도 되지만, 그렇지 않다면 약품 아이템으로 만들어 사용하는 것이 훨씬 현명한 방법입니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
@@ -415,9 +415,9 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
 사냥하러 갈 시간입니다! 처음에는 위험한 동물들을 피하는 것이 나을지도 모르지만, 다양한 선택권이 있습니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Hints:
-`[*] 동물들은 당신이 찾고 싶어하는 전리품을 각기 다르게 가지고 있습니다. 이때, 사냥 기술 역시 중요한 역할을 합니다.
+`[*] 동물들은 당신이 찾고 싶어 하는 전리품을 각기 다르게 가지고 있습니다. 이때, 사냥 기술 역시 중요한 역할을 합니다.
 [*] 사냥은 더 많은 경험치와 학습 포인트를 얻을 수 있는 매우 좋은 방법입니다.
-[*] 현실에서는 절대 따라하지 마세요!`
+[*] 현실에서는 절대 따라 하지 마세요!`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Name:
 사냥 숙달하기-제1부
@@ -436,7 +436,7 @@ Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
 아무 스킬이나 잠금 해제하기
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Description:
-CryoFall의 새로운 스킬들은 주어진 분야에서 특정한 활동을 하며 시간을 보내면 잠금이 해제됩니다. 점점 더 많은 스킬의 잠금을 해제하는 것은 장기적으로 좋은 전략입니다. 그 이유는 각 분야에서의 숙력도가 향상되기 때문입니다.
+CryoFall의 새로운 스킬들은 주어진 분야에서 특정한 활동을 하며 시간을 보내면 잠금이 해제됩니다. 점점 더 많은 스킬의 잠금을 해제하는 것은 장기적으로 좋은 전략입니다. 그 이유는 각 분야에서의 숙련도가 향상되기 때문입니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
 [*] 높은 스킬 레벨은 해당 분야의 전반적인 숙련도를 향상시킬 뿐만 아니라, 특전을 제공합니다.
@@ -463,17 +463,17 @@ Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Name:
 의료 연구실 짓기
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Description:
-현 시점에서, 2 단계 기술을 모두 완벽하게 하여 특정 분야의 전문화를 위한 탄탄한 토대를 마련하는 것이 좋습니다.
+현 시점에서, 2단계 기술을 모두 완벽하게 하여 특정 분야의 전문화를 위한 탄탄한 토대를 마련하는 것이 좋습니다.
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
-`[*] 초기 기술 (1, 2 단계)은 상대적으로 잠금을 해제하는 것이 저렴하므로 모든 기술을 배우는 것이 좋습니다.
-[*] 고급 기술 (3 단계 이상)의 경우, 몇 가지를 전문적으로 파는 것이 좋습니다. 모든 기술을 다 배우려고 하기 보다는 다양한 기술 중 어느것이 자신에게 중요한 지 고려하는 것이 더 낫습니다.`
+`[*] 초기 기술 (1, 2단계)은 상대적으로 잠금을 해제하는 것이 저렴하므로 모든 기술을 배우는 것이 좋습니다.
+[*] 고급 기술 (3단계 이상)의 경우, 몇 가지를 전문적으로 파는 것이 좋습니다. 모든 기술을 다 배우려고 하기 보다는 다양한 기술 중 어느것이 자신에게 중요한 지 고려하는 것이 더 낫습니다.`
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 기술 숙달하기-제2부
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
-또한 더욱 도전적인 환경은 탐험하긴 어렵지만, 그곳에서만 얻을 수 있는 독특한 자원이 있습니다.
+또한, 더욱 도전적인 환경은 탐험하긴 어렵지만, 그곳에서만 얻을 수 있는 독특한 자원이 있습니다.
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
 `[*] 척박한 환경에는 많은 사막 동물들이 살고 있습니다.

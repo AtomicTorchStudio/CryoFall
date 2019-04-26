@@ -20,7 +20,9 @@
                 }
 
                 this.item = value;
-                this.OverlayControl = this.item != null ? CreateOverlayControl(this.item) : null;
+                this.OverlayControl = this.item != null 
+                                          ? CreateOverlayControl(this.item) 
+                                          : null;
             }
         }
 

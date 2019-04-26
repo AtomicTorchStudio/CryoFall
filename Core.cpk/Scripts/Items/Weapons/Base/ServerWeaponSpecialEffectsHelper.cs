@@ -2,14 +2,21 @@
 {
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     public static class ServerWeaponSpecialEffectsHelper
     {
+        /// <summary>
+        /// Defines min damage - only damage exceeding this constant will apply the special effect.
+        /// </summary>
+        public static readonly double MinDamageForSpecialEffect
+            = 5 * WeaponConstants.DamagePvpMultiplier;
+
         public static void OnAxeHit(ICharacter damagedCharacter, double damage)
         {
-            if (damage < 5)
+            if (damage < MinDamageForSpecialEffect)
             {
                 return;
             }
@@ -33,7 +40,7 @@
 
         public static void OnFirearmHit(ICharacter damagedCharacter, double damage)
         {
-            if (damage < 5)
+            if (damage < MinDamageForSpecialEffect)
             {
                 return;
             }
@@ -43,7 +50,7 @@
 
         public static void OnKnifeHit(ICharacter damagedCharacter, double damage)
         {
-            if (damage < 5)
+            if (damage < MinDamageForSpecialEffect)
             {
                 return;
             }
@@ -53,7 +60,7 @@
 
         public static void OnLaserHit(ICharacter damagedCharacter, double damage)
         {
-            if (damage < 5)
+            if (damage < MinDamageForSpecialEffect)
             {
                 return;
             }
@@ -64,7 +71,7 @@
 
         public static void OnLaserRapierHit(ICharacter damagedCharacter, double damage)
         {
-            if (damage < 5)
+            if (damage < MinDamageForSpecialEffect)
             {
                 return;
             }
@@ -77,7 +84,7 @@
 
         public static void OnMaceHit(ICharacter damagedCharacter, double damage)
         {
-            if (damage < 5)
+            if (damage < MinDamageForSpecialEffect)
             {
                 return;
             }
@@ -88,7 +95,7 @@
 
         public static void OnPickaxeHit(ICharacter damagedCharacter, double damage)
         {
-            if (damage < 5)
+            if (damage < MinDamageForSpecialEffect)
             {
                 return;
             }
@@ -112,7 +119,7 @@
 
         public static void OnShotgunHit(ICharacter damagedCharacter, double damage)
         {
-            if (damage < 5)
+            if (damage < MinDamageForSpecialEffect)
             {
                 return;
             }

@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data;
@@ -30,7 +31,8 @@
 
             this.ViewModelOwnersEditor = new ViewModelWorldObjectOwnersEditor(
                 privateState.Owners,
-                canEditOwners: isOwner,
+                canEditOwners: isOwner
+                               || CreativeModeSystem.ClientIsInCreativeMode(),
                 callbackServerSetOwnersList:
                 ownersList => WorldObjectOwnersSystem.ClientSetOwners(this.WorldObjectCrate,
                                                                       ownersList),

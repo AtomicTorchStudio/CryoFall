@@ -137,9 +137,39 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitE
 `Você esgotou sua quantidade de posse de terra.
 [br]É possível aumentar esse número pesquisando novas tecnologias.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
+Você precisa pesquisar Xenogeologia (Nível 3) para reivindicar os depósitos de petróleo/lítio ou instalar uma posse de terra próxima.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `Você está sob ataque.[br]
 Enquanto sua base estiver sob ataque, não é possível construir novas estruturas.`
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
+Cancelar proteção de novato
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
+Quer mesmo cancelar a proteção de novato? Você não vai poder reativá-la.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
+Você está sob a proteção de novato. Ela protege você contra a perda dos itens e pontos de aprendizagem se seu personagem for morto por outro jogador. Além disso, em outros casos de morte, os itens que você derrubar não podem ser saqueados por outros jogadores. Siga as missões para produzir as ferramentas e armas necessárias, e construir uma pequena base o mais rápido possível!
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
+A proteção de novato vai expirar em:
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
+Enquanto estiver sob a proteção de novato, você não pode atacar outros jogadores nem saquear a mochila ou os itens deles. Porém, você pode cancelar essa proteção a qualquer momento no menu social.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
+Não é possível executar esta ação sob a proteção de novato. Porém, você pode cancelar essa proteção a qualquer momento no menu social.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
+Esta mochila está sob proteção de novato; por isso, apenas o dono pode pegá-la.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_ProtectionExpired:
+A proteção de novatos expirou. Agora você está livre para se travar lutas JvJ, mas tome cuidado: seu personagem vai derrubar todos os itens depois de morrer.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Title_NewbieProtection:
+Proteção de novato
 
 Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
 Não há espaço livre no inventário

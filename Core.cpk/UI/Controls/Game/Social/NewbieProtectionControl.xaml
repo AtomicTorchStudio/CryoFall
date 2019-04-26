@@ -1,0 +1,52 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.NewbieProtectionControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.Systems.NewbieProtection"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance data:ViewModelNewbieProtectionControl, d:IsDesignTimeCreatable=True}"
+    d:DesignHeight="300" d:DesignWidth="300"
+    Visibility="{Binding Visibility}">
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+        <Grid HorizontalAlignment="Center"
+              Margin="-5,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Image Source="/UI/Images/Icons/icon_death_protection.png"
+                   Width="24"
+                   Height="24"
+                   Stretch="Uniform"
+                   VerticalAlignment="Center"
+                   UseLayoutRounding="True"
+                   Margin="0,0,5,0" />
+            <TextBlock Grid.Column="1"
+                       Text="{x:Static loc:NewbieProtectionSystem.Title_NewbieProtection}"
+                       HorizontalAlignment="Center"
+                       FontFamily="{StaticResource CondensedFontFamily}"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center" />
+        </Grid>
+
+        <Button Command="{Binding CommandCancelNewbieProtection}"
+                HorizontalAlignment="Center"
+                Margin="0,5,0,0">
+            <Button.Content>
+                <TextBlock Text="{x:Static loc:NewbieProtectionSystem.Button_CancelNewbieProtection}"
+                           TextWrapping="Wrap" />
+            </Button.Content>
+        </Button>
+
+        <Control Style="{StaticResource ControlHorizontalSeparator}"
+                 Margin="0,20,0,15" />
+    </StackPanel>
+
+</base:BaseUserControl>

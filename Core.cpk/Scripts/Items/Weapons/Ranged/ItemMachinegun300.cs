@@ -20,7 +20,7 @@
         public override double CharacterAnimationAimingRecoilPowerAddCoef
             => 1 / 2.5; // full recoil power will be gained on third shot
 
-        public override double DamageMultiplier => 0.9; // slightly lower than default
+        public override double DamageMultiplier => 0.8; // slightly lower than default
 
         public override string Description => "Heavy machine gun developed for high-power .300 rounds.";
 

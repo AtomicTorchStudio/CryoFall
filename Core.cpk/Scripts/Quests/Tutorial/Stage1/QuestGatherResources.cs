@@ -17,7 +17,7 @@
         protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
         {
             requirements
-                .Add(RequirementHaveItem.Require<ItemFibers>(count: 20))
+                .Add(RequirementHaveItem.Require<ItemFibers>(count: 10))
                 .Add(RequirementHaveItem.Require<ItemTwigs>(count: 10))
                 .Add(RequirementHaveItem.Require<ItemStone>(count: 10));
         }

@@ -34,11 +34,11 @@
             ConstructionStageConfig build,
             ConstructionStageConfig repair)
         {
-            build.StagesCount = 10;
+            build.StagesCount = 1;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemThread>(count: 10);
-            build.AddStageRequiredItem<ItemRope>(count: 1);
-            build.AddStageRequiredItem<ItemGlue>(count: 1);
+            build.AddStageRequiredItem<ItemThread>(count: 100);
+            build.AddStageRequiredItem<ItemRope>(count: 10);
+            build.AddStageRequiredItem<ItemGlue>(count: 10);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

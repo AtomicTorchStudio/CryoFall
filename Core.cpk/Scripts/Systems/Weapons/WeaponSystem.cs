@@ -39,7 +39,7 @@
                 return;
             }
 
-            state.SetInputIsFiring(isFiring);
+            state.SharedSetInputIsFiring(isFiring);
 
             uint shotsDone = 0;
             if (!isFiring)
@@ -138,14 +138,7 @@
             if (state.SharedGetInputIsFiring()
                 && !character.IsOnline)
             {
-                state.SetInputIsFiring(false);
-            }
-
-            if (state.SharedGetInputIsFiring()
-                && StatusEffectDazed.SharedIsCharacterDazed(character,
-                                                            StatusEffectDazed.NotificationCannotAttackWhileDazed))
-            {
-                state.SetInputIsFiring(false);
+                state.SharedSetInputIsFiring(false);
             }
 
             // check ammo (if applicable to this weapon prototype)
@@ -530,7 +523,15 @@
                                 }
 
                                 Server.World.GetScopedByPlayers(hitObject.WorldObject, scopedBy);
+                                // don't notify the attacking character
                                 scopedBy.Remove(character);
+
+                                if (hitObject.WorldObject is ICharacter damagedCharacter)
+                                {
+                                    // notify the damaged character
+                                    scopedBy.Add(damagedCharacter);
+                                }
+
                                 if (scopedBy.Count == 0)
                                 {
                                     continue;
@@ -602,7 +603,7 @@
 
             var state = ClientCurrentCharacterHelper.PrivateState.WeaponState;
             state.ShotsDone = (uint)MathHelper.Clamp(
-                state.ShotsDone + extraShotsDone,
+                state.ShotsDone - extraShotsDone,
                 0,
                 ushort.MaxValue);
         }
@@ -664,7 +665,7 @@
             //               ? "SetWeaponFiringMode: firing!"
             //               : $"SetWeaponFiringMode: stop firing! Shots done: {clientShotsDone}");
 
-            weaponState.SetInputIsFiring(isFiring,
+            weaponState.SharedSetInputIsFiring(isFiring,
                                          clientShotsDone);
         }
     }

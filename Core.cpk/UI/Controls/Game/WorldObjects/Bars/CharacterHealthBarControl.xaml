@@ -9,7 +9,8 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     mc:Ignorable="d"
     IsHitTestVisible="False"
-    d:DataContext="{d:DesignInstance data:ViewModelCharacterHealthBarControl, IsDesignTimeCreatable=True}">
+    d:DataContext="{d:DesignInstance data:ViewModelCharacterHealthBarControl, IsDesignTimeCreatable=True}"
+    Visibility="{Binding HealthbarVisibility}">
 
     <core:ValueBarControl
         Background="#88330000"

@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.OffenseAndDefense;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestCraftAndEquipClothArmor : ProtoQuest
     {
@@ -20,9 +21,18 @@
         {
             requirements
                 .Add(RequirementHaveTechNode.Require<TechNodeClothArmor>())
-                .Add(RequirementHaveItemEquipped.Require<ItemClothHat>())
-                .Add(RequirementHaveItemEquipped.Require<ItemClothShirt>())
-                .Add(RequirementHaveItemEquipped.Require<ItemClothPants>());
+                // suggest cloth hat but require any head item
+                .Add(RequirementHaveItemEquipped.Require<IProtoItemEquipmentHead>(
+                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
+                                       Api.GetProtoEntity<ItemClothHat>().Name)))
+                // suggest cloth shirt but require any chest item
+                .Add(RequirementHaveItemEquipped.Require<IProtoItemEquipmentChest>(
+                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
+                                       Api.GetProtoEntity<ItemClothShirt>().Name)))
+                // suggest cloth pants but require any legs item
+                .Add(RequirementHaveItemEquipped.Require<IProtoItemEquipmentLegs>(
+                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
+                                       Api.GetProtoEntity<ItemClothPants>().Name)));
 
             prerequisites
                 .Add<QuestUnlockAndBuildWorkbench>();

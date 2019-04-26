@@ -18,10 +18,10 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemPlastic>(count: 1);
+            inputItems.Add<ItemPlastic>(count: 2);
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 1);
 
-            outputItems.Add<ItemFibers>(count: 25);
+            outputItems.Add<ItemFibers>(count: 50);
         }
     }
 }

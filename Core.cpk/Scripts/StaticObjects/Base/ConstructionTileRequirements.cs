@@ -8,6 +8,8 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
@@ -34,6 +36,8 @@
 
         public const string ErrorNotSolidGround = "Not a solid ground.";
 
+        public const string ErrorPlayerNearby = "There are other players nearby.";
+
         public const string ErrorStandingInCell = "You're standing in the cell!";
 
         public const string ErrorTooCloseToCliffOrSlope = "Cannot build—too close to a cliff or slope.";
@@ -41,6 +45,8 @@
         public const string ErrorTooCloseToWater = "Cannot build—too close to water.";
 
         public const double RequirementNoNpcsRadius = 5;
+
+        public const double RequirementNoPlayersRadius = 5;
 
         public static readonly IConstructionTileRequirementsReadOnly BasicRequirements;
 
@@ -66,6 +72,12 @@
             = new Validator(ErrorCreaturesNearby,
                             c =>
                             {
+                                if (c.CharacterBuilder == null)
+                                {
+                                    // don't perform this check if the action is done by the server only
+                                    return true;
+                                }
+
                                 var physicsSpace = WorldService.GetPhysicsSpace();
                                 using (var tempList = physicsSpace.TestCircle(
                                     position: c.Tile.Position.ToVector2D() + (0.5, 0.5),
@@ -79,6 +91,50 @@
                                             && character.IsNpc)
                                         {
                                             // found npc nearby
+                                            return false;
+                                        }
+                                    }
+
+                                    return true;
+                                }
+                            });
+
+        /// <summary>
+        /// Checks if there is any NPC nearby (circle physics check with radius defined by the constant RequirementNoNpcsRadius).
+        /// </summary>
+        public static Validator ValidatorNoPlayersNearby
+            = new Validator(ErrorPlayerNearby,
+                            c =>
+                            {
+                                if (c.CharacterBuilder == null)
+                                {
+                                    // don't perform this check if the action is done by the server only
+                                    return true;
+                                }
+
+                                var tilePosition = c.Tile.Position;
+                                if (LandClaimSystem.SharedIsOwnedLand(tilePosition, c.CharacterBuilder, out _))
+                                {
+                                    // don't perform this check if this is the owned land
+                                    return true;
+                                }
+
+                                var physicsSpace = WorldService.GetPhysicsSpace();
+                                using (var tempList = physicsSpace.TestCircle(
+                                    position: tilePosition.ToVector2D() + (0.5, 0.5),
+                                    radius: RequirementNoPlayersRadius,
+                                    collisionGroup: DefaultCollisionGroup,
+                                    sendDebugEvent: false))
+                                {
+                                    foreach (var entry in tempList)
+                                    {
+                                        if (entry.PhysicsBody.AssociatedWorldObject is ICharacter character
+                                            && !character.IsNpc
+                                            && !PartySystem.SharedArePlayersInTheSameParty(
+                                                c.CharacterBuilder,
+                                                character))
+                                        {
+                                            // found player nearby and they're not a party member
                                             return false;
                                         }
                                     }
@@ -187,6 +243,9 @@
             BasicRequirements = new ConstructionTileRequirements()
                                 .Add(ErrorNotSolidGround,
                                      c => c.Tile.ProtoTile.Kind == TileKind.Solid)
+                                .Add(ErrorCannotBuildInRestrictedArea,
+                                     c => c.CharacterBuilder == null
+                                          || !c.Tile.ProtoTile.IsRestrictingConstruction)
                                 .Add(ErrorCannotBuildOnCliffOrSlope,
                                      c => !c.Tile.IsCliffOrSlope)
                                 .Add(ErrorTooCloseToCliffOrSlope,

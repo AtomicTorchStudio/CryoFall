@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
@@ -20,7 +21,7 @@
             //{
             //    onlinePlayers = new List<string>()
             //        { "Test1", "Test2", "Test33333333333333333333", "Test444444", "Test5" };
-            //    for (var i = 0; i < 2; i++)
+            //    for (var i = 0; i < 4; i++)
             //    {
             //        onlinePlayers = onlinePlayers.Concat(onlinePlayers.ToList());
             //    }

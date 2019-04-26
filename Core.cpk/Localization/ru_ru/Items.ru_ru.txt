@@ -314,7 +314,7 @@ Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
 Плотная подбитая ткань, которая на удивление неплохо защищает от всех видов урона и воздействий окружающей среды.
 
 Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
-Гамбезон
+Стеганка
 
 Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
 Стеганая шапка
@@ -1521,7 +1521,7 @@ Scripts/Items/Medical/ItemRemedyHerbal@Name:
 Лекарство из трав
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
-У нас нет сломанных костей. Нет повода накладывать шину.
+Нет повода накладывать шину.
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
 Нет переломов

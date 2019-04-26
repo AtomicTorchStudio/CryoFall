@@ -58,6 +58,9 @@
         // to block (mute) chat messages from the selected player
         public const string Chat_MessageMenu_Block = "Block";
 
+        // copy name of the selected player
+        public const string Chat_MessageMenu_CopyName = "Copy name";
+
         public const string Chat_MessageMenu_InviteToParty = "Invite to party";
 
         // mention the selected player
@@ -90,6 +93,8 @@
               You can unlock more recipes in the technologies menu.";
 
         public const string CraftingRecipesList_TitleRecipesUnlocked = "Recipes unlocked";
+
+        public const string CryoFallDevelopmentRoadmap = "CryoFall Development Roadmap";
 
         public const string Defense_Format_Chemical = "Chemical protection: {0}";
 
@@ -143,6 +148,9 @@
         public const string HUDButtonsBar_MenuTitle_Quests = "Quests";
 
         public const string HUDButtonsBar_MenuTitle_Skills = "Skills";
+
+        // this is a menu with players list and party management
+        public const string HUDButtonsBar_MenuTitle_Social = "Social";
 
         public const string HUDButtonsBar_MenuTitle_Technologies = "Technologies";
 
@@ -236,6 +244,7 @@
               [br][br]You can use this section to quickly join
               [br]a server you've played recently.";
 
+        // this is a small block with links on our social pages
         public const string MenuHome_Social = "Social";
 
         public const string MenuLogin_SteamError_Message =
@@ -382,8 +391,9 @@
         public const string PartyManagement_HowToInvite =
             "Enter player name below to invite them or right click any player name in the chat.";
 
+        // TODO: this is a poor description which requires rewriting ASAP meanwhile the line is hidden.
         public const string PartyManagement_InfoExperienceSharing =
-            "Part of the Learning Points gained by any member of the party is shared equally among members.";
+            "Part of the learning points gained by any member of the party is shared equally among members.";
 
         public const string PartyManagement_InviteMember = "Invite member";
 
@@ -643,6 +653,11 @@
 
         public const string WindowRespawn_Message =
             "Looks like you've been forcibly parted from this cruel world...and you lost all your stuff! Do you want revenge?";
+
+        public const string WindowRespawn_MessageWithNewbieProtection =
+            "Looks like you've been killed by another player. But thankfully you still have your newbie protection, so you didn't lose any of your items or learning points. Be careful—next time this might be for real!";
+
+        public const string WindowRespawn_DamageSources = "Recent damage sources:";
 
         public const string WindowRespawn_TooltipCooldownExplanation =
             @"You've respawned in the bed recently.

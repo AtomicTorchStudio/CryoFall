@@ -129,8 +129,7 @@
                     }
                 }
 
-                if (LandClaimSystem.SharedGetAreaAtPosition(randomPosition) is ILogicObject area
-                    && !LandClaimSystem.ServerIsOwnedArea(area, character))
+                if (!LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(randomPosition, character))
                 {
                     // the land is claimed by another player
                     continue;

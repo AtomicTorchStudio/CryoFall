@@ -55,7 +55,7 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 1);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 2);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

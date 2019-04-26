@@ -23,10 +23,13 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCreaturesNearby:
 근처에 생명체가 있습니다.
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNoFreeSpace:
-빈 공간 없음.
+공간 없음.
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
 지면이 단단하지 않음.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorPlayerNearby:
+다른 플레이어들이 근처에 있습니다.
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
 플레이어가 해당 칸에 있습니다!
@@ -47,7 +50,7 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
 조사
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
-수집
+채집
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 상호 작용
@@ -306,7 +309,7 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Name:
 무기 작업대
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Description:
-다양한 아이템을 만들 때 사용됩니다. 일반적인 제작소의 역할을 합니다. 또한 손으로 만드는 모든 제조법도 포함됩니다.
+다양한 아이템을 만들 때 사용됩니다. 일반적인 제작소의 역할을 합니다. 또한, 손으로 만드는 모든 제조법도 포함됩니다.
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 작업대
@@ -375,7 +378,7 @@ Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
 철문
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Description:
-강철에게는 그에 걸맞는 대우를 해주어야 할 필요가 있습니다. 아주 강력한 폭탄 외에는 그 어떤 것이 와도 한치 찌그러지지 않을 겁니다.
+강철에게는 그에 걸맞은 대우를 해주어야 할 필요가 있습니다. 아주 강력한 폭탄 외에는 그 어떤 것이 와도 한치 찌그러지지 않을 겁니다.
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Name:
 강철문
@@ -393,7 +396,7 @@ Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
 농경지
 
 Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
-집을 꾸미거나 그밖의 다른 목적으로 사용할 수 있는 꽃을 키울 수 있습니다. 어디든 만들어 놓을 수 있습니다.
+집을 꾸미거나 그 밖의 다른 목적으로 사용할 수 있는 꽃을 키울 수 있습니다. 어디든 만들어 놓을 수 있습니다.
 
 Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
 화분
@@ -444,22 +447,22 @@ Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
 소형 냉장고
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
-다른 생존자들이 주변에 어떤 것을 건설하거나 해체하는 것을 막아줌으로써 당신의 기지를 더 안전하게 해줍니다. 또한 토지 점유소는 시간이 흘러도 구조물이 노후되지 않도록 해줍니다.
+다른 생존자들이 주변에 어떤 것을 건설하거나 해체하는 것을 막아줌으로써 당신의 기지를 더 안전하게 해줍니다. 또한, 토지 점유소는 시간이 흘러도 구조물이 노후되지 않도록 해줍니다.
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Name:
-토지 점유소 (1 단계)
+토지 점유소 (1단계)
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@DescriptionUpgrade:
 보호 영역, 구조물의 온전성 및 파괴 지연 최대치 증가.
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@Name:
-토지 점유소 (2 단계)
+토지 점유소 (2단계)
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT3@Name:
-토지 점유소 (3 단계)
+토지 점유소 (3단계)
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
-토지 점유소 (4 단계)
+토지 점유소 (4단계)
 
 Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
 토지 점유 영역
@@ -495,13 +498,13 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
 대형 스탠드
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Description:
-단순한 석유 연소식 스탠드. 노란 빛을 발하여 어느 공간이라도 더욱 아늑한 느낌을 줍니다.
+단순한 석유 연소식 스탠드. 노란빛을 발하여 어느 공간이라도 더욱 아늑한 느낌을 줍니다.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
 석유 연소식 스탠드
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
-전기 스탠드의 소형판. 크기가 작아도 꽤 밝습이다. 일회용 배터리를 사용합니다.
+전기 스탠드의 소형판. 크기가 작아도 꽤 밝습니다. 일회용 배터리를 사용합니다.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 소형 스탠드
@@ -513,7 +516,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Name:
 모닥불
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
-여러 금속으로 주화를 만들 때 사용됩니다. 또한 주화를 녹여 주괴로 되돌릴 수도 있습니다.
+여러 금속으로 주화를 만들 때 사용됩니다. 또한, 주화를 녹여 주괴로 되돌릴 수도 있습니다.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 주화 주조
@@ -573,13 +576,13 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 조리용 난로
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
-소량의 물을 모을 수 있도록 설계된 단순한 물 수집기. 왜인지는 모르겠지만, 사막이나 그밖의 암석 지대에서는 제기능을 못합니다...
+소량의 물을 모을 수 있도록 설계된 단순한 물 수집기. 왜인지는 모르겠지만, 사막이나 그 밖의 암석 지대에서는 제기능을 못합니다...
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 물 수집기
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
-깨끗한 물을 무한히 제공해 줍니다. 이제 더 이상 목말라 죽진 않을 겁니다. 왜인지는 모르겠지만, 사막이나 그밖의 암석 지대에서는 제기능을 못합니다...
+깨끗한 물을 무한히 제공해 줍니다. 이제 더 이상 목말라 죽진 않을 겁니다. 왜인지는 모르겠지만, 사막이나 그 밖의 암석 지대에서는 제기능을 못합니다...
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 우물
@@ -588,7 +591,7 @@ Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNot
 이러한 지형에는 빗물막이에 접근할 수 없습니다.
 
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
-모든 종류의 인공 두뇌학적 임플란트를 설치하거나 제거할 수 있는 특수 자동화 의료소.
+모든 종류의 인공두뇌학적 임플란트를 설치하거나 제거할 수 있는 특수 자동화 의료소.
 
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 의료소
@@ -685,7 +688,7 @@ Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Dis
 불가
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
-금속으로 보강된 단단한 벽돌 벽. 침입자를 막아주고, 귀중품을 안전하게 지켜줍니다. 폭탄도 어느정도 견딜 수 있습니다.
+금속으로 보강된 단단한 벽돌 벽. 침입자를 막아주고, 귀중품을 안전하게 지켜줍니다. 폭탄도 어느 정도 견딜 수 있습니다.
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Name:
 벽돌벽
@@ -791,7 +794,7 @@ Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbRed@Name:
 빨간색 약초
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPennyBun@Name:
-그물 버섯
+그물버섯
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPink@Name:
 분홍색 버섯

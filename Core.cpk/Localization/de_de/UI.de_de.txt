@@ -70,6 +70,9 @@ Wasser
 UI/CoreStrings@Chat_MessageMenu_Block:
 Blocken
 
+UI/CoreStrings@Chat_MessageMenu_CopyName:
+Name kopieren
+
 UI/CoreStrings@Chat_MessageMenu_InviteToParty:
 In Gruppe einladen
 
@@ -104,6 +107,9 @@ Weitere Rezepturen lassen sich im Technologiemenü freischalten.`
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Freigeschaltete Rezepturen
+
+UI/CoreStrings@CryoFallDevelopmentRoadmap:
+CryoFall Entwicklungs-Roadmap
 
 UI/CoreStrings@Defense_Format_Chemical:
 Chemischer Schutz: {0}
@@ -182,6 +188,9 @@ Quests
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Skills:
 Fähigkeiten
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Social:
+Social
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
 Technologien
@@ -845,6 +854,12 @@ Respawne in der Nähe deines Betts
 UI/CoreStrings@WindowRespawn_Message:
 Wie es scheint, bist du gewaltsam aus dem Leben geschieden ... und hast all deine Sachen verloren! Willst du dich rächen?
 
+UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
+Wie es scheint, wurdest du von einem anderen Spieler getötet. Glücklicherweise stehst du noch immer unter Anfängerschutz und verlierst so keine deiner Gegenstände oder Lernpunkte. Sei vorsichtig – beim nächsten Mal hast du vielleicht nicht so viel Glück!
+
+UI/CoreStrings@WindowRespawn_DamageSources:
+Letzte Schadensquellen:
+
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `Du bist erst kürzlich im Bett respawnt.
 [br]Bitte warte den [b]Timer[/b] ab.`
@@ -1161,6 +1176,24 @@ Haare
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Oben
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
+Kreatur
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
+Explosion
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleItem:
+Objekt
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleOther:
+Sonstiges
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitlePlayer:
+Spieler
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
+Statuseffekt
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 nächster Level

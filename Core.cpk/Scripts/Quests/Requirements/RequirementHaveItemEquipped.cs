@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Triggers;
@@ -36,14 +37,36 @@
             return new RequirementHaveItemEquipped(protoItems, description);
         }
 
+        public static RequirementHaveItemEquipped Require(
+            IReadOnlyList<IProtoItemEquipment> protoItems,
+            string description = null)
+        {
+            return new RequirementHaveItemEquipped(protoItems, description);
+        }
+
         protected override bool ServerIsSatisfied(ICharacter character, QuestRequirementStateWithCount state)
         {
             var containerEquipment = character.SharedGetPlayerContainerEquipment();
-            foreach (var protoItemEquipment in this.List)
+
+            if (this.List.Count == 1)
             {
-                if (containerEquipment.ContainsItemsOfType(protoItemEquipment, requiredCount: 1))
+                var requiredProtoItem = this.List[0];
+                foreach (var item in containerEquipment.Items)
                 {
-                    return true;
+                    if (item.ProtoItem == requiredProtoItem)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in containerEquipment.Items)
+                {
+                    if (this.List.Contains(item.ProtoItem))
+                    {
+                        return true;
+                    }
                 }
             }
 

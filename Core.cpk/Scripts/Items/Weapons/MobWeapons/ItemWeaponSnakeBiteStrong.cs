@@ -15,6 +15,8 @@
 
     public class ItemWeaponSnakeBiteStrong : ProtoItemWeaponMelee
     {
+        public override bool CanDamageStructures => false;
+
         public override string Description => null;
 
         public override ushort DurabilityMax => 0;
@@ -58,6 +60,11 @@
                 finalDamageMultiplier: 1.25,
                 rangeMax: 1.5,
                 damageDistribution: damageDistribution);
+        }
+
+        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        {
+            return MaterialHitsSoundPresets.MeleeSoftTissuesOnly;
         }
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()

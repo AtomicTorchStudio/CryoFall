@@ -9,6 +9,8 @@
 
     public class TileClay : ProtoTile
     {
+        public override bool IsRestrictingConstruction => true;
+
         private static readonly TextureResource GroundTexture1
             = new TextureResource("Terrain/Clay/TileClay1.jpg",
                                   isTransparent: false);

@@ -9,7 +9,8 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelHUDStatusEffectsBar, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
     <ItemsControl ItemsSource="{Binding CurrentStatusEffects}" HorizontalAlignment="Center">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -22,8 +23,8 @@
             <DataTemplate>
                 <Border
                     Width="50"
-                    Height="50"
-                    Padding="3"
+                    Height="61"
+                    Padding="3,3,3,3"
                     Margin="0,0,5,5"
                     Background="{Binding BackgroundBrush}"
                     CornerRadius="5"
@@ -32,9 +33,6 @@
                     <Border.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform />
-                            <SkewTransform />
-                            <RotateTransform />
-                            <TranslateTransform />
                         </TransformGroup>
                     </Border.RenderTransform>
 
@@ -81,20 +79,24 @@
                     </Border.Style>
 
                     <Grid>
-                        <Rectangle Fill="{Binding Icon}" UseLayoutRounding="True" />
+                        <Rectangle Fill="{Binding Icon}"
+                                   UseLayoutRounding="True"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Center"
+                                   Width="44"
+                                   Height="44" />
 
-                        <!-- Percents display right over the icon.
-                             We decided to remove this as it's distracting players too much. -->
-                        <!--<TextBlock Text="{Binding IntensityPercentText}"
+                        <TextBlock Text="{Binding IntensityPercent, StringFormat={}{0}%}"
                                    FontFamily="{StaticResource DigitsFontFamily}"
                                    FontWeight="Bold"
-                                   FontSize="15"
+                                   FontSize="13"
                                    Foreground="White"
+                                   Opacity="0.7"
                                    noesis:Text.Stroke="Black"
-                                   noesis:Text.StrokeThickness="1"
+                                   noesis:Text.StrokeThickness="2"
                                    VerticalAlignment="Bottom"
-                                   HorizontalAlignment="Right"
-                                   Margin="0,0,3,0" />-->
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,-4,-4" />
                     </Grid>
                     <base:ToolTipServiceExtend.ToolTip>
                         <StackPanel Orientation="Vertical" MinWidth="150" MaxWidth="275">
@@ -113,7 +115,54 @@
                             </StackPanel>
 
                             <TextBlock Text="{Binding Description}"
-                                       TextWrapping="Wrap" />
+                                       TextWrapping="Wrap"
+                                       FontSize="12"
+                                       LineHeight="13.5"
+                                       LineStackingStrategy="BlockLineHeight"
+                                       Margin="0,2,0,0" />
+
+                            <StackPanel Orientation="Vertical"
+                                        Visibility="{Binding Effects, Converter={StaticResource EmptyCollectionToVisibilityConverter}}">
+                                <ItemsControl ItemsSource="{Binding Effects}" Margin="0,2,0,-1">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="0,2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.Resources>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Foreground"
+                                                                Value="{StaticResource BrushColor6}" />
+                                                        <Setter Property="FontWeight" Value="Bold" />
+                                                        <Setter Property="FontSize" Value="11" />
+                                                        <Setter Property="LineHeight" Value="12" />
+                                                        <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                                                    </Style>
+                                                </Grid.Resources>
+
+                                                <!-- Bullet point -->
+                                                <Ellipse Width="4"
+                                                         Height="4"
+                                                         Fill="{StaticResource BrushColor5}"
+                                                         VerticalAlignment="Center" />
+
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding StatTitle}"
+                                                           TextWrapping="Wrap"
+                                                           Margin="3,0,0,0" />
+
+                                                <TextBlock Grid.Column="2"
+                                                           Text="{Binding EffectText}"
+                                                           TextWrapping="Wrap"
+                                                           Margin="3,0,0,0" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
                         </StackPanel>
                     </base:ToolTipServiceExtend.ToolTip>
                 </Border>

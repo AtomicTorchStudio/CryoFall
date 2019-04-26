@@ -4,20 +4,29 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
+    using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ServerCharacterDeathMechanic
     {
-        private static readonly IItemsServerService ServerItemsService = Api.Server.Items;
+        private const double PlayerTeleportToGraveyardDelaySeconds = 10;
+
+        private static readonly IItemsServerService ServerItemsService = Api.IsServer
+                                                                             ? Api.Server.Items
+                                                                             : null;
 
         public delegate void DelegateCharacterKilled(ICharacter attackerCharacter, ICharacter targetCharacter);
 
@@ -40,10 +49,26 @@
                 // remember the death position (useful for the respawn)
                 var privateState = PlayerCharacter.GetPrivateState(deadCharacter);
                 privateState.LastDeathPosition = deadCharacter.TilePosition;
-                ServerTimersSystem.AddAction(delaySeconds: 10,
-                                             () => ServerPlayerCharacterDeathTimeout(deadCharacter));
+                privateState.LastDeathTime = Api.Server.Game.FrameTime;
+                ServerTimersSystem.AddAction(delaySeconds: PlayerTeleportToGraveyardDelaySeconds,
+                                             () => TeleportDeadPlayerCharacterToGraveyard(deadCharacter));
 
-                DropPlayerLoot(deadCharacter);
+                var isPvPdeath = CharacterDamageTrackingSystem.ServerGetPvPdamagePercent(deadCharacter)
+                                 >= 0.5;
+                // register death (required even if it's not a newbie)
+                NewbieProtectionSystem.ServerRegisterDeath(deadCharacter,
+                                                           isPvPdeath,
+                                                           out var shouldDropLootAndLoseLP);
+
+                if (shouldDropLootAndLoseLP)
+                {
+                    DeductPlayerLearningPoints(deadCharacter);
+                    DropPlayerLoot(deadCharacter);
+                }
+                else
+                {
+                    Api.Logger.Important("Player character is dead - newbie PvP case, no loot drop", deadCharacter);
+                }
             }
             else
             {
@@ -52,7 +77,6 @@
                 //ServerTimersSystem.AddAction(delaySeconds: 4,
                 //                             () => ReplaceMobWithCorpse(deadCharacter));
                 ReplaceMobWithCorpse(deadCharacter);
-                //DropMobLoot(deadCharacter);
             }
         }
 
@@ -68,6 +92,35 @@
 
             Api.SafeInvoke(
                 () => CharacterKilled?.Invoke(attackerCharacter, targetCharacter));
+        }
+
+        public static void OnDeadCharacterInitialize(ICharacter character)
+        {
+            TeleportDeadPlayerCharacterToGraveyard(character);
+        }
+
+        public static ushort SharedGetLearningPointsRetainedAfterDeath(ICharacter character)
+        {
+            return (ushort)MathHelper.Clamp(
+                character.SharedGetFinalStatValue(StatName.LearningPointsRetainedAfterDeath),
+                0,
+                ushort.MaxValue);
+        }
+
+        private static void DeductPlayerLearningPoints(ICharacter character)
+        {
+            // reset learning points
+            var technologies = character.SharedGetTechnologies();
+            technologies.ServerResetLearningPointsRemainder();
+
+            var learningPointsRetainedAfterDeath = SharedGetLearningPointsRetainedAfterDeath(character);
+            var lostLp = technologies.LearningPoints - learningPointsRetainedAfterDeath;
+            if (lostLp > 0)
+            {
+                technologies.ServerSetLearningPoints(learningPointsRetainedAfterDeath);
+                character.ServerAddSkillExperience<SkillLearning>(
+                    lostLp * SkillLearning.ExperienceAddedPerLPLost);
+            }
         }
 
         private static void DropPlayerLoot(ICharacter character)
@@ -177,8 +230,15 @@
                                            isFlippedHorizontally: isFlippedHorizontally);
         }
 
-        private static void ServerPlayerCharacterDeathTimeout(ICharacter character)
+        // "Graveyard" is a technical area in the bottom right corner of the map.
+        private static void TeleportDeadPlayerCharacterToGraveyard(ICharacter character)
         {
+            if (character.IsNpc)
+            {
+                // only player characters are teleported to graveyard
+                return;
+            }
+
             var publicState = character.GetPublicState<ICharacterPublicState>();
             if (!publicState.IsDead)
             {
@@ -186,15 +246,18 @@
                 return;
             }
 
-            // Teleport the dead character to the "graveyard" area
-            // but first, disable the visual scope so the player will not see anyone!
+            // disable the visual scope so the player cannot not see anyone and nobody could see the player
             Api.Server.Characters.SetViewScopeMode(character, isEnabled: false);
             var world = Api.Server.World;
             var worldBounds = world.WorldBounds;
 
-            world.SetPosition(character,
-                              (worldBounds.Offset.X + worldBounds.Size.X - 1,
-                               worldBounds.Offset.Y));
+            // teleport to bottom right corner of the map
+            var position = new Vector2Ushort((ushort)(worldBounds.Offset.X + worldBounds.Size.X - 1),
+                                             (ushort)(worldBounds.Offset.Y + 1));
+            if (character.TilePosition != position)
+            {
+                world.SetPosition(character, (Vector2D)position);
+            }
         }
     }
 }

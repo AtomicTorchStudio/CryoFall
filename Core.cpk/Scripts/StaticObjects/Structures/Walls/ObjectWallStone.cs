@@ -33,10 +33,9 @@
             build.AddStageRequiredItem<ItemStone>(count: 4);
             build.AddStageRequiredItem<ItemClay>(count: 4);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemStone>(count: 1);
-            repair.AddStageRequiredItem<ItemClay>(count: 1);
+            repair.AddStageRequiredItem<ItemStone>(count: 2);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

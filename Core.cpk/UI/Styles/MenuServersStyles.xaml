@@ -64,7 +64,7 @@
     </Style>
 
     <ControlTemplate x:Key="BlockFeaturedMultiplayerServerTemplate">
-        <Border Background="#66CCCC00" Style="{StaticResource LaberBorderStyle}">
+        <Border Background="#FF777711" Style="{StaticResource LaberBorderStyle}">
             <!-- Text: FEATURED -->
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerLabelFeatured}" FontSize="10"
                        FontWeight="Bold" />
@@ -72,7 +72,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockOfficialMultiplayerServerTemplate">
-        <Border Background="#6666CC33" Style="{StaticResource LaberBorderStyle}">
+        <Border Background="#FF336633" Style="{StaticResource LaberBorderStyle}">
             <!-- Text: OFFICIAL -->
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerLabelOfficial}" FontSize="10"
                        FontWeight="Bold" />
@@ -80,7 +80,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockModdedMultiplayerServerTemplate">
-        <Border Background="#66CCCC00" Style="{StaticResource LaberBorderStyle}">
+        <Border Background="#FF771177" Style="{StaticResource LaberBorderStyle}">
             <!-- Text: MODDED -->
             <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerLabelModded}" FontSize="10" FontWeight="Bold" />
         </Border>

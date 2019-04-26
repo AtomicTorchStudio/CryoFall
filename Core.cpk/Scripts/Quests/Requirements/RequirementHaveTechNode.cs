@@ -8,7 +8,7 @@
 
     public class RequirementHaveTechNode : QuestRequirementWithDefaultState
     {
-        public const string DescriptionFormat = "Learn technology: {0} (located in {1} group)";
+        public const string DescriptionFormat = "Learn: {0} (in {1} tech group)";
 
         private RequirementHaveTechNode(TechNode techNode)
             : base(description: null)

@@ -41,7 +41,7 @@ Scripts/Skills/Skills/Agriculture/SkillHunting@Name:
 사냥
 
 Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Description:
-모든 재래식 화기에 대한 경험을 쌓으면 쌓을 수록 그들 사이의 미묘한 차이를 이해하게 되며, 그 어떤 재래식 화기도 더욱 효과적으로 사용할 수 있게 됩니다.
+모든 재래식 화기에 대한 경험을 쌓으면 쌓을수록 그들 사이의 미묘한 차이를 이해하게 되며, 그 어떤 재래식 화기도 더욱 효과적으로 사용할 수 있게 됩니다.
 
 Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Name:
 재래식 무기
@@ -86,10 +86,10 @@ Scripts/Skills/Skills/Personal/SkillAthletics@Name:
 육상
 
 Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Description:
-신체가 인공 두뇌학 기술과 계속해서 접하게 되면, 면역 체계가 당신에게 훨씬 더 잘 적응하게 됩니다.
+신체가 인공두뇌학 기술과 계속해서 접하게 되면, 면역 체계가 당신에게 훨씬 더 잘 적응하게 됩니다.
 
 Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Name:
-인공 두뇌학적 친화성
+인공두뇌학적 친화성
 
 Scripts/Skills/Skills/Personal/SkillLearning@Description:
 외계의 낯선 환경에서 살아남는 것이 쉬운 일은 아니지만, 다른 방식으로는 몰랐을 것들을 배울 수 있는 독특한 기회가 생깁니다.
@@ -107,7 +107,7 @@ Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
 일정 확률로 추가 광물 획득
 
 Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
-채굴시 일정 확률로 보석 발견
+채굴 시 일정 확률로 보석 발견
 
 Scripts/Skills/Skills/Production/SkillMining@Description:
 광물 매장지에 대한 지식이 높아져 채굴 속도, 채굴량, 희귀한 자원을 찾을 확률이 증가합니다. 곡괭이를 사용할 때만 적용됩니다.
@@ -128,7 +128,7 @@ Scripts/Skills/Skills/Technical/SkillBuilding@Name:
 건설
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Description:
-점점 더 복잡한 아이템을 만들고, 그 구조를 이해하는 것이야 말로 이 세상의 기술이 어떻게 움직이고 있는지 배울 수 있는 좋은 방법입니다.
+점점 더 복잡한 아이템을 만들고, 그 구조를 이해하는 것이야말로 이 세상의 기술이 어떻게 움직이고 있는지 배울 수 있는 좋은 방법입니다.
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 제작

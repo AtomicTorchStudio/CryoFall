@@ -214,7 +214,9 @@
                 var damageMultiplier = weaponCache.Character
                                                   .SharedGetFinalStatMultiplier(StatName.MiningSpeed);
 
-                return protoItemToolMining.DamageToMinerals * damageMultiplier;
+                return protoItemToolMining.DamageToMinerals
+                       * damageMultiplier
+                       * ToolsConstants.ActionMiningSpeedMultiplier;
             }
 
             if (weaponCache.ProtoWeapon is ItemNoWeapon)

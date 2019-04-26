@@ -9,6 +9,7 @@
     using System.Text;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Physics;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -87,6 +88,8 @@
 
         public double Density { get; }
 
+        public bool IsContainsOnlyStaticObjects { get; private set; }
+
         public RangeDouble IterationLimitFractionRange { get; }
 
         public double Padding { get; }
@@ -133,7 +136,8 @@
         }
 
         /// <summary>
-        /// Includes/adds an exact proto entity instance to the spawn preset. Inheritors of this proto entity type will be not included.
+        /// Includes/adds an exact proto entity instance to the spawn preset. Inheritors of this proto entity type will be not
+        /// included.
         /// </summary>
         /// <typeparam name="TProtoSpawnableObject">
         /// Specify an exact entity class.
@@ -200,6 +204,17 @@
 
             this.frozenCustomObjectPadding = this.customObjectPadding.ToReadOnlyListDictionary();
             this.customObjectPadding = null;
+
+            var isContainsOnlyStaticObjects = true;
+            foreach (var entry in this.frozenArray)
+            {
+                if (!(entry.Value is IProtoStaticWorldObject))
+                {
+                    isContainsOnlyStaticObjects = false;
+                }
+            }
+
+            this.IsContainsOnlyStaticObjects = isContainsOnlyStaticObjects;
         }
 
         public string PrintEntries()

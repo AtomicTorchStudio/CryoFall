@@ -71,7 +71,7 @@
             var menuWindow = SharedGetProto(worldObject).ClientOpenUI(worldObject);
             if (menuWindow == null)
             {
-                Logger.Important("Cannot open menu for object interaction with " + worldObject);
+                Logger.Info("Cannot open menu for object interaction with " + worldObject);
                 this.CallServer(_ => _.ServerRemote_OnClientInteractFinish(worldObject));
                 return;
             }
@@ -97,13 +97,13 @@
                     }
                 });
 
-            Logger.Important("Started object interaction with " + worldObject);
+            Logger.Info("Started object interaction with " + worldObject);
             ClientCurrentInteractionMenu.Open();
         }
 
         private void ClientRemote_FinishInteraction(IStaticWorldObject worldObject)
         {
-            Logger.Important($"Server informed that the object interaction with {worldObject} is finished");
+            Logger.Info($"Server informed that the object interaction with {worldObject} is finished");
             ClientInteractionUISystem.OnServerForceFinishInteraction(worldObject);
         }
 
@@ -127,7 +127,7 @@
                     "Exception when calling " + nameof(IInteractableProtoStaticWorldObject.ServerOnMenuClosed));
             }
 
-            Logger.Important($"Finished object interaction with {worldObject} for {who}");
+            Logger.Info($"Finished object interaction with {worldObject} for {who}");
         }
 
         private void ServerRemote_OnClientInteractFinish(IStaticWorldObject worldObject)
@@ -138,7 +138,7 @@
                 return;
             }
 
-            Logger.Important($"Client {character} informed that the object interaction with {worldObject} is finished");
+            Logger.Info($"Client {character} informed that the object interaction with {worldObject} is finished");
             this.ServerFinishInteractionInternal(character, worldObject);
         }
 
@@ -185,7 +185,7 @@
                                   }
                               });
 
-            Logger.Important($"Started object interaction with {worldObject} for {character}");
+            Logger.Info($"Started object interaction with {worldObject} for {character}");
             return true;
         }
     }

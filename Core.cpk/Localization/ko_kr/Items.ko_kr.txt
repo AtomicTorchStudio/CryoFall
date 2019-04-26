@@ -23,7 +23,7 @@ Scripts/Items/Ammo/ItemAmmo10mmStandard@Name:
 10mm 표준탄
 
 Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Description:
-벅샷의 거대한 구슬들이 확산력과 관통력 사이의 균형을 잘 유지해줍니다. 그러나 추진체로 니트로셀룰로오스보다 추진력이 약한 흑색 화약을 사용하여 탄약의 효과가 제한됩니다.
+벅샷의 거대한 구슬들이 확산력과 관통력 사이의 균형을 잘 유지해줍니다. 그러나 추진체로 나이트로셀룰로스보다 추진력이 약한 흑색 화약을 사용하여 탄약의 효과가 제한됩니다.
 
 Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Name:
 12 구경 벅샷
@@ -65,7 +65,7 @@ Scripts/Items/Ammo/ItemAmmo8mmStandard@Name:
 8mm standard 표준탄
 
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
-충돌시 폭발하는 농축된 소량의 독성 물질이 밀폐된 공간에 들어 있는 8mm 탄의 개조판.
+충돌 시 폭발하는 농축된 소량의 독성 물질이 밀폐된 공간에 들어 있는 8mm 탄의 개조판.
 
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 8mm 독소탄
@@ -155,7 +155,7 @@ Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFu
 연료 고갈
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-헬멧 전등을 키려면, 해당 아이템을 장비하고 [{0}] 키를 누르십시오.
+헬멧 전등을 켜려면, 해당 아이템을 장비하고 [{0}] 키를 누르십시오.
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
 버튼이 설정되지 않음
@@ -215,7 +215,7 @@ Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
 우샨카 모자
 
 Scripts/Items/Equipment/Fur/ItemFurPants@Name:
-모비 바지
+모피 바지
 
 Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
 아주 화려한 황금 복장. 진정한 통치자에게 적합합니다.
@@ -236,7 +236,7 @@ Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
 방호복
 
 Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
-카우보이 모자
+카우보이모자
 
 Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
 조종사 모자
@@ -281,7 +281,7 @@ Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
 군용 바지
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
-휴대용 발광체가 달려 있어서 손이 자유로워 지는 편리한 헬멧. 일회용 배터리가 필요합니다.
+휴대용 발광체가 달려 있어서 손이 자유로워지는 편리한 헬멧. 일회용 배터리가 필요합니다.
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Name:
 광부 헬멧
@@ -299,13 +299,13 @@ Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
 안전 헬멧
 
 Scripts/Items/Equipment/Misc/ItemRespirator@Description:
-방사성 입자 및 유해 가스를 걸러낼 수 있도록 디자인 된 기본 방독면. 다른 보호 기능은 제공하지 않습니다.
+방사성 입자 및 유해 가스를 걸러낼 수 있도록 디자인된 기본 방독면. 다른 보호 기능은 제공하지 않습니다.
 
 Scripts/Items/Equipment/Misc/ItemRespirator@Name:
 방독면
 
 Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
-기본 틀인 얇은 금속판을 프라그뮴 격자에 결합한 시험용 방어구. 매우 가볍고 내구도가 뛰어납니다.
+기본틀인 얇은 금속판을 프라그뮴 격자에 결합한 시험용 방어구. 매우 가볍고 내구도가 뛰어납니다.
 
 Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
 프라그뮴 갑옷
@@ -350,13 +350,13 @@ Scripts/Items/Explosives/Bombs/ItemBombModern@Name:
 현대식 폭탄
 
 Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Description:
-벽이나 그밖의 방어 시설을 파괴하는 데 사용되는 구식 폭탄. 최고의 효과를 내려면 최대한 목표물 가까이에서 사용해야 합니다.
+벽이나 그 밖의 방어 시설을 파괴하는 데 사용되는 구식 폭탄. 최고의 효과를 내려면 최대한 목표물 가까이에서 사용해야 합니다.
 
 Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Name:
 구식 폭탄
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
-한 번에 여러 겹의 벽이나 문을 파괴하기 위해 프라그뮴의 독특한 특성을 이용하여 만들어진 특수 폭탄. 특히 방어 시설이 잘 구비된 기지를 파괴하는 데 효과적입니다. 그밖의 다른 구조물에는 아무 영향도 주지 않습니다.
+한 번에 여러 겹의 벽이나 문을 파괴하기 위해 프라그뮴의 독특한 특성을 이용하여 만들어진 특수 폭탄. 특히 방어 시설이 잘 갖춰진 기지를 파괴하는 데 효과적입니다. 그 밖의 다른 구조물에는 아무 영향도 주지 않습니다.
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 공진 폭탄
@@ -374,7 +374,7 @@ Scripts/Items/Food/ItemBeer@Name:
 맥주
 
 Scripts/Items/Food/ItemBellPepper@Description:
-실제 고추와 비교하면 초라하지만 맛 좋은 유사품. 다양한 요리에 사용됩니다.
+실제 고추와 비교하면 초라하지만, 맛 좋은 유사품. 다양한 요리에 사용됩니다.
 
 Scripts/Items/Food/ItemBellPepper@Name:
 피망
@@ -398,13 +398,13 @@ Scripts/Items/Food/ItemBerriesViolet@Name:
 베리
 
 Scripts/Items/Food/ItemBottleWater@Description:
-수분 보충 및 다양한 요리에 사용 됩니다.
+수분 보충 및 다양한 요리에 사용됩니다.
 
 Scripts/Items/Food/ItemBottleWater@Name:
 청정수가 담긴 병
 
 Scripts/Items/Food/ItemBottleWaterSalty@Description:
-짜디 짠 바닷물. 수분을 공급해주기 보단, 갈증을 가져옵니다. 증발시켜 소금을 추출할 수 있습니다.
+짜디짠 바닷물. 수분을 공급해주기보단, 갈증을 가져옵니다. 증발시켜 소금을 추출할 수 있습니다.
 
 Scripts/Items/Food/ItemBottleWaterSalty@Name:
 바닷물이 담긴 병
@@ -422,7 +422,7 @@ Scripts/Items/Food/ItemBread@Name:
 식빵
 
 Scripts/Items/Food/ItemCactusDrink@Description:
-선인장의 과육을 짜내서 만든 음료. 맛은 형편 없지만, 다른 선택지가 없을 때 갈증을 해소시켜 줍니다.
+선인장의 과육을 짜내서 만든 음료. 맛은 형편없지만, 다른 선택지가 없을 때 갈증을 해소시켜 줍니다.
 
 Scripts/Items/Food/ItemCactusDrink@Name:
 선인장 음료
@@ -446,22 +446,22 @@ Scripts/Items/Food/ItemCannedFish@Name:
 생선 통조림
 
 Scripts/Items/Food/ItemCannedMeat@Description:
-재료를 알 수 없는 고기 통조림. 그래도 겉 포장은 꽤 괜찮아 보입니다.
+재료를 알 수 없는 고기 통조림. 그래도 겉포장은 꽤 괜찮아 보입니다.
 
 Scripts/Items/Food/ItemCannedMeat@Name:
 고기 통조림
 
 Scripts/Items/Food/ItemCarrot@Description:
-카로틴이 풍부한 주황색 야채.
+카로틴이 풍부한 주황색 채소.
 
 Scripts/Items/Food/ItemCarrot@Name:
 당근
 
 Scripts/Items/Food/ItemCarrotGrilled@Description:
-간단하지만 불 같은 요리.
+간단하지만 불같은 요리.
 
 Scripts/Items/Food/ItemCarrotGrilled@Name:
-당근 구이
+당근구이
 
 Scripts/Items/Food/ItemChiliBeans@Description:
 궁극의 독신남 요리.
@@ -473,7 +473,7 @@ Scripts/Items/Food/ItemChiliPepper@NotificationSpicy:
 앗! 매워!
 
 Scripts/Items/Food/ItemChiliPepper@Description:
-매운 맛과 향을 요리에 더 해주는 인기 많은 재료.
+매운맛과 향을 요리에 더 해주는 인기 많은 재료.
 
 Scripts/Items/Food/ItemChiliPepper@Name:
 고추
@@ -536,7 +536,7 @@ Scripts/Items/Food/ItemDrinkHerbal@Name:
 허브 음료
 
 Scripts/Items/Food/ItemDrinkSoft@Description:
-7 세기 넘게 핵심 부문에서 가장 인기 있는 음료로 선정된 청량음료.
+7세기 넘게 핵심 부문에서 가장 인기 있는 음료로 선정된 청량음료.
 
 Scripts/Items/Food/ItemDrinkSoft@Name:
 청량음료
@@ -572,7 +572,7 @@ Scripts/Items/Food/ItemJamBerries@Name:
 베리 잼
 
 Scripts/Items/Food/ItemLiquor@Description:
-루비색을 띄는 아름다운 과일주. 도수 높지만 쉽게 넘어갑니다.
+루비색을 띠는 아름다운 과일주. 도수 높지만 쉽게 넘어갑니다.
 
 Scripts/Items/Food/ItemLiquor@Name:
 술
@@ -611,7 +611,7 @@ Scripts/Items/Food/ItemMushroomPennyBun@Description:
 식용 버섯. 그냥 먹을 수도 있지만, 스튜에 넣거나 요리하면 더 맛있습니다.
 
 Scripts/Items/Food/ItemMushroomPennyBun@Name:
-그물 버섯
+그물버섯
 
 Scripts/Items/Food/ItemMushroomPink@Description:
 엄청나게 독성이 강한 버섯. 독성 물질 때문에 밤에 빛을 발합니다.
@@ -620,13 +620,13 @@ Scripts/Items/Food/ItemMushroomPink@Name:
 분홍색 버섯
 
 Scripts/Items/Food/ItemMushroomRust@Description:
-이 버섯은 어두운 색 때문에 녹버섯이라는 이름으로 불립니다. 요리하면 아주 맛있지만, 날 것에는 독이 있어서 위험합니다.
+이 버섯은 어두운색 때문에 녹버섯이라는 이름으로 불립니다. 요리하면 아주 맛있지만, 날 것에는 독이 있어서 위험합니다.
 
 Scripts/Items/Food/ItemMushroomRust@Name:
 녹버섯
 
 Scripts/Items/Food/ItemOgurin@Description:
-이상하게 생긴 오구린 열매... 아주 맛 없습니다. 오이를 유전자 조작하여 만들어졌습니다.
+이상하게 생긴 오구린 열매... 맛은 아주 없습니다. 오이를 유전자 조작하여 만들어졌습니다.
 
 Scripts/Items/Food/ItemOgurin@Name:
 오구린 열매
@@ -668,7 +668,7 @@ Scripts/Items/Food/ItemSandwich@Name:
 샌드위치
 
 Scripts/Items/Food/ItemStew@Description:
-버섯이 들어 간 맛있는 고기 스튜.
+버섯이 들어간 맛있는 고기 스튜.
 
 Scripts/Items/Food/ItemStew@Name:
 버섯 고기 스튜
@@ -698,7 +698,7 @@ Scripts/Items/Food/ItemTomato@Name:
 토마토
 
 Scripts/Items/Food/ItemVodka@Description:
-얼얼한 신들의 액체. 너무 많이 마시면 좋지 않습니다. 또한 수분을 빼앗아 갑니다. 그리고 분명한 건, 방사능 해독에 도움되지 않습니다.
+얼얼한 신들의 액체. 너무 많이 마시면 좋지 않습니다. 또한, 수분을 빼앗아 갑니다. 그리고 분명한 건, 방사능 해독에 도움되지 않습니다.
 
 Scripts/Items/Food/ItemVodka@Name:
 보드카
@@ -728,7 +728,7 @@ Scripts/Items/Food/ItemYuccaCharred@Name:
 불에 태운 유카
 
 Scripts/Items/Food/ItemYuccaFried@Description:
-요리가 잘 된 유카 열매. 최고 수준의 요리는 아니지만 맛이 좋으며, 유용한 영양소를 제공해줍니다.
+요리가 잘 된 유카 열매. 최고 수준의 요리는 아니지만, 맛이 좋으며 유용한 영양소를 제공해줍니다.
 
 Scripts/Items/Food/ItemYuccaFried@Name:
 튀긴 유카
@@ -752,7 +752,7 @@ Scripts/Items/Generic/ItemAnimalFat@Name:
 동물의 기름
 
 Scripts/Items/Generic/ItemAramidFiber@Description:
-탄성 계수가 높아 매우 질긴 합성 섬유. 방어구 생산이나 그밖의 다양한 용도로 사용됩니다.
+탄성 계수가 높아 매우 질긴 합성 섬유. 방어구 생산이나 그 밖의 다양한 용도로 사용됩니다.
 
 Scripts/Items/Generic/ItemAramidFiber@Name:
 아라미드 섬유
@@ -776,7 +776,7 @@ Scripts/Items/Generic/ItemBatteryDisposable@Name:
 일회용 배터리
 
 Scripts/Items/Generic/ItemBatteryHeavyDuty@Description:
-대용량 일회용 배터리. 작은 배터리 보다 더 많은 전력이 저장되어 있으며, 전자 장치 또는 보조 배터리를 빠르게 충전하는 데 사용됩니다.
+대용량 일회용 배터리. 작은 배터리보다 더 많은 전력이 저장되어 있으며, 전자 장치 또는 보조 배터리를 빠르게 충전하는 데 사용됩니다.
 
 Scripts/Items/Generic/ItemBatteryHeavyDuty@Name:
 대용량 보조 배터리
@@ -878,13 +878,13 @@ Scripts/Items/Generic/ItemComponentsElectronic@Name:
 전자 부품
 
 Scripts/Items/Generic/ItemComponentsHighTech@Description:
-매우 복잡한 장치를 만들기 위해 필요한 고급 첨단 부품.
+매우 복잡한 장치를 만드는 데 필요한 고급 첨단 부품.
 
 Scripts/Items/Generic/ItemComponentsHighTech@Name:
 첨단 부품
 
 Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Description:
-공업에 유용하게 사용 되는 각종 약품.
+공업에 유용하게 사용되는 각종 약품.
 
 Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Name:
 공업 약품
@@ -936,7 +936,7 @@ Scripts/Items/Generic/ItemFibers@Name:
 섬유
 
 Scripts/Items/Generic/ItemFirelog@Description:
-특수한 방법으로 인위적으로 만들어진 통나무. 천연 통나무보다 더 오래 갑니다.
+특수한 방법으로 인위적으로 만들어진 통나무. 천연 통나무보다 더 오래갑니다.
 
 Scripts/Items/Generic/ItemFirelog@Name:
 불통나무
@@ -966,13 +966,13 @@ Scripts/Items/Generic/ItemFoodRotten@Name:
 부패한 음식
 
 Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
-고성능 화기용으로 고안되어 특별히 만들어진 니트로셀룰로오스 과립.
+고성능 화기용으로 고안되어 특별히 만들어진 나이트로셀룰로스 과립.
 
 Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
 제형 화약
 
 Scripts/Items/Generic/ItemFur@Description:
-동물의 털가죽. 따뜻한 겨울 옷을 만드는 데 유용합니다.
+동물의 털가죽. 따뜻한 겨울옷을 만드는 데 유용합니다.
 
 Scripts/Items/Generic/ItemFur@Name:
 모피
@@ -1080,7 +1080,7 @@ Scripts/Items/Generic/ItemLeather@Name:
 가죽
 
 Scripts/Items/Generic/ItemLogs@Description:
-건설 자재 및 바베큐에 좋습니다.
+건설 자재 및 바비큐에 좋습니다.
 
 Scripts/Items/Generic/ItemLogs@Name:
 통나무
@@ -1095,10 +1095,10 @@ Scripts/Items/Generic/ItemMulch@Name:
 비료
 
 Scripts/Items/Generic/ItemNitrocellulosePowder@Description:
-니트로셀룰로오스는 무연 화약이라고도 불립니다. 현대의 모든 화기는 흑색 화약 대신 이것을 사용합니다.
+나이트로셀룰로스는 무연 화약이라고도 불립니다. 현대의 모든 화기는 흑색 화약 대신 이것을 사용합니다.
 
 Scripts/Items/Generic/ItemNitrocellulosePowder@Name:
-니트로셀룰로오스 화약
+나이트로셀룰로스 화약
 
 Scripts/Items/Generic/ItemOilpod@Description:
 특수한 유전자 변형으로 만들어진 식용에 적합하지 않은 열매. 고농도 석유 제품 및 파생품이 들어 있습니다.
@@ -1143,10 +1143,10 @@ Scripts/Items/Generic/ItemPaper@Name:
 종이
 
 Scripts/Items/Generic/ItemPlanks@Description:
-주로 건설 자재로 사용됩니다. 또한 연료로 사용할 수도 있습니다.
+주로 건설 자재로 사용됩니다. 또한, 연료로 사용할 수도 있습니다.
 
 Scripts/Items/Generic/ItemPlanks@Name:
-나무 판자
+나무판자
 
 Scripts/Items/Generic/ItemPlastic@Description:
 가공되지 않은 플라스틱. 공업에 유용하게 사용됩니다.
@@ -1161,7 +1161,7 @@ Scripts/Items/Generic/ItemPotassiumNitrate@Name:
 질산칼륨
 
 Scripts/Items/Generic/ItemPowerCell@Description:
-다양한 전자 장치에 사용되며 에너가 저장되어 있는 소형 범용 전지. 이것만 사용할 순 없습니다.
+다양한 전자 장치에 사용되며 에너지가 저장되어 있는 소형 범용 전지. 이것만 사용할 순 없습니다.
 
 Scripts/Items/Generic/ItemPowerCell@Name:
 전지
@@ -1173,13 +1173,13 @@ Scripts/Items/Generic/ItemRope@Name:
 밧줄
 
 Scripts/Items/Generic/ItemRubberRaw@Description:
-천연 고무, 라텍스 수지라고도 합니다. 고무 나무에서 추출됩니다. 화학적인 방법을 통해 가황 고무로 바꿀 수 있습니다.
+천연고무, 라텍스 수지라고도 합니다. 고무나무에서 추출됩니다. 화학적인 방법을 통해 가황 고무로 바꿀 수 있습니다.
 
 Scripts/Items/Generic/ItemRubberRaw@Name:
-천연 고무
+천연고무
 
 Scripts/Items/Generic/ItemRubberVulcanized@Description:
-가황 고무. 절연체 또는 기타 방수 자재 를 만들기에 이상적입니다.
+가황 고무. 절연체 또는 기타 방수 자재를 만들기에 이상적입니다.
 
 Scripts/Items/Generic/ItemRubberVulcanized@Name:
 고무
@@ -1215,7 +1215,7 @@ Scripts/Items/Generic/ItemSulfurPowder@Name:
 황 분말
 
 Scripts/Items/Generic/ItemTarpaulin@Description:
-두껍게 짜여진 천의 표면에 고무층을 처리한 복합 소재.
+두껍게 짜인 천의 표면에 고무층을 처리한 복합 소재.
 
 Scripts/Items/Generic/ItemTarpaulin@Name:
 방수포
@@ -1263,7 +1263,7 @@ Scripts/Items/Generic/ItemTwigs@Name:
 잔가지
 
 Scripts/Items/Generic/ItemVialBiomaterial@Description:
-인공 두뇌학과 의학, 특히 임플란트를 설치하고 제거하는 작업을 수행하는 데 사용됩니다.
+인공두뇌학과 의학, 특히 임플란트를 설치하고 제거하는 작업을 수행하는 데 사용됩니다.
 
 Scripts/Items/Generic/ItemVialBiomaterial@Name:
 생체 적합 물질 유리병
@@ -1293,7 +1293,7 @@ Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoRechargingRe
 충전 필요 없음
 
 Scripts/Items/Generic/Base/ProtoItemFertilizer@CannotApplyErrorTitle:
-이곳에 비료 사용할 수 없음
+이곳에 비료 뿌릴 수 없음
 
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationFertilizerAlreadyApplied:
 이미 비료를 뿌렸습니다
@@ -1323,7 +1323,7 @@ Scripts/Items/Implants/ItemImplantArtificialStomach@Name:
 인공 위 임플란트
 
 Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Description:
-자연적 신진 대사를 이용하여 세포의 ATP에서 직접 에너지를 추출하고 이로인해 증가한 허기를 희생하여 이를 전기 에너지로 변환합니다. 효과를 보려면 장착된 보조 배터리가 필요합니다.
+자연적 신진대사를 이용하여 세포의 ATP에서 직접 에너지를 추출하고 이로 인해 증가한 허기를 희생하여 이를 전기 에너지로 변환합니다. 효과를 보려면 장착된 보조 배터리가 필요합니다.
 
 Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Name:
 ATP 에너지 추출 임플란트
@@ -1335,7 +1335,7 @@ Scripts/Items/Implants/ItemImplantBroken@Name:
 부서진 임플란트
 
 Scripts/Items/Implants/ItemImplantHealingGland@Description:
-줄기 세포를 추가적으로 만들어내고 혈액의 화학 성분을 조절하여 자연적 재생 능력을 향상시킵니다.
+줄기세포를 추가적으로 만들어내고 혈액의 화학 성분을 조절하여 자연적 재생 능력을 향상시킵니다.
 
 Scripts/Items/Implants/ItemImplantHealingGland@Name:
 회복선 임플란트
@@ -1395,7 +1395,7 @@ Scripts/Items/Medical/ItemAntiToxin@Name:
 항독제
 
 Scripts/Items/Medical/ItemAntiToxinPreExposure@Description:
-독성 물질 노출 사전 방지제는 신체에 독성 물질이 흡수되는 것을 막고 면역 체계를 강화시켜 혈류로 들어가는 독성 물지리의 영향을 완화시키는 데 사용됩니다.
+독성 물질 노출 사전 방지제는 신체에 독성 물질이 흡수되는 것을 막고 면역 체계를 강화시켜 혈류로 들어가는 독성 물질의 영향을 완화시키는 데 사용됩니다.
 
 Scripts/Items/Medical/ItemAntiToxinPreExposure@Name:
 독성 물질 노출 사전 방지제
@@ -1425,7 +1425,7 @@ Scripts/Items/Medical/ItemCigarPremium@Name:
 고급 담배
 
 Scripts/Items/Medical/ItemHeatPreExposure@Description:
-내열성 젤을 바르면 직접적인 열 전달을 방지하고 복사열을 반사하여 짧은 시간 동안은 고열 지대에 들어가도 괜찮아집니다.
+내열성 젤을 바르면 직접적인 열전달을 방지하고 복사열을 반사하여 짧은 시간 동안은 고열 지대에 들어가도 괜찮아집니다.
 
 Scripts/Items/Medical/ItemHeatPreExposure@Name:
 내열성 젤
@@ -1449,7 +1449,7 @@ Scripts/Items/Medical/ItemHerbGreen@Name:
 초록색 약초
 
 Scripts/Items/Medical/ItemHerbPurple@Description:
-독성 물질과 그밖의 이상 물질들을 제거하여 신체에 도움을 주는 약초. 그대로 사용할 수도 있지만, 약으로 만들어 제대로 섭취하면 효과가 훨씬 높아집니다.
+독성 물질과 그 밖의 이상 물질들을 제거하여 신체에 도움을 주는 약초. 그대로 사용할 수도 있지만, 약으로 만들어 제대로 섭취하면 효과가 훨씬 높아집니다.
 
 Scripts/Items/Medical/ItemHerbPurple@Name:
 보라색 약초
@@ -1539,13 +1539,13 @@ Scripts/Items/Medical/ItemStimpack@Name:
 스팀팩
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Description:
-근력강화제을 사용하면 일시적으로 힘이 강해져, 신체 활동의 효율이 향상됩니다.
+근력강화제를 사용하면 일시적으로 힘이 강해져, 신체 활동의 효율이 향상됩니다.
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Name:
 근력강화제 (대)
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
-근력강화제을 사용하면 일시적으로 힘이 강해져, 신체 활동의 효율이 향상됩니다.
+근력강화제를 사용하면 일시적으로 힘이 강해져, 신체 활동의 효율이 향상됩니다.
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 근력강화제 (소)
@@ -1647,7 +1647,7 @@ Scripts/Items/Seeds/ItemSeedsTomato@Name:
 토마토씨
 
 Scripts/Items/Seeds/ItemSeedsWheat@Description:
-심기위해 특별히 마련해 놓은 밀의 씨앗.
+심기 위해 특별히 마련해 놓은 밀의 씨앗.
 
 Scripts/Items/Seeds/ItemSeedsWheat@Name:
 밀 씨앗
@@ -1686,7 +1686,7 @@ Scripts/Items/Tools/Crowbars/ItemCrowbar@Name:
 쇠지렛대
 
 Scripts/Items/Tools/Lights/ItemFlashlight@Description:
-강력한 손전등은 그야 말로 최고입니다. 이 모델은 단순한 일회용 배터리를 사용하면서도 3,000루멘 이상의 빛을 뿜어냅니다.
+강력한 손전등은 그야말로 최고입니다. 이 모델은 단순한 일회용 배터리를 사용하면서도 3,000루멘 이상의 빛을 뿜어냅니다.
 
 Scripts/Items/Tools/Lights/ItemFlashlight@Name:
 손전등
@@ -1695,7 +1695,7 @@ Scripts/Items/Tools/Lights/ItemOilLamp@Description:
 편리한 단일 패키지의 휴대용 광원! 캠프 연료로 빠르게 연료를 보충할 수 있습니다.
 
 Scripts/Items/Tools/Lights/ItemOilLamp@Name:
-석유 램프
+석유램프
 
 Scripts/Items/Tools/Lights/ItemTorch@NotificationBurnedOut:
 횃불이 꺼졌습니다.
@@ -1779,7 +1779,7 @@ Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Name:
 나무 물뿌리개
 
 Scripts/Items/Weapons/Melee/ItemKnifeIron@Description:
-군용 칼. 총검 또는 대검이라고도 불릷니다.
+군용 칼. 총검 또는 대검이라고도 불립니다.
 
 Scripts/Items/Weapons/Melee/ItemKnifeIron@Name:
 쇠칼
@@ -1851,7 +1851,7 @@ Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
 레이저소총
 
 Scripts/Items/Weapons/Ranged/ItemLuger@Description:
-단순한 디자인의 반자동 권총. 현대의 총기에 비해 상대적으로 생산 비용이 저렵합니다.
+단순한 디자인의 반자동 권총. 현대의 총기에 비해 상대적으로 생산 비용이 저렴합니다.
 
 Scripts/Items/Weapons/Ranged/ItemLuger@Name:
 루거
@@ -1869,19 +1869,19 @@ Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
 기관권총
 
 Scripts/Items/Weapons/Ranged/ItemMusket@Description:
-전통적인 스타일의 머스킷. 페이퍼 카트리지 방식을 사용합니다. 수발권총 보다 더 나은 사거리와 대미지를 자랑합니다.
+전통적인 스타일의 머스킷. 페이퍼 카트리지 방식을 사용합니다. 수발권총보다 더 나은 사거리와 대미지를 자랑합니다.
 
 Scripts/Items/Weapons/Ranged/ItemMusket@Name:
 머스킷
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-플라스마권총은 충돌시 표적을 태우는 응집 플라스마 덩어리를 형성하고 투사하여 큰 대미지를 줍니다. 높은 전력을 소모합니다.
+플라스마권총은 충돌 시 표적을 태우는 응집 플라스마 덩어리를 형성하고 투사하여 큰 대미지를 줍니다. 높은 전력을 소모합니다.
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
 플라스마권총
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
-플라스마소총은 충돌시 표적을 심하게 태우는 대형 응집 플라스마 덩어리를 형성하고 투사하여 막대한 대미지를 줍니다. 매우 높은 전력을 소모합니다.
+플라스마소총은 충돌 시 표적을 심하게 태우는 대형 응집 플라스마 덩어리를 형성하고 투사하여 막대한 대미지를 줍니다. 매우 높은 전력을 소모합니다.
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
 플라스마소총

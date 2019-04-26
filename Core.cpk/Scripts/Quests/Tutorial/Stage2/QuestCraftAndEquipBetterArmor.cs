@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestCraftAndEquipBetterArmor : ProtoQuest
     {
@@ -18,11 +20,34 @@
 
         protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
         {
+            var headEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentHead>()
+                                              .Where(i => !(i is ItemClothHat))
+                                              .ToList();
+
+            var chestEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentChest>()
+                                               .Where(i => !(i is ItemClothShirt))
+                                               .ToList();
+
+            var legsEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentLegs>()
+                                              .Where(i => !(i is ItemClothPants))
+                                              .ToList();
             requirements
                 .Add(RequirementBuildStructure.Require<ObjectArmorerWorkbench>())
-                .Add(RequirementHaveItemEquipped.Require<ItemWoodHelmet>())
-                .Add(RequirementHaveItemEquipped.Require<ItemWoodChestplate>())
-                .Add(RequirementHaveItemEquipped.Require<ItemWoodPants>());
+                // suggest wood helmet but require any head item except the cloth one
+                .Add(RequirementHaveItemEquipped.Require(
+                         headEquipmentExceptCloth,
+                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
+                                       Api.GetProtoEntity<ItemWoodHelmet>().Name)))
+                // suggest wood chestplate but require any chest item except the cloth one
+                .Add(RequirementHaveItemEquipped.Require(
+                         chestEquipmentExceptCloth,
+                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
+                                       Api.GetProtoEntity<ItemWoodChestplate>().Name)))
+                // suggest wood pants but require any legs item except the cloth one
+                .Add(RequirementHaveItemEquipped.Require(
+                         legsEquipmentExceptCloth,
+                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
+                                       Api.GetProtoEntity<ItemWoodPants>().Name)));
 
             prerequisites
                 .Add<QuestClaySandGlassBottlesWaterCollector>();

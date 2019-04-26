@@ -1,4 +1,4 @@
-﻿<core:BaseUserControlWithWindow
+﻿<ui:BaseUserControl
     x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Respawn.WindowRespawn"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,30 +10,112 @@
     mc:Ignorable="d"
     d:DesignHeight="80" d:DesignWidth="850"
     d:DataContext="{d:DesignInstance data:ViewModelWindowRespawn, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    Background="Black"
+    Foreground="{StaticResource WindowForeground}"
+    Opacity="1"
+    Panel.ZIndex="1000"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch">
+    <Grid HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Width="348">
+        <core:WidgetPanel InnerGlowSize="10" VisibilityBackgroundImage="Collapsed" />
 
-    <core:GameWindow x:Name="GameWindow"
-                     Width="500"
-                     Height="250"
-                     FocusOnControl="{Binding ElementName=GameWindow}"
-                     Padding="0"
-                     ZIndexOffset="1000"
-                     CloseByEscapeKey="False"
-                     IsCached="True">
-        <!-- Please note: we need IsCached="True" to avoid auto-opening of the window (wait for the background fade-in) -->
         <StackPanel Orientation="Vertical"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-
+                    Margin="15,15">
             <!-- Text: Looks like you've been parted from this cruel world forcibly... and lost all your stuff! Do you want revenge? -->
-            <core:FormattedTextBlock
-                Content="{x:Static loc:CoreStrings.WindowRespawn_Message}"
-                Style="{StaticResource TextBlockMenuPlaceholderStyle}"
-                Width="460" />
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="8" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      UseLayoutRounding="True"
+                      Margin="-10,0,0,0">
+                    <Image Source="/UI/Images/Icons/icon_death.png"
+                           Visibility="{Binding IsNewbiePvPdeath, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                           Width="64"
+                           Height="64"
+                           Stretch="Uniform" />
 
+                    <Image Source="/UI/Images/Icons/icon_death_protection.png"
+                           Visibility="{Binding IsNewbiePvPdeath, Converter={StaticResource BoolToVisibilityConverter}}"
+                           Width="64"
+                           Height="64"
+                           Stretch="Uniform" />
+                </Grid>
+
+                <core:FormattedTextBlock
+                    Grid.Column="2"
+                    Content="{Binding Message}"
+                    FontFamily="{StaticResource CondensedFontFamily}"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    LineHeight="15"
+                    LineStackingStrategy="BlockLineHeight"
+                    TextWrapping="Wrap"
+                    TextTrimming="None"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    TextAlignment="Left" />
+            </Grid>
+
+            <!-- Damage sources report -->
+            <StackPanel Orientation="Vertical"
+                        Visibility="{Binding DamageSourcesList, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
+                        HorizontalAlignment="Center"
+                        Margin="0,25,0,0">
+                <TextBlock Text="{x:Static loc:CoreStrings.WindowRespawn_DamageSources}"
+                           FontSize="12"
+                           FontWeight="Bold" />
+                <ItemsControl ItemsSource="{Binding DamageSourcesList}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <DataTemplate.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="11" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </DataTemplate.Resources>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,2">
+                                <!-- Bullet point -->
+                                <Ellipse
+                                    Width="6"
+                                    Height="6"
+                                    Fill="{StaticResource BrushColor6}"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,3,0" />
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}"
+                                               TextWrapping="Wrap"
+                                               TextTrimming="CharacterEllipsis"
+                                               Foreground="{StaticResource BrushColor6}" />
+
+                                    <TextBlock Text="{Binding Percent, StringFormat={}({0}%)}"
+                                               Margin="3,0,0,0"
+                                               Foreground="{StaticResource BrushColor5}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <!-- Buttons to select the respawn location -->
             <Grid VerticalAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  Margin="0,15,0,0">
+                  Margin="0,10,0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -101,5 +183,5 @@
             </Grid>
 
         </StackPanel>
-    </core:GameWindow>
-</core:BaseUserControlWithWindow>
+    </Grid>
+</ui:BaseUserControl>

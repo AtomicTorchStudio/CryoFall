@@ -111,9 +111,10 @@
             build.AddStageRequiredItem<ItemTwigs>(count: 10);
             build.AddStageRequiredItem<ItemStone>(count: 10);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemTwigs>(count: 1);
+            repair.AddStageRequiredItem<ItemStone>(count: 1);
         }
 
         protected override void ServerUpdate(ServerUpdateData data)

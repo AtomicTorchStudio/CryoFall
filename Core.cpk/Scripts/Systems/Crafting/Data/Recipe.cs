@@ -238,6 +238,10 @@
             Api.Assert(outputItems.Count > 0, "Crafting recipe requires at least one output item.");
 
             this.OriginalDuration = craftDuration.TotalSeconds;
+
+            inputItems.ApplyRates(RecipeConstants.InputItemsCountMultiplier);
+            outputItems.ApplyRates(RecipeConstants.OutputItemsCountMultiplier);
+
             this.InputItems = inputItems.AsReadOnly();
             this.OutputItems = outputItems.AsReadOnly();
         }

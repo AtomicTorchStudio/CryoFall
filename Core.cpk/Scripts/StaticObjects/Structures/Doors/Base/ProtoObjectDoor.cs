@@ -547,7 +547,8 @@
                 return false;
             }
 
-            var objectCenterPosition = worldObject.TilePosition.ToVector2D() + this.DoorOpenCheckOffset;
+            var objectCenterPosition = worldObject.TilePosition.ToVector2D()
+                                       + this.DoorOpenCheckOffset;
 
             using (var charactersNearby = Api.Shared.GetTempList<ICharacter>())
             {

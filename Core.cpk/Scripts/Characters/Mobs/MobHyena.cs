@@ -61,7 +61,7 @@
             base.ServerInitializeCharacterMob(data);
 
             var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalMedium>();
-            data.PrivateState.WeaponState.SetWeaponProtoOnly(weaponProto);
+            data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
             data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
         }
 

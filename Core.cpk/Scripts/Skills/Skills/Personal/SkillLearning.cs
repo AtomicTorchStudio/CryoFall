@@ -14,7 +14,7 @@
         /// </summary>
         public const double ExperienceAddedPerLPLost = 50.0;
 
-        public const ushort LearningPointsRetainedAfterDeathBaseValue = 20;
+        public const ushort LearningPointsRetainedAfterDeathBaseValue = 50;
 
         public override string Description =>
             "Surviving in the unfamiliar environment of an alien world is difficult, but it offers unique opportunities to learn things you wouldn't know otherwise.";
@@ -41,22 +41,19 @@
             config.AddStatEffect(
                 statName,
                 level: 10,
-                valueBonus: 10);
+                valueBonus: 20);
 
             // level 15:
             config.AddStatEffect(
                 statName,
                 level: 15,
-                valueBonus: 20);
+                valueBonus: 30);
 
             // level 20:
             config.AddStatEffect(
                 statName,
                 level: 20,
                 valueBonus: 50);
-
-            // Please note: default value is 20 LP retained after death + bonus from this skill.
-            // At maximum level 200LP is retained after death.
         }
     }
 }

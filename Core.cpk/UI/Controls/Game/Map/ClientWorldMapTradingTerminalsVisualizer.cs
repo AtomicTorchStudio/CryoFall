@@ -11,7 +11,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    public class ClientWorldMapTradingTerminalsVisualizer : IDisposable, IWorldMapVisualizer
+    public class ClientWorldMapTradingTerminalsVisualizer : IWorldMapVisualizer
     {
         private readonly Dictionary<uint, FrameworkElement> markers
             = new Dictionary<uint, FrameworkElement>();

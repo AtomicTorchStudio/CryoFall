@@ -10,7 +10,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class ClientWorldMapPartyMembersVisualizer : IDisposable, IWorldMapVisualizer
+    public class ClientWorldMapPartyMembersVisualizer : IWorldMapVisualizer
     {
         private readonly Dictionary<string, FrameworkElement> characterMarkers
             = new Dictionary<string, FrameworkElement>();

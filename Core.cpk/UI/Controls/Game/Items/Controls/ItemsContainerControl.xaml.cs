@@ -27,6 +27,13 @@
 
         private UIElementCollection wrapPanelItemsSlotsChildren;
 
+        static ItemsContainerControl()
+        {
+            HorizontalAlignmentProperty.OverrideMetadata(
+                typeof(ItemsContainerControl),
+                new FrameworkPropertyMetadata(HorizontalAlignment.Center));
+        }
+
         public IClientItemsContainer Container
         {
             get => (IClientItemsContainer)this.GetValue(ContainerProperty);

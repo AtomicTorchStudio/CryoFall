@@ -223,7 +223,7 @@
                        IsSelected="{Binding IsSelected}">
             <base:ToolTipServiceExtend.ToolTip>
                 <!-- Text: Social -->
-                <core:LabelWithButton Content="{x:Static loc:CoreStrings.MenuHome_Social}">
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Social}">
                     <core:LabelWithButton.Button>
                         <core:GameButtonReference Button="SocialMenu" />
                     </core:LabelWithButton.Button>

@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -44,23 +45,24 @@
                 return false;
             }
 
-            if (IsServer
-                && !LandClaimSystem.ServerIsObjectInsideOwnedOfFreeArea(worldObject, character))
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
+                || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
-                // not the land owner
-                if (writeToLog)
-                {
-                    Logger.Warning(
-                        $"Character cannot interact with {worldObject} - not the land owner.",
-                        character);
-
-                    LandClaimSystem.ServerNotifyCannotInteractNotOwner(character, worldObject);
-                }
-
-                return false;
+                return true;
             }
 
-            return true;
+            // not the land owner
+            if (writeToLog)
+            {
+                Logger.Warning(
+                    $"Character cannot interact with {worldObject} - not the land owner.",
+                    character);
+
+                LandClaimSystem.ServerNotifyCannotInteractNotOwner(character, worldObject);
+            }
+
+            return false;
+
         }
 
         /// <summary>

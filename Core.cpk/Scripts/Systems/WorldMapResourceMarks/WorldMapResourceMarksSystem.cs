@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -35,12 +36,14 @@
             }
         }
 
-        public static void ServerAddMark(IStaticWorldObject staticWorldObject)
+        public static void ServerAddMark(IStaticWorldObject staticWorldObject, double serverSpawnTime)
         {
             Api.ValidateIsServer();
 
-            sharedResourceMarksList.Add(new WorldMapResourceMark(staticWorldObject.TilePosition,
-                                                                 staticWorldObject.ProtoStaticWorldObject));
+            sharedResourceMarksList.Add(
+                new WorldMapResourceMark(staticWorldObject.TilePosition,
+                                         staticWorldObject.ProtoStaticWorldObject,
+                                         serverSpawnTime));
         }
 
         public static void ServerRemoveMark(IStaticWorldObject staticWorldObject)
@@ -60,6 +63,46 @@
                     return;
                 }
             }
+        }
+
+        public static int SharedCalculateTimeRemainsToClaimCooldownSeconds(IStaticWorldObject staticWorldObject)
+        {
+            var tilePosition = staticWorldObject.TilePosition;
+            foreach (var mark in sharedResourceMarksList)
+            {
+                if (mark.Position != tilePosition)
+                {
+                    continue;
+                }
+
+                return (int)SharedCalculateTimeToClaimLimitRemovalSeconds(mark.ServerSpawnTime);
+            }
+
+            return 0;
+        }
+
+        public static int SharedCalculateTimeToClaimLimitRemovalMinutes(double markServerSpawnTime)
+        {
+            var resultSeconds = SharedCalculateTimeToClaimLimitRemovalSeconds(markServerSpawnTime);
+            return (int)Math.Round(resultSeconds / 60.0,
+                                   MidpointRounding.AwayFromZero);
+        }
+
+        private static double SharedCalculateTimeToClaimLimitRemovalSeconds(double markServerSpawnTime)
+        {
+            if (markServerSpawnTime <= 0)
+            {
+                return 0;
+            }
+
+            var serverTime = IsClient
+                                 ? Api.Client.CurrentGame.ServerFrameTimeApproximated
+                                 : Api.Server.Game.FrameTime;
+
+            var timeSinceSpawn = serverTime - markServerSpawnTime;
+
+            var resultSeconds = StructureConstants.ResourceSpawnClaimingCooldownDuration - timeSinceSpawn;
+            return Math.Max(resultSeconds, 0);
         }
 
         private ILogicObject ServerRemote_AcquireManagerInstance()

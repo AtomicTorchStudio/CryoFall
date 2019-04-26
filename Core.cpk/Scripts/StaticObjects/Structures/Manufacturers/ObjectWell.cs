@@ -91,7 +91,7 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemStone>(count: 5);
+            repair.AddStageRequiredItem<ItemStone>(count: 7);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

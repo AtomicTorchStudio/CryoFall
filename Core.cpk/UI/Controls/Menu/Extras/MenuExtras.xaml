@@ -69,6 +69,14 @@
             <StackPanel Width="300"
                         Orientation="Vertical"
                         TextOptions.TextHintingMode="Animated">
+                <Image x:Name="GameLogo"
+                       Source="/UI/Images/Logo/logo_cryofall_128_flat.png"
+                       Stretch="Uniform"
+                       SnapsToDevicePixels="False"
+                       HorizontalAlignment="Center"
+                       Height="50"
+                       Margin="0,0,0,225" />
+
                 <TextBlock Style="{StaticResource Section}" Margin="0">CryoFall &#x2014; Development</TextBlock>
                 <TextBlock Style="{StaticResource MiniSection}">AtomicTorch Studio</TextBlock>
 
@@ -195,7 +203,7 @@
 
                 <TextBlock Style="{StaticResource Section}">Special thanks</TextBlock>
                 <TextBlock Style="{StaticResource Name}"
-                           FontSize="11" 
+                           FontSize="11"
                            Margin="0,5,0,0">
                     Sergei&#160;Morozov, Jesús de Santos García, Sergio Fernandez, AkvoMaster, p0ki, Yrol&#160;Denjeah, Evil&#160;Mammoth, Daitallica, Kane&#160;Hart, IndignoPlay, Djekke, Kawasoe, PanBanan, KaypeX
                     <LineBreak />Adrian, Robin and Mathias of toneworx GmbH

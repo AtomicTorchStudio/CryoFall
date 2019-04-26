@@ -70,6 +70,9 @@ UI/CoreStrings@CharacterStatName_Water:
 UI/CoreStrings@Chat_MessageMenu_Block:
 차단
 
+UI/CoreStrings@Chat_MessageMenu_CopyName:
+이름 복사
+
 UI/CoreStrings@Chat_MessageMenu_InviteToParty:
 파티에 초대
 
@@ -104,6 +107,9 @@ UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 잠금 해제된 제조법
+
+UI/CoreStrings@CryoFallDevelopmentRoadmap:
+CryoFall 개발 로드맵
 
 UI/CoreStrings@Defense_Format_Chemical:
 화학 물질 보호: {0}
@@ -182,6 +188,9 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Quests:
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Skills:
 스킬
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Social:
+소셜
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
 기술
@@ -311,7 +320,7 @@ UI/CoreStrings@MenuHome_RecentServers:
 
 UI/CoreStrings@MenuHome_ServerHistoryEmpty:
 `서버 기록이 비어있습니다.
-[br][br]이 섹션을 사용하여 
+[br][br]이 섹션을 통해 
 [br]최근에 플레이한 서버에 빠르게 참가할 수 있습니다.`
 
 UI/CoreStrings@MenuHome_Social:
@@ -348,10 +357,10 @@ UI/CoreStrings@MenuServers_Button_JoinServer:
 서버 참가
 
 UI/CoreStrings@MenuServers_Button_RefreshAll:
-전부 새로고침
+전부 새로 고침
 
 UI/CoreStrings@MenuServers_Button_RefreshServer:
-서버 새로고침
+서버 새로 고침
 
 UI/CoreStrings@MenuServers_Button_RemoveServer:
 서버 제거
@@ -420,13 +429,13 @@ UI/CoreStrings@Network_PingAverage_SeverityRed:
 `서버에 연결된 네트워크에 심각한 레이턴시가 발생하고 있는 것 같습니다 (매우 높은 핑).
 [br]이로 인해 게임에서 수행되는 일부 작업 (서버 응답이 필요한 작업)의 실행 및 처리에 훨씬 더 오랜 시간이 걸리게 될 것입니다.
 [br]예: 서버와의 상당한 차이로 타격이 자주 빗나갈 수도 있습니다.
-또한 고무줄 현상이나 순간 위치 보정을 자주 겪게 될 수도 있습니다.`
+또한, 고무줄 현상이나 순간 위치 보정을 자주 겪게 될 수도 있습니다.`
 
 UI/CoreStrings@Network_PingAverage_SeverityYellow:
 `서버에 연결된 네트워크에 상당한 레이턴시가 발생하고 있는 것 같습니다 (높은 핑).
 [br]이로 인해 게임에서 수행되는 일부 작업 (서버 응답이 필요한 작업)의 실행 및 처리에 더 오랜 시간이 걸리게 될 것입니다.
 [br]예: 서버와의 상당한 차이로 타격이 가끔 빗나갈 수도 있습니다.
-또한 고무줄 현상이나 순간 위치 보정을 때때로 겪게 될 수도 있습니다.`
+또한, 고무줄 현상이나 순간 위치 보정을 때때로 겪게 될 수도 있습니다.`
 
 UI/CoreStrings@Network_PingFluctuationRange:
 핑 변동 범위
@@ -565,7 +574,7 @@ UI/CoreStrings@Quest_Label_New:
 신규
 
 UI/CoreStrings@Quest_Label_Ready:
-준비
+충족
 
 UI/CoreStrings@QuestionAreYouSure:
 확실하십니까?
@@ -600,11 +609,11 @@ UI/CoreStrings@StatusEffect_TitleIntensity:
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Message:
 `[b]현재 할 수 있는 것:[/b]
 [*] CryoFall의 비Steam판을 다운로드하여 실행하고, 기존과 동일한 캐릭터와 서버에 완전히 접근할 수 있습니다.
-[*] 앞으로 업데이트될 기능, 새로운 버전 출시, 그밖의 좋은 소식을 알려드리는 AtomicTorch의 메일링 목록에 접근하십시오.
+[*] 앞으로 업데이트될 기능, 새로운 버전 출시, 그 밖의 좋은 소식을 알려드리는 AtomicTorch의 메일링 목록에 접근하십시오.
 [*] AtomicTorch 사용자들만 이용할 수 있는 비공개 설문에 참여하십시오.
 [br]
-[br][b]곧 가능해 질 것들:[/b]
-[*] 버튼 클릭만으로 CryoFall을 위한 공식 클라우드 서버 빌리기.`
+[br][b]곧 가능해 질 것:[/b]
+[*] 버튼 클릭만으로 CryoFall을 위한 공식 클라우드 서버 대여.`
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Title:
 왜 AtomicTorch 계정을 연결하는 것이 좋나요?
@@ -725,7 +734,7 @@ UI/CoreStrings@UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAc
 계정을 생성하지 않고 진행
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
-CryoFall을 처음으로 실행하신 것 같습니다. 기존의[url=atomictorch.com]AtomicTorch.com[/url] 계정에 연결하시겠습니까?
+CryoFall을 처음으로 실행하신 것 같습니다. 기존의 [url=atomictorch.com]AtomicTorch.com[/url] 계정에 연결하시겠습니까?
 
 UI/CoreStrings@Window_Tab_Main:
 주요
@@ -749,13 +758,13 @@ UI/CoreStrings@WindowConstructionMenu_Button_Build:
 
 UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
 `중요! [b]건설[/b] 또는[b]수리[/b]를 하려면, [b]공구함[/b]이 있어야 합니다!
-[br]공구함을 단축바에 장비하세요.`
+[br]공구함을 단축막대에 장비하세요.`
 
 UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
 설계도 놓기
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
-총 필요량
+총 필요 자원
 
 UI/CoreStrings@WindowDataLog_Content:
 콘텐츠
@@ -846,6 +855,12 @@ UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 
 UI/CoreStrings@WindowRespawn_Message:
 이 잔인한 세상에서 강제로 이별하셨나보군요... 게다가 모든 아이템까지 잃어버리다니! 복수를 원하십니까?
+
+UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
+다른 플레이어가 당신을 죽인 것 같습니다. 하지만 다행히 초보자 보호 기능이 활성화되어 있어, 아이템이나 학습 포인트를 잃지 않았습니다. 하지만 다음 번에는 해당 기능이 만료될지도 모르니 조심하세요!
+
+UI/CoreStrings@WindowRespawn_DamageSources:
+최근 대미지 원인:
 
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `최근에 잠자리에서 부활했습니다.
@@ -1079,7 +1094,7 @@ UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `스스로 지은 벽에 껴서 못빠져 나온 적 있으신가요?
-[br]아니면 다른 플레이어에 의해서는요?
+[br]아니면 다른 플레이어에 의해 그런 일을 당하신 적은요?
 [br]이 기능을 사용하면 캐릭터를 순간 이동시킬 수 있습니다.
 [br]시간 지연 (5 분)을 기다려 주세요.`
 
@@ -1113,8 +1128,8 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Title:
 빈손인 상태에서 마우스 왼쪽 버튼으로 아이템 클릭
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Description:
-`슬롯이 비어있는 경우—해당 위치에 아이템 놓기.
-[br]슬롯이 비어있지 않은 경우—아이템 결합 또는 바꾸기.`
+`슬롯이 비어있는 경우?해당 위치에 아이템 놓기.
+[br]슬롯이 비어있지 않은 경우?아이템 결합 또는 바꾸기.`
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Title:
 아이템을 선택한 상태에서 마우스 왼쪽 버튼으로 슬롯 클릭
@@ -1126,13 +1141,13 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Title:
 마우스 가운데 버튼 (스크롤 휠) 클릭
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Description:
-해당 아이템 반만 획득하기.
+해당 아이템 절반 획득하기.
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Title:
 빈손인 상태에서 마우스 오른쪽 버튼으로 아이템 클릭
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Description:
-슬롯이 비어있거나 동일한 아이템 유형이 포함되어 있는 경우—[br]단일 아이템을 손에서 슬롯으로 이동.
+슬롯이 비어있거나 동일한 아이템 유형이 포함되어 있는 경우?[br]단일 아이템을 손에서 슬롯으로 이동.
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Title:
 아이템을 선택한 상태에서 마우스 오른쪽 버튼으로 슬롯 클릭
@@ -1153,7 +1168,7 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@TitleItemSlotActions:
 아이템 슬롯 동작
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleBottom:
-하의
+하안
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleFace:
 얼굴
@@ -1162,16 +1177,34 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 머리카락
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
-상의
+상안
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
+생명체
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
+폭발
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleItem:
+아이템
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleOther:
+기타
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitlePlayer:
+플레이어
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
+상태 효과
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 다음 레벨
 
 UI/Controls/Game/Social/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
-파티에서 떠나시겠습니까?
+파티를 떠나시겠습니까?
 
 UI/Controls/Game/Social/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
-[b]{0}[/b]님을 파티에서 추방하시겠습니까?
+[b]{0}[/b]님을 파티에서 삭제하시겠습니까?
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier1Letter:
 I
@@ -1219,7 +1252,7 @@ UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@Noti
 켤 수 없음
 
 UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Message:
-같은 종류의 임플란트를 2 개 설치할 수 없습니다.
+같은 종류의 임플란트를 2개 설치할 수 없습니다.
 
 UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Title:
 이미 설치됨
@@ -1305,7 +1338,7 @@ UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionT
 이 게임 서버는 최신 버전에서 실행됩니다
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionTitle_Older:
-이 게임 서버는 구 버전에서 실행됩니다
+이 게임 서버는 구버전에서 실행됩니다
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
 서버에 접속할 수 없습니다.
@@ -1360,7 +1393,7 @@ UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_
 등록 불가
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorConfirmEmailDoesntMatch:
-이메일 주소가 일치하지 않습니다.
+입력된 이메일 주소와 일치하지 않습니다.
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterEmail:
 이메일 주소를 입력하십시오.
@@ -1369,7 +1402,7 @@ UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterPassword:
 비밀번호를 입력하십시오.
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
-계속하려면 서비스 약관에 동의해야 합니다.
+계속하려면 서비스 약관에 동의하셔야 합니다.
 
 UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
 마이크로소프트가 소유한 서버의 이메일 계정을 사용하여 등록을 시도하고 계신 것 같아 보입니다. 안타깝게도, 마이크로소포트는 대형 공급자가 아닌 이메일을 완전히 [b]차단[/b]하여 저희가 당신의 계정으로 이메일 보내는 것을 효과적으로 차단하였습니다. [b]gmail.com[/b]과 같은 다른 이메일 서비스를 사용하십시오.

@@ -224,7 +224,7 @@
                                HorizontalAlignment="Left" VerticalAlignment="Bottom"
                                Url="https://trello.com/b/B5ckffAW"
                                Margin="20"
-                               base:ToolTipServiceExtend.ToolTip="CryoFall Development Roadmap">
+                               base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.CryoFallDevelopmentRoadmap}">
             <Image Source="/UI/Images/Icons/Social/btn_roadmap.png" Stretch="Uniform" Width="60" Opacity="0.667" />
         </core:HyperlinkControl>
 

@@ -15,6 +15,8 @@
 
     public class ItemWeaponScorpionClaws : ProtoItemWeaponMelee
     {
+        public override bool CanDamageStructures => false;
+
         public override string Description => null;
 
         public override ushort DurabilityMax => 0;

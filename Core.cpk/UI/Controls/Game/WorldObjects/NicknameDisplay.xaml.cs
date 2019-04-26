@@ -1,18 +1,24 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects
 {
     using System.Linq;
-    using System.Windows.Media;
+    using System.Windows;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
+    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class NicknameDisplay : BaseUserControl
     {
+        private ICharacter character;
+
         private ViewModelNicknameDisplay viewModel;
 
-        public void Setup(string name, bool isOnline)
+        public void Setup(ICharacter character, bool isOnline)
         {
-            this.viewModel = new ViewModelNicknameDisplay(name, isOnline);
+            this.character = character;
+            this.viewModel = new ViewModelNicknameDisplay(character, isOnline);
         }
 
         protected override void InitControl()
@@ -22,9 +28,8 @@
         protected override void OnLoaded()
         {
             this.DataContext = this.viewModel;
-            PartySystem.ClientCurrentPartyMemberAddedOrRemoved += this.ClientCurrentPartyMemberAddedOrRemovedHandler;
-
-            this.Refresh();
+            ClientComponentUpdateHelper.UpdateCallback += this.RefreshVisibilityOnly;
+            this.RefreshVisibilityOnly();
         }
 
         protected override void OnUnloaded()
@@ -34,19 +39,18 @@
             this.viewModel?.Dispose();
             this.viewModel = null;
 
-            PartySystem.ClientCurrentPartyMemberAddedOrRemoved -= this.ClientCurrentPartyMemberAddedOrRemovedHandler;
+            ClientComponentUpdateHelper.UpdateCallback -= this.RefreshVisibilityOnly;
         }
-
-        private void ClientCurrentPartyMemberAddedOrRemovedHandler((string name, bool isAdded) obj)
+  
+        private void RefreshVisibilityOnly()
         {
-            this.Refresh();
-        }
+            if (!ClientTimeOfDayVisibilityHelper.ClientIsObservable(this.character))
+            {
+                this.Visibility = Visibility.Hidden;
+                return;
+            }
 
-        private void Refresh()
-        {
-            var members = PartySystem.ClientGetCurrentPartyMembers();
-            var isPartyMember = members.Contains(this.viewModel.Name);
-            this.viewModel.IsPartyMember = isPartyMember;
+            this.Visibility = Visibility.Visible;
         }
     }
 }

@@ -59,9 +59,10 @@
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
             build.AddStageRequiredItem<ItemGlassRaw>(count: 3);
 
-            repair.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Short;
+            repair.StagesCount = 5;
+            repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
+            repair.AddStageRequiredItem<ItemGlassRaw>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

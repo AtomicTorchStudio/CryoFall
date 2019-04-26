@@ -47,7 +47,7 @@
                                                 VerticalAlignment="Bottom"
                                                 Background="#A5002940"
                                                 Opacity="1">
-                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <ScrollViewer x:Name="TabsScrollViewer" VerticalScrollBarVisibility="Auto">
                                         <ItemsPresenter Panel.ZIndex="1" />
                                     </ScrollViewer>
                                 </ContentControl>
@@ -67,8 +67,7 @@
                 </Setter>
 
                 <Style.Resources>
-                    <Style TargetType="{x:Type TabItem}"
-                           d:DataContext="{d:DesignInstance data:ViewModelChatRoom}">
+                    <Style TargetType="{x:Type TabItem}">
                         <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundTabSwitched}" />
                         <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
                         <Setter Property="Background" Value="Transparent" />
@@ -87,7 +86,8 @@
                         <Setter Property="Header" Value="{x:Null}" />
                         <Setter Property="Template">
                             <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type TabItem}">
+                                <ControlTemplate TargetType="{x:Type TabItem}"
+                                                 d:DataContext="{d:DesignInstance data:ViewModelChatRoom}">
                                     <Grid
                                         Visibility="{Binding IsTabVisible, Converter={StaticResource BoolToVisibilityConverter}}">
                                         <Border x:Name="Border"
@@ -120,7 +120,11 @@
                                             <Setter Property="BorderBrush" TargetName="Border"
                                                     Value="{StaticResource BrushColor6}" />
                                         </Trigger>
-                                        <Trigger Property="IsSelected" Value="True">
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding IsSelected}" Value="True" />
+                                                <Condition Binding="{Binding IsOpened}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
                                             <Setter Property="Background" TargetName="Border">
                                                 <Setter.Value>
                                                     <SolidColorBrush Color="#FF557799" Opacity="0.9" />
@@ -128,7 +132,7 @@
                                             </Setter>
                                             <Setter Property="BorderBrush" TargetName="Border"
                                                     Value="{StaticResource BrushColorAlt7}" />
-                                        </Trigger>
+                                        </MultiDataTrigger>
                                         <MultiTrigger>
                                             <MultiTrigger.Conditions>
                                                 <Condition Property="IsSelected" Value="True" />

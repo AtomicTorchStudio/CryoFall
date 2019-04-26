@@ -2198,7 +2198,8 @@
 
                                 <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
-                                <controls:ItemsContainerControl x:Name="ContainerInventoryControl" Grid.Row="1"
+                                <controls:ItemsContainerControl x:Name="ContainerInventoryControl" 
+                                                                Grid.Row="1"
                                                                 Grid.Column="0"
                                                                 Container="{Binding ContainerInventory}"
                                                                 VerticalAlignment="Top"

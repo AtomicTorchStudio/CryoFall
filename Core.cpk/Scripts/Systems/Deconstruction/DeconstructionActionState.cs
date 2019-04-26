@@ -8,7 +8,6 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -62,19 +61,8 @@
             this.structurePointsMax = this.protoStructure.SharedGetStructurePointsMax(worldObject);
 
             // use build config to determine how many deconstruction steps required
-            var stagesCount = 10;
-            if (!(this.protoStructure is IProtoObjectLandClaim))
-            {
-                if (this.protoStructure.ConfigBuild.IsAllowed)
-                {
-                    stagesCount = this.protoStructure.ConfigBuild.StagesCount;
-                }
-                else
-                {
-                    stagesCount = this.protoStructure.GetStructureActiveConfig(worldObject)
-                                      .StagesCount;
-                }
-            }
+            var stagesCount = this.protoStructure.GetStructureActiveConfig(worldObject)
+                                  .StagesCount;
 
             if (stagesCount <= 0)
             {
@@ -177,7 +165,7 @@
                 0,
                 oldStructurePoints - this.stageStructureRemoveValue);
 
-            this.protoStructure.SharedOnDeconstruction(
+            this.protoStructure.SharedOnDeconstructionStage(
                 this.WorldObject,
                 this.Character,
                 oldStructurePoints,

@@ -3,8 +3,8 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using static Stats.StatName;
 
     public class CharacterHungerThirstSystem : ProtoSystem<CharacterHungerThirstSystem>
     {
@@ -16,12 +16,6 @@
 
         // Regeneration mode food decrease multiplier - change consumption speed when health is not full.
         private const double FoodDecreaseMultiplierWhenHealthNotFull = 1.0;
-
-        // Starvation mode health decrease - consume 100 health points in 5 minutes.
-        private const double HealthDecreaseStarvation = 100.0 / (60.0 * 5.0);
-
-        // Thirst mode health decrease - consume 100 health points in 5 minutes.
-        private const double HealthDecreaseThirst = 100.0 / (60.0 * 5.0);
 
         // Food/water update time interval.
         private const double TimeIntervalSeconds = 10.0;
@@ -88,34 +82,14 @@
                 }
 
                 // apply stat effects
-                waterDecreaseMultiplier *=
-                    character.SharedGetFinalStatMultiplier(StatName.WaterConsumptionSpeedMultiplier);
-                foodDecreaseMultiplier *=
-                    character.SharedGetFinalStatMultiplier(StatName.FoodConsumptionSpeedMultiplier);
+                waterDecreaseMultiplier *= character.SharedGetFinalStatMultiplier(WaterConsumptionSpeedMultiplier);
+                foodDecreaseMultiplier *= character.SharedGetFinalStatMultiplier(FoodConsumptionSpeedMultiplier);
 
                 var water = stats.WaterCurrent - WaterDecrease * waterDecreaseMultiplier * TimeIntervalSeconds;
                 var food = stats.FoodCurrent - FoodDecrease * foodDecreaseMultiplier * TimeIntervalSeconds;
-                var health = (double)currentHealth;
-
-                if (water <= 0) // thirst
-                {
-                    health -= HealthDecreaseThirst * TimeIntervalSeconds;
-                }
-
-                if (food <= 0) // starvation
-                {
-                    health -= HealthDecreaseStarvation * TimeIntervalSeconds;
-                }
 
                 stats.ServerSetWaterCurrent((float)water);
                 stats.ServerSetFoodCurrent((float)food);
-
-                var newHealth = (float)health;
-                // ReSharper disable once CompareOfFloatsByEqualityOperator
-                if (currentHealth != newHealth)
-                {
-                    stats.ServerSetHealthCurrent(newHealth);
-                }
             }
         }
     }

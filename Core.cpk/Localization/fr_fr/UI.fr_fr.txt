@@ -70,6 +70,9 @@ Eau
 UI/CoreStrings@Chat_MessageMenu_Block:
 Bloquer
 
+UI/CoreStrings@Chat_MessageMenu_CopyName:
+Copier le nom
+
 UI/CoreStrings@Chat_MessageMenu_InviteToParty:
 Inviter dans le groupe
 
@@ -104,6 +107,9 @@ Vous pouvez débloquer plus de recettes dans le menu des technologies.`
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Recettes déverrouillées
+
+UI/CoreStrings@CryoFallDevelopmentRoadmap:
+Roadmap du développement de CryoFall
 
 UI/CoreStrings@Defense_Format_Chemical:
 Protection chimique : {0}
@@ -182,6 +188,9 @@ Quêtes
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Skills:
 Compétences
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Social:
+Social
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
 Technologies
@@ -845,6 +854,12 @@ Réveil près du lit
 UI/CoreStrings@WindowRespawn_Message:
 On dirait que vous avez été expulsé de force de ce monde cruel... Et vous avez perdu toutes vos affaires ! Souhaitez-vous vous venger ?
 
+UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
+Vous venez apparemment de vous faire tuer par un autre joueur. Heureusement, vous bénéficiez encore de la protection pour néophyte. Vous n'avez donc perdu ni objets, ni points d'apprentissage. Mais attention... La prochaine fois, ce sera peut-être pour de vrai !
+
+UI/CoreStrings@WindowRespawn_DamageSources:
+Sources de dégâts récentes :
+
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `Vous êtes récemment réapparu dans votre lit.
 [br]Veuillez patienter pendant la durée du [b]décompte[/b].`
@@ -1157,6 +1172,24 @@ Chevelure
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Haut
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
+Créature
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
+Explosion
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleItem:
+Objet
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleOther:
+Autre
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitlePlayer:
+Joueur
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
+Effet de statut
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 prochain niveau

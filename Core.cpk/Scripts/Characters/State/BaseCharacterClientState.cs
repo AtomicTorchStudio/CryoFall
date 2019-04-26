@@ -28,6 +28,8 @@
 
         public ushort? LastEquipmentContainerHash { get; set; }
 
+        public double? LastInterpolatedRotationAngleRad { get; set; }
+
         public IItem LastSelectedItem { get; set; }
 
         public ViewOrientation LastViewOrientation { get; set; }

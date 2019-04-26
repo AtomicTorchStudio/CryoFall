@@ -47,6 +47,11 @@
             this.stageRequiredItems.Add<TProtoItem>(count);
         }
 
+        public void ApplyRates(byte multiplier)
+        {
+            this.stageRequiredItems.ApplyRates(multiplier);
+        }
+
         public bool CheckStageCanBeBuilt(ICharacter character)
         {
             if (!this.IsAllowed)
@@ -103,20 +108,23 @@
             NotificationSystem.ServerSendItemsNotification(character, itemsChangedCount);
         }
 
-        public void ServerReturnRequiredItems(ICharacter character)
+        public void ServerReturnRequiredItems(ICharacter character, byte stagesCount = 1)
         {
+            Api.Assert(stagesCount >= 1, "Stages count should be at least 1");
+
             var itemsChangedCount = new Dictionary<IProtoItem, int>();
 
             IItemsContainer groundItemsContainer = null;
             foreach (var requiredItem in this.StageRequiredItems)
             {
+                var countToReturn = requiredItem.Count * stagesCount;
                 PlayerCharacter.ServerTrySpawnItemToCharacterOrGround(character,
                                                                       requiredItem.ProtoItem,
-                                                                      requiredItem.Count,
+                                                                      (uint)countToReturn,
                                                                       ref groundItemsContainer);
 
                 // TODO: it would be better if we use the actual item spawn result here
-                itemsChangedCount[requiredItem.ProtoItem] = requiredItem.Count;
+                itemsChangedCount[requiredItem.ProtoItem] = countToReturn;
             }
 
             NotificationSystem.ServerSendItemsNotification(character, itemsChangedCount);

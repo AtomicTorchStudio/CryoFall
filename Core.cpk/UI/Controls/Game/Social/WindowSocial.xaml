@@ -94,15 +94,14 @@
                               HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalAlignment="Stretch"
-                              Padding="0,3,10,0"
+                              Padding="0,3,2,0"
                               Margin="-5,0">
                     <ItemsControl ItemsSource="{Binding PlayersOnline}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel IsItemsHost="True"
                                            HorizontalAlignment="Stretch"
-                                           VerticalAlignment="Top"
-                                           MaxWidth="512" />
+                                           VerticalAlignment="Top" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
@@ -111,9 +110,9 @@
                                     <Style x:Key="BorderPlayerNamePanelStyle" TargetType="Border">
                                         <!-- the width of this element is carefully selected to ensure
                                      that there is no horizontal scrolling even when the vertical scroll bar is visible -->
-                                        <Setter Property="Width" Value="128" />
+                                        <Setter Property="Width" Value="149" />
                                         <Setter Property="MinHeight" Value="30" />
-                                        <Setter Property="Padding" Value="12,5,5,5" />
+                                        <Setter Property="Padding" Value="12,5,12,5" />
                                         <Setter Property="BorderThickness" Value="0,0,0,1" />
                                         <Setter Property="Background">
                                             <Setter.Value>
@@ -218,7 +217,15 @@
 
             <Control Style="{StaticResource ControlVerticalSeparator}" Grid.Column="1" />
 
-            <social:PartyManagementControl Grid.Column="2" VerticalAlignment="Top" />
+            <Grid Grid.Column="2" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <social:NewbieProtectionControl />
+                <social:PartyManagementControl Grid.Row="1" />
+            </Grid>
+
         </Grid>
     </core:GameWindow>
 </core:BaseWindowMenu>

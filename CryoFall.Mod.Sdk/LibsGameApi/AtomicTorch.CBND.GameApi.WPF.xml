@@ -2565,7 +2565,7 @@
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.NotPersistentAttribute">
             <summary>
-            Attribute for marking any enum to exclude it from serialization.
+            Attribute for marking any type (enum/class/struct) to exclude it from serialization.
             (by default all enums are registered to both network and persistent serialization providers)
             </summary>
         </member>
@@ -3179,7 +3179,7 @@
             (optional) Determines if the game should write an error to the log when the item cannot be
             moved or swapped.
             </param>
-            <returns>True if operation is successfull.</returns>
+            <returns>True if operation is successful.</returns>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.IItemsClientService.SetCount(AtomicTorch.CBND.GameApi.Data.Items.IItem,System.Int32)">
             <summary>
@@ -3206,7 +3206,7 @@
             <param name="itemFrom">Item to remove count.</param>
             <param name="itemTo">Item to add count.</param>
             <param name="count">Count to move (if 0 - move as much as possible).</param>
-            <returns>True if operation is successfull.</returns>
+            <returns>True if operation is successful.</returns>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.InputKey">
             <summary>
@@ -3616,7 +3616,7 @@
             <param name="countToDestroy">Count to destroy.</param>
             <param name="destroyedCount">Destroyed count (can be less than countToDestroy).</param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IItemsServerService.MoveOrSwapItem(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider,System.UInt16@,System.Nullable{System.Byte},System.Nullable{System.UInt16})">
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IItemsServerService.MoveOrSwapItem(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider,System.UInt16@,System.Nullable{System.Byte},System.Nullable{System.UInt16},AtomicTorch.CBND.GameApi.Data.Characters.ICharacter)">
             <summary>
             Moves the item into the container.
             <br />Please note: you can specify a specific slot. If the item is available at this slotId, it will be swapped
@@ -3629,7 +3629,8 @@
             (optional) (only for stackable items) Count to move from item. Should be greater than 0 and
             lower than "item.Count".
             </param>
-            <returns>True if operation is successfull.</returns>
+            <param name="byCharacter">Character (who invokes this operation).</param>
+            <returns>True if operation is successful.</returns>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IItemsServerService.SetContainerType(AtomicTorch.CBND.GameApi.Data.Items.IItemsContainer,AtomicTorch.CBND.GameApi.Data.Items.IProtoItemsContainer)">
             <summary>
@@ -3669,7 +3670,7 @@
             <param name="itemFrom">Item to remove count.</param>
             <param name="itemTo">Item to add count.</param>
             <param name="count">Count to move (if 0 - move as much as possible).</param>
-            <returns>True if operation is successfull.</returns>
+            <returns>True if operation is successful.</returns>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesServer.IServerApi">
             <summary>

@@ -29,7 +29,7 @@ Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 Шанс получить больше урожая
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
-Знания о флоре этой планеты позволяют вам повысить скорость роста растений и даже иногда получить дополнительный урожай.
+Полученные знания о флоре этой планеты позволяют повысить скорость и результативность сбора ягод, грибов и плодов других диких растений.
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Name:
 Собирательство

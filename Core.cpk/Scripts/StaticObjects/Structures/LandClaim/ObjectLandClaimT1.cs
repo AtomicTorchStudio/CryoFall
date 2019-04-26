@@ -46,15 +46,16 @@
         {
             category = GetCategory<StructureCategoryOther>();
 
-            build.StagesCount =
-                1; // important, due to issues with building permissions we had to make this 1 stage building
+            // important, due to issues with land claim area placement we had to make this 1 stage building
+            build.StagesCount = 1;
             build.StageDurationSeconds = BuildDuration.Short; // irrelevant, since it is 1 stage building
             build.AddStageRequiredItem<ItemPlanks>(count: 100); // price reflects the entire cost
             build.AddStageRequiredItem<ItemStone>(count: 50);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 5);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 4);
+            repair.AddStageRequiredItem<ItemStone>(count: 2);
 
             upgrade.AddUpgrade<ObjectLandClaimT2>()
                    .AddRequiredItem<ItemIngotIron>(count: 25)

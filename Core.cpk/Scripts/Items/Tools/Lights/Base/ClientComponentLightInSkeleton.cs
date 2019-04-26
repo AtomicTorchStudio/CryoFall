@@ -21,11 +21,37 @@
         private IComponentSkeleton skeletonRenderer;
 
         public ClientComponentLightInSkeleton()
-            : base(isLateUpdateEnabled: true)
+            : base(isLateUpdateEnabled: false)
         {
         }
 
-        public override void LateUpdate(double deltaTime)
+        public BaseClientComponentLightSource LightSource => this.lightSource;
+
+        public void Setup(
+            ICharacter character,
+            IComponentSkeleton skeletonRenderer,
+            IReadOnlyItemLightConfig lightConfig,
+            BaseClientComponentLightSource lightSource,
+            string skeletonAttachmentName,
+            string skeletonBoneName)
+        {
+            this.skeletonAttachmentName = skeletonAttachmentName;
+            this.skeletonBoneName = skeletonBoneName;
+
+            this.lightConfig = lightConfig;
+            this.character = character;
+            this.skeletonRenderer = skeletonRenderer;
+            this.lightSource = lightSource;
+
+            this.Update(0);
+        }
+
+        // Attention: we should not use LateUpdate here.
+        // When we've used it before, it caused flickering on the light in the center of the screen.
+        // Probably related to the incorrect skeleton position resolve for the first call of LateUpdate
+        // with a new skeleton renderer.
+        // Anyway, using Update is not worse as no light delay seems to be noticeable.
+        public override void Update(double deltaTime)
         {
             if (!this.skeletonRenderer.IsReady)
             {
@@ -46,25 +72,6 @@
             var lightDrawPosition = boneWorldPosition - this.character.Position;
             this.lightSource.PositionOffset = lightDrawPosition;
             this.lightSource.IsEnabled = true;
-        }
-
-        public void Setup(
-            ICharacter character,
-            IComponentSkeleton skeletonRenderer,
-            IReadOnlyItemLightConfig lightConfig,
-            BaseClientComponentLightSource lightSource,
-            string skeletonAttachmentName,
-            string skeletonBoneName)
-        {
-            this.skeletonAttachmentName = skeletonAttachmentName;
-            this.skeletonBoneName = skeletonBoneName;
-
-            this.lightConfig = lightConfig;
-            this.character = character;
-            this.skeletonRenderer = skeletonRenderer;
-            this.lightSource = lightSource;
-
-            this.LateUpdate(0);
         }
     }
 }

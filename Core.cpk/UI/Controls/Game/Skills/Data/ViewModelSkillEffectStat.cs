@@ -15,19 +15,31 @@
 
         public StatEffect StatEffect => this.statEffect;
 
-        public static void FormatBonusText(AutoStringBuilder text, double totalValueBonus, double totalPercentBonus)
+        public static void FormatBonusText(AutoStringBuilder text, double value, double percent)
         {
-            if (totalValueBonus != 0)
+            var hasValueBonus = false;
+            if (value != 0)
             {
-                text.Append(SignChar(totalValueBonus))
-                    .Append(totalValueBonus.ToString("0.##"));
+                hasValueBonus = true;
+                text.Append(SignChar(value))
+                    .Append(value.ToString("0.##"));
             }
 
-            if (totalPercentBonus != 0)
+            if (percent != 0)
             {
-                text.Append(SignChar(totalPercentBonus))
-                    .Append(totalPercentBonus.ToString("0.##"))
+                if (hasValueBonus)
+                {
+                    text.Append(" (");
+                }
+
+                text.Append(SignChar(percent))
+                    .Append(percent.ToString("0.##"))
                     .Append("%");
+
+                if (hasValueBonus)
+                {
+                    text.Append(")");
+                }
             }
         }
 

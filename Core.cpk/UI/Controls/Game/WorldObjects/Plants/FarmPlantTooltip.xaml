@@ -77,17 +77,22 @@
                     </core:ValueBarControl>
 
                     <ContentControl Foreground="#FFDDFF77">
-                        <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Center">
-                            <!-- Text: Harvest in -->
-                            <TextBlock Text="{x:Static loc:CoreStrings.FarmPlantTooltip_TitleHarvestInCountdown}"
-                                       Style="{StaticResource BarTextStyle}" />
-                            <TextBlock Text=": " Style="{StaticResource BarTextStyle}" />
-                            <TextBlock Text="{Binding HarvestInTimeText}" Style="{StaticResource BarTextStyle}" />
-                            <Rectangle Width="16" Height="20" VerticalAlignment="Center"
-                                       Fill="{StaticResource LiquidIconWater}"
-                                       Visibility="{Binding VisibilityWatered}" />
-                        </StackPanel>
+                        <Viewbox Stretch="Uniform"
+                                 MaxHeight="22"
+                                 Margin="5,0">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                <!-- Text: Harvest in -->
+                                <TextBlock Text="{x:Static loc:CoreStrings.FarmPlantTooltip_TitleHarvestInCountdown}"
+                                           Style="{StaticResource BarTextStyle}" />
+                                <TextBlock Text=": " Style="{StaticResource BarTextStyle}" />
+                                <TextBlock Text="{Binding HarvestInTimeText}" Style="{StaticResource BarTextStyle}" />
+                                <Rectangle Width="16" Height="20" VerticalAlignment="Center"
+                                           Fill="{StaticResource LiquidIconWater}"
+                                           Visibility="{Binding VisibilityWatered}" />
+                            </StackPanel>
+                        </Viewbox>
                     </ContentControl>
                 </Grid>
 
@@ -128,24 +133,28 @@
                     </core:ValueBarControl>
 
                     <ContentControl Foreground="#FF77DDFF">
-                        <Grid>
-                            <StackPanel Visibility="{Binding VisibilityWatered}"
-                                        Orientation="Horizontal"
-                                        HorizontalAlignment="Center">
-                                <!-- Text: Watered for -->
-                                <TextBlock Text="{x:Static loc:CoreStrings.FarmPlantTooltip_WateredForDuration}"
-                                           Style="{StaticResource BarTextStyle}" />
-                                <TextBlock Text=": "
-                                           Style="{StaticResource BarTextStyle}" />
-                                <TextBlock Text="{Binding WateringEndsTimeText}"
-                                           Style="{StaticResource BarTextStyle}" />
-                            </StackPanel>
+                        <Viewbox Stretch="Uniform"
+                                 MaxHeight="22"
+                                 Margin="5,0">
+                            <Grid>
+                                <StackPanel Visibility="{Binding VisibilityWatered}"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Center">
+                                    <!-- Text: Watered for -->
+                                    <TextBlock Text="{x:Static loc:CoreStrings.FarmPlantTooltip_WateredForDuration}"
+                                               Style="{StaticResource BarTextStyle}" />
+                                    <TextBlock Text=": "
+                                               Style="{StaticResource BarTextStyle}" />
+                                    <TextBlock Text="{Binding WateringEndsTimeText}"
+                                               Style="{StaticResource BarTextStyle}" />
+                                </StackPanel>
 
-                            <!-- Text: Not watered -->
-                            <TextBlock Visibility="{Binding VisibilityNotWatered}"
-                                       Text="{x:Static loc:CoreStrings.FarmPlantTooltip_NotWatered}"
-                                       Style="{StaticResource BarTextStyle}" />
-                        </Grid>
+                                <!-- Text: Not watered -->
+                                <TextBlock Visibility="{Binding VisibilityNotWatered}"
+                                           Text="{x:Static loc:CoreStrings.FarmPlantTooltip_NotWatered}"
+                                           Style="{StaticResource BarTextStyle}" />
+                            </Grid>
+                        </Viewbox>
                     </ContentControl>
                 </Grid>
 

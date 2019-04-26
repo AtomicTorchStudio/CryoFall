@@ -226,9 +226,8 @@
             var quest = requirement.Quest;
             Api.Assert(quest != null, "Requirement must have an associated quest");
 
-            var questEntry = this.SharedFindQuestEntry(quest, out var isUnlocked);
-            if (questEntry == null
-                || !isUnlocked)
+            var questEntry = this.SharedFindQuestEntry(quest, out _);
+            if (questEntry == null)
             {
                 // no such entry
                 return false;

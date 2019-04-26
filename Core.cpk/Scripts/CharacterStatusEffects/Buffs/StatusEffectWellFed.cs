@@ -20,14 +20,14 @@
             effects.AddPercent(this, StatName.StaminaRegenerationPerSecond, 10);
             effects.AddPercent(this, StatName.HealthRegenerationPerSecond,  10);
 
-            effects.AddPercent(this, StatName.MiningSpeed,           10);
-            effects.AddPercent(this, StatName.WoodcuttingSpeed,      10);
-            effects.AddPercent(this, StatName.BuildingSpeed,         10);
-            effects.AddPercent(this, StatName.CraftingSpeed,         10);
-            effects.AddPercent(this, StatName.FarmingTasksSpeed,     10);
-            effects.AddPercent(this, StatName.ForagingSpeed,         10);
+            effects.AddPercent(this, StatName.MiningSpeed,         10);
+            effects.AddPercent(this, StatName.WoodcuttingSpeed,    10);
+            effects.AddPercent(this, StatName.BuildingSpeed,       10);
+            effects.AddPercent(this, StatName.CraftingSpeed,       10);
+            effects.AddPercent(this, StatName.FarmingTasksSpeed,   10);
+            effects.AddPercent(this, StatName.ForagingSpeed,       10);
             effects.AddPercent(this, StatName.HuntingLootingSpeed, 10);
-            effects.AddPercent(this, StatName.SearchingSpeed,        10);
+            effects.AddPercent(this, StatName.SearchingSpeed,      10);
         }
     }
 }

@@ -61,6 +61,8 @@
 
         public virtual double ArmorPiercingMultiplier => 1;
 
+        public virtual bool CanDamageStructures => true;
+
         public abstract string CharacterAnimationAimingName { get; }
 
         public IReadOnlyCollection<IProtoItemAmmo> CompatibleAmmoProtos { get; private set; }
@@ -89,13 +91,16 @@
 
         public virtual double RangeMultipier => 1;
 
-        public virtual (float min, float max) SoundPresetWeaponDistance 
-            => (SoundConstants.AudioListenerMinDistance, SoundConstants.AudioListenerMaxDistance);
+        /// <inheritdoc />
+        public virtual double ReadyDelayDuration => 1;
 
         /// <inheritdoc />
         public ReadOnlySoundPreset<ObjectSoundMaterial> SoundPresetHit { get; private set; }
 
         public ReadOnlySoundPreset<WeaponSound> SoundPresetWeapon { get; private set; }
+
+        public virtual (float min, float max) SoundPresetWeaponDistance
+            => (SoundConstants.AudioListenerMinDistance, SoundConstants.AudioListenerMaxDistance);
 
         public virtual double SpecialEffectProbability => 0;
 
@@ -113,12 +118,6 @@
 
         public Control ClientCreateHotbarOverlayControl(IItem item)
         {
-            if (this.CompatibleAmmoProtos.Count == 0)
-            {
-                // no ammo display required
-                return null;
-            }
-
             return new HotbarItemWeaponOverlayControl(item);
         }
 
@@ -283,10 +282,17 @@
             }
 
             // not enough ammo
-            if (IsClient && weaponState.SharedGetInputIsFiring())
+            if (weaponState.SharedGetInputIsFiring())
             {
                 // try auto-reloading
-                WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(isSwitchAmmoType: false);
+                if (IsClient)
+                {
+                    WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(isSwitchAmmoType: false);
+                }
+                else
+                {
+                    WeaponAmmoSystem.ServerTryReloadSameAmmo(character);
+                }
             }
 
             return false;

@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Quests;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -84,6 +85,9 @@
 
         [SyncToClient]
         public PlayerCharacterTechnologies Technologies { get; private set; }
+
+        [TempOnly]
+        public double? LastDeathTime { get; set; }
 
         public void ServerInitState(ICharacter character)
         {

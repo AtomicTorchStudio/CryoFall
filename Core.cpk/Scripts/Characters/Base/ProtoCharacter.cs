@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -176,6 +177,17 @@
                     isFocusable: false);
             }
 
+            publicState.ClientSubscribe(_ => _.IsDead,
+                                        isDead =>
+                                        {
+                                            if (isDead)
+                                            {
+                                                // reset the character position and movement on death
+                                                character.PhysicsBody.Reset();
+                                            }
+                                        },
+                                        clientState);
+
             // create shadow renderer
             this.SharedGetSkeletonProto(character, out var skeleton, out var scaleMultiplier);
             clientState.RendererShadow = ((ProtoCharacterSkeleton)skeleton)
@@ -210,16 +222,6 @@
                 character,
                 clientState,
                 publicState);
-
-            if (publicState.IsDead
-                && clientState.HealthbarControl != null)
-            {
-                // character was alive but now is dead
-                // TODO: redone this to work properly with death handling on the Client-side
-                clientState.HealthbarControl.Destroy();
-                clientState.HealthbarControl = null;
-                character.PhysicsBody.Reset();
-            }
         }
 
         protected virtual void FillDefaultEffects(Effects effects)
@@ -264,6 +266,10 @@
             publicState.EnsureEverythingCreated();
 
             publicState.IsDead = publicState.CurrentStats.HealthCurrent <= 0;
+            if (publicState.IsDead)
+            {
+                ServerCharacterDeathMechanic.OnDeadCharacterInitialize(data.GameObject);
+            }
 
             this.ServerPrepareCharacter(data);
 

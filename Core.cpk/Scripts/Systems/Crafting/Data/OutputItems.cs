@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Crafting
 {
+    using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -90,6 +91,25 @@
         {
             this.items.Add(new OutputItem(protoItem, count, countRandom, probability));
             return this;
+        }
+
+        public void ApplyRates(byte multiplier)
+        {
+            if (multiplier == 1)
+            {
+                return;
+            }
+
+            if (multiplier < 1)
+            {
+                throw new Exception("Rate modifier cannot be < 1");
+            }
+
+            for (var index = 0; index < this.items.Count; index++)
+            {
+                var entry = this.items[index];
+                this.items[index] = entry.WithRate(multiplier);
+            }
         }
 
         public IReadOnlyOutputItems AsReadOnly()

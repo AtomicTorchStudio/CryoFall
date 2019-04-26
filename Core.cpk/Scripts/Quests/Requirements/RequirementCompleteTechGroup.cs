@@ -8,7 +8,7 @@
 
     public class RequirementCompleteTechGroup : QuestRequirementWithDefaultState
     {
-        public const string DescriptionFormat = "Complete technology group: {0}";
+        public const string DescriptionFormat = "Complete: {0} (tech group)";
 
         private RequirementCompleteTechGroup(TechGroup techGroup)
             : base(description: null)

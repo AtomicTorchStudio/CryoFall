@@ -34,9 +34,10 @@
             this.RefreshSubscriptions();
 
             this.scrollViewer.UpdateLayout();
-            var scrollViewerHeight = this.scrollViewer.ViewportHeight;
+            var viewportHeight = this.scrollViewer.ViewportHeight;
+
             var content = (FrameworkElement)this.scrollViewer.Content;
-            content.Margin = new Thickness(0, scrollViewerHeight, 0, scrollViewerHeight);
+            content.Margin = new Thickness(0, viewportHeight, 0, viewportHeight);
         }
 
         protected override void OnUnloaded()
@@ -77,6 +78,13 @@
 
         private void RefreshSubscriptions()
         {
+            var ui = Api.Client.UI;
+            if (!ui.IsReady)
+            {
+                // the UI/scripts are reloading now
+                return;
+            }
+
             if (this.IsEnabled)
             {
                 if (this.isSubscribed)
@@ -88,7 +96,7 @@
                 ClientComponentUpdateHelper.UpdateCallback += this.Update;
                 this.PreviewMouseLeftButtonDown += this.MouseLeftButtonDownHandler;
                 this.PreviewMouseWheel += this.MouseScrollWheelHandler;
-                Api.Client.UI.LayoutRoot.PreviewMouseLeftButtonUp += this.GlobalMouseLeftButtonUpHandler;
+                ui.LayoutRoot.PreviewMouseLeftButtonUp += this.GlobalMouseLeftButtonUpHandler;
                 return;
             }
 
@@ -100,7 +108,7 @@
             ClientComponentUpdateHelper.UpdateCallback -= this.Update;
             this.PreviewMouseLeftButtonDown -= this.MouseLeftButtonDownHandler;
             this.PreviewMouseWheel -= this.MouseScrollWheelHandler;
-            Api.Client.UI.LayoutRoot.PreviewMouseLeftButtonUp -= this.GlobalMouseLeftButtonUpHandler;
+            ui.LayoutRoot.PreviewMouseLeftButtonUp -= this.GlobalMouseLeftButtonUpHandler;
             this.isSubscribed = false;
         }
 
@@ -123,7 +131,11 @@
                 {
                     // requested to scroll to home
                     this.isNeedToScrollToHome = false;
-                    this.scrollViewer.ScrollToHome();
+                    var logo = this.GetByName<Image>("GameLogo");
+                    logo.UpdateLayout();
+                    // offset scroll viewer vertical position so it will display the logo in the center
+                    var verticalPosition = logo.Margin.Bottom + logo.ActualHeight;
+                    this.scrollViewer.ScrollToVerticalOffset(verticalPosition);
                     return;
                 }
 

@@ -31,8 +31,6 @@
             ConstructionStageConfig build,
             ConstructionStageConfig repair)
         {
-            //category = GetCategory<StructureCategoryBuildings>();
-
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemIngotGold>(count: 5);

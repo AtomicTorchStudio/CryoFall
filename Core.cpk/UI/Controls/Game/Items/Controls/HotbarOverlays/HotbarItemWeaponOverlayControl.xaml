@@ -12,34 +12,40 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelHotbarItemWeaponOverlayControl, IsDesignTimeCreatable=True}">
-    <controls:HotbarItemSlotExtensionControl>
-        <Grid>
-            <Grid.Resources>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="FontFamily" Value="{StaticResource DigitsFontFamily}" />
-                    <Setter Property="Foreground" Value="{StaticResource ItemCountForeground}" />
-                    <Setter Property="noesis:Text.Stroke" Value="Black" />
-                    <Setter Property="noesis:Text.StrokeThickness" Value="1" />
-                    <Setter Property="FontSize" Value="11" />
-                </Style>
-            </Grid.Resources>
+    <Grid>
+        <controls:HotbarItemSlotExtensionControl Visibility="{Binding VisibilityAmmoOverlay}">
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="FontFamily" Value="{StaticResource DigitsFontFamily}" />
+                        <Setter Property="Foreground" Value="{StaticResource ItemCountForeground}" />
+                        <Setter Property="noesis:Text.Stroke" Value="Black" />
+                        <Setter Property="noesis:Text.StrokeThickness" Value="1" />
+                        <Setter Property="FontSize" Value="11" />
+                    </Style>
+                </Grid.Resources>
 
-            <Rectangle Fill="{Binding AmmoIcon}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                       Margin="0,0,0,3" d:IsHidden="True" />
+                <Rectangle Fill="{Binding AmmoIcon}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                           Margin="0,0,0,3" d:IsHidden="True" />
 
-            <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="{Binding AmmoCountCurrent}" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="1" Text="/" />
-                <TextBlock Grid.Column="2" Text="{Binding AmmoCountMax}" HorizontalAlignment="Left" />
+                    <TextBlock Grid.Column="0" Text="{Binding AmmoCountCurrent}" HorizontalAlignment="Right" />
+                    <TextBlock Grid.Column="1" Text="/" />
+                    <TextBlock Grid.Column="2" Text="{Binding AmmoCountMax}" HorizontalAlignment="Left" />
+                </Grid>
+
+                <cooldownIndicator:CooldownIndicatorControl SetTotalDuration="{Binding ReloadDurationSeconds}" />
             </Grid>
-
-            <cooldownIndicator:CooldownIndicatorControl SetTotalDuration="{Binding ReloadDurationSeconds}" />
+        </controls:HotbarItemSlotExtensionControl>
+        <Grid Margin="1"
+              IsHitTestVisible="False">
+            <cooldownIndicator:CooldownIndicatorControl SetTotalDuration="{Binding WeaponSwitchDurationSeconds}" />
         </Grid>
-    </controls:HotbarItemSlotExtensionControl>
+    </Grid>
 </base:BaseUserControl>

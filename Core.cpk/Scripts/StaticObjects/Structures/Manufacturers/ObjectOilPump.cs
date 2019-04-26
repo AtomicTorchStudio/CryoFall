@@ -39,6 +39,10 @@
         public override string Description =>
             "Can be built over an oil seep to extract raw petroleum oil directly from the ground.";
 
+        public override float LiquidCapacity => 100;
+
+        public override float LiquidProductionAmountPerSecond => 0.1f;
+
         public override string Name => "Oil pump";
 
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
@@ -46,10 +50,6 @@
         public override double ObstacleBlockDamageCoef => 1;
 
         public override float StructurePointsMax => 10000;
-
-        protected override float LiquidCapacity => 100;
-
-        protected override float LiquidProductionAmountPerSecond => 0.1f;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {

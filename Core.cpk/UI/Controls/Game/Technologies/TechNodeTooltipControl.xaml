@@ -44,46 +44,60 @@
             </ControlTemplate>
 
             <DataTemplate DataType="{x:Type data:ViewModelTechNodeEffectRecipeUnlock}">
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Left"
-                            Margin="0,3">
+                <Grid Margin="0,3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Control Template="{StaticResource IconControlTemplate}" />
 
-                    <StackPanel Orientation="Vertical" Margin="5,0,0,0" VerticalAlignment="Center">
-                        <TextBlock Text="{Binding Title}" Style="{StaticResource RecipeNameTextStyle}" />
+                    <StackPanel Grid.Column="1"
+                                Orientation="Vertical" 
+                                Margin="5,0,0,0" 
+                                VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Title}" 
+                                   Style="{StaticResource RecipeNameTextStyle}" />
 
                         <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Center"
                                     Visibility="{Binding VisibilityStationTitle}">
-                            <TextBlock Text="(" Style="{StaticResource RecipeStationNameTextStyle}" />
-                            <TextBlock Text="{Binding StationTitle}"
+                            <TextBlock Text="("
                                        Style="{StaticResource RecipeStationNameTextStyle}" />
-                            <TextBlock Text=")" Style="{StaticResource RecipeStationNameTextStyle}" />
+                            <TextBlock Text="{Binding StationTitle}"
+                                       Style="{StaticResource RecipeStationNameTextStyle}"
+                                       TextAlignment="Center"/>
+                            <TextBlock Text=")"
+                                       Style="{StaticResource RecipeStationNameTextStyle}" />
                         </StackPanel>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type data:ViewModelTechNodeEffectStructureUnlock}">
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Left"
-                            Margin="0,3">
+                <Grid Margin="0,3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Control Template="{StaticResource IconControlTemplate}" />
-                    <TextBlock Text="{Binding Title}"
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding Title}"
                                Style="{StaticResource RecipeNameTextStyle}"
                                Margin="5,0,0,0" />
-                </StackPanel>
+                </Grid>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type data:ViewModelTechNodeEffectPerkUnlock}">
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Left"
-                            Margin="0,3">
+                <Grid Margin="0,3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Control Template="{StaticResource IconControlTemplate}" />
-                    <TextBlock Text="{Binding Title}"
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding Title}"
                                Style="{StaticResource RecipeNameTextStyle}"
                                Margin="5,0,0,0" />
-                </StackPanel>
+                </Grid>
             </DataTemplate>
 
             <Style x:Key="EffectsListStyle" TargetType="ItemsControl">

@@ -87,7 +87,8 @@
                 throw new Exception("The player character is not interacting with " + worldObject);
             }
 
-            if (!currentOwners.Contains(byOwner.Name))
+            if (!currentOwners.Contains(byOwner.Name)
+                && !CreativeModeSystem.SharedIsInCreativeMode(byOwner))
             {
                 return DialogCannotSetOwners_MessageNotOwner;
             }
@@ -99,7 +100,8 @@
             }
 
             currentOwners.GetDiff(newOwners, out var ownersToAdd, out var ownersToRemove);
-            if (currentOwners.Count - ownersToRemove.Count <= 0)
+            if (ownersToRemove.Count > 0 
+                && currentOwners.Count == ownersToRemove.Count)
             {
                 return DialogCannotSetOwners_MessageCannotRemoveLastOwner;
             }

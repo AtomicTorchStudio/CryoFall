@@ -7,6 +7,7 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -77,7 +78,8 @@
 
         void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
         {
-            if (WorldObjectOwnersSystem.SharedIsOwner(who, worldObject))
+            if (WorldObjectOwnersSystem.SharedIsOwner(who, worldObject)
+                || CreativeModeSystem.SharedIsInCreativeMode(who))
             {
                 Server.World.EnterPrivateScope(who, worldObject);
             }

@@ -12,7 +12,16 @@
 
     public class DropItemsList : IReadOnlyDropItemsList
     {
-        private readonly List<ValueWithWeight<Entry>> entries = new List<ValueWithWeight<Entry>>();
+        public static readonly double DropListItemsCountMultiplier
+            = ServerRates.Get(
+                "DropListItemsCountMultiplier",
+                defaultValue: 1.0,
+                @"This rate determines the item droplist multiplier.                
+                  If you want the objects in game (such as trees, bushes, minerals, loot crates in radtowns, etc)
+                  to drop more items during gathering or destruction, you need to adjust this value.");
+
+        private readonly List<ValueWithWeight<Entry>> entries
+            = new List<ValueWithWeight<Entry>>();
 
         private ArrayWithWeights<Entry> frozenEntries;
 
@@ -296,7 +305,13 @@
             DelegateSpawnDropItem delegateSpawnDropItem,
             double probability)
         {
-            var countToSpawn = dropItem.Count + RandomHelper.Next(0, dropItem.CountRandom + 1);
+            var dropItemCount = DropListItemsCountMultiplier * dropItem.Count;
+            var dropItemCountRandom = DropListItemsCountMultiplier
+                                      * RandomHelper.Next(
+                                          minValue: 0,
+                                          maxValueExclusive: dropItem.CountRandom + 1);
+
+            var countToSpawn = dropItemCount + dropItemCountRandom;
             if (countToSpawn <= 0)
             {
                 return new CreateItemResult() { IsEverythingCreated = true };

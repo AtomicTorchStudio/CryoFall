@@ -70,6 +70,9 @@ UI/CoreStrings@CharacterStatName_Water:
 UI/CoreStrings@Chat_MessageMenu_Block:
 Bloquear
 
+UI/CoreStrings@Chat_MessageMenu_CopyName:
+Copiar nome
+
 UI/CoreStrings@Chat_MessageMenu_InviteToParty:
 Convidar para o grupo
 
@@ -104,6 +107,9 @@ UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Receitas desbloqueadas
+
+UI/CoreStrings@CryoFallDevelopmentRoadmap:
+Roteiro de desenvolvimento de CryoFall
 
 UI/CoreStrings@Defense_Format_Chemical:
 Proteção química: {0}
@@ -182,6 +188,9 @@ Missões
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Skills:
 Habilidades
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Social:
+Social
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
 Tecnologias
@@ -845,6 +854,12 @@ Ressurgir perto da sua cama
 UI/CoreStrings@WindowRespawn_Message:
 Parece que te tiraram à força deste mundo cruel... e você perdeu todas as suas coisas! Quer se vingar?
 
+UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
+Parece que outro jogador matou você. Por sorte, você ainda está sob a proteção de novato, evitando que perdesse qualquer um dos seus itens ou pontos de aprendizagem. Tome cuidado: da próxima vez, a coisa pode ficar feia de verdade!
+
+UI/CoreStrings@WindowRespawn_DamageSources:
+Fontes de dano recentes:
+
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `Você ressurgiu na cama há pouco tempo.
 [br]Aguarde o [b]tempo de espera[/b].`
@@ -1160,6 +1175,24 @@ Cabelo
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Parte superior
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
+Criatura
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
+Explosão
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleItem:
+Item
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleOther:
+Diversos
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitlePlayer:
+Jogador(a)
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
+Efeitos de condição
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 próximo nível

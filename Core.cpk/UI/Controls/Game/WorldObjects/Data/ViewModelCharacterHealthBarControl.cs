@@ -1,8 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data
 {
+    using System.Windows;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
+    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
 
     public class ViewModelCharacterHealthBarControl : BaseViewModel
@@ -11,6 +15,7 @@
 
         public ViewModelCharacterHealthBarControl()
         {
+            ClientComponentUpdateHelper.UpdateCallback += this.Update;
         }
 
         public CharacterCurrentStats CharacterCurrentStats
@@ -49,8 +54,12 @@
                     _ => _.HealthMax,
                     this.HealthMaxUpdated,
                     this);
+
+                this.HealthCurrentUpdated(this.characterCurrentStats.HealthCurrent);
             }
         }
+
+        public Visibility HealthbarVisibility { get; private set; }
 
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
         public ViewModelHUDStatBar StatBar { get; } = new ViewModelHUDStatBar("Health");
@@ -59,16 +68,42 @@
         {
             base.DisposeViewModel();
             this.characterCurrentStats = null;
+            ClientComponentUpdateHelper.UpdateCallback -= this.Update;
         }
 
         private void HealthCurrentUpdated(float healthCurrent)
         {
             this.StatBar.ValueCurrent = healthCurrent;
+            this.UpdateVisibility();
         }
 
         private void HealthMaxUpdated(float healthMax)
         {
             this.StatBar.ValueMax = healthMax;
+        }
+
+        private void Update()
+        {
+            this.UpdateVisibility();
+        }
+
+        private void UpdateVisibility()
+        {
+            if (this.StatBar.ValueCurrent <= 0)
+            {
+                this.HealthbarVisibility = Visibility.Collapsed;
+                return;
+            }
+
+            var character = (ICharacter)this.characterCurrentStats.GameObject;
+
+            if (!ClientTimeOfDayVisibilityHelper.ClientIsObservable(character))
+            {
+                this.HealthbarVisibility = Visibility.Collapsed;
+                return;
+            }
+
+            this.HealthbarVisibility = Visibility.Visible;
         }
     }
 }

@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects;
     using AtomicTorch.CBND.CoreMod.Editor.Data;
     using AtomicTorch.CBND.CoreMod.Tiles;
@@ -51,6 +52,7 @@
             // the order of calls is important here
             Server.Characters.SetSpectatorMode(character, isSpectator: true, reinitilize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacterEditorMode>());
+            character.ServerRemoveAllStatusEffects();
         }
 
         public void ServerRemote_SwitchToPlayerMode()

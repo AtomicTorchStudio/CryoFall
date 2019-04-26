@@ -119,7 +119,7 @@ Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
 Komplexe Anbaumethoden, die das Arbeiten mit vielfältigen Kulturpflanzen und verbesserten Düngemitteln ermöglichen.
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
-Landwirtschaft 3
+Landwirtschaft 2
 
 Scripts/Technologies/Tier2/Farming2/TechNodeComplexCrops@Name:
 Anspruchsvolle Saat
@@ -339,4 +339,7 @@ Angriff 4
 
 Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
 Kaliber .300
+
+Scripts/Technologies/Tier4/Offense4/TechNodeAdvancedExplosives@Name:
+Hochentwickelter Sprengstoff
 

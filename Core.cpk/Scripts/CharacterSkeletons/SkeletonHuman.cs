@@ -37,7 +37,6 @@
                 radius / 2,
                 center: (radius / 2, 0));
 
-            radius *= 0.9;
             physicsBody.AddShapeRectangle(
                 size: (radius, radius),
                 offset: (-radius / 2, -radius / 2));

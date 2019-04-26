@@ -178,7 +178,7 @@
             // calculate decay damage
             // damage is proportional to the structure max HP and the decay duration constant
             var damage = this.StructurePointsMax
-                         / StructureConstants.StructureDecayDurationSeconds;
+                         / StructureConstants.StructuresDecayDurationSeconds;
 
             // damage is proportional to the decay system update rate
             damage *= StructureConstants.StructureDecaySystemUpdateIntervalSeconds;
@@ -235,7 +235,7 @@
             return false;
         }
 
-        public virtual void SharedOnDeconstruction(
+        public virtual void SharedOnDeconstructionStage(
             IStaticWorldObject worldObject,
             ICharacter byCharacter,
             float oldStructurePoints,
@@ -247,6 +247,14 @@
             {
                 this.ClientPlayDeconstructionSound(destroyPosition, isByCurrentCharacter: true);
                 return;
+            }
+
+            if (byCharacter != null)
+            {
+                this.ServerOnReturnItemsFromDeconstructionStage(worldObject,
+                                                                byCharacter,
+                                                                oldStructurePoints,
+                                                                newStructurePoints);
             }
 
             using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
@@ -326,6 +334,7 @@
 
             tileRequirements.Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                             .Add(ConstructionTileRequirements.ValidatorNoNpcsAround)
+                            .Add(ConstructionTileRequirements.ValidatorNoPlayersNearby)
                             .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea)
                             .Add(LandClaimSystem.ValidatorNoRaid);
 
@@ -335,6 +344,10 @@
                 configRepair,
                 configUpgrade,
                 out var category);
+
+            configBuild.ApplyRates(StructureConstants.BuildItemsCountMultiplier);
+            configUpgrade.ApplyRates(StructureConstants.BuildItemsCountMultiplier);
+            configRepair.ApplyRates(StructureConstants.RepairItemsCountMultiplier);
 
             this.Category = category
                             ?? throw new Exception(
@@ -354,6 +367,11 @@
                 }
             }
 
+            if (configRepair.IsAllowed)
+            {
+                this.ValidateRepairConfig(configRepair, configBuild);
+            }
+
             this.ConfigBuild = configBuild;
             this.ConfigRepair = configRepair;
             this.ConfigUpgrade = configUpgrade;
@@ -366,6 +384,29 @@
             if (data.IsFirstTimeInit)
             {
                 StructureDecaySystem.ServerResetDecayTimer(data.PrivateState);
+            }
+        }
+
+        protected virtual void ServerOnReturnItemsFromDeconstructionStage(
+            IStaticWorldObject worldObject,
+            ICharacter byCharacter,
+            float oldStructurePoints,
+            float newStructurePoints)
+        {
+            if (!this.ConfigRepair.IsAllowed)
+            {
+                return;
+            }
+
+            if (oldStructurePoints > 0
+                && newStructurePoints <= 0)
+            {
+                // building completely deconstructed
+                // return up to ceil(stages/3) of repair resources
+                var returns = (int)Math.Ceiling(this.ConfigRepair.StagesCount / 3.0);
+                this.ConfigRepair.ServerReturnRequiredItems(
+                    byCharacter,
+                    stagesCount: (byte)MathHelper.Clamp(returns, 1, byte.MaxValue));
             }
         }
 
@@ -386,6 +427,13 @@
                                                               icon: this.Icon);
                 }
 
+                return 0;
+            }
+
+            if (!weaponCache.ProtoWeapon?.CanDamageStructures ?? false)
+            {
+                // probably a mob weapon
+                obstacleBlockDamageCoef = 1;
                 return 0;
             }
 
@@ -420,6 +468,43 @@
         private void ClientRemote_PlayDeconstructionSound(Vector2D worldPosition)
         {
             this.ClientPlayDeconstructionSound(worldPosition, isByCurrentCharacter: false);
+        }
+
+        // Because the repair config is used for deconstruction,
+        // we need to ensure that it doesn't provide more items than initially spent on building.
+        private void ValidateRepairConfig(ConstructionStageConfig configRepair, ConstructionStageConfig configBuild)
+        {
+            if (!configBuild.IsAllowed)
+            {
+                return;
+            }
+
+            Api.Assert(configRepair.IsAllowed, "Repair config should be enabled for every structure");
+
+            foreach (var requiredItem in configRepair.StageRequiredItems)
+            {
+                var repairItemCountTotal = requiredItem.Count * configRepair.StagesCount;
+
+                var buildItemCountTotal = 0;
+                foreach (var buildItem in configBuild.StageRequiredItems)
+                {
+                    if (buildItem.ProtoItem == requiredItem.ProtoItem)
+                    {
+                        buildItemCountTotal += buildItem.Count * configBuild.StagesCount;
+                        break;
+                    }
+                }
+
+                if (repairItemCountTotal > buildItemCountTotal)
+                {
+                    throw new Exception(
+                        "Problem with "
+                        + this
+                        + " its repair config - it requires more items of type "
+                        + requiredItem.ProtoItem
+                        + " than defined by the build config. It creates an exploit when the building could be deconstructed and return more resources than were spent on construction.");
+                }
+            }
         }
     }
 

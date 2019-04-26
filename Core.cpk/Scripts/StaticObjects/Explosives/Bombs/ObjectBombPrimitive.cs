@@ -12,6 +12,8 @@
 
         public override double DamageRadius => 2.1;
 
+        public override bool ActivatesRaidModeForLandClaim => true;
+
         public override string Name => "Primitive bomb";
 
         protected override void ClientInitialize(ClientInitializeData data)

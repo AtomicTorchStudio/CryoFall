@@ -37,7 +37,6 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
             var characterPublicState = player.GetPublicState<PlayerCharacterPublicState>();
 
             var containerHotbar = characterPrivateState.ContainerHotbar;
-            var containerInventory = characterPrivateState.ContainerInventory;
             var containerEquipment = characterPublicState.ContainerEquipment;
 
             // Hotbar items

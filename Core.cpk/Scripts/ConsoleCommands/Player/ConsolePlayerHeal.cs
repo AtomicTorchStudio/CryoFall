@@ -4,6 +4,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 {
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.GameApi.Data.Characters;
 
@@ -22,9 +23,13 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
             var stats = player.GetPublicState<PlayerCharacterPublicState>()
                               .CurrentStatsExtended;
 
-            stats.ServerSetHealthCurrent(stats.HealthMax, overrideDeath: true);
+            // override death doesn't work here as the dead character has no physics and simple healing will not help
+            //stats.ServerSetHealthCurrent(stats.HealthMax, overrideDeath: true);
+
             stats.ServerSetCurrentValuesToMaxValues();
             player.ServerRemoveAllStatusEffects(removeOnlyDebuffs: true);
+
+            CharacterDamageTrackingSystem.ServerClearStats(player);
 
             return string.Format(
                 "{0} healed to {1} HP (all other stats are also restored, all debuff status effects were removed).",

@@ -17,7 +17,7 @@
             DamageDistribution damageDistribution)
         {
             damageValue = 18;
-            armorPiercingCoef = 0.65;
+            armorPiercingCoef = 0.6;
             finalDamageMultiplier = 1;
             rangeMax = 10;
 

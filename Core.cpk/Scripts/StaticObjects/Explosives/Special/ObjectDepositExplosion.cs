@@ -8,6 +8,8 @@
 
     public class ObjectDepositExplosion : ProtoObjectExplosive
     {
+        public override bool ActivatesRaidModeForLandClaim => false;
+
         public override double DamageRadius => 4;
 
         public override ITextureResource DefaultTexture

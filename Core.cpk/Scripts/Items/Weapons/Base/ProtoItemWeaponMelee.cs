@@ -43,6 +43,8 @@
 
         public override ITextureResource Icon => new TextureResource("Items/Weapons/Melee/" + this.GetType().Name);
 
+        public override double ReadyDelayDuration => 0.5;
+
         public override string WeaponAttachmentName => "WeaponMelee";
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsMelee>();

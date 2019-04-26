@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.HotbarOverlays.Data
 {
+    using System;
+    using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
@@ -12,22 +14,20 @@
 
     public class ViewModelHotbarItemWeaponOverlayControl : BaseViewModel
     {
+        private readonly Action ammoChangedCallback;
+
         private readonly WeaponState weaponState;
 
         private ITextureResource ammoIconResource;
 
         private IItem item;
 
-        public ViewModelHotbarItemWeaponOverlayControl()
-        {
-            if (IsDesignTime)
-            {
-                this.AmmoIcon = Brushes.Red;
-                return;
-            }
+        private IProtoItemAmmo protoItemAmmo;
 
-            var characterState = ClientCurrentCharacterHelper.PrivateState;
-            this.weaponState = characterState.WeaponState;
+        public ViewModelHotbarItemWeaponOverlayControl(Action ammoChangedCallback)
+        {
+            this.ammoChangedCallback = ammoChangedCallback;
+            this.weaponState = ClientCurrentCharacterHelper.PrivateState.WeaponState;
 
             if (this.weaponState == null)
             {
@@ -35,7 +35,9 @@
                 return;
             }
 
-            this.weaponState.WeaponReloadingStateChanged += this.WeaponReloadingStateChanged;
+            this.weaponState.ClientWeaponReloadingStateChanged += this.WeaponReloadingStateChangedHandler;
+            this.weaponState.ClientActiveWeaponChanged += this.ActiveWeaponChangedHandler;
+
             this.UpdateWeaponReloadingState();
         }
 
@@ -89,24 +91,52 @@
                 }
 
                 var weaponPrivateState = this.item.GetPrivateState<WeaponPrivateState>();
+                var protoItemWeapon = ((IProtoItemWeapon)this.item.ProtoGameObject);
 
-                this.AmmoCountMax = ((IProtoItemWeapon)this.item.ProtoGameObject).AmmoCapacity;
+                this.AmmoCountMax = protoItemWeapon.AmmoCapacity;
                 this.AmmoCountCurrent = weaponPrivateState.AmmoCount;
 
-                this.UpdateAmmoIconResource();
+                this.UpdateCurrentProtoItem();
 
                 weaponPrivateState.ClientSubscribe(_ => _.AmmoCount,            this.AmmoCountChanged,            this);
                 weaponPrivateState.ClientSubscribe(_ => _.CurrentProtoItemAmmo, this.CurrentProtoItemAmmoChanged, this);
+
+                this.VisibilityAmmoOverlay = protoItemWeapon.CompatibleAmmoProtos.Count > 0
+                                                 ? Visibility.Visible
+                                                 : Visibility.Collapsed;
+            }
+        }
+
+        public IProtoItemAmmo ProtoItemAmmo
+        {
+            get => this.protoItemAmmo;
+            private set
+            {
+                if (this.protoItemAmmo == value)
+                {
+                    return;
+                }
+
+                this.protoItemAmmo = value;
+                this.AmmoIconResource = value?.Icon;
+
+                this.NotifyThisPropertyChanged();
+                this.ammoChangedCallback?.Invoke();
             }
         }
 
         public double ReloadDurationSeconds { get; private set; }
 
+        public Visibility VisibilityAmmoOverlay { get; private set; }
+
+        public double WeaponSwitchDurationSeconds { get; private set; }
+
         protected override void DisposeViewModel()
         {
             if (this.weaponState != null)
             {
-                this.weaponState.WeaponReloadingStateChanged -= this.WeaponReloadingStateChanged;
+                this.weaponState.ClientWeaponReloadingStateChanged -= this.WeaponReloadingStateChangedHandler;
+                this.weaponState.ClientActiveWeaponChanged -= this.ActiveWeaponChangedHandler;
             }
 
             base.DisposeViewModel();
@@ -119,21 +149,22 @@
 
         private void CurrentProtoItemAmmoChanged(IProtoItemAmmo currentProtoItemAmmo)
         {
-            this.UpdateAmmoIconResource();
+            this.UpdateCurrentProtoItem();
         }
 
-        private void UpdateAmmoIconResource()
+        private void UpdateCurrentProtoItem()
         {
             var reloadingState = this.weaponState.WeaponReloadingState;
             if (reloadingState != null
                 && reloadingState.Item == this.item)
             {
-                this.AmmoIconResource = reloadingState.ProtoItemAmmo?.Icon;
-                return;
+                this.ProtoItemAmmo = reloadingState.ProtoItemAmmo;
             }
-
-            this.AmmoIconResource = this.Item?.GetPrivateState<WeaponPrivateState>()
-                                        .CurrentProtoItemAmmo?.Icon;
+            else
+            {
+                this.ProtoItemAmmo = this.Item?.GetPrivateState<WeaponPrivateState>()
+                                         .CurrentProtoItemAmmo;
+            }
         }
 
         private void UpdateWeaponReloadingState()
@@ -151,10 +182,24 @@
                 this.ReloadDurationSeconds = reloadingState.SecondsToReloadRemains;
             }
 
-            this.UpdateAmmoIconResource();
+            this.UpdateCurrentProtoItem();
         }
 
-        private void WeaponReloadingStateChanged()
+        private void ActiveWeaponChangedHandler()
+        {
+            if (this.item != this.weaponState.ActiveItemWeapon)
+            {
+                // stop any countdown animation
+                this.WeaponSwitchDurationSeconds = 0;
+                return;
+            }
+
+            // assign twice in order to reset the animated countdown
+            this.WeaponSwitchDurationSeconds = 0;
+            this.WeaponSwitchDurationSeconds = this.weaponState.CooldownSecondsRemains;
+        }
+
+        private void WeaponReloadingStateChangedHandler()
         {
             this.UpdateWeaponReloadingState();
         }

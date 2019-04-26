@@ -122,7 +122,7 @@
             var isFiring = !isRetreating
                            && !double.IsNaN(distanceToEnemy)
                            && distanceToEnemy <= characterNpcPrivateState.AttackRange;
-            characterNpcPrivateState.WeaponState.SetInputIsFiring(isFiring);
+            characterNpcPrivateState.WeaponState.SharedSetInputIsFiring(isFiring);
         }
 
         public static void ProcessRetreatingAi(

@@ -106,6 +106,7 @@
                 .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyStatic)
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                 .Add(ConstructionTileRequirements.ValidatorNoNpcsAround)
+                .Add(ConstructionTileRequirements.ValidatorNoPlayersNearby)
                 .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea)
                 .Add(LandClaimSystem.ValidatorNoRaid);
 

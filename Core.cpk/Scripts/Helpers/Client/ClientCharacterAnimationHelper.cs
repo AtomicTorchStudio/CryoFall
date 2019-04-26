@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Helpers.Client
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
@@ -9,7 +10,9 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Helpers;
     using static GameEngine.Common.Primitives.MathConstants;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
@@ -19,6 +22,10 @@
         /// Remove corpse rendering after this timeout.
         /// </summary>
         private const double CorpseTimeoutSeconds = 10;
+
+        private const double RotationAngleRadInterpolationRateCurrentCharacter = 70;
+
+        private const double RotationAngleRadInterpolationRateRemoteCharacter = 50;
 
         public static void ClientUpdateAnimation(
             ICharacter character,
@@ -97,11 +104,14 @@
             rendererShadow.IsEnabled = true;
 
             var appliedInput = publicState.AppliedInput;
+            var rotationAngleRad = GetCurrentRotationAngleRadInterpolated(character,
+                                                                          clientState,
+                                                                          appliedInput);
 
             GetCurrentAnimationSetting(
                 protoSkeleton,
                 appliedInput.MoveModes,
-                appliedInput.RotationAngleRad,
+                rotationAngleRad,
                 clientState.LastViewOrientation,
                 out var newAnimationStarterName,
                 out var newAnimationName,
@@ -453,6 +463,42 @@
         {
             return angleDeg > 90
                    && angleDeg <= 270;
+        }
+
+        private static double GetCurrentRotationAngleRadInterpolated(
+            ICharacter character,
+            BaseCharacterClientState clientState,
+            AppliedCharacterInput appliedInput)
+        {
+            double rotationAngleRad = appliedInput.RotationAngleRad;
+            if (!clientState.LastInterpolatedRotationAngleRad.HasValue)
+            {
+                // current character or first time - simply use current angle
+                clientState.LastInterpolatedRotationAngleRad = rotationAngleRad;
+                return rotationAngleRad;
+            }
+
+            var oldAngle = clientState.LastInterpolatedRotationAngleRad.Value;
+
+            if (Math.Abs(MathHelper.GetShortestAngleDist(oldAngle, rotationAngleRad))
+                < Math.PI / 2)
+            {
+                // small difference - allow to interpolate
+                // smooth interpolation for remote players is required to better deal with the network update rate
+                // for local player it's much more fast and just improves overall smoothness of the character rotation
+                var rate = character.IsCurrentClientCharacter
+                               ? RotationAngleRadInterpolationRateCurrentCharacter
+                               : RotationAngleRadInterpolationRateRemoteCharacter;
+
+                rotationAngleRad = MathHelper.LerpAngle(
+                    oldAngle,
+                    rotationAngleRad,
+                    Api.Client.Core.DeltaTime,
+                    rate);
+            }
+
+            clientState.LastInterpolatedRotationAngleRad = rotationAngleRad;
+            return rotationAngleRad;
         }
 
         private static bool IsOrientedUp(IProtoCharacterSkeleton protoSkeleton, double angleDeg)

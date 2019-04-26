@@ -132,6 +132,7 @@
                                                Foreground="{StaticResource BrushColor6}"
                                                FontFamily="{StaticResource CondensedFontFamily}"
                                                HorizontalAlignment="Center"
+                                               TextAlignment="Center"
                                                Margin="0,10,0,0" />
                                 </StackPanel>
                             </DataTemplate>

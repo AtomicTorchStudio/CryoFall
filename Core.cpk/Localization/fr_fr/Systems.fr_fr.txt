@@ -137,9 +137,39 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitE
 `Vous avez épuisé le nombre de revendications territoriales qui vous est alloué.
 [br]Vous pouvez augmenter ce nombre en découvrant de nouvelles technologies.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
+Vous devez étudier la Xénogéologie (Rang 3) pour revendiquer les dépôts de Pétrole/Li, ou pour revendiquer un territoire situé à proximité.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `Raid en cours.
 [br]Vous ne pouvez pas construire de nouvelle structure lorsque votre base est attaquée.`
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
+Annuler la protection pour néophyte
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
+Souhaitez-vous vraiment annuler la protection pour néophyte ? Vous ne pourrez pas la réactiver !
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
+Vous bénéficiez de la protection pour néophyte. Elle vous protège des pertes d'objets et de points d'apprentissage si votre personnage est tué par un autre joueur. De plus, les objets lâchés en cas de mort causée par une autre source ne peuvent pas être ramassés par les autres joueurs. Suivez les quêtes vous permettant de fabriquer les outils et les armes de première nécessité, et construisez-vous une petite base le plus rapidement possible !
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
+La protection pour néophyte expirera dans :
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
+Lorsque vous bénéficiez de la protection pour néophyte, vous ne pouvez pas attaquer d'autres joueurs, ni ramasser leurs affaires. Mais vous pouvez annuler cette protection à tout moment dans le menu social.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
+Vous ne pouvez pas effectuer cette action lorsque vous bénéficiez de la protection pour néophyte. Vous pouvez annuler cette protection à tout moment dans le menu social.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
+Ce sac bénéficie de la protection pour néophyte. Seul le propriétaire est autorisé à le ramasser.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_ProtectionExpired:
+La protection pour néophyte a expiré. Vous pouvez désormais engager des combats en JcJ. Mais attention, votre personnage lâchera tous ses objets s'il se fait tuer...
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Title_NewbieProtection:
+Protection pour néophyte
 
 Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
 Pas d'espace libre dans l'inventaire

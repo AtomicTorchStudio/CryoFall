@@ -27,6 +27,7 @@
         protected ProtoItemTool()
         {
             this.Icon = new TextureResource("Items/Tools/" + this.GetType().Name);
+            ToolsConstants.EnsureInitialized();
         }
 
         public abstract ushort DurabilityMax { get; }

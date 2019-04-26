@@ -76,7 +76,7 @@
             }
 
             var isSelectedItemWeapon = item?.ProtoItem is IProtoItemWeapon;
-            privateState.WeaponState.SetWeaponItem(
+            privateState.WeaponState.SharedSetWeaponItem(
                 item: isSelectedItemWeapon ? item : null,
                 protoItem: publicState.CurrentItemWeaponProto);
         }

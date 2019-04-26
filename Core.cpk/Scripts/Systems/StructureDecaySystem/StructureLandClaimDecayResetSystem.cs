@@ -47,7 +47,7 @@
                 return;
             }
 
-            var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area);
+            var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area, addGracePadding: true);
             var owners = LandClaimArea.GetPrivateState(area).LandOwners;
 
             foreach (var owner in owners)
@@ -105,7 +105,8 @@
             using (var tempList = Api.Shared.GetTempList<ILogicObject>())
             {
                 LandClaimSystem.SharedGetAreasInBounds(currentAreaBounds.Inflate(1, 1),
-                                                       tempList);
+                                                       tempList,
+                                                       addGracePadding: true);
 
                 foreach (var otherArea in tempList)
                 {
@@ -124,7 +125,7 @@
                     StructureDecaySystem.ServerResetDecayTimer(
                         worldObject.GetPrivateState<StructurePrivateState>());
 
-                    var otherAreaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(otherArea);
+                    var otherAreaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(otherArea, addGracePadding: true);
                     ServerResetDecayTimerRecursively(visitedAreas, otherAreaBounds, character);
                 }
             }
@@ -140,8 +141,7 @@
                 return;
             }
 
-            if (!StructureConstants.IsStructureDecayEnabledInEditor
-                && Api.IsEditor)
+            if (!StructureConstants.IsStructuresDecayEnabled)
             {
                 return;
             }
@@ -151,7 +151,7 @@
 
             try
             {
-                TempList.AddRange(LandClaimSystem.ServerEnumerateAllAreas());
+                TempList.AddRange(LandClaimSystem.SharedEnumerateAllAreas());
 
                 foreach (var area in TempList)
                 {

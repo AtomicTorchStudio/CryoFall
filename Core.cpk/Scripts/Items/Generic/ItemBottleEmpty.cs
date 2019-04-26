@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Generic
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.BottleRefillSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -18,9 +19,33 @@
         public static void ServerSpawnEmptyBottle(ICharacter character, ushort count = 1)
         {
             var createItemResult = Server.Items.CreateItem<ItemBottleEmpty>(character, count);
+            if (createItemResult.IsEverythingCreated)
+            {
+                // notify the owner about the spawned empty bottle
+                NotificationSystem.ServerSendItemsNotification(character, createItemResult);
+                return;
+            }
 
-            // notify the owner about the spawned empty bottle
-            NotificationSystem.ServerSendItemsNotification(character, createItemResult);
+            createItemResult.Rollback();
+
+            var groundContainer =
+                ObjectGroundItemsContainer.ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(character.Tile);
+            if (groundContainer == null)
+            {
+                return;
+            }
+
+            createItemResult = Server.Items.CreateItem<ItemBottleEmpty>(groundContainer, count);
+            if (createItemResult.IsEverythingCreated)
+            {
+                // notify the owner about the spawned empty bottle
+                NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(character);
+                return;
+            }
+
+            // BUG: cannot spawn an empty bottle either to player or to the ground. It's a rare case, but still possible.
+            // It's better to return a false result and cancel the action such as drinking of the water.
+            NotificationSystem.ServerSendNotificationNoSpaceInInventory(character);
         }
 
         protected override void ClientItemHotbarSelectionChanged(ClientHotbarItemData data)

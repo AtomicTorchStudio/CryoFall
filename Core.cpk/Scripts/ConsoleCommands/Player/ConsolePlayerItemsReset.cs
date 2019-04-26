@@ -1,5 +1,4 @@
 ﻿// ReSharper disable CanExtractXamlLocalizableStringCSharp
-
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 {
     using System.Linq;

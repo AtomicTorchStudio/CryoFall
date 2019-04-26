@@ -29,6 +29,8 @@
 
         public abstract bool IsHairVisible { get; }
 
+        public virtual bool IsHeadVisible => true;
+
         public override bool RequireEquipmentTextures => true;
 
         /// <inheritdoc />

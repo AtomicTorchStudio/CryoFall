@@ -73,8 +73,7 @@
 
             // reducing health
             var stats = data.CharacterCurrentStats;
-            var newHealth = stats.HealthCurrent - DamagePerSecond * data.DeltaTime;
-            stats.ServerSetHealthCurrent((float)newHealth);
+            stats.ServerReduceHealth(DamagePerSecond * data.DeltaTime, this);
         }
     }
 }

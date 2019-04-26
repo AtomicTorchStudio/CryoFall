@@ -153,7 +153,7 @@
                         }
 
                         Logger.Warning(
-                            $"InteractionCheckerSystem interaction check failed - cancelling \"{this.Name}\" action: {state}",
+                            $"InteractionCheckerSystem interaction check failed - cancelling \"{this.ShortId}\" action: {state}",
                             character);
                         this.SharedAbortActionInternal(character, state.Request);
                     });

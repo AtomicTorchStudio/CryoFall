@@ -37,7 +37,7 @@
             base.ServerInitializeCharacterMob(data);
 
             var weaponProto = GetProtoEntity<ItemWeaponSnakeBite>();
-            data.PrivateState.WeaponState.SetWeaponProtoOnly(weaponProto);
+            data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
             data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
         }
 

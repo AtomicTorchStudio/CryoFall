@@ -165,15 +165,7 @@
                 return;
             }
 
-            if (ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem))
-            {
-                this.InputIsUsingItem = true;
-            }
-
-            if (ClientInputManager.IsButtonUp(GameButton.ActionUseCurrentItem))
-            {
-                this.InputIsUsingItem = false;
-            }
+            this.InputIsUsingItem = ClientInputManager.IsButtonHeld(GameButton.ActionUseCurrentItem);
         }
     }
 }

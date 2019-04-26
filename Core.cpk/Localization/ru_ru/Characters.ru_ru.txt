@@ -38,7 +38,7 @@ Scripts/Characters/Mobs/MobStarfish@Name:
 Морская звезда
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
-Бородавочник
+Тропический кабан
 
 Scripts/Characters/Mobs/MobTurtle@Name:
 Черепаха

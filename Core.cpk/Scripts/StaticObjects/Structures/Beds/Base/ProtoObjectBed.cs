@@ -171,7 +171,7 @@
             if (privateState.Owner == null)
             {
                 // can set new owner
-                if (!LandClaimSystem.ServerIsObjectInsideOwnedOfFreeArea(bedObject, character))
+                if (!LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(bedObject, character))
                 {
                     return ErrorClaimBed_AnotherPlayersLandClaim;
                 }

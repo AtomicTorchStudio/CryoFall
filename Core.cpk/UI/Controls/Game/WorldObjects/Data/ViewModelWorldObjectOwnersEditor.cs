@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -91,10 +92,22 @@
             }
         }
 
-        private bool IsPlayerCharacter(string name)
+        private Visibility GetNameEntryRemoveButtonVisibility(string name)
         {
-            return ClientCurrentCharacterHelper.Character?.Name
-                   == name;
+            if (!this.CanEditOwners)
+            {
+                return Visibility.Collapsed;
+            }
+
+            var isCurrentPlayerCharacter = ClientCurrentCharacterHelper.Character?.Name == name;
+            if (isCurrentPlayerCharacter
+                && !CreativeModeSystem.ClientIsInCreativeMode())
+            {
+                // cannot remove self
+                return Visibility.Collapsed;
+            }
+
+            return Visibility.Visible;
         }
 
         private void OwnersSyncListModificationHandler(NetworkSyncList<string> source)
@@ -115,10 +128,7 @@
                                      name,
                                      this.CommandRemoveOwner,
                                      // player cannot remove itself from the owners list
-                                     removeButtonVisibility: !this.CanEditOwners
-                                                             || this.IsPlayerCharacter(name)
-                                                                 ? Visibility.Collapsed
-                                                                 : Visibility.Visible))
+                                     removeButtonVisibility: this.GetNameEntryRemoveButtonVisibility(name)))
                              .ToList();
 
             this.Owners = owners;

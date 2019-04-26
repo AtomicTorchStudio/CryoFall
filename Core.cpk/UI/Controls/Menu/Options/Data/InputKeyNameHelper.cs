@@ -8,6 +8,10 @@
 
         public const string Title_LeftMouseButton = "Left mouse button";
 
+        public const string Title_MouseExtraButton1 = "Mouse extra button 1";
+
+        public const string Title_MouseExtraButton2 = "Mouse extra button 2";
+
         public const string Title_MouseScrollButton = "Mouse scroll button";
 
         public const string Title_PageDown = "Page Down";
@@ -40,6 +44,12 @@
                 case InputKey.MouseScrollButton:
                     return Title_MouseScrollButton;
 
+                case InputKey.MouseExtraButton1:
+                    return Title_MouseExtraButton1;
+
+                case InputKey.MouseExtraButton2:
+                    return Title_MouseExtraButton2;
+
                 case InputKey.Space:
                     return Title_SpaceBar;
 
@@ -48,7 +58,7 @@
 
                 case InputKey.OemTilde:
                     return "~";
-                
+
                 case InputKey.CircumflexAccent:
                     return '\u005E'.ToString();
 

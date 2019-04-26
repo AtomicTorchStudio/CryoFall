@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Helpers;
 
     public class PlayerCharacterTechnologies : BaseNetObject
     {
@@ -204,11 +205,12 @@
             this.LearningPointsRemainderAccumulator = 0;
         }
 
-        public void ServerSetLearningPoints(ushort points)
+        public void ServerSetLearningPoints(int points)
         {
-            this.LearningPoints = points;
+            var pointsUshort = (ushort)MathHelper.Clamp(points, 0, ushort.MaxValue);
+            this.LearningPoints = pointsUshort;
             this.LearningPointsRemainderAccumulator = 0;
-            Api.Logger.Info("Learning points reset to " + points, this.Character);
+            Api.Logger.Info("Learning points reset to " + pointsUshort, this.Character);
         }
 
         public int SharedGetUnlockedNodesCount(TechGroup techGroup)

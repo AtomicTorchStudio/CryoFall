@@ -1,23 +1,21 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures
 {
+    using AtomicTorch.CBND.GameApi.Scripting;
+
     public static class StructureConstants
     {
-        /// <summary>
-        /// You can enable/disable the structures decay in Editor.
-        /// </summary>
-        public const bool IsStructureDecayEnabledInEditor = false;
+        // Please note that changing this value will require distribution
+        // of a client+server mod so it will know about this change.
+        public const byte BuildItemsCountMultiplier = 1;
+
+        // Please note that changing this value will require distribution
+        // of a client+server mod so it will know about this change.
+        public const byte RepairItemsCountMultiplier = 1;
 
         /// <summary>
-        /// Time (in real world) before a structure will start decay.
+        /// The resource can be claimed only if it was spawned longer than defined here.
         /// </summary>
-        public const double StructureDecayDelaySeconds = 32 * 60 * 60; // 32 hours
-
-        /// <summary>
-        /// Time (in real world) for a structure to completely decay (destroy).
-        /// While decaying, the structure will receive a regular damage proportional to its HP.
-        /// It also means that if the structure is already damaged, it will decay even faster.
-        /// </summary>
-        public const double StructureDecayDurationSeconds = 24 * 60 * 60; // 24 hours
+        public const int ResourceSpawnClaimingCooldownDuration = 30 * 60; // 30 minutes
 
         /// <summary>
         /// Refresh rate of the land claim objects for the decay reset check.
@@ -33,5 +31,29 @@
         /// Should not be too large as it will reduce the precision.
         /// </summary>
         public const double StructureDecaySystemUpdateIntervalSeconds = 5 * 60; // every 5 minutes
+
+        public static readonly bool IsStructuresDecayEnabled
+            = ServerRates.Get(
+                  "StructuresDecayEnabled",
+                  defaultValue: Api.IsEditor ? 0 : 1,
+                  @"Set it to 0 to disable the structures decay.
+                  Set it to 1 to enable the structures decay (default setting).")
+              > 0;
+
+        public static readonly double StructuresDecayDelaySeconds
+            = ServerRates.Get(
+                "StructuresDecayDelaySeconds",
+                defaultValue: 32 * 60 * 60,
+                @"Time (in real world seconds) before a structure will start decaying.
+                  Default value: 32 hours or 115200 seconds. Don't set it higher than 2 billions.");
+
+        public static readonly double StructuresDecayDurationSeconds
+            = ServerRates.Get(
+                "StructuresDecayDurationSeconds",
+                defaultValue: 24 * 60 * 60,
+                @"Time (in real world seconds) for a structure to completely destroy by decay.
+                  While decaying, the structure will receive a regular damage proportional to its HP.
+                  It also means that if the structure is already damaged, it will decay even faster.
+                  Default value: 24 hours or 86400 seconds. Don't set it higher than 2 billions.");
     }
 }

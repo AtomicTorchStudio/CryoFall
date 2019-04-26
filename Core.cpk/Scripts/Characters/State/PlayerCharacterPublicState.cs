@@ -49,6 +49,10 @@
         public bool IsMale { get; set; }
 
         [SyncToClient]
+        [TempOnly]
+        public bool IsNewbie { get; set; }
+
+        [SyncToClient]
         public bool IsOnline { get; set; }
 
         [SyncToClient(receivers: ScopePlayers)]

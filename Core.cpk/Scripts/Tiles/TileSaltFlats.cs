@@ -17,6 +17,8 @@
 
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Solid;
 
+        public override bool IsRestrictingConstruction => true;
+
         public override TileKind Kind => TileKind.Solid;
 
         public override string Name => "Salt flats";

@@ -20,6 +20,8 @@
 
         public override double DamageRadius => DamageRadiusMax;
 
+        public override bool ActivatesRaidModeForLandClaim => true;
+
         public override string Name => "Resonance bomb";
 
         public override double ServerCalculateDamageCoefByDistance(double distance)
@@ -67,6 +69,12 @@
             out double damageValue,
             out double defencePenetrationCoef)
         {
+            // Please not: while the game is the same as with the Modern bomb (T3)
+            // it has a totally different damage propagation algorithm.
+            // Resonance bombs are exploding like in bomberman—a cross-shaped damage propagation against walls and doors only
+            // (as written in the tooltip). 4 closest tiles to the bomb are damaged through dealing 100% damage, then if there
+            // is no free space it could damage through up to 7 tiles total (but the damage is reduced for every next tile after
+            // fourth). It's extremely effective against multilayered walls.
             damageValue = 6000;
             defencePenetrationCoef = 0.5;
         }

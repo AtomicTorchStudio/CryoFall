@@ -20,6 +20,8 @@
 
         public override ushort DurabilityMax => 0;
 
+        public override bool CanDamageStructures => false;
+
         public override double FireInterval => this.FireAnimationDuration * 1.5;
 
         public override ITextureResource Icon => null;

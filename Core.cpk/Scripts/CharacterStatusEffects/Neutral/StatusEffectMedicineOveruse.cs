@@ -31,8 +31,7 @@
 
                 // reduce character health
                 var stats = data.CharacterCurrentStats;
-                var newHealth = stats.HealthCurrent - damage;
-                stats.ServerSetHealthCurrent((float)newHealth);
+                stats.ServerReduceHealth(damage, this);
 
                 // notify the character why the health was reduced
                 this.CallClient(data.Character,

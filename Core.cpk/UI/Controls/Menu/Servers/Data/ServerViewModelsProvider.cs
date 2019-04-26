@@ -170,7 +170,8 @@
             if (this.serverViewModels.Find(viewModelServerInfo.Address)
                 != viewModelServerInfo)
             {
-                throw new Exception("Somebody created another ViewModelServerInfo for the same server address?");
+                Api.Logger.Error("Somebody created another ViewModelServerInfo for the same server address? " + viewModelServerInfo.Address);
+                return;
             }
 
             viewModelServerInfo.ReferencesCount--;

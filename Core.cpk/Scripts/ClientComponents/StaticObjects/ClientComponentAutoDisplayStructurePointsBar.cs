@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ClientComponentAutoDisplayStructurePointsBar : ClientComponent
     {
@@ -106,7 +107,7 @@
 
             if (this.isDamagedBelowThreshold)
             {
-                var playerPosition = ClientCurrentCharacterHelper.Character.TilePosition;
+                var playerPosition = ClientCurrentCharacterHelper.Character?.TilePosition ?? Vector2Ushort.Zero;
                 var tilePosition = this.data.StaticWorldObject.TilePosition;
                 return tilePosition.TileSqrDistanceTo(playerPosition)
                        <= MaxDistance * MaxDistance;

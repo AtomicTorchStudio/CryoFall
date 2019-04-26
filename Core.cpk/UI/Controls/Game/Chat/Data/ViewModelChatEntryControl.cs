@@ -56,6 +56,8 @@
 
         public BaseCommand CommandCopy => new ActionCommand(this.ExecuteCommandCopy);
 
+        public BaseCommand CommandCopyName => new ActionCommand(this.ExecuteCommandCopyName);
+
         public BaseCommand CommandInviteToParty => new ActionCommand(this.ExecuteCommandInviteToParty);
 
         public BaseCommand CommandMention => new ActionCommand(this.ExecuteCommandMention);
@@ -194,6 +196,12 @@
                            : string.Format(ChatCopyMessageFormat, name, this.chatEntry.Message);
 
             Api.Client.Core.CopyToClipboard(text);
+        }
+
+        private void ExecuteCommandCopyName()
+        {
+            var name = this.chatEntry.From;
+            Api.Client.Core.CopyToClipboard(name);
         }
 
         private void ExecuteCommandInviteToParty()

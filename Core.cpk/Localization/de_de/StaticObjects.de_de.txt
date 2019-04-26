@@ -28,6 +28,9 @@ Kein freier Platz.
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
 Kein fester Boden.
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorPlayerNearby:
+Es befinden sich andere Spieler in der Nähe.
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
 Du stehst in der Zelle!
 

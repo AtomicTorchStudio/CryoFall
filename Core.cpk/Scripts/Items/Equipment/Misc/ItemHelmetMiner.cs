@@ -37,7 +37,7 @@
         {
             lightConfig.Color = LightColors.OilLamp;
             lightConfig.ScreenOffset = (20, -3);
-            lightConfig.Size = 13;
+            lightConfig.Size = 17;
 
             fuelConfig.FuelCapacity = 500; // about 8.5 minutes
             fuelConfig.FuelAmountInitial = 0;

@@ -42,7 +42,7 @@
 
         private bool isExpanded;
 
-        private uint lastMessageReceivedSoundPlayerFrameNumber;
+        private static uint lastMessageReceivedSoundPlayerFrameNumber;
 
         private ScrollViewer scrollViewerChatLog;
 
@@ -282,13 +282,19 @@
 
         private void ClientPlaySoundMessageReceived(in ChatEntry chatEntry)
         {
-            var frameNumber = Api.Client.CurrentGame.ServerFrameNumber;
-            if (this.lastMessageReceivedSoundPlayerFrameNumber == frameNumber)
+            if (!this.ViewModelChatRoom.IsSelected)
             {
                 return;
             }
 
-            this.lastMessageReceivedSoundPlayerFrameNumber = frameNumber;
+            var frameNumber = Api.Client.CurrentGame.ServerFrameNumber;
+            if (lastMessageReceivedSoundPlayerFrameNumber == frameNumber)
+            {
+                return;
+            }
+
+            lastMessageReceivedSoundPlayerFrameNumber = frameNumber;
+
             Api.Client.Audio.PlayOneShot(chatEntry.IsService
                                              ? SoundResourceActivity
                                              : SoundResourceMessageReceived,

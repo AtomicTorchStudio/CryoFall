@@ -24,7 +24,7 @@ Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerFull:
 현재 서버의 용량이 모두 찼습니다. 다음 플레이어가 퇴장할 때까지 기다린 후, 다시 서버에 들어오십시오.
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerUnreachable:
-현재 게임 서버에 연결할 수 없습니다. 가능성있는 이유 서버 재부팅, 서버 닫힘, 방화벽 설정, 네트워크 문제 등. 몇 분 후에 다시 시도하십시오.
+현재 게임 서버에 연결할 수 없습니다. 가능성 있는 이유 서버 재부팅, 서버 닫힘, 방화벽 설정, 네트워크 문제 등. 몇 분 후에 다시 시도하십시오.
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ShutdownScheduled:
 현재 게임 서버가 재부팅 중이거나 닫혀 있습니다.

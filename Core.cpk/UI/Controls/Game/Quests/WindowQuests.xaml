@@ -305,112 +305,107 @@
                      Width="{StaticResource GameMenuStandardWindowWidth}"
                      Height="{StaticResource GameMenuStandardWindowHeight}"
                      IsCached="True">
+        <TabControl Style="{StaticResource TabControlCompactStyle}"
+                    Margin="0,-5,0,0">
+            <!-- Text: Current quests -->
+            <TabItem Header="{x:Static loc:CoreStrings.WindowQuests_CurrentQuests}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Rectangle Style="{StaticResource SectionHeaderBackground}"
+                               Visibility="{Binding ActiveQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
 
-        <Grid>
-            <TabControl Style="{StaticResource TabControlCompactStyle}">
-                <!-- Text: Current quests -->
-                <TabItem Header="{x:Static loc:CoreStrings.WindowQuests_CurrentQuests}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Rectangle Style="{StaticResource SectionHeaderBackground}"
-                                   Visibility="{Binding ActiveQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
+                    <ScrollViewer Grid.Row="1"
+                                  Padding="0,0,2,0">
+                        <ItemsControl ItemsSource="{Binding ActiveQuests}"
+                                      Style="{StaticResource QuestItemsControlStyle}"
+                                      Visibility="{Binding ActiveQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
+                    </ScrollViewer>
 
-                        <ScrollViewer Grid.Row="1"
-                                      Padding="0,0,2,0">
-                            <ItemsControl ItemsSource="{Binding ActiveQuests}"
-                                          Style="{StaticResource QuestItemsControlStyle}"
-                                          Visibility="{Binding ActiveQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
-                        </ScrollViewer>
+                    <!-- Text: You have completed all available quests. -->
+                    <core:FormattedTextBlock Grid.Row="0"
+                                             Grid.RowSpan="3"
+                                             Content="{x:Static loc:CoreStrings.WindowQuests_MessageAllAvailableQuestsCompleted}"
+                                             Visibility="{Binding ActiveQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}"
+                                             Style="{StaticResource TextBlockMenuPlaceholderStyle}" />
 
-                        <!-- Text: You have completed all available quests. -->
-                        <core:FormattedTextBlock Grid.Row="0"
-                                                 Grid.RowSpan="3"
-                                                 Content="{x:Static loc:CoreStrings.WindowQuests_MessageAllAvailableQuestsCompleted}"
-                                                 Visibility="{Binding ActiveQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}"
-                                                 Style="{StaticResource TextBlockMenuPlaceholderStyle}" />
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Stretch"
+                                Grid.Row="2"
+                                Margin="0,0,0,-4">
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource BrushColorAlt3}" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="FontSize" Value="11" />
+                                </Style>
+                            </StackPanel.Resources>
 
-                        <StackPanel Orientation="Vertical"
-                                    HorizontalAlignment="Stretch"
-                                    Grid.Row="2"
-                                    Margin="0,0,0,-4">
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Center">
-                                <StackPanel.Resources>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Foreground" Value="{StaticResource BrushColorAlt3}" />
-                                        <Setter Property="FontWeight" Value="Bold" />
-                                        <Setter Property="FontSize" Value="11" />
-                                    </Style>
-                                </StackPanel.Resources>
-
-                                <!-- Text: Unlocked quests -->
-                                <TextBlock Text="{x:Static loc:CoreStrings.WindowQuests_TitleUnlockedQuestsCount}" />
-                                <TextBlock Text=": " />
-                                <TextBlock Text="{Binding UnlockedQuestsCount}" />
-                                <TextBlock Text="/" />
-                                <TextBlock Text="{Binding TotalQuestsCount}" />
-                            </StackPanel>
+                            <!-- Text: Unlocked quests -->
+                            <TextBlock Text="{x:Static loc:CoreStrings.WindowQuests_TitleUnlockedQuestsCount}" />
+                            <TextBlock Text=": " />
+                            <TextBlock Text="{Binding UnlockedQuestsCount}" />
+                            <TextBlock Text="/" />
+                            <TextBlock Text="{Binding TotalQuestsCount}" />
                         </StackPanel>
-                    </Grid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
 
-                </TabItem>
+            <!-- Text: Completed quests -->
+            <TabItem Header="{x:Static loc:CoreStrings.WindowQuests_TitleCompletedQuestsCount}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Rectangle Style="{StaticResource SectionHeaderBackground}"
+                               Visibility="{Binding CompletedQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
 
-                <!-- Text: Completed quests -->
-                <TabItem Header="{x:Static loc:CoreStrings.WindowQuests_TitleCompletedQuestsCount}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Rectangle Style="{StaticResource SectionHeaderBackground}"
-                                   Visibility="{Binding CompletedQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
+                    <ScrollViewer Grid.Row="1"
+                                  Padding="0,0,2,0">
+                        <ItemsControl ItemsSource="{Binding CompletedQuests}"
+                                      Style="{StaticResource QuestItemsControlStyle}"
+                                      Visibility="{Binding CompletedQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
+                    </ScrollViewer>
 
-                        <ScrollViewer Grid.Row="1"
-                                      Padding="0,0,2,0">
-                            <ItemsControl ItemsSource="{Binding CompletedQuests}"
-                                          Style="{StaticResource QuestItemsControlStyle}"
-                                          Visibility="{Binding CompletedQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
-                        </ScrollViewer>
+                    <!-- Text: You haven't completed any quests yet. -->
+                    <core:FormattedTextBlock Grid.Row="0"
+                                             Grid.RowSpan="3"
+                                             Content="{x:Static loc:CoreStrings.WindowQuests_MessageNoCompletedText}"
+                                             Visibility="{Binding CompletedQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}"
+                                             Style="{StaticResource TextBlockMenuPlaceholderStyle}" />
 
-                        <!-- Text: You haven't completed any quests yet. -->
-                        <core:FormattedTextBlock Grid.Row="0"
-                                                 Grid.RowSpan="3"
-                                                 Content="{x:Static loc:CoreStrings.WindowQuests_MessageNoCompletedText}"
-                                                 Visibility="{Binding CompletedQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}"
-                                                 Style="{StaticResource TextBlockMenuPlaceholderStyle}" />
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Stretch"
+                                Grid.Row="2"
+                                Margin="0,0,0,-4">
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource BrushColorAlt3}" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="FontSize" Value="11" />
+                                </Style>
+                            </StackPanel.Resources>
 
-                        <StackPanel Orientation="Vertical"
-                                    HorizontalAlignment="Stretch"
-                                    Grid.Row="2"
-                                    Margin="0,0,0,-4">
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Center">
-                                <StackPanel.Resources>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Foreground" Value="{StaticResource BrushColorAlt3}" />
-                                        <Setter Property="FontWeight" Value="Bold" />
-                                        <Setter Property="FontSize" Value="11" />
-                                    </Style>
-                                </StackPanel.Resources>
-
-                                <!-- Text: Completed quests -->
-                                <TextBlock Text="{x:Static loc:CoreStrings.WindowQuests_TitleCompletedQuestsCount}" />
-                                <TextBlock Text=": " />
-                                <TextBlock Text="{Binding CompletedQuests.Count}" />
-                                <TextBlock Text="/" />
-                                <TextBlock Text="{Binding TotalQuestsCount}" />
-                            </StackPanel>
+                            <!-- Text: Completed quests -->
+                            <TextBlock Text="{x:Static loc:CoreStrings.WindowQuests_TitleCompletedQuestsCount}" />
+                            <TextBlock Text=": " />
+                            <TextBlock Text="{Binding CompletedQuests.Count}" />
+                            <TextBlock Text="/" />
+                            <TextBlock Text="{Binding TotalQuestsCount}" />
                         </StackPanel>
-                    </Grid>
-                </TabItem>
-            </TabControl>
-        </Grid>
-
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </core:GameWindow>
-
 </core:BaseWindowMenu>

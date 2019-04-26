@@ -30,6 +30,18 @@
               .Add(Metal,       "Hit/Melee/Energy")
               .Add(Glass,       "Hit/Melee/Energy");
 
+        // used for fists and some animals
+        public static readonly ReadOnlySoundPreset<ObjectSoundMaterial> MeleeSoftTissuesOnly
+            = new SoundPreset<ObjectSoundMaterial>(HitSoundDistancePreset)
+              .Add(SoftTissues, "Hit/Melee/SoftTissues")
+              .Add(HardTissues, "Hit/Melee/SoftTissues")
+              .Add(SolidGround, "Hit/Melee/SoftTissues")
+              .Add(Vegetation,  "Hit/Melee/SoftTissues")
+              .Add(Wood,        "Hit/Melee/SoftTissues")
+              .Add(Stone,       "Hit/Melee/SoftTissues")
+              .Add(Metal,       "Hit/Melee/SoftTissues")
+              .Add(Glass,       "Hit/Melee/SoftTissues");
+
         public static readonly ReadOnlySoundPreset<ObjectSoundMaterial> Ranged
             = new SoundPreset<ObjectSoundMaterial>(HitSoundDistancePreset)
               .Add(SoftTissues, "Hit/Ranged/SoftTissues")

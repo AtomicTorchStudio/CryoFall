@@ -230,7 +230,8 @@
                                     Command="{Binding ViewModelServerInfo.CommandJoinServer}"
                                     CommandParameter="{Binding ViewModelServerInfo}"
                                     Visibility="{Binding ViewModelServerInfo.JoinServerButtonVisibility}"
-                                    Style="{StaticResource MainMenuButtonStyle}" />
+                                    Style="{StaticResource MainMenuButtonStyle}"
+                                    Focusable="False" />
 
                             <!-- Text: Refresh Server -->
                             <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_RefreshServer}"
@@ -239,7 +240,8 @@
                                     Command="{Binding ViewModelServerInfo.CommandRefresh}"
                                     CommandParameter="{Binding ViewModelServerInfo}"
                                     Visibility="{Binding ViewModelServerInfo.RefreshButtonVisibility}"
-                                    Style="{StaticResource MainMenuButtonStyle}" />
+                                    Style="{StaticResource MainMenuButtonStyle}" 
+                                    Focusable="False" />
 
                             <!-- Text: Remove Server -->
                             <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_RemoveServer}"
@@ -248,7 +250,8 @@
                                     Command="{Binding CommandRemove}"
                                     CommandParameter="{Binding ViewModelServerInfo}"
                                     Visibility="{Binding RemoveButtonVisibility}"
-                                    Style="{StaticResource MainMenuButtonStyle}" />
+                                    Style="{StaticResource MainMenuButtonStyle}"
+                                    Focusable="False" />
 
                             <!-- Text: Edit Address -->
                             <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_EditAddress}"
@@ -257,7 +260,8 @@
                                     Command="{Binding CommandEdit}"
                                     CommandParameter="{Binding ViewModelServerInfo}"
                                     Visibility="{Binding EditButtonVisibility}"
-                                    Style="{StaticResource MainMenuButtonStyle}" />
+                                    Style="{StaticResource MainMenuButtonStyle}"
+                                    Focusable="False" />
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -318,7 +322,6 @@
                 </TabItem>
 
                 <TabItem
-                    DockPanel.Dock="Right"
                     DataContext="{Binding HistoryServers}"
                     IsSelected="{Binding IsActive, Mode=TwoWay}">
                     <TabItem.Header>
@@ -327,7 +330,6 @@
                             Text="{x:Static loc:CoreStrings.MenuServers_ListTitleRecent}"
                             IconImageSource="/UI/Images/Icons/MenuServers/History.png"
                             ServersCount="{Binding ServersCount}"
-                            VisibilityDetails="Collapsed"
                             base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.MenuServers_ListTitleRecent}" />
                     </TabItem.Header>
                     <Control Template="{StaticResource ServersListDataTemplate}" />
@@ -396,7 +398,8 @@
                                 Command="{Binding CommandAddCustomServer}"
                                 Visibility="{Binding Path=CustomServers.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
                                 HorizontalAlignment="Stretch"
-                                Style="{StaticResource MainMenuButtonStyle}" />
+                                Style="{StaticResource MainMenuButtonStyle}"
+                                Focusable="False" />
 
                         <!-- Text: Clear list -->
                         <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_ClearList}"
@@ -404,7 +407,8 @@
                                 Visibility="{Binding Path=HistoryServers.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
                                 HorizontalAlignment="Stretch"
                                 Margin="0,5,0,0"
-                                Style="{StaticResource MainMenuButtonStyle}" />
+                                Style="{StaticResource MainMenuButtonStyle}"
+                                Focusable="False" />
 
                         <!-- Text: Clear list -->
                         <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_ClearList}"
@@ -412,14 +416,16 @@
                                 Visibility="{Binding Path=FavoriteServers.IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
                                 HorizontalAlignment="Stretch"
                                 Margin="0,5,0,0"
-                                Style="{StaticResource MainMenuButtonStyle}" />
+                                Style="{StaticResource MainMenuButtonStyle}"
+                                Focusable="False" />
 
                         <!-- Text: Refresh All -->
                         <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_RefreshAll}"
                                 Command="{Binding CommandRefreshAll}"
                                 HorizontalAlignment="Stretch"
                                 Margin="0,5,0,0"
-                                Style="{StaticResource MainMenuButtonStyle}" />
+                                Style="{StaticResource MainMenuButtonStyle}"
+                                Focusable="False" />
 
                     </StackPanel>
                 </Grid>

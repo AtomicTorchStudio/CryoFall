@@ -3,16 +3,26 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
+    using AtomicTorch.CBND.GameApi.Logging;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
 
     // partial class containing only input methods
     public static class CharacterStatusEffectsExtensions
     {
-        private static readonly IWorldServerService Service = Api.IsServer ? Api.Server.World : null;
+        private static readonly ILogger Logger = Api.Logger;
+
+        private static readonly ICharactersServerService ServerCharacters = Api.IsServer
+                                                                                ? Api.Server.Characters
+                                                                                : null;
+
+        private static readonly IWorldServerService ServerWorld = Api.IsServer
+                                                                      ? Api.Server.World
+                                                                      : null;
 
         public static void ServerAddStatusEffect(
             this ICharacter character,
@@ -29,6 +39,13 @@
                 throw new ArgumentException(
                     $"Intensity to add must be > 0. Provided value: {intensity:F2}",
                     nameof(intensity));
+            }
+
+            if (character.ProtoCharacter is PlayerCharacterSpectator
+                || ServerCharacters.IsSpectator(character))
+            {
+                // don't add status effects to the spectator characters
+                return;
             }
 
             if (intensity > 1)
@@ -52,10 +69,10 @@
             if (statusEffect == null)
             {
                 // no such status effect instance exists - create and add it
-                statusEffect = Service.CreateLogicObject(protoStatusEffect);
+                statusEffect = ServerWorld.CreateLogicObject(protoStatusEffect);
                 protoStatusEffect.ServerSetup(statusEffect, character);
                 statusEffects.Add(statusEffect);
-                Api.Logger.Important($"Status effect added: {statusEffect} to {character}");
+                Logger.Info($"Status effect added: {statusEffect} to {character}");
             }
 
             protoStatusEffect.ServerAddIntensity(statusEffect, intensity);
@@ -87,12 +104,12 @@
                     continue;
                 }
 
-                Service.DestroyObject(statusEffect);
+                ServerWorld.DestroyObject(statusEffect);
                 statusEffects.RemoveAt(index);
                 index--;
             }
 
-            Api.Logger.Important("All status effects removed for " + character);
+            Logger.Important("All status effects removed for " + character);
         }
 
         public static void ServerRemoveStatusEffect<TProtoStatusEffect>(this ICharacter character)
@@ -122,13 +139,13 @@
 
                 // found effect to remove
                 statusEffects.RemoveAt(index);
-                Service.DestroyObject(statusEffect);
-                Api.Logger.Important($"Status effect removed: {statusEffect} from {character}");
+                ServerWorld.DestroyObject(statusEffect);
+                Logger.Info($"Status effect removed: {statusEffect} from {character}");
                 return;
             }
 
             // no status effect found
-            Api.Logger.Warning($"Cannot remove status effect: {protoStatusEffect} from {character}");
+            Logger.Warning($"Cannot remove status effect: {protoStatusEffect} from {character}");
         }
 
         public static void ServerRemoveStatusEffectIntensity<TProtoStatusEffect>(

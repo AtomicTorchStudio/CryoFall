@@ -171,6 +171,13 @@
                     Command = this.viewModel.CommandCopy,
                 });
 
+            contextMenuItems.Add(
+                new MenuItem()
+                {
+                    Header = CoreStrings.Chat_MessageMenu_CopyName,
+                    Command = this.viewModel.CommandCopyName
+                });
+
             if (this.viewModel.VisibilityCanInviteToParty == Visibility.Visible)
             {
                 contextMenuItems.Add(

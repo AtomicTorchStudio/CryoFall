@@ -29,7 +29,7 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
 포만감
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
-치료를 하지 않으면 계속 체력을 잃게 됩니다. 경미한 출혈은 저절로 사라지지만, 그 보다 훨씬 심각한 부상은 붕대 또는 지혈제의 사용이 필요합니다.
+치료를 하지 않으면 계속 체력을 잃게 됩니다. 경미한 출혈은 저절로 사라지지만, 그보다 훨씬 심각한 부상은 붕대 또는 지혈제의 사용이 필요합니다.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Name:
 출혈
@@ -149,7 +149,7 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 약물 남용
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
-현재 지혈제의 효과로, 새로운 출혈 부상으로 부터 받는 고통이 감소합니다.
+현재 지혈제의 효과로, 새로운 출혈 부상으로부터 받는 고통이 감소합니다.
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Name:
 지혈제

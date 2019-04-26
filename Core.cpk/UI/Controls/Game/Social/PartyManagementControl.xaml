@@ -151,15 +151,15 @@
                     Command="{Binding CommandLeaveParty}"
                     Margin="0,13,0,0" />
 
-            <!-- Text: Part of the Learning Points gained via skill experience by any member of the party is shared equally among all members. -->
-            <core:FormattedTextBlock
+            <!-- TODO: this is a poor description which requires rewriting ASAP meanwhile the line is hidden. -->
+            <!--<core:FormattedTextBlock
                 Content="{x:Static loc:CoreStrings.PartyManagement_InfoExperienceSharing}"
                 Foreground="{StaticResource BrushColor5}"
                 FontSize="10"
                 LineHeight="11"
                 LineStackingStrategy="BlockLineHeight"
                 TextWrapping="Wrap"
-                Margin="0,10,0,0" />
+                Margin="0,10,0,0" />-->
         </StackPanel>
 
         <StackPanel Orientation="Vertical"

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting
 {
+    using System;
     using System.Windows.Media;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -43,6 +44,8 @@
             }
         }
 
+        public double LogicalLightRadiusSqr { get; private set; }
+
         public double Opacity
         {
             get => this.opacity;
@@ -84,6 +87,9 @@
                 }
 
                 this.size = value;
+                var logicalLightRadius = Math.Max(this.size.X, this.size.Y)
+                                         / 2.5;
+                this.LogicalLightRadiusSqr = logicalLightRadius * logicalLightRadius;
                 this.SetDirty();
             }
         }
@@ -133,6 +139,18 @@
 
         protected virtual void LateUpdateLight(double deltaTime)
         {
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            ClientLightSourceManager.Unregister(this);
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            ClientLightSourceManager.Register(this);
         }
 
         protected void SetDirty()

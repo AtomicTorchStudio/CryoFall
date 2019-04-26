@@ -8,6 +8,9 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
+    using AtomicTorch.CBND.CoreMod.Systems.Party;
+    using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -17,28 +20,67 @@
     public static class WeaponDamageSystem
     {
         public static double ServerCalculateTotalDamage(
-            WeaponFinalCache weaponFinalCache,
+            WeaponFinalCache weaponCache,
             IWorldObject targetObject,
             FinalStatsCache targetFinalStatsCache,
             double damagePreMultiplier,
             bool clampDefenseTo1)
         {
-            if (weaponFinalCache.ProtoObjectExplosive != null
+            if (weaponCache.ProtoObjectExplosive != null
                 && targetObject.ProtoWorldObject is IProtoStaticWorldObject targetStaticWorldObjectProto)
             {
                 // special case - apply the explosive damage
-                return ServerCalculateTotalDamageByExplosive(weaponFinalCache.ProtoObjectExplosive,
+                return ServerCalculateTotalDamageByExplosive(weaponCache.ProtoObjectExplosive,
                                                              targetStaticWorldObjectProto,
                                                              damagePreMultiplier);
             }
 
-            var damageValue = damagePreMultiplier * weaponFinalCache.DamageValue;
-            var invertedArmorPiercingCoef = weaponFinalCache.InvertedArmorPiercingCoef;
+            bool isPvPcase = false,
+                 isFriendlyFireCase = false;
+
+            var damagingCharacter = weaponCache.Character;
+
+            if (targetObject is ICharacter targetCharacter
+                && !targetCharacter.IsNpc
+                && damagingCharacter != null
+                && !damagingCharacter.IsNpc
+                && targetCharacter != damagingCharacter)
+            {
+                // PvP detected
+                isPvPcase = true;
+                if (WeaponConstants.DamagePvpMultiplier <= 0)
+                {
+                    // PvP damage disabled
+                    return 0;
+                }
+
+                // let's check whether the players in the same party to detect the friendly fire
+                var targetParty = PartySystem.ServerGetParty(targetCharacter);
+                if (targetParty != null)
+                {
+                    var damagingParty = PartySystem.ServerGetParty(damagingCharacter);
+                    if (targetParty == damagingParty)
+                    {
+                        // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+                        if (WeaponConstants.DamageFriendlyFireMultiplier <= 0)
+                        {
+                            // no damage as friendly fire is completely disabled
+                            return 0;
+                        }
+
+                        // friendly fire detected
+                        isFriendlyFireCase = true;
+                    }
+                }
+            }
+
+            var damageValue = damagePreMultiplier * weaponCache.DamageValue;
+            var invertedArmorPiercingCoef = weaponCache.InvertedArmorPiercingCoef;
 
             var totalDamage = 0d;
 
             // calculate total damage by summing all the damage components
-            foreach (var damageDistribution in weaponFinalCache.DamageDistributions)
+            foreach (var damageDistribution in weaponCache.DamageDistributions)
             {
                 var defenseStatName = SharedGetDefenseStatName(damageDistribution.DamageType);
                 var defenseFraction = targetFinalStatsCache[defenseStatName];
@@ -52,7 +94,31 @@
             }
 
             // multiply on final multiplier (usually used for expanding projectiles)
-            totalDamage *= weaponFinalCache.FinalDamageMultiplier;
+            totalDamage *= weaponCache.FinalDamageMultiplier;
+
+            if (isPvPcase)
+            {
+                // apply PvP damage multiplier
+                totalDamage *= WeaponConstants.DamagePvpMultiplier;
+            }
+            else if (damagingCharacter != null
+                     && !damagingCharacter.IsNpc)
+            {
+                // apply PvE damage multiplier
+                totalDamage *= WeaponConstants.DamagePveMultiplier;
+            }
+            else if (damagingCharacter != null
+                     && damagingCharacter.IsNpc)
+            {
+                // apply creature damage multiplier
+                totalDamage *= WeaponConstants.DamageCreaturesMultiplier;
+            }
+
+            if (isFriendlyFireCase)
+            {
+                totalDamage *= WeaponConstants.DamageFriendlyFireMultiplier;
+            }
+
             return totalDamage;
         }
 
@@ -69,6 +135,21 @@
             {
                 // target character is dead, cannot apply damage to it
                 damageApplied = 0;
+                return false;
+            }
+
+            if (!targetCharacter.IsNpc
+                && weaponCache.Character is ICharacter damagingCharacter
+                && NewbieProtectionSystem.SharedIsNewbie(damagingCharacter))
+            {
+                // no damage from newbie
+                damageApplied = 0;
+                if (Api.IsClient)
+                {
+                    // display message to newbie
+                    NewbieProtectionSystem.ClientShowNewbieCannotDamageOtherPlayersOrLootBags(isLootBag: false);
+                }
+
                 return false;
             }
 
@@ -105,7 +186,20 @@
             totalDamage = Math.Min(totalDamage, 5 * targetCurrentStats.HealthMax);
 
             // apply damage
-            targetCurrentStats.ServerSetHealthCurrent((float)(targetCurrentStats.HealthCurrent - totalDamage));
+            if (attackerCharacter != null)
+            {
+                targetCurrentStats.ServerReduceHealth(totalDamage, damageSource: attackerCharacter);
+            }
+            else if (weaponCache.ProtoObjectExplosive != null)
+            {
+                targetCurrentStats.ServerReduceHealth(totalDamage, damageSource: weaponCache.ProtoObjectExplosive);
+            }
+            else
+            {
+                Api.Logger.Warning("Unknown damage kind, unable to add it to damage tracking stats", targetCharacter);
+                targetCurrentStats.ServerReduceHealth(totalDamage, damageSource: (IProtoGameObject)null);
+            }
+
             Api.Logger.Info(
                 $"Damage applied to {targetCharacter} by {attackerCharacter}:\n{totalDamage} dmg, current health {targetCurrentStats.HealthCurrent}/{targetCurrentStats.HealthMax}, {weaponCache.Weapon}");
 

@@ -8,9 +8,8 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
-    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Beds;
-    using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -51,14 +50,6 @@
 
         public override string Name => "Character respawn system";
 
-        public static ushort SharedGetLearningPointsRetainedAfterDeath(ICharacter character)
-        {
-            return (ushort)MathHelper.Clamp(
-                character.SharedGetFinalStatValue(StatName.LearningPointsRetainedAfterDeath),
-                0,
-                ushort.MaxValue);
-        }
-
         public Task<Tuple<bool, int>> ClientGetHasBedAsync()
         {
             return this.CallServer(_ => _.ServerRemote_GetHasBed());
@@ -66,17 +57,17 @@
 
         public void ClientRequestRespawnAtBed()
         {
-            this.CallServer(s => s.ServerRemote_RespawnAtBed());
+            this.CallServer(_ => _.ServerRemote_RespawnAtBed());
         }
 
         public void ClientRequestRespawnInWorld()
         {
-            this.CallServer(s => s.ServerRemote_RespawnInWorld());
+            this.CallServer(_ => _.ServerRemote_RespawnInWorld());
         }
 
         public void ClientRequestRespawnNearBed()
         {
-            this.CallServer(s => s.ServerRemote_RespawnNearBed());
+            this.CallServer(_ => _.ServerRemote_RespawnNearBed());
         }
 
         private static int ServerCalculateBedRespawnCooldownSecondsRemaining(
@@ -111,7 +102,7 @@
             bed = PlayerCharacter.GetPrivateState(character).CurrentBedObject;
             return bed != null
                    && !bed.IsDestroyed
-                   && LandClaimSystem.ServerIsObjectInsideOwnedOfFreeArea(bed, character);
+                   && LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(bed, character);
         }
 
         private static void ServerOnSuccessfulRespawn(PlayerCharacterCurrentStats stats, ICharacter character)
@@ -121,6 +112,8 @@
             stats.ServerSetFoodCurrent(stats.FoodMax / 4f);
             stats.ServerSetWaterCurrent(stats.WaterMax / 4f);
 
+            CharacterDamageTrackingSystem.ServerClearStats(character);
+
             // remove status effects flagged as removed on respawn
             foreach (var statusEffect in character.ServerEnumerateCurrentStatusEffects().ToList())
             {
@@ -129,19 +122,6 @@
                 {
                     character.ServerRemoveStatusEffect(protoStatusEffect);
                 }
-            }
-
-            // reset learning points
-            var technologies = character.SharedGetTechnologies();
-            technologies.ServerResetLearningPointsRemainder();
-
-            var learningPointsRetainedAfterDeath = SharedGetLearningPointsRetainedAfterDeath(character);
-            var lostLp = technologies.LearningPoints - learningPointsRetainedAfterDeath;
-            if (lostLp > 0)
-            {
-                technologies.ServerSetLearningPoints(learningPointsRetainedAfterDeath);
-                character.ServerAddSkillExperience<SkillLearning>(
-                    lostLp * SkillLearning.ExperienceAddedPerLPLost);
             }
 
             // recreate physics (as dead character doesn't have any physics)
@@ -211,9 +191,7 @@
                         }
                     }
 
-                    var landClaimArea = LandClaimSystem.SharedGetAreaAtPosition(neighborTile.Position);
-                    if (landClaimArea != null
-                        && !LandClaimSystem.ServerIsOwnedArea(landClaimArea, character))
+                    if (!LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(neighborTile.Position, character))
                     {
                         // invalid tile - it's claimed by another player
                         continue;
@@ -269,8 +247,7 @@
                             }
                         }
 
-                        var landClaimArea = LandClaimSystem.SharedGetAreaAtPosition(spawnPosition.ToVector2Ushort());
-                        if (landClaimArea != null)
+                        if (LandClaimSystem.SharedIsLandClaimedByAnyone(spawnPosition.ToVector2Ushort()))
                         {
                             // there is a land claim area - don't respawn there
                             continue;

@@ -18,7 +18,7 @@ Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown
 잠자리 부활 쿨타임
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Inaccessible:
-잠자리에 접근할 수 없는 것 같습니다 (주위에 빈 공간 없음).
+잠자리에 접근할 수 없는 것 같습니다 (주위에 공간 없음).
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_NoBed:
 가지고 있는 잠자리가 없습니다.
@@ -64,7 +64,7 @@ Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSucce
 끼임 탈출 성공
 
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
-서버 관리자로부터 채팅에 참가하는 것을 금지당했습니다. 제재 해제까지 남은 시간: {0}
+서버 관리자로부터 채팅에 참가하는 것을 금지 당했습니다. 제재 해제까지 남은 시간: {0}
 
 Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 {0}님이 게임을 떠났습니다
@@ -97,7 +97,7 @@ Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Title
 지을 수 없음
 
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
-제작 대기열이 꽉 차있습니다.
+제작 대기열이 꽉 차 있습니다.
 
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 새로운 제조법 추가 불가
@@ -137,12 +137,42 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitE
 `할당되어 있는 토지 점유소를 전부 사용하였습니다.
 [br]새로운 기술을 연구하면 최대치를 늘릴 수 있습니다.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
+석유/리튬 매장지를 점유하거나 토지 점유소를 그곳과 가까운 데 배치하려면 외계지질학 (3단계)을 연구해야 합니다.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `습격받고 있습니다.
 [br]기지가 공격받고 있는 동안에는 새로운 구조물을 지을 수 없습니다.`
 
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
+초보자 보호 기능 취소
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
+정말로 초보자 보호를 취소하시겠습니까? 취소 후에는 다시 사용할 수 없습니다.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
+초보자 보호 기능이 활성화되어 있습니다. 당신의 캐릭터를 다른 플레이어가 살해하더라도 아이템 및 학습 포인트를 잃지 않습니다. 또한 사망으로 인해 떨어뜨린 당신의 아이템을 다른 플레이어가 주울 수 없습니다. 필수 도구와 무기를 만드는 퀘스트를 따라가며, 최대한 빨리 작은 기지를 지으세요!
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
+초보자 보호 기능 유효 시간:
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
+초보자 보호 기능이 활성화되어 있으면, 다른 플레이어를 공격하거나 가방 또는 아이템을 약탈할 수 없습니다. 해당 기능은 언제든지 소셜 메뉴에서 취소할 수 있습니다.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
+초보자 보호 기능이 활성화되어 있는 동안에는 이 작업을 수행할 수 없습니다. 해당 기능은 언제든지 소셜 메뉴에서 취소할 수 있습니다.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
+이 가방은 초보자 보호 기능으로 보호되어 있습니다. 원 소유자만 주울 수 있습니다.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_ProtectionExpired:
+초보자 보호 기능이 만료되었습니다. 이제 PvP 전투에 자유롭게 참가할 수 있습니다. 하지만 캐릭터가 죽게 되면 모든 아이템을 떨어뜨리게 되니 주의하시기 바랍니다.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Title_NewbieProtection:
+초보자 보호 기능
+
 Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
-인벤토리 빈 공간 없음
+인벤토리 공간 없음
 
 Scripts/Systems/Notifications/NotificationSystem@NotificationSomeItemsDropped:
 몇 가지 아이템이 땅에 떨어져 있습니다!
@@ -175,7 +205,7 @@ Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundO
 초대를 찾을 수 없거나 초대가 만료되었습니다.
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
-너무 늦었습니다, 파티가 이미 꽉 차있습니다.
+너무 늦었습니다, 파티가 이미 꽉 차 있습니다.
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
 초대받은 플레이어를 찾을 수 없습니다.
@@ -214,7 +244,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]중요:[/b]
-공식 서버는 PvP 중심이며, 다른 플레이어로부터 공격받을 수 있다는 점을 유념해주십시오. 자기 자신을 제대로 보호하고, 조심스럽게 행동하시기 바랍니다. 또한 생존 확률을 높히기 위해, 다른 플레이어들과 협력할 수도 있습니다.
+공식 서버는 PvP 중심이며, 다른 플레이어로부터 공격받을 수 있다는 점을 유념해주십시오. 자기 자신을 제대로 보호하고, 조심스럽게 행동하시기 바랍니다. 또한, 생존 확률을 높히기 위해, 다른 플레이어들과 협력할 수도 있습니다.
 [br]
 [br]
 [b]서버 규칙:[/b]

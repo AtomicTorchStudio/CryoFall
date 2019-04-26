@@ -102,7 +102,9 @@
 
             this.ClientSetupRenderer(clientState.Renderer);
 
-            if (data.GameObject.OccupiedTile.StaticObjects.Any(o => o.ProtoStaticWorldObject != this))
+            if (data.GameObject.OccupiedTile.StaticObjects.Any(
+                o => o.ProtoStaticWorldObject != this 
+                     && !o.IsDestroyed))
             {
                 // there are other static objects so don't create structure points bar and hide the renderer
                 clientState.Renderer.IsEnabled = false;
@@ -152,7 +154,18 @@
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
-            WorldMapResourceMarksSystem.ServerAddMark(data.GameObject);
+
+            // TODO: store this info in public state for the next wipe
+            //var publicState = data.PublicState;
+            //if (data.IsFirstTimeInit)
+            //{
+            //    publicState.ServerSpawnTime = Server.Game.FrameTime;
+            //}
+
+            var serverSpawnTime = data.IsFirstTimeInit
+                                      ? Server.Game.FrameTime
+                                      : 0;
+            WorldMapResourceMarksSystem.ServerAddMark(data.GameObject, serverSpawnTime);
         }
 
         protected virtual void ServerOnDecayCompleted(IStaticWorldObject worldObject)

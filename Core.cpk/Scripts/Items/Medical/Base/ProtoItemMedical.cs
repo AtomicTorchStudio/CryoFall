@@ -42,9 +42,6 @@
 
         public string ItemUseCaption => ItemUseCaptions.Use;
 
-        /// <summary>
-        /// For all medicine items the default value is "Tiny" stack size.
-        /// </summary>
         public override ushort MaxItemsPerStack => ItemStackSize.Small;
 
         public abstract double MedicalToxicity { get; }
@@ -86,7 +83,14 @@
 
             if (this.HealthRestore != 0)
             {
-                currentStats.ServerSetHealthCurrent(currentStats.HealthCurrent + this.HealthRestore);
+                if (this.HealthRestore > 0)
+                {
+                    currentStats.ServerSetHealthCurrent(currentStats.HealthCurrent + this.HealthRestore);
+                }
+                else
+                {
+                    currentStats.ServerReduceHealth(-this.HealthRestore, this);
+                }
             }
 
             if (this.FoodRestore != 0)

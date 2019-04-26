@@ -10,6 +10,9 @@
 
     public class SpawnDepositOilSeep : ProtoZoneSpawnScript
     {
+        // because this script called very rare we're increasing the spawn attempts count
+        protected override double MaxSpawnAttempsMultiplier => 5;
+
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
             triggers
@@ -18,8 +21,8 @@
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>()
                          .Configure(
-                             intervalFrom: TimeSpan.FromHours(4),
-                             intervalTo: TimeSpan.FromHours(16)));
+                             intervalFrom: TimeSpan.FromHours(1),
+                             intervalTo: TimeSpan.FromHours(2)));
 
             var restrictionPresetPragmium = spawnList.CreateRestrictedPreset()
                                                      .Add<ObjectMineralPragmiumSource>();

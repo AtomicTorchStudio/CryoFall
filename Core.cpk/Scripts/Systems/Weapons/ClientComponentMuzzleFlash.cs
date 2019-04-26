@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
-    using System.Diagnostics.CodeAnalysis;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
@@ -17,7 +16,15 @@
 
         private ICharacter character;
 
+        private ClientComponentSpriteSheetAnimator componentAnimatorFlash;
+
+        private ClientComponentSpriteSheetAnimator componentAnimatorSmoke;
+
         private IMuzzleFlashDescriptionReadOnly description;
+
+        private bool isRenderingEnabled;
+
+        private uint lastUpdateClientFrame;
 
         private double lightDuration;
 
@@ -32,58 +39,6 @@
         private IComponentSpriteRenderer spriteRendererSmoke;
 
         private double time;
-
-        public ClientComponentMuzzleFlash() : base(isLateUpdateEnabled: true)
-        {
-        }
-
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
-        public override void LateUpdate(double deltaTime)
-        {
-            if (!this.skeletonRenderer.IsReady)
-            {
-                this.SetComponentsState(isRendering: false);
-                return;
-            }
-
-            // calculate sprite position offset
-            const string boneName = "Weapon";
-            var weaponSlotScreenOffset = this.skeletonRenderer.GetSlotScreenOffset(attachmentName: boneName);
-
-            var muzzleFlashTextureOffset = this.description.TextureScreenOffset;
-            var boneWorldPosition = this.skeletonRenderer.TransformBonePosition(
-                boneName,
-                weaponSlotScreenOffset + (Vector2F)muzzleFlashTextureOffset,
-                out var worldRotationAngleRad);
-
-            var textureDrawPosition = boneWorldPosition - this.character.Position;
-
-            this.spriteRendererFlash.PositionOffset
-                = this.spriteRendererSmoke.PositionOffset
-                      = textureDrawPosition;
-
-            this.spriteRendererFlash.RotationAngleRad
-                = this.spriteRendererSmoke.RotationAngleRad
-                      = worldRotationAngleRad;
-
-            var lightTextureOffset = this.description.LightScreenOffsetRelativeToTexture;
-            boneWorldPosition = this.skeletonRenderer.TransformBonePosition(
-                boneName,
-                weaponSlotScreenOffset
-                + (
-                      (float)(muzzleFlashTextureOffset.X + lightTextureOffset.X),
-                      (float)(muzzleFlashTextureOffset.Y + lightTextureOffset.Y)),
-                out _);
-
-            var lightDrawPosition = boneWorldPosition - this.character.Position;
-            this.lightSource.PositionOffset = lightDrawPosition;
-
-            this.SetComponentsState(isRendering: true);
-
-            // visualize muzzle flash position
-            //ClientComponentPhysicsSpaceVisualizer.ProcessServerDebugPhysicsTesting(
-            //    new CircleShape(boneWorldPosition, radius: 0.3, collisionGroup: CollisionGroups.Default));
-        }
 
         public void Setup(
             ICharacter character,
@@ -111,40 +66,120 @@
 
             this.CreateSpriteRendererAndAnimator(
                 out this.spriteRendererSmoke,
-                out var componentAnimatorSmoke,
+                out this.componentAnimatorSmoke,
                 smokeAtlasRow,
                 protoWeapon,
                 muzzleFlashTextureAtlas);
 
             this.CreateSpriteRendererAndAnimator(
                 out this.spriteRendererFlash,
-                out var componentAnimatorFlash,
+                out this.componentAnimatorFlash,
                 flashAtlasRow,
                 protoWeapon,
                 muzzleFlashTextureAtlas);
-
-            this.Destroy(this.animationDuration);
-            this.lightSource.Destroy(this.animationDuration);
-            this.spriteRendererFlash.Destroy(this.animationDuration);
-            this.spriteRendererSmoke.Destroy(this.animationDuration);
-            componentAnimatorFlash.Destroy(this.animationDuration);
-            componentAnimatorSmoke.Destroy(this.animationDuration);
 
             this.Update(deltaTime: 0);
         }
 
         public override void Update(double deltaTime)
         {
-            this.time += deltaTime;
-            if (this.time > this.lightDuration)
+            var clientFrameNumber = Client.Core.ClientFrameNumber;
+            if (this.lastUpdateClientFrame == clientFrameNumber)
             {
-                this.lightSource.IsEnabled = false;
+                // update in current frame is already done, don't progress now
                 return;
             }
 
-            // calculate animation progress (from 0 to 1, 1 means full recoil animation will be rendered)
-            var alpha = (this.lightDuration - this.time) / this.lightDuration;
-            this.lightSource.Opacity = alpha;
+            this.lastUpdateClientFrame = clientFrameNumber;
+
+            if (!this.skeletonRenderer.IsEnabled)
+            {
+                this.Destroy();
+                return;
+            }
+
+            if (!this.skeletonRenderer.IsReady)
+            {
+                this.SetComponentsState(isRendering: false);
+                return;
+            }
+
+            if (!this.isRenderingEnabled)
+            {
+                this.SetComponentsState(isRendering: true);
+            }
+
+            if (!this.spriteRendererFlash.IsReady
+                || !this.spriteRendererSmoke.IsReady)
+            {
+                deltaTime = 0;
+            }
+
+            this.time += deltaTime;
+
+            if (this.time > this.lightDuration)
+            {
+                // light duration completed
+                this.lightSource.IsEnabled = false;
+            }
+
+            if (this.time > this.animationDuration)
+            {
+                // muzzle flash completed
+                this.Destroy();
+                return;
+            }
+
+            // calculate light opacity
+            this.lightSource.Opacity = (this.lightDuration - this.time) / this.lightDuration;
+
+            // calculate sprite position offset
+            const string boneName = "Weapon";
+            var weaponSlotScreenOffset = this.skeletonRenderer.GetSlotScreenOffset(attachmentName: boneName);
+
+            var muzzleFlashTextureOffset = this.description.TextureScreenOffset;
+            var boneWorldPosition = this.skeletonRenderer.TransformBonePosition(
+                boneName,
+                weaponSlotScreenOffset + (Vector2F)muzzleFlashTextureOffset,
+                out var worldRotationAngleRad);
+
+            var textureDrawPosition = boneWorldPosition - this.character.Position;
+
+            this.spriteRendererFlash.PositionOffset
+                = this.spriteRendererSmoke.PositionOffset
+                      = textureDrawPosition;
+
+            this.spriteRendererFlash.RotationAngleRad
+                = this.spriteRendererSmoke.RotationAngleRad
+                      = worldRotationAngleRad;
+
+            var lightTextureOffset = this.description.LightScreenOffsetRelativeToTexture;
+            boneWorldPosition = this.skeletonRenderer.TransformBonePosition(
+                boneName,
+                weaponSlotScreenOffset
+                + ((float)(muzzleFlashTextureOffset.X + lightTextureOffset.X),
+                   (float)(muzzleFlashTextureOffset.Y + lightTextureOffset.Y)),
+                out _);
+
+            var lightDrawPosition = boneWorldPosition - this.character.Position;
+            this.lightSource.PositionOffset = lightDrawPosition;
+
+            this.componentAnimatorFlash.ForceUpdate(deltaTime);
+            this.componentAnimatorSmoke.ForceUpdate(deltaTime);
+
+            // visualize muzzle flash position
+            //ClientComponentPhysicsSpaceVisualizer.ProcessServerDebugPhysicsTesting(
+            //    new CircleShape(boneWorldPosition, radius: 0.3, collisionGroup: CollisionGroups.Default));
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            this.lightSource.Destroy();
+            this.spriteRendererFlash.Destroy();
+            this.spriteRendererSmoke.Destroy();
+            this.componentAnimatorFlash.Destroy();
+            this.componentAnimatorSmoke.Destroy();
         }
 
         private void CreateSpriteRendererAndAnimator(
@@ -180,14 +215,24 @@
                 ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
                     muzzleFlashTextureAtlas,
                     onlySpecificRow: atlasRow),
-                animationFrameDurationSeconds);
+                animationFrameDurationSeconds,
+                isManualUpdate: true);
         }
 
         private void SetComponentsState(bool isRendering)
         {
+            this.isRenderingEnabled = isRendering;
             this.lightSource.IsEnabled = isRendering;
             this.spriteRendererFlash.IsEnabled = isRendering;
             this.spriteRendererSmoke.IsEnabled = isRendering;
+            this.componentAnimatorFlash.IsEnabled = isRendering;
+            this.componentAnimatorSmoke.IsEnabled = isRendering;
+
+            if (isRendering)
+            {
+                this.componentAnimatorFlash.ForceUpdate(0);
+                this.componentAnimatorSmoke.ForceUpdate(0);
+            }
         }
     }
 }

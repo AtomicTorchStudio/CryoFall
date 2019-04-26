@@ -34,7 +34,7 @@
                 }
 
                 this.spotTextureResource = value;
-                this.RefrestSpotTexture();
+                this.RefreshSpotTexture();
             }
         }
 
@@ -58,7 +58,7 @@
             this.renderer.RenderingMaterial = DefaultSpriteRenderingMaterial;
             this.renderer.BlendMode = BlendMode.Screen;
 
-            this.RefrestSpotTexture();
+            this.RefreshSpotTexture();
 
             this.LateUpdate(0);
         }
@@ -71,7 +71,7 @@
             this.renderer.PositionOffset = this.PositionOffset;
         }
 
-        private void RefrestSpotTexture()
+        private void RefreshSpotTexture()
         {
             this.renderer.TextureResource = this.spotTextureResource;
         }

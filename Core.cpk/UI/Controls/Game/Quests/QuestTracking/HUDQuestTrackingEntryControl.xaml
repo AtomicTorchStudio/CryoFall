@@ -9,7 +9,9 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelQuestEntry, d:IsDesignTimeCreatable=True}"
-    Focusable="True" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    Focusable="True" 
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
 
@@ -49,6 +51,8 @@
                 <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="noesis:Text.Stroke" Value="#AA000000" />
+                <Setter Property="noesis:Text.StrokeThickness" Value="1" />
             </Style>
 
             <!-- this is a requirement description text limit (used as a dynamic resource) -->

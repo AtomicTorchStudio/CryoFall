@@ -21,6 +21,8 @@
 
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Stone;
 
+        public override bool IsRestrictingConstruction => true;
+
         public override TileKind Kind => TileKind.Solid;
 
         public override string Name => "Rocky";

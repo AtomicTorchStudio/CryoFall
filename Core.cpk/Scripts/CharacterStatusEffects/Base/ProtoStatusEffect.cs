@@ -108,7 +108,7 @@
                 return;
             }
 
-            Logger.Important(
+            Logger.Info(
                 $"Status effect intensity added: {statusEffect}: intensity {effectData.StatusEffectPublicState.Intensity:F3} (added {intensityToAdd:F3}) to {effectData.Character}");
         }
 
@@ -139,7 +139,7 @@
 
         protected virtual void ClientDeinitialize(StatusEffectData data)
         {
-            Logger.Important($"Status effect destroyed: {data.StatusEffect} for {data.Character}");
+            Logger.Info($"Status effect destroyed: {data.StatusEffect} for {data.Character}");
         }
 
         protected virtual ITextureResource ClientGetIcon(StatusEffectData data)
@@ -165,7 +165,7 @@
 
         protected virtual void ClientInitialize(StatusEffectData data)
         {
-            Logger.Important($"Status effect initialized: {data.StatusEffect} for {data.Character}");
+            Logger.Info($"Status effect initialized: {data.StatusEffect} for {data.Character}");
         }
 
         protected sealed override void ClientUpdate(ClientUpdateData data)

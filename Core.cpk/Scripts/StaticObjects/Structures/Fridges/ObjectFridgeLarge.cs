@@ -31,9 +31,9 @@
                 data.GameObject,
                 new SoundResource("Objects/Structures/ObjectFridge/Active"),
                 isLooped: true,
-                volume: 0.65f,
+                volume: 0.35f,
                 radius: 1f);
-            soundEmitter.CustomMaxDistance = 4;
+            soundEmitter.CustomMaxDistance = 3.5f;
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -49,7 +49,6 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
-            // TODO: set proper values here
             category = GetCategory<StructureCategoryStorage>();
 
             build.StagesCount = 10;
@@ -58,9 +57,11 @@
             build.AddStageRequiredItem<ItemIngotCopper>(count: 4);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 3);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 4);
+            repair.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

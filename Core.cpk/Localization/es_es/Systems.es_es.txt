@@ -137,9 +137,39 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitE
 `Ya has usado todos los terrenos adjudicados que puedes tener.
 [br]Puedes investigar nuevas tecnologías para aumentar dicha cifra.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
+Debes investigar la xenogeología de rango 3 para poder reclamar los depósitos de litio y petróleo o para adjudicarte un territorio cercano a ellos.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `Te están asaltando.
 [br]No puedes construir nuevas estructuras mientras estén atacando tu base.`
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
+Cancelar la protección para novatos
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
+¿Seguro que quieres cancelar la protección para novatos? No podrás volver a activarla.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
+Gozas de protección para novatos. Este sistema impedirá que pierdas tus objetos y tus puntos de aprendizaje si otro jugador mata a tu personaje. Además, si mueres de otra forma, los objetos que dejes caer no podrán ser recogidos por otros jugadores. ¡Sigue las indicaciones de las misiones para fabricar las armas y herramientas necesarias y construye una pequeña base lo antes posible!
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
+La protección para novatos se acabará en:
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
+Si la protección para novatos está activa, no podrás atacar a otros jugadores ni saquear los objetos que dejen al morir. Podrás cancelar la protección en cualquier momento a través del menú Social.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
+No podrás llevar a cabo esta acción mientras estés usando la protección para novatos. Podrás cancelar la protección en cualquier momento a través del menú Social.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
+Esta bolsa está bajo protección para novatos, así que solo el dueño puede cogerla.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_ProtectionExpired:
+Se ha acabado la protección para novatos. Ahora podrás participar en combates JcJ, pero ten cuidado... ¡al morir, tu personaje soltará todos los objetos!
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Title_NewbieProtection:
+Protección para novatos
 
 Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
 No hay espacio libre en el inventario

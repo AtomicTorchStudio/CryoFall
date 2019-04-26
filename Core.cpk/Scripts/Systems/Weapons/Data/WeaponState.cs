@@ -17,15 +17,15 @@
 
         public bool IsFiring;
 
-        public double TimeSinceFirstShot;
-
         public WeaponFinalCache WeaponCache;
 
         private bool inputIsFiring;
 
         private WeaponReloadingState weaponReloadingState;
 
-        public event Action WeaponReloadingStateChanged;
+        public event Action ClientActiveWeaponChanged;
+
+        public event Action ClientWeaponReloadingStateChanged;
 
         public bool IsEventWeaponStartSent { get; set; }
 
@@ -44,11 +44,30 @@
                 }
 
                 this.weaponReloadingState = value;
-                this.WeaponReloadingStateChanged?.Invoke();
+                if (Api.IsClient)
+                {
+                    this.ClientWeaponReloadingStateChanged?.Invoke();
+                }
             }
         }
 
-        public void SetInputIsFiring(
+        public bool SharedGetInputIsFiring()
+        {
+            if (Api.IsClient)
+            {
+                return this.inputIsFiring;
+            }
+
+            if (this.inputIsFiring)
+            {
+                return true;
+            }
+
+            return this.ServerLastClientReportedShotsDoneCount.HasValue
+                   && this.ShotsDone < this.ServerLastClientReportedShotsDoneCount;
+        }
+
+        public void SharedSetInputIsFiring(
             bool inputIsFiring,
             uint? shotsDone = null)
         {
@@ -63,7 +82,7 @@
             this.ServerLastClientReportedShotsDoneCount = shotsDone;
         }
 
-        public void SetWeaponItem(IItem item, IProtoItemWeapon protoItem)
+        public void SharedSetWeaponItem(IItem item, IProtoItemWeapon protoItem)
         {
             if (item != null)
             {
@@ -87,36 +106,35 @@
             this.ServerLastClientReportedShotsDoneCount = 0;
 
             // cancel firing input
-            this.SetInputIsFiring(false);
+            this.SharedSetInputIsFiring(false);
 
             if (Api.IsClient)
             {
                 WeaponAmmoSystem.ClientTryAbortReloading();
             }
+
+            this.SharedOnWeaponChanged();
         }
 
-        public void SetWeaponProtoOnly(IProtoItemWeapon activeProtoWeapon)
+        public void SharedSetWeaponProtoOnly(IProtoItemWeapon activeProtoWeapon)
         {
             this.ActiveItemWeapon = null;
             this.ActiveProtoWeapon = activeProtoWeapon;
             this.WeaponCache = null;
             this.IsEventWeaponStartSent = false;
+
+            this.SharedOnWeaponChanged();
         }
 
-        public bool SharedGetInputIsFiring()
+        private void SharedOnWeaponChanged()
         {
+            this.CooldownSecondsRemains = Math.Max(this.CooldownSecondsRemains,
+                                                   this.ActiveProtoWeapon?.ReadyDelayDuration ?? 0);
+
             if (Api.IsClient)
             {
-                return this.inputIsFiring;
+                this.ClientActiveWeaponChanged?.Invoke();
             }
-
-            if (this.inputIsFiring)
-            {
-                return true;
-            }
-
-            return this.ServerLastClientReportedShotsDoneCount.HasValue
-                   && this.ShotsDone < this.ServerLastClientReportedShotsDoneCount;
         }
     }
 }

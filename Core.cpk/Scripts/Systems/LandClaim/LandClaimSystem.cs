@@ -16,6 +16,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -35,12 +36,18 @@
         public const string ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed =
             "The area is claimed by another player, or it's too close to someone else's land claim.";
 
+        public const string ErrorCannotBuild_DepositCooldown =
+            "This resource deposit is just became available and cannot be claimed yet.";
+
         public const string ErrorCannotBuild_IntersectingWithAnotherLandClaim =
             "Intersecting with another land claim area";
 
         public const string ErrorCannotBuild_LandClaimAmountLimitExceeded =
             @"You've used up your allotted number of land claims.
               [br]You can increase that number by researching new technologies.";
+
+        public const string ErrorCannotBuild_NeedXenogeologyTech =
+            "You need to research Xenogeology (Tier 3) to claim the Oil/Li deposits or to place a land claim close to it.";
 
         public const string ErrorCannotBuild_RaidUnderWay =
             @"Raid under way.
@@ -132,18 +139,22 @@
                         return true;
                     }
 
-                    var area = SharedGetAreaAtPosition(context.Tile.Position);
-                    if (area == null)
+                    var position = context.Tile.Position;
+                    foreach (var area in sharedLandClaimAreas)
                     {
-                        // no area there
-                        return true;
-                    }
+                        var areaBounds = SharedGetLandClaimAreaBounds(area, addGracePadding: true);
+                        if (!areaBounds.Contains(position))
+                        {
+                            continue;
+                        }
 
-                    if (IsServer
-                        || ClientIsOwnedArea(area))
-                    {
-                        var isUnderRaid = SharedIsOwnedAreaUnderRaid(area);
-                        return !isUnderRaid;
+                        // only server and client owning the area has the private state of the area
+                        // to check whether it's under raid or not
+                        if (SharedIsAreaUnderRaid(area))
+                        {
+                            // cannot build - there is an area under raid   
+                            return false;
+                        }
                     }
 
                     return true;
@@ -247,9 +258,9 @@
                     return maxNumber > currentNumber; // ok only in case when the limit is not exceeded
                 });
 
-        public static ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimDepositClaimLimit
+        public static ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimDepositRequireXenogeology
             = new ConstructionTileRequirements.Validator(
-                "You need to research Xenogeology (Tier 3) to claim the Oil/Li deposits or to place a land claim close to it.",
+                ErrorCannotBuild_NeedXenogeologyTech,
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
@@ -268,8 +279,8 @@
                         return true;
                     }
 
-                    if (Api.GetProtoEntity<PerkClaimDeposits>()
-                           .SharedIsPerkUnlocked(forCharacter))
+                    if (PerkClaimDeposits.Instance
+                                         .SharedIsPerkUnlocked(forCharacter))
                     {
                         // has perk unlocked so no need to check whether player trying to claim a deposit
                         return true;
@@ -277,12 +288,16 @@
 
                     // doesn't have Xenogeology unlocked
                     // check whether there are any deposits nearby
-                    var bounds = SharedCalculateLandClaimAreaBounds(
+                    var forbiddenArea = SharedCalculateLandClaimAreaBounds(
                         centerTilePosition: (context.Tile.Position
                                              + context.ProtoStaticObjectToBuild.Layout.Center.ToVector2Int())
                         .ToVector2Ushort(),
-                        size: (ushort)(MaxLandClaimSize.Value
-                                       + LandClaimAreaGracePaddingSize * 2));
+                        // We use a carefully selected size here to ensure the deposit cannot be easily surrounded by players without Xenogeology
+                        // 3 is the layout size of the resource deposits in game (3*3 tiles).
+                        // plus some extra padding (but not grace area padding)
+                        size: (ushort)(1.5 * MaxLandClaimSize.Value
+                                       + 3
+                                       + 3));
 
                     var worldDeposits = IsClient
                                             ? ClientWorld.GetStaticWorldObjectsOfProto<IProtoObjectDeposit>()
@@ -290,7 +305,12 @@
 
                     foreach (var staticWorldObject in worldDeposits)
                     {
-                        if (bounds.Contains(staticWorldObject.TilePosition))
+                        var staticWorldObjectBounds = staticWorldObject.ProtoStaticWorldObject.Layout.Bounds;
+                        staticWorldObjectBounds = new BoundsInt(
+                            staticWorldObjectBounds.Offset + staticWorldObject.TilePosition,
+                            staticWorldObjectBounds.Size);
+
+                        if (forbiddenArea.Intersects(staticWorldObjectBounds))
                         {
                             // found a deposit in bounds of the future land claim
                             return false;
@@ -304,8 +324,66 @@
             = new Lazy<ushort>(() => Api.FindProtoEntities<IProtoObjectLandClaim>()
                                         .Max(l => l.LandClaimSize));
 
+        public static ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimDepositCooldown
+            = new ConstructionTileRequirements.Validator(
+                ErrorCannotBuild_DepositCooldown,
+                context =>
+                {
+                    var forCharacter = context.CharacterBuilder;
+                    if (forCharacter == null)
+                    {
+                        return true;
+                    }
+
+                    if (context.TileOffset != Vector2Int.Zero)
+                    {
+                        return true;
+                    }
+
+                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                    {
+                        return true;
+                    }
+
+                    var restrictionSize = DepositResourceLandClaimRestrictionSize.Value;
+                    var worldDeposits = IsClient
+                                            ? ClientWorld.GetStaticWorldObjectsOfProto<IProtoObjectDeposit>()
+                                            : ServerWorld.GetStaticWorldObjectsOfProto<IProtoObjectDeposit>();
+
+                    foreach (var staticWorldObject in worldDeposits)
+                    {
+                        var timeRemainsToClaimCooldown =
+                            WorldMapResourceMarksSystem.SharedCalculateTimeRemainsToClaimCooldownSeconds(
+                                staticWorldObject);
+                        if (timeRemainsToClaimCooldown <= 0)
+                        {
+                            continue;
+                        }
+
+                        var staticWorldObjectBounds = staticWorldObject.ProtoStaticWorldObject.Layout.Bounds;
+                        staticWorldObjectBounds = new BoundsInt(
+                            staticWorldObject.TilePosition
+                            + staticWorldObjectBounds.Offset
+                            - (restrictionSize.X / 2, restrictionSize.Y / 2),
+                            restrictionSize);
+
+                        if (staticWorldObjectBounds.Contains(context.Tile.Position))
+                        {
+                            // cannot claim this deposit yet
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
+
         protected internal static readonly IWorldClientService ClientWorld
             = IsClient ? Client.World : null;
+
+        private static readonly Lazy<Vector2Ushort> DepositResourceLandClaimRestrictionSize
+            = new Lazy<Vector2Ushort>(
+                () => new Vector2Ushort((ushort)(2 * MaxLandClaimSize.Value),
+                                        (ushort)(2 * MaxLandClaimSize.Value)));
 
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;
@@ -331,50 +409,21 @@
         {
             var errorMessage = await Instance.CallServer(
                                    _ => Instance.ServerRemote_SetAreaOwners(area, newOwners));
-            if (errorMessage != null)
+            if (errorMessage == null)
             {
-                NotificationSystem.ClientShowNotification(
-                    title: null,
-                    message: errorMessage,
-                    color: NotificationColor.Bad);
+                return;
             }
-        }
 
-        public static IEnumerable<ILogicObject> ServerEnumerateAllAreas()
-        {
-            return sharedLandClaimAreas;
+            NotificationSystem.ClientShowNotification(
+                title: null,
+                message: errorMessage,
+                color: NotificationColor.Bad);
         }
 
         public static ILogicObject ServerGetLandClaimArea(IStaticWorldObject landClaimStructure)
         {
             return landClaimStructure.GetPublicState<ObjectLandClaimPublicState>()
                                      .LandClaimAreaObject;
-        }
-
-        public static bool ServerIsObjectInsideOwnedOfFreeArea(
-            IStaticWorldObject gameObject,
-            ICharacter who)
-        {
-            foreach (var tileOffset in gameObject.ProtoStaticWorldObject.Layout.TileOffsets)
-            {
-                var area = SharedGetAreaAtPosition(gameObject.TilePosition.AddAndClamp(tileOffset));
-                if (area == null)
-                {
-                    // no area in this position
-                    continue;
-                }
-
-                if (ServerIsOwnedArea(area, who))
-                {
-                    // player owns this area
-                    continue;
-                }
-
-                // player don't own this area
-                return false;
-            }
-
-            return true;
         }
 
         public static bool ServerIsOwnedArea(ILogicObject area, ICharacter character)
@@ -453,21 +502,7 @@
             ServerWorld.DestroyObject(area);
 
             Logger.Important("Land claim area removed: " + area);
-
-            // reset decay for all the structures in the destroyed land claim area
-            for (var x = (ushort)areaBounds.X; x < areaBounds.X + areaBounds.Width; x++)
-            for (var y = (ushort)areaBounds.Y; y < areaBounds.Y + areaBounds.Height; y++)
-            {
-                var staticObjects = ServerWorld.GetStaticObjects(new Vector2Ushort(x, y));
-                foreach (var worldObject in staticObjects)
-                {
-                    if (worldObject.ProtoStaticWorldObject is IProtoObjectStructure)
-                    {
-                        StructureDecaySystem.ServerResetDecayTimer(
-                            worldObject.GetPrivateState<StructurePrivateState>());
-                    }
-                }
-            }
+            StructureDecaySystem.ServerBeginDecayForStructuresInArea(areaBounds);
         }
 
         public static void ServerOnRaid(Vector2Ushort tilePosition, double raidRadius, ICharacter byCharacter)
@@ -481,7 +516,7 @@
 
             using (var tempList = Api.Shared.GetTempList<ILogicObject>())
             {
-                SharedGetAreasInBounds(bounds, tempList);
+                SharedGetAreasInBounds(bounds, tempList, addGracePadding: true);
 
                 foreach (var area in tempList)
                 {
@@ -620,6 +655,7 @@
                     temp.Size.Y);
             }
 
+            // let's check whether there are any areas and player own them
             var isThereAnyArea = false;
             foreach (var area in sharedLandClaimAreas)
             {
@@ -633,18 +669,37 @@
                 // intersection with area found - check if player owns the area
                 if (SharedIsOwnedArea(area, character))
                 {
-                    // player own the area
+                    // player own the land claim area
                     return true;
                 }
             }
 
-            // no area or not owned area
-            if (!isThereAnyArea)
+            if (isThereAnyArea)
             {
-                // no area
-                if (worldObject.ProtoGameObject is ProtoObjectConstructionSite)
+                // found a not owned area
+                return false;
+            }
+
+            // no area found
+            if (worldObject.ProtoGameObject is ProtoObjectConstructionSite)
+            {
+                // can deconstruct blueprints if there is no land claim area
+                return true;
+            }
+
+            // let's check whether there is a grace area of the land claim area owned by the player
+            foreach (var area in sharedLandClaimAreas)
+            {
+                var areaBoundsWithPadding = SharedGetLandClaimAreaBounds(area, addGracePadding: true);
+                if (!areaBoundsWithPadding.IntersectsLoose(worldObjectBounds))
                 {
-                    // can deconstruct blueprints if there is no land claim area
+                    continue;
+                }
+
+                // intersection with grace area found - check if player owns the area
+                if (SharedIsOwnedArea(area, character))
+                {
+                    // player own the land claim area containing this grace area
                     return true;
                 }
             }
@@ -664,10 +719,7 @@
 
             foreach (var area in sharedLandClaimAreas)
             {
-                var areaBoundsDirect = SharedGetLandClaimAreaBounds(area);
-                var areaBoundsWithPadding = areaBoundsDirect.Inflate(LandClaimAreaGracePaddingSize,
-                                                                     LandClaimAreaGracePaddingSize);
-
+                var areaBoundsWithPadding = SharedGetLandClaimAreaBounds(area, addGracePadding: true);
                 if (!areaBoundsWithPadding.IntersectsLoose(newAreaBounds))
                 {
                     // there is no area (even with the padding/grace area)
@@ -684,42 +736,15 @@
             return true;
         }
 
-        public static ILogicObject SharedGetAreaAtPosition(Vector2Ushort tilePosition)
+        public static IEnumerable<ILogicObject> SharedEnumerateAllAreas()
         {
-            // TODO: the lookup is really slow on the populated servers. Consider Grid or QuadTree optimization to locate areas quickly.
-            foreach (var area in sharedLandClaimAreas)
-            {
-                var areaBounds = SharedGetLandClaimAreaBounds(area);
-                if (!areaBounds.Contains(tilePosition))
-                {
-                    continue;
-                }
-
-                return area;
-            }
-
-            return null;
+            return sharedLandClaimAreas;
         }
 
-        /// <summary>
-        /// Gets only a single found area in bounds.
-        /// </summary>
-        public static ILogicObject SharedGetAreaInBounds(RectangleInt bounds)
-        {
-            // TODO: the lookup is really slow on the populated servers. Consider Grid or QuadTree optimization to locate areas quickly.
-            foreach (var area in sharedLandClaimAreas)
-            {
-                var areaBounds = SharedGetLandClaimAreaBounds(area);
-                if (areaBounds.IntersectsLoose(bounds))
-                {
-                    return area;
-                }
-            }
-
-            return null;
-        }
-
-        public static void SharedGetAreasInBounds(RectangleInt bounds, ITempList<ILogicObject> result)
+        public static void SharedGetAreasInBounds(
+            RectangleInt bounds,
+            ITempList<ILogicObject> result,
+            bool addGracePadding)
         {
             if (result.Count > 0)
             {
@@ -730,6 +755,12 @@
             foreach (var area in sharedLandClaimAreas)
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area);
+                if (addGracePadding)
+                {
+                    areaBounds = areaBounds.Inflate(LandClaimAreaGracePaddingSize,
+                                                    LandClaimAreaGracePaddingSize);
+                }
+
                 if (areaBounds.IntersectsLoose(bounds))
                 {
                     result.Add(area);
@@ -737,12 +768,48 @@
             }
         }
 
-        public static RectangleInt SharedGetLandClaimAreaBounds(ILogicObject area)
+        public static RectangleInt SharedGetLandClaimAreaBounds(
+            ILogicObject area,
+            bool addGracePadding = false)
         {
             var publicState = LandClaimArea.GetPublicState(area);
+            var size = publicState.LandClaimSize;
+            if (addGracePadding)
+            {
+                size += LandClaimAreaGracePaddingSize * 2;
+            }
+
             return SharedCalculateLandClaimAreaBounds(
                 publicState.LandClaimCenterTilePosition,
-                publicState.LandClaimSize);
+                size);
+        }
+
+        /// <summary>
+        /// Returns true if the area is under the raid.
+        /// Client could determine this only if it's own the area (has the private state).
+        /// </summary>
+        public static bool SharedIsAreaUnderRaid(ILogicObject area)
+        {
+            if (IsClient
+                && !area.ClientHasPrivateState)
+            {
+                // client doesn't know anything about this area
+                return false;
+            }
+
+            var areaPrivateState = area.GetPrivateState<LandClaimAreaPrivateState>();
+            if (!areaPrivateState.LastRaidTime.HasValue)
+            {
+                // not under raid
+                return false;
+            }
+
+            var time = Api.IsClient
+                           ? Client.CurrentGame.ServerFrameTimeRounded
+                           : Server.Game.FrameTime;
+
+            var timeSinceRaid = time - areaPrivateState.LastRaidTime.Value;
+            return timeSinceRaid < RaidCooldownDurationSeconds;
         }
 
         public static bool SharedIsFoundedArea(ILogicObject area, ICharacter forCharacter)
@@ -763,11 +830,124 @@
             return privateState.LandClaimFounder == forCharacter.Name;
         }
 
+        public static bool SharedIsLandClaimedByAnyone(in Vector2Ushort tilePosition)
+        {
+            foreach (var area in sharedLandClaimAreas)
+            {
+                var areaBounds = SharedGetLandClaimAreaBounds(area);
+                if (areaBounds.Contains(tilePosition))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Gets only a single found area in bounds.
+        /// </summary>
+        public static bool SharedIsLandClaimedByAnyone(RectangleInt bounds)
+        {
+            foreach (var area in sharedLandClaimAreas)
+            {
+                var areaBounds = SharedGetLandClaimAreaBounds(area);
+                if (areaBounds.IntersectsLoose(bounds))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool SharedIsObjectInsideOwnedOrFreeArea(IStaticWorldObject gameObject, ICharacter who)
+        {
+            var foundAnyAreas = false;
+            var startTilePosition = gameObject.TilePosition;
+            foreach (var area in sharedLandClaimAreas)
+            {
+                var areaBounds = SharedGetLandClaimAreaBounds(area);
+                foreach (var tileOffset in gameObject.ProtoStaticWorldObject.Layout.TileOffsets)
+                {
+                    var tilePosition = startTilePosition.AddAndClamp(tileOffset);
+                    if (!areaBounds.Contains(tilePosition))
+                    {
+                        // the object is not inside this area
+                        continue;
+                    }
+
+                    if (SharedIsOwnedArea(area, who))
+                    {
+                        // player own this area
+                        return true;
+                    }
+
+                    foundAnyAreas = true;
+                }
+            }
+
+            // return true only if there are no areas (free land)
+            return !foundAnyAreas;
+        }
+
         public static bool SharedIsOwnedArea(ILogicObject area, ICharacter forCharacter)
         {
             return IsServer
                        ? ServerIsOwnedArea(area, forCharacter)
                        : ClientIsOwnedArea(area);
+        }
+
+        public static bool SharedIsOwnedLand(
+            Vector2Ushort tilePosition,
+            ICharacter who,
+            out ILogicObject ownedArea)
+        {
+            foreach (var area in sharedLandClaimAreas)
+            {
+                var areaBounds = SharedGetLandClaimAreaBounds(area);
+                if (!areaBounds.Contains(tilePosition))
+                {
+                    // the object is not inside this area
+                    continue;
+                }
+
+                if (SharedIsOwnedArea(area, who))
+                {
+                    // player own this area
+                    ownedArea = area;
+                    return true;
+                }
+            }
+
+            // there are no areas or player don't own any area there
+            ownedArea = null;
+            return false;
+        }
+
+        public static bool SharedIsPositionInsideOwnedOrFreeArea(Vector2Ushort tilePosition, ICharacter who)
+        {
+            var foundAnyAreas = false;
+            foreach (var area in sharedLandClaimAreas)
+            {
+                var areaBounds = SharedGetLandClaimAreaBounds(area);
+                if (!areaBounds.Contains(tilePosition))
+                {
+                    // the tile position is not inside this area
+                    continue;
+                }
+
+                if (SharedIsOwnedArea(area, who))
+                {
+                    // player own this area
+                    return true;
+                }
+
+                foundAnyAreas = true;
+            }
+
+            // return true only if there are no areas (free land)
+            return !foundAnyAreas;
         }
 
         private static void ServerOnAddLandOwner(ILogicObject area, ICharacter playerToAdd, bool notify)
@@ -811,22 +991,6 @@
             ServerWorld.ExitPrivateScope(removedPlayer, area);
 
             Instance.CallClient(removedPlayer, _ => _.ClientRemote_OnLandOwnerStateChanged(area, false));
-        }
-
-        private static bool SharedIsOwnedAreaUnderRaid(ILogicObject area)
-        {
-            var areaPrivateState = area.GetPrivateState<LandClaimAreaPrivateState>();
-            if (!areaPrivateState.LastRaidTime.HasValue)
-            {
-                return false;
-            }
-
-            var time = Api.IsClient
-                           ? Client.CurrentGame.ServerFrameTimeRounded
-                           : Server.Game.FrameTime;
-
-            var timeSinceRaid = time - areaPrivateState.LastRaidTime.Value;
-            return timeSinceRaid < RaidCooldownDurationSeconds;
         }
 
         private void ClientRemote_OnCannotInteractNotOwner(IStaticWorldObject worldObject)
@@ -873,7 +1037,8 @@
             var privateState = LandClaimArea.GetPrivateState(area);
             var currentOwners = privateState.LandOwners;
 
-            if (!currentOwners.Contains(owner.Name))
+            if (!currentOwners.Contains(owner.Name)
+                && !CreativeModeSystem.SharedIsInCreativeMode(owner))
             {
                 return WorldObjectOwnersSystem.DialogCannotSetOwners_MessageNotOwner;
             }
@@ -890,7 +1055,8 @@
                 return WorldObjectOwnersSystem.DialogCannotSetOwners_MessageCannotRemoveLastOwner;
             }
 
-            if (ownersToRemove.Contains(owner.Name))
+            if (ownersToRemove.Contains(owner.Name)
+                && !CreativeModeSystem.SharedIsInCreativeMode(owner))
             {
                 return WorldObjectOwnersSystem.DialogCannotSetOwners_MessageCannotRemoveSelf;
             }

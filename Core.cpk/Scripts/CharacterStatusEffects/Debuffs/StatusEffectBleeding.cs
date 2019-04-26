@@ -49,9 +49,7 @@
 
             // reduce character health
             var stats = data.CharacterCurrentStats;
-            var newHealth = stats.HealthCurrent - damage;
-
-            stats.ServerSetHealthCurrent((float)newHealth);
+            stats.ServerReduceHealth(damage, this);
         }
     }
 }

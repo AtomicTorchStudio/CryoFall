@@ -44,5 +44,18 @@
             this.entries.Add(entry);
             return entry;
         }
+
+        public void ApplyRates(byte multiplier)
+        {
+            if (this.entries == null)
+            {
+                return;
+            }
+
+            foreach (var entry in this.entries)
+            {
+                entry.ApplyRates(multiplier);
+            }
+        }
     }
 }

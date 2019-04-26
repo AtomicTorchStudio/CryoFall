@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    public class ClientWorldMapBedVisualizer : IDisposable, IWorldMapVisualizer
+    public class ClientWorldMapBedVisualizer : IWorldMapVisualizer
     {
         private readonly PlayerCharacterPrivateState playerCharacterPrivateState;
 

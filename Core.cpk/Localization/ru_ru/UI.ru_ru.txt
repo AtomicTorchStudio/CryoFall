@@ -70,6 +70,9 @@ UI/CoreStrings@CharacterStatName_Water:
 UI/CoreStrings@Chat_MessageMenu_Block:
 Заблокировать
 
+UI/CoreStrings@Chat_MessageMenu_CopyName:
+Скопировать имя
+
 UI/CoreStrings@Chat_MessageMenu_InviteToParty:
 Пригласить в группу
 
@@ -104,6 +107,9 @@ UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Открыто рецептов
+
+UI/CoreStrings@CryoFallDevelopmentRoadmap:
+План развития CryoFall
 
 UI/CoreStrings@Defense_Format_Chemical:
 Защита от химикатов: {0}
@@ -182,6 +188,9 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Quests:
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Skills:
 Навыки
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Social:
+Игроки
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
 Технологии
@@ -315,7 +324,7 @@ UI/CoreStrings@MenuHome_ServerHistoryEmpty:
 [br]подключиться к недавнему серверу.`
 
 UI/CoreStrings@MenuHome_Social:
-Игроки
+Соцсети
 
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Пожалуйста, выйдите из игры, перезапустите клиент Steam и снова загрузите игру.
@@ -847,6 +856,12 @@ UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 UI/CoreStrings@WindowRespawn_Message:
 Похоже, вас силой заставили покинуть этот мир... и вы потеряли все вещи, накопленные непосильным трудом! Где вы возродитесь, чтобы отомстить?
 
+UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
+Похоже, вас убил другой игрок. К счастью, у вас была защита новичка, поэтому вы не потеряли предметы и очки технологий. Будьте осторожны, в следующий раз этой защиты уже может не быть!
+
+UI/CoreStrings@WindowRespawn_DamageSources:
+Недавние источники урона:
+
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `Вы недавно возродились в своей постели.
 [br]Пожалуйста, подождите, пока не [b]истечет время[/b].`
@@ -1163,6 +1178,24 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Верх
 
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
+Существо
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
+Взрыв
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleItem:
+Предмет
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleOther:
+Другое
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitlePlayer:
+Игрок
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
+Эффект
+
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 следующий уровень
 
@@ -1218,7 +1251,7 @@ UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@Noti
 Невозможно включить
 
 UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Message:
-Невозможно установить два импланта одновременно.
+Невозможно установить два одинаковых импланта.
 
 UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Title:
 Уже установлен

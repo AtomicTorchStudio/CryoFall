@@ -12,6 +12,8 @@
 
     public class ViewModelWindowQuests : BaseViewModel
     {
+        private static ulong lastQuestUnlockedFrame;
+
         public ViewModelWindowQuests()
         {
             this.TotalQuestsCount = Api.FindProtoEntities<IProtoQuest>().Count;
@@ -86,7 +88,13 @@
                 this.NotifyPropertyChanged(nameof(this.ActiveQuests));
             }
 
-            Api.Client.Audio.PlayOneShot(new SoundResource("UI/Quests/QuestUnlocked.ogg"));
+            // play quest unlocked sound (not more often than once per frame)
+            if (lastQuestUnlockedFrame != Client.CurrentGame.ServerFrameNumber)
+            {
+                lastQuestUnlockedFrame = Client.CurrentGame.ServerFrameNumber;
+                Api.Client.Audio.PlayOneShot(new SoundResource("UI/Quests/QuestUnlocked.ogg"));
+            }
+
             this.NotifyPropertyChanged(nameof(this.UnlockedQuestsCount));
         }
 

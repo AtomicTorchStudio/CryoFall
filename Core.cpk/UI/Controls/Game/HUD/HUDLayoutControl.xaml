@@ -12,8 +12,8 @@
     xmlns:data2="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data"
     xmlns:itemsNotifications="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.ItemsNotifications"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:quests="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Quests"
     xmlns:questTracking="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Quests.QuestTracking"
+    xmlns:newbieProtection="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.NewbieProtection"
     mc:Ignorable="d"
     d:DesignWidth="1280" d:DesignHeight="800"
     d:DataContext="{d:DesignInstance data1:ViewModelHUD, IsDesignTimeCreatable=True}"
@@ -212,6 +212,7 @@
                     Margin="0,5,5,0"
                     Width="230">
                 <StackPanel Orientation="Vertical">
+                    <newbieProtection:HUDNewbieProtectionInfo />
                     <questTracking:HUDQuestTrackingPanelControl />
                     <notifications:HUDNotificationsPanelControl />
                 </StackPanel>

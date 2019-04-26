@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -34,7 +35,8 @@
         {
             // adding LP
             var technologies = character.SharedGetTechnologies();
-            technologies.ServerAddLearningPoints(UsageGivesLearningPointsAmount);
+            technologies.ServerAddLearningPoints(UsageGivesLearningPointsAmount
+                                                 * TechConstants.LearningPointsGainMultiplier);
 
             // add pain
             character.ServerAddStatusEffect<StatusEffectPain>(intensity: 1.0); // max

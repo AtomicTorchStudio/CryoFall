@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     public class ItemsContainerCharacterEquipment : ProtoItemsContainer
     {
@@ -169,11 +170,12 @@
 
                 if (IsClient)
                 {
-                    NotificationSystem.ClientShowNotification(
-                        NotificationUseStationToRemoveImplant_Title,
-                        NotificationUseStationToRemoveImplant_Message,
-                        NotificationColor.Bad,
-                        protoItemEquipment.Icon);
+                    ClientShowNotificationCannotRemoveImplant(protoItemEquipment);
+                }
+                else
+                {
+                    this.CallClient(context.ByCharacter,
+                                    _ => _.ClientRemote_ClientShowNotificationCannotRemoveImplant(protoItemEquipment));
                 }
 
                 return false;
@@ -213,6 +215,15 @@
             return allowedSlotsIds[0];
         }
 
+        private static void ClientShowNotificationCannotRemoveImplant(IProtoItemEquipmentImplant protoItemImplant)
+        {
+            NotificationSystem.ClientShowNotification(
+                NotificationUseStationToRemoveImplant_Title,
+                NotificationUseStationToRemoveImplant_Message,
+                NotificationColor.Bad,
+                protoItemImplant.Icon);
+        }
+
         private static bool IsHasFullBodyArmor(IItemsContainer container)
         {
             return container.Items.Any(
@@ -223,6 +234,12 @@
         private static bool IsSlotEmpty(IItemsContainer container, EquipmentType slotId)
         {
             return container.GetItemAtSlot((byte)slotId) == null;
+        }
+
+        private void ClientRemote_ClientShowNotificationCannotRemoveImplant(
+            IProtoItemEquipmentImplant protoItemImplant)
+        {
+            ClientShowNotificationCannotRemoveImplant(protoItemImplant);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿Scripts/ClientOptions/Audio/AudioOptionMuteAudioWhenUnfocused@Name:
-다른 프로그램으로 전환시 음소거
+다른 프로그램으로 전환 시 음소거
 
 Scripts/ClientOptions/Audio/AudioOptionsCategory@Name:
 오디오
@@ -148,7 +148,7 @@ Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Mes
 [*] 권장 모드: [b]{0}[/b]
 [*] 선택 모드: [b]{1}[/b]
 [br]
-[br]선택한 모드는 소유하고 있는 GPU 보다 더 많은 VRAM 용량을 필요로 합니다. 이로 인해 이미지가 끊기고, 프레임률이 낮아질 수 있습니다.`
+[br]선택한 모드는 소유하고 있는 GPU보다 더 많은 VRAM 용량을 필요로 합니다. 이로 인해 이미지가 끊기고, 프레임률이 낮아질 수 있습니다.`
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:
 너무 높은 설정이 선택되었습니다

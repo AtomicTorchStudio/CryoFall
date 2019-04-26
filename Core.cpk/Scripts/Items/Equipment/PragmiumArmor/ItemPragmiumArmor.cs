@@ -9,6 +9,8 @@
 
         public override bool IsHairVisible => false;
 
+        public override bool IsHeadVisible => false;
+
         public override string Name => "Pragmium armor";
 
         protected override void PrepareDefense(DefenseDescription defense)

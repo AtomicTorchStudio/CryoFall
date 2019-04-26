@@ -1,25 +1,24 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Respawn
 {
-    using System.Windows.Controls;
-    using System.Windows.Media;
     using System.Windows.Media.Animation;
-    using System.Windows.Shapes;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Respawn.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Helpers;
-    using AtomicTorch.CBND.CoreMod.UI.Services;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
-    using Menu = AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu.Menu;
+    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public partial class WindowRespawn : BaseUserControlWithWindow
+    public partial class WindowRespawn : BaseUserControl
     {
+        private static ClientInputContext inputContext;
+
         private static WindowRespawn instance;
 
         private static bool isClosed = true;
-
-        private Rectangle backgroundControl;
 
         private Storyboard storyboardFadeIn;
 
@@ -58,8 +57,6 @@
                 delaySeconds: delay,
                 action: () =>
                         {
-                            windowRespawn.Window.IsCached = false;
-
                             if (isClosed)
                             {
                                 if (ReferenceEquals(instance, windowRespawn))
@@ -71,22 +68,17 @@
                                 return;
                             }
 
-                            instance.Window.Open();
+                            instance.Open();
                         });
         }
 
-        protected override void InitControlWithWindow()
+        protected override void InitControl()
         {
-            this.DataContext = new ViewModelWindowRespawn();
-            this.backgroundControl = new Rectangle()
-            {
-                Fill = new SolidColorBrush(Colors.Black)
-            };
+            this.DataContext = new ViewModelWindowRespawn(
+                callbackRefreshHeght: () => { });
 
             // special hack for NoesisGUI animation completed event
-            this.backgroundControl.Tag = this;
-
-            Api.Client.UI.LayoutRootChildren.Add(this.backgroundControl);
+            this.Tag = this;
 
             var loadingSplashScreenState = LoadingSplashScreenManager.Instance.CurrentState;
             if (loadingSplashScreenState == LoadingSplashScreenState.Shown
@@ -97,36 +89,33 @@
             }
 
             this.storyboardFadeIn = AnimationHelper.CreateStoryboard(
-                this.backgroundControl,
-                durationSeconds: 3,
+                this,
+                durationSeconds: 2,
                 from: 0,
                 to: 1,
                 propertyName: OpacityProperty.Name);
-            this.storyboardFadeIn.Begin(this.backgroundControl);
+            this.Opacity = 0;
         }
 
-        protected override void OnLoaded()
+        private void BackgroundFadeOutCompleted()
         {
-            base.OnLoaded();
-            WindowsManager.BringToFront(this.Window);
-            Panel.SetZIndex(this.backgroundControl, this.Window.CurrentZIndex - 1);
-            Menu.CloseAll();
+            Api.Client.UI.LayoutRootChildren.Remove(this);
+            inputContext?.Stop();
+            inputContext = null;
         }
 
-        protected override void WindowClosed()
+        private void CloseWindow()
         {
-            base.WindowClosed();
-
-            this.storyboardFadeIn?.Stop(this.backgroundControl);
+            this.storyboardFadeIn?.Stop(this);
 
             AnimationHelper.CreateStoryboard(
-                               this.backgroundControl,
+                               this,
                                durationSeconds: 0.667,
-                               from: this.backgroundControl.Opacity,
+                               from: this.Opacity,
                                to: 0,
                                propertyName: OpacityProperty.Name,
                                onCompleted: this.BackgroundFadeOutCompleted)
-                           .Begin(this.backgroundControl);
+                           .Begin(this);
 
             if (instance == this)
             {
@@ -134,9 +123,23 @@
             }
         }
 
-        private void BackgroundFadeOutCompleted()
+        private void Open()
         {
-            Api.Client.UI.LayoutRootChildren.Remove(this.backgroundControl);
+            this.storyboardFadeIn?.Begin(this);
+            Menu.CloseAll();
+
+            // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+            inputContext = ClientInputContext.Start("Respawn menu - intercept all other input")
+                                             .HandleAll(
+                                                 () =>
+                                                 {
+                                                     if (ClientInputManager.IsButtonDown(GameButton.CancelOrClose))
+                                                     {
+                                                         MainMenuOverlay.Toggle();
+                                                     }
+
+                                                     ClientInputManager.ConsumeAllButtons();
+                                                 });
         }
     }
 }

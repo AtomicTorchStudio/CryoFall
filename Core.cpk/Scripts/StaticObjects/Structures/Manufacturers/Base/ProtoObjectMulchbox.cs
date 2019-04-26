@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
     using System;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -68,7 +67,7 @@
             var organicAmount = privateState.OrganicAmount;
 
             // try consume input item and add it's organic value into the mulchbox organic amount
-            var inputItem = privateState.ManufacturingState.ContainerInput.Items.FirstOrDefault();
+            var inputItem = privateState.ManufacturingState.ContainerInput.GetItemAtSlot(0);
             if (inputItem != null
                 && inputItem.ProtoItem is IProtoItemOrganic protoItemOrganic)
             {

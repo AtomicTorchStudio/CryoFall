@@ -106,7 +106,11 @@
                                     // Hack: reset IsFavorite flag for previous favorite view models.
                                     foreach (var viewModel in viewModels)
                                     {
-                                        viewModel.ViewModelServerInfo.IsFavorite = false;
+                                        var viewModelServerInfo = viewModel.ViewModelServerInfo;
+                                        if (!viewModelServerInfo.IsDisposed)
+                                        {
+                                            viewModelServerInfo.IsFavorite = false;
+                                        }
                                     }
                                 });
             });

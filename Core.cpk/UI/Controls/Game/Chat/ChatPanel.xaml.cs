@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
@@ -21,6 +23,8 @@
         private ClientInputContext openedChatInputContext;
 
         private TabControlCached tabControl;
+
+        private ScrollViewer tabsScrollViewer;
 
         public static ChatPanel Instance { get; private set; }
 
@@ -78,6 +82,8 @@
                         chatRoomTab.ChatRoomControl.IsActive = false;
                     }
                 }
+
+                this.tabsScrollViewer.ScrollToEnd();
             }
         }
 
@@ -140,6 +146,8 @@
         protected override void InitControl()
         {
             this.tabControl = this.GetByName<TabControlCached>("TabControl");
+            this.tabsScrollViewer = ((FrameworkElement)VisualTreeHelper.GetChild(this.tabControl, 0))
+                .GetByName<ScrollViewer>("TabsScrollViewer");
             this.MouseLeftButtonDown += this.MouseLeftButtonDownHandler;
             this.IsActive = false;
             Instance = this;
@@ -178,9 +186,11 @@
                 }
             }
 
-            var lastMessageA = chatRoomA.ChatRoom.ChatLog.LastOrDefault();
-            var lastMessageB = chatRoomB.ChatRoom.ChatLog.LastOrDefault();
-            return lastMessageB.UtcDate.CompareTo(lastMessageA.UtcDate);
+            var chatLogA = chatRoomA.ChatRoom.ChatLog;
+            var chatLogB = chatRoomB.ChatRoom.ChatLog;
+            var lastDateA = chatLogA.Count > 0 ? chatLogA.Last().UtcDate : DateTime.MaxValue;
+            var lastDateB = chatLogB.Count > 0 ? chatLogB.Last().UtcDate : DateTime.MaxValue;
+            return lastDateA.CompareTo(lastDateB);
         }
 
         private void ChatRoomAddedHandler(BaseChatRoom chatRoom)

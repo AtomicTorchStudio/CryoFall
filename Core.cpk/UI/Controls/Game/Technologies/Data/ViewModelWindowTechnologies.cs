@@ -7,6 +7,7 @@
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
@@ -68,7 +69,7 @@
         public int LearningPoints => this.technologies.LearningPoints;
 
         public ushort LearningPointsRetainedAfterDeath
-            => CharacterRespawnSystem.SharedGetLearningPointsRetainedAfterDeath(
+            => ServerCharacterDeathMechanic.SharedGetLearningPointsRetainedAfterDeath(
                 Client.Characters.CurrentPlayerCharacter);
 
         public ViewModelTechGroup ListSelectedTechGroup

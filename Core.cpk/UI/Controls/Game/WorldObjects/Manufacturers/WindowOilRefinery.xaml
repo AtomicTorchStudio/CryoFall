@@ -63,8 +63,6 @@
                             MaxWidth="100"
                             DesignTimeSlotsCount="1" />
                     </StackPanel>
-
-
                 </Grid>
 
                 <!-- Petroleum bar -->
@@ -115,9 +113,7 @@
                                 Canvas.Left="25"
                                 Canvas.Top="27" />
                         </Canvas>
-
                     </StackPanel>
-
                 </StackPanel>
 
                 <!-- Gasoline bar -->
@@ -174,13 +170,15 @@
                         Container="{Binding ViewModelManufacturingStateProcessedGasoline.ContainerOutput}"
                         MaxWidth="100"
                         DesignTimeSlotsCount="1" />
-
                 </StackPanel>
 
 
                 <!-- Mineral oil input/output slots -->
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="20,0,0,0">
-                    <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" 
+                            VerticalAlignment="Center" 
+                            Margin="20,0,0,0">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
                         <controls:ItemsContainerControl
                             Container="{Binding ViewModelManufacturingStateProcessedMineralOil.ContainerInput}"
                             HorizontalAlignment="Left"
@@ -193,7 +191,8 @@
                             Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />
                     </StackPanel>
 
-                    <Control Template="{StaticResource ControlTemplateArrow}" Margin="3" />
+                    <Control Template="{StaticResource ControlTemplateArrow}" 
+                             Margin="3" />
 
                     <!-- Text: Mineral oil -->
                     <TextBlock Text="{x:Static loc:CoreStrings.TitleLiquidMineralOil}"
@@ -204,11 +203,8 @@
                         Container="{Binding ViewModelManufacturingStateProcessedMineralOil.ContainerOutput}"
                         MaxWidth="100"
                         DesignTimeSlotsCount="1" />
-
                 </StackPanel>
-
             </StackPanel>
-
         </StackPanel>
 
     </core:WindowMenuWithInventory>

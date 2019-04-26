@@ -76,12 +76,9 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
                     // not an object owner
                     if (currentAccessMode == WorldObjectAccessMode.OpensToObjectOwnersOrAreaOwners)
                     {
-                        // check if player is the area owner
-                        var area = LandClaimSystem.SharedGetAreaAtPosition(worldObject.TilePosition);
-                        if (area != null
-                            && LandClaimSystem.ServerIsOwnedArea(area, character))
+                        if (LandClaimSystem.SharedIsOwnedLand(worldObject.TilePosition, character, out _))
                         {
-                            // an the area owner
+                            // an area owner
                             return true;
                         }
                     }
@@ -127,7 +124,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
                 throw new Exception("The player character is not interacting with " + worldObject);
             }
 
-            if (!WorldObjectOwnersSystem.SharedIsOwner(character, worldObject))
+            if (!WorldObjectOwnersSystem.SharedIsOwner(character, worldObject)
+                && !CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 throw new Exception("The player character is not the owner of " + worldObject);
             }

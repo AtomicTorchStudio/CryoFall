@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -232,8 +233,15 @@
         {
             var area = GetPublicState(worldObject).LandClaimAreaObject;
             var privateState = LandClaimArea.GetPrivateState(area);
-            // only founder can edit the owners list
-            return privateState.LandClaimFounder == byOwner.Name;
+
+            if (privateState.LandClaimFounder == byOwner.Name
+                || CreativeModeSystem.SharedIsInCreativeMode(byOwner))
+            {
+                // only founder or character in creative mode can edit the owners list
+                return true;
+            }
+
+            return false;
         }
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
@@ -245,11 +253,17 @@
 
             if (IsClient)
             {
+                // cannot perform further checks on client side
                 return true;
             }
 
             var publicState = GetPublicState(worldObject);
             if (LandClaimSystem.ServerIsOwnedArea(publicState.LandClaimAreaObject, character))
+            {
+                return true;
+            }
+
+            if (CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 return true;
             }
@@ -349,7 +363,20 @@
 
         void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
+            if (!CreativeModeSystem.SharedIsInCreativeMode(who))
+            {
+                return;
+            }
+
+            // ensure that the area is in the private scope of the creative mode player
+            var area = LandClaimSystem.ServerGetLandClaimArea(worldObject);
+            if (area == null)
+            {
+                // area could be null in the Editor for the land claim without owners
+                return;
+            }
+
+            Server.World.EnterPrivateScope(who, area);
         }
 
         void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
@@ -441,7 +468,8 @@
         {
             tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersections);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimAmountLimit);
-            tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositClaimLimit);
+            tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositRequireXenogeology);
+            tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositCooldown);
             this.PrepareLandClaimConstructionConfig(tileRequirements, build, repair, upgrade, out category);
         }
 
@@ -488,9 +516,10 @@
 
             var publicState = GetPublicState((IStaticWorldObject)targetObject);
             if (byCharacter != null
-                && LandClaimSystem.ServerIsOwnedArea(publicState.LandClaimAreaObject, byCharacter))
+                && (LandClaimSystem.ServerIsOwnedArea(publicState.LandClaimAreaObject, byCharacter)
+                    || CreativeModeSystem.SharedIsInCreativeMode(byCharacter)))
             {
-                // this is the owner of the area
+                // this is the owner of the area or the player is in a creative mode
                 if (byCharacter.SharedGetPlayerSelectedHotbarItemProto() is ProtoItemToolCrowbar)
                 {
                     publicState.ServerTimeForDestruction = 0;
