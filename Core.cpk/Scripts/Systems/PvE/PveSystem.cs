@@ -219,13 +219,17 @@
             return ClientIsPve(clientLogErrorIfDataIsNotYetAvailable);
         }
 
-        public static bool SharedValidateInteractionNotForbidden(
+        public static bool SharedValidateInteractionIsNotForbidden(
             ICharacter character,
             IStaticWorldObject worldObject,
             bool writeToLog)
         {
-            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject,
-                                                                    character))
+            if (!SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: true))
+            {
+                return true;
+            }
+
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character))
             {
                 return true;
             }
@@ -295,16 +299,22 @@
 
         private void ClientRemote_IsPvE(bool isPvE)
         {
-            clientPvErequestTask.SetResult(isPvE);
-            if (clientIsPvE == isPvE)
+            try
             {
-                return;
-            }
+                if (clientIsPvE == isPvE)
+                {
+                    return;
+                }
 
-            clientIsPvE = isPvE;
-            if (ClientIsPvEChanged != null)
+                clientIsPvE = isPvE;
+                if (ClientIsPvEChanged != null)
+                {
+                    Api.SafeInvoke(ClientIsPvEChanged);
+                }
+            }
+            finally
             {
-                Api.SafeInvoke(ClientIsPvEChanged);
+                clientPvErequestTask.SetResult(isPvE);
             }
         }
 
@@ -381,9 +391,11 @@
 
                 void Refresh()
                 {
+                    clientPvErequestTask?.TrySetCanceled();
+
+                    clientPvErequestTask = new TaskCompletionSource<bool>();
                     if (Api.Client.Characters.CurrentPlayerCharacter != null)
                     {
-                        clientPvErequestTask = new TaskCompletionSource<bool>();
                         Instance.CallServer(_ => _.ServerRemote_RequestIsPvE());
                     }
                 }

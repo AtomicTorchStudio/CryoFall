@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -39,7 +40,7 @@
 
             // Let's ensure that we don't spawn Pragmium Source too close to players' buildings.
             // take half size of the largest land claim area
-            var paddingToLandClaimsSize = Api.GetProtoEntity<ObjectLandClaimT4>().LandClaimWithGraceAreaSize / 2.0;
+            var paddingToLandClaimsSize = LandClaimSystem.MaxLandClaimSizeWithGraceArea.Value / 2.0;
             // add the explosion radius
             paddingToLandClaimsSize += Api.GetProtoEntity<ObjectMineralPragmiumSourceExplosion>()
                                           .DamageRadius;

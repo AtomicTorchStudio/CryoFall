@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -48,7 +49,7 @@
 
             // Let's ensure that we don't spawn oil seep too close to players' buildings.
             // take size of the largest land claim area
-            var paddingToLandClaimsSize = Api.GetProtoEntity<ObjectLandClaimT4>().LandClaimWithGraceAreaSize;
+            var paddingToLandClaimsSize = (int)LandClaimSystem.MaxLandClaimSizeWithGraceArea.Value;
             // add few extra tiles (as the objects are not 1*1 tile)
             paddingToLandClaimsSize += 6;
 

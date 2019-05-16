@@ -66,6 +66,8 @@
         // how long the items dropped on the ground from the safe storage should remain there
         private static readonly TimeSpan DestroyedLandClaimDroppedItemsDestructionTimeout = TimeSpan.FromDays(1);
 
+        private readonly Lazy<ushort> lazyLandClaimGraceAreaPaddingSizeOneDirection;
+
         private IComponentAttachedControl currentDisplayedTooltip;
 
         static ProtoObjectLandClaim()
@@ -82,13 +84,23 @@
             }
         }
 
+        protected ProtoObjectLandClaim()
+        {
+            // no problem with that call as it's accessing a simple number
+            // ReSharper disable once VirtualMemberCallInConstructor
+            this.lazyLandClaimGraceAreaPaddingSizeOneDirection = new Lazy<ushort>(
+                () => LandClaimSystem.SharedCalculateLandClaimGraceAreaPaddingSizeOneDirection(
+                    this.LandClaimSize));
+        }
+
         public abstract TimeSpan DestructionTimeout { get; }
 
         public override string InteractionTooltipText => InteractionTooltipTexts.Configure;
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
-        public virtual ushort LandClaimGraceAreaPaddingSizeOneDirection { get; private set; }
+        public ushort LandClaimGraceAreaPaddingSizeOneDirection
+            => this.lazyLandClaimGraceAreaPaddingSizeOneDirection.Value;
 
         public abstract ushort LandClaimSize { get; }
 
@@ -576,9 +588,6 @@
 
             var landClaimSize = this.LandClaimSize;
             Api.Assert(landClaimSize % 2 == 0, "Land claim size should be an even number");
-
-            this.LandClaimGraceAreaPaddingSizeOneDirection =
-                LandClaimSystem.SharedCalculateLandClaimGraceAreaPaddingSizeOneDirection(landClaimSize);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

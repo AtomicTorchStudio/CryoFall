@@ -58,7 +58,7 @@
 
                 isHidden = value;
 
-                Api.Logger.Important("MenuOverlay is " + (isHidden ? "hidden" : "shown"));
+                Api.Logger.Info("MenuOverlay is " + (isHidden ? "hidden" : "shown"));
                 Api.Client.UI.BlurFocus();
 
                 if (isHidden)

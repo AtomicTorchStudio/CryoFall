@@ -188,12 +188,8 @@
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
         {
-            if (!PveSystem.SharedValidateInteractionNotForbidden(character, worldObject, writeToLog))
-            {
-                return false;
-            }
-
-            return this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
+            return PveSystem.SharedValidateInteractionIsNotForbidden(character, worldObject, writeToLog)
+                   && this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
         }
 
         public override bool SharedIsCanGather(IStaticWorldObject staticWorldObject)
@@ -284,9 +280,9 @@
                 isFocusable: false);
         }
 
-        protected override bool CommonIsAllowedObjectToInteractThrought(IWorldObject worldObject)
+        protected override bool CommonIsAllowedObjectToInteractThrough(IWorldObject worldObject)
         {
-            if (base.CommonIsAllowedObjectToInteractThrought(worldObject))
+            if (base.CommonIsAllowedObjectToInteractThrough(worldObject))
             {
                 return true;
             }

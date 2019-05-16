@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.Perks;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
@@ -203,7 +202,7 @@
                                                                       forCharacter);
                 });
 
-        public static ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimAmountLimit
+        public static readonly ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimAmountLimit
             = new ConstructionTileRequirements.Validator(
                 ErrorCannotBuild_LandClaimAmountLimitExceeded,
                 context =>
@@ -264,73 +263,71 @@
                     return maxNumber > currentNumber; // ok only in case when the limit is not exceeded
                 });
 
-        public static ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimDepositRequireXenogeology
-            = new ConstructionTileRequirements.Validator(
-                ErrorCannotBuild_NeedXenogeologyTech,
-                context =>
-                {
-                    var forCharacter = context.CharacterBuilder;
-                    if (forCharacter == null)
+        public static readonly ConstructionTileRequirements.Validator
+            ValidatorCheckCharacterLandClaimDepositRequireXenogeology
+                = new ConstructionTileRequirements.Validator(
+                    ErrorCannotBuild_NeedXenogeologyTech,
+                    context =>
                     {
-                        return true;
-                    }
-
-                    if (context.TileOffset != Vector2Int.Zero)
-                    {
-                        return true;
-                    }
-
-                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
-                    {
-                        return true;
-                    }
-
-                    if (PerkClaimDeposits.Instance
-                                         .SharedIsPerkUnlocked(forCharacter))
-                    {
-                        // has perk unlocked so no need to check whether player trying to claim a deposit
-                        return true;
-                    }
-
-                    // doesn't have Xenogeology unlocked
-                    // check whether there are any deposits nearby
-                    var forbiddenArea = SharedCalculateLandClaimAreaBounds(
-                        centerTilePosition: (context.Tile.Position
-                                             + context.ProtoStaticObjectToBuild.Layout.Center.ToVector2Int())
-                        .ToVector2Ushort(),
-                        // We use a carefully selected size here to ensure the deposit cannot be easily surrounded by players without Xenogeology
-                        // 3 is the layout size of the resource deposits in game (3*3 tiles).
-                        // plus some extra padding (but not grace area padding)
-                        size: (ushort)(1.5 * MaxLandClaimSize.Value
-                                       + 3
-                                       + 3));
-
-                    var worldDeposits = IsClient
-                                            ? ClientWorld.GetStaticWorldObjectsOfProto<IProtoObjectDeposit>()
-                                            : ServerWorld.GetStaticWorldObjectsOfProto<IProtoObjectDeposit>();
-
-                    foreach (var staticWorldObject in worldDeposits)
-                    {
-                        var staticWorldObjectBounds = staticWorldObject.ProtoStaticWorldObject.Layout.Bounds;
-                        staticWorldObjectBounds = new BoundsInt(
-                            staticWorldObjectBounds.Offset + staticWorldObject.TilePosition,
-                            staticWorldObjectBounds.Size);
-
-                        if (forbiddenArea.Intersects(staticWorldObjectBounds))
+                        var forCharacter = context.CharacterBuilder;
+                        if (forCharacter == null)
                         {
-                            // found a deposit in bounds of the future land claim
-                            return false;
+                            return true;
                         }
-                    }
 
-                    return true;
-                });
+                        if (context.TileOffset != Vector2Int.Zero)
+                        {
+                            return true;
+                        }
+
+                        if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                        {
+                            return true;
+                        }
+
+                        if (PerkClaimDeposits.Instance
+                                             .SharedIsPerkUnlocked(forCharacter))
+                        {
+                            // has perk unlocked so no need to check whether player trying to claim a deposit
+                            return true;
+                        }
+
+                        // doesn't have Xenogeology unlocked
+                        // check whether there are any deposits nearby
+                        var forbiddenArea = SharedCalculateLandClaimAreaBounds(
+                            centerTilePosition: (context.Tile.Position
+                                                 + context.ProtoStaticObjectToBuild.Layout.Center.ToVector2Int())
+                            .ToVector2Ushort(),
+                            // We use a carefully selected size here to ensure the deposit
+                            // cannot surrounded by land claims of players without Xenogeology.
+                            // Some extra padding is also useful here though not really necessary.
+                            size: (ushort)(6 + 2 * MaxLandClaimSizeWithGraceArea.Value));
+
+                        foreach (var mark in WorldMapResourceMarksSystem.SharedEnumerateMarks())
+                        {
+                            var staticWorldObjectBounds = new BoundsInt(
+                                mark.Position,
+                                // TODO: it's a hardcoded oil/Li deposit size
+                                new Vector2Int(3, 3));
+
+                            if (forbiddenArea.Intersects(staticWorldObjectBounds))
+                            {
+                                // found a deposit in bounds of the future land claim
+                                return false;
+                            }
+                        }
+
+                        return true;
+                    });
 
         public static readonly Lazy<ushort> MaxLandClaimSize
             = new Lazy<ushort>(() => Api.FindProtoEntities<IProtoObjectLandClaim>()
                                         .Max(l => l.LandClaimSize));
 
-        public static ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimDepositCooldown
+        public static readonly Lazy<ushort> MaxLandClaimSizeWithGraceArea
+            = new Lazy<ushort>(() => (ushort)(MaxLandClaimSize.Value + MinPaddingSizeOneDirection * 2));
+
+        public static readonly ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimDepositCooldown
             = new ConstructionTileRequirements.Validator(
                 ErrorCannotBuild_DepositCooldown,
                 context =>
@@ -381,8 +378,8 @@
 
         private static readonly Lazy<Vector2Ushort> DepositResourceLandClaimRestrictionSize
             = new Lazy<Vector2Ushort>(
-                () => new Vector2Ushort((ushort)(2 * MaxLandClaimSize.Value),
-                                        (ushort)(2 * MaxLandClaimSize.Value)));
+                () => new Vector2Ushort((ushort)(2 * MaxLandClaimSizeWithGraceArea.Value),
+                                        (ushort)(2 * MaxLandClaimSizeWithGraceArea.Value)));
 
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;

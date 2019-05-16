@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures
 {
     using System.Runtime.CompilerServices;
-    using AtomicTorch.CBND.GameApi.Scripting;
 
     public static class StructureConstants
     {

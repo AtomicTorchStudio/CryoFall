@@ -4,10 +4,8 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.UI;
@@ -353,7 +351,7 @@
                             continue;
                         }
 
-                        if (!this.CommonIsAllowedObjectToInteractThrought(testWorldObject))
+                        if (!this.CommonIsAllowedObjectToInteractThrough(testWorldObject))
                         {
                             // obstacle object on the way
                             return true;
@@ -426,9 +424,9 @@
 
         protected abstract void ClientOnObjectDestroyed(Vector2Ushort tilePosition);
 
-        protected virtual bool CommonIsAllowedObjectToInteractThrought(IWorldObject worldObject)
+        protected virtual bool CommonIsAllowedObjectToInteractThrough(IWorldObject worldObject)
         {
-            return true;
+            return false;
         }
 
         protected sealed override void PrepareProto()

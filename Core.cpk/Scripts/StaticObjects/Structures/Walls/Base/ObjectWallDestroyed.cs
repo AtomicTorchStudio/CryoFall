@@ -141,7 +141,7 @@
             DeconstructionSystem.ClientTryStartAction();
         }
 
-        protected override bool CommonIsAllowedObjectToInteractThrought(IWorldObject worldObject)
+        protected override bool CommonIsAllowedObjectToInteractThrough(IWorldObject worldObject)
         {
             return true;
         }
