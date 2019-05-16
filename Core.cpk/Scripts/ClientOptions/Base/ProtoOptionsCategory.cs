@@ -17,9 +17,9 @@
     /// </summary>
     public abstract class ProtoOptionsCategory : ProtoEntity
     {
-        private readonly List<IProtoOption> options = new List<IProtoOption>();
+        private readonly IClientStorage clientStorage;
 
-        private IClientStorage clientStorage;
+        private readonly List<IProtoOption> options = new List<IProtoOption>();
 
         protected ProtoOptionsCategory()
         {
@@ -28,8 +28,14 @@
             name = name.Replace("OptionsCategory", string.Empty);
 
             this.ShortId = name;
-            this.Icon = new TextureResource($"Options/{name}.png", qualityOffset: -100);
-            this.OptionsStorageLocalFilePath = "Options/" + this.ShortId;
+
+            if (IsClient)
+            {
+                this.Icon = new TextureResource($"Options/{name}.png", qualityOffset: -100);
+                this.OptionsStorageLocalFilePath = "Options/" + this.ShortId;
+                this.clientStorage = Api.Client.Storage
+                                        .GetStorage(this.OptionsStorageLocalFilePath);
+            }
         }
 
         public event Action<ProtoOptionsCategory> Modified;
@@ -204,8 +210,7 @@
                 return;
             }
 
-            this.clientStorage = Api.Client.Storage
-                                    .GetStorage(this.OptionsStorageLocalFilePath);
+            ClientOptionsManager.Initialize();
         }
 
         private void ProcessOptions(Action<IProtoOption> func)

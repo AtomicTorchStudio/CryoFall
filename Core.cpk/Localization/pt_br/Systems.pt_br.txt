@@ -130,6 +130,9 @@ Não é possível reabastecer este item.
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 A posse de terra desta área pertence ou está muito próxima a outro de jogador.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
+O depósito de recursos acabou de aparecer e ainda não pode ser reclamado. Fica temporariamente restrito construir em torno dele.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Cruza com outra posse de terra
 
@@ -157,10 +160,10 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireIn
 A proteção de novato vai expirar em:
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-Enquanto estiver sob a proteção de novato, você não pode atacar outros jogadores nem saquear a mochila ou os itens deles. Porém, você pode cancelar essa proteção a qualquer momento no menu social.
+Enquanto estiver sob a proteção de novato, você não pode atacar outros jogadores nem saquear a mochila ou os itens deles. Porém, é possível cancelar essa proteção a qualquer momento no menu de política.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-Não é possível executar esta ação sob a proteção de novato. Porém, você pode cancelar essa proteção a qualquer momento no menu social.
+Não é possível executar esta ação sob a proteção de novato. Porém, você pode cancelar essa proteção a qualquer momento no menu de política.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
 Esta mochila está sob proteção de novato; por isso, apenas o dono pode pegá-la.
@@ -182,6 +185,9 @@ Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageF
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
 Atenção: ao aceitar este convite, você [b]sairá[/b] do seu grupo atual.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationSentMessageFormat:
+Convite para integrar grupo enviado para [b]{0}[/b].
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
 Convite de grupo
@@ -219,6 +225,38 @@ A pessoa convidada já faz parte do grupo.
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 Você não pode fazer convites porque o operador do servidor te bloqueou.
 
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
+Desativar modo duelo
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Enable:
+Ativar modo duelo
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Description:
+`Você pode ativar o modo duelo a fim de desafiar outros jogadores para uma luta.
+[br]Neste modo, você não perde itens depois de morrer.
+[br]É necessário que os dois jogadores estejam com o Modo Duelo ativado.`
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Title:
+Modo Duelo
+
+Scripts/Systems/PvE/PveSystem@Notification_CannotDamagePlayers_Message:
+Você não pode causar dano a outros jogadores ou estruturas pertencentes a um jogador em um servidor JvA.
+
+Scripts/Systems/PvE/PveSystem@Notification_OtherPlayerDontHaveDuelMode_Message:
+Para lutarem, é necessário que os dois jogadores estejam com o Modo Duelo ativado.
+
+Scripts/Systems/PvE/PveSystem@Notification_StuffBelongsToAnotherPlayer_Message:
+Isto pertence a outro jogador.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Message:
+Só é possível causar dano a uma estrutura dentro da posse de terra durante a fase de invasão.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Title:
+Nenhum dano
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
+A fase de invasão acabou.
+
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Ainda não há nada para colher
 
@@ -239,12 +277,36 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `O operador deste servidor configurou-o apenas para convidados.[br]
 Verifique a descrição do servidor para mais detalhes.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessage:
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
 `Receba as boas-vindas ao servidor oficial de CryoFall!
 [br]
 [br]
 [b]Importante:[/b]
-Lembre-se que os servidores oficiais baseiam-se em JvJ, sendo possível que você se depare com agressão de outros jogadores. Será necessário proteger-se direito e manter-se vigilante o tempo todo. Talvez seja interessante pensar em se aliar a outros sobreviventes para aumentar suas chances.
+Este é um servidor JvA (jogador versus ambiente). Neste servidor, os jogadores não podem atacar uns aos outros direta ou indiretamente. Esse servidor é dedicado à exploração pacífica do jogo, sem engajamento hostil entre jogadores. Você não pode matar, destruir, roubar ou atacar os outros jogadores. Excluindo-se isso, o servidor oferece a você a experiência completa de CryoFall e suas criaturas perigosas, tecnologias desbloqueáveis e mundo explorável. Veja aonde essa jornada te levará.
+[br]
+[br]
+Se preferir ter uma experiência mais emocionante e irrestrita, considere entrar em um servidor JvJ.
+[br]
+[br]
+[b]Regras do servidor:[/b]
+[*]Agir com respeito e cortesia com os outros. Não toleramos nenhuma forma de abuso, discriminação, etc.
+[*]Cumprir todos os pedidos dos moderadores do servidor.
+[*]Não enviar spam, floodar o bate-papo ou usar linguagem profana em excesso.
+[*]Não tentar burlar ou se aproveitar de nenhuma uma das restrições do JvA.
+[*]Não abusar das regras ou da mecânica do jogo a fim de atazanar ou ser inconvenientes com os outros jogadores.
+[br]
+[br]
+Boa sorte! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
+`Receba as boas-vindas ao servidor oficial de CryoFall!
+[br]
+[br]
+[b]Importante:[/b]
+Este é um servidor JvJ gratuito para todos. Lembre-se que nos servidores JvJ você se deparará com agressão de outros jogadores. Será necessário proteger-se direito e manter-se vigilante o tempo todo. Talvez seja interessante pensar em se aliar a outros sobreviventes para aumentar suas chances.
+[br]
+[br]
+Caso você prefire uma experiência mais descontraída, especialmente se estiver jogando pela primeira vez, considere jogar em um servidor JvA.
 [br]
 [br]
 [b]Regras do servidor:[/b]
@@ -253,13 +315,7 @@ Lembre-se que os servidores oficiais baseiam-se em JvJ, sendo possível que voc�
 [*]Não enviar spam, floodar o bate-papo ou usar linguagem profana em excesso.
 [br]
 [br]
-[b]Recomendações:[/b]
-[br]Não podemos impor essas regras, mas segui-las criaria um ambiente melhor para todos.
-[*]Não mate ao avistar (KOS) outros jogadores, especialmente quem acabou de entrar.
-[*]Se você atacar as bases de outros jogadores, sem problema, tudo certinho... só não importune os outros à toa.
-[*]Tente ajudar os novos jogadores que ainda estão aprendendo o jogo.
-[br]
-[br]Boa sorte! :)`
+Boa sorte! :)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Receba as boas-vindas a {0}
@@ -281,7 +337,7 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} nível {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`Você tem mais de 50 pontos de aprendizado (PA) acumulados. Que tal desbloquear novas tecnologias? Depois de morrer, você conserva apenas uma pequena fração desses PAs.
+`Você tem mais de {0} pontos de aprendizado (PA) acumulados. Que tal desbloquear novas tecnologias? Depois de morrer, você conserva apenas uma pequena fração desses PAs.
 [br](Clique para abrir o menu de tecnologias)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:

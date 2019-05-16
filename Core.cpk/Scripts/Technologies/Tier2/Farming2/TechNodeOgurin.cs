@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeSeedsOgurin>();
 
-            config.SetRequiredNode<TechNodeChiliPepper>();
+            config.SetRequiredNode<TechNodeWheat>();
         }
     }
 }

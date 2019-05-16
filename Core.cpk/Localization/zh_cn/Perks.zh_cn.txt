@@ -1,0 +1,6 @@
+﻿Scripts/Perks/PerkClaimDeposits@Name:
+占领石油和锂矿
+
+Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
+最大占领数量: {0}
+

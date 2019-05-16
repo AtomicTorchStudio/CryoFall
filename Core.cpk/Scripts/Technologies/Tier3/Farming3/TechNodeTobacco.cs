@@ -8,8 +8,6 @@
         {
             config.Effects
                   .AddRecipe<RecipeSeedsTobacco>();
-
-            config.SetRequiredNode<TechNodeSpecializedCrops>();
         }
     }
 }

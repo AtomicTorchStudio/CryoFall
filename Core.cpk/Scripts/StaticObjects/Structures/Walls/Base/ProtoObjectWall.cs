@@ -3,10 +3,14 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Walls;
     using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectWall
         <TPrivateState,
@@ -88,6 +92,12 @@
             Client.Rendering.PreloadTextureAsync(this.TextureAtlasDestroyed);
         }
 
+        protected override void ClientObserving(ClientObjectData data, bool isObserving)
+        {
+            base.ClientObserving(data, isObserving);
+            StructureLandClaimIndicatorManager.ClientObserving(data.GameObject, isObserving);
+        }
+
         protected sealed override void PrepareProtoStaticWorldObject()
         {
             base.PrepareProtoStaticWorldObject();
@@ -139,7 +149,29 @@
             {
                 // wall was destroyed (and not deconstructed by a crowbar or any other means)
                 ObjectWallDestroyed.ServerSpawnDestroyedWall(tilePosition, this);
+                LandClaimSystem.ServerOnRaid(((IStaticWorldObject)targetObject).Bounds,
+                                             byCharacter);
             }
+        }
+
+        protected override double SharedCalculateDamageByWeapon(
+            WeaponFinalCache weaponCache,
+            double damagePreMultiplier,
+            IStaticWorldObject targetObject,
+            out double obstacleBlockDamageCoef)
+        {
+            if (IsServer)
+            {
+                damagePreMultiplier = LandClaimSystem.ServerAdjustDamageToUnprotectedStrongBuilding(weaponCache,
+                                                                                                    targetObject,
+                                                                                                    damagePreMultiplier);
+            }
+
+            var damage = base.SharedCalculateDamageByWeapon(weaponCache,
+                                                            damagePreMultiplier,
+                                                            targetObject,
+                                                            out obstacleBlockDamageCoef);
+            return damage;
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
@@ -157,9 +189,20 @@
                 if (pattern.IsPass(sameTypeNeighbors))
                 {
                     pattern.SetupPhysicsNormal?.Invoke(data.PhysicsBody);
-                    return;
+                    break;
                 }
             }
+
+            // hitboxes
+            data.PhysicsBody
+                .AddShapeRectangle(
+                    new Vector2D(1, 0.7),
+                    new Vector2D(0, 0.3),
+                    group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(
+                    new Vector2D(1, 1.27),
+                    new Vector2D(0, 0.15),
+                    group: CollisionGroups.HitboxRanged);
         }
     }
 

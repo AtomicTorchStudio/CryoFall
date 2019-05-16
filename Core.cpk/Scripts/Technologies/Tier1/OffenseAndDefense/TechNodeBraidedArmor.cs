@@ -13,7 +13,7 @@
                   .AddRecipe<RecipeBraidedHelmet>()
                   .AddRecipe<RecipeBraidedPants>();
 
-            config.SetRequiredNode<TechNodeWoodArmor>();
+            config.SetRequiredNode<TechNodeGlue>();
         }
     }
 }

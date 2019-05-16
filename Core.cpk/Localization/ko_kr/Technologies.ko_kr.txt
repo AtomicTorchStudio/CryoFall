@@ -122,23 +122,11 @@ Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
 농사 2
 
-Scripts/Technologies/Tier2/Farming2/TechNodeComplexCrops@Name:
-복합 농작물
-
-Scripts/Technologies/Tier2/Farming2/TechNodeFarmingProductivity@Name:
-농사 생산량
-
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
 더 많은 공정과 응용을 가능하게 하는 향상된 공업 기술.
 
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
 공업 2
-
-Scripts/Technologies/Tier2/Industry2/TechNodeAdvancedIndustry@Name:
-첨단 공업
-
-Scripts/Technologies/Tier2/Industry2/TechNodeBasicElectronics@Name:
-기본 전자 기술
 
 Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
 강철 제련
@@ -163,9 +151,6 @@ Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
 
 Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
 화학 2
-
-Scripts/Technologies/Tier3/Chemistry2/TechNodeSyntheticMaterials@Name:
-합성 소재
 
 Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
 돈과 관련되어 있으며 거래를 가능하게 해줍니다. 주화의 주조 및 재활용과 자동화된 거래소를 지을 수 있습니다.
@@ -211,12 +196,6 @@ Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
 
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
 농사 3
-
-Scripts/Technologies/Tier3/Farming3/TechNodeDecorativeGardening@Name:
-장식 원예
-
-Scripts/Technologies/Tier3/Farming3/TechNodeSpecializedCrops@Name:
-특수작물
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
 더 복합적인 공정과 응용을 가능하게 하는 발전된 공업 기술.
@@ -266,9 +245,6 @@ Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
 화학 3
 
-Scripts/Technologies/Tier4/Chemistry3/TechNodeHighEnergySubstances@Name:
-고에너지 물질
-
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
 최첨단 건설.
 
@@ -278,17 +254,14 @@ Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
 Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
 콘크리트 건축물
 
+Scripts/Technologies/Tier4/Construction4/TechNodeSteelConstructions@Name:
+강철 구조물
+
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
 인공두뇌학 및 생물학적 임플란트의 제조와 적용.
 
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
 인공두뇌학
-
-Scripts/Technologies/Tier4/Cybernetics/TechNodeBiomaterialProcessing@Name:
-생체 적합 물질 가공
-
-Scripts/Technologies/Tier4/Cybernetics/TechNodeImplantManufacturing@Name:
-임플란트 제조
 
 Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
 최첨단 보호 기술.
@@ -307,12 +280,6 @@ Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
 에너지 무기
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechNodeLaserWeapons@Name:
-레이저 무기
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechNodePlasmaWeapons@Name:
-플라스마 무기
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
 가장 복잡한 기술 공정을 가능하게 하는 최첨단 공업 기술.
@@ -337,10 +304,4 @@ Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 공격 4
-
-Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
-.300 구경
-
-Scripts/Technologies/Tier4/Offense4/TechNodeAdvancedExplosives@Name:
-최첨단 폭발물
 

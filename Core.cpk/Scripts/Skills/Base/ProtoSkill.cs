@@ -171,7 +171,11 @@
             var multiplier = this.ExperienceToLearningPointsConversionMultiplier
                              * TechConstants.SkillExperienceToLearningPointsConversionMultiplier;
 
-            if (multiplier <= 0)
+            // apply reversed experience gain multiplier so faster/slower skill exp gain speed will not affect LP gain speed
+            multiplier /= TechConstants.SkillExperienceGainMultiplier;
+
+            if (multiplier <= 0
+                || double.IsNaN(multiplier))
             {
                 return;
             }
@@ -182,6 +186,7 @@
                                                    currentLevel / (double)this.MaxLevel);
 
             multiplier *= lpRateMultiplier;
+
             if (multiplier <= 0)
             {
                 return;

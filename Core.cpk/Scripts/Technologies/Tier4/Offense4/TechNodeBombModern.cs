@@ -4,12 +4,14 @@
 
     public class TechNodeBombModern : TechNode<TechGroupOffense4>
     {
+        public override FeatureAvailability AvailableIn => FeatureAvailability.OnlyPvP;
+
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
                   .AddRecipe<RecipeBombModern>();
 
-            config.SetRequiredNode<TechNodeAdvancedExplosives>();
+            config.SetRequiredNode<TechNodeAmmo300Incendiary>();
         }
     }
 }

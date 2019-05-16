@@ -158,16 +158,18 @@
                 return;
             }
 
+            if (damage <= 0)
+            {
+                // no special effects in case damage is 0
+                return;
+            }
+
             var protoItemAmmo = weapon != null
                                     ? GetPrivateState(weapon).CurrentProtoItemAmmo
                                     : null;
 
             protoItemAmmo?.ServerOnCharacterHit(damagedCharacter, damage);
-
-            if (damage > 0)
-            {
-                this.ServerTryToApplySpecialEffect(weapon, byCharacter, damage, damagedCharacter);
-            }
+            this.ServerTryToApplySpecialEffect(weapon, byCharacter, damage, damagedCharacter);
         }
 
         public virtual void ServerOnItemBrokeAndDestroyed(IItem item, IItemsContainer container, byte slotId)

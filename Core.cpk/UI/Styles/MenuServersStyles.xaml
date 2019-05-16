@@ -6,7 +6,8 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
                     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-                    mc:Ignorable="d" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+                    mc:Ignorable="d" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+                    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="DefaultStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -56,33 +57,85 @@
     </Style>
 
     <Style x:Key="LaberBorderStyle" TargetType="Border">
-        <Setter Property="Margin" Value="4,0,0,0" />
+        <Setter Property="Margin" Value="4,2,0,0" />
         <Setter Property="Padding" Value="3,1" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="CornerRadius" Value="2" />
     </Style>
 
+    <Style x:Key="TextBlockTagStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="TextBlockTagTooltipStyle" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="MaxWidth" Value="300" />
+    </Style>
+
     <ControlTemplate x:Key="BlockFeaturedMultiplayerServerTemplate">
         <Border Background="#FF777711" Style="{StaticResource LaberBorderStyle}">
             <!-- Text: FEATURED -->
-            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerLabelFeatured}" FontSize="10"
-                       FontWeight="Bold" />
+            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Featured_Title}"
+                       Style="{StaticResource TextBlockTagStyle}">
+                <ui:ToolTipServiceExtend.ToolTip>
+                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Featured_Description}"
+                               Style="{StaticResource TextBlockTagTooltipStyle}" />
+                </ui:ToolTipServiceExtend.ToolTip>
+            </TextBlock>
         </Border>
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockOfficialMultiplayerServerTemplate">
         <Border Background="#FF336633" Style="{StaticResource LaberBorderStyle}">
             <!-- Text: OFFICIAL -->
-            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerLabelOfficial}" FontSize="10"
-                       FontWeight="Bold" />
+            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Official_Title}"
+                       Style="{StaticResource TextBlockTagStyle}">
+                <ui:ToolTipServiceExtend.ToolTip>
+                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Official_Description}"
+                               Style="{StaticResource TextBlockTagTooltipStyle}" />
+                </ui:ToolTipServiceExtend.ToolTip>
+            </TextBlock>
         </Border>
     </ControlTemplate>
 
     <ControlTemplate x:Key="BlockModdedMultiplayerServerTemplate">
         <Border Background="#FF771177" Style="{StaticResource LaberBorderStyle}">
             <!-- Text: MODDED -->
-            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerLabelModded}" FontSize="10" FontWeight="Bold" />
+            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Modded_Title}"
+                       Style="{StaticResource TextBlockTagStyle}">
+                <ui:ToolTipServiceExtend.ToolTip>
+                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_Modded_Description}"
+                               Style="{StaticResource TextBlockTagTooltipStyle}" />
+                </ui:ToolTipServiceExtend.ToolTip>
+            </TextBlock>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="BlockPvPMultiplayerServerTemplate">
+        <Border Background="#FF990000" Style="{StaticResource LaberBorderStyle}">
+            <!-- Text: PvP -->
+            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvP_Title}"
+                       Style="{StaticResource TextBlockTagStyle}">
+                <ui:ToolTipServiceExtend.ToolTip>
+                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvP_Description}"
+                               Style="{StaticResource TextBlockTagTooltipStyle}" />
+                </ui:ToolTipServiceExtend.ToolTip>
+            </TextBlock>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="BlockPvEMultiplayerServerTemplate">
+        <Border Background="#FF0066BB" Style="{StaticResource LaberBorderStyle}">
+            <!-- Text: PvE -->
+            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvE_Title}"
+                       Style="{StaticResource TextBlockTagStyle}">
+                <ui:ToolTipServiceExtend.ToolTip>
+                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvE_Description}"
+                               Style="{StaticResource TextBlockTagTooltipStyle}" />
+                </ui:ToolTipServiceExtend.ToolTip>
+            </TextBlock>
         </Border>
     </ControlTemplate>
 
@@ -197,6 +250,12 @@
 
                         <Control Template="{StaticResource BlockModdedMultiplayerServerTemplate}"
                                  Visibility="{Binding ViewModelServerInfo.IsModded, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                        <Control Template="{StaticResource BlockPvPMultiplayerServerTemplate}"
+                                 Visibility="{Binding ViewModelServerInfo.IsPvP, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                        <Control Template="{StaticResource BlockPvEMultiplayerServerTemplate}"
+                                 Visibility="{Binding ViewModelServerInfo.IsPvE, Converter={StaticResource BoolToVisibilityConverter}}" />
                     </StackPanel>
                 </Grid>
 

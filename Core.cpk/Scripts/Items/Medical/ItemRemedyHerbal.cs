@@ -18,7 +18,7 @@
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {
             // adds health regeneration
-            character.ServerAddStatusEffect<StatusEffectHealingSlow>(intensity: 0.40); // 40 seconds
+            character.ServerAddStatusEffect<StatusEffectHealingSlow>(intensity: 0.35); // 35 seconds
 
             // removes nausea
             character.ServerRemoveStatusEffectIntensity<StatusEffectNausea>(intensityToRemove: 1);

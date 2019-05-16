@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat;
+    using AtomicTorch.CBND.CoreMod.UI.Services;
     using AtomicTorch.CBND.GameApi.Logging;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -34,11 +35,7 @@
 
         private string filterText;
 
-        private bool isAutoScrollToBottom = true;
-
         private bool isDisplayed = false;
-
-        private bool isUserScrollChange = true;
 
         private ListView listViewSuggestionsList;
 
@@ -173,7 +170,6 @@
             this.textBoxConsoleInput.KeyDown += this.ConsoleInputKeyDownHandler;
             this.textBoxConsoleInput.PreviewKeyUp += this.ConsoleInputPreviewKeyUpHandler;
             this.textBoxSearch.PreviewKeyUp += this.GenericPreviewKeyUpHandler;
-            this.scrollViewerLog.ScrollChanged += this.ScrollViewerLogScrollChangedHandler;
             this.listViewSuggestionsList.SelectionChanged += this.ListViewSuggestionsListSelectionChangedHandler;
 
             this.IsDisplayed = true;
@@ -186,7 +182,6 @@
             this.textBoxConsoleInput.KeyDown -= this.ConsoleInputKeyDownHandler;
             this.textBoxConsoleInput.PreviewKeyUp -= this.ConsoleInputPreviewKeyUpHandler;
             this.textBoxSearch.PreviewKeyUp -= this.GenericPreviewKeyUpHandler;
-            this.scrollViewerLog.ScrollChanged -= this.ScrollViewerLogScrollChangedHandler;
             this.listViewSuggestionsList.SelectionChanged -= this.ListViewSuggestionsListSelectionChangedHandler;
 
             this.IsDisplayed = false;
@@ -199,8 +194,6 @@
             {
                 return;
             }
-
-            this.isUserScrollChange = false;
 
             var list = isReset
                            ? new List<ViewModelLogEntry>()
@@ -241,9 +234,7 @@
                 forceScrollToBottom = true;
             }
 
-            this.ScrollToBottom(force: forceScrollToBottom);
-
-            this.isUserScrollChange = true;
+            AdvancedScrollViewerService.ScrollToBottom(this.scrollViewerLog, force: forceScrollToBottom);
         }
 
         private void AddToClientLog(string message)
@@ -252,7 +243,7 @@
                 ConsoleLogHelper.CreateViewModelLogEntry(
                     new LogEntry(message, severity: LogSeverity.Dev),
                     isFromServer: false));
-            this.ScrollToBottom(force: true);
+            AdvancedScrollViewerService.ScrollToBottom(this.scrollViewerLog, force: false);
         }
 
         private void ConsoleInputKeyDownHandler(object sender, KeyEventArgs e)
@@ -507,35 +498,6 @@
             }
 
             this.filterText = this.viewModel.FilterText;
-        }
-
-        private void ScrollToBottom(bool force)
-        {
-            if (force)
-            {
-                this.isAutoScrollToBottom = true;
-            }
-            else if (!this.isAutoScrollToBottom)
-            {
-                return;
-            }
-
-            this.isUserScrollChange = false;
-            this.scrollViewerLog.ScrollToBottom();
-            this.isUserScrollChange = true;
-        }
-
-        private void ScrollViewerLogScrollChangedHandler(object sender, ScrollChangedEventArgs e)
-        {
-            if (!this.isUserScrollChange)
-            {
-                return;
-            }
-
-            // when user scrolled the log
-            var verticalOffset = this.scrollViewerLog.VerticalOffset;
-            var scrollableHeight = this.scrollViewerLog.ScrollableHeight;
-            this.isAutoScrollToBottom = verticalOffset == scrollableHeight;
         }
 
         private void SetInputText(string text)

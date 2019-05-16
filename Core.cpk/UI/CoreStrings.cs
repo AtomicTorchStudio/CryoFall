@@ -27,7 +27,18 @@
 
         public const string Button_Deny = "Deny";
 
+        // button to drain the liquid (such as the barrel content)
+        public const string Button_Drain = "Drain";
+
+        // dialog to confirm that the player is agree to dispose the liquid content (in barrel, cistern, etc)
+        public const string Button_Drain_DialogConfirmation =
+            @"Are you sure you want to drain the contents?
+              [br]You will not be able to recover it.";
+
         public const string Button_Drink = "Drink";
+
+        // For example, the server operator could press "Edit" button to open the editor for the server welcome message.
+        public const string Button_Edit = "Edit";
 
         public const string Button_Help = "Help";
 
@@ -112,6 +123,11 @@
 
         public const string Defense_Format_Radiation = "Radiation protection: {0}";
 
+        // This message displayed over an oil seep or any other recently spawned resource deposit.
+        // It cannot be claimed instantly.
+        // It's displayed like: Available for claim in: 29 minutes 59 seconds.
+        public const string DepositAvailableForClaiming_Message = "Available to claim in:";
+
         public const string DepositCapacityStats_Message = "This deposit will be depleted in:";
 
         public const string DepositCapacityStats_Title = "Deposit capacity";
@@ -144,6 +160,8 @@
         public const string HUDButtonsBar_MenuTitle_Equipment = "Equipment";
 
         public const string HUDButtonsBar_MenuTitle_Map = "Map";
+
+        public const string HUDButtonsBar_MenuTitle_Politics = "Politics";
 
         public const string HUDButtonsBar_MenuTitle_Quests = "Quests";
 
@@ -195,6 +213,9 @@
 
         public const string LinkSteamAccountForm_Title =
             "Please enter your [url=atomictorch.com]AtomicTorch.com[/url] account details to link your Steam account.";
+
+        // used in public servers list and other places
+        public const string ListFilters = "Filters";
 
         public const string LoadingSplashScreen_Title = "LOADING";
 
@@ -274,6 +295,10 @@
 
         public const string MenuServers_Button_RemoveServer = "Remove Server";
 
+        public const string MenuServers_Checkbox_ShowEmpty = "Show empty";
+
+        public const string MenuServers_Checkbox_ShowIncompatible = "Show incompatible";
+
         public const string MenuServers_ClickToCopy = "Click to copy it!";
 
         public const string MenuServers_ColumnInfo = "Server info";
@@ -294,14 +319,37 @@
 
         public const string MenuServers_PublicGUID = "Public GUID";
 
-        public const string MenuServers_ServerLabelFeatured = "FEATURED";
-
-        public const string MenuServers_ServerLabelModded = "MODDED";
-
-        public const string MenuServers_ServerLabelOfficial = "OFFICIAL";
-
         // displayed as: "Servers: 15"
         public const string MenuServers_ServersCount = "Servers";
+
+        public const string MenuServers_ServerTag_Featured_Description =
+            "Featured servers usually have a reputation for providing a high-quality experience, similar to official servers. However, these servers are still hosted by the community.";
+
+        public const string MenuServers_ServerTag_Featured_Title = "FEATURED";
+
+        public const string MenuServers_ServerTag_Modded_Description =
+            "This server has third-party modifications. You may see significant changes from the original game. Please also remember that modded servers may contain bugs introduced by those modifications. Please use at your own risk.";
+
+        public const string MenuServers_ServerTag_Modded_Title = "MODDED";
+
+        public const string MenuServers_ServerTag_Official_Description =
+            "This is one of the official CryoFall servers hosted by the developers.";
+
+        public const string MenuServers_ServerTag_Official_Title = "OFFICIAL";
+
+        public const string MenuServers_ServerTag_PvE_Description =
+            @"This is a ""player versus environment"" server designed for peaceful exploration and development.
+              You are protected from other players, but not from wildlife and environmental dangers!
+              Joining a PvE server is a good choice if this is your first time playing CryoFall.";
+
+        public const string MenuServers_ServerTag_PvE_Title = "PvE";
+
+        public const string MenuServers_ServerTag_PvP_Description =
+            @"This is a ""player versus player"" server that focuses on combat, map control and raiding.
+              PvP servers have no restrictions—you can kill and be killed here.
+              Be prepared to fight!";
+
+        public const string MenuServers_ServerTag_PvP_Title = "PvP";
 
         public const string Network_Jitter = "Jitter";
 
@@ -351,7 +399,12 @@
               [*] Consider [b]closing[/b] other applications (especially web browsers, torrent clients, and downloaders).
               [*] Consider switching to a [b]cable connection[/b] if your PC is currently connected via Wi-Fi or mobile connection (wireless connections are often the reason for significant jitter and latency fluctuations).";
 
+        // displayed over an offline player character nickname
+        public const string NicknameOfflinePlayer = "Offline Zzz...";
+
         public const string No = "No";
+
+        public const string Notification_ActionForbidden = "Forbidden";
 
         public const string Notification_CannotPlaceThere_Title = "Cannot place there";
 
@@ -362,6 +415,11 @@
         public const string ObjectAccessModeEditor_CurrentAccessMode = "Current access mode";
 
         public const string ObjectAccessModeEditor_TitleAccessModeSelection = "Access mode";
+
+        public const string ObjectOwnersList_AddPartyMembers_Button = "Add party members";
+
+        public const string ObjectOwnersList_AddPartyMembers_Dialog =
+            "Are you sure you want to include all the party members into this list?";
 
         public const string ObjectOwnersList_AddPlayer = "Add player";
 
@@ -619,7 +677,8 @@
         public const string WindowManufacturer_ErrorInputItemsDontMatchCurrentRecipe =
             "Input items don't match the current recipe!";
 
-        public const string WindowManufacturer_ErrorNoAvailableSpaceInOutput = "No available space in the output!";
+        public const string WindowManufacturer_ErrorNoAvailableSpaceInOutput =
+            "No available space in the output!";
 
         public const string WindowManufacturer_ErrorNotEnoughInputItemsForCurrentRecipe =
             "Not enough input items for current recipe!";
@@ -629,6 +688,24 @@
         public const string WindowObjectLight_TitleLightMode = "Light mode";
 
         public const string WindowOilRefinery_EmptyCanistersOutput = "Empty";
+
+        public const string WindowPolitics_RaidingRestriction_CurrentRaidWindow =
+            "Raiding window is now open ({0} left).";
+
+        // displayed as "Raiding any land claims is only possible during the raid window from 7 PM to 10 PM (3h in total)."
+        public const string WindowPolitics_RaidingRestriction_DescriptionFormat =
+            @"Raiding any land claims is only possible during the raid window from {0} to {1} ({2} in total).
+              [br]Structures that are outside of land claims are not protected by this system and can be attacked or destroyed at any time.";
+
+        public const string WindowPolitics_RaidingRestriction_Disabled =
+            "This server has offline raiding protection disabled.";
+
+        // displayed as "Next raid window is in 20h 45m 10s"
+        public const string WindowPolitics_RaidingRestriction_NextRaidWindowTimeout =
+            "Next raid window is in {0}.";
+
+        public const string WindowPolitics_RaidingRestriction_Title =
+            "Raiding protection";
 
         public const string WindowQuests_CompletionReward = "Completion reward";
 
@@ -651,13 +728,19 @@
 
         public const string WindowRespawn_Button_RespawnNearYourBed = "Respawn near your bed";
 
+        public const string WindowRespawn_DamageSources = "Recent damage sources:";
+
         public const string WindowRespawn_Message =
             "Looks like you've been forcibly parted from this cruel world...and you lost all your stuff! Do you want revenge?";
 
+        public const string WindowRespawn_MessageDespawned =
+            "You've left your character outside of your land claim area for too long and it has been removed from the world. You can respawn again as normal. You did not lose your items or LP.";
+
+        public const string WindowRespawn_MessagePvE =
+            "Looks like you've been forcibly parted from this cruel world...Do you want revenge?";
+
         public const string WindowRespawn_MessageWithNewbieProtection =
             "Looks like you've been killed by another player. But thankfully you still have your newbie protection, so you didn't lose any of your items or learning points. Be careful—next time this might be for real!";
-
-        public const string WindowRespawn_DamageSources = "Recent damage sources:";
 
         public const string WindowRespawn_TooltipCooldownExplanation =
             @"You've respawned in the bed recently.

@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
+    using AtomicTorch.CBND.CoreMod.Items.Devices;
 
     public class QuestMasterHunter2 : ProtoQuest
     {
@@ -18,6 +19,7 @@
         protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
         {
             requirements
+                .Add(RequirementHaveItemEquipped.Require<ItemHuntersTools>())
                 .Add(RequirementKill.Require<MobPangolin>(count: 1))
                 .Add(RequirementKill.Require<MobTropicalBoar>(count: 1))
                 .Add(RequirementKill.Require<MobTurtle>(count: 1))

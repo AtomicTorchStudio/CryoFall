@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
@@ -131,10 +132,17 @@
                 return;
             }
 
-            // remove map from mark
+            // remove mark from map
             var characterPrivateState = PlayerCharacter.GetPrivateState(owner);
-            characterPrivateState.DroppedItemsLocations
-                                 .Remove(gameObject.TilePosition);
+            var droppedLootLocations = characterPrivateState.DroppedLootLocations;
+            for (var index = droppedLootLocations.Count - 1; index >= 0; index--)
+            {
+                var mark = droppedLootLocations[index];
+                if (mark.Position == gameObject.TilePosition)
+                {
+                    droppedLootLocations.RemoveAt(index);
+                }
+            }
 
             var lastInteractingCharacter = lootObjectPrivateState.LastInteractingCharacter;
             if (owner == lastInteractingCharacter
@@ -172,7 +180,7 @@
                 if (writeToLog)
                 {
                     NewbieProtectionSystem.SharedShowNewbieCannotDamageOtherPlayersOrLootBags(character,
-                                                                                    isLootBag: true);
+                                                                                              isLootBag: true);
                 }
 
                 return false;
@@ -381,13 +389,16 @@
                 return null;
             }
 
-            GetPrivateState(objectLootContainer).Owner = character;
+            var lootPrivateState = GetPrivateState(objectLootContainer);
+            lootPrivateState.Owner = character;
+            ServerSetDefaultDestroyTimeout(lootPrivateState);
             GetPublicState(objectLootContainer).OwnerName = character.Name;
 
             var characterPrivateState = PlayerCharacter.GetPrivateState(character);
-            characterPrivateState.DroppedItemsLocations.AddIfNotContains(tilePosition);
+            characterPrivateState.DroppedLootLocations.Add(
+                new DroppedLootInfo(tilePosition, lootPrivateState.DestroyAtTime));
 
-            return GetPrivateState(objectLootContainer).ItemsContainer;
+            return lootPrivateState.ItemsContainer;
         }
 
         // try create the loot container nearby the character death position

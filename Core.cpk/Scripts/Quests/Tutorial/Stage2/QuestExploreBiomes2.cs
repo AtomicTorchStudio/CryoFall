@@ -24,7 +24,7 @@
                 .Add(RequirementVisitTile.Require<TileClay>());
 
             prerequisites
-                .Add<QuestCraftAndEquipBetterArmor>();
+                .Add<QuestUseCrowbarAndDeconstructBuilding>();
         }
     }
 }

@@ -12,6 +12,8 @@
         public override string Description =>
             "Convenient way to store large amounts of perishable food. Fridge will keep it fresh much longer. Uses built-in solar power generator.";
 
+        public override bool HasOwnersList => false;
+
         public override byte ItemsSlotsCount => 8;
 
         public override string Name => "Large fridge";

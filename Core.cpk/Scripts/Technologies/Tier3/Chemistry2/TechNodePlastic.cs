@@ -8,8 +8,6 @@
         {
             config.Effects
                   .AddRecipe<RecipePlastic>();
-
-            config.SetRequiredNode<TechNodeSyntheticMaterials>();
         }
     }
 }

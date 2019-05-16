@@ -31,8 +31,18 @@ Continuar
 UI/CoreStrings@Button_Deny:
 Rechazar
 
+UI/CoreStrings@Button_Drain:
+Drenar
+
+UI/CoreStrings@Button_Drain_DialogConfirmation:
+`¿Seguro que quieres drenar el contenido?
+[br]No podrás recuperarlo.`
+
 UI/CoreStrings@Button_Drink:
 Beber
+
+UI/CoreStrings@Button_Edit:
+Editar
 
 UI/CoreStrings@Button_Help:
 Ayuda
@@ -135,6 +145,9 @@ Protección al psi: {0}
 UI/CoreStrings@Defense_Format_Radiation:
 Protección a la radiación: {0}
 
+UI/CoreStrings@DepositAvailableForClaiming_Message:
+Se podrá obtener en:
+
 UI/CoreStrings@DepositCapacityStats_Message:
 Este depósito se agotará en:
 
@@ -182,6 +195,9 @@ Equipo
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 Mapa
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Politics:
+Diplomacia
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Quests:
 Misiones
@@ -254,6 +270,9 @@ PA
 
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Introduce los detalles de la cuenta de [url=atomictorch.com]AtomicTorch.com[/url] para vincularla a tu cuenta de Steam.
+
+UI/CoreStrings@ListFilters:
+Filtros
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 CARGANDO
@@ -365,6 +384,12 @@ Actualizar servidor
 UI/CoreStrings@MenuServers_Button_RemoveServer:
 Quitar servidor
 
+UI/CoreStrings@MenuServers_Checkbox_ShowEmpty:
+Mostrar vacíos
+
+UI/CoreStrings@MenuServers_Checkbox_ShowIncompatible:
+Mostrar incompatibles
+
 UI/CoreStrings@MenuServers_ClickToCopy:
 ¡Haz clic para copiarlo!
 
@@ -395,17 +420,42 @@ No hay servidores en esta lista
 UI/CoreStrings@MenuServers_PublicGUID:
 GUID público
 
-UI/CoreStrings@MenuServers_ServerLabelFeatured:
-DESTACADO
-
-UI/CoreStrings@MenuServers_ServerLabelModded:
-CON MODS
-
-UI/CoreStrings@MenuServers_ServerLabelOfficial:
-OFICIAL
-
 UI/CoreStrings@MenuServers_ServersCount:
 Servidores
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
+Los servidores destacados tienen la reputación de ofrecer experiencias de gran calidad, similares a las de los servidores oficiales. Sin embargo, estos servidores siguen perteneciendo a la comunidad.
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Title:
+DESTACADO
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
+Este servidor tiene modificaciones de terceros. Puede que te encuentres cambios importantes con respecto al juego original. Recuerda que los servidores modificados pueden tener bugs provocados por dichas modificaciones. Úsalos bajo tu cuenta y riesgo.
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
+CON MODS
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Description:
+Este es uno de los servidores oficiales de CryoFall, cuya responsabilidad es de los desarrolladores.
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Title:
+OFICIAL
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Description:
+`Este es un servidor "jugador contra entorno", diseñado para una evolución y una exploración pacíficas.
+Estarás a salvo de otros jugadores, ¡pero no de los animales salvajes y de los peligros del entorno!
+Si esta es la primera vez que juegas a CryoFall, es buena idea que te unas a un servidor JcE.`
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Title:
+JcE
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Description:
+`Este es un servidor "jugador contra jugador", por lo que se centra en el combate, en el control del mapa y en los asaltos.
+Los servidores JcJ no tienen restricciones. Aquí tanto puedes matar como pueden matarte.
+¡Prepárate para luchar!`
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
+JcJ
 
 UI/CoreStrings@Network_Jitter:
 Retardo
@@ -459,8 +509,14 @@ UI/CoreStrings@Network_Suggestions:
 [*] Valora la posibilidad de [b]cerrar[/b] otras aplicaciones (sobre todo los navegadores, los clientes de torrents o los gestores de descargas).
 [*] Valora la posibilidad de [b]conectar tu PC por cable[/b] si ahora mismo estás usando conexión wifi o móvil (las conexiones inalámbricas suelen ser el principal motivo de retardos y fluctuaciones de latencia).`
 
+UI/CoreStrings@NicknameOfflinePlayer:
+Desconectado Zzz...
+
 UI/CoreStrings@No:
 No
+
+UI/CoreStrings@Notification_ActionForbidden:
+Prohibido
 
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 No se puede poner ahí
@@ -476,6 +532,12 @@ Modo de acceso actual
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 Forma de acceso
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Button:
+Añadir miembros del grupo
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Dialog:
+¿Seguro que quieres incluir a todos los miembros del grupo en esta lista?
 
 UI/CoreStrings@ObjectOwnersList_AddPlayer:
 Añadir jugador
@@ -825,6 +887,22 @@ Modo de luz
 UI/CoreStrings@WindowOilRefinery_EmptyCanistersOutput:
 Vacío
 
+UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
+La ventana de asalto está abierta (quedan {0}).
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_DescriptionFormat:
+`Solo se puede asaltar un terreno adjudicado durante la ventana de asalto, de {0} a {1} ({2} en total).
+[br]Las estructuras que estén fuera de los terrenos adjudicados no estarán protegidas por este sistema y podrán ser atacadas o destruidas en cualquier momento.`
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Disabled:
+Este servidor tiene desactivado el sistema de protección contra asaltos al no estar conectado.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_NextRaidWindowTimeout:
+La próxima ventana de asalto es en {0}.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
+Protección contra asaltos
+
 UI/CoreStrings@WindowQuests_CompletionReward:
 Recompensa por completarla
 
@@ -855,14 +933,20 @@ Reaparecer en mundo
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 Reap. cerca de cama
 
+UI/CoreStrings@WindowRespawn_DamageSources:
+Fuentes de daño recientes:
+
 UI/CoreStrings@WindowRespawn_Message:
 Parece que te han obligado a abandonar este mundo cruel... ¡y has perdido todas tus cosas! ¿Quieres vengarte?
 
+UI/CoreStrings@WindowRespawn_MessageDespawned:
+Has dejado a tu personaje fuera de la zona de terreno adjudicado durante demasiado tiempo, así que ha sido eliminado del mundo. No obstante, podrás reaparecer igual que siempre. No has perdido ni tus objetos ni tus PA.
+
+UI/CoreStrings@WindowRespawn_MessagePvE:
+Parece que te han obligado a abandonar este mundo cruel... ¿Quieres vengarte?
+
 UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
 Parece que te ha matado otro jugador. Por suerte, aún tienes la protección para novatos, así que no has perdido ninguno de tus objetos o puntos de aprendizaje. No obstante, ten cuidado... ¡La próxima vez podría ir en serio!
-
-UI/CoreStrings@WindowRespawn_DamageSources:
-Fuentes de daño recientes:
 
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `Hace poco que has reaparecido en la cama.
@@ -1085,6 +1169,15 @@ UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAtta
 UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAttack_Title:
 ¡Ataque!
 
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
+`{0} se encuentra en {1};{2}.
+[br]Se podrá obtener dentro de:
+[br]{3}.
+[br]¡Coged las armas y preparaos para la captura!`
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
+Nuevo recurso disponible
+
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 Copiar coordenadas
 
@@ -1181,6 +1274,12 @@ Pelo
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Arriba
 
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
+¿Seguro que quieres salir del grupo?
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
+¿Seguro que quieres quitar a [b]{0}[/b] del grupo?
+
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
 Criatura
 
@@ -1201,12 +1300,6 @@ Estado alterado
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 siguiente nivel
-
-UI/Controls/Game/Social/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
-¿Seguro que quieres salir del grupo?
-
-UI/Controls/Game/Social/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
-¿Seguro que quieres quitar a [b]{0}[/b] del grupo?
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier1Letter:
 I
@@ -1274,11 +1367,21 @@ Introduce tu dirección de correo electrónico.
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterPassword:
 Introduce la contraseña.
 
+UI/Controls/Menu/Login/Data/ViewModelSelectUsernameFormControl@Dialog_AcceptUsername:
+`¿Te parece bien [b]{0}[/b]? No podrás cambiarlo más tarde.
+[br]Este nombre se usará en el juego al meterte en cualquier servidor.`
+
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_CapsLock:
 Bloq Mayús
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_LeftMouseButton:
 Botón izquierdo del ratón
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton1:
+Botón extra del ratón 1
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton2:
+Botón extra del ratón 2
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseScrollButton:
 Rueda del ratón

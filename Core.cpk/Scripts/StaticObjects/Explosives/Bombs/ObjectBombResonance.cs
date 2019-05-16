@@ -20,7 +20,7 @@
 
         public override double DamageRadius => DamageRadiusMax;
 
-        public override bool ActivatesRaidModeForLandClaim => true;
+        public override bool IsActivatesRaidModeForLandClaim => true;
 
         public override string Name => "Resonance bomb";
 
@@ -75,7 +75,7 @@
             // (as written in the tooltip). 4 closest tiles to the bomb are damaged through dealing 100% damage, then if there
             // is no free space it could damage through up to 7 tiles total (but the damage is reduced for every next tile after
             // fourth). It's extremely effective against multilayered walls.
-            damageValue = 6000;
+            damageValue = 12000;
             defencePenetrationCoef = 0.5;
         }
 

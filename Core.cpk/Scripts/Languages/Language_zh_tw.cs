@@ -6,7 +6,7 @@
     {
         public override string AcceptText => "接受";
 
-        public override bool IsEnabled => false; // the translation is coming soon!
+        public override bool IsEnabled => true;
 
         public override string LanguageTag => "zh_tw";
 

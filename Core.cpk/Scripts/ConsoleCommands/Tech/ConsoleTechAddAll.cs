@@ -25,7 +25,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
                 technologies.ServerAddGroup(group);
 
                 // add all nodes
-                foreach (var techNode in group.AllNodes)
+                foreach (var techNode in group.Nodes)
                 {
                     technologies.ServerAddNode(techNode);
                 }

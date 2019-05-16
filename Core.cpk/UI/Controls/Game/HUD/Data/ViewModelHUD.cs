@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Quests;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skills;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social;
@@ -28,6 +29,7 @@
             this.MenuMap = Menu.Register<WindowWorldMap>();
             this.MenuSkills = Menu.Register<WindowSkills>();
             this.MenuSocial = Menu.Register<WindowSocial>();
+            this.MenuPolitics = Menu.Register<WindowPolitics>();
             this.MenuTechTree = Menu.Register<WindowTechnologies>();
             this.MenuQuests = Menu.Register<WindowQuests>();
         }
@@ -39,6 +41,8 @@
         public Menu MenuInventory { get; }
 
         public Menu MenuMap { get; }
+
+        public Menu MenuPolitics { get; }
 
         public Menu MenuQuests { get; }
 
@@ -60,6 +64,7 @@
             this.MenuMap.Dispose();
             this.MenuSkills.Dispose();
             this.MenuSocial.Dispose();
+            this.MenuPolitics.Dispose();
             this.MenuTechTree.Dispose();
             this.MenuQuests.Dispose();
         }

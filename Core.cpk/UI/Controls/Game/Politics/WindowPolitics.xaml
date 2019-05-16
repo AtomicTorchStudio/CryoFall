@@ -1,0 +1,79 @@
+﻿<core:BaseWindowMenu
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.WindowPolitics"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="80" d:DesignWidth="850"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowSocial, IsDesignTimeCreatable=True}"
+    xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics">
+    <core:BaseUserControlWithWindow.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UI/Styles/SpecialItemsPanel.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </core:BaseUserControlWithWindow.Resources>
+
+    <core:GameWindow x:Name="GameWindow"
+                     Width="{StaticResource GameMenuStandardWindowWidth}"
+                     Height="{StaticResource GameMenuStandardWindowHeight}"
+                     FocusOnControl="{Binding ElementName=GameWindow}"
+                     FontSize="13"
+                     Foreground="{StaticResource BrushColor7}"
+                     Padding="35,10,35,5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <politics:OfflineRaidingProtectionControl
+                x:Name="OfflineRaidingProtectionControl"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="40,0" />
+
+            <politics:PartyManagementControl Grid.Row="2"
+                                             Grid.Column="0"
+                                             VerticalAlignment="Top" />
+
+            <politics:NewbieProtectionControl Grid.Row="2"
+                                              Grid.Column="2"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Top" />
+
+            <politics:DuelModeControl Grid.Row="2"
+                                      Grid.Column="2"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Top" />
+
+            <Control Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="3"
+                     Style="{StaticResource ControlHorizontalSeparator}"
+                     Visibility="{Binding Visibility, ElementName=OfflineRaidingProtectionControl}"
+                     Height="20" />
+
+            <Control Grid.Row="2"
+                     Grid.Column="1"
+                     Style="{StaticResource ControlVerticalSeparator}" />
+
+        </Grid>
+    </core:GameWindow>
+</core:BaseWindowMenu>

@@ -42,7 +42,8 @@
 
         private static readonly Lazy<ControlTemplate> LazyDefaultTemplate
             = new Lazy<ControlTemplate>(
-                () => Api.Client.UI.GetApplicationResource<ControlTemplate>("DefaultFormattedTextBlockTemplate"));
+                () => Api.Client.UI.GetApplicationResource<ControlTemplate>(
+                    "DefaultFormattedTextBlockTemplate"));
 
         private TextBlock textBlock;
 

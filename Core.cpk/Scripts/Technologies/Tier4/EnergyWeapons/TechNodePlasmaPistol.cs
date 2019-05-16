@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipePlasmaPistol>();
 
-            config.SetRequiredNode<TechNodePlasmaWeapons>();
+            config.SetRequiredNode<TechNodeLaserRifle>();
         }
     }
 }

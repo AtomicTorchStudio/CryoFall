@@ -10,6 +10,8 @@
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
@@ -26,6 +28,15 @@
             double damagePreMultiplier,
             bool clampDefenseTo1)
         {
+            if (targetObject is IStaticWorldObject staticWorldObject
+                && (!RaidingProtectionSystem.SharedCanRaid(staticWorldObject,
+                                                                       showClientNotification: false)
+                    || !PveSystem.SharedIsAllowStructureDamage(staticWorldObject,
+                                                               showClientNotification: false)))
+            {
+                return 0;
+            }
+
             if (weaponCache.ProtoObjectExplosive != null
                 && targetObject.ProtoWorldObject is IProtoStaticWorldObject targetStaticWorldObjectProto)
             {
@@ -35,43 +46,13 @@
                                                              damagePreMultiplier);
             }
 
-            bool isPvPcase = false,
-                 isFriendlyFireCase = false;
-
-            var damagingCharacter = weaponCache.Character;
-
-            if (targetObject is ICharacter targetCharacter
-                && !targetCharacter.IsNpc
-                && damagingCharacter != null
-                && !damagingCharacter.IsNpc
-                && targetCharacter != damagingCharacter)
+            // these two cases apply only if damage dealt not by a bomb
+            if (ServerIsRestrictedPvPDamage(weaponCache,
+                                            targetObject,
+                                            out var isPvPcase,
+                                            out var isFriendlyFireCase))
             {
-                // PvP detected
-                isPvPcase = true;
-                if (WeaponConstants.DamagePvpMultiplier <= 0)
-                {
-                    // PvP damage disabled
-                    return 0;
-                }
-
-                // let's check whether the players in the same party to detect the friendly fire
-                var targetParty = PartySystem.ServerGetParty(targetCharacter);
-                if (targetParty != null)
-                {
-                    var damagingParty = PartySystem.ServerGetParty(damagingCharacter);
-                    if (targetParty == damagingParty)
-                    {
-                        // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                        if (WeaponConstants.DamageFriendlyFireMultiplier <= 0)
-                        {
-                            // no damage as friendly fire is completely disabled
-                            return 0;
-                        }
-
-                        // friendly fire detected
-                        isFriendlyFireCase = true;
-                    }
-                }
+                return 0;
             }
 
             var damageValue = damagePreMultiplier * weaponCache.DamageValue;
@@ -96,6 +77,7 @@
             // multiply on final multiplier (usually used for expanding projectiles)
             totalDamage *= weaponCache.FinalDamageMultiplier;
 
+            var damagingCharacter = weaponCache.Character;
             if (isPvPcase)
             {
                 // apply PvP damage multiplier
@@ -138,25 +120,37 @@
                 return false;
             }
 
-            if (!targetCharacter.IsNpc
-                && weaponCache.Character is ICharacter damagingCharacter
-                && NewbieProtectionSystem.SharedIsNewbie(damagingCharacter))
             {
-                // no damage from newbie
-                damageApplied = 0;
-                if (Api.IsClient)
+                if (!targetCharacter.IsNpc
+                    && weaponCache.Character is ICharacter damagingCharacter
+                    && NewbieProtectionSystem.SharedIsNewbie(damagingCharacter))
                 {
-                    // display message to newbie
-                    NewbieProtectionSystem.ClientShowNewbieCannotDamageOtherPlayersOrLootBags(isLootBag: false);
-                }
+                    // no damage from newbie
+                    damageApplied = 0;
+                    if (Api.IsClient)
+                    {
+                        // display message to newbie
+                        NewbieProtectionSystem.ClientShowNewbieCannotDamageOtherPlayersOrLootBags(isLootBag: false);
+                    }
 
-                return false;
+                    // but the hit is registered so it's not possible to shoot through a character
+                    return true;
+                }
             }
 
             if (Api.IsClient)
             {
                 // we don't simulate the damage on the client side
                 damageApplied = 0;
+
+                if (weaponCache.Character is ICharacter damagingCharacter)
+                {
+                    // potentially a PvP case
+                    PveSystem.ClientShowDuelModeRequiredNotificationIfNecessary(
+                        damagingCharacter,
+                        targetCharacter);
+                }
+
                 return true;
             }
 
@@ -175,7 +169,7 @@
                 clampDefenseTo1: true);
             if (totalDamage <= 0)
             {
-                // damage suppressed by armor
+                // damage suppressed
                 damageApplied = 0;
                 return true;
             }
@@ -293,6 +287,83 @@
             var damage = protoObjectExplosive.ServerCalculateTotalDamageByExplosive(targetStaticWorldObjectProto);
             damage *= damagePreMultiplier;
             return damage;
+        }
+
+        private static bool ServerIsRestrictedPvPDamage(
+            WeaponFinalCache weaponCache,
+            IWorldObject targetObject,
+            out bool isPvPcase,
+            out bool isFriendlyFireCase)
+        {
+            isFriendlyFireCase = false;
+            var damagingCharacter = weaponCache.Character;
+            var targetCharacter = targetObject as ICharacter;
+
+            isPvPcase = targetCharacter != null
+                        && !targetCharacter.IsNpc
+                        && damagingCharacter != null
+                        && !damagingCharacter.IsNpc;
+
+            if (!isPvPcase)
+            {
+                // not a PvP damage so it cannot be restricted
+                return false;
+            }
+
+            if (weaponCache.ProtoObjectExplosive != null)
+            {
+                // PvP damage by explosives is not subject to friendly fire 
+                // damage allowed
+                return false;
+            }
+
+            // we have a PvP case when damage is dealt by weapon
+            if (targetCharacter == damagingCharacter)
+            {
+                // PvP damage disabled as player should not be able to harm self with a weapon
+                return true;
+            }
+
+            if (WeaponConstants.DamagePvpMultiplier <= 0)
+            {
+                // PvP damage disabled
+                return true;
+            }
+
+            if (!PveSystem.SharedAllowPvPDamage(targetCharacter, damagingCharacter))
+            {
+                // no PvP damage allowed by PvE system
+                return true;
+            }
+
+            // Let's check whether the players in the same party
+            // to detect the friendly fire in a non-explosive damage case.
+            var targetParty = PartySystem.ServerGetParty(targetCharacter);
+            if (targetParty == null)
+            {
+                // PvP damage allowed as it's not a friendly fire case
+                return false;
+            }
+
+            var damagingParty = PartySystem.ServerGetParty(damagingCharacter);
+            if (targetParty != damagingParty)
+            {
+                // PvP damage allowed as it's not a friendly fire case
+                return false;
+            }
+
+            // a friendly fire case is detected
+            isFriendlyFireCase = true;
+            if (WeaponConstants.DamageFriendlyFireMultiplier > 0)
+            {
+                // PvP damage allowed but it's friendly fire case
+                // so the damage will be reduced during calculation
+                return false;
+            }
+
+            // no PvP damage allowed as it's a friendly fire case
+            // and friendly fire is completely disabled
+            return true;
         }
 
         private static StatName SharedGetDefenseStatName(DamageType damageType)

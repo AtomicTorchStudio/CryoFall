@@ -60,6 +60,11 @@
 
         public override float StructurePointsMax => 5000;
 
+        public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
+        {
+            return new Vector2D(1, 2.2);
+        }
+
         public override bool SharedOnDamage(
             WeaponFinalCache weaponCache,
             IStaticWorldObject targetObject,

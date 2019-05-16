@@ -30,10 +30,14 @@
             this.character = character;
             this.isOnline = isOnline;
 
-            PlayerCharacter.GetPublicState(this.character)
-                           .ClientSubscribe(_ => _.IsNewbie,
-                                            callback: _ => this.Refresh(),
-                                            this);
+            var publicState = PlayerCharacter.GetPublicState(this.character);
+            publicState.ClientSubscribe(_ => _.IsNewbie,
+                                        callback: _ => this.Refresh(),
+                                        this);
+
+            publicState.ClientSubscribe(_ => _.IsPveDuelModeEnabled,
+                                        callback: _ => this.Refresh(),
+                                        this);
 
             PartySystem.ClientCurrentPartyMemberAddedOrRemoved += this.ClientCurrentPartyMemberAddedOrRemovedHandler;
 
@@ -57,6 +61,8 @@
                 return BrushStranger;
             }
         }
+
+        public bool IsDuelModeAndNotPartyMember { get; private set; }
 
         public bool IsNewbieAndNotPartyMember { get; private set; }
 
@@ -83,7 +89,7 @@
 
                 if (!this.isOnline)
                 {
-                    result = "Offline Zzz...\n" + result;
+                    result = CoreStrings.NicknameOfflinePlayer + "\n" + result;
                 }
 
                 return result;
@@ -103,10 +109,14 @@
         private void Refresh()
         {
             var members = PartySystem.ClientGetCurrentPartyMembers();
+            var publicState = PlayerCharacter.GetPublicState(this.character);
+            
             this.IsPartyMember = members.Contains(this.character.Name);
             this.IsNewbieAndNotPartyMember = !this.IsPartyMember
-                                             && PlayerCharacter.GetPublicState(this.character)
-                                                               .IsNewbie;
+                                             && publicState.IsNewbie;
+
+            this.IsDuelModeAndNotPartyMember = !this.IsPartyMember
+                                               && publicState.IsPveDuelModeEnabled;
 
             this.NotifyPropertyChanged(nameof(this.Brush));
         }

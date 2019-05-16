@@ -368,6 +368,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
 Fabriquer et s'équiper d'une armure en tissu
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Description:
+À présent que vous avez accès à la métallurgie, il semble logique d'améliorer vos outils. Les outils de fer sont plus durables, mais ils sont également plus efficaces que les outils primitifs en pierre.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
+[*] Essayez toujours d'améliorer vos outils lorsque la chose devient possible. Cela augmentera grandement votre productivité.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
+Fabriquer de meilleurs outils
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Écraser des crânes à grands coups de massue est efficace, mais il est parfois utile de pouvoir tirer à distance, notamment quand vos adversaires commencent à devenir coriaces.
 
@@ -443,6 +452,17 @@ Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
 Apprendre des compétences
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
+Pouvoir construire des choses, c'est sympa, mais vous pourriez également avoir envie de les démonter. C'est là qu'intervient le pied-de-biche ! Du moins, tant que la construction que vous cherchez à démonter se trouve sur un territoire que vous avez revendiqué...
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
+`[*] Dans le cadre de cette quête, vous pouvez démonter une section de mur, ou une autre construction bon marché, histoire de ne pas gaspiller de précieuses ressources.
+[*] Vous ne pouvez démonter des constructions [b]qu'à l'intérieur[/b] d'un territoire que vous avez revendiqué. 
+[*] Le démontage est le meilleur moyen de se débarrasser d'une structure ou d'un bâtiment obsolète.`
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
+Démontage au pied-de-biche
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Afin de progresser dans l'industrie et la construction, vous devez acquérir des bases en sciences, notamment en chimie.

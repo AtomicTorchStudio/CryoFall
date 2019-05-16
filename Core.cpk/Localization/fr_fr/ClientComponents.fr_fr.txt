@@ -73,30 +73,6 @@ Zoom arrière caméra
 Scripts/ClientComponents/Input/GameButton@OpenChat:
 Discussion
 
-Scripts/ClientComponents/Input/GameButton@InventoryMenu:
-Inventaire
-
-Scripts/ClientComponents/Input/GameButton@CraftingMenu:
-Artisanat
-
-Scripts/ClientComponents/Input/GameButton@MapMenu:
-Carte
-
-Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
-Construction
-
-Scripts/ClientComponents/Input/GameButton@SkillsMenu:
-Compétences
-
-Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
-Technologies
-
-Scripts/ClientComponents/Input/GameButton@SocialMenu:
-Social
-
-Scripts/ClientComponents/Input/GameButton@QuestsMenu:
-Quêtes
-
 Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
 Console de développement
 

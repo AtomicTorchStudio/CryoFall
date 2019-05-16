@@ -27,7 +27,7 @@
                 .Add(RequirementUseItem.Require<ItemMusket>());
 
             prerequisites
-                .Add<QuestBuildFurnaceAndSmeltCopper>();
+                .Add<QuestCraftIronTools>();
         }
     }
 }

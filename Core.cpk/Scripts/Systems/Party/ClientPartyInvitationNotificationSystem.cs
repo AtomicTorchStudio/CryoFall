@@ -19,14 +19,29 @@
         public const string InvitationMessageYouWillLeaveYourParty
             = "Please note: you will [b]leave[/b] your current party if you accept this invitation.";
 
+        public const string InvitationSentMessageFormat
+            = "Party invite to [b]{0}[/b] has been sent.";
+
         public const string PartyInvitationTitle
             = "Party invitation";
+
+        private static readonly TextureResource IconPartyInvitation
+            = new TextureResource("Icons/IconPartyInvitation");
 
         private static readonly Dictionary<string, WeakReference<HUDNotificationControl>>
             NotificationsFromInviteeDictionary
                 = new Dictionary<string, WeakReference<HUDNotificationControl>>(StringComparer.Ordinal);
 
         public override string Name => "Party invitations (client) system";
+
+        public static void ShowNotificationInviteSent(string name)
+        {
+            NotificationSystem.ClientShowNotification(
+                title: PartyInvitationTitle,
+                message: string.Format(InvitationSentMessageFormat, name),
+                autoHide: true,
+                icon: IconPartyInvitation);
+        }
 
         protected override void PrepareSystem()
         {
@@ -119,11 +134,11 @@
                 }
 
                 var control = NotificationSystem.ClientShowNotification(
-                    PartyInvitationTitle,
-                    string.Format(InvitationMessageFormat, name),
+                    title: PartyInvitationTitle,
+                    message: string.Format(InvitationMessageFormat, name),
                     onClick: () => ShowInvitationDialog(name),
                     autoHide: false,
-                    icon: new TextureResource("Icons/IconPartyInvitation"));
+                    icon: IconPartyInvitation);
 
                 NotificationsFromInviteeDictionary.Add(
                     name,

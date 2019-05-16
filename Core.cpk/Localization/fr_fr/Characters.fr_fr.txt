@@ -22,6 +22,9 @@ Hyène
 Scripts/Characters/Mobs/MobPangolin@Name:
 Pangolin
 
+Scripts/Characters/Mobs/MobRiverSnail@Name:
+Escargot
+
 Scripts/Characters/Mobs/MobScorpion@Name:
 Scorpion
 

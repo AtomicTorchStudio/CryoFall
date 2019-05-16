@@ -3,7 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -87,7 +87,7 @@
 
         private static void RefreshSelectedItem()
         {
-            if (!DayNightSystem.ClientIsInitialized)
+            if (!TimeOfDaySystem.ClientIsInitialized)
             {
                 // wait until DayNightSystem is initialized as some times (such as hand lamp) need to know time of day
                 return;

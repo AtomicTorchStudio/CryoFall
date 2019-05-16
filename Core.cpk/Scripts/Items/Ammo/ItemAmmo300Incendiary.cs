@@ -32,7 +32,7 @@
             out double rangeMax,
             DamageDistribution damageDistribution)
         {
-            damageValue = 24;
+            damageValue = 20;
             armorPiercingCoef = 0.2;
             finalDamageMultiplier = 1.5;
             rangeMax = 11;

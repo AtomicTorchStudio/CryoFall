@@ -22,6 +22,9 @@ Scripts/Characters/Mobs/MobHyena@Name:
 Scripts/Characters/Mobs/MobPangolin@Name:
 Панголин
 
+Scripts/Characters/Mobs/MobRiverSnail@Name:
+Улитка
+
 Scripts/Characters/Mobs/MobScorpion@Name:
 Скорпион
 

@@ -6,6 +6,8 @@
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -211,6 +213,14 @@
 
             if (IsClient)
             {
+                if (targetObject is IStaticWorldObject staticWorldObject)
+                {
+                    RaidingProtectionSystem.SharedCanRaid(staticWorldObject, 
+                                                                      showClientNotification: true);
+                    PveSystem.SharedIsAllowStructureDamage(staticWorldObject, 
+                                                           showClientNotification: true);
+                }
+
                 damageApplied = 0;
                 return true;
             }

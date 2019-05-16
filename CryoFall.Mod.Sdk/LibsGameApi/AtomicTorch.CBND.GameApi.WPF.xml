@@ -460,7 +460,7 @@
             Custom network data type. Can be null.
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.State.SyncToClientAttribute.#ctor(AtomicTorch.CBND.GameApi.Data.State.DeliveryMode,System.Boolean,AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers,System.Byte,System.Type)">
+        <member name="M:AtomicTorch.CBND.GameApi.Data.State.SyncToClientAttribute.#ctor(AtomicTorch.CBND.GameApi.Data.State.DeliveryMode,System.Boolean,AtomicTorch.CBND.GameApi.Data.State.SyncToClientReceivers,System.Byte,System.Type,System.Boolean)">
             <param name="isSendChanges">
             If false, only the initial data will be sent. All the subsequent changes of this property will not be sent.
             Used mostly when all the clients could reliably implement the same mechanics itself
@@ -472,8 +472,11 @@
             </param>
             <param name="maxUpdatesPerSecond">(only for primitive types) Max update rate (useful to limit network utilization).</param>
             <param name="networkDataType">
-            (only for primitive types) Cast to this type when transfering over network (useful to
+            (only for primitive types) Cast to this type when transferring over network (useful to
             reduce network traffic - for example double type usually could be transferred as float).
+            </param>
+            <param name="isAllowClientSideModification">
+            If set to true, no exception will thrown on modification on the client side (false by default).
             </param>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.Characters.ICharacter">
@@ -2648,7 +2651,7 @@
         </member>
         <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Components.DrawOrder.Overlay">
             <summary>
-            Overlay draw order - draws over everything. There are nothing higher than this.
+            Overlay draw order - draws over everything
             </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.EffectInstance.#ctor">
@@ -2910,7 +2913,7 @@
             <summary>
             Gets or sets the scale to apply during draw.
             <br />For example, (1,1) means draw as-is, (2,2) will increase both width and height twice.
-            Plesae note: it's overriden by the Size parameter.
+            Please note: it's overriden by the Size parameter.
             </summary>
         </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSpriteRenderer.Size">
@@ -3616,7 +3619,7 @@
             <param name="countToDestroy">Count to destroy.</param>
             <param name="destroyedCount">Destroyed count (can be less than countToDestroy).</param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IItemsServerService.MoveOrSwapItem(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider,System.UInt16@,System.Nullable{System.Byte},System.Nullable{System.UInt16},AtomicTorch.CBND.GameApi.Data.Characters.ICharacter)">
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IItemsServerService.MoveOrSwapItem(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Items.IItemsContainerProvider,System.UInt16@,System.Nullable{System.Byte},System.Nullable{System.UInt16},AtomicTorch.CBND.GameApi.Data.Characters.ICharacter,System.Boolean)">
             <summary>
             Moves the item into the container.
             <br />Please note: you can specify a specific slot. If the item is available at this slotId, it will be swapped
@@ -3624,12 +3627,14 @@
             </summary>
             <param name="item">Item.</param>
             <param name="containers">Container to accomodate the item.</param>
+            <param name="movedCount"></param>
             <param name="slotId">(optional) Slot id into which the item should be placed. Can be null.</param>
             <param name="countToMove">
             (optional) (only for stackable items) Count to move from item. Should be greater than 0 and
             lower than "item.Count".
             </param>
             <param name="byCharacter">Character (who invokes this operation).</param>
+            <param name="sendUpdateToCharacter"></param>
             <returns>True if operation is successful.</returns>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IItemsServerService.SetContainerType(AtomicTorch.CBND.GameApi.Data.Items.IItemsContainer,AtomicTorch.CBND.GameApi.Data.Items.IProtoItemsContainer)">

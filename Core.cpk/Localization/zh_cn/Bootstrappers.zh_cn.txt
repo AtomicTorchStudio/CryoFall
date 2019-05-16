@@ -1,0 +1,16 @@
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+`客户端无法连接至主服务器。
+[br]请确认您已连接至互联网并且防火墙与运营商未阻止您的访问。`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Title:
+无法连接至主服务器。
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_MessageFormat:
+`此游戏服务器需要以下mod：
+[br]{0}
+[br][br]需先下载这些mod才能进入游戏。
+[br]你可以在官方论坛找到mod：http://forums.atomictorch.com/index.php?board=24.0`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_Title:
+无法连接 - 缺少mod
+

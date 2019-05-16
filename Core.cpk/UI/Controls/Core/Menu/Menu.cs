@@ -91,7 +91,7 @@
                 }
             }
 
-            Logger.Info("No menu registered: " + typeof(TMenu).Name);
+            //Logger.Info("No menu registered: " + typeof(TMenu).Name);
             return false;
         }
 

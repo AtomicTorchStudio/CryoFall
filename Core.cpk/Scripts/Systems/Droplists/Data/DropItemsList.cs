@@ -9,6 +9,7 @@
     using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
 
     public class DropItemsList : IReadOnlyDropItemsList
     {
@@ -228,8 +229,9 @@
             ICharacter character,
             Vector2Ushort tilePosition,
             DropItemContext context,
+            out IItemsContainer groundContainer,
             bool sendNotificationWhenDropToGround = true,
-            double probabilityMultiplier = 1.0)
+            double probabilityMultiplier = 1D)
         {
             return ServerDroplistHelper.TryDropToCharacterOrGround(
                 this,
@@ -237,7 +239,8 @@
                 tilePosition,
                 sendNotificationWhenDropToGround,
                 probabilityMultiplier,
-                context);
+                context,
+                out groundContainer);
         }
 
         public CreateItemResult TryDropToContainer(
@@ -255,13 +258,15 @@
         public CreateItemResult TryDropToGround(
             Vector2Ushort tilePosition,
             DropItemContext context,
+            [CanBeNull] out IItemsContainer groundContainer,
             double probabilityMultiplier = 1.0)
         {
             return ServerDroplistHelper.TryDropToGround(
                 this,
                 tilePosition,
                 probabilityMultiplier,
-                context);
+                context,
+                out groundContainer);
         }
 
         private static void ExecuteEntry(
@@ -305,36 +310,27 @@
             DelegateSpawnDropItem delegateSpawnDropItem,
             double probability)
         {
-            var dropItemCount = DropListItemsCountMultiplier * dropItem.Count;
-            var dropItemCountRandom = DropListItemsCountMultiplier
-                                      * RandomHelper.Next(
-                                          minValue: 0,
-                                          maxValueExclusive: dropItem.CountRandom + 1);
+            probability *= DropListItemsCountMultiplier;
 
-            var countToSpawn = dropItemCount + dropItemCountRandom;
-            if (countToSpawn <= 0)
+            if (!RandomHelper.RollWithProbability(probability))
             {
                 return new CreateItemResult() { IsEverythingCreated = true };
             }
 
-            // apply probability
-            probability = MathHelper.Clamp(probability, 0, 1);
-            if (probability < 1)
+            var countToSpawn = dropItem.Count
+                               + RandomHelper.Next(minValue: 0,
+                                                   maxValueExclusive: dropItem.CountRandom + 1);
+            if (countToSpawn <= 0)
             {
-                var countToSpawnFloat = countToSpawn * probability;
-                if (countToSpawnFloat > 1)
-                {
-                    countToSpawn = (int)Math.Round(RandomHelper.NextDouble() * countToSpawnFloat,
-                                                   MidpointRounding.AwayFromZero);
-                }
-                else
-                {
-                    // cannot spawn even 1 item... so let's roll and try spawn exactly 1 item
-                    // TODO: not sure if we're using the probability correctly here
-                    countToSpawn = RandomHelper.RollWithProbability(probability)
-                                       ? 1
-                                       : 0;
-                }
+                // nothing to spawn this time
+                return new CreateItemResult() { IsEverythingCreated = true };
+            }
+
+            if (probability > 1)
+            {
+                var multiplier = probability;
+                countToSpawn = (int)Math.Round(countToSpawn * multiplier,
+                                               MidpointRounding.AwayFromZero);
             }
 
             if (countToSpawn <= 0)
@@ -433,6 +429,14 @@
                                      this.Probability,
                                      nameof(this.Condition),
                                      this.Condition);
+            }
+        }
+
+        private class Bootstrapper : BaseBootstrapper
+        {
+            public override void ServerInitialize(IServerConfiguration serverConfiguration)
+            {
+                Logger.Info($"Server drop list multiplier set to: {DropListItemsCountMultiplier:F2}");
             }
         }
     }

@@ -17,6 +17,8 @@
         public static readonly Brush IconPlaceholderBrush
             = IsDesignTime ? Brushes.LightSlateGray : null;
 
+        public byte AutoRefreshRequestId;
+
         public int ReferencesCount;
 
         private ServerAddress address;
@@ -36,8 +38,6 @@
         private ushort networkProtocolVersion;
 
         private ushort? ping;
-
-        private ushort playersOnlineCount;
 
         private string title = "...";
 
@@ -163,6 +163,10 @@
 
         public bool IsPingMeasurementDone { get; set; }
 
+        public bool IsPvE { get; set; }
+
+        public bool IsPvP { get; set; }
+
         public bool IsSelected
         {
             get => this.isSelected;
@@ -206,20 +210,7 @@
 
         public string PingText { get; private set; } = "100";
 
-        public ushort PlayersOnlineCount
-        {
-            get => this.playersOnlineCount;
-            set
-            {
-                if (this.playersOnlineCount == value)
-                {
-                    return;
-                }
-
-                this.playersOnlineCount = value;
-                //this.OnlinePlayersCountSet?.Invoke(this);
-            }
-        }
+        public ushort PlayersOnlineCount { get; set; }
 
         public string PlayersText { get; set; } = "128/256";
 
@@ -237,11 +228,6 @@
 
                 this.title = value;
                 this.NotifyThisPropertyChanged();
-
-                //if (!string.IsNullOrEmpty(this.title))
-                //{
-                //	this.TitleSet?.Invoke(this);
-                //}
             }
         }
 
@@ -304,6 +290,8 @@
             this.IsCompatible = null;
             this.Version = AppVersion.Zero;
             this.IconHash = null;
+            this.IsPvP = false;
+            this.IsPvE = false;
         }
 
         /// <summary>

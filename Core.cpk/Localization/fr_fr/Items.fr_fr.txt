@@ -103,6 +103,12 @@ Un appareil spécial conçu pour l'extraction de biomatériau des animaux ou d'a
 Scripts/Items/Devices/ItemBiomaterialCollector@Name:
 Collecteur de biomatériau
 
+Scripts/Items/Devices/ItemHuntersTools@Description:
+Les ustensiles de chasseur permettent de récolter des ressources sur les créatures bien plus rapidement.
+
+Scripts/Items/Devices/ItemHuntersTools@Name:
+Ustensiles de chasseur
+
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Emmagasine une grande quantité d'énergie utilisable en déplacement. Permet d'alimenter tout appareil ou arme à énergie.
 
@@ -183,6 +189,9 @@ Plastron tressé
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Casque tressé
+
+Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
+Casque à lampe rudimentaire
 
 Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
 Pantalon tressé
@@ -1351,6 +1360,18 @@ Ce matériau spécial en nanofibres peut être incorporé à la couche inférieu
 
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Implant de nanofibres épidermiques
+
+Scripts/Items/Medical/ItemAntiMutation@Description:
+Protège et restaure l'ADN cellulaire endommagé par une exposition à des radiations. Arrête les mutations corporelles anarchiques.
+
+Scripts/Items/Medical/ItemAntiMutation@Name:
+Traitement anti-mutation
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Pas de mutation
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+Aucune mutation corporelle anarchique n'a été détectée dans votre corps.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 Vous ne souffrez pas de nausée. Vous n'avez aucune raison d'utiliser ce médicament actuellement.

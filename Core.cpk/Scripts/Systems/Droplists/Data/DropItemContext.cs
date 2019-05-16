@@ -23,14 +23,16 @@
 
         public IProtoItemWeapon ByWeaponProto { get; }
 
-        public ICharacter Character => this.character
-                                       ?? throw new Exception(
-                                           "Spawning in non-character context - there is no Character property provided to the context");
+        public ICharacter Character
+            => this.character
+               ?? throw new Exception(
+                   "Spawning in non-character context - there is no Character property provided to the context");
 
         public bool HasCharacter => this.character != null;
 
-        public IStaticWorldObject StaticWorldObject => this.staticWorldObject
-                                                       ?? throw new Exception(
-                                                           "Spawning in non-static world object context - there is no StaticWorldObject property provided to the context");
+        public IStaticWorldObject StaticWorldObject
+            => this.staticWorldObject
+               ?? throw new Exception(
+                   "Spawning in non-static world object context - there is no StaticWorldObject property provided to the context");
     }
 }

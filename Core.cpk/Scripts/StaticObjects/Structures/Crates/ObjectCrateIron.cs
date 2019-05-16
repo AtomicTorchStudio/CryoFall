@@ -9,6 +9,8 @@
     {
         public override string Description => "Affords more space than a simple wooden crate and is harder to destroy.";
 
+        public override bool HasOwnersList => false;
+
         public override byte ItemsSlotsCount => 24;
 
         public override string Name => "Iron crate";

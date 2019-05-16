@@ -7,6 +7,7 @@
                     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+                    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
                     mc:Ignorable="d">
 
     <Color x:Key="ColorAlt0">#FF470034</Color>
@@ -321,7 +322,8 @@
                             Background="{TemplateBinding Background}"
                             Padding="{TemplateBinding Padding}">
                         <ScrollViewer Foreground="{TemplateBinding Foreground}"
-                                      CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}">
+                                      CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}"
+                                      services:AdvancedScrollViewerService.IsEnabled="True">
                             <ItemsPresenter />
                         </ScrollViewer>
                     </Border>

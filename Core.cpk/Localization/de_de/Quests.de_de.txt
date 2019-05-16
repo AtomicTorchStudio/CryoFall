@@ -368,6 +368,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
 Stelle Stoffrüstung her und rüste diese aus
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Description:
+Jetzt, wo du Zugang zur Metallurgie erhalten hast, ist es von Vorteil, deine Werkzeuge zu verbessern. Eisenwerkzeuge sind nicht nur langlebiger, sondern auch sehr viel wirksamer als primitive Steinwerkzeuge.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
+[*] Versuche deine Werkzeuge zu verbessern, sobald es dir möglich ist, denn das führt zu einer deutlichen Steigerung deiner Produktivität.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
+Stelle bessere Werkzeuge her
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Schädel mit einer Keule einzuschlagen ist ja ganz okay, aber manchmal braucht es etwas mit genügend Reichweite – besonders dann, wenn du dich mit ernsthafteren Gegnern messen willst.
 
@@ -443,6 +452,17 @@ Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
 Lerne einige Fähigkeiten
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
+Dinge bauen zu können, mag ja ganz nett sein, vielleicht ist es jedoch ebenso nützlich, deine Gebäude wieder abreißen zu können. Dazu kannst du eine Brechstange benutzen! Natürlich nur dann, wenn das Gebäude, das du abreißen möchtest, sich innerhalb deines Land Claim-Bereichs befindet.
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
+`[*] Für den Zweck dieser Quest kannst du ein Stück Wand oder etwas ähnlich Günstiges dekonstruieren, sodass du keine wertvollen Ressourcen verschwendest.
+[*] Du kannst Gebäude [b]ausschließlich[/b] [b]innerhalb[/b] deines Land Claim-Bereichs dekonstruieren.
+[*] Abriss ist der beste Weg, um unnötige oder überholte Gebäude zu entfernen.`
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
+Brechstange zum Abreißen benutzen
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Fortschritte in der Industrie und Konstruktion erfordern wissenschaftliche Grundlagen, insbesondere der Chemie.

@@ -32,8 +32,8 @@
         {
             RendererGraceAreas = new ClientLandClaimAreaRenderer(
                 ZoneColorGraceArea,
-                inflateSize: LandClaimSystem.LandClaimAreaGracePaddingSize,
-                drawOrder: DrawOrder.Overlay - 3);
+                drawOrder: DrawOrder.Overlay - 3,
+                isGraceAreaRenderer: true);
 
             RendererAreasOwnedByPlayer = new ClientLandClaimAreaRenderer(
                 ZoneColorOwnedByPlayer,

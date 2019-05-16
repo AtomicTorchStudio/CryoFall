@@ -368,6 +368,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
 Fabrica y equípate una armadura de tela
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Description:
+Ahora que tienes acceso a la metalurgia, lo normal es que mejores tus herramientas. Las herramientas de hierro no solo son más resistentes, sino que también son mucho más efectivas que las herramientas de piedra primitivas.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
+[*] Intenta mejorar tus herramientas siempre que puedas, ya que te aportarán una importante mejora a la productividad.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
+Fabrica herramientas mejores
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Aplastar cráneos con una maza está bien, pero en ocasiones agradeces tener algo de largo alcance. Sobre todo si vas a enfrentarte a adversarios más duros.
 
@@ -443,6 +452,17 @@ Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
 Aprende habilidades
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
+Eso de poder construir lo que quieras está bien, pero puede que te interese saber cómo se pueden desmantelar los edificios. ¡Puedes usar una palanca para ello! Siempre y cuando el edificio en cuestión esté dentro de tu terreno adjudicado, claro.
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
+`[*] Para esta misión, podrás desmantelar una sección de la pared o algo igual de barato, de tal modo que no pierdas recursos valiosos.
+[*] Tan [b]solo[/b] podrás desmantelar edificios que estén [b]dentro[/b] de tu terreno adjudicado.
+[*] Desmantelar cosas es el mejor modo de eliminar todo edificio o estructura que ya no necesites o que se haya quedado obsoleto.`
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
+Usa la palanca para desmantelar
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Los avances en industria y construcción requieren unos férreos conocimientos científicos, sobre todo de química.

@@ -36,7 +36,7 @@
         public override string Name => "Terrain details";
 
         public override IProtoOption OrderAfterOption
-            => GetProtoEntity<VideoOptionSpriteResolution>();
+            => GetOption<VideoOptionSpriteResolution>();
 
         public override Mode ValueProvider
         {

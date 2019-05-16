@@ -29,7 +29,7 @@
         // Remove dead mob's corpse (and the mob game object itself) after this timeout.
         public const double CorpseTimeoutSeconds = 5 * 60;
 
-        public double DurationGatheringSeconds => 3; // how long it takes to loot the body
+        public double DurationGatheringSeconds => 4; // how long it takes to loot the body
 
         public override string InteractionTooltipText => InteractionTooltipTexts.Loot;
 
@@ -81,7 +81,8 @@
             {
                 dropItemResult = lootDroplist.TryDropToCharacterOrGround(character,
                                                                          character.TilePosition,
-                                                                         dropItemContext);
+                                                                         dropItemContext,
+                                                                         out _);
             }
             // ensure that at least something is spawned...
             // perhaps that's not a good idea, but we have an attempts limit

@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters
 {
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterInvincibility;
@@ -59,6 +60,17 @@
             }
 
             var newHealth = this.HealthCurrent - damage;
+            if (newHealth <= 0 
+                && ((ICharacter)this.GameObject).IsNpc
+                && damageSource is IProtoStatusEffect)
+            {
+                // Don't allow killing mob by a status effect.
+                // This is a workaround to kill quests which cannot be finished
+                // as the final damage is done by a status effect.
+                // TODO: Should be removed when we enable the damage tracking for mobs damage.
+                newHealth = float.Epsilon;
+            }
+
             this.ServerSetHealthCurrent((float)newHealth);
         }
 

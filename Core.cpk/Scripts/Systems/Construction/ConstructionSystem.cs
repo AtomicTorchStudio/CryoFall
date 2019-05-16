@@ -3,11 +3,13 @@
     using System;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -18,7 +20,6 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ConstructionSystem : ProtoSystem<ConstructionSystem>
@@ -29,7 +30,72 @@
 
         public const string NotificationNotEnoughItems_Title = "Cannot build";
 
+        private const double MaxDistanceForBuildRepairAction = 2.24;
+
         public override string Name => "Construction build/repair system";
+
+        public static bool CheckCanInteractForConstructionByDistance(ICharacter character, IStaticWorldObject worldObject)
+        {
+            var characterPosition = character.Position;
+            var canInteract = false;
+            var statiocWorldObjectProto = ProtoObjectConstructionSite.SharedGetConstructionProto(worldObject)
+                                          ?? worldObject.ProtoStaticWorldObject;
+
+            var startTilePosition = worldObject.TilePosition;
+            foreach (var tileOffset in statiocWorldObjectProto.Layout.TileOffsets)
+            {
+                var tilePosition = startTilePosition + tileOffset;
+
+                if (characterPosition.DistanceSquaredTo(
+                        new Vector2D(tilePosition.X + 0.5, tilePosition.Y + 0.5))
+                    <= MaxDistanceForBuildRepairAction * MaxDistanceForBuildRepairAction)
+                {
+                    canInteract = true;
+                    break;
+                }
+            }
+
+            return canInteract;
+        }
+
+        public static IStaticWorldObject ClientFindWorldObjectAtCurrentMousePosition()
+        {
+            var currentCharacter = Api.Client.Characters.CurrentPlayerCharacter;
+            var objects = ClientComponentObjectInteractionHelper
+                          // find by click area
+                          .FindStaticObjectsAtCurrentMousePosition(
+                              currentCharacter,
+                              CollisionGroups.ClickArea)
+                          // find by default collider
+                          .Concat(
+                              ClientComponentObjectInteractionHelper
+                                  .FindStaticObjectsAtCurrentMousePosition(
+                                      currentCharacter,
+                                      CollisionGroups.Default))
+                          //find object in the pointed tile
+                          .Concat(
+                              Api.Client.World.GetTile(Api.Client.Input.MouseWorldPosition.ToVector2Ushort())
+                                 .StaticObjects.OrderByDescending(o => o.ProtoStaticWorldObject.Kind));
+
+            // find first damaged or incomplete structure there
+            foreach (var worldObject in objects)
+            {
+                if (!(worldObject.ProtoStaticWorldObject is IProtoObjectStructure protoObjectStructure))
+                {
+                    continue;
+                }
+
+                var maxStructurePointsMax = protoObjectStructure.SharedGetStructurePointsMax(worldObject);
+                var structurePointsCurrent =
+                    worldObject.GetPublicState<StaticObjectPublicState>().StructurePointsCurrent;
+                if (structurePointsCurrent < maxStructurePointsMax)
+                {
+                    return worldObject;
+                }
+            }
+
+            return null;
+        }
 
         public static bool ClientTryAbortAction()
         {
@@ -47,7 +113,7 @@
 
         public static void ClientTryStartAction()
         {
-            var worldObject = ClientWorldObjectInteractHelper.ClientFindWorldObjectAtCurrentMousePosition();
+            var worldObject = ClientFindWorldObjectAtCurrentMousePosition();
             if (!(worldObject?.ProtoStaticWorldObject is IProtoObjectStructure))
             {
                 return;
@@ -149,26 +215,14 @@
                 return false;
             }
 
-            // Can build/repair only if the character can contact directly
-            // with the object click area (if object has the click area)
-            // or with the object collider (if object don't has the click area).
-            var isObjectHasClickArea =
-                worldObject.PhysicsBody.Shapes.Any(s => s.CollisionGroup == CollisionGroups.ClickArea);
-
-            var result = worldObject.ProtoWorldObject.SharedIsInsideCharacterInteractionArea(
-                character,
-                worldObject,
-                writeToLog: false,
-                requiredCollisionGroup: isObjectHasClickArea
-                                            ? CollisionGroups.ClickArea
-                                            : CollisionGroups
-                                                .DefaultWithCollisionToInteractionArea);
-            if (!result)
+            // it's possible to build/repair any building within a certain distance to the character
+            var canInteract = CheckCanInteractForConstructionByDistance(character, (IStaticWorldObject)worldObject);
+            if (!canInteract)
             {
                 if (writeToLog)
                 {
                     Logger.Warning(
-                        $"Cannot build/repair - {character} cannot interact with the {worldObject} - there is no direct (physics) line of sight between them (the object click area or static/dynamic colliders must be inside the character interaction area)");
+                        $"Cannot build/repair - {character} cannot interact with the {worldObject}");
 
                     if (IsClient)
                     {
@@ -183,40 +237,9 @@
 
             if (worldObject is IStaticWorldObject staticWorldObject)
             {
-                // ensure the building is not in an area under the raid
-                var world = IsClient
-                                ? (IWorldService)Client.World
-                                : Server.World;
-
-                var protoStaticWorldObject = staticWorldObject.ProtoStaticWorldObject;
-                var validatorNoRaid = LandClaimSystem.ValidatorNoRaid;
-                foreach (var tileOffset in protoStaticWorldObject.Layout.TileOffsets)
+                if (LandClaimSystem.SharedIsUnderRaidBlock(character, staticWorldObject))
                 {
-                    var occupiedTile = world.GetTile(
-                        worldObject.TilePosition.X + tileOffset.X,
-                        worldObject.TilePosition.Y + tileOffset.Y,
-                        logOutOfBounds: false);
-
-                    if (!occupiedTile.IsValidTile)
-                    {
-                        continue;
-                    }
-
-                    if (validatorNoRaid.Function(
-                        new ConstructionTileRequirements.Context(
-                            occupiedTile,
-                            character,
-                            protoStaticWorldObject,
-                            tileOffset)))
-                    {
-                        continue;
-                    }
-
-                    // raid is under way - cannot build/repair
-                    SharedShowCannotBuildNotification(
-                        character,
-                        validatorNoRaid.ErrorMessage,
-                        protoStaticWorldObject);
+                    // the building is in an area under the raid
                     return false;
                 }
             }

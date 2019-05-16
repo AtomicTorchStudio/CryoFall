@@ -1,15 +1,16 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Perks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -21,7 +22,7 @@
         public const string Notification_NewResourceAvailable_MessageFormat =
             @"{0} located at {1};{2}.
               [br]It will be available for claiming after:
-              [br]{3} minutes.
+              [br]{3}.
               [br]Grab your guns and get ready to capture it!";
 
         public const string Notification_NewResourceAvailable_Title =
@@ -39,7 +40,7 @@
             WorldMapResourceMarksSystem.ClientMarkAdded += this.MarkAddedHandler;
             WorldMapResourceMarksSystem.ClientMarkRemoved += this.MarkRemovedHandler;
 
-            foreach (var mark in WorldMapResourceMarksSystem.ClientEnumerateMarks())
+            foreach (var mark in WorldMapResourceMarksSystem.SharedEnumerateMarks())
             {
                 this.MarkAddedHandler(mark);
             }
@@ -61,24 +62,7 @@
             }
         }
 
-        private static string GetUpdatedRecentResourceNotificationText(
-            IProtoStaticWorldObject protoResource,
-            Vector2Ushort tilePosition,
-            int timeToClaimLimitRemovalMinutes)
-        {
-            if (timeToClaimLimitRemovalMinutes < 1)
-            {
-                timeToClaimLimitRemovalMinutes = 1;
-            }
-
-            return string.Format(Notification_NewResourceAvailable_MessageFormat,
-                                 protoResource.Name,
-                                 tilePosition.X,
-                                 tilePosition.Y,
-                                 timeToClaimLimitRemovalMinutes);
-        }
-
-        private FrameworkElement GetMapControl(WorldMapResourceMark mark)
+        private static FrameworkElement GetMapControl(WorldMapResourceMark mark)
         {
             switch (mark.ProtoWorldObject)
             {
@@ -93,9 +77,53 @@
             }
         }
 
+        private static string GetUpdatedRecentResourceNotificationText(
+            IProtoStaticWorldObject protoResource,
+            Vector2Ushort tilePosition,
+            int timeRemains)
+        {
+            if (timeRemains < 1)
+            {
+                timeRemains = 1;
+            }
+
+            return string.Format(Notification_NewResourceAvailable_MessageFormat,
+                                 protoResource.Name,
+                                 tilePosition.X,
+                                 tilePosition.Y,
+                                 ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
+        }
+
+        private static void UpdateNotification(WorldMapResourceMark mark, HUDNotificationControl notification)
+        {
+            if (notification.IsHiding)
+            {
+                return;
+            }
+
+            var protoResource = mark.ProtoWorldObject;
+            var tilePosition = mark.Position;
+            var timeRemains =
+                (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(mark.ServerSpawnTime);
+            if (timeRemains <= 0)
+            {
+                notification.Hide(quick: false);
+                return;
+            }
+
+            notification.ViewModel.Message = GetUpdatedRecentResourceNotificationText(protoResource,
+                                                                                      tilePosition,
+                                                                                      timeRemains);
+
+            // schedule recursive update in a second
+            ClientComponentTimersManager.AddAction(
+                delaySeconds: 1,
+                () => UpdateNotification(mark, notification));
+        }
+
         private void MarkAddedHandler(WorldMapResourceMark mark)
         {
-            var mapControl = this.GetMapControl(mark);
+            var mapControl = GetMapControl(mark);
             var protoResource = mark.ProtoWorldObject;
 
             if (mapControl == null)
@@ -117,9 +145,11 @@
 
             this.visualizedMarks.Add((mark, mapControl));
 
-            var timeToClaimLimitRemovalMinutes = WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalMinutes(mark.ServerSpawnTime);
-            if (timeToClaimLimitRemovalMinutes < 1)
+            var timeRemains = (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(
+                mark.ServerSpawnTime);
+            if (timeRemains < 60)
             {
+                // less than a minute - not worth a notification
                 return;
             }
 
@@ -140,13 +170,15 @@
             var tilePosition = worldPosition.ToVector2Ushort()
                                - Api.Client.World.WorldBounds.Offset;
 
-            NotificationSystem.ClientShowNotification(
+            var notification = NotificationSystem.ClientShowNotification(
                 title: Notification_NewResourceAvailable_Title,
                 message: GetUpdatedRecentResourceNotificationText(protoResource,
                                                                   tilePosition,
-                                                                  timeToClaimLimitRemovalMinutes),
+                                                                  timeRemains),
                 icon: protoResource.Icon,
                 autoHide: false);
+
+            UpdateNotification(mark, notification);
         }
 
         private void MarkRemovedHandler(WorldMapResourceMark mark)

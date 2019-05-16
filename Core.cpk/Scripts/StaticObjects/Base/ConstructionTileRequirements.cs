@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Zones;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -61,14 +62,14 @@
         /// <summary>
         /// Checks if there is no dynamic objects in the tile.
         /// </summary>
-        public static Validator ValidatorNoPhysicsBodyDynamic
+        public static readonly Validator ValidatorNoPhysicsBodyDynamic
             = new Validator(ErrorNoFreeSpace,
                             c => !TileHasAnyPhysicsObjectsWhere(c.Tile, t => !t.PhysicsBody.IsStatic));
 
         /// <summary>
         /// Checks if there is any NPC nearby (circle physics check with radius defined by the constant RequirementNoNpcsRadius).
         /// </summary>
-        public static Validator ValidatorNoNpcsAround
+        public static readonly Validator ValidatorNoNpcsAround
             = new Validator(ErrorCreaturesNearby,
                             c =>
                             {
@@ -102,7 +103,7 @@
         /// <summary>
         /// Checks if there is any NPC nearby (circle physics check with radius defined by the constant RequirementNoNpcsRadius).
         /// </summary>
-        public static Validator ValidatorNoPlayersNearby
+        public static readonly Validator ValidatorNoPlayersNearby
             = new Validator(ErrorPlayerNearby,
                             c =>
                             {
@@ -146,7 +147,7 @@
         /// <summary>
         /// (Client only) Checks if there is no current player in the cell.
         /// </summary>
-        public static Validator ValidatorClientOnlyNoCurrentPlayer
+        public static readonly Validator ValidatorClientOnlyNoCurrentPlayer
             = new Validator(ErrorStandingInCell,
                             c =>
                             {
@@ -165,7 +166,7 @@
         /// <summary>
         /// Checks if there is no static objects in the tile.
         /// </summary>
-        public static Validator ValidatorNoPhysicsBodyStatic
+        public static readonly Validator ValidatorNoPhysicsBodyStatic
             = new Validator(ErrorNoFreeSpace,
                             c => !TileHasAnyPhysicsObjectsWhere(
                                      c.Tile,
@@ -186,18 +187,18 @@
                                 o => o.ProtoStaticWorldObject is IProtoObjectStructure
                                      || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal));
 
-        public static Validator ValidatorNoFarmPlot
+        public static readonly Validator ValidatorNoFarmPlot
             = new Validator(ErrorCannotBuildOnFarmPlot,
                             c => !c.Tile.StaticObjects.Any(
                                      o => o.ProtoStaticWorldObject is IProtoObjectFarmPlot));
 
-        public static Validator ValidatorNoFloor
+        public static readonly Validator ValidatorNoFloor
             = new Validator(ErrorCannotBuildOnFloor,
                             c => !c.Tile.StaticObjects.Any(
                                      o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor));
 
         // please note - this is server-side validator only, it's safely skipped by client
-        public static Validator ValidatorNotRestrictedArea
+        public static readonly Validator ValidatorNotRestrictedArea
             = new Validator(ErrorCannotBuildInRestrictedArea,
                             c =>
                             {
@@ -252,7 +253,8 @@
                                      c => c.Tile.EightNeighborTiles.All(neighbor => !neighbor.IsCliffOrSlope))
                                 .Add(ErrorTooCloseToWater,
                                      c => c.Tile.EightNeighborTiles.All(
-                                         neighbor => neighbor.ProtoTile.Kind != TileKind.Water));
+                                         neighbor => neighbor.ProtoTile.Kind != TileKind.Water))
+                                .Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositCooldown);
 
             DefaultForStaticObjects = BasicRequirements
                                       .Clone()
@@ -306,7 +308,7 @@
         public ConstructionTileRequirements Add(Validator validator)
         {
             if (validator.Function == null
-                || string.IsNullOrEmpty(validator.ErrorMessage))
+                || String.IsNullOrEmpty(validator.ErrorMessage))
             {
                 throw new ArgumentNullException(
                     nameof(validator),
@@ -395,7 +397,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool Check(Context context, out string errorMessage)
+        public bool Check(Context context, out string errorMessage)
         {
             foreach (var function in this.checkFunctions)
             {
@@ -437,22 +439,44 @@
             }
         }
 
-        public struct Validator
+        [NotPersistent]
+        public class Validator
         {
-            public readonly string ErrorMessage;
-
             public readonly DelegateCheck Function;
+
+            private readonly Func<string> errorMessageFunc;
+
+            private string errorMessage;
 
             public Validator(string errorMessage, DelegateCheck function)
             {
                 this.Function = function;
-                this.ErrorMessage = errorMessage;
+                this.errorMessage = errorMessage;
+                this.errorMessageFunc = null;
             }
+
+            public Validator(Func<string> errorMessageFunc, DelegateCheck function)
+            {
+                this.Function = function;
+                this.errorMessageFunc = errorMessageFunc;
+            }
+
+            public string ErrorMessage => this.errorMessage
+                                          ?? (this.errorMessage = this.errorMessageFunc());
 
             public override string ToString()
             {
                 return this.ErrorMessage;
             }
         }
+
+        public const string Error_UnsuitableGround_Message_CanBuildOnlyOn =
+            "You can only build on:";
+
+        public const string Error_UnsuitableGround_Message_CannotBuilOn =
+            "You cannot build on:";
+
+        public const string Error_UnsuitableGround_Title =
+            "Unsuitable ground type";
     }
 }

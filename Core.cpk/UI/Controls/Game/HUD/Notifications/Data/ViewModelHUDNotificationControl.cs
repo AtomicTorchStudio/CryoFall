@@ -72,7 +72,7 @@
                                                 ? Visibility.Visible
                                                 : Visibility.Collapsed;
 
-        public string Message { get; }
+        public string Message { get; set; }
 
         public Visibility MessageVisibility { get; } = Visibility.Collapsed;
 

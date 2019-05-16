@@ -118,7 +118,7 @@
                 && textPosition > text.Length - 1)
             {
                 // suggest for not added argument
-                argumentIndexForSuggestion = currentArgumentIndex; //
+                argumentIndexForSuggestion = currentArgumentIndex;
             }
 
             arguments = argumentsList.Count > 0 ? argumentsList.ToArray() : EmptyArguments;

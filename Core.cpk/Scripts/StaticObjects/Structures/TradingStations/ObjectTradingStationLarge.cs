@@ -67,7 +67,6 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
-            // TODO: set proper values here
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 10;

@@ -205,7 +205,9 @@
                 <TextBlock Style="{StaticResource Name}"
                            FontSize="11"
                            Margin="0,5,0,0">
-                    Sergei&#160;Morozov, Jesús de Santos García, Sergio Fernandez, AkvoMaster, p0ki, Yrol&#160;Denjeah, Evil&#160;Mammoth, Daitallica, Kane&#160;Hart, IndignoPlay, Djekke, Kawasoe, PanBanan, KaypeX
+                    Sergei&#160;Morozov, Jesús de Santos García, Sergio Fernandez, AkvoMaster, p0ki, Yrol&#160;Denjeah, Evil&#160;Mammoth,
+                    <LineBreak />David Parfitt aka Daitallica, Kane&#160;Hart, IndignoPlay, Djekke,
+                    <LineBreak />Kawasoe, PanBanan, KaypeX
                     <LineBreak />Adrian, Robin and Mathias of toneworx GmbH
                 </TextBlock>
 

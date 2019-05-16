@@ -1,0 +1,66 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.HUDDuelModeControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:pve="clr-namespace:AtomicTorch.CBND.CoreMod.Systems.PvE"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance data:ViewModelHUDDuelModeControl, d:IsDesignTimeCreatable=True}"
+    d:DesignHeight="300" d:DesignWidth="300"
+    Visibility="{Binding Visibility}">
+    <base:BaseUserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="noesis:Text.Stroke" Value="#AA000000" />
+                <Setter Property="noesis:Text.StrokeThickness" Value="1" />
+            </Style>
+        </ResourceDictionary>
+    </base:BaseUserControl.Resources>
+
+    <Border Background="#66000000"
+            BorderBrush="#AA000000"
+            BorderThickness="1"
+            CornerRadius="3"
+            Padding="5,3"
+            Margin="0,0,0,5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Path Data="{StaticResource IconGeometryPathDuelMode}"
+                      Fill="#FFFF1111"
+                      Stroke="#AA000000"
+                      StrokeThickness="1"
+                      Width="24"
+                      Height="24"
+                      Stretch="Uniform"
+                      VerticalAlignment="Center"
+                      UseLayoutRounding="True"
+                      Margin="0,0,5,0" />
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           Text="{x:Static pve:PveSystem.DuelMode_Title}"
+                           FontSize="18"
+                           Foreground="#FFFF1111"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Center" />
+            </Grid>
+        </Grid>
+    </Border>
+</base:BaseUserControl>

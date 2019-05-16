@@ -55,6 +55,9 @@
         [SyncToClient]
         public bool IsOnline { get; set; }
 
+        [SyncToClient]
+        public bool IsPveDuelModeEnabled { get; set; }
+
         [SyncToClient(receivers: ScopePlayers)]
         [TempOnly]
         public IItem SelectedHotbarItem { get; private set; }

@@ -121,23 +121,11 @@ Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
 Фермерство 2
 
-Scripts/Technologies/Tier2/Farming2/TechNodeComplexCrops@Name:
-Улучшенные посевы
-
-Scripts/Technologies/Tier2/Farming2/TechNodeFarmingProductivity@Name:
-Продуктивность фермерства
-
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
 Продвинутые промышленные технологии, необходимые для обработки ресурсов и производства.
 
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
 Производство 2
-
-Scripts/Technologies/Tier2/Industry2/TechNodeAdvancedIndustry@Name:
-Улучшенное производство
-
-Scripts/Technologies/Tier2/Industry2/TechNodeBasicElectronics@Name:
-Базовая электроника
 
 Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
 Выплавка стали
@@ -162,9 +150,6 @@ Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
 
 Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
 Химия 2
-
-Scripts/Technologies/Tier3/Chemistry2/TechNodeSyntheticMaterials@Name:
-Синтетические материалы
 
 Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
 Работа с валютами и торговыми системами. Позволяет чеканить и перерабатывать монеты, а также строить автоматические торговые станции.
@@ -210,12 +195,6 @@ Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
 
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
 Фермерство 3
-
-Scripts/Technologies/Tier3/Farming3/TechNodeDecorativeGardening@Name:
-Декоративное садоводство
-
-Scripts/Technologies/Tier3/Farming3/TechNodeSpecializedCrops@Name:
-Специализированное растениеводство
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
 Улучшенные промышленные технологии, необходимые для более сложной обработки ресурсов и производства.
@@ -265,9 +244,6 @@ Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
 Химия 3
 
-Scripts/Technologies/Tier4/Chemistry3/TechNodeHighEnergySubstances@Name:
-Высокоэнергетические вещества
-
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
 Высокотехнологичные постройки.
 
@@ -277,17 +253,14 @@ Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
 Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
 Бетонные постройки
 
+Scripts/Technologies/Tier4/Construction4/TechNodeSteelConstructions@Name:
+Строительство из стали
+
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
 Изготовление и применение кибернетических и биологических имплантов.
 
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
 Кибернетика
-
-Scripts/Technologies/Tier4/Cybernetics/TechNodeBiomaterialProcessing@Name:
-Работа с биоматериалами
-
-Scripts/Technologies/Tier4/Cybernetics/TechNodeImplantManufacturing@Name:
-Производство имплантов
 
 Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
 Передовые технологии защиты.
@@ -306,12 +279,6 @@ Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
 Энергетическое оружие
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechNodeLaserWeapons@Name:
-Лазерное оружие
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechNodePlasmaWeapons@Name:
-Плазменное оружие
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
 Передовые промышленные технологии, необходимые для самых сложных производственных процессов.
@@ -336,10 +303,4 @@ Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Атака 4
-
-Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
-Калибр .300
-
-Scripts/Technologies/Tier4/Offense4/TechNodeAdvancedExplosives@Name:
-Улучшенная взрывчатка
 

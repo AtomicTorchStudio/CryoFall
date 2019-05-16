@@ -21,7 +21,8 @@
 
         public override string Name => "Use scroll wheel for";
 
-        public override IProtoOption OrderAfterOption => GetProtoEntity<GeneralOptionScreenshotResolution>();
+        public override IProtoOption OrderAfterOption 
+            => GetOption<GeneralOptionScreenshotResolution>();
 
         public override Mode ValueProvider { get; set; }
 

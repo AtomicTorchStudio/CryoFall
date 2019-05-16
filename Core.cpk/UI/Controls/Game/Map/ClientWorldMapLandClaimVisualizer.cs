@@ -20,7 +20,7 @@
     {
         public const string NotificationBaseUnderAttack_MessageFormat
             = @"One of your bases is being raided!
-  [br]({0};{1})";
+                [br]({0};{1})";
 
         public const string NotificationBaseUnderAttack_Title = "Under attack!";
 
@@ -89,8 +89,6 @@
         {
             private readonly ILogicObject area;
 
-            private readonly LandClaimAreaPrivateState areaPrivateState;
-
             private readonly WorldMapController worldMapController;
 
             private bool isRaided;
@@ -104,7 +102,7 @@
             public LandClaimMapData(ILogicObject area, WorldMapController worldMapController)
             {
                 this.area = area;
-                this.areaPrivateState = area.GetPrivateState<LandClaimAreaPrivateState>();
+                var areaPublicState = LandClaimArea.GetPublicState(area);
                 this.worldMapController = worldMapController;
                 this.stateSubscriptionStorage = new StateSubscriptionStorage();
 
@@ -117,7 +115,7 @@
 
                 worldMapController.AddControl(this.markControl);
 
-                this.areaPrivateState.ClientSubscribe(
+                areaPublicState.ClientSubscribe(
                     o => o.LastRaidTime,
                     this.RefreshRaidedState,
                     this.stateSubscriptionStorage);
@@ -173,16 +171,7 @@
 
             private void RefreshRaidedState()
             {
-                if (!this.areaPrivateState.LastRaidTime.HasValue)
-                {
-                    this.RemoveRaidNotificationControl();
-                    return;
-                }
-
-                var timeSinceRaid = Api.Client.CurrentGame.ServerFrameTimeRounded
-                                    - this.areaPrivateState.LastRaidTime.Value;
-                var isRaidedNow = timeSinceRaid < LandClaimSystem.RaidCooldownDurationSeconds;
-
+                var isRaidedNow = LandClaimSystem.SharedIsAreaUnderRaid(this.area);
                 if (this.isRaided == isRaidedNow)
                 {
                     // no changes

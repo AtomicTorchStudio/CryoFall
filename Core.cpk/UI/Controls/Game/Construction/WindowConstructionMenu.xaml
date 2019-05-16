@@ -11,7 +11,8 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowConstructionMenu, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services">
     <core:BaseUserControlWithWindow.Resources>
         <ResourceDictionary>
 
@@ -107,12 +108,15 @@
                     </ListBox.Template>
 
                     <ListBox.Resources>
-                        <ResourceDictionary>
+                        <ResourceDictionary 
+                            d:DataContext="{d:DesignInstance data:ViewModelStructure, IsDesignTimeCreatable=True}">
                             <Style TargetType="{x:Type ListBoxItem}">
                                 <Setter Property="core:SoundUI.ClickSound"
                                         Value="{StaticResource SoundListElementClick}" />
                                 <Setter Property="core:SoundUI.EnterSound"
                                         Value="{StaticResource SoundListElementEnter}" />
+                                <Setter Property="services:DoubleClickService.CommandOnDoubleClick" 
+                                        Value="{Binding DataContext.CommandBuild,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" />
                                 <Setter Property="Background" Value="{StaticResource ItemBackgroundNormalBrush}" />
                                 <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
                                 <Setter Property="BorderBrush" Value="{StaticResource ItemBorderNormalBrush}" />

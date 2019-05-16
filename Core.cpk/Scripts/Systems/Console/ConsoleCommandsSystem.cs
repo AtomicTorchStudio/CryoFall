@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
 
     public class ConsoleCommandsSystem : ProtoSystem<ConsoleCommandsSystem>
     {
@@ -48,6 +49,12 @@
 
             if (text[0] == ServerConsoleCommandPrefixOnClient)
             {
+                if (Client.CurrentGame.ConnectionState != ConnectionState.Connected)
+                {
+                    Logger.Warning("Not connected to the game server, please don't type a server console command!");
+                    return;
+                }
+
                 // get suggestions for this command on Server-side
                 Instance.CallServer(_ => _.ServerRemote_GetSuggestions(text, textPosition, requestId));
                 return;
@@ -256,6 +263,12 @@
             {
                 if (IsClient)
                 {
+                    if (Client.CurrentGame.ConnectionState != ConnectionState.Connected)
+                    {
+                        Logger.Warning("Not connected to the game server, cannot send a server console command");
+                        return;
+                    }
+
                     Logger.Important("Console command sent to server for execution...");
                     // execute command on Server-side
                     Instance.CallServer(_ => _.ServerRemote_ExecuteCommand(text));

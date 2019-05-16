@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Zones
 {
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi;
 
     public class ZoneTemperateForest : ProtoZoneDefault
@@ -9,9 +10,12 @@
 
         protected override void PrepareZone(ZoneScripts scripts)
         {
-            // deposits
-            scripts
-                .Add(GetScript<SpawnDepositGeothermalSpring>().Configure(densityMultiplier: 0.3));
+            if (!PveSystem.ServerIsPvE)
+            {
+                // spawn resource deposits on PvP servers
+                scripts
+                    .Add(GetScript<SpawnDepositGeothermalSpring>().Configure(densityMultiplier: 0.3));
+            }
 
             // minerals
             scripts

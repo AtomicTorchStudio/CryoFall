@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
-    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Construction.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Data;
@@ -30,12 +29,10 @@
             ILogicObject area)
         {
             this.landClaimWorldObject = landClaimWorldObject;
-
             this.privateState = LandClaimArea.GetPrivateState(area);
 
-            var protoStructureWithOwnersList =
-                ((IProtoObjectWithOwnersList)landClaimWorldObject.ProtoStaticWorldObject);
-            var canEditOwners = protoStructureWithOwnersList
+            var protoLandClaim = (IProtoObjectLandClaim)landClaimWorldObject.ProtoStaticWorldObject;
+            var canEditOwners = protoLandClaim
                 .SharedCanEditOwners(landClaimWorldObject, ClientCurrentCharacterHelper.Character);
 
             this.ViewModelOwnersEditor = new ViewModelWorldObjectOwnersEditor(

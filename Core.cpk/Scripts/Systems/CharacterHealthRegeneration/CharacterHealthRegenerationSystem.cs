@@ -3,9 +3,11 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.GameApi;
 
     public class CharacterHealthRegenerationSystem : ProtoSystem<CharacterHealthRegenerationSystem>
     {
+        [NotLocalizable]
         public override string Name => "Health regeneration system";
 
         protected override void PrepareSystem()
@@ -17,11 +19,11 @@
             }
 
             TriggerEveryFrame.ServerRegister(
-                callback: Update,
+                callback: ServerUpdate,
                 name: "System." + this.ShortId);
         }
 
-        private static void Update()
+        private static void ServerUpdate()
         {
             // If update rate is 1, updating will happen for each character once a second.
             // We can set it to 2 to have updates every half second.

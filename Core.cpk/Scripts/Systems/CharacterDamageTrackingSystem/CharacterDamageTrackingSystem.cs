@@ -10,18 +10,18 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
-    using AtomicTorch.GameEngine.Common.DataStructures;
     using JetBrains.Annotations;
 
     public class CharacterDamageTrackingSystem : ProtoSystem<CharacterDamageTrackingSystem>
     {
-        private static readonly Dictionary<ICharacter, ServerCharacterDamageSourcesStats>
-            DictionaryCharacterDamageSourcesStats
-                = new Dictionary<ICharacter, ServerCharacterDamageSourcesStats>();
+        private const string DatabaseKeyPlayerDamageSourceStats = "PlayerDamageSourceStats";
 
         private static readonly IGameServerService ServerGameService = IsServer
                                                                            ? Api.Server.Game
                                                                            : null;
+
+        private static Dictionary<ICharacter, ServerCharacterDamageSourcesStats>
+            serverPlayerCharacterDamageSourcesStats;
 
         [NotLocalizable]
         public override string Name => "Damage tracking system";
@@ -32,7 +32,7 @@
         public static async Task<List<DamageSourceRemoteEntry>> ClientGetDamageTrackingStatsAsync()
         {
             var result = await Instance.CallServer(_ => _.ServerRemote_GetDamageTrackingStatsAsync());
-            return result?.OrderByDescending(e => e.Percent)
+            return result?.OrderByDescending(e => e.Fraction)
                          .ToList();
         }
 
@@ -43,7 +43,7 @@
                 return;
             }
 
-            if (DictionaryCharacterDamageSourcesStats.TryGetValue(character, out var damageSourcesStats))
+            if (serverPlayerCharacterDamageSourcesStats.TryGetValue(character, out var damageSourcesStats))
             {
                 damageSourcesStats.ClearStats();
             }
@@ -52,7 +52,7 @@
         [CanBeNull]
         public static List<DamageSourceRemoteEntry> ServerGetDamageSources(ICharacter character)
         {
-            if (!DictionaryCharacterDamageSourcesStats.TryGetValue(character, out var stats))
+            if (!serverPlayerCharacterDamageSourcesStats.TryGetValue(character, out var stats))
             {
                 // no damage stats
                 return null;
@@ -63,7 +63,7 @@
             var publicState = PlayerCharacter.GetPublicState(character);
             var untilTime = publicState.IsDead && privateState.LastDeathTime.HasValue
                                 ? privateState.LastDeathTime.Value
-                                : ServerGameService.FrameTime;
+                                : 0; // get all the stored damage sources as we don't have the death time
 
             return stats.BuildRemoteStats(untilTime);
         }
@@ -85,7 +85,7 @@
                 switch (entry.ProtoEntity)
                 {
                     case PlayerCharacter _:
-                        percentOfPvPdamage += entry.Percent;
+                        percentOfPvPdamage += entry.Fraction;
                         break;
 
                     case StatusEffectRadiationPoisoning _:
@@ -109,13 +109,34 @@
                 return;
             }
 
-            if (!DictionaryCharacterDamageSourcesStats.TryGetValue(damagedCharacter, out var damageSourcesStats))
+            if (!serverPlayerCharacterDamageSourcesStats.TryGetValue(damagedCharacter, out var damageSourcesStats))
             {
                 damageSourcesStats = new ServerCharacterDamageSourcesStats();
-                DictionaryCharacterDamageSourcesStats[damagedCharacter] = damageSourcesStats;
+                serverPlayerCharacterDamageSourcesStats[damagedCharacter] = damageSourcesStats;
             }
 
             damageSourcesStats.RegisterDamage(damage, damageSourceEntry);
+        }
+
+        protected override void PrepareSystem()
+        {
+            if (IsClient)
+            {
+                return;
+            }
+
+            if (Api.Server.Database.TryGet(nameof(CharacterDamageTrackingSystem),
+                                           DatabaseKeyPlayerDamageSourceStats,
+                                           out serverPlayerCharacterDamageSourcesStats))
+            {
+                return;
+            }
+
+            serverPlayerCharacterDamageSourcesStats =
+                new Dictionary<ICharacter, ServerCharacterDamageSourcesStats>();
+            Api.Server.Database.Set(nameof(CharacterDamageTrackingSystem),
+                                    DatabaseKeyPlayerDamageSourceStats,
+                                    serverPlayerCharacterDamageSourcesStats);
         }
 
         /// <summary>
@@ -126,139 +147,6 @@
         private List<DamageSourceRemoteEntry> ServerRemote_GetDamageTrackingStatsAsync()
         {
             return ServerGetDamageSources(ServerRemoteContext.Character);
-        }
-
-        private class ServerCharacterDamageSourcesStats
-        {
-            // we store the damage sources for the last two minutes - 12 chunks per 10 seconds
-            private const double ChunkDuration = 10;
-
-            private const int ChunksCount = 12;
-
-            private static readonly Dictionary<ServerDamageSourceEntry, double> TempRemoteStatsBuilderDictionary
-                = new Dictionary<ServerDamageSourceEntry, double>(capacity: 32);
-
-            private readonly CycledArrayStorage<ServerDamageSourcesStatsChunk> storage
-                = new CycledArrayStorage<ServerDamageSourcesStatsChunk>(length: ChunksCount);
-
-            public ServerCharacterDamageSourcesStats()
-            {
-                // preallocate chunks
-                for (var i = 0; i < ChunksCount; i++)
-                {
-                    this.storage.Add(new ServerDamageSourcesStatsChunk(0));
-                }
-            }
-
-            public List<DamageSourceRemoteEntry> BuildRemoteStats(double untilTime)
-            {
-                var tempDictionary = TempRemoteStatsBuilderDictionary;
-                try
-                {
-                    var timeThreshold = untilTime - ChunkDuration * ChunksCount;
-                    foreach (var chunk in this.storage.CurrentEntries)
-                    {
-                        if (chunk.StartingTime < timeThreshold)
-                        {
-                            // too old chunk
-                            continue;
-                        }
-
-                        // combine the info from this chunk to the result
-                        foreach (var pair in chunk.DictionaryDamageBySource)
-                        {
-                            var damage = pair.Value;
-                            if (tempDictionary.TryGetValue(pair.Key, out var existingDamage))
-                            {
-                                damage += existingDamage;
-                            }
-
-                            tempDictionary[pair.Key] = damage;
-                        }
-                    }
-
-                    var totalDamage = 0.0;
-                    foreach (var pair in tempDictionary)
-                    {
-                        totalDamage += pair.Value;
-                    }
-
-                    if (tempDictionary.Count == 0)
-                    {
-                        // no damage stats
-                        return null;
-                    }
-
-                    var list = new List<DamageSourceRemoteEntry>(capacity: tempDictionary.Count);
-                    foreach (var pair in tempDictionary)
-                    {
-                        var percent = pair.Value / totalDamage;
-                        list.Add(new DamageSourceRemoteEntry(pair.Key.ProtoEntity,
-                                                             pair.Key.Name,
-                                                             percent: (float)percent));
-                    }
-
-                    return list;
-                }
-                finally
-                {
-                    tempDictionary.Clear();
-                }
-            }
-
-            public void ClearStats()
-            {
-                foreach (var entry in this.storage.CurrentEntries)
-                {
-                    entry.Clear();
-                }
-            }
-
-            public void RegisterDamage(double damage, in ServerDamageSourceEntry damageSourceEntry)
-            {
-                var lastEntry = this.storage.LastOrDefault();
-                var frameTime = ServerGameService.FrameTime;
-                if (frameTime > lastEntry.StartingTime + ChunkDuration)
-                {
-                    // need to use the next chunk
-                    this.storage.MoveNext();
-                    lastEntry = this.storage.LastOrDefault();
-                    // setup the chunk
-                    lastEntry.Clear();
-                    lastEntry.StartingTime = frameTime;
-                }
-
-                lastEntry.RegisterDamage(damage, damageSourceEntry);
-            }
-
-            private class ServerDamageSourcesStatsChunk
-            {
-                public readonly Dictionary<ServerDamageSourceEntry, double> DictionaryDamageBySource
-                    = new Dictionary<ServerDamageSourceEntry, double>(capacity: 6);
-
-                public double StartingTime;
-
-                public ServerDamageSourcesStatsChunk(double startingTime)
-                {
-                    this.StartingTime = startingTime;
-                }
-
-                public void Clear()
-                {
-                    this.StartingTime = 0;
-                    this.DictionaryDamageBySource.Clear();
-                }
-
-                public void RegisterDamage(double damage, in ServerDamageSourceEntry damageSourceEntry)
-                {
-                    if (this.DictionaryDamageBySource.TryGetValue(damageSourceEntry, out var existingDamage))
-                    {
-                        damage += existingDamage;
-                    }
-
-                    this.DictionaryDamageBySource[damageSourceEntry] = damage;
-                }
-            }
         }
     }
 }

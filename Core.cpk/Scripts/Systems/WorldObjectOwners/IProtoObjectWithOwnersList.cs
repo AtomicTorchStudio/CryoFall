@@ -7,5 +7,7 @@
     public interface IProtoObjectWithOwnersList : IProtoObjectStructure
     {
         bool SharedCanEditOwners(IStaticWorldObject worldObject, ICharacter byOwner);
+
+        bool HasOwnersList { get; }
     }
 }

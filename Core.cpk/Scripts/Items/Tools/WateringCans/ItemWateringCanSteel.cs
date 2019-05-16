@@ -5,7 +5,7 @@
         public override string Description =>
             "Made from thin machined sheets of stainless steel and quite light. Can store a lot of water.";
 
-        public override ushort DurabilityMax => 200;
+        public override ushort DurabilityMax => 450; // 9*50
 
         public override string Name => "Steel watering can";
 

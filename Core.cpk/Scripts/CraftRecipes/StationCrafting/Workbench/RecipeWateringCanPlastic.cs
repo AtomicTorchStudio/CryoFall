@@ -19,7 +19,7 @@
 
             duration = CraftingDuration.Medium;
 
-            inputItems.Add<ItemPlastic>(count: 20);
+            inputItems.Add<ItemPlastic>(count: 15);
 
             outputItems.Add<ItemWateringCanPlastic>(count: 1);
         }

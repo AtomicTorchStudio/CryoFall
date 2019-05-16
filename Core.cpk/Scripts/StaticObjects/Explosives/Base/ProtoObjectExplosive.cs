@@ -4,11 +4,13 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -27,11 +29,11 @@
     {
         private DamageDescription damageDescriptionCharacters;
 
-        public abstract bool ActivatesRaidModeForLandClaim { get; }
-
         public abstract double DamageRadius { get; }
 
         public virtual TimeSpan ExplosionDelay { get; } = TimeSpan.FromSeconds(5);
+
+        public abstract bool IsActivatesRaidModeForLandClaim { get; }
 
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
 
@@ -238,24 +240,51 @@
 
         private void ServerExplode(IStaticWorldObject worldObject, ICharacter character)
         {
-            Logger.Important(worldObject + " exploded");
-
-            this.ServerSendObjectDestroyedEvent(worldObject);
-
-            ExplosionHelper.ServerExplode(
-                character: character,
-                protoObjectExplosive: this,
-                explosionPreset: this.ExplosionPreset,
-                epicenterPosition: worldObject.TilePosition.ToVector2D() + this.Layout.Center,
-                damageDescriptionCharacters: this.damageDescriptionCharacters,
-                physicsSpace: worldObject.PhysicsBody.PhysicsSpace,
-                executeExplosionCallback: this.ServerExecuteExplosion);
-
-            Server.World.DestroyObject(worldObject);
-
-            if (this.ActivatesRaidModeForLandClaim)
+            try
             {
-                LandClaimSystem.ServerOnRaid(worldObject.TilePosition, this.DamageRadius, character);
+                Logger.Important(worldObject + " exploded");
+                this.ServerSendObjectDestroyedEvent(worldObject);
+
+                ExplosionHelper.ServerExplode(
+                    character: character,
+                    protoObjectExplosive: this,
+                    explosionPreset: this.ExplosionPreset,
+                    epicenterPosition: worldObject.TilePosition.ToVector2D() + this.Layout.Center,
+                    damageDescriptionCharacters: this.damageDescriptionCharacters,
+                    physicsSpace: worldObject.PhysicsBody.PhysicsSpace,
+                    executeExplosionCallback: this.ServerExecuteExplosion);
+
+                if (this.IsActivatesRaidModeForLandClaim)
+                {
+                    var explosionRadius = (int)Math.Ceiling(this.DamageRadius);
+                    var bounds = new RectangleInt(x: worldObject.TilePosition.X - explosionRadius,
+                                                  y: worldObject.TilePosition.Y - explosionRadius,
+                                                  width: 2 * explosionRadius,
+                                                  height: 2 * explosionRadius);
+
+                    if (RaidingProtectionSystem.SharedCanRaid(bounds, showClientNotification: false))
+                    {
+                        LandClaimSystem.ServerOnRaid(bounds, character);
+                    }
+                    else
+                    {
+                        // Raiding is not possible now.
+                        // Find if there is any land claim and in that case notify nearby players
+                        // that the damage to objects there were not applied.
+                        if (LandClaimSystem.SharedIsLandClaimedByAnyone(bounds))
+                        {
+                            using (var tempPlayers = Api.Shared.GetTempList<ICharacter>())
+                            {
+                                Server.World.GetScopedByPlayers(worldObject, tempPlayers);
+                                RaidingProtectionSystem.ServerNotifyShowNotificationRaidingNotAvailableNow(tempPlayers);
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                Server.World.DestroyObject(worldObject);
             }
         }
     }

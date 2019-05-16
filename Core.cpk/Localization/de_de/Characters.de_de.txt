@@ -22,6 +22,9 @@ Hyäne
 Scripts/Characters/Mobs/MobPangolin@Name:
 Schuppentier
 
+Scripts/Characters/Mobs/MobRiverSnail@Name:
+Schnecke
+
 Scripts/Characters/Mobs/MobScorpion@Name:
 Skorpion
 

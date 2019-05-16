@@ -91,6 +91,8 @@
                 Client.Scene.GetSceneObject(character),
                 color: Colors.White.WithAlpha(0x28),
                 size: 10,
+                // the light is very faint so we're using a smaller logical size
+                logicalSize: 6,
                 spritePivotPoint: (0.5, 0.5),
                 positionOffset: (0, 0.5));
         }

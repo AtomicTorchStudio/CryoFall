@@ -1,6 +1,4 @@
-﻿// ReSharper disable CanExtractXamlLocalizableStringCSharp
-
-namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
+﻿namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -26,7 +24,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
             IProtoStaticWorldObject protoStaticWorldObject,
             [CurrentCharacterIfNull] ICharacter character)
         {
-            if (!(character.ProtoCharacter is PlayerCharacterSpectator))
+            if (!(character.ProtoCharacter is PlayerCharacterSpectator)
+                && !Server.Characters.IsSpectator(character))
             {
                 throw new Exception("Player character should be in a spectator mode."
                                     + Environment.NewLine
@@ -38,24 +37,26 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
         }
 
         public string Execute(
-            IProtoStaticWorldObject protoStaticWorldObject,
+            IProtoStaticWorldObject objTypeName,
             ushort x,
             ushort y)
         {
             var offset = Server.World.WorldBounds.Offset;
-            return SpawnObject(protoStaticWorldObject,
+            return SpawnObject(objTypeName,
                                new Vector2Ushort((ushort)(x + offset.X),
                                                  (ushort)(y + offset.Y)));
         }
 
-        private static string SpawnObject(IProtoStaticWorldObject protoStaticWorldObject, Vector2Ushort tilePosition)
+        private static string SpawnObject(
+            IProtoStaticWorldObject objTypeName,
+            Vector2Ushort tilePosition)
         {
-            if (protoStaticWorldObject is IProtoObjectLandClaim)
+            if (objTypeName is IProtoObjectLandClaim)
             {
                 throw new Exception("Cannot spawn a land claim object!");
             }
 
-            var result = Server.World.CreateStaticWorldObject(protoStaticWorldObject, tilePosition);
+            var result = Server.World.CreateStaticWorldObject(objTypeName, tilePosition);
             return result?.ToString() ?? "<cannot spawn there>";
         }
     }

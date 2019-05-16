@@ -1,6 +1,4 @@
-﻿// ReSharper disable CanExtractXamlLocalizableStringCSharp
-
-namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
+﻿namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 {
     using System.Linq;
     using System.Text;
@@ -10,7 +8,9 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 
     public class ConsolePlayerPrintFinalCache : BaseConsoleCommand
     {
-        public override string Description => "Get the world position of a player character.";
+        public override string Description =>
+            @"Prints the current final stats cache of the player character.
+              It lists all the applied stats with their sources.";
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ClientAndServerOperatorOnly;
 

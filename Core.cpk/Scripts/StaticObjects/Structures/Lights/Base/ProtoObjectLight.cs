@@ -8,10 +8,10 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
@@ -38,33 +38,6 @@
         where TPublicState : ObjectLightPublicState, new()
         where TClientState : ObjectLightClientState, new()
     {
-        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
-        {
-            if (!base.SharedCanInteract(character, worldObject, writeToLog))
-            {
-                return false;
-            }
-
-            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
-                || CreativeModeSystem.SharedIsInCreativeMode(character))
-            {
-                return true;
-            }
-
-            // not the land owner
-            if (writeToLog)
-            {
-                Logger.Warning(
-                    $"Character cannot interact with {worldObject} - not the land owner.",
-                    character);
-
-                LandClaimSystem.ServerNotifyCannotInteractNotOwner(character, worldObject);
-            }
-
-            return false;
-
-        }
-
         /// <summary>
         /// Minimal distance to a character to turn the light on-off automatically
         /// </summary>
@@ -97,6 +70,32 @@
         public void ClientSetServerMode(IStaticWorldObject lightObject, ObjectLightMode mode)
         {
             this.CallServer(_ => _.ServerRemote_SetServerMode(lightObject, mode));
+        }
+
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            if (!base.SharedCanInteract(character, worldObject, writeToLog))
+            {
+                return false;
+            }
+
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
+                || CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                return true;
+            }
+
+            // not the land owner
+            if (writeToLog)
+            {
+                Logger.Warning(
+                    $"Character cannot interact with {worldObject} - not the land owner.",
+                    character);
+
+                LandClaimSystem.ServerNotifyCannotInteractNotOwner(character, worldObject);
+            }
+
+            return false;
         }
 
         BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
@@ -274,7 +273,7 @@
             }
 
             if (mode == ObjectLightMode.Auto
-                && DayNightSystem.IsNight)
+                && TimeOfDaySystem.IsNight)
             {
                 using (var charactersNearby = Api.Shared.GetTempList<ICharacter>())
                 {

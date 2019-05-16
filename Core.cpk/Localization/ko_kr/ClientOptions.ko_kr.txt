@@ -38,11 +38,11 @@ Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 `오브젝트 상호 작용
-말풍선 표시`
+[br]말풍선 표시`
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 `오브젝트 이름
-말풍선 표시`
+[br]말풍선 표시`
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 카메라 확대/축소
@@ -164,7 +164,7 @@ Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Low:
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Name:
 `스프라이트 해상도
-(재시작 필요)`
+[br](재시작 필요)`
 
 Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.High:
 높음 (권장)

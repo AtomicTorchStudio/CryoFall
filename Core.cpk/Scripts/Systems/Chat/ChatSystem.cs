@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
@@ -16,7 +17,7 @@
 
     public class ChatSystem : ProtoSystem<ChatSystem>
     {
-        public const int MaxChatEntryLength = 225;
+        public const int MaxChatEntryLength = 300;
 
         public const string NotificationCurrentPlayerMuted =
             "You are banned from participating in chat by server administrator. Your ban expires in: {0}";
@@ -41,6 +42,14 @@
         public static event Action<BaseChatRoom> ClientChatRoomRemoved;
 
         public override string Name => "Chat system";
+
+        public static void ClientClosePrivateChat(ChatRoomPrivate privateChatRoom)
+        {
+            privateChatRoom.ClientSetOpenedOrClosedForCurrentCharacter(isClosed: true);
+
+            var chatRoomHolder = (ILogicObject)privateChatRoom.GameObject;
+            Instance.CallServer(_ => _.ServerRemote_ClientClosePrivateChat(chatRoomHolder));
+        }
 
         public static void ClientOnChatRoomAdded(ILogicObject chatRoomHolder)
         {
@@ -74,9 +83,10 @@
             {
                 if (SharedGetChatRoom(chatRoomHolder) is ChatRoomPrivate privateChatRoom
                     && (privateChatRoom.CharacterA == withCharacterName
-                     || privateChatRoom.CharacterB == withCharacterName))
+                        || privateChatRoom.CharacterB == withCharacterName))
                 {
                     // found a local chat instance with this character
+                    privateChatRoom.ClientSetOpenedOrClosedForCurrentCharacter(isClosed: false);
                     return Task.FromResult(chatRoomHolder);
                 }
             }
@@ -96,6 +106,12 @@
 
             var chatRoomHolder = (ILogicObject)chatRoom.GameObject;
             Instance.CallServer(_ => _.ServerRemote_ClientSendMessage(chatRoomHolder, message));
+        }
+
+        public static void ClientSetPrivateChatRead(ChatRoomPrivate privateChatRoom)
+        {
+            var chatRoomHolder = (ILogicObject)privateChatRoom.GameObject;
+            Instance.CallServer(_ => _.ServerRemote_ClientReadPrivateChat(chatRoomHolder));
         }
 
         public static void ServerAddChatRoomToPlayerScope(ICharacter character, ILogicObject chatRoomHolder)
@@ -173,7 +189,10 @@
             }
 
             // create chat room
-            chatRoomHolder = ServerCreateChatRoom(new ChatRoomPrivate(currentCharacterName, inviteeName));
+            chatRoomHolder = ServerCreateChatRoom(
+                new ChatRoomPrivate(characterA: currentCharacterName,
+                                    characterB: inviteeName)
+                    { IsClosedByCharacterA = false });
 
             // register chat room for current character
             currentCharacterPrivateChatRooms.Add(inviteeName, chatRoomHolder);
@@ -200,55 +219,7 @@
             return chatRoomHolder;
         }
 
-        protected override void PrepareSystem()
-        {
-            if (IsClient)
-            {
-                ClientChatBlockList.Initialize();
-                OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved +=
-                    this.ClientOnlinePlayersSystemOnPlayerAddedOrRemovedHandler;
-                return;
-            }
-
-            Server.Characters.PlayerOnlineStateChanged += ServerPlayerOnlineStateChangedHandler;
-        }
-
-        private static void ClientReceiveChatEntry(ILogicObject chatRoomHolderObject, ChatEntry chatEntry)
-        {
-            if (ClientChatBlockList.IsBlocked(chatEntry.From))
-            {
-                Logger.Info("Received a message from the blocked player: " + chatEntry.From);
-                return;
-            }
-
-            var chatRoom = SharedGetChatRoom(chatRoomHolderObject);
-            chatRoom.ClientOnMessageReceived(chatEntry);
-
-            ClientChatRoomMessageReceived?.Invoke(chatRoom, chatEntry);
-        }
-
-        private static void ServerLogNewChatEntry(uint chatRoomId, string message, string fromPlayerName)
-        {
-            // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-            var text = $"ChatId={chatRoomId} From=\"{fromPlayerName}\":{Environment.NewLine}{message}";
-            Logger.Important(text);
-            Server.Core.AddChatLogEntry(text);
-        }
-
-        private static void ServerPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
-        {
-            // just write entry into the server log file
-            // no need to send it to client (clients are using OnlinePlayersSystem to display these messages)
-            var name = playerCharacter.Name;
-            var message = string.Format(isOnline
-                                            ? PlayerWentOnlineChatMessageFormat
-                                            : PlayerWentOfflineChatMessageFormat,
-                                        name);
-
-            Server.Core.AddChatLogEntry(message);
-        }
-
-        private void ClientOnlinePlayersSystemOnPlayerAddedOrRemovedHandler(
+        private static void ClientOnlinePlayersSystemOnPlayerAddedOrRemovedHandler(
             string name,
             bool isOnline)
         {
@@ -301,6 +272,63 @@
             }
         }
 
+        private static void ClientReceiveChatEntry(ILogicObject chatRoomHolderObject, ChatEntry chatEntry)
+        {
+            if (ClientChatBlockList.IsBlocked(chatEntry.From))
+            {
+                Logger.Info("Received a message from the blocked player: " + chatEntry.From);
+                return;
+            }
+
+            var chatRoom = SharedGetChatRoom(chatRoomHolderObject);
+            chatRoom.ClientOnMessageReceived(chatEntry);
+
+            ClientChatRoomMessageReceived?.Invoke(chatRoom, chatEntry);
+        }
+
+        private static void PlayerNameChangedHandler(string oldName, string newName)
+        {
+            foreach (var dict in serverPrivateChatRooms.Values)
+            {
+                foreach (var chatRoomHolder in dict.Values)
+                {
+                    var chatRoom = (ChatRoomPrivate)SharedGetChatRoom(chatRoomHolder);
+                    if (string.Equals(chatRoom.CharacterA, oldName, StringComparison.Ordinal))
+                    {
+                        chatRoom.ServerReplaceCharacterName(newName, isCharacterA: true);
+                        Logger.Important($"Replaced private chat room username: {oldName}->{newName} in {chatRoom}");
+                    }
+
+                    if (string.Equals(chatRoom.CharacterB, oldName, StringComparison.Ordinal))
+                    {
+                        chatRoom.ServerReplaceCharacterName(newName, isCharacterA: false);
+                        Logger.Important($"Replaced private chat room username: {oldName}->{newName} in {chatRoom}");
+                    }
+                }
+            }
+        }
+
+        private static void ServerLogNewChatEntry(uint chatRoomId, string message, string fromPlayerName)
+        {
+            // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+            var text = $"ChatId={chatRoomId} From=\"{fromPlayerName}\":{Environment.NewLine}{message}";
+            Logger.Important(text);
+            Server.Core.AddChatLogEntry(text);
+        }
+
+        private static void ServerPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
+        {
+            // just write entry into the server log file
+            // no need to send it to client (clients are using OnlinePlayersSystem to display these messages)
+            var name = playerCharacter.Name;
+            var message = string.Format(isOnline
+                                            ? PlayerWentOnlineChatMessageFormat
+                                            : PlayerWentOfflineChatMessageFormat,
+                                        name);
+
+            Server.Core.AddChatLogEntry(message);
+        }
+
         private void ClientRemote_OnMuted(ILogicObject chatRoomHolder, double secondsRemains)
         {
             ClientReceiveChatEntry(
@@ -319,6 +347,37 @@
             ChatEntry chatEntry)
         {
             ClientReceiveChatEntry(chatRoomHolderObject, chatEntry);
+        }
+
+        private void ServerRemote_ClientClosePrivateChat(ILogicObject chatRoomHolder)
+        {
+            var character = ServerRemoteContext.Character;
+            if (!Server.Core.IsInPrivateScope(character, chatRoomHolder))
+            {
+                Logger.Error("Player doesn't have access to chat room (not in the private scope): "
+                             + chatRoomHolder
+                             + " - cannot accept an incoming message here");
+                return;
+            }
+
+            var chatRoom = (ChatRoomPrivate)SharedGetChatRoom(chatRoomHolder);
+            chatRoom.ServerSetReadByCharacter(character);
+            chatRoom.ServerSetCloseByCharacter(character);
+        }
+
+        private void ServerRemote_ClientReadPrivateChat(ILogicObject chatRoomHolder)
+        {
+            var character = ServerRemoteContext.Character;
+            if (!Server.Core.IsInPrivateScope(character, chatRoomHolder))
+            {
+                Logger.Error("Player doesn't have access to chat room (not in the private scope): "
+                             + chatRoomHolder
+                             + " - cannot accept an incoming message here");
+                return;
+            }
+
+            var chatRoom = (ChatRoomPrivate)SharedGetChatRoom(chatRoomHolder);
+            chatRoom.ServerSetReadByCharacter(character);
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableOrdered)]
@@ -397,8 +456,18 @@
 
         private class Bootstrapper : BaseBootstrapper
         {
+            private const string DatabaseKeyGlobalChatRoomHolder = "GlobalChatRoomHolder";
+
+            private const string DatabaseKeyLocalChatRoomHolder = "LocalChatRoomHolder";
+
+            private const string DatabaseKeyPrivateChatRooms = "PrivateChatRooms";
+
             public override void ClientInitialize()
             {
+                ClientChatBlockList.Initialize();
+                OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved +=
+                    ClientOnlinePlayersSystemOnPlayerAddedOrRemovedHandler;
+
                 Client.Characters.CurrentPlayerCharacterChanged += Refresh;
 
                 Refresh();
@@ -417,32 +486,58 @@
 
             public override void ServerInitialize(IServerConfiguration serverConfiguration)
             {
+                Server.Characters.PlayerOnlineStateChanged += ServerPlayerOnlineStateChangedHandler;
+                Server.Characters.PlayerNameChanged += PlayerNameChangedHandler;
+                Server.World.WorldBoundsChanged += this.ServerWorldBoundsChangedHandler;
+
+                ServerLoadSystem();
+            }
+
+            private static void ServerLoadSystem()
+            {
                 var database = Server.Database;
                 if (!database.TryGet(nameof(ChatSystem),
-                                     "GlobalChatRoomHolder",
+                                     DatabaseKeyGlobalChatRoomHolder,
                                      out sharedGlobalChatRoomHolder))
                 {
                     sharedGlobalChatRoomHolder = ServerCreateChatRoom(new ChatRoomGlobal());
-                    database.Set(nameof(ChatSystem), "GlobalChatRoomHolder", sharedGlobalChatRoomHolder);
+                    database.Set(nameof(ChatSystem), DatabaseKeyGlobalChatRoomHolder, sharedGlobalChatRoomHolder);
                 }
 
                 if (!database.TryGet(nameof(ChatSystem),
-                                     "LocalChatRoomHolder",
+                                     DatabaseKeyLocalChatRoomHolder,
                                      out sharedLocalChatRoomHolder))
                 {
                     sharedLocalChatRoomHolder = ServerCreateChatRoom(new ChatRoomLocal());
-                    database.Set(nameof(ChatSystem), "LocalChatRoomHolder", sharedLocalChatRoomHolder);
+                    database.Set(nameof(ChatSystem), DatabaseKeyLocalChatRoomHolder, sharedLocalChatRoomHolder);
                 }
 
                 if (!database.TryGet(nameof(ChatSystem),
-                                     nameof(serverPrivateChatRooms),
+                                     DatabaseKeyPrivateChatRooms,
                                      out serverPrivateChatRooms))
                 {
                     serverPrivateChatRooms = new Dictionary<string, Dictionary<string, ILogicObject>>();
                     database.Set(nameof(ChatSystem),
-                                 nameof(serverPrivateChatRooms),
+                                 DatabaseKeyPrivateChatRooms,
                                  serverPrivateChatRooms);
                 }
+            }
+
+            private void ServerWorldBoundsChangedHandler()
+            {
+                Server.World.DestroyObject(sharedGlobalChatRoomHolder);
+                Server.World.DestroyObject(sharedLocalChatRoomHolder);
+                foreach (var chatRoom in serverPrivateChatRooms.Values.SelectMany(v => v.Values))
+                {
+                    Server.World.DestroyObject(chatRoom);
+                }
+
+                var database = Server.Database;
+                database.Remove(nameof(ChatSystem), DatabaseKeyGlobalChatRoomHolder);
+                database.Remove(nameof(ChatSystem), DatabaseKeyLocalChatRoomHolder);
+                database.Remove(nameof(ChatSystem), DatabaseKeyPrivateChatRooms);
+
+                ServerLoadSystem();
             }
         }
     }

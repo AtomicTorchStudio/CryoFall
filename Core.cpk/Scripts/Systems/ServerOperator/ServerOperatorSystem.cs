@@ -15,6 +15,8 @@
 
         private static HashSet<string> serverOperatorsList;
 
+        public static event Action ClientIsOperatorChanged;
+
         public static IReadOnlyCollection<string> ServerOperatorsList
         {
             get
@@ -34,7 +36,7 @@
 
         public static void ClientRequestCurrentUserIsOperator()
         {
-            Instance.CallServer(_ => _.ServerRemote_RequestCurrentUserIsInCreativeMode());
+            Instance.CallServer(_ => _.ServerRemote_RequestCurrentUserIsOperator());
         }
 
         public static void ServerAdd(ICharacter character)
@@ -172,24 +174,32 @@
         {
             clientIsServerOperator = isOperator;
             Logger.Important("Received isOperator=" + isOperator);
+            if (ClientIsOperatorChanged != null)
+            {
+                Api.SafeInvoke(ClientIsOperatorChanged);
+            }
         }
 
-        private void ServerRemote_RequestCurrentUserIsInCreativeMode()
+        private void ServerRemote_RequestCurrentUserIsOperator()
         {
             var character = ServerRemoteContext.Character;
             if (Api.IsEditor)
             {
                 // automatically enable editor mode server operator for current payer in Editor
                 // (and do this only once)
-                if (!Api.Server.Database.TryGet(nameof(ServerOperatorSystem), "EditorOperatorFirstTimeSet", out bool _))
+                if (!Api.Server.Database.TryGet(nameof(ServerOperatorSystem),
+                                                "EditorOperatorFirstTimeSet",
+                                                out bool _))
                 {
-                    Api.Server.Database.Set(nameof(ServerOperatorSystem), "EditorOperatorFirstTimeSet", true);
+                    Api.Server.Database.Set(nameof(ServerOperatorSystem),
+                                            "EditorOperatorFirstTimeSet",
+                                            true);
                     ServerAdd(character);
                 }
             }
 
-            var isInCreativeMode = SharedIsOperator(character);
-            this.CallClient(character, _ => _.ClientRemote_SetCurrentUserIsOperator(isInCreativeMode));
+            var isOperator = SharedIsOperator(character);
+            this.CallClient(character, _ => _.ClientRemote_SetCurrentUserIsOperator(isOperator));
         }
     }
 }

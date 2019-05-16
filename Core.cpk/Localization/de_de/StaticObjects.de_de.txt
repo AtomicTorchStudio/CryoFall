@@ -40,6 +40,15 @@ Kein Bau möglich – zu nah an Klippe oder Abhang gelegen.
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
 Kein Bau möglich – zu nah am Wasser.
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
+Nur bebaubar auf:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
+Nicht bebaubar auf:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
+Ungeeigneter Bodentyp
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
 Konfigurieren
 
@@ -93,6 +102,12 @@ Einfache Bombe
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
 Resonanzbombe
+
+Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
+Vorkommensexplosion
+
+Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
+Pragmiumquellen-Explosion
 
 Scripts/StaticObjects/Loot/ObjectCorpse@Name:
 Leiche
@@ -204,6 +219,12 @@ Einfaches und leicht herzustellendes Fass, das der Aufbewahrung von Flüssigkeit
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Name:
 Holzfass
+
+Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Description:
+Große Zisterne zur langfristigen Aufbewahrung großer Mengen von Flüssigkeiten.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Name:
+Zisterne
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
 Verwende eine Waffe oder ein Werkzeug, um diese Struktur zu beschädigen.
@@ -350,6 +371,12 @@ Schwer gepanzerter Tresor, der sogar den stärksten Explosionen standhalten kann
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 Panzertresor
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
+Was auch immer dieses Banner symbolisiert – es sieht cool aus!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
+Rotes Banner
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
 Dieser ausgefallene Teppich lässt jeden Raum wärmer und gemütlicher erscheinen.
 
@@ -362,11 +389,17 @@ Zeige deinen Feinden, dass du nicht zu Scherzen aufgelegt bist. Hausfriedensbruc
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 Aufgespießter Totenkopf
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatue@Description:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 Eine wahre Zurschaustellung deines Reichtums. Nur die Reichsten der Reichen können es sich leisten, etwas Derartiges zu bauen.
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatue@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Name:
 Goldene Statue
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Description:
+Dieses kostbare Kristall zu rein ästhetischen Zwecken zu verschwenden, ist eine passende Zurschaustellung des eigenen Reichtums.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
+Pragmiumstatue
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Es gibt bereits eine Fußbodendekoration.
@@ -388,6 +421,12 @@ Einfacher Schutz gegen ungebetene Besucher. Ein wild entschlossener Gegner würd
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
 Holztür
+
+Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
+Großes Stahltor, das sich gut als Haupteingang deiner Basis verwendet lässt.
+
+Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
+Stahltor
 
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
 Kann zum Anbau einer Vielzahl von Getreide- und anderen Pflanzenarten benutzt werden. Farmland kann nur aus fruchtbarem Boden entstehen.
@@ -415,6 +454,12 @@ Einfach und zweckmäßig. Ideal für Fabrikhallen oder Militärbasen.
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Name:
 Betonfußboden
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Description:
+Langlebig und glatt. Eine gute Wahl für einen Militärbunker.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Name:
+Metallfußboden
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Description:
 Erzeugt eine gediegene Burgatmosphäre. Passt perfekt zu Steinmauern.
@@ -463,6 +508,9 @@ Land Claim (Rang 3)
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
 Land Claim (Rang 4)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT5@Name:
+Land Claim (Rang 5)
 
 Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
 Land Claim-Bereich
@@ -687,6 +735,12 @@ Kein Platz
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Disabled:
 Deaktiviert
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Description:
+Schwer gepanzerte Bunkerwände. Der ultimative Schutz für deine Basis.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Name:
+Gepanzerte Wand
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
 Solide Wand aus metallverstärkten Ziegeln. So bleiben deine Wertsachen sicher und die Eindringlinge draußen. Kann mitunter sogar einer Explosion standhalten.

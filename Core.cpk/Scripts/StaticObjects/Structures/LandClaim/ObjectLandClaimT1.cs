@@ -1,10 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ObjectLandClaimT1 : ProtoObjectLandClaim
     {
@@ -13,7 +15,7 @@
 
         public override TimeSpan DestructionTimeout => TimeSpan.FromHours(24);
 
-        public override ushort LandClaimSize => 18;
+        public override ushort LandClaimSize => 16;
 
         public override string Name => "Land claim (Tier 1)";
 
@@ -21,9 +23,14 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override byte SafeItemsSlotsCount => 12;
+        public override byte SafeItemsSlotsCount => 8;
 
         public override float StructurePointsMax => 14000;
+
+        protected override BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject)
+        {
+            return null;
+        }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
         {
@@ -54,12 +61,12 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 4);
-            repair.AddStageRequiredItem<ItemStone>(count: 2);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 5);
 
             upgrade.AddUpgrade<ObjectLandClaimT2>()
-                   .AddRequiredItem<ItemIngotIron>(count: 25)
-                   .AddRequiredItem<ItemIngotCopper>(count: 25);
+                   .AddRequiredItem<ItemIngotIron>(count: 5)
+                   .AddRequiredItem<ItemIngotCopper>(count: 5)
+                   .AddRequiredItem<ItemPlanks>(count: 25);
         }
     }
 }

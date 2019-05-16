@@ -10,6 +10,8 @@
         public override string Description =>
             "One of the best ways to store goods. Keeps one's things safe in most situations and has the most space.";
 
+        public override bool HasOwnersList => false;
+
         public override byte ItemsSlotsCount => 32;
 
         public override string Name => "Steel crate";

@@ -10,12 +10,12 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowDoor, IsDesignTimeCreatable=True}"
+    FontFamily="{StaticResource CondensedFontFamily}"
     FontWeight="Bold">
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
 
         <Grid HorizontalAlignment="Center"
-              VerticalAlignment="Center"
-              Margin="0,20,0,0">
+              VerticalAlignment="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

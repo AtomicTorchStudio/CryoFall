@@ -148,3 +148,9 @@ Capacidad para comer comida podrida
 Scripts/Base/Stats/StatName@SearchingSpeed:
 Velocidad de búsqueda
 
+Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+Daño de envenenamiento por radiación
+
+Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+Tasa de acumulación de radiación
+

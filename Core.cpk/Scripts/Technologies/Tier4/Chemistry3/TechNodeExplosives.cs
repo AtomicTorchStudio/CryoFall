@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeExplosives>();
 
-            config.SetRequiredNode<TechNodeSolvent>();
+            config.SetRequiredNode<TechNodeFormulatedGunpowder>();
         }
     }
 }

@@ -39,12 +39,9 @@
             var defenseRadiation = data.Character.SharedGetFinalStatValue(StatName.DefenseRadiation);
             intensityToAdd *= Math.Max(0, 1 - defenseRadiation);
 
-            // check if the character has "weakened" status effect
-            if (data.Character.SharedHasStatusEffect<StatusEffectWeakened>())
-            {
-                // if so, multiply radiation gain by 100
-                intensityToAdd *= 100;
-            }
+            // increase radiation effect if the player has radiation effect multiplier
+            intensityToAdd *= data.Character.SharedGetFinalStatMultiplier(StatName.RadiationPoisoningAccumulationMultiplier);
+            
 
             base.ServerAddIntensity(data, intensityToAdd);
         }
@@ -64,12 +61,8 @@
             // damage is calculated progressively depending on intensity dmg = (A*100)^2.5 / 10000;
             var DamagePerSecond = Math.Pow(data.Intensity * 100, 2.5) / 10000;
 
-            // check if the character has "weakened" status effect
-            if (data.Character.SharedHasStatusEffect<StatusEffectWeakened>())
-            {
-                // if so, multiply basic damage by 10
-                DamagePerSecond *= 10;
-            }
+            // increase the damage based on radiation poisoning damage multiplier
+            DamagePerSecond *= data.Character.SharedGetFinalStatMultiplier(StatName.RadiationPoisoningDamageMultiplier);
 
             // reducing health
             var stats = data.CharacterCurrentStats;

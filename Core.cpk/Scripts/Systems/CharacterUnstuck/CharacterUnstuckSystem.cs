@@ -2,13 +2,18 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Extensions;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -58,6 +63,11 @@
 
         public static void ClientCreateUnstuckRequest()
         {
+            if (!SharedValidateCanUnstuck(ClientCurrentCharacterHelper.Character))
+            {
+                return;
+            }
+
             Instance.CallServer(_ => _.ServerRemote_CreateUnstuckRequest());
         }
 
@@ -74,6 +84,26 @@
                 interval: TimeSpan.FromSeconds(1),
                 callback: this.ServerTimerTickCallback,
                 name: "System." + this.ShortId);
+        }
+
+        private static bool SharedValidateCanUnstuck(ICharacter character)
+        {
+            using (var tempAreas = Api.Shared.GetTempList<ILogicObject>())
+            {
+                var bounds = new RectangleInt(
+                    character.TilePosition - new Vector2Int(1, 1),
+                    new Vector2Int(2, 2));
+
+                LandClaimSystem.SharedGetAreasInBounds(bounds, tempAreas, addGracePadding: false);
+                if (tempAreas.Any(LandClaimSystem.SharedIsAreaUnderRaid))
+                {
+                    Logger.Important("Cannot unstuck when located in an area under raid");
+                    LandClaimSystem.SharedSendNotificationActionRestrictedUnderRaidblock(character);
+                    return false;
+                }
+
+                return true;
+            }
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
@@ -178,8 +208,18 @@
                         return false; // don't remove this request
                     }
 
-                    // it's like respawn but we only change the character position
-                    ServerPlayerSpawnManager.PlacePlayer(character, isRespawn: false);
+                    if (!SharedValidateCanUnstuck(character))
+                    {
+                        return true; // remove this request
+                    }
+
+                    // try to teleport player away but nearby
+                    if (!CharacterRespawnSystem.ServerTryPlaceCharacterNearby(character, character.Position))
+                    {
+                        // try to simply respawn in starting area (only the character position will be changed)
+                        ServerPlayerSpawnManager.PlacePlayer(character, isRespawn: false);
+                    }
+
                     Logger.Info(
                         $"Character unstuck from {request.InitialPosition} to {character.TilePosition}",
                         character);

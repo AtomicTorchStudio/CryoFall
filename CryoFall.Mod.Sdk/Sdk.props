@@ -106,7 +106,7 @@
     <!-- Please note - these package references should be added as dependencies to NuGet specification -->
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.2" />
-    <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
+    <PackageReference Include="Microsoft.SDK.Expression.Blend" Version="1.0.0" />    
   </ItemGroup>
 
   <Choose>  

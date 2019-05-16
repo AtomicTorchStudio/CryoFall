@@ -50,7 +50,7 @@
                                        Api.GetProtoEntity<ItemWoodPants>().Name)));
 
             prerequisites
-                .Add<QuestClaySandGlassBottlesWaterCollector>();
+                .Add<QuestExploreBiomes1>();
         }
     }
 }

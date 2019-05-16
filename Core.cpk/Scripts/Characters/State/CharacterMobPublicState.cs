@@ -24,8 +24,8 @@
         [TempOnly]
         public bool IsDead { get; set; }
 
-        // TODO: this should be temp only
         [SyncToClient(receivers: ScopePlayers)]
+        [TempOnly]
         public IItem SelectedHotbarItem { get; private set; }
 
         public void EnsureEverythingCreated()

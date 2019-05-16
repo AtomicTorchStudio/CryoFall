@@ -9,7 +9,7 @@
         public override string Name =>
             "Display object[br]interaction tooltip";
 
-        public override IProtoOption OrderAfterOption => GetProtoEntity<GeneralOptionDisplayObjectNameTooltip>();
+        public override IProtoOption OrderAfterOption => GetOption<GeneralOptionDisplayObjectNameTooltip>();
 
         public override bool ValueProvider
         {

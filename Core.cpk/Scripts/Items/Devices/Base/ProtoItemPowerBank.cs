@@ -17,6 +17,8 @@
     {
         public abstract uint EnergyCapacity { get; }
 
+        public override bool OnlySingleDeviceOfThisProtoAppliesEffect => false;
+
         public override void ClientCreateItemSlotOverlayControls(IItem item, List<Control> controls)
         {
             controls.Add(ItemSlotEnergyChargeOverlayControl.Create(item));

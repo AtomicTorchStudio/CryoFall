@@ -29,7 +29,7 @@
                   .Add<ItemSalt>(count: 2,       countRandom: 0)
                   .Add<ItemSalt>(countRandom: 1, condition: SkillMining.ConditionAdditionalYield)
                   .Add<ItemGoldNugget>(count: 1, countRandom: 3, probability: 1 / 50.0)
-                  .Add<ItemOreLithium>(count: 1, countRandom: 1, probability: 1 / 2.0);
+                  .Add<ItemOreLithium>(count: 1, countRandom: 1);
 
             // drop gemstones
             config.Stage4

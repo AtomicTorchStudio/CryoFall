@@ -4,7 +4,7 @@
     using System.Text;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class HUDGameTimeIndicator : BaseUserControl
@@ -44,7 +44,7 @@
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         private void Update()
         {
-            var time = DayNightSystem.CurrentTimeOfDayHours;
+            var time = TimeOfDaySystem.CurrentTimeOfDayHours;
             var hours = (int)time;
             var minutes = (int)(60 * ((time - hours) % 1.0));
 

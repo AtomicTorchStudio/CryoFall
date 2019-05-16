@@ -7,6 +7,8 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
@@ -18,6 +20,48 @@
     public class ObjectOilPump : ProtoObjectExtractor
     {
         public const string ErrorRequiresOilSeep = "The pump requires an oil seep.";
+
+        private static readonly ConstructionTileRequirements.Validator ValidatorForPvP
+            = new ConstructionTileRequirements.Validator(
+                ErrorRequiresOilSeep,
+                c =>
+                {
+                    if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                    {
+                        // don't validate this condition on PvE servers
+                        return true;
+                    }
+
+                    foreach (var obj in c.Tile.StaticObjects)
+                    {
+                        if (obj.ProtoStaticWorldObject is ObjectDepositOilSeep)
+                        {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                });
+
+        private static readonly ConstructionTileRequirements.Validator ValidatorForPvE
+            = new ConstructionTileRequirements.Validator(
+                () => "[b]"
+                      + ConstructionTileRequirements.Error_UnsuitableGround_Title
+                      + "[/b]"
+                      + "[br]"
+                      + ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn
+                      + "[*]"
+                      + Api.GetProtoEntity<TileBarren>().Name,
+                c =>
+                {
+                    if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                    {
+                        // don't validate this condition on PvP servers
+                        return true;
+                    }
+
+                    return c.Tile.ProtoTile == Api.GetProtoEntity<TileBarren>();
+                });
 
         private readonly TextureAtlasResource textureAtlasOilPumpActive;
 
@@ -111,8 +155,8 @@
             // so there should be the oil spawn limitation to avoid that case!
             tileRequirements
                 .Clear()
-                .Add(ErrorRequiresOilSeep,
-                     c => c.Tile.StaticObjects.Any(_ => _.ProtoStaticWorldObject is ObjectDepositOilSeep))
+                .Add(ValidatorForPvP)
+                .Add(ValidatorForPvE)
                 .Add(ConstructionTileRequirements.BasicRequirements)
                 .Add(ConstructionTileRequirements.ValidatorClientOnlyNoCurrentPlayer)
                 .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyDynamic)

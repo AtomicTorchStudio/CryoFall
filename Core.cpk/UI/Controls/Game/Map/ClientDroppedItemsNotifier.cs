@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map
 {
-    using System;
+    using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -9,7 +11,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public static class ClientDroppedItemsNotifier
     {
@@ -19,9 +20,10 @@
 
         public const string NotificationItemsDropped_Title = "Your items were dropped";
 
-        private static NetworkSyncList<Vector2Ushort> droppedItemsLocations;
+        private static readonly Dictionary<DroppedLootInfo, HUDNotificationControl> notifications
+            = new Dictionary<DroppedLootInfo, HUDNotificationControl>();
 
-        private static WeakReference<HUDNotificationControl> lastNotification;
+        private static NetworkSyncList<DroppedLootInfo> droppedItemsLocations;
 
         public static void Init(ICharacter character)
         {
@@ -33,47 +35,95 @@
             }
 
             droppedItemsLocations = PlayerCharacter.GetPrivateState(character)
-                                                   .DroppedItemsLocations;
+                                                   .DroppedLootLocations;
 
             droppedItemsLocations.ClientElementInserted += MarkerAddedHandler;
             droppedItemsLocations.ClientElementRemoved += MarkerRemovedHandler;
+
+            ClientComponentTimersManager.AddAction(
+                delaySeconds: 1,
+                () =>
+                {
+                    foreach (var droppedLootInfo in droppedItemsLocations)
+                    {
+                        ShowNotification(droppedLootInfo);
+                    }
+                });
         }
 
-        private static void HideLastNotification()
+        private static string GetNotificationText(DroppedLootInfo mark)
         {
-            if (lastNotification != null
-                && lastNotification.TryGetTarget(out var control))
+            var secondsRemains = mark.DestroyAtTime - Api.Client.CurrentGame.ServerFrameTimeApproximated;
+            if (secondsRemains < 1)
             {
-                control.Hide(quick: true);
+                secondsRemains = 1;
             }
 
-            lastNotification = null;
+            return string.Format(NotificationItemsDropped_MessageFormat,
+                                 ClientTimeFormatHelper.FormatTimeDuration(
+                                     secondsRemains));
         }
 
-        private static void MarkerAddedHandler(NetworkSyncList<Vector2Ushort> source, int index, Vector2Ushort value)
+        private static void MarkerAddedHandler(
+            NetworkSyncList<DroppedLootInfo> droppedLootInfos,
+            int index,
+            DroppedLootInfo droppedLootInfo)
         {
-            HideLastNotification();
+            ShowNotification(droppedLootInfo);
+        }
+
+        private static void MarkerRemovedHandler(
+            NetworkSyncList<DroppedLootInfo> droppedLootInfos,
+            int index,
+            DroppedLootInfo droppedLootInfo)
+        {
+            if (notifications.TryGetValue(droppedLootInfo, out var notificationControl))
+            {
+                notificationControl.Hide(quick: false);
+            }
+        }
+
+        private static void ShowNotification(DroppedLootInfo droppedLootInfo)
+        {
+            if (notifications.TryGetValue(droppedLootInfo, out _))
+            {
+                // already has a notification
+                return;
+            }
 
             var icon = Api.GetProtoEntity<ObjectPlayerLootContainer>().DefaultTexture;
 
             var notification = NotificationSystem.ClientShowNotification(
                 title: NotificationItemsDropped_Title,
-                message: string.Format(NotificationItemsDropped_MessageFormat,
-                                       ClientTimeFormatHelper.FormatTimeDuration(
-                                           ObjectPlayerLootContainer.AutoDestroyTimeoutSeconds)),
+                message: GetNotificationText(droppedLootInfo),
                 color: NotificationColor.Bad,
                 icon: icon,
                 autoHide: false);
 
-            lastNotification = new WeakReference<HUDNotificationControl>(notification);
+            UpdateNotification(droppedLootInfo, notification);
+            notifications[droppedLootInfo] = notification;
         }
 
-        private static void MarkerRemovedHandler(
-            NetworkSyncList<Vector2Ushort> source,
-            int index,
-            Vector2Ushort removedValue)
+        private static void UpdateNotification(DroppedLootInfo mark, HUDNotificationControl notification)
         {
-            HideLastNotification();
+            if (notification.IsHiding)
+            {
+                return;
+            }
+
+            var timeRemains = mark.DestroyAtTime - Api.Client.CurrentGame.ServerFrameTimeApproximated;
+            if (timeRemains <= 0)
+            {
+                notification.Hide(quick: false);
+                return;
+            }
+
+            notification.ViewModel.Message = GetNotificationText(mark);
+
+            // schedule recursive update in a second
+            ClientComponentTimersManager.AddAction(
+                delaySeconds: 1,
+                () => UpdateNotification(mark, notification));
         }
     }
 }

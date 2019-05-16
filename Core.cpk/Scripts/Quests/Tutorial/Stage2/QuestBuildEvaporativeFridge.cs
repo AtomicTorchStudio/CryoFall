@@ -23,7 +23,6 @@
                 .Add(RequirementBuildStructure.Require<ObjectFridgeEvaporator>());
 
             prerequisites
-                .Add<QuestClaySandGlassBottlesWaterCollector>()
                 .Add<QuestBuildMulchboxAndCraftWateringCan>();
         }
     }

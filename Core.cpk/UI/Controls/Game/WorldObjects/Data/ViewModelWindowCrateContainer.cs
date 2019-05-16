@@ -43,6 +43,15 @@
                 canSetAccessMode: isOwner);
         }
 
+        public bool HasOwnersList
+        {
+            get
+            {
+                var protoObject = (IProtoObjectWithOwnersList)this.WorldObjectCrate.ProtoStaticWorldObject;
+                return protoObject.HasOwnersList;
+            }
+        }
+
         public ViewModelWorldObjectAccessModeEditor ViewModelAccessModeEditor { get; }
 
         public ViewModelItemsContainerExchange ViewModelItemsContainerExchange { get; }

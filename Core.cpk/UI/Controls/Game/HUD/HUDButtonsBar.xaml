@@ -237,6 +237,25 @@
             </hud:HUDButton.BrushHighlighted>
         </hud:HUDButton>
 
+        <hud:HUDButton DataContext="{Binding MenuPolitics}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Politics -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Politics}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="PoliticsMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_politics.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_politics_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
         <hud:HUDButton DataContext="{Binding MenuQuests}"
                        Command="{Binding CommandToggle}"
                        IsSelected="{Binding IsSelected}">

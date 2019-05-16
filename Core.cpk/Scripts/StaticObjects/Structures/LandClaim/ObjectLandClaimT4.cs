@@ -1,10 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ObjectLandClaimT4 : ProtoObjectLandClaim
     {
@@ -14,7 +16,7 @@
 
         public override TimeSpan DestructionTimeout => TimeSpan.FromHours(36);
 
-        public override ushort LandClaimSize => 24;
+        public override ushort LandClaimSize => 22;
 
         public override string Name => "Land claim (Tier 4)";
 
@@ -22,9 +24,18 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override byte SafeItemsSlotsCount => 24;
+        public override byte SafeItemsSlotsCount => 8;
 
         public override float StructurePointsMax => 42000;
+
+        protected override BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject)
+        {
+            return ClientLighting.CreateLightSourceSpot(
+                sceneObject,
+                color: LightColors.ElectricCold,
+                size: (5, 9.5),
+                positionOffset: (1, 1.45));
+        }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
         {
@@ -53,9 +64,14 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 5);
-            repair.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 4);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 4);
+
+            upgrade.AddUpgrade<ObjectLandClaimT5>()
+                   .AddRequiredItem<ItemPlastic>(count: 50)
+                   .AddRequiredItem<ItemOrePragmium>(count: 50)
+                   .AddRequiredItem<ItemComponentsHighTech>(count: 20)
+                   .AddRequiredItem<ItemPowerCell>(count: 5);
         }
     }
 }

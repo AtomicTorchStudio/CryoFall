@@ -42,7 +42,7 @@
             this.durationSeconds = durationSeconds;
             this.lightSource = lightSource;
 
-            var size = lightSource.Size;
+            var size = lightSource.RenderingSize;
 
             this.sizeRangeX = new Interval<double>(
                 size.X * (fromPercents / 100.0),
@@ -52,7 +52,7 @@
                 size.Y * (fromPercents / 100.0),
                 size.Y * (toPercents / 100.0));
 
-            this.value = (this.lightSource.Size.X - this.sizeRangeX.Min) / (this.sizeRangeX.Max - this.sizeRangeX.Min);
+            this.value = (this.lightSource.RenderingSize.X - this.sizeRangeX.Min) / (this.sizeRangeX.Max - this.sizeRangeX.Min);
             this.isIncreasingValue = true;
             this.Apply(deltaTime: 0);
         }
@@ -96,7 +96,7 @@
 
             var sizeX = this.sizeRangeX.Min + this.value * (this.sizeRangeX.Max - this.sizeRangeX.Min);
             var sizeY = this.sizeRangeY.Min + this.value * (this.sizeRangeY.Max - this.sizeRangeY.Min);
-            this.lightSource.Size = new Size2F((float)sizeX, (float)sizeY);
+            this.lightSource.RenderingSize = new Size2F((float)sizeX, (float)sizeY);
         }
     }
 }

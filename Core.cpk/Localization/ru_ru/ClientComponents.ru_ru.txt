@@ -73,30 +73,6 @@ Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
 Scripts/ClientComponents/Input/GameButton@OpenChat:
 Чат
 
-Scripts/ClientComponents/Input/GameButton@InventoryMenu:
-Инвентарь
-
-Scripts/ClientComponents/Input/GameButton@CraftingMenu:
-Крафтинг
-
-Scripts/ClientComponents/Input/GameButton@MapMenu:
-Карта
-
-Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
-Строительство
-
-Scripts/ClientComponents/Input/GameButton@SkillsMenu:
-Навыки
-
-Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
-Технологии
-
-Scripts/ClientComponents/Input/GameButton@SocialMenu:
-Игроки
-
-Scripts/ClientComponents/Input/GameButton@QuestsMenu:
-Квесты
-
 Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
 Консоль разработчика
 

@@ -78,7 +78,10 @@
         {
             public override void ClientInitialize()
             {
-                var allLanguages = Api.FindProtoEntities<ProtoLanguageDefinition>();
+                var allLanguages = Api.Shared.FindScriptingTypes<ProtoLanguageDefinition>()
+                                      .Select(t => t.CreateInstance())
+                                      .ToList();
+
                 var languageDefinitions = new Dictionary<string, ProtoLanguageDefinition>(capacity: allLanguages.Count);
                 foreach (var protoLanguage in allLanguages)
                 {

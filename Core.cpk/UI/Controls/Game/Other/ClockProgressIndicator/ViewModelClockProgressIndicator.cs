@@ -109,7 +109,7 @@
 
             double angleRad, angleDeg;
             {
-                var angle = MathConstants.DoublePI * value;
+                var angle = value * MathConstants.DoublePI;
                 angleRad = angle - MathConstants.PI / 2;
                 angleDeg = angle * MathConstants.RadToDeg;
             }

@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeImplantNanoFiberSkin>();
 
-            config.SetRequiredNode<TechNodeImplantManufacturing>();
+            //config.SetRequiredNode<TechNodeImplantManufacturing>();
         }
     }
 }

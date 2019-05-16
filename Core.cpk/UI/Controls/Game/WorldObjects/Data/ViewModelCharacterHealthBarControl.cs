@@ -1,9 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data
 {
-    using System.Windows;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -59,10 +58,10 @@
             }
         }
 
-        public Visibility HealthbarVisibility { get; private set; }
-
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
         public ViewModelHUDStatBar StatBar { get; } = new ViewModelHUDStatBar("Health");
+
+        public string VisualStateName { get; private set; } = "Collapsed";
 
         protected override void DisposeViewModel()
         {
@@ -91,7 +90,7 @@
         {
             if (this.StatBar.ValueCurrent <= 0)
             {
-                this.HealthbarVisibility = Visibility.Collapsed;
+                this.VisualStateName = "Collapsed";
                 return;
             }
 
@@ -99,11 +98,11 @@
 
             if (!ClientTimeOfDayVisibilityHelper.ClientIsObservable(character))
             {
-                this.HealthbarVisibility = Visibility.Collapsed;
+                this.VisualStateName = "Collapsed";
                 return;
             }
 
-            this.HealthbarVisibility = Visibility.Visible;
+            this.VisualStateName = "Visible";
         }
     }
 }

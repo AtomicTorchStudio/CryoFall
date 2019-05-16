@@ -67,6 +67,12 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 배고픔
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
+극심한 수준의 방사능에 노출되어 신체의 세포가 변이하기 시작했습니다. 큰일입니다! 방사능 지역에 들어가는 것을 피하시기 바랍니다.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Name:
+변이
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
 먹거나 마실 수 없습니다.
 

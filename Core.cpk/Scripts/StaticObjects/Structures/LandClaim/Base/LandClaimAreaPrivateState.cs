@@ -12,10 +12,6 @@
         [SyncToClient]
         public NetworkSyncList<string> LandOwners { get; set; }
 
-        [SyncToClient]
-        [TempOnly]
-        public double? LastRaidTime { get; set; }
-
         public IStaticWorldObject ServerLandClaimWorldObject { get; set; }
     }
 }

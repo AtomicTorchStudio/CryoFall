@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeCement>();
 
-            config.SetRequiredNode<TechNodeAdvancedIndustry>();
+            //config.SetRequiredNode<TechNodeAdvancedIndustry>();
         }
     }
 }

@@ -216,7 +216,7 @@
                 return nodes;
             }
 
-            foreach (var techNode in techGroup.AllNodes)
+            foreach (var techNode in techGroup.Nodes)
             {
                 nodes.Add(new ViewModelTechNode(techNode, this, this.commandOnNodeSelect));
             }

@@ -1,8 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
+    using System.Windows;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -45,6 +45,10 @@
         public int PlayersOnlineCount => this.PlayersOnline.Count + 1;
 
         public int PlayersTotalCount => OnlinePlayersSystem.ClientTotalServerPlayersCount;
+
+        public Visibility PlayersTotalCountVisibility => this.PlayersTotalCount > 0
+                                                             ? Visibility.Visible
+                                                             : Visibility.Collapsed;
 
         protected override void DisposeViewModel()
         {
@@ -104,6 +108,7 @@
         private void TotalServerPlayersCountChangedHandler(int obj)
         {
             this.NotifyPropertyChanged(nameof(this.PlayersTotalCount));
+            this.NotifyPropertyChanged(nameof(this.PlayersTotalCountVisibility));
         }
 
         public class ViewModelPlayer : BaseViewModel, IComparable<ViewModelPlayer>, IComparable

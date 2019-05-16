@@ -17,6 +17,7 @@
             OutputItems outputItems)
         {
             stations.Add<ObjectCampfire>();
+            stations.Add<ObjectFurnace>();
 
             duration = CraftingDuration.Short;
 

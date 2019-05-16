@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.InputListeners;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.ClientComponents.UI;
+    using AtomicTorch.CBND.CoreMod.ClientOptions;
     using AtomicTorch.CBND.CoreMod.ClientOptions.Video;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Physics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -49,7 +50,7 @@
                                   GameButton.ToggleFullscreen,
                                   () =>
                                   {
-                                      var option = Api.GetProtoEntity<VideoOptionScreenMode>();
+                                      var option = ClientOptionsManager.GetOption<VideoOptionScreenMode>();
                                       option.CurrentValue =
                                           option.CurrentValue != VideoOptionScreenMode.ScreenMode.Fullscreen
                                               ? VideoOptionScreenMode.ScreenMode.Fullscreen

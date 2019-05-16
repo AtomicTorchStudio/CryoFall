@@ -103,6 +103,12 @@ Spezialgerät für die Gewinnung von Biomaterial von Tieren oder anderen Lebewes
 Scripts/Items/Devices/ItemBiomaterialCollector@Name:
 Biomaterialsammler
 
+Scripts/Items/Devices/ItemHuntersTools@Description:
+Ein Bündel nützlicher Jagdwerkzeuge, die das Plündern von Kreaturen stark beschleunigen.
+
+Scripts/Items/Devices/ItemHuntersTools@Name:
+Jagdwerkzeuge
+
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Speichert große Mengen an Energie für die bequeme Nutzung unterwegs. Jedes Gerät und jede Energiewaffe kann auf ausgerüstete Powerbanks zugreifen.
 
@@ -183,6 +189,9 @@ Geflochtener Brustpanzer
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Geflochtener Helm
+
+Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
+Behelfsmäßiger Grubenhelm
 
 Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
 Geflochtene Hose
@@ -1351,6 +1360,18 @@ Dieses spezielle Nanofasermaterial kann in die untere Hautschicht implantiert we
 
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Nanofaser-Hautimplantat
+
+Scripts/Items/Medical/ItemAntiMutation@Description:
+Schützt und regeneriert zelluläre DNA, die durch Strahlenbelastung oder andere gesundheitsgefährdende Einflüsse beschädigt wurde. Stoppt unkontrollierte Mutationen des Körpers.
+
+Scripts/Items/Medical/ItemAntiMutation@Name:
+Medizinischer Schutz gegen Mutationen
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Keine Mutationen
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+Keine unkontrollierten Mutationen im Körper vorhanden.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 Dir ist nicht übel. Es hat keinen Zweck, diese Medizin jetzt einzunehmen.

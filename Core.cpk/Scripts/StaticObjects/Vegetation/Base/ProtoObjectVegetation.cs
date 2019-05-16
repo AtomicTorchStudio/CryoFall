@@ -283,7 +283,7 @@
                 var dropItemContext = new DropItemContext(byCharacter, targetObject);
                 if (byWeaponProto is IProtoItemWeaponMelee)
                 {
-                    // not a melee weapon - drop on the ground only
+                    // a melee weapon - try drop items to character
                     var result = this.DroplistOnDestroy.TryDropToCharacter(
                         byCharacter,
                         dropItemContext,
@@ -297,10 +297,12 @@
                     result.Rollback();
                 }
 
+                // not a melee weapon or cannot drop to character - drop on the ground only
                 this.DroplistOnDestroy.TryDropToGround(
                     targetObject.TilePosition,
                     dropItemContext,
-                    probabilityMultiplier: growthProgressFraction);
+                    probabilityMultiplier: growthProgressFraction,
+                    groundContainer: out _);
             }
             finally
             {

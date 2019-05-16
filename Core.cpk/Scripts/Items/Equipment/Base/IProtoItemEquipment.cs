@@ -24,5 +24,7 @@
             ICharacter character,
             IComponentSkeleton skeletonRenderer,
             List<IClientComponent> skeletonComponents);
+
+        bool SharedCanApplyEffects(IItem item, IItemsContainer containerEquipment);
     }
 }

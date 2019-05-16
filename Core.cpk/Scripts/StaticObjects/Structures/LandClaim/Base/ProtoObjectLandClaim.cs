@@ -4,6 +4,7 @@
     using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
@@ -49,12 +50,18 @@
 
         public const string NotificationUpgraded_Title = "Successfully upgraded";
 
+        private static readonly Color BlueprintAreaColorGrace = Color.FromArgb(0x33, 0x22, 0x22, 0x22);
+
+        private static readonly Color BlueprintAreaColorGreen = Color.FromArgb(0x44, 0x00, 0xFF, 0x00);
+
+        private static readonly Color BlueprintAreaColorRed = Color.FromArgb(0x66, 0xDD, 0x00, 0x00);
+
         // ReSharper disable once StaticMemberInGenericType
         private static readonly RenderingMaterial ClientBlueprintAreaRenderingMaterial;
 
-        private static readonly Color ColorGreen = Color.FromArgb(0x33, 0x00, 0xFF, 0x00);
+        private static readonly RenderingMaterial ClientBlueprintGraceAreaRenderingMaterial;
 
-        private static readonly Color ColorRed = Color.FromArgb(0x66, 0xDD, 0x00, 0x00);
+        private static readonly RenderingMaterial ClientBlueprintRestrictedTileRenderingMaterial;
 
         // how long the items dropped on the ground from the safe storage should remain there
         private static readonly TimeSpan DestroyedLandClaimDroppedItemsDestructionTimeout = TimeSpan.FromDays(1);
@@ -67,6 +74,11 @@
             {
                 // prepare material and effect parameters
                 ClientBlueprintAreaRenderingMaterial = ClientLandClaimAreaRenderer.CreateRenderingMaterial();
+                ClientBlueprintGraceAreaRenderingMaterial = ClientLandClaimAreaRenderer.CreateRenderingMaterial();
+                ClientBlueprintGraceAreaRenderingMaterial.EffectParameters.Set("Color", BlueprintAreaColorGrace);
+
+                ClientBlueprintRestrictedTileRenderingMaterial = ClientLandClaimAreaRenderer.CreateRenderingMaterial();
+                ClientBlueprintRestrictedTileRenderingMaterial.EffectParameters.Set("Color", BlueprintAreaColorRed);
             }
         }
 
@@ -76,7 +88,13 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
+        public virtual ushort LandClaimGraceAreaPaddingSizeOneDirection { get; private set; }
+
         public abstract ushort LandClaimSize { get; }
+
+        public ushort LandClaimWithGraceAreaSize
+            => (ushort)(this.LandClaimSize
+                        + 2 * this.LandClaimGraceAreaPaddingSizeOneDirection);
 
         public abstract byte SafeItemsSlotsCount { get; }
 
@@ -97,25 +115,95 @@
             }
 
             // display area only when player placing a blueprint
-            var areaSprite = Api.Client.Rendering.CreateSpriteRenderer(
-                blueprint.SceneObject,
-                null,
-                DrawOrder.Overlay);
+            Color color;
+            var sizeWithGraceArea = this.LandClaimWithGraceAreaSize;
+            if (blueprint.IsCanBuild)
+            {
+                color = BlueprintAreaColorGreen;
+                ClientBlueprintAreaRenderingMaterial.EffectParameters.Set("Color", color);
+                CreateBlueprintAreaRenderer(ClientBlueprintAreaRenderingMaterial,      this.LandClaimSize);
+                CreateBlueprintAreaRenderer(ClientBlueprintGraceAreaRenderingMaterial, sizeWithGraceArea);
 
-            ClientBlueprintAreaRenderingMaterial.EffectParameters.Set(
-                "Color",
-                blueprint.IsCanBuild
-                    ? ColorGreen
-                    : ColorRed);
+                // can build a land claim area, but highlight the restricted tiles
+                var world = Client.World;
+                var startTilePosition = tile.Position;
+                var halfSize = sizeWithGraceArea / 2;
+                for (var x = 1 - halfSize; x <= halfSize; x++)
+                for (var y = 1 - halfSize; y <= halfSize; y++)
+                {
+                    var checkTile = world.GetTile(startTilePosition.X + x,
+                                                  startTilePosition.Y + y,
+                                                  logOutOfBounds: false);
+                    ProcessFutureLandClaimAreaTile(checkTile, x, y);
+                }
+            }
+            else // cannot build a land claim there
+            {
+                color = BlueprintAreaColorRed;
+                ClientBlueprintAreaRenderingMaterial.EffectParameters.Set("Color", color);
+                CreateBlueprintAreaRenderer(ClientBlueprintAreaRenderingMaterial,
+                                            size: sizeWithGraceArea);
+            }
 
-            areaSprite.RenderingMaterial = ClientBlueprintAreaRenderingMaterial;
-            areaSprite.SortByWorldPosition = false;
-            areaSprite.IgnoreTextureQualityScaling = true;
-            areaSprite.Scale = this.LandClaimSize;
+            void CreateBlueprintAreaRenderer(RenderingMaterial renderingMaterial, int size)
+            {
+                var offset = LandClaimSystem.SharedCalculateLandClaimObjectCenterTilePosition(Vector2Ushort.Zero, this);
+                var areaBlueprint = Api.Client.Rendering.CreateSpriteRenderer(
+                    blueprint.SceneObject,
+                    null,
+                    DrawOrder.Overlay);
 
-            var offset = LandClaimSystem.SharedCalculateLandClaimObjectCenterTilePosition(Vector2Ushort.Zero, this);
-            areaSprite.PositionOffset = (offset.X - this.LandClaimSize / 2,
-                                         offset.Y - this.LandClaimSize / 2);
+                areaBlueprint.RenderingMaterial = renderingMaterial;
+                areaBlueprint.SortByWorldPosition = false;
+                areaBlueprint.IgnoreTextureQualityScaling = true;
+                areaBlueprint.Scale = size;
+
+                areaBlueprint.PositionOffset = (offset.X - size / 2,
+                                                offset.Y - size / 2);
+            }
+
+            void ProcessFutureLandClaimAreaTile(Tile checkTile, int offsetX, int offsetY)
+            {
+                if (!checkTile.IsValidTile)
+                {
+                    return;
+                }
+
+                var isRestrictedTile = IsRestrictedTile(checkTile);
+                if (!isRestrictedTile)
+                {
+                    foreach (var neighborTile in checkTile.EightNeighborTiles)
+                    {
+                        if (IsRestrictedTile(neighborTile))
+                        {
+                            isRestrictedTile = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!isRestrictedTile)
+                {
+                    return;
+                }
+
+                // display red tile as player cannot construct there
+                var tileRenderer = Api.Client.Rendering.CreateSpriteRenderer(
+                    blueprint.SceneObject,
+                    ClientLandClaimAreaRenderer.TextureResourceLandClaimAreaCell,
+                    DrawOrder.Overlay);
+
+                tileRenderer.RenderingMaterial = ClientBlueprintRestrictedTileRenderingMaterial;
+                tileRenderer.SortByWorldPosition = false;
+                tileRenderer.IgnoreTextureQualityScaling = true;
+                tileRenderer.Scale = 1;
+                tileRenderer.PositionOffset = (offsetX, offsetY);
+            }
+
+            bool IsRestrictedTile(Tile t)
+                => t.IsCliffOrSlope
+                   || t.ProtoTile.Kind != TileKind.Solid
+                   || t.ProtoTile.IsRestrictingConstruction;
         }
 
         public async void ClientUpgrade(IStaticWorldObject worldObjectLandClaim, IProtoObjectLandClaim upgradeStructure)
@@ -292,6 +380,14 @@
             out IConstructionUpgradeEntryReadOnly upgradeEntry,
             bool writeErrors = true)
         {
+            if (!this.SharedCanInteract(character,
+                                        worldObjectLandClaim,
+                                        writeToLog: writeErrors))
+            {
+                upgradeEntry = null;
+                return ObjectLandClaimCanUpgradeCheckResult.ErrorUnknown;
+            }
+
             upgradeEntry = null;
             foreach (var entry in this.ConfigUpgrade.Entries)
             {
@@ -384,12 +480,18 @@
             // do nothing
         }
 
+        protected abstract BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject);
+
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
 
+            var worldObject = data.GameObject;
             var publicState = data.SyncPublicState;
             var clientState = data.ClientState;
+
+            data.ClientState.RendererLight = this.ClientCreateLightSource(
+                Client.Scene.GetSceneObject(worldObject));
 
             // subscribe to destruction timer
             publicState.ClientSubscribe(
@@ -471,6 +573,12 @@
             tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositRequireXenogeology);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositCooldown);
             this.PrepareLandClaimConstructionConfig(tileRequirements, build, repair, upgrade, out category);
+
+            var landClaimSize = this.LandClaimSize;
+            Api.Assert(landClaimSize % 2 == 0, "Land claim size should be an even number");
+
+            this.LandClaimGraceAreaPaddingSizeOneDirection =
+                LandClaimSystem.SharedCalculateLandClaimGraceAreaPaddingSizeOneDirection(landClaimSize);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
@@ -504,6 +612,26 @@
                 slotsCount: this.SafeItemsSlotsCount);
 
             data.PrivateState.ItemsContainer = itemsContainer;
+        }
+
+        protected override void ServerOnStaticObjectDamageApplied(
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject,
+            float previousStructurePoints,
+            float currentStructurePoints)
+        {
+            base.ServerOnStaticObjectDamageApplied(weaponCache,
+                                                   targetObject,
+                                                   previousStructurePoints,
+                                                   currentStructurePoints);
+
+            if (weaponCache != null
+                && currentStructurePoints < previousStructurePoints)
+            {
+                // land claim was damaged (and not deconstructed by a crowbar or any other means)
+                LandClaimSystem.ServerOnRaid(targetObject.Bounds,
+                                             weaponCache.Character);
+            }
         }
 
         protected override void ServerOnStaticObjectZeroStructurePoints(
@@ -574,8 +702,8 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            const double width = 1.15,
-                         height = 1,
+            const double width = 1.5,
+                         height = 1.1,
                          offsetX = (2 - width) / 2,
                          offsetY = 0.6;
 

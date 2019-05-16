@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -35,6 +36,8 @@
 
         public override ITextureResource Icon { get; }
 
+        public abstract bool OnlySingleDeviceOfThisProtoAppliesEffect { get; }
+
         public override bool RequireEquipmentTextures => false;
 
         protected override double DefenseMultiplier { get; } = 0;
@@ -47,6 +50,18 @@
         public override void ServerOnItemDamaged(IItem item, double damageApplied)
         {
             // no durability degradation
+        }
+
+        public override bool SharedCanApplyEffects(IItem item, IItemsContainer containerEquipment)
+        {
+            if (!this.OnlySingleDeviceOfThisProtoAppliesEffect)
+            {
+                return true;
+            }
+
+            var firstEquippedDevice = containerEquipment.GetItemsOfProto(this)
+                                                        .FirstOrDefault();
+            return item == firstEquippedDevice;
         }
 
         protected sealed override bool ClientItemUseFinish(ClientItemData data)

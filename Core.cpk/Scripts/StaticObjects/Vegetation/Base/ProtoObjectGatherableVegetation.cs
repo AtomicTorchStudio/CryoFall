@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
@@ -10,7 +12,9 @@
     using AtomicTorch.CBND.CoreMod.Systems.Resources;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.ServicesServer;
 
     public abstract class ProtoObjectGatherableVegetation
         <TPrivateState,
@@ -27,7 +31,7 @@
     {
         public const string NotificationPlantNotMatured
             = @"This plant hasn't matured yet.
-                [br]You cannot harvest it yet.";
+  [br]You cannot harvest it yet.";
 
         // {0} contains according string from InteractionTooltipTexts
         public const string NotificationUseRightMouseButtonToInteract = "Use right mouse button to {0}.";
@@ -157,11 +161,19 @@
 
         protected virtual bool ServerTryGatherByCharacter(ICharacter who, IStaticWorldObject vegetationObject)
         {
-            var result = this.GatherDroplist.TryDropToCharacter(who, new DropItemContext(who, vegetationObject));
-            if (result.IsEverythingCreated)
+            var result = this.GatherDroplist.TryDropToCharacterOrGround(who,
+                                                                        who.TilePosition,
+                                                                        new DropItemContext(who, vegetationObject),
+                                                                        out var groundItemsContainer);
+            if (result.TotalCreatedCount > 0)
             {
+                // even if at least one item is gathered it should pass
+                // otherwise we will have an issue with berries and other stuff which cannot be rollback easily
                 Logger.Info(vegetationObject + " was gathered", who);
-                NotificationSystem.ServerSendItemsNotification(who, result);
+                NotificationSystem.ServerSendItemsNotification(
+                    who,
+                    result,
+                    exceptItemsContainer: groundItemsContainer);
                 return true;
             }
 

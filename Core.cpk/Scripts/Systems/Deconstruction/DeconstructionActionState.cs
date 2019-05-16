@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -147,9 +148,6 @@
             if (Api.IsServer
                 && this.ItemCrowbarTool != null)
             {
-                this.CharacterPrivateState.Skills.ServerAddSkillExperience<SkillBuilding>(
-                    SkillBuilding.ExperienceAddWhenDeconstructingOneStage);
-
                 // notify tool was used
                 ServerItemUseObserver.NotifyItemUsed(this.Character, this.ItemCrowbarTool);
 
@@ -197,6 +195,12 @@
             // deconstruction is completed
             if (Api.IsServer)
             {
+                if (!(this.protoStructure is ProtoObjectConstructionSite))
+                {
+                    this.CharacterPrivateState.Skills.ServerAddSkillExperience<SkillBuilding>(
+                        SkillBuilding.ExperienceAddWhenDeconstructionFinished);
+                }
+
                 Logger.Important(
                     $"Deconstruction completed: {this.WorldObject} structure points: {newStructurePoints}/{this.structurePointsMax}; by {this.Character}");
                 this.ObjectPublicState.StructurePointsCurrent = newStructurePoints;

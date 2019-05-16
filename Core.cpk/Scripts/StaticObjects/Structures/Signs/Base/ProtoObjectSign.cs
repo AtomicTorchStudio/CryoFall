@@ -45,7 +45,7 @@
         public void ClientSetSignText(IStaticWorldObject worldObjectSign, string signText)
         {
             signText = signText?.Trim();
-            this.SharedValidateSignText(signText);
+            SharedValidateSignText(signText);
             this.CallServer(_ => _.ServerRemote_SetSignText(worldObjectSign, signText));
         }
 
@@ -143,6 +143,19 @@
                     request => this.ClientGenerateProceduralTextureForText(publicState.Text, request));
         }
 
+        private static void SharedValidateSignText(string signText)
+        {
+            if (string.IsNullOrEmpty(signText))
+            {
+                return;
+            }
+
+            if (signText.Length > MaxSignTextLength)
+            {
+                throw new Exception($"Max sign text length is {MaxSignTextLength} chars");
+            }
+        }
+
         // Generate texture containing text.
         // For text rendering we will use UI.
         private async Task<ITextureResource> ClientGenerateProceduralTextureForText(
@@ -215,21 +228,8 @@
             }
 
             signText = signText?.Trim();
-            this.SharedValidateSignText(signText);
+            SharedValidateSignText(signText);
             GetPublicState(worldObjectSign).Text = signText;
-        }
-
-        private void SharedValidateSignText(string signText)
-        {
-            if (string.IsNullOrEmpty(signText))
-            {
-                return;
-            }
-
-            if (signText.Length > MaxSignTextLength)
-            {
-                throw new Exception($"Max sign text length is {MaxSignTextLength} chars");
-            }
         }
     }
 

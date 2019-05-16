@@ -5,6 +5,8 @@
 
     public interface IProtoObjectExplosive : IProtoStaticWorldObject
     {
+        bool IsActivatesRaidModeForLandClaim { get; }
+
         double StructureDamage { get; set; }
 
         double StructureDefensePenetrationCoef { get; set; }

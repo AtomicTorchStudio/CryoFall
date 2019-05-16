@@ -6,6 +6,7 @@
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -36,8 +37,10 @@
             this.ownersListFilter = ownersListFilter;
 
             this.ownersSyncList.ClientAnyModification += this.OwnersSyncListModificationHandler;
-
             this.RefreshOwnersList();
+
+            PartySystem.ClientCurrentPartyMemberAddedOrRemoved += this.CurrentPartyMemberAddedOrRemovedHandler;
+            this.RefreshHasPartyMembers();
         }
 
         public bool CanEditOwners { get; }
@@ -45,13 +48,18 @@
         public BaseCommand CommandAddNewOwner
             => new ActionCommand(this.ExecuteCommandAddNewOwner);
 
+        public BaseCommand CommandAddPartyMembers
+            => new ActionCommand(this.ExecuteCommandAddPartyMembers);
+
         public ActionCommandWithParameter CommandRemoveOwner
             => new ActionCommandWithParameter(
                 arg => this.ExecuteCommandRemoveOwner((string)arg));
 
         public string EmptyListMessage { get; }
 
-        public string NewOnwerName { get; set; }
+        public bool HasPartyMembers { get; private set; }
+
+        public string NewOwnerName { get; set; }
 
         public IReadOnlyList<NameEntry> Owners { get; private set; }
 
@@ -61,11 +69,17 @@
         {
             base.DisposeViewModel();
             this.ownersSyncList.ClientAnyModification -= this.OwnersSyncListModificationHandler;
+            PartySystem.ClientCurrentPartyMemberAddedOrRemoved -= this.CurrentPartyMemberAddedOrRemovedHandler;
+        }
+
+        private void CurrentPartyMemberAddedOrRemovedHandler((string name, bool isAdded) obj)
+        {
+            this.RefreshHasPartyMembers();
         }
 
         private void ExecuteCommandAddNewOwner()
         {
-            var name = this.NewOnwerName?.Trim() ?? string.Empty;
+            var name = this.NewOwnerName?.Trim() ?? string.Empty;
             if (name.Length == 0)
             {
                 return;
@@ -80,7 +94,27 @@
             var newList = this.ownersSyncList.ToList();
             newList.Add(name);
             this.callbackServerSetOwnersList(newList);
-            this.NewOnwerName = string.Empty;
+            this.NewOwnerName = string.Empty;
+        }
+
+        private void ExecuteCommandAddPartyMembers()
+        {
+            DialogWindow.ShowDialog(
+                CoreStrings.QuestionAreYouSure,
+                CoreStrings.ObjectOwnersList_AddPartyMembers_Dialog,
+                okText: CoreStrings.Yes,
+                cancelText: CoreStrings.Button_Cancel,
+                okAction: () =>
+                          {
+                              var partyMembers = PartySystem.ClientGetCurrentPartyMembers();
+                              var newList = this.ownersSyncList.ToList()
+                                                .Concat(partyMembers)
+                                                .Distinct()
+                                                .ToList();
+                              this.callbackServerSetOwnersList(newList);
+                          },
+                cancelAction: () => { },
+                focusOnCancelButton: true);
         }
 
         private void ExecuteCommandRemoveOwner(string name)
@@ -113,6 +147,11 @@
         private void OwnersSyncListModificationHandler(NetworkSyncList<string> source)
         {
             this.RefreshOwnersList();
+        }
+
+        private void RefreshHasPartyMembers()
+        {
+            this.HasPartyMembers = PartySystem.ClientGetCurrentPartyMembers().Count > 1;
         }
 
         private void RefreshOwnersList()

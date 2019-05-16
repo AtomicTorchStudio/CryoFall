@@ -7,6 +7,8 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
@@ -18,6 +20,51 @@
     public class ObjectLithiumOreExtractor : ProtoObjectExtractor
     {
         public const string ErrorRequiresGeothermalSpring = "The extractor requires a geothermal spring.";
+
+        private static readonly ConstructionTileRequirements.Validator ValidatorForPvP
+            = new ConstructionTileRequirements.Validator(
+                ErrorRequiresGeothermalSpring,
+                c =>
+                {
+                    if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                    {
+                        // don't validate this condition on PvE servers
+                        return true;
+                    }
+
+                    foreach (var obj in c.Tile.StaticObjects)
+                    {
+                        if (obj.ProtoStaticWorldObject is ObjectDepositGeothermalSpring)
+                        {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                });
+
+        private static readonly ConstructionTileRequirements.Validator ValidatorForPvE
+            = new ConstructionTileRequirements.Validator(
+                () => "[b]"
+                      + ConstructionTileRequirements.Error_UnsuitableGround_Title
+                      + "[/b]"
+                      + "[br]"
+                      + ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn
+                      + "[*]"
+                      + Api.GetProtoEntity<TileForestTemperate>().Name
+                      + "[*]"
+                      + Api.GetProtoEntity<TileForestBoreal>().Name,
+                c =>
+                {
+                    if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                    {
+                        // don't validate this condition on PvP servers
+                        return true;
+                    }
+
+                    return c.Tile.ProtoTile is TileForestTemperate
+                           || c.Tile.ProtoTile is TileForestBoreal;
+                });
 
         private readonly TextureAtlasResource textureAtlasActive1;
 
@@ -127,8 +174,8 @@
             // Lithium salt extractor requires each tile to contain a geothermal spring.
             tileRequirements
                 .Clear()
-                .Add(ErrorRequiresGeothermalSpring,
-                     c => c.Tile.StaticObjects.Any(_ => _.ProtoStaticWorldObject is ObjectDepositGeothermalSpring))
+                .Add(ValidatorForPvP)
+                .Add(ValidatorForPvE)
                 .Add(ConstructionTileRequirements.BasicRequirements)
                 .Add(ConstructionTileRequirements.ValidatorClientOnlyNoCurrentPlayer)
                 .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyDynamic)

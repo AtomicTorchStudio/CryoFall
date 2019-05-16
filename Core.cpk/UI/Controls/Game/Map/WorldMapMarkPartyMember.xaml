@@ -7,11 +7,12 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data"
+    xmlns:data1="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data"
     x:Name="UserControl"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance data:ViewModelPartyMember, IsDesignTimeCreatable=True}">
+    d:DataContext="{d:DesignInstance data1:ViewModelPartyMember, IsDesignTimeCreatable=True}">
     <Canvas>
         <Image Source="Images/PartyMember.png"
                Visibility="{Binding IsOnline, Converter={StaticResource BoolToVisibilityConverter}}"

@@ -13,7 +13,7 @@
 
         public override double DamageRadius => 2.1;
 
-        public override bool ActivatesRaidModeForLandClaim => true;
+        public override bool IsActivatesRaidModeForLandClaim => true;
 
         public override string Name => "Modern bomb";
 
@@ -54,7 +54,7 @@
             out double damageValue,
             out double defencePenetrationCoef)
         {
-            damageValue = 6000;
+            damageValue = 12000;
             defencePenetrationCoef = 0.5;
         }
 

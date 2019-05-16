@@ -17,8 +17,8 @@
         protected override void PrepareEffects(Effects effects)
         {
             // increase certain activity effectiveness
-            effects.AddPercent(this, StatName.MiningSpeed,      100);
-            effects.AddPercent(this, StatName.WoodcuttingSpeed, 100);
+            effects.AddPercent(this, StatName.MiningSpeed,      50);
+            effects.AddPercent(this, StatName.WoodcuttingSpeed, 50);
 
             // increase combat effectiveness
             effects.AddPercent(this, StatName.WeaponMeleeDamageBonusMultiplier,         10);

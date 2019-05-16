@@ -9,15 +9,15 @@
     {
         public readonly string Name;
 
-        public readonly float Percent;
+        public readonly float Fraction;
 
         public readonly IProtoEntity ProtoEntity;
 
-        public DamageSourceRemoteEntry(IProtoEntity protoEntity, string name, float percent)
+        public DamageSourceRemoteEntry(IProtoEntity protoEntity, string name, float fraction)
         {
             this.ProtoEntity = protoEntity;
             this.Name = name;
-            this.Percent = percent;
+            this.Fraction = fraction;
         }
     }
 }

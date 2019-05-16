@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectPlantPot>();
 
-            config.SetRequiredNode<TechNodeDecorativeGardening>();
+            config.SetRequiredNode<TechNodeTobacco>();
         }
     }
 }

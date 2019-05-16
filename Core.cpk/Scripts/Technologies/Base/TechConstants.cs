@@ -31,8 +31,7 @@
                 defaultValue: 1.0,
                 @"This rate determines the skill experience gain multiplier.                
                 If you want to make faster or slower skill progression (and so faster LP gain as well)
-                you can modify this multiplier to a higher value.
-                Please note: if you want only to adjust the LP gain only, please edit LearningPointsGainMultiplier.");
+                you can modify this multiplier to a higher value.");
 
         // This rate determines the LP rate between skill experience to learning points.
         // Example: with 0.01 conversion rate 100 EXP will result in 1 LP gained.

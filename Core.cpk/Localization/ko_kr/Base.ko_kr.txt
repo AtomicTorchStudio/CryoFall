@@ -148,3 +148,9 @@ Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
 Scripts/Base/Stats/StatName@SearchingSpeed:
 탐색 속도
 
+Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+방사능 중독 대미지
+
+Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+방사능 피폭률
+

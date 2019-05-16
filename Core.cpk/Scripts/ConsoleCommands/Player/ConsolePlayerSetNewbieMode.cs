@@ -28,7 +28,7 @@
                    + " is now "
                    + (NewbieProtectionSystem.SharedIsNewbie(character)
                           ? "under newbie protection."
-                          : "don't has newbie protection.");
+                          : "without newbie protection.");
         }
     }
 }

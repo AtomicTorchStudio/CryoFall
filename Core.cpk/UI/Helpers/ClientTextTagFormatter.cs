@@ -166,11 +166,16 @@
                                     yield return new Run("\u2022") { FontWeight = FontWeights.Bold };
 
                                     // check next char
-                                    if (position + 1 < text.Length
-                                        && text[position + 1] != ' ')
+                                    if (position + 1 < text.Length)
                                     {
-                                        // next char is not an empty space - add space char
-                                        yield return new Run(" ");
+                                        if (text[position + 1] == ' ')
+                                        {
+                                            // skip empty space after bullet point
+                                            position++;
+                                        }
+
+                                        // add non-breaking space char
+                                        yield return new Run("\u00A0");
                                     }
 
                                     break;
@@ -386,8 +391,9 @@
                     split[index] = line;
                 }
 
-                rawText = string.Join(" ", split);
+                rawText = string.Join("", split);
             }
+
             return rawText;
         }
     }

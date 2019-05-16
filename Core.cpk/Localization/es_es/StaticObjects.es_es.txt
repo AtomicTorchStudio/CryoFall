@@ -40,6 +40,15 @@ No se puede construir: demasiado cerca de un risco o una ladera.
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
 No se puede construir: demasiado cerca del agua.
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
+Tan solo puedes construir en:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
+No puedes construir en:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
+Tipo de terreno inapropiado
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
 Configurar
 
@@ -93,6 +102,12 @@ Bomba primitiva
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
 Bomba de resonancia
+
+Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
+Explosión de depósito
+
+Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
+Explosión de pragmio
 
 Scripts/StaticObjects/Loot/ObjectCorpse@Name:
 Cadáver
@@ -204,6 +219,12 @@ Un barril sencillo y fácil de montar. Se puede usar para almacenar líquidos.
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Name:
 Barril de madera
+
+Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Description:
+Una gran cisterna para almacenar grandes cantidades de líquido a largo plazo.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Name:
+Cisterna
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
 Usa un arma o una herramienta para dañar esta estructura.
@@ -350,6 +371,12 @@ Caja fuerte muy blindada que puede soportar incluso las explosiones más potente
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 Caja blindada
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
+A saber qué simboliza este estandarte... ¡pero es genial!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
+Estandarte rojo
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
 Esta bonita alfombra consigue que toda habitación sea más acogedora y bonita.
 
@@ -362,11 +389,17 @@ Demuéstrales a tus enemigos que vas muy en serio. ¡No se tolerará el allanami
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 Calavera en una pica
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatue@Description:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 Una auténtica demostración de tus riquezas. Solo los más ricos de entre los ricos pueden permitirse algo así.
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatue@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Name:
 Estatua dorada
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Description:
+Qué mejor forma de demostrar tu riqueza que malgastando este cristal tan valioso en un mero elemento estético.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
+Estatua de pragmio
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Este suelo ya está decorado.
@@ -388,6 +421,12 @@ Protección sencilla contra visitas no deseadas. Eso sí, no te defenderá de en
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
 Puerta de madera
+
+Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
+Una gran puerta de acero que podrías usar como entrada principal de tu base.
+
+Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
+Puerta de acero
 
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
 Se puede usar para cultivar diversas cosechas y otras plantas. El terreno de granja tan solo se puede colocar sobre un terreno fértil.
@@ -415,6 +454,12 @@ Sencillo y funcional. Ideal para el suelo de fábricas o bases militares.
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Name:
 Suelo de cemento
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Description:
+Resistente y sencillo. Una elección ideal para un búnker militar.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Name:
+Suelo de metal
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Description:
 Te da ese toque de castillo acogedor. Es el complemento ideal para los muros de piedra.
@@ -463,6 +508,9 @@ Adjudicar terreno (rango 3)
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
 Adjudicar terreno (rango 4)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT5@Name:
+Adjudicar terreno (rango 5)
 
 Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
 Zona de terreno adjudicado
@@ -687,6 +735,12 @@ Sin espacio
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Disabled:
 Desactivado
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Description:
+Paredes de búnker muy blindadas. La protección definitiva para tu base.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Name:
+Pared blindada
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
 Muro sólido de ladrillos reforzado con metal. Mantiene a salvo los objetos valiosos y aleja a los intrusos. Incluso puede resistir los explosivos (hasta cierto punto).

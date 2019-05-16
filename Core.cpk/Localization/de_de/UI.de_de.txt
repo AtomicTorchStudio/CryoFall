@@ -31,8 +31,18 @@ Weiter
 UI/CoreStrings@Button_Deny:
 Ablehnen
 
+UI/CoreStrings@Button_Drain:
+Leeren
+
+UI/CoreStrings@Button_Drain_DialogConfirmation:
+`Bist du sicher, dass du den Inhalt entleeren möchtest?
+[br]Ein späteres Zurückerlangen ist nicht möglich.`
+
 UI/CoreStrings@Button_Drink:
 Trinken
+
+UI/CoreStrings@Button_Edit:
+Bearbeiten
 
 UI/CoreStrings@Button_Help:
 Hilfe
@@ -135,6 +145,9 @@ PSI-Schutz: {0}
 UI/CoreStrings@Defense_Format_Radiation:
 Strahlenschutz: {0}
 
+UI/CoreStrings@DepositAvailableForClaiming_Message:
+Inanspruchnahme möglich in:
+
 UI/CoreStrings@DepositCapacityStats_Message:
 Dieses Vorkommen ist erschöpft in:
 
@@ -182,6 +195,9 @@ Ausrüstung
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 Karte
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Politics:
+Diplomatie
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Quests:
 Quests
@@ -254,6 +270,9 @@ LP
 
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Bitte gib deine [url=atomictorch.com]AtomicTorch.com[/url] Nutzerkontodaten ein, um deinen Steam-Account zu verknüpfen.
+
+UI/CoreStrings@ListFilters:
+Filter
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 WIRD GELADEN
@@ -345,7 +364,7 @@ UI/CoreStrings@MenuServers_AwaitingServerList:
 Warten auf Server-Liste ...
 
 UI/CoreStrings@MenuServers_Button_AddCustomServer:
-Benutzerdefinierten Server hinzufügen
+Server hinzufügen
 
 UI/CoreStrings@MenuServers_Button_ClearList:
 Liste leeren
@@ -364,6 +383,12 @@ Server aktualisieren
 
 UI/CoreStrings@MenuServers_Button_RemoveServer:
 Server entfernen
+
+UI/CoreStrings@MenuServers_Checkbox_ShowEmpty:
+Anzeigen (leer)
+
+UI/CoreStrings@MenuServers_Checkbox_ShowIncompatible:
+Anzeigen (inkompatibel)
 
 UI/CoreStrings@MenuServers_ClickToCopy:
 Zum Kopieren anklicken!
@@ -395,17 +420,42 @@ Keine Server in dieser Liste
 UI/CoreStrings@MenuServers_PublicGUID:
 Public GUID
 
-UI/CoreStrings@MenuServers_ServerLabelFeatured:
-VORGESTELLT
-
-UI/CoreStrings@MenuServers_ServerLabelModded:
-GEMODDET
-
-UI/CoreStrings@MenuServers_ServerLabelOfficial:
-OFFIZIELL
-
 UI/CoreStrings@MenuServers_ServersCount:
 Server
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
+Vorgestellte Server genießen für gewöhnlich den Ruf, eine ähnlich qualitativ hochwertige Spielerfahrung wie auch die offiziellen Server zu bieten. Diese Server werden jedoch von der Community gehostet.
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Title:
+VORGESTELLT
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
+Dieser Server benutzt Fremdmodifikationen. Möglicherweise gibt es wesentliche Abweichungen zum Originalspiel. Bitte bedenke außerdem, dass gemoddete Server Bugs enthalten können, die durch diese Modifikationen hervorgerufen werden. Ihre Verwendung erfolgt auf eigene Gefahr.
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
+GEMODDET
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Description:
+Dies ist einer der offiziellen CryoFall-Server, der von den Entwicklern gehostet wird.
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Title:
+OFFIZIELL
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Description:
+`Dies ist ein "Player versus Environment" ("Spieler gegen Umgebung") Server, der für friedliche Erkundung und Weiterentwicklung konzipiert ist.
+Du bist vor anderen Spielern, jedoch nicht vor der Tierwelt oder Umweltgefahren geschützt!
+Einem PvE-Server beizutreten, ist eine gute Wahl, wenn du gerade erst damit begonnen hast, CryoFall zu spielen.`
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Title:
+PvE
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Description:
+`Dies ist ein "Player versus Player" ("Spieler gegen Spieler") Server, der speziell für Kämpfe, Gebietsvorherrschaft ("Map Control") und Raids konzipiert ist.
+Auf PvP-Servern gibt es keinerlei Einschränkungen – du kannst töten, aber auch getötet werden.
+Mach dich bereit zu kämpfen!`
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
+PvP
 
 UI/CoreStrings@Network_Jitter:
 Jitter
@@ -455,8 +505,14 @@ UI/CoreStrings@Network_Suggestions:
 [*] Erwäge das [b]Schließen[/b] anderer Anwendungen (insbesondere Web-Browser, Torrent-Clients und Downloader).
 [*] Erwäge den Wechsel hin zu einer [b]Leitungsverbindung[/b], sofern dein PC gegenwärtig per WLAN- oder Mobilfunk verbunden ist (kabellose Verbindungen gelten oft als Grund für erheblichen Jitter und Latenzschwankungen).`
 
+UI/CoreStrings@NicknameOfflinePlayer:
+Offline Zzz ...
+
 UI/CoreStrings@No:
 Nein
+
+UI/CoreStrings@Notification_ActionForbidden:
+Verboten
 
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 Kann nicht dort platziert werden
@@ -472,6 +528,12 @@ Aktueller Zugriffsmodus
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 Zugriffsmodus
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Button:
+Gruppenmitglieder hinzufügen
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Dialog:
+Bist du sicher, dass du alle Gruppenmitglieder in diese Liste aufnehmen möchtest?
 
 UI/CoreStrings@ObjectOwnersList_AddPlayer:
 Spieler hinzufügen
@@ -821,6 +883,22 @@ Lichtmodus
 UI/CoreStrings@WindowOilRefinery_EmptyCanistersOutput:
 Leer
 
+UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
+Das Raid-Zeitfenster ist nun geöffnet ({0} verbleibend).
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_DescriptionFormat:
+`Das Raiden von Land Claims ist nur während des Raid-Zeitfensters von {0} bis {1} ({2} insgesamt) möglich.
+[br]Gebäude und Strukturen, die außerhalb eines Land Claims liegen, werden durch dieses System nicht geschützt und können jederzeit angegriffen oder zerstört werden.`
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Disabled:
+Auf diesem Server ist der offline Raid-Schutz deaktiviert.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_NextRaidWindowTimeout:
+Nächstes Raid-Zeitfenster ist in {0}.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
+Raid-Schutz
+
 UI/CoreStrings@WindowQuests_CompletionReward:
 Belohnung
 
@@ -851,14 +929,20 @@ Respawne in der Welt
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 Respawne in der Nähe deines Betts
 
+UI/CoreStrings@WindowRespawn_DamageSources:
+Letzte Schadensquellen:
+
 UI/CoreStrings@WindowRespawn_Message:
 Wie es scheint, bist du gewaltsam aus dem Leben geschieden ... und hast all deine Sachen verloren! Willst du dich rächen?
 
+UI/CoreStrings@WindowRespawn_MessageDespawned:
+Du hast deinen Charakter zu lange außerhalb deines Land Claim-Bereichs gelassen. Somit wurde er aus der Welt entfernt. Du kannst ganz normal respawnen und hast keine Gegenstände oder LP verloren.
+
+UI/CoreStrings@WindowRespawn_MessagePvE:
+Wie es scheint, bist du gewaltsam aus dem Leben geschieden ... Willst du dich rächen?
+
 UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
 Wie es scheint, wurdest du von einem anderen Spieler getötet. Glücklicherweise stehst du noch immer unter Anfängerschutz und verlierst so keine deiner Gegenstände oder Lernpunkte. Sei vorsichtig – beim nächsten Mal hast du vielleicht nicht so viel Glück!
-
-UI/CoreStrings@WindowRespawn_DamageSources:
-Letzte Schadensquellen:
 
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `Du bist erst kürzlich im Bett respawnt.
@@ -1081,6 +1165,15 @@ UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAtta
 UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAttack_Title:
 Überfall!
 
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
+`{0} lokalisiert bei {1};{2}.
+[br]Inanspruchnahme möglich in:
+[br]{3}.
+[br]Schnapp dir deine Waffen und mach dich zum Erobern bereit!`
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
+Neue Ressource verfügbar
+
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 Koordinaten kopieren
 
@@ -1177,6 +1270,12 @@ Haare
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Oben
 
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
+Bist du sicher, dass du die Gruppe verlassen möchtest?
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
+Bist du sicher, dass du [b]{0}[/b] aus der Gruppe entfernen möchtest?
+
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
 Kreatur
 
@@ -1197,12 +1296,6 @@ Statuseffekt
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 nächster Level
-
-UI/Controls/Game/Social/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
-Bist du sicher, dass du die Gruppe verlassen möchtest?
-
-UI/Controls/Game/Social/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
-Bist du sicher, dass du [b]{0}[/b] aus der Gruppe entfernen möchtest?
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier1Letter:
 I
@@ -1270,11 +1363,21 @@ Bitte gib deine E-Mail-Adresse ein.
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterPassword:
 Bitte gib dein Passwort ein.
 
+UI/Controls/Menu/Login/Data/ViewModelSelectUsernameFormControl@Dialog_AcceptUsername:
+`Ist [b]{0}[/b] okay? Eine Änderung ist zu einem späteren Zeitpunkt nicht mehr möglich.
+[br]Dieser Name wird im Spiel und auf jedem Server verwendet.`
+
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_CapsLock:
 Feststelltaste
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_LeftMouseButton:
 Linke Maustaste
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton1:
+Zusätzliche Maustaste 1
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton2:
+Zusätzliche Maustaste 2
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseScrollButton:
 Mausradtaste

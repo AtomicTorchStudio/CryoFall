@@ -22,6 +22,11 @@
 
         private static GeneralOptionDeveloperMode instance;
 
+        public GeneralOptionDeveloperMode()
+        {
+            instance = this;
+        }
+
         /// <summary>
         /// Returns true if developer mode is active.
         /// </summary>
@@ -32,7 +37,8 @@
 
         public override string Name => "Developer mode";
 
-        public override IProtoOption OrderAfterOption => GetProtoEntity<GeneralOptionDisplayObjectInteractionTooltip>();
+        public override IProtoOption OrderAfterOption
+            => GetOption<GeneralOptionDisplayObjectInteractionTooltip>();
 
         public override bool ValueProvider { get; set; } // do nothing
 
@@ -53,12 +59,6 @@
                     autoWidth: false,
                     focusOnCancelButton: true);
             }
-        }
-
-        protected override void PrepareProto()
-        {
-            base.PrepareProto();
-            instance = this;
         }
     }
 }

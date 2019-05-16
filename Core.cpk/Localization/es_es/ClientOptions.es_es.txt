@@ -37,12 +37,10 @@ Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 Modo de desarrollo
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
-`Mostrar consejo de
-interacción con objetos`
+Mostrar consejo de[br]interacción con objetos
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
-`Mostrar consejo de
-nombre de los objetos`
+Mostrar consejo de[br]nombre de los objetos
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 Zoom de cámara
@@ -163,8 +161,7 @@ Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Low:
 Baja (borroso, poco preciso)
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Name:
-`Resolución de sprites
-(requiere reinicio)`
+Resolución de sprites[br](requiere reinicio)
 
 Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.High:
 Altos (recomendado)

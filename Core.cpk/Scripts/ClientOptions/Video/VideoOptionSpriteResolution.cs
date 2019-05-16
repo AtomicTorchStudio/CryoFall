@@ -59,7 +59,7 @@
         public override string Name => "Sprite resolution[br](needs restart)";
 
         public override IProtoOption OrderAfterOption
-            => GetProtoEntity<VideoOptionRenderingResolutionScale>();
+            => GetOption<VideoOptionRenderingResolutionScale>();
 
         public override Mode ValueProvider
         {

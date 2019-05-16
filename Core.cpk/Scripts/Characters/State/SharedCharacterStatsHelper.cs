@@ -57,7 +57,8 @@
                     // merge equipment effects
                     foreach (var item in containerEquipment.Items)
                     {
-                        if (item.ProtoGameObject is IProtoItemEquipment protoEquipment)
+                        if (item.ProtoGameObject is IProtoItemEquipment protoEquipment
+                            && protoEquipment.SharedCanApplyEffects(item, containerEquipment))
                         {
                             tempStatsCache.Merge(protoEquipment.ProtoEffects);
                         }

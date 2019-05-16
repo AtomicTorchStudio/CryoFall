@@ -36,13 +36,19 @@
                       UseLayoutRounding="True"
                       Margin="-10,0,0,0">
                     <Image Source="/UI/Images/Icons/icon_death.png"
-                           Visibility="{Binding IsNewbiePvPdeath, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                           Visibility="{Binding IsRegularDeath, Converter={StaticResource BoolToVisibilityConverter}}"
                            Width="64"
                            Height="64"
                            Stretch="Uniform" />
 
                     <Image Source="/UI/Images/Icons/icon_death_protection.png"
                            Visibility="{Binding IsNewbiePvPdeath, Converter={StaticResource BoolToVisibilityConverter}}"
+                           Width="64"
+                           Height="64"
+                           Stretch="Uniform" />
+
+                    <Image Source="/UI/Images/Icons/icon_despawned.png"
+                           Visibility="{Binding IsDespawned, Converter={StaticResource BoolToVisibilityConverter}}"
                            Width="64"
                            Height="64"
                            Stretch="Uniform" />

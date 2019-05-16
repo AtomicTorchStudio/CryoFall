@@ -103,6 +103,12 @@ Scripts/Items/Devices/ItemBiomaterialCollector@Description:
 Scripts/Items/Devices/ItemBiomaterialCollector@Name:
 생체 적합 물질 수집기
 
+Scripts/Items/Devices/ItemHuntersTools@Description:
+더 빨리 생명체를 갈무리할 수 있는 유용한 사냥 도구 꾸러미.
+
+Scripts/Items/Devices/ItemHuntersTools@Name:
+사냥꾼의 도구
+
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 이동 중에도 편리하게 사용할 수 있도록 많은 양의 전력이 저장되어 있습니다. 모든 장치 및 에너지 무기에 사용할 수 있습니다.
 
@@ -183,6 +189,9 @@ Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 편조 헬멧
+
+Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
+임시 램프 헬멧
 
 Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
 편조 바지
@@ -1351,6 +1360,18 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 나노 섬유 피부 임플란트
+
+Scripts/Items/Medical/ItemAntiMutation@Description:
+방사능 노출 및 기타 유해한 영향으로 인해 손상된 세포의 DNA를 보호하고 회복해줍니다. 신체의 통제할 수 없는 변이를 멈추게 합니다.
+
+Scripts/Items/Medical/ItemAntiMutation@Name:
+항변이약
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+변이 없음
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+신체에서 통제할 수 없는 변이가 발견되지 않습니다.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 속이 메스껍지 않습니다. 지금 이 약을 사용하는 건 아무 의미가 없습니다.

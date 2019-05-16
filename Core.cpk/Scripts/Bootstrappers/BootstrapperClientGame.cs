@@ -17,6 +17,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Quests;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skills;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social;
@@ -121,6 +122,7 @@
                     .HandleButtonDown(GameButton.SkillsMenu,       Menu.Toggle<WindowSkills>)
                     .HandleButtonDown(GameButton.TechnologiesMenu, Menu.Toggle<WindowTechnologies>)
                     .HandleButtonDown(GameButton.SocialMenu,       Menu.Toggle<WindowSocial>)
+                    .HandleButtonDown(GameButton.PoliticsMenu,     Menu.Toggle<WindowPolitics>)
                     .HandleButtonDown(GameButton.QuestsMenu,       Menu.Toggle<WindowQuests>)
                     .HandleButtonDown(GameButton.OpenChat,
                                       () =>

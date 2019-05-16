@@ -1477,6 +1477,11 @@
             <param name="horizontalAmount">Value to adjust the left and right edges.</param>
             <param name="verticalAmount">Value to adjust the top and bottom edges.</param>
         </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.Inflate(System.Int32)">
+            <summary>
+            Adjusts the edges of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.RectangleInt" /> by specified amount in all directions.
+            </summary>
+        </member>
         <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.IntersectsLoose(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
             <summary>
             Will check intersection non-inclusive (so if edges touches this method will not consider this as an intersection).

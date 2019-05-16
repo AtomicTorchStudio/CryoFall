@@ -18,8 +18,8 @@
     </tradingStations:WindowTradingStationAdminBase.Resources>
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
-
-        <TabControl Margin="10,10,10,5" Style="{StaticResource TabControlCompactStyle}">
+        <TabControl Margin="10,5"
+                    Style="{StaticResource TabControlCompactStyle}">
 
             <!-- Text: Lot config -->
             <TabItem Header="{x:Static loc:CoreStrings.WindowTradingStationAdmin_LotConfig}" IsSelected="True">

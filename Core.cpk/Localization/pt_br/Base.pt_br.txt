@@ -148,3 +148,9 @@ Capacidade de consumir comida estragada
 Scripts/Base/Stats/StatName@SearchingSpeed:
 Velocidade de procura
 
+Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+Dano de envenenamento por radiação
+
+Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+Taxa de acúmulo de radiação
+

@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social;
@@ -42,10 +43,10 @@
             "The newbie protection will expire in:";
 
         public const string Notification_CannotDamageOtherPlayersOrLootBags =
-            "While under newbie protection you cannot attack other players or loot their bags or items. But you can cancel this protection at any time in the social menu.";
+            "While under newbie protection you cannot attack other players or loot their bags or items. But you can cancel this protection at any time in the politics menu.";
 
         public const string Notification_CannotPerformActionWhileUnderProtection =
-            "You cannot perform this action while under newbie protection. But you can cancel this protection at any time in the social menu.";
+            "You cannot perform this action while under newbie protection. But you can cancel this protection at any time in the politics menu.";
 
         public const string Notification_LootBagUnderProtection =
             "This bag is under newbie protection, so only the owner can pick it up.";
@@ -157,6 +158,12 @@
 
         public static void ServerRegisterNewbie(ICharacter character)
         {
+            if (PveSystem.ServerIsPvE)
+            {
+                // no newbie protection on PvE servers as it's not required
+                return;
+            }
+
             Api.Assert(character != null && !character.IsNpc,
                        "Please provide a player character instance");
 

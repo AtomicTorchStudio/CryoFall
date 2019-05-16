@@ -27,7 +27,7 @@
         public override string Name => "Anti-aliasing";
 
         public override IProtoOption OrderAfterOption
-            => GetProtoEntity<VideoOptionFrameRateLimit>();
+            => GetOption<VideoOptionFrameRateLimit>();
 
         public override AntiAliasingMode ValueProvider
         {

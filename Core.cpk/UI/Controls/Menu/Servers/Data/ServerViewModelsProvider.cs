@@ -1,9 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Text;
     using System.Windows;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
@@ -43,7 +46,8 @@
         private ServerViewModelsProvider()
         {
             this.commandRefresh = new ActionCommandWithParameter(
-                viewModelServerInfo => this.ExecuteCommandRefresh((ViewModelServerInfo)viewModelServerInfo));
+                viewModelServerInfo => this.ExecuteCommandRefresh((ViewModelServerInfo)viewModelServerInfo,
+                                                                  forceReset: true));
 
             this.serversProvider.ServerCannotConnect += this.ServerCannotConnectHandler;
             this.serversProvider.ServerInfoReceived += this.ServerInfoReceivedHandler;
@@ -71,7 +75,7 @@
                 if (this.isEnabled)
                 {
                     Api.Client.MasterServer.ServersProvider.EnableInfoConnections();
-                    this.RequestAll();
+                    this.RefreshAll();
                 }
                 else
                 {
@@ -158,7 +162,7 @@
         {
             foreach (var server in this.serverViewModels)
             {
-                this.ExecuteCommandRefresh(server.Value);
+                this.ExecuteCommandRefresh(server.Value, forceReset: true);
             }
         }
 
@@ -170,7 +174,8 @@
             if (this.serverViewModels.Find(viewModelServerInfo.Address)
                 != viewModelServerInfo)
             {
-                Api.Logger.Error("Somebody created another ViewModelServerInfo for the same server address? " + viewModelServerInfo.Address);
+                Api.Logger.Error("Somebody created another ViewModelServerInfo for the same server address? "
+                                 + viewModelServerInfo.Address);
                 return;
             }
 
@@ -202,6 +207,7 @@
             }
         }
 
+        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         public void ServerInfoReceivedHandler(ServerInfo serverInfo)
         {
             var viewModel = this.serverViewModels.Find(serverInfo.ServerAddress);
@@ -223,6 +229,8 @@
             viewModel.PlayersOnlineCount = serverInfo.PlayersOnlineCount;
             viewModel.IconHash = serverInfo.IconHash;
             viewModel.ModsOnServer = serverInfo.ModsOnServer;
+            viewModel.IsPvP = serverInfo.ScriptingTags.Contains("PvP", StringComparer.Ordinal);
+            viewModel.IsPvE = serverInfo.ScriptingTags.Contains("PvE", StringComparer.Ordinal);
 
             viewModel.IsInfoReceived = true;
         }
@@ -244,6 +252,7 @@
             if (isPingMeasurementDone)
             {
                 viewModelServer.IsPingMeasurementDone = true;
+                this.ScheduleAutoRefresh(viewModelServer);
             }
         }
 
@@ -348,9 +357,10 @@
             this.SetFavorite(serverInfo.Address, serverInfo.IsFavorite);
         }
 
-        private void ExecuteCommandRefresh(ViewModelServerInfo viewModelServerInfo)
+        private void ExecuteCommandRefresh(ViewModelServerInfo viewModelServerInfo, bool forceReset)
         {
-            if (viewModelServerInfo == null)
+            if (viewModelServerInfo == null
+                || !this.IsEnabled)
             {
                 return;
             }
@@ -370,7 +380,11 @@
                 return;
             }
 
-            viewModelServer.Reset();
+            if (forceReset)
+            {
+                viewModelServer.Reset();
+            }
+
             this.serversProvider.RefreshServerInfo(address);
         }
 
@@ -380,19 +394,24 @@
             return type.ToString();
         }
 
-        private void RequestAll()
+        private void ScheduleAutoRefresh(ViewModelServerInfo viewModelServer)
         {
-            foreach (var pair in this.serverViewModels)
-            {
-                var server = pair.Value;
-                if (server == null)
+            var autoRefreshRequestId = ++viewModelServer.AutoRefreshRequestId;
+            ClientComponentTimersManager.AddAction(
+                delaySeconds: viewModelServer.IsNotAccessible
+                                  ? 6
+                                  : 15,
+                () =>
                 {
-                    return;
-                }
+                    if (autoRefreshRequestId != viewModelServer.AutoRefreshRequestId)
+                    {
+                        return;
+                    }
 
-                var address = server.Address;
-                this.serversProvider.RefreshServerInfo(address);
-            }
+                    //Api.Logger.Info("Refreshing game server info after delay: " + viewModelServer.Address);
+                    this.ExecuteCommandRefresh(viewModelServer,
+                                               forceReset: viewModelServer.IsNotAccessible);
+                });
         }
 
         private void ServerCannotConnectHandler(ServerAddress address)
@@ -410,6 +429,8 @@
             viewModelServer.Version = AppVersion.Zero;
             viewModelServer.IsCompatible = null;
             viewModelServer.IsNotAccessible = true;
+
+            this.ScheduleAutoRefresh(viewModelServer);
         }
 
         private void ServerPublicGuidAddressResolvedHandler(AtomicGuid guid, bool isSuccess, string hostAddress)

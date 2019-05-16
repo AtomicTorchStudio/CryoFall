@@ -43,7 +43,9 @@
             this.skeletonRenderer = skeletonRenderer;
             this.lightSource = lightSource;
 
-            this.Update(0);
+            // Don't use Update(0) here as the skeleton cannot be ready now:
+            // the new sprites likely to be added to it after this call.
+            this.lightSource.IsEnabled = false;
         }
 
         // Attention: we should not use LateUpdate here.

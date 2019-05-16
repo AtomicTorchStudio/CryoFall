@@ -148,3 +148,9 @@ Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
 Scripts/Base/Stats/StatName@SearchingSpeed:
 Скорость поиска
 
+Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+Урон от радиационного поражения
+
+Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+Скорость накопления радиации
+

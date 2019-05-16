@@ -130,6 +130,9 @@ Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 이곳은 다른 플레이어가 이미 점유했거나, 다른 플레이어의 토지 점유소와 너무 가깝습니다.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
+방금 나타난 자원 매장지는 점유할 수 없습니다. 해당 매장지 주변의 건설이 일시적으로 제한됩니다.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 다른 토지 점유 영역과 교차
 
@@ -157,10 +160,10 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireIn
 초보자 보호 기능 유효 시간:
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-초보자 보호 기능이 활성화되어 있으면, 다른 플레이어를 공격하거나 가방 또는 아이템을 약탈할 수 없습니다. 해당 기능은 언제든지 소셜 메뉴에서 취소할 수 있습니다.
+초보자 보호 기능이 활성화되어 있으면, 다른 플레이어를 공격하거나 가방 또는 아이템을 약탈할 수 없습니다. 해당 기능은 언제든지 관계 메뉴에서 취소할 수 있습니다.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-초보자 보호 기능이 활성화되어 있는 동안에는 이 작업을 수행할 수 없습니다. 해당 기능은 언제든지 소셜 메뉴에서 취소할 수 있습니다.
+초보자 보호 기능이 활성화되어있는 중에는 해당 행동을 할 수 없습니다. 초보자 보호 기능은 언제든지 관계 메뉴에서 끌 수 있습니다.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
 이 가방은 초보자 보호 기능으로 보호되어 있습니다. 원 소유자만 주울 수 있습니다.
@@ -182,6 +185,9 @@ Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageF
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
 주의: 이 초대를 수락하면, 현재의 파티에서 [b]떠나게[/b] 됩니다.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationSentMessageFormat:
+[b]{0}[/b]님께 파티 초대장을 보냈습니다.
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
 파티 초대
@@ -219,6 +225,38 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySame
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 서버 관리자로부터 받은 제재 때문에 초대할 수 없습니다.
 
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
+결투 모드 비활성화
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Enable:
+결투 모드 활성화
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Description:
+`다른 플레이어들에게 싸움을 걸기 위해 결투 모드를 활성화할 수 있습니다.
+[br]죽어도 아이템을 잃지 않습니다.
+[br]두 플레이어 모두 결투 모드를 활성화해야 합니다.`
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Title:
+결투 모드
+
+Scripts/Systems/PvE/PveSystem@Notification_CannotDamagePlayers_Message:
+PvE 서버에서는 다른 플레이어나 그들의 구조물에 대미지를 줄 수 없습니다.
+
+Scripts/Systems/PvE/PveSystem@Notification_OtherPlayerDontHaveDuelMode_Message:
+싸우기 위해서는 두 플레이어 모두 결투 모드가 활성화되어있어야 합니다.
+
+Scripts/Systems/PvE/PveSystem@Notification_StuffBelongsToAnotherPlayer_Message:
+다른 플레이어의 소유입니다.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Message:
+습격 시간대 중에만 토지 점유소 영역 내의 구조물에 대미지를 줄 수 있습니다.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Title:
+대미지 없음
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
+습격 시간대가 끝났습니다.
+
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 아직 수확할 것 없음
 
@@ -239,12 +277,36 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `이 서버의 관리자가 초대만 가능하도록 설정했습니다.
 [br]자세한 사항은 서버 설명을 확인하십시오.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessage:
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
 `CryoFall 공식 서버에 오신 것을 환영합니다!
 [br]
 [br]
 [b]중요:[/b]
-공식 서버는 PvP 중심이며, 다른 플레이어로부터 공격받을 수 있다는 점을 유념해주십시오. 자기 자신을 제대로 보호하고, 조심스럽게 행동하시기 바랍니다. 또한, 생존 확률을 높히기 위해, 다른 플레이어들과 협력할 수도 있습니다.
+본 서버는 PvE (플레이어 대 환경) 서버입니다. 이곳에서는 플레이어들이 서로를 공격할 수 없습니다. 적대적인 플레이어와의 교전이 없는 평화적인 탐험이 중심이 된 서버입니다. 당신은 다른 플레이어들을 죽이거나 파괴하거나 약탈하거나 그 밖의 다른 방법으로 공격할 수 없습니다. 이 외에도 이 서버에서는 위험한 생명체들과 잠금 해제할 수 있는 기술들, 탐험할 수 있는 세계가 포함된 완전한 CryoFall 경험을 제공하고 있습니다. 당신의 여정은 과연 어디까지 이어질 수 있을까요?
+[br]
+[br]
+보다 짜릿하고 제한 없는 경험을 하고 싶다면, PvP 서버를 권장해 드립니다.
+[br]
+[br]
+[b]서버 규칙:[/b]
+[*]다른 플레이어들을 공손하고 정중하게 대하십시오. 저희는 어떠한 형태의 괴롭힘이나 차별 등을 용납하지 않습니다.
+[*]서버 관리자의 모든 요청 사항들을 준수하십시오.
+[*]채팅을 사용할시, 스팸이나 도배, 과도한 비속어 사용을 자제해주십시오.
+[*]PvE 제한 사항을 회피하거나 부당하게 이용하지 마십시오.
+[*]게임의 규칙이나 메커니즘을 악용하여 다른 플레이어들의 마음을 상하게 하거나 불편하게 하지 마십시오.
+[br]
+[br]
+행운을 빕니다! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
+`CryoFall 공식 서버에 오신 것을 환영합니다!
+[br]
+[br]
+[b]중요:[/b]
+본 서버는 무한 경쟁이 이루어지는 PvP 서버입니다. PvP 중심 서버에서는 다른 플레이어들의 공격과 마주하게 된다는 점을 명심하십시오. 스스로 방어하며 싸우게 될 것입니다. 항상 경계하며, 자기 자신을 제대로 보호해야 합니다. 물론, 자신의 생존 확률을 높이기 위해 다른 생존자들과 힘을 합치는 것도 고려해볼 수 있습니다.
+[br]
+[br]
+게임을 보다 편안하게 경험하고 싶고, 특히 처음 플레이한다면 , PvE 서버를 권장해 드립니다.
 [br]
 [br]
 [b]서버 규칙:[/b]
@@ -253,13 +315,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [*]채팅을 사용할시, 스팸이나 도배, 과도한 비속어 사용을 자제해주십시오.
 [br]
 [br]
-[b]권고 사항:[/b]
-[br]저희가 위의 규칙들을 강제할 수는 없지만, 플레이어분들께서 자발적으로 지켜주시는 것이 모두에게 더 좋은 게임 플레이 환경을 만들어 줄 것입니다.
-[*]다른 플레이어들, 특히 이제 막 서버에 입장한 플레이어들을 즉살하지 마십시오.
-[*]다른 플레이어의 기지를 공격하는 것이 나쁜 건 아니지만, 아무 이유 없이 타인에게 큰 슬픔을 주는 것은 좋지 않습니다.
-[*]게임을 배우고 있는 신규 플레이어들을 도와주십시오.
-[br]
-[br]행운을 빕니다! :)`
+행운을 빕니다! :)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 {0}에 오신 것을 환영합니다
@@ -282,7 +338,7 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} 레벨 {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`50개 이상의 학습 포인트 (LP)가 모였습니다. 그것으로 새로운 기술의 잠금을 해제하는 것이 좋습니다. 사망하게 되면 보유하고 있는 LP 중 극히 일부만 유지됩니다.
+`{0}개 이상의 학습 포인트 (LP)가 모였습니다. 그것으로 새로운 기술의 잠금을 해제하는 것이 좋습니다. 사망하게 되면 보유하고 있는 LP 중 극히 일부만 유지됩니다.
 [br](기술 메뉴를 열려면 클릭)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:

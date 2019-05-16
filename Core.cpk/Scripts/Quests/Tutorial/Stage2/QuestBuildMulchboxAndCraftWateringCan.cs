@@ -33,7 +33,8 @@
                 .Add(RequirementUseItem.Require<ItemMulch>(description: TaskUseMulch));
 
             prerequisites
-                .Add<QuestBuildAFarm>();
+                .Add<QuestBuildAFarm>()
+                .Add<QuestClaySandGlassBottlesWaterCollector>();
         }
     }
 }

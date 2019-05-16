@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Bootstrappers
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class BootstrapperClientPostEffects : BaseBootstrapper

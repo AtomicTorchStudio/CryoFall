@@ -8,8 +8,6 @@
         {
             config.Effects
                   .AddRecipe<RecipeSolvent>();
-
-            config.SetRequiredNode<TechNodeHighEnergySubstances>();
         }
     }
 }

@@ -1,12 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs
 {
-    /// <summary>
-    /// This effect doesn't do anything by itself, but it is taken into account in other effects.
-    /// It was designed as a way to prevent people from abusing death-respawn cycle to gain advantage, e.g. by raiding radtowns
-    /// using constant respawning.
-    /// 
-    /// Note: This effect is taken into account inside radiation effect calculation.
-    /// </summary>
+    using AtomicTorch.CBND.CoreMod.Stats;
+
     public class StatusEffectWeakened : ProtoStatusEffect
     {
         public override string Description =>
@@ -20,5 +15,12 @@
         public override StatusEffectKind Kind => StatusEffectKind.Debuff;
 
         public override string Name => "Weakened";
+
+        protected override void PrepareEffects(Effects effects)
+        {
+            effects.AddPercent(this, StatName.RadiationPoisoningDamageMultiplier, 1000);
+
+            effects.AddPercent(this, StatName.RadiationPoisoningAccumulationMultiplier, 10000);
+        }
     }
 }

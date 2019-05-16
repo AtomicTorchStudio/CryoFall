@@ -19,7 +19,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Visibility="{Binding VisibilityConnected}"
-                        Width="220">
+                        MinWidth="220">
 
                 <TextBlock Text="{Binding ServerName}"
                            FontSize="16"
@@ -74,10 +74,25 @@
 
                 <core:FormattedTextBlock Content="{Binding ServerDescription}" />
 
-                <!-- Text: Show welcome message -->
-                <Button Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_ShowWelcomeMessage}"
-                        Command="{Binding CommandShowWelcomeMessage}"
-                        Margin="0,10,0,0" />
+                <Grid HorizontalAlignment="Stretch"
+                      Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <!-- Text: Show welcome message -->
+                    <Button Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_ShowWelcomeMessage}"
+                            Command="{Binding CommandShowWelcomeMessage}"
+                            Margin="0" />
+
+                    <!-- Edit welcome message -->
+                    <Button Grid.Column="1"
+                            Content="{x:Static loc:CoreStrings.Button_Edit}"
+                            Command="{Binding CommandEditWelcomeMessage}"
+                            Visibility="{Binding CanEditWelcomeMessage, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Margin="3,0,0,0"
+                            MinWidth="40" />
+                </Grid>
 
                 <!-- Text: Disconnect -->
                 <Button Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_Disconnect}"

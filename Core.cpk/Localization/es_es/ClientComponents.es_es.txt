@@ -73,30 +73,6 @@ Alejar cámara
 Scripts/ClientComponents/Input/GameButton@OpenChat:
 Chat
 
-Scripts/ClientComponents/Input/GameButton@InventoryMenu:
-Inventario
-
-Scripts/ClientComponents/Input/GameButton@CraftingMenu:
-Fabricación
-
-Scripts/ClientComponents/Input/GameButton@MapMenu:
-Mapa
-
-Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
-Construcción
-
-Scripts/ClientComponents/Input/GameButton@SkillsMenu:
-Habilidades
-
-Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
-Tecnologías
-
-Scripts/ClientComponents/Input/GameButton@SocialMenu:
-Social
-
-Scripts/ClientComponents/Input/GameButton@QuestsMenu:
-Misiones
-
 Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
 Consola de desarrollo
 

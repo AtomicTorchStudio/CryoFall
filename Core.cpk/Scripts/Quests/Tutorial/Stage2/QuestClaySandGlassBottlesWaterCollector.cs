@@ -31,7 +31,7 @@
                 .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeBottle>(count: 5));
 
             prerequisites
-                .Add<QuestExploreBiomes1>()
+                .Add<QuestUnlockSkills>()
                 .Add<QuestBuildFurnaceAndSmeltCopper>();
         }
     }

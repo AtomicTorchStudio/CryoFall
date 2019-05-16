@@ -22,7 +22,8 @@
 
         public override string Name => "Screenshot format";
 
-        public override IProtoOption OrderAfterOption => GetProtoEntity<GeneralOptionUIScale>();
+        public override IProtoOption OrderAfterOption
+            => GetOption<GeneralOptionUIScale>();
 
         public override Format ValueProvider { get; set; }
 

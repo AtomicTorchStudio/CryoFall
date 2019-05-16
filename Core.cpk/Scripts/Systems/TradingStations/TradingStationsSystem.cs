@@ -425,7 +425,8 @@
                                                  ? availableCoinShiny / lot.PriceCoinShiny
                                                  : int.MaxValue;
 
-                    countAvailable = (uint)Math.Min(canAffordWithPenny, canAffordWithShiny);
+                    countAvailable = (uint)(Math.Min(canAffordWithPenny, canAffordWithShiny)
+                                            * lot.LotQuantity);
                     if (countAvailable > 0)
                     {
                         // it can afford at least one item

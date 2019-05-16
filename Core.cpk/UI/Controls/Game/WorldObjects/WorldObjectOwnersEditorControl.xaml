@@ -10,14 +10,19 @@
     d:DataContext="{d:DesignInstance data:ViewModelWorldObjectOwnersEditor, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
 
-    <StackPanel Orientation="Vertical"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center">
+    <Grid VerticalAlignment="Center"
+          HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <TextBlock Text="{Binding Title}"
                    FontSize="14"
                    Foreground="White" />
 
-        <ScrollViewer Margin="0,0,0,5"
+        <ScrollViewer Grid.Row="1"
+                      Margin="0,0,0,5"
                       MaxHeight="150"
                       VerticalAlignment="Top"
                       CanContentScroll="True">
@@ -43,7 +48,7 @@
                             <StackPanel x:Name="OwnerEntryStackPanel"
                                         Background="Transparent"
                                         Orientation="Horizontal"
-                                        Margin="0,2">
+                                        Margin="0,1">
                                 <!-- Bullet point -->
                                 <Ellipse Width="6"
                                          Height="6"
@@ -52,7 +57,7 @@
                                          Margin="0,0,3,0" />
 
                                 <TextBlock Text="{Binding Name}"
-                                           FontSize="14"
+                                           FontSize="12"
                                            FontWeight="Bold"
                                            Foreground="{StaticResource BrushColor6}"
                                            VerticalAlignment="Center" />
@@ -63,7 +68,7 @@
                                             CommandParameter="{Binding Name}"
                                             Visibility="{Binding RemoveButtonVisibility}"
                                             ui:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.ObjectOwnersList_RemoveOwner}"
-                                            FontSize="10"
+                                            FontSize="8"
                                             Margin="6,0,0,0"
                                             Padding="2"
                                             MinWidth="0"
@@ -79,42 +84,52 @@
             </Grid>
         </ScrollViewer>
 
-        <Grid Margin="0,5,0,0"
-              Visibility="{Binding CanEditOwners, Converter={StaticResource BoolToVisibilityConverter}}">
-            <StackPanel Orientation="Vertical"
-                        Margin="0,5,0,0">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Margin="0,0,0,2">
-                    <!-- Text: Add player -->
-                    <TextBlock Text="{x:Static loc:CoreStrings.ObjectOwnersList_AddPlayer}"
-                               FontSize="14"
-                               Foreground="White" />
-                    <TextBlock Text=": "
-                               FontSize="14"
-                               Foreground="White" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBox Text="{Binding NewOnwerName}"
-                             FontSize="14"
-                             Width="120" />
-                    <!-- Text: Add -->
-                    <Button Content="{x:Static loc:CoreStrings.Button_Add}"
-                            Command="{Binding CommandAddNewOwner}"
-                            MinWidth="0"
-                            Height="16"
-                            Padding="10,0"
-                            Margin="5,0,0,0" />
-                </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Vertical"
+                    Visibility="{Binding CanEditOwners, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,2">
+                <!-- Text: Add player -->
+                <TextBlock Text="{x:Static loc:CoreStrings.ObjectOwnersList_AddPlayer}"
+                           FontSize="14"
+                           Foreground="White" />
+                <TextBlock Text=": "
+                           FontSize="14"
+                           Foreground="White" />
             </StackPanel>
-        </Grid>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding NewOwnerName}"
+                         FontSize="14"
+                         Width="120" />
+                <!-- Text: Add -->
+                <Button Content="{x:Static loc:CoreStrings.Button_Add}"
+                        Command="{Binding CommandAddNewOwner}"
+                        MinWidth="0"
+                        Height="16"
+                        Padding="10,0"
+                        Margin="5,0,0,0" />
+            </StackPanel>
+
+            <!-- Text: Add party members -->
+            <Button Content="{x:Static loc:CoreStrings.ObjectOwnersList_AddPartyMembers_Button}"
+                    Command="{Binding CommandAddPartyMembers}"
+                    IsEnabled="{Binding HasPartyMembers}"
+                    Margin="0,5,0,0"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    FontSize="13"
+                    MinHeight="0"
+                    Padding="10,3"
+                    MinWidth="70" />
+        </StackPanel>
 
         <!-- Text: Only the owner can add and remove access. -->
-        <TextBlock Text="{x:Static loc:CoreStrings.ObjectOwnersList_OnlyOwnerCanAdd}"
+        <TextBlock Grid.Row="2"
+                   Text="{x:Static loc:CoreStrings.ObjectOwnersList_OnlyOwnerCanAdd}"
                    Foreground="{StaticResource BrushColor5}"
                    Visibility="{Binding CanEditOwners, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                    TextWrapping="Wrap" />
-    </StackPanel>
+    </Grid>
 
 </ui:BaseUserControl>

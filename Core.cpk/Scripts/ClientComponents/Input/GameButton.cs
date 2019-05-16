@@ -113,37 +113,41 @@
         [ButtonInfo(InputKey.Enter)]
         OpenChat,
 
-        [Description("Inventory")]
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Equipment)]
         [ButtonInfo(InputKey.E)]
         InventoryMenu,
 
-        [Description("Crafting")]
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Crafting)]
         [ButtonInfo(InputKey.C)]
         CraftingMenu,
 
-        [Description("Map")]
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Map)]
         [ButtonInfo(InputKey.M)]
         MapMenu,
 
-        [Description("Construction")]
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Construction)]
         [ButtonInfo(InputKey.Tab)]
         ConstructionMenu,
 
-        [Description("Skills")]
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Skills)]
         [ButtonInfo(InputKey.K)]
         SkillsMenu,
 
-        [Description("Technologies")]
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Technologies)]
         [ButtonInfo(InputKey.G)]
         TechnologiesMenu,
 
-        [Description("Social")]
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Social)]
         [ButtonInfo(InputKey.H)]
         SocialMenu,
 
-        [Description("Quests")]
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Quests)]
         [ButtonInfo(InputKey.J)]
         QuestsMenu,
+
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Politics)]
+        [ButtonInfo(InputKey.P)]
+        PoliticsMenu,
 
         [Description("Developer console")]
         [ButtonInfo(InputKey.OemTilde, InputKey.CircumflexAccent)]

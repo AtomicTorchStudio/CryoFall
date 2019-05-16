@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.ItemsNotifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
@@ -58,6 +59,38 @@
         private static readonly Color ColorNeutral = Color.FromRgb(0x33, 0x66, 0x88);
 
         public override string Name => "Notification system";
+
+        public static CreateItemResult CalculateItemsResultExceptContainer(
+            CreateItemResult result,
+            IItemsContainer itemsContainer)
+        {
+            if (itemsContainer == null)
+            {
+                return result;
+            }
+
+            var itemAmounts = new Dictionary<IItem, ushort>(result.ItemAmounts);
+            foreach (var groundItem in itemsContainer.Items)
+            {
+                if (!itemAmounts.TryGetValue(groundItem, out var count))
+                {
+                    continue;
+                }
+
+                var newCount = count - groundItem.Count;
+                if (newCount > 0)
+                {
+                    itemAmounts[groundItem] = (ushort)newCount;
+                }
+                else
+                {
+                    itemAmounts.Remove(groundItem);
+                }
+            }
+
+            var newResult = new CreateItemResult(itemAmounts, (uint)itemAmounts.Sum(p => p.Value));
+            return newResult;
+        }
 
         public static void ClientShowItemsNotification(Dictionary<IProtoItem, int> itemsChangedCount)
         {
@@ -117,6 +150,15 @@
             ClientShowNotification(title: NotificationNoFreeSpace,
                                    message: NotificationSomeItemsDropped,
                                    color: NotificationColor.Bad);
+        }
+
+        public static void ServerSendItemsNotification(
+            ICharacter character,
+            CreateItemResult createItemResult,
+            IItemsContainer exceptItemsContainer)
+        {
+            createItemResult = CalculateItemsResultExceptContainer(createItemResult, exceptItemsContainer);
+            ServerSendItemsNotification(character, createItemResult);
         }
 
         public static void ServerSendItemsNotification(

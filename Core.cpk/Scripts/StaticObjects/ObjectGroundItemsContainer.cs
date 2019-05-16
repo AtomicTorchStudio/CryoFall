@@ -95,6 +95,8 @@
             ushort countToDrop,
             Vector2Ushort? dropTilePosition = null)
         {
+            countToDrop = Math.Min(countToDrop, itemToDrop.Count);
+
             var character = Client.Characters.CurrentPlayerCharacter;
             if (!dropTilePosition.HasValue)
             {
@@ -108,6 +110,8 @@
                     OnSuccess(resultItemsContainer);
                     return;
                 }
+
+                countToDrop = Math.Min(countToDrop, itemToDrop.Count);
 
                 if (!dropTilePosition.HasValue
                     || !SharedIsWithinInteractionDistance(
@@ -148,7 +152,7 @@
                     return;
                 }
 
-                Logger.Important(
+                Logger.Info(
                     $"Requested placing item on the ground (new ground container needed): {itemToDrop}. Count={countToDrop}.");
                 objectGroundContainer = await instance.CallServer(
                                             _ => _.ServerRemote_DropItemOnGround(
@@ -163,6 +167,7 @@
                 }
 
                 // cannot place on the ground
+                countToDrop = Math.Min(countToDrop, itemToDrop.Count);
                 instance.SoundPresetObject.PlaySound(ObjectSound.InteractFail);
 
                 // we're continue the async call - the context might have been changed
@@ -491,7 +496,7 @@
 
             if (item.Container.OwnerAsStaticObject?.ProtoStaticWorldObject is ObjectGroundItemsContainer)
             {
-                Logger.Error(
+                Logger.Warning(
                     $"Cannot drop item: {item} - already dropped to ground",
                     character);
                 return null;
@@ -524,7 +529,8 @@
                     groundItemsContainer,
                     out _,
                     countToMove: countToDrop,
-                    byCharacter: character))
+                    byCharacter: character,
+                    sendUpdateToCharacter: true))
             {
                 if (groundItemsContainer.OccupiedSlotsCount == 0)
                 {
@@ -587,7 +593,11 @@
             var currentPlayerCharacter = Client.Characters.CurrentPlayerCharacter;
             var containerGround = data.SyncPublicState.ItemsContainer;
 
-            if (!Api.Client.Input.IsKeyHeld(InputKey.Control, evenIfHandled: true))
+            // can pickup all objects if these are simply items dropped on the ground and not an item sack
+            // which is automatically displayed when there are more than 4 items
+            if (containerGround.OccupiedSlotsCount <= 4
+                && !Api.Client.Input.IsKeyHeld(InputKey.Control, evenIfHandled: true)
+                && !Api.Client.Input.IsKeyHeld(InputKey.Alt, evenIfHandled: true))
             {
                 // try pickup all the items
                 var result = currentPlayerCharacter.ProtoCharacter.ClientTryTakeAllItems(
@@ -673,7 +683,7 @@
             }
 
             // don't have items or timeout reached
-            Logger.Important(
+            Logger.Info(
                 "Destroying ground container at "
                 + worldObject.TilePosition
                 + (isTimedOut ? " - timed out" : " - contains no items"));
@@ -752,7 +762,7 @@
         {
             if (this.CheckTileRequirements(tilePosition, character: null, logErrors: false))
             {
-                Logger.Important("Creating ground container at " + tilePosition);
+                Logger.Info("Creating ground container at " + tilePosition);
                 return Server.World.CreateStaticWorldObject(this, tilePosition);
             }
 

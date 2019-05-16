@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -184,6 +185,12 @@
 
         protected override void ClientItemHotbarSelectionChanged(ClientHotbarItemData data)
         {
+            if (data.IsSelected
+                && this.ObjectExplosiveProto.IsActivatesRaidModeForLandClaim)
+            {
+                RaidingProtectionSystem.ClientShowNotificationRaidingNotAvailableIfNecessary();
+            }
+
             ClientExplosivePlacerHelper.Setup(data.Item, data.IsSelected);
         }
 

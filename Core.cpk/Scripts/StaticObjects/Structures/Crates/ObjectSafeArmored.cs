@@ -13,6 +13,8 @@
         public override string Description =>
             "Heavily armored safe that can withstand even the most powerful explosives. Not easy to make, but it can certainly ensure the safety of your valuables.";
 
+        public override bool HasOwnersList => true;
+
         public override byte ItemsSlotsCount => 32;
 
         public override string Name => "Armored safe";
@@ -53,7 +55,7 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 3);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

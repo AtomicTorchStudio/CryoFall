@@ -62,7 +62,9 @@
                 this.SceneObject,
                 color: this.description.LightColor,
                 spritePivotPoint: (0.5, 0.5),
-                size: (float)this.description.LightPower);
+                size: (float)this.description.LightPower,
+                // we don't want to display nickname/healthbar for the firing character, it's too quick anyway
+                logicalSize: 0);
 
             this.CreateSpriteRendererAndAnimator(
                 out this.spriteRendererSmoke,

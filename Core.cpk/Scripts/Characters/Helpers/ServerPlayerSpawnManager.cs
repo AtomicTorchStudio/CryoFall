@@ -110,8 +110,13 @@
             var characterDeathPosition = Vector2Ushort.Zero;
             if (isRespawn && character.ProtoCharacter is PlayerCharacter)
             {
-                characterDeathPosition = PlayerCharacter.GetPrivateState(character)
-                                                        .LastDeathPosition;
+                var privateState = PlayerCharacter.GetPrivateState(character);
+                if (!privateState.LastDeathTime.HasValue)
+                {
+                    return null;
+                }
+
+                characterDeathPosition = privateState.LastDeathPosition;
             }
 
             for (var attempt = 0; attempt < SpawnInZoneAttempts; attempt++)

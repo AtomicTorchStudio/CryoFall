@@ -1,0 +1,533 @@
+﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
+建筑: {0}
+
+Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
+完成科技组: {0}
+
+Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
+位于 {0}
+
+Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
+制作
+
+Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
+摧毁: {0}
+
+Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
+采集: {0}
+
+Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
+收集: {0}
+
+Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
+装备: {0}
+
+Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
+学习技能: {0}至{1}级
+
+Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
+学习技能: {0}至{1}级
+
+Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
+解锁科技组: {0}
+
+Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
+解锁 {0} 科技组: {1}
+
+Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
+学习科技: {0} (位于 {1} 组)
+
+Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
+杀死: {0}
+
+Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
+制造: {0}
+
+Scripts/Quests/Requirements/RequirementRun@DescriptionText:
+冲刺10米
+
+Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
+整理物品栏道具
+
+Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
+使用: {0}
+
+Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
+访问: {0}
+
+Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
+访问: {0}
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+你可以通过设置铺盖卷来选择重生位置。
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
+`[*] 铺盖卷位于建筑菜单的“其他”类型下。
+[*] 你最好将铺盖卷放在家中或者基地里。
+[*] 最好将第一个铺盖卷放置在远离其他玩家的位置。不过也不必担心，你可以在之后更改铺盖卷位置。`
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
+建造一个铺盖卷
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
+现在有了工具箱，你可以建造那些在科技菜单里解锁的不同建筑了。从营火开始吧，你能用它来烹饪食物。
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
+`[*] 你可以按下"Tab"键来快速访问[b]建筑菜单[/b]（默认按键）。
+[*] 建筑菜单拥有[b]复数页[/b]以及不同的[b]建筑类型[/b]，将随研究不断解锁。
+[*] 你可以用工具箱来[b]建造[/b]和[b]维修[/b]建筑。`
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
+建造营火
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Description:
+现在去弄点木头！找到一棵树，然后用斧头把它砍了。
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Hints:
+`[*] 你需要将斧头放进[b]工具栏[/b]。打开物品栏并将斧头拖拽进工具栏，然后关闭物品栏。
+[*] 现在你可以通过按下对应按键[b]选择[/b]工具栏物品，或通过鼠标点击选择。
+[*] 默认情况下[b]鼠标左键[/b]将使用你握持的物品，按下[b]鼠标右键[/b]来与环境物品互动。 `
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Name:
+砍倒一棵树
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@TaskEatAnyFood:
+吃任何食物
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Description:
+现在营火搭起来了，你能用它来煮一些基础的食物。如果你有蘑菇或者肉，就能煮了吃，这样会更有营养更加安全。
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
+`[*] 你能通过点击营火中的"查看配方"来查看所有的食物配方。
+[*] 要煮某一种食物，你需要[b]选择该配方[/b]。
+[*] 营火需要[b]燃料[/b]才能运行。在燃料栏中放入[b]木材或炭[/b]。
+[*] 你可以在[b]科技菜单[/b]里解锁[b]更多配方[/b]。
+[*] 你可以将[b]物品栏[/b]中的任意物品直接使用或放入 [b]工具栏[/b]进行快速访问。`
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
+烹饪任何食物
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
+现在你有了资源，可以开始制造了。首先制造一条绳子。然后再制作一把斧头。
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
+[*] 你可以用默认按键C打开制造菜单，用默认按键E打开物品栏。
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
+制造一把斧头
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
+通过采矿可以获得游戏内最珍贵的资源。你需要制造镐才能采矿。
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
+`[*] 使用徒手制作菜单("C")并制造一把镐。
+[*] 如果你的绳子不够，也可以制造一些。`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
+制造一把镐
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Description:
+要建造建筑的话你需要工具箱。工具箱是主要的建筑工具。
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Hints:
+`[*] 使用徒手制造菜单制作一个工具箱。
+[*] 你可能需要先制作一些绳子。`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Name:
+制作一个工具箱
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Description:
+许多人都会犯在夜晚摸黑行动的错误。你可以便捷的使用火把或提灯来提供光源。
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Hints:
+`[*] 通过将火把放进你的[b]工具栏[/b]来快速使用它。
+[*] 随后你可以解锁其他类型的光源，有固定的也有可携带的。`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Name:
+制造并使用一支火把
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Description:
+你需要收集一些资源来制造基础工具。
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
+`[*] 你可以从地上[b]拾取物品[/b]，例如[u]石头[/u]，[u]树枝[/u] 和[u]草[/u]。
+[*] 通过[b]右键点击[/b]地上的物品来将其拾取到物品栏中。`
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
+收集资源
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
+`要建造更多建筑，你需要在科技菜单中解锁"基础建筑"。`
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
+`[*] 你可以通过按下"G"键来快速访问科技菜单。
+[*] 解锁科技节点需要花费[b]LP[/b] (学习点数)。
+[*] 学习点数可以从所有的有意义活动中获得，与你的技能经验获取挂钩。`
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
+学习基础建筑科技
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
+挖掘石头
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Description:
+让我们把镐派上用场。采取一些矿物，看看你能获得什么。你还可以从大型岩石上挖掘到石头。
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
+`[*] 和其他可用工具一样，你需要将你的镐放进[b]工具栏[/b]。
+[*] [b]山体[/b]富含矿物节点。你可以通过查询你的地图("M")来找到好的采矿点。
+[*] 不同的矿物挖掘时间不同，并且给予的资源类型也不同。
+[*] 获取[b]大量石头[/b]的最好方式是从大型岩石上进行[b]挖掘[/b] 。
+[*] 如果你的采矿技能够高，可以在部分矿物中挖到诸如宝石和黄金这样的罕见掉落。`
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
+挖掘任何矿物
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
+在开始享受游戏之前，你还有几件事要学，例如整理物品栏和冲刺！
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
+`[*] 要整理物品栏，先将物品栏打开，然后按下[u]鼠标中键[/u]或者[u]Z键[/u]。你可以通过此方式整理[b]任何[/b]物品栏界面(例如箱子)。
+[*] 冲刺只需在移动时按下[u]Shift键[/u]即可进行。冲刺能让你快速逃离危险的捕食者。`
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
+进行基础行动
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
+收集水茎果
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Description:
+是时候学习如何获得水源了。当此星球进行地球化改造时，最先人工改造的植物之一就是水茎果丛。它们能提供易获取的清水。
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Hints:
+`[*] 水茎几乎能在所有生态环境中生长，但主要出现在[b]气候温和的草甸区域[/b]。
+[*] 和其他的食物和植物一样，它们会很快腐败，所以使用方法是渴的时候摘来吃，而不是储存。`
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Name:
+获得水源
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Description:
+工作台是你在游戏中主要的制作器械。在建造新基地时制作台处于高优先级。
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Hints:
+[*] 在科技菜单中你能看到每一个配方的内容。此信息显示在了配方名字下方。
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Name:
+解锁并建造一个工作台
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@TaskPlantAnySeeds:
+种下任意种子
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
+农业是可持续的食物来源，并且能给你带来大量收获。准备下地干活吧！
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
+`[*] 最好将你的农场建在围墙[b]内部[/b]，不然其他幸存者可能会来偷你的菜哦。
+[*] 不同的植物拥有不同的属性，例如成熟周期，收割次数等等。
+[*] 你可以在未来研究肥料等科技来进一步提升农业效率。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
+建造农场
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Description:
+游戏刚开始的时候用用火把还行，但随着时间推移会需要更大更好的光源。是时候打造一个提灯和地灯了！
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
+`[*] 比起火把，提灯提供[b]更广阔的光照范围[/b]以及更稳定的亮度。
+[*] 提灯和地灯都使用营地燃料进行照明，并且可以[b]多次重新加油[/b]，而火把是一次性的。
+[*] 营地燃料有两种制作方法，一种是从动物脂肪中提炼，一种是从石油中提炼。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
+光源
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
+`学会如何保护你的基地是非常重要的！如果没有正确的方法，很容易就会被其他狡猾的幸存者袭击劫掠。
+[br]
+[br]最重要的一点是正确的使用占领土地功能来保护你的基地。安放基地之前请先放下占领土地建筑。
+[br]
+[br]在放好了占领土地建筑后，你可以开始在其周围建造围墙。最好将占领土地建筑放在围墙[b][u]以内[/u][/b]，否则很容易就会被人[b]破坏[/b]。
+[br]
+[br]占领土地区域可以被扩张来占领更大面积的土地，你也可以加厚城墙来确保你的安全。通常来说两层围墙就足以劝退大多数来犯者，除非你的基地富可敌国招贼惦记。
+[br]
+[br]你的基地最好有两个以上的门，当然越多越好。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Hints:
+`[*] 通过与占领土地建筑互动来打开占领土地菜单。你可以在其中看到详细信息，也可以选择升级。
+[*] 在占领土地外的建筑会在一两天内快速的朽坏。最好把建筑放置在你的占领土地内。
+[*] 你可以使用撬棍来快速的拆毁你占领土地内的建筑。
+[*] 你不需要将所有的建造台等建筑放在你的基地里，因为没有东西可偷其他玩家通常不会理这些建筑。把不必要的建筑放出基地可以腾出空间放置更重要的建筑，例如箱子和熔炉。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Name:
+建造永久基地
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Description:
+要是不能把收集到的资源储藏起来，收集它们还有什么意义呢？还好，我们有解决方案。
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Hints:
+`[*] 冰箱能够延长食物腐坏的时间。冰箱质量越高，保存效果越好。
+[*] 食物腐败时间取决于食物本身。肉类坏的很快，而罐头可以长期储存。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Name:
+建造一个简易冰箱
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Description:
+你需要解锁并建造一个熔炉才能熔炼铜和其他金属。金属是游戏中工业的基石。
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Hints:
+`[*] 在科技界面中，你可以看到每一个配方需要的工作台。此信息显示在配方名字下方。
+[*] 你需要在铜矿节点进行挖掘来获得足够的铜矿进行熔炼。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Name:
+建造熔炉并熔炼铜矿
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseMulch:
+使用覆土
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseWateringCan:
+使用洒水壶
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Description:
+你可以通过经常浇水和使用肥料来提升农作物的生长速度。
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Hints:
+`[*] 经常为植物浇水是提升作物生长速度的最好办法。这只会消耗水。
+[*] 你可以通过在井或者蓄水处来装满你的洒水壶。工具栏中选中洒水壶时左键点击水源即可装水。
+[*] 要制作覆土，只要将任何有机物(植物，腐烂食物等)扔到地上然后等它们分解就行。
+[*] 覆土是一种简易的天然肥料。你可以用它来提升作物生长速度。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Name:
+农业效率
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Description:
+为了生活下去，你需要获取大量的水源。不仅用来喝，更要用来满足工业农业需要。
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Hints:
+`[*] 你可以在任何[b]沙滩或海岸[/b]上获得几乎无限量的[b]沙子[/b]。
+[*] 你可以在烧木头（尤其是树枝）后获得大量[b]灰[/b]。
+[*] 水在大量的制作配方中都会使用，所以最好储存大量的水。
+[*] 相比于使用集水器，你可以煮开湖水来将其净化，然后储存以备未来使用。
+[*] 井比集水器更加有效。
+[*] 你可以通过煮开海水来获取盐。`
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Name:
+获取更好的水源
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
+激烈的战斗将导致你损失生命值。你可以通过制作并服用药物来回复生命值，治疗创伤。单纯使用绿草药不是长远之计。
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
+`[*] 游戏中有许多不同类型的药物。有些可以恢复健康，有些可以治疗特定的疾病或提供其他好处。
+[*]制作先进的药物需要学习特定的配方和技术。
+[*]草药汤可以在烹饪类别中找到。
+[*]砍伐某些类型的树木时可收集树皮。`
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
+收集草药并制药
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Description:
+更高层次的技术需要掌握早期技术才能学习。
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Hints:
+[*]您可以解锁更高层次的技术组，以获得更复杂的科技，配方和建筑。
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
+掌握技术 - 第一部分
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
+杀死任何生物
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCreature:
+搜索任何生物
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Description:
+刀具是用于对抗危险较小的野兽的早期武器。在能制造更好的武器之前，带把刀是个不错的选择。
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
+[*] 游戏中的每个武器都有一些[b]特殊属性[/b]。例如，刀具有更高的机会导致出血，而钝器可能会使骨头断裂或使敌人晕眩。
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
+制作一把刀并杀死任何生物
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
+是时候获得更好的防护了。
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
+`[*]您可以解锁”进攻&防御“技术组中的所有相关技术。
+[*]木制装甲可能不是最好的选择，但它的制作成本仍然低廉，当然也比布甲更好。`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
+制作并装备更好的装甲
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Description:
+一丝不挂的到处跑基本等于自杀。即使是基本盔甲也有可能让你保住性命。研究，制作和装备基本布甲。
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
+`[*] 布甲可能无法提供高防御力，但它的制作成本低廉，肯定比什么都不穿好。
+[*] 游戏中存在[b]不同的伤害类型[/b]，不同的装甲提供不同的抗性。您可以在物品栏中看到此信息。`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
+制作并装备布甲
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Description:
+现在你可以进行冶金来升级你的工具。铁制工具不仅更加耐久，也比原始石质工具更加有效。
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
+[*]始终尝试升级到更好的工具，因为它能为你带来显着的生产力提升。
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
+制造更好的工具
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
+用钉头锤砸碎敌人的脑袋很好，但远距离攻击也是个不错的选择。特别是在你面对更强大对手的时候。
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
+`[*] 您可以解锁”进攻&防御“技术组中的所有相关技术。
+[*] 要制作纸包弹，您还必须先制作[b]火药[/b]和[b]纸[/b]。
+[*] 游戏中存在[b]不同的伤害类型[/b]，不同的装甲提供不同的抗性。您可以在物品栏中看到此信息。`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
+制造远程武器
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
+每个不同的生态圈都有其独特的植物群和动物群，以及特殊属性。熟悉每个基生态圈以最大限度地利用它们。
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Hints:
+`[*]草甸有大量的灌木，草药和其他有用的植物。
+[*]你可以在岸边找到许多水生动物。`
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Name:
+探索生态圈 - 第一部分
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Description:
+不同的生态圈拥有不同的资源，可以在那里找到栖息在该地区的动物。尽可能多地探索你的基地周围，看看有什么可用资源。
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Hints:
+`[*]岩石山脉生态圈可以寻找许多矿藏。
+[*]粘土坑是大量建筑用粘土的主要来源。
+[*]寒林可以在大陆北部找到。`
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Name:
+探索生态圈 - 第二部分
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
+绿草药不是最好的医疗物品，但紧急关头下可以使用它来回复少量生命。
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
+`[*] 绿草药是所有类型药物中最基本的，而且相对容易获得。
+[*] 你通常可以在森林里的草地上发现大量的草本植物和其他小植物。
+[*] 如果你发现箱子里塞了太多绿草药，可以考虑用它们制作药品。`
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
+找到并使用绿草药
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
+是时候去打猎了！对于初学者来说，避免更危险的动物可能会更好，还有很多东西可供狩猎。
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Hints:
+`[*] 每只动物能提供不同的战利品。你的狩猎技能在这方面也起着重要作用。
+[*] 狩猎是获得更多经验和学习要点的好方法。
+[*] 请不要在现实生活中这样做:(`
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Name:
+狩猎大师 - 第一部分
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
+是时候再次狩猎了！还有更多的动物和怪物可供狩猎。
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
+`[*] 每个动物和怪物都有自己的栖息区域，通常可以在对应区域找到它们。尝试探索世界，看看栖息在其中的所有不同的生物。
+[*] 根据特定动物或怪物的危险程度，您将获得不同数量的狩猎经验。`
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
+狩猎大师 - 第二部分
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
+解锁任何技能
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Description:
+游戏中的每项新技能都会在您花时间执行特定活动时解锁。解锁越来越多的技能是一项很好的长期发展策略，因为它们可以提高您在各自领域的熟练程度。
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
+[*] 高技能水平不仅可以提高您在该领域的熟练度，还可以提供其他方式无法获得的特质。
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
+学习技能
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
+自由建造是好事，但你也许想知道如何拆解你的建筑物。 要做到这一点，可以使用撬棍！ 只要你试图解构的建筑位于土地权利区域内即可。
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
+`[*]为完成此任务，你可以拆解一部分墙或一些同样便宜的东西，这样你就不会失去宝贵的资源。
+[*]你[b]只能[/b]拆解位于你土地权利区域[b]内[/b]的建筑物。
+[*]拆解是删除任何不必要或过时的建筑物或结构的最好方式。`
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
+使用撬棍进行拆解
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
+工业和建筑的进步需要硬科学，尤其是化学方面的基础。
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Hints:
+[*]化学是最重要的科学领域之一，建议大多数幸存者使用。
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Name:
+建立化学实验室
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Description:
+医学科学提供了各种有用的效果和可能性，而不仅仅是治愈伤害和疾病的能力。
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Hints:
+[*]更高层次的医疗技术可以获得更强大的治疗物品和其他药物。
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Name:
+建立医学实验室
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Description:
+现在你最好完成所有T2科技，来为在特定领域进一步专业化奠定坚实的基础。
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
+`[*] 早期技术（T1和T2）解锁起来相对便宜，所以学习所有这些技术总是一个好主意。
+[*] 对于先进技术（T3及以上），专门研究部分技术是个好主意。考虑哪一个对你最重要，而不是投资所有方向。`
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
+掌握技术 - 第二部分
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
+还有一些难以到达的生物群落可能带来额外的挑战，但也提供了一些独特的资源。
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
+`[*] 荒地生态圈是许多沙漠动物的家园。
+[*] 在盐滩可以获得大量的盐。`
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
+探索生态圈 - 第三部分
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
+遗址是寻找稀有元件和某些资源的最佳地点。如果你有所需装备的话可以去经常探索。
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
+`[*] 有不同类型的遗址：住宅（T1），工业（T2），军事（T2）和科学（T3）。
+[*] 废墟的难度范围从任何人都可以探索的T1，到需要最佳装备和药物才能探索的T3。
+[*] 探索遗址是获得某些稀有物品的唯一途径。找到它们的机会取决于遗址的难度，最有价值的物品只能在T3遗址中找到。`
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
+探索遗址
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
+是时候狩猎了！这次来打更危险的动物。
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Hints:
+[*]小心 - 这些动物很有攻击性，最好在打猎时使用高级远程武器。
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Name:
+狩猎大师 - 第四部分
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Description:
+准备进行极端狩猎！这次甚至不仅仅是动物！
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
+[*]小心 - 这些野兽具有极高攻击性和危险性。你将需要强大的远程武器和强大的装甲才能有机会完成狩猎。
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
+狩猎大师 - 第四部分
+

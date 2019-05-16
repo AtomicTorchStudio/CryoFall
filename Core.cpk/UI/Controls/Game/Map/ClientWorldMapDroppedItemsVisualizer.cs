@@ -1,22 +1,21 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ClientWorldMapDroppedItemsVisualizer : IWorldMapVisualizer
     {
-        private readonly NetworkSyncList<Vector2Ushort> droppedItemsLocations;
+        private readonly NetworkSyncList<DroppedLootInfo> droppedItemsLocations;
 
-        private readonly Dictionary<Vector2Ushort, FrameworkElement> markers
-            = new Dictionary<Vector2Ushort, FrameworkElement>();
+        private readonly Dictionary<DroppedLootInfo, FrameworkElement> markers
+            = new Dictionary<DroppedLootInfo, FrameworkElement>();
 
         private readonly WorldMapController worldMapController;
 
@@ -26,14 +25,14 @@
 
             var playerCharacter = Api.Client.Characters.CurrentPlayerCharacter;
             this.droppedItemsLocations = PlayerCharacter.GetPrivateState(playerCharacter)
-                                                        .DroppedItemsLocations;
+                                                        .DroppedLootLocations;
 
             this.droppedItemsLocations.ClientElementInserted += this.MarkerAddedHandler;
             this.droppedItemsLocations.ClientElementRemoved += this.MarkerRemovedHandler;
 
-            foreach (var position in this.droppedItemsLocations)
+            foreach (var mark in this.droppedItemsLocations)
             {
-                this.AddMarker(position);
+                this.AddMarker(mark);
             }
         }
 
@@ -46,43 +45,50 @@
 
             if (this.markers.Count > 0)
             {
-                foreach (var position in this.markers.Keys.ToList())
+                foreach (var mark in this.markers.Keys.ToList())
                 {
-                    this.RemoveMarker(position);
+                    this.RemoveMarker(mark);
                 }
             }
         }
 
-        private void AddMarker(Vector2Ushort position)
+        private void AddMarker(DroppedLootInfo droppedLootInfo)
         {
-            if (this.markers.ContainsKey(position))
+            if (this.markers.ContainsKey(droppedLootInfo))
             {
-                Api.Logger.Warning("Dropped items already has the map visualizer: " + position);
+                Api.Logger.Warning("Dropped items already has the map visualizer: " + droppedLootInfo);
                 return;
             }
 
             var mapControl = new WorldMapMarkDroppedItems();
-            var canvasPosition = this.worldMapController.WorldToCanvasPosition(position.ToVector2D());
+            var canvasPosition = this.worldMapController.WorldToCanvasPosition(
+                droppedLootInfo.Position.ToVector2D());
             Canvas.SetLeft(mapControl, canvasPosition.X);
             Canvas.SetTop(mapControl, canvasPosition.Y);
             Panel.SetZIndex(mapControl, 12);
 
             this.worldMapController.AddControl(mapControl);
 
-            this.markers[position] = mapControl;
+            this.markers[droppedLootInfo] = mapControl;
         }
 
-        private void MarkerAddedHandler(NetworkSyncList<Vector2Ushort> source, int index, Vector2Ushort value)
+        private void MarkerAddedHandler(
+            NetworkSyncList<DroppedLootInfo> droppedLootInfos,
+            int index,
+            DroppedLootInfo droppedLootInfo)
         {
-            this.AddMarker(value);
+            this.AddMarker(droppedLootInfo);
         }
 
-        private void MarkerRemovedHandler(NetworkSyncList<Vector2Ushort> source, int index, Vector2Ushort removedValue)
+        private void MarkerRemovedHandler(
+            NetworkSyncList<DroppedLootInfo> droppedLootInfos,
+            int index,
+            DroppedLootInfo droppedLootInfo)
         {
-            this.RemoveMarker(removedValue);
+            this.RemoveMarker(droppedLootInfo);
         }
 
-        private void RemoveMarker(Vector2Ushort position)
+        private void RemoveMarker(DroppedLootInfo position)
         {
             if (!this.markers.TryGetValue(position, out var control))
             {

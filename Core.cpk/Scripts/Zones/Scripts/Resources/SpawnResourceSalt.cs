@@ -14,8 +14,9 @@
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromMinutes(10)));
 
-            spawnList.CreatePreset(interval: 10, padding: 3)
-                     .Add<ObjectMineralSalt>();
+            spawnList.CreatePreset(interval: 7, padding: 1)
+                     .Add<ObjectMineralSalt>()
+                     .SetCustomPaddingWithSelf(5.5);
         }
     }
 }

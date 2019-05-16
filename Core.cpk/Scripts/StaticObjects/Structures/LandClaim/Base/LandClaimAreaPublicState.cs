@@ -10,7 +10,14 @@
         public Vector2Ushort LandClaimCenterTilePosition { get; set; }
 
         [SyncToClient]
+        public ushort LandClaimGraceAreaPaddingSizeOneDirection { get; set; }
+
+        [SyncToClient]
         public ushort LandClaimSize { get; set; }
+
+        [SyncToClient]
+        [TempOnly]
+        public double? LastRaidTime { get; set; }
 
         [SyncToClient]
         public string Title { get; set; }
@@ -23,6 +30,8 @@
             var tilePosition = LandClaimSystem.SharedCalculateLandClaimObjectCenterTilePosition(structure);
             this.LandClaimCenterTilePosition = tilePosition;
             this.LandClaimSize = protoObjectLandClaim.LandClaimSize;
+            this.LandClaimGraceAreaPaddingSizeOneDirection =
+                protoObjectLandClaim.LandClaimGraceAreaPaddingSizeOneDirection;
         }
     }
 }

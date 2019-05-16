@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -22,6 +23,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class CharacterRespawnSystem : ProtoSystem<CharacterRespawnSystem>
     {
@@ -50,6 +52,81 @@
 
         public override string Name => "Character respawn system";
 
+        /// <summary>
+        /// Used when respawning near bed.
+        /// Used to move character when using "unstuck" feature.
+        /// </summary>
+        public static bool ServerTryPlaceCharacterNearby(
+            ICharacter character,
+            Vector2D startPosition)
+        {
+            var attemptsRemains = 300;
+            var radiuses = new[]
+            {
+                (min: 25, max: 50),
+                (min: 50, max: 60),
+                (min: 60, max: 70)
+            };
+
+            var restrictedZone = ZoneSpecialConstructionRestricted.Instance.ServerZoneInstance;
+            var physicsSpace = Server.World.GetPhysicsSpace();
+
+            foreach (var radius in radiuses)
+            {
+                do
+                {
+                    var offset = RandomHelper.Next(radius.min, radius.max);
+                    var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
+                    var spawnPosition = new Vector2D(startPosition.X + offset * Math.Cos(angle),
+                                                     startPosition.Y + offset * Math.Sin(angle));
+
+                    using (var objectsNearby = physicsSpace.TestCircle(
+                        spawnPosition,
+                        radius: 0.5,
+                        collisionGroup: CollisionGroups.Default))
+                    {
+                        if (objectsNearby.Count > 0)
+                        {
+                            // invalid tile - obstacles
+                            continue;
+                        }
+                    }
+
+                    if (LandClaimSystem.SharedIsLandClaimedByAnyone(spawnPosition.ToVector2Ushort()))
+                    {
+                        // there is a land claim area - don't respawn there
+                        continue;
+                    }
+
+                    // ensure that the tile is valid
+                    var isValidTile = true;
+                    var spawnTile = Server.World.GetTile(spawnPosition.ToVector2Ushort());
+                    foreach (var neighborTile in spawnTile.EightNeighborTiles.ConcatOne(spawnTile))
+                    {
+                        if (!neighborTile.IsValidTile
+                            || neighborTile.ProtoTile.Kind != TileKind.Solid
+                            || restrictedZone.IsContainsPosition(neighborTile.Position))
+                        {
+                            isValidTile = false;
+                            break;
+                        }
+                    }
+
+                    if (!isValidTile)
+                    {
+                        continue;
+                    }
+
+                    // valid tile found - respawn here
+                    Server.World.SetPosition(character, spawnPosition);
+                    return true;
+                }
+                while (attemptsRemains-- > 0);
+            }
+
+            return false;
+        }
+
         public Task<Tuple<bool, int>> ClientGetHasBedAsync()
         {
             return this.CallServer(_ => _.ServerRemote_GetHasBed());
@@ -74,6 +151,12 @@
             ICharacter character,
             IStaticWorldObject bedObject)
         {
+            if (PveSystem.ServerIsPvE)
+            {
+                // can respawn instantly on a PvE server
+                return 0;
+            }
+
             if (!ServerLastRespawnTime.TryGetValue(character.Name, out var lastRespawnTime))
             {
                 return 0;
@@ -87,7 +170,8 @@
 
         private static bool ServerCanRespawn(PlayerCharacterCurrentStats stats, ICharacter character)
         {
-            if (stats.HealthCurrent <= 0)
+            if (stats.HealthCurrent <= 0
+                || PlayerCharacter.GetPublicState(character).IsDead)
             {
                 return true;
             }
@@ -107,21 +191,24 @@
 
         private static void ServerOnSuccessfulRespawn(PlayerCharacterCurrentStats stats, ICharacter character)
         {
-            stats.ServerSetHealthCurrent(stats.HealthMax / 2f, overrideDeath: true);
-            stats.SharedSetStaminaCurrent(stats.StaminaMax / 2f);
-            stats.ServerSetFoodCurrent(stats.FoodMax / 4f);
-            stats.ServerSetWaterCurrent(stats.WaterMax / 4f);
-
-            CharacterDamageTrackingSystem.ServerClearStats(character);
-
-            // remove status effects flagged as removed on respawn
-            foreach (var statusEffect in character.ServerEnumerateCurrentStatusEffects().ToList())
+            var privateState = PlayerCharacter.GetPrivateState(character);
+            if (privateState.IsDespawned)
             {
-                var protoStatusEffect = (IProtoStatusEffect)statusEffect.ProtoLogicObject;
-                if (protoStatusEffect.IsRemovedOnRespawn)
+                privateState.IsDespawned = false;
+                var publicState = PlayerCharacter.GetPublicState(character);
+                if (stats.HealthCurrent > 0)
                 {
-                    character.ServerRemoveStatusEffect(protoStatusEffect);
+                    publicState.IsDead = false;
                 }
+                else
+                {
+                    ResetStatsOnRespawn();
+                }
+            }
+            else
+            {
+                // if character was actually dead and not simply despawned
+                ResetStatsOnRespawn();
             }
 
             // recreate physics (as dead character doesn't have any physics)
@@ -129,8 +216,31 @@
 
             Api.Server.Characters.SetViewScopeMode(character, isEnabled: true);
 
-            // character is weakened after respawn for some time
-            character.ServerAddStatusEffect<StatusEffectWeakened>(intensity: 0.5);
+            if (!PveSystem.ServerIsPvE)
+            {
+                // on PvP servers character is weakened after respawn for some time
+                character.ServerAddStatusEffect<StatusEffectWeakened>(intensity: 0.5);
+            }
+
+            CharacterDamageTrackingSystem.ServerClearStats(character);
+
+            void ResetStatsOnRespawn()
+            {
+                stats.ServerSetHealthCurrent(stats.HealthMax / 2f, overrideDeath: true);
+                stats.SharedSetStaminaCurrent(stats.StaminaMax / 2f);
+                stats.ServerSetFoodCurrent(stats.FoodMax / 4f);
+                stats.ServerSetWaterCurrent(stats.WaterMax / 4f);
+
+                // remove status effects flagged as removed on respawn
+                foreach (var statusEffect in character.ServerEnumerateCurrentStatusEffects().ToList())
+                {
+                    var protoStatusEffect = (IProtoStatusEffect)statusEffect.ProtoLogicObject;
+                    if (protoStatusEffect.IsRemovedOnRespawn)
+                    {
+                        character.ServerRemoveStatusEffect(protoStatusEffect);
+                    }
+                }
+            }
         }
 
         private static bool ServerTryRespawnAtBed(ICharacter character, bool respawnOnlyNearby)
@@ -154,7 +264,6 @@
             }
 
             var bedPosition = bedObject.TilePosition;
-            var physicsSpace = bedObject.PhysicsBody.PhysicsSpace;
             return respawnOnlyNearby
                        ? RespawnNearbyBed()
                        : RespawnAtBed();
@@ -170,6 +279,7 @@
                 var bedTileHeight = bedObject.OccupiedTile.Height;
 
                 neighborTiles.SortBy(t => t.Position.TileSqrDistanceTo(bedPosition));
+                var physicsSpace = Server.World.GetPhysicsSpace();
 
                 foreach (var neighborTile in neighborTiles)
                 {
@@ -212,73 +322,13 @@
 
             bool RespawnNearbyBed()
             {
-                var attemptsRemains = 200;
+                var respawnCenterPosition = bedPosition.ToVector2D() + (0.5, 0.5);
 
-                var bedPositionCenterTile = bedPosition.ToVector2D() + (0.5, 0.5);
-
-                var radiuses = new[]
+                if (ServerTryPlaceCharacterNearby(character, respawnCenterPosition))
                 {
-                    (min: 25, max: 50),
-                    (min: 50, max: 60),
-                    (min: 60, max: 70)
-                };
-
-                var restrictedZone = ZoneSpecialConstructionRestricted.Instance.ServerZoneInstance;
-
-                foreach (var radius in radiuses)
-                {
-                    do
-                    {
-                        var offset = RandomHelper.Next(radius.min, radius.max);
-                        var angle = RandomHelper.NextDouble();
-                        var offsetX = offset * Math.Sin(angle);
-                        var offsetY = offset * Math.Cos(angle);
-
-                        var spawnPosition = bedPositionCenterTile + (offsetX, offsetY);
-                        using (var objectsNearby = physicsSpace.TestCircle(
-                            spawnPosition,
-                            radius: 0.5,
-                            collisionGroup: CollisionGroups.Default))
-                        {
-                            if (objectsNearby.Count > 0)
-                            {
-                                // invalid tile - obstacles
-                                continue;
-                            }
-                        }
-
-                        if (LandClaimSystem.SharedIsLandClaimedByAnyone(spawnPosition.ToVector2Ushort()))
-                        {
-                            // there is a land claim area - don't respawn there
-                            continue;
-                        }
-
-                        // ensure that the tile is valid
-                        var isValidTile = true;
-                        var spawnTile = Server.World.GetTile(spawnPosition.ToVector2Ushort());
-                        foreach (var neighborTile in spawnTile.EightNeighborTiles.ConcatOne(spawnTile))
-                        {
-                            if (!neighborTile.IsValidTile
-                                || neighborTile.ProtoTile.Kind != TileKind.Solid
-                                || restrictedZone.IsContainsPosition(neighborTile.Position))
-                            {
-                                isValidTile = false;
-                                break;
-                            }
-                        }
-
-                        if (!isValidTile)
-                        {
-                            continue;
-                        }
-
-                        // valid tile found - respawn here
-                        Server.World.SetPosition(character, spawnPosition);
-                        Logger.Important($"{character} respawned near bed {bedObject}");
-                        ServerLastRespawnTime[character.Name] = Server.Game.FrameTime;
-                        return true;
-                    }
-                    while (attemptsRemains-- > 0);
+                    ServerLastRespawnTime[character.Name] = Server.Game.FrameTime;
+                    Logger.Important($"{character} respawned near bed {bedObject}");
+                    return true;
                 }
 
                 Logger.Warning($"{character} cannot be spawned near bed {bedObject}");

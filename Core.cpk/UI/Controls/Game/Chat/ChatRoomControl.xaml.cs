@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Services;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -25,7 +26,7 @@
 
         private const double DefaultNewEntryHideDelaySeconds = 15.0;
 
-        private const int MaxChatEntriesCount = 50;
+        private const int MaxChatEntriesCount = 120;
 
         private static readonly SoundResource SoundResourceActivity
             = new SoundResource("UI/Chat/Activity");
@@ -36,13 +37,13 @@
         private static readonly SoundResource SoundResourceMessageSend
             = new SoundResource("UI/Chat/Send");
 
+        private static uint lastMessageReceivedSoundPlayerFrameNumber;
+
         private uint activatedOnFrameNumber;
 
         private bool? isActive;
 
         private bool isExpanded;
-
-        private static uint lastMessageReceivedSoundPlayerFrameNumber;
 
         private ScrollViewer scrollViewerChatLog;
 
@@ -78,7 +79,7 @@
                     this.scrollViewerChatLog.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
                     this.scrollViewerChatLog.Focusable = true;
 
-                    this.ScrollToEnd();
+                    this.ScrollToBottom(force: true);
 
                     this.textBoxChatInput.KeyDown += this.InputKeyDownHandler;
                     this.textBoxChatInput.PreviewTextInput += this.InputPreviewTextInputHandler;
@@ -173,7 +174,7 @@
                 else
                 {
                     this.LimitScrollViewerHeight();
-                    this.ScrollToEnd();
+                    this.ScrollToBottom(force: true);
                     this.HideEntries();
                 }
 
@@ -259,7 +260,7 @@
                 this.stackPanelChatLogChildren.RemoveAt(0);
             }
 
-            this.ScrollToEnd();
+            this.ScrollToBottom(force: false);
 
             if (this.isLoaded
                 && !this.IsExpanded)
@@ -334,7 +335,7 @@
                 return;
             }
 
-            this.ScrollToEnd();
+            this.ScrollToBottom(force: true);
 
             switch (e.Key)
             {
@@ -463,13 +464,13 @@
                 chatEntryControl.Hide(delaySeconds: DefaultChatHistoryInitialHideDelaySeconds);
             }
 
-            this.ScrollToEnd();
+            this.ScrollToBottom(force: true);
         }
 
-        private void ScrollToEnd()
+        private void ScrollToBottom(bool force)
         {
             this.scrollViewerChatLog.UpdateLayout();
-            this.scrollViewerChatLog.ScrollToEnd();
+            AdvancedScrollViewerService.ScrollToBottom(this.scrollViewerChatLog, force);
         }
 
         private void ScrollViewerChatLogMouseLeftButtonUpHandler(object sender, MouseButtonEventArgs e)

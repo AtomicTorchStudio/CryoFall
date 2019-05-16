@@ -15,6 +15,8 @@
         public override string Description =>
             "Primitive cooler that uses evaporation as its primary cooling method. Isn't as effective as modern fridges, but will still keep your food fresh for longer.";
 
+        public override bool HasOwnersList => false;
+
         public override byte ItemsSlotsCount => 4;
 
         public override string Name => "Primitive fridge";

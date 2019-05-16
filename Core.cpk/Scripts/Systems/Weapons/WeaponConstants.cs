@@ -1,5 +1,7 @@
 namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     public static class WeaponConstants
@@ -8,23 +10,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             = ServerRates.Get(
                 "DamageCreaturesMultiplier",
                 defaultValue: 1.0,
-                @"All damage dealt by creatures (to player and/or other creatures)
-                  is multiplied on this rate.
+                @"All damage dealt by creatures (to player and/or other creatures) is multiplied on this rate.
                   It allows to make it harder or easier to kill players by creatures.");
 
-        public static readonly double DamageExplosivesToCharactersMultiplier
-            = ServerRates.Get(
-                "DamageExplosivesToCharactersMultiplier",
-                defaultValue: 1.0,
-                @"All damage dealt by bombs to characters is multiplied on this rate.
-                  You can set it to 0 to disable bombs damage to characters.");
+        public static readonly double DamageExplosivesToCharactersMultiplier;
 
-        public static readonly double DamageExplosivesToStructuresMultiplier
-            = ServerRates.Get(
-                "DamageExplosivesToStructuresMultiplier",
-                defaultValue: 1.0,
-                @"All damage dealt by bombs to structures is multiplied on this rate.
-                  You can set it to 0 to disable bombs damage to structures.");
+        public static readonly double DamageExplosivesToStructuresMultiplier;
 
         public static readonly double DamageFriendlyFireMultiplier
             = MathHelper.Clamp(
@@ -53,9 +44,33 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             = ServerRates.Get(
                 "DamagePvpMultiplier",
                 defaultValue: 0.5,
-                @"All damage dealt from player to player is multiplied on this rate.
+                @"All damage dealt from player to player (via weapons only) is multiplied on this rate.
                   It allows to decrease or increase the combat duration.
-                  You can set it to 0 to disable PvP damage (doesn't apply to bombs damage!).
-                  Default value on A21 version is 0.5.");
+                  You can set it to 0 to disable PvP damage (doesn't apply to bombs damage!).");
+
+        static WeaponConstants()
+        {
+            DamageExplosivesToCharactersMultiplier = ServerRates.Get(
+                "DamageExplosivesToCharactersMultiplier",
+                defaultValue: 1.0,
+                @"All damage dealt by bombs to characters is multiplied on this rate.
+                  You can set it to 0 to disable bombs damage to characters.
+                  Applies only on PvP servers - on PvE it will be always 0.");
+
+            DamageExplosivesToStructuresMultiplier = ServerRates.Get(
+                "DamageExplosivesToStructuresMultiplier",
+                defaultValue: 1.0,
+                @"All damage dealt by bombs to structures is multiplied on this rate.
+                  You can set it to 0 to disable bombs damage to structures.
+                  Applies only on PvP servers - on PvE it will be always 0.");
+
+            if (!Api.IsServer
+                || PveSystem.ServerIsPvE)
+            {
+                // set explosives rates to zero for PvE servers and all clients
+                DamageExplosivesToCharactersMultiplier = 0;
+                DamageExplosivesToStructuresMultiplier = 0;
+            }
+        }
     }
 }

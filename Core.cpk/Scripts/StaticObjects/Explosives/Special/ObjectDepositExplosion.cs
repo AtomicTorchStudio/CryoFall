@@ -1,15 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Explosives
 {
     using System;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
 
     public class ObjectDepositExplosion : ProtoObjectExplosive
     {
-        public override bool ActivatesRaidModeForLandClaim => false;
-
         public override double DamageRadius => 4;
 
         public override ITextureResource DefaultTexture
@@ -17,7 +14,9 @@
 
         public override TimeSpan ExplosionDelay => TimeSpan.Zero;
 
-        [NotLocalizable]
+        public override bool IsActivatesRaidModeForLandClaim => false;
+
+        // resource deposit (oil seep, geothermal spring, etc) explosion
         public override string Name => "Deposit explosion";
 
         protected override void ClientInitialize(ClientInitializeData data)

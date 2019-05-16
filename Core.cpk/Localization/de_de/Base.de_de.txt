@@ -148,3 +148,9 @@ Fähigkeit zum Verzehr verdorbener Nahrung
 Scripts/Base/Stats/StatName@SearchingSpeed:
 Suchgeschwindigkeit
 
+Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+Strahlenschaden
+
+Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+Strahlungsanhäufung
+

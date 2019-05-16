@@ -41,7 +41,7 @@
 
             this.lightSource = lightSource;
 
-            var size = lightSource.Size;
+            var size = lightSource.RenderingSize;
 
             this.sizeRangeX = new Interval<double>(
                 size.X * (1 - flickeringPercents / 100.0),
@@ -51,9 +51,8 @@
                 size.Y * (1 - flickeringPercents / 100.0),
                 size.Y);
 
-            this.maxSizeChangePerSecond = (
-                                              size.X * flickeringChangePercentsPerSecond / 100.0,
-                                              size.Y * flickeringChangePercentsPerSecond / 100.0);
+            this.maxSizeChangePerSecond = (size.X * flickeringChangePercentsPerSecond / 100.0,
+                                           size.Y * flickeringChangePercentsPerSecond / 100.0);
 
             this.updateInterval = 1.0 / updateRatePerSecond;
 
@@ -96,7 +95,7 @@
                 this.targetSizeY,
                 this.maxSizeChangePerSecond.Y * deltaTime);
 
-            this.lightSource.Size = new Size2F((float)this.currentSizeX, (float)this.currentSizeY);
+            this.lightSource.RenderingSize = new Size2F((float)this.currentSizeX, (float)this.currentSizeY);
         }
 
         private void Randomize()

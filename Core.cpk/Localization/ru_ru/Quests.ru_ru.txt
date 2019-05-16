@@ -368,6 +368,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
 Изготовить и использовать тканевую броню
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Description:
+Теперь, когда вы получили доступ к металлургии, разумно будет улучшить свои инструменты. Железные инструменты отличаются не только долговечностью, но и более высокой эффективностью по сравнению с примитивными каменными орудиями труда.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
+[*] Постарайтесь улучшать свои инструменты, как только улучшение становится доступным, поскольку они значительно повысят свою производительность.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
+Изготовить инструменты получше
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Булавой можно легко проломить череп, но иногда лучше разить врагов на расстоянии. Особенно если приходится сражаться с серьезным противником.
 
@@ -443,6 +452,17 @@ Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
 Изучить некоторые навыки
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
+Хорошо, когда можно что-то построить, но также важно знать, как разобрать имеющуюся постройку. Для этого используйте лом! Но только если здание, которое вы хотите разобрать, находится внутри вашей зоны контроля.
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
+`[*] Для выполнения этого квеста можно разобрать часть стены или что-то столь же дешевое, чтобы не потерять ценные ресурсы.
+[*] Вы можете разбирать [b]только[/b] те здания, которые находятся [b]внутри[/b] вашей зоны контроля.
+[*] Разборка — это лучший способ избавиться от ненужных или устаревших сооружений.`
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
+Используйте лом для разборки
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Изучение точных наук, особенно химии, помогает добиться успехов в производстве и строительстве.

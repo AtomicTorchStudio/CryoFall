@@ -1,12 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
-    using AtomicTorch.CBND.GameApi;
+    public interface IProtoObjectExtractor : IProtoObjectManufacturer
+    {
+        float LiquidCapacity { get; }
 
-    // enable and use with A22 update (requires wipe due to savegame incompatibility)
-    //public interface IProtoObjectExtractor : IProtoObjectManufacturer
-    //{
-    //    float LiquidCapacity { get; }
-    //
-    //    float LiquidProductionAmountPerSecond { get; }
-    //}
+        float LiquidProductionAmountPerSecond { get; }
+    }
 }

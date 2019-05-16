@@ -103,6 +103,12 @@ Dispositivo especial para extrair biomaterial de animais e outras criaturas. Par
 Scripts/Items/Devices/ItemBiomaterialCollector@Name:
 Coletor de biomaterial
 
+Scripts/Items/Devices/ItemHuntersTools@Description:
+Este pacote de ferramentas úteis de caçador agiliza saquear qualquer criatura.
+
+Scripts/Items/Devices/ItemHuntersTools@Name:
+Ferramentas de caçador
+
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Armazena grandes quantidades de energia para uso conveniente em movimento. Qualquer dispositivo ou arma de energia pode extrair energia dos carregadores portáteis equipados.
 
@@ -183,6 +189,9 @@ Peitoral trançado
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Capacete trançado
+
+Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
+Capacete improvisado com lâmpada
 
 Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
 Calça trançada
@@ -1351,6 +1360,18 @@ Este material especial de nanofibra pode ser aplicado à camada inferior da epid
 
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Implante de pele de nanofibra
+
+Scripts/Items/Medical/ItemAntiMutation@Description:
+Protege e restaura o DNA celular que sofreu danos pela exposição à radiação e outros efeitos nocivos. Impede as mutações descontroladas no organismo.
+
+Scripts/Items/Medical/ItemAntiMutation@Name:
+Remédios antimutação
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Sem mutações
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+Não foi detectada nenhuma mutação fora de controle no organismo.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 Você não tem náusea. Não precisa tomar este remédio agora.

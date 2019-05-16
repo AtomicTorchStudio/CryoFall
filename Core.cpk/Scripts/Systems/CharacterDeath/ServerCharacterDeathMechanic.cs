@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.CharacterDeath
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
@@ -11,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -30,7 +32,35 @@
 
         public delegate void DelegateCharacterKilled(ICharacter attackerCharacter, ICharacter targetCharacter);
 
+        public static event Action<ICharacter> CharacterDeath;
+
         public static event DelegateCharacterKilled CharacterKilled;
+
+        /// <summary>
+        /// Moves the character to the "graveyard" so a respawn will be required on login.
+        /// No penalty in items or LP loss.
+        /// </summary>
+        public static void DespawnCharacter(ICharacter character)
+        {
+            var publicState = character.GetPublicState<ICharacterPublicState>();
+            if (publicState.IsDead)
+            {
+                return;
+            }
+
+            var privateState = PlayerCharacter.GetPrivateState(character);
+            CharacterDamageTrackingSystem.ServerClearStats(character);
+            privateState.IsDespawned = true;
+            Api.Logger.Important("Character despawned", character);
+
+            // we have to set the dead flag to stop game mechanics from working
+            // but on the respawn player should not lose anything
+            publicState.IsDead = true;
+            TeleportDeadPlayerCharacterToGraveyard(character);
+
+            privateState.LastDeathPosition = Vector2Ushort.Zero;
+            privateState.LastDeathTime = null;
+        }
 
         public static void OnCharacterDeath(ICharacter deadCharacter)
         {
@@ -44,39 +74,70 @@
             // recreate physics (as dead character doesn't have any physics)
             deadCharacter.ProtoCharacter.SharedCreatePhysics(deadCharacter);
 
-            if (deadCharacter.ProtoCharacter is PlayerCharacter)
+            Action<ICharacter> onCharacterDeath;
+            if (!(deadCharacter.ProtoCharacter is PlayerCharacter))
             {
-                // remember the death position (useful for the respawn)
-                var privateState = PlayerCharacter.GetPrivateState(deadCharacter);
-                privateState.LastDeathPosition = deadCharacter.TilePosition;
-                privateState.LastDeathTime = Api.Server.Game.FrameTime;
-                ServerTimersSystem.AddAction(delaySeconds: PlayerTeleportToGraveyardDelaySeconds,
-                                             () => TeleportDeadPlayerCharacterToGraveyard(deadCharacter));
-
-                var isPvPdeath = CharacterDamageTrackingSystem.ServerGetPvPdamagePercent(deadCharacter)
-                                 >= 0.5;
-                // register death (required even if it's not a newbie)
-                NewbieProtectionSystem.ServerRegisterDeath(deadCharacter,
-                                                           isPvPdeath,
-                                                           out var shouldDropLootAndLoseLP);
-
-                if (shouldDropLootAndLoseLP)
+                onCharacterDeath = CharacterDeath;
+                if (onCharacterDeath != null)
                 {
-                    DeductPlayerLearningPoints(deadCharacter);
-                    DropPlayerLoot(deadCharacter);
+                    Api.SafeInvoke(() => onCharacterDeath(deadCharacter));
                 }
-                else
-                {
-                    Api.Logger.Important("Player character is dead - newbie PvP case, no loot drop", deadCharacter);
-                }
+
+                ReplaceMobWithCorpse(deadCharacter);
+                return;
+            }
+
+            // player character death
+            // remember the death position (useful for the respawn)
+            var privateState = PlayerCharacter.GetPrivateState(deadCharacter);
+            privateState.LastDeathPosition = deadCharacter.TilePosition;
+            privateState.LastDeathTime = Api.Server.Game.FrameTime;
+            ServerTimersSystem.AddAction(delaySeconds: PlayerTeleportToGraveyardDelaySeconds,
+                                         () => TeleportDeadPlayerCharacterToGraveyard(deadCharacter));
+
+            var isPvPdeath = CharacterDamageTrackingSystem.ServerGetPvPdamagePercent(deadCharacter)
+                             >= 0.5;
+            // register death (required even if the player is not a newbie)
+            NewbieProtectionSystem.ServerRegisterDeath(deadCharacter,
+                                                       isPvPdeath,
+                                                       out var shouldDropLootAndLoseLP);
+
+            if (shouldDropLootAndLoseLP)
+            {
+                DeductPlayerLearningPoints(deadCharacter);
+                DropPlayerLoot(deadCharacter);
             }
             else
             {
-                // replace dead character with corpse
-                //// TODO: use actual death animation duration?
-                //ServerTimersSystem.AddAction(delaySeconds: 4,
-                //                             () => ReplaceMobWithCorpse(deadCharacter));
-                ReplaceMobWithCorpse(deadCharacter);
+                Api.Logger.Important("Player character is dead - newbie PvP case, no loot drop", deadCharacter);
+            }
+
+            onCharacterDeath = CharacterDeath;
+            if (onCharacterDeath != null)
+            {
+                Api.SafeInvoke(() => onCharacterDeath(deadCharacter));
+            }
+        }
+
+        public static void OnCharacterInitialize(ICharacter character)
+        {
+            if (character.IsNpc)
+            {
+                return;
+            }
+
+            var publicState = PlayerCharacter.GetPublicState(character);
+            if (publicState.IsDead)
+            {
+                TeleportDeadPlayerCharacterToGraveyard(character);
+                return;
+            }
+
+            var privateState = PlayerCharacter.GetPrivateState(character);
+            if (privateState.IsDespawned)
+            {
+                // it will move character to the graveyard
+                DespawnCharacter(character);
             }
         }
 
@@ -86,17 +147,11 @@
             IItem weapon,
             IProtoItemWeapon protoWeapon)
         {
-            // killed!
             Api.Logger.Important(
                 $"Character killed: {targetCharacter} by {attackerCharacter} with {weapon?.ToString() ?? protoWeapon?.ToString()}");
 
             Api.SafeInvoke(
                 () => CharacterKilled?.Invoke(attackerCharacter, targetCharacter));
-        }
-
-        public static void OnDeadCharacterInitialize(ICharacter character)
-        {
-            TeleportDeadPlayerCharacterToGraveyard(character);
         }
 
         public static ushort SharedGetLearningPointsRetainedAfterDeath(ICharacter character)
@@ -125,6 +180,12 @@
 
         private static void DropPlayerLoot(ICharacter character)
         {
+            if (PveSystem.ServerIsPvE)
+            {
+                // don't drop player loot on death in PvE
+                return;
+            }
+
             Api.Logger.Important("Player character is dead - drop loot", character);
 
             CraftingMechanics.ServerCancelCraftingQueue(character);

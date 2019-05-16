@@ -12,6 +12,8 @@
         public override string Description =>
             "Extra large crate for convenient and safe storage of huge quantities of items.";
 
+        public override bool HasOwnersList => false;
+
         public override byte ItemsSlotsCount => 64;
 
         public override string Name => "Large crate";
@@ -62,7 +64,9 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (2, 0.5), offset: (0, 0.4))
+                .AddShapeRectangle(
+                    size: (2, 0.475),
+                    offset: (0, 0.4))
                 .AddShapeRectangle(
                     size: (2, 0.75),
                     offset: (0, 0.4),

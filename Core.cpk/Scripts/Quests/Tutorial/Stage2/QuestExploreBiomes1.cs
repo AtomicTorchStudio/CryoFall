@@ -25,7 +25,7 @@
                 .Add(RequirementVisitTile.Require<TileMeadows>());
 
             prerequisites
-                .Add<QuestUnlockSkills>();
+                .Add<QuestClaySandGlassBottlesWaterCollector>();
         }
     }
 }

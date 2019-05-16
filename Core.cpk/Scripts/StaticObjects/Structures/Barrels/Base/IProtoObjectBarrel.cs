@@ -6,6 +6,8 @@
     {
         ushort LiquidCapacity { get; }
 
+        void ClientDrainBarrel(IStaticWorldObject worldObject);
+
         ProtoBarrelPrivateState GetBarrelPrivateState(IStaticWorldObject objectManufacturer);
     }
 }

@@ -21,7 +21,7 @@
                 // trigger on world init
                 .Add(GetTrigger<TriggerWorldInit>())
                 // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromHours(10)));
+                .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromHours(8)));
 
             var presetPragmiumSource = spawnList.CreatePreset(interval: 180, padding: 3)
                                                 .Add<ObjectMineralPragmiumSource>()
@@ -39,7 +39,7 @@
 
             // Let's ensure that we don't spawn Pragmium Source too close to players' buildings.
             // take half size of the largest land claim area
-            var paddingToLandClaimsSize = Api.GetProtoEntity<ObjectLandClaimT4>().LandClaimSize / 2.0;
+            var paddingToLandClaimsSize = Api.GetProtoEntity<ObjectLandClaimT4>().LandClaimWithGraceAreaSize / 2.0;
             // add the explosion radius
             paddingToLandClaimsSize += Api.GetProtoEntity<ObjectMineralPragmiumSourceExplosion>()
                                           .DamageRadius;

@@ -121,23 +121,11 @@ Des techniques agricoles complexes pour travailler avec plus de plantes et avec 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
 Agriculture 2
 
-Scripts/Technologies/Tier2/Farming2/TechNodeComplexCrops@Name:
-Cultures complexes
-
-Scripts/Technologies/Tier2/Farming2/TechNodeFarmingProductivity@Name:
-Productivité agricole
-
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
 Des technologies industrielles améliorées donnant accès à de nouvelles procédures et applications industrielles.
 
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
 Industrie 2
-
-Scripts/Technologies/Tier2/Industry2/TechNodeAdvancedIndustry@Name:
-Industrie évoluée
-
-Scripts/Technologies/Tier2/Industry2/TechNodeBasicElectronics@Name:
-Électronique de base
 
 Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
 Fonte de l'acier
@@ -162,9 +150,6 @@ Travail avec des composés et des réactifs chimiques plus complexes.
 
 Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
 Chimie 2
-
-Scripts/Technologies/Tier3/Chemistry2/TechNodeSyntheticMaterials@Name:
-Matériaux synthétiques
 
 Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
 Tout ce qui concerne la monnaie et qui permet de faciliter le commerce. Permet la frappe et le recyclage de pièces, ainsi que la construction de troc-o-matiques.
@@ -210,12 +195,6 @@ Des techniques agricoles évoluées, et un accès à une plus grande variété d
 
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
 Agriculture 3
-
-Scripts/Technologies/Tier3/Farming3/TechNodeDecorativeGardening@Name:
-Jardinage d'ornement
-
-Scripts/Technologies/Tier3/Farming3/TechNodeSpecializedCrops@Name:
-Cultures spécialisées
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
 Des technologies industrielles évoluées donnant accès à de nouvelles procédures et applications industrielles.
@@ -265,9 +244,6 @@ Les processus chimiques évolués et les réactions complexes.
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
 Chimie 3
 
-Scripts/Technologies/Tier4/Chemistry3/TechNodeHighEnergySubstances@Name:
-Substances hautement énergétiques
-
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
 Les constructions high-tech.
 
@@ -277,17 +253,14 @@ Construction 4
 Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
 Constructions en ciment
 
+Scripts/Technologies/Tier4/Construction4/TechNodeSteelConstructions@Name:
+Constructions en acier
+
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
 La création et l'intégration d'implants cybernétiques et biologiques.
 
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
 Cybernétique
-
-Scripts/Technologies/Tier4/Cybernetics/TechNodeBiomaterialProcessing@Name:
-Traitement de biomatériau
-
-Scripts/Technologies/Tier4/Cybernetics/TechNodeImplantManufacturing@Name:
-Fabrication d'implant
 
 Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
 Les technologies de protection high-tech.
@@ -306,12 +279,6 @@ Les armes à énergie représentent un nouveau bond technologique depuis les arm
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
 Armes à énergie
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechNodeLaserWeapons@Name:
-Armes à laser
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechNodePlasmaWeapons@Name:
-Armes à plasma
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
 Les technologies industrielles high-tech, qui ouvrent l'accès aux procédures technologiques les plus complexes.
@@ -336,10 +303,4 @@ Des technologies offensives high-tech, qui poussent les armes à feu conventionn
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Attaque 4
-
-Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
-Calibre 7,62
-
-Scripts/Technologies/Tier4/Offense4/TechNodeAdvancedExplosives@Name:
-Explosifs évolués
 

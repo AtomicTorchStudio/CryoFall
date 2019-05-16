@@ -31,8 +31,18 @@ UI/CoreStrings@Button_Continue:
 UI/CoreStrings@Button_Deny:
 거부
 
+UI/CoreStrings@Button_Drain:
+배수
+
+UI/CoreStrings@Button_Drain_DialogConfirmation:
+`내용물을 빼버리시겠습니까?
+[br]다시 되돌릴 수 없습니다.`
+
 UI/CoreStrings@Button_Drink:
 마시기
+
+UI/CoreStrings@Button_Edit:
+수정
 
 UI/CoreStrings@Button_Help:
 도움말
@@ -135,6 +145,9 @@ UI/CoreStrings@Defense_Format_Psi:
 UI/CoreStrings@Defense_Format_Radiation:
 방사능 보호: {0}
 
+UI/CoreStrings@DepositAvailableForClaiming_Message:
+점유 가능까지 남은 시간:
+
 UI/CoreStrings@DepositCapacityStats_Message:
 매장지가 고갈되기까지남은 시간:
 
@@ -182,6 +195,9 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 지도
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Politics:
+관계
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Quests:
 퀘스트
@@ -254,6 +270,9 @@ LP
 
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Steam 계정과 연결하려면 [url=atomictorch.com]AtomicTorch.com[/url] 계정의 세부 정보를 입력하십시오.
+
+UI/CoreStrings@ListFilters:
+필터
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 불러오는 중
@@ -365,6 +384,12 @@ UI/CoreStrings@MenuServers_Button_RefreshServer:
 UI/CoreStrings@MenuServers_Button_RemoveServer:
 서버 제거
 
+UI/CoreStrings@MenuServers_Checkbox_ShowEmpty:
+빈 서버 표시
+
+UI/CoreStrings@MenuServers_Checkbox_ShowIncompatible:
+호환되지 않는 서버 보기
+
 UI/CoreStrings@MenuServers_ClickToCopy:
 복사하려면 클릭하십시오!
 
@@ -395,17 +420,42 @@ UI/CoreStrings@MenuServers_NoServersInThisList:
 UI/CoreStrings@MenuServers_PublicGUID:
 공용 GUID
 
-UI/CoreStrings@MenuServers_ServerLabelFeatured:
-추천
-
-UI/CoreStrings@MenuServers_ServerLabelModded:
-모드
-
-UI/CoreStrings@MenuServers_ServerLabelOfficial:
-공식
-
 UI/CoreStrings@MenuServers_ServersCount:
 서버
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
+추천 서버는 공식 서버와 비슷한 고품질의 경험을 제공한다는 평을 대개 받고 있습니다. 하지만 여전히 커뮤니티가 주관하고 있다는 점이 공시 서버와의 차이점입니다.
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Title:
+추천
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
+이 서버에는 제3자의 수정이 포함되어 있습니다. 원래의 게임과는 상당히 변화된 모습을 볼 수 있습니다. 또한 모드 서버에는 수정으로 인한 버그가 발생할 수 있습니다. 위험을 감수하고 사용하시기 바랍니다.
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
+모드
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Description:
+개발자들이 주관하는 CryoFall 공식 서버 중 하나입니다.
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Title:
+공식
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Description:
+`평화로운 탐험과 발전을 위해 디자인된 "플레이어 대 환경" 서버입니다.
+다른 플레이어들로부터는 보호받지만, 야생동물과 환경의 위험으로부터는 보호되지 않습니다!
+CryoFall을 처음 플레이한다면, PvE 서버에 참여하는 것이 좋습니다.`
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Title:
+PvE
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Description:
+`전투와 지도 컨트롤, 습격에 초점을 맞춘 "플레이어 대 플레이어" 서버입니다.
+PvP 서버에는 어떠한 제약도 없습니다. 이곳에서는 죽고 죽일 수 있습니다.
+싸울 준비를 하십시오!`
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
+PvP
 
 UI/CoreStrings@Network_Jitter:
 지터
@@ -457,8 +507,14 @@ UI/CoreStrings@Network_Suggestions:
 [*] 다른 응용 프로그램 (특히, 웹 브라우저, Torrent 클라이언트 및 다운로더)을 [b]종료[/b]해보십시오.
 [*] PC가 현재 Wi-Fi 또는 핫스팟을 통해 연결되어 있다면, [b]케이블 연결[/b]로 전환해보십시오 (무선 연결은 종종 상당한 지터와 레이턴스 변동의 원인이 됨).`
 
+UI/CoreStrings@NicknameOfflinePlayer:
+오프라인 쿨쿨쿨...
+
 UI/CoreStrings@No:
 아니요
+
+UI/CoreStrings@Notification_ActionForbidden:
+금지
 
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 배치할 수 없음
@@ -474,6 +530,12 @@ UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 접근 방식
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Button:
+파티원 추가
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Dialog:
+모든 파티원을 이 목록에 포함하시겠습니까?
 
 UI/CoreStrings@ObjectOwnersList_AddPlayer:
 플레이어 추가
@@ -823,6 +885,22 @@ UI/CoreStrings@WindowObjectLight_TitleLightMode:
 UI/CoreStrings@WindowOilRefinery_EmptyCanistersOutput:
 비어 있음
 
+UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
+습격 시간대가 시작되었습니다 ({0} 남음).
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_DescriptionFormat:
+`{0}부터{1}까지 습격 시간대 중에만 토지 점유소를 습격할 수 있습니다(총 {2}).
+[br]토지 점유소 영역 밖의 구조물은 이 시스템의 보호를 받지 못하며, 언제든지 공격당하거나 파괴될 수 있습니다.`
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Disabled:
+이 서버에는 오프라인 습격 방지 기능이 비활성화되어있습니다.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_NextRaidWindowTimeout:
+다음 습격 시간대는 {0} 후에 시작됩니다.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
+습격 보호
+
 UI/CoreStrings@WindowQuests_CompletionReward:
 완료 보상
 
@@ -853,14 +931,20 @@ UI/CoreStrings@WindowRespawn_Button_RespawnInTheWorld:
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 잠자리 근처에서 부활
 
+UI/CoreStrings@WindowRespawn_DamageSources:
+최근 대미지 원인:
+
 UI/CoreStrings@WindowRespawn_Message:
 이 잔인한 세상에서 강제로 이별하셨나보군요... 게다가 모든 아이템까지 잃어버리다니! 복수를 원하십니까?
 
+UI/CoreStrings@WindowRespawn_MessageDespawned:
+캐릭터를 토지 점유 영역 밖에 너무 오래 방치하여 월드에서 제거되었습니다. 다시 정상적으로 부활할 수 있습니다. 아이템이나 LP를 잃지 않았습니다.
+
+UI/CoreStrings@WindowRespawn_MessagePvE:
+이 잔인한 세상에서 강제로 이별하셨나보군요... 복수를 원하십니까?
+
 UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
 다른 플레이어가 당신을 죽인 것 같습니다. 하지만 다행히 초보자 보호 기능이 활성화되어 있어, 아이템이나 학습 포인트를 잃지 않았습니다. 하지만 다음 번에는 해당 기능이 만료될지도 모르니 조심하세요!
-
-UI/CoreStrings@WindowRespawn_DamageSources:
-최근 대미지 원인:
 
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `최근에 잠자리에서 부활했습니다.
@@ -1083,6 +1167,15 @@ UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAtta
 UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAttack_Title:
 공격받는 중!
 
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
+`{0}이(가) {1};{2}에 있습니다.
+[br]아래의 시간 이후부터 점유할 수 있습니다:
+[br]{3}.
+[br]총을 들고 새로운 자원의 원천을 차지하세요!`
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
+새로운 자원의 원천 이용 가능
+
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 좌표 복사
 
@@ -1179,6 +1272,12 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 상안
 
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
+파티를 떠나시겠습니까?
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
+[b]{0}[/b]님을 파티에서 삭제하시겠습니까?
+
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
 생명체
 
@@ -1199,12 +1298,6 @@ UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 다음 레벨
-
-UI/Controls/Game/Social/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
-파티를 떠나시겠습니까?
-
-UI/Controls/Game/Social/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
-[b]{0}[/b]님을 파티에서 삭제하시겠습니까?
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier1Letter:
 I
@@ -1272,11 +1365,21 @@ UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterEmail
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterPassword:
 비밀번호를 입력하십시오.
 
+UI/Controls/Menu/Login/Data/ViewModelSelectUsernameFormControl@Dialog_AcceptUsername:
+`[b]{0}[/b](으)로 하시겠습니까? 앞으로 변경할 수 없습니다.
+[br]이 이름은 게임 서버에서 게임을 할 때 사용됩니다.`
+
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_CapsLock:
 Caps Lock 키
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_LeftMouseButton:
 마우스 왼쪽 버튼
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton1:
+마우스 추가 버튼 1
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton2:
+마우스 추가 버튼 2
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseScrollButton:
 마우스 스크롤 버튼

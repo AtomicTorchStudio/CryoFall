@@ -8,8 +8,7 @@
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeSeedsFlowerOni>()
-                  .AddStructure<ObjectPlantPot>();
+                  .AddRecipe<RecipeSeedsFlowerOni>();
 
             config.SetRequiredNode<TechNodePlantPot>();
         }

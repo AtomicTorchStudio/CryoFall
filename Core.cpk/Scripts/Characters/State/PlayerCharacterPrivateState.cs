@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Quests;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -64,12 +63,19 @@
         public Vector2Ushort? CurrentBedObjectPosition { get; set; }
 
         [SyncToClient]
-        public NetworkSyncList<Vector2Ushort> DroppedItemsLocations { get; private set; }
+        public NetworkSyncList<DroppedLootInfo> DroppedLootLocations { get; private set; }
 
         [TempOnly]
         public CharacterInput Input { get; set; }
 
+        [SyncToClient]
+        public bool IsDespawned { get; set; }
+
         public Vector2Ushort LastDeathPosition { get; set; }
+
+        // TODO: make non-temp in the future version
+        [TempOnly]
+        public double? LastDeathTime { get; set; }
 
         [SyncToClient]
         public PlayerCharacterQuests Quests { get; private set; }
@@ -80,20 +86,22 @@
         [TempOnly]
         public byte ServerLastAckClientInputId { get; set; }
 
+        /// <summary>
+        /// Used on PvE servers to despawn players who stay in offline for too long.
+        /// </summary>
+        public double? ServerOfflineSinceTime { get; set; }
+
         [SyncToClient]
         public PlayerCharacterSkills Skills { get; private set; }
 
         [SyncToClient]
         public PlayerCharacterTechnologies Technologies { get; private set; }
 
-        [TempOnly]
-        public double? LastDeathTime { get; set; }
-
         public void ServerInitState(ICharacter character)
         {
-            if (this.DroppedItemsLocations == null)
+            if (this.DroppedLootLocations == null)
             {
-                this.DroppedItemsLocations = new NetworkSyncList<Vector2Ushort>();
+                this.DroppedLootLocations = new NetworkSyncList<DroppedLootInfo>();
             }
 
             var serverItemsService = Api.Server.Items;

@@ -57,7 +57,6 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             // no physics - can walk over
-            // TODO: add physics?
 
             data.PhysicsBody.AddShapeRectangle((1, 2), group: CollisionGroups.ClickArea);
         }

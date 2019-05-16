@@ -42,7 +42,7 @@
                 }
             }
 
-            return completedCount == this.TechGroup.AllNodes.Count;
+            return completedCount >= this.TechGroup.Nodes.Count;
         }
 
         protected override void SetTriggerActive(bool isActive)

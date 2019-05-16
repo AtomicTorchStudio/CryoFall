@@ -2,7 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
 
     public class ConsoleWorldSetTimeOfDay : BaseConsoleCommand
     {
@@ -20,11 +20,11 @@
             if (!hour.HasValue)
             {
                 // reset
-                DayNightSystem.ServerResetTimeOfDayOffset();
+                TimeOfDaySystem.ServerResetTimeOfDayOffset();
                 return null;
             }
 
-            DayNightSystem.ServerSetCurrentTimeOfDay(hour.Value, minute);
+            TimeOfDaySystem.ServerSetCurrentTimeOfDay(hour.Value, minute);
             return null;
         }
     }

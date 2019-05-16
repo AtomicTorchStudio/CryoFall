@@ -7,18 +7,46 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     mc:Ignorable="d"
     IsHitTestVisible="False"
-    d:DataContext="{d:DesignInstance data:ViewModelCharacterHealthBarControl, IsDesignTimeCreatable=True}"
-    Visibility="{Binding HealthbarVisibility}">
+    d:DataContext="{d:DesignInstance data:ViewModelCharacterHealthBarControl, IsDesignTimeCreatable=True}">
 
     <core:ValueBarControl
         Background="#88330000"
         BorderBrush="#CCBB0000"
         BarBrush="#CCFF0000"
-        DataContext="{Binding StatBar}"
-        MaxValue="{Binding ValueMax}"
-        Value="{Binding ValueCurrent}"
-        Style="{StaticResource WorldObjectValueBarControlStyle}" />
+        Opacity="1"
+        MaxValue="{Binding StatBar.ValueMax}"
+        Value="{Binding StatBar.ValueCurrent}"
+        Style="{StaticResource WorldObjectValueBarControlStyle}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisibilityStates">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition To="Collapsed"
+                                      GeneratedDuration="0:0:0.25" />
+                    <VisualTransition To="Visible"
+                                      GeneratedDuration="0:0:0.25" />
+                </VisualStateGroup.Transitions>
+
+                <VisualState x:Name="Visible" />
+                <VisualState x:Name="Collapsed">
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         To="0" />
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <i:Interaction.Triggers>
+            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Visible">
+                <ei:GoToStateAction StateName="Visible" />
+            </ei:DataTrigger>
+            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Collapsed">
+                <ei:GoToStateAction StateName="Collapsed" />
+            </ei:DataTrigger>
+        </i:Interaction.Triggers>
+    </core:ValueBarControl>
 
 </base:BaseUserControl>

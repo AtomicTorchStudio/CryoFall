@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
@@ -69,6 +70,12 @@
 
         public static void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter)
         {
+            var protoObject = (IProtoObjectWithOwnersList)structure.ProtoStaticWorldObject;
+            if (!protoObject.HasOwnersList)
+            {
+                return;
+            }
+
             // add the player character to the door owners list
             GetPrivateState(structure).Owners.Add(byCharacter.Name);
             ServerInvokeOwnersChangedEvent(structure);
@@ -80,6 +87,12 @@
             NetworkSyncList<string> currentOwners,
             ICharacter byOwner)
         {
+            var protoObject = (IProtoObjectWithOwnersList)worldObject.ProtoStaticWorldObject;
+            if (!protoObject.HasOwnersList)
+            {
+                throw new Exception("This object doesn't support owners list: " + worldObject);
+            }
+
             if (!InteractionCheckerSystem.HasInteraction(ServerRemoteContext.Character,
                                                          worldObject,
                                                          requirePrivateScope: true))
@@ -100,7 +113,7 @@
             }
 
             currentOwners.GetDiff(newOwners, out var ownersToAdd, out var ownersToRemove);
-            if (ownersToRemove.Count > 0 
+            if (ownersToRemove.Count > 0
                 && currentOwners.Count == ownersToRemove.Count)
             {
                 return DialogCannotSetOwners_MessageCannotRemoveLastOwner;
@@ -186,7 +199,7 @@
             return false;
         }
 
-        public static NetworkSyncList<string> SharedGetOwners(IStaticWorldObject worldObject)
+        public static IReadOnlyList<string> SharedGetOwners(IStaticWorldObject worldObject)
         {
             return GetPrivateState(worldObject).Owners;
         }
@@ -197,9 +210,45 @@
                 .Contains(who.Name);
         }
 
+        protected override void PrepareSystem()
+        {
+            if (IsServer)
+            {
+                Server.Characters.PlayerNameChanged += PlayerNameChangedHandler;
+            }
+        }
+
         private static IObjectWithOwnersPrivateState GetPrivateState(IStaticWorldObject structure)
         {
             return structure.GetPrivateState<IObjectWithOwnersPrivateState>();
+        }
+
+        private static void PlayerNameChangedHandler(string oldName, string newName)
+        {
+            var worldObjectsWithOwnerLists = Server.World.FindStaticWorldObjectsOfProto<IProtoObjectWithOwnersList>();
+            foreach (var worldObject in worldObjectsWithOwnerLists)
+            {
+                
+                var owners = GetPrivateState(worldObject).Owners;
+                if (owners == null)
+                {
+                    continue;
+                }
+
+                for (var index = 0; index < owners.Count; index++)
+                {
+                    var owner = owners[index];
+                    if (!string.Equals(owner, oldName, StringComparison.Ordinal))
+                    {
+                        continue;
+                    }
+
+                    // replace owner entry
+                    owners.RemoveAt(index);
+                    owners.Insert(index, newName);
+                    Logger.Important($"Replaced owner entry: {oldName}->{newName} in {worldObject}");
+                }
+            }
         }
 
         private static void ServerInvokeOwnersChangedEvent(IStaticWorldObject worldObject)

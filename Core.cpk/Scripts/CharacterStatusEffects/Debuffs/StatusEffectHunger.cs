@@ -52,6 +52,12 @@
         protected override void ServerUpdate(StatusEffectData data)
         {
             var character = data.Character;
+            if (!character.IsOnline)
+            {
+                // only online characters are affected by hunger
+                return;
+            }
+
             if (!IsLowFood(character))
             {
                 // not hungry anymore

@@ -67,12 +67,14 @@
 
         public override void ServerOnCharacterDeath(IItem item, bool isEquipped, out bool shouldDrop)
         {
-            // implants never drop on death
-            shouldDrop = false;
             if (!isEquipped)
             {
+                shouldDrop = true;
                 return;
             }
+
+            // equipped implants never drop on death
+            shouldDrop = false;
 
             // durability reduced on death
             var fraction = MathHelper.Clamp(this.DurabilityFractionReduceOnDeath, 0, 1);

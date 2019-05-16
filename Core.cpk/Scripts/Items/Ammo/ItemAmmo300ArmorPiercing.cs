@@ -26,7 +26,8 @@
             {
                 damagedCharacter.ServerAddStatusEffect<StatusEffectDazed>(
                     intensity: 1.0 / StatusEffectDazed.MaxDuration); // 1 second
-                damagedCharacter.ServerAddStatusEffect<StatusEffectBrokenLeg>(intensity: 1); // permanent
+                // that's OP, commented out temporary
+                //damagedCharacter.ServerAddStatusEffect<StatusEffectBrokenLeg>(intensity: 1); // permanent
             }
         }
 
@@ -37,8 +38,8 @@
             out double rangeMax,
             DamageDistribution damageDistribution)
         {
-            damageValue = 35;
-            armorPiercingCoef = 0.6;
+            damageValue = 30;
+            armorPiercingCoef = 0.5;
             finalDamageMultiplier = 1;
             rangeMax = 11;
 

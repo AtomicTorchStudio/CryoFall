@@ -29,7 +29,7 @@
 
             // primary loot
             lootDroplist
-                .Add<ItemToxin>(count: 1, countRandom: 2);
+                .Add<ItemToxin>(count: 1, countRandom: 1);
         }
 
         protected override void ServerInitializeCharacterMob(ServerInitializeData data)

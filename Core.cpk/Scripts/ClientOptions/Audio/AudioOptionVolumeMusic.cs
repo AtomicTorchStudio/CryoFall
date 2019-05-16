@@ -14,7 +14,7 @@
         public override string Name => "Music volume";
 
         public override IProtoOption OrderAfterOption
-            => GetProtoEntity<AudioOptionVolumeSounds>();
+            => GetOption<AudioOptionVolumeSounds>();
 
         public override double ValueProvider
         {

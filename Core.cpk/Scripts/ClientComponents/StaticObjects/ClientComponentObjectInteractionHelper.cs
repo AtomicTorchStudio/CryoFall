@@ -1,13 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Actions;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
-    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu;
@@ -95,6 +96,14 @@
             ICharacter forCharacter,
             CollisionGroup collisionGroup)
         {
+            return FindStaticObjectsAtCurrentMousePosition(forCharacter, collisionGroup)
+                .FirstOrDefault();
+        }
+
+        public static IEnumerable<IStaticWorldObject> FindStaticObjectsAtCurrentMousePosition(
+            ICharacter forCharacter,
+            CollisionGroup collisionGroup)
+        {
             var mouseWorldPosition = Api.Client.Input.MouseWorldPosition;
             var physicsSpace = forCharacter.PhysicsBody.PhysicsSpace;
 
@@ -112,7 +121,7 @@
                     if (staticWorldObject?.ProtoStaticWorldObject is IInteractableProtoStaticWorldObject)
                     {
                         // return first found interactable static world object (latest added to tile if there are multiple objects)
-                        return staticWorldObject;
+                        yield return staticWorldObject;
                     }
                 }
 
@@ -123,12 +132,10 @@
                     if (testResult.PhysicsBody.AssociatedWorldObject is IStaticWorldObject staticWorldObject)
                     {
                         // return first static world object (latest added to tile)
-                        return staticWorldObject;
+                        yield return staticWorldObject;
                     }
                 }
             }
-
-            return null;
         }
 
         public static void OnInteractionFinished(IWorldObject worldObject)
@@ -214,7 +221,9 @@
             }
             else
             {
-                cursorId = canInteract ? CursorId.InteractionPossible : CursorId.InteractionImpossible;
+                cursorId = canInteract
+                               ? CursorId.InteractionPossible
+                               : CursorId.InteractionImpossible;
             }
 
             ClientCursorSystem.CurrentCursorId = cursorId;

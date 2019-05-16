@@ -23,19 +23,6 @@
 
         public override string Name => "World map resource marks system";
 
-        public static IEnumerable<WorldMapResourceMark> ClientEnumerateMarks()
-        {
-            if (sharedResourceMarksList == null)
-            {
-                yield break;
-            }
-
-            foreach (var entry in sharedResourceMarksList)
-            {
-                yield return entry;
-            }
-        }
-
         public static void ServerAddMark(IStaticWorldObject staticWorldObject, double serverSpawnTime)
         {
             Api.ValidateIsServer();
@@ -65,6 +52,11 @@
             }
         }
 
+        public static int SharedCalculateTimeRemainsToClaimCooldownSeconds(WorldMapResourceMark mark)
+        {
+            return (int)SharedCalculateTimeToClaimLimitRemovalSeconds(mark.ServerSpawnTime);
+        }
+
         public static int SharedCalculateTimeRemainsToClaimCooldownSeconds(IStaticWorldObject staticWorldObject)
         {
             var tilePosition = staticWorldObject.TilePosition;
@@ -81,14 +73,20 @@
             return 0;
         }
 
-        public static int SharedCalculateTimeToClaimLimitRemovalMinutes(double markServerSpawnTime)
+        public static IEnumerable<WorldMapResourceMark> SharedEnumerateMarks()
         {
-            var resultSeconds = SharedCalculateTimeToClaimLimitRemovalSeconds(markServerSpawnTime);
-            return (int)Math.Round(resultSeconds / 60.0,
-                                   MidpointRounding.AwayFromZero);
+            if (sharedResourceMarksList == null)
+            {
+                yield break;
+            }
+
+            foreach (var entry in sharedResourceMarksList)
+            {
+                yield return entry;
+            }
         }
 
-        private static double SharedCalculateTimeToClaimLimitRemovalSeconds(double markServerSpawnTime)
+        public static double SharedCalculateTimeToClaimLimitRemovalSeconds(double markServerSpawnTime)
         {
             if (markServerSpawnTime <= 0)
             {

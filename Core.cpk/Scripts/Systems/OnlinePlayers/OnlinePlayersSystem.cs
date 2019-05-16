@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -22,6 +23,9 @@
 
         public static event Action<int> ClientTotalServerPlayersCountChanged;
 
+        /// <summary>
+        /// Please note: this property will return zero in case the player is not a server operator.
+        /// </summary>
         public static int ClientTotalServerPlayersCount { get; private set; }
 
         public override string Name => "Online players system";
@@ -39,30 +43,9 @@
             }
 
             // listen to player online state changed event
-            Server.Characters.PlayerOnlineStateChanged += ServerOnPlayerOnlineStateChangedHandler;
+            Server.Characters.PlayerOnlineStateChanged += this.ServerOnPlayerOnlineStateChangedHandler;
 
             ServerRefreshTotalPlayersCount();
-
-            void ServerOnPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
-            {
-                ServerRefreshTotalPlayersCount();
-
-                var name = playerCharacter.Name;
-                var charactersDestination = Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true);
-                this.CallClient(charactersDestination.ExceptOne(playerCharacter).ToList(),
-                                _ => _.ClientRemote_OnlineStatusChanged(name, isOnline));
-
-                if (!isOnline)
-                {
-                    return;
-                }
-
-                // send to this character the list of online characters
-                var onlineList = charactersDestination.Select(c => c.Name).ToList();
-                this.CallClient(playerCharacter, _ => _.ClientRemote_OnlineList(onlineList));
-                this.CallClient(playerCharacter,
-                                _ => _.ClientRemote_TotalPlayerCharactersCountChanged(serverLastTotalPlayersCount));
-            }
         }
 
         private static void ClientProcessChange(string name, bool isOnline)
@@ -85,9 +68,21 @@
             }
 
             serverLastTotalPlayersCount = totalPlayersCount;
-            // notify all the players online
-            Instance.CallClient(Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true),
-                                _ => _.ClientRemote_TotalPlayerCharactersCountChanged(serverLastTotalPlayersCount));
+
+            // provide the updated info about the total players count only to the server operators
+            using (var tempList = Api.Shared.GetTempList<ICharacter>())
+            {
+                foreach (var character in Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true))
+                {
+                    if (ServerOperatorSystem.ServerIsOperator(character.Name))
+                    {
+                        tempList.Add(character);
+                    }
+                }
+
+                Instance.CallClient(tempList,
+                                    _ => _.ClientRemote_TotalPlayerCharactersCountChanged(serverLastTotalPlayersCount));
+            }
         }
 
         private void ClientRemote_OnlineList(List<string> onlineList)
@@ -121,6 +116,34 @@
         {
             ClientTotalServerPlayersCount = totalPlayerCharactersCount;
             ClientTotalServerPlayersCountChanged?.Invoke(totalPlayerCharactersCount);
+        }
+
+        private void ServerOnPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
+        {
+            ServerRefreshTotalPlayersCount();
+
+            var name = playerCharacter.Name;
+            var charactersDestination = Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true);
+            this.CallClient(charactersDestination.ExceptOne(playerCharacter).ToList(),
+                            _ => _.ClientRemote_OnlineStatusChanged(name, isOnline));
+
+            if (!isOnline)
+            {
+                // player disconnected
+                return;
+            }
+
+            // send to this character the list of online characters
+            var onlineList = charactersDestination.Select(c => c.Name).ToList();
+            this.CallClient(playerCharacter, _ => _.ClientRemote_OnlineList(onlineList));
+
+            // provide info about the total players count only to a server operator
+            var totalPlayersCount = ServerOperatorSystem.ServerIsOperator(playerCharacter.Name)
+                                        ? serverLastTotalPlayersCount
+                                        : 0;
+
+            this.CallClient(playerCharacter,
+                            _ => _.ClientRemote_TotalPlayerCharactersCountChanged(totalPlayersCount));
         }
     }
 }

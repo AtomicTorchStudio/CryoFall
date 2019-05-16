@@ -54,7 +54,7 @@
                     return;
                 }
 
-                this.SpriteRenderer.IsEnabled = this.isEnabled;
+                this.SpriteRenderer.IsEnabled = this.isEnabled = value;
             }
         }
 

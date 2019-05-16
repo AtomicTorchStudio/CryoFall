@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeRapierLaserWhite>();
 
-            config.SetRequiredNode<TechNodeLaserWeapons>();
+            config.SetRequiredNode<TechNodeLaserPistol>();
         }
     }
 }

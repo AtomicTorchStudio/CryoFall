@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
@@ -82,8 +82,8 @@
                     return;
                 }
 
-                var multiplier = DayNightSystem.NightFraction * 2.2
-                                 + Math.Max(DayNightSystem.DuskFraction, DayNightSystem.DawnFraction) / 2;
+                var multiplier = TimeOfDaySystem.NightFraction * 2.2
+                                 + Math.Max(TimeOfDaySystem.DuskFraction, TimeOfDaySystem.DawnFraction) / 2;
 
                 multiplier = Math.Min(1, multiplier);
 

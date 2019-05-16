@@ -26,7 +26,8 @@
         <StackPanel Orientation="Vertical"
                     Visibility="{Binding CanSetAccessMode, Converter={StaticResource BoolToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,3">
                 <!-- Text: Access mode -->
                 <TextBlock
                     Text="{x:Static loc:CoreStrings.ObjectAccessModeEditor_TitleAccessModeSelection}"

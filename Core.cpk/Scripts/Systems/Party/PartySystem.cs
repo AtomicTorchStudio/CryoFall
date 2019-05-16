@@ -148,13 +148,16 @@
 
             void ProcessResult(InvitationCreateResult result)
             {
-                if (result != InvitationCreateResult.Success)
+                if (result == InvitationCreateResult.Success)
                 {
-                    NotificationSystem.ClientShowNotification(
-                        title: null,
-                        result.GetDescription(),
-                        NotificationColor.Bad);
+                    ClientPartyInvitationNotificationSystem.ShowNotificationInviteSent(inviteeName);
+                    return;
                 }
+
+                NotificationSystem.ClientShowNotification(
+                    title: null,
+                    result.GetDescription(),
+                    NotificationColor.Bad);
             }
         }
 

@@ -6,9 +6,10 @@
     using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
-    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.TradingStations;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
@@ -41,6 +42,8 @@
 
         // displayed when player attempts to interact with a buying station which has no trading lots
         public const string NotificationNoTradingLots = "No trading lots here";
+
+        public bool HasOwnersList => true;
 
         public bool IsAutoEnterPrivateScopeOnInteraction =>
             false; // we manually add player to the private scope if she is owner
@@ -115,7 +118,8 @@
 
             data.ClientState.RendererTradingStationContent = rendererTradingStationContent;
 
-            data.ClientState.RendererLight = this.ClientCreateLightSource(Client.Scene.GetSceneObject(worldObject));
+            data.ClientState.RendererLight = this.ClientCreateLightSource(
+                Client.Scene.GetSceneObject(worldObject));
 
             publicState.ClientSubscribe(_ => _.Mode,
                                         _ => RefreshAppearance(),
@@ -236,6 +240,26 @@
         {
             base.ServerUpdate(data);
             TradingStationsSystem.ServerUpdate(data.GameObject);
+        }
+
+        protected override double SharedCalculateDamageByWeapon(
+            WeaponFinalCache weaponCache,
+            double damagePreMultiplier,
+            IStaticWorldObject targetObject,
+            out double obstacleBlockDamageCoef)
+        {
+            if (IsServer)
+            {
+                damagePreMultiplier = LandClaimSystem.ServerAdjustDamageToUnprotectedStrongBuilding(weaponCache,
+                                                                                                    targetObject,
+                                                                                                    damagePreMultiplier);
+            }
+
+            var damage = base.SharedCalculateDamageByWeapon(weaponCache,
+                                                            damagePreMultiplier,
+                                                            targetObject,
+                                                            out obstacleBlockDamageCoef);
+            return damage;
         }
 
         // Generate texture containing text.

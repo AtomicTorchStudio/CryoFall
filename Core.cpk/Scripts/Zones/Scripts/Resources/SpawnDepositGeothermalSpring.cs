@@ -40,8 +40,8 @@
                                                       .Add<IProtoObjectLandClaim>();
 
             // Let's ensure that we don't spawn geothermal spring too close to players' buildings.
-            // take half size of the largest land claim area
-            var paddingToLandClaimsSize = Api.GetProtoEntity<ObjectLandClaimT4>().LandClaimSize / 2.0;
+            // take size of the largest land claim area
+            var paddingToLandClaimsSize = Api.GetProtoEntity<ObjectLandClaimT4>().LandClaimWithGraceAreaSize;
             // add few extra tiles (as the objects are not 1*1 tile)
             paddingToLandClaimsSize += 6;
 

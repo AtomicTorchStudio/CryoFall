@@ -67,6 +67,12 @@ Du verhungerst!
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 Hunger
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
+Du warst einem extrem hohen Grad an Radioaktivität ausgesetzt. Die Zellen deines Körpers haben begonnen zu mutieren. Das kann nicht gut sein! Versuche fortan, dich von verstrahltem Gebiet fernzuhalten.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Name:
+Mutation
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
 Nahrungs- und Wasseraufnahme unmöglich.
 

@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
-    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -18,9 +17,9 @@
 
         public override double DamageRadius => 3.1;
 
-        public override bool ActivatesRaidModeForLandClaim => false;
-
         public override TimeSpan ExplosionDelay { get; } = TimeSpan.FromSeconds(3);
+
+        public override bool IsActivatesRaidModeForLandClaim => false;
 
         public override string Name => "Mining charge";
 
@@ -79,7 +78,9 @@
             out double damageValue,
             out double defencePenetrationCoef)
         {
-            damageValue = 50; // very little explosive damage, since it is not a weapon and should not be used as such
+            // Very little explosive damage, since it is not a weapon and should not be used as such.
+            // Also, please note the property ActivatesRaidModeForLandClaim.
+            damageValue = 50;
             defencePenetrationCoef = 0;
         }
 

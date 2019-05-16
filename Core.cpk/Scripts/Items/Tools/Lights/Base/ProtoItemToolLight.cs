@@ -8,10 +8,10 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.ItemFuelRefill;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.HotbarOverlays;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -251,16 +251,16 @@
                 if (!data.IsByPlayer)
                 {
                     // it's automatical selection (player just logged in)
-                    if (!DayNightSystem.ClientIsInitialized)
+                    if (!TimeOfDaySystem.ClientIsInitialized)
                     {
-                        Logger.Warning(nameof(DayNightSystem) + " is not initialized - cannot enable a hand lamp");
+                        Logger.Warning(nameof(TimeOfDaySystem) + " is not initialized - cannot enable a hand lamp");
                         return;
                     }
 
                     // don't enable the light automatically if it's not night
-                    var isLightRequired = DayNightSystem.IsNight;
+                    var isLightRequired = TimeOfDaySystem.IsNight;
                     Logger.Info(string.Format("Light auto selection! Time: {0:hh\\:mm}, is light required: {1}",
-                                              TimeSpan.FromHours(DayNightSystem.CurrentTimeOfDayHours),
+                                              TimeSpan.FromHours(TimeOfDaySystem.CurrentTimeOfDayHours),
                                               isLightRequired));
 
                     if (!isLightRequired)

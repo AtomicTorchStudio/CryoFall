@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -52,7 +53,7 @@
 
         public float ValueCurrent { get; private set; }
 
-        public float ValueMax { get; }
+        public float ValueMax { get; private set; }
 
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         private static string FormatDuration(double durationSeconds)
@@ -78,7 +79,17 @@
             this.ValueCurrent = this.publicState?.StructurePointsCurrent ?? 0;
             if (this.ValueCurrent <= 0)
             {
-                this.DepletionDurationText = TitleDepositDepleted;
+                if (PveSystem.ClientIsPve(logErrorIfDataIsNotYetAvailable: true))
+                {
+                    // PvE mode doesn't require the deposit under the extractor
+                    this.DepletionDurationText = TitleDepositInfinite;
+                    this.ValueCurrent = this.ValueMax = 1;
+                }
+                else
+                {
+                    this.DepletionDurationText = TitleDepositDepleted;
+                }
+
                 this.DepletedInPrefixVisibility = Visibility.Collapsed;
                 return;
             }

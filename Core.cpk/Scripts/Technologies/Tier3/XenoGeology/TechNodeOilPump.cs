@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Technologies.Tier3.XenoGeology
 {
+    using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
     public class TechNodeOilPump : TechNode<TechGroupXenogeology>

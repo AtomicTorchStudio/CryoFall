@@ -73,30 +73,6 @@ Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
 Scripts/ClientComponents/Input/GameButton@OpenChat:
 채팅
 
-Scripts/ClientComponents/Input/GameButton@InventoryMenu:
-인벤토리
-
-Scripts/ClientComponents/Input/GameButton@CraftingMenu:
-제작
-
-Scripts/ClientComponents/Input/GameButton@MapMenu:
-지도
-
-Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
-건설
-
-Scripts/ClientComponents/Input/GameButton@SkillsMenu:
-스킬
-
-Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
-기술
-
-Scripts/ClientComponents/Input/GameButton@SocialMenu:
-소셜
-
-Scripts/ClientComponents/Input/GameButton@QuestsMenu:
-퀘스트
-
 Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
 개발자 콘솔
 

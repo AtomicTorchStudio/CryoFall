@@ -21,6 +21,7 @@
             requirements
                 .Add(RequirementKill.Require<MobChicken>(count: 1))
                 .Add(RequirementKill.Require<MobCrab>(count: 1))
+                .Add(RequirementKill.Require<MobRiverSnail>(count: 1))
                 .Add(RequirementKill.Require<MobStarfish>(count: 1));
 
             prerequisites

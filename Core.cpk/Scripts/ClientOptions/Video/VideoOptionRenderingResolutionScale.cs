@@ -42,7 +42,7 @@
         public override string Name => "Rendering resolution";
 
         public override IProtoOption OrderAfterOption
-            => GetProtoEntity<VideoOptionUIAntiAliasing>();
+            => GetOption<VideoOptionUIAntiAliasing>();
 
         public override Mode ValueProvider
         {

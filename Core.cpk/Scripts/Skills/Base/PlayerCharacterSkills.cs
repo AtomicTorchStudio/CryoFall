@@ -34,16 +34,31 @@
         public SkillLevelData ServerAddSkillExperience(IProtoSkill skill, double experience)
         {
             Api.ValidateIsServer();
-            if (experience <= 0)
+
+            if (double.IsNaN(experience)
+                || double.IsInfinity(experience))
             {
-                throw new ArgumentException("Experience to add should be larger than zero.", nameof(experience));
+                throw new Exception($"Incorrect experience value provided for {skill}: {experience}");
             }
 
-            experience *= TechConstants.SkillExperienceGainMultiplier;
+            if (experience > 0)
+            {
+                experience *= TechConstants.SkillExperienceGainMultiplier;
+            }
+            else
+            {
+                Api.Logger.Error($"Skill experience to add should be larger than zero (exp for skill {skill.ShortId})");
+                experience = 0;
+            }
 
             if (!this.Skills.TryGetValue(skill, out var skillLevelData))
             {
                 skillLevelData = this.ServerSetSkillExperience(skill, experience);
+                return skillLevelData;
+            }
+
+            if (experience <= 0)
+            {
                 return skillLevelData;
             }
 

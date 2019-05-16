@@ -16,8 +16,8 @@
                 .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromMinutes(10)));
 
             // bushes
-            spawnList.CreatePreset(interval: 10, padding: 2)
-                     .Add<ObjectSmallPineapple>()
+            spawnList.CreatePreset(interval: 10, padding: 1)
+                     .Add<ObjectSmallPineapple>(weight: 2)
                      .Add<ObjectBushYellow>()
                      .Add<ObjectBushPurple>()
                      .Add<ObjectBushCoffee>()

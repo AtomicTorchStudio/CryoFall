@@ -11,6 +11,8 @@
 
         Vector2D ScreenOffset { get; }
 
-        double Size { get; }
+        Size2F Size { get; }
+
+        Size2F? LogicalSize { get; set; }
     }
 }

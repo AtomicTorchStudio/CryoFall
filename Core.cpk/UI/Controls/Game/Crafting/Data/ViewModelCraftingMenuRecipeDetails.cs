@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data
 {
-    using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems;
@@ -182,7 +181,7 @@
                     return 0;
                 }
 
-                if (CreativeModeSystem.SharedIsInCreativeMode(character))
+                if (CreativeModeSystem.SharedIsInCreativeMode(this.character))
                 {
                     return 1000;
                 }
@@ -290,10 +289,19 @@
             var originalCountToCraft = this.CountToCraft;
             try
             {
-                this.CountToCraft = Input.IsKeyHeld(InputKey.Shift,  evenIfHandled: true)
-                                    || Input.IsKeyHeld(InputKey.Alt, evenIfHandled: true)
-                                        ? Math.Min((ushort)5, this.MaximumCraftingCount)
-                                        : (ushort)1;
+                if (Input.IsKeyHeld(InputKey.Shift,  evenIfHandled: true)
+                    || Input.IsKeyHeld(InputKey.Alt, evenIfHandled: true))
+                {
+                    // quick craft max except the case with non-cancelable items
+                    this.CountToCraft = this.viewModelRecipe.Recipe.IsCancellable
+                                            ? this.MaximumCraftingCount
+                                            : (ushort)5;
+                }
+                else
+                {
+                    // quick craft a single item
+                    this.CountToCraft = 1;
+                }
 
                 if (!this.IsCanCraft)
                 {

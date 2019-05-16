@@ -368,6 +368,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
 Produzir e equipar uma armadura de pano
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Description:
+Agora que você tem acesso à metalurgia, é natural que melhore suas ferramentas. As ferramentas de ferro não são apenas mais duráveis, mas também muito mais eficazes do que as primitivas feitas de pedra.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
+[*] Tente sempre atualizar para ferramentas melhores à medida que se tornem disponíveis, já que proporcionam um aumento significativo na produtividade.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
+Produzir ferramentas melhores
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Esmagar caveiras com uma maça é legal, mas às vezes você quer algo com alcance. Especialmente se enfrentar adversários mais sérios.
 
@@ -443,6 +452,17 @@ Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
 Aprender algumas habilidades
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
+Construir é excelente, mas saber como desconstruir edifícios também pode ser muito útil. Para isso, você precisará de um pé de cabra! Claro, contanto que o edifício que pretende desconstruir esteja dentro da sua posse de terra.
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
+`[*] Para os efeitos desta missão, você pode desconstruir uma parte da parede ou algo igualmente barato, assim você não perde recursos valiosos.
+[*] [b]Só[/b] é possível desconstruir edifícios [b]dentro[/b] da sua posse de terra.
+[*] A desconstrução é a melhor maneira de remover qualquer construção ou estrutura desnecessária ou obsoleta.`
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
+Usar o pé de cabra para desconstruir
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Avanços na indústria e na construção exigem fundamentos científicos, especialmente em química.

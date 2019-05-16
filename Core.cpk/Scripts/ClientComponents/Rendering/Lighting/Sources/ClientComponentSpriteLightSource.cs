@@ -66,7 +66,7 @@
         protected override void SetProperties()
         {
             this.renderer.Color = this.LightColorPremultipliedAndWithOpacity;
-            this.renderer.Scale = this.Size * 0.5; // multiply on 0.5 because of the support of HiDPI screen
+            this.renderer.Scale = this.RenderingSize * 0.5; // multiply on 0.5 because of the support of HiDPI screen
             this.renderer.SpritePivotPoint = this.SpritePivotPoint;
             this.renderer.PositionOffset = this.PositionOffset;
         }

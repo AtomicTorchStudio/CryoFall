@@ -67,6 +67,12 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 Hambre
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
+Te has expuesto a unos niveles extremos de radiación y las células de tu cuerpo han empezado a mutar. ¡Eso no puede ser bueno! Lo mejor será que evites meterte en zonas irradiadas.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Name:
+Mutación
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
 No puedes ni comer ni beber.
 

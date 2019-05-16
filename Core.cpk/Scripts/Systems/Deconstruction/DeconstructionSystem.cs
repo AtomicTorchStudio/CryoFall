@@ -1,15 +1,16 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Deconstruction
 {
     using System;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
+    using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
-    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -23,6 +24,8 @@
         public const string NotificationNotLandOwner_Message = "You're not the land area owner.";
 
         public const string NotificationNotLandOwner_Title = "Cannot deconstruct";
+
+        public static event Action<DeconstructionActionState> ServerStructureDeconstructed;
 
         public override string Name => "Structures deconstruction system";
 
@@ -117,6 +120,11 @@
             }
 
             characterPrivateState.SetCurrentActionState(null);
+
+            if (IsServer)
+            {
+                Api.SafeInvoke(() => ServerStructureDeconstructed?.Invoke(state));
+            }
         }
 
         public static bool SharedCheckCanInteract(
@@ -130,40 +138,38 @@
                 return false;
             }
 
-            // Can deconstruct only if the character can contact directly
-            // with the object click area (if object has the click area)
-            // or with the object collider (if object don't has the click area).
-            var isObjectHasClickArea = worldObject.PhysicsBody
-                                                  .Shapes
-                                                  .Any(s => s.CollisionGroup == CollisionGroups.ClickArea);
-
-            var result = worldObject.ProtoWorldObject.SharedIsInsideCharacterInteractionArea(
-                character,
-                worldObject,
-                writeToLog: false,
-                requiredCollisionGroup: isObjectHasClickArea
-                                            ? CollisionGroups.ClickArea
-                                            : CollisionGroups
-                                                .DefaultWithCollisionToInteractionArea);
-            if (result)
+            var canInteract =
+                ConstructionSystem.CheckCanInteractForConstructionByDistance(
+                    character,
+                    (IStaticWorldObject)worldObject);
+            if (!canInteract)
             {
-                return true;
+                if (writeToLog)
+                {
+                    Logger.Warning(
+                        $"Cannot deconstruct - {character} cannot interact with the {worldObject}");
+
+                    if (IsClient)
+                    {
+                        CannotInteractMessageDisplay.ShowOn(worldObject, CoreStrings.Notification_TooFar);
+                        worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
+                                   .PlaySound(ObjectSound.InteractOutOfRange);
+                    }
+                }
+
+                return false;
             }
 
-            if (writeToLog)
+            if (!(worldObject.ProtoWorldObject is ObjectWallDestroyed))
             {
-                Logger.Warning(
-                    $"Cannot deconstruct - {character} cannot interact with the {worldObject} - there is no direct (physics) line of sight between them (the object click area or static/dynamic colliders must be inside the character interaction area)");
-
-                if (IsClient)
+                if (LandClaimSystem.SharedIsUnderRaidBlock(character, (IStaticWorldObject)worldObject))
                 {
-                    CannotInteractMessageDisplay.ShowOn(worldObject, CoreStrings.Notification_TooFar);
-                    worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
-                               .PlaySound(ObjectSound.InteractOutOfRange);
+                    // the building is in an area under the raid
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
 
         private static void SharedStartAction(ICharacter character, IWorldObject worldObject)
@@ -197,9 +203,11 @@
             if (!(selectedHotbarItem?.ProtoGameObject is IProtoItemToolCrowbar))
             {
                 selectedHotbarItem = null;
-                if (!(worldObject.ProtoWorldObject is ProtoObjectConstructionSite))
+                if (!(worldObject.ProtoWorldObject is ProtoObjectConstructionSite)
+                    && !(worldObject.ProtoWorldObject is ObjectWallDestroyed))
                 {
-                    // no crowbar tool is selected, only construction sites can be deconstructed without the crowbar
+                    // no crowbar tool is selected, only construction sites
+                    // and destroyed walls can be deconstructed without the crowbar
                     return;
                 }
             }

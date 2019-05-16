@@ -8,7 +8,6 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -27,11 +26,10 @@
 
         public override double DamageRadius => 9; // large annihilation radius
 
-        public override bool ActivatesRaidModeForLandClaim => false;
-
         public override TimeSpan ExplosionDelay => TimeSpan.FromSeconds(3);
 
-        [NotLocalizable]
+        public override bool IsActivatesRaidModeForLandClaim => false;
+
         public override string Name => "Pragmium source explosion";
 
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;

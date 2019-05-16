@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures
 {
+    using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public static class StructureConstants
@@ -32,28 +33,40 @@
         /// </summary>
         public const double StructureDecaySystemUpdateIntervalSeconds = 5 * 60; // every 5 minutes
 
-        public static readonly bool IsStructuresDecayEnabled
-            = ServerRates.Get(
-                  "StructuresDecayEnabled",
-                  defaultValue: Api.IsEditor ? 0 : 1,
-                  @"Set it to 0 to disable the structures decay.
-                  Set it to 1 to enable the structures decay (default setting).")
-              > 0;
+        public static readonly bool IsStructuresDecayEnabled;
 
-        public static readonly double StructuresDecayDelaySeconds
-            = ServerRates.Get(
+        public static readonly double StructuresDecayDelaySeconds;
+
+        public static readonly double StructuresDecayDurationSeconds;
+
+        static StructureConstants()
+        {
+            IsStructuresDecayEnabled =
+                ServerRates.Get(
+                    "StructuresDecayEnabled",
+                    defaultValue: 1,
+                    @"Set it to 0 to disable the structures decay.
+                    Set it to 1 to enable the structures decay.")
+                > 0;
+
+            StructuresDecayDelaySeconds = ServerRates.Get(
                 "StructuresDecayDelaySeconds",
                 defaultValue: 32 * 60 * 60,
                 @"Time (in real world seconds) before a structure will start decaying.
                   Default value: 32 hours or 115200 seconds. Don't set it higher than 2 billions.");
 
-        public static readonly double StructuresDecayDurationSeconds
-            = ServerRates.Get(
+            StructuresDecayDurationSeconds = ServerRates.Get(
                 "StructuresDecayDurationSeconds",
                 defaultValue: 24 * 60 * 60,
                 @"Time (in real world seconds) for a structure to completely destroy by decay.
                   While decaying, the structure will receive a regular damage proportional to its HP.
                   It also means that if the structure is already damaged, it will decay even faster.
                   Default value: 24 hours or 86400 seconds. Don't set it higher than 2 billions.");
+        }
+
+        [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]
+        public static void EnsureInitialized()
+        {
+        }
     }
 }

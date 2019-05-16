@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
 
     public static class ServerDroplistHelper
     {
@@ -44,7 +45,8 @@
             Vector2Ushort tilePosition,
             bool sendNotificationWhenDropToGround,
             double probabilityMultiplier,
-            DropItemContext context)
+            DropItemContext context,
+            out IItemsContainer groundContainer)
         {
             CreateItemResult result;
             if (toCharacter != null)
@@ -58,6 +60,7 @@
                     context);
                 if (result.IsEverythingCreated)
                 {
+                    groundContainer = null;
                     return result;
                 }
 
@@ -65,7 +68,7 @@
                 result.Rollback();
             }
 
-            result = TryDropToGround(dropItemsList, tilePosition, probabilityMultiplier, context);
+            result = TryDropToGround(dropItemsList, tilePosition, probabilityMultiplier, context, out groundContainer);
             if (result.TotalCreatedCount > 0)
             {
                 // notify player that there were not enough space in inventory so the items were dropped to the ground
@@ -95,11 +98,12 @@
             IReadOnlyDropItemsList dropItemsList,
             Vector2Ushort tilePosition,
             double probabilityMultiplier,
-            DropItemContext context)
+            DropItemContext context,
+            [CanBeNull] out IItemsContainer groundContainer)
         {
             // obtain the ground container to drop the items into
             var tile = Api.Server.World.GetTile(tilePosition);
-            var groundContainer = ObjectGroundItemsContainer
+            groundContainer = ObjectGroundItemsContainer
                 .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(tile);
 
             if (groundContainer == null)
@@ -115,6 +119,7 @@
             {
                 // nothing is spawned, the ground container should be destroyed
                 Api.Server.World.DestroyObject(groundContainer.OwnerAsStaticObject);
+                groundContainer = null;
             }
 
             return result;

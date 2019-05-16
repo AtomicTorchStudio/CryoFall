@@ -37,7 +37,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
             }
 
             var nodesToAddCount = (int)Math.Round(
-                completionPercent * techGroup.AllNodes.Count,
+                completionPercent * techGroup.Nodes.Count,
                 MidpointRounding.AwayFromZero);
             if (nodesToAddCount <= 0)
             {
@@ -45,7 +45,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
                     $"{player} tech group {techGroup.Name} cannot be added - there are not enough nodes for {completionPercent:F2} completion percent.";
             }
 
-            var nodesToAdd = techGroup.AllNodes;
+            var nodesToAdd = techGroup.Nodes;
             var nodeToAddIndex = 0;
 
             while (nodesToAddCount-- > 0)

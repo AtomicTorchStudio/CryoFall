@@ -3,6 +3,7 @@
     using System;
     using System.Windows;
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerWelcomeMessage;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -26,6 +27,8 @@
                 return;
             }
 
+            ServerOperatorSystem.ClientIsOperatorChanged += this.IsServerOperatorChangedHandler;
+
             if (Api.IsEditor)
             {
                 this.VisibilityConnected = this.VisibilityNotConnected = Visibility.Collapsed;
@@ -44,8 +47,13 @@
             this.UpdateServerInfo();
         }
 
+        public bool CanEditWelcomeMessage => ServerOperatorSystem.ClientIsOperator();
+
         public BaseCommand CommandDisconnect
             => new ActionCommand(this.ExecuteCommandDisconnect);
+
+        public BaseCommand CommandEditWelcomeMessage
+            => new ActionCommand(WelcomeMessageSystem.ClientEditWelcomeMessage);
 
         public BaseCommand CommandShowWelcomeMessage
             => new ActionCommand(WelcomeMessageSystem.ClientShowWelcomeMessage);
@@ -142,6 +150,8 @@
         {
             base.DisposeViewModel();
 
+            ServerOperatorSystem.ClientIsOperatorChanged -= this.IsServerOperatorChangedHandler;
+
             if (this.game == null)
             {
                 return;
@@ -161,6 +171,11 @@
         private void ExecuteCommandDisconnect()
         {
             this.game.Disconnect();
+        }
+
+        private void IsServerOperatorChangedHandler()
+        {
+            this.NotifyPropertyChanged(nameof(this.CanEditWelcomeMessage));
         }
 
         private void PingAverageChangedHandler()

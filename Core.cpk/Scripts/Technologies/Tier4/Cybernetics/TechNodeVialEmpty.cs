@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeVialEmpty>();
 
-            config.SetRequiredNode<TechNodeBiomaterialProcessing>();
+            //config.SetRequiredNode<TechNodeBiomaterialProcessing>();
         }
     }
 }

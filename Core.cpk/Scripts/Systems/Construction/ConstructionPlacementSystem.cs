@@ -10,7 +10,9 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -29,7 +31,9 @@
     {
         public const string NotificationCannotBuild_Title = "Cannot build there";
 
-        private const double MaxDistanceToBuild = 20;
+        private const bool AllowInstantPlacementInCreativeMode = false;
+
+        private const double MaxDistanceToBuild = 5;
 
         private static ClientComponentObjectPlacementHelper componentObjectPlacementHelper;
 
@@ -76,9 +80,13 @@
                 {
                     ClientEnsureConstructionToolIsSelected();
                     currentSelectedProtoConstruction = selectedProtoStructure;
+
                     componentObjectPlacementHelper = Client.Scene
-                                                           .CreateSceneObject("ConstructionHelper", Vector2D.Zero)
-                                                           .AddComponent<ClientComponentObjectPlacementHelper>();
+                                                           .CreateSceneObject(
+                                                               "ConstructionHelper",
+                                                               Vector2D.Zero)
+                                                           .AddComponent<
+                                                               ClientComponentObjectPlacementHelper>();
 
                     // repeat placement for held button only for walls, floor and farms
                     var isRepeatCallbackIfHeld = selectedProtoStructure is IProtoObjectWall
@@ -93,7 +101,8 @@
                                isBlockingInput: true,
                                validateCanPlaceCallback: ClientValidateCanBuildCallback,
                                placeSelectedCallback: ClientConstructionPlaceSelectedCallback,
-                               maxDistance: MaxDistanceToBuild);
+                               maxDistance: MaxDistanceToBuild,
+                               delayRemainsSeconds: 0.4);
                 },
                 onClosed: OnStructureSelectWindowOpenedOrClosed);
 
@@ -221,6 +230,11 @@
 
             // validate if there are enough required items/resources to build the structure
             Instance.CallServer(_ => _.ServerRemote_PlaceStructure(currentSelectedProtoConstruction, tilePosition));
+
+            if (currentSelectedProtoConstruction is IProtoObjectLandClaim)
+            {
+                ClientDisableConstructionPlacement();
+            }
         }
 
         private static void ClientEnsureConstructionToolIsSelected()
@@ -369,12 +383,19 @@
             configBuild.ServerDestroyRequiredItems(character);
 
             if (configBuild.StagesCount > 1)
-                //&& !CreativeModeSystem.SharedIsInCreativeMode(character))
             {
-                // there are multiple construction stages - spawn and setup a construction site
-                var constructionSite = this.ServerCreateConstructionSite(tilePosition, protoStructure, character);
-                this.ServerOnStructurePlaced(constructionSite, character);
-                return;
+                if (AllowInstantPlacementInCreativeMode
+                    && CreativeModeSystem.SharedIsInCreativeMode(character))
+                {
+                    // instant placement allowed
+                }
+                else
+                {
+                    // there are multiple construction stages - spawn and setup a construction site
+                    var constructionSite = this.ServerCreateConstructionSite(tilePosition, protoStructure, character);
+                    this.ServerOnStructurePlaced(constructionSite, character);
+                    return;
+                }
             }
 
             ServerDecalsDestroyHelper.DestroyAllDecals(tilePosition, protoStructure.Layout);

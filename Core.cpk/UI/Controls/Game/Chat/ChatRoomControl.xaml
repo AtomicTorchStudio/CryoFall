@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
     HorizontalAlignment="Stretch"
     VerticalAlignment="Stretch"
     mc:Ignorable="d"
@@ -70,25 +71,29 @@
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="80" />
         </Grid.RowDefinitions>
         <ScrollViewer x:Name="ScrollViewerChatLog"
                       Margin="0"
                       Style="{StaticResource ScrollViewerChatLog}"
                       VerticalScrollBarVisibility="Hidden"
-                      VerticalAlignment="Bottom">
+                      VerticalAlignment="Bottom"
+                      services:AdvancedScrollViewerService.IsEnabled="True">
             <StackPanel x:Name="StackPanelChatLog"
                         VerticalAlignment="Bottom" />
         </ScrollViewer>
 
-        <TextBox x:Name="TextBoxChatInput"
-                 Grid.Row="1"
+        <TextBox Grid.Row="1"
+                 x:Name="TextBoxChatInput"
                  Style="{StaticResource ChatTextBoxStyle}"
                  TabIndex="0"
                  IsTabStop="True"
-                 MaxLength="225"
+                 MaxLength="300"
+                 MaxLines="4"
                  KeyboardNavigation.TabNavigation="None"
                  KeyboardNavigation.ControlTabNavigation="None"
-                 KeyboardNavigation.DirectionalNavigation="None" />
+                 KeyboardNavigation.DirectionalNavigation="None"
+                 VerticalAlignment="Top"
+                 VerticalScrollBarVisibility="Visible" />
     </Grid>
 </ui:BaseUserControl>

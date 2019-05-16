@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using System.Windows;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -184,7 +184,7 @@
             }
 
             if (Client.CurrentGame.ConnectionState == ConnectionState.Connected
-                && !DayNightSystem.ClientIsInitialized)
+                && !TimeOfDaySystem.ClientIsInitialized)
             {
                 // not yet received the current time from the server
                 return false;

@@ -10,6 +10,8 @@
         public override string Description =>
             "This is the most simple crate for storage of one's possessions. Can be easily destroyed, though.";
 
+        public override bool HasOwnersList => false;
+
         public override byte ItemsSlotsCount => 16;
 
         public override string Name => "Wooden crate";

@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeCanisterPetroleum>();
 
-            config.SetRequiredNode<TechNodeCement>();
+            config.SetRequiredNode<TechNodeCanisterEmpty>();
         }
     }
 }

@@ -130,6 +130,9 @@ Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Эта территория другого игрока, или она находится слишком близко к чужой зоне контроля.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
+Месторождение только что появилось, его нельзя пока взять под контроль. Строительство рядом с ним временно недоступно.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Пересечение с чужой зоной контроля
 
@@ -157,10 +160,10 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireIn
 Защита новичка закончится через:
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-Под защитой новичка вы не можете атаковать других игроков и забирать себе их выпавшие вещи. Но вы можете отменить защиту в любой момент в меню Игроки.
+Под защитой новичка вы не можете атаковать других игроков и забирать себе их выпавшие вещи. Но вы можете отменить защиту в любой момент в меню Дипломатия.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-Вы не можете совершить это действие под защитой новичка. Но вы можете отменить защиту в любой момент в меню Игроки.
+Вы не можете совершить это действие под защитой новичка. Но вы можете отменить защиту в любой момент в меню Дипломатия.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
 Этот мешок под защитой новичка, только владелец может ее взять.
@@ -182,6 +185,9 @@ Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageF
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
 Примечание: если вы примете приглашение, то [b]покинете[/b] текущую группу.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationSentMessageFormat:
+Приглашение в группу отправлено игроку [b]{0}[/b].
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
 Приглашение в группу
@@ -219,6 +225,39 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySame
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 Вы не можете приглашать, т.к. оператор сервера исключил вас из чата.
 
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
+Отключить режим дуэли
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Enable:
+Включить режим дуэли
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Description:
+`Вы можете включить режим дуэли для того, чтобы вызвать других игроков на бой.
+[br]Вы не потеряете имущество после смерти.
+[br]У обоих игроков должен быть включен режим дуэли.`
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Title:
+Режим дуэли
+
+Scripts/Systems/PvE/PveSystem@Notification_CannotDamagePlayers_Message:
+Вы не можете повредить другим игрокам или их постройкам на сервере PvE.
+
+Scripts/Systems/PvE/PveSystem@Notification_OtherPlayerDontHaveDuelMode_Message:
+Оба игрока должны включить режим дуэли для того, чтобы сражаться.
+
+Scripts/Systems/PvE/PveSystem@Notification_StuffBelongsToAnotherPlayer_Message:
+Принадлежит другому игроку.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Message:
+Повреждения каких-либо построек внутри зоны контроля возможны только в период рейда.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Title:
+Нет урона
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
+`Период рейда окончен.
+[br]Идущие рейды могут продолжаться.`
+
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Урожай собирать пока не с чего
 
@@ -239,27 +278,45 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `Оператор этого сервера установил подключение по приглашениям.
 [br]Пожалуйста, читайте описание сервера, чтобы узнать подробности.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessage:
-`Добро пожаловать на официальный сервер CryoFall!
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
+`Добро пожаловать на официальный сервер игры CryoFall!
 [br]
 [br]
 [b]Важно:[/b]
-имейте в виду, что официальные серверы нацелены на PvP-игру, и вы можете столкнуться с агрессией со стороны других игроков. Вам придется все время защищаться и быть начеку. Также вы можете объединиться с другими выжившими, чтобы повысить свои шансы на успех.
+Это сервер PvE (игрок против окружения). На этом сервере игроки не могут атаковать друг друга прямо или косвенно. Этот сервер предназначен для мирного исследования мира игры без противоборства с другими игроками. Нельзя убивать, уничтожать, красть или иным образом причинять вред другим игрокам. В остальном вы можете полноценно играть в CryoFall, охотясь на опасных существ, открывая новые технологии и изучая окружающий мир. Желаем вам интересного путешествия.
+[br]
+[br]
+Если вы предпочитаете более захватывающий и неограниченный игровой процесс, то рекомендуем вам перейти на сервер PvP (игрок против игроков).
 [br]
 [br]
 [b]Правила сервера:[/b]
-[*]Проявляйте уважение и вежливость к другим игрокам. Здесь недопустимы любые виды дискриминаций, оскорблений и т.п.
-[*]Выполняйте требования модераторов сервера.
+[*]Относитесь вежливо и с уважением к другим игрокам. Мы не потерпим любых оскорблений, дискриминации, и т. д.
+[*]Выполняйте все просьбы модераторов сервера.
+[*]Воздерживайтесь от "спама" и "флуда", а также от ненормативной лексики в чатах.
+[*]Не пытайтесь обойти или злоупотреблять любыми ограничениями PvE.
+[*]Не используйте слабые места правил игры или игровой механики для того, чтобы навредить другим игрокам или донимать их.
+[br]
+[br]
+Желаем удачи! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
+`Добро пожаловать на официальный сервер игры CryoFall!
+[br]
+[br]
+[b]Важно:[/b]
+Это сервер PvP (игрок против игроков), без каких-либо ограничений. Здесь вы можете столкнуться с агрессией со стороны других игроков. Вам придется все время защищаться и быть начеку. Также вы можете объединиться с другими выжившими, чтобы повысить свои шансы на успех.
+[br]
+[br]
+Если вы предпочитаете более спокойный игровой процесс, особенно в начале знакомства с игрой, то рекомендуем вам перейти на сервер PvE.
+[br]
+[br]
+[b]Правила сервера:[/b]
+[*]Проявляйте уважение и вежливость к другим игрокам. Здесь недопустимы любые виды дискриминаций, оскорблений и т. п.
+[*]Выполняйте все требования модераторов сервера.
 [*]Воздержитесь от спама и употребления нецензурной лексики.
 [br]
 [br]
-[b]Рекомендации:[/b]
-[br]Мы не можем заставить вас выполнять эти правила, но следование им создаст более дружелюбную атмосферу для всех игроков.
-[*]Не убивайте при первой же встрече других игроков, особенно тех, кто только что присоединился к игре.
-[*]Ничего страшного, если вы напали на базу игрока, но не делайте этого без особой нужды.
-[*]Помогайте новичкам, которые только начинают осваиваться в игре.
-[br]
-[br]Желаем удачи! :)`
+Желаем удачи! :)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Добро пожаловать, это {0}
@@ -282,7 +339,7 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} уровень {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`Вы накопили более 50 очков технологий (ОТ). За них можно открыть новые технологии. Помните, что после смерти восстанавливается лишь небольшое количество ОТ.
+`Вы накопили более {0} очков технологий (ОТ). За них можно открыть новые технологии. Помните, что после смерти восстанавливается лишь небольшое количество ОТ.
 [br](щелкните, чтобы открыть меню технологий)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:

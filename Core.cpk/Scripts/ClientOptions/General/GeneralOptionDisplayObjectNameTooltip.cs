@@ -8,7 +8,8 @@
 
         public override string Name => "Display object[br]name tooltip";
 
-        public override IProtoOption OrderAfterOption => GetProtoEntity<GeneralOptionMouseScrollWheelMode>();
+        public override IProtoOption OrderAfterOption 
+            => GetOption<GeneralOptionMouseScrollWheelMode>();
 
         public override bool ValueProvider
         {

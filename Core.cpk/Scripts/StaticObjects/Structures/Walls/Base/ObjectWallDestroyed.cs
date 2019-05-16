@@ -5,6 +5,8 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -25,6 +27,8 @@
                 WallDestroyedPublicState,
                 ObjectWallClientState>
     {
+        public override string InteractionTooltipText => InteractionTooltipTexts.Deconstruct;
+
         // we don't want the destroyed walls to disallow constructions so let's call this is a floor decal
         public override StaticObjectKind Kind => StaticObjectKind.FloorDecal;
 
@@ -127,6 +131,21 @@
                 isDestroy: false);
         }
 
+        protected override void ClientInteractFinish(ClientObjectData data)
+        {
+            DeconstructionSystem.ClientTryAbortAction();
+        }
+
+        protected override void ClientInteractStart(ClientObjectData data)
+        {
+            DeconstructionSystem.ClientTryStartAction();
+        }
+
+        protected override bool CommonIsAllowedObjectToInteractThrought(IWorldObject worldObject)
+        {
+            return true;
+        }
+
         protected sealed override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
@@ -135,7 +154,9 @@
             out ProtoStructureCategory category)
         {
             build.IsAllowed = false;
+            build.StagesCount = 1;
             repair.IsAllowed = false;
+            repair.StagesCount = 1;
             category = GetCategory<StructureCategoryBuildings>();
         }
 
@@ -181,6 +202,9 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            data.PhysicsBody.AddShapeRectangle((1, 1),
+                                               group: CollisionGroups.ClickArea);
+
             ProtoObjectWallHelper.SharedCalculateNeighborsPattern(
                 data.GameObject.OccupiedTile,
                 protoWall: data.SyncPublicState.OriginalProtoObjectWall,

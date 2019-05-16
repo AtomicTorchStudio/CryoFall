@@ -11,7 +11,7 @@
         public override string Name => "Ambient occlusion";
 
         public override IProtoOption OrderAfterOption
-            => GetProtoEntity<VideoOptionTerrainDetails>();
+            => GetOption<VideoOptionTerrainDetails>();
 
         public override bool ValueProvider
         {

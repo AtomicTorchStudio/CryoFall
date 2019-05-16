@@ -19,7 +19,8 @@
 
             // mobs
             scripts
-                .Add(GetScript<SpawnMobsCrab>());
+                .Add(GetScript<SpawnMobsCrab>())
+                .Add(GetScript<SpawnMobsRiverSnail>());
         }
     }
 }

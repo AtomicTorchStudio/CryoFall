@@ -70,13 +70,13 @@
                 throw new Exception("Instance already exist");
             }
 
-            this.ZoomBounds = ZoomDefaultBounds;
             if (!StorageLastZoomValue.TryLoad(out double zoomValue))
             {
                 zoomValue = ZoomDefaultValueLog;
             }
 
             this.targetZoomLog = this.currentZoomLog = zoomValue;
+            this.ZoomBounds = ZoomDefaultBounds;
         }
 
         public static ClientComponentWorldCameraZoomManager Instance
@@ -102,6 +102,15 @@
             {
                 this.zoomBoundsLinear = value;
                 this.zoomBoundsLog = new Interval<double>(Math.Log(value.Min), Math.Log(value.Max));
+                var oldTargetZoomLog = this.targetZoomLog;
+                this.ClampTargetZoom();
+
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (oldTargetZoomLog != this.targetZoomLog)
+                {
+                    // force the current zoom to match the target zoom as the target zoom changed during the clamp call
+                    this.currentZoomLog = this.targetZoomLog;
+                }
             }
         }
 

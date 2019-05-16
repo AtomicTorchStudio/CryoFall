@@ -67,7 +67,7 @@
 
                     foreach (var chatRoomTab in this.chatRooms.Values)
                     {
-                        chatRoomTab.ViewModelChatRoom.IsTabVisible = true;
+                        chatRoomTab.ViewModelChatRoom.SetIsTabVisibleInPanel(true);
                         chatRoomTab.ChatRoomControl.IsActive = true;
                     }
                 }
@@ -78,7 +78,7 @@
 
                     foreach (var chatRoomTab in this.chatRooms.Values)
                     {
-                        chatRoomTab.ViewModelChatRoom.IsTabVisible = false;
+                        chatRoomTab.ViewModelChatRoom.SetIsTabVisibleInPanel(false);
                         chatRoomTab.ChatRoomControl.IsActive = false;
                     }
                 }
@@ -188,8 +188,8 @@
 
             var chatLogA = chatRoomA.ChatRoom.ChatLog;
             var chatLogB = chatRoomB.ChatRoom.ChatLog;
-            var lastDateA = chatLogA.Count > 0 ? chatLogA.Last().UtcDate : DateTime.MaxValue;
-            var lastDateB = chatLogB.Count > 0 ? chatLogB.Last().UtcDate : DateTime.MaxValue;
+            var lastDateA = chatLogA.Count > 0 ? chatLogA.Last().UtcDate : DateTime.MinValue;
+            var lastDateB = chatLogB.Count > 0 ? chatLogB.Last().UtcDate : DateTime.MinValue;
             return lastDateA.CompareTo(lastDateB);
         }
 
@@ -205,9 +205,20 @@
                 }
             }
 
-            var viewModelChatRoom = new ViewModelChatRoom(chatRoom,
-                                                          callbackNeedTabSort:
-                                                          () => this.tabControl.SortTabs(CompareTabs));
+            var viewModelChatRoom = new ViewModelChatRoom(
+                chatRoom,
+                callbackNeedTabSort:
+                () => this.tabControl.SortTabs(CompareTabs),
+                callbackPrivateChatRoomClosed:
+                vm =>
+                {
+                    if (vm.IsSelected)
+                    {
+                        // selected private chat room closed - switch to global chat
+                        this.SelectTab<ChatRoomGlobal>();
+                    }
+                });
+
             var chatRoomControl = new ChatRoomControl()
             {
                 ViewModelChatRoom = viewModelChatRoom,
@@ -228,7 +239,7 @@
 
             if (this.IsActive)
             {
-                viewModelChatRoom.IsTabVisible = true;
+                viewModelChatRoom.SetIsTabVisibleInPanel(true);
                 chatRoomControl.IsActive = true;
             }
 

@@ -29,6 +29,8 @@
 
         public override string Name => "Biomaterial collector";
 
+        public override bool OnlySingleDeviceOfThisProtoAppliesEffect => true;
+
         protected override void PrepareProtoItemEquipment()
         {
             base.PrepareProtoItemEquipment();
@@ -55,7 +57,7 @@
                 return;
             }
 
-            // corpse gathered!
+            // corpse looted
             // find the device and vial
             var itemDevice = character.SharedGetPlayerContainerEquipment()
                                       .GetItemsOfProto(this)

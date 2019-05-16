@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeBatteryDisposable>();
 
-            config.SetRequiredNode<TechNodeBasicElectronics>();
+            config.SetRequiredNode<TechNodeTarpaulin>();
         }
     }
 }

@@ -22,6 +22,9 @@ Scripts/Characters/Mobs/MobHyena@Name:
 Scripts/Characters/Mobs/MobPangolin@Name:
 천산갑
 
+Scripts/Characters/Mobs/MobRiverSnail@Name:
+달팽이
+
 Scripts/Characters/Mobs/MobScorpion@Name:
 전갈
 

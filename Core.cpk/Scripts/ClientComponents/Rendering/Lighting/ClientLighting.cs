@@ -19,12 +19,14 @@
             IClientSceneObject sceneObject,
             Color color,
             Size2F size,
+            Size2F? logicalSize = null,
             Vector2D? spritePivotPoint = null,
             Vector2D? positionOffset = null)
         {
             var result = sceneObject.AddComponent<ClientComponentSpriteLightSource>();
             result.Color = color;
-            result.Size = size;
+            result.RenderingSize = size;
+            result.LogicalSize = logicalSize ?? size;
 
             if (spritePivotPoint.HasValue)
             {
@@ -53,7 +55,8 @@
             return CreateLightSourceSpot(
                 sceneObject,
                 itemLightConfig.Color,
-                size: (float)itemLightConfig.Size,
+                size: itemLightConfig.Size,
+                logicalSize: itemLightConfig.LogicalSize,
                 positionOffset: positionOffset);
         }
     }

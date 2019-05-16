@@ -8,8 +8,6 @@
         {
             config.Effects
                   .AddRecipe<RecipeWateringCanSteel>();
-
-            config.SetRequiredNode<TechNodeFarmingProductivity>();
         }
     }
 }

@@ -30,7 +30,7 @@
         public override string Name => "UI anti-aliasing";
 
         public override IProtoOption OrderAfterOption
-            => GetProtoEntity<VideoOptionAntiAliasing>();
+            => GetOption<VideoOptionAntiAliasing>();
 
         public override UIAntiAliasingMode ValueProvider
         {

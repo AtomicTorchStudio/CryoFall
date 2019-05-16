@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Plants;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -187,6 +188,11 @@
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
         {
+            if (!PveSystem.SharedValidateInteractionNotForbidden(character, worldObject, writeToLog))
+            {
+                return false;
+            }
+
             return this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
         }
 

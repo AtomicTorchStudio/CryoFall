@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Perks.Base;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -41,6 +42,8 @@
             this.ShortId = shortId;
         }
 
+        public virtual FeatureAvailability AvailableIn => FeatureAvailability.All;
+
         public IReadOnlyList<TechNode> DependentNodes => this.dependentNodes ?? EmptyList;
 
         public virtual string Description { get; }
@@ -53,6 +56,30 @@
             => this.NodeEffects.Count > 0
                    ? this.NodeEffects[0].Icon
                    : IconPlaceholder;
+
+        public bool IsAvailable
+        {
+            get
+            {
+                switch (this.AvailableIn)
+                {
+                    case FeatureAvailability.None:
+                        return false;
+
+                    case FeatureAvailability.All:
+                        return true;
+
+                    case FeatureAvailability.OnlyPvP:
+                        return !PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false);
+
+                    case FeatureAvailability.OnlyPvE:
+                        return PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false);
+
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
 
         public ushort LearningPointsPrice { get; private set; }
 

@@ -13,7 +13,13 @@
     public partial class ScreenshotNotification : BaseUserControl
     {
         public static readonly DependencyProperty FileNameProperty =
-            DependencyProperty.Register("FileName",
+            DependencyProperty.Register(nameof(FileName),
+                                        typeof(string),
+                                        typeof(ScreenshotNotification),
+                                        new PropertyMetadata(default(string), FileNamePropertyChangedHandler));
+
+        public static readonly DependencyProperty ScreenshotReadyMessageProperty =
+            DependencyProperty.Register(nameof(ScreenshotReadyMessage),
                                         typeof(string),
                                         typeof(ScreenshotNotification),
                                         new PropertyMetadata(default(string)));
@@ -32,6 +38,12 @@
         {
             get => (string)this.GetValue(FileNameProperty);
             set => this.SetValue(FileNameProperty, value);
+        }
+
+        public string ScreenshotReadyMessage
+        {
+            get => (string)this.GetValue(ScreenshotReadyMessageProperty);
+            set => this.SetValue(ScreenshotReadyMessageProperty, value);
         }
 
         public static void InitializeScreenshotOverlaySystem()
@@ -67,6 +79,12 @@
         {
             this.MouseLeftButtonUp -= this.ClickHandler;
             ClientComponentUpdateHelper.UpdateCallback -= this.Update;
+        }
+
+        private static void FileNamePropertyChangedHandler(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((ScreenshotNotification)d).ScreenshotReadyMessage
+                = string.Format(CoreStrings.ScreenshotNotification_NotificationFormat, e.NewValue);
         }
 
         private static void ScreenshotReadyHandler(string fileName)

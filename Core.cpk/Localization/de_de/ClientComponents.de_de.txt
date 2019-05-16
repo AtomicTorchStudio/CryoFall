@@ -73,30 +73,6 @@ Kamera herauszoomen
 Scripts/ClientComponents/Input/GameButton@OpenChat:
 Chat
 
-Scripts/ClientComponents/Input/GameButton@InventoryMenu:
-Inventar
-
-Scripts/ClientComponents/Input/GameButton@CraftingMenu:
-Werkstatt
-
-Scripts/ClientComponents/Input/GameButton@MapMenu:
-Karte
-
-Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
-Konstruktion
-
-Scripts/ClientComponents/Input/GameButton@SkillsMenu:
-Fähigkeiten
-
-Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
-Technologien
-
-Scripts/ClientComponents/Input/GameButton@SocialMenu:
-Social
-
-Scripts/ClientComponents/Input/GameButton@QuestsMenu:
-Quests
-
 Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
 Entwicklerkonsole
 

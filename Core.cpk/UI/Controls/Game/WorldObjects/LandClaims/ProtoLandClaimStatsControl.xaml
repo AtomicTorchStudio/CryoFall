@@ -58,13 +58,13 @@
                            Foreground="{StaticResource BrushColorAlt7}" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <!-- Text: Safe storage -->
+            <!-- Text: Safe storage -->
+            <!--<StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Static loc:CoreStrings.TitleSafeStorage}" />
                 <TextBlock Text=": " />
                 <TextBlock Text="{Binding CurrentStructureSafeItemsSlotsCount}"
                            Foreground="{StaticResource BrushColorAlt7}" />
-            </StackPanel>
+            </StackPanel>-->
         </StackPanel>
     </Grid>
 </base:BaseUserControl>

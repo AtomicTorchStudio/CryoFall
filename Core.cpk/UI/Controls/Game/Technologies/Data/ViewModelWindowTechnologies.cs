@@ -121,7 +121,7 @@
                                      .Requirements
                                      .Where(r => !r.IsSatisfied)
                                      .Select(r => r.GetErrorMessage())
-                                     .GetJoinedString(Environment.NewLine),
+                                     .GetJoinedString("[br]"),
                         color: NotificationColor.Bad,
                         icon: this.listSelectedTechGroup.TechGroup.Icon);
                     return;

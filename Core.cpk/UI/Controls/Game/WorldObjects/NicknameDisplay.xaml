@@ -12,7 +12,27 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelNicknameDisplay, IsDesignTimeCreatable=True}"
     VerticalAlignment="Bottom">
+
     <StackPanel Orientation="Horizontal">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisibilityStates">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition To="Collapsed"
+                                      GeneratedDuration="0:0:0.25" />
+                    <VisualTransition To="Visible"
+                                      GeneratedDuration="0:0:0.25" />
+                </VisualStateGroup.Transitions>
+
+                <VisualState x:Name="Visible" />
+                <VisualState x:Name="Collapsed">
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         To="0" />
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Image Source="../Map/Images/PartyMember.png"
                Visibility="{Binding IsPartyMember, Converter={StaticResource BoolToVisibilityConverter}}"
                Width="32"
@@ -23,13 +43,25 @@
                Margin="0,-6,0,0" />
 
         <Path Visibility="{Binding IsNewbieAndNotPartyMember, Converter={StaticResource BoolToVisibilityConverter}}"
-              Data="m 1458.1522,267.49106 c 36.377,-0.76206 10.9914,47.92314 17.5515,70.96404 -8.523,192.52685 -6.2242,388.47456 -62.0472,574.90275 -59.8115,224.66965 -183.3609,432.48365 -352.1992,592.27175 -83.87984,73.1412 -168.51069,149.9748 -273.8286,190.5671 C 670.01794,1649.4319 575.8759,1560.1026 483.7588,1475.6749 323.96175,1312.9114 209.21626,1106.2136 155.90611,884.33098 104.783,705.15677 110.79565,517.13188 100.47199,332.78409 75.993898,261.26767 140.81431,259.12623 195.61198,254.87343 859.03581,142.11267 736.24773,143.30691 1458.1522,267.49106 Z"
+              Data="{StaticResource IconGeometryPathNewbie}"
               Fill="#FF66DDFF"
               Stroke="Black"
               StrokeThickness="1.5"
               Stretch="Uniform"
               Width="28"
               Height="28"
+              VerticalAlignment="Center"
+              UseLayoutRounding="False"
+              Margin="0,-6,3,0" />
+
+        <Path Visibility="{Binding IsDuelModeAndNotPartyMember, Converter={StaticResource BoolToVisibilityConverter}}"
+              Data="{StaticResource IconGeometryPathDuelMode}"
+              Fill="#FFFF1111"
+              Stroke="Black"
+              StrokeThickness="1"
+              Stretch="Uniform"
+              Width="32"
+              Height="32"
               VerticalAlignment="Center"
               UseLayoutRounding="False"
               Margin="0,-6,3,0" />

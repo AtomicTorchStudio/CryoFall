@@ -130,6 +130,9 @@ Este objeto no se puede rellenar.
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Esta zona ha sido reclamada por otro jugador o está demasiado cerca del terreno adjudicado de otra persona.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
+El depósito de recursos acaba de aparecer y aún no ha sido reclamado. De momento, no se puede construir a su alrededor.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Se cruza con otro terreno adjudicado
 
@@ -157,10 +160,10 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireIn
 La protección para novatos se acabará en:
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-Si la protección para novatos está activa, no podrás atacar a otros jugadores ni saquear los objetos que dejen al morir. Podrás cancelar la protección en cualquier momento a través del menú Social.
+Si la protección para novatos está activa, no podrás atacar a otros jugadores ni saquear los objetos que dejen al morir. Podrás cancelar la protección en cualquier momento a través del menú Diplomacia.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-No podrás llevar a cabo esta acción mientras estés usando la protección para novatos. Podrás cancelar la protección en cualquier momento a través del menú Social.
+No podrás llevar a cabo esta acción mientras estés usando la protección para novatos. Podrás cancelar la protección en cualquier momento a través del menú Diplomacia.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
 Esta bolsa está bajo protección para novatos, así que solo el dueño puede cogerla.
@@ -182,6 +185,9 @@ Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageF
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
 Ten en cuenta que, si aceptas esta invitación, [b]abandonarás[/b] el grupo actual.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationSentMessageFormat:
+Se ha invitado a [b]{0}[/b] al grupo.
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
 Invitación a grupo
@@ -219,6 +225,38 @@ La persona invitada ya forma parte del grupo.
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 No puedes invitar, ya que el operador del servidor te ha silenciado.
 
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
+Desactivar el modo Duelo
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Enable:
+Activar el modo Duelo
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Description:
+`Puedes activar el modo Duelo para desafiar a otros jugadores a un combate.
+[br]No pierdes objetos al morir.
+[br]Ambos jugadores han de tener el modo Duelo activo.`
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Title:
+Modo Duelo
+
+Scripts/Systems/PvE/PveSystem@Notification_CannotDamagePlayers_Message:
+No puedes dañar a otros jugadores, ni tampoco estructuras que pertenezcan a un jugador que esté en un servidor JcE.
+
+Scripts/Systems/PvE/PveSystem@Notification_OtherPlayerDontHaveDuelMode_Message:
+Ambos jugadores han de activar el modo Duelo para poder pelear.
+
+Scripts/Systems/PvE/PveSystem@Notification_StuffBelongsToAnotherPlayer_Message:
+Esto pertenece a otro jugador.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Message:
+Las estructuras que estén dentro de un terreno adjudicado tan solo se podrán dañar durante la ventana de asalto.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Title:
+Sin daño
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
+La ventana de asalto se ha cerrado.
+
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Aún no hay nada que cosechar
 
@@ -239,27 +277,45 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `El operario de este servidor ha decidido que sea solo por invitación.
 [br]Para más detalles, revisa la descripción del servidor.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessage:
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
 `¡Te damos la bienvenida al servidor oficial de CryoFall!
 [br]
 [br]
 [b]Importante:[/b]
-Recuerda que los servidores oficiales están centrados en el JcJ y los demás jugadores podrían atacarte. Tendrás que protegerte adecuadamente y no podrás bajar la guardia en ningún momento. Puede que también te interese unir fuerzas con otros supervivientes para aumentar tus probabilidades de éxito.
+Este es un servidor JcE (jugador contra entorno). En este servidor los jugadores no podrán atacarse unos a otros, ya sea de forma directa o indirecta. Este servidor está dedicado a una exploración pacífica del juego, sin enfrentamientos hostiles entre jugadores. No se puede matar, destruir, robar o atacar en modo alguno a otros jugadores. Más allá de eso, este servidor te ofrece una experiencia completa de CryoFall, con sus criaturas peligrosas, sus tecnologías por desbloquear y su mundo por explorar. ¡A ver adónde te lleva este viaje!
+[br]
+[br]
+Si prefieres una experiencia más intensa y sin restricciones, únete a un servidor JcJ.
 [br]
 [br]
 [b]Reglas del servidor:[/b]
-[*]Respeta y sé educado con los demás. No se tolerará ningún tipo de abuso, discriminación, etcétera.
-[*]Cumple todas las peticiones que puedan tener los moderadores del servidor.
-[*]No mandes spam, inundes el chat de mensajes o abuses de las obscenidades.
+[*]Respeta y sé educado con los demás. No se tolerará ninguna forma de abuso, discriminación, etcétera.
+[*]Cumple todas las peticiones que te hagan los moderadores del servidor.
+[*]No envíes spam o inundes el chat. Tampoco abuses del lenguaje soez.
+[*]Intenta no eludir o abusar de ninguna de las restricciones del JcE.
+[*]No abuses de reglas o mecánicas del juego con el fin de molestar a otros jugadores.
 [br]
 [br]
-[b]Recomendaciones:[/b]
-[br]Aunque no podemos imponer estas reglas, seguirlas servirá para crear un entorno más agradable para todos.
-[*]No mates a otros jugadores nada más verlos, y menos si es gente que se acaba de unir.
-[*]Si vas a atacar las bases de otros jugadores... pues no pasa nada, pero no causes problemas si no hay un buen motivo para ello.
-[*]Intenta ayudar a los nuevos jugadores que aún están aprendiendo a jugar.
+¡Buena suerte! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
+`¡Te damos la bienvenida al servidor oficial de CryoFall!
 [br]
-[br]¡Buena suerte! :)`
+[br]
+[b]Importante:[/b]
+Este es un servidor JcJ todos contra todos. Recuerda que en los servidores centrados en el JcJ te encontrarás con otros jugadores que te atacarán. La idea es que luches y te defiendas. Tendrás que buscar la forma de protegerte adecuadamente y no podrás bajar la guardia en ningún momento. También podrás unir fuerzas con otros supervivientes para aumentar tus posibilidades de éxito.
+[br]
+[br]
+Si prefieres una experiencia más relajada (sobre todo si es la primera vez que juegas), te recomendamos que te unas a un servidor JcE.
+[br]
+[br]
+[b]Reglas del servidor:[/b]
+[*]Respeta y sé educado con los demás. No se tolerará ninguna forma de abuso, discriminación, etcétera.
+[*]Cumple todas las peticiones que te hagan los moderadores del servidor.
+[*]No envíes spam o inundes el chat. Tampoco abuses del lenguaje soez.
+[br]
+[br]
+¡Buena suerte! :)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Te damos la bienvenida a {0}
@@ -282,7 +338,7 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} de nivel {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`Has acumulado más de 50 puntos de aprendizaje (PA). ¿Por qué no te planteas la posibilidad de invertirlos para desbloquear nuevas tecnologías? Tan solo se conserva una pequeña fracción de PA al morir.
+`Has acumulado más de {0} puntos de aprendizaje (PA). ¿Por qué no te planteas la posibilidad de invertirlos para desbloquear nuevas tecnologías? Tan solo se conserva una pequeña fracción de PA al morir.
 [br](haz clic para abrir el menú de tecnologías)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:

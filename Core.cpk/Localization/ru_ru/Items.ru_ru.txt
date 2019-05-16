@@ -103,6 +103,12 @@ Scripts/Items/Devices/ItemBiomaterialCollector@Description:
 Scripts/Items/Devices/ItemBiomaterialCollector@Name:
 Коллектор биоматериала
 
+Scripts/Items/Devices/ItemHuntersTools@Description:
+Набор полезных охотничьих инструментов, благодаря которым можно быстрее собирать добычу.
+
+Scripts/Items/Devices/ItemHuntersTools@Name:
+Инструменты охотника
+
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
 Хранит большой объем энергии. От экипированных аккумуляторов можно заряжать любые приборы и энергетическое оружие.
 
@@ -183,6 +189,9 @@ Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 Плетеный шлем
+
+Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
+Импровизированный шлем с фонарем
 
 Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
 Плетеные штаны
@@ -1351,6 +1360,18 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Имплант нановолокон под кожей
+
+Scripts/Items/Medical/ItemAntiMutation@Description:
+Защищает и восстанавливает клетки ДНК, поврежденные радиацией и другими опасными эффектами. Останавливает неконтролируемые мутации на теле.
+
+Scripts/Items/Medical/ItemAntiMutation@Name:
+Лекарство от мутаций
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Мутаций нет
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+На теле не обнаружено бесконтрольных мутаций.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 Вы не страдаете от тошноты. Нет повода принимать это лекарство.

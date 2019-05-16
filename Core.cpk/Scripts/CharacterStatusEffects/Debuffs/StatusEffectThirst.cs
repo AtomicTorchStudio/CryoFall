@@ -52,6 +52,12 @@
         protected override void ServerUpdate(StatusEffectData data)
         {
             var character = data.Character;
+            if (!character.IsOnline)
+            {
+                // only online characters are affected by thirst
+                return;
+            }
+
             if (!IsLowWater(character))
             {
                 // not thirsty anymore

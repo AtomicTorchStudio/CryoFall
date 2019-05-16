@@ -3,7 +3,9 @@
     using System;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -23,13 +25,16 @@
               TClientState>,
           IInteractableProtoStaticWorldObject,
           IProtoObjectWithOwnersList,
-          IProtoObjectWithAccessMode
+          IProtoObjectWithAccessMode,
+          IProtoObjectCrate
         where TPrivateState : ObjectCratePrivateState, new()
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
         // how long the items dropped on the ground from the destroyed crate should remain there
         private static readonly TimeSpan DestroyedCrateDroppedItemsDestructionTimeout = TimeSpan.FromDays(1);
+
+        public abstract bool HasOwnersList { get; }
 
         public override string InteractionTooltipText => InteractionTooltipTexts.Open;
 
@@ -75,7 +80,7 @@
 
         public bool SharedCanEditOwners(IStaticWorldObject worldObject, ICharacter byOwner)
         {
-            return true;
+            return this.HasOwnersList;
         }
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
@@ -119,7 +124,13 @@
             var privateState = data.PrivateState;
             if (data.IsFirstTimeInit)
             {
-                privateState.AccessMode = WorldObjectAccessMode.OpensToObjectOwnersOrAreaOwners;
+                privateState.AccessMode = this.HasOwnersList
+                                              ? WorldObjectAccessMode.OpensToObjectOwnersOrAreaOwners
+                                              : WorldObjectAccessMode.OpensToEveryone;
+            }
+            else if (!this.HasOwnersList)
+            {
+                privateState.AccessMode = WorldObjectAccessMode.OpensToEveryone;
             }
 
             WorldObjectOwnersSystem.ServerInitialize(worldObject);
@@ -140,10 +151,32 @@
             privateState.ItemsContainer = itemsContainer;
         }
 
+        protected override double SharedCalculateDamageByWeapon(
+            WeaponFinalCache weaponCache,
+            double damagePreMultiplier,
+            IStaticWorldObject targetObject,
+            out double obstacleBlockDamageCoef)
+        {
+            if (IsServer)
+            {
+                damagePreMultiplier = LandClaimSystem.ServerAdjustDamageToUnprotectedStrongBuilding(weaponCache,
+                                                                                                    targetObject,
+                                                                                                    damagePreMultiplier);
+            }
+
+            var damage = base.SharedCalculateDamageByWeapon(weaponCache,
+                                                            damagePreMultiplier,
+                                                            targetObject,
+                                                            out obstacleBlockDamageCoef);
+            return damage;
+        }
+
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (1, 0.5), offset: (0, 0.4))
+                .AddShapeRectangle(
+                    size: (1, 0.475),
+                    offset: (0, 0.4))
                 .AddShapeRectangle(
                     size: (1, 0.75),
                     offset: (0, 0.4),

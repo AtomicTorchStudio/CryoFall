@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public abstract class ProtoObjectBarrel
@@ -39,6 +40,11 @@
 
         public abstract ushort LiquidCapacity { get; }
 
+        public void ClientDrainBarrel(IStaticWorldObject worldObject)
+        {
+            this.CallServer(_ => _.ServerRemote_Drain(worldObject));
+        }
+
         public ProtoBarrelPrivateState GetBarrelPrivateState(IStaticWorldObject objectManufacturer)
         {
             return GetPrivateState(objectManufacturer);
@@ -51,10 +57,9 @@
             var spriterRendererLiquidType = Client.Rendering.CreateSpriteRenderer(
                 data.GameObject,
                 TextureResource.NoTexture,
-                positionOffset: (0.5, 0.475),
                 spritePivotPoint: (0.5, 0.5));
-            spriterRendererLiquidType.DrawOrderOffsetY = -0.475f;
             spriterRendererLiquidType.Scale = 2;
+            this.ClientSetupLiquidTypeSpriteRenderer(spriterRendererLiquidType);
 
             var publicState = data.SyncPublicState;
             publicState.ClientSubscribe(
@@ -80,6 +85,13 @@
                     data.GameObject,
                     data.SyncPrivateState.ManufacturingState,
                     this.ManufacturingConfig));
+        }
+
+        protected virtual void ClientSetupLiquidTypeSpriteRenderer(IComponentSpriteRenderer renderer)
+        {
+            var offsetY = 0.475;
+            renderer.PositionOffset = (0.5, y: offsetY);
+            renderer.DrawOrderOffsetY = -offsetY;
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -110,6 +122,24 @@
                     (0.7, 1),
                     offset: (0.15, 0),
                     group: CollisionGroups.ClickArea);
+        }
+
+        private void ServerRemote_Drain(IStaticWorldObject worldObject)
+        {
+            this.VerifyGameObject(worldObject);
+
+            var character = ServerRemoteContext.Character;
+            if (!this.SharedCanInteract(character,
+                                        worldObject,
+                                        writeToLog: true))
+            {
+                return;
+            }
+
+            var privateState = GetPrivateState(worldObject);
+            privateState.LiquidType = null;
+            privateState.LiquidAmount = 0;
+            Logger.Important(worldObject + " drained", character);
         }
     }
 

@@ -6,8 +6,10 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
@@ -30,6 +32,7 @@
             this.RefreshMessage();
 
             ClientComponentUpdateHelper.UpdateCallback += this.Update;
+            PveSystem.ClientIsPvEChanged += this.RefreshMessage;
         }
 
         public bool CanRespawnAtBed { get; set; }
@@ -47,7 +50,11 @@
 
         public bool HasBed { get; private set; }
 
+        public bool IsDespawned { get; private set; }
+
         public bool IsNewbiePvPdeath { get; private set; }
+
+        public bool IsRegularDeath { get; private set; }
 
         public string Message { get; private set; } = CoreStrings.WindowRespawn_Message;
 
@@ -71,6 +78,7 @@
         {
             base.DisposeViewModel();
             ClientComponentUpdateHelper.UpdateCallback -= this.Update;
+            PveSystem.ClientIsPvEChanged -= this.RefreshMessage;
         }
 
         private void Refresh()
@@ -107,14 +115,14 @@
             while (index < serverResult.Count)
             {
                 var entry = serverResult[index];
-                if (entry.Percent < 0.05
+                if (entry.Fraction < 0.05
                     && list.Count >= 1)
                 {
                     // too low percent - will add to "Other" percent
                     break;
                 }
 
-                var roundedPercent = (int)Math.Round(entry.Percent * 100,
+                var roundedPercent = (int)Math.Round(entry.Fraction * 100,
                                                      MidpointRounding.AwayFromZero);
                 if (roundedPercent < 1)
                 {
@@ -143,8 +151,24 @@
         // should be called only when the damage sources list is processed
         private async void RefreshMessage()
         {
+            if (CharacterDespawnSystem.ClientIsDespawned)
+            {
+                this.IsDespawned = true;
+                this.Message = CoreStrings.WindowRespawn_MessageDespawned;
+                return;
+            }
+
+            this.IsDespawned = false;
+            if (PveSystem.ClientIsPve(logErrorIfDataIsNotYetAvailable: false))
+            {
+                this.Message = CoreStrings.WindowRespawn_MessagePvE;
+                return;
+            }
+
             var isNewbiePvPdeath = await NewbieProtectionSystem.ClientGetLatestDeathIsNewbiePvP();
             this.IsNewbiePvPdeath = isNewbiePvPdeath;
+            this.IsRegularDeath = !isNewbiePvPdeath;
+
             this.Message = isNewbiePvPdeath
                                ? CoreStrings.WindowRespawn_MessageWithNewbieProtection
                                : CoreStrings.WindowRespawn_Message;

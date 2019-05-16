@@ -5,7 +5,7 @@ Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
 기술 그룹 학습 완료: {0}
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-0
+{0}
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
 제작:
@@ -368,6 +368,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
 천 방어구 만들고 장비하기
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Description:
+이제 야금학을 이용할 수 있게 되었으니 도구를 업그레이드하는 건 지극히 당연한 일입니다. 철제 도구는 원시 석기보다 내구성이 뛰어날 뿐만 아니라 훨씬 효과적입니다.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
+[*] 가능한 한 가장 좋은 도구로 업그레이드하여 생산성을 크게 높이세요.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
+더 나은 도구 만들기
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 두개골을 메이스로 부숴버리는 것도 나쁘진 않지만, 때로는 좀 더 멀리서 공격해야 할 때도 있습니다. 특히 더 무시무시한 적들을 상대할 때는 말이죠.
 
@@ -443,6 +452,17 @@ Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
 스킬 몇 가지 배우기
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
+무엇이든 지을 수 있는 건 좋지만, 당신이라면 건물을 해체하는 법도 알고 싶을 겁니다. 건물을 해체하려면 쇠지랫대를 사용하면 됩니다! 해체하고자 하는 건물이 점유한 토지 내에 있다면 말이죠.
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
+`[*] 이 퀘스트의 목적상 벽의 한 부분이나 저렴한 건물을 해체할 수 있으므로 큰 자원을 잃지 않습니다.
+[*] 점유한 토지 [b]내부[/b]에 있는 건물[b]만[/b] 해체할 수 있습니다.
+[*] 해체는 불필요하거나 쓸모 없는 건물이나 구조물을 제거하는 가장 좋은 방법입니다.`
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
+쇠지렛대를 사용하여 해체하기
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 공업 건설 분야를 발전시키려면 어려운 과학, 특히 화학의 기반을 잘 닦아야 합니다.

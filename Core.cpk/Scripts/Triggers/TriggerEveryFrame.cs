@@ -16,6 +16,7 @@
             string name)
         {
             Api.ValidateIsServer();
+            EnsureConfigCreated();
             config.ServerRegister(callback, name);
         }
 
@@ -26,10 +27,18 @@
 
         protected override void PrepareProto()
         {
-            if (IsServer)
+            EnsureConfigCreated();
+        }
+
+        private static void EnsureConfigCreated()
+        {
+            if (IsClient
+                || config != null)
             {
-                config = new EmptyTriggerConfig(this);
+                return;
             }
+
+            config = new EmptyTriggerConfig(GetProtoEntity<TriggerEveryFrame>());
         }
 
         private class EmptyTriggerConfig : BaseTriggerConfig

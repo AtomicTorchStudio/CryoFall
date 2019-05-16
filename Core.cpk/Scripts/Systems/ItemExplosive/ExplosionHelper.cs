@@ -197,9 +197,8 @@
                 () =>
                 {
                     // prepare weapon caches
-                    var characterFinalStatsCache = character != null
-                                                       ? character.SharedGetFinalStatsCache()
-                                                       : FinalStatsCache.Empty;
+                    var characterFinalStatsCache = character?.SharedGetFinalStatsCache()
+                                                   ?? FinalStatsCache.Empty;
 
                     var weaponFinalCache = new WeaponFinalCache(character,
                                                                 characterFinalStatsCache,

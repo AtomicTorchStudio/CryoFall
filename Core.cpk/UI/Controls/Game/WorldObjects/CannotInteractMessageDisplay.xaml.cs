@@ -26,9 +26,8 @@
             var staticWorldObject = worldObject as IStaticWorldObject;
             var protoStaticWorldObject = staticWorldObject?.ProtoStaticWorldObject;
 
-            var positionOffset = protoStaticWorldObject != null
-                                     ? protoStaticWorldObject.SharedGetObjectCenterWorldOffset(staticWorldObject)
-                                     : (0, 0);
+            var positionOffset = protoStaticWorldObject?.SharedGetObjectCenterWorldOffset(staticWorldObject)
+                                 ?? (0, 0);
 
             positionOffset += (0, 1.025);
 

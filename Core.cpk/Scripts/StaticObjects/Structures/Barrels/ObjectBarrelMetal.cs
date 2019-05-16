@@ -6,7 +6,8 @@
 
     public class ObjectBarrelMetal : ProtoObjectBarrel
     {
-        public override string Description => "More spacious and sturdy than wooden barrels. Useful to store large amounts of liquids.";
+        public override string Description =>
+            "More spacious and sturdy than wooden barrels. Useful to store large amounts of liquids.";
 
         public override ushort LiquidCapacity => 2000;
 

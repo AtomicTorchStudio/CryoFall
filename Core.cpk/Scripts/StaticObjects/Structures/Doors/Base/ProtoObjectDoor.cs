@@ -8,11 +8,14 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Walls;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
@@ -44,6 +47,8 @@
         private readonly Lazy<ProceduralTexture> lazyHorizontalDoorBlueprintTexture;
 
         private readonly Lazy<ProceduralTexture> lazyVerticalDoorBlueprintTexture;
+
+        private double doorAutoOpenRadiusSqr;
 
         protected ProtoObjectDoor()
         {
@@ -86,11 +91,20 @@
 
         public virtual Vector2D DoorOpenCheckOffset { get; } = (0.5, 0.1);
 
+        public virtual int DoorSizeTiles => 1;
+
+        public virtual bool HasOwnersList => true;
+
         public override string InteractionTooltipText => InteractionTooltipTexts.Configure;
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
         public bool IsClosedAccessModeAvailable => true;
+
+        /// <summary>
+        /// If set to null the door orientation is selected automatically.
+        /// </summary>
+        public virtual bool? IsHorizontalDoorOnly => null;
 
         public override double ServerUpdateIntervalSeconds => 0.2; // 5 times per second
 
@@ -124,7 +138,8 @@
         public override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {
             var renderer = blueprint.SpriteRenderer;
-            var isHorizontalDoor = DoorHelper.IsHorizontalDoorNeeded(tile, checkExistingDoor: true);
+            var isHorizontalDoor = this.IsHorizontalDoorOnly
+                                   ?? DoorHelper.IsHorizontalDoorNeeded(tile, checkExistingDoor: true);
             renderer.PositionOffset = (0,
                                        isHorizontalDoor
                                            ? DrawWorldOffsetYHorizontalDoor
@@ -142,8 +157,12 @@
 
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
         {
-            SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(gameObject.OccupiedTile,
-                                                                             isDestroy: true);
+            foreach (var occupiedTile in gameObject.OccupiedTiles)
+            {
+                SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
+                                                                                 isDestroy: true);
+            }
+
             base.ServerOnDestroy(gameObject);
         }
 
@@ -161,8 +180,10 @@
         public override void SharedCreatePhysicsConstructionBlueprint(IPhysicsBody physicsBody)
         {
             var worldObject = (IStaticWorldObject)physicsBody.AssociatedWorldObject;
-            var isHorizontalDoor = DoorHelper.IsHorizontalDoorNeeded(worldObject.OccupiedTile, checkExistingDoor: true);
-            SharedCreateDoorPhysics(physicsBody, isHorizontalDoor, isOpened: true);
+            var isHorizontalDoor = this.IsHorizontalDoorOnly
+                                   ?? DoorHelper.IsHorizontalDoorNeeded(worldObject.OccupiedTile,
+                                                                        checkExistingDoor: true);
+            this.SharedCreateDoorPhysics(physicsBody, isHorizontalDoor, isOpened: true);
         }
 
         BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
@@ -235,11 +256,29 @@
 
         protected override ITextureResource ClientCreateIcon()
         {
-            var textureResources = new[]
+            ITextureResource[] textureResources;
+            if (this.IsHorizontalDoorOnly ?? true)
             {
-                this.TextureBaseHorizontal,
-                (ITextureResource)this.AtlasTextureHorizontal.Chunk(0, 0)
-            };
+                textureResources = new ITextureResource[]
+                {
+                    // closed door
+                    this.TextureBaseHorizontal,
+                    // horizontal base
+                    this.AtlasTextureHorizontal.Chunk(0, 0)
+                };
+            }
+            else
+            {
+                // vertical door
+                textureResources = new ITextureResource[]
+                {
+                    // closed door
+                    this.AtlasTextureVertical.Chunk(0, 0),
+                    // vertical base
+                    this.AtlasTextureVertical.Chunk((byte)(this.AtlasTextureVertical.AtlasSize.ColumnsCount - 1), 0)
+                };
+            }
+
             return new ProceduralTexture(
                 "Composed " + this.Id,
                 generateTextureCallback: request => ClientComposeIcon(request, textureResources),
@@ -251,8 +290,11 @@
         protected override void ClientDeinitializeStructure(IStaticWorldObject gameObject)
         {
             base.ClientDeinitializeStructure(gameObject);
-            SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(gameObject.OccupiedTile,
-                                                                             isDestroy: true);
+            foreach (var occupiedTile in gameObject.OccupiedTiles)
+            {
+                SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
+                                                                                 isDestroy: true);
+            }
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -299,13 +341,22 @@
                 newIsHorizontal => this.ClientSetupDoor(data),
                 subscriptionOwner: clientState);
 
-            SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(staticWorldObject.OccupiedTile,
-                                                                             isDestroy: false);
+            foreach (var occupiedTile in staticWorldObject.OccupiedTiles)
+            {
+                SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
+                                                                                 isDestroy: false);
+            }
         }
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
             InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+        }
+
+        protected override void ClientObserving(ClientObjectData data, bool isObserving)
+        {
+            base.ClientObserving(data, isObserving);
+            StructureLandClaimIndicatorManager.ClientObserving(data.GameObject, isObserving);
         }
 
         protected BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
@@ -331,33 +382,72 @@
             return this.AtlasTextureHorizontal;
         }
 
+        protected virtual void PrepareProtoDoor()
+        {
+        }
+
+        protected sealed override void PrepareProtoStaticWorldObject()
+        {
+            base.PrepareProtoStaticWorldObject();
+            this.doorAutoOpenRadiusSqr = this.DoorAutoOpenRadius * this.DoorAutoOpenRadius;
+            this.PrepareProtoDoor();
+        }
+
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
 
             var worldObject = data.GameObject;
+            var privateState = data.PrivateState;
             WorldObjectOwnersSystem.ServerInitialize(worldObject);
 
             if (!data.IsFirstTimeInit)
             {
+                if (!this.HasOwnersList)
+                {
+                    privateState.AccessMode = WorldObjectAccessMode.OpensToEveryone;
+                }
+
                 return;
             }
 
             var publicState = data.PublicState;
-            var privateState = data.PrivateState;
-            privateState.AccessMode = WorldObjectAccessMode.OpensToObjectOwnersOrAreaOwners;
+            privateState.AccessMode = this.HasOwnersList
+                                          ? WorldObjectAccessMode.OpensToObjectOwnersOrAreaOwners
+                                          : WorldObjectAccessMode.OpensToEveryone;
 
             // refresh door type
-            publicState.IsHorizontalDoor = DoorHelper.IsHorizontalDoorNeeded(worldObject.OccupiedTile,
-                                                                             checkExistingDoor: false);
+            publicState.IsHorizontalDoor = this.IsHorizontalDoorOnly
+                                           ?? DoorHelper.IsHorizontalDoorNeeded(worldObject.OccupiedTile,
+                                                                                checkExistingDoor: false);
             publicState.IsOpened = true;
 
             // refresh nearby door types (horizontal/vertical)
-            DoorHelper.RefreshNeighborDoorType(worldObject.OccupiedTile);
+            foreach (var occupiedTile in worldObject.OccupiedTiles)
+            {
+                DoorHelper.RefreshNeighborDoorType(occupiedTile);
+            }
 
-            SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(
-                data.GameObject.OccupiedTile,
-                isDestroy: false);
+            foreach (var occupiedTile in worldObject.OccupiedTiles)
+            {
+                SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
+                                                                                 isDestroy: false);
+            }
+        }
+
+        protected override void ServerOnStaticObjectZeroStructurePoints(
+            WeaponFinalCache weaponCache,
+            ICharacter byCharacter,
+            IWorldObject targetObject)
+        {
+            base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
+
+            if (weaponCache != null)
+            {
+                // door was destroyed (and not deconstructed by a crowbar or any other means)
+                LandClaimSystem.ServerOnRaid(((IStaticWorldObject)targetObject).Bounds,
+                                             byCharacter);
+            }
         }
 
         protected override void ServerUpdate(ServerUpdateData data)
@@ -376,16 +466,27 @@
             this.SharedCreatePhysics(data.GameObject);
         }
 
-        protected override void SharedCreatePhysics(CreatePhysicsData data)
+        protected override double SharedCalculateDamageByWeapon(
+            WeaponFinalCache weaponCache,
+            double damagePreMultiplier,
+            IStaticWorldObject targetObject,
+            out double obstacleBlockDamageCoef)
         {
-            var publicState = data.SyncPublicState;
-            var isHorizontalDoor = publicState.IsHorizontalDoor;
-            var isOpened = publicState.IsOpened;
+            if (IsServer)
+            {
+                damagePreMultiplier = LandClaimSystem.ServerAdjustDamageToUnprotectedStrongBuilding(weaponCache,
+                                                                                                    targetObject,
+                                                                                                    damagePreMultiplier);
+            }
 
-            SharedCreateDoorPhysics(data.PhysicsBody, isHorizontalDoor, isOpened);
+            var damage = base.SharedCalculateDamageByWeapon(weaponCache,
+                                                            damagePreMultiplier,
+                                                            targetObject,
+                                                            out obstacleBlockDamageCoef);
+            return damage;
         }
 
-        private static void SharedCreateDoorPhysics(IPhysicsBody physicsBody, bool isHorizontalDoor, bool isOpened)
+        protected void SharedCreateDoorPhysics(IPhysicsBody physicsBody, bool isHorizontalDoor, bool isOpened)
         {
             // custom center offset is used for interaction zone raycasting
             physicsBody.SetCustomCenterOffset(
@@ -393,6 +494,7 @@
                     ? (0.5, 0.2)
                     : (0.5, 0.5));
 
+            double doorSize = this.DoorSizeTiles;
             if (isHorizontalDoor)
             {
                 // horizontal door physics
@@ -405,28 +507,33 @@
                                    offset: (0, WallPatterns.PhysicsOffset))
                                .AddShapeRectangle(
                                    size: (horizontalDoorBorderWidth, horizontalDoorHeight),
-                                   offset: (1 - horizontalDoorBorderWidth, WallPatterns.PhysicsOffset));
+                                   offset: (doorSize - horizontalDoorBorderWidth, WallPatterns.PhysicsOffset));
                 }
                 else
                 {
                     physicsBody.AddShapeRectangle(
-                        size: (1, horizontalDoorHeight),
+                        size: (doorWidth: doorSize, horizontalDoorHeight),
                         offset: (0, WallPatterns.PhysicsOffset));
                 }
 
+                if (!isOpened)
+                {
+                    // horizontal door hitboxes
+                    physicsBody
+                        .AddShapeRectangle(
+                            size: (doorWidth: doorSize, 0.6),
+                            offset: (0, WallPatterns.PhysicsOffset),
+                            group: CollisionGroups.HitboxMelee)
+                        .AddShapeRectangle(
+                            size: (doorWidth: doorSize, doorSize),
+                            offset: (0, WallPatterns.PhysicsOffset),
+                            group: CollisionGroups.HitboxRanged);
+                }
+
+                // click area
                 physicsBody
-                    // hitboxes
                     .AddShapeRectangle(
-                        size: (1, 0.6),
-                        offset: (0, WallPatterns.PhysicsOffset),
-                        group: CollisionGroups.HitboxMelee)
-                    .AddShapeRectangle(
-                        size: (1, 1),
-                        offset: (0, WallPatterns.PhysicsOffset),
-                        group: CollisionGroups.HitboxRanged)
-                    // click area
-                    .AddShapeRectangle(
-                        size: (1, 1),
+                        size: (doorWidth: doorSize, doorSize),
                         offset: (0, WallPatterns.PhysicsOffset),
                         group: CollisionGroups.ClickArea);
                 return;
@@ -444,29 +551,43 @@
                                offset: (horizontalOffset, 0))
                            .AddShapeRectangle(
                                size: (verticalDoorWidth, doorOpenedColliderHeight),
-                               offset: (horizontalOffset, 1 - doorOpenedColliderHeight));
+                               offset: (horizontalOffset, doorSize - doorOpenedColliderHeight));
             }
             else
             {
                 physicsBody.AddShapeRectangle(
-                    size: (verticalDoorWidth, 1),
+                    size: (verticalDoorWidth, doorWidth: doorSize),
                     offset: (horizontalOffset, 0));
             }
 
+            if (!isOpened)
+            {
+                // vertical door hitboxes
+                physicsBody
+                    .AddShapeRectangle(
+                        size: (verticalDoorWidth, doorSize + 0.35),
+                        offset: (horizontalOffset, 0),
+                        group: CollisionGroups.HitboxMelee)
+                    .AddShapeRectangle(
+                        size: (verticalDoorWidth, doorSize + 0.75),
+                        offset: (horizontalOffset, 0),
+                        group: CollisionGroups.HitboxRanged);
+            }
+
+            // click area
             physicsBody
-                // hitboxes
                 .AddShapeRectangle(
-                    size: (verticalDoorWidth, 1.35),
-                    offset: (horizontalOffset, 0),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (verticalDoorWidth, 1.75),
-                    offset: (horizontalOffset, 0),
-                    group: CollisionGroups.HitboxRanged)
-                // click area
-                .AddShapeRectangle(
-                    size: (1, 1.75),
+                    size: (doorWidth: 1, doorSize + 0.75),
                     group: CollisionGroups.ClickArea);
+        }
+
+        protected override void SharedCreatePhysics(CreatePhysicsData data)
+        {
+            var publicState = data.SyncPublicState;
+            var isHorizontalDoor = publicState.IsHorizontalDoor;
+            var isOpened = publicState.IsOpened;
+
+            this.SharedCreateDoorPhysics(data.PhysicsBody, isHorizontalDoor, isOpened);
         }
 
         private void ClientSetupDoor(ClientInitializeData data)
@@ -489,7 +610,7 @@
                                            : DrawWorldOffsetYVerticalDoor);
             renderer.DrawOrderOffsetY = isHorizontalDoor
                                             ? WallPatterns.DrawOffsetNormal - DrawWorldOffsetYHorizontalDoor
-                                            : 0.99 - DrawWorldOffsetYVerticalDoor;
+                                            : this.DoorSizeTiles - 0.01 - DrawWorldOffsetYVerticalDoor;
 
             var spriteSheetAnimator = sceneObject.AddComponent<ClientComponentDoorSpriteSheetAnimator>();
             var atlasColumnsCount = atlas.AtlasSize.ColumnsCount;
@@ -567,8 +688,8 @@
                         continue;
                     }
 
-                    if ((character.Position - objectCenterPosition).Length
-                        > this.DoorAutoOpenRadius)
+                    if ((character.Position - objectCenterPosition).LengthSquared
+                        > this.doorAutoOpenRadiusSqr)
                     {
                         // too far from this door
                         continue;

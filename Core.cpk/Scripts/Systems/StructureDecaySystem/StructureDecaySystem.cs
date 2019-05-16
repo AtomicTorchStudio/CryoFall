@@ -83,6 +83,8 @@
                 interval: TimeSpan.FromSeconds(StructureConstants.StructureDecaySystemUpdateIntervalSeconds),
                 callback: this.ServerTimerTickCallback,
                 name: "System." + this.ShortId);
+
+            StructureConstants.EnsureInitialized();
         }
 
         private static bool ServerProcessDecay(IStaticWorldObject worldObject, double serverTime)

@@ -13,11 +13,15 @@
 
     public class ClientLandClaimAreaRenderer : IDisposable
     {
+        public static readonly TextureResource TextureResourceLandClaimAreaCell
+            = new TextureResource("FX/LandClaimAreaCell",
+                                  qualityOffset: -100);
+
         private static readonly IRenderingClientService RenderingService = Api.Client.Rendering;
 
         private readonly DrawOrder drawOrder;
 
-        private readonly int inflateSize;
+        private readonly bool isGraceAreaRenderer;
 
         private readonly RenderingMaterial material;
 
@@ -31,10 +35,10 @@
         public ClientLandClaimAreaRenderer(
             Color zoneColor,
             DrawOrder drawOrder,
-            int inflateSize = 0)
+            bool isGraceAreaRenderer = false)
         {
             this.drawOrder = drawOrder;
-            this.inflateSize = inflateSize;
+            this.isGraceAreaRenderer = isGraceAreaRenderer;
             this.material = CreateRenderingMaterial();
             this.material.EffectParameters.Set("Color", zoneColor);
 
@@ -65,8 +69,7 @@
         {
             var material = RenderingMaterial.Create(new EffectResource("LandClaimArea"));
             material.EffectParameters.Set("SpriteTexture",
-                                          new TextureResource("FX/LandClaimAreaCell",
-                                                              qualityOffset: -100));
+                                          TextureResourceLandClaimAreaCell);
             return material;
         }
 
@@ -74,7 +77,12 @@
         {
             var publicState = LandClaimArea.GetPublicState(area);
             var pos = publicState.LandClaimCenterTilePosition;
-            var landClaimAreaSize = publicState.LandClaimSize + 2 * this.inflateSize;
+            var landClaimAreaSize = publicState.LandClaimSize;
+            if (this.isGraceAreaRenderer)
+            {
+                landClaimAreaSize = (ushort)(landClaimAreaSize
+                                             + 2 * publicState.LandClaimGraceAreaPaddingSizeOneDirection);
+            }
 
             var position = new Vector2Ushort(
                 (ushort)Math.Max(0, pos.X - landClaimAreaSize / 2),

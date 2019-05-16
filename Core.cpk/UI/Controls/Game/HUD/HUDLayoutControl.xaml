@@ -14,6 +14,7 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:questTracking="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Quests.QuestTracking"
     xmlns:newbieProtection="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.NewbieProtection"
+    xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics"
     mc:Ignorable="d"
     d:DesignWidth="1280" d:DesignHeight="800"
     d:DataContext="{d:DesignInstance data1:ViewModelHUD, IsDesignTimeCreatable=True}"
@@ -213,6 +214,7 @@
                     Width="230">
                 <StackPanel Orientation="Vertical">
                     <newbieProtection:HUDNewbieProtectionInfo />
+                    <politics:HUDDuelModeControl />
                     <questTracking:HUDQuestTrackingPanelControl />
                     <notifications:HUDNotificationsPanelControl />
                 </StackPanel>

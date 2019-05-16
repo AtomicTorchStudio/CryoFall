@@ -97,6 +97,11 @@
             ItemDurabilitySystem.ServerModifyDurability(item, delta: -(int)damageApplied);
         }
 
+        public virtual bool SharedCanApplyEffects(IItem item, IItemsContainer containerEquipment)
+        {
+            return true;
+        }
+
         protected virtual void ClientFillSlotAttachmentSources(ITempList<string> folders)
         {
             folders.Add("Characters/Equipment/" + this.ShortId);

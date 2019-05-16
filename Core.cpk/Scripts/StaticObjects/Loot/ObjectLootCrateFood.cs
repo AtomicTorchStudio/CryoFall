@@ -48,11 +48,11 @@
                                      .Add<ItemCigarNormal>(count: 1,  countRandom: 1, weight: 1 / 20.0)
                                      .Add<ItemCigarPremium>(count: 1, countRandom: 1, weight: 1 / 50.0)
                                      // food
-                                     .Add<ItemMeatJerky>(count: 1,   countRandom: 1, weight: 1 / 10.0)
-                                     .Add<ItemCannedBeans>(count: 1, countRandom: 1, weight: 1 / 10.0)
-                                     .Add<ItemCannedFish>(count: 1,  countRandom: 1, weight: 1 / 10.0)
-                                     .Add<ItemCannedMeat>(count: 1,  countRandom: 1, weight: 1 / 10.0)
-                                     .Add<ItemCoffeeBeans>(count: 7, countRandom: 5, weight: 1 / 10.0)
+                                     .Add<ItemMeatJerky>(count: 1,    countRandom: 1, weight: 1 / 10.0)
+                                     .Add<ItemCannedBeans>(count: 1,  countRandom: 1, weight: 1 / 10.0)
+                                     .Add<ItemCannedFish>(count: 1,   countRandom: 1, weight: 1 / 10.0)
+                                     .Add<ItemCannedMeat>(count: 1,   countRandom: 1, weight: 1 / 10.0)
+                                     .Add<ItemCoffeeBeans>(count: 10, countRandom: 0, weight: 1 / 10.0)
                                      // ingredients
                                      .Add<ItemWheatFlour>(count: 10,  countRandom: 5,  weight: 1 / 20.0)
                                      .Add<ItemWheatGrains>(count: 20, countRandom: 20, weight: 1 / 20.0)

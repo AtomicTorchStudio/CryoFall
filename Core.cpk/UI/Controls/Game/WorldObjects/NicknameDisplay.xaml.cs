@@ -1,10 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects
 {
-    using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
-    using AtomicTorch.CBND.CoreMod.Systems.Party;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -12,6 +10,8 @@
     public partial class NicknameDisplay : BaseUserControl
     {
         private ICharacter character;
+
+        private string lastStateName;
 
         private ViewModelNicknameDisplay viewModel;
 
@@ -23,6 +23,9 @@
 
         protected override void InitControl()
         {
+            VisualStateManager.GoToState(this,
+                                         "Collapsed",
+                                         useTransitions: false);
         }
 
         protected override void OnLoaded()
@@ -41,16 +44,29 @@
 
             ClientComponentUpdateHelper.UpdateCallback -= this.RefreshVisibilityOnly;
         }
-  
+
+        private void GoToState(string stateName)
+        {
+            if (this.lastStateName == stateName)
+            {
+                return;
+            }
+
+            this.lastStateName = stateName;
+            VisualStateManager.GoToState(this,
+                                         stateName,
+                                         useTransitions: true);
+        }
+
         private void RefreshVisibilityOnly()
         {
             if (!ClientTimeOfDayVisibilityHelper.ClientIsObservable(this.character))
             {
-                this.Visibility = Visibility.Hidden;
+                this.GoToState("Collapsed");
                 return;
             }
 
-            this.Visibility = Visibility.Visible;
+            this.GoToState("Visible");
         }
     }
 }

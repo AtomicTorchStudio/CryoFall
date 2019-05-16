@@ -1,0 +1,102 @@
+﻿Scripts/ClientComponents/Input/GameButton@CancelOrClose:
+取消或關閉
+
+Scripts/ClientComponents/Input/GameButton@MoveUp:
+向上移動
+
+Scripts/ClientComponents/Input/GameButton@MoveLeft:
+向左移動
+
+Scripts/ClientComponents/Input/GameButton@MoveDown:
+向下移動
+
+Scripts/ClientComponents/Input/GameButton@MoveRight:
+向右移動
+
+Scripts/ClientComponents/Input/GameButton@RunTemporary:
+跑步(按住)
+
+Scripts/ClientComponents/Input/GameButton@RunToggle:
+跑步(切換)
+
+Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
+動作 - 使用物品
+
+Scripts/ClientComponents/Input/GameButton@ActionInteract:
+動作 - 互動
+
+Scripts/ClientComponents/Input/GameButton@ItemReload:
+裝填物品
+
+Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
+切換物品模式/切換彈藥
+
+Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
+頭盔燈光切換
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot1:
+欄位 1
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot2:
+欄位 2
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot3:
+欄位 3
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot4:
+欄位 4
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot5:
+欄位 5
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot6:
+欄位 6
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot7:
+欄位 7
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
+欄位 8
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
+欄位 9
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
+欄位 10
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
+攝像機縮進
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
+攝像機拉遠
+
+Scripts/ClientComponents/Input/GameButton@OpenChat:
+聊天
+
+Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
+開發者控制台
+
+Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
+Debug工具
+
+Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
+切換全熒幕
+
+Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
+熒幕截圖
+
+Scripts/ClientComponents/Input/GameButton@ContainerSort:
+容器排序
+
+Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
+拿起所有
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
+向下匹配
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
+向上匹配
+
+Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
+顯示土地所有者與生命條
+

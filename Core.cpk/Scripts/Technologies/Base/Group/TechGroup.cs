@@ -5,6 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -16,6 +17,9 @@
         public const string ErrorNotEnoughLearningPoints = "Not enough learning points";
 
         public const string ErrorTechIsAlreadyUnlocked = "The tech is already unlocked";
+
+        private static readonly Lazy<List<TechNode>> LazyAllNodesWithoutFiltering
+            = new Lazy<List<TechNode>>(FindProtoEntities<TechNode>);
 
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         protected TechGroup()
@@ -46,7 +50,9 @@
             this.Icon = icon;
         }
 
-        public IReadOnlyList<TechNode> AllNodes { get; private set; }
+        public event Action NodesChanged;
+
+        public IReadOnlyList<TechNode> Nodes { get; private set; }
 
         public abstract string Description { get; }
 
@@ -125,15 +131,10 @@
                     $"Tier out of range: {this.Tier} - max tier is {TechConstants.MaxTier}");
             }
 
-            this.AllNodes = FindProtoEntities<TechNode>()
-                            .Where(n => n.Group == this)
-                            .OrderBy(n => n.HierarchyLevel)
-                            .ThenBy(n => n.Order)
-                            .ThenBy(n => n.ShortId)
-                            .ToList();
+            this.SharedRebuildAllNodes();
 
             var rootNodes = new List<TechNode>();
-            foreach (var protoTechNode in this.AllNodes)
+            foreach (var protoTechNode in this.Nodes)
             {
                 if (protoTechNode.RequiredNode == null)
                 {
@@ -142,12 +143,6 @@
             }
 
             this.RootNodes = rootNodes;
-
-            //if (this.AllNodes.Count == 0)
-            //{
-            //    throw new Exception("No nodes inside tech group");
-            //}
-
             this.LearningPointsPrice = this.CalculateLearningPointsPrice();
 
             var requirements = new Requirements();
@@ -158,6 +153,11 @@
             }
 
             this.GroupRequirements = requirements;
+
+            if (IsClient)
+            {
+                PveSystem.ClientIsPvEChanged += this.SharedRebuildAllNodes;
+            }
         }
 
         protected abstract void PrepareTechGroup(Requirements requirements);
@@ -175,6 +175,20 @@
             }
 
             return (ushort)price;
+        }
+
+        private void SharedRebuildAllNodes()
+        {
+            this.Nodes = LazyAllNodesWithoutFiltering
+                            .Value
+                            .Where(n => n.Group == this
+                                        && n.IsAvailable)
+                            .OrderBy(n => n.HierarchyLevel)
+                            .ThenBy(n => n.Order)
+                            .ThenBy(n => n.ShortId)
+                            .ToList();
+
+            Api.SafeInvoke(this.NodesChanged);
         }
 
         protected class Requirements : List<BaseTechGroupRequirement>, IReadOnlyTechGroupRequirements

@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -20,7 +19,7 @@
           <TPrivateState,
               TPublicState,
               TClientState>, IProtoObjectDeposit
-        where TPrivateState : BasePrivateState, new()
+        where TPrivateState : ObjectDepositPrivateState, new()
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
@@ -103,7 +102,7 @@
             this.ClientSetupRenderer(clientState.Renderer);
 
             if (data.GameObject.OccupiedTile.StaticObjects.Any(
-                o => o.ProtoStaticWorldObject != this 
+                o => o.ProtoStaticWorldObject != this
                      && !o.IsDestroyed))
             {
                 // there are other static objects so don't create structure points bar and hide the renderer
@@ -155,17 +154,14 @@
         {
             base.ServerInitialize(data);
 
-            // TODO: store this info in public state for the next wipe
-            //var publicState = data.PublicState;
-            //if (data.IsFirstTimeInit)
-            //{
-            //    publicState.ServerSpawnTime = Server.Game.FrameTime;
-            //}
+            var privateState = data.PrivateState;
+            if (data.IsFirstTimeInit)
+            {
+                privateState.ServerSpawnTime = Server.Game.FrameTime;
+            }
 
-            var serverSpawnTime = data.IsFirstTimeInit
-                                      ? Server.Game.FrameTime
-                                      : 0;
-            WorldMapResourceMarksSystem.ServerAddMark(data.GameObject, serverSpawnTime);
+            WorldMapResourceMarksSystem.ServerAddMark(data.GameObject,
+                                                      privateState.ServerSpawnTime);
         }
 
         protected virtual void ServerOnDecayCompleted(IStaticWorldObject worldObject)
@@ -239,7 +235,7 @@
 
     public abstract class ProtoObjectDeposit
         : ProtoObjectDeposit
-            <EmptyPrivateState,
+            <ObjectDepositPrivateState,
                 StaticObjectPublicState,
                 StaticObjectClientState>
     {

@@ -16,6 +16,7 @@
             this.TechGroup = techGroup;
             this.Icon = Client.UI.GetTextureBrush(this.TechGroup.Icon);
 
+            this.TechGroup.NodesChanged += this.TechNodesChangedHandler;
             ClientComponentTechnologiesWatcher.TechGroupsChanged += this.TechGroupsChangedHandler;
             ClientComponentTechnologiesWatcher.TechNodesChanged += this.TechNodesChangedHandler;
             ClientComponentTechnologiesWatcher.LearningPointsChanged += this.LearningPointsChangedHandler;
@@ -35,7 +36,7 @@
 
         public ushort LearningPointsPrice => this.TechGroup.LearningPointsPrice;
 
-        public int NodesTotalCount => this.TechGroup.AllNodes.Count;
+        public int NodesTotalCount => this.TechGroup.Nodes.Count;
 
         public int NodesUnlockedCount { get; private set; }
 
@@ -108,11 +109,15 @@
             this.UnlockProgress = isUnlocked
                                       ? technologies.SharedGetUnlockedNodesPercent(this.TechGroup)
                                       : 0;
+
+            this.NotifyPropertyChanged(nameof(this.NodesTotalCount));
         }
 
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
+
+            this.TechGroup.NodesChanged -= this.TechNodesChangedHandler;
             ClientComponentTechnologiesWatcher.TechGroupsChanged -= this.TechGroupsChangedHandler;
             ClientComponentTechnologiesWatcher.TechNodesChanged -= this.TechNodesChangedHandler;
             ClientComponentTechnologiesWatcher.LearningPointsChanged -= this.LearningPointsChangedHandler;

@@ -428,9 +428,7 @@
 
         protected virtual bool CommonIsAllowedObjectToInteractThrought(IWorldObject worldObject)
         {
-            var proto = worldObject.ProtoWorldObject;
-            // allow to interact through construction sites
-            return proto is ProtoObjectConstructionSite;
+            return true;
         }
 
         protected sealed override void PrepareProto()

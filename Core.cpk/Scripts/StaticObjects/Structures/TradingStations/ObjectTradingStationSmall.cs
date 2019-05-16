@@ -68,7 +68,6 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
-            // TODO: set proper values here
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 10;
@@ -79,7 +78,7 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 4);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

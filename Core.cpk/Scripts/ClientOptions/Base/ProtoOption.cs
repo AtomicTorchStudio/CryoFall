@@ -4,19 +4,30 @@
     using System.ComponentModel;
     using System.Windows;
     using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi.Logging;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
 
-    [PrepareOrder(afterType: typeof(ProtoOptionsCategory))]
-    public abstract class ProtoOption<TProtoOptionsCategory, TValue> : ProtoEntity, IProtoOption
+    public abstract class ProtoOption<TProtoOptionsCategory, TValue> : IProtoOption
         where TProtoOptionsCategory : ProtoOptionsCategory, new()
     {
-        private TProtoOptionsCategory category;
+        private readonly TProtoOptionsCategory category;
+
+        private readonly OptionValueHolder optionValueHolder;
 
         private bool isCurrentValueInitialized;
 
-        private OptionValueHolder optionValueHolder;
+        protected ProtoOption()
+        {
+            this.category = GetProtoEntity<TProtoOptionsCategory>();
+            this.category.RegisterOption(this);
 
-        public TProtoOptionsCategory Category => this.category;
+            this.optionValueHolder = new OptionValueHolder(this, this.Default);
+        }
+
+        public static ILogger Logger => Api.Logger;
+
+        public ProtoOptionsCategory Category => this.category;
 
         public TValue CurrentValue
         {
@@ -42,15 +53,23 @@
 
         public abstract TValue Default { get; }
 
+        public string Id => this.GetType().FullName;
+
         public virtual bool IsHidden => false;
 
         public bool IsModified => !this.CurrentValue.Equals(this.SavedValue);
 
+        public abstract string Name { get; }
+
         public virtual IProtoOption OrderAfterOption { get; }
+
+        public string ShortId => this.GetType().Name;
 
         public abstract TValue ValueProvider { get; set; }
 
         protected internal OptionValueHolder InternalOptionValueHolder => this.optionValueHolder;
+
+        protected static IClientApi Client => Api.Client;
 
         protected TValue SavedValue { get; private set; }
 
@@ -106,6 +125,23 @@
             return value;
         }
 
+        protected static TOption GetOption<TOption>()
+            where TOption : IProtoOption, new()
+        {
+            return ClientOptionsManager.GetOption<TOption>();
+        }
+
+        /// <summary>
+        /// Gets the instance of proto-class by its type.
+        /// </summary>
+        /// <typeparam name="TProtoEntity">Type of proto entity.</typeparam>
+        /// <returns>Instance of proto-class.</returns>
+        protected static TProtoEntity GetProtoEntity<TProtoEntity>()
+            where TProtoEntity : IProtoEntity, new()
+        {
+            return Api.GetProtoEntity<TProtoEntity>();
+        }
+
         protected virtual TValue ClampValue(TValue value)
         {
             return value;
@@ -117,19 +153,6 @@
 
         protected virtual void OnCurrentValueChanged(bool fromUi)
         {
-        }
-
-        protected override void PrepareProto()
-        {
-            if (IsServer)
-            {
-                return;
-            }
-
-            this.category = GetProtoEntity<TProtoOptionsCategory>();
-            this.category.RegisterOption(this);
-
-            this.optionValueHolder = new OptionValueHolder(this, this.Default);
         }
 
         protected void SetupOptionToControlValueBinding(FrameworkElement control, DependencyProperty valueProperty)

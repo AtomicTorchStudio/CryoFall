@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeSeedsCorn>();
 
-            config.SetRequiredNode<TechNodeComplexCrops>();
+            config.SetRequiredNode<TechNodeWateringCanSteel>();
         }
     }
 }

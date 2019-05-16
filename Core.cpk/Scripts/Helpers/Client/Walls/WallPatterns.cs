@@ -14,6 +14,7 @@
         private const double DrawOffsetDestroyed = 1;
 
         private const double PhysicsOffsetDestroyed = 0.27;
+        private const double PhysicsOffsetDestroyedSmall = PhysicsOffsetDestroyed / 2.0;
 
         public static readonly WallPattern[] PatternsOverlay =
         {
@@ -77,7 +78,7 @@
                                             size: (PhysicsOffsetDestroyed, 1 - 2 * PhysicsOffset),
                                             offset: (0, PhysicsOffset))
                                         .AddShapeRectangle(
-                                            size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
+                                            size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyedSmall),
                                             offset: (PhysicsOffset, 0))
                                         .AddShapeRectangle(
                                             size: (PhysicsOffsetDestroyed, 1 - 2 * PhysicsOffset),
@@ -121,7 +122,7 @@
                                             size: (PhysicsOffsetDestroyed, 1 - 2 * PhysicsOffset),
                                             offset: (1 - PhysicsOffsetDestroyed, PhysicsOffset))
                                         .AddShapeRectangle(
-                                            size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
+                                            size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyedSmall),
                                             offset: (PhysicsOffset, 0))
                                         .AddShapeRectangle(
                                             size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
@@ -143,7 +144,7 @@
                                             size: (PhysicsOffsetDestroyed, 1 - 2 * PhysicsOffset),
                                             offset: (0, PhysicsOffset))
                                         .AddShapeRectangle(
-                                            size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
+                                            size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyedSmall),
                                             offset: (PhysicsOffset, 0))
                                         .AddShapeRectangle(
                                             size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
@@ -159,7 +160,7 @@
                                    size: (1 - PhysicsOffset, 1 - PhysicsOffset),
                                    offset: (PhysicsOffset, 0)),
                 physicsDestroyed: _ => _.AddShapeRectangle(
-                                            size: (1 - PhysicsOffset, PhysicsOffsetDestroyed),
+                                            size: (1 - PhysicsOffset, PhysicsOffsetDestroyedSmall),
                                             offset: (PhysicsOffset, 0))
                                         .AddShapeRectangle(
                                             size: (PhysicsOffsetDestroyed, 1 - PhysicsOffset),
@@ -175,7 +176,7 @@
                                    size: (1 - PhysicsOffset, 1 - PhysicsOffset),
                                    offset: (0, 0)),
                 physicsDestroyed: _ => _.AddShapeRectangle(
-                                            size: (1 - PhysicsOffset, PhysicsOffsetDestroyed),
+                                            size: (1 - PhysicsOffset, PhysicsOffsetDestroyedSmall),
                                             offset: (0, 0))
                                         .AddShapeRectangle(
                                             size: (PhysicsOffsetDestroyed, 1 - PhysicsOffset),
@@ -223,7 +224,7 @@
                                    size: (1 - 2 * PhysicsOffset, 1),
                                    offset: (PhysicsOffset, 0)),
                 physicsDestroyed: _ => _.AddShapeRectangle(
-                                            size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
+                                            size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyedSmall),
                                             offset: (PhysicsOffset, 0))
                                         .AddShapeRectangle(
                                             size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
@@ -255,7 +256,7 @@
                                    size: (1 - 2 * PhysicsOffset, 1 - PhysicsOffset),
                                    offset: (PhysicsOffset, 0)),
                 physicsDestroyed: _ => _.AddShapeRectangle(
-                                      size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyed),
+                                      size: (1 - 2 * PhysicsOffset, PhysicsOffsetDestroyedSmall),
                                       offset: (PhysicsOffset, 0))),
 
             new WallPattern(

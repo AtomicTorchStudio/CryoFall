@@ -22,6 +22,9 @@ Hiena
 Scripts/Characters/Mobs/MobPangolin@Name:
 Pangolín
 
+Scripts/Characters/Mobs/MobRiverSnail@Name:
+Caracol
+
 Scripts/Characters/Mobs/MobScorpion@Name:
 Escorpión
 

@@ -94,6 +94,12 @@
                 return;
             }
 
+            if (!Api.Client.Input.IsGameWindowFocused)
+            {
+                // don't update performance measurements when the game window is not focused
+                return;
+            }
+
             var fpsAverage = Rendering.FpsAverage;
             this.FpsAverage.Update(fpsAverage);
 

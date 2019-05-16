@@ -73,30 +73,6 @@ Diminuir zoom da câmera
 Scripts/ClientComponents/Input/GameButton@OpenChat:
 Bate-papo
 
-Scripts/ClientComponents/Input/GameButton@InventoryMenu:
-Inventário
-
-Scripts/ClientComponents/Input/GameButton@CraftingMenu:
-Produção
-
-Scripts/ClientComponents/Input/GameButton@MapMenu:
-Mapa
-
-Scripts/ClientComponents/Input/GameButton@ConstructionMenu:
-Construção
-
-Scripts/ClientComponents/Input/GameButton@SkillsMenu:
-Habilidades
-
-Scripts/ClientComponents/Input/GameButton@TechnologiesMenu:
-Tecnologias
-
-Scripts/ClientComponents/Input/GameButton@SocialMenu:
-Social
-
-Scripts/ClientComponents/Input/GameButton@QuestsMenu:
-Missões
-
 Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
 Console do desenvolvedor
 

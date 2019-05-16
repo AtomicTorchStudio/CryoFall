@@ -42,6 +42,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
             try
             {
                 this.ExecutionContextCurrentCharacter = byCharacter;
+                this.ValidateAndFixArguments(ref arguments, method.Parameters);
+
                 method.Execute(byCharacter, arguments);
             }
             finally
@@ -180,6 +182,30 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
             }
 
             return bestMatchMethod;
+        }
+
+        private void ValidateAndFixArguments(ref string[] arguments, IReadOnlyList<CommandParameter> methodParameters)
+        {
+            if (arguments.Length <= methodParameters.Count)
+            {
+                return;
+            }
+
+            // Hack to prevent case when a command like this
+            // will not work due to an empty last argument:
+            // /admin.notifyAll "Test" 
+            for (var index = methodParameters.Count; index < arguments.Length; index++)
+            {
+                var argument = arguments[index];
+                if (!string.IsNullOrEmpty(argument))
+                {
+                    throw new Exception(
+                        "There is an extra argument which is not required for the console command");
+                }
+            }
+
+            arguments = arguments.Take(methodParameters.Count)
+                                 .ToArray();
         }
     }
 }

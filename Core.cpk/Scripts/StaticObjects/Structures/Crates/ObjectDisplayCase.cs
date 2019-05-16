@@ -27,6 +27,8 @@
         public override string Description =>
             "Always wanted to open a museum or display all those trophies you've acquired over the years? Now you can!";
 
+        public override bool HasOwnersList => true;
+
         public override string Name => "Display case";
 
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Glass;

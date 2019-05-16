@@ -31,8 +31,18 @@ UI/CoreStrings@Button_Continue:
 UI/CoreStrings@Button_Deny:
 Отклонить
 
+UI/CoreStrings@Button_Drain:
+Слить
+
+UI/CoreStrings@Button_Drain_DialogConfirmation:
+`Вы действительно хотите слить содержимое?
+[br]Оно исчезнет безвозвратно.`
+
 UI/CoreStrings@Button_Drink:
 Выпить
+
+UI/CoreStrings@Button_Edit:
+Изменить
 
 UI/CoreStrings@Button_Help:
 Помощь
@@ -135,6 +145,9 @@ UI/CoreStrings@Defense_Format_Psi:
 UI/CoreStrings@Defense_Format_Radiation:
 Защита от радиации: {0}
 
+UI/CoreStrings@DepositAvailableForClaiming_Message:
+Доступно для контроля через:
+
 UI/CoreStrings@DepositCapacityStats_Message:
 Это месторождение истощится через:
 
@@ -182,6 +195,9 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 Карта
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Politics:
+Дипломатия
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Quests:
 Квесты
@@ -254,6 +270,9 @@ UI/CoreStrings@LearningPointsAbbreviation:
 
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Пожалуйста, введите данные своей учетной записи [url=atomictorch.com]AtomicTorch.com[/url], чтобы связать ее с вашей учетной записью Steam.
+
+UI/CoreStrings@ListFilters:
+Фильтры
 
 UI/CoreStrings@LoadingSplashScreen_Title:
 ЗАГРУЗКА
@@ -365,6 +384,12 @@ UI/CoreStrings@MenuServers_Button_RefreshServer:
 UI/CoreStrings@MenuServers_Button_RemoveServer:
 Удалить сервер
 
+UI/CoreStrings@MenuServers_Checkbox_ShowEmpty:
+Показать пустые
+
+UI/CoreStrings@MenuServers_Checkbox_ShowIncompatible:
+Показать несовместимые
+
 UI/CoreStrings@MenuServers_ClickToCopy:
 Щелкните, чтобы скопировать!
 
@@ -395,17 +420,42 @@ UI/CoreStrings@MenuServers_NoServersInThisList:
 UI/CoreStrings@MenuServers_PublicGUID:
 Публичный GUID
 
-UI/CoreStrings@MenuServers_ServerLabelFeatured:
-РЕКОМЕНДУЕМЫЙ
-
-UI/CoreStrings@MenuServers_ServerLabelModded:
-С МОДАМИ
-
-UI/CoreStrings@MenuServers_ServerLabelOfficial:
-ОФИЦИАЛЬНЫЙ
-
 UI/CoreStrings@MenuServers_ServersCount:
 Серверы
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
+Рекомендуемые серверы обычно имеют высокую репутацию и обеспечивают качественную игру, как и официальные серверы. Однако эти серверы по-прежнему управляются сообществом.
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Title:
+РЕКОМЕНДУЕМЫЙ
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
+Этот сервер имеет сторонние модификации. Вы можете столкнуться со значительными изменениям оригинальной игры. Пожалуйста, имейте в виду, что серверы с модами могут содержать ошибки. Используйте их на свой страх и риск.
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
+С МОДАМИ
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Description:
+Это один из официальных серверов CryoFall, поддерживаемый разработчиками.
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Title:
+ОФИЦИАЛЬНЫЕ
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Description:
+`Это сервер "игрок против окружения", разработанный для мирного исследования и развития.
+Вы защищены от других игроков, но не от дикой природы и естественных опасностей!
+Если вы впервые играете в CryoFall, то разумно будет присоединиться к серверу PvE.`
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Title:
+PvE
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Description:
+`Это сервер «игрок против игроков», который нацелен на борьбу, захват объектов на карте и рейды.
+Серверы PvP не имеют никаких ограничений — здесь можно убивать и быть убитым.
+Готовьтесь к бою!`
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
+PvP
 
 UI/CoreStrings@Network_Jitter:
 Джиттер
@@ -457,8 +507,14 @@ UI/CoreStrings@Network_Suggestions:
 [*] Попробуйте [b]закрыть[/b] другие приложения (особенно веб-браузеры, torrent-клиенты и программы загрузки).
 [*] Попробуйте переключиться на [b]проводное соединение[/b], если ваш ПК подключен через Wi-Fi, или мобильное соединение (беспроводные соединения часто являются причиной задержек и долгого ожидания ответа сервера).`
 
+UI/CoreStrings@NicknameOfflinePlayer:
+Оффлайн, хр-р...
+
 UI/CoreStrings@No:
 Нет
+
+UI/CoreStrings@Notification_ActionForbidden:
+Запрещено
 
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 Невозможно разместить здесь
@@ -474,6 +530,12 @@ UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 Режим доступа
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Button:
+Добавить членов группы
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Dialog:
+Вы действительно хотите включить всех членов группы в этот список?
 
 UI/CoreStrings@ObjectOwnersList_AddPlayer:
 Добавить игрока
@@ -609,7 +671,7 @@ UI/CoreStrings@StatusEffect_TitleIntensity:
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Message:
 `[b]Вы можете:[/b]
 [*] загрузить и играть в копию CryoFall не в Steam, при этом иметь полный доступ к игре с теми же персонажами и серверами;
-[*] получать рассылку AtomicTorch с письмами о будущих обновлениях, новых версиях игры и т.п.;
+[*] получать рассылку AtomicTorch с письмами о будущих обновлениях, новых версиях игры и т. п.;
 [*] принимать участие в голосованиях, доступных только для пользователей AtomicTorch.
 [br]
 [br][b]Уже скоро:[/b]
@@ -823,6 +885,22 @@ UI/CoreStrings@WindowObjectLight_TitleLightMode:
 UI/CoreStrings@WindowOilRefinery_EmptyCanistersOutput:
 Пусто
 
+UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
+Период рейда начался (осталось: {0}).
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_DescriptionFormat:
+`Рейды и захват зон контроля возможны только в период рейда: с {0} до {1} ({2} в общей сложности).
+[br]Постройки, которые находятся вне зоны контроля, не защищены этой системой и могут быть атакованы и уничтожены в любой момент.`
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Disabled:
+На этом сервере защита от рейдов отключена.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_NextRaidWindowTimeout:
+Следующий период рейда наступит через {0}.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
+Защита от рейдов
+
 UI/CoreStrings@WindowQuests_CompletionReward:
 Награда за выполнение
 
@@ -853,14 +931,20 @@ UI/CoreStrings@WindowRespawn_Button_RespawnInTheWorld:
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 Рядом с постелью
 
+UI/CoreStrings@WindowRespawn_DamageSources:
+Недавние источники урона:
+
 UI/CoreStrings@WindowRespawn_Message:
 Похоже, вас силой заставили покинуть этот мир... и вы потеряли все вещи, накопленные непосильным трудом! Где вы возродитесь, чтобы отомстить?
 
+UI/CoreStrings@WindowRespawn_MessageDespawned:
+Ваш персонаж оставался за пределами своей зоны контроля слишком долго и был выведен из мира. Вы можете снова возродиться. Вы не потеряли содержимое инвентаря и ОТ.
+
+UI/CoreStrings@WindowRespawn_MessagePvE:
+Похоже, вас силой заставили покинуть этот жестокий мир... Хотите отомстить?
+
 UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
 Похоже, вас убил другой игрок. К счастью, у вас была защита новичка, поэтому вы не потеряли предметы и очки технологий. Будьте осторожны, в следующий раз этой защиты уже может не быть!
-
-UI/CoreStrings@WindowRespawn_DamageSources:
-Недавние источники урона:
 
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `Вы недавно возродились в своей постели.
@@ -1082,6 +1166,15 @@ UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAtta
 UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAttack_Title:
 Нападение!
 
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
+`{0} находится здесь: {1};{2}.
+[br]Взять под контроль можно будет через:
+[br]{3}.
+[br]Берите оружие и будьте готовы к захвату!`
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
+Доступно новое месторождение
+
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 Копировать координаты
 
@@ -1178,6 +1271,12 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Верх
 
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
+Вы точно хотите покинуть группу?
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
+Вы точно хотите удалить игрока [b]{0}[/b] из группы?
+
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
 Существо
 
@@ -1198,12 +1297,6 @@ UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 следующий уровень
-
-UI/Controls/Game/Social/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
-Вы точно хотите покинуть группу?
-
-UI/Controls/Game/Social/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
-Вы точно хотите удалить игрока [b]{0}[/b] из группы?
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier1Letter:
 I
@@ -1271,11 +1364,21 @@ UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterEmail
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterPassword:
 Пожалуйста, введите пароль.
 
+UI/Controls/Menu/Login/Data/ViewModelSelectUsernameFormControl@Dialog_AcceptUsername:
+`[b]{0}[/b] – подходящее имя? Вы не сможете изменить его позже.
+[br]Это имя будет использоваться в игре на любом сервере.`
+
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_CapsLock:
 Caps Lock
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_LeftMouseButton:
 Левая кнопка мыши
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton1:
+Дополнительная кнопка мыши 1
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton2:
+Дополнительная кнопка мыши 2
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseScrollButton:
 Колесико мыши

@@ -24,7 +24,7 @@
             // mobs
             scripts
                 .Add(GetScript<SpawnMobsCrab>().Configure(densityMultiplier: 0.8))
-                .Add(GetScript<SpawnMobsStarfish>())
+                .Add(GetScript<SpawnMobsRiverSnail>())
                 .Add(GetScript<SpawnMobsTurtle>());
         }
     }

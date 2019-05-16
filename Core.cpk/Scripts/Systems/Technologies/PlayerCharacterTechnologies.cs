@@ -92,10 +92,14 @@
             var learningPointsWas = this.LearningPoints;
             this.LearningPoints = (ushort)result;
 
-            // write to log
             pointsToAdd = this.LearningPoints - learningPointsWas;
-            Api.Logger.Info($"Learning points gained: +{pointsToAdd} (total: {result})", this.Character);
+            if (pointsToAdd <= 0)
+            {
+                // max LP reached
+                return;
+            }
 
+            Api.Logger.Info($"Learning points gained: +{pointsToAdd} (total: {result})", this.Character);
             this.Character.ServerAddSkillExperience<SkillLearning>(
                 pointsToAdd * SkillLearning.ExperienceAddedPerLPEarned);
         }
@@ -222,7 +226,7 @@
 
         public double SharedGetUnlockedNodesPercent(TechGroup techGroup)
         {
-            return this.SharedGetUnlockedNodesCount(techGroup) / (double)techGroup.AllNodes.Count;
+            return this.SharedGetUnlockedNodesCount(techGroup) / (double)techGroup.Nodes.Count;
         }
 
         public bool SharedIsGroupUnlocked<TTechGroup>(double unlockedSkillsPercent)

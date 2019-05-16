@@ -67,6 +67,12 @@ Você está morrendo de fome!
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 Fome
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
+Você foi exposto a níveis extremos de radiação, e as células do seu corpo começaram a sofrer mutações. Isto não pode ser bom! Tente evitar entrar em áreas irradiadas novamente.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Name:
+Mutação
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
 Não é possível comer nem beber.
 

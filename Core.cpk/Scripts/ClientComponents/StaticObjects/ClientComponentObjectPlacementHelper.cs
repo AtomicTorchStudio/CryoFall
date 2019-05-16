@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.UI.Services;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
@@ -15,6 +16,8 @@
         private ClientBlueprintRenderer blueprintRenderer;
 
         private double cachedTimeRemainsSeconds;
+
+        private double delayRemainsSeconds;
 
         private ClientInputContext inputContext;
 
@@ -60,7 +63,8 @@
             bool isBlockingInput,
             ValidateCanBuildDelegate validateCanPlaceCallback,
             PlaceSelectedDelegate placeSelectedCallback,
-            double? maxDistance = null)
+            double? maxDistance = null,
+            double delayRemainsSeconds = 0)
         {
             this.maxDistanceSqr = maxDistance.HasValue
                                       ? maxDistance.Value * maxDistance.Value
@@ -74,6 +78,8 @@
             this.placeSelectedCallback = placeSelectedCallback;
             this.validateCanBuildCallback = validateCanPlaceCallback;
             this.IsFrozen = false;
+
+            this.delayRemainsSeconds = delayRemainsSeconds;
 
             this.DestroyComponents();
         }
@@ -90,6 +96,11 @@
                 // a window is opened - disable all the renderers
                 this.DestroyComponents();
                 return;
+            }
+
+            if (this.delayRemainsSeconds > 0)
+            {
+                this.delayRemainsSeconds -= Client.Core.DeltaTime;
             }
 
             var isUpdateRequired = false;
@@ -125,12 +136,12 @@
             if (isUpdateRequired
                 || isPositionChanged)
             {
-                // position changed, update sprite renderer
                 this.SceneObject.Position = tilePositionVector2D;
                 this.UpdateBlueprint(tilePosition);
 
                 if (this.isRepeatCallbackIfHeld
                     && isPositionChanged
+                    && this.blueprintRenderer.IsEnabled
                     && ClientInputManager.IsButtonHeld(GameButton.ActionUseCurrentItem))
                 {
                     // mouse moved while LMB is held
@@ -143,6 +154,7 @@
             }
 
             if (isCanBuildThisPhase
+                && this.blueprintRenderer.IsEnabled
                 && ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem))
             {
                 // clicked on place
@@ -183,18 +195,17 @@
         {
             this.sceneObjectForComponents?.Destroy();
             this.sceneObjectForComponents = null;
-
-            if (this.blueprintRenderer == null)
-            {
-                return;
-            }
-
             this.blueprintRenderer = null;
             this.tilesBlueprint = null;
         }
 
         private void OnPlaceSelected(Vector2Ushort tilePosition, bool isButtonHeld)
         {
+            if (this.delayRemainsSeconds > 0)
+            {
+                return;
+            }
+
             // hack to avoid excessive error messages when player hold the button and move cursor around
             var logErrors = !isButtonHeld;
 
@@ -203,9 +214,9 @@
                 return;
             }
 
+            //this.blueprintRenderer.IsEnabled = false;
+            //this.tilesBlueprint.IsEnabled = false;
             this.placeSelectedCallback(tilePosition);
-            this.blueprintRenderer.IsEnabled = false;
-            this.tilesBlueprint.IsEnabled = false;
         }
 
         private void SetupComponents()
@@ -236,27 +247,38 @@
                 return;
             }
 
-            this.UpdateBlueprintCanBuild(tilePosition);
-            if (this.blueprintRenderer == null)
+            var tile = Client.World.GetTile(tilePosition);
+            this.UpdateBlueprintCanBuild(tile);
+            if (this.blueprintRenderer == null
+                || !this.blueprintRenderer.IsEnabled)
             {
                 return;
             }
 
-            this.blueprintRenderer.IsEnabled = true;
-            this.tilesBlueprint.IsEnabled = true;
-
             // setup blueprint renderer
-            var tile = Client.World.GetTile(tilePosition);
             this.blueprintRenderer.Reset();
+
             this.protoStaticWorldObject.ClientSetupBlueprint(
                 tile,
                 this.blueprintRenderer);
         }
 
-        private void UpdateBlueprintCanBuild(Vector2Ushort tilePosition)
+        private void UpdateBlueprintCanBuild(Tile tile)
         {
+            foreach (var tileObj in tile.StaticObjects)
+            {
+                if (tileObj.ProtoStaticWorldObject == this.protoStaticWorldObject
+                    || ProtoObjectConstructionSite.SharedIsConstructionOf(tileObj, this.protoStaticWorldObject))
+                {
+                    this.blueprintRenderer.IsEnabled = false;
+                    this.tilesBlueprint.IsEnabled = false;
+                    return;
+                }
+            }
+
             this.blueprintRenderer.IsEnabled = true;
             this.tilesBlueprint.IsEnabled = true;
+            var tilePosition = tile.Position;
 
             var isCanBuild = this.validateCanBuildCallback(tilePosition, logErrors: false);
             if (this.blueprintRenderer == null)

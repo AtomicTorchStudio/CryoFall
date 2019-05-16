@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.CoreMod.Systems.DayNightSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Extensions;
@@ -38,7 +38,7 @@
 
             var startTile = this.character.TilePosition;
             var clientWorld = Api.Client.World;
-            var isDay = DayNightSystem.IsDay;
+            var isDay = TimeOfDaySystem.IsDay;
 
             this.dictionarySoundsByDistanceSqr.Clear();
 

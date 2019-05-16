@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeMaceIron>();
 
-            config.SetRequiredNode<TechNodeAdvancedIndustry>();
+            config.SetRequiredNode<TechNodeCement>();
         }
     }
 }

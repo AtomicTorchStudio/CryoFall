@@ -27,10 +27,10 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
             var tierGroupsPrice = groupsByTier.ToDictionary(
                 p => p.Key,
                 p => p.Sum(group => (int)group.LearningPointsPrice));
-            var tierNodes = groupsByTier.ToDictionary(p => p.Key, p => p.Sum(group => group.AllNodes.Count));
+            var tierNodes = groupsByTier.ToDictionary(p => p.Key, p => p.Sum(group => group.Nodes.Count));
             var tierNodesPrice = groupsByTier.ToDictionary(
                 p => p.Key,
-                p => p.Sum(gr => gr.AllNodes.Sum(node => (int)node.LearningPointsPrice)));
+                p => p.Sum(gr => gr.Nodes.Sum(node => (int)node.LearningPointsPrice)));
 
             // total statistics
             var totalGroupPrice = tierGroupsPrice.Sum(p => (int)p.Value);

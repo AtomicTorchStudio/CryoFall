@@ -23,8 +23,6 @@
         [Description("Run speed")]
         MoveSpeedRunMultiplier,
 
-        AttackFinalDamageMultiplier,
-
         [Description("Additional damage")]
         DamageAdd,
 
@@ -59,6 +57,8 @@
         DamageProportionRadiation,
 
         DamageProportionPsi,
+
+        AttackFinalDamageMultiplier,
 
         AttackRangeMax,
 
@@ -119,7 +119,7 @@
         WeaponHeavyDamageBonusMultiplier,
 
         [Description("Damage bonus")]
-        [RelatedToSkill(typeof(SkillWeaponsExotic))]
+        //[RelatedToSkill(typeof(SkillWeaponsExotic))]
         WeaponExoticDamageBonusMultiplier,
 
         [Description("Special effect chance")]
@@ -139,7 +139,7 @@
         WeaponHeavySpecialEffectChanceMultiplier,
 
         [Description("Special effect chance")]
-        [RelatedToSkill(typeof(SkillWeaponsExotic))]
+        //[RelatedToSkill(typeof(SkillWeaponsExotic))]
         WeaponExoticSpecialEffectChanceMultiplier,
 
         [Description("Degradation rate")]
@@ -159,7 +159,7 @@
         WeaponHeavyDegradationRateMultiplier,
 
         [Description("Degradation rate")]
-        [RelatedToSkill(typeof(SkillWeaponsExotic))]
+        //[RelatedToSkill(typeof(SkillWeaponsExotic))]
         WeaponExoticDegradationRateMultiplier,
 
         [Description("Reloading time")]
@@ -179,7 +179,7 @@
         WeaponHeavyReloadingSpeedMultiplier,
 
         [Description("Reloading time")]
-        [RelatedToSkill(typeof(SkillWeaponsExotic))]
+        //[RelatedToSkill(typeof(SkillWeaponsExotic))]
         WeaponExoticReloadingSpeedMultiplier,
 
         [Description("LP retained after death")]
@@ -214,6 +214,14 @@
         PerkEatSpoiledFood,
 
         [Description("Searching speed")]
-        SearchingSpeed
+        SearchingSpeed,
+
+
+
+        [Description("Radiation poisoning damage")]
+        RadiationPoisoningDamageMultiplier,
+
+        [Description("Radiation accumulation rate")]
+        RadiationPoisoningAccumulationMultiplier
     }
 }

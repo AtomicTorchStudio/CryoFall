@@ -48,7 +48,7 @@
         /// </summary>
         public override double ClientUpdateIntervalSeconds => 0;
 
-        public virtual double ObstacleBlockDamageCoef => 0.5;
+        public virtual double ObstacleBlockDamageCoef => 1;
 
         public IReadOnlyStatsDictionary ProtoCharacterDefaultEffects { get; private set; }
 
@@ -266,10 +266,7 @@
             publicState.EnsureEverythingCreated();
 
             publicState.IsDead = publicState.CurrentStats.HealthCurrent <= 0;
-            if (publicState.IsDead)
-            {
-                ServerCharacterDeathMechanic.OnDeadCharacterInitialize(data.GameObject);
-            }
+            ServerCharacterDeathMechanic.OnCharacterInitialize(data.GameObject);
 
             this.ServerPrepareCharacter(data);
 

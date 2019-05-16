@@ -45,7 +45,7 @@
             BorderBrush="{StaticResource BrushColorAlt5}"
             BorderThickness="1,0,1,1">
         <TextBlock
-            Text="{Binding FileName, ElementName=UserControl, StringFormat={x:Static loc:CoreStrings.ScreenshotNotification_NotificationFormat}}" />
+            Text="{Binding ScreenshotReadyMessage, ElementName=UserControl}" />
     </Border>
 
 </base:BaseUserControl>

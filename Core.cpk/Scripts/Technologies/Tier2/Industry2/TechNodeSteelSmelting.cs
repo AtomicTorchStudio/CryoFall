@@ -11,7 +11,7 @@
             config.Effects
                   .AddRecipe<RecipeIngotSteel>();
 
-            config.SetRequiredNode<TechNodeAdvancedIndustry>();
+            config.SetRequiredNode<TechNodeCement>();
         }
     }
 }

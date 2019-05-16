@@ -1,16 +1,23 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ClientOptions
 {
     using System.Windows;
-    using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.ServicesClient;
 
-    public interface IProtoOption : IProtoEntity
+    public interface IProtoOption
     {
+        string Id { get; }
+
         bool IsHidden { get; }
 
         bool IsModified { get; }
 
+        string Name { get; }
+
         IProtoOption OrderAfterOption { get; }
+
+        string ShortId { get; }
+
+        ProtoOptionsCategory Category { get; }
 
         void Apply();
 

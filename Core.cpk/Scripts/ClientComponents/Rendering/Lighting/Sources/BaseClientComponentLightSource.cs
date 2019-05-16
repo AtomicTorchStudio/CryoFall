@@ -16,11 +16,13 @@
 
         private bool isDirty;
 
+        private Size2F logicalSize;
+
         private double opacity = 1;
 
         private Vector2D positionOffset = (0.5, 0);
 
-        private Size2F size = 1;
+        private Size2F renderingSize = 1;
 
         private Vector2D spritePivotPoint = (0.5, 0.5);
 
@@ -45,6 +47,23 @@
         }
 
         public double LogicalLightRadiusSqr { get; private set; }
+
+        public Size2F LogicalSize
+        {
+            get => this.logicalSize;
+            set
+            {
+                if (this.logicalSize == value)
+                {
+                    return;
+                }
+
+                this.logicalSize = value;
+                var logicalLightRadius = Math.Max(this.logicalSize.X, this.logicalSize.Y)
+                                         / 2.5;
+                this.LogicalLightRadiusSqr = logicalLightRadius * logicalLightRadius;
+            }
+        }
 
         public double Opacity
         {
@@ -76,20 +95,17 @@
             }
         }
 
-        public Size2F Size
+        public Size2F RenderingSize
         {
-            get => this.size;
+            get => this.renderingSize;
             set
             {
-                if (this.size.Equals(value))
+                if (this.renderingSize.Equals(value))
                 {
                     return;
                 }
 
-                this.size = value;
-                var logicalLightRadius = Math.Max(this.size.X, this.size.Y)
-                                         / 2.5;
-                this.LogicalLightRadiusSqr = logicalLightRadius * logicalLightRadius;
+                this.renderingSize = value;
                 this.SetDirty();
             }
         }

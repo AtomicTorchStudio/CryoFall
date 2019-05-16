@@ -121,23 +121,11 @@ Komplexe Anbaumethoden, die das Arbeiten mit vielfältigen Kulturpflanzen und ve
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
 Landwirtschaft 2
 
-Scripts/Technologies/Tier2/Farming2/TechNodeComplexCrops@Name:
-Anspruchsvolle Saat
-
-Scripts/Technologies/Tier2/Farming2/TechNodeFarmingProductivity@Name:
-Landwirtschaftliche Produktivität
-
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
 Verbesserte Industrietechnologien, die eine Vielzahl von Industrieprozessen und -anwendungen ermöglichen.
 
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
 Industrie 2
-
-Scripts/Technologies/Tier2/Industry2/TechNodeAdvancedIndustry@Name:
-Fortgeschrittene Industrie
-
-Scripts/Technologies/Tier2/Industry2/TechNodeBasicElectronics@Name:
-Grundlegende Elektronik
 
 Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
 Stahlverhüttung
@@ -162,9 +150,6 @@ Die Arbeit mit diversen komplexen chemischen Verbindungen und Reaktionen.
 
 Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
 Chemie 2
-
-Scripts/Technologies/Tier3/Chemistry2/TechNodeSyntheticMaterials@Name:
-Synthetische Materialien
 
 Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
 Die Arbeit mit Währungen und Handel. Ermöglicht das Prägen und Recyclen von Münzen, sowie das Bauen von automatisierten Handelsstationen.
@@ -210,12 +195,6 @@ Fortschrittliche Landwirtschaftstechniken und eine noch größere Saatvielfalt.
 
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
 Landwirtschaft 3
-
-Scripts/Technologies/Tier3/Farming3/TechNodeDecorativeGardening@Name:
-Dekoratives Gärtnern
-
-Scripts/Technologies/Tier3/Farming3/TechNodeSpecializedCrops@Name:
-Spezialsaat
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
 Fortschrittliche Industrietechnologien, die eine Vielzahl von Industrieprozessen und -anwendungen ermöglichen.
@@ -265,9 +244,6 @@ Fortgeschrittene chemische Prozesse und komplexe Verbindungen.
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
 Chemie 3
 
-Scripts/Technologies/Tier4/Chemistry3/TechNodeHighEnergySubstances@Name:
-Hochenergetische Substanzen
-
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
 Hi-Tech-Konstruktionen.
 
@@ -277,17 +253,14 @@ Konstruktion 4
 Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
 Betonkonstruktionen
 
+Scripts/Technologies/Tier4/Construction4/TechNodeSteelConstructions@Name:
+Stahlkonstruktionen
+
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
 Die Herstellung und Anwendung kybernetischer und biologischer Implantate.
 
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
 Kybernetik
-
-Scripts/Technologies/Tier4/Cybernetics/TechNodeBiomaterialProcessing@Name:
-Biomaterialverarbeitung
-
-Scripts/Technologies/Tier4/Cybernetics/TechNodeImplantManufacturing@Name:
-Herstellung von Implantaten
 
 Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
 Hi-Tech-Schutztechnologien.
@@ -306,12 +279,6 @@ Energiewaffen sind eine technologische Weiterentwicklung konventioneller Feuerwa
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
 Energiewaffen
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechNodeLaserWeapons@Name:
-Laserwaffen
-
-Scripts/Technologies/Tier4/EnergyWeapons/TechNodePlasmaWeapons@Name:
-Plasmawaffen
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
 Industrielle Hi-Tech-Technologien, die den Zugang zu hochkomplexen technischen Prozessen ermöglichen.
@@ -336,10 +303,4 @@ Offensive Hi-Tech-Technologien, die das Maximalpotenzial konventioneller Feuerwa
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Angriff 4
-
-Scripts/Technologies/Tier4/Offense4/TechNode300Caliber@Name:
-Kaliber .300
-
-Scripts/Technologies/Tier4/Offense4/TechNodeAdvancedExplosives@Name:
-Hochentwickelter Sprengstoff
 

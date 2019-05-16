@@ -33,7 +33,7 @@
 
         public sealed override double ServerUpdateIntervalSeconds => 0.25;
 
-        public static IProtoObjectStructure GetConstructionProto(IStaticWorldObject staticWorldObject)
+        public static IProtoObjectStructure SharedGetConstructionProto(IStaticWorldObject staticWorldObject)
         {
             return staticWorldObject.ProtoWorldObject is ProtoObjectConstructionSite
                        ? GetPublicState(staticWorldObject).ConstructionProto
@@ -49,7 +49,7 @@
         public static bool SharedIsConstructionOf(IStaticWorldObject staticWorldObject, Type prototype)
         {
             return staticWorldObject.ProtoWorldObject is ProtoObjectConstructionSite
-                   && prototype.IsInstanceOfType(GetConstructionProto(staticWorldObject));
+                   && prototype.IsInstanceOfType(SharedGetConstructionProto(staticWorldObject));
         }
 
         public override string ClientGetTitle(IStaticWorldObject worldObject)
@@ -130,6 +130,11 @@
         protected override void ClientInteractStart(ClientObjectData data)
         {
             DeconstructionSystem.ClientTryStartAction();
+        }
+
+        protected override bool CommonIsAllowedObjectToInteractThrought(IWorldObject worldObject)
+        {
+            return true;
         }
 
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()

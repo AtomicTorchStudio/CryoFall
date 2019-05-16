@@ -130,6 +130,9 @@ Dieser Gegenstand lässt sich nicht befüllen.
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Dieses Gebiet wird von einem anderen Spieler beansprucht oder befindet sich zu nah an einem anderen Land Claim.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
+Das Vorkommen dieser Ressource ist gerade erst zum Vorschein gekommen und kann noch nicht beansprucht werden. Das Bauen in seiner Nähe ist vorübergehend eingeschränkt.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Überschneidung mit dem Gebiet eines anderen Land Claims
 
@@ -157,10 +160,10 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireIn
 Der Anfängerschutz erlischt in:
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-Während du unter Anfängerschutz stehst, kannst du andere Spieler weder angreifen, noch ihre Taschen oder Gegenstände plündern. Du kannst diesen Schutz jedoch jederzeit im Social-Menü ausschalten.
+Während du unter Anfängerschutz stehst, kannst du andere Spieler weder angreifen, noch ihre Taschen oder Gegenstände plündern. Du kannst diesen Schutz jedoch jederzeit im Diplomatie-Menü ausschalten.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-Diese Handlung ist nicht möglich, solange du unter Anfängerschutz stehst. Du kannst diesen Schutz jedoch jederzeit im Social-Menü ausschalten.
+Diese Handlung ist nicht möglich, solange du unter Anfängerschutz stehst. Du kannst diesen Schutz jedoch jederzeit im Diplomatie-Menü ausschalten.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
 Diese Tasche steht unter Anfängerschutz und kann nur von ihrem Besitzer aufgehoben werden.
@@ -182,6 +185,9 @@ Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageF
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
 Bitte beachte: Du [b]verlässt[/b] deine aktuelle Gruppe, wenn du diese Einladung annimmst.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationSentMessageFormat:
+Gruppeneinladung verschickt an [b]{0}[/b].
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
 Gruppeneinladung
@@ -219,6 +225,38 @@ Eingeladener Spieler ist bereits ein Mitglied deiner Gruppe.
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 Du kannst niemanden einladen, da du vom Server-Besitzer stummgeschaltet wurdest.
 
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
+Duellmodus deaktivieren
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Enable:
+Duellmodus aktivieren
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Description:
+`Du kannst den Duellmodus aktivieren, um andere Spieler zum Kampf herauszufordern.
+[br]Nach dem Tod verlierst du keine Gegenstände.
+[br]Beide Spieler müssen den Duellmodus aktiviert haben.`
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Title:
+Duellmodus
+
+Scripts/Systems/PvE/PveSystem@Notification_CannotDamagePlayers_Message:
+Du kannst anderen Spielern oder Strukturen, die einem anderen Spieler gehören, auf einem PvE-Server keinen Schaden zufügen.
+
+Scripts/Systems/PvE/PveSystem@Notification_OtherPlayerDontHaveDuelMode_Message:
+Um gegeneinander kämpfen zu können, müssen beide Spieler den Duellmodus aktivieren.
+
+Scripts/Systems/PvE/PveSystem@Notification_StuffBelongsToAnotherPlayer_Message:
+Das gehört einem anderen Spieler.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Message:
+Das Beschädigen jeglicher Gebäude und Strukturen innerhalb eines Land Claims ist nur während des Raid-Zeitfensters möglich.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Title:
+Kein Schaden
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
+Das Raid-Zeitfenster ist nun geschlossen.
+
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Noch keine Ernte möglich
 
@@ -239,27 +277,45 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 `Auf diesen Server kann nur per Einladung zugegriffen werden.
 [br]Bitte überprüfe die Serverbeschreibung um mögliche zusätzliche Details zu erhalten.`
 
-Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessage:
-`Willkommen auf dem offiziellen CryoFall Server!
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
+`Willkommen auf dem offiziellen CryoFall-Server!
 [br]
 [br]
 [b]Wichtig:[/b]
-Bitte bedenke, dass die offiziellen Server PVP-orientiert sind und du mit Angriffen anderer Spieler rechnen musst. Ergreife angemessene Schutzmaßnahmen und sei stets wachsam. Erwäge außerdem, dich mit anderen Überlebenden zusammenzutun, um deine Chancen zu verbessern.
+Dies ist ein PvE ("Spieler gegen Umgebung") Server. Auf diesem Server können Spieler einander weder auf direktem oder indirektem Weg angreifen. Dieser Server dient der friedlichen Erkundung des Spiels, ohne dabei auf feindlich gesinnte Spieler zu treffen. Du kannst andere Spieler weder töten oder angreifen, noch von ihnen stehlen. Davon einmal abgesehen, bietet dir dieser Server die komplette Bandbreite von CryoFall, mitsamt seiner gefährlichen Kreaturen, freischaltbarer Technologien und seiner frei zu erkundenden Welt. Finde selbst heraus, wohin dich deine Reise führen wird.
+[br]
+[br]
+Wenn du stattdessen lieber eine spannendere und uneingeschränkte Spielerfahrung genießen möchtest – erwäge bitte, einem PvP-Server beizutreten.
 [br]
 [br]
 [b]Server-Regeln:[/b]
-[*]Sei respektvoll und höflich im Umgang mit anderen. Wir tolerieren keinerlei Form von Beschimpfungen, Diskriminierung, etc.
+[*]Sei respektvoll und höflich im Umgang mit anderen. Wir tolerieren keinerlei Form von Beschimpfung, Diskriminierung, etc.
 [*]Halte dich an die Anweisungen der Server-Moderatoren.
-[*]Kein Spam oder exzessive Verwendung von Kraftausdrücken im Chat.
+[*]Benutze keinen Spam oder übermäßige Kraftausdrücke im Chat.
+[*]Versuche nicht, die PvE-Einschränkungen zu umgehen oder auszunutzen.
+[*]Missbrauche keine Spielregeln oder -mechaniken, um andere Spieler zu beeinträchtigen.
 [br]
 [br]
-[b]Empfehlungen:[/b]
-[br]Obwohl wir diese Regeln nicht durchsetzen können, schaffen sie dennoch eine bessere Atmosphäre für alle Spieler.
-[*]Kein KOS (kill on sight – "Dauerkill") von anderen Spielern, insbesondere dann, wenn diese gerade erst dem Spiel beigetreten sind.
-[*]Nichts spricht dagegen, die Basen anderer Spieler zu überfallen – aber griefe niemanden ohne guten Grund.
-[*]Versuche Spielern, die neu sind und das Spiel gerade erst kennenlernen, zu helfen.
+Viel Glück! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
+`Willkommen auf dem offiziellen CryoFall-Server!
 [br]
-[br]Viel Glück! :)`
+[br]
+[b]Wichtig:[/b]
+Dies ist ein uneingeschränkter PvP-Server. Bitte bedenke, dass du auf PvP-Servern den Angriffen anderer Spieler ausgesetzt bist. Es wird von dir erwartet, dass du kämpfst und dich verteidigst. Du wirst dich selbst angemessen schützen und stets wachsam sein müssen. Erwäge außerdem, dich mit anderen Überlebenden zusammenzutun, um deine Chancen zu verbessern.
+[br]
+[br]
+Wenn du stattdessen lieber eine enspanntere Spielerfahrung genießen möchtest – vor allem dann, wenn du gerade erst damit angefangen hast, CryoFall zu spielen – erwäge bitte, einem PvE-Server beizutreten.
+[br]
+[br]
+[b]Server-Regeln:[/b]
+[*]Sei respektvoll und höflich im Umgang mit anderen. Wir tolerieren keinerlei Form von Beschimpfung, Diskriminierung, etc.
+[*]Halte dich an die Anweisungen der Server-Moderatoren.
+[*]Benutze keinen Spam oder übermäßige Kraftausdrücke im Chat.
+[br]
+[br]
+Viel Glück! :)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Willkommen bei {0}
@@ -282,7 +338,7 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} Level {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`Du hast mehr als 50 Lernpunkte (LP) angesammelt. Du solltest erwägen, diese in das Freischalten neuer Technologien zu investieren. Nach dem Tod steht dir nur ein kleiner Teil deiner gesammelten LP zur Verfügung.
+`Du hast mehr als {0} Lernpunkte (LP) angesammelt. Du solltest erwägen, diese in das Freischalten neuer Technologien zu investieren. Nach dem Tod steht dir nur ein kleiner Teil deiner gesammelten LP zur Verfügung.
 [br](Klicken zum Öffnen des Technologiemenüs)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:

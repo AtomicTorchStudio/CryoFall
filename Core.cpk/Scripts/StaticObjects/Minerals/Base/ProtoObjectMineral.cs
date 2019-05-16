@@ -301,7 +301,9 @@
                 }
 
                 // not a melee weapon or cannot drop to the character inventory - drop on the ground only
-                dropItemsList.TryDropToGround(mineralObject.TilePosition, dropItemContext);
+                dropItemsList.TryDropToGround(mineralObject.TilePosition,
+                                              dropItemContext,
+                                              out _);
             }
             finally
             {

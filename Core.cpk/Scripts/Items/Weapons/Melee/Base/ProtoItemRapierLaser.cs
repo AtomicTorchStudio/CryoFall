@@ -17,7 +17,7 @@
 
         public override string Description => "Incredibly powerful short-range weapon. Requires energy to operate.";
 
-        public override ushort DurabilityMax => 250;
+        public override ushort DurabilityMax => 500;
 
         public override double EnergyUsePerHit => 25;
 
@@ -40,7 +40,7 @@
         {
             var lightSource = base.ClientCreateLightSource(item, character, sceneObject);
             // restore circle shape by using x2 height
-            lightSource.Size = new Size2F(lightSource.Size.X, lightSource.Size.Y * 2);
+            lightSource.RenderingSize = new Size2F(lightSource.RenderingSize.X, lightSource.RenderingSize.Y * 2);
             return lightSource;
         }
 
@@ -59,6 +59,8 @@
             lightConfig.Color = this.LightColor;
             lightConfig.ScreenOffset = (35, 0);
             lightConfig.Size = 2;
+            // we want to make it lighting objects around much better even though the rendering size is small
+            lightConfig.LogicalSize = 8;
         }
 
         protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()

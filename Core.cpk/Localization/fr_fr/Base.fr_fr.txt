@@ -148,3 +148,9 @@ Capacité à ingérer de la nourriture périmée
 Scripts/Base/Stats/StatName@SearchingSpeed:
 Vitesse de recherche
 
+Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+Dégâts d'irradiation
+
+Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+Taux d'accumulation des radiations
+

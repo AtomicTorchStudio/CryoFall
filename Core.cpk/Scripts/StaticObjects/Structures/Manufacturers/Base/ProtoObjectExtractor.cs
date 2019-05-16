@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -18,7 +19,8 @@
         : ProtoObjectManufacturer<
               ObjectExtractorPrivateState,
               ObjectManufacturerPublicState,
-              StaticObjectClientState>
+              StaticObjectClientState>,
+          IProtoObjectExtractor
     {
         public override bool IsAutoSelectRecipe => true;
 
@@ -45,15 +47,6 @@
             base.ServerApplyDecay(worldObject, deltaTime);
         }
 
-        protected override void ClientInitialize(ClientInitializeData data)
-        {
-            base.ClientInitialize(data);
-
-            var objectDeposit = this.SharedGetDepositWorldObject(data.GameObject.OccupiedTile);
-            // force reinitialize deposit to ensure the deposit healthbar will be hidden
-            objectDeposit?.ClientInitialize();
-        }
-
         protected override void ClientDeinitializeStructure(IStaticWorldObject gameObject)
         {
             var objectDeposit = this.SharedGetDepositWorldObject(gameObject.OccupiedTile);
@@ -61,6 +54,15 @@
             objectDeposit?.ClientInitialize();
 
             base.ClientDeinitializeStructure(gameObject);
+        }
+
+        protected override void ClientInitialize(ClientInitializeData data)
+        {
+            base.ClientInitialize(data);
+
+            var objectDeposit = this.SharedGetDepositWorldObject(data.GameObject.OccupiedTile);
+            // force reinitialize deposit to ensure the deposit healthbar will be hidden
+            objectDeposit?.ClientInitialize();
         }
 
         protected override void ClientObserving(ClientObjectData data, bool isObserving)
@@ -171,16 +173,19 @@
         {
             base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
 
-            if (weaponCache != null
-                && (weaponCache.ProtoWeapon != null
-                    || weaponCache.ProtoObjectExplosive != null))
+            if (weaponCache == null
+                || (weaponCache.ProtoWeapon == null
+                    && weaponCache.ProtoObjectExplosive == null)
+                || PveSystem.ServerIsPvE)
             {
-                // the damage was dealt by a weapon or explosive - try to explode the deposit
-                var worldObjectDeposit = this.SharedGetDepositWorldObject(
-                    Server.World.GetTile(targetObject.TilePosition));
-                ((IProtoObjectDeposit)worldObjectDeposit?.ProtoStaticWorldObject)?
-                    .ServerOnExtractorDestroyedForDeposit(worldObjectDeposit);
+                return;
             }
+
+            // the damage was dealt by a weapon or explosive - try to explode the deposit
+            var worldObjectDeposit = this.SharedGetDepositWorldObject(
+                Server.World.GetTile(targetObject.TilePosition));
+            ((IProtoObjectDeposit)worldObjectDeposit?.ProtoStaticWorldObject)?
+                .ServerOnExtractorDestroyedForDeposit(worldObjectDeposit);
         }
 
         protected override void ServerUpdate(ServerUpdateData data)
@@ -189,7 +194,9 @@
             var privateState = data.PrivateState;
             var objectDeposit = this.SharedGetDepositWorldObject(worldObject.OccupiedTile);
 
-            if (objectDeposit == null)
+            var isPvEserver = PveSystem.ServerIsPvE;
+            if (objectDeposit == null
+                && !isPvEserver)
             {
                 // no deposit object - stop progressing
                 privateState.LiquidContainerState.Amount = 0;
@@ -199,6 +206,16 @@
 
             var fuelBurningState = privateState.FuelBurningState;
 
+            var deltaTime = data.DeltaTime;
+            var deltaTimeForManufacturing = deltaTime;
+            if (objectDeposit == null
+                && isPvEserver)
+            {
+                // On PvE servers extractors work on reduced speed
+                // if there is no deposit.
+                deltaTimeForManufacturing *= PveSystem.DepositExtractorWithoutDepositActionSpeedMultiplier;
+            }
+
             // Please note: fuel is used only to produce oil.
             // Fuel is not used for "petroleum canister" crafting.
             var isFull = privateState.LiquidContainerState.Amount >= this.LiquidContainerConfig.Capacity;
@@ -207,7 +224,7 @@
                 fuelBurningState,
                 null,
                 this.ManufacturingConfig,
-                data.DeltaTime,
+                deltaTime,
                 isNeedFuelNow: !isFull);
 
             var isFuelBurning = fuelBurningState.FuelUseTimeRemainsSeconds > 0;
@@ -219,7 +236,7 @@
                 this.LiquidContainerConfig,
                 data.PrivateState.ManufacturingState,
                 this.ManufacturingConfig,
-                data.DeltaTime,
+                deltaTimeForManufacturing,
                 // the pump produce petroleum only when fuel is burning
                 isProduceLiquid: isFuelBurning,
                 forceUpdateRecipe: true);
