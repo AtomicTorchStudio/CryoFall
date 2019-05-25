@@ -70,4 +70,42 @@
         </Setter>
     </Style>
 
+    <SolidColorBrush x:Key="BrushColorEntryOptions"
+                     Color="{StaticResource Color7}"
+                     Opacity="0.65" />
+
+    <SolidColorBrush x:Key="BrushColorEntryOptionsOver"
+                     Color="{StaticResource Color7}"
+                     Opacity="0.9" />
+
+    <Style x:Key="ChatEntryOptionsButtonStyle" TargetType="Control">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource BrushColorEntryOptions}" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <ContentControl Padding="5,2,3,2"
+                                    Background="Transparent">
+                        <StackPanel Orientation="Vertical">
+                            <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}" />
+                            <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}"
+                                 Margin="0,1" />
+                            <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}" />
+                        </StackPanel>
+                    </ContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource BrushColorEntryOptionsOver}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

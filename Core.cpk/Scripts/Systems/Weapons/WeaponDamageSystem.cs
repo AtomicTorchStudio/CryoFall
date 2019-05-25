@@ -30,7 +30,7 @@
         {
             if (targetObject is IStaticWorldObject staticWorldObject
                 && (!RaidingProtectionSystem.SharedCanRaid(staticWorldObject,
-                                                                       showClientNotification: false)
+                                                           showClientNotification: false)
                     || !PveSystem.SharedIsAllowStructureDamage(staticWorldObject,
                                                                showClientNotification: false)))
             {
@@ -94,6 +94,15 @@
             {
                 // apply creature damage multiplier
                 totalDamage *= WeaponConstants.DamageCreaturesMultiplier;
+
+                if (targetObject is ICharacter victim
+                    && !victim.IsNpc
+                    && !victim.IsOnline
+                    && PveSystem.ServerIsPvE)
+                {
+                    // don't deal any damage to offline players on PvE servers
+                    totalDamage = 0;
+                }
             }
 
             if (isFriendlyFireCase)

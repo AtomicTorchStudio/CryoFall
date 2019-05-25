@@ -55,7 +55,7 @@
 
         <Border Background="{StaticResource Background}"
                 CornerRadius="12"
-                Padding="7,0,7,2">
+                Padding="7,2">
             <TextBlock Text="{Binding}"
                        Foreground="Black"
                        FontSize="27"
@@ -64,14 +64,14 @@
                        MaxWidth="300"
                        MaxHeight="69"
                        TextWrapping="Wrap"
+                       LineStackingStrategy="BlockLineHeight"
+                       LineHeight="28"
                        FontFamily="{StaticResource DialogueFontFamily}"
                        noesis:Text.Stroke="#99000000"
                        noesis:Text.StrokeThickness="0.5"
                        HorizontalAlignment="Center"
-                       TextAlignment="Center" />
-            <!-- Enable text trimming after NoesisGUI fixes https://www.noesisengine.com/bugs/view.php?id=1275 -->
-            <!--TextTrimming="CharacterEllipsis"-->
-
+                       TextAlignment="Center"
+                       TextTrimming="CharacterEllipsis" />
         </Border>
 
         <Path Grid.Row="1"

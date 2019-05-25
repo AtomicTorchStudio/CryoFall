@@ -32,6 +32,7 @@
                 sceneObject,
                 LightColors.WoodFiring,
                 size: (3, 3),
+                logicalSize: 0,
                 positionOffset: (0.31, 0.31));
 
             // add light flickering

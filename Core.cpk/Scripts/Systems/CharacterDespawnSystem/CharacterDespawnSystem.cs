@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -45,24 +46,36 @@
 
         private static bool ServerIsNeedDespawn(ICharacter character, double serverTime)
         {
+            var privateState = character.GetPrivateState<PlayerCharacterPrivateState>();
             if (character.IsOnline)
             {
+                // player online - update last online time
+                privateState.ServerOfflineSinceTime = serverTime;
                 return false;
             }
 
+            // player offline
             var publicState = character.GetPublicState<PlayerCharacterPublicState>();
-            if (publicState.IsDead)
+            if (publicState.IsDead
+                || privateState.IsDespawned)
             {
                 return false;
             }
 
-            var privateState = character.GetPrivateState<PlayerCharacterPrivateState>();
-            if (privateState.IsDespawned)
+            if (character.ProtoCharacter is PlayerCharacterSpectator
+                || Server.Characters.IsSpectator(character))
             {
                 return false;
             }
 
-            if (serverTime < privateState.ServerOfflineSinceTime + OfflineDurationToDespawn)
+            var offlineSinceTime = privateState.ServerOfflineSinceTime;
+            if (!offlineSinceTime.HasValue)
+            {
+                privateState.ServerOfflineSinceTime = serverTime;
+                return false;
+            }
+
+            if (serverTime < offlineSinceTime + OfflineDurationToDespawn)
             {
                 // despawn timeout is not reached yet
                 return false;
@@ -91,13 +104,8 @@
 
         private void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
         {
+            // just record the last player online state change (even for online)
             var privateState = character.GetPrivateState<PlayerCharacterPrivateState>();
-            if (isOnline)
-            {
-                privateState.ServerOfflineSinceTime = null;
-                return;
-            }
-
             privateState.ServerOfflineSinceTime = Server.Game.FrameTime;
         }
     }

@@ -21,6 +21,12 @@
 
         public static void ShowOn(IWorldObject worldObject, string message)
         {
+            if (Api.IsServer)
+            {
+                Api.Logger.Error("Cannot call this method on server");
+                return;
+            }
+
             Hide();
 
             var staticWorldObject = worldObject as IStaticWorldObject;

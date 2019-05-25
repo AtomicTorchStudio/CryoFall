@@ -56,6 +56,9 @@
             // we have to set the dead flag to stop game mechanics from working
             // but on the respawn player should not lose anything
             publicState.IsDead = true;
+            // recreate physics (as dead/despawned character doesn't have any physics)
+            character.ProtoCharacter.SharedCreatePhysics(character);
+
             TeleportDeadPlayerCharacterToGraveyard(character);
 
             privateState.LastDeathPosition = Vector2Ushort.Zero;

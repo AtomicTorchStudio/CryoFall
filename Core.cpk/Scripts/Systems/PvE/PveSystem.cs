@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI;
@@ -224,12 +225,9 @@
             IStaticWorldObject worldObject,
             bool writeToLog)
         {
-            if (!SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: true))
-            {
-                return true;
-            }
-
-            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character))
+            if (!SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: true)
+                || LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
+                || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 return true;
             }

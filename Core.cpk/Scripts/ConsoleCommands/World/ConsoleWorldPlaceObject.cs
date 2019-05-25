@@ -10,6 +10,8 @@
 
     public class ConsoleWorldPlaceObject : BaseConsoleCommand
     {
+        public override string Alias => "place";
+
         public override string Description =>
             @"Places a world object in the player character position or in any specified position.
               You can use this to spawn new buildings and resources.

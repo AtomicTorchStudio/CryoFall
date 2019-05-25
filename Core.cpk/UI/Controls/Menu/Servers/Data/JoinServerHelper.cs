@@ -29,7 +29,9 @@
         public const string DialogIncompatibleServer_VersionTitle_Older =
             "This game server is running an older version of the game";
 
-        public const string DialogServerInaccessible = "Server is inaccessible.";
+        public const string DialogServerInaccessible =
+            @"[b]Internet connection problem[/b]
+              [br]Game server cannot be reached due to unstable network connection or failed routing of your internet service provider.";
 
         public static async void ExecuteCommandJoinServer(ViewModelServerInfo serverInfo)
         {
@@ -53,7 +55,7 @@
                 DialogWindow.ShowDialog(
                     title: null,
                     DialogServerInaccessible,
-                    okAction: () => serverInfo.CommandRefresh.Execute(serverInfo),
+                    okAction: () => serverInfo.CommandRefresh?.Execute(serverInfo),
                     cancelAction: () => { },
                     okText: CoreStrings.Button_Retry,
                     cancelText: CoreStrings.Button_Cancel,

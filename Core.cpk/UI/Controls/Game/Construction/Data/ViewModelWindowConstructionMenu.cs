@@ -163,7 +163,10 @@
 
         private void ExecuteCommandBuild()
         {
-            this.StructureSelectedCallback(this.selectedStructure.ProtoStructure);
+            if (this.VisibilityBuildButtons == Visibility.Visible)
+            {
+                this.StructureSelectedCallback(this.selectedStructure.ProtoStructure);
+            }
         }
 
         private ICollection<IProtoObjectStructure> GetAvailableStructures()

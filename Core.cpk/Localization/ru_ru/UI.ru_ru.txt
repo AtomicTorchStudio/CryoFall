@@ -260,7 +260,7 @@ UI/CoreStrings@ItemsContainer_TitleInput:
 Ингредиенты
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
-Готово
+Результат
 
 UI/CoreStrings@LearningPoints:
 Очки технологий
@@ -439,7 +439,7 @@ UI/CoreStrings@MenuServers_ServerTag_Official_Description:
 Это один из официальных серверов CryoFall, поддерживаемый разработчиками.
 
 UI/CoreStrings@MenuServers_ServerTag_Official_Title:
-ОФИЦИАЛЬНЫЕ
+ОФИЦИАЛЬНЫЙ
 
 UI/CoreStrings@MenuServers_ServerTag_PvE_Description:
 `Это сервер "игрок против окружения", разработанный для мирного исследования и развития.
@@ -1443,7 +1443,8 @@ UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionT
 Игровой сервер использует более старую версию игры
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
-Север недоступен.
+`[b]Проблема с интернет-подключением[/b]
+[br]Игровой сервер недоступен из-за нестабильного соединения с сетью или неверной маршрутизации вашего интернет-провайдера.`
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_MessageNoMods:
 На этом сервере не используются моды.

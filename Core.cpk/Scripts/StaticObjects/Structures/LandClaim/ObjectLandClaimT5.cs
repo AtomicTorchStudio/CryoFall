@@ -5,8 +5,10 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public class ObjectLandClaimT5 : ProtoObjectLandClaim
     {
@@ -35,6 +37,12 @@
                 color: LightColors.ElectricCold,
                 size: (6, 11),
                 positionOffset: (1, 1.9));
+        }
+
+        protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
+        {
+            base.ClientSetupRenderer(renderer);
+            renderer.DrawOrderOffsetY = 0.55;
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

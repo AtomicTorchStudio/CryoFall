@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class WorldMapResourceMarksSystem : ProtoSystem<WorldMapResourceMarksSystem>
     {
@@ -28,16 +29,24 @@
             Api.ValidateIsServer();
 
             sharedResourceMarksList.Add(
-                new WorldMapResourceMark(staticWorldObject.TilePosition,
+                new WorldMapResourceMark(SharedGetObjectCenterPosition(staticWorldObject),
                                          staticWorldObject.ProtoStaticWorldObject,
                                          serverSpawnTime));
+        }
+
+        private static Vector2Ushort SharedGetObjectCenterPosition(IStaticWorldObject staticWorldObject)
+        {
+            var position = staticWorldObject.TilePosition;
+            var layoutCenter = staticWorldObject.ProtoStaticWorldObject.Layout.Center.ToVector2Ushort();
+            return new Vector2Ushort((ushort)(position.X + layoutCenter.X),
+                                     (ushort)(position.Y + layoutCenter.Y));
         }
 
         public static void ServerRemoveMark(IStaticWorldObject staticWorldObject)
         {
             Api.ValidateIsServer();
             var protoStaticWorldObject = staticWorldObject.ProtoStaticWorldObject;
-            var position = staticWorldObject.TilePosition;
+            var position = SharedGetObjectCenterPosition(staticWorldObject);
 
             // find and remove the mark
             for (var index = 0; index < sharedResourceMarksList.Count; index++)
@@ -59,10 +68,10 @@
 
         public static int SharedCalculateTimeRemainsToClaimCooldownSeconds(IStaticWorldObject staticWorldObject)
         {
-            var tilePosition = staticWorldObject.TilePosition;
+            var position = SharedGetObjectCenterPosition(staticWorldObject);
             foreach (var mark in sharedResourceMarksList)
             {
-                if (mark.Position != tilePosition)
+                if (mark.Position != position)
                 {
                     continue;
                 }
@@ -71,19 +80,6 @@
             }
 
             return 0;
-        }
-
-        public static IEnumerable<WorldMapResourceMark> SharedEnumerateMarks()
-        {
-            if (sharedResourceMarksList == null)
-            {
-                yield break;
-            }
-
-            foreach (var entry in sharedResourceMarksList)
-            {
-                yield return entry;
-            }
         }
 
         public static double SharedCalculateTimeToClaimLimitRemovalSeconds(double markServerSpawnTime)
@@ -101,6 +97,37 @@
 
             var resultSeconds = StructureConstants.ResourceSpawnClaimingCooldownDuration - timeSinceSpawn;
             return Math.Max(resultSeconds, 0);
+        }
+
+        public static IEnumerable<WorldMapResourceMark> SharedEnumerateMarks()
+        {
+            if (sharedResourceMarksList == null)
+            {
+                yield break;
+            }
+
+            foreach (var entry in sharedResourceMarksList)
+            {
+                yield return entry;
+            }
+        }
+
+        public static bool SharedIsContainsMark(in WorldMapResourceMark mark)
+        {
+            if (sharedResourceMarksList == null)
+            {
+                return false;
+            }
+
+            foreach (var entry in sharedResourceMarksList)
+            {
+                if (mark.Equals(entry))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private ILogicObject ServerRemote_AcquireManagerInstance()

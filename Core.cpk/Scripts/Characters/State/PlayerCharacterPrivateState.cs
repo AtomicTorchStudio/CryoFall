@@ -89,6 +89,7 @@
         /// <summary>
         /// Used on PvE servers to despawn players who stay in offline for too long.
         /// </summary>
+        // TODO: rename to ServerLastOnlineTime in A23
         public double? ServerOfflineSinceTime { get; set; }
 
         [SyncToClient]

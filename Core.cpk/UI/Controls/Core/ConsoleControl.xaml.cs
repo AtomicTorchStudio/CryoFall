@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Services;
@@ -105,9 +106,14 @@
 
         public static void Toggle()
         {
-            if (!GeneralOptionDeveloperMode.IsEnabled)
+            if (!Api.IsEditor
+                && !ServerOperatorSystem.ClientIsOperator()
+                && !GeneralOptionDeveloperMode.IsEnabled)
             {
-                // developer mode off - close console if opened, never open it
+                // 1) Not Editor.
+                // 2) Player is not a server operator.
+                // 3) And developer mode is off.
+                // Close console if opened, never open it.
                 if (Instance != null)
                 {
                     Instance.IsDisplayed = false;

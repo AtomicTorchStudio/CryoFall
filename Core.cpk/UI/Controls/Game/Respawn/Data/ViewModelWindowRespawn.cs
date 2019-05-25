@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
@@ -33,6 +34,14 @@
 
             ClientComponentUpdateHelper.UpdateCallback += this.Update;
             PveSystem.ClientIsPvEChanged += this.RefreshMessage;
+
+            // Disable respawn buttons for 5 seconds.
+            // So player will not click too early
+            // and will pay attention to the respawn reasons.
+            this.IsRespawnButtonsEnabled = false;
+            ClientComponentTimersManager.AddAction(
+                delaySeconds: 4,
+                () => this.IsRespawnButtonsEnabled = true);
         }
 
         public bool CanRespawnAtBed { get; set; }
@@ -55,6 +64,8 @@
         public bool IsNewbiePvPdeath { get; private set; }
 
         public bool IsRegularDeath { get; private set; }
+
+        public bool IsRespawnButtonsEnabled { get; private set; }
 
         public string Message { get; private set; } = CoreStrings.WindowRespawn_Message;
 

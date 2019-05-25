@@ -11,32 +11,38 @@
     d:DataContext="{d:DesignInstance data:ViewModelChatEntryControl}"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data">
 
-    <TextBlock x:Name="TextBlock"
-               HorizontalAlignment="Stretch"
-               VerticalAlignment="Top"
-               Style="{StaticResource ChatLogTextBlockStyle}"
-               Foreground="{Binding Foreground}">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualStateGroup.Transitions>
-                    <VisualTransition From="Default" GeneratedDuration="0:0:0.5" To="Hidden" />
-                </VisualStateGroup.Transitions>
-                <VisualState x:Name="Default" />
-                <VisualState x:Name="Hidden">
-                    <Storyboard>
-                        <DoubleAnimationUsingKeyFrames
-                            Storyboard.TargetProperty="(TextElement.Foreground).(Brush.Opacity)"
-                            Storyboard.TargetName="TextBlock">
-                            <EasingDoubleKeyFrame Value="0" KeyTime="0" />
-                        </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames
-                            Storyboard.TargetProperty="(TextElement.Background).(Brush.Opacity)"
-                            Storyboard.TargetName="TextBlock">
-                            <EasingDoubleKeyFrame Value="0" KeyTime="0" />
-                        </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-    </TextBlock>
+    <Grid>
+        <TextBlock x:Name="TextBlock"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Top"
+                   Style="{StaticResource ChatLogTextBlockStyle}"
+                   Foreground="{Binding Foreground}"
+                   Padding="2,2,7,2">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="VisualStateGroup">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition From="Default" GeneratedDuration="0:0:0.5" To="Hidden" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Default" />
+                    <VisualState x:Name="Hidden">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(TextElement.Foreground).(Brush.Opacity)"
+                                Storyboard.TargetName="TextBlock">
+                                <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(TextElement.Background).(Brush.Opacity)"
+                                Storyboard.TargetName="TextBlock">
+                                <EasingDoubleKeyFrame Value="0" KeyTime="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </TextBlock>
+        <Control
+            Visibility="{Binding IsMouseOver, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}"
+            Style="{StaticResource ChatEntryOptionsButtonStyle}" />
+    </Grid>
 </ui:BaseUserControl>

@@ -1,9 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Decorations
 {
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.GameApi.Extensions;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     internal class ObjectDecorationStatuePragmium : ProtoObjectDecoration
@@ -18,6 +21,22 @@
         public override double ObstacleBlockDamageCoef => 1.0;
 
         public override float StructurePointsMax => 1000;
+
+        protected BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject)
+        {
+            return ClientLighting.CreateLightSourceSpot(
+                sceneObject,
+                color: LightColors.PragmiumLuminescenceSource.WithAlpha(0xAA),
+                size: (5, 11),
+                positionOffset: (0.5, 1.3));
+        }
+
+        protected override void ClientInitialize(ClientInitializeData data)
+        {
+            base.ClientInitialize(data);
+            data.ClientState.RendererLight = this.ClientCreateLightSource(
+                Client.Scene.GetSceneObject(data.GameObject));
+        }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

@@ -2679,6 +2679,8 @@
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Foreground" Value="{StaticResource TooltipForegroundBrush}" />
         <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+        <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Grid.IsSharedSizeScope" Value="true" />
         <Setter Property="Padding" Value="3" />
         <Setter Property="Template">
@@ -2687,7 +2689,8 @@
                     <Border x:Name="Border"
                             Background="{StaticResource TooltipBackgroundBrush}"
                             BorderBrush="{StaticResource TooltipBorderBrush}"
-                            BorderThickness="1"
+                            BorderThickness="{StaticResource TooltipBorderThickness}"
+                            CornerRadius="3"
                             Padding="{TemplateBinding Padding}">
                         <StackPanel IsItemsHost="True"
                                     KeyboardNavigation.DirectionalNavigation="Cycle" />
@@ -2698,12 +2701,14 @@
     </Style>
 
     <Style TargetType="{x:Type MenuItem}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="HorizontalContentAlignment"
                 Value="{Binding Path=HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="VerticalContentAlignment"
                 Value="{Binding Path=VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderThickness" Value="{StaticResource TooltipBorderThickness}" />
+        <!--<Setter Property="Padding" Value="0" />-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -2712,6 +2717,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Padding="1"
+                            CornerRadius="1"
                             UseLayoutRounding="True">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -2720,7 +2726,7 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIGTColumnGroup" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Grid x:Name="IconPanel" MinWidth="17">
+                            <Grid x:Name="IconPanel" MinWidth="0">
                                 <ContentPresenter Margin="4,0,6,0" x:Name="Icon" VerticalAlignment="Center"
                                                   ContentSource="Icon" />
                             </Grid>
@@ -2730,7 +2736,10 @@
                                       Data="M0,2 L0,4.8 L2.5,7.4 L7.1,2.8 L7.1,0 L2.5,4.6 z" />
                             </Grid>
 
-                            <ContentPresenter x:Name="HeaderHost" Grid.Column="1" Margin="{TemplateBinding Padding}"
+                            <!--Margin="{TemplateBinding Padding}"-->
+                            <ContentPresenter x:Name="HeaderHost" 
+                                              Grid.Column="1" 
+                                              Margin="2,0"
                                               ContentSource="Header" />
 
                             <TextBlock x:Name="InputGesture" Grid.Column="2" Text="{TemplateBinding InputGestureText}"

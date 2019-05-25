@@ -35,6 +35,7 @@
                 sceneObject,
                 Color.FromRgb(0xFF, 0x55, 0x22),
                 size: (3, 3),
+                logicalSize: 0,
                 positionOffset: (0.4, 0.4));
         }
 

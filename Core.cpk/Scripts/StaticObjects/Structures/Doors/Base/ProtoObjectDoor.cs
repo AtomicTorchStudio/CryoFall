@@ -48,7 +48,9 @@
 
         private readonly Lazy<ProceduralTexture> lazyVerticalDoorBlueprintTexture;
 
-        private double doorAutoOpenRadiusSqr;
+        private BoundsDouble doorOpenCheckBoundsHorizontal;
+
+        private BoundsDouble doorOpenCheckBoundsVertical;
 
         protected ProtoObjectDoor()
         {
@@ -89,8 +91,6 @@
                 });
         }
 
-        public virtual Vector2D DoorOpenCheckOffset { get; } = (0.5, 0.1);
-
         public virtual int DoorSizeTiles => 1;
 
         public virtual bool HasOwnersList => true;
@@ -123,8 +123,6 @@
         protected ITextureAtlasResource AtlasTextureHorizontal { get; set; }
 
         protected ITextureAtlasResource AtlasTextureVertical { get; set; }
-
-        protected virtual double DoorAutoOpenRadius => 1.6; // radius at which the door will open to the owner
 
         protected virtual double DoorOpenCloseAnimationDuration => 0.2f;
 
@@ -382,6 +380,15 @@
             return this.AtlasTextureHorizontal;
         }
 
+        protected virtual void PrepareOpeningBounds(out BoundsDouble horizontal, out BoundsDouble vertical)
+        {
+            var distance = 1.6;
+            horizontal = vertical = new BoundsDouble(minX: -distance,
+                                                     minY: -distance,
+                                                     maxX: distance,
+                                                     maxY: distance);
+        }
+
         protected virtual void PrepareProtoDoor()
         {
         }
@@ -389,7 +396,8 @@
         protected sealed override void PrepareProtoStaticWorldObject()
         {
             base.PrepareProtoStaticWorldObject();
-            this.doorAutoOpenRadiusSqr = this.DoorAutoOpenRadius * this.DoorAutoOpenRadius;
+            this.PrepareOpeningBounds(out this.doorOpenCheckBoundsHorizontal,
+                                      out this.doorOpenCheckBoundsVertical);
             this.PrepareProtoDoor();
         }
 
@@ -590,6 +598,30 @@
             this.SharedCreateDoorPhysics(data.PhysicsBody, isHorizontalDoor, isOpened);
         }
 
+        protected BoundsDouble SharedGetDoorOpenBounds(bool isHorizontalDoor)
+        {
+            return isHorizontalDoor
+                       ? this.doorOpenCheckBoundsHorizontal
+                       : this.doorOpenCheckBoundsVertical;
+        }
+
+        protected virtual BoundsDouble SharedGetDoorOpeningBounds(IStaticWorldObject worldObject)
+        {
+            var isHorizontalDoor = GetPublicState(worldObject).IsHorizontalDoor;
+            var objectOpeningBounds = this.SharedGetDoorOpenBounds(isHorizontalDoor);
+            var offset = isHorizontalDoor
+                             ? new Vector2D(0.5, 0.1)
+                             : new Vector2D(0.5, 0.5);
+
+            var tilePosition = worldObject.TilePosition;
+            var boundsOffset = objectOpeningBounds.Offset;
+            return new BoundsDouble(
+                new Vector2D(
+                    boundsOffset.X + offset.X + tilePosition.X,
+                    boundsOffset.Y + offset.Y + tilePosition.Y),
+                objectOpeningBounds.Size);
+        }
+
         private void ClientSetupDoor(ClientInitializeData data)
         {
             var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
@@ -668,8 +700,7 @@
                 return false;
             }
 
-            var objectCenterPosition = worldObject.TilePosition.ToVector2D()
-                                       + this.DoorOpenCheckOffset;
+            var objectOpeningBounds = this.SharedGetDoorOpeningBounds(worldObject);
 
             using (var charactersNearby = Api.Shared.GetTempList<ICharacter>())
             {
@@ -688,8 +719,7 @@
                         continue;
                     }
 
-                    if ((character.Position - objectCenterPosition).LengthSquared
-                        > this.doorAutoOpenRadiusSqr)
+                    if (!objectOpeningBounds.Contains(character.Position))
                     {
                         // too far from this door
                         continue;

@@ -238,8 +238,8 @@
             // try refresh
             this.CommandRefresh?.Execute(this);
             DialogWindow.ShowDialog(
-                DialogCannotConnect_Title,
-                DialogCannotConnect_Message,
+                title: null, //DialogCannotConnect_Title,
+                text: DialogCannotConnect_Message,
                 closeByEscapeKey: true,
                 zIndexOffset: 100000);
         }

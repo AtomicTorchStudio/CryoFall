@@ -13,7 +13,7 @@
 
         public override string Name => "Explore biomes—part three";
 
-        public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
+        public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
         protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
         {

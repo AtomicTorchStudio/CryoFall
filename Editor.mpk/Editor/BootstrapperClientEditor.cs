@@ -54,6 +54,11 @@
                                   EditorButton.MakeQuickSavegame,
                                   EditorToolMap.ClientSaveSavegameQuick);
 
+            if (Api.Shared.IsDebug)
+            {
+                return;
+            }
+
             var sessionStorage = Client.Storage.GetSessionStorage("EditorWelcome");
             if (sessionStorage.TryLoad(out bool isWelcomeMessageDisplayed)
                 && isWelcomeMessageDisplayed)

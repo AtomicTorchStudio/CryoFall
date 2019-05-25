@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
@@ -85,7 +86,8 @@
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
         {
-            return base.SharedCanInteract(character, worldObject, writeToLog)
+            return PveSystem.SharedValidateInteractionIsNotForbidden(character, worldObject, writeToLog)
+                   && base.SharedCanInteract(character, worldObject, writeToLog)
                    && (CreativeModeSystem.SharedIsInCreativeMode(character)
                        || WorldObjectAccessModeSystem.SharedHasAccess(character, worldObject, writeToLog));
         }

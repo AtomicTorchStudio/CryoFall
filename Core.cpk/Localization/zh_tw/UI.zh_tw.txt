@@ -29,7 +29,7 @@ UI/CoreStrings@Button_Continue:
 繼續
 
 UI/CoreStrings@Button_Deny:
- 拒絕 
+拒絕
 
 UI/CoreStrings@Button_Drain:
 倒掉
@@ -564,7 +564,7 @@ UI/CoreStrings@OptionsInput_ContainerMenuCategory:
 容器選單
 
 UI/CoreStrings@PartyManagement_Button_CreateParty:
- 創建隊伍
+創建隊伍
 
 UI/CoreStrings@PartyManagement_Button_Invite:
 邀請
@@ -616,8 +616,7 @@ UI/CoreStrings@Performance_Suggestions:
 [br]然後，為了提高性能，您可以嘗試：
 [*] 更新顯卡驅動程序。
 [*] 在遊戲運行時關閉其他應用程序（尤其是瀏覽器，因為它們即使在最小化時也會占用大量系統資源）。
-[*] 如果所有其他方法都失敗了 - 降低視頻選項中的圖形質量。“
-`
+[*] 如果所有其他方法都失敗了 - 降低視頻選項中的圖形質量。“`
 
 UI/CoreStrings@Performance_VRAM_SeverityRed:
 `“你的GPU的顯存容量不足以存儲所有必需的材質，所以它必須每幀都從內存中復制它們。因此，你可能會遇到嚴重的卡頓和降低的幀速率。
@@ -1139,7 +1138,7 @@ UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleNotConnected:
 未連接
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatCopyMessageFormat:
-從 @{0}: {1}
+從 @{0}:　{1}
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 [開發者]
@@ -1447,7 +1446,8 @@ UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionT
 這個遊戲服務器正在運行較舊版本的遊戲
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
-服務器無法訪問。
+`[b]網路連接出錯[/b]
+[br]無法連接至遊戲伺服器，這可能是由於網路狀況不佳或網路提供商路由失敗造成的。`
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_MessageNoMods:
 此服務器上沒有使用mod。

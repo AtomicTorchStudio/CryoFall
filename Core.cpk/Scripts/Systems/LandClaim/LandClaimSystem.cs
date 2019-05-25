@@ -378,8 +378,8 @@
 
         private static readonly Lazy<Vector2Ushort> DepositResourceLandClaimRestrictionSize
             = new Lazy<Vector2Ushort>(
-                () => new Vector2Ushort((ushort)(2 * MaxLandClaimSizeWithGraceArea.Value),
-                                        (ushort)(2 * MaxLandClaimSizeWithGraceArea.Value)));
+                () => new Vector2Ushort((ushort)(8 + 2 * MaxLandClaimSizeWithGraceArea.Value),
+                                        (ushort)(8 + 2 * MaxLandClaimSizeWithGraceArea.Value)));
 
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;

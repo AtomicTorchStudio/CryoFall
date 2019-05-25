@@ -1136,7 +1136,7 @@ UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleNotConnected:
 연결되지 않음
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatCopyMessageFormat:
-@{0}님의 메시지: {1}
+@{0}　님의 메시지: {1}
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 [개발자]
@@ -1444,7 +1444,8 @@ UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionT
 이 게임 서버는 구버전에서 실행됩니다
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
-서버에 접속할 수 없습니다.
+`[b]인터넷 연결 오류[/b]
+[br]네트워크 연결이 불안정하거나 인터넷 서비스 제공자의 라우팅이 실패하여 게임 서버에 연결할 수 없습니다.`
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_MessageNoMods:
 이 서버에서 사용되는 모드 없음.

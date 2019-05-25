@@ -69,8 +69,7 @@
                     <Control Style="{StaticResource ControlVerticalSeparator}" Grid.Column="1" />
 
                     <Grid Grid.Column="2"
-                          DataContext="{Binding ViewModelStructureUpgrade}"
-                          Visibility="{Binding DataContext, Converter={StaticResource NullToVisibilityConverter}, RelativeSource={RelativeSource Self}}"
+                          Visibility="{Binding ViewModelStructureUpgrade, Converter={StaticResource NullToVisibilityConverter}}"
                           VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -80,7 +79,7 @@
 
                         <!-- Big icon (structure preview) -->
                         <Rectangle
-                            Fill="{Binding ViewModelUpgradedStructure.Icon}"
+                            Fill="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.Icon}"
                             Width="96"
                             Height="96"
                             HorizontalAlignment="Left"
@@ -97,12 +96,12 @@
 
                             <!-- Title -->
                             <TextBlock Grid.Row="1"
-                                       Text="{Binding ViewModelUpgradedStructure.Title}"
+                                       Text="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.Title}"
                                        Style="{StaticResource TextBlockTitleStyle}" />
 
                             <!-- Description text (for upgrade) -->
                             <TextBlock Grid.Row="2"
-                                       Text="{Binding ViewModelUpgradedStructure.DescriptionUpgrade}"
+                                       Text="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.DescriptionUpgrade}"
                                        Style="{StaticResource TextBlockDescriptionStyle}" />
 
                             <!-- Item requirements display -->
@@ -121,9 +120,9 @@
 
                                 <Grid HorizontalAlignment="Center">
                                     <Grid
-                                        Visibility="{Binding DataContext.IsOwner, ElementName=WindowMenuWithInventory, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}}">
                                         <Grid MinWidth="130"
-                                              Visibility="{Binding IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                                              Visibility="{Binding ViewModelStructureUpgrade.IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition />
@@ -139,7 +138,7 @@
 
                                             <!-- Display icons for required items (total) -->
                                             <controls:RequiredItemsPanelControl Grid.Row="1"
-                                                                                Items="{Binding RequiredItems}"
+                                                                                Items="{Binding ViewModelStructureUpgrade.RequiredItems}"
                                                                                 CountMultiplier="1"
                                                                                 IconSize="40"
                                                                                 FontSize="11"
@@ -148,11 +147,12 @@
 
                                         <!-- Text: Upgrading this structure requires learning relevant technology. -->
                                         <TextBlock
+                                            Grid.Row="0"
                                             Text="{x:Static loc:CoreStrings.WindowLandClaim_UpgradingRequiresLearningTech}"
                                             Foreground="{StaticResource BrushColor6}"
                                             FontWeight="Bold"
                                             FontSize="11"
-                                            Visibility="{Binding IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}}"
+                                            Visibility="{Binding ViewModelStructureUpgrade.IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}}"
                                             HorizontalAlignment="Stretch"
                                             Margin="3,0"
                                             TextWrapping="Wrap"
@@ -166,7 +166,7 @@
                                         Foreground="{StaticResource BrushColor6}"
                                         FontWeight="Bold"
                                         FontSize="11"
-                                        Visibility="{Binding DataContext.IsOwner, ElementName=WindowMenuWithInventory, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                        Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
                                         HorizontalAlignment="Stretch"
                                         Margin="3,0"
                                         TextWrapping="Wrap"
@@ -176,7 +176,6 @@
 
                             <!-- Upgrade button -->
                             <ContentControl Grid.Row="4"
-                                            DataContext="{Binding DataContext, ElementName=WindowMenuWithInventory}"
                                             Background="Transparent">
                                 <Button Content="{x:Static loc:CoreStrings.Button_Upgrade}"
                                         Command="{Binding CommandUpgrade}"

@@ -29,7 +29,7 @@ UI/CoreStrings@Button_Continue:
 继续
 
 UI/CoreStrings@Button_Deny:
- 拒绝 
+拒绝
 
 UI/CoreStrings@Button_Drain:
 倒掉
@@ -564,7 +564,7 @@ UI/CoreStrings@OptionsInput_ContainerMenuCategory:
 容器菜单
 
 UI/CoreStrings@PartyManagement_Button_CreateParty:
- 创建队伍
+创建队伍
 
 UI/CoreStrings@PartyManagement_Button_Invite:
 邀请
@@ -1138,7 +1138,7 @@ UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleNotConnected:
 未连接
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatCopyMessageFormat:
-从 @{0}: {1}
+从 @{0}:　{1}
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 [开发者]
@@ -1446,7 +1446,8 @@ UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionT
 这个游戏服务器正在运行较旧版本的游戏
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
-服务器无法访问。
+`[b]网络连接故障[/b]
+[br]无法连接至游戏服务器，这可能是由于网络状况不佳或网络提供商路由失败造成的。`
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_MessageNoMods:
 此服务器上没有使用mod。

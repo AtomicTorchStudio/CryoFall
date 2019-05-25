@@ -1442,7 +1442,8 @@ UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionT
 Dieser Spiel-Server läuft mit einer älteren Version des Spiels
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
-Kein Zugriff auf den Server möglich.
+`[b]Verbindungsproblem[/b]
+[br]Der Game-Server kann aufgrund einer schlechten Netzwerkverbindung oder fehlgeschlagenem Routing deines Internetanbieters nicht erreicht werden.`
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_MessageNoMods:
 Dieser Server verwendet keine Mods.

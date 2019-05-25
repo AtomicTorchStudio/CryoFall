@@ -29,6 +29,7 @@
                 sceneObject,
                 color: LightColors.BioLuminescencePink,
                 size: 5,
+                logicalSize: 2.5,
                 positionOffset: (0.5, 0.5));
 
             void RefreshLightSourceSpot()

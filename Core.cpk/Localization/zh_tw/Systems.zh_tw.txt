@@ -67,10 +67,10 @@ Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 您被服務器管理員禁止參與聊天。您的禁令在：{0}過期
 
 Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
-{0}離開了遊戲
+{0}　離開了遊戲
 
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
-{0}加入了遊戲
+{0}　加入了遊戲
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
 您確定要{0} {1}嗎？
@@ -252,7 +252,7 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDam
 只能在襲擊時間段內破壞任何土地所有範圍內的建築。
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Title:
- 無傷害
+無傷害
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
 劫掠期已結束。

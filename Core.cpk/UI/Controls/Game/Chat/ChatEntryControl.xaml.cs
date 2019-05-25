@@ -3,15 +3,19 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public partial class ChatEntryControl : BaseUserControl
     {
+        private static double lastContextMenuCloseFrameTime;
+
         private ChatEntry chatEntry;
 
         private ChatRoomControl chatRoomControl;
@@ -83,7 +87,7 @@
             this.UpdateViewModel();
             VisualStateManager.GoToElementState(this.textBlock, "Default", false);
 
-            this.MouseRightButtonUp += this.MouseRightButtonUpHandler;
+            this.MouseUp += this.MouseUpHandler;
             this.MouseLeave += this.MouseLeaveHandler;
             this.IsHitTestVisibleChanged += this.IsHitTestVisibleChangedHandler;
         }
@@ -93,9 +97,17 @@
             base.OnUnloaded();
             this.DestroyViewModel();
 
-            this.MouseRightButtonUp -= this.MouseRightButtonUpHandler;
+            this.MouseUp -= this.MouseUpHandler;
             this.MouseLeave -= this.MouseLeaveHandler;
             this.IsHitTestVisibleChanged -= this.IsHitTestVisibleChangedHandler;
+        }
+
+        private void ContextMenuClosedHandler(object sender, RoutedEventArgs e)
+        {
+            var contextMenu = (ContextMenu)sender;
+            contextMenu.Closed -= this.ContextMenuClosedHandler;
+            this.ContextMenu = null;
+            lastContextMenuCloseFrameTime = Api.Client.Core.ClientRealTime;
         }
 
         private void DestroyContextMenu()
@@ -136,15 +148,31 @@
             this.DestroyContextMenu();
         }
 
-        private void MouseRightButtonUpHandler(object sender, MouseEventArgs e)
+        private void MouseUpHandler(object sender, MouseEventArgs e)
         {
             if (!this.IsHitTestVisible)
             {
                 return;
             }
 
+            var contextMenu = this.ContextMenu;
+            if (contextMenu != null
+                && contextMenu.IsOpen)
+            {
+                // close current context menu
+                contextMenu.IsOpen = false;
+                this.ContextMenu = null;
+                return;
+            }
+
+            if (lastContextMenuCloseFrameTime + 0.2 >= Api.Client.Core.ClientRealTime)
+            {
+                // just closed a context menu
+                return;
+            }
+
             // create new context menu
-            var contextMenu = new ContextMenu();
+            contextMenu = new ContextMenu();
             var contextMenuItems = contextMenu.Items;
 
             if (this.viewModel.VisibilityCanMentionOrSendPrivateMessage == Visibility.Visible)
@@ -209,6 +237,15 @@
             }
 
             this.ContextMenu = contextMenu;
+
+            contextMenu.Placement = PlacementMode.Relative;
+            var target = sender as UIElement;
+            contextMenu.PlacementTarget = target;
+            var position = e.GetPosition(target);
+            contextMenu.HorizontalOffset = position.X;
+            contextMenu.VerticalOffset = position.Y;
+            contextMenu.IsOpen = true;
+            contextMenu.Closed += this.ContextMenuClosedHandler;
         }
 
         private void UpdateViewModel()

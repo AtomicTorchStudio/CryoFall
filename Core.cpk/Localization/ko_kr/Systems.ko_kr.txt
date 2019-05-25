@@ -67,10 +67,10 @@ Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 서버 관리자로부터 채팅에 참가하는 것을 금지 당했습니다. 제재 해제까지 남은 시간: {0}
 
 Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
-{0}님이 게임을 떠났습니다
+{0}　님이 게임을 떠났습니다
 
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
-{0}님이 게임에 들어왔습니다
+{0}　님이 게임에 들어왔습니다
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
 {1}님을 {0}하시겠습니까?

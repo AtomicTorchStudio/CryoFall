@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -26,9 +25,11 @@
 
         private const double MinDistanceWhenRespawnSqr = MinDistanceWhenRespawn * MinDistanceWhenRespawn;
 
-        private const int SpawnInZoneAttempts = 5000;
+        private const int SpawnInZoneAttempts = 2000;
 
-        private static ZoneSpecialPlayerSpawn protoSpawnZone;
+        private static IProtoZone protoSpawnZone1;
+
+        private static IProtoZone protoSpawnZone2;
 
         private static IWorldServerService worldService;
 
@@ -39,18 +40,48 @@
             var random = Api.Random;
             Vector2Ushort? spawnPosition = null;
 
-            var spawnZone = protoSpawnZone.ServerZoneInstance;
-            if (!spawnZone.IsEmpty)
+            var spawnZone1 = protoSpawnZone1.ServerZoneInstance;
+            var spawnZone2 = protoSpawnZone2.ServerZoneInstance;
+
+            if (spawnZone2.IsEmpty)
+            {
+                spawnZone2 = spawnZone1;
+            }
+            else if (spawnZone1.IsEmpty)
+            {
+                spawnZone1 = spawnZone2;
+            }
+
+            if (!spawnZone1.IsEmpty
+                || !spawnZone2.IsEmpty)
             {
                 // TODO: this could be slow and might require distributing across the multiple frames
                 if (isRespawn)
                 {
-                    spawnPosition = TryFindZoneSpawnPosition(character, spawnZone, random, isRespawn: true);
+                    spawnPosition = TryFindZoneSpawnPosition(character,
+                                                             spawnZone1,
+                                                             spawnZone2,
+                                                             random,
+                                                             isRespawn: true);
                 }
 
                 if (!spawnPosition.HasValue)
                 {
-                    spawnPosition = TryFindZoneSpawnPosition(character, spawnZone, random, isRespawn: false);
+                    spawnPosition = TryFindZoneSpawnPosition(character,
+                                                             spawnZone1,
+                                                             spawnZone2,
+                                                             random,
+                                                             isRespawn: false);
+                }
+
+                if (!spawnPosition.HasValue)
+                {
+                    // try only with spawn zone 2
+                    spawnPosition = TryFindZoneSpawnPosition(character,
+                                                             spawnZone2,
+                                                             spawnZone2,
+                                                             random,
+                                                             isRespawn: false);
                 }
             }
 
@@ -89,7 +120,8 @@
         public static void Setup(IServerConfiguration serverConfiguration)
         {
             worldService = Api.Server.World;
-            protoSpawnZone = Api.GetProtoEntity<ZoneSpecialPlayerSpawn>();
+            protoSpawnZone1 = Api.GetProtoEntity<ZoneSpecialPlayerSpawn>();
+            protoSpawnZone2 = Api.GetProtoEntity<ZoneTemperateForest>();
             serverConfiguration.SetupPlayerCharacterSpawnCallbackMethod(
                 character => SpawnPlayer(character, isRespawn: false));
         }
@@ -103,7 +135,8 @@
 
         private static Vector2Ushort? TryFindZoneSpawnPosition(
             ICharacter character,
-            IServerZone spawnZone,
+            IServerZone spawnZone1,
+            IServerZone spawnZone2,
             Random random,
             bool isRespawn)
         {
@@ -117,6 +150,27 @@
                 }
 
                 characterDeathPosition = privateState.LastDeathPosition;
+            }
+
+            IServerZone spawnZone;
+            if (isRespawn
+                && spawnZone1.IsContainsPosition(characterDeathPosition))
+            {
+                spawnZone = spawnZone1;
+            }
+            else if (isRespawn
+                     && spawnZone2.IsContainsPosition(characterDeathPosition))
+            {
+                spawnZone = spawnZone2;
+            }
+            else
+            {
+                // Select random spawn zone.
+                // As a temporary measure for A23 version,
+                // we use zone 2 (temperate forest biome) more often.
+                spawnZone = random.Next(0, 4) == 0
+                                ? spawnZone1
+                                : spawnZone2;
             }
 
             for (var attempt = 0; attempt < SpawnInZoneAttempts; attempt++)

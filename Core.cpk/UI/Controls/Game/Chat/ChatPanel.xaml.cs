@@ -8,6 +8,7 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
@@ -73,8 +74,12 @@
                 }
                 else
                 {
-                    this.openedChatInputContext?.Stop();
+                    // stop catching input after a short delay to prevent firing weapon on chat close
+                    var clientInputContext = this.openedChatInputContext;
                     this.openedChatInputContext = null;
+                    ClientComponentTimersManager.AddAction(
+                            delaySeconds: 0.1,
+                            action: () => clientInputContext?.Stop());
 
                     foreach (var chatRoomTab in this.chatRooms.Values)
                     {

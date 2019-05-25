@@ -87,6 +87,7 @@
                 timeRemains = 1;
             }
 
+            tilePosition -= Api.Client.World.WorldBounds.Offset;
             return string.Format(Notification_NewResourceAvailable_MessageFormat,
                                  protoResource.Name,
                                  tilePosition.X,
@@ -101,10 +102,15 @@
                 return;
             }
 
+            if (!WorldMapResourceMarksSystem.SharedIsContainsMark(mark))
+            {
+                notification.Hide(quick: true);
+                return;
+            }
+
             var protoResource = mark.ProtoWorldObject;
-            var tilePosition = mark.Position;
-            var timeRemains =
-                (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(mark.ServerSpawnTime);
+            var timeRemains = (int)WorldMapResourceMarksSystem
+                .SharedCalculateTimeToClaimLimitRemovalSeconds(mark.ServerSpawnTime);
             if (timeRemains <= 0)
             {
                 notification.Hide(quick: false);
@@ -112,7 +118,7 @@
             }
 
             notification.ViewModel.Message = GetUpdatedRecentResourceNotificationText(protoResource,
-                                                                                      tilePosition,
+                                                                                      mark.Position,
                                                                                       timeRemains);
 
             // schedule recursive update in a second
@@ -134,9 +140,7 @@
                 return;
             }
 
-            var worldPosition = mark.Position.ToVector2D()
-                                + protoResource.Layout.Center;
-            var canvasPosition = this.worldMapController.WorldToCanvasPosition(worldPosition);
+            var canvasPosition = this.worldMapController.WorldToCanvasPosition(mark.Position.ToVector2D());
             Canvas.SetLeft(mapControl, canvasPosition.X);
             Canvas.SetTop(mapControl, canvasPosition.Y);
             Panel.SetZIndex(mapControl, 16);
@@ -167,13 +171,10 @@
             }
 
             // notify player about the new resource
-            var tilePosition = worldPosition.ToVector2Ushort()
-                               - Api.Client.World.WorldBounds.Offset;
-
             var notification = NotificationSystem.ClientShowNotification(
                 title: Notification_NewResourceAvailable_Title,
                 message: GetUpdatedRecentResourceNotificationText(protoResource,
-                                                                  tilePosition,
+                                                                  mark.Position,
                                                                   timeRemains),
                 icon: protoResource.Icon,
                 autoHide: false);

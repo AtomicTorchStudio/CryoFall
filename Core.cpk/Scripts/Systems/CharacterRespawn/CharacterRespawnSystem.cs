@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Beds;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -164,6 +165,13 @@
 
             var cooldownDuration = ((IProtoObjectBed)bedObject.ProtoStaticWorldObject)
                 .RespawnCooldownDurationSeconds;
+
+            if (NewbieProtectionSystem.SharedIsNewbie(character))
+            {
+                // respawn cooldown is much shorter for newbies
+                cooldownDuration /= 24.0;
+            }
+
             var cooldownRemainsSeconds = lastRespawnTime + cooldownDuration - Server.Game.FrameTime;
             return Math.Max(0, (int)Math.Round(cooldownRemainsSeconds));
         }

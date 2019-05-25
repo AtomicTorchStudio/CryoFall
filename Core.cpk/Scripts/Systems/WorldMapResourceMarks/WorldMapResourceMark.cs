@@ -12,6 +12,7 @@
         : IRemoteCallParameter,
           IEquatable<WorldMapResourceMark>
     {
+        /// <param name="position">Position of the world object center tile in the world.</param>
         public WorldMapResourceMark(
             Vector2Ushort position,
             IProtoStaticWorldObject protoWorldObject,
@@ -22,6 +23,9 @@
             this.ServerSpawnTime = serverSpawnTime;
         }
 
+        /// <summary>
+        /// Position of the world object center tile in the world.
+        /// </summary>
         public Vector2Ushort Position { get; }
 
         public IProtoStaticWorldObject ProtoWorldObject { get; }

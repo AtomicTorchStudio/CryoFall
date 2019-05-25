@@ -709,10 +709,14 @@
             Server.World.DestroyObject(gameObject);
         }
 
-        protected override void SharedCreatePhysics(CreatePhysicsData data)
+        /// <summary>
+        /// Do not override the physics definition as otherwise close players
+        /// might stuck in this land claim building after the upgrade.
+        /// </summary>
+        protected sealed override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            const double width = 1.5,
-                         height = 1.1,
+            const double width = 1.15,
+                         height = 1,
                          offsetX = (2 - width) / 2,
                          offsetY = 0.6;
 

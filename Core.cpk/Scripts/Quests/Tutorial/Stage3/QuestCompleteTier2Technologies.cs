@@ -20,7 +20,7 @@
 
         public override string Name => "Mastering technologies—part two";
 
-        public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
+        public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
         protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
         {

@@ -69,9 +69,16 @@
                     $"Character cannot interact with {worldObject} - not the land owner.",
                     character);
 
-                this.CallClient(
-                    character,
-                    _ => _.ClientRemote_OnCannotInteract(worldObject));
+                if (IsClient)
+                {
+                    this.ClientRemote_OnCannotInteract(worldObject);
+                }
+                else
+                {
+                    this.CallClient(
+                        character,
+                        _ => _.ClientRemote_OnCannotInteract(worldObject));
+                }
             }
 
             return false;
