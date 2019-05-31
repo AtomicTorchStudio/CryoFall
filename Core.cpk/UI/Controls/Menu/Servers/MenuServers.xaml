@@ -117,15 +117,20 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                            <TextBlock Text="{Binding ViewModelServerInfo.Title}" FontSize="16" FontWeight="Bold"
+                            <TextBlock Text="{Binding ViewModelServerInfo.Title}"
+                                       FontSize="16"
+                                       FontWeight="Bold"
                                        TextWrapping="Wrap"
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center"
                                        Margin="0,5,0,7" />
 
                             <Grid>
-                                <Border CornerRadius="1" HorizontalAlignment="Center"
+                                <Border CornerRadius="1" 
+                                        HorizontalAlignment="Center"
                                         Padding="2"
                                         BorderThickness="1"
-                                        BorderBrush="{StaticResource WidgetBorderBrush}">
+                                        BorderBrush="{StaticResource BrushColorAlt2}">
                                     <Rectangle
                                         Width="160"
                                         Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
@@ -234,14 +239,28 @@
                                     Focusable="False" />
 
                             <!-- Text: Refresh Server -->
-                            <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_RefreshServer}"
-                                    Margin="0,5,0,0"
-                                    HorizontalAlignment="Stretch"
-                                    Command="{Binding ViewModelServerInfo.CommandRefresh}"
-                                    CommandParameter="{Binding ViewModelServerInfo}"
-                                    Visibility="{Binding ViewModelServerInfo.RefreshButtonVisibility}"
-                                    Style="{StaticResource MainMenuButtonStyle}" 
-                                    Focusable="False" />
+                            <Button
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Stretch"
+                                Command="{Binding ViewModelServerInfo.CommandRefresh}"
+                                CommandParameter="{Binding ViewModelServerInfo}"
+                                Visibility="{Binding ViewModelServerInfo.RefreshButtonVisibility}"
+                                Style="{StaticResource MainMenuButtonStyle}"
+                                Focusable="False">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Path Fill="White"
+                                              Data="{StaticResource IconGeometryPathRefresh}"
+                                              Stretch="Uniform"
+                                              Width="20"
+                                              Height="20"
+                                              Margin="0,0,6,0"
+                                              VerticalAlignment="Center" />
+                                        <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_Button_RefreshServer}"
+                                                   VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
 
                             <!-- Text: Remove Server -->
                             <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_RemoveServer}"
@@ -420,12 +439,26 @@
                                 Focusable="False" />
 
                         <!-- Text: Refresh All -->
-                        <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_RefreshAll}"
-                                Command="{Binding CommandRefreshAll}"
-                                HorizontalAlignment="Stretch"
-                                Margin="0,5,0,0"
-                                Style="{StaticResource MainMenuButtonStyle}"
-                                Focusable="False" />
+                        <Button
+                            Command="{Binding CommandRefreshAll}"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,5,0,0"
+                            Style="{StaticResource MainMenuButtonStyle}"
+                            Focusable="False">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Fill="White"
+                                          Data="{StaticResource IconGeometryPathRefresh}"
+                                          Stretch="Uniform"
+                                          Width="20"
+                                          Height="20"
+                                          Margin="0,0,6,0"
+                                          VerticalAlignment="Center" />
+                                    <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_Button_RefreshAll}"
+                                               VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
 
                     </StackPanel>
                 </Grid>

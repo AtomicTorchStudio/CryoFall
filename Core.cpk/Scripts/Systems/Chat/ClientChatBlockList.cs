@@ -70,7 +70,8 @@
                                             characterName);
                 if (block)
                 {
-                    message += Environment.NewLine + DialogBlockPlayer_HowToUnblockLater;
+                    // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                    message += "[br]" + DialogBlockPlayer_HowToUnblockLater;
                 }
 
                 DialogWindow.ShowDialog(

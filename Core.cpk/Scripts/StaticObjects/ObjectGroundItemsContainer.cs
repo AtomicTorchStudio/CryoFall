@@ -113,14 +113,19 @@
 
                 countToDrop = Math.Min(countToDrop, itemToDrop.Count);
 
+                var obstaclesOnTheWay = false;
                 if (!dropTilePosition.HasValue
                     || !SharedIsWithinInteractionDistance(
                         character,
-                        dropTilePosition.Value))
+                        dropTilePosition.Value,
+                        out obstaclesOnTheWay))
                 {
-                    NotificationSystem.ClientShowNotification(NotificationNoFreeSpaceToDrop,
-                                                              color: NotificationColor.Bad,
-                                                              icon: TextureResourceSack);
+                    NotificationSystem.ClientShowNotification(
+                        obstaclesOnTheWay
+                            ? CoreStrings.Notification_ObstaclesOnTheWay
+                            : NotificationNoFreeSpaceToDrop,
+                        color: NotificationColor.Bad,
+                        icon: TextureResourceSack);
                     return;
                 }
             }
@@ -128,12 +133,16 @@
             var tilePosition = dropTilePosition.Value;
             if (!SharedIsWithinInteractionDistance(
                     character,
-                    tilePosition))
+                    tilePosition,
+                    out var obstaclesOnTheWay2))
             {
-                NotificationSystem.ClientShowNotification(CoreStrings.Notification_TooFar,
-                                                          NotificationCannotDropItemThere,
-                                                          NotificationColor.Bad,
-                                                          TextureResourceSack);
+                NotificationSystem.ClientShowNotification(
+                    obstaclesOnTheWay2
+                        ? CoreStrings.Notification_ObstaclesOnTheWay
+                        : CoreStrings.Notification_TooFar,
+                    NotificationCannotDropItemThere,
+                    NotificationColor.Bad,
+                    TextureResourceSack);
                 return;
             }
 
@@ -255,7 +264,7 @@
             // collect neighbor tiles list which are accessible by the player
             var neighborTiles = startTile.EightNeighborTiles
                                          .SelectMany(t => t.EightNeighborTiles)
-                                         .Where(t => SharedIsWithinInteractionDistance(character, t.Position))
+                                         .Where(t => SharedIsWithinInteractionDistance(character, t.Position, out _))
                                          .OrderBy(t => t.Position.TileSqrDistanceTo(startTile.Position))
                                          .Distinct()
                                          .ToList();
@@ -509,10 +518,11 @@
 
             if (!SharedIsWithinInteractionDistance(
                     character,
-                    tilePosition))
+                    tilePosition,
+                    out _))
             {
                 Logger.Error(
-                    $"Cannot drop item: {item} - character is too far from the requested tile position.",
+                    $"Cannot drop item: {item} - character is too far from the requested tile position or there are obstacles on the way.",
                     character);
                 return null;
             }
@@ -597,7 +607,7 @@
             // which is automatically displayed when there are more than 4 items
             if (containerGround.OccupiedSlotsCount <= 4
                 && !Api.Client.Input.IsKeyHeld(InputKey.Control, evenIfHandled: true)
-                && !Api.Client.Input.IsKeyHeld(InputKey.Alt, evenIfHandled: true))
+                && !Api.Client.Input.IsKeyHeld(InputKey.Alt,     evenIfHandled: true))
             {
                 // try pickup all the items
                 var result = currentPlayerCharacter.ProtoCharacter.ClientTryTakeAllItems(
@@ -720,7 +730,10 @@
             InteractableStaticWorldObjectHelper.ClientStartInteract(objectGroundContainer);
         }
 
-        private static bool SharedIsWithinInteractionDistance(ICharacter character, Vector2Ushort tilePosition)
+        private static bool SharedIsWithinInteractionDistance(
+            ICharacter character,
+            Vector2Ushort tilePosition,
+            out bool obstaclesOnTheWay)
         {
             var interactionAreaShape = character.PhysicsBody.Shapes.FirstOrDefault(
                 s => s.CollisionGroup == CollisionGroups.CharacterInteractionArea);
@@ -728,6 +741,7 @@
             if (interactionAreaShape == null)
             {
                 // no interaction area shape (probably a spectator character)
+                obstaclesOnTheWay = false;
                 return false;
             }
 
@@ -739,7 +753,28 @@
                     collisionGroup: CollisionGroups.ClickArea),
                 sourceShapeOffset: character.PhysicsBody.Position);
 
-            return penetration.HasValue;
+            if (!penetration.HasValue)
+            {
+                // outside of interaction area
+                obstaclesOnTheWay = false;
+                return false;
+            }
+
+            // check that there are no other objects on the way between them (defined by default layer)
+            var physicsSpace = character.PhysicsBody.PhysicsSpace;
+            var characterCenter = character.Position + character.PhysicsBody.CenterOffset;
+            var worldObjectCenter = (Vector2D)tilePosition + new Vector2D(0.5, 0.5);
+            var worldObjectPointClosestToCharacter = new BoundsInt(tilePosition, Vector2Int.One)
+                .ClampInside(characterCenter);
+
+            obstaclesOnTheWay = SharedHasObstaclesOnTheWay(character,
+                                                           characterCenter,
+                                                           physicsSpace,
+                                                           worldObjectCenter,
+                                                           worldObjectPointClosestToCharacter,
+                                                           sendDebugEvents: false);
+
+            return !obstaclesOnTheWay;
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]

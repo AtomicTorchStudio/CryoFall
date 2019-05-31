@@ -5,6 +5,7 @@
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -42,6 +43,11 @@
             = IsClient
                   ? new ObservableCollection<string>()
                   : null;
+
+        // this value is kept here for compatibility, remove in A23
+        public static ushort ClientPartyMembersMax = 10;
+
+        public static Action ClientPartyMembersMaxChanged;
 
         private static readonly Dictionary<ICharacter, ILogicObject> ServerCharacterPartyDictionary
             = IsServer
@@ -418,9 +424,10 @@
             }
 
             var members = ServerGetPartyMembersEditable(party);
-            if (members.Count >= PartyConstants.PartyMembersMax)
+            var partyMembersMax = PartyConstants.ServerPartyMembersMax;
+            if (members.Count >= partyMembersMax)
             {
-                throw new Exception("Party size exceeded - max " + PartyConstants.PartyMembersMax);
+                throw new Exception("Party size exceeded - max " + partyMembersMax);
             }
 
             members.Add(character.Name);
@@ -622,6 +629,11 @@
             ServerInvitations.ResendAllInvitations(invitee: character);
         }
 
+        private ushort ServerRemote_RequestPartyMaxSize()
+        {
+            return PartyConstants.ServerPartyMembersMax;
+        }
+
         private class Bootstrapper : BaseBootstrapper
         {
             public override void ClientInitialize()
@@ -638,6 +650,15 @@
                     if (Api.Client.Characters.CurrentPlayerCharacter != null)
                     {
                         Instance.CallServer(_ => _.ServerRemote_RequestCurrentPartyAndInvitations());
+                        Instance.CallServer(_ => _.ServerRemote_RequestPartyMaxSize())
+                                .ContinueWith(t =>
+                                              {
+                                                  ClientPartyMembersMax = t.Result;
+                                                  Logger.Info("Party member max size received from server: "
+                                                              + ClientPartyMembersMax);
+                                                  Api.SafeInvoke(ClientPartyMembersMaxChanged);
+                                              },
+                                              TaskContinuationOptions.ExecuteSynchronously);
                     }
                 }
             }
@@ -703,7 +724,7 @@
                 Api.Assert(inviterParty != currentInviteeParty, "Cannot join the same party");
 
                 var inviterPartyMembers = ServerGetPartyMembersReadOnly(inviterParty);
-                if (inviterPartyMembers.Count >= PartyConstants.PartyMembersMax)
+                if (inviterPartyMembers.Count >= PartyConstants.ServerPartyMembersMax)
                 {
                     return InvitationAcceptResult.ErrorPartyFull;
                 }
@@ -756,7 +777,7 @@
                 }
 
                 var partyMembers = ServerGetPartyMembersReadOnly(party);
-                if (partyMembers.Count >= PartyConstants.PartyMembersMax)
+                if (partyMembers.Count >= PartyConstants.ServerPartyMembersMax)
                 {
                     return InvitationCreateResult.ErrorPartyFull;
                 }

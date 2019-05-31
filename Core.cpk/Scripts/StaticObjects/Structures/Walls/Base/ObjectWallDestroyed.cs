@@ -141,11 +141,6 @@
             DeconstructionSystem.ClientTryStartAction();
         }
 
-        protected override bool CommonIsAllowedObjectToInteractThrough(IWorldObject worldObject)
-        {
-            return true;
-        }
-
         protected sealed override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
@@ -221,6 +216,11 @@
                     return;
                 }
             }
+        }
+
+        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
+        {
+            return true;
         }
 
         private static void SharedGatherOccupiedAndNeighborTiles(IStaticWorldObject structure, ITempList<Tile> tempList)

@@ -34,8 +34,8 @@
             PlayerCharacterPrivateState privateState,
             float deltaTime)
         {
-            if (publicState.IsDead
-                || !character.IsOnline)
+            if (!character.IsOnline
+                || publicState.IsDead)
             {
                 return;
             }

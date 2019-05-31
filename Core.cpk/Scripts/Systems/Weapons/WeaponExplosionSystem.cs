@@ -130,7 +130,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             var damageCandidates = new HashSet<IWorldObject>();
 
             // collect all damaged physics objects
-            var collisionGroup = CollisionGroups.HitboxRanged;
+            var collisionGroup = CollisionGroups.Default;
             using (var testResults = physicsSpace.TestCircle(positionEpicenter,
                                                              radius: damageDistanceMax,
                                                              collisionGroup: collisionGroup))
@@ -158,7 +158,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 if (!damageOnlyDynamicObjects)
                 {
                     // Collect all the damageable static objects in the explosion radius
-                    // which don't have a collider colliding with the HitboxRanged collision group.
+                    // which don't have a collider colliding with the collision group.
                     var startTilePosition = positionEpicenter.ToVector2Ushort();
                     var damageDistanceMaxRounded = (int)damageDistanceMax;
                     var damageDistanceMaxSqr = damageDistanceMax * damageDistanceMax;
@@ -202,7 +202,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
                             if (tileObject.PhysicsBody.HasAnyShapeCollidingWithGroup(collisionGroup))
                             {
-                                // has a collider colliding with the HitboxRanged collision group so we ignore this
+                                // has a collider colliding with the collision group so we ignore this
                                 continue;
                             }
 
@@ -331,7 +331,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             using (var obstaclesOnTheWay = physicsSpace.TestLine(
                 positionEpicenter,
                 targetPosition,
-                collisionGroup: CollisionGroups.HitboxRanged))
+                collisionGroup: CollisionGroups.Default))
             {
                 //obstaclesOnTheWay.SortBy(
                 //    ServerExplosionGetDistanceToEpicenter(positionEpicenter));

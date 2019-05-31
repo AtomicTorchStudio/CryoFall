@@ -1,18 +1,34 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Party
 {
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     public static class PartyConstants
     {
         public const double PartyInvitationLifetimeSeconds = 3 * 60; // 3 minutes
 
-        public const ushort PartyMembersMax = 10;
-
         public static readonly double PartyLearningPointsSharePercent;
+
+        public static readonly ushort ServerPartyMembersMax;
 
         static PartyConstants()
         {
+            if (Api.IsClient)
+            {
+                return;
+            }
+
+            ServerPartyMembersMax
+                = (ushort)MathHelper.Clamp(
+                    ServerRates.Get(
+                        "PartyMembersMax",
+                        defaultValue: 10,
+                        @"How many party members are allowed per party.
+                          The value should be within 1-100 range."),
+                    min: 1,
+                    max: 100);
+
             PartyLearningPointsSharePercent
                 = MathHelper.Clamp(
                       ServerRates.Get(

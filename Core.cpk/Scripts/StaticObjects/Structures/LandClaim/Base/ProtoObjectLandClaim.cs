@@ -581,6 +581,7 @@
             out ProtoStructureCategory category)
         {
             tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersections);
+            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimsNearby);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimAmountLimit);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositRequireXenogeology);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositCooldown);

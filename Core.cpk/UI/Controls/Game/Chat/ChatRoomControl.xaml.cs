@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
+    using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
     using AtomicTorch.CBND.CoreMod.UI.Services;

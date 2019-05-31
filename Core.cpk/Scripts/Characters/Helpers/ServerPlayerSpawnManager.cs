@@ -173,6 +173,8 @@
                                 : spawnZone2;
             }
 
+            var restrictedZone = ZoneSpecialConstructionRestricted.Instance.ServerZoneInstance;
+
             for (var attempt = 0; attempt < SpawnInZoneAttempts; attempt++)
             {
                 var randomPosition = spawnZone.GetRandomPosition(random);
@@ -186,6 +188,12 @@
                         // too close or too far for the respawn
                         continue;
                     }
+                }
+
+                if (restrictedZone.IsContainsPosition(randomPosition))
+                {
+                    // the position is inside the restricted zone
+                    continue;
                 }
 
                 if (!LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(randomPosition, character))

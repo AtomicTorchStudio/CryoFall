@@ -19,6 +19,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Base world object type. You cannot inherit from it directly.
@@ -28,11 +29,7 @@
          TPrivateState,
          TPublicState,
          TClientState>
-        : ProtoGameObject
-          <TWorldObject,
-              TPrivateState,
-              TPublicState,
-              TClientState>,
+        : ProtoGameObject<TWorldObject, TPrivateState, TPublicState, TClientState>,
           IProtoWorldObject<TWorldObject>,
           IProtoWorldObjectWithSoundPresets
         where TWorldObject : class, IWorldObject
@@ -53,6 +50,54 @@
 
         protected virtual ReadOnlySoundPreset<ObjectSoundMaterial> MaterialDestroySoundPreset
             => MaterialDestroySoundPresets.Default;
+
+        public static bool SharedHasObstaclesOnTheWay(
+            ICharacter character,
+            Vector2D characterCenter,
+            IPhysicsSpace physicsSpace,
+            IWorldObject worldObject,
+            bool sendDebugEvents)
+        {
+            var worldObjectCenter = worldObject.TilePosition.ToVector2D() + worldObject.PhysicsBody.CenterOffset;
+            var worldObjectPointClosestToCharacter = worldObject.PhysicsBody.ClampPointInside(
+                characterCenter,
+                CollisionGroups.Default,
+                out var isSuccess);
+
+            if (!isSuccess)
+            {
+                // the physics body seems to not have the default collider, let's check for the click area instead
+                worldObjectPointClosestToCharacter = worldObject.PhysicsBody.ClampPointInside(
+                    characterCenter,
+                    CollisionGroups.ClickArea,
+                    out _);
+            }
+
+            return SharedHasObstaclesOnTheWay(character,
+                                              characterCenter,
+                                              physicsSpace,
+                                              worldObject,
+                                              worldObjectCenter,
+                                              worldObjectPointClosestToCharacter,
+                                              sendDebugEvents);
+        }
+
+        public static bool SharedHasObstaclesOnTheWay(
+            ICharacter character,
+            Vector2D characterCenter,
+            IPhysicsSpace physicsSpace,
+            Vector2D worldObjectCenter,
+            Vector2D worldObjectPointClosestToCharacter,
+            bool sendDebugEvents)
+        {
+            return SharedHasObstaclesOnTheWay(character,
+                                              characterCenter,
+                                              physicsSpace,
+                                              worldObject: null,
+                                              worldObjectCenter,
+                                              worldObjectPointClosestToCharacter,
+                                              sendDebugEvents);
+        }
 
         public void ClientInteractFinish(TWorldObject worldObject)
         {
@@ -239,6 +284,19 @@
                 return false;
             }
 
+            if (character.GetPublicState<ICharacterPublicState>()
+                         .IsDead)
+            {
+                if (writeToLog)
+                {
+                    Logger.Warning(
+                        $"Character cannot interact with {worldObject} - character is dead.",
+                        character);
+                }
+
+                return false;
+            }
+
             bool isInsideInteractionArea;
             if (worldObject.PhysicsBody.HasShapes)
             {
@@ -307,111 +365,55 @@
                 return false;
             }
 
-            // check that there are no other objects on the way between them (defined by default layer)
-            var physicsSpace = character.PhysicsBody.PhysicsSpace;
-            var characterCenter = character.Position + character.PhysicsBody.CenterOffset;
-            var worldObjectCenter = worldObject.TilePosition.ToVector2D() + worldObject.PhysicsBody.CenterOffset;
-            var worldObjectPointClosestToCharacter = worldObject.PhysicsBody.ClampPointInside(
-                characterCenter,
-                CollisionGroups.Default,
-                out var isSuccess);
-
-            if (!isSuccess)
-            {
-                // the physics body seems to not have the default collider, let's check for the click area instead
-                worldObjectPointClosestToCharacter = worldObject.PhysicsBody.ClampPointInside(
-                    characterCenter,
-                    CollisionGroups.ClickArea,
-                    out _);
-            }
-
-            // local method for testing if there is an obstacle from current to the specified position
-            bool TestHasObstacle(Vector2D toPosition)
-            {
-                using (var obstaclesOnTheWay = physicsSpace.TestLine(
-                    characterCenter,
-                    toPosition,
-                    CollisionGroup.GetDefault(),
-                    sendDebugEvent: writeToLog))
-                {
-                    foreach (var test in obstaclesOnTheWay)
-                    {
-                        var testPhysicsBody = test.PhysicsBody;
-                        if (testPhysicsBody.AssociatedProtoTile != null)
-                        {
-                            // obstacle tile on the way
-                            return true;
-                        }
-
-                        var testWorldObject = testPhysicsBody.AssociatedWorldObject;
-                        if (testWorldObject == character
-                            || testWorldObject == worldObject)
-                        {
-                            // not an obstacle - it's the character or world object itself
-                            continue;
-                        }
-
-                        if (!this.CommonIsAllowedObjectToInteractThrough(testWorldObject))
-                        {
-                            // obstacle object on the way
-                            return true;
-                        }
-                    }
-
-                    // no obstacles
-                    return false;
-                }
-            }
-
             if (character.ProtoCharacter is PlayerCharacterSpectator)
             {
                 // don't test for obstacles for spectator character
                 return true;
             }
 
-            // let's test by casting rays from character center to:
-            // 0) world object center
-            // 1) world object point closest to the character
-            // 2) combined - take X from center, take Y from closest
-            // 3) combined - take X from closest, take Y from center
-            if (TestHasObstacle(worldObjectCenter)
-                && TestHasObstacle(worldObjectPointClosestToCharacter)
-                && TestHasObstacle((worldObjectCenter.X,
-                                    worldObjectPointClosestToCharacter.Y))
-                && TestHasObstacle((worldObjectPointClosestToCharacter.X, worldObjectCenter.Y)))
+            // check that there are no other objects on the way between them (defined by default layer)
+            var physicsSpace = character.PhysicsBody.PhysicsSpace;
+            var characterCenter = character.Position + character.PhysicsBody.CenterOffset;
+
+            if (!SharedHasObstaclesOnTheWay(character,
+                                            characterCenter,
+                                            physicsSpace,
+                                            worldObject,
+                                            sendDebugEvents: writeToLog))
             {
-                // has obstacle
-                if (writeToLog)
-                {
-                    Logger.Warning(
-                        $"Character cannot interact with {worldObject} - there are other objects on the way.",
-                        character);
-
-                    if (IsClient)
-                    {
-                        this.ClientOnCannotInteract(worldObject,
-                                                    CoreStrings.Notification_ObstaclesOnTheWay,
-                                                    isOutOfRange: true);
-                    }
-                }
-
-                return false;
+                return true;
             }
 
-            if (character.GetPublicState<ICharacterPublicState>().IsDead)
+            if (writeToLog)
             {
-                // character is dead
-                if (writeToLog)
-                {
-                    Logger.Warning(
-                        $"Character cannot interact with {worldObject} - character is dead.",
-                        character);
-                }
+                Logger.Warning(
+                    $"Character cannot interact with {worldObject} - there are other objects on the way.",
+                    character);
 
-                return false;
+                if (IsClient)
+                {
+                    this.ClientOnCannotInteract(worldObject,
+                                                CoreStrings.Notification_ObstaclesOnTheWay,
+                                                isOutOfRange: true);
+                }
             }
 
-            return true;
+            return false;
+        }
+
+        bool IProtoWorldObject.SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
+        {
+            if (worldObject == null)
+            {
+                return true;
+            }
+
+            if (worldObject.ProtoWorldObject != this)
+            {
+                return worldObject.ProtoWorldObject.SharedIsAllowedObjectToInteractThrough(worldObject);
+            }
+
+            return this.SharedIsAllowedObjectToInteractThrough(worldObject);
         }
 
         protected virtual void ClientInteractFinish(ClientObjectData data)
@@ -423,11 +425,6 @@
         }
 
         protected abstract void ClientOnObjectDestroyed(Vector2Ushort tilePosition);
-
-        protected virtual bool CommonIsAllowedObjectToInteractThrough(IWorldObject worldObject)
-        {
-            return false;
-        }
 
         protected sealed override void PrepareProto()
         {
@@ -463,8 +460,79 @@
 
         protected abstract void SharedCreatePhysics(CreatePhysicsData data);
 
+        protected virtual bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
+        {
+            return false;
+        }
+
         protected virtual void SharedProcessCreatedPhysics(CreatePhysicsData data)
         {
+        }
+
+        private static bool SharedHasObstaclesOnTheWay(
+            ICharacter character,
+            Vector2D characterCenter,
+            IPhysicsSpace physicsSpace,
+            [CanBeNull] IWorldObject worldObject,
+            Vector2D worldObjectCenter,
+            Vector2D worldObjectPointClosestToCharacter,
+            bool sendDebugEvents)
+        {
+            // let's test by casting rays from character center to:
+            // 0) world object center
+            // 1) world object point closest to the character
+            // 2) combined - take X from center, take Y from closest
+            // 3) combined - take X from closest, take Y from center
+            if (TestHasObstacle(worldObjectCenter)
+                && TestHasObstacle(worldObjectPointClosestToCharacter)
+                && TestHasObstacle((worldObjectCenter.X,
+                                    worldObjectPointClosestToCharacter.Y))
+                && TestHasObstacle((worldObjectPointClosestToCharacter.X, worldObjectCenter.Y)))
+            {
+                // has obstacle
+                return true;
+            }
+
+            return false;
+
+            // local method for testing if there is an obstacle from current to the specified position
+            bool TestHasObstacle(Vector2D toPosition)
+            {
+                using (var obstaclesOnTheWay = physicsSpace.TestLine(
+                    characterCenter,
+                    toPosition,
+                    CollisionGroup.GetDefault(),
+                    sendDebugEvent: sendDebugEvents))
+                {
+                    foreach (var test in obstaclesOnTheWay)
+                    {
+                        var testPhysicsBody = test.PhysicsBody;
+                        if (testPhysicsBody.AssociatedProtoTile != null)
+                        {
+                            // obstacle tile on the way
+                            return true;
+                        }
+
+                        var testWorldObject = testPhysicsBody.AssociatedWorldObject;
+                        if (testWorldObject == character
+                            || testWorldObject == worldObject)
+                        {
+                            // not an obstacle - it's the character or world object itself
+                            continue;
+                        }
+
+                        if (!testWorldObject.ProtoWorldObject
+                                            .SharedIsAllowedObjectToInteractThrough(testWorldObject))
+                        {
+                            // obstacle object on the way
+                            return true;
+                        }
+                    }
+
+                    // no obstacles
+                    return false;
+                }
+            }
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]

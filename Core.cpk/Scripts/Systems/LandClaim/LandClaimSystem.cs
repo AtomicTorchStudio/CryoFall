@@ -36,6 +36,9 @@
 
     public class LandClaimSystem : ProtoSystem<LandClaimSystem>
     {
+        public const string ErrorCannotBuild_AnotherLandClaimTooClose =
+            "Too close to another land claim.";
+
         public const string ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed =
             "The area is claimed by another player, or it's too close to someone else's land claim.";
 
@@ -200,6 +203,51 @@
                     return SharedCheckCanPlaceOrUpgradeLandClaimThere(protoObjectLandClaim,
                                                                       centerTilePosition,
                                                                       forCharacter);
+                });
+
+        public static readonly ConstructionTileRequirements.Validator ValidatorNewLandClaimNoLandClaimsNearby
+            = new ConstructionTileRequirements.Validator(
+                ErrorCannotBuild_AnotherLandClaimTooClose,
+                context =>
+                {
+                    var forCharacter = context.CharacterBuilder;
+                    if (forCharacter == null)
+                    {
+                        return true;
+                    }
+
+                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                    {
+                        return true;
+                    }
+
+                    var protoObjectLandClaim = (IProtoObjectLandClaim)context.ProtoStaticObjectToBuild;
+                    if (context.TileOffset
+                        != SharedCalculateLandClaimObjectCenterTilePosition(Vector2Ushort.Zero, protoObjectLandClaim))
+                    {
+                        // we don't check offset tiles
+                        // as the land claim area calculated from the center tile of the land claim object
+                        return true;
+                    }
+
+                    var centerTilePosition = context.Tile.Position;
+                    var testBounds = SharedCalculateLandClaimAreaBounds(
+                        centerTilePosition,
+                        // use special test size - it will result in 5 tiles min padding around the built land claims
+                        size: 13);
+
+                    foreach (var area in sharedLandClaimAreas)
+                    {
+                        var areaCenterLocation = LandClaimArea.GetPublicState(area)
+                                                              .LandClaimCenterTilePosition;
+                        if (testBounds.Contains(areaCenterLocation))
+                        {
+                            // too close, check failed
+                            return false;
+                        }
+                    }
+
+                    return true;
                 });
 
         public static readonly ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimAmountLimit
@@ -502,7 +550,6 @@
                 founderName
             };
 
-            areaPublicState.Title = founderName;
             areaPublicState.SetupAreaProperties(areaPrivateState);
 
             // set this area to the structure public state
@@ -581,6 +628,10 @@
         public static void ServerRegisterArea(ILogicObject area)
         {
             Api.Assert(area.ProtoLogicObject is LandClaimArea, "Wrong object type");
+            var areaPublicState = LandClaimArea.GetPublicState(area);
+            // reset the title
+            // TODO: remove this in A23
+            areaPublicState.Title = null;
             sharedLandClaimAreas.Add(area);
         }
 

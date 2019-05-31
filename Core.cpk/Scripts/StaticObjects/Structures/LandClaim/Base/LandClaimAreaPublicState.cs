@@ -19,6 +19,7 @@
         [TempOnly]
         public double? LastRaidTime { get; set; }
 
+        // TODO: remove this in A23
         [SyncToClient]
         public string Title { get; set; }
 

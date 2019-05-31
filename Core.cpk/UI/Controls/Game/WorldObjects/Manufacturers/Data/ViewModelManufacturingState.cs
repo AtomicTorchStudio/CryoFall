@@ -424,7 +424,7 @@
                 return;
             }
 
-            var totalDuration = item.Recipe.SharedGetDurationForPlayer(ClientCurrentCharacterHelper.Character);
+            var totalDuration = item.Recipe.OriginalDuration;
             this.CraftingProgressPercents = (float)(100
                                                     * (totalDuration - craftingQueue.TimeRemainsToComplete)
                                                     / totalDuration);

@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Skills;
@@ -124,17 +123,8 @@
                 state.CooldownSecondsRemains -= deltaTime;
             }
 
-            if (!state.IsFiring)
-            {
-                WeaponAmmoSystem.SharedUpdateReloading(state, character, ref deltaTime);
-            }
-
-            if (deltaTime <= 0)
-            {
-                // the weapon reloading process is consumed the whole delta time
-                return;
-            }
-
+            WeaponAmmoSystem.SharedUpdateReloading(state, character, deltaTime);
+            
             if (state.SharedGetInputIsFiring()
                 && !character.IsOnline)
             {
@@ -142,7 +132,8 @@
             }
 
             // check ammo (if applicable to this weapon prototype)
-            var canFire = protoWeapon.SharedCanFire(character, state);
+            var canFire = state.WeaponReloadingState == null 
+                          && protoWeapon.SharedCanFire(character, state);
             if (state.CooldownSecondsRemains > 0)
             {
                 // firing cooldown is not completed
@@ -666,7 +657,7 @@
             //               : $"SetWeaponFiringMode: stop firing! Shots done: {clientShotsDone}");
 
             weaponState.SharedSetInputIsFiring(isFiring,
-                                         clientShotsDone);
+                                               clientShotsDone);
         }
     }
 }

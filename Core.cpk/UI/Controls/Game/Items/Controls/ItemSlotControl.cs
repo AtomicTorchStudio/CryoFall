@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
@@ -316,7 +315,9 @@
 
         public class ItemSlotControlEventsHelper
         {
-            private static WeakReference weakReferenceMousePressedControl;
+            private const double MouseUpEventMinDurationSinceDown = 0.15;
+
+            private static double lastMouseDownTime;
 
             public ItemSlotMouseClickDelegate CustomMouseClickHandler;
 
@@ -350,7 +351,7 @@
                 }
 
                 // remember that mouse was pressed on this control
-                weakReferenceMousePressedControl = new WeakReference(this);
+                lastMouseDownTime = Api.Client.Core.ClientRealTime;
 
                 var isLeftMouseButton = e.ChangedButton == MouseButton.Left;
                 if (ClientItemsManager.OnSlotSelected(this.itemSlotControl, isLeftMouseButton, isDown: true))
@@ -373,11 +374,10 @@
                     return;
                 }
 
-                var lastMousePressedControl = weakReferenceMousePressedControl?.Target;
-                weakReferenceMousePressedControl = null;
-                if (lastMousePressedControl == this)
+                if (Api.Client.Core.ClientRealTime - lastMouseDownTime
+                    < MouseUpEventMinDurationSinceDown)
                 {
-                    // don't act in case when the mouse button was pressed and released on the same control
+                    // don't act in case the mouse button was released too quickly
                     return;
                 }
 

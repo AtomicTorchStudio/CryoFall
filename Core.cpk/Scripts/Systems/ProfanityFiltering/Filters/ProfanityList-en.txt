@@ -1,0 +1,57 @@
+#BEWARE! This is a profanity filter list, some words might be extremely rude—but that's the point!
+
+#blacklist
+anal
+anus*
+arse*
+ass
+asshole*
+bastard*
+b1tch*
+bitch*
+blow job*
+blowjob*
+buttplug*
+clit*
+cock*
+cunt*
+dick*
+dildo*
+fag*
+*fuck*
+*fuk*
+jack off
+jerk off
+jackoff
+jerkoff
+kunt*
+masturb*
+n1gf*
+n1gg*
+nigf*
+nigg*
+paedo*
+pedo*
+penis*
+*phuc*
+*phuk*
+piss*
+puss*
+retard*
+*sex*
+*shit*
+*sh1t*
+slut*
+suck*
+tit
+tits
+turd*
+tosser*
+twat*
+vagin*
+vulv*
+wank*
+*whore*
+
+#whitelist
+-arsenal

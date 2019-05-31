@@ -96,11 +96,10 @@
                 totalDamage *= WeaponConstants.DamageCreaturesMultiplier;
 
                 if (targetObject is ICharacter victim
-                    && !victim.IsNpc
                     && !victim.IsOnline
-                    && PveSystem.ServerIsPvE)
+                    && !victim.IsNpc)
                 {
-                    // don't deal any damage to offline players on PvE servers
+                    // don't deal creature damage to offline players
                     totalDamage = 0;
                 }
             }

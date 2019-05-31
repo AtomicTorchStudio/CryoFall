@@ -34,7 +34,9 @@
 
         public override string Name => "Construction build/repair system";
 
-        public static bool CheckCanInteractForConstructionByDistance(ICharacter character, IStaticWorldObject worldObject)
+        public static bool CheckCanInteractForConstructionByDistance(
+            ICharacter character,
+            IStaticWorldObject worldObject)
         {
             var characterPosition = character.Position;
             var canInteract = false;
@@ -391,6 +393,7 @@
             characterPrivateState.SetCurrentActionState(null);
         }
 
+        // TODO: A23: merge with ClientRemote_ClientShowNotificationCannotPlace
         private void ClientRemote_ClientShowNotificationCannotBuild(string errorMessage, IProtoStaticWorldObject proto)
         {
             NotificationSystem.ClientShowNotification(
@@ -403,7 +406,7 @@
         private void ClientRemote_ClientShowNotificationCannotPlace(string errorMessage, IProtoStaticWorldObject proto)
         {
             NotificationSystem.ClientShowNotification(
-                title: null,
+                NotificationCannotPlace,
                 errorMessage,
                 color: NotificationColor.Bad,
                 icon: proto.Icon);

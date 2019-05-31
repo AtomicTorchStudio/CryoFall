@@ -280,9 +280,9 @@
                 isFocusable: false);
         }
 
-        protected override bool CommonIsAllowedObjectToInteractThrough(IWorldObject worldObject)
+        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
         {
-            if (base.CommonIsAllowedObjectToInteractThrough(worldObject))
+            if (base.SharedIsAllowedObjectToInteractThrough(worldObject))
             {
                 return true;
             }

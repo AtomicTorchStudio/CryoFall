@@ -25,6 +25,9 @@
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : ObjectWallClientState, new()
     {
+        // do not update walls on the server
+        public override double ServerUpdateIntervalSeconds => double.MaxValue;
+
         public override float StructurePointsMaxForConstructionSite
             => this.StructurePointsMax / 25;
 

@@ -50,6 +50,12 @@
                 var stats = publicState.CurrentStats;
                 if (!character.IsNpc)
                 {
+                    if (!character.IsOnline)
+                    {
+                        // don't regenerate health for offline players
+                        continue;
+                    }
+
                     if (stats.StaminaCurrent <= 0)
                     {
                         // cannot regenerate health - no energy

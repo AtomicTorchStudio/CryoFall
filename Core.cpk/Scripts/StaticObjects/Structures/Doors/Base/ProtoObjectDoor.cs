@@ -533,7 +533,7 @@
                             offset: (0, WallPatterns.PhysicsOffset),
                             group: CollisionGroups.HitboxMelee)
                         .AddShapeRectangle(
-                            size: (doorWidth: doorSize, doorSize),
+                            size: (doorWidth: doorSize, 1.0),
                             offset: (0, WallPatterns.PhysicsOffset),
                             group: CollisionGroups.HitboxRanged);
                 }
@@ -700,8 +700,6 @@
                 return false;
             }
 
-            var objectOpeningBounds = this.SharedGetDoorOpeningBounds(worldObject);
-
             using (var charactersNearby = Api.Shared.GetTempList<ICharacter>())
             {
                 Server.World.GetScopedByPlayers(worldObject, charactersNearby);
@@ -711,6 +709,7 @@
                     return false;
                 }
 
+                var objectOpeningBounds = this.SharedGetDoorOpeningBounds(worldObject);
                 foreach (var character in charactersNearby)
                 {
                     if (!character.IsOnline

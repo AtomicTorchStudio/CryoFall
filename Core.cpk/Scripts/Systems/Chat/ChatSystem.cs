@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
+    using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.Systems.ServerPlayerAccess;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -410,6 +411,8 @@
                 message = message.Substring(0, MaxChatEntryLength);
             }
 
+            message = ProfanityFilteringSystem.SharedApplyFilters(message);
+            
             var chatRoom = SharedGetChatRoom(chatRoomHolder);
 
             var chatEntry = new ChatEntry(characterName,

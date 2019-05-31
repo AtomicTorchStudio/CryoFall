@@ -46,49 +46,49 @@
             var character = Api.Client.Characters.CurrentPlayerCharacter;
             var currentWeaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
 
-            var item = currentWeaponState.ActiveItemWeapon;
-            if (item == null)
+            var itemWeapon = currentWeaponState.ActiveItemWeapon;
+            if (itemWeapon == null)
             {
                 // no active weapon to reload
                 return;
             }
 
-            var itemProto = (IProtoItemWeapon)item.ProtoItem;
-            if (itemProto.AmmoCapacity == 0)
+            var itemWeaponProto = (IProtoItemWeapon)itemWeapon.ProtoItem;
+            if (itemWeaponProto.AmmoCapacity == 0)
             {
                 // the item is non-reloadable
                 return;
             }
 
-            var itemPrivateState = item.GetPrivateState<WeaponPrivateState>();
+            var itemPrivateState = itemWeapon.GetPrivateState<WeaponPrivateState>();
             var ammoCountNeed = isSwitchAmmoType
-                                    ? itemProto.AmmoCapacity
-                                    : (ushort)Math.Max(0, itemProto.AmmoCapacity - itemPrivateState.AmmoCount);
+                                    ? itemWeaponProto.AmmoCapacity
+                                    : (ushort)Math.Max(0, itemWeaponProto.AmmoCapacity - itemPrivateState.AmmoCount);
 
             if (ammoCountNeed == 0)
             {
-                Logger.Info("No need to reload the weapon " + item, character);
+                Logger.Info("No need to reload the weapon " + itemWeapon, character);
                 return;
             }
 
-            var compatibleAmmoGroups = SharedGetCompatibleAmmoGroups(character, itemProto);
+            var compatibleAmmoGroups = SharedGetCompatibleAmmoGroups(character, itemWeaponProto);
             if (compatibleAmmoGroups.Count == 0
                 && !isSwitchAmmoType)
             {
-                itemProto.SoundPresetWeapon.PlaySound(WeaponSound.Empty,
-                                                      character,
-                                                      volume: SoundConstants.VolumeWeapon);
+                itemWeaponProto.SoundPresetWeapon.PlaySound(WeaponSound.Empty,
+                                                            character,
+                                                            volume: SoundConstants.VolumeWeapon);
                 NotificationSystem.ClientShowNotification(
                     NotificationNoAmmo_Title,
                     NotificationNoAmmo_Message,
                     NotificationColor.Bad,
-                    itemProto.Icon,
+                    itemWeaponProto.Icon,
                     playSound: false);
 
                 if (currentWeaponState.SharedGetInputIsFiring())
                 {
                     // stop using weapon item!
-                    currentWeaponState.ActiveProtoWeapon.ClientItemUseFinish(item);
+                    currentWeaponState.ActiveProtoWeapon.ClientItemUseFinish(itemWeapon);
                 }
 
                 return;
@@ -113,10 +113,10 @@
                         selectedProtoItemAmmo = SharedFindNextAmmoGroup(compatibleAmmoGroups,
                                                                         currentProtoItemAmmo)?.Key;
                         if (selectedProtoItemAmmo == currentProtoItemAmmo
-                            && itemPrivateState.AmmoCount >= itemProto.AmmoCapacity)
+                            && itemPrivateState.AmmoCount >= itemWeaponProto.AmmoCapacity)
                         {
                             // this ammo type is already loaded and it's fully reloaded
-                            Logger.Info("No need to reload the weapon " + item, character);
+                            Logger.Info("No need to reload the weapon " + itemWeapon, character);
                             return;
                         }
                     }
@@ -181,15 +181,17 @@
             // create reloading state on the Client-side
             var weaponReloadingState = new WeaponReloadingState(
                 character,
-                item,
-                itemProto,
+                itemWeapon,
+                itemWeaponProto,
                 selectedProtoItemAmmo);
             currentWeaponState.WeaponReloadingState = weaponReloadingState;
 
-            itemProto.SoundPresetWeapon.PlaySound(WeaponSound.Reload,
-                                                  character,
-                                                  SoundConstants.VolumeWeapon);
-            Logger.Info("Weapon started reloading " + item, character);
+            itemWeaponProto.SoundPresetWeapon.PlaySound(WeaponSound.Reload,
+                                                        character,
+                                                        SoundConstants.VolumeWeapon);
+            Logger.Info(
+                $"Weapon reloading started for {itemWeapon} reload duration: {weaponReloadingState.SecondsToReloadRemains:F2}s",
+                character);
 
             if (weaponReloadingState.SecondsToReloadRemains <= 0)
             {
@@ -198,7 +200,7 @@
             }
 
             // perform reload on server
-            var arg = new ReloadWeaponRequest(item, selectedProtoItemAmmo);
+            var arg = new ReloadWeaponRequest(itemWeapon, selectedProtoItemAmmo);
             Instance.CallServer(_ => _.ServerRemote_ReloadWeapon(arg));
         }
 
@@ -313,7 +315,7 @@
             }
         }
 
-        public static void SharedUpdateReloading(WeaponState weaponState, ICharacter character, ref double deltaTime)
+        public static void SharedUpdateReloading(WeaponState weaponState, ICharacter character, double deltaTime)
         {
             var reloadingState = weaponState.WeaponReloadingState;
             if (reloadingState == null)
@@ -326,12 +328,10 @@
             if (reloadingState.SecondsToReloadRemains > 0)
             {
                 // need more time to reload
-                deltaTime = 0;
                 return;
             }
 
             // reloaded
-            deltaTime = -reloadingState.SecondsToReloadRemains;
             reloadingState.SecondsToReloadRemains = 0;
             SharedProcessWeaponReload(character, weaponState);
 
@@ -665,7 +665,9 @@
                 selectedProtoItemAmmo);
             weaponState.WeaponReloadingState = weaponReloadingState;
 
-            Logger.Info("Weapon reloading started for " + itemWeapon, character);
+            Logger.Info(
+                $"Weapon reloading started for {itemWeapon} reload duration: {weaponReloadingState.SecondsToReloadRemains:F2}s",
+                character);
 
             if (weaponReloadingState.SecondsToReloadRemains == 0)
             {

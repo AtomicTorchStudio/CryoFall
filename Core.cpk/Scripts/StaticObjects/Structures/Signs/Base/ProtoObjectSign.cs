@@ -6,6 +6,7 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
@@ -236,6 +237,7 @@
 
             signText = signText?.Trim();
             SharedValidateSignText(signText);
+            signText = ProfanityFilteringSystem.SharedApplyFilters(signText);
             GetPublicState(worldObjectSign).Text = signText;
         }
     }

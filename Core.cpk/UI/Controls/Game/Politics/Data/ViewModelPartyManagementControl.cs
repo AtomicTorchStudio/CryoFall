@@ -25,6 +25,11 @@
 
             PartySystem.ClientCurrentPartyChanged += this.Refresh;
             PartySystem.ClientCurrentPartyMemberAddedOrRemoved += this.ClientCurrentPartyMemberAddedOrRemovedHandler;
+            PartySystem.ClientPartyMembersMaxChanged += () =>
+                                                        {
+                                                            this.NotifyPropertyChanged(nameof(this.MaxPartySize));
+                                                            this.Refresh();
+                                                        };
             this.Refresh();
         }
 
@@ -47,7 +52,7 @@
 
         public string InviteeName { get; set; }
 
-        public int MaxPartySize => PartyConstants.PartyMembersMax;
+        public int MaxPartySize => PartySystem.ClientPartyMembersMax;
 
         public IReadOnlyList<ViewModelPartyMember> Members { get; private set; }
 
