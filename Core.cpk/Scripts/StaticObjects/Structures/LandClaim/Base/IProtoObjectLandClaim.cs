@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
 
@@ -15,7 +16,7 @@
 
         ushort LandClaimWithGraceAreaSize { get; }
 
-        byte SafeItemsSlotsCount { get; }
+        TimeSpan DecayDelayDuration { get; }
 
         void ClientUpgrade(IStaticWorldObject worldObjectLandClaim, IProtoObjectLandClaim upgradeStructure);
 

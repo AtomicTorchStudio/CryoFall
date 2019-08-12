@@ -18,8 +18,9 @@
         public ItemFertilizer()
         {
             this.FertilizerShortDescription = string.Format(ShortDescriptionText,
-                                                            (int)Math.Round(
-                                                                this.PlantGrowthSpeedMultiplier * 100,
+                                                            "+"
+                                                            + (int)Math.Round(
+                                                                (this.PlantGrowthSpeedMultiplier - 1.0) * 100,
                                                                 MidpointRounding.AwayFromZero));
         }
 

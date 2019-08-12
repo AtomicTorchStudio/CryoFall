@@ -47,10 +47,10 @@
         private static bool ServerIsNeedDespawn(ICharacter character, double serverTime)
         {
             var privateState = character.GetPrivateState<PlayerCharacterPrivateState>();
-            if (character.IsOnline)
+            if (character.ServerIsOnline)
             {
                 // player online - update last online time
-                privateState.ServerOfflineSinceTime = serverTime;
+                privateState.ServerLastOnlineTime = serverTime;
                 return false;
             }
 
@@ -68,10 +68,10 @@
                 return false;
             }
 
-            var offlineSinceTime = privateState.ServerOfflineSinceTime;
+            var offlineSinceTime = privateState.ServerLastOnlineTime;
             if (!offlineSinceTime.HasValue)
             {
-                privateState.ServerOfflineSinceTime = serverTime;
+                privateState.ServerLastOnlineTime = serverTime;
                 return false;
             }
 
@@ -106,7 +106,7 @@
         {
             // just record the last player online state change (even for online)
             var privateState = character.GetPrivateState<PlayerCharacterPrivateState>();
-            privateState.ServerOfflineSinceTime = Server.Game.FrameTime;
+            privateState.ServerLastOnlineTime = Server.Game.FrameTime;
         }
     }
 }

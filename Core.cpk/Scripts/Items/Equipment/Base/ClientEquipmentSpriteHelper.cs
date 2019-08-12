@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.DataStructures;
@@ -12,7 +13,83 @@
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public static class ClientEquipmentSpriteHelper
     {
-        public static List<SkeletonSlotAttachment> CollectSlotAttachments(
+        public static void CollectSlotAttachments(
+            List<FilePathsList> sources,
+            string typeName,
+            bool requireEquipmentTextures,
+            out List<SkeletonSlotAttachment> slotAttachmentsMale,
+            out List<SkeletonSlotAttachment> slotAttachmentsFemale)
+        {
+            slotAttachmentsMale = CollectSlotAttachments(
+                sources,
+                typeName,
+                isMale: true,
+                requireEquipmentTextures: requireEquipmentTextures);
+
+            if (!SkeletonHumanFemale.IsFemaleSkeletonEnabled)
+            {
+                slotAttachmentsFemale = slotAttachmentsMale;
+                return;
+            }
+
+            slotAttachmentsFemale = CollectSlotAttachments(
+                sources,
+                typeName,
+                isMale: false,
+                requireEquipmentTextures: requireEquipmentTextures);
+
+            using var originalSlotAttachmentsFemale = Api.Shared.WrapInTempList(slotAttachmentsFemale);
+
+            // populate missing female attachments from male skeleton
+            foreach (var requiredAttachment in slotAttachmentsMale)
+            {
+                var isFound = false;
+                foreach (var existingAttachment in originalSlotAttachmentsFemale)
+                {
+                    if (existingAttachment.AttachmentName == requiredAttachment.AttachmentName)
+                    {
+                        isFound = true;
+                        break;
+                    }
+                }
+
+                if (isFound)
+                {
+                    continue;
+                }
+
+                // remove "Male"
+                var skeletonName = "Female" + requiredAttachment.SkeletonName.Remove(0, 4);
+                slotAttachmentsFemale.Add(
+                    new SkeletonSlotAttachment(
+                        skeletonName,
+                        requiredAttachment.AttachmentName,
+                        requiredAttachment.TextureResource));
+            }
+        }
+
+        public static ITempList<FilePathsList> CollectSpriteFilePaths(List<string> sourcePaths)
+        {
+            var result = Api.Shared.GetTempList<FilePathsList>();
+            var resultList = result.AsList();
+            resultList.Capacity = sourcePaths.Count;
+
+            foreach (var path in sourcePaths)
+            {
+                var sourcePath = path + "/";
+                var tempFiles = Api.Shared.GetFilePathsInFolder(
+                    ContentPaths.Textures + sourcePath,
+                    includeSubfolders: true,
+                    stripFolderPathFromFilePaths: true,
+                    withoutExtensions: false);
+
+                resultList.Add(new FilePathsList(sourcePath, tempFiles));
+            }
+
+            return result;
+        }
+
+        private static List<SkeletonSlotAttachment> CollectSlotAttachments(
             List<FilePathsList> sources,
             string typeName,
             bool isMale,
@@ -20,8 +97,8 @@
         {
             var result = new List<SkeletonSlotAttachment>();
             var gender = isMale ? "Male" : "Female";
-            var skeletonNameFront = "Character" + gender + "Front";
-            var skeletonNameBack = "Character" + gender + "Back";
+            var skeletonNameFront = gender + "Front";
+            var skeletonNameBack = gender + "Back";
 
             foreach (var pair in sources)
             {
@@ -96,27 +173,6 @@
                     // TODO: this also should be a error - but currently we don't have female sprites for all equipment
                     Api.Logger.Warning(message);
                 }
-            }
-
-            return result;
-        }
-
-        public static ITempList<FilePathsList> CollectSpriteFilePaths(List<string> sourcePaths)
-        {
-            var result = Api.Shared.GetTempList<FilePathsList>();
-            var resultList = result.AsList();
-            resultList.Capacity = sourcePaths.Count;
-
-            foreach (var path in sourcePaths)
-            {
-                var sourcePath = path + "/";
-                var tempFiles = Api.Shared.GetFilePathsInFolder(
-                    ContentPaths.Textures + sourcePath,
-                    includeSubfolders: true,
-                    stripFolderPathFromFilePaths: true,
-                    withoutExtensions: false);
-
-                resultList.Add(new FilePathsList(sourcePath, tempFiles));
             }
 
             return result;

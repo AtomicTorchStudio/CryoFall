@@ -16,6 +16,8 @@
 
         public IReadOnlyList<OutputItem> Items => this.items;
 
+        public ProtoItemWithCount this[int index] => this.items[index];
+
         public static CreateItemResult TrySpawnToContainer(
             IReadOnlyOutputItems outputItems,
             IItemsContainer toContainer)

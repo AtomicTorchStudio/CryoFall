@@ -3,7 +3,6 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
-    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -22,9 +21,7 @@
         public override float StructurePointsMax => 600;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-        {
-            return (0.5, 0.725);
-        }
+            => (0.5, 0.725);
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -46,7 +43,6 @@
         }
 
         protected override void PrepareConstructionConfig(
-            ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
             ConstructionStageConfig repair,
             ConstructionUpgradeConfig upgrade,
@@ -56,22 +52,13 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
             build.AddStageRequiredItem<ItemPlastic>(count: 1);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
             repair.AddStageRequiredItem<ItemPlastic>(count: 1);
-        }
-
-        protected override void SharedCreatePhysics(CreatePhysicsData data)
-        {
-            data.PhysicsBody
-                .AddShapeRectangle((0.5, 0.2), (0.25, 0.4))
-                .AddShapeRectangle((0.8, 1.0), (0.1, 0.4), CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((0.8, 1.0), (0.1, 0.4), CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((0.8, 1.0), (0.1, 0.4), CollisionGroups.ClickArea);
         }
     }
 }

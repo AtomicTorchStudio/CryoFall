@@ -20,7 +20,7 @@
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
-        public override float StructurePointsMax => 5000;
+        public override float StructurePointsMax => 4000;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -44,7 +44,7 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 2);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

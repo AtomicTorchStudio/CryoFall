@@ -25,7 +25,7 @@
         public override string Description =>
             "Special device for extracting biomaterial from animals and other creatures. Requires empty biomaterial vials to operate.";
 
-        public override ushort DurabilityMax => 300;
+        public override uint DurabilityMax => 300;
 
         public override string Name => "Biomaterial collector";
 

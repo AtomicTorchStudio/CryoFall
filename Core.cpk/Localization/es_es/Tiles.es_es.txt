@@ -34,6 +34,12 @@ Ruinas
 Scripts/Tiles/TileSaltFlats@Name:
 Salinas
 
+Scripts/Tiles/TileSwamp@Name:
+Pantano
+
+Scripts/Tiles/TileVolcanic@Name:
+Volcánico
+
 Scripts/Tiles/TileWaterLake@Name:
 Agua (lago)
 

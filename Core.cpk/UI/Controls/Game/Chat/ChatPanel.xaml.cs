@@ -8,7 +8,6 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
@@ -77,9 +76,9 @@
                     // stop catching input after a short delay to prevent firing weapon on chat close
                     var clientInputContext = this.openedChatInputContext;
                     this.openedChatInputContext = null;
-                    ClientComponentTimersManager.AddAction(
-                            delaySeconds: 0.1,
-                            action: () => clientInputContext?.Stop());
+                    ClientTimersSystem.AddAction(
+                        delaySeconds: 0.1,
+                        action: () => clientInputContext?.Stop());
 
                     foreach (var chatRoomTab in this.chatRooms.Values)
                     {
@@ -115,23 +114,48 @@
 
         public void SelectNextTab()
         {
-            var index = this.tabControl.SelectedIndex + 1;
-            var maxIndex = this.tabControl.Items.Count;
-            if (index >= maxIndex)
+            var items = this.tabControl.Items;
+            var index = this.tabControl.SelectedIndex;
+            var maxIndex = items.Count;
+
+            do
             {
-                index = 0;
+                index++;
+                if (index >= maxIndex)
+                {
+                    index = 0;
+                }
+
+                if (((TabItem)items[index]).Visibility == Visibility.Visible)
+                {
+                    break;
+                }
             }
+            while (true);
 
             this.tabControl.SelectedIndex = index;
         }
 
         public void SelectPreviousTab()
         {
-            var index = this.tabControl.SelectedIndex - 1;
-            if (index < 0)
+            var items = this.tabControl.Items;
+            var index = this.tabControl.SelectedIndex;
+            var maxIndex = items.Count;
+
+            do
             {
-                index = this.tabControl.Items.Count - 1;
+                index--;
+                if (index < 0)
+                {
+                    index = maxIndex - 1;
+                }
+
+                if (((TabItem)items[index]).Visibility == Visibility.Visible)
+                {
+                    break;
+                }
             }
+            while (true);
 
             this.tabControl.SelectedIndex = index;
         }
@@ -153,13 +177,13 @@
             this.tabControl = this.GetByName<TabControlCached>("TabControl");
             this.tabsScrollViewer = ((FrameworkElement)VisualTreeHelper.GetChild(this.tabControl, 0))
                 .GetByName<ScrollViewer>("TabsScrollViewer");
-            this.MouseLeftButtonDown += this.MouseLeftButtonDownHandler;
             this.IsActive = false;
             Instance = this;
 
             ChatSystem.ClientChatRoomAdded += this.ChatRoomAddedHandler;
             ChatSystem.ClientChatRoomRemoved += this.ChatRoomRemovedHandler;
             this.tabControl.MouseUp += this.TabControlMouseUp;
+            this.MouseDown += this.MouseButtonDownHandler;
         }
 
         private static int CompareTabs(TabItem tabA, TabItem tabB)
@@ -270,7 +294,7 @@
             chatRoomTab.ViewModelChatRoom.Dispose();
         }
 
-        private void MouseLeftButtonDownHandler(object sender, MouseButtonEventArgs e)
+        private void MouseButtonDownHandler(object sender, MouseButtonEventArgs e)
         {
             if (this.tabControl.IsMouseOver)
             {

@@ -24,18 +24,12 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Canvas Margin="-17,-21,0,0"
-                        HorizontalAlignment="Center">
-                    <Rectangle Fill="{StaticResource IconLithium}"
-                               Width="18"
-                               Height="18" />
-                </Canvas>
 
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Center"
-                                Margin="0,0,10,0">
+                                Visibility="{Binding VisibilityFuelControls}">
                         <Canvas
                             DataContext="{Binding ViewModelBurningFuel}"
                             Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -50,7 +44,7 @@
                         <TextBlock Text="{x:Static loc:CoreStrings.TitleFuel}"
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"
                                    HorizontalAlignment="Center"
-                                   Margin="0,0,4,0" />
+                                   Margin="0" />
 
                         <controls:ItemsContainerControl Container="{Binding ViewModelFuelBurningState.ContainerFuel}"
                                                         HorizontalAlignment="Left"
@@ -60,24 +54,43 @@
                             Value="{Binding ViewModelFuelBurningState.FuelUsageCurrentValue}"
                             MaxValue="{Binding ViewModelFuelBurningState.FuelUsageMaxValue}"
                             Foreground="{StaticResource BrushFuel}"
-                            Margin="0,0,0,-6"
                             Style="{StaticResource ItemSlotCraftingProgressHorizontalBar}" />
                     </StackPanel>
 
-                    <core:ValueBarControl
-                        Value="{Binding ViewModelLiquidContainerState.Amount}"
-                        MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
-                        Margin="15,0"
-                        Style="{StaticResource LiquidMediumValueBar}">
-                        <core:ValueBarControl.Foreground>
-                            <SolidColorBrush Color="#FFCCDDEE" />
-                        </core:ValueBarControl.Foreground>
-                    </core:ValueBarControl>
+                    <ContentControl
+                        Visibility="{Binding VisibilityElectricityControls}"
+                        VerticalAlignment="Center">
+                        <Canvas
+                            Visibility="{Binding IsManufacturingActive, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <fuelBurningIndicator:FuelBurningIndicator
+                                FuelIcon="{StaticResource IconElectricity}"
+                                FuelColor="{StaticResource ColorElectricity}"
+                                Canvas.Left="-16" />
+                        </Canvas>
+                    </ContentControl>
+
+                    <Grid Margin="15,0">
+                        <Canvas Margin="-18,-21,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top">
+                            <Rectangle Fill="{StaticResource IconLithium}"
+                                       Width="18"
+                                       Height="18" />
+                        </Canvas>
+
+                        <core:ValueBarControl
+                            Value="{Binding ViewModelLiquidContainerState.Amount}"
+                            MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
+                            Style="{StaticResource LiquidMediumValueBar}">
+                            <core:ValueBarControl.Foreground>
+                                <SolidColorBrush Color="#FFCCDDEE" />
+                            </core:ValueBarControl.Foreground>
+                        </core:ValueBarControl>
+                    </Grid>
 
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Margin="10,0,0,0">
+                                VerticalAlignment="Center">
                         <!-- Text: Output -->
                         <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"

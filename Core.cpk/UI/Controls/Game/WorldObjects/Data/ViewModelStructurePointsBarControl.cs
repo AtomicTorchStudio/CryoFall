@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data
 {
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -55,7 +54,7 @@
         {
             this.StatBar.ValueCurrent = sp;
             // ensure that the current value will be displayed in the next frame
-            ClientComponentTimersManager.AddAction(0, this.RefreshBar);
+            ClientTimersSystem.AddAction(0, this.RefreshBar);
         }
 
         protected override void DisposeViewModel()

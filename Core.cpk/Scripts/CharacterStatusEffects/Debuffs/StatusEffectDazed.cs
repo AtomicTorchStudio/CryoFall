@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs
 {
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs.Client;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -61,10 +61,10 @@
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
         {
-            // does the character has drunk effect?
-            if (data.Character.SharedHasStatusEffect<StatusEffectDrunk>())
+            intensityToAdd *= data.Character.SharedGetFinalStatMultiplier(StatName.DazedIncreaseRateMultiplier);
+
+            if (intensityToAdd <= 0)
             {
-                // if so, then the character cannot be dazed
                 return;
             }
 

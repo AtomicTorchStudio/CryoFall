@@ -202,18 +202,16 @@
         {
             // process all the connected players and drop such of them that should not have access
             var onlinePlayerCharacters = Api.Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true);
-            using (var tempList = Api.Shared.WrapInTempList(onlinePlayerCharacters))
+            using var tempList = Api.Shared.WrapInTempList(onlinePlayerCharacters);
+            foreach (var character in tempList)
             {
-                foreach (var character in tempList)
+                PlayerLoginHook(character.Name, out var errorMessage);
+                if (string.IsNullOrEmpty(errorMessage))
                 {
-                    PlayerLoginHook(character.Name, out var errorMessage);
-                    if (string.IsNullOrEmpty(errorMessage))
-                    {
-                        continue;
-                    }
-
-                    Api.Server.Core.DropConnection(character, errorMessage);
+                    continue;
                 }
+
+                Api.Server.Core.DropConnection(character, errorMessage);
             }
         }
 

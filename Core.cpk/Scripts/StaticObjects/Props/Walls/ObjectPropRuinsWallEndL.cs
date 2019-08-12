@@ -14,6 +14,7 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle(size: (1, 0.5), offset: (0, 0));
+            AddHalfHeightWallHitboxes(data);
         }
     }
 }

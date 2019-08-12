@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -34,17 +35,19 @@
 
         public override string Name => "Construction build/repair system";
 
-        public static bool CheckCanInteractForConstructionByDistance(
+        public static bool CheckCanInteractForConstruction(
             ICharacter character,
-            IStaticWorldObject worldObject)
+            IStaticWorldObject worldObject,
+            bool writeToLog,
+            bool checkRaidblock)
         {
             var characterPosition = character.Position;
             var canInteract = false;
-            var statiocWorldObjectProto = ProtoObjectConstructionSite.SharedGetConstructionProto(worldObject)
-                                          ?? worldObject.ProtoStaticWorldObject;
+            var staticWorldObjectProto = ProtoObjectConstructionSite.SharedGetConstructionProto(worldObject)
+                                         ?? worldObject.ProtoStaticWorldObject;
 
             var startTilePosition = worldObject.TilePosition;
-            foreach (var tileOffset in statiocWorldObjectProto.Layout.TileOffsets)
+            foreach (var tileOffset in staticWorldObjectProto.Layout.TileOffsets)
             {
                 var tilePosition = startTilePosition + tileOffset;
 
@@ -57,7 +60,40 @@
                 }
             }
 
-            return canInteract;
+            if (!canInteract)
+            {
+                canInteract = CreativeModeSystem.SharedIsInCreativeMode(character);
+            }
+
+            if (!canInteract && writeToLog)
+            {
+                Logger.Warning(
+                    $"Character cannot interact with {worldObject} for (de)construction - too far.",
+                    character);
+
+                if (IsClient)
+                {
+                    CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
+                                                                        CoreStrings.Notification_TooFar,
+                                                                        isOutOfRange: true);
+                }
+
+                return false;
+            }
+
+            if (!checkRaidblock
+                || !LandClaimSystem.SharedIsUnderRaidBlock(character, worldObject))
+            {
+                return true;
+            }
+
+            // the building is in an area under the raid
+            if (writeToLog)
+            {
+                LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(character);
+            }
+
+            return false;
         }
 
         public static IStaticWorldObject ClientFindWorldObjectAtCurrentMousePosition()
@@ -218,32 +254,24 @@
             }
 
             // it's possible to build/repair any building within a certain distance to the character
-            var canInteract = CheckCanInteractForConstructionByDistance(character, (IStaticWorldObject)worldObject);
+            var staticWorldObject = (IStaticWorldObject)worldObject;
+            var canInteract = CheckCanInteractForConstruction(character,
+                                                              staticWorldObject,
+                                                              writeToLog,
+                                                              checkRaidblock: false);
             if (!canInteract)
             {
-                if (writeToLog)
-                {
-                    Logger.Warning(
-                        $"Cannot build/repair - {character} cannot interact with the {worldObject}");
-
-                    if (IsClient)
-                    {
-                        CannotInteractMessageDisplay.ShowOn(worldObject, CoreStrings.Notification_TooFar);
-                        worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
-                                   .PlaySound(ObjectSound.InteractOutOfRange);
-                    }
-                }
-
                 return false;
             }
 
-            if (worldObject is IStaticWorldObject staticWorldObject)
+            if (LandClaimSystem.SharedIsUnderRaidBlock(character, staticWorldObject))
             {
-                if (LandClaimSystem.SharedIsUnderRaidBlock(character, staticWorldObject))
-                {
-                    // the building is in an area under the raid
-                    return false;
-                }
+                // the building is in an area under the raid
+                SharedShowCannotBuildNotification(
+                    character,
+                    LandClaimSystem.ErrorCannotBuild_RaidUnderWay,
+                    staticWorldObject.ProtoStaticWorldObject);
+                return false;
             }
 
             return true;
@@ -393,11 +421,11 @@
             characterPrivateState.SetCurrentActionState(null);
         }
 
-        // TODO: A23: merge with ClientRemote_ClientShowNotificationCannotPlace
         private void ClientRemote_ClientShowNotificationCannotBuild(string errorMessage, IProtoStaticWorldObject proto)
         {
             NotificationSystem.ClientShowNotification(
-                NotificationCannotPlace,
+                // "Cannot build"
+                NotificationNotEnoughItems_Title,
                 errorMessage,
                 color: NotificationColor.Bad,
                 icon: proto.Icon);
@@ -406,6 +434,7 @@
         private void ClientRemote_ClientShowNotificationCannotPlace(string errorMessage, IProtoStaticWorldObject proto)
         {
             NotificationSystem.ClientShowNotification(
+                // "Cannot place"
                 NotificationCannotPlace,
                 errorMessage,
                 color: NotificationColor.Bad,

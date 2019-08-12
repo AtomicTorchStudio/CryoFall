@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemIngotSteel>(count: 40);
             inputItems.Add<ItemPlastic>(count: 25);
-            inputItems.Add<ItemComponentsWeapon>(count: 8);
+            inputItems.Add<ItemComponentsWeapon>(count: 5);
 
             outputItems.Add<ItemRifle300>();
         }

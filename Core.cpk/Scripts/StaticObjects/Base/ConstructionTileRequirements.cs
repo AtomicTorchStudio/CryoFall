@@ -23,6 +23,15 @@
     // ReSharper disable SimplifyLinqExpression
     public class ConstructionTileRequirements : IConstructionTileRequirementsReadOnly
     {
+        public const string Error_UnsuitableGround_Message_CanBuildOnlyOn =
+            "You can only build on:";
+
+        public const string Error_UnsuitableGround_Message_CannotBuilOn =
+            "You cannot build on:";
+
+        public const string Error_UnsuitableGround_Title =
+            "Unsuitable ground type";
+
         public const string ErrorCannotBuildInRestrictedArea = "Cannot build in restricted areas.";
 
         public const string ErrorCannotBuildOnCliffOrSlope = "Cannot build on a cliff or slope.";
@@ -80,24 +89,22 @@
                                 }
 
                                 var physicsSpace = WorldService.GetPhysicsSpace();
-                                using (var tempList = physicsSpace.TestCircle(
+                                using var tempList = physicsSpace.TestCircle(
                                     position: c.Tile.Position.ToVector2D() + (0.5, 0.5),
                                     radius: RequirementNoNpcsRadius,
                                     collisionGroup: DefaultCollisionGroup,
-                                    sendDebugEvent: false))
+                                    sendDebugEvent: false);
+                                foreach (var entry in tempList)
                                 {
-                                    foreach (var entry in tempList)
+                                    if (entry.PhysicsBody.AssociatedWorldObject is ICharacter character
+                                        && character.IsNpc)
                                     {
-                                        if (entry.PhysicsBody.AssociatedWorldObject is ICharacter character
-                                            && character.IsNpc)
-                                        {
-                                            // found npc nearby
-                                            return false;
-                                        }
+                                        // found npc nearby
+                                        return false;
                                     }
-
-                                    return true;
                                 }
+
+                                return true;
                             });
 
         /// <summary>
@@ -121,27 +128,25 @@
                                 }
 
                                 var physicsSpace = WorldService.GetPhysicsSpace();
-                                using (var tempList = physicsSpace.TestCircle(
+                                using var tempList = physicsSpace.TestCircle(
                                     position: tilePosition.ToVector2D() + (0.5, 0.5),
                                     radius: RequirementNoPlayersRadius,
                                     collisionGroup: DefaultCollisionGroup,
-                                    sendDebugEvent: false))
+                                    sendDebugEvent: false);
+                                foreach (var entry in tempList)
                                 {
-                                    foreach (var entry in tempList)
+                                    if (entry.PhysicsBody.AssociatedWorldObject is ICharacter character
+                                        && !character.IsNpc
+                                        && !PartySystem.SharedArePlayersInTheSameParty(
+                                            c.CharacterBuilder,
+                                            character))
                                     {
-                                        if (entry.PhysicsBody.AssociatedWorldObject is ICharacter character
-                                            && !character.IsNpc
-                                            && !PartySystem.SharedArePlayersInTheSameParty(
-                                                c.CharacterBuilder,
-                                                character))
-                                        {
-                                            // found player nearby and they're not a party member
-                                            return false;
-                                        }
+                                        // found player nearby and they're not a party member
+                                        return false;
                                     }
-
-                                    return true;
                                 }
+
+                                return true;
                             });
 
         /// <summary>
@@ -280,23 +285,21 @@
         public static bool TileHasAnyPhysicsObjectsWhere(Tile tile, Func<TestResult, bool> check)
         {
             var physicsSpace = WorldService.GetPhysicsSpace();
-            using (var tempList = physicsSpace.TestRectangle(
+            using var tempList = physicsSpace.TestRectangle(
                 // include some padding, otherwise the check will include border-objects
                 position: tile.Position.ToVector2D() + (0.01, 0.01),
                 size: (0.98, 0.98),
                 collisionGroup: DefaultCollisionGroup,
-                sendDebugEvent: false))
+                sendDebugEvent: false);
+            foreach (var entry in tempList)
             {
-                foreach (var entry in tempList)
+                if (check(entry))
                 {
-                    if (check(entry))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
-
-                return false;
             }
+
+            return false;
         }
 
         public ConstructionTileRequirements Add(string errorMessage, DelegateCheck checkFunc)
@@ -308,7 +311,7 @@
         public ConstructionTileRequirements Add(Validator validator)
         {
             if (validator.Function == null
-                || String.IsNullOrEmpty(validator.ErrorMessage))
+                || string.IsNullOrEmpty(validator.ErrorMessage))
             {
                 throw new ArgumentNullException(
                     nameof(validator),
@@ -375,6 +378,22 @@
             return true;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Check(Context context, out string errorMessage)
+        {
+            foreach (var function in this.checkFunctions)
+            {
+                if (!function.Function(context))
+                {
+                    errorMessage = function.ErrorMessage;
+                    return false;
+                }
+            }
+
+            errorMessage = null;
+            return true;
+        }
+
         public ConstructionTileRequirements Clear()
         {
             this.checkFunctions.Clear();
@@ -394,22 +413,6 @@
             }
 
             return this;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Check(Context context, out string errorMessage)
-        {
-            foreach (var function in this.checkFunctions)
-            {
-                if (!function.Function(context))
-                {
-                    errorMessage = function.ErrorMessage;
-                    return false;
-                }
-            }
-
-            errorMessage = null;
-            return true;
         }
 
         public struct Context
@@ -461,22 +464,12 @@
                 this.errorMessageFunc = errorMessageFunc;
             }
 
-            public string ErrorMessage => this.errorMessage
-                                          ?? (this.errorMessage = this.errorMessageFunc());
+            public string ErrorMessage => this.errorMessage ??= this.errorMessageFunc();
 
             public override string ToString()
             {
                 return this.ErrorMessage;
             }
         }
-
-        public const string Error_UnsuitableGround_Message_CanBuildOnlyOn =
-            "You can only build on:";
-
-        public const string Error_UnsuitableGround_Message_CannotBuilOn =
-            "You cannot build on:";
-
-        public const string Error_UnsuitableGround_Title =
-            "Unsuitable ground type";
     }
 }

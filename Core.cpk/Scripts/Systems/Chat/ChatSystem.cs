@@ -9,11 +9,15 @@
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.Systems.ServerPlayerAccess;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.CBND.GameApi.ServicesServer;
     using JetBrains.Annotations;
 
     public class ChatSystem : ProtoSystem<ChatSystem>
@@ -27,8 +31,8 @@
 
         public const string PlayerWentOnlineChatMessageFormat = "{0} joined the game";
 
-        // dict source character -> (dict other character -> chat room holder)
-        private static IDictionary<string, Dictionary<string, ILogicObject>> serverPrivateChatRooms;
+        private static readonly Dictionary<ICharacter, List<ILogicObject>> ServerPrivateChatRoomsCache
+            = new Dictionary<ICharacter, List<ILogicObject>>();
 
         private static ILogicObject sharedGlobalChatRoomHolder;
 
@@ -77,22 +81,50 @@
             Api.SafeInvoke(() => ClientChatRoomRemoved?.Invoke(chatRoom));
         }
 
-        public static Task<ILogicObject> ClientOpenPrivateChat(string withCharacterName)
+        public static async void ClientOpenPrivateChat(string withCharacterName)
         {
-            var allChats = Client.World.FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>();
-            foreach (var chatRoomHolder in allChats)
+            var privateChat = await GetOrCreatePrivateChatAsync();
+            if (privateChat != null)
             {
-                if (SharedGetChatRoom(chatRoomHolder) is ChatRoomPrivate privateChatRoom
-                    && (privateChatRoom.CharacterA == withCharacterName
-                        || privateChatRoom.CharacterB == withCharacterName))
+                if (OpenChat(privateChat))
                 {
-                    // found a local chat instance with this character
-                    privateChatRoom.ClientSetOpenedOrClosedForCurrentCharacter(isClosed: false);
-                    return Task.FromResult(chatRoomHolder);
+                    return;
                 }
+
+                // chat not initialized yet - open on the next frame
+                ClientTimersSystem.AddAction(delaySeconds: 0,
+                                             () => OpenChat(privateChat));
             }
 
-            return Instance.CallServer(_ => _.ServerRemote_CreatePrivateChatRoom(withCharacterName));
+            bool OpenChat(ILogicObject logicObject)
+            {
+                if (!logicObject.IsInitialized)
+                {
+                    return false;
+                }
+
+                Menu.CloseAll();
+                ChatPanel.Instance.OpenChat(SharedGetChatRoom(logicObject));
+                return true;
+            }
+
+            Task<ILogicObject> GetOrCreatePrivateChatAsync()
+            {
+                var allChats = Client.World.FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>();
+                foreach (var chatRoomHolder in allChats)
+                {
+                    if (SharedGetChatRoom(chatRoomHolder) is ChatRoomPrivate privateChatRoom
+                        && (privateChatRoom.CharacterA == withCharacterName
+                            || privateChatRoom.CharacterB == withCharacterName))
+                    {
+                        // found a local chat instance with this character
+                        privateChatRoom.ClientSetOpenedOrClosedForCurrentCharacter(isClosed: false);
+                        return Task.FromResult(chatRoomHolder);
+                    }
+                }
+
+                return Instance.CallServer(_ => _.ServerRemote_CreatePrivateChatRoom(withCharacterName));
+            }
         }
 
         public static void ClientSendMessageToRoom(
@@ -117,7 +149,7 @@
 
         public static void ServerAddChatRoomToPlayerScope(ICharacter character, ILogicObject chatRoomHolder)
         {
-            if (character.IsOnline)
+            if (character.ServerIsOnline)
             {
                 Server.World.EnterPrivateScope(character, chatRoomHolder);
                 Server.World.ForceEnterScope(character, chatRoomHolder);
@@ -133,7 +165,7 @@
 
         public static void ServerRemoveChatRoomFromPlayerScope(ICharacter character, ILogicObject chatRoomHolder)
         {
-            if (character.IsOnline)
+            if (character.ServerIsOnline)
             {
                 Server.World.ForceExitScope(character, chatRoomHolder);
             }
@@ -168,19 +200,23 @@
         {
             var currentCharacter = ServerRemoteContext.Character;
             var currentCharacterName = currentCharacter.Name;
-            if (!serverPrivateChatRooms.TryGetValue(currentCharacterName,
-                                                    out var currentCharacterPrivateChatRooms))
-            {
-                currentCharacterPrivateChatRooms = new Dictionary<string, ILogicObject>();
-                serverPrivateChatRooms[currentCharacterName] = currentCharacterPrivateChatRooms;
-            }
 
-            if (currentCharacterPrivateChatRooms.TryGetValue(inviteeName, out var chatRoomHolder))
+            if (ServerPrivateChatRoomsCache.TryGetValue(currentCharacter, out var currentCharacterChatRooms))
             {
-                Logger.Warning(
-                    $"Private chat room already exist between players {currentCharacter} and {inviteeName}",
-                    currentCharacter);
-                return chatRoomHolder;
+                foreach (var existingChatRoomHolder in currentCharacterChatRooms)
+                {
+                    var chatRoom = (ChatRoomPrivate)SharedGetChatRoom(existingChatRoomHolder);
+                    if ((chatRoom.CharacterA == currentCharacterName
+                         && chatRoom.CharacterB == inviteeName)
+                        || (chatRoom.CharacterB == currentCharacterName
+                            && chatRoom.CharacterA == inviteeName))
+                    {
+                        Logger.Warning(
+                            $"Private chat room already exist between players {currentCharacter} and {inviteeName}",
+                            currentCharacter);
+                        return existingChatRoomHolder;
+                    }
+                }
             }
 
             var inviteeCharacter = Server.Characters.GetPlayerCharacter(inviteeName);
@@ -190,23 +226,14 @@
             }
 
             // create chat room
-            chatRoomHolder = ServerCreateChatRoom(
+            var chatRoomHolder = ServerCreateChatRoom(
                 new ChatRoomPrivate(characterA: currentCharacterName,
                                     characterB: inviteeName)
                     { IsClosedByCharacterA = false });
 
             // register chat room for current character
-            currentCharacterPrivateChatRooms.Add(inviteeName, chatRoomHolder);
-
-            // register chat room for other character
-            if (!serverPrivateChatRooms.TryGetValue(inviteeName,
-                                                    out var inviteePrivateChatRooms))
-            {
-                inviteePrivateChatRooms = new Dictionary<string, ILogicObject>();
-                serverPrivateChatRooms[inviteeName] = inviteePrivateChatRooms;
-            }
-
-            inviteePrivateChatRooms[currentCharacterName] = chatRoomHolder;
+            ServerAddPrivateChatRoomToCharacterCache(currentCharacter, chatRoomHolder);
+            ServerAddPrivateChatRoomToCharacterCache(inviteeCharacter, chatRoomHolder);
 
             ServerAddChatRoomToPlayerScope(currentCharacter, chatRoomHolder);
             if (currentCharacter != inviteeCharacter)
@@ -220,9 +247,7 @@
             return chatRoomHolder;
         }
 
-        private static void ClientOnlinePlayersSystemOnPlayerAddedOrRemovedHandler(
-            string name,
-            bool isOnline)
+        private static void ClientPlayerJoinedOrLeftHandler(string name, bool isOnline)
         {
             if (name == Client.Characters.CurrentPlayerCharacter.Name
                 || sharedGlobalChatRoomHolder == null)
@@ -239,9 +264,19 @@
                                           message,
                                           isService: true,
                                           DateTime.Now);
-            ClientReceiveChatEntry(
-                chatRoomHolderObject: sharedGlobalChatRoomHolder,
-                chatEntry);
+
+            // No player joined/left notification in global chat
+            // when there are over 10 online players on the server
+            // (except for the party members).
+            var skipGlobalChat = OnlinePlayersSystem.ClientOnlinePlayersCount > 10
+                                 && !PartySystem.ClientIsPartyMember(name);
+
+            if (!skipGlobalChat)
+            {
+                ClientReceiveChatEntry(
+                    chatRoomHolderObject: sharedGlobalChatRoomHolder,
+                    chatEntry);
+            }
 
             var allChats = Client.World.FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>();
             foreach (var chatRoomHolder in allChats)
@@ -287,26 +322,15 @@
             ClientChatRoomMessageReceived?.Invoke(chatRoom, chatEntry);
         }
 
-        private static void PlayerNameChangedHandler(string oldName, string newName)
+        private static void ServerAddPrivateChatRoomToCharacterCache(ICharacter character, ILogicObject chatRoomHolder)
         {
-            foreach (var dict in serverPrivateChatRooms.Values)
+            if (!ServerPrivateChatRoomsCache.TryGetValue(character, out var listPrivateChatRooms))
             {
-                foreach (var chatRoomHolder in dict.Values)
-                {
-                    var chatRoom = (ChatRoomPrivate)SharedGetChatRoom(chatRoomHolder);
-                    if (string.Equals(chatRoom.CharacterA, oldName, StringComparison.Ordinal))
-                    {
-                        chatRoom.ServerReplaceCharacterName(newName, isCharacterA: true);
-                        Logger.Important($"Replaced private chat room username: {oldName}->{newName} in {chatRoom}");
-                    }
-
-                    if (string.Equals(chatRoom.CharacterB, oldName, StringComparison.Ordinal))
-                    {
-                        chatRoom.ServerReplaceCharacterName(newName, isCharacterA: false);
-                        Logger.Important($"Replaced private chat room username: {oldName}->{newName} in {chatRoom}");
-                    }
-                }
+                listPrivateChatRooms = new List<ILogicObject>();
+                ServerPrivateChatRoomsCache[character] = listPrivateChatRooms;
             }
+
+            listPrivateChatRooms.Add(chatRoomHolder);
         }
 
         private static void ServerLogNewChatEntry(uint chatRoomId, string message, string fromPlayerName)
@@ -315,6 +339,29 @@
             var text = $"ChatId={chatRoomId} From=\"{fromPlayerName}\":{Environment.NewLine}{message}";
             Logger.Important(text);
             Server.Core.AddChatLogEntry(text);
+        }
+
+        private static void ServerPlayerNameChangedHandler(string oldName, string newName)
+        {
+            foreach (var chatRoomHolder in Api.Server.World.FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>())
+            {
+                if (!(SharedGetChatRoom(chatRoomHolder) is ChatRoomPrivate privateChatRoom))
+                {
+                    continue;
+                }
+
+                if (string.Equals(privateChatRoom.CharacterA, oldName, StringComparison.Ordinal))
+                {
+                    privateChatRoom.ServerReplaceCharacterName(newName, isCharacterA: true);
+                    Logger.Important($"Replaced private chat room username: {oldName}->{newName} in {privateChatRoom}");
+                }
+
+                if (string.Equals(privateChatRoom.CharacterB, oldName, StringComparison.Ordinal))
+                {
+                    privateChatRoom.ServerReplaceCharacterName(newName, isCharacterA: false);
+                    Logger.Important($"Replaced private chat room username: {oldName}->{newName} in {privateChatRoom}");
+                }
+            }
         }
 
         private static void ServerPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
@@ -347,6 +394,14 @@
             [NotNull] ILogicObject chatRoomHolderObject,
             ChatEntry chatEntry)
         {
+            if (!chatRoomHolderObject.IsInitialized)
+            {
+                // probably the chat room was just created (such as party chat room)
+                Logger.Warning(
+                    $"Chat room is null: {chatRoomHolderObject}. Received message for it: {chatEntry.Message}");
+                return;
+            }
+
             ClientReceiveChatEntry(chatRoomHolderObject, chatEntry);
         }
 
@@ -412,7 +467,7 @@
             }
 
             message = ProfanityFilteringSystem.SharedApplyFilters(message);
-            
+
             var chatRoom = SharedGetChatRoom(chatRoomHolder);
 
             var chatEntry = new ChatEntry(characterName,
@@ -439,9 +494,9 @@
             ServerAddChatRoomToPlayerScope(character, sharedGlobalChatRoomHolder);
             ServerAddChatRoomToPlayerScope(character, sharedLocalChatRoomHolder);
 
-            if (serverPrivateChatRooms.TryGetValue(character.Name, out var characterPrivateChatRooms))
+            if (ServerPrivateChatRoomsCache.TryGetValue(character, out var characterPrivateChatRooms))
             {
-                foreach (var chatRoomHolder in characterPrivateChatRooms.Values)
+                foreach (var chatRoomHolder in characterPrivateChatRooms)
                 {
                     ServerAddChatRoomToPlayerScope(character, chatRoomHolder);
                 }
@@ -463,14 +518,12 @@
 
             private const string DatabaseKeyLocalChatRoomHolder = "LocalChatRoomHolder";
 
-            private const string DatabaseKeyPrivateChatRooms = "PrivateChatRooms";
+            private static readonly IWorldServerService ServerWorld = IsServer ? Api.Server.World : null;
 
             public override void ClientInitialize()
             {
                 ClientChatBlockList.Initialize();
-                OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved +=
-                    ClientOnlinePlayersSystemOnPlayerAddedOrRemovedHandler;
-
+                OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved += ClientPlayerJoinedOrLeftHandler;
                 Client.Characters.CurrentPlayerCharacterChanged += Refresh;
 
                 Refresh();
@@ -490,7 +543,7 @@
             public override void ServerInitialize(IServerConfiguration serverConfiguration)
             {
                 Server.Characters.PlayerOnlineStateChanged += ServerPlayerOnlineStateChangedHandler;
-                Server.Characters.PlayerNameChanged += PlayerNameChangedHandler;
+                Server.Characters.PlayerNameChanged += ServerPlayerNameChangedHandler;
                 Server.World.WorldBoundsChanged += this.ServerWorldBoundsChangedHandler;
 
                 ServerLoadSystem();
@@ -515,30 +568,52 @@
                     database.Set(nameof(ChatSystem), DatabaseKeyLocalChatRoomHolder, sharedLocalChatRoomHolder);
                 }
 
-                if (!database.TryGet(nameof(ChatSystem),
-                                     DatabaseKeyPrivateChatRooms,
-                                     out serverPrivateChatRooms))
-                {
-                    serverPrivateChatRooms = new Dictionary<string, Dictionary<string, ILogicObject>>();
-                    database.Set(nameof(ChatSystem),
-                                 DatabaseKeyPrivateChatRooms,
-                                 serverPrivateChatRooms);
-                }
+                // right now it's not possible to enumerate all the existing chat rooms as this is a bootstrapper
+                // schedule a delayed initialization
+                ServerTimersSystem.AddAction(
+                    0.1,
+                    () =>
+                    {
+                        foreach (var chatRoomHolder in ServerWorld
+                                                       .FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>()
+                                                       .ToList())
+                        {
+                            if (!(SharedGetChatRoom(chatRoomHolder) is ChatRoomPrivate privateChatRoom))
+                            {
+                                continue;
+                            }
+
+                            var characterA = Server.Characters.GetPlayerCharacter(privateChatRoom.CharacterA);
+                            var characterB = Server.Characters.GetPlayerCharacter(privateChatRoom.CharacterB);
+
+                            if (characterA == null
+                                || characterB == null)
+                            {
+                                // incorrect private chat room
+                                ServerWorld.DestroyObject(chatRoomHolder);
+                                continue;
+                            }
+
+                            ServerAddPrivateChatRoomToCharacterCache(characterA, chatRoomHolder);
+                            ServerAddPrivateChatRoomToCharacterCache(characterB, chatRoomHolder);
+                        }
+                    });
             }
 
             private void ServerWorldBoundsChangedHandler()
             {
-                Server.World.DestroyObject(sharedGlobalChatRoomHolder);
-                Server.World.DestroyObject(sharedLocalChatRoomHolder);
-                foreach (var chatRoom in serverPrivateChatRooms.Values.SelectMany(v => v.Values))
+                foreach (var chatRoomHolder in ServerWorld
+                                               .FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>()
+                                               .ToList())
                 {
-                    Server.World.DestroyObject(chatRoom);
+                    Server.World.DestroyObject(chatRoomHolder);
                 }
+
+                ServerPrivateChatRoomsCache.Clear();
 
                 var database = Server.Database;
                 database.Remove(nameof(ChatSystem), DatabaseKeyGlobalChatRoomHolder);
                 database.Remove(nameof(ChatSystem), DatabaseKeyLocalChatRoomHolder);
-                database.Remove(nameof(ChatSystem), DatabaseKeyPrivateChatRooms);
 
                 ServerLoadSystem();
             }

@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Server;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -40,15 +39,12 @@
 
         public override void ClientInitialize()
         {
-            if (!Api.IsEditor)
+            if (!Api.IsEditor
+                && !Api.Shared.IsRequiresLanguageSelection)
             {
                 // force master server connection in non-game mode (in non-Editor only)
                 Api.Client.MasterServer.Connect();
             }
-
-            Api.Client.Scene
-               .CreateSceneObject("Update helper")
-               .AddComponent<ClientComponentUpdateHelper>();
 
             Client.Core.SetLoadingSplashScreenManager(LoadingSplashScreenManager.Instance);
 

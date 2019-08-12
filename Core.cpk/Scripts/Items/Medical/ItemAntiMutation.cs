@@ -16,7 +16,7 @@
 
         public const string NotificationMutation_Title = "No mutations";
 
-        public const string NotificationMutation_Message = "No out of control mutation is detected in the body.";
+        public const string NotificationMutation_Message = "No out-of-control mutation is detected in the body.";
         
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {

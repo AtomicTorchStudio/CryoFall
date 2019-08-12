@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Droplists
 {
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -51,11 +52,10 @@
             CreateItemResult result;
             if (toCharacter != null)
             {
-                const bool sendNoFreeSpaceNotification = false;
                 result = TryDropToCharacter(
                     dropItemsList,
                     toCharacter,
-                    sendNoFreeSpaceNotification,
+                    sendNoFreeSpaceNotification: false,
                     probabilityMultiplier,
                     context);
                 if (result.IsEverythingCreated)
@@ -68,11 +68,18 @@
                 result.Rollback();
             }
 
-            result = TryDropToGround(dropItemsList, tilePosition, probabilityMultiplier, context, out groundContainer);
-            if (result.TotalCreatedCount > 0)
+            result = TryDropToGround(dropItemsList,
+                                     tilePosition,
+                                     probabilityMultiplier,
+                                     context,
+                                     out groundContainer);
+            if (sendNotificationWhenDropToGround
+                && result.TotalCreatedCount > 0)
             {
                 // notify player that there were not enough space in inventory so the items were dropped to the ground
-                NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(toCharacter);
+                NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
+                    toCharacter,
+                    result.ItemAmounts.FirstOrDefault().Key?.ProtoItem);
             }
 
             return result;

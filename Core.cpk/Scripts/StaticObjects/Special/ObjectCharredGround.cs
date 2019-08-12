@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -12,6 +13,12 @@
         : ProtoStaticWorldObject
             <EmptyPrivateState, ObjectCharredGround.PublicState, StaticObjectClientState>
     {
+        // 5 minutes postpone if object is observed by any player
+        public const double ObjectDespawnDurationPostponeIfObservedSeconds = 5 * 60;
+
+        // despawn after 32 hours
+        public const double ObjectDespawnDurationSeconds = 32 * 60 * 60;
+
         public const float Scale = 1f;
 
         public override double ClientUpdateIntervalSeconds => 0; // every frame
@@ -99,9 +106,35 @@
             layout.Setup("#");
         }
 
+        protected override void ServerInitialize(ServerInitializeData data)
+        {
+            base.ServerInitialize(data);
+
+            // schedule destruction by timer
+            var worldObject = data.GameObject;
+            ServerTimersSystem.AddAction(
+                delaySeconds: ObjectDespawnDurationSeconds,
+                () => ServerDespawnTimerCallback(worldObject));
+        }
+
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             // no physics
+        }
+
+        private static void ServerDespawnTimerCallback(IStaticWorldObject worldObject)
+        {
+            if (!Server.World.IsObservedByAnyPlayer(worldObject))
+            {
+                // can destroy now
+                Server.World.DestroyObject(worldObject);
+                return;
+            }
+
+            // postpone destruction
+            ServerTimersSystem.AddAction(
+                delaySeconds: ObjectDespawnDurationPostponeIfObservedSeconds,
+                () => ServerDespawnTimerCallback(worldObject));
         }
 
         public class PublicState : StaticObjectPublicState

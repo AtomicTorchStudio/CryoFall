@@ -19,7 +19,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
@@ -52,6 +51,19 @@
                   : null;
 
         public override string Name => "Character respawn system";
+
+        public static void ServerRemoveInvalidStatusEffects(ICharacter character)
+        {
+            foreach (var statusEffect in Api.Shared.WrapInTempList(
+                character.ServerEnumerateCurrentStatusEffects()))
+            {
+                var protoStatusEffect = (IProtoStatusEffect)statusEffect.ProtoLogicObject;
+                if (protoStatusEffect.IsRemovedOnRespawn)
+                {
+                    character.ServerRemoveStatusEffect(protoStatusEffect);
+                }
+            }
+        }
 
         /// <summary>
         /// Used when respawning near bed.
@@ -219,16 +231,17 @@
                 ResetStatsOnRespawn();
             }
 
+            if (!NewbieProtectionSystem.ServerGetLatestDeathIsNewbiePvP(character))
+            {
+                // character is weakened after respawn for some time
+                // (except newbies in case of PvP death)
+                character.ServerAddStatusEffect<StatusEffectWeakened>(intensity: 0.5);
+            }
+
             // recreate physics (as dead character doesn't have any physics)
             character.ProtoCharacter.SharedCreatePhysics(character);
 
             Api.Server.Characters.SetViewScopeMode(character, isEnabled: true);
-
-            if (!PveSystem.ServerIsPvE)
-            {
-                // on PvP servers character is weakened after respawn for some time
-                character.ServerAddStatusEffect<StatusEffectWeakened>(intensity: 0.5);
-            }
 
             CharacterDamageTrackingSystem.ServerClearStats(character);
 
@@ -238,16 +251,7 @@
                 stats.SharedSetStaminaCurrent(stats.StaminaMax / 2f);
                 stats.ServerSetFoodCurrent(stats.FoodMax / 4f);
                 stats.ServerSetWaterCurrent(stats.WaterMax / 4f);
-
-                // remove status effects flagged as removed on respawn
-                foreach (var statusEffect in character.ServerEnumerateCurrentStatusEffects().ToList())
-                {
-                    var protoStatusEffect = (IProtoStatusEffect)statusEffect.ProtoLogicObject;
-                    if (protoStatusEffect.IsRemovedOnRespawn)
-                    {
-                        character.ServerRemoveStatusEffect(protoStatusEffect);
-                    }
-                }
+                ServerRemoveInvalidStatusEffects(character);
             }
         }
 
@@ -271,7 +275,8 @@
                 return false;
             }
 
-            var bedPosition = bedObject.TilePosition;
+            var bedPosition = bedObject.TilePosition.ToVector2D()
+                              + bedObject.ProtoStaticWorldObject.Layout.Center;
             return respawnOnlyNearby
                        ? RespawnNearbyBed()
                        : RespawnAtBed();
@@ -280,13 +285,15 @@
             {
                 var neighborTiles = bedObject.OccupiedTiles
                                              .SelectMany(t => t.EightNeighborTiles)
+                                             .Concat(bedObject.OccupiedTiles)
                                              .Distinct()
                                              .ToList();
                 neighborTiles.Shuffle();
 
                 var bedTileHeight = bedObject.OccupiedTile.Height;
 
-                neighborTiles.SortBy(t => t.Position.TileSqrDistanceTo(bedPosition));
+                neighborTiles.SortBy(t => t.Position.ToVector2D()
+                                           .DistanceSquaredTo(bedPosition));
                 var physicsSpace = Server.World.GetPhysicsSpace();
 
                 foreach (var neighborTile in neighborTiles)
@@ -330,7 +337,7 @@
 
             bool RespawnNearbyBed()
             {
-                var respawnCenterPosition = bedPosition.ToVector2D() + (0.5, 0.5);
+                var respawnCenterPosition = bedPosition + (0.5, 0.5);
 
                 if (ServerTryPlaceCharacterNearby(character, respawnCenterPosition))
                 {

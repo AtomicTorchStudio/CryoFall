@@ -1,5 +1,5 @@
-﻿Scripts/CraftRecipes/HandCrafting/RecipeFillBottleWithWaterbulb@Name:
-Encha o frasco com aquabulbo
+﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
+Quebra de garrafa
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
 Encha o barril com gasolina
@@ -37,20 +37,17 @@ Subproduto da queima de gravetos
 Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
 Ferver a água (desperdício)
 
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
-Combustível (gordura animal)
-
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
-Cogumelos assados (boletus)
-
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
-Cogumelos assados (porcino)
-
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
 Reciclar moeda de centavo
 
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
 Reciclar cintilante
+
+Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBottleFromFullBottle@Name:
+Encher de água o gerador de vapor
+
+Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
+Adicionar gasolina do reservatório ao gerador motor
 
 Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
 Sais de lítio do extrator de minério de lítio
@@ -70,30 +67,6 @@ Encha o reservatório com óleo mineral da refinaria de petróleo
 Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 Ferver água
 
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesOrange@Name:
-Geleia (frutinhas laranjas)
-
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesRed@Name:
-Geleia (frutinhas vermelhas)
-
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesViolet@Name:
-Geleia (frutinhas violetas)
-
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 Encher a garrafa com água do poço
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromPyrite@Name:
-Ácido sulfúrico (de pirita)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromSulfur@Name:
-Ácido sulfúrico (de enxofre)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeCampFuelSynthetic@Name:
-Combustível (sintético)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeToxin@Name:
-Extração de toxinas
-
-Scripts/CraftRecipes/StationCrafting/Workbench/RecipeCanisterPetroleum@Name:
-Reservatório de petróleo (de petrovagens)
 

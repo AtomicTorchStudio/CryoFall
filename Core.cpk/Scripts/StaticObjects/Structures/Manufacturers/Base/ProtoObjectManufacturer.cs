@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
+    using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
@@ -15,7 +16,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -30,6 +30,7 @@
               TPublicState,
               TClientState>,
           IProtoObjectManufacturer,
+          IProtoObjectElectricityConsumerWithCustomRate,
           IInteractableProtoStaticWorldObject
         where TPrivateState : ObjectManufacturerPrivateState, new()
         where TPublicState : ObjectManufacturerPublicState, new()
@@ -43,6 +44,8 @@
 
         public abstract byte ContainerOutputSlotsCount { get; }
 
+        public virtual double ElectricityConsumptionPerSecondWhenActive => 0;
+
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
         public abstract bool IsAutoSelectRecipe { get; }
@@ -50,6 +53,8 @@
         public abstract bool IsFuelProduceByproducts { get; }
 
         public ManufacturingConfig ManufacturingConfig { get; private set; }
+
+        public virtual double ManufacturingSpeedMultiplier => 1.0;
 
         public override double ServerUpdateIntervalSeconds => 0.2;
 
@@ -64,6 +69,13 @@
             this.CallServer(_ => _.ServerRemote_SelectRecipe(worldObject, recipe));
         }
 
+        public double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
+        {
+            return GetPublicState(worldObject).IsActive
+                       ? 1
+                       : 0;
+        }
+
         BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
         {
             return this.ClientOpenUI(new ClientObjectData(worldObject));
@@ -71,26 +83,29 @@
 
         void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         protected virtual IComponentSoundEmitter ClientCreateActiveStateSoundEmitterComponent(
-            IStaticWorldObject worldObject,
-            IClientSceneObject sceneObject)
+            IStaticWorldObject worldObject)
         {
             return Client.Audio.CreateSoundEmitter(
-                sceneObject,
+                worldObject,
                 soundResource: worldObject.ProtoStaticWorldObject
                                           .SharedGetObjectSoundPreset()
                                           .GetSound(ObjectSound.Active),
                 is3D: true,
                 radius: Client.Audio.CalculateObjectSoundRadius(worldObject),
                 isLooped: true);
+        }
+
+        protected override void ClientInitialize(ClientInitializeData data)
+        {
+            base.ClientInitialize(data);
+            PowerGridSystem.ClientInitializeConsumerOrProducer(data.GameObject);
         }
 
         protected override void ClientInteractStart(ClientObjectData data)
@@ -103,9 +118,8 @@
             return WindowManufacturer.Open(
                 new ViewModelWindowManufacturer(
                     data.GameObject,
-                    data.SyncPrivateState.ManufacturingState,
-                    this.ManufacturingConfig,
-                    data.SyncPrivateState.FuelBurningState));
+                    data.PrivateState,
+                    this.ManufacturingConfig));
         }
 
         protected void ClientSetupManufacturerActiveAnimation(
@@ -116,6 +130,7 @@
             double frameDurationSeconds,
             double drawOrderOffsetY = 0,
             bool autoInverseAnimation = false,
+            bool randomizeInitialFrame = false,
             OnRefreshActiveState onRefresh = null)
         {
             var clientState = worldObject.GetClientState<StaticObjectClientState>();
@@ -136,24 +151,31 @@
                 ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
                     textureAtlasResource,
                     autoInverse: autoInverseAnimation),
-                frameDurationSeconds: frameDurationSeconds);
+                frameDurationSeconds: frameDurationSeconds,
+                randomizeInitialFrame: randomizeInitialFrame);
 
-            var soundEmitterActiveState = this.ClientCreateActiveStateSoundEmitterComponent(worldObject, sceneObject);
+            var soundEmitter = this.ClientCreateActiveStateSoundEmitterComponent(worldObject);
+            if (clientState.SoundEmitter != null)
+            {
+                Logger.Error("Sound emitter will be overwritten for: " + worldObject);
+            }
+
+            clientState.SoundEmitter = soundEmitter;
 
             serverPublicState.ClientSubscribe(
-                s => s.IsManufacturingActive,
+                s => s.IsActive,
                 callback: RefreshActiveState,
                 subscriptionOwner: clientState);
 
-            RefreshActiveState(serverPublicState.IsManufacturingActive);
+            RefreshActiveState(serverPublicState.IsActive);
 
             void RefreshActiveState(bool isActive)
             {
                 overlayRenderer.IsEnabled = isActive;
                 spriteSheetAnimator.IsEnabled = isActive;
-                if (soundEmitterActiveState != null)
+                if (soundEmitter != null)
                 {
-                    soundEmitterActiveState.IsEnabled = isActive;
+                    soundEmitter.IsEnabled = isActive;
                 }
 
                 onRefresh?.Invoke(isActive);
@@ -233,10 +255,11 @@
             {
                 if (fuelBurningState == null)
                 {
-                    fuelBurningState = this.ContainerFuelSlotsCount > 0
-                                           ? new FuelBurningState(data.GameObject, this.ContainerFuelSlotsCount)
-                                           : null;
-                    privateState.FuelBurningState = fuelBurningState;
+                    if (this.ContainerFuelSlotsCount > 0)
+                    {
+                        fuelBurningState = new FuelBurningState(data.GameObject, this.ContainerFuelSlotsCount);
+                        privateState.FuelBurningState = fuelBurningState;
+                    }
                 }
                 else if (this.ContainerFuelSlotsCount > 0)
                 {
@@ -290,13 +313,28 @@
 
             var hasActiveRecipe = manufacturingState.HasActiveRecipe;
 
-            bool isActive;
+            var isActive = false;
             var fuelBurningState = privateState.FuelBurningState;
 
             if (fuelBurningState == null)
             {
-                // no fuel burning state - always active
-                isActive = true;
+                // no fuel burning state
+                if (this.ElectricityConsumptionPerSecondWhenActive <= 0)
+                {
+                    // no fuel burning and no electricity consumption - always active
+                    isActive = true;
+                }
+                else
+                {
+                    // Consuming electricity.
+                    // Active only if electricity state is on and has active recipe.
+                    var publicState = data.PublicState;
+                    if (publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOn)
+                    {
+                        isActive = hasActiveRecipe
+                                   && !manufacturingState.CraftingQueue.IsContainerOutputFull;
+                    }
+                }
             }
             else
             {
@@ -306,7 +344,8 @@
                     fuelBurningState,
                     privateState.FuelBurningByproductsQueue,
                     this.ManufacturingConfig,
-                    data.DeltaTime,
+                    deltaTime: data.DeltaTime,
+                    byproductsQueueRate: StructureConstants.ManufacturingSpeedMultiplier,
                     isNeedFuelNow: hasActiveRecipe
                                    && !manufacturingState.CraftingQueue.IsContainerOutputFull);
 
@@ -314,7 +353,7 @@
                 isActive = fuelBurningState.FuelUseTimeRemainsSeconds > 0;
             }
 
-            data.PublicState.IsManufacturingActive = isActive;
+            data.PublicState.IsActive = isActive;
 
             if (isActive
                 && hasActiveRecipe)
@@ -322,7 +361,9 @@
                 // progress crafting
                 ManufacturingMechanic.UpdateCraftingQueueOnly(
                     manufacturingState,
-                    data.DeltaTime);
+                    deltaTime: data.DeltaTime
+                               * StructureConstants.ManufacturingSpeedMultiplier
+                               * this.ManufacturingSpeedMultiplier);
 
                 // it's important to synchronize this property here
                 // (because rollback might happen due to unable to spawn output items and container hash will be changed)

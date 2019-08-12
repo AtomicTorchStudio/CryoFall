@@ -125,26 +125,23 @@
                          .Add(soundSetPath)
                          .ToReadOnly();
 
-            TextureAtlasResource[] spriteAtlasResources;
-            using (var tempFilePaths = Api.Shared.FindFilesWithTrailingNumbers(
-                ContentPaths.Textures + spriteSetPath))
+            using var tempFilePaths = Api.Shared.FindFilesWithTrailingNumbers(
+                ContentPaths.Textures + spriteSetPath);
+            var filePaths = tempFilePaths.AsList();
+            if (filePaths.Count == 0)
             {
-                var filePaths = tempFilePaths.AsList();
-                if (filePaths.Count == 0)
-                {
-                    Api.Logger.Error("The explosion preset is empty - no explosion textures found at "
-                                     + spriteSetPath);
-                }
+                Api.Logger.Error("The explosion preset is empty - no explosion textures found at "
+                                 + spriteSetPath);
+            }
 
-                spriteAtlasResources = new TextureAtlasResource[filePaths.Count];
-                for (var index = 0; index < filePaths.Count; index++)
-                {
-                    var filePath = filePaths[index];
-                    spriteAtlasResources[index] = new TextureAtlasResource(filePath,
-                                                                           spriteAtlasColumns,
-                                                                           spriteAtlasRows,
-                                                                           isTransparent: true);
-                }
+            var spriteAtlasResources = new TextureAtlasResource[filePaths.Count];
+            for (var index = 0; index < filePaths.Count; index++)
+            {
+                var filePath = filePaths[index];
+                spriteAtlasResources[index] = new TextureAtlasResource(filePath,
+                                                                       spriteAtlasColumns,
+                                                                       spriteAtlasRows,
+                                                                       isTransparent: true);
             }
 
             return new ExplosionPreset(serverDamageApplyDelay,

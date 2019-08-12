@@ -21,7 +21,6 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class NewbieProtectionSystem : ProtoSystem<NewbieProtectionSystem>
     {
@@ -32,12 +31,7 @@
             "Are you sure you want to cancel the newbie protection? You cannot enable it again.";
 
         public const string NewbieProtectionDescription =
-            "You're under newbie protection. It protects you against losing your items and learning points if your character is killed by another player. Also, the items you drop in other cases of death cannot be looted by other players. Please follow the quests to craft the necessary tools and weapons, and build a small base as soon as possible!";
-
-        /// <summary>
-        /// Duration of newbie protection (in seconds).
-        /// </summary>
-        public const double NewbieProtectionDuration = 4 * 60 * 60; // 4 hours
+            "You're under newbie protection. It protects you against losing your items if your character is killed by another player. Also, the items you drop in other cases of death cannot be looted by other players. Please follow the quests to craft the necessary tools and weapons, and build a small base as soon as possible!";
 
         public const string NewbieProtectionExpireInFormat =
             "The newbie protection will expire in:";
@@ -62,6 +56,17 @@
         private const string DatabaseNewbiesListEntryId = "ServerNewbiesList";
 
         private const int ServerUpdateInterval = 10;
+
+        /// <summary>
+        /// Duration of newbie protection (in seconds).
+        /// </summary>
+        public static readonly int NewbieProtectionDuration =
+            ServerRates.Get("NewbieProtectionDuration",
+                            // 2 hours
+                            defaultValue: 2 * 60 * 60,
+                            @"Newbie protection duration (in seconds). Applies only to PvP servers.
+                              Default value: 2 hours or 7200 seconds. Don't set it higher than 2 billions.
+                              If you set it to 0 the Newbie Protection will be not applied to the new players.");
 
         private static HashSet<ICharacter> serverNewbieLastDeathIsPvPlist;
 
@@ -114,6 +119,11 @@
             }
         }
 
+        public static bool ServerGetLatestDeathIsNewbiePvP(ICharacter character)
+        {
+            return serverNewbieLastDeathIsPvPlist.Contains(character);
+        }
+
         /// <summary>
         /// Gets the remaining duration of the newbie protection.
         /// </summary>
@@ -140,18 +150,18 @@
         public static void ServerRegisterDeath(
             ICharacter character,
             bool isPvPdeath,
-            out bool shouldDropLootAndLoseLP)
+            out bool shouldSufferDeathConsequences)
         {
             if (isPvPdeath && SharedIsNewbie(character))
             {
                 // newbie's PvP death
-                shouldDropLootAndLoseLP = false;
+                shouldSufferDeathConsequences = false;
                 serverNewbieLastDeathIsPvPlist.Add(character);
             }
             else
             {
                 // not a newbie or newbie's PvE death
-                shouldDropLootAndLoseLP = true;
+                shouldSufferDeathConsequences = true;
                 serverNewbieLastDeathIsPvPlist.Remove(character);
             }
         }
@@ -161,6 +171,12 @@
             if (PveSystem.ServerIsPvE)
             {
                 // no newbie protection on PvE servers as it's not required
+                return;
+            }
+
+            if (NewbieProtectionDuration <= 0)
+            {
+                // newbie protection in server rates 
                 return;
             }
 
@@ -231,46 +247,50 @@
             }
         }
 
-        public static void SharedValidateNewbieCannotPickupItemsDuringRaidAnotherArea(
+        public static bool SharedValidateInteractionIsNotForbidden(
             ICharacter character,
-            Vector2Ushort position,
-            out bool isAllowedToPickup,
+            IStaticWorldObject worldObject,
             bool writeToLog)
         {
             if (!SharedIsNewbie(character)
                 || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
-                isAllowedToPickup = true;
-                return;
+                return true;
             }
+
+            var startTilePosition = worldObject.TilePosition;
+            var worldObjectLayoutTileOffsets = worldObject.ProtoStaticWorldObject.Layout.TileOffsets;
 
             foreach (var area in LandClaimSystem.SharedEnumerateAllAreas())
             {
-                var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area, addGracePadding: true);
-                if (!areaBounds.Contains(position))
+                var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area, addGracePadding: false);
+                foreach (var tileOffset in worldObjectLayoutTileOffsets)
                 {
-                    continue;
-                }
-
-                // Please note: this check will not work on client for other players areas
-                // as player doesn't have their private state info.
-                // Anyway, it's not a big deal as the check could be done on the server side.
-                if (LandClaimSystem.SharedIsAreaUnderRaid(area)
-                    && !LandClaimSystem.SharedIsOwnedArea(area, character))
-                {
-                    // cannot pickup - there is an area under raid and current player is not the area owner
-                    isAllowedToPickup = false;
-
-                    if (writeToLog)
+                    var tilePosition = startTilePosition.AddAndClamp(tileOffset);
+                    if (!areaBounds.Contains(tilePosition))
                     {
-                        SharedNotifyNewbieCannotPerformAction(character, iconSource: null);
+                        // the object is not inside this area
+                        continue;
                     }
 
-                    return;
+                    // Please note: this check will not work on client for other players areas
+                    // as player doesn't have their private state info.
+                    // Anyway, it's not a big deal as the check could be done on the server side.
+                    if (LandClaimSystem.SharedIsAreaUnderRaid(area)
+                        && !LandClaimSystem.SharedIsOwnedArea(area, character))
+                    {
+                        // cannot pickup - there is an area under raid and current player is not the area owner
+                        if (writeToLog)
+                        {
+                            SharedNotifyNewbieCannotPerformAction(character, iconSource: null);
+                        }
+
+                        return false;
+                    }
                 }
             }
 
-            isAllowedToPickup = true;
+            return true;
         }
 
         protected override void PrepareSystem()
@@ -356,7 +376,7 @@
 
         private static void ServerSendNewbieProtectionTimeRemaining(ICharacter character)
         {
-            if (!character.IsOnline)
+            if (!character.ServerIsOnline)
             {
                 return;
             }
@@ -406,7 +426,7 @@
         private bool ServerRemote_ServerGetLatestDeathIsNewbiePvP()
         {
             var character = ServerRemoteContext.Character;
-            return serverNewbieLastDeathIsPvPlist.Contains(character);
+            return ServerGetLatestDeathIsNewbiePvP(character);
         }
 
         private void ServerUpdate()
@@ -415,11 +435,14 @@
             {
                 var tuple = serverNewbies[index];
                 var character = tuple.character;
-                if (!character.IsOnline)
-                {
-                    // time deducted only for the online characters
-                    continue;
-                }
+
+                // To prevent exploit with storing the items in the offline newbie characters
+                // this code is commented out.
+                //if (!character.ServerIsOnline)
+                //{
+                //    // time deducted only for the online characters
+                //    continue;
+                //}
 
                 tuple.timeRemains -= ServerUpdateInterval;
                 if (tuple.timeRemains > 0)

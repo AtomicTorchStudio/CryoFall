@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Systems.Quests;
+    using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -58,6 +59,9 @@
                 _ => _.IsNew,
                 _ => this.NotifyPropertyChanged(nameof(this.IsNew)),
                 this);
+
+            TechConstants.ClientLearningPointsGainMultiplierChanged +=
+                this.ClientLearningPointsGainMultiplierChangedHandler;
         }
 
         public bool AreAllRequirementsSatisfied => this.QuestEntry.AreAllRequirementsSatisfied;
@@ -89,7 +93,10 @@
 
         public IReadOnlyList<ViewModelQuestRequirement> Requirements { get; }
 
-        public uint RewardLearningPoints => this.QuestEntry.Quest.RewardLearningPoints;
+        public ushort RewardLearningPoints
+            => (ushort)Math.Round(this.QuestEntry.Quest.RewardLearningPoints
+                                  * TechConstants.ClientLearningPointsGainMultiplier,
+                                  MidpointRounding.AwayFromZero);
 
         public string Title => this.QuestEntry.Quest.Name;
 
@@ -115,6 +122,18 @@
             {
                 this.RemoveNewFlag();
             }
+        }
+
+        protected override void DisposeViewModel()
+        {
+            base.DisposeViewModel();
+            TechConstants.ClientLearningPointsGainMultiplierChanged -=
+                this.ClientLearningPointsGainMultiplierChangedHandler;
+        }
+
+        private void ClientLearningPointsGainMultiplierChangedHandler()
+        {
+            this.NotifyPropertyChanged(nameof(this.RewardLearningPoints));
         }
 
         private void ExecuteCommandClaimReward()

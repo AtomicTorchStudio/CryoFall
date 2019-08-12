@@ -104,7 +104,7 @@
             // add stick decal
             settings.AddDecal(
                 new ProtoTileDecal("Terrain/Barren/Stick*",
-                                   size: Vector2Ushort.One,
+                                   size: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new NoiseSelector(
@@ -115,7 +115,7 @@
             // add bush thorn decal
             settings.AddDecal(
                 new ProtoTileDecal("Terrain/Barren/BushThorns*",
-                                   size: Vector2Ushort.One,
+                                   size: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new NoiseSelector(

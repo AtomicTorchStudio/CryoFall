@@ -14,6 +14,12 @@
                 .Add(GetScript<SpawnResourcesGeneric>().Configure(densityMultiplier: 0.30))
                 .Add(GetScript<SpawnResourceStone>().Configure(densityMultiplier: 0.20));
 
+            // other vegetation
+            scripts
+                .Add(GetScript<SpawnBushesForestTropical>().Configure(densityMultiplier: 0.5))
+                .Add(GetScript<SpawnMushroomsTemperate>().Configure(densityMultiplier: 0.25))
+                .Add(GetScript<SpawnResourceHerbs>().Configure(densityMultiplier: 0.25));
+
             // trees
             scripts
                 .Add(GetScript<SpawnTreesTropical>());
@@ -21,12 +27,6 @@
             // loot
             scripts
                 .Add(GetScript<SpawnLootGeneric>()); // loot (stone, grass, twigs)
-
-            // other vegetation
-            scripts
-                .Add(GetScript<SpawnBushesForestTropical>().Configure(densityMultiplier: 0.5))
-                .Add(GetScript<SpawnMushroomsTemperate>().Configure(densityMultiplier: 0.25))
-                .Add(GetScript<SpawnResourceHerbs>().Configure(densityMultiplier: 0.25));
 
             // mobs
             scripts

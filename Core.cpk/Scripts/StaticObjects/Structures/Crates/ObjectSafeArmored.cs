@@ -51,7 +51,7 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            build.AddStageRequiredItem<ItemComponentsMechanical>(count: 1);
+            build.AddStageRequiredItem<ItemComponentsMechanical>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
@@ -66,22 +66,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (0.8, 0.4),
-                    offset: (0.1, 0.3),
-                    group: CollisionGroups.Default)
-                .AddShapeRectangle(
-                    size: (0.8, 0.6),
-                    offset: (0.1, 0.4),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (0.7, 1.0),
-                    offset: (0.15, 0.3),
-                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(
-                    size: (0.8, 1.1),
-                    offset: (0.1, 0.2),
-                    group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.8, 0.4), offset: (0.1, 0.3))
+                .AddShapeRectangle(size: (0.8, 0.6), offset: (0.1, 0.4), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.8, 0.3), offset: (0.1, 1.1), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.8, 1.1), offset: (0.1, 0.2), group: CollisionGroups.ClickArea);
         }
     }
 }

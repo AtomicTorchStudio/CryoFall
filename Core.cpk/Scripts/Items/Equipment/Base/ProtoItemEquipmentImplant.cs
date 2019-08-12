@@ -45,13 +45,15 @@
         /// </summary>
         public virtual double DurabilityFractionReduceOnDeath => 0.02;
 
-        public override ushort DurabilityMax => 6000;
+        public override uint DurabilityMax => 6000;
 
         public sealed override EquipmentType EquipmentType => EquipmentType.Implant;
 
         public override double GroundIconScale => 0.85;
 
         public override ITextureResource Icon { get; }
+
+        public override bool IsRepairable => false;
 
         /// <summary>
         /// Implant lifetime (applies only when implant is installed and the player is online).
@@ -78,8 +80,10 @@
 
             // durability reduced on death
             var fraction = MathHelper.Clamp(this.DurabilityFractionReduceOnDeath, 0, 1);
-            var durabilityDelta = (ushort)(this.DurabilityMax * fraction);
-            ItemDurabilitySystem.ServerModifyDurability(item, delta: -durabilityDelta);
+            var durabilityDelta = this.DurabilityMax * fraction;
+            ItemDurabilitySystem.ServerModifyDurability(item,
+                                                        delta: -durabilityDelta,
+                                                        roundUp: false);
         }
 
         public sealed override void ServerOnItemBrokeAndDestroyed(IItem item, IItemsContainer container, byte slotId)
@@ -160,7 +164,7 @@
             var item = data.GameObject;
             var owner = item.Container?.OwnerAsCharacter;
             if (owner == null
-                || !owner.IsOnline
+                || !owner.ServerIsOnline
                 || owner.SharedGetPlayerContainerEquipment() != item.Container)
             {
                 // player offline or not an equipped item
@@ -169,8 +173,7 @@
 
             var durabilityDecrease = this.durabilityDecreasePerServerUpdate;
             durabilityDecrease *= owner.SharedGetFinalStatMultiplier(StatName.ImplantDegradationSpeedMultiplier);
-            ItemDurabilitySystem.ServerModifyDurability(item,
-                                                        -(int)Math.Floor(durabilityDecrease));
+            ItemDurabilitySystem.ServerModifyDurability(item, -durabilityDecrease, roundUp: false);
 
             owner.ServerAddSkillExperience<SkillCyberneticAffinity>(
                 data.DeltaTime * SkillCyberneticAffinity.ExperienceAddedPerImplantPerSecond);

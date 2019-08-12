@@ -137,18 +137,16 @@
 
         private static void CollectTexturesInternal(string localTextureFilePath, List<ITextureResource> list)
         {
-            using (var tempFilesList = Api.Shared.FindFilesWithTrailingNumbers(
-                ContentPaths.Textures + localTextureFilePath))
+            using var tempFilesList = Api.Shared.FindFilesWithTrailingNumbers(
+                ContentPaths.Textures + localTextureFilePath);
+            if (tempFilesList.Count == 0)
             {
-                if (tempFilesList.Count == 0)
-                {
-                    throw new Exception("No decal textures found: " + localTextureFilePath);
-                }
+                throw new Exception("No decal textures found: " + localTextureFilePath);
+            }
 
-                foreach (var file in tempFilesList)
-                {
-                    list.Add(new TextureResource(file));
-                }
+            foreach (var file in tempFilesList)
+            {
+                list.Add(new TextureResource(file));
             }
         }
     }

@@ -7,6 +7,15 @@ Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationNoFreeSpaceToDrop:
 Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
 地面物品
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
+你只能建造在：
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
+你不能建造在：
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
+地表类型不匹配
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 无法在禁区内建造。
 
@@ -40,15 +49,6 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSl
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
 不能建造 - 太靠近水。
 
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
-你只能建造在：
-
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
-你不能建造在：
-
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
-地表类型不匹配
-
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
 配置
 
@@ -75,6 +75,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 撬开
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@TogglePower:
+电力切换
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
 写
@@ -275,14 +278,14 @@ Scripts/StaticObjects/Structures/Categories/StructureCategoryBuildings@Name:
 Scripts/StaticObjects/Structures/Categories/StructureCategoryDecorations@Name:
 装饰
 
+Scripts/StaticObjects/Structures/Categories/StructureCategoryElectricity@Name:
+电力
+
 Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
 食物
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
 工业
-
-Scripts/StaticObjects/Structures/Categories/StructureCategoryLights@Name:
-光源
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
 其他
@@ -479,17 +482,47 @@ Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Description:
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
 原始冰箱
 
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Description:
+强大的冰箱，可以以零下的温度储存食物，极大的延长保鲜周期。
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Name:
+冷冻柜
+
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
-储存大量易腐食品的便捷方式。冰箱可将食品保鲜更长时间。使用内置太阳能发电机。
+储存大量易腐败食品的便利物件。冰箱可以大幅延长保鲜时间。
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
 大冰箱
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
-方便的方式存放易腐食品。冰箱将保持新鲜更长时间。使用内置太阳能发电机。
+储存易腐败食品的便利物件。冰箱可以大幅延长保鲜时间。
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
 小冰箱
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Description:
+将有机物分解成甲烷气体，用来生产出少量的电能。 不适合作为电力的主要来源。
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Name:
+生物反应器
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
+这个大型发电机使用汽油作为燃料产生电能。
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
+汽油发电机
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
+基础的太阳能发电装置。需要独立的太阳能电池板才能进行发电。
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Name:
+太阳能发电机
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
+使用蒸汽推动涡轮进行发电。需要花时间将水煮沸才能达到最高功率。
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
+蒸汽发电机
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 防止其他幸存者在周围区域建造或拆毁任何东西，使您的基地更安全。占领土地还可确保您的建筑物不会随着时间的推移而劣化。
@@ -540,7 +573,7 @@ Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@Notificatio
 成功升级
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
-电能地灯。产生极其强大的白光，即使是大房间也能轻松照亮。使用一次性电池。
+电能地灯。产生极其强大的白光，即使是大房间也能轻松照亮。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
 大落地灯
@@ -552,7 +585,7 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
 燃油落地灯
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
-较小版本的电能落地灯。尺寸虽小，光芒却相当耀眼。
+较小版本的电能落地灯。虽然不大但是非常明亮。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 小落地灯
@@ -587,8 +620,11 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
 熔炉
 
-Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-提取器需要地热泉。
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Description:
+使用电力和磁感加热来达到更高的冶炼和资源处理效率。
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
+电熔炉
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
 允许从地热泉中提取锂盐。
@@ -596,20 +632,23 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Descrip
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 锂盐提取器
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
+高级锂盐提取器
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 可用于将任何种类的有机物质转化为覆土，一种有机肥料。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 覆土箱
 
-Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@ErrorRequiresOilSeep:
-油泵需要天然油田。
-
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
 可以在天然油田上建造，直接从地下提取原油。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 油泵
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
+高级石油泵
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
 将原油精炼成更有用的成分，例如燃料和矿物油。
@@ -629,11 +668,23 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 集水器
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
+使用电泵更快的从地下开采水资源。
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Name:
+水泵
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
 提供取之不尽的淡水源。现在你永远不会因口渴而死。由于某种原因，在沙漠和其他岩石地方真的不起作用......
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 井
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
+提取器需要地热泉。
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
+油泵需要天然油田。
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 这种地面类型无法挖掘地下水。
@@ -644,11 +695,53 @@ Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 医疗站
 
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
+防御建筑，激活时能投射出高强灵能场。
+
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
+灵能投射器
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
+可以用于为任何便携式电子设备充电，例如移动电源或手电筒。
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
+充电站
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
+需要更多元件。
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
+放入两个相同物品以进行修复。
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_NoRepairNecessary:
+不需要修理.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFull:
+现将物品从输出栏移出。
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
+无法修理。
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
+此工作台可以便利的进行物品修复工作。
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Name:
+修补桌
+
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
 您可以使用此垃圾桶立即处理任何不需要的物品。永远的和他们说拜拜吧！
 
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 垃圾箱
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
+允许将电力储存，留作它用。
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Name:
+蓄电设施
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorageLarge@Name:
+大型蓄电设施
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
 允许发布图像供他人观看。使用背面的太阳能电池板，无需外部电源。
@@ -881,6 +974,12 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
 死树
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
+死树
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
+死树
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
 榴莲树
 
@@ -905,14 +1004,26 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
 橡胶树
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
+覆苔障碍物
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
 树桩
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
+覆苔树桩
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
 树桩
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
+沼泽树
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
 热带树
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
+柳树
 
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 用斧头来砍这棵树。

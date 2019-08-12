@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
@@ -72,6 +73,12 @@
 
         public SuperObservableCollection<RssFeedEntry> NewsItemsList { get; }
             = new SuperObservableCollection<RssFeedEntry>();
+
+        public string UpdateReleaseDateText => new DateTime(2019, 7, 30)
+                                               .ToString("MMMM yyyy", CultureInfo.CurrentUICulture)
+                                               .ToUpperInvariant();
+
+        public string UpdateTitle => "A23—Electricity Update";
 
         public Visibility VisibilityLoadingForumsRssFeed { get; set; }
 

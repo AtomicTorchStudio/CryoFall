@@ -25,7 +25,7 @@
             sceneObject.AddComponent<ClientComponentSpriteSheetAnimator>()
                        .Setup(data.ClientState.Renderer,
                               ClientComponentSpriteSheetAnimator.CreateAnimationFrames(this.atlasTexture),
-                              frameDurationSeconds: 3 / 60f);
+                              frameDurationSeconds: 3 / 60.0);
 
             // add light source at the firing fuse
             var lightSource = ClientLighting.CreateLightSourceSpot(

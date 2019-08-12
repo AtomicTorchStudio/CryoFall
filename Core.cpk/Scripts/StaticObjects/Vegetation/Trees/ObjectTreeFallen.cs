@@ -50,19 +50,16 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            // no ranged hitboxes
             data.PhysicsBody
-                .AddShapeCircle(radius: 0.2, center: (1.0, 0.3),    group: CollisionGroups.Default)
-                .AddShapeCircle(radius: 0.2, center: (1.0, 0.3),    group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.2, center: (1.0, 0.3),    group: CollisionGroups.HitboxRanged)
-                .AddShapeCircle(radius: 0.2, center: (0.65, 0.4),   group: CollisionGroups.Default)
-                .AddShapeCircle(radius: 0.2, center: (0.65, 0.4),   group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.2, center: (0.65, 0.4),   group: CollisionGroups.HitboxRanged)
-                .AddShapeCircle(radius: 0.2, center: (0.3, 0.55),   group: CollisionGroups.Default)
-                .AddShapeCircle(radius: 0.2, center: (0.3, 0.55),   group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.2, center: (0.3, 0.55),   group: CollisionGroups.HitboxRanged)
-                .AddShapeCircle(radius: 0.2, center: (-0.05, 0.65), group: CollisionGroups.Default)
-                .AddShapeCircle(radius: 0.2, center: (-0.05, 0.65), group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.2, center: (-0.05, 0.65), group: CollisionGroups.HitboxRanged);
+                .AddShapeCircle(radius: 0.2, center: (1.0, 0.3))
+                .AddShapeCircle(radius: 0.2, center: (1.0, 0.3), group: CollisionGroups.HitboxMelee)
+                .AddShapeCircle(radius: 0.2, center: (0.65, 0.4))
+                .AddShapeCircle(radius: 0.2, center: (0.65, 0.4), group: CollisionGroups.HitboxMelee)
+                .AddShapeCircle(radius: 0.2, center: (0.3, 0.55))
+                .AddShapeCircle(radius: 0.2, center: (0.3, 0.55), group: CollisionGroups.HitboxMelee)
+                .AddShapeCircle(radius: 0.2, center: (-0.05, 0.65))
+                .AddShapeCircle(radius: 0.2, center: (-0.05, 0.65), group: CollisionGroups.HitboxMelee);
         }
     }
 }

@@ -12,10 +12,10 @@
         private readonly NetworkSyncListObservableWrapperWithConverter<ILogicObject, ViewModelStatusEffect>
             currentStatusEffectsWrapper;
 
-        public ViewModelHUDStatusEffectsBar(NetworkSyncList<ILogicObject> netList)
+        public ViewModelHUDStatusEffectsBar(NetworkSyncList<ILogicObject> statusEffects)
         {
             this.currentStatusEffectsWrapper =
-                netList.ToObservableCollectionWithWrapper(s => new ViewModelStatusEffect(s));
+                statusEffects.ToObservableCollectionWithWrapper(s => new ViewModelStatusEffect(s));
         }
 
         public ObservableCollection<ViewModelStatusEffect> CurrentStatusEffects

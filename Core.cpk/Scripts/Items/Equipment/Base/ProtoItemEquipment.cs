@@ -40,7 +40,7 @@
 
         public byte[] CompatibleContainerSlotsIds { get; private set; }
 
-        public abstract ushort DurabilityMax { get; }
+        public abstract uint DurabilityMax { get; }
 
         public abstract EquipmentType EquipmentType { get; }
 
@@ -50,6 +50,8 @@
         /// Gets the item icon (it will be acquired and cached during script prepare).
         /// </summary>
         public override ITextureResource Icon { get; }
+
+        public virtual bool IsRepairable => true;
 
         /// <summary>
         /// Equipment items cannot be stacked.
@@ -120,26 +122,24 @@
 
             if (IsClient)
             {
-                using (var tempSourcePaths = Api.Shared.GetTempList<string>())
+                using var tempSourcePaths = Api.Shared.GetTempList<string>();
+                this.ClientFillSlotAttachmentSources(tempSourcePaths);
+                using var tempSpritePaths = ClientEquipmentSpriteHelper.CollectSpriteFilePaths(
+                    tempSourcePaths.ToList());
+
+                ClientEquipmentSpriteHelper.CollectSlotAttachments(
+                    tempSpritePaths.AsList(),
+                    this.Id,
+                    requireEquipmentTextures: this.RequireEquipmentTextures,
+                    out var slotAttachmentsMale,
+                    out var slotAttachmentsFemale);
+
+                this.SlotAttachmentsMale = slotAttachmentsMale;
+                this.SlotAttachmentsFemale = slotAttachmentsFemale;
+
+                foreach (var file in tempSpritePaths)
                 {
-                    this.ClientFillSlotAttachmentSources(tempSourcePaths);
-                    using (var tempSpritePaths = ClientEquipmentSpriteHelper.CollectSpriteFilePaths(
-                        tempSourcePaths.ToList()))
-                    {
-                        this.SlotAttachmentsMale = ClientEquipmentSpriteHelper.CollectSlotAttachments(
-                            tempSpritePaths.AsList(),
-                            this.Id,
-                            isMale: true,
-                            requireEquipmentTextures: this.RequireEquipmentTextures);
-
-                        // we have not completed female sprites yet
-                        this.SlotAttachmentsFemale = this.SlotAttachmentsMale;
-
-                        foreach (var file in tempSpritePaths)
-                        {
-                            file.FilesInFolder.Dispose();
-                        }
-                    }
+                    file.FilesInFolder.Dispose();
                 }
             }
 

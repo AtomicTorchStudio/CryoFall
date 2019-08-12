@@ -192,20 +192,18 @@
             this.Freeze();
 
             var result = new CreateItemResult() { IsEverythingCreated = true };
-            using (var selectedEntries = Api.Shared.GetTempList<Entry>())
-            {
-                this.SelectRandomEntries(selectedEntries);
+            using var selectedEntries = Api.Shared.GetTempList<Entry>();
+            this.SelectRandomEntries(selectedEntries);
 
-                // execute selected entries
-                foreach (var entry in selectedEntries)
-                {
-                    ExecuteEntry(entry,
-                                 dropItemContext,
-                                 out var entryResult,
-                                 probabilityMultiplier,
-                                 delegateSpawnDropItem);
-                    result.MergeWith(entryResult);
-                }
+            // execute selected entries
+            foreach (var entry in selectedEntries)
+            {
+                ExecuteEntry(entry,
+                             dropItemContext,
+                             out var entryResult,
+                             probabilityMultiplier,
+                             delegateSpawnDropItem);
+                result.MergeWith(entryResult);
             }
 
             return result;

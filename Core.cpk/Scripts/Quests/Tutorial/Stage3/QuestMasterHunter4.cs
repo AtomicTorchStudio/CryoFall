@@ -21,7 +21,7 @@
                 .Add(RequirementKill.Require<MobHyena>(count: 1))
                 .Add(RequirementKill.Require<MobSnakeBlue>(count: 1))
                 .Add(RequirementKill.Require<MobCloakedLizard>(count: 1))
-                .Add(RequirementKill.Require<MobScorpion>(count: 1));
+                .Add(RequirementKill.Require<MobBlackBeetle>(count: 1));
 
             prerequisites
                 .Add<QuestMasterHunter3>();

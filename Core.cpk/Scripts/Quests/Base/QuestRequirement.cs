@@ -61,12 +61,6 @@
                 return;
             }
 
-            if (!character.IsOnline)
-            {
-                // don't refresh for offline characters
-                return;
-            }
-
             var wasSatisfied = state.IsSatisfied;
             state.IsSatisfied = this.ServerIsSatisfied(character, (TState)state);
             if (wasSatisfied == state.IsSatisfied)
@@ -111,6 +105,12 @@
 
         protected ServerCharacterActiveQuestRequirement GetActiveContext(ICharacter character, out TState state)
         {
+            if (character == null)
+            {
+                state = default;
+                return null;
+            }
+
             if (this.activeContexts.TryGetValue(character, out var result))
             {
                 state = (TState)result.QuestRequirementState;
@@ -130,16 +130,19 @@
                 return;
             }
 
-            using (var tempList =
-                Api.Shared.GetTempList<KeyValuePair<ICharacter, ServerCharacterActiveQuestRequirement>>())
+            using var tempList = Api.Shared.GetTempList<
+                KeyValuePair<ICharacter, ServerCharacterActiveQuestRequirement>>();
+            // make a copy of the list (as it could be modified during the enumeration)
+            // and process it
+            tempList.AddRange(this.activeContexts);
+            foreach (var pair in tempList)
             {
-                // make a copy of the list (as it could be modified during the enumeration)
-                // and process it
-                tempList.AddRange(this.activeContexts);
-                foreach (var pair in tempList)
+                if (!pair.Key.ServerIsOnline)
                 {
-                    pair.Value.Refresh();
+                    continue;
                 }
+
+                pair.Value.Refresh();
             }
         }
 

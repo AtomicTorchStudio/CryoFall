@@ -1,0 +1,17 @@
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+`Klient nie może nawiązać połączenia z serwerem głównym.
+[br]Sprawdź połączenie z Internetem oraz czy zapora
+[br]lub dostawca Internetu nie blokują połączenia.`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Title:
+Nie można połączyć się z serwerem głównym
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_MessageFormat:
+`Ten serwer gry wymaga następujących modyfikacji:
+[br]{0}
+[br][br]Pobierz i zainstaluj te modyfikacje, aby dołączyć.
+[br]Modyfikacje są dostępne na oficjalnym forum: http://forums.atomictorch.com/index.php?board=24.0`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_Title:
+Nie można połączyć – brak modyfikacji
+

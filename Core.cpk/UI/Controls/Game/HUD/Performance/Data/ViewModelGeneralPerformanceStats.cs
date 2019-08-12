@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.Data
 {
     using System.Windows;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -78,7 +77,7 @@
             finally
             {
                 // schedule next refresh
-                ClientComponentTimersManager.AddAction(ViewModelPerformanceMetric.RefreshInterval,
+                ClientTimersSystem.AddAction(ViewModelPerformanceMetric.RefreshInterval,
                                                        this.RefreshCallback);
             }
         }

@@ -15,8 +15,6 @@
 
         public override ushort OrganicValue => 10;
 
-        public override float StaminaRestore => 50;
-
         public override float WaterRestore => -5;
     }
 }

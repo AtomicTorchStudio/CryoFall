@@ -8,10 +8,10 @@
     public class SkeletonSnakeGreen : ProtoCharacterSkeletonAnimal
     {
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("SnakeGreen/SnakeBack");
+            = new SkeletonResource("SnakeGreen/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("SnakeGreen/SnakeFront");
+            = new SkeletonResource("SnakeGreen/Front");
 
         public override double WorldScale => 0.4;
 
@@ -25,20 +25,15 @@
 
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
-            physicsBody.AddShapeRectangle(
-                size: (0.6, 0.25),
-                offset: (-0.3, -0.05),
-                group: CollisionGroups.Default);
-
-            physicsBody.AddShapeCircle(
-                radius: 0.42,
-                center: (0, 0.35),
-                group: CollisionGroups.HitboxMelee);
-
-            physicsBody.AddShapeCircle(
-                radius: 0.42,
-                center: (0, 0.35),
-                group: CollisionGroups.HitboxRanged);
+            physicsBody
+                .AddShapeRectangle(size: (0.6, 0.25),
+                                   offset: (-0.3, -0.05))
+                .AddShapeCircle(radius: 0.42,
+                                center: (0, 0.35),
+                                group: CollisionGroups.HitboxMelee)
+                .AddShapeCircle(radius: 0.42,
+                                center: (0, 0.35),
+                                group: CollisionGroups.HitboxRanged);
         }
     }
 }

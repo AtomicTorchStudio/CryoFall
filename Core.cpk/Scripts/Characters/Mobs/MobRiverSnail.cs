@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 {
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
-    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -30,12 +29,14 @@
         {
             skeleton = GetProtoEntity<SkeletonRiverSnail>();
 
-            // TODO: replace rotten food with goo in the next update
             // random loot
-            lootDroplist.Add<ItemFoodRotten>(count: 1);
+            lootDroplist
+                .Add<ItemFoodRotten>(count: 1)
+                .Add<ItemSlime>(count: 1);
 
             // extra loot
-            lootDroplist.Add<ItemFoodRotten>(count: 1, condition: SkillHunting.ServerRollExtraLoot);
+            lootDroplist
+                .Add<ItemSlime>(count: 1, condition: SkillHunting.ServerRollExtraLoot);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)

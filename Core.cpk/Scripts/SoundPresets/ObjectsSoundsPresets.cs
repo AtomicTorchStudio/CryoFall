@@ -14,7 +14,8 @@
 
         public static readonly ReadOnlySoundPreset<ObjectSound> ObjectConstructionSite
             = ObjectGeneric.Clone()
-                           .Replace(InteractProcess, "Objects/Structures/ConstructionSite/InteractProcess")
+                           // the interact sound is defined by the toolbox item
+                           //.Replace(InteractProcess, "Objects/Structures/ConstructionSite/InteractProcess")
                            .Replace(InteractSuccess, "Objects/Structures/ConstructionSite/InteractSuccess");
 
         // corpse looting sound

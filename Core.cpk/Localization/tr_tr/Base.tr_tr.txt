@@ -1,0 +1,192 @@
+﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
+Sersemlemişken etkileşime girilemez.
+
+Scripts/Base/Stats/StatName@HealthMax:
+Maksimum sağlık
+
+Scripts/Base/Stats/StatName@StaminaMax:
+Maksimum dayanıklılık
+
+Scripts/Base/Stats/StatName@FoodMax:
+Maksimum yiyecek
+
+Scripts/Base/Stats/StatName@WaterMax:
+Maksimum su
+
+Scripts/Base/Stats/StatName@MoveSpeed:
+Hareket hızı
+
+Scripts/Base/Stats/StatName@MoveSpeedRunMultiplier:
+Koşma hızı
+
+Scripts/Base/Stats/StatName@DamageAdd:
+Ek hasar
+
+Scripts/Base/Stats/StatName@RunningStaminaConsumptionPerSecond:
+Koşarken dayanıklılık tükenmesi
+
+Scripts/Base/Stats/StatName@StaminaRegenerationPerSecond:
+Dayanıklılık yenilenmesi
+
+Scripts/Base/Stats/StatName@HealthRegenerationPerSecond:
+Sağlık yenilenmesi
+
+Scripts/Base/Stats/StatName@MiningSpeed:
+Madencilik hızı
+
+Scripts/Base/Stats/StatName@WoodcuttingSpeed:
+Odun kesme hızı
+
+Scripts/Base/Stats/StatName@ForagingSpeed:
+Kaynak arama hızı
+
+Scripts/Base/Stats/StatName@BuildingSpeed:
+İnşa/yıkım hızı
+
+Scripts/Base/Stats/StatName@SearchingExtraLoot:
+Toplayıcılık sırasında ekstra ganimet şansı
+
+Scripts/Base/Stats/StatName@HuntingExtraLoot:
+Avcılık sırasında ekstra ganimet şansı
+
+Scripts/Base/Stats/StatName@FarmingTasksSpeed:
+Tarım hızı
+
+Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
+Bitkilerin büyüme hızı
+
+Scripts/Base/Stats/StatName@SearchingSpeed:
+Arama hızı
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
+Hasar bonusu
+
+Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
+Hasar bonusu
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+Hasar bonusu
+
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+Hasar bonusu
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Hasar bonusu
+
+Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
+Özel etki şansı
+
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+Özel etki şansı
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+Özel etki şansı
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+Özel etki şansı
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+Özel etki şansı
+
+Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
+Aşınma oranı
+
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+Aşınma oranı
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+Aşınma oranı
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+Aşınma oranı
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+Aşınma oranı
+
+Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
+Yeniden doldurma süresi
+
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Yeniden doldurma süresi
+
+Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
+Enerji tüketimi
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
+Yeniden doldurma süresi
+
+Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
+Yeniden doldurma süresi
+
+Scripts/Base/Stats/StatName@CraftingSpeed:
+Üretim hızı
+
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Patlayıcı yerleştirme hızı
+
+Scripts/Base/Stats/StatName@HuntingLootingSpeed:
+Yağma hızı
+
+Scripts/Base/Stats/StatName@ImplantDegradationFromDamageMultiplier:
+Alınan hasardan dolayı implant aşınması
+
+Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
+Yerleştirilmiş implantın aşınma hızı
+
+Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
+Yemek yeme hızı
+
+Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
+Su içme hızı
+
+Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
+Enerji yenilenmesi (dakika başına)
+
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Bozuk yiyecek yeme yeteneği
+
+Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
+Radyasyon zehirlenmesi hasarı
+
+Scripts/Base/Stats/StatName@RadiationPoisoningIncreaseRateMultiplier:
+Radyasyon birikme oranı
+
+Scripts/Base/Stats/StatName@ToxinsIncreaseRateMultiplier:
+Toksin birikme oranı
+
+Scripts/Base/Stats/StatName@BleedingIncreaseRateMultiplier:
+Kanama
+
+Scripts/Base/Stats/StatName@HeatIncreaseRateMultiplier:
+Isı artış oranı
+
+Scripts/Base/Stats/StatName@HeatEffectMultiplier:
+Isı hasarı
+
+Scripts/Base/Stats/StatName@PainIncreaseRateMultiplier:
+Acı
+
+Scripts/Base/Stats/StatName@PsiEffectMultiplier:
+PSI hasarı
+
+Scripts/Base/Stats/StatName@DazedIncreaseRateMultiplier:
+Sersemlemiş
+
+Scripts/Base/Stats/StatName@LandClaimsMaxNumber:
+Maksimum alan tutucu sayısı
+
+Scripts/Base/Stats/StatName@VanityContinuousDamage:
+Sürekli hasar
+
+Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
+Bir şey yiyemez veya içemez
+
+Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
+Eğitim puanları kazancı
+
+Scripts/Base/Stats/StatName@TinkerTableBonus:
+Tamir masası verimliliği
+
+Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
+Zanaatkârlık sırası boyutu
+

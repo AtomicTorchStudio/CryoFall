@@ -69,7 +69,9 @@
 
             if (groundContainer != null)
             {
-                NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(character);
+                NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
+                    character,
+                    protoItemForIcon: null);
             }
         }
 
@@ -173,7 +175,7 @@
             }
 
             if (maxQueueSize.HasValue
-                && craftingQueue.QueueItems.Count + 1 >= maxQueueSize.Value)
+                && craftingQueue.QueueItems.Count >= maxQueueSize.Value)
             {
                 Logger.Info(
                     $"Recipe cannot be queue for crafting due to max queue size limitation: {recipe} at {characterOrStation} with max queue size {maxQueueSize.Value}.");
@@ -365,18 +367,23 @@
                 {
                     Logger.Info(
                         $"Manufacturing recipe cannot be crafted anymore - check failed: {recipe} at {station}.");
-                    queueItem.CountToCraftRemains = 0;
+                    // no need to set this to 0 (as it will cause unnecessary network sync)
+                    // simply remove it from queue
+                    //queueItem.CountToCraftRemains = 0;
+                    craftingQueue.QueueItems.Remove(queueItem);
                 }
             }
             else // if this is a non-manufacturing recipe
             {
-                queueItem.CountToCraftRemains--;
-            }
-
-            if (queueItem.CountToCraftRemains == 0)
-            {
-                // remove from queue
-                craftingQueue.QueueItems.Remove(queueItem);
+                if (queueItem.CountToCraftRemains > 1)
+                {
+                    queueItem.CountToCraftRemains--;
+                }
+                else
+                {
+                    // remove it from queue
+                    craftingQueue.QueueItems.Remove(queueItem);
+                }
             }
 
             craftingQueue.SetDurationFromCurrentRecipe();

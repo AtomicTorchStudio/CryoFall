@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors
 {
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.GameApi.Data.World;
 
@@ -26,42 +27,37 @@
             var tileDown = tile.NeighborTileDown;
 
             // check neighbor doors
-            var hasLeftDoor = IsDoorJoinableWith<IProtoObjectDoor>(tileLeft);
-            var hasRightDoor = IsDoorJoinableWith<IProtoObjectDoor>(tileRight);
-            var hasUpDoor = IsDoorJoinableWith<IProtoObjectDoor>(tileUp);
-            var hasDownDoor = IsDoorJoinableWith<IProtoObjectDoor>(tileDown);
-
-            if (hasUpDoor)
+            if (TileHasDoor(tileUp))
             {
                 return IsHorizontalDoor(tileUp);
             }
 
-            if (hasDownDoor)
+            if (TileHasDoor(tileDown))
             {
                 return IsHorizontalDoor(tileDown);
             }
 
-            if (hasLeftDoor)
+            if (TileHasDoor(tileLeft))
             {
                 return IsHorizontalDoor(tileLeft);
             }
 
-            if (hasRightDoor)
+            if (TileHasDoor(tileRight))
             {
                 return IsHorizontalDoor(tileRight);
             }
 
-            // check neighbor walls
-            var hasLeftWall = IsDoorJoinableWith<IProtoObjectWall>(tileLeft);
-            var hasRightWall = IsDoorJoinableWith<IProtoObjectWall>(tileRight);
+            // check neighbor walls (and blueprints)
+            var hasLeftWall = TileHasObjectsOfType<IProtoObjectWall>(tileLeft);
+            var hasRightWall = TileHasObjectsOfType<IProtoObjectWall>(tileRight);
             if (hasLeftWall && hasRightWall)
             {
                 // definitely horizontal door
                 return true;
             }
 
-            var hasUpWall = IsDoorJoinableWith<IProtoObjectWall>(tileUp);
-            var hasDownWall = IsDoorJoinableWith<IProtoObjectWall>(tileDown);
+            var hasUpWall = TileHasObjectsOfType<IProtoObjectWall>(tileUp);
+            var hasDownWall = TileHasObjectsOfType<IProtoObjectWall>(tileDown);
             if (hasUpWall && hasDownWall)
             {
                 // definitely vertical door
@@ -81,17 +77,16 @@
             }
 
             // check any neighbor static objects
-            var hasLeftObject = IsDoorJoinableWith<IProtoStaticWorldObject>(tileLeft);
-            var hasRightObject = IsDoorJoinableWith<IProtoStaticWorldObject>(tileRight);
-            var hasUpObject = IsDoorJoinableWith<IProtoStaticWorldObject>(tileUp);
-            var hasDownObject = IsDoorJoinableWith<IProtoStaticWorldObject>(tileDown);
-
+            var hasUpObject = TileHasStructures(tileUp);
+            var hasDownObject = TileHasStructures(tileDown);
             if (hasUpObject && hasDownObject)
             {
                 // definitely vertical door
                 return false;
             }
 
+            var hasLeftObject = TileHasStructures(tileLeft);
+            var hasRightObject = TileHasStructures(tileRight);
             if (hasLeftObject && hasRightObject)
             {
                 // definitely horizontal door
@@ -126,8 +121,11 @@
                 = IsHorizontalDoorNeeded(door.OccupiedTile, checkExistingDoor: false);
         }
 
-        public static void RefreshNeighborDoorType(Tile tile)
+        public static void RefreshNeighborDoorType(in Tile tile)
         {
+            // this mechanic is causing the rotation of the already placed doors which is not expected by players
+            return;
+
             foreach (var neighborTile in tile.FourNeighborTiles)
             {
                 foreach (var staticWorldObject in neighborTile.StaticObjects)
@@ -140,12 +138,19 @@
             }
         }
 
-        private static bool IsDoorJoinableWith<TProtoStaticWorldObject>(Tile tile)
-            where TProtoStaticWorldObject : IProtoStaticWorldObject
+        private static bool IsHorizontalDoor(in Tile tileUp)
+        {
+            var door = tileUp.StaticObjects
+                             .First(o => o.ProtoStaticWorldObject is IProtoObjectDoor);
+            return door.GetPublicState<ObjectDoorPublicState>()
+                       .IsHorizontalDoor;
+        }
+
+        private static bool TileHasDoor(in Tile tile)
         {
             foreach (var worldObject in tile.StaticObjects)
             {
-                if (worldObject.ProtoStaticWorldObject is TProtoStaticWorldObject)
+                if (worldObject.ProtoStaticWorldObject is IProtoObjectDoor)
                 {
                     return true;
                 }
@@ -154,11 +159,35 @@
             return false;
         }
 
-        private static bool IsHorizontalDoor(Tile tileUp)
+        private static bool TileHasObjectsOfType<TProtoStaticWorldObject>(in Tile tile)
+            where TProtoStaticWorldObject : IProtoStaticWorldObject
         {
-            var door = tileUp.StaticObjects
-                             .First(o => o.ProtoStaticWorldObject is IProtoObjectDoor);
-            return door.GetPublicState<ObjectDoorPublicState>().IsHorizontalDoor;
+            foreach (var worldObject in tile.StaticObjects)
+            {
+                if (worldObject.ProtoStaticWorldObject is TProtoStaticWorldObject
+                    || (worldObject.ProtoStaticWorldObject is ProtoObjectConstructionSite
+                        && ProtoObjectConstructionSite.SharedIsConstructionOf(worldObject,
+                                                                              typeof(TProtoStaticWorldObject))))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool TileHasStructures(in Tile tile)
+        {
+            foreach (var worldObject in tile.StaticObjects)
+            {
+                if (worldObject.ProtoStaticWorldObject is IProtoObjectStructure protoObjectStructure
+                    && protoObjectStructure.Kind == StaticObjectKind.Structure)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

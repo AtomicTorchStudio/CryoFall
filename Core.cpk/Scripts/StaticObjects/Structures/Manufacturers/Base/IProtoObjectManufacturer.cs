@@ -15,6 +15,8 @@
 
         bool IsFuelProduceByproducts { get; }
 
+        double ManufacturingSpeedMultiplier { get; }
+
         void ClientSelectRecipe(IStaticWorldObject worldObject, Recipe recipe);
     }
 }

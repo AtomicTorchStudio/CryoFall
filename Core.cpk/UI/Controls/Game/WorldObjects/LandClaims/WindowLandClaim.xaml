@@ -13,7 +13,8 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowLandClaim, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:powerGrid="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid">
 
     <landClaims:WindowLandClaimBase.Resources>
         <Style x:Key="TextBlockTitleStyle" TargetType="TextBlock">
@@ -32,6 +33,8 @@
             <Setter Property="FontSize" Value="12" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="LineHeight" Value="13" />
+            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
         </Style>
     </landClaims:WindowLandClaimBase.Resources>
 
@@ -80,10 +83,11 @@
                         <!-- Big icon (structure preview) -->
                         <Rectangle
                             Fill="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.Icon}"
-                            Width="96"
-                            Height="96"
+                            Width="128"
+                            Height="128"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Center"
+                            Margin="-16,0" />
 
                         <Grid Grid.Column="2">
                             <Grid.RowDefinitions>
@@ -144,6 +148,7 @@
                                                                                 FontSize="11"
                                                                                 TextStrokeThickness="1"
                                                                                 HorizontalAlignment="Center" />
+                                        </Grid>
 
                                         <!-- Text: Upgrading this structure requires learning relevant technology. -->
                                         <TextBlock
@@ -157,7 +162,6 @@
                                             Margin="3,0"
                                             TextWrapping="Wrap"
                                             Width="150" />
-                                        </Grid>
                                     </Grid>
 
                                     <!-- Text: Only the owner can upgrade this structure. -->
@@ -203,9 +207,88 @@
             </TabItem>
 
             <!-- Text: Safe storage -->
-            <TabItem Header="{x:Static loc:CoreStrings.TitleSafeStorage}">
-                <controls:ItemsContainerExchangeControl DataContext="{Binding ViewModelItemsContainerExchange}"
-                                                        Margin="0,-7,0,0" />
+            <TabItem Header="{x:Static loc:CoreStrings.TitleSafeStorage}"
+                     Visibility="{Binding IsSafeStorageAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Grid VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      MaxHeight="234">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Text="{x:Static loc:CoreStrings.WindowLandClaim_SafeStorageIsShared}"
+                        Visibility="{Binding IsSafeStorageCapacityExceeded, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"
+                        FontFamily="{StaticResource CondensedFontFamily}"
+                        FontWeight="Bold"
+                        FontSize="12"
+                        Foreground="{StaticResource BrushColor7}"
+                        Margin="0,4" />
+
+                    <StackPanel Grid.Row="0"
+                                Visibility="{Binding IsSafeStorageCapacityExceeded, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <Control Style="{StaticResource ControlExclamationPointStyle}"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,4,0" />
+
+                        <TextBlock
+                            Text="{x:Static loc:CoreStrings.ItemsContainer_CapacityExceededTakeOnly}"
+                            VerticalAlignment="Center"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"
+                            FontFamily="{StaticResource CondensedFontFamily}"
+                            FontWeight="Bold"
+                            FontSize="12"
+                            Foreground="{StaticResource BrushColorRed6}"
+                            Margin="0,4" />
+                    </StackPanel>
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Text="{x:Static loc:CoreStrings.WindowLandClaim_AllowedItemsDescription}"
+                        Visibility="{Binding IsSafeStorageCapacityExceeded, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"
+                        FontFamily="{StaticResource CondensedFontFamily}"
+                        FontWeight="Bold"
+                        FontSize="12"
+                        Foreground="{StaticResource BrushColor7}"
+                        Margin="0,-4,0,4" />
+
+
+                    <controls:ItemsContainerExchangeControl Grid.Row="3"
+                                                            DataContext="{Binding ViewModelItemsContainerExchange}"
+                                                            Margin="0,-8,0,0" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="{x:Static loc:CoreStrings.TitlePowerGrid}">
+                <powerGrid:PowerGridStateControl DataContext="{Binding ViewModelPowerGridState}" />
+            </TabItem>
+
+            <TabItem Header="{x:Static loc:CoreStrings.WindowLandClaim_DecayInfo}">
+                <core:FormattedTextBlock Content="{Binding DecayInfoText}"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"
+                                         FontSize="13"
+                                         LineHeight="14.5"
+                                         LineStackingStrategy="BlockLineHeight"
+                                         FontWeight="Normal"
+                                         Foreground="{StaticResource BrushColor7}"
+                                         FontFamily="{StaticResource CondensedFontFamily}"
+                                         TextWrapping="Wrap" />
             </TabItem>
 
             <!-- Text: Owners -->

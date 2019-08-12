@@ -10,10 +10,10 @@
         public override double DefaultMoveSpeed => 0.8;
 
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("Bear/BearBack");
+            = new SkeletonResource("Bear/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Bear/BearFront");
+            = new SkeletonResource("Bear/Front");
 
         public override double WorldScale => 0.45;
 
@@ -27,20 +27,15 @@
 
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
-            physicsBody.AddShapeRectangle(
-                size: (0.8, 0.4),
-                offset: (-0.4, -0.25),
-                group: CollisionGroups.Default);
-
-            physicsBody.AddShapeCircle(
-                radius: 0.55,
-                center: (0, 0.35),
-                group: CollisionGroups.HitboxMelee);
-
-            physicsBody.AddShapeCircle(
-                radius: 0.55,
-                center: (0, 0.35),
-                group: CollisionGroups.HitboxRanged);
+            physicsBody
+                .AddShapeRectangle(size: (0.8, 0.4),
+                                   offset: (-0.4, -0.25))
+                .AddShapeCircle(radius: 0.55,
+                                center: (0, 0.35),
+                                group: CollisionGroups.HitboxMelee)
+                .AddShapeCircle(radius: 0.55,
+                                center: (0, 0.35),
+                                group: CollisionGroups.HitboxRanged);
         }
     }
 }

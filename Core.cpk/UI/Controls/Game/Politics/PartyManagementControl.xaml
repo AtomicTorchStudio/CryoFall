@@ -12,9 +12,12 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelPartyManagementControl, IsDesignTimeCreatable=True}">
 
-    <StackPanel Orientation="Vertical"
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch">
+    <Grid VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"  />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <!-- Text: Party -->
         <TextBlock Text="{x:Static loc:CoreStrings.PartyManagement_Title}"
                    FontFamily="{StaticResource CondensedFontFamily}"
@@ -22,11 +25,19 @@
                    FontWeight="Bold"
                    Margin="0,0,0,3" />
 
-        <StackPanel Orientation="Vertical"
-                    Visibility="{Binding HasParty, Converter={StaticResource BoolToVisibilityConverter}}">
+        <Grid Grid.Row="1"
+              Visibility="{Binding HasParty, Converter={StaticResource BoolToVisibilityConverter}}"
+              VerticalAlignment="Top"
+              Margin="5,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
             <!-- Party members list -->
-            <ScrollViewer Margin="5,0,0,0"
-                          MaxHeight="230"
+            <ScrollViewer MaxHeight="230"
                           VerticalAlignment="Top"
                           CanContentScroll="True">
                 <Grid>
@@ -88,7 +99,8 @@
             </ScrollViewer>
 
             <!-- Text: Party size -->
-            <StackPanel Orientation="Horizontal"
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
                         Margin="7,2,0,10">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
@@ -103,7 +115,8 @@
                 <TextBlock Text="{Binding MaxPartySize}" />
             </StackPanel>
 
-            <StackPanel Orientation="Vertical"
+            <StackPanel Grid.Row="2"
+                        Orientation="Vertical"
                         Visibility="{Binding CanInvite, Converter={StaticResource BoolToVisibilityConverter}}">
                 <!-- Text: Enter player name below to invite ... -->
                 <core:FormattedTextBlock
@@ -134,8 +147,8 @@
 
                     <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <TextBox Text="{Binding InviteeName, UpdateSourceTrigger=PropertyChanged}"
@@ -153,9 +166,10 @@
             </StackPanel>
 
             <!-- Text: Leave party -->
-            <Button Content="{x:Static loc:CoreStrings.PartyManagement_Button_Leave}"
+            <Button Grid.Row="3"
+                    Content="{x:Static loc:CoreStrings.PartyManagement_Button_Leave}"
                     Command="{Binding CommandLeaveParty}"
-                    Margin="0,13,0,0" />
+                    Margin="0,13,0,3" />
 
             <!-- TODO: this is a poor description which requires rewriting ASAP meanwhile the line is hidden. -->
             <!--<core:FormattedTextBlock
@@ -166,10 +180,11 @@
                 LineStackingStrategy="BlockLineHeight"
                 TextWrapping="Wrap"
                 Margin="0,10,0,0" />-->
-        </StackPanel>
+        </Grid>
 
-        <StackPanel Orientation="Vertical"
+        <StackPanel Grid.Row="1"
                     Visibility="{Binding HasParty, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    Orientation="Vertical"
                     Margin="0,2,0,0">
             <!-- Text: You don't have a party yet... -->
             <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.PartyManagement_NoParty}"
@@ -183,5 +198,5 @@
                     Margin="0,13,0,0" />
         </StackPanel>
 
-    </StackPanel>
+    </Grid>
 </base:BaseUserControl>

@@ -1,17 +1,26 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Медведь
 
+Scripts/Characters/Mobs/MobBlackBeetle@Name:
+Черный жук
+
+Scripts/Characters/Mobs/MobBurrower@Name:
+Кротожук
+
 Scripts/Characters/Mobs/MobChicken@Name:
 Курица
 
 Scripts/Characters/Mobs/MobCloakedLizard@Name:
-Плащеносная ящерица
+Ящер
 
 Scripts/Characters/Mobs/MobCrab@Name:
 Краб
 
 Scripts/Characters/Mobs/MobCrawler@Name:
 Ползун
+
+Scripts/Characters/Mobs/MobFireLizard@Name:
+Огненный ящер
 
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Медоед
@@ -21,6 +30,9 @@ Scripts/Characters/Mobs/MobHyena@Name:
 
 Scripts/Characters/Mobs/MobPangolin@Name:
 Панголин
+
+Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
+Прагмиевый жук
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Улитка

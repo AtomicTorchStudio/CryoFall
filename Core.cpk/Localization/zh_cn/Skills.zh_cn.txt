@@ -70,9 +70,6 @@ Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Description:
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
 近战武器
 
-Scripts/Skills/Skills/Misc/SkillSearching@Flags.ChanceToFindRareItems:
-找到稀有物品概率
-
 Scripts/Skills/Skills/Misc/SkillSearching@Description:
 注意最微小的细节会增加你找到额外物品的机会。
 
@@ -132,4 +129,10 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 制造
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
+可以修复和维护各种物品和设备。 适用于在修补桌进行的工作。
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
+维护
 

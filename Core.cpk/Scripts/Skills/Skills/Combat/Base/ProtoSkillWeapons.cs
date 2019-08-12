@@ -10,12 +10,12 @@
         /// <summary>
         /// This functions like a small bonus to the person who dealt the killing blow/shot.
         /// </summary>
-        public virtual double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.2;
+        public abstract double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier { get; }
 
         /// <summary>
-        /// This EXP is directly proportional to dealt damage.
+        /// This XP is directly proportional to dealt damage.
         /// </summary>
-        public virtual double ExperienceAddedPerDamageDoneMultiplier => 0.5;
+        public abstract double ExperienceAddedPerDamageDoneMultiplier { get; }
 
         /// <summary>
         /// This is intended to reward experience per ammo expended. Basically resource->exp conversion.

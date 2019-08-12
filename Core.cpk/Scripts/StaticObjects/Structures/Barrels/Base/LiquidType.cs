@@ -8,7 +8,7 @@
         /// <summary>
         /// Water.
         /// </summary>
-        // TODO: add a proper localized string for it
+        [Description(CoreStrings.TitleLiquidWater)]
         Water = 0,
 
         /// <summary>

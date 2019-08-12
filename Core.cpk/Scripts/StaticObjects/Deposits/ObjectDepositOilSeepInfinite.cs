@@ -12,7 +12,7 @@
         // no decay
         public override double LifetimeTotalDurationSeconds => 0;
 
-        public override string Name => "Oil seep (infinite)";
+        public override string Name => "Infine oil seep";
 
         public override float StructurePointsMax => 9001; // it's non-damageable anyway
 

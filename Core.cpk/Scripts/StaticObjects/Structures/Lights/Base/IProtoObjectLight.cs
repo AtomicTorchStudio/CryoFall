@@ -9,6 +9,6 @@
 
         IFuelItemsContainer FuelItemsContainerPrototype { get; }
 
-        void ClientSetServerMode(IStaticWorldObject lightObject, ObjectLightMode mode);
+        void ClientSetLightMode(IStaticWorldObject lightObject, ObjectLightMode mode);
     }
 }

@@ -8,7 +8,7 @@
         [Description(CoreStrings.TitleModeOff)]
         Off,
 
-        [Description(CoreStrings.TitleModeOn)]
+        [Description(CoreStrings.TitleModeAlwaysOn)]
         On,
 
         [Description(CoreStrings.TitleModeAuto)]

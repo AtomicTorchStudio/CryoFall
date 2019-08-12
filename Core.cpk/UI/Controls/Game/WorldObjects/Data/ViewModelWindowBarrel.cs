@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Barrels;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
@@ -24,13 +25,12 @@
 
         public ViewModelWindowBarrel(
             IStaticWorldObject worldObjectManufacturer,
-            ManufacturingState manufacturingState,
+            ObjectManufacturerPrivateState privateState,
             ManufacturingConfig manufacturingConfig)
             : base(
                 worldObjectManufacturer,
-                manufacturingState,
-                manufacturingConfig,
-                null)
+                privateState,
+                manufacturingConfig)
         {
             this.protoBarrel = (IProtoObjectBarrel)worldObjectManufacturer.ProtoStaticWorldObject;
             this.LiquidCapacity = this.protoBarrel.LiquidCapacity;
@@ -46,6 +46,7 @@
                 _ => this.RefreshLiquidType(),
                 this);
 
+            var manufacturingState = privateState.ManufacturingState;
             manufacturingState.ClientSubscribe(
                 _ => _.SelectedRecipe,
                 _ => this.RefreshRecipe(),

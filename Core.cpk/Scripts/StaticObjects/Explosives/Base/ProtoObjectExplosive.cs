@@ -35,6 +35,8 @@
 
         public abstract bool IsActivatesRaidModeForLandClaim { get; }
 
+        public virtual bool IsDamageThroughObstacles => false;
+
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
 
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
@@ -209,6 +211,7 @@
                 damageDistanceMax: this.DamageRadius,
                 weaponFinalCache: weaponFinalCache,
                 damageOnlyDynamicObjects: false,
+                isDamageThroughObstacles: this.IsDamageThroughObstacles,
                 callbackCalculateDamageCoefByDistance: this.ServerCalculateDamageCoefByDistance);
         }
 
@@ -273,11 +276,9 @@
                         // that the damage to objects there were not applied.
                         if (LandClaimSystem.SharedIsLandClaimedByAnyone(bounds))
                         {
-                            using (var tempPlayers = Api.Shared.GetTempList<ICharacter>())
-                            {
-                                Server.World.GetScopedByPlayers(worldObject, tempPlayers);
-                                RaidingProtectionSystem.ServerNotifyShowNotificationRaidingNotAvailableNow(tempPlayers);
-                            }
+                            using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
+                            Server.World.GetScopedByPlayers(worldObject, tempPlayers);
+                            RaidingProtectionSystem.ServerNotifyShowNotificationRaidingNotAvailableNow(tempPlayers);
                         }
                     }
                 }

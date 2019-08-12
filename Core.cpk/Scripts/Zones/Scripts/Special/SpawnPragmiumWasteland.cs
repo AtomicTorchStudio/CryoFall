@@ -21,21 +21,21 @@
 
             // mob spawn
             var presetLizard = spawnList.CreatePreset(interval: 22, padding: 0.5, useSectorDensity: false)
-                                        .Add<MobCloakedLizard>()
+                                        .Add<MobFireLizard>()
                                         .SetCustomPaddingWithSelf(12);
 
             var presetScorpion = spawnList.CreatePreset(interval: 26, padding: 0.5, useSectorDensity: false)
                                           .Add<MobScorpion>()
                                           .SetCustomPaddingWithSelf(15);
 
-            var presetCrawler = spawnList.CreatePreset(interval: 13, padding: 0.5, useSectorDensity: false)
-                                         .Add<MobCrawler>()
-                                         .SetCustomPaddingWithSelf(1);
+            var presetBeetle = spawnList.CreatePreset(interval: 15, padding: 0.5, useSectorDensity: false)
+                                         .Add<MobPragmiumBeetle>()
+                                         .SetCustomPaddingWithSelf(5);
 
             // define custom spawn padding between different mobs
             presetLizard.SetCustomPaddingWith(presetScorpion, 5);
-            presetLizard.SetCustomPaddingWith(presetCrawler,  5);
-            presetCrawler.SetCustomPaddingWith(presetScorpion, 5);
+            presetLizard.SetCustomPaddingWith(presetBeetle,  5);
+            presetBeetle.SetCustomPaddingWith(presetScorpion, 5);
         }
     }
 }

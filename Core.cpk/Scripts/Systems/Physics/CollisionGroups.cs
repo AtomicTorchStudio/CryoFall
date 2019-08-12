@@ -144,11 +144,11 @@
             defaultGroup.SetCollidesWith(defaultGroup);
 
             hitboxMelee = new CollisionGroup("Hitbox Melee", isSensor: true);
-            hitboxMelee.SetCollidesWith(defaultGroup);
+            //hitboxMelee.SetCollidesWith(defaultGroup);
             hitboxMelee.SetCollidesWith(HitboxMelee);
 
             hitboxRanged = new CollisionGroup("Hitbox Ranged", isSensor: true);
-            hitboxRanged.SetCollidesWith(defaultGroup);
+            //hitboxRanged.SetCollidesWith(defaultGroup);
             hitboxRanged.SetCollidesWith(HitboxRanged);
 
             characterInteractionArea = new CollisionGroup("Interaction Area", isSensor: true);

@@ -24,14 +24,14 @@
 
         public override StatusEffectKind Kind => StatusEffectKind.Debuff;
 
-        public override string Name => "Broken implant";
+        public override string Name => "Broken implant sickness";
 
         public override double ServerAutoAddRepeatIntervalSeconds => 5;
 
         protected override void PrepareEffects(Effects effects)
         {
-            // reduce max health on 15%
-            effects.AddPercent(this, StatName.HealthMax, -15);
+            // reduce max health by 15%
+            effects.AddValue(this, StatName.HealthMax, -15);
         }
 
         protected override IEnumerable<ICharacter> ServerAutoAddGetCharacterCandidates()

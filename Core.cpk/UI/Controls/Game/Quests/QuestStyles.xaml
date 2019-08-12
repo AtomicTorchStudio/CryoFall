@@ -30,9 +30,14 @@
                         </Style>
                     </DataTemplate.Resources>
 
-                    <StackPanel Orientation="Horizontal"
-                                Margin="0,2"
-                                d:DataContext="{d:DesignInstance data:ViewModelQuestRequirement, IsDesignTimeCreatable=True}">
+                    <Grid Margin="0,2"
+                          HorizontalAlignment="Left"
+                          d:DataContext="{d:DesignInstance data:ViewModelQuestRequirement, IsDesignTimeCreatable=True}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
                         <!-- Bullet point -->
                         <Canvas Width="12" Height="12" Margin="0,0,4,0"
                                 VerticalAlignment="Center">
@@ -51,7 +56,8 @@
                                 Fill="{StaticResource BrushColor5}" />
                         </Canvas>
 
-                        <ContentControl x:Name="DescriptionContent">
+                        <ContentControl Grid.Column="1"
+                                        x:Name="DescriptionContent">
                             <ContentControl.Style>
                                 <Style>
                                     <Style.Triggers>
@@ -82,13 +88,17 @@
                             <ContentControl.Foreground>
                                 <SolidColorBrush Color="{StaticResource Color6}" />
                             </ContentControl.Foreground>
-                            <StackPanel Orientation="Horizontal">
+                            <Grid HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding Description}"
                                            TextWrapping="NoWrap"
-                                           TextTrimming="CharacterEllipsis"
-                                           MaxWidth="{DynamicResource QuestRequirementDescriptionMaxWidth}" />
+                                           TextTrimming="CharacterEllipsis" />
 
-                                <StackPanel Orientation="Horizontal"
+                                <StackPanel Grid.Column="1"
+                                            Orientation="Horizontal"
                                             Visibility="{Binding CountRequirementVisibility}">
                                     <TextBlock Text=" (" />
                                     <TextBlock Text="{Binding CountCurrent}" />
@@ -96,9 +106,9 @@
                                     <TextBlock Text="{Binding CountRequired}" />
                                     <TextBlock Text=")" />
                                 </StackPanel>
-                            </StackPanel>
+                            </Grid>
                         </ContentControl>
-                    </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

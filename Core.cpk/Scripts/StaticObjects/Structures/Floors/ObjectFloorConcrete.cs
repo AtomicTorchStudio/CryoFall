@@ -26,7 +26,7 @@
 
             repair.StagesCount = 1;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemCement>(count: 1);
+            repair.AddStageRequiredItem<ItemCement>(count: 2);
         }
     }
 }

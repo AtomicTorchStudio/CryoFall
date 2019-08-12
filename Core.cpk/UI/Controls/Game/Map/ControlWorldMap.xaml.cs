@@ -1,8 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map
 {
     using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -46,14 +44,13 @@
         protected override void InitControl()
         {
             this.panningPanel = this.GetByName<PanningPanel>("PanningPanel");
-            var layoutRoot = VisualTreeHelper.GetChild(this.panningPanel, 0) as FrameworkElement;
-            var textBlockCurrentPosition = layoutRoot.GetByName<TextBlock>("TextBlockCurrentPosition");
-            var textBlockPointedPosition = layoutRoot.GetByName<TextBlock>("TextBlockPointedPosition");
+
+            var viewModelControlWorldMap = new ViewModelControlWorldMap();
+            this.DataContext = viewModelControlWorldMap;
 
             this.WorldMapController = new WorldMapController(
                 this.panningPanel,
-                textBlockCurrentPosition,
-                textBlockPointedPosition,
+                viewModelControlWorldMap,
                 this.IsEditor);
 
             this.CommandCenter = new ActionCommand(this.CenterMapOnPlayerCharacter);

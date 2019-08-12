@@ -10,6 +10,6 @@
         [SyncToClient(
             deliveryMode: DeliveryMode.ReliableSequenced,
             maxUpdatesPerSecond: 1)]
-        public ushort DurabilityCurrent { get; set; }
+        public uint DurabilityCurrent { get; set; }
     }
 }

@@ -7,6 +7,15 @@ Kein freier Platz um Gegenstand abzulegen
 Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
 Bodenobjekte
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
+Nur bebaubar auf:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
+Nicht bebaubar auf:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
+Ungeeigneter Bodentyp
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 Kein Bau in eingeschränkten Bereichen möglich.
 
@@ -40,15 +49,6 @@ Kein Bau möglich – zu nah an Klippe oder Abhang gelegen.
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
 Kein Bau möglich – zu nah am Wasser.
 
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
-Nur bebaubar auf:
-
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
-Nicht bebaubar auf:
-
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
-Ungeeigneter Bodentyp
-
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
 Konfigurieren
 
@@ -75,6 +75,9 @@ Aufheben
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 Aufhebeln
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@TogglePower:
+An-/Ausschalten
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
 Schreiben
@@ -116,7 +119,7 @@ Scripts/StaticObjects/Loot/ObjectLootCrateFood@Name:
 Vorratscontainer für Nahrungsmittel
 
 Scripts/StaticObjects/Loot/ObjectLootCrateHightech@Name:
-Hi-Tech-Container
+High-Tech-Container
 
 Scripts/StaticObjects/Loot/ObjectLootCrateIndustrial@Name:
 Industriecontainer
@@ -275,14 +278,14 @@ Gebäude
 Scripts/StaticObjects/Structures/Categories/StructureCategoryDecorations@Name:
 Dekorationen
 
+Scripts/StaticObjects/Structures/Categories/StructureCategoryElectricity@Name:
+Elektrizität
+
 Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
 Nahrung
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
 Industrie
-
-Scripts/StaticObjects/Structures/Categories/StructureCategoryLights@Name:
-Licht
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
 Sonstiges
@@ -479,17 +482,47 @@ Primitiver Kühlschrank, dessen Kühlmethode auf dem Prinzip von Verdunstung bas
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
 Primitiver Kühlschrank
 
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Description:
+Leistungsstarker Gefrierschrank, in dem Lebensmittel bei Minusgraden gelagert werden und so viel länger frisch bleiben.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Name:
+Gefrierschrank
+
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
-Bequeme Art große Mengen von verderblichen Lebensmitteln aufzubewahren. Der Kühlschrank wird diese sehr viel länger frisch halten. Benutzt einen integrierten Solarstromgenerator.
+Bequeme Art der Aufbewahrung großer Mengen verderblicher Lebensmittel. Der Kühlschrank wird diese sehr viel länger frisch halten.
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
 Großer Kühlschrank
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
-Bequeme Art verderbliche Lebensmitteln aufzubewahren. Der Kühlschrank wird diese sehr viel länger frisch halten. Benutzt einen integrierten Solarstromgenerator.
+Bequeme Art der Aufbewahrung verderblicher Lebensmittel. Der Kühlschrank wird diese sehr viel länger frisch halten.
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
 Kleiner Kühlschrank
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Description:
+Wandelt organisches Material in Methangas um, das zur Gewinnung kleiner Strommengen verwendet werden kann. Als primäre Stromquelle ungeeignet.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Name:
+Bioreaktor
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
+Dieser große Generator verwendet Benzin zur Stromerzeugung.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
+Motorgenerator
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
+Einfache Anlage zur solaren Stromerzeugung. Betrieb erfordert einzelne Solarpanels.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Name:
+Solargenerator
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
+Dieser Generator verwendet heißen Dampf zum Antrieb einer Turbine und erzeugt so Strom. Seine Maximalleistung wird erst nach dem zeitaufwendigen Erhitzen von Wasser erreicht.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
+Dampferzeuger
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 Hilft dir dabei, deine Basis zu schützen, indem andere Überlebende davon abgehalten werden, Dinge zu bauen oder einzureißen. Ein Land Claim verhindert außerdem den allmählichen Verfall deiner Konstruktionen.
@@ -540,7 +573,7 @@ Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@Notificatio
 Erfolgreich erweitert
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
-Elektronische Stehlampe. Erzeugt extrem leistungsstarkes weißes Licht, das sogar einen großen Raum perfekt ausleuchten kann. Verwendet Einwegbatterien.
+Elektronische Stehlampe. Erzeugt extrem leistungsstarkes weißes Licht, das sogar einen großen Raum perfekt ausleuchten kann.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
 Große Stehlampe
@@ -552,7 +585,7 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
 Ölstehlampe
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
-Kleinere Version der elektrischen Stehlampe. Sehr hell angesichts ihrer Größe. Verwendet Einwegbatterien.
+Kleinere Version der elektrischen Stehlampe. Sehr hell angesichts ihrer Größe.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Kleine Stehlampe
@@ -587,8 +620,11 @@ Kann zum Schmelzen von Erz in Barren und zum Verarbeiten anderer Rohmaterialien 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
 Schmelzofen
 
-Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-Der Extraktor benötigt eine geothermale Quelle.
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Description:
+Nutzt Strom und Induktionserhitzung für schnellere Schmelzvorgänge und Ressourcenverarbeitung.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
+Elektro-Schmelzofen
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
 Ermöglicht die Gewinnung von Lithiumsalzen aus Thermalquellen.
@@ -596,20 +632,23 @@ Ermöglicht die Gewinnung von Lithiumsalzen aus Thermalquellen.
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Lithiumsalzextraktor
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
+Erweiterter Lithiumsalzextraktor
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Kann zum Kompostieren jedweden organischen Materials verwendet werden. Im Wesentlichen ein Pflanzendünger.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Kompostbox
 
-Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@ErrorRequiresOilSeep:
-Die Pumpe benötigt eine Ölquelle.
-
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
 Kann auf einer Ölquelle errichtet werden, um rohes Erdöl direkt aus dem Boden zu extrahieren.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Ölpumpe
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
+Erweiterte Ölpumpe
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
 Veredelt unbehandeltes Erdöl in nützlichere Komponenten, unter anderem Brennstoff und Mineralöl.
@@ -629,11 +668,23 @@ Einfacher Wasserkollektor, der kleine Mengen von Wasser sammelt. Funktioniert au
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 Wasserkollektor
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
+Verwendet eine elekronische Pumpe zum schnellen Extrahieren von Wasser aus einem unterirdischen Reservoir.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Name:
+Wasserpumpe
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
 Eine unerschöpfliche Frischwasserquelle. Jetzt kannst du nicht mehr verdursten. Funktioniert aus irgendeinem Grund weder in Wüsten noch in anderen felsigen Gegenden ...
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 Brunnen
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
+Der Extraktor benötigt eine geothermale Quelle.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
+Die Pumpe benötigt eine Ölquelle.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Dieser Bodentyp besitzt keinen Zugang zum Grundwasserspiegel.
@@ -644,11 +695,53 @@ Spezielle automatisierte Krankenstation, die zum Installieren oder Entfernen all
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Krankenstation
 
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
+Verteidigungskonstruktion, die bei Betrieb ein hochintensives psionisches Feld projiziert.
+
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
+Psionischer Projektor
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
+Kann zum Aufladen jeglicher tragbarer elektronischer Geräte, wie z.B. einer Powerbank oder einer Taschenlampe, benutzt werden.
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
+Ladestation
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
+Mehr Komponenten benötigt.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
+Zwei identische Gegenstände zum Reparieren platzieren.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_NoRepairNecessary:
+Keine Reparatur notwendig.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFull:
+Gegenstand zunächst aus dem Ausgabe-Slot entfernen.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
+Keine Reparatur möglich
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
+Diese Werkbank eignet sich besonders gut zum Basteln oder Reparieren verschiedener Gegenstände.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Name:
+Bastelwerkbank
+
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
 Du kannst diesen Mülleimer dazu verwenden, unerwünschte Gegenstände loszuwerden. Sofort und permanent!
 
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 Mülleimer
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
+Ermöglicht das Speichern von Strom aus Generatoren für den späteren Gebrauch innerhalb der Basis.
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Name:
+Stromspeicher
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorageLarge@Name:
+Großer Stromspeicher
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
 Ermöglicht es dir, dem Rest der Welt ein Bild zu zeigen. Nutzt Solarpaneele auf der Rückseite, die die Notwendigkeit einer externen Stromquelle überflüssig machen.
@@ -881,6 +974,12 @@ Kaktus
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
 Abgestorbener Baum
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
+Abgestorbener Baum
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
+Abgestorbener Baum
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
 Durianbaum
 
@@ -905,14 +1004,26 @@ Pappel
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
 Gummibaum
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
+Moosiger Stumpf
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
 Baumstumpf
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
+Moosiger Baumstumpf
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
 Baumstumpf
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
+Sumpfbaum
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
 Tropischer Baum
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
+Weide
 
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Verwende eine Axt, um diesen Baum zu fällen.

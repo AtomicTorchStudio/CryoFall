@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -24,17 +25,17 @@
         // we disallow naked humans by default (some default cloth will be put on a naked character)
         private const bool IsAllowNakedHumans = false;
 
-        private static readonly Lazy<IReadOnlyList<SkeletonSlotAttachment>> ProtoGenericPants
-            = new Lazy<IReadOnlyList<SkeletonSlotAttachment>>(() => GetAttachments("GenericPants"));
+        private static readonly Lazy<PlaceholderAttachments> GenericPantsAttachments
+            = new Lazy<PlaceholderAttachments>(() => GetAttachments("GenericPants"));
 
-        private static readonly Lazy<IReadOnlyList<IReadOnlyList<SkeletonSlotAttachment>>> ProtoGenericShirt
-            = new Lazy<IReadOnlyList<IReadOnlyList<SkeletonSlotAttachment>>>(
+        private static readonly Lazy<PlaceholderAttachments[]> GenericShirtAttachments
+            = new Lazy<PlaceholderAttachments[]>(
                 // find all T-shirt folders and get attachments for every of them
                 () => Api.Shared.GetFolderNamesInFolder(
                              ContentPaths.Textures + "Characters/Equipment/")
                          .Where(fn => fn.StartsWith("GenericTshirt", StringComparison.Ordinal))
                          .Select(name => GetAttachments(name))
-                         .ToList());
+                         .ToArray());
 
         public static void ClientRebuildAppearance(
             ICharacter character,
@@ -211,43 +212,8 @@
 
             skeletonRenderer.ResetAttachments();
 
-            // setup equipment items
-            var equipmentItems = containerEquipment.GetItemsOfProto<IProtoItemEquipment>().ToList();
-
-            if (!IsAllowNakedHumans)
-            {
-                if (!equipmentItems.Any(i => i.ProtoGameObject is IProtoItemEquipmentLegs))
-                {
-                    // no lower cloth - apply generic one
-                    ClientSkeletonAttachmentsLoader.SetAttachments(skeletonRenderer, ProtoGenericPants.Value);
-                }
-
-                if (!equipmentItems.Any(i => i.ProtoGameObject is IProtoItemEquipmentChest))
-                {
-                    // no upper cloth - apply generic one (based on character Id)
-                    var allTshirts = ProtoGenericShirt.Value;
-                    var selectedTshirtIndex = character.Id % allTshirts.Count;
-                    ClientSkeletonAttachmentsLoader.SetAttachments(skeletonRenderer,
-                                                                   allTshirts[(int)selectedTshirtIndex]);
-                }
-            }
-
-            IItem headEquipment = null;
-            foreach (var item in equipmentItems)
-            {
-                var proto = (IProtoItemEquipment)item.ProtoGameObject;
-                proto.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
-
-                if (item.ProtoItem is IProtoItemEquipmentHead
-                    && headEquipment == null)
-                {
-                    headEquipment = item;
-                }
-            }
-
-            // generate head sprites for human players
-            CharacterHumanFaceStyle faceStyle;
             bool isMale;
+            CharacterHumanFaceStyle faceStyle;
             if (character.ProtoCharacter is PlayerCharacter)
             {
                 var pubicState = PlayerCharacter.GetPublicState(character);
@@ -268,8 +234,50 @@
                 faceStyle = SharedCharacterFaceStylesProvider.GetForGender(isMale).GenerateRandomFace();
             }
 
-            const string slotName = "Head", attachmentName = "Head";
+            // setup equipment items
+            var equipmentItems = containerEquipment.GetItemsOfProto<IProtoItemEquipment>().ToList();
 
+            if (!IsAllowNakedHumans)
+            {
+                if (!equipmentItems.Any(i => i.ProtoGameObject is IProtoItemEquipmentLegs))
+                {
+                    // no lower cloth - apply generic one
+                    ClientSkeletonAttachmentsLoader.SetAttachments(
+                        skeletonRenderer,
+                        isMale
+                            ? GenericPantsAttachments.Value.SlotAttachmentsMale
+                            : GenericPantsAttachments.Value.SlotAttachmentsFemale);
+                }
+
+                if (!equipmentItems.Any(i => i.ProtoGameObject is IProtoItemEquipmentChest))
+                {
+                    // no upper cloth - apply generic one (based on character Id)
+                    var allShirts = GenericShirtAttachments.Value;
+                    var selectedShirtIndex = character.Id % allShirts.Length;
+                    var shirt = allShirts[(int)selectedShirtIndex];
+                    ClientSkeletonAttachmentsLoader.SetAttachments(
+                        skeletonRenderer,
+                        isMale
+                            ? shirt.SlotAttachmentsMale
+                            : shirt.SlotAttachmentsFemale);
+                }
+            }
+
+            IItem headEquipment = null;
+            foreach (var item in equipmentItems)
+            {
+                var proto = (IProtoItemEquipment)item.ProtoGameObject;
+                proto.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
+
+                if (item.ProtoItem is IProtoItemEquipmentHead
+                    && headEquipment == null)
+                {
+                    headEquipment = item;
+                }
+            }
+
+            // generate head sprites for human players
+            const string slotName = "Head", attachmentName = "Head";
             skeletonRenderer.SetAttachmentSprite(
                 skeleton.SkeletonResourceFront,
                 slotName,
@@ -310,25 +318,41 @@
             ClientSkeletonItemInHandHelper.Reset(skeletonRenderer);
         }
 
-        private static IReadOnlyList<SkeletonSlotAttachment> GetAttachments(
+        private static PlaceholderAttachments GetAttachments(
             string name,
             bool requireEquipmentTextures = true)
         {
-            using (var tempSourcePaths = Api.Shared.WrapObjectInTempList("Characters/Equipment/" + name))
-            using (var tempSpritePaths = ClientEquipmentSpriteHelper.CollectSpriteFilePaths(tempSourcePaths.AsList()))
+            using var tempSourcePaths = Api.Shared.WrapObjectInTempList("Characters/Equipment/" + name);
+            using var tempSpritePaths = ClientEquipmentSpriteHelper.CollectSpriteFilePaths(tempSourcePaths.AsList());
+
+            ClientEquipmentSpriteHelper.CollectSlotAttachments(
+                tempSpritePaths.AsList(),
+                typeName: name,
+                requireEquipmentTextures: requireEquipmentTextures,
+                out var slotAttachmentsMale,
+                out var slotAttachmentsFemale);
+
+            foreach (var spriteFilePath in tempSpritePaths)
             {
-                var result = ClientEquipmentSpriteHelper.CollectSlotAttachments(
-                    tempSpritePaths.AsList(),
-                    typeName: name,
-                    isMale: true,
-                    requireEquipmentTextures: requireEquipmentTextures);
+                spriteFilePath.FilesInFolder.Dispose();
+            }
 
-                foreach (var spriteFilePath in tempSpritePaths)
-                {
-                    spriteFilePath.FilesInFolder.Dispose();
-                }
+            return new PlaceholderAttachments(slotAttachmentsMale, slotAttachmentsFemale);
+        }
 
-                return result;
+        [NotPersistent]
+        private readonly struct PlaceholderAttachments
+        {
+            public readonly List<SkeletonSlotAttachment> SlotAttachmentsFemale;
+
+            public readonly List<SkeletonSlotAttachment> SlotAttachmentsMale;
+
+            public PlaceholderAttachments(
+                List<SkeletonSlotAttachment> slotAttachmentsMale,
+                List<SkeletonSlotAttachment> slotAttachmentsFemale)
+            {
+                this.SlotAttachmentsMale = slotAttachmentsMale;
+                this.SlotAttachmentsFemale = slotAttachmentsFemale;
             }
         }
     }

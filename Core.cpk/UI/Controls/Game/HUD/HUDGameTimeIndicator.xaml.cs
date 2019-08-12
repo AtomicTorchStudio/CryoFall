@@ -3,7 +3,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Text;
     using System.Windows;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
+    using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
@@ -14,6 +15,18 @@
                                         typeof(string),
                                         typeof(HUDGameTimeIndicator),
                                         new PropertyMetadata(default(string)));
+
+        public static readonly DependencyProperty TextBrushProperty =
+            DependencyProperty.Register("TextBrush",
+                                        typeof(Brush),
+                                        typeof(HUDGameTimeIndicator),
+                                        new PropertyMetadata(default(Brush)));
+
+        // To easily determine the PvP/PvE server on a Twitch stream or let's play video,
+        // we give a bit different tint to the time indicator.
+        private static readonly Brush BrushPvE = new SolidColorBrush(Color.FromArgb(0xAA, 0xBB, 0xCC, 0xFF));
+
+        private static readonly Brush BrushPvP = new SolidColorBrush(Color.FromArgb(0xAA, 0xFF, 0xBB, 0xBB));
 
         private readonly StringBuilder stringBuilder = new StringBuilder();
 
@@ -27,18 +40,34 @@
             set => this.SetValue(CurrentTimeTextProperty, value);
         }
 
+        public Brush TextBrush
+        {
+            get => (Brush)this.GetValue(TextBrushProperty);
+            set => this.SetValue(TextBrushProperty, value);
+        }
+
         protected override void InitControl()
         {
         }
 
         protected override void OnLoaded()
         {
-            ClientComponentUpdateHelper.UpdateCallback += this.Update;
+            ClientUpdateHelper.UpdateCallback += this.Update;
+            PveSystem.ClientIsPvEChanged += this.RefreshTextBrush;
+            this.RefreshTextBrush();
         }
 
         protected override void OnUnloaded()
         {
-            ClientComponentUpdateHelper.UpdateCallback -= this.Update;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
+            PveSystem.ClientIsPvEChanged -= this.RefreshTextBrush;
+        }
+
+        private void RefreshTextBrush()
+        {
+            this.TextBrush = PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false)
+                                 ? BrushPvE
+                                 : BrushPvP;
         }
 
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]

@@ -13,19 +13,17 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Signs
         static SharedSignPictureHelper()
         {
             var api = Api.Shared;
-            using (var tempFilesList = api.FindFilesWithTrailingNumbers(ContentPaths.Textures + TexturePath))
+            using var tempFilesList = api.FindFilesWithTrailingNumbers(ContentPaths.Textures + TexturePath);
+            var list = tempFilesList.AsList();
+            var array = new string[list.Count];
+
+            for (var index = 0; index < list.Count; index++)
             {
-                var list = tempFilesList.AsList();
-                var array = new string[list.Count];
-
-                for (var index = 0; index < list.Count; index++)
-                {
-                    var filePath = list[index];
-                    array[index] = api.GetFileNameWithoutExtension(filePath);
-                }
-
-                AllImagesFileNames = array;
+                var filePath = list[index];
+                array[index] = api.GetFileNameWithoutExtension(filePath);
             }
+
+            AllImagesFileNames = array;
         }
 
         public static TextureResource GetTextureResource(string filePath)

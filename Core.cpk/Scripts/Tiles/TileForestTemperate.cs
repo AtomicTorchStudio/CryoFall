@@ -159,13 +159,13 @@
             settings.AddDecal(
                 new ProtoTileDecal(cloverTextures,
                                    size: cloverSize,
-                                   offset: Vector2Ushort.One,
+                                   offset: (1, 1),
                                    noiseSelector: cloverNoiseSelector));
 
             // add bush decal
             settings.AddDecal(
                 new ProtoTileDecal("Terrain/ForestTemperate/BushGreen*",
-                                   size: Vector2Ushort.One,
+                                   size: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new NoiseSelector(

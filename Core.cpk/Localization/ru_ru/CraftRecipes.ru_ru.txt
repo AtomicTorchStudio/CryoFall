@@ -1,5 +1,5 @@
-﻿Scripts/CraftRecipes/HandCrafting/RecipeFillBottleWithWaterbulb@Name:
-Наполнить бутылку водяникой
+﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
+Разбить бутылку
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
 Наполнить бочку бензином
@@ -37,26 +37,23 @@ Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
 Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
 Кипяченая вода (расточительно)
 
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
-Ламповое масло (животный жир)
-
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
-Жареные грибы (белые)
-
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
-Жареные грибы (ржавенки)
-
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
 Переработка медяков
 
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
 Переработка золотых
 
+Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBottleFromFullBottle@Name:
+Наполнить паровой электрогенератор водой
+
+Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
+Перелить бензин из канистры в двигатель-генератор
+
 Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
 Литиевые соли из экстрактора литиевой руды
 
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
-Наполнить канистру нефтью из нефтяного насоса
+Наполнить канистру нефтью из нефтекачалки
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
 Вылить нефть из канистры на нефтеперерабатывающем заводе
@@ -70,30 +67,6 @@ Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanist
 Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 Вскипятить воду
 
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesOrange@Name:
-Варенье (оранжевые ягоды)
-
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesRed@Name:
-Варенье (красные ягоды)
-
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesViolet@Name:
-Варенье (фиолетовые ягоды)
-
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 Наполнить бутылку водой из колодца
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromPyrite@Name:
-Серная кислота (из пирита)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromSulfur@Name:
-Серная кислота (из серы)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeCampFuelSynthetic@Name:
-Ламповое масло (синтетическое)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeToxin@Name:
-Извлечение токсина
-
-Scripts/CraftRecipes/StationCrafting/Workbench/RecipeCanisterPetroleum@Name:
-Канистра с бензином (из нефтяники)
 

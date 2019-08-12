@@ -53,15 +53,15 @@
                 <Grid>
                     <!-- Text: BUYING -->
                     <TextBlock Grid.Row="0"
-                       Text="{x:Static loc:CoreStrings.ObjectTradingStationDisplay_ModeBuying}"
-                       Visibility="{Binding IsBuyMode, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}"
-                       Style="{StaticResource TextBlockStationModeStyle}" />
+                               Text="{x:Static loc:CoreStrings.ObjectTradingStationDisplay_ModeBuying}"
+                               Visibility="{Binding IsBuyMode, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}"
+                               Style="{StaticResource TextBlockStationModeStyle}" />
 
                     <!-- Text: FOR SALE -->
                     <TextBlock Grid.Row="0"
-                       Text="{x:Static loc:CoreStrings.ObjectTradingStationDisplay_ModeSelling}"
-                       Visibility="{Binding IsBuyMode, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                       Style="{StaticResource TextBlockStationModeStyle}" />
+                               Text="{x:Static loc:CoreStrings.ObjectTradingStationDisplay_ModeSelling}"
+                               Visibility="{Binding IsBuyMode, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                               Style="{StaticResource TextBlockStationModeStyle}" />
                 </Grid>
             </Viewbox>
 

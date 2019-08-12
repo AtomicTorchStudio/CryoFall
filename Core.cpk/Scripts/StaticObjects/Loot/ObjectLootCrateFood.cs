@@ -45,19 +45,20 @@
                                      .Add<ItemTequila>(count: 1,      countRandom: 1, weight: 1 / 10.0)
                                      .Add<ItemTincture>(count: 1,     countRandom: 1, weight: 1 / 10.0)
                                      .Add<ItemCigarCheap>(count: 1,   countRandom: 1, weight: 1 / 10.0)
-                                     .Add<ItemCigarNormal>(count: 1,  countRandom: 1, weight: 1 / 20.0)
-                                     .Add<ItemCigarPremium>(count: 1, countRandom: 1, weight: 1 / 50.0)
+                                     .Add<ItemCigarNormal>(count: 1,  countRandom: 1, weight: 1 / 15.0)
+                                     .Add<ItemCigarPremium>(count: 1, countRandom: 1, weight: 1 / 20.0)
                                      // food
-                                     .Add<ItemMeatJerky>(count: 1,    countRandom: 1, weight: 1 / 10.0)
-                                     .Add<ItemCannedBeans>(count: 1,  countRandom: 1, weight: 1 / 10.0)
-                                     .Add<ItemCannedFish>(count: 1,   countRandom: 1, weight: 1 / 10.0)
-                                     .Add<ItemCannedMeat>(count: 1,   countRandom: 1, weight: 1 / 10.0)
-                                     .Add<ItemCoffeeBeans>(count: 10, countRandom: 0, weight: 1 / 10.0)
+                                     .Add<ItemMeatJerky>(count: 1,       countRandom: 1, weight: 1 / 10.0)
+                                     .Add<ItemCannedBeans>(count: 1,     countRandom: 1, weight: 1 / 10.0)
+                                     .Add<ItemCannedFish>(count: 1,      countRandom: 1, weight: 1 / 10.0)
+                                     .Add<ItemCannedMeat>(count: 1,      countRandom: 1, weight: 1 / 10.0)
+                                     .Add<ItemCannedMixedMeat>(count: 1, countRandom: 1, weight: 1 / 10.0)
+                                     .Add<ItemCoffeeBeans>(count: 10,    countRandom: 5, weight: 1 / 10.0)
                                      // ingredients
-                                     .Add<ItemWheatFlour>(count: 10,  countRandom: 5,  weight: 1 / 20.0)
-                                     .Add<ItemWheatGrains>(count: 20, countRandom: 20, weight: 1 / 20.0)
-                                     .Add<ItemSugar>(count: 5,        countRandom: 5,  weight: 1 / 20.0)
-                                     .Add<ItemSalt>(count: 15,        countRandom: 10, weight: 1 / 20.0));
+                                     .Add<ItemWheatFlour>(count: 10,  countRandom: 5,  weight: 1 / 10.0)
+                                     .Add<ItemWheatGrains>(count: 20, countRandom: 20, weight: 1 / 10.0)
+                                     .Add<ItemSugar>(count: 5,        countRandom: 5,  weight: 1 / 10.0)
+                                     .Add<ItemSalt>(count: 15,        countRandom: 10, weight: 1 / 10.0));
 
             // extra loot from skill
             droplist.Add(condition: SkillSearching.ServerRollExtraLoot,
@@ -65,30 +66,19 @@
                                      .Add<ItemBeer>(count: 1)
                                      .Add<ItemWine>(count: 1)
                                      .Add<ItemVodka>(count: 1)
-                                     .Add<ItemCannedBeans>(count: 1)
-                                     .Add<ItemCannedFish>(count: 1)
-                                     .Add<ItemCannedMeat>(count: 1));
+                                     .Add<ItemWheatFlour>(count: 5,  countRandom: 5)
+                                     .Add<ItemWheatGrains>(count: 5, countRandom: 10)
+                                     .Add<ItemSugar>(count: 3,       countRandom: 3)
+                                     .Add<ItemSalt>(count: 10,       countRandom: 5));
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (0.8, 0.35),
-                    offset: (0.1, 0.65),
-                    group: CollisionGroups.Default)
-                .AddShapeRectangle(
-                    size: (0.8, 0.4),
-                    offset: (0.1, 0.65),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (0.8, 0.4),
-                    offset: (0.1, 0.65),
-                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(
-                    size: (0.8, 0.6),
-                    offset: (0.1, 0.65),
-                    group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.8, 0.35), offset: (0.1, 0.65))
+                .AddShapeRectangle(size: (0.8, 0.4),  offset: (0.1, 0.65), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.6, 0.15), offset: (0.2, 1.3),  group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.8, 0.6),  offset: (0.1, 0.65), group: CollisionGroups.ClickArea);
         }
     }
 }

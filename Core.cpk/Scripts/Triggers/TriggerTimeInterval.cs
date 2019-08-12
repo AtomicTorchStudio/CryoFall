@@ -69,12 +69,13 @@
                 this.intervalFromSeconds = intervalFromSeconds;
                 this.intervalToSeconds = intervalToSeconds;
 
-                // Trigger sometime soon (in the interval range).
-                // This is necessary to prevent the CPU spikes.
+                // Schedule random trigger time (but not later than the "interval to" duration).
+                // This is necessary to prevent the CPU spikes and to ensure that the spawn scripts are not executed
+                // at the predictable time after the server restart.
                 // Otherwise all the triggers of the same interval are triggering at exactly the same time.
                 // TODO: actually it might be not a great idea in case of a spawn scripts which might need to keep a proper order
                 this.nextTriggerTime = Server.Game.FrameTime
-                                       + (RandomHelper.NextDouble() * intervalFromSeconds);
+                                       + (RandomHelper.NextDouble() * intervalToSeconds);
             }
 
             public override void ServerUpdateConfiguration()

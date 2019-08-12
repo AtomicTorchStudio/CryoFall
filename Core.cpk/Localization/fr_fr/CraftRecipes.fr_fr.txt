@@ -1,5 +1,5 @@
-﻿Scripts/CraftRecipes/HandCrafting/RecipeFillBottleWithWaterbulb@Name:
-Remplir la bouteille avec l'aquabulbe
+﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
+Casser une bouteille
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
 Remplir le tonneau avec l'essence
@@ -37,20 +37,17 @@ Sous-produit de la combustion des brindilles
 Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
 Faire bouillir l'eau (coûteux)
 
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
-Lampant (graisse animale)
-
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
-Champignons grillés (cèpes)
-
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
-Champignons grillés (rouillettes)
-
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
 Recyclage de penny
 
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
 Recyclage de pièce scintillante
+
+Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBottleFromFullBottle@Name:
+Remplir d'eau le générateur à vapeur
+
+Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
+Ajouter de l'essence au groupe électrogène
 
 Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
 Sels de lithium de l'extracteur de minerai de lithium
@@ -70,30 +67,6 @@ Remplir le bidon avec l'huile minérale de la raffinerie
 Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 Faire bouillir l'eau
 
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesOrange@Name:
-Confiture de baies (baies orange)
-
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesRed@Name:
-Confiture de baies (baies rouges)
-
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesViolet@Name:
-Confiture de baies (baies violettes)
-
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 Remplir la bouteille avec l'eau du puits
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromPyrite@Name:
-Acide sulfurique (de la pyrite)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromSulfur@Name:
-Acide sulfurique (du soufre)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeCampFuelSynthetic@Name:
-Lampant (synthétique)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeToxin@Name:
-Extraction de toxine
-
-Scripts/CraftRecipes/StationCrafting/Workbench/RecipeCanisterPetroleum@Name:
-Bidon de pétrole (des pétrogousses)
 

@@ -14,6 +14,6 @@
 
         public double ServerTimeWateringEnds { get; set; }
 
-        public double SkillGrowthSpeedMultiplier { get; set; } = 1d;
+        public double SkillGrowthSpeedMultiplier { get; set; } = 1.0;
     }
 }

@@ -20,7 +20,7 @@
 
             inputItems.Add<ItemIngotSteel>(count: 3);
             inputItems.Add<ItemIngotCopper>(count: 2);
-            inputItems.Add<ItemPlastic>(count: 5);
+            inputItems.Add<ItemPlastic>(count: 4);
 
             outputItems.Add<ItemBallisticPlate>();
         }

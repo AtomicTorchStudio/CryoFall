@@ -96,7 +96,7 @@
                 totalDamage *= WeaponConstants.DamageCreaturesMultiplier;
 
                 if (targetObject is ICharacter victim
-                    && !victim.IsOnline
+                    && !victim.ServerIsOnline
                     && !victim.IsNpc)
                 {
                     // don't deal creature damage to offline players
@@ -231,22 +231,21 @@
             // reduce equipped items durability
             // we're using temporary list here to prevent issues
             // when an item is destroyed during enumeration
-            using (var tempList = Api.Shared.WrapInTempList(targetCharacter.SharedGetPlayerContainerEquipment()
-                                                                           .Items))
+            using var tempList = Api.Shared.WrapInTempList(targetCharacter.SharedGetPlayerContainerEquipment().Items);
+            foreach (var item in tempList)
             {
-                foreach (var item in tempList)
+                if (!(item.ProtoItem is IProtoItemWithDurablity protoItemWithDurablity))
                 {
-                    if (item.ProtoItem is IProtoItemWithDurablity protoItemWithDurablity)
-                    {
-                        try
-                        {
-                            protoItemWithDurablity.ServerOnItemDamaged(item, damageApplied);
-                        }
-                        catch (Exception ex)
-                        {
-                            Api.Logger.Exception(ex);
-                        }
-                    }
+                    continue;
+                }
+
+                try
+                {
+                    protoItemWithDurablity.ServerOnItemDamaged(item, damageApplied);
+                }
+                catch (Exception ex)
+                {
+                    Api.Logger.Exception(ex);
                 }
             }
         }

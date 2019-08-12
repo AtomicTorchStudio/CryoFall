@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Player
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
@@ -27,7 +26,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Respawn;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -36,7 +34,6 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
     using JetBrains.Annotations;
 
@@ -55,6 +52,18 @@
             = new Lazy<SkeletonHumanMale>(GetProtoEntity<SkeletonHumanMale>);
 
         public override float CharacterWorldHeight => 1.5f;
+
+        // This is the center of the character's ranged hitbox.
+        // It's necessary to ensure the equal distance in every way the character could shot and damage another player.
+        public override float CharacterWorldWeaponOffsetRanged { get; }
+            = (float)(SkeletonHuman.RangedHitboxOffset
+                      + SkeletonHuman.RangedHitboxHeight / 2);
+
+        // This is the center of the character's melee hitbox.
+        // It's necessary to ensure the equal distance in every way the character could shot and damage another player.
+        public override float CharacterWorldWeaponOffsetMelee { get; }
+            = (float)(SkeletonHuman.MeleeHitboxOffset
+                      + SkeletonHuman.MeleeHitboxHeight / 2);
 
         public override string Name => "Player character";
 
@@ -150,13 +159,14 @@
                                                                               isLooped: true,
                                                                               volume: 0.5f);
 
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             var clientState = data.ClientState;
             ClientCharacterEquipmentHelper.ClientRefreshEquipment(character, clientState, publicState);
 
             if (character.IsCurrentClientCharacter)
             {
                 this.ClientInitializeCurrentCharacter(data);
+                this.ClientInitializeOtherCharacter(data);
             }
             else
             {
@@ -172,7 +182,7 @@
             // subscribe on gender change
             publicState.ClientSubscribe(
                 _ => _.IsMale,
-                _ => ResetRendering(),
+                _ => ResetRendering(resetSkeleton: true),
                 clientState);
 
             // subscribe on player character public action change
@@ -252,7 +262,7 @@
         {
             var character = data.GameObject;
             var clientState = data.ClientState;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             ClientCharacterEquipmentHelper.ClientRefreshEquipment(character, clientState, publicState);
 
             if (!character.IsCurrentClientCharacter)
@@ -262,7 +272,7 @@
             }
 
             // next code is only for the current client character
-            var privateState = data.SyncPrivateState;
+            var privateState = data.PrivateState;
             if (!publicState.IsDead)
             {
                 SharedRefreshSelectedHotbarItem(character, privateState);
@@ -305,8 +315,12 @@
                              this.StatRunningStaminaConsumptionUsePerSecond);
 
             effects.AddValue(this,
-                             StatName.LearningPointsRetainedAfterDeath,
-                             SkillLearning.LearningPointsRetainedAfterDeathBaseValue);
+                             StatName.CraftingQueueMaxSlotsCount,
+                             SkillCrafting.BaseCraftingSlotsCount);
+
+            effects.AddPercent(this,
+                               StatName.TinkerTableBonus,
+                               SkillMaintenance.BaseTinkerTableBonus);
         }
 
         protected override void PrepareProtoCharacter()
@@ -371,6 +385,9 @@
             GetProtoEntity<ConsoleSkillsSetAll>().Execute(player: character);
             // add all the technologies
             GetProtoEntity<ConsoleTechAddAll>().Execute(player: character);
+
+            this.ServerRebuildFinalCacheIfNeeded(data.PrivateState, publicState);
+
             // add all the quests (and complete them)
             GetProtoEntity<ConsoleQuestCompleteAll>().Execute(player: character);
         }
@@ -415,7 +432,7 @@
             var publicState = data.PublicState;
             var privateState = data.PrivateState;
 
-            publicState.IsOnline = character.IsOnline;
+            publicState.IsOnline = character.ServerIsOnline;
 
             // update selected hotbar item
             SharedRefreshSelectedHotbarItem(character, privateState);
@@ -494,8 +511,8 @@
         private void ClientInitializeCurrentCharacter(ClientInitializeData data)
         {
             var character = data.GameObject;
-            var privateState = data.SyncPrivateState;
-            var publicState = data.SyncPublicState;
+            var privateState = data.PrivateState;
+            var publicState = data.PublicState;
 
             this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
 
@@ -534,44 +551,9 @@
             WindowRespawn.EnsureClosed();
         }
 
-        [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
         private void ClientInitializeOtherCharacter(ClientInitializeData data)
         {
-            IComponentAttachedControl nicknameDisplay = null;
-
-            var publicState = data.SyncPublicState;
-            publicState.ClientSubscribe(
-                _ => _.IsOnline,
-                _ => Refresh(),
-                data.ClientState);
-
-            publicState.ClientSubscribe(
-                _ => _.IsDead,
-                _ => Refresh(),
-                data.ClientState);
-
-            Refresh();
-
-            void Refresh()
-            {
-                nicknameDisplay?.Destroy();
-                nicknameDisplay = null;
-                if (publicState.IsDead)
-                {
-                    return;
-                }
-
-                // setup nickname display
-                var character = data.GameObject;
-                var nicknameDisplayControl = new NicknameDisplay();
-
-                nicknameDisplayControl.Setup(character, publicState.IsOnline);
-                nicknameDisplay = Client.UI.AttachControl(
-                    character,
-                    nicknameDisplayControl,
-                    positionOffset: (0, this.CharacterWorldHeight + 0.05),
-                    isFocusable: false);
-            }
+            // nothing here now but could be useful for modders
         }
 
         private void ClientRefreshCurrentPublicActionState(ICharacter character)

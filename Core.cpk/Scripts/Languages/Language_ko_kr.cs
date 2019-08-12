@@ -1,10 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Languages
 {
-    using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.CoreMod.ClientLanguages;
 
     public class Language_ko_kr : ProtoLanguageDefinition
     {
         public override string AcceptText => "받아 들인다";
+
+        public override bool IsFontUnderlineEnabled => false;
 
         public override string LanguageTag => "ko_kr";
 

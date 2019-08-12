@@ -5,26 +5,15 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.GameEngine.Common.Extensions;
 
     public class ServerOperatorSystem : ProtoSystem<ServerOperatorSystem>
     {
-        private const string DatabaseEntryId = "ServerOperatorCharactersIdsList";
-
         private static bool clientIsServerOperator;
-
-        private static HashSet<string> serverOperatorsList;
 
         public static event Action ClientIsOperatorChanged;
 
         public static IReadOnlyCollection<string> ServerOperatorsList
-        {
-            get
-            {
-                Api.ValidateIsServer();
-                return serverOperatorsList;
-            }
-        }
+            => Server.Core.ServerOperators;
 
         public override string Name => "Server operator system";
 
@@ -56,12 +45,7 @@
 
         public static bool ServerIsOperator(string username)
         {
-            if (string.IsNullOrEmpty(username))
-            {
-                return false;
-            }
-
-            return serverOperatorsList.Contains(username);
+            return Server.Core.IsServerOperator(username);
         }
 
         public static void ServerRemove(ICharacter character)
@@ -81,8 +65,7 @@
 
         public static void Setup(IServerConfiguration serverConfiguration)
         {
-            serverConfiguration.SetupPlayerCheckServerOperatorAccessHook(
-                ServerIsOperator);
+            serverConfiguration.SetupPlayerCheckServerOperatorAccessHook(ServerIsOperator);
         }
 
         public static bool SharedIsOperator(ICharacter character)
@@ -94,60 +77,21 @@
 
             if (IsServer)
             {
-                return serverOperatorsList.Contains(character.Name);
+                return Server.Core.IsServerOperator(character.Name);
             }
 
             return clientIsServerOperator
-                   && Client.Characters.CurrentPlayerCharacter == character;
-        }
-
-        protected override void PrepareSystem()
-        {
-            if (IsClient)
-            {
-                return;
-            }
-
-            // below is the Server-side code only
-            if (Api.Server.Database.TryGet(
-                nameof(ServerOperatorSystem),
-                DatabaseEntryId,
-                out serverOperatorsList))
-            {
-                ServerLogOperatorsList();
-                return;
-            }
-
-            // operators list is not stored, create a new one
-            serverOperatorsList = new HashSet<string>(StringComparer.Ordinal)
-            {
-                // we're great developers, promise not to hack your server!
-                // just joking, we need this for our servers otherwise it will be much harder to manage them
-                "ai_enabled",
-                "Lurler"
-            };
-
-            Api.Server.Database.Set(
-                nameof(ServerOperatorSystem),
-                DatabaseEntryId,
-                serverOperatorsList);
-
-            ServerLogOperatorsList();
-        }
-
-        private static void ServerLogOperatorsList()
-        {
-            Logger.Important(
-                "Server operators system - server operators list: "
-                + serverOperatorsList.GetJoinedString());
+                   && character == Client.Characters.CurrentPlayerCharacter;
         }
 
         private static void ServerSetOperatorAccess(string name, bool isOperator)
         {
-            var isChanged = isOperator
-                                ? serverOperatorsList.Add(name)
-                                : serverOperatorsList.Remove(name);
+            if (Api.IsEditor)
+            {
+                isOperator = true;
+            }
 
+            var isChanged = Server.Core.SetServerOperatorAccess(name, isOperator);
             if (!isChanged)
             {
                 return;
@@ -155,8 +99,6 @@
 
             Logger.Warning(
                 $"Server operator mode is changed: \"{name}\" - operator mode is {(isOperator ? "enabled" : "disabled")}");
-
-            ServerLogOperatorsList();
 
             var character = Server.Characters.GetPlayerCharacter(name);
             if (character == null)
@@ -173,7 +115,8 @@
         private void ClientRemote_SetCurrentUserIsOperator(bool isOperator)
         {
             clientIsServerOperator = isOperator;
-            Logger.Important("Received isOperator=" + isOperator);
+            Logger.Important(
+                $"Server operator status received: current player {(isOperator ? "is" : "is not")} a server operator");
             if (ClientIsOperatorChanged != null)
             {
                 Api.SafeInvoke(ClientIsOperatorChanged);
@@ -185,17 +128,7 @@
             var character = ServerRemoteContext.Character;
             if (Api.IsEditor)
             {
-                // automatically enable editor mode server operator for current payer in Editor
-                // (and do this only once)
-                if (!Api.Server.Database.TryGet(nameof(ServerOperatorSystem),
-                                                "EditorOperatorFirstTimeSet",
-                                                out bool _))
-                {
-                    Api.Server.Database.Set(nameof(ServerOperatorSystem),
-                                            "EditorOperatorFirstTimeSet",
-                                            true);
-                    ServerAdd(character);
-                }
+                ServerAdd(character);
             }
 
             var isOperator = SharedIsOperator(character);

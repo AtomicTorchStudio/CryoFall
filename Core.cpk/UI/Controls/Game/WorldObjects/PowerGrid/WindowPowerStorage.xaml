@@ -1,0 +1,36 @@
+﻿<powerGrid:WindowPowerStorageBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.WindowPowerStorage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:powerGrid="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowPowerStorage, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+        <Grid>
+            <powerGrid:PowerGridStateControl
+                Visibility="{Binding Converter={StaticResource NullToVisibilityConverter}}"
+                DataContext="{Binding ViewModelPowerGridState}" />
+
+            <!-- Text: This power storage is not connected to any power grid. -->
+            <TextBlock Text="{x:Static loc:CoreStrings.WindowPowerStorage_NotConnectedToPowerGrid}"
+                       Visibility="{Binding ViewModelPowerGridState, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Reverse}"
+                       Foreground="{StaticResource BrushColor6}"
+                       FontSize="14"
+                       FontFamily="{StaticResource CondensedFontFamily}"
+                       FontWeight="Bold"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+        </Grid>
+    </core:WindowMenuWithInventory>
+
+</powerGrid:WindowPowerStorageBase>

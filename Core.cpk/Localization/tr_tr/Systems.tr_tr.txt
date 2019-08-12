@@ -1,0 +1,438 @@
+﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
+Şişeyi doldurmak için suya yakın dur ya da şişeyi kuyuya sok.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
+Taşınabilir şarj kuşanılmadı.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NotEnoughCharge:
+Taşınabilir şarjın şarjı yok.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
+{0}'ı kullanamazsın
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
+`{0} saniyede yatağında yeniden doğabilirsin.
+[br]Ya da şu anda dünyada yeniden doğabilirsin.`
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Title:
+Yatak yeniden doğma yenilenmesi
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Inaccessible:
+Yatağa ulaşamıyor gibisin (etrafında boş alan yok).
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_NoBed:
+Artık bir yatağın yok.
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Title:
+Yatakta yeniden doğamazsın.
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Message:
+Yeniden doğman için iyi bir yer yok gibi.
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Title:
+Yatağın yakınında yeniden doğamazsın.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Message:
+Lütfen isteğin işleme geçirilene kadar bekle.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Title:
+Zaten sıkışıklıktan kurtar isteğinde bulundun.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Message:
+Zamanlayıcı çalışırken karakterini hareket ettirmemelisin. Sıkışıklıktan kurtulma isteği iptal edildi.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Title:
+Sıkışıklıktan kurtulma isteği iptal edildi.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Dead:
+Karakterin öldü.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Title:
+Sıkışıklıktan kurtulma imkânsız
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_MessageFormat:
+`Lütfen {0}'ı bekle.
+[br]Kıpırdama yoksa  sıkışıklıktan kurtulma isteğin iptal edilecek.`
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_Title:
+Sıkışıklıktan kurtulma isteği yapıldı.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Message:
+Artık kurtuldun! Tadını çıkar!
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
+Sıkışıklıktan kurtulma isteği başarılı.
+
+Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
+Sunucu yöneticisi tarafından sohbete katılman yasaklandı. Yasağın kalkmasına kalan süre: {0}
+
+Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
+{0} oyundan çıktı.
+
+Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
+{0} oyuna katıldı.
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
+{0} {1} istediğinden emin misin?
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
+Sosyal menüyü kullanarak daha sonra bu kişinin engelini kaldırabilirsin.
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
+Genel
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
+Yerel
+
+Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
+Oraya inşa edemezsin.
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationCannotPlace:
+Yerleştirilemiyor
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Message:
+Daha fazla eşya lazım.
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Title:
+İnşa edilemiyor
+
+Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
+Üretme kuyruğu dolu.
+
+Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
+Yeni tarif eklenemez
+
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
+Yıkım yapılamaz
+
+Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
+{0} çöktü ve tamamen yok oldu.
+
+Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_Title:
+Eşya kırıldı
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_MessageFormat:
+`Yeniden doldurmak için bir yakıt eşyasına ihtiyacın var:
+[br]{0}.`
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_Title:
+Yeniden doldurulamıyor
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNoNeedToRefill:
+Yeniden doldurmaya gerek yok
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
+Bu eşya yeniden doldurulamaz.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
+Başka bir alan tutucuya çok yakın.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
+Başka bir oyuncu bu bölgeye sahip veya başka birinin alan tutucusuna çok yakın.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
+`Kaynak yatağı daha yeni ortaya çıktı ve henüz ele geçirilemez.
+Etrafında inşaat yapmak geçici süreyle yasak.`
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
+Başka bir alan tutucuyla kesişiyor
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
+`Sana tahsis edilen alan tutucuları harcadın.
+[br]Yeni teknolojileri araştırarak bu sayıyı arttırabilirsin.`
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
+Yakıt/Lityum yataklarını ele geçirmek veya yakınlarına alan tutucu yerleştirmek için Zenojeoloji (Aşama 3)'ü araştırman gerekiyor.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
+`Baskın var.
+[br]Üssün saldırı altındayken yeni yapılar inşa edemezsin.`
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
+Bu yapıyı sadece kendi alan tutucu bölgene yerleştirebilirsin.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
+Arsa alanının sahibi sen değilsin.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
+Üssüne baskın yapıldı.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
+Çaylak korumasını iptal et
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
+Çaylak korumasını iptal etmek istediğine emin misin? Tekrar aktifleştiremezsin.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
+Çaylak korumasındasın. Karakterin, başka bir oyuncu tarafından öldürülürse eşyalarını kaybetmeni engeller. Ayrıca başka ölüm durumlarında düşürdüğün eşyalar, başka oyuncular tarafından yağmalanamaz. Lütfen gerekli araç ve silahları üretmek ve en kısa zamanda küçük bir üs inşa etmek için görevleri takip et!
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
+Çaylak korumanın sona erme süresi:
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
+Çaylak korumasındayken diğer oyunculara saldıramaz veya torbalarıyla eşyalarını yağmalayamazsın. Ama siyaset menüsünde bunu istediğin zaman iptal edebilirsin.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
+Çaylak korumasındayken bunu yapamazsın. Ama siyaset menüsünde bunu istediğin zaman iptal edebilirsin.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
+Bu torba, çaylak koruması altında. O yüzden sadece sahibi alabilir.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_ProtectionExpired:
+Çaylak koruması bitti. Artık PvP savaşlara katılabilirsin ama dikkatli ol - ölürsen karakterin bütün eşyaları düşürecek.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Title_NewbieProtection:
+Çaylak koruması
+
+Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
+Envanterde boş yer yok
+
+Scripts/Systems/Notifications/NotificationSystem@NotificationSomeItemsDropped:
+Bazı eşyalar yere düşürüldü!
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageFormat:
+[b]{0}[/b] takımına katılmaya davet etti.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
+Dikkat: Bu daveti kabul edersen şu anki takımından [b]çıkacaksın.[/b]
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationSentMessageFormat:
+[b]{0}[/b]'a takım daveti gönderildi.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
+Takım daveti
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerAcceptedInviteFormat:
+{1}'in davetiyle {0} takıma katıldı
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerInvitedFormat:
+{0}, {1}'i takıma katılmaya davet etti
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerLeftPartyFormat:
+{0} takımdan ayrıldı
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
+{0}, {1} tarafından takımdan atıldı
+
+Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
+{0} seni takımdan attı
+
+Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
+Davet bulunamadı veya davetin süresi geçti.
+
+Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
+Çok geç, takım doldu.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
+Davetli bulunamadı.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
+Takım dolu.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySamePartyMember:
+Davetli zaten takımında.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
+Sunucu operatörü tarafından sessize alındığın için davet gönderemezsin.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
+Davet edilen oyuncu çevrim dışı. Sadece çevrim içi oyuncular bir partiye davet edilebilir.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
+Etkileşime geçilemez-ya çok uzak ya da bina erişilmez durumda.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
+Hiçbir güç şebekesi yok.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
+Güç şebekesinde yeterli güç yok.
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
+Düello modunu kapat
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Enable:
+Düello modunu aç
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Description:
+`Diğer oyunculara savaşta meydan okumak için düello modunu açabilirsin.
+[br]Ölünce eşya kaybetmiyorsun.
+[br]İki oyuncunun da düello modunu açmış olması gerekiyor.`
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Title:
+Düello modu
+
+Scripts/Systems/PvE/PveSystem@Notification_CannotDamagePlayers_Message:
+Bir PvE sunucusunda başka bir oyuncuya veya başka bir oyuncuya ait yapılara zarar veremezsin.
+
+Scripts/Systems/PvE/PveSystem@Notification_OtherPlayerDontHaveDuelMode_Message:
+Savaşmak için iki oyuncunun da düello modunu açmış olması gerekiyorr.
+
+Scripts/Systems/PvE/PveSystem@Notification_StuffBelongsToAnotherPlayer_Message:
+Bu başka bir oyuncuya ait.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Message:
+Alan tutucu içindeki yapılara ancak baskın aralığında zarar verebilirsin.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Title:
+Zarar yok
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
+`Baskın aralığı artık kapandı.
+[br]Devam eden baskınlar durmayacak.`
+
+Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
+Henüz toplayacak bir şey yok
+
+Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
+SUNUCU: Dünya yedeklemesi {0} saniye sonra başlayacak.
+
+Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
+SUNUCU: Dünya yedeklemesi tamamlandı!
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
+Sunucu operatörü tarafından bu sunucudan atıldın
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinKicked:
+`Geçici olarak bu sunucudan atıldın. Lütfen daha fazla detay için sunucu operatörlerine danışın.
+[br][br]Sunucuya {0} sonra tekrar katılabilirsin.`
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhitelist:
+`Bu sunucunun operatörü sadece davetle girilebilecek şekilde ayarladı.
+[br]Lütfen daha fazla detay için sunucu açıklamasına bak.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
+`Resmî CyroFall sunucusuna hoş geldiniz!
+[br]
+[br]
+[b]Önemli:[/b]
+Bu bir PvE (player versus environment) sunucusudur. Bu sunucuda oyuncular doğrudan veya dolaylı yoldan birbirlerine saldıramaz. Bu sunucu düşman oyuncuların saldırması olmaksızın huzurlu bir şekilde keşif için açılmıştır. Öldüremezsiniz, yok edemezsiniz, çalamazsınız veya başka şekilde oyunculara saldıramazsınız. Bunun dışında sunucu, tehlikeli yaratıkları, açılacak teknolojileri ve keşfedilecek dünyasıyla size tam bir CyroFall tecrübesi sunuyor. Bu maceranın seni nereye götüreceğini gör. 
+[br]
+[br]
+Daha heyecanlı ve sınırsız bir tecrübe istiyorsanız - lütfen PvP sunucusuna katılmayı düşünün.
+[br]
+[br]
+[b]Sunucu kuralları:[/b]
+[*]Karşınızdakilere saygılı ve nazik davranın. Hiçbir türlü taciz, ayrıma vb. şeylere müsamaha göstermiyoruz. 
+[*]Sunucu moderatörlerinin tüm isteklerine uyunuz.
+[*]Sohbeti mesaj sağanağına tutmayın ve küfür kullanmayın.
+[*]PvE kısıtlamalarının hiçbirini bozmaya veya onlardan faydalanmaya çalışmayın.
+[*]Diğer oyunculara sıkıntı vermek veya başka türlü rahatsız etmek için oyun kurallarını veya mekaniklerini kötüye kullanmayın.
+[br]
+[br]
+Bol şanslar! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
+`Resmî CyroFall sunucusuna hoş geldiniz!
+[br]
+[br]
+[b]Önemli:[/b]
+Bu herkese açık bir PvP sunucusudur. Lütfen PvP merkezli sunucularda diğer oyuncuların saldırganlıklarına uğrayacağınızı unutmayın. Sizden savaşmanız ve kendinizi savunmanız bekleniyor. Kendinizi düzgün bir şekilde korumanız ve her zaman dikkatli olmanız gerekecek. Şansınızı arttırmak için diğer hayatta kalanlarla el ele vermeyi de düşünebilirsiniz.
+[br]
+[br]
+Daha rahat bir tecrübe yaşamayı tercih ediyorsanız, özellikle bu oyunu ilk defa oynuyorsanız - lütfen bir PvE sunucusuna katılmayı düşünün.
+[br]
+[br]
+[b]Sunucu kuralları:[/b]
+[*]Karşınızdakilere saygılı ve nazik davranın. Hiçbir türlü taciz, ayrıma vb. şeylere müsamaha göstermiyoruz. 
+[*]Sunucu moderatörlerinin tüm isteklerine uyunuz.
+[*]Sohbeti mesaj sağanağına tutmayın veya küfür kullanmayın.
+[br]
+[br]
+Bol şanslar! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
+{0}'a hoş geldiniz
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
+`Sunucu {0} sonra kapanacak.
+[br]
+[br]Sebep:
+[br]{1}
+[br]
+[br]Lütfen güvenli bir yer bulun ve oyundan çıkın, aksi takdirde ara verildiğinde otomatik olarak çıkarılacaksınız.`
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_Title:
+Kapanma
+
+Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillDiscovered:
+{0} yeteneği keşfedildi
+
+Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLevel:
+{0} seviyesi {1}.
+
+Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
+`{0}'dan fazla birikmiş eğitim puanın (EP) var. Yeni teknolojiler açmak için onları kullanmayı düşünmelisin.
+[br](teknoloji menüsünü açmak için tıklayın.)`
+
+Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
+Teknoloji açılamaz
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationBoughtTitle:
+Satın alındı
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMorePennyCoins:
+{0} sikkeye daha ihtiyacın var.
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMoreShinyCoins:
+{0} parlak sikkeye daha ihtiyacın var.
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationSoldTitle:
+Satıldı
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotBuy_Title:
+Satın alınamaz
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
+Satılamaz
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
+Bitki, toplanmaya hazır. Artık sulamanın bir anlamı yok.
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
+Sadece tarla bitkileri sulanabilir.
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_Title:
+Sulanamaz
+
+Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Message:
+Yeniden doldurmak için bir kuyuya git veya envanterinde suyla dolu şişeler bulunsun.
+
+Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Title:
+Yeniden doldurulamaz
+
+Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Message:
+Silahın şarjörü değiştirilemez
+
+Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
+Cephane yok
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
+Sahiplere açılır
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwnersOrAreaOwners:
+Sahiplere ve arazi sahiplerine açılır
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToEveryone:
+Herkese açılır
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
+Her zaman kapalı
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
+Erişimin yok!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
+Sahip listesini düzenleyemezsin.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveLastOwner:
+Son sahibi çıkaramazsın.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveSelf:
+Sahip listesinden kendini çıkaramazsın. Lütfen başka bir oyuncunun bunu yapmasını iste.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageFormatPlayerNotFound:
+[b]{0}[/b] isimli oyuncu bulunamadı.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
+Sahip sen değilsin.
+

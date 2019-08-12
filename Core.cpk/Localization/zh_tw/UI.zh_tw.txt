@@ -95,6 +95,18 @@ UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 解除禁言
 
+UI/CoreStrings@ConstructionMetaInfo_Decoration:
+此為純裝飾建築。
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerConsumer:
+此建築需要電力。
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
+此建築產出電力。
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
+此建築儲存電力。
+
 UI/CoreStrings@Copy:
 復制
 
@@ -107,6 +119,13 @@ UI/CoreStrings@CraftingCountSelector_Min:
 UI/CoreStrings@CraftingQueue_Title:
 制造
 
+UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
+`[b]滑鼠左鍵點擊[/b]
+[br]使此配方移動至佇列首位。
+[br]
+[br][b]滑鼠右鍵點擊[/b]
+[br]取消此配方。`
+
 UI/CoreStrings@CraftingRecipeDetails_ButtonStartCraft:
 制造
 
@@ -117,9 +136,6 @@ UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 配方解鎖
-
-UI/CoreStrings@CryoFallDevelopmentRoadmap:
-遊戲開發佈局
 
 UI/CoreStrings@Defense_Format_Chemical:
 化學防護: {0}
@@ -156,6 +172,18 @@ UI/CoreStrings@DepositCapacityStats_Title:
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 能量
+
+UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
+EU/s
+
+UI/CoreStrings@Extras_DiscordTooltip:
+CryoFall的官方Discord伺服器(僅限英文)
+
+UI/CoreStrings@Extras_PatchnotesTooltip:
+所有CryoFall的更新文檔(僅限英文)
+
+UI/CoreStrings@Extras_RoadmapTooltip:
+CryoFall開發佈局(僅限英文)
 
 UI/CoreStrings@FarmPlantTooltip_NotWatered:
 未澆水
@@ -252,6 +280,9 @@ UI/CoreStrings@ItemsContainer_Button_MatchUp:
 
 UI/CoreStrings@ItemsContainer_Button_TakeAll:
 拿去所有
+
+UI/CoreStrings@ItemsContainer_CapacityExceededTakeOnly:
+超過容量。只能取出物品。
 
 UI/CoreStrings@ItemsContainer_Title:
 物品
@@ -405,11 +436,11 @@ UI/CoreStrings@MenuServers_ListTitleCustom:
 UI/CoreStrings@MenuServers_ListTitleFavorite:
 喜愛
 
+UI/CoreStrings@MenuServers_ListTitleFeatured:
+頂置
+
 UI/CoreStrings@MenuServers_ListTitleModded:
 使用Mod
-
-UI/CoreStrings@MenuServers_ListTitleOfficial:
-官方
 
 UI/CoreStrings@MenuServers_ListTitleRecent:
 最近
@@ -480,14 +511,14 @@ UI/CoreStrings@Network_PingAverage_SeverityRed:
 [br]因此，您在遊戲中的一些操作（需要服務器響應才能生效）
 將需要更長的時間來執行和處理。
 [br]舉例來說，由於與服務器存在很大差異，您的操作可能經常會丟失。
-您可能還會遇到頻繁的瞬移或即時位置校正。`
+[br]您可能還會遇到頻繁的瞬移或即時位置校正。`
 
 UI/CoreStrings@Network_PingAverage_SeverityYellow:
 `看起來你的服務器的網絡連接正在經歷嚴重的延遲（高ping）。
 [br]因此，您在遊戲中的一些操作（需要服務器響應才能生效）
 將需要更長的時間來執行和處理。
 [br]舉例來說，由於與服務器存在很大差異，您的操作可能經常會丟失。
-您可能還會遇到瞬移或即時位置校正。`
+[br]您可能還會遇到瞬移或即時位置校正。`
 
 UI/CoreStrings@Network_PingFluctuationRange:
 Ping波動範圍
@@ -616,7 +647,7 @@ UI/CoreStrings@Performance_Suggestions:
 [br]然後，為了提高性能，您可以嘗試：
 [*] 更新顯卡驅動程序。
 [*] 在遊戲運行時關閉其他應用程序（尤其是瀏覽器，因為它們即使在最小化時也會占用大量系統資源）。
-[*] 如果所有其他方法都失敗了 - 降低視頻選項中的圖形質量。“`
+[*] 如果所有其他方法都失敗了 - 降低視頻選項中的圖形質量。`
 
 UI/CoreStrings@Performance_VRAM_SeverityRed:
 `“你的GPU的顯存容量不足以存儲所有必需的材質，所以它必須每幀都從內存中復制它們。因此，你可能會遇到嚴重的卡頓和降低的幀速率。
@@ -627,6 +658,69 @@ UI/CoreStrings@Performance_VRAMUsage:
 
 UI/CoreStrings@PleaseWait:
 請耐心等待...
+
+UI/CoreStrings@PowerGrid_NotConnectedMessage:
+未連接至電網。
+
+UI/CoreStrings@PowerGridState_ActiveFormat:
+(激活 {0})
+
+UI/CoreStrings@PowerGridState_Button_RestorePower:
+恢復電力
+
+UI/CoreStrings@PowerGridState_Capacity:
+容量：
+
+UI/CoreStrings@PowerGridState_Consumers:
+消耗者:
+
+UI/CoreStrings@PowerGridState_CurrentConsumption:
+當前消耗：
+
+UI/CoreStrings@PowerGridState_CurrentGeneration:
+當前產出：
+
+UI/CoreStrings@PowerGridState_DepletedIn:
+耗竭於：
+
+UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
+永不
+
+UI/CoreStrings@PowerGridState_EfficiencyFormat:
+(效率 {0}%)
+
+UI/CoreStrings@PowerGridState_EnergyInformation:
+能量資訊
+
+UI/CoreStrings@PowerGridState_Generators:
+發電機:
+
+UI/CoreStrings@PowerGridState_GridSize:
+電網規模：
+
+UI/CoreStrings@PowerGridState_GridStatus:
+電網狀態：
+
+UI/CoreStrings@PowerGridState_MaxDefenseConsumption:
+最高防禦消耗：
+
+UI/CoreStrings@PowerGridState_MaxGeneration:
+最高產出：
+
+UI/CoreStrings@PowerGridState_MaxTotalConsumption:
+最高總消耗：
+
+UI/CoreStrings@PowerGridState_PowerGridInformation:
+電網信息
+
+UI/CoreStrings@PowerGridState_Status_Blackout:
+斷電
+
+UI/CoreStrings@PowerGridState_Status_Nominal:
+無異常
+
+UI/CoreStrings@PowerGridState_Storages:
+儲量：
 
 UI/CoreStrings@Quest_Button_ClaimReward:
 獲取
@@ -666,6 +760,12 @@ Ping
 
 UI/CoreStrings@ServerPlayersCount:
 玩家
+
+UI/CoreStrings@ServerWipedDate:
+最近刪檔
+
+UI/CoreStrings@Skill:
+技能
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 強度
@@ -761,8 +861,14 @@ UI/CoreStrings@TitleLiquidMineralOil:
 UI/CoreStrings@TitleLiquidPetroleum:
 石油
 
+UI/CoreStrings@TitleLiquidWater:
+水
+
 UI/CoreStrings@TitleLoading:
 載入中...
+
+UI/CoreStrings@TitleModeAlwaysOn:
+總是開啟
 
 UI/CoreStrings@TitleModeAuto:
 自動
@@ -778,6 +884,9 @@ UI/CoreStrings@TitleNoUpgradesAvailable:
 
 UI/CoreStrings@TitleOwner:
 所有者
+
+UI/CoreStrings@TitlePowerGrid:
+電網
 
 UI/CoreStrings@TitleSafeStorage:
 安全存儲
@@ -825,7 +934,7 @@ UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
 [br]將一個工具箱裝入你的工具欄，以便繼續建造。`
 
 UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
-安放藍圖
+你最近吃了富含維生素、微量元素和其他重要的營養物質的健康膳食。 你感覺好極了。
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 總需求
@@ -842,11 +951,23 @@ UI/CoreStrings@WindowDataLog_Location:
 UI/CoreStrings@WindowDataLog_To:
 至
 
+UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
+太陽能電池板
+
 UI/CoreStrings@WindowInventory_Button_Customize:
 自定義
 
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 解除卡死！
+
+UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
+你無法使用主權建築來儲存資源和基礎物品。
+
+UI/CoreStrings@WindowLandClaim_DecayInfo:
+腐朽信息
+
+UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
+保險箱內的物品將向此主權中的所有建築共用。
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 只有所有者才能升級此建築。
@@ -881,11 +1002,11 @@ UI/CoreStrings@WindowManufacturer_ErrorNotEnoughInputItemsForCurrentRecipe:
 UI/CoreStrings@WindowManufacturer_FuelRequired:
 需要燃料！
 
+UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
+空
+
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
 燈光模式
-
-UI/CoreStrings@WindowOilRefinery_EmptyCanistersOutput:
-空
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 劫掠期現在已開始（剩餘{0}）
@@ -902,6 +1023,9 @@ UI/CoreStrings@WindowPolitics_RaidingRestriction_NextRaidWindowTimeout:
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
 劫掠保護
+
+UI/CoreStrings@WindowPowerStorage_NotConnectedToPowerGrid:
+電容未連接至任何電網。
 
 UI/CoreStrings@WindowQuests_CompletionReward:
 完成獎勵
@@ -924,6 +1048,9 @@ UI/CoreStrings@WindowQuests_TitleCompletedQuestsCount:
 UI/CoreStrings@WindowQuests_TitleUnlockedQuestsCount:
 已解鎖任務
 
+UI/CoreStrings@WindowRechargingStation_Title:
+充電
+
 UI/CoreStrings@WindowRespawn_Button_RespawnAtYourBed:
 在你的床上重生
 
@@ -940,13 +1067,13 @@ UI/CoreStrings@WindowRespawn_Message:
 看起來你已經被強行從這個殘酷的世界中分開了......並且丟失了所有的東西！你想復仇嗎？
 
 UI/CoreStrings@WindowRespawn_MessageDespawned:
-你把你的角色遺忘在土地佔領區域外太久，已經被從世界移除。 你可以再次正常重生。你沒有失去了你的物品或LP。
+你把你的角色遺忘在土地佔領區域外太久，已經被從世界移除。 你可以再次正常重生。你沒有失去了你的物品。
 
 UI/CoreStrings@WindowRespawn_MessagePvE:
 看來你被強制趕出了這個殘酷的世界... 你想要復仇嗎？
 
 UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
-你被其他玩家殺死了。但是你仍處於新手保護狀態下，所以不會失去任何物品或學習點數。但要小心，下一次也許就不會有這種好事了！
+你被其他玩家殺死了。但是你仍處於新手保護狀態下，所以不會失去任何物品。但要小心，下一次也許就不會有這種好事了！
 
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `你最近在床上重生過了。
@@ -957,6 +1084,9 @@ UI/CoreStrings@WindowSignPicture_Title:
 
 UI/CoreStrings@WindowSkills_CurrentLevelFormat:
 等級 {0}
+
+UI/CoreStrings@WindowSkills_CurrentLevelFormat2:
+當前等級：{0}
 
 UI/CoreStrings@WindowSkills_MaxLevelReached:
 達到最大等級！
@@ -1001,11 +1131,24 @@ UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccou
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 您可以將您的Steam帳戶與AtomicTorch.com帳戶相關聯，也可以創建一個新帳戶。
 
-UI/CoreStrings@WindowTechnologies_LearningPointsRetainedAfterDeath:
-死後保留LP
+UI/CoreStrings@WindowTechnologies_Info_AdditionalTechnologies:
+`這些額外的科技允許你在某些領域進一步專業化。
+[br]你無法學習所有高階科技。好好選擇自己想要的方向。`
+
+UI/CoreStrings@WindowTechnologies_Info_PrimaryTechnologies:
+主要科技推薦所有玩家學習，以獲得技術基礎。
 
 UI/CoreStrings@WindowTechnologies_TechGroupLocked:
 鎖定
+
+UI/CoreStrings@WindowTechnologies_TechGroupPreview:
+預覽
+
+UI/CoreStrings@WindowTechnologies_TechGroupResearch:
+研究
+
+UI/CoreStrings@WindowTechnologies_TechGroupResearchCost:
+研究花費
 
 UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 解鎖
@@ -1016,16 +1159,14 @@ UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
 UI/CoreStrings@WindowTechnologies_TitleSpecializedTechnologies:
 專業科技
 
-UI/CoreStrings@WindowTechnologies_TooltipExplanationHowLearningPointsRetainedOnDeath:
-`你的角色死去時，你會失去所有
-[br]累積的LP，除了此處提到的部分。
-[br]提高你的[i]學習[/i]技能將大大提高這個數值。`
-
 UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
 `你可以通過在遊戲中進行任何有
 [br]意義的活動來獲得LP（學習點）。
 [br]LP獲得量與你的角色
 [br]技能經驗獲取成正比。`
+
+UI/CoreStrings@WindowTinkerTable_Button_Repair:
+修理
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
 槽位配置
@@ -1081,6 +1222,21 @@ UI/CoreStrings@WindowTradingStationUser_SellingMode_Title:
 UI/CoreStrings@WindowTrashCan_Title:
 您可以在此處放置任何物品以永久消除它們。
 
+UI/CoreStrings@WipedDate_DaysAgo_Format:
+{0}日前
+
+UI/CoreStrings@WipedDate_HoursAgo_Format:
+{0}小时前
+
+UI/CoreStrings@WipedDate_JustWiped:
+剛剛刪檔
+
+UI/CoreStrings@WipedDate_Yesterday:
+昨天
+
+UI/CoreStrings@WorldMap_MapExplored:
+地圖已探索
+
 UI/CoreStrings@WorldMap_PointedPosition:
 所指位置
 
@@ -1098,6 +1254,10 @@ UI/CoreStrings@WorldMapMarkDroppedItems_Tooltip:
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
 `[b]占領土地[/b]
 [br]這片土地歸你所有。`
+
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
+`[b]土地權利要求[/b]
+[br]這是你的土地權利要求。`
 
 UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 `[b]基地正遭攻擊[/b]
@@ -1143,6 +1303,10 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatCopyMessageFormat:
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 [開發者]
 
+UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
+`確定要關閉與{0}的私人聊天?
+[br]聊天的歷史將被保存，你可以稍候重新開啟。`
+
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 由於此配方涉及可降解組件，因此無法取消它。
 
@@ -1162,11 +1326,11 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 你的物品被丟棄了
 
-UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAttack_MessageFormat:
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
 `你的一個基地正在被掠奪！
-[br]（{0}; {1}）`
+[br]({0}; {1})`
 
-UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAttack_Title:
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Title:
 遭到攻擊！
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
@@ -1201,14 +1365,14 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@AltLeftClickOnItem_Description
 [br]（僅適用於可以使用/食用的物品）`
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltLeftClickOnItem_Title:
-Alt+左鍵單擊物品
+Alt+左鍵按一下物品
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Description:
 `將所指物品堆放到地上。
 [br]（按住Ctrl鍵可從堆疊中放下一個物品）`
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Title:
-Alt+右鍵單擊物品
+Alt+按右鍵物品
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Description:
 將單個物品從堆疊中移動到另一個容器裡面。
@@ -1242,7 +1406,7 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Title:
 空手時右鍵單擊槽位
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Description:
-如果槽位為空或包含相同的項目類型 -  [br]將單個物品從手中移動到目標槽位。
+如果槽位為空或包含相同的項目類型-[br]將單個物品從手中移動到目標槽位。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Title:
 手持物品時右鍵單擊一個槽位
@@ -1251,13 +1415,13 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Descript
 將所有指向物品類型堆疊的移動到另一個容器。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Title:
-Shift+左鍵單擊物品
+Shift+左鍵按一下物品
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftRightClickOnItems_Description:
 僅將指向的物品堆移動到另一個容器。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftRightClickOnItems_Title:
-Shift+右鍵單擊物品
+Shift+按右鍵物品
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@TitleItemSlotActions:
 物品槽操作
@@ -1328,11 +1492,27 @@ UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlo
 UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
 修理
 
+UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
+易腐道具儲存時限提高~{0} 。
+
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListEmpty:
 您可以讓其他的幸存者進入你的占領土地中。
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
 訪問
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
+`廢棄建築物會在一段時間後開始腐朽
+[br]並最終消失，以防止地圖卡頓。
+[br]
+[br]此主權聲明建築將於[b]{0}[/b]後開始腐朽。
+[br]在那以後它將在[b]{1}[/b]腐朽，並開始摧毀倒計時([b]{2}[/b])。
+[br]
+[br]為了防止腐朽，只要在[b]{0}[/b]內訪問此基地即可
+[br](任何訪問列表中的玩家都能啟動倒計時的重置)。
+[br]
+[br]你可以通過[b]升級[/b]主權聲明建築來延長倒計時。
+[br]腐朽倒計時基於領地內等級[b]最高[/b]的主權建築。`
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
 礦藏已經耗盡。
@@ -1357,6 +1537,18 @@ UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation
 
 UI/Controls/Game/WorldObjects/Plants/Data/ViewModelFarmPlantTooltip@TitlePermanent:
 永久
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSolar@ElectricityProductionInfoTextFormat:
+`當前發電{0} EU/s ，光照水準{1}%
+[br]最高輸出 {2} EU/s。`
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@ElectricityProductionInfoTextFormat:
+`當前發電{0} EU/s ，溫度{1}°C ({2}% 效率)
+[br]最高輸出 {3} EU/s。`
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
+`當前發電{0} EU/s 
+[br]最高輸出 {1} EU/s。`
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
 等待登錄響應。

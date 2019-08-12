@@ -80,17 +80,12 @@
             InputItems inputItems,
             OutputItems outputItems)
         {
-            this.SetupRecipeStations(stations);
+            stations.AddAll<ProtoObjectLithiumOreExtractor>();
 
             duration = this.CraftDuration;
 
             this.outputItem = GetProtoEntity<ItemOreLithium>();
             outputItems.Add(this.outputItem);
-        }
-
-        protected void SetupRecipeStations(StationsList stations)
-        {
-            stations.Add<ObjectLithiumOreExtractor>();
         }
     }
 }

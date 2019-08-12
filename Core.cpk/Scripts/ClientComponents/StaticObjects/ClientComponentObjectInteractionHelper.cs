@@ -107,33 +107,31 @@
             var mouseWorldPosition = Api.Client.Input.MouseWorldPosition;
             var physicsSpace = forCharacter.PhysicsBody.PhysicsSpace;
 
-            using (var objectsInTile = physicsSpace.TestPoint(mouseWorldPosition,
-                                                              collisionGroup,
-                                                              sendDebugEvent: false))
+            using var objectsInTile = physicsSpace.TestPoint(mouseWorldPosition,
+                                                             collisionGroup,
+                                                             sendDebugEvent: false);
+            var list = objectsInTile.AsList();
+
+            // find interactable static object
+            for (var index = list.Count - 1; index >= 0; index--)
             {
-                var list = objectsInTile.AsList();
-
-                // find interactable static object
-                for (var index = list.Count - 1; index >= 0; index--)
+                var testResult = list[index];
+                var staticWorldObject = testResult.PhysicsBody.AssociatedWorldObject as IStaticWorldObject;
+                if (staticWorldObject?.ProtoStaticWorldObject is IInteractableProtoStaticWorldObject)
                 {
-                    var testResult = list[index];
-                    var staticWorldObject = testResult.PhysicsBody.AssociatedWorldObject as IStaticWorldObject;
-                    if (staticWorldObject?.ProtoStaticWorldObject is IInteractableProtoStaticWorldObject)
-                    {
-                        // return first found interactable static world object (latest added to tile if there are multiple objects)
-                        yield return staticWorldObject;
-                    }
+                    // return first found interactable static world object (latest added to tile if there are multiple objects)
+                    yield return staticWorldObject;
                 }
+            }
 
-                // find non-interactable static object
-                for (var index = list.Count - 1; index >= 0; index--)
+            // find non-interactable static object
+            for (var index = list.Count - 1; index >= 0; index--)
+            {
+                var testResult = list[index];
+                if (testResult.PhysicsBody.AssociatedWorldObject is IStaticWorldObject staticWorldObject)
                 {
-                    var testResult = list[index];
-                    if (testResult.PhysicsBody.AssociatedWorldObject is IStaticWorldObject staticWorldObject)
-                    {
-                        // return first static world object (latest added to tile)
-                        yield return staticWorldObject;
-                    }
+                    // return first static world object (latest added to tile)
+                    yield return staticWorldObject;
                 }
             }
         }

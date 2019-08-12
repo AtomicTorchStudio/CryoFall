@@ -19,9 +19,8 @@
 
             duration = CraftingDuration.Short;
 
+            inputItems.Add<ItemSlime>(count: 20);
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 5);
-            inputItems.Add<ItemSolvent>(count: 5);
-            inputItems.Add<ItemAcidNitric>(count: 2);
             inputItems.Add<ItemOrePragmium>(count: 2);
 
             outputItems.Add<ItemHeatPreExposure>(count: 1);

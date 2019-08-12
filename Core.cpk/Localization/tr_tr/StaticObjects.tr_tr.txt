@@ -1,0 +1,1029 @@
+﻿Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationCannotDropItemThere:
+Buraya eşya bırakamazsın.
+
+Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationNoFreeSpaceToDrop:
+Eşya bırakacak boş yer yok
+
+Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
+Yerdeki eşyalar
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
+Sadece şuralara inşa edebilirsin:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
+Şuralara inşa edemezsin:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
+Uygunsuz zemin türü
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
+Sınırlı bölgelerde inşa edemezsin.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnCliffOrSlope:
+Uçurum kenarına veya yokuş yerlere inşa edemezsin.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFarmPlot:
+Tarla yerine inşa edemezsin.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFloor:
+Yere inşa edemezsin.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCreaturesNearby:
+Yakınlarda yaratıklar var.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNoFreeSpace:
+Boş yer yok.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
+Sağlam bir zemin yok.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorPlayerNearby:
+Yakınlarda başka oyuncular var.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
+Hücrede duruyorsun!
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSlope:
+İnşa edemezsin - bir uçuruma ve yokuş bir yere fazla yakın.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
+İnşa edemezsin - suya çok yakın.
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
+Yapılandır
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Deconstruct:
+Yık
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
+İncele
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
+Topla
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
+Etkileşime geç
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Loot:
+Yağmala
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
+Aç
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
+Al
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
+Aç
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@TogglePower:
+Gücü açıp kapatma
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
+Yaz
+
+Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
+Jeotermal su kaynağı
+
+Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
+Jeotermal su kaynağı (sonsuz)
+
+Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
+Petrol birikintisi
+
+Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
+Petrol birikintisi (sonsuz)
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
+Maden çıkarma ücreti
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombModern@Name:
+Modern bomba
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombPrimitive@Name:
+İlkel bomba
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
+Titreşim bombası
+
+Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
+Yatak patlaması
+
+Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
+Pragmium kaynağı patlaması
+
+Scripts/StaticObjects/Loot/ObjectCorpse@Name:
+Ceset
+
+Scripts/StaticObjects/Loot/ObjectLootCrateFood@Name:
+Erzak sandığı
+
+Scripts/StaticObjects/Loot/ObjectLootCrateHightech@Name:
+Yüksek teknoloji sandık
+
+Scripts/StaticObjects/Loot/ObjectLootCrateIndustrial@Name:
+Endüstriyel sandık
+
+Scripts/StaticObjects/Loot/ObjectLootCrateMedical@Name:
+Tıbbi sandık
+
+Scripts/StaticObjects/Loot/ObjectLootCrateMilitary@Name:
+Askerî sandık
+
+Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
+Erzak sandığı
+
+Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
+Çimen
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
+Büyük çöp yığını
+
+Scripts/StaticObjects/Loot/ObjectLootStone@Name:
+Taş
+
+Scripts/StaticObjects/Loot/ObjectLootTwigs@Name:
+Dal
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageFormatLootFromAnotherPlayer:
+{0}'dan yağmala
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageLootFromCurrentPlayer:
+Yağman
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Message:
+{0}, düşürdüğün eşyaları inceliyor…
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Title:
+Eşyaların yağmalanıyor
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Message:
+{0}, bütün düşürdüğün eşyaları aldı. Haritadan işaret kaldırıldı.
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Title:
+Eşyaların alındı!
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@Name:
+Oyuncu yağma eşyaları
+
+Scripts/StaticObjects/Loot/Base/ProtoObjectLoot@NotificationUseRightMouseButtonToPickup:
+Almak için farenin sağ tuşunu kullan.
+
+Scripts/StaticObjects/Minerals/ObjectMineralClay@Name:
+Kil
+
+Scripts/StaticObjects/Minerals/ObjectMineralCoal@Name:
+Kömür
+
+Scripts/StaticObjects/Minerals/ObjectMineralCopper@Name:
+Bakır yatağı
+
+Scripts/StaticObjects/Minerals/ObjectMineralIron@Name:
+Demir yatağı
+
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
+Küçük pragmium devresi
+
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
+Pragmium kaynağı
+
+Scripts/StaticObjects/Minerals/ObjectMineralSalt@Name:
+Tuz
+
+Scripts/StaticObjects/Minerals/ObjectMineralSaltpeter@Name:
+Gülherçile yatağı
+
+Scripts/StaticObjects/Minerals/ObjectMineralSand@Name:
+Kuvars kumu yatağı
+
+Scripts/StaticObjects/Minerals/ObjectMineralStone@Name:
+Taş
+
+Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
+Sülfür yatağı
+
+Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
+Bu kaynaktan maden çıkarmak için kazmayı kullan.
+
+Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
+Çatlak
+
+Scripts/StaticObjects/Special/ObjectCharredGround@Name:
+Yakılmış zemin
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
+Ahşap varillerden daha geniş ve dayanıklı. Yüksek miktarda sıvı saklamak için kullanışlı.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Name:
+Metal varil
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Description:
+Sıvı saklamak için kullanılacak fıçıları toplamak basit ve kolaydır.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Name:
+Ahşap varil
+
+Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Description:
+Yüksek miktarda sıvıyı uzun süre saklamak için büyük su tankı.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Name:
+Su tankı
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
+Bu yapıya zarar vermek için bir silah veya alet kullan.
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
+Tanım yok.
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
+Geliştirme tanımı yok.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBed@Description:
+Sırt yatağına göre rahat bir gelişme.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBed@Name:
+Yatak
+
+Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Description:
+Yeniden doğma noktası olması için üssüne bir sırt yatağı yerleştir. Bu, öldükten sonra belirli bir yerde yeniden doğmanı sağlayacak.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Name:
+Sırt yatağı
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Message:
+`Yatağın yapmak istiyor musun?
+[br]Bunu yapmak burayı, aktif yeniden doğma noktan yapacak.`
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Title:
+Bu yatak kimsenin değil
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AlreadyHasOwner:
+Bu yatağın sahibi var
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AnotherPlayersLandClaim:
+Bu yatak, başka bir oyuncunun alan tutucu bölgesinde bulunuyor.
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageBedBelongsToCurrentPlayer:
+Bu yatak sana ait
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageFormatBedBelongsToAnotherPlayer:
+Bu yatak [br]{0}'a ait
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@NotificationBedClaimedSuccessfully:
+Bu yatak aktif yeniden doğma noktan olarak ayarlandı.
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryBuildings@Name:
+Binalar
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryDecorations@Name:
+Dekorasyonlar
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryElectricity@Name:
+Elektrik
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
+Yiyecek
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
+Sanayi
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
+Diğer
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryStorage@Name:
+Depo
+
+Scripts/StaticObjects/Structures/ConstructionSite/ObjectConstructionSite@Name:
+Şantiye
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Description:
+Zırh ve genel görünüş eşyaları yaratmaya yarar.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Name:
+Zırh tezgâhı
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Description:
+Çoğu karışık kimyasal madde türünün işlenmesine ve onlara dayalı olarak birçok eşyanın yaratılmasına yarar.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Name:
+Kimya laboratuvarı
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Description:
+Kaynatılması veya kızartılması gerekmeyen basit yemeklerin hazırlanmasına yarar.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Name:
+Pişirme masası
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Description:
+Tohum torbası ve gübre gibi tarımla ilgili çeşitli eşyayı üretmek için kullanılır.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Name:
+Tarım tezgâhı
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Description:
+Birçok farklı tıbbi erzak ve eşyanın hazırlanmasına yarar.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Name:
+Tıbbi laboratuvar
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Description:
+Farklı silah, erzak ve muhimmatın yaratılmasında kullanılır.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Name:
+Silah tezgâhı
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Description:
+Çeşitli eşyalar üretmek için kullanılır. Evrensel üretme istasyonu olarak görev görür. Ayrıca elle yaratılan bütün tarifleri de bünyesinde bulundurur.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
+Tezgâh
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
+Basit bir ahşap sandıktan daha fazla yeri vardır ve yok edilmesi daha güçtür.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
+Demir sandık
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
+Mal depolamak için en iyi yollardan biri. Çoğu durumda kişinin eşyalarını güvenli tutar ve en fazla yere sahiptir.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
+Çelik sandık
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
+Fazla miktarlardaki eşyaları uygun ve güvenli bir şekilde depolamak için aşırı büyük sandık.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
+Büyük sandık
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
+Kişinin eşyalarını depolaması için en basit sandıktır. Fakat kolayca yok edilebilir.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
+Ahşap sandık
+
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Description:
+Bir müze açmak veya yıllar boyunca kazandığın andaçları sergilemek mi istiyordun? Şimdi yapabilirsin!
+
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
+Sergileme kutusu
+
+Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
+En güçlü patlayıcılara bile dayanabilen ağır zırhlı kasa. Yapması kolay değil ama değerli eşyalarının güvenliğini sağlayacağı kesin.
+
+Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
+Zırhlı kasa
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
+Bu bayrak her neyi temsil ediyorsa - havalı gözüküyor!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
+Kırmızı bayrak
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
+Bu süslü kilim her odayı daha sıcak ve daha hoş yapabilir.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Kilim
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
+Şaka yapmadığını düşmanlarına göster. İzinsiz girişlere izin verilmeyecek!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
+Demire geçirilmiş kafatası
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
+Zenginliğinin gerçek bir göstergesi. Böyle bir şeyi ancak en zenginler inşa edebilir.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Name:
+Altın heykel
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Description:
+Bu değerli kristali sadece estetik bir amaç uğruna harcamak, kişinin zenginliğinin güzel bir göstergesidir.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
+Pragmium heykel
+
+Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
+Bir zemin dekorasyonu var bile.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
+Çoğu işgalciye karşı iyi savunma. Yine de patlayıcılara karşı pek bir şansı yok.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
+Demir kapı
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Description:
+Çelik, sahip olduğu ünü kesinlikle hak ediyor. En güçlü patlayıcılar haricinde pek bir şeye boyun eğmez.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Name:
+Çelik kapı
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Description:
+Davetsiz misafirlere karşı basit bir koruma. Gerçi kararlı bir düşmana karşı pek savunma gösteremez.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
+Ahşap kapı
+
+Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
+Üssüne giriş olarak kullanılabilecek büyük, çelik kapı.
+
+Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
+Çelik kapı
+
+Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
+Birçok ekini veya diğer bitkileri büyütmek için kullanılabilir. Tarla yeri sadece verimli topraklara inşa edilebilir.
+
+Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
+Tarla yeri
+
+Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+Çiçek büyütmek, evini dekore etmek veya başka amaçlar için çiçek toplamak için kullanılabilir. Her yere inşa edilebilir.
+
+Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Saksı
+
+Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
+Bu toprak türü tarıma uygun değil.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Description:
+Sıradışı bir tarz seçimi ama yine de güzel gözüküyor.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Name:
+Tuğla zemin
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Description:
+Basit ve kullanışlı. Bir fabrika zemini veya askerî üs için ideal.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Name:
+Beton zemin
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Description:
+Sağlam ve düzgün. Bir askerî sığınak için güzel seçim.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Name:
+Metal zemin
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Description:
+Güzel bir kale havası yaratıyor. Taş duvarlara da çok uyuyor.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Name:
+Taş zemin
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Description:
+Evini hoş ve rahat gösteriyor. Ahşap duvarlara uyuyor.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Name:
+Ahşap zemin
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Description:
+Ana soğutma yöntemi olarak buharlaşmayı kullanan ilkel soğutucu. Modern buzdolapları kadar etkili değil ama yine de yiyeceklerini daha uzun süre taze tutar.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
+İlkel buzdolabı
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Description:
+Sıfır altı sıcaklıkta gıda depolanabilen ve onları çok daha uzun süre taze tutan güçlü bir dondurucu.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Name:
+Dondurucu
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
+Kolay bozulan yiyecekleri depolamak için uygun bir yol. Buzdolabı, yiyecekleri çok daha uzun süre taze tutacak.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
+Büyük buzdolabı
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
+Kolay bozulan yiyecekleri depolamak için uygun bir yol. Buzdolabı, yiyecekleri çok daha uzun süre taze tutacak.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
+Küçük buzdolabı
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Description:
+Organik maddeyi metan gazına çevirir, o da küçük miktarlarda elektrik enerjisi elde etmek için kullanılır. Ana elektrik kaynağı olarak kullanılmaya uygun değildir.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Name:
+Biyoreaktör
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
+Bu büyük jeneratör elektrik enerjisi üretmek için benzin yakıtı kullanır.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
+Motor jeneratörü
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
+Güneş enerjisi üretimi için temel bir tesis. Çalışmak için bireysel güneş panelleri gerektirir.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Name:
+Güneş jeneratörü
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
+Bu jeneratör sıcak buharı kullanarak türbini döndürür ve elektrik üretir. Maksimum verime ulaşıncaya kadar suyun kaynaması zaman alır.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
+Buhar jeneratörü
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
+Diğer hayatta kalanların bu bölgede bir şey inşa etmelerini veya yıkmalarını engelleyerek üssünü daha güvenli hâle getirir. Alan tutucu aynı zamanda yapılarının zamanla zayıflamasını da engeller.
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Name:
+Alan tutucu (Aşama 1)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@DescriptionUpgrade:
+Korunan bölgeyi genişletir, maksimum yapısal sağlamlık ve yıkım gecikmesi.
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@Name:
+Alan tutucu (Aşama 2)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT3@Name:
+Alan tutucu (Aşama 3)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
+Alan tutucu (Aşama 4)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT5@Name:
+Alan tutucu (Aşama 6)
+
+Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
+Alan tutucu
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorAreaIntersection:
+Geliştirirsen başka bir kişinin alan tutucusuyla kesişecek.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorRequirementsNotSatisfied:
+Geliştirme gereksinimleri karşılanmıyor.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNotFounder:
+Alan tutucu sahibi sen değilsin.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNoActiveInteraction:
+Lütfen alan tutucu aralığını tekrar açıp tekrar dene.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@DialogCannotUpgrade:
+Geliştiremezsin
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationDontHaveAccess:
+Bu alan tutucu bölgeye erişimin yok.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Message:
+Alan tutucu yapısı geliştirildi.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Title:
+Başarılı bir şekilde geliştirildi
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
+Elektrikli abajur. Büyük bir odayı bile kolaylıkla aydınlatabilecek aşırı güçlü beyaz ışık saçar.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
+Büyük abajur
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Description:
+Basit yağla çalışan abajur. Saçtığı hoş sarı parıltıyla her odayı daha rahat bir hâle getirebilir.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
+Yağla çalışan abajur
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
+Elektrikli abajurun küçük versiyonu. Boyutuna göre gayet parlak.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
+Küçük abajur
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
+Temel bir ışık kaynağı olarak görev görür, daha da önemlisi kavurma gibi basit tarifleri pişirmeyi sağlar.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Name:
+Kamp ateşi
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
+Farklı metallerden yapılan sikkeleri kullanır. Ayrıca sikkeleri eriterek külçelere çevirebilir.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
+Sikke
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
+Bu dolabı kullanarak kişi, özel ürün türleri veya kurutulmuş mantar veya et gibi yiyecekler üretebilir.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Name:
+Kurutma dolabı
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Description:
+Mayalama varili, farklı alkollü içkileri ve karışımları yapmaya yarar.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Name:
+Mayalama varili
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Description:
+Madeni eriterek metal külçeye çevirmeye ve birkaç başka ham maddeyi işlemeye yarar.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
+Ocak
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Description:
+Elektrik ve indüksiyon ısıtma metodunu kullanarak daha hızlı eritme ve kaynak işleme sağlar.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
+Elektrikli fırın
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
+Jeotermal su kaynaklarından lityum tuzu çıkarmaya yarar.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
+Lityum tuzu çıkarıcısı
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
+Gelişmiş lityum tuzu çıkarıcı
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
+Her türlü organik maddeyi malca çevirmeye yarar. Temelde bir organik gübredir.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
+Malç kutusu
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
+Zeminden ham petrol çıkarmak için bir petrol birikintisinin üzerine inşa edilebilir.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
+Petrol pompası
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
+Gelişmiş petrol pompası
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
+Ham petrolü arıtarak yakıt ve mineral yağı gibi daha yararlı bileşenlere çevirir.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Name:
+Rafineri
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
+Çoğu yemek pişirme aktivitesi için kullanılır; kamp ateşinden çok daha iyi yemekler üretebilir.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
+Ocak
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
+Az miktarlarda su toplamak için tasarlanmış basit su toplayıcısı. Nedense çöl ve diğer taşlı yerlerde işe yaramıyor…
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
+Su toplayıcısı
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
+Elektriksel pompayı yeraltı rezervinden hızlıca su çıkarmak için kullanır.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Name:
+Su pompası
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
+Tükenmez tatlı su kaynağı sağlar. Artık susuzluktan ölmeyeceksin. Nedense çöl ve diğer taşlı yerlerde işe yaramıyor…
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
+Kuyu
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
+Çıkarıcı, jeotermal su kaynağı gerektirir.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
+Pompa, petrol birikintisi gerektirir.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
+Bu tür zemin, su tabakasına erişim sağlamaz.
+
+Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
+Her türlü sibernatik implantı yüklemek veya kaldırmak için kullanılabilen özel, otomatikleştirilmiş tıbbi istasyon
+
+Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
+Tıbbi istasyon
+
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
+Aktifken yüksek yoğunlukta psionik bir saha yaratan savunma yapısı.
+
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
+Psionic projektör
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
+Güç kaynağı veya el feneri gibi taşınabilir elektronik aletleri şarj etmek için kullanılabilir.
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
+Şarj istasyonu
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
+Daha fazla bileşen gerek.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
+Tamir etmek için iki aynı eşyayı yerleştir.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_NoRepairNecessary:
+Tamire gerek yok.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFull:
+Öncelikle eşyayı çıktı yuvasından kaldır.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
+Tamir edilemez
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
+Bu iş istasyonu özellikle farklı eşyaları kucalamak veya tamir etmek için uygundur.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Name:
+Tamir masası
+
+Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
+Bu çöp kutusunu, istenmeyen eşyalardan hemen kurtulmak için kullanabilirsin. Temelli olarak!
+
+Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
+Çöp kutusu
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
+Kişinin jeneratörler tarafından üretilen elektrik enerjisini daha sonra kullanmak için üste depolamasını sağlar.
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Name:
+Güç deposu
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorageLarge@Name:
+Büyük güç deposu
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
+Dünyanın göreceği bir resim sergilemeni sağlar. Arkada güneş paneli kullanarak harici güç kaynağı ihtiyacını ortadan kaldırır.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Name:
+Dijital tabela
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Description:
+Tabelanın daha dayanıklı metal versiyonu. Eşit derecede yararlı ama artık barbarların kırması daha zor.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Name:
+Demir tabela
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Description:
+Üzerine hatırlaman gereken veya başkalarının bilmesini istediğin bir şeyi yazacak uygun bir ahşap levha.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Name:
+Ahşap levha
+
+Scripts/StaticObjects/Structures/Signs/Base/ProtoObjectSign@NotificationCannotEditSignWhenNotAreaOwner:
+`Başka kişilerin aldığı yerlerdeki
+[br]işaretleri düzenleyemezsin.`
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Description:
+Büyük, otomatikleştirilmiş ticaret istasyonu. Diğer hayatta kalanlarla geniş çapta eşya takas etmek için kullanılabilir. Eşya satmak veya satın almak üzere düzenlenebilir.
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Name:
+Büyük ticaret istasyonu
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Description:
+Otomatikleştirilmiş ticaret istasyonu. Diğer hayatta kalanlarla geniş çapta eşya takas etmek için kullanılabilir. Eşya satmak veya satın almak üzere düzenlenebilir.
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Name:
+Küçük ticaret istasyonu
+
+Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNothingForSale:
+Burada satılık bir şey yok
+
+Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNoTradingLots:
+Burada ticaret yapacak bir şey yok
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorCannotInteract:
+Etkileşime geçemezsin (çok uzaktasın ya da engel var).
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotFound:
+Ticaret yapacak bir şey bulunamadı.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotActive:
+Ticaret aktif değil.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorWrongMode:
+Yanlış ticaret modu.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnPlayer:
+Yeteri kadar satılacak eşya yok.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnStation:
+İstasyonda yeteri kadar satın alınacak eşya yok.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnPlayer:
+Bu eşyayı satın alacak kadar paran yok.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnStation:
+İstasyonda, eşyanı satın alacak kadar para yok.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnPlayerForPurchasedItem:
+Satın alınan eşya için yeteri kadar boşluk yok.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnStationForSoldItem:
+İstasyonda, satmak istediğin eşyayı koyacak kadar yer yok.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Available:
+Mevcut
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@OutOfStock:
+Tükenmiş
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoMoney:
+Para yok
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoSpace:
+Yer yok
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Disabled:
+Etkin değil
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Description:
+Ağır zırhlı sığınak duvarları. Üssün için en büyük koruma.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Name:
+Zırhlı duvar
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
+Metalle güçlendirilmiş sağlam tuğla duvar. Bu, değerli eşyalarını içeride, işgalcileri dışarıda tutacak. Bir dereceye kadar patlayıcılara bile dayanabilir.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Name:
+Tuğla duvar
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
+Ek destekleri olan kalın, güçlendirilmiş beton duvar. Diğer savunma yapılarına göre önemli derecede daha dayanıklı.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
+Beton duvar
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
+Ahşap duvardan çok daha iyi. Çoğu işgalcinin içeri girme çabalarını durduracaktır ama iyi teçhizatlı soygunculara karşı pek bir işe yaramaz.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Name:
+Taş duvar
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Description:
+Yerel faunaya ve genel olarak yerlilere karşı temel koruman. En temel silahlar dışında pek bir şeye karşı koruyamaz.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Name:
+Ahşap duvar
+
+Scripts/StaticObjects/Structures/Walls/Base/ObjectWallDestroyed@Name:
+Yıkık duvar
+
+Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationPlantNotMatured:
+`Bu bitki henüz büyümedi.
+[br] Henüz alamazsın.`
+
+Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationUseRightMouseButtonToInteract:
+{0} için farenin sağ tuşunu kullan.
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushCoffee@Name:
+Kahve
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushOilpod@Name:
+Petrol kapsülü
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushPurple@Name:
+Böğürtlen çalısı (mor)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushRed@Name:
+Böğürtlen çalısı (kırmızı)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@ErrorNoFruit:
+Meyve yok!
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@Name:
+Su soğanı bitkisi
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYellow@Name:
+Böğürtlen çalısı (sarı)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYucca@Name:
+Avize ağacı
+
+Scripts/StaticObjects/Vegetation/Bushes/Base/ProtoObjectBush@ErrorNoBerries:
+Böğürtlen yok!
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantBellPepper@Name:
+Dolma biber
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCarrot@Name:
+Havuç
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantChiliPepper@Name:
+Kırmızı biber
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCorn@Name:
+Mısır
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCucumber@Name:
+Salatalık
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
+Mavi ada çayı
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
+Oni çiçeği
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
+Ogurin
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
+Tütün
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTomato@Name:
+Domates
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
+Buğday
+
+Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
+Tarım yeri gerekiyor
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
+Yeşil bitki
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbPurple@Name:
+Mor bitki
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbRed@Name:
+Kırmızı bitki
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPennyBun@Name:
+Çörek mantarı
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPink@Name:
+Pembe mantar
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomRust@Name:
+Pas mantarı
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallPineapple@Name:
+Ananas
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallSugarcane@Name:
+Şeker kamışı
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
+Dikenli şurup
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
+Muz ağacı.
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
+Huş ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
+Porsuk ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
+Kaktüs
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
+Ölü ağaç
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
+Ölü ağaç
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
+Ölü ağaç
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
+Durian ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
+Düşmüş ağaç
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
+Meşe ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
+Palmiye ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
+Çam ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
+Çam ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
+Kavak ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
+Kauçuk ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
+Yosunlu budak
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
+Ağaç kabuğu
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
+Yosunlu kök
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
+Ağaç kabuğu
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
+Bataklık ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
+Tropikal ağaç
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
+Söğüt ağacı
+
+Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
+Bu ağacı kesmek için balta kullan.
+

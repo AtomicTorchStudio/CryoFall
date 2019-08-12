@@ -28,7 +28,7 @@
 
         public override string Description => "Light machine pistol developed for 8mm rounds.";
 
-        public override ushort DurabilityMax => 400;
+        public override uint DurabilityMax => 400;
 
         public override double FireInterval => 1 / 10d; // 10 per second
 
@@ -53,7 +53,7 @@
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()
         {
-            return WeaponsSoundPresets.WeaponRangedRevolver;
+            return WeaponsSoundPresets.WeaponRangedMachinePistol;
         }
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)

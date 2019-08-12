@@ -1,0 +1,48 @@
+﻿Scripts/Tiles/TileBarren@Name:
+Çorak
+
+Scripts/Tiles/TileBeachBoreal@Name:
+Sahil (Boreal)
+
+Scripts/Tiles/TileBeachTemperate@Name:
+Sahil (Ilıman)
+
+Scripts/Tiles/TileClay@Name:
+Kil ocağı
+
+Scripts/Tiles/TileForestBoreal@Name:
+Orman (Boreal)
+
+Scripts/Tiles/TileForestTemperate@Name:
+Orman (Ilıman)
+
+Scripts/Tiles/TileForestTropical@Name:
+Orman (Tropikal)
+
+Scripts/Tiles/TileLakeShore@Name:
+Göl kıyısı
+
+Scripts/Tiles/TileMeadows@Name:
+Çayırlar
+
+Scripts/Tiles/TileRocky@Name:
+Taşlı
+
+Scripts/Tiles/TileRuins@Name:
+Harabeler
+
+Scripts/Tiles/TileSaltFlats@Name:
+Tuzlu bölgeler
+
+Scripts/Tiles/TileSwamp@Name:
+Bataklık
+
+Scripts/Tiles/TileVolcanic@Name:
+Volkanik
+
+Scripts/Tiles/TileWaterLake@Name:
+Su (göl)
+
+Scripts/Tiles/TileWaterSea@Name:
+Su (deniz)
+

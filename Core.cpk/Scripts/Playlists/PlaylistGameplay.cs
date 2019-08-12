@@ -12,7 +12,7 @@ namespace AtomicTorch.CBND.CoreMod.Playlists
         [NotLocalizable]
         public override string Name => "Gameplay playlist";
 
-        public override double PauseBetweenTracksSeconds { get; } = 5 * 60; // 5 minutes
+        public override double PauseBetweenTracksSeconds { get; } = 4 * 60; // 4 minutes
 
         protected override void PreparePlaylist(MusicTracks tracks)
         {

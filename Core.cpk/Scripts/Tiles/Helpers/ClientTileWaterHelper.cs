@@ -8,7 +8,7 @@
     {
         private static ClientTileWaterHelper instance;
 
-        public static ClientTileWaterHelper Instance => instance ?? (instance = CreateInstance());
+        public static ClientTileWaterHelper Instance => instance ??= CreateInstance();
 
         public static void CreateWaterRenderer(IClientSceneObject sceneObject, IProtoTileWater protoTile)
         {

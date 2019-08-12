@@ -1,0 +1,189 @@
+﻿Scripts/ClientOptions/Audio/AudioOptionMuteAudioWhenUnfocused@Name:
+Wycisz nieaktywną grę
+
+Scripts/ClientOptions/Audio/AudioOptionsCategory@Name:
+Dźwięk
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeAmbient@Name:
+Głośność w tle
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeMaster@Name:
+Głośność główna
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeMusic@Name:
+Głośność muzyki
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeSounds@Name:
+Głośność dźwięków
+
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCategory:
+Ogólne
+
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
+Sterowanie
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
+Włącz mimo wszystko
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
+`Ważne! Zaraz włączysz tryb programistyczny.
+[br][br]
+Używanie pewnych funkcji trybu programistycznego może zepsuć grę.
+[br][br]
+Włącz ten tryb, tylko jeśli RZECZYWIŚCIE wiesz, co robisz.
+[br]`
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
+Tryb programistyczny
+
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
+Wyświetl podpowiedź[br]z interakcją
+
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
+Wyświetl podpowiedź[br]z nazwą obiektu
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
+Zoom kamery
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
+Wybór przedmiotu na pasku
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
+Działanie kółka myszy
+
+Scripts/ClientOptions/General/GeneralOptionsCategory@Name:
+Ogólne
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Png:
+PNG (bezstratny)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Jpeg95:
+JPEG
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Name:
+Format zrzutu ekranu
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Actual:
+Rzeczywista (aktualna rozdzielczość)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Closest:
+Przybliżona (najbliższa standardowa rozdzielczość)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
+Rozdzielczość zrzutu ekranu
+
+Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
+Skalowanie interfejsu
+
+Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
+Ambient occlusion
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
+Brak
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx2:
+MSAA x2
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx4:
+MSAA x4
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx8:
+MSAA x8
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@Name:
+Antyaliasing
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.VSync:
+V-sync (zalecane)
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.DisplayRefreshRate:
+Do częstot. odśwież.
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.Off:
+Bez ograniczeń (duży pobór mocy)
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@Name:
+Limit kl./s
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Normal:
+Oryg. (najlepsza jakość)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale15:
+Redukcja x1,5 (szybciej)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale2:
+Redukcja x2 (najszybciej)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
+Rozdz. renderowania
+
+Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
+Wideo
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
+Pełny ekran
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Windowed:
+Okno
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@Name:
+Tryb wyświetlania
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Message:
+`Zmieniono opcję rozdzielczości sprite'ów.
+[br]W celu zastosowania zmian należy ponownie uruchomić grę.
+[br]Zrestartuj grę ręcznie.`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Title:
+Wymagane jest ponowne uruchomienie
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Button:
+Kontynuuj mimo to
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_MessageFormat:
+`Próbujesz wybrać tryb rozdzielczości sprite'ów wyższy niż zalecany.
+[br]
+[*] Zalecany tryb: [b]{0}[/b]
+[*] Wybrany tryb: [b]{1}[/b]
+[br]
+[br]Wybrany tryb wymaga większej ilości VRAM niż dostępna w tym układzie GPU. Gra może się zacinać i nie działać płynnie.`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:
+Wybrano zbyt wysokie ustawienia
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Ultra:
+Ultra 4K
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.High:
+Wysoka
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Low:
+Niska (niewyraźne, niedokładne)
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Name:
+Rozdzielczość sprite'ów[br](wymaga restartu)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.High:
+Wysokie (zalecana)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Medium:
+Średnie
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Low:
+Niskie
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.None:
+Brak (niezalecane)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Name:
+Szczegóły terenu
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.PPAA:
+Wymuś PPAA (nisk.)
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.MSAA:
+Auto MSAA (najlep.)
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@Name:
+Antyalias. interf.
+

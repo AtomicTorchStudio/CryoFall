@@ -34,7 +34,7 @@
                                          serverSpawnTime));
         }
 
-        private static Vector2Ushort SharedGetObjectCenterPosition(IStaticWorldObject staticWorldObject)
+        public static Vector2Ushort SharedGetObjectCenterPosition(IStaticWorldObject staticWorldObject)
         {
             var position = staticWorldObject.TilePosition;
             var layoutCenter = staticWorldObject.ProtoStaticWorldObject.Layout.Center.ToVector2Ushort();

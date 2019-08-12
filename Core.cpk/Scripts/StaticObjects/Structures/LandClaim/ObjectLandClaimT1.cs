@@ -10,10 +10,12 @@
 
     public class ObjectLandClaimT1 : ProtoObjectLandClaim
     {
+        public override TimeSpan DecayDelayDuration { get; } = TimeSpan.FromHours(32);
+
         public override string Description =>
             "Helps you make your base safer by keeping other survivors from building or deconstructing anything in the surrounding area. Land claim also ensures that your structures do not decay over time.";
 
-        public override TimeSpan DestructionTimeout => TimeSpan.FromHours(24);
+        public override TimeSpan DestructionTimeout { get; } = TimeSpan.FromHours(24);
 
         public override ushort LandClaimSize => 16;
 
@@ -22,8 +24,6 @@
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
-
-        public override byte SafeItemsSlotsCount => 8;
 
         public override float StructurePointsMax => 14000;
 
@@ -64,8 +64,8 @@
             repair.AddStageRequiredItem<ItemPlanks>(count: 5);
 
             upgrade.AddUpgrade<ObjectLandClaimT2>()
-                   .AddRequiredItem<ItemIngotIron>(count: 5)
-                   .AddRequiredItem<ItemIngotCopper>(count: 5)
+                   .AddRequiredItem<ItemIngotIron>(count: 10)
+                   .AddRequiredItem<ItemIngotCopper>(count: 10)
                    .AddRequiredItem<ItemPlanks>(count: 25);
         }
     }

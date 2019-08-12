@@ -5,7 +5,6 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
-    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
@@ -56,15 +55,11 @@
 
         private static readonly Color BlueprintAreaColorRed = Color.FromArgb(0x66, 0xDD, 0x00, 0x00);
 
-        // ReSharper disable once StaticMemberInGenericType
         private static readonly RenderingMaterial ClientBlueprintAreaRenderingMaterial;
 
         private static readonly RenderingMaterial ClientBlueprintGraceAreaRenderingMaterial;
 
         private static readonly RenderingMaterial ClientBlueprintRestrictedTileRenderingMaterial;
-
-        // how long the items dropped on the ground from the safe storage should remain there
-        private static readonly TimeSpan DestroyedLandClaimDroppedItemsDestructionTimeout = TimeSpan.FromDays(1);
 
         private readonly Lazy<ushort> lazyLandClaimGraceAreaPaddingSizeOneDirection;
 
@@ -75,11 +70,11 @@
             if (IsClient)
             {
                 // prepare material and effect parameters
-                ClientBlueprintAreaRenderingMaterial = ClientLandClaimAreaRenderer.CreateRenderingMaterial();
-                ClientBlueprintGraceAreaRenderingMaterial = ClientLandClaimAreaRenderer.CreateRenderingMaterial();
+                ClientBlueprintAreaRenderingMaterial = ClientLandClaimGroupRenderer.CreateRenderingMaterial();
+                ClientBlueprintGraceAreaRenderingMaterial = ClientLandClaimGroupRenderer.CreateRenderingMaterial();
                 ClientBlueprintGraceAreaRenderingMaterial.EffectParameters.Set("Color", BlueprintAreaColorGrace);
 
-                ClientBlueprintRestrictedTileRenderingMaterial = ClientLandClaimAreaRenderer.CreateRenderingMaterial();
+                ClientBlueprintRestrictedTileRenderingMaterial = ClientLandClaimGroupRenderer.CreateRenderingMaterial();
                 ClientBlueprintRestrictedTileRenderingMaterial.EffectParameters.Set("Color", BlueprintAreaColorRed);
             }
         }
@@ -93,11 +88,15 @@
                     this.LandClaimSize));
         }
 
+        public abstract TimeSpan DecayDelayDuration { get; }
+
         public abstract TimeSpan DestructionTimeout { get; }
 
         public override string InteractionTooltipText => InteractionTooltipTexts.Configure;
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
+
+        public override bool IsRepeatPlacement => false;
 
         public ushort LandClaimGraceAreaPaddingSizeOneDirection
             => this.lazyLandClaimGraceAreaPaddingSizeOneDirection.Value;
@@ -107,8 +106,6 @@
         public ushort LandClaimWithGraceAreaSize
             => (ushort)(this.LandClaimSize
                         + 2 * this.LandClaimGraceAreaPaddingSizeOneDirection);
-
-        public abstract byte SafeItemsSlotsCount { get; }
 
         public virtual ITextureResource TextureResourceObjectBroken { get; protected set; }
 
@@ -202,7 +199,7 @@
                 // display red tile as player cannot construct there
                 var tileRenderer = Api.Client.Rendering.CreateSpriteRenderer(
                     blueprint.SceneObject,
-                    ClientLandClaimAreaRenderer.TextureResourceLandClaimAreaCell,
+                    ClientLandClaimGroupRenderer.TextureResourceLandClaimAreaCell,
                     DrawOrder.Overlay);
 
                 tileRenderer.RenderingMaterial = ClientBlueprintRestrictedTileRenderingMaterial;
@@ -257,31 +254,7 @@
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
         {
             base.ServerOnDestroy(gameObject);
-
             LandClaimSystem.ServerOnObjectLandClaimDestroyed(gameObject);
-
-            // try drop items from the safe storage
-            var itemsContainer = GetPrivateState(gameObject).ItemsContainer;
-            if (itemsContainer.OccupiedSlotsCount == 0)
-            {
-                // no items to drop
-                return;
-            }
-
-            var groundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
-                gameObject.OccupiedTile,
-                itemsContainer);
-
-            if (groundContainer == null)
-            {
-                // no items dropped
-                return;
-            }
-
-            // set custom timeout for the dropped ground items container
-            ObjectGroundItemsContainer.ServerSetDestructionTimeout(
-                (IStaticWorldObject)groundContainer.Owner,
-                DestroyedLandClaimDroppedItemsDestructionTimeout.TotalSeconds);
         }
 
         public ObjectLandClaimCanUpgradeCheckResult ServerRemote_UpgradeStructure(
@@ -302,30 +275,13 @@
             // consume items
             upgradeEntry.ServerDestroyRequiredItems(character);
 
-            // copy all items to temp container
-            var oldStorage = GetPrivateState(oldWorldObjectLandClaim).ItemsContainer;
-
-            var tempStorageOwner = Server.World.CreateLogicObject<LogicObjectTempItemsContainerHolder>();
-            var tempStorage = Server.Items.CreateContainer(
-                owner: tempStorageOwner, // we must set an owner, unfortunately
-                slotsCount: (byte)oldStorage.OccupiedSlotsCount);
-
-            Server.Items.TryMoveAllItems(oldStorage, tempStorage);
-
             // upgrade (it will destroy an existing structure and place new in its place)
             var upgradedWorldObjectLandClaim = LandClaimSystem.ServerUpgrade(oldWorldObjectLandClaim,
                                                                              upgradeStructure,
                                                                              character);
 
-            // move all items from temp container to the upgraded land claim
-            var newStorage = GetPrivateState(upgradedWorldObjectLandClaim).ItemsContainer;
-            Server.Items.TryMoveAllItems(tempStorage, newStorage);
-            Server.Items.DestroyContainer(tempStorage);
-            Server.World.DestroyObject(tempStorageOwner);
-
             // notify client (to play sound)
             ConstructionPlacementSystem.Instance.ServerOnStructurePlaced(upgradedWorldObjectLandClaim, character);
-
             return result;
         }
 
@@ -450,11 +406,21 @@
 
             if (result == ObjectLandClaimCanUpgradeCheckResult.Success)
             {
-                if (!InteractionCheckerSystem.HasInteraction(character,
-                                                             worldObjectLandClaim,
-                                                             requirePrivateScope: true))
+                if (!InteractionCheckerSystem.SharedHasInteraction(character,
+                                                                   worldObjectLandClaim,
+                                                                   requirePrivateScope: true))
                 {
                     result = ObjectLandClaimCanUpgradeCheckResult.ErrorNoActiveInteraction;
+                }
+            }
+
+            if (result == ObjectLandClaimCanUpgradeCheckResult.Success)
+            {
+                if (LandClaimSystem.SharedIsUnderRaidBlock(character, worldObjectLandClaim))
+                {
+                    // the building is in an area under the raid
+                    LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(character);
+                    result = ObjectLandClaimCanUpgradeCheckResult.ErrorUnderRaid;
                 }
             }
 
@@ -471,12 +437,6 @@
 
         void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
         {
-            if (!CreativeModeSystem.SharedIsInCreativeMode(who))
-            {
-                return;
-            }
-
-            // ensure that the area is in the private scope of the creative mode player
             var area = LandClaimSystem.ServerGetLandClaimArea(worldObject);
             if (area == null)
             {
@@ -484,12 +444,33 @@
                 return;
             }
 
-            Server.World.EnterPrivateScope(who, area);
+            var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+            if (CreativeModeSystem.SharedIsInCreativeMode(who)
+                && !LandClaimSystem.ServerIsOwnedArea(area, who))
+            {
+                Server.World.EnterPrivateScope(who, area);
+            }
+
+            Server.World.EnterPrivateScope(who, areasGroup);
         }
 
         void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
+            var area = LandClaimSystem.ServerGetLandClaimArea(worldObject);
+            if (area == null)
+            {
+                // area could be null in the Editor for the land claim without owners
+                return;
+            }
+
+            var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+            if (CreativeModeSystem.SharedIsInCreativeMode(who)
+                && !LandClaimSystem.ServerIsOwnedArea(area, who))
+            {
+                Server.World.ExitPrivateScope(who, area);
+            }
+
+            Server.World.ExitPrivateScope(who, areasGroup);
         }
 
         protected abstract BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject);
@@ -499,7 +480,7 @@
             base.ClientInitialize(data);
 
             var worldObject = data.GameObject;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             var clientState = data.ClientState;
 
             data.ClientState.RendererLight = this.ClientCreateLightSource(
@@ -541,7 +522,7 @@
             var control = new BrokenObjectLandClaimTooltip()
             {
                 ObjectLandClaim = worldObject,
-                ObjectLandClaimPublicState = data.SyncPublicState,
+                ObjectLandClaimPublicState = data.PublicState,
                 VerticalAlignment = VerticalAlignment.Bottom
             };
 
@@ -557,7 +538,7 @@
         protected BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
         {
             return WindowLandClaim.Open(
-                new ViewModelWindowLandClaim(data.GameObject, data.SyncPublicState.LandClaimAreaObject));
+                new ViewModelWindowLandClaim(data.GameObject, data.PublicState.LandClaimAreaObject));
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -605,45 +586,6 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category);
 
-        protected override void ServerInitialize(ServerInitializeData data)
-        {
-            base.ServerInitialize(data);
-
-            var itemsContainer = data.PrivateState.ItemsContainer;
-            if (itemsContainer != null)
-            {
-                // container already created - update slots count
-                Server.Items.SetSlotsCount(itemsContainer, slotsCount: this.SafeItemsSlotsCount);
-                return;
-            }
-
-            itemsContainer = Server.Items.CreateContainer(
-                owner: data.GameObject,
-                slotsCount: this.SafeItemsSlotsCount);
-
-            data.PrivateState.ItemsContainer = itemsContainer;
-        }
-
-        protected override void ServerOnStaticObjectDamageApplied(
-            WeaponFinalCache weaponCache,
-            IStaticWorldObject targetObject,
-            float previousStructurePoints,
-            float currentStructurePoints)
-        {
-            base.ServerOnStaticObjectDamageApplied(weaponCache,
-                                                   targetObject,
-                                                   previousStructurePoints,
-                                                   currentStructurePoints);
-
-            if (weaponCache != null
-                && currentStructurePoints < previousStructurePoints)
-            {
-                // land claim was damaged (and not deconstructed by a crowbar or any other means)
-                LandClaimSystem.ServerOnRaid(targetObject.Bounds,
-                                             weaponCache.Character);
-            }
-        }
-
         protected override void ServerOnStaticObjectZeroStructurePoints(
             WeaponFinalCache weaponCache,
             ICharacter byCharacter,
@@ -652,7 +594,8 @@
             // do not use default implementation because it will destroy the object automatically
             //base.ServerOnStaticObjectZeroStructurePoints(weaponCache, targetObject);
 
-            var publicState = GetPublicState((IStaticWorldObject)targetObject);
+            var worldObject = (IStaticWorldObject)targetObject;
+            var publicState = GetPublicState(worldObject);
             if (byCharacter != null
                 && (LandClaimSystem.ServerIsOwnedArea(publicState.LandClaimAreaObject, byCharacter)
                     || CreativeModeSystem.SharedIsInCreativeMode(byCharacter)))
@@ -664,6 +607,8 @@
                     Logger.Important(
                         $"Land claim object {targetObject} destroyed by the owner with a crowbar - no destruction timer",
                         byCharacter);
+
+                    this.ServerForceUpdate(worldObject, publicState);
                     return;
                 }
             }
@@ -678,19 +623,63 @@
             publicState.ServerTimeForDestruction = Server.Game.FrameTime
                                                    + this.DestructionTimeout.TotalSeconds;
             Logger.Important($"Timer for destruction set: {targetObject}. Timeout: {this.DestructionTimeout}");
+            this.ServerForceUpdate(worldObject, publicState);
         }
 
         protected override void ServerUpdate(ServerUpdateData data)
         {
             base.ServerUpdate(data);
 
+            var gameObject = data.GameObject;
             var publicState = data.PublicState;
+            this.ServerForceUpdate(gameObject, publicState);
+        }
+
+        /// <summary>
+        /// Do not override the physics definition as otherwise close players
+        /// might stuck in this land claim building after the upgrade.
+        /// </summary>
+        protected sealed override void SharedCreatePhysics(CreatePhysicsData data)
+        {
+            const double width = 1.15,
+                         height = 1,
+                         offsetX = (2 - width) / 2,
+                         offsetY = 0.6;
+
+            data.PhysicsBody
+                .AddShapeRectangle((width, height),
+                                   offset: (offsetX, offsetY))
+                .AddShapeRectangle((width, 0.45),
+                                   offset: (offsetX, 0.6 + offsetY),
+                                   group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((width, 0.25),
+                                   offset: (offsetX, 0.85 + offsetY),
+                                   group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((1.2, height + 0.2),
+                                   offset: (0.4, offsetY),
+                                   group: CollisionGroups.ClickArea);
+        }
+
+        private void ClientRemote_OnCannotInteract(IStaticWorldObject worldObject, LandClaimMenuOpenResult result)
+        {
+            if (result == LandClaimMenuOpenResult.FailPlayerIsNotOwner)
+            {
+                ClientOnCannotInteract(worldObject,
+                                       NotificationDontHaveAccess,
+                                       isOutOfRange: false);
+                return;
+            }
+
+            Logger.Warning($"Received cannot open land menu result: {worldObject},  result={result}");
+        }
+
+        private void ServerForceUpdate(IStaticWorldObject gameObject, TPublicState publicState)
+        {
             if (!publicState.ServerTimeForDestruction.HasValue)
             {
                 return;
             }
 
-            var gameObject = data.GameObject;
             if (publicState.StructurePointsCurrent >= this.StructurePointsMax)
             {
                 // the broken land claim structure repaired completely - remove timer for destruction
@@ -708,45 +697,6 @@
             Logger.Important("Destroying object after timeout: " + gameObject);
             this.ServerSendObjectDestroyedEvent(gameObject);
             Server.World.DestroyObject(gameObject);
-        }
-
-        /// <summary>
-        /// Do not override the physics definition as otherwise close players
-        /// might stuck in this land claim building after the upgrade.
-        /// </summary>
-        protected sealed override void SharedCreatePhysics(CreatePhysicsData data)
-        {
-            const double width = 1.15,
-                         height = 1,
-                         offsetX = (2 - width) / 2,
-                         offsetY = 0.6;
-
-            data.PhysicsBody
-                .AddShapeRectangle((width, height),
-                                   offset: (offsetX, offsetY),
-                                   group: CollisionGroups.Default)
-                .AddShapeRectangle((width, height),
-                                   offset: (offsetX, offsetY),
-                                   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((width, height),
-                                   offset: (offsetX, offsetY),
-                                   group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((1.2, height + 0.2),
-                                   offset: (0.4, offsetY),
-                                   group: CollisionGroups.ClickArea);
-        }
-
-        private void ClientRemote_OnCannotInteract(IStaticWorldObject worldObject, LandClaimMenuOpenResult result)
-        {
-            if (result == LandClaimMenuOpenResult.FailPlayerIsNotOwner)
-            {
-                this.ClientOnCannotInteract(worldObject,
-                                            NotificationDontHaveAccess,
-                                            isOutOfRange: false);
-                return;
-            }
-
-            Logger.Warning($"Received cannot open land menu result: {worldObject},  result={result}");
         }
     }
 

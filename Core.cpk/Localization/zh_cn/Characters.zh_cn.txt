@@ -1,6 +1,12 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 熊
 
+Scripts/Characters/Mobs/MobBlackBeetle@Name:
+黑甲虫
+
+Scripts/Characters/Mobs/MobBurrower@Name:
+钻地虫
+
 Scripts/Characters/Mobs/MobChicken@Name:
 鸡
 
@@ -13,6 +19,9 @@ Scripts/Characters/Mobs/MobCrab@Name:
 Scripts/Characters/Mobs/MobCrawler@Name:
 爬虫
 
+Scripts/Characters/Mobs/MobFireLizard@Name:
+火蜥蜴
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 蜜獾
 
@@ -21,6 +30,9 @@ Scripts/Characters/Mobs/MobHyena@Name:
 
 Scripts/Characters/Mobs/MobPangolin@Name:
 穿山甲
+
+Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
+普拉格甲虫
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 蜗牛

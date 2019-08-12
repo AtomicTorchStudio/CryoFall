@@ -3,7 +3,6 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
-    using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
@@ -44,12 +43,11 @@
             blueprintComponent.Setup(
                 protoStaticWorldObject: currentSelectedProtoExplosive.ObjectExplosiveProto,
                 isCancelable: false,
-                isRepeatCallbackIfHeld: true,
+                isRepeatCallbackIfHeld: false,
                 isDrawConstructionGrid: true,
                 isBlockingInput: false,
                 validateCanPlaceCallback: OnValidate,
-                placeSelectedCallback: OnPlaceSelected,
-                maxDistance: currentSelectedProtoExplosive.DeployDistanceMax);
+                placeSelectedCallback: OnPlaceSelected);
         }
 
         private static void OnPlaceSelected(Vector2Ushort tilePosition)
@@ -68,13 +66,18 @@
             }
         }
 
-        private static bool OnValidate(Vector2Ushort tilePosition, bool logErrors)
+        private static void OnValidate(
+            Vector2Ushort tilePosition,
+            bool logErrors,
+            out bool canPlace,
+            out bool isTooFar)
         {
-            var character = Client.Characters.CurrentPlayerCharacter;
-            return currentSelectedProtoExplosive.SharedValidatePlacement(
-                character,
+            currentSelectedProtoExplosive.SharedValidatePlacement(
+                Client.Characters.CurrentPlayerCharacter,
                 tilePosition,
-                logErrors: logErrors);
+                logErrors: logErrors,
+                canPlace: out canPlace,
+                isTooFar: out isTooFar);
         }
     }
 }

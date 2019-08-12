@@ -1,0 +1,21 @@
+﻿Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationCannotEquip:
+Kuşanılamaz
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationRemoveFullBody:
+Önce tüm vücut ekipmanını çıkarmalısın.
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationRemoveOtherEquipment:
+Önce diğer ekipmanları çıkarmalısın.
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Message:
+İmplantı yerleştirmek için tıbbi istasyonu kullanman gerekiyor.
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Title:
+Yerleştirilemez
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Message:
+İmplantı sökmek için tıbbi istasyonu kullanman gerekiyor.
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
+Sökülemez
+

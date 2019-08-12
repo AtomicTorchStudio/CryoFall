@@ -55,6 +55,9 @@ Geschwindigkeit landwirtschaftlicher Aufgaben
 Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
 Wachstumsgeschwindigkeit von Pflanzen
 
+Scripts/Base/Stats/StatName@SearchingSpeed:
+Suchgeschwindigkeit
+
 Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 Schadensbonus
 
@@ -115,9 +118,6 @@ Nachladezeit
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Nachladezeit
 
-Scripts/Base/Stats/StatName@LearningPointsRetainedAfterDeath:
-Nach dem Tod behaltene LP
-
 Scripts/Base/Stats/StatName@CraftingSpeed:
 Fertigungsgeschwindigkeit
 
@@ -145,12 +145,48 @@ Regeneration von Energieladungen (pro Minute)
 Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
 Fähigkeit zum Verzehr verdorbener Nahrung
 
-Scripts/Base/Stats/StatName@SearchingSpeed:
-Suchgeschwindigkeit
+Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
+Strahlenschäden
 
-Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
-Strahlenschaden
+Scripts/Base/Stats/StatName@RadiationPoisoningIncreaseRateMultiplier:
+Strahlenakkumulationsrate
 
-Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
-Strahlungsanhäufung
+Scripts/Base/Stats/StatName@ToxinsIncreaseRateMultiplier:
+Giftsakkumulationsrate
+
+Scripts/Base/Stats/StatName@BleedingIncreaseRateMultiplier:
+Blutung
+
+Scripts/Base/Stats/StatName@HeatIncreaseRateMultiplier:
+Hitzeentwicklungsrate
+
+Scripts/Base/Stats/StatName@HeatEffectMultiplier:
+Hitzeschaden
+
+Scripts/Base/Stats/StatName@PainIncreaseRateMultiplier:
+Schmerz
+
+Scripts/Base/Stats/StatName@PsiEffectMultiplier:
+PSI-Schaden
+
+Scripts/Base/Stats/StatName@DazedIncreaseRateMultiplier:
+Benommen
+
+Scripts/Base/Stats/StatName@LandClaimsMaxNumber:
+Maximale Anzahl von Land Claims
+
+Scripts/Base/Stats/StatName@VanityContinuousDamage:
+Kontinuierlicher Schaden
+
+Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
+Kein Essen oder Trinken möglich
+
+Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
+Lernpunktgewinn
+
+Scripts/Base/Stats/StatName@TinkerTableBonus:
+Effizienz der Bastelwerkbank
+
+Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
+Werkstattwarteschlangen-Slots
 

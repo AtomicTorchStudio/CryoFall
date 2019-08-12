@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeAcidNitric>();
 
-            config.SetRequiredNode<TechNodeAcidSulfuricFromPyrite>();
+            config.SetRequiredNode<TechNodeAcidSulfuric>();
         }
     }
 }

@@ -43,26 +43,24 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 15);
+            build.AddStageRequiredItem<ItemPlanks>(count: 5);
             build.AddStageRequiredItem<ItemIngotIron>(count: 1);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 15);
-            repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 2);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((2, 1), offset: (0, 1))
-                .AddShapeRectangle((1, 1), offset: (1, 0))
-                .AddShapeRectangle((2, 1), offset: (0, 1), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((1, 1), offset: (1, 0), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((2, 1), offset: (0, 1), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((1, 1), offset: (1, 0), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((2, 1), offset: (0, 1), group: CollisionGroups.ClickArea)
-                .AddShapeRectangle((1, 1), offset: (1, 0), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((2, 1),      offset: (0, 1))
+                .AddShapeRectangle((1, 1),      offset: (1, 0))
+                .AddShapeRectangle((2, 1),      offset: (0, 1),   group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1, 1),      offset: (1, 0),   group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1.8, 0.25), offset: (0.1, 2), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((2, 1),      offset: (0, 1),   group: CollisionGroups.ClickArea)
+                .AddShapeRectangle((1, 1),      offset: (1, 0),   group: CollisionGroups.ClickArea);
         }
     }
 }

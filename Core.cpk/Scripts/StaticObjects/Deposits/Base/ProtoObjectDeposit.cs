@@ -102,7 +102,7 @@
             this.ClientSetupRenderer(clientState.Renderer);
 
             if (data.GameObject.OccupiedTile.StaticObjects.Any(
-                o => o.ProtoStaticWorldObject != this
+                o => o.ProtoStaticWorldObject is IProtoObjectExtractor
                      && !o.IsDestroyed))
             {
                 // there are other static objects so don't create structure points bar and hide the renderer
@@ -137,11 +137,6 @@
                 spritePivotPoint: (0.5, 0.5));
 
             renderer.SortByWorldPosition = false;
-        }
-
-        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
-        {
-            return true;
         }
 
         protected override void PrepareTileRequirements(ConstructionTileRequirements tileRequirements)
@@ -202,7 +197,7 @@
                     o => o.ProtoStaticWorldObject is IProtoObjectManufacturer);
 
                 if (objectExtractor != null
-                    && objectExtractor.GetPublicState<ObjectManufacturerPublicState>().IsManufacturingActive)
+                    && objectExtractor.GetPublicState<ObjectManufacturerPublicState>().IsActive)
                 {
                     // decay faster as the extraction/manufacturing is going on
                     damage *= this.DecaySpeedMultiplierWhenExtractingActive;
@@ -230,6 +225,11 @@
             this.ServerTryDecay(data.DeltaTime,
                                 data.GameObject,
                                 data.PublicState);
+        }
+
+        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
+        {
+            return true;
         }
     }
 

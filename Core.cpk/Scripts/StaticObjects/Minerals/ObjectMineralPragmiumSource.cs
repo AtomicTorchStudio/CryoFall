@@ -1,30 +1,47 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Minerals
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Mobs;
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Objects;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
-    using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class ObjectMineralPragmiumSource : ProtoObjectMineral, IProtoObjectPsiSource
+    public class ObjectMineralPragmiumSource
+        : ProtoObjectMineral
+          <ObjectMineralPragmiumSource.PrivateState,
+              StaticObjectPublicState,
+              DefaultMineralClientState>,
+          IProtoObjectPsiSource
     {
         // How many nodes the game server should spawn when Pragmium Source is destroyed.
         private const int DestroySpawnNodeCount = 12;
+
+        private const int MobDespawnDistance = 10;
+
+        // How many guardian mobs Pragmium Source can have simultaneously.
+        private const int MobsCountLimit = 3;
+
+        private const int MobSpawnDistance = 2;
 
         // How many nodes Pragmium Source can have simultaneously.
         private const int NodesCountLimit = 5;
@@ -32,16 +49,22 @@
         // How often Pragmium Source will attempt to spawn nodes and decay.
         private const int ServerSpawnAndDecayIntervalSeconds = 10 * 60; // 10 minutes
 
+        // How many guardian mobs Pragmium Source will respawn at every spawn interval (ServerSpawnAndDecayIntervalSeconds).
+        private const int ServerSpawnMobsMaxCountPerIteration = 2; // spawn at max 2 mobs
+
         // How many nodes Pragmium Source will respawn at every spawn interval (ServerSpawnAndDecayIntervalSeconds).
         private const int ServerSpawnNodesMaxCountPerIteration = 2; // spawn at max 2 nodes
+
+        private static readonly Lazy<IProtoCharacter> LazyProtoMob
+            = new Lazy<IProtoCharacter>(
+                GetProtoEntity<MobPragmiumBeetle>);
 
         // Total lifetime of the Pragmium Source.
         private static readonly double LifetimeTotalDurationSeconds = TimeSpan.FromDays(1).TotalSeconds;
 
         private static readonly Lazy<ObjectMineralPragmiumNode> ProtoNodeLazy
-            = new Lazy<ObjectMineralPragmiumNode>(GetProtoEntity<ObjectMineralPragmiumNode>);
-
-        private static readonly IWorldServerService ServerWorld = IsServer ? Server.World : null;
+            = new Lazy<ObjectMineralPragmiumNode>(
+                GetProtoEntity<ObjectMineralPragmiumNode>);
 
         // we don't want to see any decals under it
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
@@ -59,6 +82,28 @@
         public override double ServerUpdateIntervalSeconds => ServerSpawnAndDecayIntervalSeconds;
 
         public override float StructurePointsMax => 5000;
+
+        public void ServerForceUpdate(IStaticWorldObject worldObject, double deltaTime)
+        {
+            var publicState = GetPublicState(worldObject);
+
+            // process decay
+            var damage = this.StructurePointsMax * deltaTime / LifetimeTotalDurationSeconds;
+            var newStructurePoints = (float)(publicState.StructurePointsCurrent - damage);
+            if (newStructurePoints <= 0)
+            {
+                // decayed completely - destroy
+                publicState.StructurePointsCurrent = newStructurePoints = 0;
+                this.ServerOnStaticObjectZeroStructurePoints(null, null, worldObject);
+                return;
+            }
+
+            publicState.StructurePointsCurrent = newStructurePoints;
+            ServerTrySpawnNodes(worldObject);
+            ServerTrySpawnMobs(worldObject);
+        }
+
+        public bool ServerIsPsiSourceActive(IWorldObject worldObject) => true;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
@@ -78,12 +123,10 @@
                 if (IsServer)
                 {
                     // notify other characters
-                    using (var tempList = Api.Shared.GetTempList<ICharacter>())
-                    {
-                        ServerWorld.GetScopedByPlayers(targetObject, tempList);
-                        tempList.Remove(weaponCache.Character);
-                        this.CallClient(tempList, _ => _.ClientRemote_OnHit());
-                    }
+                    using var tempList = Api.Shared.GetTempList<ICharacter>();
+                    Server.World.GetScopedByPlayers(targetObject, tempList);
+                    tempList.Remove(weaponCache.Character);
+                    this.CallClient(tempList, _ => _.ClientRemote_OnHit());
                 }
                 else
                 {
@@ -145,7 +188,7 @@
                     (ushort)(epicenterPosition.Y + distance * Math.Sin(angle)));
 
                 // try spawn a Pragmium node
-                if (ServerTrySpawnPragmiumNode(spawnPosition))
+                if (ServerTrySpawnNode(spawnPosition))
                 {
                     // spawned successfully!
                     countToSpawnRemains--;
@@ -200,8 +243,30 @@
             IWorldObject targetObject)
         {
             var tilePosition = targetObject.TilePosition;
+            var privateState = GetPrivateState((IStaticWorldObject)targetObject);
+
             base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
-            ServerWorld.CreateStaticWorldObject<ObjectMineralPragmiumSourceExplosion>(tilePosition);
+            Server.World.CreateStaticWorldObject<ObjectMineralPragmiumSourceExplosion>(tilePosition);
+
+            ServerTimersSystem.AddAction(
+                Api.GetProtoEntity<ObjectMineralPragmiumSourceExplosion>().ExplosionDelay.TotalSeconds,
+                () =>
+                {
+                    // kill all spawned mobs
+                    foreach (var character in Api.Shared.WrapInTempList(privateState.MobsList))
+                    {
+                        if (character.IsDestroyed)
+                        {
+                            continue;
+                        }
+
+                        character.GetPublicState<ICharacterPublicState>()
+                                 .CurrentStats
+                                 .ServerSetHealthCurrent(0);
+
+                        Logger.Dev("Killed mob: " + character);
+                    }
+                });
         }
 
         protected override void ServerUpdate(ServerUpdateData data)
@@ -209,24 +274,97 @@
             base.ServerUpdate(data);
 
             // please note this update is called rarely (defined by ServerUpdateIntervalSeconds)
-            var worldObject = data.GameObject;
-            var publicState = data.PublicState;
+            this.ServerForceUpdate(data.GameObject, data.DeltaTime);
+        }
 
-            // process decay
-            var damage = this.StructurePointsMax * data.DeltaTime / LifetimeTotalDurationSeconds;
-            var newStructurePoints = (float)(publicState.StructurePointsCurrent - damage);
-            if (newStructurePoints > 0)
+        protected override void SharedCreatePhysics(CreatePhysicsData data)
+        {
+            data.PhysicsBody
+                .AddShapeCircle(
+                    radius: 0.45,
+                    center: (1, 0.7))
+                .AddShapeRectangle(
+                    size: (0.8, 0.6),
+                    offset: (0.6, 0.5),
+                    group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(
+                    size: (0.8, 0.7),
+                    offset: (0.6, 0.5),
+                    group: CollisionGroups.HitboxRanged);
+        }
+
+        private static void ClientOnHit()
+        {
+            const float shakesDuration = 0.1f,
+                        shakesDistanceMin = 0.1f,
+                        shakesDistanceMax = 0.125f;
+            ClientComponentCameraScreenShakes.AddRandomShakes(duration: shakesDuration,
+                                                              worldDistanceMin: -shakesDistanceMin,
+                                                              worldDistanceMax: shakesDistanceMax);
+        }
+
+        private static void ServerTrySpawnMobs(IStaticWorldObject worldObject)
+        {
+            // calculate how many creatures are still alive
+            var mobsList = GetPrivateState(worldObject).MobsList;
+
+            var mobsAlive = 0;
+            for (var index = 0; index < mobsList.Count; index++)
             {
-                publicState.StructurePointsCurrent = newStructurePoints;
+                var character = mobsList[index];
+                if (character.IsDestroyed)
+                {
+                    mobsList.RemoveAt(index--);
+                    continue;
+                }
+
+                if (character.TilePosition.TileSqrDistanceTo(worldObject.TilePosition)
+                    > MobDespawnDistance * MobDespawnDistance)
+                {
+                    // the guardian mob is too far - probably lured away by a player
+                    using var tempListObservers = Api.Shared.GetTempList<ICharacter>();
+                    Server.World.GetScopedByPlayers(character, tempListObservers);
+                    if (tempListObservers.Count == 0)
+                    {
+                        // despawn this mob as it's not observed by any player
+                        Server.World.DestroyObject(character);
+                        mobsList.RemoveAt(index--);
+                    }
+
+                    continue;
+                }
+
+                mobsAlive++;
             }
-            else
+
+            var countToSpawn = MobsCountLimit - mobsAlive;
+            if (countToSpawn <= 0)
             {
-                // decayed completely - destroy
-                publicState.StructurePointsCurrent = newStructurePoints = 0;
-                this.ServerOnStaticObjectZeroStructurePoints(null, null, worldObject);
                 return;
             }
 
+            // spawn mobs(s) nearby
+            countToSpawn = Math.Min(countToSpawn, ServerSpawnMobsMaxCountPerIteration);
+            ServerMobSpawnHelper.ServerTrySpawnMobsCustom(protoMob: LazyProtoMob.Value,
+                                                          spawnedCollection: mobsList,
+                                                          countToSpawn,
+                                                          excludeBounds: worldObject.Bounds.Inflate(1),
+                                                          maxSpawnDistanceFromExcludeBounds: MobSpawnDistance,
+                                                          noObstaclesCheckRadius: 0.5,
+                                                          maxAttempts: 200);
+        }
+
+        private static bool ServerTrySpawnNode(Vector2Ushort spawnPosition)
+        {
+            var protoNode = ProtoNodeLazy.Value;
+            return protoNode.CheckTileRequirements(spawnPosition,
+                                                   character: null,
+                                                   logErrors: false)
+                   && Server.World.CreateStaticWorldObject(protoNode, spawnPosition) != null;
+        }
+
+        private static void ServerTrySpawnNodes(IStaticWorldObject worldObject)
+        {
             // calculate how many nodes are nearby
             var nodesAroundCount = 0;
             var neighborTiles = worldObject.OccupiedTiles
@@ -266,7 +404,7 @@
                     continue;
                 }
 
-                if (!ServerTrySpawnPragmiumNode(neighborTile.Position))
+                if (!ServerTrySpawnNode(neighborTile.Position))
                 {
                     // cannot spawn there
                     continue;
@@ -280,41 +418,6 @@
             }
         }
 
-        protected override void SharedCreatePhysics(CreatePhysicsData data)
-        {
-            data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (1.1, 0.5),
-                    offset: (0.45, 0.45))
-                .AddShapeRectangle(
-                    size: (0.8, 0.6),
-                    offset: (0.6, 0.5),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (0.8, 0.7),
-                    offset: (0.6, 0.5),
-                    group: CollisionGroups.HitboxRanged);
-        }
-
-        private static void ClientOnHit()
-        {
-            const float shakesDuration = 0.1f,
-                        shakesDistanceMin = 0.1f,
-                        shakesDistanceMax = 0.125f;
-            ClientComponentCameraScreenShakes.AddRandomShakes(duration: shakesDuration,
-                                                              worldDistanceMin: -shakesDistanceMin,
-                                                              worldDistanceMax: shakesDistanceMax);
-        }
-
-        private static bool ServerTrySpawnPragmiumNode(Vector2Ushort spawnPosition)
-        {
-            var protoNode = ProtoNodeLazy.Value;
-            return protoNode.CheckTileRequirements(spawnPosition,
-                                                   character: null,
-                                                   logErrors: false)
-                   && ServerWorld.CreateStaticWorldObject(protoNode, spawnPosition) != null;
-        }
-
         /// <summary>
         /// When the pragmium source is hit by a player it should dangerously shake! :-)
         /// </summary>
@@ -322,6 +425,12 @@
         private void ClientRemote_OnHit()
         {
             ClientOnHit();
+        }
+
+        public class PrivateState : BasePrivateState
+        {
+            [TempOnly]
+            public List<ICharacter> MobsList { get; set; } = new List<ICharacter>();
         }
     }
 }

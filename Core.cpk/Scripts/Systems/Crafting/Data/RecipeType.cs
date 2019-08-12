@@ -23,7 +23,8 @@
         Manufacturing,
 
         /// <summary>
-        /// TODO: add description
+        /// Manufacturing byproducts are special item recipes which are crafted in parallel with the primary recipes.
+        /// Depending on the active fuel prototype, a byproduct recipe is selected automatically by the manufacturer.
         /// </summary>
         ManufacturingByproduct
     }

@@ -10,11 +10,13 @@
 
     public class ObjectLandClaimT3 : ProtoObjectLandClaim
     {
+        public override TimeSpan DecayDelayDuration { get; } = TimeSpan.FromHours(104);
+
         public override string Description => GetProtoEntity<ObjectLandClaimT1>().Description;
 
         public override string DescriptionUpgrade => GetProtoEntity<ObjectLandClaimT2>().DescriptionUpgrade;
 
-        public override TimeSpan DestructionTimeout => TimeSpan.FromHours(32);
+        public override TimeSpan DestructionTimeout { get; } = TimeSpan.FromHours(32);
 
         public override ushort LandClaimSize => 20;
 
@@ -23,8 +25,6 @@
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
-
-        public override byte SafeItemsSlotsCount => 8;
 
         public override float StructurePointsMax => 36000;
 

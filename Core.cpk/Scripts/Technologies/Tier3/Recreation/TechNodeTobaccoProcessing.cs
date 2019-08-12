@@ -5,8 +5,6 @@
 
     public class TechNodeTobaccoProcessing : TechNode<TechGroupRecreation>
     {
-        public override string Name => "Tobacco processing";
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects

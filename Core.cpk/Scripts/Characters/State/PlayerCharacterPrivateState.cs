@@ -73,8 +73,6 @@
 
         public Vector2Ushort LastDeathPosition { get; set; }
 
-        // TODO: make non-temp in the future version
-        [TempOnly]
         public double? LastDeathTime { get; set; }
 
         [SyncToClient]
@@ -89,8 +87,7 @@
         /// <summary>
         /// Used on PvE servers to despawn players who stay in offline for too long.
         /// </summary>
-        // TODO: rename to ServerLastOnlineTime in A23
-        public double? ServerOfflineSinceTime { get; set; }
+        public double? ServerLastOnlineTime { get; set; }
 
         [SyncToClient]
         public PlayerCharacterSkills Skills { get; private set; }

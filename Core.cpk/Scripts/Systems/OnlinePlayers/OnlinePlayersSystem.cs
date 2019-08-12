@@ -23,6 +23,8 @@
 
         public static event Action<int> ClientTotalServerPlayersCountChanged;
 
+        public static int ClientOnlinePlayersCount => ClientOnlinePlayersList.Count;
+
         /// <summary>
         /// Please note: this property will return zero in case the player is not a server operator.
         /// </summary>
@@ -48,7 +50,7 @@
             ServerRefreshTotalPlayersCount();
         }
 
-        private static void ClientProcessChange(string name, bool isOnline)
+        private static void ClientProcessPlayerStatusChange(string name, bool isOnline)
         {
             var isChanged = isOnline
                                 ? ClientOnlinePlayersList.Add(name)
@@ -70,19 +72,17 @@
             serverLastTotalPlayersCount = totalPlayersCount;
 
             // provide the updated info about the total players count only to the server operators
-            using (var tempList = Api.Shared.GetTempList<ICharacter>())
+            using var tempList = Api.Shared.GetTempList<ICharacter>();
+            foreach (var character in Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true))
             {
-                foreach (var character in Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true))
+                if (ServerOperatorSystem.ServerIsOperator(character.Name))
                 {
-                    if (ServerOperatorSystem.ServerIsOperator(character.Name))
-                    {
-                        tempList.Add(character);
-                    }
+                    tempList.Add(character);
                 }
-
-                Instance.CallClient(tempList,
-                                    _ => _.ClientRemote_TotalPlayerCharactersCountChanged(serverLastTotalPlayersCount));
             }
+
+            Instance.CallClient(tempList,
+                                _ => _.ClientRemote_TotalPlayerCharactersCountChanged(serverLastTotalPlayersCount));
         }
 
         private void ClientRemote_OnlineList(List<string> onlineList)
@@ -94,7 +94,7 @@
             {
                 foreach (var name in ClientOnlinePlayersList.ToList())
                 {
-                    ClientProcessChange(name, isOnline: false);
+                    ClientProcessPlayerStatusChange(name, isOnline: false);
                 }
 
                 ClientOnlinePlayersList.Clear();
@@ -102,13 +102,13 @@
 
             foreach (var name in onlineList)
             {
-                ClientProcessChange(name, isOnline: true);
+                ClientProcessPlayerStatusChange(name, isOnline: true);
             }
         }
 
         private void ClientRemote_OnlineStatusChanged(string name, bool isOnline)
         {
-            ClientProcessChange(name, isOnline);
+            ClientProcessPlayerStatusChange(name, isOnline);
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]

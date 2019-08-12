@@ -27,6 +27,8 @@
 
         private static IReadOnlyList<Recipe> allRecipes;
 
+        private ITextureResource customIcon;
+
         private List<TechNode> listedInTechNodes;
 
         /// <summary>
@@ -56,8 +58,19 @@
         }
 
         public virtual ITextureResource Icon
-            // by default use icon from the first output item
-            => this.OutputItems.Items.FirstOrDefault()?.ProtoItem.Icon;
+        {
+            get
+            {
+                if (this.customIcon == null)
+                {
+                    // by default use icon from the first output item
+                    return this.OutputItems.Items.FirstOrDefault()?.ProtoItem.Icon;
+                }
+
+                return this.customIcon;
+            }
+            protected set => this.customIcon = value;
+        }
 
         public IReadOnlyList<ProtoItemWithCount> InputItems { get; private set; }
 
@@ -169,24 +182,29 @@
             this.listedInTechNodes.AddIfNotContains(techNode);
         }
 
-        public double SharedGetDurationForPlayer(ICharacter character)
+        public double SharedGetDurationForPlayer(ICharacter character, bool cutForCreativeMode = true)
         {
-            double result;
-            if (CreativeModeSystem.SharedIsInCreativeMode(character))
+            if (this.RecipeType == RecipeType.Manufacturing
+                || this.RecipeType == RecipeType.ManufacturingByproduct)
             {
-                result = 1; // creative mode - craft in one second 
+                return this.OriginalDuration;
+            }
+
+            double result;
+            if (cutForCreativeMode
+                && CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                result = 0.5; // creative mode - craft in 0.5 seconds 
             }
             else
             {
-                result = this.OriginalDuration;
+                result = this.OriginalDuration
+                         / (IsServer
+                                ? CraftingSystem.ServerCraftingSpeedMultiplier
+                                : CraftingSystem.ClientCraftingSpeedMultiplier);
             }
 
-            if (this.RecipeType != RecipeType.Hand
-                && this.RecipeType != RecipeType.StationCrafting)
-            {
-                return result;
-            }
-
+            // hand or station crafting - apply crafting speed bonus
             var multiplier = character.SharedGetFinalStatMultiplier(StatName.CraftingSpeed);
             if (multiplier <= 0)
             {
@@ -194,7 +212,9 @@
                 return double.MaxValue;
             }
 
-            return result / multiplier;
+            result = result / multiplier;
+            result = Math.Max(0.5, result); // clamp so the crafting duration cannot be less than 0.5 seconds
+            return result;
         }
 
         public bool SharedIsTechUnlocked(ICharacter character, bool allowIfAdmin = true)
@@ -221,6 +241,12 @@
             }
 
             return false;
+        }
+
+        protected static T GetItem<T>()
+            where T : IProtoEntity, new()
+        {
+            return Api.GetProtoEntity<T>();
         }
 
         protected sealed override void PrepareProto()

@@ -38,9 +38,11 @@
 
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Margin" Value="5,0,3,0" />
-                <Setter Property="FontSize" Value="17" />
-                <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+                <Setter Property="Margin" Value="3,0,3,0" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="FontFamily" Value="{StaticResource DigitsFontFamily}" />
+                <Setter Property="Foreground" Value="White" />
                 <Setter Property="TextAlignment" Value="Right" />
                 <Setter Property="noesis:Text.Stroke" Value="Black" />
                 <Setter Property="noesis:Text.StrokeThickness" Value="1" />
@@ -52,13 +54,16 @@
     <Border x:Name="Border"
             VerticalAlignment="Top"
             HorizontalAlignment="Left"
-            Padding="3"
+            Padding="2"
             CornerRadius="3"
             Background="{Binding BackgroundBrush}">
-        <StackPanel Orientation="Horizontal" Background="Transparent"
+        <StackPanel Orientation="Horizontal"
+                    Background="Transparent"
                     base:ToolTipServiceExtend.ToolTip="{Binding TooltipText}">
-            <Rectangle Width="40" Height="40" Fill="{Binding Icon}" Margin="2,0,0,0" />
-            <TextBlock Text="{Binding DeltaCountText}" Foreground="{Binding TextBrush}" MinWidth="20" />
+            <Rectangle Width="40"
+                       Height="40"
+                       Fill="{Binding Icon}" />
+            <TextBlock Text="{Binding DeltaCountText}" />
         </StackPanel>
     </Border>
 </base:BaseUserControl>

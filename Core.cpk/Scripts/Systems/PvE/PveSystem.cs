@@ -4,12 +4,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -255,8 +251,7 @@
 
             if (isPvE)
             {
-                ServerCharacterDeathMechanic.CharacterDeath += this.ServerCharacterDeathHandler;
-                Server.Characters.PlayerOnlineStateChanged += this.ServerPlayerOnlineStateChangedHandler;
+                Server.Characters.PlayerOnlineStateChanged += ServerPlayerOnlineStateChangedHandler;
             }
         }
 
@@ -274,6 +269,14 @@
                 CoreStrings.Notification_ActionForbidden,
                 Notification_CannotDamagePlayers_Message,
                 color: NotificationColor.Bad);
+        }
+
+        private static void ServerPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
+        {
+            if (!isOnline)
+            {
+                ServerSetDuelMode(playerCharacter, isEnabled: false);
+            }
         }
 
         private static void ServerSetDuelMode(ICharacter character, bool isEnabled)
@@ -313,58 +316,6 @@
             finally
             {
                 clientPvErequestTask.SetResult(isPvE);
-            }
-        }
-
-        private void ServerCharacterDeathHandler(ICharacter character)
-        {
-            if (character.IsNpc
-                || !ServerIsPvE)
-            {
-                return;
-            }
-
-            // Mutation status effect is added upon death if EITHER one of the two conditions are met:
-            // player had 15% or more radiation poisoning when they died
-            // OR they had 15% or more damage received from radiation when they died.
-            if (ServerIsDeathFromRadiation())
-            {
-                Logger.Info("Character died from radiation, adding mutation", character);
-                character.ServerAddStatusEffect<StatusEffectMutation>(intensity: 1.0);
-            }
-
-            bool ServerIsDeathFromRadiation()
-            {
-                if (character.SharedGetStatusEffectIntensity<StatusEffectRadiationPoisoning>()
-                    > 0.15)
-                {
-                    return true;
-                }
-
-                var damageSources = CharacterDamageTrackingSystem.ServerGetDamageSources(character);
-                if (damageSources == null)
-                {
-                    return false;
-                }
-
-                foreach (var damageSource in damageSources)
-                {
-                    if (damageSource.ProtoEntity is StatusEffectRadiationPoisoning
-                        && damageSource.Fraction > 0.15)
-                    {
-                        return true;
-                    }
-                }
-
-                return false;
-            }
-        }
-
-        private void ServerPlayerOnlineStateChangedHandler(ICharacter playerCharacter, bool isOnline)
-        {
-            if (!isOnline)
-            {
-                ServerSetDuelMode(playerCharacter, isEnabled: false);
             }
         }
 

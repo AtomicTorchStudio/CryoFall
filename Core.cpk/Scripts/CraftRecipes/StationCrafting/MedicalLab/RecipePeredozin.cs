@@ -20,9 +20,8 @@
             duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemComponentsPharmaceutical>(count: 5);
-            inputItems.Add<ItemHerbPurple>(count: 1);
-            inputItems.Add<ItemTreebark>(count: 5);
             inputItems.Add<ItemAnimalFat>(count: 5);
+            inputItems.Add<ItemHerbPurple>(count: 1);
 
             outputItems.Add<ItemPeredozin>(count: 1);
         }

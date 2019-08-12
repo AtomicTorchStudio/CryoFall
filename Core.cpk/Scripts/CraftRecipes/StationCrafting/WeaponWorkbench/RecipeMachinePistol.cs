@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemIngotSteel>(count: 25);
             inputItems.Add<ItemIngotCopper>(count: 10);
-            inputItems.Add<ItemRubberVulcanized>(count: 2);
+            inputItems.Add<ItemRubberVulcanized>(count: 3);
 
             outputItems.Add<ItemMachinePistol>();
         }

@@ -9,7 +9,7 @@
 
         public override float FoodRestore => 3;
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.NonPerishable;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Lasting;
 
         public override string Name => "Yucca";
 

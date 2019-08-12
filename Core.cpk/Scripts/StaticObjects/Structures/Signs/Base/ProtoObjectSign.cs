@@ -4,8 +4,10 @@
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
@@ -92,12 +94,10 @@
 
         void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         protected static void ClientFixSignDrawOffset(ClientInitializeData data)
@@ -115,7 +115,7 @@
             base.ClientInitialize(data);
 
             var worldObject = data.GameObject;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
 
             var rendererSignContent = Client.Rendering.CreateSpriteRenderer(worldObject);
             data.ClientState.RendererSignContent = rendererSignContent;
@@ -149,6 +149,36 @@
                     isUseCache: true,
                     generateTextureCallback:
                     request => this.ClientGenerateProceduralTextureForText(publicState.Text, request));
+        }
+
+        protected sealed override void PrepareConstructionConfig(
+            ConstructionTileRequirements tileRequirements,
+            ConstructionStageConfig build,
+            ConstructionStageConfig repair,
+            ConstructionUpgradeConfig upgrade,
+            out ProtoStructureCategory category)
+        {
+            tileRequirements.Add(LandClaimSystem.ValidatorIsOwnedArea);
+
+            this.PrepareConstructionConfig(build,
+                                           repair,
+                                           upgrade,
+                                           out category);
+        }
+
+        protected abstract void PrepareConstructionConfig(
+            ConstructionStageConfig build,
+            ConstructionStageConfig repair,
+            ConstructionUpgradeConfig upgrade,
+            out ProtoStructureCategory category);
+
+        protected override void SharedCreatePhysics(CreatePhysicsData data)
+        {
+            data.PhysicsBody
+                .AddShapeRectangle((0.5, 0.2),  (0.25, 0.4))
+                .AddShapeRectangle((0.8, 0.4),  (0.1, 1.0), CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.8, 0.15), (0.1, 1.2), CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((0.8, 1.0),  (0.1, 0.4), CollisionGroups.ClickArea);
         }
 
         private static void SharedValidateSignText(string signText)
@@ -221,9 +251,9 @@
 
         private void ClientRemote_OnCannotInteract(IStaticWorldObject worldObject)
         {
-            this.ClientOnCannotInteract(worldObject,
-                                        NotificationCannotEditSignWhenNotAreaOwner,
-                                        isOutOfRange: false);
+            ClientOnCannotInteract(worldObject,
+                                   NotificationCannotEditSignWhenNotAreaOwner,
+                                   isOutOfRange: false);
         }
 
         private void ServerRemote_SetSignText(IStaticWorldObject worldObjectSign, string signText)

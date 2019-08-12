@@ -3,7 +3,6 @@
     using System;
     using System.Globalization;
     using System.Windows;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
@@ -50,8 +49,8 @@
                 
                 return string.Format(
                     CoreStrings.WindowPolitics_RaidingRestriction_DescriptionFormat,
-                    fromDate.ToString(ShortTimePattern),
-                    toDate.ToString(ShortTimePattern),
+                    fromDate.ToString(ShortTimePattern).Replace(" ", "\u00A0"),
+                    toDate.ToString(ShortTimePattern).Replace(" ", "\u00A0"),
                     inTotal);
             }
         }
@@ -111,7 +110,7 @@
             }
 
             // schedule next update
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 delaySeconds: 1,
                 this.UpdateNextRaidingInfo);
         }

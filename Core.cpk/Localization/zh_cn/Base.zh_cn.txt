@@ -55,6 +55,9 @@ Scripts/Base/Stats/StatName@FarmingTasksSpeed:
 Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
 植物成长速度
 
+Scripts/Base/Stats/StatName@SearchingSpeed:
+搜索速度
+
 Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 伤害加成
 
@@ -115,9 +118,6 @@ Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 装弹时间
 
-Scripts/Base/Stats/StatName@LearningPointsRetainedAfterDeath:
-死亡后保留LP
-
 Scripts/Base/Stats/StatName@CraftingSpeed:
 制作速度
 
@@ -145,12 +145,48 @@ Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
 食用变质食物能力
 
-Scripts/Base/Stats/StatName@SearchingSpeed:
-搜索速度
-
-Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 辐射中毒伤害
 
-Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+Scripts/Base/Stats/StatName@RadiationPoisoningIncreaseRateMultiplier:
 辐射积累速率
+
+Scripts/Base/Stats/StatName@ToxinsIncreaseRateMultiplier:
+毒素积累速率
+
+Scripts/Base/Stats/StatName@BleedingIncreaseRateMultiplier:
+出血
+
+Scripts/Base/Stats/StatName@HeatIncreaseRateMultiplier:
+热增加速率
+
+Scripts/Base/Stats/StatName@HeatEffectMultiplier:
+热伤害
+
+Scripts/Base/Stats/StatName@PainIncreaseRateMultiplier:
+疼痛
+
+Scripts/Base/Stats/StatName@PsiEffectMultiplier:
+灵能伤害
+
+Scripts/Base/Stats/StatName@DazedIncreaseRateMultiplier:
+晕眩
+
+Scripts/Base/Stats/StatName@LandClaimsMaxNumber:
+最大占领数量
+
+Scripts/Base/Stats/StatName@VanityContinuousDamage:
+持续伤害
+
+Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
+无法进食或饮水。
+
+Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
+获得学习点数
+
+Scripts/Base/Stats/StatName@TinkerTableBonus:
+修补桌效率
+
+Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
+制造列表
 

@@ -1472,14 +1472,40 @@
         </member>
         <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.Inflate(System.Int32,System.Int32)">
             <summary>
-            Adjusts the edges of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.RectangleInt" /> by specified horizontal and vertical amounts.
+            Adjusts the edges of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.RectangleInt" /> by specified horizontal and vertical amounts in each side.
             </summary>
-            <param name="horizontalAmount">Value to adjust the left and right edges.</param>
-            <param name="verticalAmount">Value to adjust the top and bottom edges.</param>
+            <param name="horizontalAmount">
+            Value to adjust the left and right edges each
+            (so if specify 1, it will expand on 1 tile left and 1 tile right).
+            </param>
+            <param name="verticalAmount">
+            Value to adjust the top and bottom edges
+            (so if specify 1, it will expand on 1 tile up and 1 tile down).
+            </param>
         </member>
         <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.Inflate(System.Int32)">
             <summary>
             Adjusts the edges of this <see cref="T:AtomicTorch.GameEngine.Common.Primitives.RectangleInt" /> by specified amount in all directions.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.Intersects(AtomicTorch.GameEngine.Common.Primitives.BoundsInt@)">
+            <summary>
+            Will check intersection inclusive (so if edges touches this method will consider this as an intersection).
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.Intersects(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Will check intersection inclusive (so if edges touches this method will consider this as an intersection).
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.Intersects(AtomicTorch.GameEngine.Common.Primitives.RectangleInt@)">
+            <summary>
+            Will check intersection inclusive (so if edges touches this method will consider this as an intersection).
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.Intersects(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
+            <summary>
+            Will check intersection inclusive (so if edges touches this method will consider this as an intersection).
             </summary>
         </member>
         <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.IntersectsLoose(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">

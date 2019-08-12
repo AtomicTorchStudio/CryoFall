@@ -1,0 +1,198 @@
+﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+Bazı uyarıcılar kullandın ve dayanıklılık yenilenmen çok daha hızlı.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
+Enerji akını
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Description:
+Güçlü bir iyileştirici ilaç kullandın ve vücudun kaybedilen sağlığı hızla yeniden kazanıyor.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Name:
+Hızlı iyileşme
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
+Bazı ilaçlar kullandın ve vücudun yavaşça iyileşiyor.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
+İyileşme
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
+Son zamanlarda vitaminlerle, mikro elementlerle ve başka önemli besinlerle dolu çok sağlıklı bir yemek yedin. Harika hissediyorsun.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Name:
+Sağlıklı yemek
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
+Yakın zamanda doyurucu bir yemek yedin. Yaptığın her iş artık daha kolay hissettirecek.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
+Doyurucu yemek
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
+Seni geçici olarak daha güçlü kılan bir uyarıcının etkisi altındasın. Güç gerektiren görevleri daha kolay bir şekilde gerçekleştirebilirsin.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
+Artırılmış güç
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
+Kanıyorsun, tedavi edilmezse sürekli olarak sağlık kaybına neden olacak. Küçük kanamalar kendi kendine iyileşir, daha ciddi yaralanmalar bandaj veya kan kesici ilaç kullanımını gerektirebilir.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Name:
+Kanama
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
+Vücudundaki kırık bir implant sağlığını önemli bir şekilde etkiliyor. Bunun dolayı maksimum sağlığın (HP) azaldı.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
+Kırık implant
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
+Bacağın kırık ve hareket kabiliyetini etkiliyor. Kırık bir bacakla koşmaya çalışmak ciddi bir ağrıya neden olur. Kırığı iyileştirmek için atel kullan.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
+Kırık bacak
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
+Sersemlemişken saldırılamaz.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
+Sersemledin! Duyularını geri kazanmak için biraz bekle.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
+Sersemlemiş
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
+Yakınlardaki bir ısı kaynağından yüksek miktarda ısıya maruz kaldın. Daha fazla hasar almamak için alanı hemen terket.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Name:
+Hararet
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
+Açlıktan ölüyorsun!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
+Açlık
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
+Aşırı miktarda radyasyona maruz kaldın ve hücrelerin mutasyona uğramaya başladı. Bu hiç iyi değil! Radyasyonlu bölgelere tekrar girmekten kaçın.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Name:
+Mutasyon
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
+Bir şey yiyemez veya içemez.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Description:
+Kendini iyi hissetmiyorsun. Mide bulantın varsa bir şey yiyemez veya içemezsin. Biraz bekle veya bulantı önleyici ilaç kullan.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Name:
+Bulantı
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Description:
+Dayanıklılık yenilenmesini azaltan ve sağlık yenilenmesini engelleyen şiddetli bir ağrı çekiyorsun. Ağrı kesici bul veya dişini sık.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
+Şiddetli ağrı
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Description:
+Güçlü bir psi alanın etkisi altındasın, seni delirtiyor. Alınacak hasarı önlemek için bölgeyi terk et veya psi engelleyici bir ilaç kullan.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
+Psi etkisi
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
+Radyasyondan dolayı zehirlendin, bu seni yavaşça öldürüyor. Zehirlenmenin etkilerini azaltmak için radyasyon ilacı bul.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Name:
+Radyasyon zehirlenmesi
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Description:
+Kırık bacağına bir atel uyguladın ve bacağın yavaşça iyileşiyor. Yine de bacağın bu durumdayken koşamazsın. Biraz beklemelisin.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Name:
+Sabitlenmiş bacak
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Description:
+Çok ciddi bir susuzluk çekiyorsun!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Name:
+Susuzluk
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Description:
+Tehlikeli toksinlere maruz kaldın. Daha fazla hasar almamak için toksin önleyici ilaç kullan.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
+Toksinler
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
+Oldukça zayıf hissediyorsun. Herhangi bir işi yapmak çok daha zor gibi geliyor. Toparlanmak için kendine biraz zaman tanı ve tehlikeli durumlardan uzak dur.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
+Zayıflamış
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Description:
+Bir veya daha fazla ekipmanının dayanıklılığı azaldı ve yakında kırılabilir.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
+Kırık ekipman
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
+Sünger gibi içtin. Ayakkabılarınla konuşuyor olmana şaşmamalı...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Description:
+İçki içtin...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Name:
+Sarhoş
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
+Bir şey kafanı güzel yaptı. Nedense, kendini mutlu hissediyorsun.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
+Kafası güzel
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
+Çok fazla tıbbi eşya kullandın ve bunun sonucunda sağlığın hasar gördü.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
+Kısa sürede çok fazla ilaç kullandın. Biraz ara ver, yoksa bunun sağlığın üzerinde olumsuz sonuçları olacak. Bu uyarıyı dikkate almamak ölümcül olabilir.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
+Aşırı ilaç kullanımı
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
+Şu anda kanama yaralarını iyileştiren hemostatik ilacın etkisi altındasın.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Name:
+Kanama koruması
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Description:
+Çevresel kaynaklardan alınan sıcaklık hasarını önemli ölçüde azaltan ısıya dayanıklı bir jel tarafından korunuyorsun.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Name:
+Hararet koruması
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Description:
+Güçlü bir ağrı kesicinin etkisi altındasın. İstesen de istemesen de hiçbir ağrı hissetmeyeceksin.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Name:
+Ağrı koruması
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Description:
+Şu anda psi korumasının etkisi altındasın, herhangi bir psi aktivitesi sana daha az etki edecek
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Name:
+Psi koruması
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Description:
+Radyasyon korumasının etkisi altındasın, radyasyon sana daha az etki edecek.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Name:
+Radyasyon koruması
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Description:
+Toksin korumasının etkisi altındasın, toksinler sana daha az etki edecek.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Name:
+Toksin koruması
+

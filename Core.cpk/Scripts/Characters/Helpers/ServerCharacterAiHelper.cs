@@ -165,35 +165,33 @@
             var npcCharacterCenter = npc.Position + npc.PhysicsBody.CenterOffset;
             var playerCharacterCenter = player.Position + player.PhysicsBody.CenterOffset;
 
-            using (var obstaclesOnTheWay = physicsSpace.TestLine(
+            using var obstaclesOnTheWay = physicsSpace.TestLine(
                 npcCharacterCenter,
                 playerCharacterCenter,
                 CollisionGroup.GetDefault(),
-                sendDebugEvent: false))
+                sendDebugEvent: false);
+            foreach (var test in obstaclesOnTheWay)
             {
-                foreach (var test in obstaclesOnTheWay)
+                var testPhysicsBody = test.PhysicsBody;
+                if (testPhysicsBody.AssociatedProtoTile != null)
                 {
-                    var testPhysicsBody = test.PhysicsBody;
-                    if (testPhysicsBody.AssociatedProtoTile != null)
-                    {
-                        // obstacle tile on the way
-                        return true;
-                    }
-
-                    var testWorldObject = testPhysicsBody.AssociatedWorldObject;
-                    if (testWorldObject == npc
-                        || testWorldObject == player)
-                    {
-                        // not an obstacle - it's one of the characters
-                        continue;
-                    }
-
-                    // obstacle object on the way
+                    // obstacle tile on the way
                     return true;
                 }
 
-                return false;
+                var testWorldObject = testPhysicsBody.AssociatedWorldObject;
+                if (testWorldObject == npc
+                    || testWorldObject == player)
+                {
+                    // not an obstacle - it's one of the characters
+                    continue;
+                }
+
+                // obstacle object on the way
+                return true;
             }
+
+            return false;
         }
 
         private static void CalculateDistanceAndDirectionToEnemy(

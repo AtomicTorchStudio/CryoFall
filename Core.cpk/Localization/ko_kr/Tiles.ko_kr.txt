@@ -34,6 +34,12 @@ Scripts/Tiles/TileRuins@Name:
 Scripts/Tiles/TileSaltFlats@Name:
 소금 평지
 
+Scripts/Tiles/TileSwamp@Name:
+습지
+
+Scripts/Tiles/TileVolcanic@Name:
+화산
+
 Scripts/Tiles/TileWaterLake@Name:
 물 (호수)
 

@@ -55,6 +55,9 @@ Vitesse des travaux de ferme
 Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
 Vitesse de croissance des plantes
 
+Scripts/Base/Stats/StatName@SearchingSpeed:
+Vitesse de recherche
+
 Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 Bonus de dégâts
 
@@ -115,9 +118,6 @@ Temps de recharge
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Temps de recharge
 
-Scripts/Base/Stats/StatName@LearningPointsRetainedAfterDeath:
-PA conservés après la mort
-
 Scripts/Base/Stats/StatName@CraftingSpeed:
 Vitesse de fabrication
 
@@ -145,12 +145,48 @@ Régénération de charge d'énergie (par minute)
 Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
 Capacité à ingérer de la nourriture périmée
 
-Scripts/Base/Stats/StatName@SearchingSpeed:
-Vitesse de recherche
-
-Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 Dégâts d'irradiation
 
-Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+Scripts/Base/Stats/StatName@RadiationPoisoningIncreaseRateMultiplier:
 Taux d'accumulation des radiations
+
+Scripts/Base/Stats/StatName@ToxinsIncreaseRateMultiplier:
+Taux d'accumulation des toxines
+
+Scripts/Base/Stats/StatName@BleedingIncreaseRateMultiplier:
+Saignement
+
+Scripts/Base/Stats/StatName@HeatIncreaseRateMultiplier:
+Taux d'augmentation de chaleur
+
+Scripts/Base/Stats/StatName@HeatEffectMultiplier:
+Dégâts de chaleur
+
+Scripts/Base/Stats/StatName@PainIncreaseRateMultiplier:
+Douleur
+
+Scripts/Base/Stats/StatName@PsiEffectMultiplier:
+Dégâts psi
+
+Scripts/Base/Stats/StatName@DazedIncreaseRateMultiplier:
+Étourdi
+
+Scripts/Base/Stats/StatName@LandClaimsMaxNumber:
+Maximum de territoires revendiqués
+
+Scripts/Base/Stats/StatName@VanityContinuousDamage:
+Dégâts continus
+
+Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
+Impossible de manger ou de boire
+
+Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
+Gain de Points d'apprentissage
+
+Scripts/Base/Stats/StatName@TinkerTableBonus:
+Efficacité de la table de bricolage
+
+Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
+Emplacements de file de fabrication
 

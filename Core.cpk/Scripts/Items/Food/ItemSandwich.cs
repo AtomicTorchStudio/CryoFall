@@ -11,7 +11,7 @@
 
         public override float FoodRestore => 20;
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.NonPerishable;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 
         public override float HealthRestore => 1;
 
@@ -19,11 +19,11 @@
 
         public override ushort OrganicValue => 5;
 
-        public override float StaminaRestore => 50;
+        public override float StaminaRestore => 25;
 
         protected override void ServerOnEat(ItemEatData data)
         {
-            data.Character.ServerAddStatusEffect<StatusEffectWellFed>(intensity: 0.2);
+            data.Character.ServerAddStatusEffect<StatusEffectHeartyFood>(intensity: 0.2);
 
             base.ServerOnEat(data);
         }

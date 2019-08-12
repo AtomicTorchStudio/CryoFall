@@ -16,6 +16,12 @@
 
         public const string NotificationItemBroke_Title = "Item broke";
 
+        // if durability is >= than this threshold, it's displayed as green
+        public const double ThresholdFractionGreenStatus = 0.5;
+
+        // if durability is >= than this threshold, it's displayed as yellow
+        public const double ThresholdFractionYellowStatus = 0.2;
+
         public override string Name => "Item durability system";
 
         public static void ServerInitializeItem(IItemWithDurabilityPrivateState privateState, bool isFirstTimeInit)
@@ -30,6 +36,20 @@
             privateState.DurabilityCurrent = isFirstTimeInit
                                                  ? protoItem.DurabilityMax
                                                  : Math.Min(privateState.DurabilityCurrent, protoItem.DurabilityMax);
+        }
+
+        /// <param name="roundUp">
+        /// By default the absolute delta value is rounded down (floor) to nearest integer.
+        /// You could change this to round up (ceiling).
+        /// Round up will always maximize durability loss. Round down will minimize it.
+        /// </param>
+        public static void ServerModifyDurability(IItem item, double delta, bool roundUp)
+        {
+            var deltaInt = roundUp
+                               ? (int)Math.Ceiling(Math.Abs(delta))
+                               : (int)Math.Floor(Math.Abs(delta));
+            deltaInt *= Math.Sign(delta);
+            ServerModifyDurability(item, deltaInt);
         }
 
         public static void ServerModifyDurability(IItem item, int delta)
@@ -49,11 +69,11 @@
             }
 
             var privateState = item.GetPrivateState<IItemWithDurabilityPrivateState>();
-            var durability = (int)privateState.DurabilityCurrent;
+            var durability = (long)privateState.DurabilityCurrent;
             durability += delta;
 
             durability = MathHelper.Clamp(durability, 0, durabilityMax);
-            privateState.DurabilityCurrent = (ushort)durability;
+            privateState.DurabilityCurrent = (uint)durability;
 
             if (durability > 0)
             {
@@ -72,7 +92,8 @@
 
             if (owner != null)
             {
-                Instance.CallClient(owner, _ => _.ClientRemote_ItemBroke(item.ProtoItem));
+                Instance.CallClient(owner,
+                                    _ => _.ClientRemote_ItemBroke(item.ProtoItem));
             }
         }
 
@@ -82,11 +103,19 @@
                             ?? throw new Exception(
                                 $"{item} prototype doesn't implement {typeof(IProtoItemWithDurablity)}");
 
-            return SharedGetDurabilityValue(item)
-                   / (double)protoItem.DurabilityMax;
+            var result = SharedGetDurabilityValue(item)
+                         / (double)protoItem.DurabilityMax;
+            return MathHelper.Clamp(result, 0, 1);
         }
 
-        public static ushort SharedGetDurabilityValue(IItem item)
+        public static int SharedGetDurabilityPercent(IItem item)
+        {
+            var result = SharedGetDurabilityFraction(item);
+            result = Math.Round(100 * result, MidpointRounding.AwayFromZero);
+            return (int)result;
+        }
+
+        public static uint SharedGetDurabilityValue(IItem item)
         {
             return item.GetPrivateState<IItemWithDurabilityPrivateState>().DurabilityCurrent;
         }

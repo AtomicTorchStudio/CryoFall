@@ -34,7 +34,7 @@
                         <WrapPanel Margin="0,-7"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   MaxWidth="465" />
+                                   MaxWidth="620" />
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>

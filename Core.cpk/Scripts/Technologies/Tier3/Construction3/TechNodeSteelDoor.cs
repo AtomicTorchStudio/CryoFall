@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDoorSteel>();
 
-            config.SetRequiredNode<TechNodeLandClaimT3>();
+            config.SetRequiredNode<TechNodeBrickConstructions>();
         }
     }
 }

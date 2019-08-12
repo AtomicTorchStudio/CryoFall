@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
 
-    public interface IProtoItemToolWoodcutting : IProtoItemWeapon
+    public interface IProtoItemToolWoodcutting : IProtoItemWeapon, IProtoItemTool
     {
         double DamageToTree { get; }
     }

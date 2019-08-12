@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
-    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
@@ -67,9 +66,9 @@
 
         protected virtual Vector2D LightWorldSpritePivotPoint => (0.5, 0.5);
 
-        public void ClientSetServerMode(IStaticWorldObject lightObject, ObjectLightMode mode)
+        public void ClientSetLightMode(IStaticWorldObject lightObject, ObjectLightMode mode)
         {
-            this.CallServer(_ => _.ServerRemote_SetServerMode(lightObject, mode));
+            this.CallServer(_ => _.ServerRemote_SetLightMode(lightObject, mode));
         }
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
@@ -105,12 +104,10 @@
 
         void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         protected virtual BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject)
@@ -128,7 +125,7 @@
             base.ClientInitialize(data);
 
             var worldObject = data.GameObject;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
 
             data.ClientState.RendererLight = this.ClientCreateLightSource(Client.Scene.GetSceneObject(worldObject));
 
@@ -148,7 +145,7 @@
 
         protected virtual void ClientIsActiveChanged(ClientInitializeData data)
         {
-            var isActive = data.SyncPublicState.IsLightActive;
+            var isActive = data.PublicState.IsLightActive;
 
             var clientState = data.ClientState;
             clientState.Renderer.TextureResource = this.textureAtlas.Chunk((byte)(isActive ? 1 : 0), 0);
@@ -160,8 +157,8 @@
             return WindowObjectLight.Open(
                 new ViewModelWindowObjectLight(
                     data.GameObject,
-                    data.SyncPrivateState,
-                    data.SyncPublicState));
+                    data.PrivateState,
+                    data.PublicState));
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
@@ -212,6 +209,11 @@
             this.PrepareProtoObjectLight();
         }
 
+        protected virtual bool ServerCheckCanLight(IStaticWorldObject lightObject, double fuelAmount)
+        {
+            return fuelAmount > 0;
+        }
+
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
@@ -239,91 +241,7 @@
             Server.Items.SetContainerType(containerInput, this.FuelItemsContainerPrototype);
         }
 
-        protected override void ServerUpdate(ServerUpdateData data)
-        {
-            this.ServerUpdateLight(data.GameObject,
-                                   data.PrivateState,
-                                   data.PublicState,
-                                   data.DeltaTime);
-        }
-
-        protected override void SharedCreatePhysics(CreatePhysicsData data)
-        {
-            data.PhysicsBody
-                .AddShapeCircle(radius: 0.25, center: (0.5, 0.45))
-                .AddShapeRectangle(
-                    size: (0.5, 1.25),
-                    offset: (0.25, 0.3),
-                    group: CollisionGroups.ClickArea);
-        }
-
-        private static bool ServerIsLightShouldBeActive(
-            IWorldObject lightObject,
-            double fuelAmount,
-            ObjectLightMode mode)
-        {
-            if (fuelAmount <= 0)
-            {
-                return false;
-            }
-
-            if (mode == ObjectLightMode.On)
-            {
-                return true;
-            }
-
-            if (mode == ObjectLightMode.Auto
-                && TimeOfDaySystem.IsNight)
-            {
-                using (var charactersNearby = Api.Shared.GetTempList<ICharacter>())
-                {
-                    Server.World.GetScopedByPlayers(lightObject, charactersNearby);
-                    if (charactersNearby.Count == 0)
-                    {
-                        return false;
-                    }
-
-                    foreach (var character in charactersNearby)
-                    {
-                        if (character.ProtoCharacter is PlayerCharacterSpectator)
-                        {
-                            continue;
-                        }
-
-                        if (character.TilePosition.TileSqrDistanceTo(lightObject.TilePosition)
-                            < AutoLightDistance * AutoLightDistance)
-                        {
-                            // close enough to turn the light automatically
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        private void ServerRemote_SetServerMode(IStaticWorldObject lightObject, ObjectLightMode mode)
-        {
-            var character = ServerRemoteContext.Character;
-            if (!InteractionCheckerSystem.HasInteraction(character, lightObject, requirePrivateScope: true))
-            {
-                throw new Exception("The player character is not interacting with the light object");
-            }
-
-            var privateState = GetPrivateState(lightObject);
-            var publicState = GetPublicState(lightObject);
-
-            privateState.Mode = mode;
-            Logger.Important($"Light mode changed: {mode}, light: {lightObject}", character);
-
-            this.ServerUpdateLight(lightObject,
-                                   privateState,
-                                   publicState,
-                                   deltaTime: 0);
-        }
-
-        private void ServerTryConsumeFuelItem(TPrivateState privateState)
+        protected virtual void ServerTryConsumeFuelItem(TPrivateState privateState)
         {
             var fuelAmount = privateState.FuelAmount;
 
@@ -357,8 +275,80 @@
             }
         }
 
+        protected override void ServerUpdate(ServerUpdateData data)
+        {
+            this.ServerUpdateLight(data.GameObject,
+                                   data.PrivateState,
+                                   data.PublicState,
+                                   data.DeltaTime);
+        }
+
+        private bool ServerIsLightShouldBeActive(
+            IStaticWorldObject lightObject,
+            double fuelAmount,
+            ObjectLightMode mode)
+        {
+            if (!this.ServerCheckCanLight(lightObject, fuelAmount))
+            {
+                return false;
+            }
+
+            if (mode == ObjectLightMode.On)
+            {
+                return true;
+            }
+
+            if (mode == ObjectLightMode.Auto
+                && TimeOfDaySystem.IsNight)
+            {
+                using var charactersNearby = Api.Shared.GetTempList<ICharacter>();
+                Server.World.GetScopedByPlayers(lightObject, charactersNearby);
+                if (charactersNearby.Count == 0)
+                {
+                    return false;
+                }
+
+                foreach (var character in charactersNearby)
+                {
+                    if (character.ProtoCharacter is PlayerCharacterSpectator)
+                    {
+                        continue;
+                    }
+
+                    if (character.TilePosition.TileSqrDistanceTo(lightObject.TilePosition)
+                        < AutoLightDistance * AutoLightDistance)
+                    {
+                        // close enough to turn the light automatically
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private void ServerRemote_SetLightMode(IStaticWorldObject lightObject, ObjectLightMode mode)
+        {
+            var character = ServerRemoteContext.Character;
+            if (!InteractionCheckerSystem.SharedHasInteraction(character, lightObject, requirePrivateScope: true))
+            {
+                throw new Exception("The player character is not interacting with the light object");
+            }
+
+            var privateState = GetPrivateState(lightObject);
+            var publicState = GetPublicState(lightObject);
+
+            privateState.Mode = mode;
+            Logger.Important($"Light mode changed: {mode}, light: {lightObject}", character);
+
+            this.ServerUpdateLight(lightObject,
+                                   privateState,
+                                   publicState,
+                                   deltaTime: 0);
+        }
+
         private void ServerUpdateLight(
-            IWorldObject lightObject,
+            IStaticWorldObject lightObject,
             TPrivateState privateState,
             TPublicState publicState,
             double deltaTime)
@@ -369,28 +359,23 @@
 
             // active if has fuel and mode allows
             var mode = privateState.Mode;
-            var isActive = ServerIsLightShouldBeActive(lightObject, fuelAmount, mode);
+            var isActive = this.ServerIsLightShouldBeActive(lightObject, fuelAmount, mode);
             publicState.IsLightActive = isActive;
 
-            if (isActive)
-            {
-                // burn fuel
-                fuelAmount -= this.FuelUsePerSecond * deltaTime;
-                if (fuelAmount < 0)
-                {
-                    fuelAmount = 0;
-                }
-
-                privateState.FuelAmount = fuelAmount;
-            }
-            else
+            if (!isActive)
             {
                 publicState.IsLightActive = false;
-                if (mode == ObjectLightMode.On)
-                {
-                    privateState.Mode = ObjectLightMode.Off;
-                }
+                return;
             }
+
+            // burn fuel
+            fuelAmount -= this.FuelUsePerSecond * deltaTime;
+            if (fuelAmount < 0)
+            {
+                fuelAmount = 0;
+            }
+
+            privateState.FuelAmount = fuelAmount;
         }
     }
 

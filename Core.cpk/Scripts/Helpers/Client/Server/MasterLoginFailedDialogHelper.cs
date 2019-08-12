@@ -36,11 +36,12 @@
 
         public const string UsernameRequirements =
             @"Username requirements:
-              [*] must be [b]3[/b] to [b]24[/b] characters in length
-              [*] [b]can[/b] contain letters, numbers, underscores and dashes
-              [*] [b]cannot[/b] contain spaces or any other characters
-              [*] must start and end with a [b]letter[/b] or [b]number[/b]
-              [*] must [b]not[/b] contain several [b]-[/b] or [b]_[/b] characters in a row";
+              [*] Must be [b]3[/b] to [b]24[/b] characters in length
+              [*] [b]Can[/b] contain letters, numbers, underscores and hyphens
+              [*] [b]Cannot[/b] contain spaces or any other characters
+              [*] Must start with a [b]letter[/b]
+              [*] Must end with a [b]letter[/b] or [b]number[/b]
+              [*] Must [b]not[/b] contain several [b]-[/b] or [b]_[/b] characters in a row";
 
         public const string UsernameUsed_Message
             = @"The selected username is already used by someone.

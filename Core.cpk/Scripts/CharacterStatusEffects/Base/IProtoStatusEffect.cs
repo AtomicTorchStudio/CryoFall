@@ -19,7 +19,7 @@
 
         double VisibilityIntensityThreshold { get; }
 
-        ITextureResource ClientGetIcon(ILogicObject statusEffect);
+        ITextureResource Icon { get; }
 
         void ServerAddIntensity(ILogicObject statusEffect, double intensityToAdd);
 

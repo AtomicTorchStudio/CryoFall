@@ -5,7 +5,6 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -333,7 +332,7 @@
 
             if (this.isValueInterpolated)
             {
-                ClientComponentUpdateHelper.UpdateCallback += this.UpdateInterpolatedValue;
+                ClientUpdateHelper.UpdateCallback += this.UpdateInterpolatedValue;
             }
         }
 
@@ -343,7 +342,7 @@
 
             if (this.isValueInterpolated)
             {
-                ClientComponentUpdateHelper.UpdateCallback -= this.UpdateInterpolatedValue;
+                ClientUpdateHelper.UpdateCallback -= this.UpdateInterpolatedValue;
             }
         }
 
@@ -373,11 +372,11 @@
             control.isValueInterpolated = isValueInterpolated;
             if (isValueInterpolated)
             {
-                ClientComponentUpdateHelper.UpdateCallback += control.UpdateInterpolatedValue;
+                ClientUpdateHelper.UpdateCallback += control.UpdateInterpolatedValue;
             }
             else
             {
-                ClientComponentUpdateHelper.UpdateCallback -= control.UpdateInterpolatedValue;
+                ClientUpdateHelper.UpdateCallback -= control.UpdateInterpolatedValue;
             }
         }
 
@@ -501,13 +500,11 @@
                 var currentValueBarWidth = fraction * this.barWidthMax;
                 this.CurrentValueBarWidth = currentValueBarWidth;
 
-                using (var ctx = this.clipGeometry.Open())
-                {
-                    ctx.BeginFigure(new Point(0,               0), true, true);
-                    ctx.LineTo(new Point(currentValueBarWidth, 0),                 false, false);
-                    ctx.LineTo(new Point(currentValueBarWidth, this.barHeightMax), false, false);
-                    ctx.LineTo(new Point(0,                    this.barHeightMax), false, false);
-                }
+                using var ctx = this.clipGeometry.Open();
+                ctx.BeginFigure(new Point(0,               0), true, true);
+                ctx.LineTo(new Point(currentValueBarWidth, 0),                 false, false);
+                ctx.LineTo(new Point(currentValueBarWidth, this.barHeightMax), false, false);
+                ctx.LineTo(new Point(0,                    this.barHeightMax), false, false);
             }
 
             if (!this.isDisplayLabel
@@ -528,7 +525,8 @@
                     percentValue = 0;
                 }
 
-                var v = (int)Math.Ceiling(percentValue * 100.0);
+                var v = (int)Math.Round(percentValue * 100.0,
+                                        MidpointRounding.AwayFromZero);
                 if (this.lastValue != v)
                 {
                     this.lastValue = v;
@@ -538,7 +536,8 @@
             else
             {
                 // update text value in format "current/max"
-                var v = (int)Math.Round(value, MidpointRounding.AwayFromZero);
+                var v = (int)Math.Round(value, 
+                                        MidpointRounding.AwayFromZero);
                 if (this.lastValue == v
                     && this.lastValueMax == maxValue)
                 {
@@ -551,7 +550,8 @@
                 this.textBlockValueDisplay.Text =
                     this.labelFormat != null
                         ? string.Format(this.labelFormat, value, maxValue)
-                        : this.lastValue + "/" + (int)Math.Round(maxValue, MidpointRounding.AwayFromZero);
+                        : this.lastValue + "/" + (int)Math.Round(maxValue,
+                                                                 MidpointRounding.AwayFromZero);
             }
         }
 
@@ -573,7 +573,8 @@
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             var valuePercents = maxValue != 0.0 
-                                    ? (int)Math.Round(100.0 * value / maxValue) 
+                                    ? (int)Math.Round(100.0 * value / maxValue, 
+                                                      MidpointRounding.AwayFromZero) 
                                     : 0;
 
             if (!string.IsNullOrEmpty(this.tooltipFormat))

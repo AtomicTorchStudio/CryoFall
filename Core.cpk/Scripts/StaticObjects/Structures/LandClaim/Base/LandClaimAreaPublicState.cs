@@ -1,11 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim
 {
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class LandClaimAreaPublicState : BasePublicState
     {
+        [SyncToClient]
+        public ILogicObject LandClaimAreasGroup { get; set; }
+
         [SyncToClient]
         public Vector2Ushort LandClaimCenterTilePosition { get; set; }
 
@@ -14,14 +18,6 @@
 
         [SyncToClient]
         public ushort LandClaimSize { get; set; }
-
-        [SyncToClient]
-        [TempOnly]
-        public double? LastRaidTime { get; set; }
-
-        // TODO: remove this in A23
-        [SyncToClient]
-        public string Title { get; set; }
 
         public void SetupAreaProperties(LandClaimAreaPrivateState privateState)
         {

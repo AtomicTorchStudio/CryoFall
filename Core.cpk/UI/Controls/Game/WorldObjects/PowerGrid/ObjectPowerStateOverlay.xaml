@@ -1,0 +1,52 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.ObjectPowerStateOverlay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data"
+    mc:Ignorable="d"
+    x:Name="UserControl"
+    d:DesignHeight="300" d:DesignWidth="300"
+    VerticalAlignment="Top"
+    d:DataContext="{d:DesignInstance data:ViewModelPowerStateOverlay}"
+    Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+    <base:BaseUserControl.LayoutTransform>
+        <ScaleTransform CenterX="0.5" ScaleX="-1" />
+    </base:BaseUserControl.LayoutTransform>
+
+    <StackPanel Orientation="Horizontal">
+        <StackPanel.Resources>
+            <Style x:Key="PathStyle" TargetType="Path">
+                <Setter Property="Stroke" Value="Black" />
+                <Setter Property="StrokeThickness" Value="1.5" />
+                <Setter Property="Stretch" Value="Uniform" />
+            </Style>
+        </StackPanel.Resources>
+
+        <Path Data="{StaticResource IconGeometryPathPowerOn}"
+              Style="{StaticResource PathStyle}"
+              Visibility="{Binding IsPowerOn, Converter={StaticResource BoolToVisibilityConverter}}"
+              Fill="{StaticResource BrushElectricity}"
+              Width="32"
+              Height="32"
+              Margin="3" />
+
+        <Path Data="{StaticResource IconGeometryPathPowerOff}"
+              Style="{StaticResource PathStyle}"
+              Visibility="{Binding IsPowerOff, Converter={StaticResource BoolToVisibilityConverter}}"
+              Fill="#FFBBBBBB"
+              Width="38"
+              Height="38" />
+
+        <Path Data="{StaticResource IconGeometryPathPowerOutage}"
+              Style="{StaticResource PathStyle}"
+              Visibility="{Binding IsPowerOutage, Converter={StaticResource BoolToVisibilityConverter}}"
+              Fill="#FFFF4400"
+              Width="38"
+              Height="38" />
+
+    </StackPanel>
+
+</base:BaseUserControl>

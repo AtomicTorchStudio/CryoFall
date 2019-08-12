@@ -11,7 +11,7 @@
 
     public class RequirementHaveTechGroups : QuestRequirementWithList<TechGroup>
     {
-        public const string DescriptionFormat = "Unlock {0} technology groups: {1}";
+        public const string DescriptionFormat = "Unlock {0} tech groups: {1}";
 
         private RequirementHaveTechGroups(IReadOnlyList<TechGroup> list, ushort count, string description)
             : base(list, count, description)

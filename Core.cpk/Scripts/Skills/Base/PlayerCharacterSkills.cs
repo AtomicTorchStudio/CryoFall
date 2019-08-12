@@ -11,12 +11,12 @@
 
     public class PlayerCharacterSkills : BaseNetObject
     {
-        public delegate void CharacterSkillLevelChangedDelegate(
+        public delegate void SkillLevelChangedDelegate(
             ICharacter character,
             IProtoSkill skill,
             SkillLevelData skillLevelData);
 
-        public static event CharacterSkillLevelChangedDelegate CharacterSkillLevelChanged;
+        public static event SkillLevelChangedDelegate ServerCharacterSkillLevelChanged;
 
         public ICharacter Character => (ICharacter)this.GameObject;
 
@@ -76,7 +76,7 @@
                 if (previousLevel != skillLevelData.Level)
                 {
                     Api.SafeInvoke(
-                        () => CharacterSkillLevelChanged?.Invoke(this.Character, skill, skillLevelData));
+                        () => ServerCharacterSkillLevelChanged?.Invoke(this.Character, skill, skillLevelData));
                 }
             }
 
@@ -121,7 +121,7 @@
                 foreach (var pair in this.Skills)
                 {
                     Api.SafeInvoke(
-                        () => CharacterSkillLevelChanged?.Invoke(this.Character, pair.Key, pair.Value));
+                        () => ServerCharacterSkillLevelChanged?.Invoke(this.Character, pair.Key, pair.Value));
                 }
 
                 this.Skills.Clear();
@@ -198,7 +198,7 @@
             }
 
             Api.SafeInvoke(
-                () => CharacterSkillLevelChanged?.Invoke(this.Character, skill, skillLevelData));
+                () => ServerCharacterSkillLevelChanged?.Invoke(this.Character, skill, skillLevelData));
 
             return skillLevelData;
         }

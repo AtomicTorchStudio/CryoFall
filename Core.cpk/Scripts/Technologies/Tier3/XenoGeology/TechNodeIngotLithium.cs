@@ -4,8 +4,6 @@
 
     public class TechNodeIngotLithium : TechNode<TechGroupXenogeology>
     {
-        public override string Name => "Lithium refinement";
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects

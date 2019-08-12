@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 {
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
     using AtomicTorch.CBND.CoreMod.Skills;
@@ -37,15 +38,19 @@
             skeleton = GetProtoEntity<SkeletonCrawler>();
 
             // primary loot
-            lootDroplist
-                .Add<ItemToxin>(count: 1)
-                .Add<ItemBones>(count: 1);
+            lootDroplist.Add(nestedList: new DropItemsList(outputs: 2)
+                                         .Add<ItemInsectMeatRaw>(count: 1)
+                                         .Add<ItemToxin>(count: 1)
+                                         .Add<ItemBones>(count: 1)
+                                         .Add<ItemSlime>(count: 1));
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,
                              nestedList: new DropItemsList(outputs: 1)
+                                         .Add<ItemInsectMeatRaw>(count: 1)
                                          .Add<ItemToxin>(count: 1)
-                                         .Add<ItemBones>(count: 1));
+                                         .Add<ItemBones>(count: 1)
+                                         .Add<ItemSlime>(count: 1));
         }
 
         protected override void ServerInitializeCharacterMob(ServerInitializeData data)

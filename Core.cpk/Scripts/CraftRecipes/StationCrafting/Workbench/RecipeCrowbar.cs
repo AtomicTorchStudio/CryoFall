@@ -17,9 +17,9 @@
         {
             stations.Add<ObjectWorkbench>();
 
-            duration = CraftingDuration.Medium;
+            duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemIngotIron>(count: 20);
+            inputItems.Add<ItemIngotIron>(count: 10);
 
             outputItems.Add<ItemCrowbar>();
         }

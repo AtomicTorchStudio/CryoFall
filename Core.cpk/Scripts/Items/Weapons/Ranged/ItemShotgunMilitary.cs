@@ -19,7 +19,7 @@
 
         public override string Description => "Military shotgun with large ammo capacity. Uses 12ga ammunition.";
 
-        public override ushort DurabilityMax => 250;
+        public override uint DurabilityMax => 250;
 
         public override double FireInterval => 0.4;
 
@@ -44,7 +44,7 @@
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()
         {
-            return WeaponsSoundPresets.WeaponRangedShotgun;
+            return WeaponsSoundPresets.WeaponRangedShotgunMilitary;
         }
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)

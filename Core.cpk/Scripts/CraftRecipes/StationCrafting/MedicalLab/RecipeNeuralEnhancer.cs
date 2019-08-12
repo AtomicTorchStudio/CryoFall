@@ -17,7 +17,7 @@
         {
             stations.Add<ObjectMedicalLab>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemComponentsPharmaceutical>(count: 100);
             inputItems.Add<ItemComponentsHighTech>(count: 5);

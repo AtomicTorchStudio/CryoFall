@@ -24,7 +24,6 @@
             inputItems.Add<ItemHerbRed>(count: 5);
             inputItems.Add<ItemHerbPurple>(count: 5);
             inputItems.Add<ItemToxin>(count: 5);
-            inputItems.Add<ItemSalt>(count: 5);
 
             outputItems.Add<ItemAntiMutation>(count: 1);
         }

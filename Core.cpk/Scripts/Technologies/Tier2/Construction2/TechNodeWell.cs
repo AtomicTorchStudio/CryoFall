@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectWell>();
 
-            config.SetRequiredNode<TechNodeIronCrate>();
+            config.SetRequiredNode<TechNodeWoodBarrel>();
         }
     }
 }

@@ -7,13 +7,16 @@
         [SyncToClient]
         public bool HasHarvest { get; set; }
 
+        [TempOnly]
+        [SyncToClient]
+        public bool IsFertilized { get; set; }
+
         [SyncToClient]
         public bool IsWatered { get; set; }
 
-        public void ServerOnFertilizerApplied()
+        internal void ServerForceIsFertilizedSync()
         {
-            // this is a hack to force notification on Client-side
-            this.ForceSyncPropertySend(this.HasHarvest, nameof(this.HasHarvest));
+            this.ForceSyncPropertySend(this.IsFertilized, nameof(this.IsFertilized));
         }
 
         internal void ServerForceIsWateredSync()

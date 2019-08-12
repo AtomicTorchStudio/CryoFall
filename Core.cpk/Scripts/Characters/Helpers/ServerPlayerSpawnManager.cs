@@ -27,9 +27,7 @@
 
         private const int SpawnInZoneAttempts = 2000;
 
-        private static IProtoZone protoSpawnZone1;
-
-        private static IProtoZone protoSpawnZone2;
+        private static IProtoZone protoSpawnZone;
 
         private static IWorldServerService worldService;
 
@@ -40,27 +38,14 @@
             var random = Api.Random;
             Vector2Ushort? spawnPosition = null;
 
-            var spawnZone1 = protoSpawnZone1.ServerZoneInstance;
-            var spawnZone2 = protoSpawnZone2.ServerZoneInstance;
-
-            if (spawnZone2.IsEmpty)
-            {
-                spawnZone2 = spawnZone1;
-            }
-            else if (spawnZone1.IsEmpty)
-            {
-                spawnZone1 = spawnZone2;
-            }
-
-            if (!spawnZone1.IsEmpty
-                || !spawnZone2.IsEmpty)
+            var spawnZone = protoSpawnZone.ServerZoneInstance;
+            if (!spawnZone.IsEmpty)
             {
                 // TODO: this could be slow and might require distributing across the multiple frames
                 if (isRespawn)
                 {
                     spawnPosition = TryFindZoneSpawnPosition(character,
-                                                             spawnZone1,
-                                                             spawnZone2,
+                                                             spawnZone,
                                                              random,
                                                              isRespawn: true);
                 }
@@ -68,18 +53,7 @@
                 if (!spawnPosition.HasValue)
                 {
                     spawnPosition = TryFindZoneSpawnPosition(character,
-                                                             spawnZone1,
-                                                             spawnZone2,
-                                                             random,
-                                                             isRespawn: false);
-                }
-
-                if (!spawnPosition.HasValue)
-                {
-                    // try only with spawn zone 2
-                    spawnPosition = TryFindZoneSpawnPosition(character,
-                                                             spawnZone2,
-                                                             spawnZone2,
+                                                             spawnZone,
                                                              random,
                                                              isRespawn: false);
                 }
@@ -120,8 +94,7 @@
         public static void Setup(IServerConfiguration serverConfiguration)
         {
             worldService = Api.Server.World;
-            protoSpawnZone1 = Api.GetProtoEntity<ZoneSpecialPlayerSpawn>();
-            protoSpawnZone2 = Api.GetProtoEntity<ZoneTemperateForest>();
+            protoSpawnZone = Api.GetProtoEntity<ZoneSpecialPlayerSpawn>();
             serverConfiguration.SetupPlayerCharacterSpawnCallbackMethod(
                 character => SpawnPlayer(character, isRespawn: false));
         }
@@ -135,8 +108,7 @@
 
         private static Vector2Ushort? TryFindZoneSpawnPosition(
             ICharacter character,
-            IServerZone spawnZone1,
-            IServerZone spawnZone2,
+            IServerZone spawnZone,
             Random random,
             bool isRespawn)
         {
@@ -150,27 +122,6 @@
                 }
 
                 characterDeathPosition = privateState.LastDeathPosition;
-            }
-
-            IServerZone spawnZone;
-            if (isRespawn
-                && spawnZone1.IsContainsPosition(characterDeathPosition))
-            {
-                spawnZone = spawnZone1;
-            }
-            else if (isRespawn
-                     && spawnZone2.IsContainsPosition(characterDeathPosition))
-            {
-                spawnZone = spawnZone2;
-            }
-            else
-            {
-                // Select random spawn zone.
-                // As a temporary measure for A23 version,
-                // we use zone 2 (temperate forest biome) more often.
-                spawnZone = random.Next(0, 4) == 0
-                                ? spawnZone1
-                                : spawnZone2;
             }
 
             var restrictedZone = ZoneSpecialConstructionRestricted.Instance.ServerZoneInstance;

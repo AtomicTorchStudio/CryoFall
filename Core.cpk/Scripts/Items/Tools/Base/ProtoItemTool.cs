@@ -19,7 +19,7 @@
           <TPrivateState,
               TPublicState,
               TClientState>,
-          IProtoItemWithDurablity
+          IProtoItemTool
         where TPrivateState : BasePrivateState, IItemWithDurabilityPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
@@ -30,11 +30,13 @@
             ToolsConstants.EnsureInitialized();
         }
 
-        public abstract ushort DurabilityMax { get; }
+        public abstract uint DurabilityMax { get; }
 
-        public override double GroundIconScale => 1.5;
+        public override double GroundIconScale => 1.25;
 
         public override ITextureResource Icon { get; }
+
+        public virtual bool IsRepairable => true;
 
         /// <summary>
         /// Tool cannot have stacks.

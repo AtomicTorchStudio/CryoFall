@@ -8,6 +8,7 @@
 
         /// <summary>
         /// Total lifetime of the deposit.
+        /// Could be zero in case of infinite deposit.
         /// </summary>
         double LifetimeTotalDurationSeconds { get; }
 

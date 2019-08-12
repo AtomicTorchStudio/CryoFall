@@ -12,6 +12,7 @@
     d:DataContext="{d:DesignInstance data:ViewModelWindowDoor, IsDesignTimeCreatable=True}"
     FontFamily="{StaticResource CondensedFontFamily}"
     FontWeight="Bold">
+
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
 
         <Grid HorizontalAlignment="Center"

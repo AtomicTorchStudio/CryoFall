@@ -18,10 +18,13 @@
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
+    using AtomicTorch.GameEngine.Common.DataStructures;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public class ClientComponentPhysicsSpaceVisualizer : ClientComponent
     {
+        public const int TileSize = ScriptingConstants.TileSizeVirtualPixels;
+
         private const double DebugShapeLifetime = 3.0d;
 
         // it's possible to disable tooltips to allow interactivity
@@ -40,8 +43,6 @@
         public static readonly Brush BrushInteractionArea = new SolidColorBrush(Color.FromArgb(0x99, 0xFF, 0x00, 0xFF));
 
         public static readonly Brush BrushStaticCollider = new SolidColorBrush(Color.FromArgb(0xCC, 0xFF, 0xFF, 0xFF));
-
-        public static int TileSize = ScriptingConstants.TileSizeVirtualPixels;
 
         private static readonly HashSet<CollisionGroupId> EnabledLayers;
 
@@ -230,6 +231,20 @@
         public static void ProcessServerDebugPhysicsTesting(IPhysicsShape shape)
         {
             instance?.DrawPhysicsTest(shape, isClient: false);
+        }
+
+        public static void VisualizeTestResults(ITempList<TestResult> testResults, CollisionGroup collisionGroup)
+        {
+            foreach (var testResult in testResults)
+            {
+                var position = testResult.PhysicsBody.Position
+                               + testResult.Penetration;
+                instance.DrawPhysicsTest(new CircleShape(
+                                             center: position,
+                                             radius: 0.05,
+                                             collisionGroup),
+                                         isClient: true);
+            }
         }
 
         protected override void OnDisable()

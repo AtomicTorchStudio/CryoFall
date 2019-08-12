@@ -3,11 +3,14 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -17,59 +20,100 @@
     /// </summary>
     public class CraftingSystem : ProtoSystem<CraftingSystem>
     {
-        public const int MaxCraftingQueueEntriesCount = 6;
-
         public const string NotificationCraftingQueueFull_Message = "The crafting queue is full.";
 
         public const string NotificationCraftingQueueFull_Title = "Cannot add new recipe";
 
+        public static readonly double ServerCraftingSpeedMultiplier
+            = ServerRates.Get(
+                "CraftingSpeedMultiplier",
+                defaultValue: 1.0,
+                @"This rate determines the crafting speed of recipes
+                  started from crafting menu or from any workbench.
+                  Does NOT apply to manufacturing structures (such as furnace) - edit ManufacturingSpeedMultiplier for these.");
+
+        // actual value is received from the server by bootstrapper
+        public static double ClientCraftingSpeedMultiplier = 1.0;
+
+        public static event Action ClientCraftingSpeedMultiplierChanged;
+
+        public static ushort ClientCurrentMaxCraftingQueueEntriesCount
+            => SharedGetMaxCraftingQueueEntriesCount(Client.Characters.CurrentPlayerCharacter);
+
         public override string Name => "Crafting system";
+
+        public static void ClientDeleteQueueItem(CraftingQueueItem craftingQueueItem)
+        {
+            Instance.CallServer(_ => _.ServerRemote_CancelQueueItem(craftingQueueItem.LocalId));
+        }
+
+        public static void ClientMakeItemFirstInQueue(CraftingQueueItem craftingQueueItem)
+        {
+            Instance.CallServer(_ => _.ServerRemote_MakeFirstInQueue(craftingQueueItem.LocalId));
+        }
+
+        public static void ClientSetLearningPointsGainMultiplier(double rate)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (ClientCraftingSpeedMultiplier == rate)
+            {
+                return;
+            }
+
+            ClientCraftingSpeedMultiplier = rate;
+            Api.SafeInvoke(ClientCraftingSpeedMultiplierChanged);
+        }
+
+        public static async Task ClientStartCrafting(Recipe recipe, ushort countToCraft)
+        {
+            if (SharedValidateQueueIsNotFull(Client.Characters.CurrentPlayerCharacter,
+                                             recipe,
+                                             countToCraft,
+                                             maxCraftingQueueEntriesCount:
+                                             ClientCurrentMaxCraftingQueueEntriesCount))
+            {
+                await Instance.CallServer(_ => _.ServerRemote_CraftRecipe(recipe, countToCraft));
+            }
+        }
 
         public static IStaticWorldObject SharedFindNearbyStationOfTypes(
             IReadOnlyStationsList stationTypes,
             ICharacter character)
         {
-            using (var objectsInCharacterInteractionArea =
-                InteractionCheckerSystem.SharedGetTempObjectsInCharacterInteractionArea(character))
+            using var objectsInCharacterInteractionArea =
+                InteractionCheckerSystem.SharedGetTempObjectsInCharacterInteractionArea(character);
+            if (objectsInCharacterInteractionArea == null)
             {
-                if (objectsInCharacterInteractionArea == null)
-                {
-                    return null;
-                }
-
-                foreach (var testResult in objectsInCharacterInteractionArea)
-                {
-                    var worldObject = testResult.PhysicsBody.AssociatedWorldObject as IStaticWorldObject;
-                    if (worldObject == null
-                        || !stationTypes.Contains(worldObject.ProtoWorldObject))
-                    {
-                        continue;
-                    }
-
-                    if (!worldObject.ProtoWorldObject.SharedCanInteract(character, worldObject, writeToLog: false))
-                    {
-                        continue;
-                    }
-
-                    // found station with which player can interact
-                    return worldObject;
-                }
-
                 return null;
             }
-        }
 
-        public void ClientDeleteQueueItem(CraftingQueueItem craftingQueueItem)
-        {
-            this.CallServer(_ => _.ServerRemote_CancelQueueItem(craftingQueueItem.LocalId));
-        }
-
-        public async Task ClientStartCrafting(Recipe recipe, ushort countToCraft)
-        {
-            if (this.SharedValidateQueueIsNotFull(Client.Characters.CurrentPlayerCharacter, recipe, countToCraft))
+            foreach (var testResult in objectsInCharacterInteractionArea)
             {
-                await this.CallServer(_ => _.ServerRemote_CraftRecipe(recipe, countToCraft));
+                var worldObject = testResult.PhysicsBody.AssociatedWorldObject as IStaticWorldObject;
+                if (worldObject == null
+                    || !stationTypes.Contains(worldObject.ProtoWorldObject))
+                {
+                    continue;
+                }
+
+                if (!worldObject.ProtoWorldObject.SharedCanInteract(character, worldObject, writeToLog: false))
+                {
+                    continue;
+                }
+
+                // found station with which player can interact
+                return worldObject;
             }
+
+            return null;
+        }
+
+        public static ushort SharedGetMaxCraftingQueueEntriesCount(ICharacter character)
+        {
+            var maxCraftingQueueEntriesCount = (ushort)Math.Round(
+                character.SharedGetFinalStatValue(StatName.CraftingQueueMaxSlotsCount),
+                MidpointRounding.AwayFromZero);
+            return maxCraftingQueueEntriesCount;
         }
 
         public bool ServerRemote_CraftRecipe(Recipe recipe, ushort countToCraft)
@@ -102,11 +146,12 @@
                 }
             }
 
-          
+            var maxCraftingQueueEntriesCount = SharedGetMaxCraftingQueueEntriesCount(character);
+
             if (recipe.OutputItems.Items[0].ProtoItem.IsStackable)
             {
                 // stackable items
-                if (!this.SharedValidateQueueIsNotFull(character, recipe, countToCraft))
+                if (!SharedValidateQueueIsNotFull(character, recipe, countToCraft, maxCraftingQueueEntriesCount))
                 {
                     return false;
                 }
@@ -116,15 +161,20 @@
                                                       craftingQueue,
                                                       recipe,
                                                       countToCraft,
-                                                      maxQueueSize: MaxCraftingQueueEntriesCount);
+                                                      maxQueueSize: maxCraftingQueueEntriesCount);
             }
             else
             {
                 // non-stackable items
-                countToCraft = MathHelper.Clamp(countToCraft, min: 1, max: MaxCraftingQueueEntriesCount);
+                countToCraft = MathHelper.Clamp(countToCraft,
+                                                min: (ushort)1,
+                                                max: maxCraftingQueueEntriesCount);
                 for (var i = 0; i < countToCraft; i++)
                 {
-                    if (!this.SharedValidateQueueIsNotFull(character, recipe, countToCraft: 1))
+                    if (!SharedValidateQueueIsNotFull(character,
+                                                      recipe,
+                                                      countToCraft: 1,
+                                                      maxCraftingQueueEntriesCount))
                     {
                         return false;
                     }
@@ -134,14 +184,14 @@
                                                           craftingQueue,
                                                           recipe,
                                                           countToCraft: 1,
-                                                          maxQueueSize: MaxCraftingQueueEntriesCount);
+                                                          maxQueueSize: maxCraftingQueueEntriesCount);
                 }
             }
 
             return true;
         }
 
-        private void ClientShowNotificationCraftingQueueIsFull()
+        private static void ClientShowNotificationCraftingQueueIsFull()
         {
             NotificationSystem.ClientShowNotification(
                 NotificationCraftingQueueFull_Title,
@@ -149,30 +199,15 @@
                 color: NotificationColor.Bad);
         }
 
-        private void ServerRemote_CancelQueueItem(ushort localId)
-        {
-            var character = ServerRemoteContext.Character;
-            var characterServerState = PlayerCharacter.GetPrivateState(character);
-
-            var craftingQueue = characterServerState.CraftingQueue;
-            for (var index = 0; index < craftingQueue.QueueItems.Count; index++)
-            {
-                var item = craftingQueue.QueueItems[index];
-                if (item.LocalId == localId)
-                {
-                    CraftingMechanics.ServerCancelCraftingQueueItem(character, item);
-                    return;
-                }
-            }
-
-            Logger.Warning("Cannot find crafting queue entry with localId=" + localId);
-        }
-
-        private bool SharedValidateQueueIsNotFull(ICharacter character, Recipe recipe, ushort countToCraft)
+        private static bool SharedValidateQueueIsNotFull(
+            ICharacter character,
+            Recipe recipe,
+            ushort countToCraft,
+            ushort maxCraftingQueueEntriesCount)
         {
             var characterServerState = PlayerCharacter.GetPrivateState(character);
             var craftingQueueItems = characterServerState.CraftingQueue.QueueItems;
-            if (craftingQueueItems.Count + 1 <= MaxCraftingQueueEntriesCount)
+            if (craftingQueueItems.Count + 1 <= maxCraftingQueueEntriesCount)
             {
                 // allow to add the recipe
                 return true;
@@ -191,10 +226,94 @@
 
             if (IsClient)
             {
-                this.ClientShowNotificationCraftingQueueIsFull();
+                ClientShowNotificationCraftingQueueIsFull();
             }
 
             return false;
+        }
+
+        private void ServerRemote_CancelQueueItem(ushort localId)
+        {
+            var character = ServerRemoteContext.Character;
+            var characterServerState = PlayerCharacter.GetPrivateState(character);
+
+            var queue = characterServerState.CraftingQueue.QueueItems;
+            for (var index = 0; index < queue.Count; index++)
+            {
+                var item = queue[index];
+                if (item.LocalId == localId)
+                {
+                    CraftingMechanics.ServerCancelCraftingQueueItem(character, item);
+                    return;
+                }
+            }
+
+            Logger.Warning("Cannot find crafting queue entry with localId=" + localId);
+        }
+
+        private void ServerRemote_MakeFirstInQueue(ushort localId)
+        {
+            var character = ServerRemoteContext.Character;
+            var characterServerState = PlayerCharacter.GetPrivateState(character);
+
+            var queue = characterServerState.CraftingQueue.QueueItems;
+            for (var index = 0; index < queue.Count; index++)
+            {
+                var item = queue[index];
+                if (item.LocalId != localId)
+                {
+                    continue;
+                }
+
+                if (index == 0)
+                {
+                    // already first in queue
+                    return;
+                }
+
+                queue.RemoveAt(index);
+                queue.Insert(0, item);
+                characterServerState.CraftingQueue.SetDurationFromCurrentRecipe();
+                //Logger.Info("Reordered crafting queue entry to make the recipe first: " + item.Recipe, character);
+                return;
+            }
+
+            Logger.Warning("Cannot find crafting queue entry with localId=" + localId);
+        }
+
+        private double ServerRemote_RequestLearningPointsGainMultiplierRate()
+        {
+            return ServerCraftingSpeedMultiplier;
+        }
+
+        // This bootstrapper requests ServerCraftingSpeedMultiplier rate value from server.
+        private class Bootstrapper : BaseBootstrapper
+        {
+            public override void ClientInitialize()
+            {
+                Client.Characters.CurrentPlayerCharacterChanged += Refresh;
+                Refresh();
+
+                async void Refresh()
+                {
+                    if (Api.Client.Characters.CurrentPlayerCharacter == null)
+                    {
+                        return;
+                    }
+
+                    var rate = await Instance.CallServer(
+                                   _ => _.ServerRemote_RequestLearningPointsGainMultiplierRate());
+
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
+                    if (ClientCraftingSpeedMultiplier == rate)
+                    {
+                        return;
+                    }
+
+                    ClientCraftingSpeedMultiplier = rate;
+                    Api.SafeInvoke(ClientCraftingSpeedMultiplierChanged);
+                }
+            }
         }
     }
 }

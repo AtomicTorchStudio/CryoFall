@@ -7,7 +7,6 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
@@ -438,7 +437,7 @@
         private void ListViewSuggestionsListSelectionChangedHandler(object sender, SelectionChangedEventArgs e)
         {
             // unfortunately we must do in the next frame
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 0.05,
                 () =>
                 {

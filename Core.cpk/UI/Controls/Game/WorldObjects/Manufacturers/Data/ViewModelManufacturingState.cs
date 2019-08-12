@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -248,7 +247,9 @@
                     this.RecipesBrowserViewModel = new ViewModelCraftingMenu(
                         recipes,
                         recipesCountTotal,
-                        validateItemsAvailabilityInPlayerInventory: false);
+                        validateItemsAvailabilityInPlayerInventory: false,
+                        customCallbackOnRecipeSelect: this.ExecuteCommandSelectRecipeFromBrowser);
+
                     if (this.selectedRecipe != null)
                     {
                         this.RecipesBrowserViewModel.SelectedRecipe =
@@ -410,8 +411,8 @@
             }
 
             this.BestMatchingRecipe = ManufacturingMechanic.SharedMatchBestRecipe(this.ManufacturingState,
-                                                                                this.ManufacturingConfig,
-                                                                                this.worldObjectManufacturer);
+                                                                                  this.ManufacturingConfig,
+                                                                                  this.worldObjectManufacturer);
         }
 
         private void RefreshCraftingProgressPercents()

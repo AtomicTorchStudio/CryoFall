@@ -6,7 +6,6 @@
     using System.Text;
     using System.Windows;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
@@ -58,7 +57,7 @@
         }
 
         public static ServerViewModelsProvider Instance
-            => instance ?? (instance = new ServerViewModelsProvider());
+            => instance ??= new ServerViewModelsProvider();
 
         public bool IsEnabled
         {
@@ -231,6 +230,7 @@
             viewModel.ModsOnServer = serverInfo.ModsOnServer;
             viewModel.IsPvP = serverInfo.ScriptingTags.Contains("PvP", StringComparer.Ordinal);
             viewModel.IsPvE = serverInfo.ScriptingTags.Contains("PvE", StringComparer.Ordinal);
+            viewModel.WipedDate = serverInfo.CreationDateUtc.ToLocalTime();
 
             viewModel.IsInfoReceived = true;
         }
@@ -284,7 +284,8 @@
             var serverInfo = ((ViewModelServerInfoListEntry)obj).ViewModelServerInfo;
             if (!serverInfo.IsInfoReceived)
             {
-                serverInfo.RefreshAndDisplayPleaseWaitDialog();
+                serverInfo.RefreshAndDisplayPleaseWaitDialog(
+                    onInfoReceivedOrCannotReach: () => this.ExecuteCommandDisplayModsInfo(obj));
                 return;
             }
 
@@ -397,8 +398,8 @@
         private void ScheduleAutoRefresh(ViewModelServerInfo viewModelServer)
         {
             var autoRefreshRequestId = ++viewModelServer.AutoRefreshRequestId;
-            ClientComponentTimersManager.AddAction(
-                delaySeconds: viewModelServer.IsNotAccessible
+            ClientTimersSystem.AddAction(
+                delaySeconds: viewModelServer.IsInaccessible
                                   ? 6
                                   : 15,
                 () =>
@@ -410,7 +411,7 @@
 
                     //Api.Logger.Info("Refreshing game server info after delay: " + viewModelServer.Address);
                     this.ExecuteCommandRefresh(viewModelServer,
-                                               forceReset: viewModelServer.IsNotAccessible);
+                                               forceReset: viewModelServer.IsInaccessible);
                 });
         }
 
@@ -428,7 +429,7 @@
             viewModelServer.LoadingDisplayVisibility = Visibility.Collapsed;
             viewModelServer.Version = AppVersion.Zero;
             viewModelServer.IsCompatible = null;
-            viewModelServer.IsNotAccessible = true;
+            viewModelServer.IsInaccessible = true;
 
             this.ScheduleAutoRefresh(viewModelServer);
         }
@@ -444,7 +445,7 @@
                 {
                     viewModelServer.Reset();
                     viewModelServer.Title = "[" + InfoServerOfflineTitle + "]";
-                    viewModelServer.IsNotAccessible = true;
+                    viewModelServer.IsInaccessible = true;
                 }
 
                 return;

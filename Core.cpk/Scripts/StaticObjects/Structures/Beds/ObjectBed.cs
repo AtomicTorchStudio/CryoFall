@@ -20,7 +20,7 @@
 
         public override double RespawnCooldownDurationSeconds => 2 * 60;
 
-        public override float StructurePointsMax => 1200;
+        public override float StructurePointsMax => 500;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -55,22 +55,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (2.0, 0.6),
-                    offset: (0.0, 0.1),
-                    group: CollisionGroups.Default)
-                .AddShapeRectangle(
-                    size: (1.8, 0.9),
-                    offset: (0.1, 0.1),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (1.8, 0.9),
-                    offset: (0.1, 0.1),
-                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(
-                    size: (1.8, 0.9),
-                    offset: (0.1, 0.1),
-                    group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (2.0, 0.6),  offset: (0.0, 0.1))
+                .AddShapeRectangle(size: (1.8, 0.9),  offset: (0.1, 0.1),  group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (1.8, 0.15), offset: (0.1, 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (1.8, 0.9),  offset: (0.1, 0.1),  group: CollisionGroups.ClickArea);
         }
     }
 }

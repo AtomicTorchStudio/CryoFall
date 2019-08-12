@@ -11,7 +11,8 @@
             config.Effects
                   .AddRecipe<RecipeGlass>()
                   .AddRecipe<RecipeBottle>()
-                  .AddRecipe<RecipeFillBottleWithWaterbulb>();
+                  .AddRecipe<RecipeBottleWaterFromWaterbulb>()
+                  .AddRecipe<RecipeBreakBottle>();
 
             config.SetRequiredNode<TechNodeSmelting>();
         }

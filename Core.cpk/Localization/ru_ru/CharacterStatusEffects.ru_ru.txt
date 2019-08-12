@@ -16,17 +16,23 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
 Исцеление
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
+Вы поели очень полезную пищу, полную витаминов, микроэлементов и других важных питательных веществ. Вы чувствуете себя отлично.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Name:
+Полезная пища
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
+Вы недавно поели сытную еду. Все задачи выполняются легче.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
+Сытная пища
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Вы находитесь под действием стимулятора, который временно делает вас сильнее. Вам легче выполнять действия, требующие силы.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Повышенная сила
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Description:
-Вы поели хорошую еду. И чувствуете себя превосходно. Все задачи выполняются легче.
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
-Хорошая пища
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Вы истекаете кровью и будете постепенно терять здоровье, если не получите лечения. Слабые кровотечения проходят сами собой, а сильные могут потребовать перевязки или кровоостанавливающих лекарств.
@@ -119,7 +125,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
 Токсины
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
-Вы чувствуете слабость. Вам лучше избегать угрожающих здоровью ситуаций, таких как радиация.
+Вы чувствуете слабость. Выполнять задачи становится намного сложнее. Вам нужно какое-то время, чтобы восстановить прежнее самочувствие. Избегайте опасных ситуаций.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
 Слабость

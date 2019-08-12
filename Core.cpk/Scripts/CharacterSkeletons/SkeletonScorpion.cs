@@ -10,10 +10,10 @@
         public override double DefaultMoveSpeed => 1.5;
 
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("Scorpion/ScorpionBack");
+            = new SkeletonResource("Scorpion/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Scorpion/ScorpionFront");
+            = new SkeletonResource("Scorpion/Front");
 
         public override double WorldScale => 0.4;
 
@@ -27,22 +27,17 @@
 
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
-            physicsBody.AddShapeCircle(
-                           radius: 0.35,
-                           center: (0 - 0.125, 0.1),
-                           group: CollisionGroups.Default)
-                       .AddShapeCircle(
-                           radius: 0.35,
-                           center: (0 + 0.125, 0.1),
-                           group: CollisionGroups.Default)
-                       .AddShapeCircle(
-                           radius: 0.7,
-                           center: (0, 0.15),
-                           group: CollisionGroups.HitboxMelee)
-                       .AddShapeCircle(
-                           radius: 0.7,
-                           center: (0, 0.15),
-                           group: CollisionGroups.HitboxRanged);
+            physicsBody
+                .AddShapeCircle(radius: 0.35,
+                                center: (0 - 0.125, 0.1))
+                .AddShapeCircle(radius: 0.35,
+                                center: (0 + 0.125, 0.1))
+                .AddShapeCircle(radius: 0.7,
+                                center: (0, 0.15),
+                                group: CollisionGroups.HitboxMelee)
+                .AddShapeCircle(radius: 0.7,
+                                center: (0, 0.15),
+                                group: CollisionGroups.HitboxRanged);
         }
     }
 }

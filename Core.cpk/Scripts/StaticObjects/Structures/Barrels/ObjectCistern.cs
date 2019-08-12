@@ -24,7 +24,7 @@
         protected override void ClientSetupLiquidTypeSpriteRenderer(IComponentSpriteRenderer renderer)
         {
             var offsetY = 1.15;
-            renderer.PositionOffset = (0.975, y: offsetY);
+            renderer.PositionOffset = (1.02, y: offsetY);
             renderer.DrawOrderOffsetY = -offsetY;
         }
 
@@ -61,10 +61,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (2.0, 1.0), offset: (0.0, 0.1), group: CollisionGroups.Default)
-                .AddShapeRectangle(size: (1.6, 1.5), offset: (0.2, 0.2), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (1.6, 1.5), offset: (0.2, 0.2), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (1.6, 1.5), offset: (0.2, 0.2), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (2.0, 1.0),  offset: (0.0, 0.1))
+                .AddShapeRectangle(size: (1.6, 1.5),  offset: (0.2, 0.2),  group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (1.4, 0.45), offset: (0.3, 0.95), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (1.6, 1.5),  offset: (0.2, 0.2),  group: CollisionGroups.ClickArea);
         }
     }
 }

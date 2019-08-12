@@ -121,33 +121,31 @@
                 var faceFolderName = allFacesFolders[index];
                 var faceFolderPath = this.facesFolderPath + faceFolderName;
 
-                using (var availableFiles = sharedApi.GetFilePathsInFolder(
+                using var availableFiles = sharedApi.GetFilePathsInFolder(
                     faceFolderPath,
                     includeSubfolders: false,
                     stripFolderPathFromFilePaths: true,
-                    withoutExtensions: true))
+                    withoutExtensions: true);
+                // TODO: rewrite to avoid LINQ
+                var topIds = availableFiles.Where(_ => _.StartsWith("FrontTop"))
+                                           .Select(_ => _.Substring("FrontTop".Length))
+                                           .ToArray();
+
+                var bottomIds = availableFiles.Where(_ => _.StartsWith("FrontBottom"))
+                                              .Select(_ => _.Substring("FrontBottom".Length))
+                                              .ToArray();
+
+                if (topIds.Length == 0)
                 {
-                    // TODO: rewrite to avoid LINQ
-                    var topIds = availableFiles.Where(_ => _.StartsWith("FrontTop"))
-                                               .Select(_ => _.Substring("FrontTop".Length))
-                                               .ToArray();
-
-                    var bottomIds = availableFiles.Where(_ => _.StartsWith("FrontBottom"))
-                                                  .Select(_ => _.Substring("FrontBottom".Length))
-                                                  .ToArray();
-
-                    if (topIds.Length == 0)
-                    {
-                        throw new Exception("There are must be at least one top face part at " + faceFolderPath);
-                    }
-
-                    if (bottomIds.Length == 0)
-                    {
-                        throw new Exception("There are must be at least one bottom face path " + faceFolderPath);
-                    }
-
-                    allFacePresets[faceFolderName] = new FaceFolder(faceFolderName, (ushort)index, topIds, bottomIds);
+                    throw new Exception("There are must be at least one top face part at " + faceFolderPath);
                 }
+
+                if (bottomIds.Length == 0)
+                {
+                    throw new Exception("There are must be at least one bottom face path " + faceFolderPath);
+                }
+
+                allFacePresets[faceFolderName] = new FaceFolder(faceFolderName, (ushort)index, topIds, bottomIds);
             }
 
             this.allFaceFolders = allFacePresets;

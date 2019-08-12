@@ -14,7 +14,8 @@
             InputItems inputItems,
             OutputItems outputItems)
         {
-            stations.Add<ObjectFurnace>();
+            stations.Add<ObjectFurnace>()
+                    .Add<ObjectFurnaceElectric>();
 
             duration = CraftingDuration.Medium;
 

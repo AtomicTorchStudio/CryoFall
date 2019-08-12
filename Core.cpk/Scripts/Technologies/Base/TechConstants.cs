@@ -1,6 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Technologies
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     [SuppressMessage("ReSharper", "RedundantExplicitArraySize")]
     public static class TechConstants
@@ -18,7 +20,7 @@
         /// </summary>
         public const double SkillLearningPointMultiplierAtMaximumLevel = 0.25;
 
-        public static readonly double LearningPointsGainMultiplier
+        public static readonly double ServerLearningPointsGainMultiplier
             = ServerRates.Get(
                 "LearningPointsGainMultiplier",
                 defaultValue: 1.0,
@@ -37,7 +39,7 @@
         // Example: with 0.01 conversion rate 100 EXP will result in 1 LP gained.
         // However, it's affected by LearningPointsGainMultiplier which is configured via server rates config.
         public static readonly double SkillExperienceToLearningPointsConversionMultiplier
-            = 0.01 * LearningPointsGainMultiplier;
+            = 0.01 * ServerLearningPointsGainMultiplier;
 
         public static readonly double[] TierGroupPriceMultiplier =
             new double[(byte)MaxTier]
@@ -64,5 +66,21 @@
                 // tier 4
                 10.0
             };
+
+        public static event Action ClientLearningPointsGainMultiplierChanged;
+
+        public static double ClientLearningPointsGainMultiplier { get; private set; }
+
+        public static void ClientSetLearningPointsGainMultiplier(double rate)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (ClientLearningPointsGainMultiplier == rate)
+            {
+                return;
+            }
+
+            ClientLearningPointsGainMultiplier = rate;
+            Api.SafeInvoke(ClientLearningPointsGainMultiplierChanged);
+        }
     }
 }

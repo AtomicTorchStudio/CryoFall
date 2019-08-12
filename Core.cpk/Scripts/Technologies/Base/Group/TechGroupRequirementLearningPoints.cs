@@ -18,19 +18,19 @@
             return new ViewModelTechGroupRequirementLearningPoints(this);
         }
 
-        protected override bool IsSatisfied(CharacterContext context, out string error)
+        protected override bool IsSatisfied(CharacterContext context, out string errorMessage)
         {
             var availableLearningPoints = context.Technologies.LearningPoints;
             var isSatisfied = availableLearningPoints >= this.LearningPoints;
             if (isSatisfied)
             {
-                error = null;
+                errorMessage = null;
                 return true;
             }
 
-            error = string.Format(DescriptionFormat,
-                                  this.LearningPoints,
-                                  availableLearningPoints);
+            errorMessage = string.Format(DescriptionFormat,
+                                         this.LearningPoints,
+                                         availableLearningPoints);
             return false;
         }
     }

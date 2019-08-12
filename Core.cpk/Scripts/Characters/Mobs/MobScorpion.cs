@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 {
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
     using AtomicTorch.CBND.CoreMod.Objects;
@@ -8,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.GameApi.Data.World;
 
     public class MobScorpion : ProtoCharacterMob, IProtoObjectPsiSource
     {
@@ -25,9 +27,11 @@
 
         public double PsiRadiusMin => 3;
 
-        public override double StatDefaultHealthMax => 200; // not very high hp because it has crazy armor
+        public override double StatDefaultHealthMax => 240; // not very high hp because it has crazy armor
 
         public override double StatMoveSpeed => 1.5;
+
+        public bool ServerIsPsiSourceActive(IWorldObject worldObject) => true;
 
         protected override void FillDefaultEffects(Effects effects)
         {
@@ -39,6 +43,7 @@
             effects.AddValue(this, StatName.DefenseCold,       0.4);
             effects.AddValue(this, StatName.DefenseChemical,   0.8);
             effects.AddValue(this, StatName.DefenseElectrical, 0.4);
+            effects.AddValue(this, StatName.DefensePsi,        1.0);
         }
 
         protected override void PrepareProtoCharacterMob(
@@ -50,16 +55,18 @@
 
             // primary loot
             lootDroplist
-                .Add<ItemBones>(count: 4,     countRandom: 2)
-                .Add<ItemAnimalFat>(count: 4, countRandom: 2)
-                .Add<ItemToxin>(count: 2,     countRandom: 2);
+                .Add<ItemInsectMeatRaw>(count: 1, countRandom: 1)
+                .Add<ItemAnimalFat>(count: 3, countRandom: 2)
+                .Add<ItemToxin>(count: 2,     countRandom: 2)
+                .Add<ItemSlime>(count: 2,     countRandom: 2);
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,
                              nestedList: new DropItemsList(outputs: 2)
-                                         .Add<ItemBones>(count: 1,     countRandom: 1)
+                                         .Add<ItemInsectMeatRaw>(count: 1, countRandom: 1)
                                          .Add<ItemAnimalFat>(count: 1, countRandom: 1)
-                                         .Add<ItemToxin>(count: 1,     countRandom: 1));
+                                         .Add<ItemToxin>(count: 1,     countRandom: 1)
+                                         .Add<ItemSlime>(count: 1,     countRandom: 1));
         }
 
         protected override void ServerInitializeCharacterMob(ServerInitializeData data)

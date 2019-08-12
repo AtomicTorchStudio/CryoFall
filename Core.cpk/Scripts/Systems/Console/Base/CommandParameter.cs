@@ -30,7 +30,7 @@
         public bool IsOptional => this.parameterInfo.ParameterInfo.IsOptional
                                   || this.hasCurrentCharacterAttribute;
 
-        public string Name => this.name ?? (this.name = this.CreateName());
+        public string Name => this.name ??= this.CreateName();
 
         public bool GetDefaultValue(ICharacter byCharacter, out object value)
         {

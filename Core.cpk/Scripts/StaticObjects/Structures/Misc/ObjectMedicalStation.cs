@@ -39,7 +39,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 500;
+        public override float StructurePointsMax => 1000;
 
         public static void ClientInstall(IItem itemToInstall, byte slotId)
         {
@@ -58,12 +58,10 @@
 
         void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         protected override void ClientInteractStart(ClientObjectData data)
@@ -99,19 +97,19 @@
         {
             category = GetCategory<StructureCategoryOther>();
 
-            // TODO: set proper requirements
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 25);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 25);
+            build.StageDurationSeconds = BuildDuration.Medium;
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 10);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 10);
             build.AddStageRequiredItem<ItemIngotLithium>(count: 5);
             build.AddStageRequiredItem<ItemPlastic>(count: 5);
             build.AddStageRequiredItem<ItemComponentsHighTech>(count: 2);
 
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 10);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 10);
+            repair.StageDurationSeconds = BuildDuration.Medium;
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 5);
+            repair.AddStageRequiredItem<ItemPlastic>(count: 2);
         }
 
         protected override void PrepareProtoStaticWorldObject()
@@ -124,16 +122,16 @@
             CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((2.6, 1.9), (0.2, 0.1))
-                .AddShapeRectangle((2.6, 2.1), (0.2, 0.1), CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((2.6, 2.3), (0.2, 0.1), CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((2.6, 2.5), (0.2, 0.1), CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (2.6, 1.9), offset: (0.2, 0.1))
+                .AddShapeRectangle(size: (2.6, 2.1), offset: (0.2, 0.1),   group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (2.5, 1.2), offset: (0.25, 0.95), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (2.6, 2.5), offset: (0.2, 0.1),   group: CollisionGroups.ClickArea);
         }
 
         private void ServerRemote_Install(IItem itemToInstall, byte slotId)
         {
             var character = ServerRemoteContext.Character;
-            var worldObject = InteractionCheckerSystem.GetCurrentInteraction(character);
+            var worldObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character);
             this.VerifyGameObject((IStaticWorldObject)worldObject);
 
             var containerEquipment = character.SharedGetPlayerContainerEquipment();
@@ -222,7 +220,7 @@
         private void ServerRemote_Uninstall(byte slotId)
         {
             var character = ServerRemoteContext.Character;
-            var worldObject = InteractionCheckerSystem.GetCurrentInteraction(character);
+            var worldObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character);
             this.VerifyGameObject((IStaticWorldObject)worldObject);
 
             var itemToUninstall = character.SharedGetPlayerContainerEquipment()

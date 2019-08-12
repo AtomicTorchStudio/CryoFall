@@ -106,45 +106,41 @@
                                     ? SurfaceFormat.Color
                                     : SurfaceFormat.SingleColor;
 
-            using (var renderTarget1 = Rendering.GetTempRenderTexture(
+            using var renderTarget1 = Rendering.GetTempRenderTexture(
                 viewportSize.X,
                 viewportSize.Y,
-                surfaceFormat))
+                surfaceFormat);
+            this.camera.RenderTarget = renderTarget1;
+            this.camera.DrawImmediate();
+            this.camera.RenderTarget = null;
+
+            if (ClientAmbientOcclusion.IsDisplayMask
+                && !ClientAmbientOcclusion.IsDisplayMaskWithBlur)
             {
-                this.camera.RenderTarget = renderTarget1;
-                this.camera.DrawImmediate();
-                this.camera.RenderTarget = null;
-
-                if (ClientAmbientOcclusion.IsDisplayMask
-                    && !ClientAmbientOcclusion.IsDisplayMaskWithBlur)
-                {
-                    // draw mask without blur into default frame buffer
-                    graphicsDevice.Blit(renderTarget1, blendState: BlendMode.AlphaBlendNonPremultiplied);
-                    return;
-                }
-
-                var zoomFactor = this.camera.Zoom;
-                this.blurPostEffect.BlurAmountHorizontal = ClientAmbientOcclusion.BlurDistanceHorizontal * zoomFactor;
-                this.blurPostEffect.BlurAmountVertical = ClientAmbientOcclusion.BlurDistanceVertical * zoomFactor;
-
-                using (var renderTarget2 = Rendering.GetTempRenderTexture(
-                    renderTarget1.Width,
-                    renderTarget1.Height,
-                    format: surfaceFormat))
-                {
-                    // blit renderTexture to tempDestination with Blur shader
-                    this.blurPostEffect.Render(renderTarget1, renderTarget2);
-
-                    // restore framebuffer render target and blit with ComposeShader
-                    graphicsDevice.SetRenderTarget(null);
-
-                    // draw mask with blur into default frame buffer
-                    graphicsDevice.Blit(
-                        renderTarget2,
-                        BlendMode.AlphaBlendNonPremultiplied,
-                        effectInstance: ClientAmbientOcclusion.IsDisplayMask ? null : this.effectInstanceCompose);
-                }
+                // draw mask without blur into default frame buffer
+                graphicsDevice.Blit(renderTarget1, blendState: BlendMode.AlphaBlendNonPremultiplied);
+                return;
             }
+
+            var zoomFactor = this.camera.Zoom;
+            this.blurPostEffect.BlurAmountHorizontal = ClientAmbientOcclusion.BlurDistanceHorizontal * zoomFactor;
+            this.blurPostEffect.BlurAmountVertical = ClientAmbientOcclusion.BlurDistanceVertical * zoomFactor;
+
+            using var renderTarget2 = Rendering.GetTempRenderTexture(
+                renderTarget1.Width,
+                renderTarget1.Height,
+                format: surfaceFormat);
+            // blit renderTexture to tempDestination with Blur shader
+            this.blurPostEffect.Render(renderTarget1, renderTarget2);
+
+            // restore framebuffer render target and blit with ComposeShader
+            graphicsDevice.SetRenderTarget(null);
+
+            // draw mask with blur into default frame buffer
+            graphicsDevice.Blit(
+                renderTarget2,
+                BlendMode.AlphaBlendNonPremultiplied,
+                effectInstance: ClientAmbientOcclusion.IsDisplayMask ? null : this.effectInstanceCompose);
         }
     }
 }

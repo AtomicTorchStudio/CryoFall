@@ -25,8 +25,7 @@
 
         public static void CreateCliffsRenderersIfNeeded(
             Tile tile,
-            IClientSceneObject sceneObject,
-            TextureAtlasResource cliffAtlas)
+            IClientSceneObject sceneObject)
         {
             if (!tile.IsSlope
                 && !tile.IsCliff)
@@ -34,31 +33,42 @@
                 return;
             }
 
+            var neighborTileDown = tile.NeighborTileDown;
+            var neighborTileUp = tile.NeighborTileUp;
+
             if (tile.IsSlope)
             {
-                var isSlopeUp = tile.NeighborTileUp.Height > tile.Height;
+                var isSlopeUp = neighborTileUp.Height > tile.Height;
                 if (isSlopeUp)
                 {
                     if (!tile.NeighborTileRight.IsSlope)
                     {
-                        CreateCliffRenderer(sceneObject, CliffTextureRegion.SlopeBottomRight, cliffAtlas);
+                        CreateCliffRenderer(sceneObject,
+                                            CliffTextureRegion.SlopeBottomRight,
+                                            GetCliffAtlas(neighborTileUp));
                     }
 
                     if (!tile.NeighborTileLeft.IsSlope)
                     {
-                        CreateCliffRenderer(sceneObject, CliffTextureRegion.SlopeBottomLeft, cliffAtlas);
+                        CreateCliffRenderer(sceneObject,
+                                            CliffTextureRegion.SlopeBottomLeft,
+                                            GetCliffAtlas(neighborTileUp));
                     }
                 }
                 else // if slope down
                 {
                     if (!tile.NeighborTileRight.IsSlope)
                     {
-                        CreateCliffRenderer(sceneObject, CliffTextureRegion.SlopeTopRight, cliffAtlas);
+                        CreateCliffRenderer(sceneObject,
+                                            CliffTextureRegion.SlopeTopRight,
+                                            GetCliffAtlas(neighborTileDown));
                     }
 
                     if (!tile.NeighborTileLeft.IsSlope)
                     {
-                        CreateCliffRenderer(sceneObject, CliffTextureRegion.SlopeTopLeft, cliffAtlas);
+                        CreateCliffRenderer(sceneObject,
+                                            CliffTextureRegion.SlopeTopLeft,
+                                            GetCliffAtlas(neighborTileDown));
                     }
                 }
 
@@ -78,7 +88,9 @@
                 && right
                 && down)
             {
-                CreateCliffRenderer(sceneObject, CliffTextureRegion.FourSidesInnerCorner, cliffAtlas);
+                CreateCliffRenderer(sceneObject,
+                                    CliffTextureRegion.FourSidesInnerCorner,
+                                    GetCliffAtlas(neighborTileDown));
                 return;
             }
 
@@ -93,19 +105,27 @@
                 if (!left
                     && !right)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.TopCenter, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.TopCenter,
+                                        GetCliffAtlas(neighborTileDown));
                 }
                 else if (left && right)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.TopLeftRightInnerCorner, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.TopLeftRightInnerCorner,
+                                        GetCliffAtlas(neighborTileDown));
                 }
                 else if (right && !up)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.TopLeftInnerCorner, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.TopLeftInnerCorner,
+                                        GetCliffAtlas(neighborTileDown));
                 }
                 else if (left && !up)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.TopRightInnerCorner, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.TopRightInnerCorner,
+                                        GetCliffAtlas(neighborTileDown));
                 }
             }
 
@@ -114,19 +134,27 @@
                 if (!left
                     && !right)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.BottomCenter, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.BottomCenter,
+                                        GetCliffAtlas(neighborTileUp));
                 }
                 else if (left && right)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.BottomLeftRightInnerCorner, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.BottomLeftRightInnerCorner,
+                                        GetCliffAtlas(neighborTileUp));
                 }
                 else if (right && !down)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.BottomLeftInnerCorner, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.BottomLeftInnerCorner,
+                                        GetCliffAtlas(neighborTileUp));
                 }
                 else if (left && !down)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.BottomRightInnerCorner, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.BottomRightInnerCorner,
+                                        GetCliffAtlas(neighborTileUp));
                 }
             }
 
@@ -134,11 +162,15 @@
             {
                 if (left)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.TopBottomRightInnerCorner, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.TopBottomRightInnerCorner,
+                                        GetCliffAtlas(neighborTileDown));
                 }
                 else if (right)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.TopBottomLeftInnerCorner, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.TopBottomLeftInnerCorner,
+                                        GetCliffAtlas(neighborTileDown));
                 }
             }
 
@@ -146,12 +178,16 @@
             {
                 if (left && !up)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.MiddleTiledRight, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.MiddleTiledRight,
+                                        GetCliffAtlas(tile.NeighborTileLeft));
                 }
 
                 if (right && !up)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.MiddleTiledLeft, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.MiddleTiledLeft,
+                                        GetCliffAtlas(tile.NeighborTileRight));
                 }
 
                 if (downLeft
@@ -159,16 +195,24 @@
                     && !left
                     && !right)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.TopRightCorner, cliffAtlas);
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.TopLeftCorner,  cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.TopRightCorner,
+                                        GetCliffAtlas(tile.NeighborTileUpLeft));
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.TopLeftCorner,
+                                        GetCliffAtlas(tile.NeighborTileUpRight));
                 }
                 else if (downLeft && !left)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.TopRightCorner, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.TopRightCorner,
+                                        GetCliffAtlas(tile.NeighborTileDownLeft));
                 }
                 else if (downRight && !right)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.TopLeftCorner, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.TopLeftCorner,
+                                        GetCliffAtlas(tile.NeighborTileDownRight));
                 }
             }
 
@@ -179,19 +223,30 @@
                     && !left
                     && !right)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.BottomRight, cliffAtlas);
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.BottomLeft,  cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.BottomRight,
+                                        GetCliffAtlas(tile.NeighborTileUpLeft));
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.BottomLeft,
+                                        GetCliffAtlas(tile.NeighborTileUpRight));
                 }
                 else if (upLeft && !left)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.BottomRight, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.BottomRight,
+                                        GetCliffAtlas(tile.NeighborTileUpLeft));
                 }
                 else if (upRight && !right)
                 {
-                    CreateCliffRenderer(sceneObject, CliffTextureRegion.BottomLeft, cliffAtlas);
+                    CreateCliffRenderer(sceneObject,
+                                        CliffTextureRegion.BottomLeft,
+                                        GetCliffAtlas(tile.NeighborTileUpRight));
                 }
             }
         }
+
+        private static TextureAtlasResource GetCliffAtlas(Tile tile) 
+            => ((ProtoTile)tile.ProtoTile).CliffAtlas;
 
         private static bool IsHigherTile(Tile sourceTile, byte height, int offsetX, int offsetY)
         {

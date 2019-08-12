@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CraftRecipes
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems;
@@ -8,8 +9,6 @@
 
     public class RecipeCampFuelFromFat : Recipe.RecipeForManufacturing
     {
-        public override string Name => "Camp fuel (animal fat)";
-
         protected override void SetupRecipe(
             StationsList stations,
             out TimeSpan duration,
@@ -24,6 +23,11 @@
             inputItems.Add<ItemAnimalFat>(count: 2);
 
             outputItems.Add<ItemCampFuel>();
+
+            this.Icon = ClientItemIconHelper.CreateComposedIcon(
+                name: this.Id + "Icon",
+                primaryIcon: GetItem<ItemCampFuel>().Icon,
+                secondaryIcon: GetItem<ItemAnimalFat>().Icon);
         }
     }
 }

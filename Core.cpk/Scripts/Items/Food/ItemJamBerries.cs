@@ -8,12 +8,10 @@
 
         public override float FoodRestore => 12;
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.LongLasting;
 
         public override string Name => "Berry jam";
 
         public override ushort OrganicValue => 15;
-
-        public override float StaminaRestore => 100;
     }
 }

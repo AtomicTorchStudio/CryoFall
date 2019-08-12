@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
@@ -86,8 +85,7 @@
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
         {
-            return PveSystem.SharedValidateInteractionIsNotForbidden(character, worldObject, writeToLog)
-                   && base.SharedCanInteract(character, worldObject, writeToLog)
+            return base.SharedCanInteract(character, worldObject, writeToLog)
                    && (CreativeModeSystem.SharedIsInCreativeMode(character)
                        || WorldObjectAccessModeSystem.SharedHasAccess(character, worldObject, writeToLog));
         }
@@ -176,21 +174,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (1, 0.475),
-                    offset: (0, 0.4))
-                .AddShapeRectangle(
-                    size: (1, 0.75),
-                    offset: (0, 0.4),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (1, 0.75),
-                    offset: (0, 0.4),
-                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(
-                    size: (1, 0.75),
-                    offset: (0, 0.4),
-                    group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (1, 0.475), offset: (0, 0.4))
+                .AddShapeRectangle(size: (1, 0.75),  offset: (0, 0.4), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (1, 0.2),   offset: (0, 1.1), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (1, 0.75),  offset: (0, 0.4), group: CollisionGroups.ClickArea);
         }
     }
 

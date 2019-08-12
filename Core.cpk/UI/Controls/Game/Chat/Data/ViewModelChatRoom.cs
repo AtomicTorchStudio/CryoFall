@@ -9,6 +9,10 @@
 
     public class ViewModelChatRoom : BaseViewModel
     {
+        public const string DialogClosePrivateChat_Format =
+            @"Do you want to close the private chat with {0}?
+              [br]The chat history will be saved and you can reopen the chat later.";
+
         public readonly BaseChatRoom ChatRoom;
 
         private readonly Action callbackNeedTabSort;
@@ -144,8 +148,19 @@
 
         private void ExecuteCommandClosePrivateChat()
         {
-            ChatSystem.ClientClosePrivateChat((ChatRoomPrivate)this.ChatRoom);
-            this.callbackPrivateChatRoomClosed?.Invoke(this);
+            var chatRoom = (ChatRoomPrivate)this.ChatRoom;
+            DialogWindow.ShowDialog(
+                title: CoreStrings.QuestionAreYouSure,
+                text: string.Format(DialogClosePrivateChat_Format,
+                                    chatRoom.ClientGetTitle().TrimStart('@')),
+                okText: CoreStrings.Yes,
+                okAction: () =>
+                          {
+                              ChatSystem.ClientClosePrivateChat(chatRoom);
+                              this.callbackPrivateChatRoomClosed?.Invoke(this);
+                          },
+                cancelAction: () => { },
+                focusOnCancelButton: true);
         }
 
         private void RefreshTabVisibility()

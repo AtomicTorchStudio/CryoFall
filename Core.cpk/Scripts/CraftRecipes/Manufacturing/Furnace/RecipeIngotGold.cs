@@ -14,13 +14,14 @@
             InputItems inputItems,
             OutputItems outputItems)
         {
-            stations.Add<ObjectFurnace>();
+            stations.Add<ObjectFurnace>()
+                    .Add<ObjectFurnaceElectric>();
 
             duration = CraftingDuration.VeryLong;
 
-            inputItems.Add<ItemGoldNugget>(count: 5);
-            inputItems.Add<ItemSalt>(count: 50);
-            inputItems.Add<ItemPotassiumNitrate>(count: 5);
+            inputItems.Add<ItemGoldNugget>(count: 10);
+            inputItems.Add<ItemSalt>(count: 25);
+            inputItems.Add<ItemPotassiumNitrate>(count: 10);
 
             outputItems.Add<ItemIngotGold>();
         }

@@ -83,6 +83,17 @@
         // to unblock (un-mute) chat messages from the selected player
         public const string Chat_MessageMenu_Unblock = "Unblock";
 
+        public const string ConstructionMetaInfo_Decoration =
+            "This structure is purely decorative.";
+
+        public const string ConstructionMetaInfo_ElectricityPowerConsumer =
+            "This structure requires electricity to operate.";
+
+        public const string ConstructionMetaInfo_ElectricityPowerProducer =
+            "This structure produces electricity.";
+
+        public const string ConstructionMetaInfo_ElectricityPowerStorage = "This structure stores electricity.";
+
         // used like in "copy-paste"
         public const string Copy = "Copy";
 
@@ -95,6 +106,13 @@
         // Title for the active crafting queue control. Should not be much wider than the English version!
         public const string CraftingQueue_Title = "CRAFTING";
 
+        public const string CraftingQueueItemControl_ShortcutsDescription =
+            @"[b]LMB click[/b]
+              [br]Make this recipe first in the queue.
+              [br]
+              [br][b]RMB click[/b]
+              [br]Cancel this recipe.";
+
         // button to start crafting of the selected recipe
         public const string CraftingRecipeDetails_ButtonStartCraft = "CRAFT";
 
@@ -104,8 +122,6 @@
               You can unlock more recipes in the technologies menu.";
 
         public const string CraftingRecipesList_TitleRecipesUnlocked = "Recipes unlocked";
-
-        public const string CryoFallDevelopmentRoadmap = "CryoFall Development Roadmap";
 
         public const string Defense_Format_Chemical = "Chemical protection: {0}";
 
@@ -133,6 +149,14 @@
         public const string DepositCapacityStats_Title = "Deposit capacity";
 
         public const string EnergyUnitAbbreviation = "EU";
+
+        public const string EnergyUnitPerSecondAbbreviation = "EU/s";
+
+        public const string Extras_DiscordTooltip = "Official CryoFall Discord server (English only)";
+
+        public const string Extras_PatchnotesTooltip = "All CryoFall updates patchnotes (English only)";
+
+        public const string Extras_RoadmapTooltip = "CryoFall development roadmap (English only)";
 
         public const string FarmPlantTooltip_NotWatered = "Not watered";
 
@@ -200,6 +224,9 @@
         public const string ItemsContainer_Button_MatchUp = "Match Up";
 
         public const string ItemsContainer_Button_TakeAll = "Take All";
+
+        public const string ItemsContainer_CapacityExceededTakeOnly =
+            "Capacity exceeded. All items are take-out only.";
 
         public const string ItemsContainer_Title = "Items";
 
@@ -309,9 +336,9 @@
 
         public const string MenuServers_ListTitleFavorite = "Favorite";
 
-        public const string MenuServers_ListTitleModded = "Modded";
+        public const string MenuServers_ListTitleFeatured = "Featured";
 
-        public const string MenuServers_ListTitleOfficial = "Official";
+        public const string MenuServers_ListTitleModded = "Modded";
 
         public const string MenuServers_ListTitleRecent = "Recent";
 
@@ -369,17 +396,15 @@
 
         public const string Network_PingAverage_SeverityRed =
             @"Looks like your Internet connection to the server is experiencing severe latency (very large ping).
-              [br]As a consequence, some of your actions in the game (which require server response to take effect)
-              will take much longer to execute and process.
-              [br]E.g. your hits might often miss due to substantial discrepancy with the server.
-              You might also experience frequent rubber banding or instant position correction.";
+              [br]As a consequence, some of your actions in the game (which require server response to take effect) will take much longer to execute and process.
+              [br]E.g. your hits might often miss due to the substantial discrepancy with the server.
+              [br]You might also experience frequent rubber banding or instant position correction.";
 
         public const string Network_PingAverage_SeverityYellow =
             @"Looks like your Internet connection to the server is experiencing significant latency (large ping).
-              [br]As a consequence, some of your actions in the game (which require server response to take effect)
-              will take longer to execute and process.
-              [br]E.g. your hits might miss sometimes due to substantial discrepancy with the server.
-              You might also experience some rubber banding or instant position correction.";
+              [br]As a consequence, some of your actions in the game (which require server response to take effect) will take longer to execute and process.
+              [br]E.g. your hits might miss sometimes due to the substantial discrepancy with the server.
+              [br]You might also experience some rubber banding or instant position correction.";
 
         public const string Network_PingFluctuationRange = "Ping fluctuation range";
 
@@ -495,6 +520,48 @@
 
         public const string PleaseWait = "Please wait...";
 
+        public const string PowerGrid_NotConnectedMessage = "Not connected to the power grid.";
+
+        public const string PowerGridState_ActiveFormat = "(active {0})";
+
+        public const string PowerGridState_Button_RestorePower = "Restore power";
+
+        public const string PowerGridState_Capacity = "Capacity:";
+
+        public const string PowerGridState_Consumers = "Consumers:";
+
+        public const string PowerGridState_CurrentConsumption = "Current consumption:";
+
+        public const string PowerGridState_CurrentGeneration = "Current generation:";
+
+        public const string PowerGridState_DepletedIn = "Depleted in:";
+
+        public const string PowerGridState_DepletedIn_DurationNever = "Never";
+
+        public const string PowerGridState_EfficiencyFormat = "(efficiency {0}%)";
+
+        public const string PowerGridState_EnergyInformation = "Energy information";
+
+        public const string PowerGridState_Generators = "Generators:";
+
+        public const string PowerGridState_GridSize = "Grid size:";
+
+        public const string PowerGridState_GridStatus = "Grid status:";
+
+        public const string PowerGridState_MaxDefenseConsumption = "Max defense consumption:";
+
+        public const string PowerGridState_MaxGeneration = "Max generation:";
+
+        public const string PowerGridState_MaxTotalConsumption = "Max total consumption:";
+
+        public const string PowerGridState_PowerGridInformation = "Power grid information";
+
+        public const string PowerGridState_Status_Blackout = "Blackout";
+
+        public const string PowerGridState_Status_Nominal = "Nominal";
+
+        public const string PowerGridState_Storages = "Storages:";
+
         public const string Quest_Button_ClaimReward = "Claim";
 
         public const string Quest_Label_Completed = "Completed";
@@ -523,6 +590,10 @@
         public const string ServerPing = "Ping";
 
         public const string ServerPlayersCount = "Players";
+
+        public const string ServerWipedDate = "Wiped";
+
+        public const string Skill = "Skill";
 
         public const string StatusEffect_TitleIntensity = "Intensity";
 
@@ -594,7 +665,11 @@
 
         public const string TitleLiquidPetroleum = "Petroleum";
 
+        public const string TitleLiquidWater = "Water";
+
         public const string TitleLoading = "Loading...";
+
+        public const string TitleModeAlwaysOn = "Always on";
 
         public const string TitleModeAuto = "Auto";
 
@@ -605,6 +680,8 @@
         public const string TitleNoUpgradesAvailable = "No upgrades available";
 
         public const string TitleOwner = "Owner";
+
+        public const string TitlePowerGrid = "Power grid";
 
         public const string TitleSafeStorage = "Safe storage";
 
@@ -654,9 +731,19 @@
 
         public const string WindowDataLog_To = "To";
 
+        public const string WindowGeneratorSolar_SolarPanelsTitle = "SOLAR PANELS";
+
         public const string WindowInventory_Button_Customize = "Customize";
 
         public const string WindowInventory_Button_Unstuck = "Unstuck!";
+
+        public const string WindowLandClaim_AllowedItemsDescription =
+            "You cannot use land claim to store resources and basic items.";
+
+        public const string WindowLandClaim_DecayInfo = "Decay info";
+
+        public const string WindowLandClaim_SafeStorageIsShared =
+            "The safe storage items are shared between all the land claim structures on this base.";
 
         public const string WindowLandClaim_UpgradingOnlyOwnerCanDo = "Only the owner can upgrade this structure.";
 
@@ -685,9 +772,9 @@
 
         public const string WindowManufacturer_FuelRequired = "Fuel required!";
 
-        public const string WindowObjectLight_TitleLightMode = "Light mode";
+        public const string WindowManufacturer_TitleOutputEmpty = "Empty";
 
-        public const string WindowOilRefinery_EmptyCanistersOutput = "Empty";
+        public const string WindowObjectLight_TitleLightMode = "Light mode";
 
         public const string WindowPolitics_RaidingRestriction_CurrentRaidWindow =
             "Raiding window is now open ({0} left).";
@@ -707,6 +794,9 @@
         public const string WindowPolitics_RaidingRestriction_Title =
             "Raiding protection";
 
+        public const string WindowPowerStorage_NotConnectedToPowerGrid =
+            "This power storage is not connected to any power grid.";
+
         public const string WindowQuests_CompletionReward = "Completion reward";
 
         public const string WindowQuests_CurrentQuests = "Current quests";
@@ -722,6 +812,8 @@
 
         public const string WindowQuests_TitleUnlockedQuestsCount = "Unlocked quests";
 
+        public const string WindowRechargingStation_Title = "RECHARGE";
+
         public const string WindowRespawn_Button_RespawnAtYourBed = "Respawn at your bed";
 
         public const string WindowRespawn_Button_RespawnInTheWorld = "Respawn in the world";
@@ -734,13 +826,13 @@
             "Looks like you've been forcibly parted from this cruel world...and you lost all your stuff! Do you want revenge?";
 
         public const string WindowRespawn_MessageDespawned =
-            "You've left your character outside of your land claim area for too long and it has been removed from the world. You can respawn again as normal. You did not lose your items or LP.";
+            "You've left your character outside of your land claim area for too long and it has been removed from the world. You can respawn again as normal. You did not lose your items.";
 
         public const string WindowRespawn_MessagePvE =
-            "Looks like you've been forcibly parted from this cruel world...Do you want revenge?";
+            "Looks like you've been forcibly parted from this cruel world... Do you want revenge?";
 
         public const string WindowRespawn_MessageWithNewbieProtection =
-            "Looks like you've been killed by another player. But thankfully you still have your newbie protection, so you didn't lose any of your items or learning points. Be careful—next time this might be for real!";
+            "Looks like you've been killed by another player. But thankfully you still have your newbie protection, so you didn't lose any of your items. Be careful—next time this might be for real!";
 
         public const string WindowRespawn_TooltipCooldownExplanation =
             @"You've respawned in the bed recently.
@@ -749,6 +841,8 @@
         public const string WindowSignPicture_Title = "Select picture";
 
         public const string WindowSkills_CurrentLevelFormat = "Level {0}";
+
+        public const string WindowSkills_CurrentLevelFormat2 = "Current level: {0}";
 
         public const string WindowSkills_MaxLevelReached = "Max level reached!";
 
@@ -786,9 +880,20 @@
         public const string WindowSteamAccountLinking_YouCanLinkYourSteam =
             "You can link your Steam account with your AtomicTorch.com account or create a new one.";
 
-        public const string WindowTechnologies_LearningPointsRetainedAfterDeath = "LP retained after death";
+        public const string WindowTechnologies_Info_AdditionalTechnologies =
+            @"These additional technologies allow you to further specialize in different areas.
+              [br]For higher tiers you are NOT meant to learn them all. Choose wisely.";
+
+        public const string WindowTechnologies_Info_PrimaryTechnologies =
+            "Primary technologies are recommended for all players to gain access to a basic technological foundation in CryoFall.";
 
         public const string WindowTechnologies_TechGroupLocked = "Locked";
+
+        public const string WindowTechnologies_TechGroupPreview = "Preview";
+
+        public const string WindowTechnologies_TechGroupResearch = "Research";
+
+        public const string WindowTechnologies_TechGroupResearchCost = "Research cost";
 
         public const string WindowTechnologies_TechGroupUnlock = "Unlock";
 
@@ -796,16 +901,13 @@
 
         public const string WindowTechnologies_TitleSpecializedTechnologies = "Specialized technologies";
 
-        public const string WindowTechnologies_TooltipExplanationHowLearningPointsRetainedOnDeath =
-            @"When your character dies you lose all
-              [br]accumulated LP, except for the amount specified here.
-              [br]Improving your [i]Learning[/i] skill will significantly increase this value.";
-
         public const string WindowTechnologies_TooltipExplanationHowToGainLearningPoints =
             @"You can gain LP (learning points) by doing
               [br]any meaningful activity in the game.
               [br]The LP gain is directly proportional to
               [br]your character skill experience gain.";
+
+        public const string WindowTinkerTable_Button_Repair = "Repair";
 
         public const string WindowTradingStationAdmin_LotConfig = "Lot config";
 
@@ -845,6 +947,20 @@
 
         public const string WindowTrashCan_Title = "You can place any items here to get rid of them permanently.";
 
+        // the game doesn't support custom pluralization so please translate this like a short version: "{0}d ago"
+        public const string WipedDate_DaysAgo_Format = "{0} days ago";
+
+        // the game doesn't support custom pluralization so please translate this like a short version: "{0}h ago"
+        public const string WipedDate_HoursAgo_Format = "{0} hours ago";
+
+        // the game server was just wiped (less than 2 hours ago)
+        public const string WipedDate_JustWiped = "Just wiped";
+
+        // the game server has been wiped yesterday (more than 24 hours but less than 2 days ago)
+        public const string WipedDate_Yesterday = "Yesterday";
+
+        public const string WorldMap_MapExplored = "Map explored";
+
         public const string WorldMap_PointedPosition = "Pointed position";
 
         public const string WorldMap_YourPosition = "Your position";
@@ -860,6 +976,10 @@
         public const string WorldMapMarkLandClaim_Tooltip =
             @"[b]Land claim[/b]
               [br]This is the land you have access to.";
+
+        public const string WorldMapMarkLandClaim_Tooltip_Owner =
+            @"[b]Land claim[/b]
+              [br]This is your land claim.";
 
         public const string WorldMapMarkRaid_Tooltip =
             @"[b]Base being raided[/b]

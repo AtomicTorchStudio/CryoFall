@@ -20,7 +20,7 @@
         public override string Description =>
             "Semi-automatic pistol of simple design. Relatively cheap to produce compared to modern firearms.";
 
-        public override ushort DurabilityMax => 180; // slightly lower
+        public override uint DurabilityMax => 180; // slightly lower
 
         public override string Name => "Luger";
 
@@ -45,7 +45,7 @@
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()
         {
-            return WeaponsSoundPresets.WeaponRangedRevolver;
+            return WeaponsSoundPresets.WeaponRangedLuger;
         }
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)

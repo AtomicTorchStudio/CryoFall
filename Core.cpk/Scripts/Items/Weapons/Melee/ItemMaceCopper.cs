@@ -12,7 +12,7 @@
 
         public override string Description => "Wooden mace with copper-reinforced impact surface.";
 
-        public override ushort DurabilityMax => 120;
+        public override uint DurabilityMax => 120;
 
         public override double FireAnimationDuration => 0.8;
 

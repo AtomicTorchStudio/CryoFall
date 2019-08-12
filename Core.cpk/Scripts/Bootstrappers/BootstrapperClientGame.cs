@@ -108,9 +108,10 @@
                         GameButton.InventoryMenu,
                         () =>
                         {
-                            if (Menu.IsOpened<ClientCurrentInteractionMenu>())
+                            if (Menu.IsOpenedAny())
                             {
-                                // shortcut - close all currently opened menus and return
+                                // shortcut to close currently opened menus
+                                // (basically, it's alternative to pressing ESC in such case)
                                 Menu.CloseAll();
                                 return;
                             }

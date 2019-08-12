@@ -6,7 +6,7 @@
 
     public class BaseUserControlWithWindow : BaseUserControl
     {
-        protected GameWindow Window;
+        public GameWindow Window { get; private set; }
 
         public event Action EventWindowClosed;
 

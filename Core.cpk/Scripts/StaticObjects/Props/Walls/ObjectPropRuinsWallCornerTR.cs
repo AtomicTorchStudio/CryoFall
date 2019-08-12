@@ -6,6 +6,7 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle(size: (0.85, 0.5), offset: (0, 0));
+            AddFullHeightWallHitboxes(data);
         }
     }
 }

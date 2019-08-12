@@ -20,7 +20,6 @@
 
         public override string Name => this.ShortId;
 
-        // this effect is invisible (the intensity cannot be >1 but the visibility threshold is over 1, in fact it's over 9000!)
-        public override double VisibilityIntensityThreshold => 9001;
+        public override double VisibilityIntensityThreshold => double.MaxValue;
     }
 }

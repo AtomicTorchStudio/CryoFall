@@ -20,15 +20,13 @@
 
             inputItems.Add<ItemPotassiumNitrate>(count: 50);
             inputItems.Add<ItemSulfurPowder>(count: 50);
-            inputItems.Add<ItemOrePyrite>(count: 50);
-            inputItems.Add<ItemOreLithium>(count: 25);
             inputItems.Add<ItemSalt>(count: 50);
-            inputItems.Add<ItemAsh>(count: 10);
-            inputItems.Add<ItemCanisterGasoline>(count: 5);
-            inputItems.Add<ItemCanisterMineralOil>(count: 2);
+            inputItems.Add<ItemOreLithium>(count: 25);
+            inputItems.Add<ItemAsh>(count: 25);
+            inputItems.Add<ItemCanisterMineralOil>(count: 5);
 
             outputItems.Add<ItemComponentsIndustrialChemicals>(count: 25);
-            outputItems.Add<ItemCanisterEmpty>(count: 7);
+            outputItems.Add<ItemCanisterEmpty>(count: 5);
         }
     }
 }

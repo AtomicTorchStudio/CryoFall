@@ -1,0 +1,1029 @@
+﻿Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationCannotDropItemThere:
+Nie można tam upuścić przedmiotu.
+
+Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationNoFreeSpaceToDrop:
+Brak wolnych miejsc do upuszczenia przedmiotu
+
+Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
+Przedmioty na ziemi
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
+Możliwość budowania:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
+Brak możliwości budowania:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
+Nieodpowiedni rodzaj gruntu
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
+Nie można budować w miejscach o ograniczonym dostępie.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnCliffOrSlope:
+Nie można budować na klifie ani zboczu.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFarmPlot:
+Nie można budować na działce rolnej.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFloor:
+Nie można budować na podłodze.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCreaturesNearby:
+W pobliżu znajdują się stworzenia.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNoFreeSpace:
+Brak wolnej przestrzeni.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
+Nie jest to stabilne podłoże.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorPlayerNearby:
+W pobliżu są inni gracze.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
+Stoisz w nieprawidłowym miejscu!
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSlope:
+Nie można budować – zbyt blisko klifu lub zbocza.
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
+Nie można budować – zbyt blisko wody.
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
+Konfiguruj
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Deconstruct:
+Wyburz
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
+Zbadaj
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
+Zbierz
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
+Interakcja
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Loot:
+Bierz łup
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
+Otwórz
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
+Podnieś
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
+Podważ
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@TogglePower:
+Przełącz zasilanie
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
+Napisz
+
+Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
+Źródło geotermalne
+
+Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
+Źródło geotermalne (nieskończone)
+
+Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
+Źródło ropy
+
+Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
+Źródło ropy (nieskończone)
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
+Ładunek górniczy
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombModern@Name:
+Nowoczesna bomba
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombPrimitive@Name:
+Prymitywna bomba
+
+Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
+Bomba rezonansowa
+
+Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
+Wybuch złoża
+
+Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
+Wybuch źródła pragmium
+
+Scripts/StaticObjects/Loot/ObjectCorpse@Name:
+Zwłoki
+
+Scripts/StaticObjects/Loot/ObjectLootCrateFood@Name:
+Skrzynia z żywnością
+
+Scripts/StaticObjects/Loot/ObjectLootCrateHightech@Name:
+Nowoczesna skrzynia
+
+Scripts/StaticObjects/Loot/ObjectLootCrateIndustrial@Name:
+Skrzynia przemysłowa
+
+Scripts/StaticObjects/Loot/ObjectLootCrateMedical@Name:
+Skrzynia medyczna
+
+Scripts/StaticObjects/Loot/ObjectLootCrateMilitary@Name:
+Skrzynia wojskowa
+
+Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
+Skrzynka z zaopatrzeniem
+
+Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
+Trawa
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
+Duża sterta śmieci
+
+Scripts/StaticObjects/Loot/ObjectLootStone@Name:
+Kamień
+
+Scripts/StaticObjects/Loot/ObjectLootTwigs@Name:
+Gałęzie
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageFormatLootFromAnotherPlayer:
+Łup z {0}
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageLootFromCurrentPlayer:
+Twój łup
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Message:
+{0} przeszukuje twoje upuszczone przedmioty...
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Title:
+Twoje rzeczy są zagrabiane
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Message:
+{0} zabiera wszystkie twoje przedmioty. Znacznik został usunięty z mapy.
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Title:
+Twoje przedmioty zostały zagrabione!
+
+Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@Name:
+Przedmioty gracza do zagrabienia
+
+Scripts/StaticObjects/Loot/Base/ProtoObjectLoot@NotificationUseRightMouseButtonToPickup:
+Podnieś prawym przyciskiem myszy.
+
+Scripts/StaticObjects/Minerals/ObjectMineralClay@Name:
+Glina
+
+Scripts/StaticObjects/Minerals/ObjectMineralCoal@Name:
+Węgiel
+
+Scripts/StaticObjects/Minerals/ObjectMineralCopper@Name:
+Złoże miedzi
+
+Scripts/StaticObjects/Minerals/ObjectMineralIron@Name:
+Złoże żelaza
+
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
+Małe złoże pragmium
+
+Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
+Źródło pragmium
+
+Scripts/StaticObjects/Minerals/ObjectMineralSalt@Name:
+Sól
+
+Scripts/StaticObjects/Minerals/ObjectMineralSaltpeter@Name:
+Złoże saletry
+
+Scripts/StaticObjects/Minerals/ObjectMineralSand@Name:
+Złoże piasku kwarcowego
+
+Scripts/StaticObjects/Minerals/ObjectMineralStone@Name:
+Kamień
+
+Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
+Złoże siarki
+
+Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
+Użyj kilofu do wydobycia tego zasobu.
+
+Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
+Szczelina
+
+Scripts/StaticObjects/Special/ObjectCharredGround@Name:
+Zwęglony grunt
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
+Większa i bardziej wytrzymała niż beczka drewniana. Służy do przechowywania dużych ilości płynów.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Name:
+Beczka metalowa
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Description:
+Zwykła beczka służąca do przechowywania płynów.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Name:
+Beczka drewniana
+
+Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Description:
+Ogromny zbiornik do długiego przechowywania dużych ilości płynów.
+
+Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Name:
+Zbiornik
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
+Te strukturę uszkodzisz bronią lub narzędziem.
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
+Brak opisu.
+
+Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
+Brak opisu ulepszenia.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBed@Description:
+Znacznie wygodniejsze niż śpiwór.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBed@Name:
+Łóżko
+
+Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Description:
+Umieść śpiwór w bazie, aby służył jako punkt odradzania. Dzięki temu zawsze po śmierci będziesz się odradzać w określonym miejscu.
+
+Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Name:
+Śpiwór
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Message:
+`Czy ustawić to łóżko jako bieżące?
+[br]Będzie to twój aktywny punkt odradzania.`
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Title:
+To łóżko nie należy do nikogo
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AlreadyHasOwner:
+Łóżko ma już właściciela.
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AnotherPlayersLandClaim:
+Łóżko znajduje się na obszarze działki posiadanej przez innego gracza.
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageBedBelongsToCurrentPlayer:
+To łóżko należy do ciebie
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageFormatBedBelongsToAnotherPlayer:
+To łóżko należy do[br]{0}
+
+Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@NotificationBedClaimedSuccessfully:
+To łóżko jest aktywnym punktem odradzania.
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryBuildings@Name:
+Budynki
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryDecorations@Name:
+Dekoracje
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryElectricity@Name:
+Elektryczność
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
+Żywność
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
+Przemysł
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
+Inne
+
+Scripts/StaticObjects/Structures/Categories/StructureCategoryStorage@Name:
+Przechowywanie
+
+Scripts/StaticObjects/Structures/ConstructionSite/ObjectConstructionSite@Name:
+Plac budowy
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Description:
+Umożliwia tworzenie pancerzy i odzieży.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Name:
+Stół krawiecki/płatnerski
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Description:
+Umożliwia przetwarzanie większości złożonych chemikaliów i wytwarzanie wielu elementów wykorzystujących chemikalia.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Name:
+Laboratorium chemiczne
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Description:
+Umożliwia przygotowanie prostych posiłków i potraw, które nie wymagają gotowania ani smażenia.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Name:
+Stół kuchenny
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Description:
+Służy do produkcji wyposażenia rolniczego, np. worków na nasiona i nawozów.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Name:
+Stół rolniczy
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Description:
+Umożliwia przygotowanie wyposażenia medycznego.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Name:
+Laboratorium medyczne
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Description:
+Pozwala wytwarzać różne bronie, wyposażenie i amunicję.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Name:
+Stół rusznikarski
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Description:
+Uniwersalny stół rzemieślniczy; pozwala na tworzenie przedmiotów i zawiera wszystkie przepisy, które są wykonywane ręcznie.
+
+Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
+Stół warsztatowy
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
+Pomieści więcej niż zwykła skrzynia drewniana i jest bardziej trwała.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
+Skrzynia żelazna
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
+Najlepsza skrzynia do przechowywania przedmiotów. Zabezpiecza dobytek w większości sytuacji i jest najbardziej pojemna.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
+Skrzynia stalowa
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
+Bardzo duża skrzynia zapewniająca wygodne i bezpieczne przechowywanie ogromnych ilości przedmiotów.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
+Duża skrzynia
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
+Podstawowa skrzynia do przechowywania dobytku. Można ją jednak łatwo zniszczyć.
+
+Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
+Skrzynia drewniana
+
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Description:
+Marzysz o własnym muzeum lub chcesz pochwalić się swoimi trofeami? Teraz możesz!
+
+Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
+Witryna
+
+Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
+Opancerzony sejf, którego nie imają się nawet najsilniejsze materiały wybuchowe. Trudny do wytworzenia, ale zabezpieczy wszystkie kosztowności.
+
+Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
+Sejf pancerny
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
+Ta flaga fajnie wygląda!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
+Czerwona flaga
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
+Ten fantazyjny dywan powoduje, że każdy pokój stanie się bardziej przytulny.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Dywan
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
+Pokaż wrogom, że nie żartujesz. Żadne wtargnięcia na posesję nie będą tolerowane!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
+Czaszka na kiju
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
+Prawdziwy pokaz twojego bogactwa. Tylko najbogatszych stać na zbudowanie czegoś takiego.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Name:
+Złoty posąg
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Description:
+Marnowanie tego cennego kryształu na dekoracje pokazuje twoje bogactwo.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
+Posąg z pragmium
+
+Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
+Podłoga już jest ozdobiona.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
+Dobrze chronią przed większością intruzów, ale nie oprą się materiałom wybuchowym.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
+Drzwi żelazne
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Description:
+Stal nie bez przyczyny ma reputację twardziela. Te drzwi przebiją tylko najsilniejsze materiały wybuchowe.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Name:
+Drzwi stalowe
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Description:
+Podstawowa ochrona przed nieproszonymi gośćmi, choć nie obronią przed zdeterminowanym napastnikiem.
+
+Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
+Drzwi drewniane
+
+Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
+Duża stalowa brama, która z powodzeniem służy jako główne wejście do bazy.
+
+Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
+Stalowa brama
+
+Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
+Można tu zasiać zboża i roślinność. Działkę rolną można wytyczyć tylko na żyznych gruntach.
+
+Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
+Działka rolna
+
+Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
+Można ja postawić w dowolnym miejscu i hodować w niej kwiaty ozdobne lub służące do innych zastosowań.
+
+Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
+Doniczka
+
+Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
+Na tej glebie nic nie urośnie.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Description:
+Nietypowy element dekoracyjny, ale mimo to ładnie wygląda.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Name:
+Podłoga z cegieł
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Description:
+Prosta i użyteczna. Idealna posadzka do fabryki lub bazy wojskowej.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Name:
+Podłoga betonowa
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Description:
+Wytrzymała i elegancka. Dobrze sprawdza się w bunkrach wojskowych.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Name:
+Metalowa podłoga
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Description:
+Poczujesz się przytulnie jak w zamku. Idealnie pasuje do kamiennych murów.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Name:
+Podłoga kamienna
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Description:
+Powoduje, że dom wygląda przytulnie. Dobrze pasuje do drewnianych ścian.
+
+Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Name:
+Podłoga drewniana
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Description:
+Prymitywna chłodziarka działająca na zasadzie odparowywania. Nie jest tak wydajna jak nowoczesne lodówki, ale nadal przedłuża świeżość przechowywanej żywności.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
+Prymitywna lodówka
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Description:
+Wydajna zamrażarka, w której można przechowywać żywność w temperaturze poniżej zera, przez co pozostanie ona dłużej świeża.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Name:
+Zamrażarka
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
+Możesz w niej wygodnie przechowywać duże ilości łatwo psującej się żywności. Lodówka zapewnia świeżość pożywienia na dłużej.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
+Duża lodówka
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
+Możesz w niej wygodnie przechowywać łatwo psującą się żywność. Lodówka zapewnia świeżość pożywienia na dłużej.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
+Mała lodówka
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Description:
+Rozkłada materię organiczną na metan, który pozwala na wytwarzanie niewielkich ilości energii elektrycznej. Nie nadaje się jako podstawowe źródło energii elektrycznej.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Name:
+Bioreaktor
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
+Ten duży generator elektryczny działa na benzynę.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
+Generator
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
+Podstawowa instalacja do wytwarzania energii słonecznej. Do działania niezbędne są panele słoneczne.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Name:
+Generator słoneczny
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
+Ten generator wykorzystuje gorącą parę do napędzania turbiny i wytwarzania energii elektrycznej. Generator osiąga pełna moc po długim czasie wymaganym do zagotowania wody.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
+Generator pary
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
+Pomaga zabezpieczyć bazę, powstrzymując innych ocalałych przed budową lub wyburzaniem budynków w okolicy. Posiadanie działki gwarantuje również, że twoje budowle nie ulegną zniszczeniu z czasem.
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Name:
+Posiadane działki (poziom 1)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@DescriptionUpgrade:
+Zwiększa obszar chroniony, maksymalną spójność strukturalną i opóźnienie zniszczenia.
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@Name:
+Posiadane działki (poziom 2)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT3@Name:
+Posiadane działki (poziom 3)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
+Posiadane działki (poziom 4)
+
+Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT5@Name:
+Posiadane działki (poziom 5)
+
+Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
+Obszar posiadanej działki
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorAreaIntersection:
+Ulepszenie spowoduje konflikt z działką posiadana przez inną osobę.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorRequirementsNotSatisfied:
+Nie spełniono wymogów ulepszenia.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNotFounder:
+Nie jesteś właścicielem działki.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNoActiveInteraction:
+Ponownie otwórz okno posiadania działki i spróbuj jeszcze raz.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@DialogCannotUpgrade:
+Nie można ulepszyć
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationDontHaveAccess:
+Nie masz dostępu do tej działki.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Message:
+Ulepszono strukturę posiadanych działek.
+
+Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Title:
+Wykonano ulepszenie
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
+Elektryczna lampa stojąca wytwarza bardzo jaskrawe białe światło, które może oświetlić nawet duże pomieszczenie.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
+Duża lampa stojąca
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Description:
+Prosta, opalana olejem lampa stojąca. Dzięki ciepłej barwie światła sprawia, że pomieszczenia są bardziej przytulnie.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
+Lampa stojąca opalana olejem
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
+Mniejsza stojąca lampa elektryczna dająca całkiem dużo światła.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
+Mała lampa stojąca
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
+Podstawowe źródło światła, które również pozwala na przygotowanie prostych przepisów, takich jak smażone mięso.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Name:
+Ognisko
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
+Produkuje monety z różnych metali. Może również służyć do przetapiania monet w sztabki.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
+Wybijarka monet
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
+W suszarni można produkować pewne rodzaje żywności, np. suszone grzyby lub mięso.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Name:
+Suszarnia
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Description:
+Beczka fermentacyjna umożliwia produkcję różnych napojów alkoholowych i mikstur.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Name:
+Beczka fermentacyjna
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Description:
+Służy do wytapiania sztabek z rud metali i innych surowców.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
+Piec
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Description:
+Wykorzystuje ogrzewanie elektryczne i indukcyjne do szybszego wytapiania i przetwarzania zasobów.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
+Piec elektryczny
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
+Umożliwia ekstrahowanie soli litu ze źródeł geotermalnych.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
+Ekstraktor soli litu
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
+Zaawansowany ekstraktor soli litu
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
+Przekształca dowolną materię organiczną w kompost stanowiący doskonały nawóz.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
+Kompostownik
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
+Można ją postawić na źródle ropy naftowej i wydobywać nieprzetworzoną ropę naftową bezpośrednio z ziemi.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
+Szyb naftowy
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
+Zaawansowana pompa olejowa
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
+Rafinuje nieprzetworzoną ropę naftową do postaci użytecznych surowców, np. paliwa czy oleju mineralnego.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Name:
+Rafineria ropy
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
+Potrzebny do gotowania. Pozwala przyrządzić znacznie lepsze potrawy niż na ognisku.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
+Piec kuchenny
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
+Prosty zbiornik gromadzący niewielkie ilości wody. Z jakiegoś powodu nie sprawdza się na pustyni ani w terenach skalistych...
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
+Zbiornik na wodę
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
+Pompa elektryczna do szybkiego poboru wody ze zbiornika podziemnego.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Name:
+Pompa wodna
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
+Zapewnia niewyczerpane źródło wody pitnej. Już nie umrzesz z pragnienia. Z jakiegoś powodu nie sprawdza się na pustyni ani w terenach skalistych...
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
+Studnia
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
+Ekstraktor wymaga źródła geotermalnego.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
+Pompa wymaga źródła ropy naftowej.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
+Ten typ gruntu nie zapewnia dostępu do wód gruntowych.
+
+Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
+Zautomatyzowana stacja medyczna pozwalająca instalować i usuwać implanty cybernetyczne.
+
+Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
+Stacja medyczna
+
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
+Struktura obronna, która wytwarza pole psioniczne o wysokiej intensywności.
+
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
+Projektor psioniczny
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
+Może ładować dowolny przenośny sprzęt elektroniczny, np. bank zasilania czy latarkę.
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
+Stacja ładowania
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
+Wymaganych więcej elementów.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
+Umieść dwa identyczne przedmioty do naprawy.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_NoRepairNecessary:
+Nie trzeba naprawiać.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFull:
+Najpierw usuń przedmiot z gniazda wyjściowego.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
+Nie można naprawić
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
+Doskonały do majsterkowania przy różnych przedmiotach i naprawiania ich.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Name:
+Stół majsterkowicza
+
+Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
+Pozwala TRWALE pozbyć się niechcianych przedmiotów!
+
+Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
+Kosz na śmieci
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
+Pozwala na magazynowanie energii elektrycznej wytwarzanej przez generatory.
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Name:
+Akumulatorownia
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorageLarge@Name:
+Duża akumulatorownia
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
+Pozwala wyświetlić obraz widoczny dla wszystkich. Zasilany panelami słonecznymi, więc nie wymaga zewnętrznego źródła zasilania.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Name:
+Znak elektroniczny
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Description:
+Trwalszy znak metalowy. Użyteczny i bardziej odporny na działania wandali.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Name:
+Znak żelazny
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Description:
+Drewniany znak, na którym możesz zapisać ważne informacje dla siebie lub innych graczy.
+
+Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Name:
+Znak drewniany
+
+Scripts/StaticObjects/Structures/Signs/Base/ProtoObjectSign@NotificationCannotEditSignWhenNotAreaOwner:
+`Nie można edytować znaków
+[br]na obszarach działek posiadanych przez innych graczy.`
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Description:
+Duża zautomatyzowana stacja handlowa, gdzie można wygodnie handlować wieloma przedmiotami z innymi ocalałymi. Może sprzedawać lub kupować.
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Name:
+Duża stacja handlowa
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Description:
+Zautomatyzowana stacja handlowa, gdzie można wygodnie handlować przedmiotami z innymi ocalałymi. Może sprzedawać lub kupować.
+
+Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Name:
+Mała stacja handlowa
+
+Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNothingForSale:
+Nie ma nic na sprzedaż
+
+Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNoTradingLots:
+Handel niedostępny
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorCannotInteract:
+Nie można wykonać – za daleko lub przeszkody.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotFound:
+Brak możliwości handlu.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotActive:
+Handel nie jest aktywny.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorWrongMode:
+Nieprawidłowy tryb handlowy.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnPlayer:
+Za mało przedmiotów do sprzedania.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnStation:
+Za mało przedmiotów w stacji do kupienia.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnPlayer:
+Nie stać cię na ten przedmiot.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnStation:
+Za mało pieniędzy w stacji, aby kupić twój przedmiot.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnPlayerForPurchasedItem:
+Brak miejsca na zakupiony przedmiot.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnStationForSoldItem:
+W stacji brak miejsca do przechowania przedmiotu, który chcesz sprzedać.
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Available:
+Dostępne
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@OutOfStock:
+Brak
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoMoney:
+Brak pieniędzy
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoSpace:
+Brak miejsca
+
+Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Disabled:
+Wyłączone
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Description:
+Ciężko opancerzone mury bunkra. Doskonale chronią bazę.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Name:
+Mury pancerne
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
+Solidna ceglana ściana ze zbrojeniem metalowym chroniąca twoje kosztowności przed intruzami. Do pewnego stopnia wytrzyma nawet atak materiałami wybuchowymi.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Name:
+Ściana z cegieł
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
+Gruba ściana żelbetowa z dodatkowymi podporami. Znacznie trwalsza niż inne konstrukcje obronne.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
+Ściana betonowa
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
+Znacznie lepsza niż drewniana ściana. Powinna powstrzymać większość intruzów przed włamaniem, ale nie stanowi przeszkody dla dobrze wyposażonych agresorów.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Name:
+Ściana kamienna
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Description:
+Twoja podstawowa ochrona przed lokalną fauną i... nieproszonymi gośćmi. Ochroni co najwyżej przed atakiem podstawową bronią.
+
+Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Name:
+Ściana drewniana
+
+Scripts/StaticObjects/Structures/Walls/Base/ObjectWallDestroyed@Name:
+Zniszczona ściana
+
+Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationPlantNotMatured:
+`Ta roślina jeszcze nie dojrzała.
+[br]Nie można jej jeszcze zebrać.`
+
+Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationUseRightMouseButtonToInteract:
+Prawy przycisk myszy: {0}.
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushCoffee@Name:
+Kawa
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushOilpod@Name:
+Olejak
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushPurple@Name:
+Krzew jagodowy (fioletowy)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushRed@Name:
+Krzew jagodowy (czerwony)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@ErrorNoFruit:
+Nie ma owoców!
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@Name:
+Bulwa wodna
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYellow@Name:
+Krzew jagodowy (żółty)
+
+Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYucca@Name:
+Jukka
+
+Scripts/StaticObjects/Vegetation/Bushes/Base/ProtoObjectBush@ErrorNoBerries:
+Nie ma jagód!
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantBellPepper@Name:
+Papryka
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCarrot@Name:
+Marchew
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantChiliPepper@Name:
+Papryczka chilli
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCorn@Name:
+Kukurydza
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCucumber@Name:
+Ogórek
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
+Niebieska szałwia
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
+Kwiat Oni
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
+Ogurin
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
+Tytoń
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTomato@Name:
+Pomidor
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
+Pszenica
+
+Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
+Wymaga działki rolnej.
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
+Zielone zioło
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbPurple@Name:
+Fioletowe zioło
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbRed@Name:
+Czerwone zioło
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPennyBun@Name:
+Borowik
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPink@Name:
+Różowy grzyb
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomRust@Name:
+Rdzewiejec
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallPineapple@Name:
+Ananas
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallSugarcane@Name:
+Trzcina cukrowa
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
+Ciernisty krzew
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
+Drzewo bananowe
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
+Brzoza
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
+Cis krótkolistny
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
+Kaktus
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
+Uschłe drzewo
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
+Uschłe drzewo
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
+Uschłe drzewo
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
+Durian
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
+Przewrócone drzewo
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
+Dąb
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
+Palma
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
+Sosna
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
+Sosna
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
+Topola
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
+Kauczukowiec
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
+Omszały pieniek
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
+Pniak
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
+Omszały pniak
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
+Pniak
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
+Drzewo bagienne
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
+Drzewo tropikalne
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
+Wierzba
+
+Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
+Zetnij drzewo siekierą.
+

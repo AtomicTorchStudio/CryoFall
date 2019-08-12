@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -81,10 +80,10 @@
             //    _ => this.OnNeedRefreshEquipment(),
             //    this);
 
-            // subscribe on change of the skeleton proto
+            // subscribe on change of the equipment
             this.clientState = PlayerCharacter.GetClientState(character);
             this.clientState.ClientSubscribe(
-                _ => _.CurrentProtoSkeleton,
+                _ => _.LastEquipmentContainerHash,
                 _ => this.OnNeedRefreshEquipment(),
                 this);
 
@@ -191,7 +190,7 @@
             }
 
             this.isNeedRefreshEquipment = true;
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 // next frame
                 0,
                 () =>

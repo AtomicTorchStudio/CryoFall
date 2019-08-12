@@ -39,11 +39,12 @@
             this.serverViewModelsProvider = ServerViewModelsProvider.Instance;
             var serversProvider = Client.MasterServer.ServersProvider;
 
-            this.PublicServers =
+            this.FeaturedServers =
                 new ViewModelServersList(
                         new MultiplayerMenuServersPublicController(
                             this.serverViewModelsProvider,
-                            specialCondition: info => info.IsOfficial),
+                            specialCondition: info => info.IsOfficial
+                                                      || (info.IsFeatured && !info.IsModded)),
                         this.OnSelectedServerChanged)
                     {
                         IsActive = true
@@ -53,14 +54,17 @@
                 new ViewModelServersList(
                     new MultiplayerMenuServersPublicController(
                         this.serverViewModelsProvider,
-                        specialCondition: info => !info.IsOfficial && !info.IsModded),
+                        specialCondition: info => !info.IsOfficial
+                                                  && !info.IsFeatured
+                                                  && !info.IsModded),
                     this.OnSelectedServerChanged);
 
             this.ModdedServers =
                 new ViewModelServersList(
                     new MultiplayerMenuServersPublicController(
                         this.serverViewModelsProvider,
-                        specialCondition: info => !info.IsOfficial && info.IsModded),
+                        specialCondition: info => !info.IsOfficial
+                                                  && info.IsModded),
                     this.OnSelectedServerChanged);
 
             this.CustomServers =
@@ -80,7 +84,7 @@
 
             this.allServersLists = new[]
             {
-                this.PublicServers,
+                this.FeaturedServers,
                 this.CommunityServers,
                 this.ModdedServers,
                 this.CustomServers,
@@ -127,11 +131,11 @@
 
         public ViewModelServersList FavoriteServers { get; }
 
+        public ViewModelServersList FeaturedServers { get; }
+
         public ViewModelServersList HistoryServers { get; }
 
         public ViewModelServersList ModdedServers { get; }
-
-        public ViewModelServersList PublicServers { get; }
 
         public ViewModelServerInfoListEntry SelectedServer
         {

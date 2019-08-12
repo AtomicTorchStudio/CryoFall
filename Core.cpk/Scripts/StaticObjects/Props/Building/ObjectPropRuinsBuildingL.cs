@@ -4,8 +4,7 @@
     {
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            data.PhysicsBody
-                .AddShapeRectangle(size: (1, 1), offset: (0, 0));
+            AddRectangleWithHitboxes(data, size: (0.9, 1), offset: (0.1, 0));
         }
     }
 }

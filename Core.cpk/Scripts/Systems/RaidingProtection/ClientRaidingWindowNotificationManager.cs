@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.RaidingProtection
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public static class ClientRaidingWindowNotificationManager
@@ -68,7 +67,7 @@
             finally
             {
                 // schedule next update
-                ClientComponentTimersManager.AddAction(
+                ClientTimersSystem.AddAction(
                     delaySeconds: 1,
                     UpdateNextRaidingInfo);
             }

@@ -26,7 +26,7 @@
 
             repair.StagesCount = 1;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
         }
     }
 }

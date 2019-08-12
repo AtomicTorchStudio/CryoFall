@@ -11,7 +11,7 @@
             "It is time to get some better protection.";
 
         public override string Hints =>
-            @"[*] You can unlock all relevant technologies in the ""Offense & Defense"" technology group.
+            @"[*] You can unlock all relevant technologies in the ""Defense"" technology group.
               [*] Wooden armor may not be the best option out there, but it's still cheap to craft and certainly much better than cloth armor.";
 
         public override string Name => "Craft and equip better armor";

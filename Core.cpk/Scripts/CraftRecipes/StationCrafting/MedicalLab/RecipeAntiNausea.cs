@@ -19,9 +19,9 @@
 
             duration = CraftingDuration.VeryShort;
 
+            inputItems.Add<ItemCharcoal>(count: 5);
             inputItems.Add<ItemTreebark>(count: 2);
-            inputItems.Add<ItemCharcoal>(count: 1);
-            inputItems.Add<ItemHerbGreen>(count: 1);
+            
 
             outputItems.Add<ItemAntiNausea>(count: 1);
         }

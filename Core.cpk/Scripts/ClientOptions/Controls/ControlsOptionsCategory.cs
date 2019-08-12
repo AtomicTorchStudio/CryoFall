@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ClientOptions.Controls
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
@@ -133,9 +134,10 @@
                     var button = pair.Key;
                     var info = pair.Value;
 
-                    var labelControl = new TextBlock
+                    var labelControl = new FormattedTextBlock
                     {
-                        Text = info.Title,
+                        // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                        Content = info.Title,
                         TextWrapping = TextWrapping.Wrap,
                         FontSize = 12,
                         LineHeight = 13,
@@ -143,6 +145,7 @@
                         MaxWidth = 150,
                         Margin = new Thickness(0, 0, 0, 6),
                         TextAlignment = TextAlignment.Right,
+                        HorizontalAlignment = HorizontalAlignment.Right,
                         VerticalAlignment = VerticalAlignment.Center
                     };
 

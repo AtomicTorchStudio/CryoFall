@@ -5,7 +5,7 @@
         public override string Description =>
             "Bone armor provides decent protection, given its price, and could be quite useful early on.";
 
-        public override ushort DurabilityMax => 500;
+        public override uint DurabilityMax => 500;
 
         public override string Name => "Bone jacket";
 

@@ -3,11 +3,12 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Invisible;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
     using AtomicTorch.CBND.CoreMod.Stats;
 
     public class StatusEffectRadiationPoisoning : ProtoStatusEffect
     {
+        public const int DamagePerSecondByIntensity = 10;
+
         public override string Description =>
             "You are suffering from radiation poisoning, which is slowly killing you. Find radiation medication to reduce its effects.";
 
@@ -24,24 +25,20 @@
         {
             // no health regeneration while under effect of radiation
             effects.AddPercent(this, StatName.HealthRegenerationPerSecond, -100);
+
+            // add info to tooltip that this effect deals damage
+            effects.AddValue(this, StatName.VanityContinuousDamage, 1);
         }
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
         {
-            // check for radiation protection effect
-            if (data.Character.SharedHasStatusEffect<StatusEffectProtectionRadiation>())
-            {
-                // the character has a radiation protection status effect
-                intensityToAdd *= 0.5;
-            }
-
             // apply the armor defense from radiation
             var defenseRadiation = data.Character.SharedGetFinalStatValue(StatName.DefenseRadiation);
             intensityToAdd *= Math.Max(0, 1 - defenseRadiation);
 
-            // increase radiation effect if the player has radiation effect multiplier
-            intensityToAdd *= data.Character.SharedGetFinalStatMultiplier(StatName.RadiationPoisoningAccumulationMultiplier);
-            
+            // change radiation effect if the player has radiation effect multiplier
+            intensityToAdd *=
+                data.Character.SharedGetFinalStatMultiplier(StatName.RadiationPoisoningIncreaseRateMultiplier);
 
             base.ServerAddIntensity(data, intensityToAdd);
         }
@@ -58,15 +55,15 @@
 
         protected override void ServerUpdate(StatusEffectData data)
         {
-            // damage is calculated progressively depending on intensity dmg = (A*100)^2.5 / 10000;
-            var DamagePerSecond = Math.Pow(data.Intensity * 100, 2.5) / 10000;
+            // damage is calculated progressively depending on intensity
+            var damage = DamagePerSecondByIntensity
+                         * Math.Pow(data.Intensity, 2.5)
+                         * data.DeltaTime;
 
             // increase the damage based on radiation poisoning damage multiplier
-            DamagePerSecond *= data.Character.SharedGetFinalStatMultiplier(StatName.RadiationPoisoningDamageMultiplier);
+            damage *= data.Character.SharedGetFinalStatMultiplier(StatName.RadiationPoisoningEffectMultiplier);
 
-            // reducing health
-            var stats = data.CharacterCurrentStats;
-            stats.ServerReduceHealth(DamagePerSecond * data.DeltaTime, this);
+            data.CharacterCurrentStats.ServerReduceHealth(damage, this);
         }
     }
 }

@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
+    using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
@@ -59,9 +60,9 @@
             return WindowWell.Open(
                 new ViewModelWindowWell(
                     data.GameObject,
-                    data.SyncPrivateState.ManufacturingState,
+                    data.PrivateState,
                     this.ManufacturingConfig,
-                    data.SyncPrivateState.LiquidStateWater,
+                    data.PrivateState.LiquidStateWater,
                     this.LiquidContainerConfig));
         }
 
@@ -100,7 +101,7 @@
         {
             base.ServerInitialize(data);
 
-            // setup input container to allow only water on input
+            // setup input container to allow only empty water bottles on input
             Server.Items.SetContainerType<ItemsContainerEmptyBottles>(
                 data.PrivateState.ManufacturingState.ContainerInput);
 
@@ -114,7 +115,21 @@
         protected override void ServerUpdate(ServerUpdateData data)
         {
             var privateState = data.PrivateState;
+            var publicState = data.PublicState;
+
             var liquidContainerState = privateState.LiquidStateWater;
+
+            var isFull = liquidContainerState.Amount >= this.LiquidContainerConfig.Capacity;
+
+            var isActive = !isFull;
+            if (isActive)
+            {
+                // perform electricity checks (if applies)
+                isActive = this.ElectricityConsumptionPerSecondWhenActive <= 0
+                           || publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOn;
+            }
+
+            publicState.IsActive = isActive;
 
             LiquidContainerSystem.UpdateWithManufacturing(
                 data.GameObject,
@@ -122,10 +137,9 @@
                 this.LiquidContainerConfig,
                 privateState.ManufacturingState,
                 this.ManufacturingConfig,
-                data.DeltaTime,
-                // the well is always produce water
-                isProduceLiquid: true,
-                forceUpdateRecipe: liquidContainerState.Amount < this.LiquidContainerConfig.Capacity);
+                data.DeltaTime * StructureConstants.ManufacturingSpeedMultiplier,
+                isProduceLiquid: isActive,
+                forceUpdateRecipe: !isFull);
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableOrdered, keyArgIndex: 0)]
@@ -189,12 +203,10 @@
             Logger.Important($"{character} drank water from {objectWell}");
 
             // notify clients (to play sound)
-            using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-            {
-                Server.World.GetScopedByPlayers(character, scopedBy);
-                scopedBy.Add(character);
-                this.CallClient(scopedBy, _ => _.ClientRemote_CharacterDrankWater(character));
-            }
+            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(character, scopedBy);
+            scopedBy.Add(character);
+            this.CallClient(scopedBy, _ => _.ClientRemote_CharacterDrankWater(character));
         }
 
         private bool SharedValidateCanDrink(ICharacter character, IStaticWorldObject objectWell)

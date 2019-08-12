@@ -46,9 +46,9 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 15);
-            build.AddStageRequiredItem<ItemIngotIron>(count: 5);
-            build.AddStageRequiredItem<ItemRope>(count: 2);
+            build.AddStageRequiredItem<ItemPlanks>(count: 12);
+            build.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            build.AddStageRequiredItem<ItemRope>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
@@ -59,21 +59,17 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (0.9, 0.5),
-                    offset: (0.05, 0.1))
-                .AddShapeRectangle(
-                    size: (0.8, 0.9),
-                    offset: (0.1, 0.2),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (0.8, 0.9),
-                    offset: (0.1, 0.2),
-                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(
-                    size: (0.9, 0.9),
-                    offset: (0.05, 0.1),
-                    group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.9, 0.5),
+                                   offset: (0.05, 0.1))
+                .AddShapeRectangle(size: (0.8, 0.9),
+                                   offset: (0.1, 0.2),
+                                   group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.8, 0.2),
+                                   offset: (0.1, 0.95),
+                                   group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.9, 0.9),
+                                   offset: (0.05, 0.1),
+                                   group: CollisionGroups.ClickArea);
         }
     }
 }

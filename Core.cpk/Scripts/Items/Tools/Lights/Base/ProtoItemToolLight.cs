@@ -70,8 +70,8 @@
 
         public IReadOnlyItemLightConfig ItemLightConfig { get; private set; }
 
-        public sealed override double ServerUpdateIntervalSeconds =>
-            1; // we're forcing updates to one per second to properly reduce durability of the light item
+        // we're forcing updates to one per second to properly (and slowly) reduce durability of the light item
+        public sealed override double ServerUpdateIntervalSeconds => 5;
 
         protected virtual string ActiveLightCharacterAnimationName => "Torch2";
 
@@ -110,9 +110,12 @@
             return new HotbarItemWithFuelOverlayControl(item, this.ItemFuelConfig);
         }
 
-        public void ClientOnRefilled(IItem item)
+        public void ClientOnRefilled(IItem item, bool isCurrentHotbarItem)
         {
-            this.ClientTrySetActiveState(item, setIsActive: true);
+            if (isCurrentHotbarItem)
+            {
+                this.ClientTrySetActiveState(item, setIsActive: true);
+            }
         }
 
         public virtual void ClientSetupSkeleton(
@@ -185,8 +188,8 @@
         protected override void ClientInitialize(ClientInitializeData data)
         {
             var item = data.GameObject;
-            var publicState = data.SyncPublicState;
-            var privateState = data.SyncPrivateState;
+            var publicState = data.PublicState;
+            var privateState = data.PrivateState;
 
             publicState.ClientSubscribe(
                 _ => _.IsActive,
@@ -269,7 +272,7 @@
                     }
                 }
 
-                if (data.SyncPrivateState.FuelAmount > 0)
+                if (data.PrivateState.FuelAmount > 0)
                 {
                     // have fuel - turn on automatically
                     this.ClientTrySetActiveState(item, setIsActive: true);
@@ -315,7 +318,7 @@
             }
 
             // toggle state
-            var setIsActive = !data.SyncPublicState.IsActive;
+            var setIsActive = !data.PublicState.IsActive;
             this.ClientTrySetActiveState(item, setIsActive);
         }
 
@@ -362,7 +365,7 @@
                 return;
             }
 
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             if (!publicState.IsActive)
             {
                 return;
@@ -379,7 +382,7 @@
             }
 
             this.ItemFuelConfig.SharedTryConsumeFuel(item,
-                                                     data.SyncPrivateState,
+                                                     data.PrivateState,
                                                      data.DeltaTime,
                                                      out _);
         }
@@ -417,12 +420,14 @@
             }
 
             var item = data.GameObject;
-            ItemDurabilitySystem.ServerModifyDurability(item, -this.DurabilityDecreasePerSecond);
+            ItemDurabilitySystem.ServerModifyDurability(item,
+                                                        -this.DurabilityDecreasePerSecond * data.DeltaTime,
+                                                        roundUp: true);
 
             // check if item is in a hotbar selected slot, if not - make it not active
             var itemOwnerCharacter = item.Container?.OwnerAsCharacter;
             if (itemOwnerCharacter == null
-                || !itemOwnerCharacter.IsOnline
+                || !itemOwnerCharacter.ServerIsOnline
                 || item != itemOwnerCharacter.SharedGetPlayerSelectedHotbarItem())
             {
                 Logger.Info(item + " is not in the hotbar selected slot or player is offline - make it inactive");

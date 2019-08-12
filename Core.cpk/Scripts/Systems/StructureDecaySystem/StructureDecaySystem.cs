@@ -35,11 +35,11 @@
 
         /// <summary>
         /// This method is usually used when a land claim building is destroyed
-        /// - to force all the buildings to start decay immediately.
+        /// - to force all the buildings to start decay almost immediately.
         /// </summary>
         public static void ServerBeginDecayForStructuresInArea(RectangleInt areaBounds)
         {
-            var decayStartTime = ServerGame.FrameTime - StructureConstants.StructuresDecayDelaySeconds;
+            var decayStartTime = ServerGame.FrameTime + (5 * 60);
 
             for (var x = areaBounds.X; x < areaBounds.X + areaBounds.Width; x++)
             for (var y = areaBounds.Y; y < areaBounds.Y + areaBounds.Height; y++)
@@ -55,7 +55,9 @@
                 var staticObjects = ServerWorld.GetStaticObjects(new Vector2Ushort((ushort)x, (ushort)y));
                 foreach (var worldObject in staticObjects)
                 {
-                    if (worldObject.ProtoStaticWorldObject is IProtoObjectStructure)
+                    var prototype = worldObject.ProtoStaticWorldObject;
+                    if (prototype is IProtoObjectStructure
+                        && !(prototype is IProtoObjectLandClaim))
                     {
                         var privateState = worldObject.GetPrivateState<StructurePrivateState>();
                         privateState.ServerDecayStartTime = decayStartTime;
@@ -64,10 +66,10 @@
             }
         }
 
-        public static void ServerResetDecayTimer(StructurePrivateState privateState)
+        public static void ServerResetDecayTimer(StructurePrivateState privateState, 
+                                                 double decayDelaySeconds)
         {
-            privateState.ServerDecayStartTime = ServerGame.FrameTime
-                                                + StructureConstants.StructuresDecayDelaySeconds;
+            privateState.ServerDecayStartTime = ServerGame.FrameTime + decayDelaySeconds;
         }
 
         protected override void PrepareSystem()
@@ -115,15 +117,6 @@
                 if (!(worldObject.ProtoStaticWorldObject is IProtoObjectLandClaim))
                 {
                     // only the land claim object can decay in the land claim area
-                    return false;
-                }
-
-                // this is a land claim object so it could decay
-                // but first, ensure that it will not decay if there are any online owners nearby
-                StructureLandClaimDecayResetSystem.ServerRefreshLandClaimObject(worldObject);
-                if (serverTime < privateState.ServerDecayStartTime)
-                {
-                    // this land claim object is not decaying anymore (the timer has been just reset)
                     return false;
                 }
             }

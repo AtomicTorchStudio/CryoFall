@@ -82,10 +82,11 @@
                   VerticalAlignment="{Binding VerticalAlignment}"
                   Margin="50,10,0,5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="220" />
                     <ColumnDefinition Width="15" />
                     <ColumnDefinition Width="182" />
                 </Grid.ColumnDefinitions>
+
                 <StackPanel Orientation="Vertical">
                     <!-- Text: Input -->
                     <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
@@ -124,6 +125,17 @@
                     <!-- Text: Output -->
                     <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
                                Style="{StaticResource TextBlockStyleCraftingCaption}" />
+
+                    <ContentControl Visibility="{Binding VisibilityElectricityControls}">
+                        <Canvas
+                            Visibility="{Binding IsManufacturingActive, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <fuelBurningIndicator:FuelBurningIndicator
+                                FuelIcon="{StaticResource IconElectricity}"
+                                FuelColor="{StaticResource ColorElectricity}"
+                                Canvas.Left="-28" />
+                        </Canvas>
+                    </ContentControl>
+
                     <core:ValueBarControl
                         Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
                         Width="{Binding ActualWidth, ElementName=ItemsContainerControlOutput}"

@@ -9,7 +9,7 @@
         public override string Description =>
             "Steel pickaxe can be used to mine mineral deposits. Faster and more durable than iron pickaxe.";
 
-        public override ushort DurabilityMax => 1800;
+        public override uint DurabilityMax => 1800;
 
         public override string Name => "Steel pickaxe";
     }

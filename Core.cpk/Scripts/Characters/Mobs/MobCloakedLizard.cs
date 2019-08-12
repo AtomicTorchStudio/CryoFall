@@ -15,7 +15,7 @@
 
         public override double MobKillExperienceMultiplier => 1.5;
 
-        public override string Name => "Cloaked Lizard";
+        public override string Name => "Cloaked lizard";
 
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.HardTissues;
 

@@ -11,10 +11,12 @@
     d:DataContext="{d:DesignInstance data:ViewModelHUDStatusEffectsBar, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
-    <ItemsControl ItemsSource="{Binding CurrentStatusEffects}" HorizontalAlignment="Center">
+    
+    <ItemsControl ItemsSource="{Binding CurrentStatusEffects}"
+                  HorizontalAlignment="Center">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <!-- max width calculated to fit 4 icons -->
+                <!-- max width calculated to fit 5 icons -->
                 <WrapPanel Orientation="Horizontal" MaxWidth="275" />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
@@ -86,17 +88,28 @@
                                    Width="44"
                                    Height="44" />
 
-                        <TextBlock Text="{Binding IntensityPercent, StringFormat={}{0}%}"
-                                   FontFamily="{StaticResource DigitsFontFamily}"
-                                   FontWeight="Bold"
-                                   FontSize="13"
-                                   Foreground="White"
-                                   Opacity="0.7"
-                                   noesis:Text.Stroke="Black"
-                                   noesis:Text.StrokeThickness="2"
-                                   VerticalAlignment="Bottom"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,0,-4,-4" />
+                        <Grid HorizontalAlignment="Center"
+                              VerticalAlignment="Bottom"
+                              Margin="0,0,-4,-4">
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="FontSize" Value="13" />
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Opacity" Value="0.7" />
+                                    <Setter Property="Padding" Value="0" />
+                                    <Setter Property="Margin" Value="-4,0,0,0" />
+                                    <Setter Property="noesis:Text.Stroke" Value="Black" />
+                                    <Setter Property="noesis:Text.StrokeThickness" Value="2" />
+                                </Style>
+                            </Grid.Resources>
+                            <TextBlock Text="{Binding IntensityPercent, StringFormat={} {0}% }"
+                                       Visibility="{Binding IsIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                       FontFamily="{StaticResource DigitsFontFamily}" />
+                            <TextBlock Text=" — "
+                                       Visibility="{Binding IsIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                       FontFamily="{StaticResource DigitsFontFamily}" />
+                        </Grid>
                     </Grid>
                     <base:ToolTipServiceExtend.ToolTip>
                         <StackPanel Orientation="Vertical" MinWidth="150" MaxWidth="275">
@@ -104,9 +117,10 @@
                                        TextWrapping="Wrap"
                                        FontWeight="Bold" />
 
-                            <StackPanel Visibility="{Binding VisibilityIntensityPercent}"
-                                        Orientation="Horizontal"
-                                        Margin="0,2">
+                            <StackPanel
+                                Visibility="{Binding IsIntensityPercentVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Orientation="Horizontal"
+                                Margin="0,2">
                                 <!-- Text: Intensity -->
                                 <TextBlock Text="{x:Static loc:CoreStrings.StatusEffect_TitleIntensity}" />
                                 <TextBlock Text=": " />
@@ -156,6 +170,7 @@
 
                                                 <TextBlock Grid.Column="2"
                                                            Text="{Binding EffectText}"
+                                                           Visibility="{Binding EffectTextVisibility}"
                                                            TextWrapping="Wrap"
                                                            Margin="3,0,0,0" />
                                             </Grid>
@@ -168,6 +183,6 @@
                 </Border>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
-
     </ItemsControl>
+
 </base:BaseUserControl>

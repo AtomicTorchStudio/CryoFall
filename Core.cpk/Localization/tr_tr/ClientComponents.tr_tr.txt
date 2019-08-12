@@ -1,0 +1,110 @@
+﻿Scripts/ClientComponents/Input/GameButton@CancelOrClose:
+İptal et veya kapat
+
+Scripts/ClientComponents/Input/GameButton@MoveUp:
+Yukarı
+
+Scripts/ClientComponents/Input/GameButton@MoveLeft:
+Sola
+
+Scripts/ClientComponents/Input/GameButton@MoveDown:
+Aşağı
+
+Scripts/ClientComponents/Input/GameButton@MoveRight:
+Sağa
+
+Scripts/ClientComponents/Input/GameButton@RunTemporary:
+Koşma (basılı tut)
+
+Scripts/ClientComponents/Input/GameButton@RunToggle:
+Koşma (aç/kapa)
+
+Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
+Eylem—eşya kullan
+
+Scripts/ClientComponents/Input/GameButton@ActionInteract:
+Eylem—etkileşime geç
+
+Scripts/ClientComponents/Input/GameButton@ItemReload:
+Eşyayı yeniden doldur
+
+Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
+`Eşya modu değiştir
+[br]/mühimmat değiştir`
+
+Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
+Kask ışığını aç/kapa
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot1:
+Yuva #1
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot2:
+Yuva #2
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot3:
+Yuva #3
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot4:
+Yuva #4
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot5:
+Yuva #5
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot6:
+Yuva #6
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot7:
+Yuva #7
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
+Yuva #8
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
+Yuva #9
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
+Yuva #10
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
+Kamera yakınlaştırma
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
+Kamera uzaklaştırma
+
+Scripts/ClientComponents/Input/GameButton@OpenChat:
+Sohbet
+
+Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
+Geliştirici konsolu
+
+Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
+Hata ayıklama araçları
+
+Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
+Tam ekrana geç
+
+Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
+Ekran görüntüsü al
+
+Scripts/ClientComponents/Input/GameButton@ContainerSort:
+Sandığı sırala
+
+Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
+Tüm eşyaları al
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
+Öğeleri aşağıya doğru eşleştir
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
+Öğeleri yukarıya doğru eşleştir
+
+Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
+Alan tutucuyu ve sağlık çubuklarını göster
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
+`Tamirat ve inşa eylemleri sınırlandı.
+[br]Baskın engelleme süresi dolacak: {0}.`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
+Bu üs baskın engellemesi altında
+

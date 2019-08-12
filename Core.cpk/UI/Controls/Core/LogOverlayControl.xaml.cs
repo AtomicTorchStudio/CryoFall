@@ -138,7 +138,7 @@
             var list = this.viewModel.LogEntriesCollection;
 
             // process queue and add each entry to log list
-            foreach (var logEntryWithSource in this.logEntriesQueue) //.OrderBy(q => q.LogEntry.Date))
+            foreach (var logEntryWithSource in this.logEntriesQueue)
             {
                 var logEntry = logEntryWithSource.LogEntry;
                 list.Add(

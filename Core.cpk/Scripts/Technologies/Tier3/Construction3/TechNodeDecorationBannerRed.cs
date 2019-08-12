@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDecorationBannerRed>();
 
-            config.SetRequiredNode<TechNodeBrickConstructions>();
+            config.SetRequiredNode<TechNodeDecorationRug>();
         }
     }
 }

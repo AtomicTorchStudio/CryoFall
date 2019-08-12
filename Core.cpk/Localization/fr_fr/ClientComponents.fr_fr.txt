@@ -100,3 +100,10 @@ Mêmes objets qu'en haut
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
 Afficher revendication territoriale et barres de santé
 
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
+`Réparations et fabrication interdites.
+[br]Le blocus de raid prendra fin dans {0}.`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
+La base subit un blocus de raid.
+

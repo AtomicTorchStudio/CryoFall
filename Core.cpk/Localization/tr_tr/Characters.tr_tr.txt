@@ -1,0 +1,72 @@
+﻿Scripts/Characters/Mobs/MobBear@Name:
+Ayı
+
+Scripts/Characters/Mobs/MobBlackBeetle@Name:
+Kara böcek
+
+Scripts/Characters/Mobs/MobBurrower@Name:
+Tünelci
+
+Scripts/Characters/Mobs/MobChicken@Name:
+Tavuk
+
+Scripts/Characters/Mobs/MobCloakedLizard@Name:
+Cübbeli Kertenkele
+
+Scripts/Characters/Mobs/MobCrab@Name:
+Yengeç
+
+Scripts/Characters/Mobs/MobCrawler@Name:
+Sürüngen
+
+Scripts/Characters/Mobs/MobFireLizard@Name:
+Ateş kertenkelesi
+
+Scripts/Characters/Mobs/MobHoneyBadger@Name:
+Bal porsuğu
+
+Scripts/Characters/Mobs/MobHyena@Name:
+Sırtlan
+
+Scripts/Characters/Mobs/MobPangolin@Name:
+Karıncayiyen
+
+Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
+Pragmium böceği
+
+Scripts/Characters/Mobs/MobRiverSnail@Name:
+Salyangoz
+
+Scripts/Characters/Mobs/MobScorpion@Name:
+Akrep
+
+Scripts/Characters/Mobs/MobSnakeBlue@Name:
+Mavi yılan
+
+Scripts/Characters/Mobs/MobSnakeBrown@Name:
+Kahverengi yılan
+
+Scripts/Characters/Mobs/MobSnakeGreen@Name:
+Yeşil yılan
+
+Scripts/Characters/Mobs/MobStarfish@Name:
+Deniz yıldızı
+
+Scripts/Characters/Mobs/MobTropicalBoar@Name:
+Tropik yaban domuzu
+
+Scripts/Characters/Mobs/MobTurtle@Name:
+Kaplumbağa
+
+Scripts/Characters/Mobs/MobWildBoar@Name:
+Yaban domuzu
+
+Scripts/Characters/Mobs/MobWolf@Name:
+Kurt
+
+Scripts/Characters/Player/PlayerCharacter@Name:
+Oyuncu karakteri
+
+Scripts/Characters/Player/PlayerCharacterSpectator@Name:
+İzleyici modunda oyuncu karakteri
+

@@ -100,3 +100,10 @@ Oben zusammenfügen
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
 Land Claim und Gesundheitsbalken anzeigen
 
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
+`Reparaturen und Bau-Aktionen sind eingeschränkt.
+[br]Raidblock läuft ab in: {0}.`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
+Auf dieser Basis liegt ein Raidblock
+

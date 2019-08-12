@@ -19,7 +19,7 @@
             => this.protoObjectLandClaim.LandClaimSize;
 
         public string CurrentStructureLandClaimDestructionTimeout
-            => ClientTimeFormatHelper.FormatTimeDuration(this.protoObjectLandClaim.DestructionTimeout, 
+            => ClientTimeFormatHelper.FormatTimeDuration(this.protoObjectLandClaim.DestructionTimeout,
                                                          trimRemainder: true);
 
         public int CurrentStructureLevel
@@ -49,9 +49,6 @@
                 return result;
             }
         }
-
-        public int CurrentStructureSafeItemsSlotsCount
-            => this.protoObjectLandClaim.SafeItemsSlotsCount;
 
         public ViewModelStructure ViewModelStructure { get; }
     }

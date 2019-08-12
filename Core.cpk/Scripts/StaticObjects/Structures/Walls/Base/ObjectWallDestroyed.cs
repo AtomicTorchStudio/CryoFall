@@ -5,8 +5,6 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
-    using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
-    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -27,8 +25,6 @@
                 WallDestroyedPublicState,
                 ObjectWallClientState>
     {
-        public override string InteractionTooltipText => InteractionTooltipTexts.Deconstruct;
-
         // we don't want the destroyed walls to disallow constructions so let's call this is a floor decal
         public override StaticObjectKind Kind => StaticObjectKind.FloorDecal;
 
@@ -122,23 +118,12 @@
 
             // create renderers
             clientState.Renderer = Client.Rendering.CreateSpriteRenderer(worldObject);
-            clientState.Renderer.DrawOrderOffsetY = 0.4;
 
             ProtoObjectWallHelper.ClientRefreshRenderer(data.GameObject);
 
             SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(
                 data.GameObject.OccupiedTile,
                 isDestroy: false);
-        }
-
-        protected override void ClientInteractFinish(ClientObjectData data)
-        {
-            DeconstructionSystem.ClientTryAbortAction();
-        }
-
-        protected override void ClientInteractStart(ClientObjectData data)
-        {
-            DeconstructionSystem.ClientTryStartAction();
         }
 
         protected sealed override void PrepareConstructionConfig(
@@ -197,12 +182,9 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            data.PhysicsBody.AddShapeRectangle((1, 1),
-                                               group: CollisionGroups.ClickArea);
-
             ProtoObjectWallHelper.SharedCalculateNeighborsPattern(
                 data.GameObject.OccupiedTile,
-                protoWall: data.SyncPublicState.OriginalProtoObjectWall,
+                protoWall: data.PublicState.OriginalProtoObjectWall,
                 out var sameTypeNeighbors,
                 out _,
                 isConsiderDestroyed: false,
@@ -210,11 +192,28 @@
 
             foreach (var pattern in WallPatterns.PatternsPrimary)
             {
-                if (pattern.IsPass(sameTypeNeighbors))
+                if (!pattern.IsPass(sameTypeNeighbors))
                 {
-                    pattern.SetupPhysicsDestroyed?.Invoke(data.PhysicsBody);
+                    continue;
+                }
+
+                if (pattern.IsValidDestroyed)
+                {
+                    pattern.SetupPhysicsDestroyed(data.PhysicsBody);
                     return;
                 }
+
+                // the destroyed wall is not required anymore
+                if (IsServer)
+                {
+                    // destroy this invalid wall after a delay
+                    // (as this method might be executed in a foreach enumeration)
+                    ServerTimersSystem.AddAction(
+                        0.1,
+                        () => Server.World.DestroyObject(data.GameObject));
+                }
+
+                return;
             }
         }
 
@@ -249,22 +248,20 @@
         {
             // cleanup area around the built structure from the destroyed walls
             var serverWorld = Server.World;
-            using (var tempList = Api.Shared.GetTempList<Tile>())
-            {
-                SharedGatherOccupiedAndNeighborTiles(structure, tempList);
+            using var tempList = Api.Shared.GetTempList<Tile>();
+            SharedGatherOccupiedAndNeighborTiles(structure, tempList);
 
-                // destroy all the static objects in the gathered tiles
-                foreach (var tile in tempList)
+            // destroy all the static objects in the gathered tiles
+            foreach (var tile in tempList)
+            {
+                var tileStaticObjects = tile.StaticObjects;
+                for (var index = 0; index < tileStaticObjects.Count; index++)
                 {
-                    var tileStaticObjects = tile.StaticObjects;
-                    for (var index = 0; index < tileStaticObjects.Count; index++)
+                    var staticObject = tileStaticObjects[index];
+                    if (staticObject.ProtoStaticWorldObject == this)
                     {
-                        var staticObject = tileStaticObjects[index];
-                        if (staticObject.ProtoStaticWorldObject == this)
-                        {
-                            serverWorld.DestroyObject(staticObject);
-                            index--;
-                        }
+                        serverWorld.DestroyObject(staticObject);
+                        index--;
                     }
                 }
             }

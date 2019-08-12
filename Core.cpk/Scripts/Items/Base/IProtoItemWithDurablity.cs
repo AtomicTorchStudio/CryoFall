@@ -4,7 +4,9 @@
 
     public interface IProtoItemWithDurablity : IProtoItemWithSlotOverlay
     {
-        ushort DurabilityMax { get; }
+        uint DurabilityMax { get; }
+
+        bool IsRepairable { get; }
 
         void ServerOnItemBrokeAndDestroyed(IItem item, IItemsContainer container, byte slotId);
 

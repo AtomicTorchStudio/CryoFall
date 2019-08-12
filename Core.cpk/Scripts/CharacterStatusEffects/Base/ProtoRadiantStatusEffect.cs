@@ -45,12 +45,12 @@
             var result = 0.0;
             foreach (var worldObject in TempResult)
             {
-                var objectHeatIntensity = this.SharedCalculateObjectEnvironmentalIntensity(character,
-                                                                                           worldObject);
+                var environmentalIntensity = this.ServerCalculateObjectEnvironmentalIntensity(character,
+                                                                                              worldObject);
 
-                if (result < objectHeatIntensity)
+                if (result < environmentalIntensity)
                 {
-                    result = objectHeatIntensity;
+                    result = environmentalIntensity;
                 }
             }
 
@@ -69,9 +69,42 @@
             return result;
         }
 
+        // this method is called only for player characters and adding effect if it's absent
         protected override void ServerOnAutoAdd(ICharacter character)
         {
-            var environmentalIntensity = this.ServerCalculateEnvironmentalIntensityAroundCharacter(character);
+            var statusEffects = character.GetPrivateState<BaseCharacterPrivateState>()
+                                         .StatusEffects;
+
+            foreach (var statusEffect in statusEffects)
+            {
+                if (statusEffect.ProtoLogicObject == this)
+                {
+                    // status effect is already added
+                    return;
+                }
+            }
+
+            this.ServerUpdateRadiantStatusEffectIntensity(character,
+                                                          deltaTime: this.ServerAutoAddRepeatIntervalSeconds);
+        }
+
+        protected override void ServerUpdate(StatusEffectData data)
+        {
+            base.ServerUpdate(data);
+            this.ServerUpdateRadiantStatusEffectIntensity(data.Character, data.DeltaTime);
+        }
+
+        protected abstract double ServerCalculateObjectEnvironmentalIntensity(
+            ICharacter character,
+            IWorldObject worldObject);
+
+        private void ServerUpdateRadiantStatusEffectIntensity(ICharacter character, double deltaTime)
+        {
+            // doesn't apply to mobs
+            var environmentalIntensity = character.IsNpc
+                                             ? 0
+                                             : this.ServerCalculateEnvironmentalIntensityAroundCharacter(character);
+
             var currentIntensity = character.SharedGetStatusEffectIntensity(this);
 
             var delta = environmentalIntensity - currentIntensity;
@@ -80,14 +113,14 @@
                 // need to add the intensity
                 var speed = 1.0 / (environmentalIntensity * this.TimeToReachFullIntensitySeconds);
                 delta = Math.Min(delta,
-                                 speed * this.ServerAutoAddRepeatIntervalSeconds);
+                                 speed * deltaTime);
             }
             else if (delta < 0)
             {
                 // need to reduce the intensity
                 var speed = 1.0 / ((environmentalIntensity - 1) * this.TimeToCoolDownToZeroSeconds);
                 delta = Math.Max(delta,
-                                 speed * this.ServerAutoAddRepeatIntervalSeconds);
+                                 speed * deltaTime);
             }
             else
             {
@@ -98,9 +131,5 @@
             var newIntensity = currentIntensity + delta;
             character.ServerSetStatusEffectIntensity(this, intensity: newIntensity);
         }
-
-        protected abstract double SharedCalculateObjectEnvironmentalIntensity(
-            ICharacter character,
-            IWorldObject worldObject);
     }
 }

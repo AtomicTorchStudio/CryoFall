@@ -3,7 +3,6 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
@@ -93,7 +92,7 @@
                 }
 
                 this.isSubscribed = true;
-                ClientComponentUpdateHelper.UpdateCallback += this.Update;
+                ClientUpdateHelper.UpdateCallback += this.Update;
                 this.PreviewMouseLeftButtonDown += this.MouseLeftButtonDownHandler;
                 this.PreviewMouseWheel += this.MouseScrollWheelHandler;
                 ui.LayoutRoot.PreviewMouseLeftButtonUp += this.GlobalMouseLeftButtonUpHandler;
@@ -105,7 +104,7 @@
                 return;
             }
 
-            ClientComponentUpdateHelper.UpdateCallback -= this.Update;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
             this.PreviewMouseLeftButtonDown -= this.MouseLeftButtonDownHandler;
             this.PreviewMouseWheel -= this.MouseScrollWheelHandler;
             ui.LayoutRoot.PreviewMouseLeftButtonUp -= this.GlobalMouseLeftButtonUpHandler;

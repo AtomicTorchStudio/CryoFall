@@ -16,7 +16,7 @@
         {
             stations.Add<ObjectWeaponWorkbench>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             //not exactly realistic recipe (should be 70%/20%/10%), but good for the game balance :)
             inputItems.Add<ItemPotassiumNitrate>(count: 10);

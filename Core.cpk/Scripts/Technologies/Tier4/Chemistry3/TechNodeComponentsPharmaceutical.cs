@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeComponentsPharmaceutical>();
 
-            config.SetRequiredNode<TechNodeSolvent>();
+            config.SetRequiredNode<TechNodeGasolineFromOil>();
         }
     }
 }

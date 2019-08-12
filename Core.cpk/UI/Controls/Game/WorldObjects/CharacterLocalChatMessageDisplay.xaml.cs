@@ -3,7 +3,6 @@
     using System;
     using System.Runtime.CompilerServices;
     using System.Windows.Media.Animation;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -37,7 +36,7 @@
                 {
                     // destroy already displayed message control
                     control.Hide(fast: true);
-                    ClientComponentTimersManager.AddAction(
+                    ClientTimersSystem.AddAction(
                         0.075,
                         () => ShowOn(character, message));
                     return;
@@ -55,7 +54,7 @@
                 isScaleWithCameraZoom: false,
                 isFocusable: false);
 
-            ClientComponentTimersManager.AddAction(TimeoutSeconds, () => control.Hide(fast: false));
+            ClientTimersSystem.AddAction(TimeoutSeconds, () => control.Hide(fast: false));
             DisplayedMessages.Add(character, control);
         }
 

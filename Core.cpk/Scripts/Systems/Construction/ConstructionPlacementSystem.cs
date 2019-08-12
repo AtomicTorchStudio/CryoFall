@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -31,7 +30,7 @@
     {
         public const string NotificationCannotBuild_Title = "Cannot build there";
 
-        private const bool AllowInstantPlacementInCreativeMode = false;
+        private const bool AllowInstantPlacementInCreativeMode = true;
 
         private const double MaxDistanceToBuild = 5;
 
@@ -99,9 +98,8 @@
                                isRepeatCallbackIfHeld: isRepeatCallbackIfHeld,
                                isDrawConstructionGrid: true,
                                isBlockingInput: true,
-                               validateCanPlaceCallback: ClientValidateCanBuildCallback,
+                               validateCanPlaceCallback: ClientValidateCanBuild,
                                placeSelectedCallback: ClientConstructionPlaceSelectedCallback,
-                               maxDistance: MaxDistanceToBuild,
                                delayRemainsSeconds: 0.4);
                 },
                 onClosed: OnStructureSelectWindowOpenedOrClosed);
@@ -231,8 +229,9 @@
             // validate if there are enough required items/resources to build the structure
             Instance.CallServer(_ => _.ServerRemote_PlaceStructure(currentSelectedProtoConstruction, tilePosition));
 
-            if (currentSelectedProtoConstruction is IProtoObjectLandClaim)
+            if (!currentSelectedProtoConstruction.IsRepeatPlacement)
             {
+                // don't repeat placement
                 ClientDisableConstructionPlacement();
             }
         }
@@ -262,7 +261,11 @@
             ClientHotbarSelectedItemManager.Select(itemTool);
         }
 
-        private static bool ClientValidateCanBuildCallback(Vector2Ushort tilePosition, bool logErrors)
+        private static void ClientValidateCanBuild(
+            Vector2Ushort tilePosition,
+            bool logErrors,
+            out bool canPlace,
+            out bool isTooFar)
         {
             var protoStructure = currentSelectedProtoConstruction;
 
@@ -272,34 +275,78 @@
                                  || ProtoObjectConstructionSite.SharedIsConstructionOf(so, protoStructure)))
             {
                 // this building is already built here
-                return false;
+                canPlace = false;
+                isTooFar = false;
+                return;
             }
 
+            var character = Client.Characters.CurrentPlayerCharacter;
             if (!protoStructure.CheckTileRequirements(
                     tilePosition,
-                    Client.Characters.CurrentPlayerCharacter,
+                    character,
                     logErrors: logErrors))
             {
                 // time requirements are not valid
-                return false;
+                canPlace = false;
+                isTooFar = false;
+                return;
             }
 
             var configBuild = protoStructure.ConfigBuild;
-            if (configBuild.CheckStageCanBeBuilt(Client.Characters.CurrentPlayerCharacter))
+            if (configBuild.CheckStageCanBeBuilt(character))
             {
-                return true;
+                canPlace = true;
+                isTooFar = SharedIsTooFarToPlace(protoStructure,
+                                                 tilePosition,
+                                                 character,
+                                                 logErrors);
+                return;
             }
 
-            //NotificationSystem.ClientShowNotification("Cannot build", "Not enough items.", NotificationColor.Bad);
-
+            // not enough items to build the stage
             // close construction menu
             ClientCloseConstructionMenu();
-            return false;
+            canPlace = false;
+            isTooFar = false;
         }
 
         private static void OnStructureSelectWindowOpenedOrClosed()
         {
             Instance.IsOpenedChanged?.Invoke();
+        }
+
+        private static bool SharedIsTooFarToPlace(
+            IProtoObjectStructure protoStructure,
+            Vector2Ushort tilePosition,
+            ICharacter character,
+            bool logErrors)
+        {
+            if (character.TilePosition.TileDistanceTo(tilePosition)
+                <= MaxDistanceToBuild
+                || CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                return false;
+            }
+
+            if (!logErrors)
+            {
+                return true;
+            }
+
+            Logger.Info(
+                $"Cannot place {protoStructure} at {tilePosition}: player character is too far.",
+                character);
+
+            if (IsClient)
+            {
+                Instance.ClientRemote_CannotBuildTooFar(protoStructure);
+            }
+            else
+            {
+                Instance.CallClient(character, _ => _.ClientRemote_CannotBuildTooFar(protoStructure));
+            }
+
+            return true;
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]
@@ -347,10 +394,11 @@
                 return;
             }
 
-            if (character.TilePosition.TileDistanceTo(tilePosition)
-                > MaxDistanceToBuild)
+            if (SharedIsTooFarToPlace(protoStructure,
+                                      tilePosition,
+                                      character,
+                                      logErrors: true))
             {
-                this.CallClient(character, _ => _.ClientRemote_CannotBuildTooFar(protoStructure));
                 return;
             }
 

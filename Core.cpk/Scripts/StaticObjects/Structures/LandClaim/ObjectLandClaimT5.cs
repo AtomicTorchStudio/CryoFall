@@ -5,18 +5,19 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
-    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public class ObjectLandClaimT5 : ProtoObjectLandClaim
     {
+        public override TimeSpan DecayDelayDuration { get; } = TimeSpan.FromHours(176);
+
         public override string Description => GetProtoEntity<ObjectLandClaimT1>().Description;
 
         public override string DescriptionUpgrade => GetProtoEntity<ObjectLandClaimT2>().DescriptionUpgrade;
 
-        public override TimeSpan DestructionTimeout => TimeSpan.FromHours(48);
+        public override TimeSpan DestructionTimeout { get; } = TimeSpan.FromHours(48);
 
         public override ushort LandClaimSize => 24;
 
@@ -25,8 +26,6 @@
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
-
-        public override byte SafeItemsSlotsCount => 8;
 
         public override float StructurePointsMax => 50000;
 

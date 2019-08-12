@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Technologies
 {
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
@@ -14,8 +13,8 @@
     public class ClientLearningPointsNotifier : BaseBootstrapper
     {
         public const string NotificationSpendLearningPointsReminder =
-            @"You have more than {0} learning points (LP) accumulated. You should consider investing them into unlocking new technologies. Only a small fraction of LP are retained after death.
-              [br](click to open the technologies menu)";
+            @"You have more than {0} learning points (LP) accumulated. You should consider investing them into unlocking new technologies.
+              [br](Click to open the technologies menu.)";
 
         private static readonly TextureResource NotificationIcon
             = new TextureResource("Technologies/GenericGroupIcon");
@@ -50,15 +49,19 @@
                 return;
             }
 
-            NotificationSystem.ClientShowNotification(
-                                  CoreStrings.Technology,
-                                  string.Format(NotificationSpendLearningPointsReminder, points),
-                                  icon: NotificationIcon,
-                                  onClick: Menu.Open<WindowTechnologies>,
-                                  autoHide: false)
-                              .SetupAutoHideChecker(
-                                  // hide when menu is opened
-                                  Menu.IsOpened<WindowTechnologies>);
+            var notification = NotificationSystem.ClientShowNotification(
+                CoreStrings.Technology,
+                string.Format(NotificationSpendLearningPointsReminder, points),
+                icon: NotificationIcon,
+                onClick: Menu.Open<WindowTechnologies>,
+                autoHide: false);
+
+            notification.SetupAutoHideChecker(
+                // hide when menu is opened
+                Menu.IsOpened<WindowTechnologies>);
+
+            ClientTimersSystem.AddAction(delaySeconds: 60,
+                                         () => notification.Hide(quick: false));
         }
 
         private void CurrentTechnologiesChangedHandler()
@@ -88,11 +91,9 @@
                 }
 
                 var researchedCount = CurrentTechnologies.Nodes.Count;
-                var lpThreshhold = ServerCharacterDeathMechanic.SharedGetLearningPointsRetainedAfterDeath(
-                    Client.Characters.CurrentPlayerCharacter);
-
+                int lpThreshhold = 100;
                 if (researchedCount > 0
-                    && lp >= lpThreshhold
+                    && lp >= 100
                     && this.lastLearningPoints < lpThreshhold)
                 {
                     // player has too much free LP

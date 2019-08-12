@@ -11,6 +11,11 @@
 
         void ClientPlaceAt(IItem itemSeed, Vector2Ushort tilePosition);
 
-        bool SharedIsValidPlacementPosition(Vector2Ushort tilePosition, ICharacter character, bool logErrors);
+        void SharedIsValidPlacementPosition(
+            Vector2Ushort tilePosition,
+            ICharacter character,
+            bool logErrors,
+            out bool canPlace,
+            out bool isTooFar);
     }
 }

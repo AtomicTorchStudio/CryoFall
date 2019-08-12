@@ -10,7 +10,7 @@
             "Smashing skulls in with a mace is fine, but sometimes you want something with range. Especially if you go against more serious adversaries.";
 
         public override string Hints =>
-            @"[*] You can unlock all relevant technologies in the ""Offense & Defense"" technology group.
+            @"[*] You can unlock all relevant technologies in the ""Offense"" technology group.
               [*] To craft paper cartridges, you will also have to craft [b]gunpowder[/b] and [b]paper[/b] first.
               [*] There are [b]different damage types[/b], and different armor offers different protection values for each. You can see this information in your inventory screen.";
 

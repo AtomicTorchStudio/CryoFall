@@ -369,9 +369,19 @@
 
             this.currentCommandVariant = commandVariant;
 
-            this.currentSuggestions = suggestions;
+            if (suggestions != null)
+            {
+                var sortedSuggestions = new List<string>(suggestions);
+                sortedSuggestions.Sort(StringComparer.OrdinalIgnoreCase);
+                this.currentSuggestions = sortedSuggestions;
+            }
+            else
+            {
+                this.currentSuggestions = null;
+            }
+
             this.suggestionCurrentIndex = 0;
-            this.viewModelConsoleControl.SetSuggestions(suggestions);
+            this.viewModelConsoleControl.SetSuggestions(this.currentSuggestions);
 
             if (!this.IsSuggestionMode)
             {

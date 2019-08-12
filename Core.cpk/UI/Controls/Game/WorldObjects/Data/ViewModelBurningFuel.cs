@@ -14,14 +14,14 @@
         {
             // prepare active state property
             var manufacturerPublicState = worldObjectManufacturer.GetPublicState<ObjectManufacturerPublicState>();
-            manufacturerPublicState.ClientSubscribe(_ => _.IsManufacturingActive,
+            manufacturerPublicState.ClientSubscribe(_ => _.IsActive,
                                                     _ => RefreshIsManufacturerActive(),
                                                     this);
             RefreshIsManufacturerActive();
 
             void RefreshIsManufacturerActive()
             {
-                this.IsActive = manufacturerPublicState.IsManufacturingActive;
+                this.IsActive = manufacturerPublicState.IsActive;
             }
 
             var (icon, color) = fuelItemsContainer.ClientGetFuelIconAndColor();

@@ -37,7 +37,7 @@
                                  this.Probability);
         }
 
-        public OutputItem WithRate(byte rateModifier)
+        public new OutputItem WithRate(byte rateModifier)
         {
             return new OutputItem(
                 this.ProtoItem,

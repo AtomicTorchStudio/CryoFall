@@ -14,8 +14,6 @@
 
         public override string Name => "Green herb";
 
-        public override float StaminaRestore => 15;
-
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {
             character.ServerAddStatusEffect<StatusEffectHealingSlow>(intensity: 0.07); // 7 seconds (7hp)

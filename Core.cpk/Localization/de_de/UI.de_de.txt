@@ -95,6 +95,18 @@ Private Nachricht
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Entblocken
 
+UI/CoreStrings@ConstructionMetaInfo_Decoration:
+Diese Konstruktion ist rein dekorativ.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerConsumer:
+Diese Konstruktion benötigt Strom, um zu funktionieren.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
+Diese Konstruktion erzeugt Strom.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
+Diese Konstruktion speichert Strom.
+
 UI/CoreStrings@Copy:
 Kopieren
 
@@ -107,6 +119,13 @@ MIN
 UI/CoreStrings@CraftingQueue_Title:
 WERKSTATT
 
+UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
+`[b]Linksklick[/b]
+[br]Diese Rezeptur an den Anfang der Warteschlange setzen.
+[br]
+[br][b]Rechtsklick[/b]
+[br]Diese Rezeptur abbrechen.`
+
 UI/CoreStrings@CraftingRecipeDetails_ButtonStartCraft:
 HERSTELLEN
 
@@ -117,9 +136,6 @@ Weitere Rezepturen lassen sich im Technologiemenü freischalten.`
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Freigeschaltete Rezepturen
-
-UI/CoreStrings@CryoFallDevelopmentRoadmap:
-CryoFall Entwicklungs-Roadmap
 
 UI/CoreStrings@Defense_Format_Chemical:
 Chemischer Schutz: {0}
@@ -156,6 +172,18 @@ Vorkommenskapazität
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 EE
+
+UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
+EE/s
+
+UI/CoreStrings@Extras_DiscordTooltip:
+Offizieller CryoFall Discord-Server (nur auf Englisch)
+
+UI/CoreStrings@Extras_PatchnotesTooltip:
+Alle CryoFall Update Patchnotes (nur auf Englisch)
+
+UI/CoreStrings@Extras_RoadmapTooltip:
+CryoFall Entwicklungs-Roadmap (nur auf Englisch)
 
 UI/CoreStrings@FarmPlantTooltip_NotWatered:
 Nicht bewässert
@@ -252,6 +280,9 @@ Oben einordnen
 
 UI/CoreStrings@ItemsContainer_Button_TakeAll:
 Alle nehmen
+
+UI/CoreStrings@ItemsContainer_CapacityExceededTakeOnly:
+Kapazität überschritten. Gegenstände können nur entnommen werden.
 
 UI/CoreStrings@ItemsContainer_Title:
 Gegenstände
@@ -405,11 +436,11 @@ Benutzerdefiniert
 UI/CoreStrings@MenuServers_ListTitleFavorite:
 Bevorzugt
 
+UI/CoreStrings@MenuServers_ListTitleFeatured:
+Vorgestellt
+
 UI/CoreStrings@MenuServers_ListTitleModded:
 Gemoddet
-
-UI/CoreStrings@MenuServers_ListTitleOfficial:
-Offiziell
 
 UI/CoreStrings@MenuServers_ListTitleRecent:
 Aktuell
@@ -478,12 +509,14 @@ Ping (Durchschnitt)
 UI/CoreStrings@Network_PingAverage_SeverityRed:
 `Wie es scheint, ist deine Internetverbindung zum Server gravierendem Lag (sehr hohem Ping) ausgesetzt.
 [br]In der Folge benötigen einige deiner Handlungen innerhalb des Spiels (die nur nach einer Antwort des Servers wirksam werden) sehr viel länger, um ausgeführt oder verarbeitet zu werden.
-[br]Z.B. können deine Angriffe ihr Ziel durch die erhebliche Diskrepanz zum Server häufiger verfehlen. Des Weiteren kann es zu häufigem Rubberbanding oder plötzlichen Positionskorrekturen kommen.`
+[br]Z.B. können deine Angriffe ihr Ziel durch die erhebliche Diskrepanz zum Server häufiger verfehlen.
+[br]Des Weiteren kann es zu häufigem Rubberbanding oder plötzlichen Positionskorrekturen kommen.`
 
 UI/CoreStrings@Network_PingAverage_SeverityYellow:
 `Wie es scheint, ist deine Internetverbindung zum Server beträchtlichem Lag (hohem Ping) ausgesetzt.
 [br]In der Folge benötigen einige deiner Handlungen innerhalb des Spiels (die nur nach einer Antwort des Servers wirksam werden) länger, um ausgeführt oder verarbeitet zu werden.
-[br]Z.B. können deine Angriffe ihr Ziel durch die erhebliche Diskrepanz zum Server häufiger verfehlen. Des Weiteren kann es zu häufigem Rubberbanding oder plötzlichen Positionskorrekturen kommen.`
+[br]Z.B. können deine Angriffe ihr Ziel durch die erhebliche Diskrepanz zum Server häufiger verfehlen.
+[br]Des Weiteren kann es zu häufigem Rubberbanding oder plötzlichen Positionskorrekturen kommen.`
 
 UI/CoreStrings@Network_PingFluctuationRange:
 Ping-Schwankungsbreite
@@ -624,6 +657,69 @@ VRAM-Auslastung
 UI/CoreStrings@PleaseWait:
 Bitte warten ...
 
+UI/CoreStrings@PowerGrid_NotConnectedMessage:
+Nicht mit dem Stromnetz verbunden.
+
+UI/CoreStrings@PowerGridState_ActiveFormat:
+(aktiv {0})
+
+UI/CoreStrings@PowerGridState_Button_RestorePower:
+Stromversorgung wiederherstellen
+
+UI/CoreStrings@PowerGridState_Capacity:
+Kapazität:
+
+UI/CoreStrings@PowerGridState_Consumers:
+Verbraucher:
+
+UI/CoreStrings@PowerGridState_CurrentConsumption:
+Aktueller Verbrauch:
+
+UI/CoreStrings@PowerGridState_CurrentGeneration:
+Aktuelle Stromerzeugung:
+
+UI/CoreStrings@PowerGridState_DepletedIn:
+Aufgebraucht in:
+
+UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
+Nie
+
+UI/CoreStrings@PowerGridState_EfficiencyFormat:
+(Effizienz {0}%)
+
+UI/CoreStrings@PowerGridState_EnergyInformation:
+Energie-Information
+
+UI/CoreStrings@PowerGridState_Generators:
+Generatoren:
+
+UI/CoreStrings@PowerGridState_GridSize:
+Netzgröße:
+
+UI/CoreStrings@PowerGridState_GridStatus:
+Netzstatus:
+
+UI/CoreStrings@PowerGridState_MaxDefenseConsumption:
+Max. Verteidigungsverbrauch:
+
+UI/CoreStrings@PowerGridState_MaxGeneration:
+Max. Erzeugung:
+
+UI/CoreStrings@PowerGridState_MaxTotalConsumption:
+Max. Gesamtverbrauch:
+
+UI/CoreStrings@PowerGridState_PowerGridInformation:
+Stromnetzinformation
+
+UI/CoreStrings@PowerGridState_Status_Blackout:
+Stromausfall
+
+UI/CoreStrings@PowerGridState_Status_Nominal:
+Nominal
+
+UI/CoreStrings@PowerGridState_Storages:
+Speicher:
+
 UI/CoreStrings@Quest_Button_ClaimReward:
 Annehmen
 
@@ -662,6 +758,12 @@ Ping
 
 UI/CoreStrings@ServerPlayersCount:
 Spieler
+
+UI/CoreStrings@ServerWipedDate:
+Letzter Wipe
+
+UI/CoreStrings@Skill:
+Fähigkeit
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Intensität
@@ -757,8 +859,14 @@ Mineralöl
 UI/CoreStrings@TitleLiquidPetroleum:
 Erdöl
 
+UI/CoreStrings@TitleLiquidWater:
+Wasser
+
 UI/CoreStrings@TitleLoading:
 Wird geladen ...
+
+UI/CoreStrings@TitleModeAlwaysOn:
+Immer an
 
 UI/CoreStrings@TitleModeAuto:
 Auto
@@ -774,6 +882,9 @@ Keine Erweiterung verfügbar
 
 UI/CoreStrings@TitleOwner:
 Eigentümer
+
+UI/CoreStrings@TitlePowerGrid:
+Stromnetz
 
 UI/CoreStrings@TitleSafeStorage:
 Sichere Aufbewahrung
@@ -838,11 +949,23 @@ Ort
 UI/CoreStrings@WindowDataLog_To:
 An
 
+UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
+SOLARPANELS
+
 UI/CoreStrings@WindowInventory_Button_Customize:
 Anpassen
 
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 Befreien!
+
+UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
+Ein Land Claim lässt sich nicht zum Lagern von Ressourcen und einfachen Gegenständen verwenden.
+
+UI/CoreStrings@WindowLandClaim_DecayInfo:
+Verfall-Info
+
+UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
+Gegenstände in sicherer Aufbewahrung werden von jeder Land Claim-Konstruktion dieser Basis geteilt.
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 Nur der Besitzer kann diese Struktur erweitern.
@@ -877,11 +1000,11 @@ Eingegebene Objekte nicht ausreichend für aktuelle Rezeptur!
 UI/CoreStrings@WindowManufacturer_FuelRequired:
 Brennstoff erforderlich!
 
+UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
+Leer
+
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
 Lichtmodus
-
-UI/CoreStrings@WindowOilRefinery_EmptyCanistersOutput:
-Leer
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 Das Raid-Zeitfenster ist nun geöffnet ({0} verbleibend).
@@ -898,6 +1021,9 @@ Nächstes Raid-Zeitfenster ist in {0}.
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
 Raid-Schutz
+
+UI/CoreStrings@WindowPowerStorage_NotConnectedToPowerGrid:
+Dieser Stromspeicher ist mit keinem Stromnetz verbunden.
 
 UI/CoreStrings@WindowQuests_CompletionReward:
 Belohnung
@@ -920,6 +1046,9 @@ Abgeschlossene Quests
 UI/CoreStrings@WindowQuests_TitleUnlockedQuestsCount:
 Freigeschaltete Quests
 
+UI/CoreStrings@WindowRechargingStation_Title:
+AUFLADEN
+
 UI/CoreStrings@WindowRespawn_Button_RespawnAtYourBed:
 Respawne an deinem Bett
 
@@ -936,13 +1065,13 @@ UI/CoreStrings@WindowRespawn_Message:
 Wie es scheint, bist du gewaltsam aus dem Leben geschieden ... und hast all deine Sachen verloren! Willst du dich rächen?
 
 UI/CoreStrings@WindowRespawn_MessageDespawned:
-Du hast deinen Charakter zu lange außerhalb deines Land Claim-Bereichs gelassen. Somit wurde er aus der Welt entfernt. Du kannst ganz normal respawnen und hast keine Gegenstände oder LP verloren.
+Du hast deinen Charakter zu lange außerhalb deines Land Claim-Bereichs gelassen. Somit wurde er aus der Welt entfernt. Du kannst ganz normal respawnen. Keiner deiner Gegenstände ist verlorengegangen.
 
 UI/CoreStrings@WindowRespawn_MessagePvE:
 Wie es scheint, bist du gewaltsam aus dem Leben geschieden ... Willst du dich rächen?
 
 UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
-Wie es scheint, wurdest du von einem anderen Spieler getötet. Glücklicherweise stehst du noch immer unter Anfängerschutz und verlierst so keine deiner Gegenstände oder Lernpunkte. Sei vorsichtig – beim nächsten Mal hast du vielleicht nicht so viel Glück!
+Wie es scheint, wurdest du von einem anderen Spieler getötet. Glücklicherweise stehst du noch immer unter Anfängerschutz und verlierst so keine deiner Gegenstände. Sei vorsichtig – beim nächsten Mal hast du vielleicht nicht so viel Glück!
 
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `Du bist erst kürzlich im Bett respawnt.
@@ -953,6 +1082,9 @@ Bild auswählen
 
 UI/CoreStrings@WindowSkills_CurrentLevelFormat:
 Level {0}
+
+UI/CoreStrings@WindowSkills_CurrentLevelFormat2:
+Aktueller Level: {0}
 
 UI/CoreStrings@WindowSkills_MaxLevelReached:
 Maximallevel erreicht!
@@ -997,11 +1129,24 @@ Es ist absolut freiwillig und du kannst stattdessen zum Spielen einfach deinen b
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 Du kannst deinen Steam-Account mit deinem AtomicTorch.com Nutzerkonto verbinden oder ein neues Nutzerkonto erstellen.
 
-UI/CoreStrings@WindowTechnologies_LearningPointsRetainedAfterDeath:
-Nach dem Tod behaltene LP
+UI/CoreStrings@WindowTechnologies_Info_AdditionalTechnologies:
+`Diese zusätzlichen Technologien ermöglichen es dir, dich in verschiedenen Bereichen noch weiter zu spezialisieren.
+[br]NICHT ALLE höheren Ränge sind gleichzeitig erlernbar. Wähle also mit Bedacht.`
+
+UI/CoreStrings@WindowTechnologies_Info_PrimaryTechnologies:
+Um Zugang zu technologischen Grundfähigkeiten in CryoFall sicherzustellen, wird allen Spielern das Erlernen primärer Technologien empfohlen.
 
 UI/CoreStrings@WindowTechnologies_TechGroupLocked:
 Nicht freigeschaltet
+
+UI/CoreStrings@WindowTechnologies_TechGroupPreview:
+Vorschau
+
+UI/CoreStrings@WindowTechnologies_TechGroupResearch:
+Erforschen
+
+UI/CoreStrings@WindowTechnologies_TechGroupResearchCost:
+Forschungskosten
 
 UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 Freischalten
@@ -1012,16 +1157,14 @@ Primäre Technologien
 UI/CoreStrings@WindowTechnologies_TitleSpecializedTechnologies:
 Spezialisierte Technologien
 
-UI/CoreStrings@WindowTechnologies_TooltipExplanationHowLearningPointsRetainedOnDeath:
-`Wenn dein Charakter stirbt, verlierst du alle
-[br]gesammelten LP, außer der hier angegebenen Menge.
-[br]Deine [i]Lernfähigkeit[/i] zu erhöhen, verringert diesen Wert erheblich.`
-
 UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
 `Du kannst LP (Lernpunkte) sammeln, indem du
 [br]sinnvollen Tätigkeiten im Spiel nachgehst.
 [br]Der Gewinn von LP verhält sich direkt proportional
 [br]zum Erfahrungsgewinn deiner Charakterfähigkeiten.`
+
+UI/CoreStrings@WindowTinkerTable_Button_Repair:
+Reparieren
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
 Postenkonfig
@@ -1077,6 +1220,21 @@ Verkauf
 UI/CoreStrings@WindowTrashCan_Title:
 Du kannst Gegenstände hier platzieren, um sie dauerhaft loszuwerden.
 
+UI/CoreStrings@WipedDate_DaysAgo_Format:
+vor {0} Tagen
+
+UI/CoreStrings@WipedDate_HoursAgo_Format:
+vor {0} Stunden
+
+UI/CoreStrings@WipedDate_JustWiped:
+Gerade gewiped
+
+UI/CoreStrings@WipedDate_Yesterday:
+Gestern
+
+UI/CoreStrings@WorldMap_MapExplored:
+Karte erkundet
+
 UI/CoreStrings@WorldMap_PointedPosition:
 Ausgewählte Position
 
@@ -1094,6 +1252,10 @@ UI/CoreStrings@WorldMapMarkDroppedItems_Tooltip:
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
 `[b]Land Claim[/b]
 [br]Dies ist das Gebiet, auf das du Zugriff hast.`
+
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
+`[b]Land Claim[/b]
+[br]Dies ist dein Land Claim.`
 
 UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 `[b]Basis wird überfallen[/b]
@@ -1119,13 +1281,13 @@ UI/CoreStrings@Yes:
 Ja
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Roboto Condensed
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 Verbunden
@@ -1138,6 +1300,10 @@ Von @{0}: {1}
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 [Developer]
+
+UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
+`Möchtest du den privaten Chat mit {0} schließen?
+[br]Der Chatverlauf wird gespeichert und du kannst den Chat später erneut öffnen.`
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 Da diese Rezeptur degradierbare Komponenten enthält, kann sie nicht abgebrochen werden.
@@ -1158,12 +1324,12 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 Deine Gegenstände wurden fallengelassen
 
-UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAttack_MessageFormat:
-`Eine deiner Basen wird überfallen!
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
+`Eine deiner Basen wird angegriffen!
 [br]({0};{1})`
 
-UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAttack_Title:
-Überfall!
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Title:
+Angriff!
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
 `{0} lokalisiert bei {1};{2}.
@@ -1324,11 +1490,27 @@ Handarbeit
 UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
 Reparieren
 
+UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
+Verderbliche Gegenstände können ~{0} mal länger gelagert werden.
+
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListEmpty:
 Du kannst anderen Überlebenden Zugang zu deinem Land Claim gewähren.
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
 Zugang
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
+`Verlassene Konstruktionen beginnen nach einiger Zeit zu verfallen
+[br]und verschwinden irgendwann, um die Übersichtlichkeit der Karte nicht zu beeinträchtigen.
+[br]
+[br]Der Verfall dieses Land Claim-Gebäudes beginnt in [b]{0}[/b].
+[br]Danach wird es in [b]{1}[/b] verfallen, bevor der Zerstörungs-Timer aktiviert wird ([b]{2}[/b]).
+[br]
+[br]Um Verfall zu vermeiden, besuche diese Basis mindestens einmal binnen [b]{0}[/b]
+[br](jeder Spieler auf der Zugangsliste kann den Verfall-Timer zurücksetzen).
+[br]
+[br]Du kannst die Zeit bis zum Einsetzen des Verfalls erhöhen, indem du einen deiner Land Claims auf einen höheren Rang [b]erweiterst[/b].
+[br]Die Verzögerung des Verfalls der gesamten Basis orientiert sich am Land Claim-Gebäude mit dem [b]höchsten[/b] Rang.`
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
 Dieses Vorkommen ist erschöpft.
@@ -1353,6 +1535,18 @@ Nicht genug Biomaterial
 
 UI/Controls/Game/WorldObjects/Plants/Data/ViewModelFarmPlantTooltip@TitlePermanent:
 dauerhaft
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSolar@ElectricityProductionInfoTextFormat:
+`Aktuelle Stromerzeugung {0} EE/s bei {1} % Lichtlevel.
+[br]Maximale Leistung {2} EE/s.`
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@ElectricityProductionInfoTextFormat:
+`Aktuelle Stromerzeugung {0} EE/s bei {1}°C ({2}% Wirkungsgrad).
+[br]Maximale Leistung {3} EE/s.`
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
+`Aktuelle Stromerzeugung {0} EE/s.
+[br]Maximale Leistung {1} EE/s.`
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
 Warten auf Login-Reaktion.

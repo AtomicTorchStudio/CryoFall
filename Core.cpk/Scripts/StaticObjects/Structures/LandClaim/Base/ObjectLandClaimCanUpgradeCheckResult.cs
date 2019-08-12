@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim
 {
     using System.ComponentModel;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
 
     public enum ObjectLandClaimCanUpgradeCheckResult
     {
@@ -18,6 +19,9 @@
         ErrorNotFounder,
 
         [Description("Please reopen the land claim window and try again.")]
-        ErrorNoActiveInteraction
+        ErrorNoActiveInteraction,
+
+        [Description(LandClaimSystem.ErrorRaidBlockActionRestricted_Message)]
+        ErrorUnderRaid
     }
 }

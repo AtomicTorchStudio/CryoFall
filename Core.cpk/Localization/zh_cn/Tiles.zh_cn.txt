@@ -34,6 +34,12 @@ Scripts/Tiles/TileRuins@Name:
 Scripts/Tiles/TileSaltFlats@Name:
 盐滩
 
+Scripts/Tiles/TileSwamp@Name:
+沼泽
+
+Scripts/Tiles/TileVolcanic@Name:
+火山
+
 Scripts/Tiles/TileWaterLake@Name:
 水（湖）
 

@@ -76,7 +76,7 @@ Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
 您確定要{0} {1}嗎？
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
-您可以稍後使用社交選單取消阻止此玩家。
+您可以稍後使用社交選單解除屏蔽此玩家。
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 全局
@@ -102,10 +102,7 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 無法添加新的配方
 
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Message:
-你不是土地所有者。
-
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Title:
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 無法拆除
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
@@ -127,6 +124,9 @@ Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNoNeedToRefill:
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
 此物品不可再填充。
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
+過於接近他人土地
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 該區域已被另一個玩家占領，或者它太接近別人的土地。
 
@@ -147,6 +147,15 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `襲擊正在進行中。
 [br]你的基地受到攻擊時，你無法建造新的建築物。`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
+你只能在自己的佔領區內建造這個建築。
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
+你並非此佔領區所有人。
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
+基地正遭受襲擊。
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
 取消新手保護
 
@@ -154,7 +163,7 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProte
 確定要取消新手保護嗎？你無法再次將其開啟。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
-你正處於新手保護狀態下。你被其他角色殺死時不會掉落物品或損失學習點數。另外，你死亡後掉落的物品無法被其他角色拾取。請跟隨任務，製造必須的工具和武器，儘快建造起一個小型基地！
+你正處於新手保護狀態下。你被其他角色殺死時不會掉落物品。另外，你死亡後掉落的物品無法被其他角色拾取。請跟隨任務，製造必須的工具和武器，儘快建造起一個小型基地！
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 新手保護結束于: {0}
@@ -225,6 +234,18 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySame
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 你被管理員禁言，無法進行邀請。
 
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
+被邀請玩家處於離線狀態。只有線上玩家可以被邀請進入小隊。
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
+無法互動 - 太遠或建築不可用。
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
+沒有電網。
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
+電網中電力不足。
+
 Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
 禁止決鬥模式
 
@@ -255,7 +276,8 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDam
 無傷害
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
-劫掠期已結束。
+`襲擊時段現已結束。
+[br]正在進行的襲擊可以繼續進行。`
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 尚無成熟作物
@@ -338,8 +360,8 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0}級別{1}。
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`你積累了超過{0}個學習點（LP）。你應該考慮將它們投入到解鎖新技術中。只有一小部分LP在死後保留。
-[br]（點擊打開技術選單）`
+`你積累了超過{0}個學習點（LP）。你應該考慮將它們投入到解鎖新技術中。
+[br]（點擊打開技術菜單）`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
 無法解鎖技術

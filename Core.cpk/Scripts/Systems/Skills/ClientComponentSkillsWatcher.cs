@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
 
     public class ClientComponentSkillsWatcher : ClientComponent
@@ -27,9 +28,17 @@
 
         private NetworkSyncDictionary<IProtoSkill, SkillLevelData> skillsDictionary;
 
+        public delegate void SkillLevelChangedDelegate(
+            IProtoSkill skill,
+            SkillLevelData skillLevelData);
+
+        public static event SkillLevelChangedDelegate SkillLevelChanged;
+
         public void OnSkillLevelChanged(IProtoSkill skill, SkillLevelData data)
         {
             this.OnSkillsChanged();
+
+            Api.SafeInvoke(() => SkillLevelChanged?.Invoke(skill, data));
 
             var level = data.Level;
             if (level == 0)
@@ -40,7 +49,7 @@
             // show notification
             if (level == 1)
             {
-                Client.Audio.PlayOneShot(SoundResourceSkillDiscovered);
+                Client.Audio.PlayOneShot(SoundResourceSkillDiscovered, volume: 0.5f);
                 NotificationSystem.ClientShowNotification(
                     string.Format(NotificationSkillDiscovered, skill.Name),
                     message: null,
@@ -51,7 +60,7 @@
             }
             else
             {
-                Client.Audio.PlayOneShot(SoundResourceSkillLevelUp);
+                Client.Audio.PlayOneShot(SoundResourceSkillLevelUp, volume: 0.5f);
                 NotificationSystem.ClientShowNotification(
                     string.Format(NotificationSkillReachedLevel, skill.Name, level),
                     color: NotificationColor.Good,
@@ -111,6 +120,8 @@
             // this method might be called only in the editor mode or when the character is wiped
             // during normal play it's not possible as skill entries only added (and their exp gained)
             this.OnSkillsChanged();
+
+            Api.SafeInvoke(() => SkillLevelChanged?.Invoke(key, default));
         }
 
         private void SkillsDictionaryPairSetHandler(

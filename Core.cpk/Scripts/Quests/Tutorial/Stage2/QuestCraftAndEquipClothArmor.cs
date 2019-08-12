@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier1.OffenseAndDefense;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Defense;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestCraftAndEquipClothArmor : ProtoQuest

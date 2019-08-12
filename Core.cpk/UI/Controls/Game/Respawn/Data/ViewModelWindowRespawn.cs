@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Windows;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
@@ -32,14 +30,14 @@
             this.RefreshDamageSources();
             this.RefreshMessage();
 
-            ClientComponentUpdateHelper.UpdateCallback += this.Update;
+            ClientUpdateHelper.UpdateCallback += this.Update;
             PveSystem.ClientIsPvEChanged += this.RefreshMessage;
 
             // Disable respawn buttons for 5 seconds.
             // So player will not click too early
             // and will pay attention to the respawn reasons.
             this.IsRespawnButtonsEnabled = false;
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 delaySeconds: 4,
                 () => this.IsRespawnButtonsEnabled = true);
         }
@@ -88,7 +86,7 @@
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
-            ClientComponentUpdateHelper.UpdateCallback -= this.Update;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
             PveSystem.ClientIsPvEChanged -= this.RefreshMessage;
         }
 

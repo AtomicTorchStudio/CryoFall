@@ -5,7 +5,7 @@
         public override string Description =>
             "Thick padded fabric that provides a surprisingly decent level of protection from all types of damage and environmental effects.";
 
-        public override ushort DurabilityMax => 800;
+        public override uint DurabilityMax => 800;
 
         public override string Name => "Quilted coat";
 

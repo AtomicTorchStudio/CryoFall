@@ -8,12 +8,13 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data"
     xmlns:worldObjects="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     mc:Ignorable="d"
     x:Name="UserControl"
     d:DesignHeight="300" d:DesignWidth="200"
     d:DataContext="{d:DesignInstance data:ViewModelCraftingQueueItem, IsDesignTimeCreatable=True}"
     Foreground="White"
-    Margin="3">
+    Margin="3" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
     <ui:BaseUserControl.Resources>
         <ResourceDictionary>
 
@@ -81,6 +82,15 @@
                         <ScaleTransform ScaleX="0.8" ScaleY="0.8" />
                     </worldObjects:RecipeTooltip.LayoutTransform>
                 </worldObjects:RecipeTooltip>
+                <!-- Text: LMB click - make this recipe first in the queue.[br]RMB click - cancel this recipe. -->
+                <core:FormattedTextBlock
+                    Content="{x:Static loc:CoreStrings.CraftingQueueItemControl_ShortcutsDescription}"
+                    FontSize="11"
+                    FontWeight="Normal"
+                    FontFamily="{StaticResource CondensedFontFamily}"
+                    LineHeight="12"
+                    LineStackingStrategy="BlockLineHeight"
+                    Margin="0,9,0,0" />
             </StackPanel>
         </ui:ToolTipServiceExtend.ToolTip>
         <Grid>

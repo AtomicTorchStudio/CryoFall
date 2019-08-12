@@ -20,6 +20,8 @@
 
         public const string PryOpen = "Pry open";
 
+        public const string TogglePower = "Toggle power";
+
         public const string Write = "Write";
     }
 }

@@ -49,7 +49,7 @@
         /// By default skills do not modify the conversion rate (it is set in the tech constants),
         /// but if need be it can be modified individually, such as reduced for athletics skill
         /// </summary>
-        public virtual double ExperienceToLearningPointsConversionMultiplier => 1;
+        public abstract double ExperienceToLearningPointsConversionMultiplier { get; }
 
         public IReadOnlyList<FlagEffect> FlagEffects { get; private set; }
 
@@ -124,7 +124,7 @@
 
                 if (tempStatsCache == null)
                 {
-                    tempStatsCache = TempStatsCache.GetFromPool(isMultipliersSummed: true);
+                    tempStatsCache = TempStatsCache.GetFromPool();
                 }
 
                 var statName = statEffect.StatName;
@@ -206,46 +206,44 @@
                 return;
             }
 
-            using (var onlinePartyMembers = Api.Shared.GetTempList<ICharacter>())
+            using var onlinePartyMembers = Api.Shared.GetTempList<ICharacter>();
+            foreach (var partyMemberName in partyMembersNames)
             {
-                foreach (var partyMemberName in partyMembersNames)
+                var partyMember = Server.Characters.GetPlayerCharacter(partyMemberName);
+                if (partyMember != null
+                    && (partyMember == character
+                        || partyMember.ServerIsOnline))
                 {
-                    var partyMember = Server.Characters.GetPlayerCharacter(partyMemberName);
-                    if (partyMember != null
-                        && (partyMember == character
-                            || partyMember.IsOnline))
-                    {
-                        onlinePartyMembers.Add(partyMember);
-                    }
+                    onlinePartyMembers.Add(partyMember);
                 }
+            }
 
-                if (onlinePartyMembers.Count <= 1)
-                {
-                    // no party or a single member party - add all LP to the current character
-                    character.SharedGetTechnologies()
-                             .ServerAddLearningPoints(learningPointsToAdd);
-                    return;
-                }
-
-                // player has a party
-                // add only a share of LP to current character
-                var learningPointsSharePercent = MathHelper.Clamp(PartyConstants.PartyLearningPointsSharePercent, 0, 1);
-                var currentCharacterLearningPointsShare = learningPointsToAdd * (1 - learningPointsSharePercent);
+            if (onlinePartyMembers.Count <= 1)
+            {
+                // no party or a single member party - add all LP to the current character
                 character.SharedGetTechnologies()
-                         .ServerAddLearningPoints(currentCharacterLearningPointsShare);
+                         .ServerAddLearningPoints(learningPointsToAdd);
+                return;
+            }
 
-                // distribute the rest equally to the other party members
-                var learningPointsShare = learningPointsToAdd
-                                          * learningPointsSharePercent
-                                          / (onlinePartyMembers.Count - 1);
+            // player has a party
+            // add only a share of LP to current character
+            var learningPointsSharePercent = MathHelper.Clamp(PartyConstants.PartyLearningPointsSharePercent, 0, 1);
+            var currentCharacterLearningPointsShare = learningPointsToAdd * (1 - learningPointsSharePercent);
+            character.SharedGetTechnologies()
+                     .ServerAddLearningPoints(currentCharacterLearningPointsShare);
 
-                foreach (var partyMember in onlinePartyMembers)
+            // distribute the rest equally to the other party members
+            var learningPointsShare = learningPointsToAdd
+                                      * learningPointsSharePercent
+                                      / (onlinePartyMembers.Count - 1);
+
+            foreach (var partyMember in onlinePartyMembers)
+            {
+                if (partyMember != character)
                 {
-                    if (partyMember != character)
-                    {
-                        partyMember.SharedGetTechnologies()
-                                   .ServerAddLearningPoints(learningPointsShare);
-                    }
+                    partyMember.SharedGetTechnologies()
+                               .ServerAddLearningPoints(learningPointsShare);
                 }
             }
         }
@@ -503,8 +501,7 @@
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception(
-                        $"{protoSkill} - found an error.{Environment.NewLine}{ex.Message}");
+                    Logger.Error($"{protoSkill} - found an error.{Environment.NewLine}{ex.Message}");
                 }
             }
         }

@@ -71,6 +71,22 @@
             Instance.CallServer(_ => _.ServerRemote_CreateUnstuckRequest());
         }
 
+        public static void ServerTryCancelUnstuckRequest(ICharacter character)
+        {
+            if (character.IsNpc)
+            {
+                return;
+            }
+
+            if (!serverRequests.Remove(character))
+            {
+                // no unstuck requests
+                return;
+            }
+
+            ServerNotifyUnstuckCancelledCharacterMoved(character);
+        }
+
         protected override void PrepareSystem()
         {
             if (IsClient)
@@ -86,24 +102,27 @@
                 name: "System." + this.ShortId);
         }
 
+        private static void ServerNotifyUnstuckCancelledCharacterMoved(ICharacter character)
+        {
+            Instance.CallClient(character, _ => _.ClientRemote_UnstuckFailedCharacterMoved());
+        }
+
         private static bool SharedValidateCanUnstuck(ICharacter character)
         {
-            using (var tempAreas = Api.Shared.GetTempList<ILogicObject>())
+            using var tempAreas = Api.Shared.GetTempList<ILogicObject>();
+            var bounds = new RectangleInt(
+                offset: character.TilePosition - (1, 1),
+                size: (2, 2));
+
+            LandClaimSystem.SharedGetAreasInBounds(bounds, tempAreas, addGracePadding: false);
+            if (tempAreas.Any(LandClaimSystem.SharedIsAreaUnderRaid))
             {
-                var bounds = new RectangleInt(
-                    character.TilePosition - new Vector2Int(1, 1),
-                    new Vector2Int(2, 2));
-
-                LandClaimSystem.SharedGetAreasInBounds(bounds, tempAreas, addGracePadding: false);
-                if (tempAreas.Any(LandClaimSystem.SharedIsAreaUnderRaid))
-                {
-                    Logger.Important("Cannot unstuck when located in an area under raid");
-                    LandClaimSystem.SharedSendNotificationActionRestrictedUnderRaidblock(character);
-                    return false;
-                }
-
-                return true;
+                Logger.Info("Cannot unstuck when located in an area under raid", character);
+                LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(character);
+                return false;
             }
+
+            return true;
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
@@ -198,7 +217,7 @@
                         > MaxUnstuckMovementDistance * MaxUnstuckMovementDistance)
                     {
                         // character moved
-                        this.CallClient(character, _ => _.ClientRemote_UnstuckFailedCharacterMoved());
+                        ServerNotifyUnstuckCancelledCharacterMoved(character);
                         return true; // remove this request
                     }
 

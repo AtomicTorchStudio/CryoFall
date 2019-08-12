@@ -37,13 +37,11 @@
 
         public override IEnumerable<ICharacter> ServerEnumerateMessageRecepients(ICharacter forPlayer)
         {
-            using (var tempList = Api.Shared.GetTempList<ICharacter>())
+            using var tempList = Api.Shared.GetTempList<ICharacter>();
+            Api.Server.World.GetScopedByCharacters(forPlayer, tempList, onlyPlayerCharacters: true);
+            foreach (var character in tempList)
             {
-                Api.Server.World.GetScopedByCharacters(forPlayer, tempList, onlyPlayerCharacters: true);
-                foreach (var character in tempList)
-                {
-                    yield return character;
-                }
+                yield return character;
             }
         }
     }

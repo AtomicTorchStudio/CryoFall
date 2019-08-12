@@ -68,12 +68,26 @@
             this.CallServer(_ => _.ServerRemote_PlaceAt(itemSeed, tilePosition));
         }
 
-        public bool SharedIsValidPlacementPosition(Vector2Ushort tilePosition, ICharacter character, bool logErrors)
+        public void SharedIsValidPlacementPosition(
+            Vector2Ushort tilePosition,
+            ICharacter character,
+            bool logErrors,
+            out bool canPlace,
+            out bool isTooFar)
         {
-            return this.tileRequirementsPlantPlacement.Check(this.ObjectPlantProto,
-                                                             tilePosition,
-                                                             character,
-                                                             logErrors);
+            canPlace = this.tileRequirementsPlantPlacement.Check(this.ObjectPlantProto,
+                                                                 tilePosition,
+                                                                 character,
+                                                                 logErrors);
+            if (!canPlace)
+            {
+                isTooFar = false;
+                return;
+            }
+
+            isTooFar = this.SharedIsTooFarToPlace(tilePosition,
+                                                  character,
+                                                  logErrors: logErrors);
         }
 
         protected static IProtoObjectVegetation GetPlant<TProtoVegetation>()
@@ -181,15 +195,14 @@
             var character = ServerRemoteContext.Character;
             this.ServerValidateItemForRemoteCall(item, character);
 
-            if (!this.SharedIsValidPlacementPosition(tilePosition, character, logErrors: true))
+            this.SharedIsValidPlacementPosition(
+                tilePosition,
+                character,
+                logErrors: true,
+                canPlace: out var canPlace,
+                isTooFar: out var isTooFar);
+            if (!canPlace || isTooFar)
             {
-                return;
-            }
-
-            if (character.TilePosition.TileDistanceTo(tilePosition)
-                > ClientSeedPlacerHelper.MaxSeedPlacementDistance)
-            {
-                this.CallClient(character, _ => _.ClientRemote_CannotPlaceTooFar());
                 return;
             }
 
@@ -215,12 +228,34 @@
                     continue;
                 }
 
-                StructureDecaySystem.ServerResetDecayTimer(
-                    tileObject.GetPrivateState<StructurePrivateState>());
-
                 tileObject.GetPublicState<StaticObjectPublicState>()
                           .StructurePointsCurrent = protoFarm.SharedGetStructurePointsMax(tileObject);
             }
+        }
+
+        private bool SharedIsTooFarToPlace(Vector2Ushort tilePosition, ICharacter character, bool logErrors)
+        {
+            if (character.TilePosition.TileDistanceTo(tilePosition)
+                <= ClientSeedPlacerHelper.MaxSeedPlacementDistance)
+            {
+                return false;
+            }
+
+            if (!logErrors)
+            {
+                return true;
+            }
+
+            if (IsClient)
+            {
+                this.ClientRemote_CannotPlaceTooFar();
+            }
+            else
+            {
+                this.CallClient(character, _ => _.ClientRemote_CannotPlaceTooFar());
+            }
+
+            return true;
         }
     }
 

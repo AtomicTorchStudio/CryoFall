@@ -464,6 +464,21 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Usar o pé de cabra para desconstruir
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
+Alguns recursos, como petróleo bruto e lítio, são necessários para a tecnologia avançada. É extremamente importante aprender a adquiri-los.
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Você pode encontrar frutos da petrovagem na [u]floresta boreal[/u] que cresce em toda parte. É possível extrair pequenas quantidades de petróleo bruto ao usá-los.
+[*] Pode-se conseguir [u]sais de lítio[/u] garimpando sais minerais normais.
+[*] É possível encontrar sais minerais nas [u]salinas[/u] no deserto.
+[*] Aprender [u]Xenogeologia[/u] oferece métodos para adquirir esses recursos em escala industrial.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
+Aquisição de recursos avançados
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Garimpa sais minerais
+
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Avanços na indústria e na construção exigem fundamentos científicos, especialmente em química.
 
@@ -492,6 +507,20 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Dominar Tecnologias: parte 2
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
+Estabelecer uma rede elétrica para sua base é um passo importante para aumentar a eficiência. Existem diversas estruturas avançadas que requerem eletricidade para funcionarem.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
+`[*] Dispositivos elétricos só funcionam quando estão [b]dentro[/b] da área da posse de terra. É inútil construir dispositivos elétricos fora da área da posse de terra.
+[*] A energia elétrica é armazenada em edifícios de [b]armazenamento de energia[/b] para uso conveniente quando necessário. É uma boa ideia aumentar a capacidade global de energia na base.
+[*] Diferentes tipos de [b]geradores[/b], como vapor, solar e motor, podem ser usados juntos para produzir energia elétrica juntos.
+[*] Se você [u]não tem energia elétrica suficiente[/u] armazenada, sua base entrará no modo [b]apagão[/b], sendo necessário restaurar a energia manualmente.
+[*] Você pode ver as [b]informações detalhadas[/b] da rede ao interagir com o armazenamento de energia ou na sua posse de terra.
+[*] Diversas áreas de posse de terra conectadas se comportarão como uma [b]única rede elétrica[/b].`
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
+Estabelecer rede elétrica
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
 Existem também alguns biomas de mais difícil acesso, que apresentam maiores desafios, mas que oferecem recursos exclusivos.
 
@@ -501,6 +530,12 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
 Explorar os biomas: parte 3
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
+[*] O [b]bioma vulcânico[/b] é extremamente perigoso, exigindo proteção contra [b]calor[/b] extremo para visitar.
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
+Explorar os biomas: parte 4
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 Ruínas antigas são o melhor lugar para encontrar certos recursos e componentes raros. É sempre uma boa ideia explorá-las de vez em quando, especialmente se você tiver os equipamentos necessários.
@@ -530,4 +565,7 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 Mestre caçador: parte 4
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
+Mestre caçador: parte 5
 

@@ -8,7 +8,7 @@
 
     public class RequirementHaveTechGroup : QuestRequirementWithDefaultState
     {
-        public const string DescriptionFormat = "Unlock technology group: {0}";
+        public const string DescriptionFormat = "Unlock {0} (tech group)";
 
         private RequirementHaveTechGroup(TechGroup techGroup)
             : base(description: null)

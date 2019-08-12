@@ -365,7 +365,7 @@
             byte requestId)
         {
             var commandVariant = consoleCommand?.Variants[variantIndex];
-            ClientSuggestionsCallback.Invoke(commandVariant, suggestions ?? EmptySuggestionsArray, requestId);
+            ClientSuggestionsCallback(commandVariant, suggestions ?? EmptySuggestionsArray, requestId);
         }
 
         private void ServerHandleSystemConsoleCommand(string command)

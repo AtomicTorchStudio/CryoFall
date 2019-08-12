@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
-    using System;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Buffs;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using System;
 
     public class ItemCactusDrink : ProtoItemFood
     {
@@ -16,13 +18,20 @@
 
         public override ushort OrganicValue => 10;
 
-        public override float StaminaRestore => 50;
+        public override float StaminaRestore => 25;
 
         public override float WaterRestore => 15;
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFoodDrink;
+        }
+
+        protected override void ServerOnEat(ItemEatData data)
+        {
+            data.Character.ServerAddStatusEffect<StatusEffectHealthyFood>(intensity: 0.1);
+
+            base.ServerOnEat(data);
         }
     }
 }

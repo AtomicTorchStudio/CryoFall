@@ -72,7 +72,7 @@
             // add various single tile garbage decals
             settings.AddDecal(
                 new ProtoTileDecal(ProtoTileDecal.CollectTextures("Terrain/Ruins/Bottle*"),
-                                   size: Vector2Ushort.One,
+                                   size: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new CombinedNoiseSelector(
@@ -88,7 +88,7 @@
                                        "Terrain/Ruins/Tube*",
                                        "Terrain/Ruins/Tubes*"),
                                    // actually the size is 1x1 but we don't want them to spawn nearby
-                                   size: Vector2Ushort.One,
+                                   size: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new CombinedNoiseSelector(

@@ -70,9 +70,6 @@ Der kontinuierliche Einsatz von Nahkampfwaffen lässt dich im Umgang mit ihnen s
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
 Nahkampfwaffen
 
-Scripts/Skills/Skills/Misc/SkillSearching@Flags.ChanceToFindRareItems:
-Chance auf seltene Gegenstände
-
 Scripts/Skills/Skills/Misc/SkillSearching@Description:
 Deine Liebe zum Detail erhöht deine Chance darauf, zusätzliche Gegenstände zu erhalten.
 
@@ -132,4 +129,10 @@ Die Herstellung immer komplexerer Gegenstände und das Verständnis ihres Aufbau
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Herstellung
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
+Ermöglicht die Reparatur und Wartung verschiedener Gegenstände und Geräte. Gilt für Arbeiten an der Bastelwerkbank.
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
+Wartung
 

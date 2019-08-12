@@ -4,8 +4,6 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media.Animation;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -69,16 +67,16 @@
         protected override void OnLoaded()
         {
             this.MouseLeftButtonUp += this.ClickHandler;
-            ClientComponentUpdateHelper.UpdateCallback += this.Update;
+            ClientUpdateHelper.UpdateCallback += this.Update;
             this.storyboardShow.Begin();
-            ClientComponentTimersManager.AddAction(delaySeconds: 5,
+            ClientTimersSystem.AddAction(delaySeconds: 5,
                                                    () => this.StartHideAnimation(quick: false));
         }
 
         protected override void OnUnloaded()
         {
             this.MouseLeftButtonUp -= this.ClickHandler;
-            ClientComponentUpdateHelper.UpdateCallback -= this.Update;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
         }
 
         private static void FileNamePropertyChangedHandler(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -123,7 +121,7 @@
 
             this.isHiding = true;
             this.storyboardFadeOut.Begin();
-            ClientComponentTimersManager.AddAction(delaySeconds: 3, this.Remove);
+            ClientTimersSystem.AddAction(delaySeconds: 3, this.Remove);
         }
 
         private void Update()

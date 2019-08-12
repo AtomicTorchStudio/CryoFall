@@ -102,10 +102,7 @@ La cola de fabricación está llena.
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 No se puede añadir la nueva receta
 
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Message:
-No posees este terreno.
-
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Title:
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 No se puede desmantelar
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
@@ -127,6 +124,9 @@ No hace falta rellenarlo
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
 Este objeto no se puede rellenar.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
+Demasiado cerca de otro terreno adjudicado.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Esta zona ha sido reclamada por otro jugador o está demasiado cerca del terreno adjudicado de otra persona.
 
@@ -147,6 +147,15 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `Te están asaltando.
 [br]No puedes construir nuevas estructuras mientras estén atacando tu base.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
+Esta estructura tan solo puede ser colocada dentro de la zona de tu terreno adjudicado.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
+No posees este terreno.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
+La base está siendo asaltada.
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
 Cancelar la protección para novatos
 
@@ -154,7 +163,7 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProte
 ¿Seguro que quieres cancelar la protección para novatos? No podrás volver a activarla.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
-Gozas de protección para novatos. Este sistema impedirá que pierdas tus objetos y tus puntos de aprendizaje si otro jugador mata a tu personaje. Además, si mueres de otra forma, los objetos que dejes caer no podrán ser recogidos por otros jugadores. ¡Sigue las indicaciones de las misiones para fabricar las armas y herramientas necesarias y construye una pequeña base lo antes posible!
+Gozas de protección para novatos. Este sistema impedirá que pierdas tus objetos si otro jugador mata a tu personaje. Además, si mueres de otra forma, los objetos que dejes caer no podrán ser recogidos por otros jugadores. ¡Sigue las indicaciones de las misiones para fabricar las armas y herramientas necesarias y construye una pequeña base lo antes posible!
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 La protección para novatos se acabará en:
@@ -225,6 +234,18 @@ La persona invitada ya forma parte del grupo.
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 No puedes invitar, ya que el operador del servidor te ha silenciado.
 
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
+El jugador invitado no está conectado. Solo los jugadores conectados pueden ser invitados a un grupo.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
+No se puede interactuar. Estás demasiado lejos o no se puede acceder al edificio.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
+No existe ninguna red eléctrica.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
+No hay suficiente energía en la red eléctrica.
+
 Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
 Desactivar el modo Duelo
 
@@ -255,7 +276,8 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDam
 Sin daño
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
-La ventana de asalto se ha cerrado.
+`La ventana de asalto se ha cerrado.
+[br]Es posible que los asaltos en marcha continúen.`
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Aún no hay nada que cosechar
@@ -338,8 +360,8 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} de nivel {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`Has acumulado más de {0} puntos de aprendizaje (PA). ¿Por qué no te planteas la posibilidad de invertirlos para desbloquear nuevas tecnologías? Tan solo se conserva una pequeña fracción de PA al morir.
-[br](haz clic para abrir el menú de tecnologías)`
+`Has acumulado más de {0} puntos de aprendizaje (PA). ¿Por qué no te planteas la posibilidad de invertirlos para desbloquear nuevas tecnologías?
+[br](Haz clic para abrir el menú de tecnologías.)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
 No se puede desbloquear la tecnología

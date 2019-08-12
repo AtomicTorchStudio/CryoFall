@@ -6,6 +6,14 @@
 
     public abstract class SkeletonHuman : ProtoCharacterSkeleton
     {
+        public const double MeleeHitboxHeight = 0.7;
+
+        public const double MeleeHitboxOffset = 0.25;
+
+        public const double RangedHitboxHeight = 1.4;
+
+        public const double RangedHitboxOffset = 0;
+
         public override double DefaultMoveSpeed => 1.5;
 
         public override bool HasMoveStartAnimations => true;
@@ -43,14 +51,14 @@
 
             // melee hitbox
             physicsBody.AddShapeRectangle(
-                size: (0.6, 0.7),
-                offset: (-0.3, 0.25),
+                size: (0.6, MeleeHitboxHeight),
+                offset: (-0.3, MeleeHitboxOffset),
                 group: CollisionGroups.HitboxMelee);
 
             // ranged hitbox
             physicsBody.AddShapeRectangle(
-                size: (0.5, 1.4),
-                offset: (-0.25, 0),
+                size: (0.5, RangedHitboxHeight),
+                offset: (-0.25, RangedHitboxOffset),
                 group: CollisionGroups.HitboxRanged);
         }
 

@@ -2,8 +2,10 @@
 {
     using System;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -64,6 +66,9 @@
             {
                 return;
             }
+
+            // Learning skill increases the amount of received learning points
+            points *= this.Character.SharedGetFinalStatMultiplier(StatName.LearningsPointsGainMultiplier);
 
             var pointsToAdd = (int)points;
             var remainder = this.LearningPointsRemainderAccumulator + (points - pointsToAdd);
@@ -170,6 +175,7 @@
             }
 
             Api.SafeInvoke(() => CharacterTechNodeAddedOrRemoved?.Invoke(this.Character, techNode, isAdded: false));
+            this.Character.SharedSetFinalStatsCacheDirty();
 
             // remove all the dependent nodes
             foreach (var dependentNode in techNode.DependentNodes)
@@ -202,6 +208,8 @@
 
             Api.Logger.Info("Technologies reset", this.Character);
             this.ServerInit();
+
+            this.Character.SharedSetFinalStatsCacheDirty();
         }
 
         public void ServerResetLearningPointsRemainder()
@@ -265,6 +273,11 @@
 
         private void ServerAddNodeNoCheckGroup(TechNode techNode)
         {
+            if (!techNode.IsAvailable)
+            {
+                return;
+            }
+
             if (this.Nodes.Contains(techNode))
             {
                 return;
@@ -283,6 +296,8 @@
                 currentNode = currentNode.RequiredNode;
             }
             while (currentNode != null);
+
+            character.SharedSetFinalStatsCacheDirty();
         }
     }
 }

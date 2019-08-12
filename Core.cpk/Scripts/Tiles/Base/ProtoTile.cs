@@ -7,13 +7,16 @@
     using System.Windows.Controls;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
+    using AtomicTorch.CBND.CoreMod.Noise;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -22,12 +25,6 @@
     /// </summary>
     public abstract class ProtoTile : ProtoEntity, IProtoTile
     {
-        public static readonly TextureAtlasResource CliffAtlas = new TextureAtlasResource(
-            "Terrain/Cliffs/TerrainCliffs.png",
-            columns: 6,
-            rows: 4,
-            isTransparent: true);
-
         public static readonly TextureAtlasResource TileCliffHeightEdgeMaskAtlas = new TextureAtlasResource(
             "Terrain/Masks/MaskHeightEdge.png",
             columns: 4,
@@ -83,6 +80,13 @@
         /// </summary>
         public virtual double CharacterMoveSpeedMultiplier => 1.0;
 
+        public virtual TextureAtlasResource CliffAtlas { get; }
+            = new TextureAtlasResource(
+                "Terrain/Cliffs/TerrainCliffs.png",
+                columns: 6,
+                rows: 4,
+                isTransparent: true);
+
         /// <summary>
         /// Gets the texture resource used as icon in Editor toolbar.
         /// </summary>
@@ -97,7 +101,7 @@
         public byte SessionIndex
         {
             get;
-// do not change this, required by the engine
+            // do not change this, required by the engine
 #if GAME
 			set;
 #endif
@@ -155,6 +159,7 @@
         {
             const double tileColliderSlopeWidth = 0.25;
             const double tileColliderBottomWidth = 0.2;
+            const double rangedHitboxOffset = 0.75;
 
             var tileKind = this.Kind;
             if (tileKind == TileKind.Placeholder)
@@ -176,7 +181,7 @@
                     if (neighborTile.ProtoTile.Kind != TileKind.Water)
                     {
                         // has a non-water tile nearby - create physics tile to block passage here
-                        physicsBody.AddShapeRectangle(Vector2D.One);
+                        physicsBody.AddShapeRectangle((1, 1));
                         return;
                     }
                 }
@@ -194,13 +199,15 @@
             }
 
             var neighborTileLeft = tile.NeighborTileLeft;
+            var neighborTileRight = tile.NeighborTileRight;
+
             if (tile.IsSlope)
             {
                 // The tile is a slope. Determine if it left or right slope and create according colliders.
                 if (neighborTileLeft.IsCliff)
                 {
                     if (IsServer
-                        && tile.NeighborTileRight.IsCliff)
+                        && neighborTileRight.IsCliff)
                     {
                         // an issue found - 1-tile slope!
                         // fix this by making left tile slope too
@@ -217,7 +224,7 @@
                     physicsBody.AddShapeRectangle((tileColliderSlopeWidth, 1));
                 }
 
-                if (tile.NeighborTileRight.IsCliff)
+                if (neighborTileRight.IsCliff)
                 {
                     // right collider
                     physicsBody.AddShapeRectangle(
@@ -234,7 +241,21 @@
             if (tile.NeighborTileUp.Height > tileHeight)
             {
                 // cliff against top tile with higher height - full cell always
-                physicsBody.AddShapeRectangle(Vector2D.One);
+                physicsBody.AddShapeRectangle(size: (1, 1));
+                AddHitbox(size: (1, 1 - rangedHitboxOffset),
+                          offset: (0, rangedHitboxOffset));
+
+                if (neighborTileLeft.Height > tileHeight)
+                {
+                    AddHitbox(size: (0.5, 1));
+                }
+
+                if (neighborTileRight.Height > tileHeight)
+                {
+                    AddHitbox(size: (0.5, 1),
+                              offset: (0.5, 0));
+                }
+
                 return;
             }
 
@@ -244,8 +265,7 @@
                 cliffAgainst |= NeighborsPattern.Bottom;
             }
 
-            if (neighborTileLeft.Height > tileHeight
-                || tile.NeighborTileUpLeft.Height > tileHeight)
+            if (neighborTileLeft.Height > tileHeight)
             {
                 cliffAgainst |= NeighborsPattern.Left;
             }
@@ -255,8 +275,12 @@
                 cliffAgainst |= NeighborsPattern.BottomLeft;
             }
 
-            if (tile.NeighborTileRight.Height > tileHeight
-                || tile.NeighborTileUpRight.Height > tileHeight)
+            if (tile.NeighborTileUpLeft.Height > tileHeight)
+            {
+                cliffAgainst |= NeighborsPattern.TopLeft;
+            }
+
+            if (neighborTileRight.Height > tileHeight)
             {
                 cliffAgainst |= NeighborsPattern.Right;
             }
@@ -266,23 +290,49 @@
                 cliffAgainst |= NeighborsPattern.BottomRight;
             }
 
-            // create physics shapes
+            if (tile.NeighborTileUpRight.Height > tileHeight)
+            {
+                cliffAgainst |= NeighborsPattern.TopRight;
+            }
+
             if ((cliffAgainst & NeighborsPattern.Left) != 0)
             {
                 if ((cliffAgainst & NeighborsPattern.Right) != 0)
                 {
                     // both left and right - full cell
-                    physicsBody.AddShapeRectangle(Vector2D.One);
+                    physicsBody.AddShapeRectangle(size: (1, 1));
+                    AddHitbox(size: (1, 1),
+                              offset: (0, rangedHitboxOffset));
                     return;
                 }
 
-                // only left side
-                physicsBody.AddShapeRectangle((0.5, 1));
+                // left side
+                physicsBody.AddShapeRectangle(size: (0.5, 1));
+                AddHitbox(size: (0.5, 1));
+            }
+            else if ((cliffAgainst & NeighborsPattern.TopLeft) != 0)
+            {
+                physicsBody.AddShapeRectangle(size: (0.5, 1),
+                                              offset: (0, 0));
+
+                AddHitbox(size: (0.5, 1),
+                          offset: (0, rangedHitboxOffset));
             }
 
             if ((cliffAgainst & NeighborsPattern.Right) != 0)
             {
-                physicsBody.AddShapeRectangle((0.5, 1), offset: (0.5, 0));
+                physicsBody.AddShapeRectangle(size: (0.5, 1),
+                                              offset: (0.5, 0));
+                AddHitbox(size: (0.5, 1),
+                          offset: (0.5, 0));
+            }
+            else if ((cliffAgainst & NeighborsPattern.TopRight) != 0)
+            {
+                physicsBody.AddShapeRectangle(size: (0.5, 1),
+                                              offset: (0.5, 0));
+
+                AddHitbox(size: (0.5, 1),
+                          offset: (0.5, rangedHitboxOffset));
             }
 
             if ((cliffAgainst & NeighborsPattern.BottomLeft) != 0
@@ -293,20 +343,33 @@
 
             if ((cliffAgainst & NeighborsPattern.Bottom) != 0)
             {
-                physicsBody.AddShapeRectangle((1, tileColliderBottomWidth));
+                physicsBody.AddShapeRectangle(size: (1, tileColliderBottomWidth));
+                AddHitbox(size: (1, tileColliderBottomWidth));
                 return;
             }
 
             if ((cliffAgainst & NeighborsPattern.BottomLeft) != 0
                 && (cliffAgainst & NeighborsPattern.Left) == 0)
             {
-                physicsBody.AddShapeRectangle((0.5, tileColliderBottomWidth));
+                physicsBody.AddShapeRectangle(size: (0.5, tileColliderBottomWidth));
+                AddHitbox(size: (0.5, tileColliderBottomWidth));
             }
 
             if ((cliffAgainst & NeighborsPattern.BottomRight) != 0
                 && (cliffAgainst & NeighborsPattern.Right) == 0)
             {
-                physicsBody.AddShapeRectangle((0.5, tileColliderBottomWidth), offset: (0.5, 0));
+                physicsBody.AddShapeRectangle(size: (0.5, tileColliderBottomWidth),
+                                              offset: (0.5, 0));
+                AddHitbox(size: (0.5, tileColliderBottomWidth),
+                          offset: (0.5, 0));
+            }
+
+            void AddHitbox(Vector2D size, Vector2D? offset = null)
+            {
+                // add both melee and ranged hitboxes
+                physicsBody
+                    .AddShapeRectangle(size, offset, CollisionGroups.HitboxMelee)
+                    .AddShapeRectangle(size, offset, CollisionGroups.HitboxRanged);
             }
         }
 
@@ -486,7 +549,7 @@
                 ClientTileWaterHelper.CreateWaterRenderer(sceneObject, (IProtoTileWater)tile.ProtoTile);
             }
 
-            ClientTileCliffsRendererHelper.CreateCliffsRenderersIfNeeded(tile, sceneObject, CliffAtlas);
+            ClientTileCliffsRendererHelper.CreateCliffsRenderersIfNeeded(tile, sceneObject);
             ClientTileBlendHelper.CreateTileBlendRenderers(tile, this, sceneObject);
             ClientTileDecalHelper.CreateDecalRenderers(tile, this.decals, sceneObject);
 
@@ -604,6 +667,39 @@
             {
                 this.Decals.Add(decal);
                 return this;
+            }
+
+            public void AddDecalDoubleWithOffset(
+                List<ITextureResource> textures,
+                Vector2Ushort size,
+                INoiseSelector noiseSelector,
+                Vector2Ushort? interval = null,
+                DrawOrder drawOrder = DrawOrder.GroundDecals,
+                bool requiresCompleteNoiseSelectorCoverage = false,
+                bool requiresCompleteProtoTileCoverage = false,
+                bool canFlipHorizontally = true)
+            {
+                this.AddDecal(
+                    new ProtoTileDecal(textures,
+                                       size: size,
+                                       interval: interval,
+                                       drawOrder: drawOrder,
+                                       requiresCompleteNoiseSelectorCoverage: requiresCompleteNoiseSelectorCoverage,
+                                       requiresCompleteProtoTileCoverage: requiresCompleteProtoTileCoverage,
+                                       noiseSelector: noiseSelector,
+                                       canFlipHorizontally: canFlipHorizontally));
+
+                // add the same decal but with a little offset (to make a more dense diagonal placement)
+                this.AddDecal(
+                    new ProtoTileDecal(textures,
+                                       size: size,
+                                       interval: interval,
+                                       drawOrder: drawOrder,
+                                       offset: (1, 1),
+                                       requiresCompleteNoiseSelectorCoverage: requiresCompleteNoiseSelectorCoverage,
+                                       requiresCompleteProtoTileCoverage: requiresCompleteProtoTileCoverage,
+                                       noiseSelector: noiseSelector,
+                                       canFlipHorizontally: canFlipHorizontally));
             }
 
             public Settings AddGroundTexture(ProtoTileGroundTexture groundTexture)

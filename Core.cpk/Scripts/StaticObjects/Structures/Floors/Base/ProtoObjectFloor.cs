@@ -186,16 +186,14 @@
                 return;
             }
 
-            using (var tempList = Api.Shared.WrapInTempList(data.GameObject.OccupiedTile.StaticObjects))
+            using var tempList = Api.Shared.WrapInTempList(data.GameObject.OccupiedTile.StaticObjects);
+            foreach (var occupiedTileStaticObject in tempList)
             {
-                foreach (var occupiedTileStaticObject in tempList)
+                if (occupiedTileStaticObject != data.GameObject
+                    && occupiedTileStaticObject.ProtoStaticWorldObject is IProtoObjectFloor)
                 {
-                    if (occupiedTileStaticObject != data.GameObject
-                        && occupiedTileStaticObject.ProtoStaticWorldObject is IProtoObjectFloor)
-                    {
-                        // found another floor built in the cell - destroy it
-                        Server.World.DestroyObject(occupiedTileStaticObject);
-                    }
+                    // found another floor built in the cell - destroy it
+                    Server.World.DestroyObject(occupiedTileStaticObject);
                 }
             }
         }

@@ -16,11 +16,11 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemNitrocellulosePowder>(count: 20);
             inputItems.Add<ItemSolvent>(count: 10);
-            inputItems.Add<ItemAcidSulfuric>(count: 1);
+            inputItems.Add<ItemGlue>(count: 1);
             inputItems.Add<ItemPlastic>(count: 1);
 
             outputItems.Add<ItemExplosives>(count: 20);

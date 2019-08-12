@@ -53,7 +53,7 @@ Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
 .300 panzerbrechende Munition
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
-Schwere .300 Brandmunition mit großer Reichweite.
+Schwere .300 Brandmunition, die durch Rüstung dringen und ein Ziel entzünden kann.
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 .300 Brandmunition
@@ -392,19 +392,19 @@ Scripts/Items/Food/ItemBerriesOrange@Description:
 Schmackhafte orangefarbene Beeren.
 
 Scripts/Items/Food/ItemBerriesOrange@Name:
-Beeren
+Orangefarbene Beeren
 
 Scripts/Items/Food/ItemBerriesRed@Description:
 Schmackhafte rote Beeren.
 
 Scripts/Items/Food/ItemBerriesRed@Name:
-Beeren
+Rote Beeren
 
 Scripts/Items/Food/ItemBerriesViolet@Description:
 Schmackhafte violette Beeren.
 
 Scripts/Items/Food/ItemBerriesViolet@Name:
-Beeren
+Violette Beeren
 
 Scripts/Items/Food/ItemBottleWater@Description:
 Könnte als Durstlöscher verwendet werden. Außerdem in einer Vielzahl von Handwerksrezepturen nützlich.
@@ -455,10 +455,22 @@ Scripts/Items/Food/ItemCannedFish@Name:
 Fischkonserve
 
 Scripts/Items/Food/ItemCannedMeat@Description:
-Dosenfleisch von zweifelhafter Herkunft. Zumindest die Verpackung ist vertrauenserweckend.
+Geschmortes Dosenfleisch mit einem hohen Fettanteil. Lange haltbar.
 
 Scripts/Items/Food/ItemCannedMeat@Name:
 Dosenfleisch
+
+Scripts/Items/Food/ItemCannedMixedMeat@Description:
+Dosenfleisch von zweifelhafter Herkunft. Zumindest die Verpackung sieht anständig aus.
+
+Scripts/Items/Food/ItemCannedMixedMeat@Name:
+Gemischtes Dosenfleisch
+
+Scripts/Items/Food/ItemCarbonara@Description:
+Pasta, Ei, Käse und Fleisch vereinen sich zu einer wahren Delikatesse!
+
+Scripts/Items/Food/ItemCarbonara@Name:
+Carbonara
 
 Scripts/Items/Food/ItemCarrot@Description:
 Ein orangenes Gemüse reich an Carotin.
@@ -514,11 +526,11 @@ Ein schmackhaftes Getreide, das besonders von Horrorschriftstellern geschätzt w
 Scripts/Items/Food/ItemCorn@Name:
 Mais
 
-Scripts/Items/Food/ItemCornOnCob@Description:
-Wem schmecken heiße Maiskolben wohl nicht?
+Scripts/Items/Food/ItemCornGrilled@Description:
+Dieser gegrillte Mais behält seine Süße und gewinnt ein rauchiges Aroma. Sehr lecker!
 
-Scripts/Items/Food/ItemCornOnCob@Name:
-Maiskolben
+Scripts/Items/Food/ItemCornGrilled@Name:
+Gegrillter Mais
 
 Scripts/Items/Food/ItemCucumber@Description:
 Eine wasserreiche Pflanze, die dafür bekannt ist, Katzen in Angst und Schrecken zu versetzen.
@@ -573,6 +585,18 @@ Schmackhaft, ganz gleich ob gebraten oder gekocht. Sollten jedoch nicht roh verz
 
 Scripts/Items/Food/ItemEggsRaw@Name:
 Tiereier
+
+Scripts/Items/Food/ItemInsectMeatFried@Description:
+In gekochter Form ist dieses Fleisch etwas weniger eklig ... Stell dich jedoch darauf ein, dich eventuell übergeben zu müssen, wenn du es tatsächlich zu dir nehmen möchtest.
+
+Scripts/Items/Food/ItemInsectMeatFried@Name:
+Gebratenes Insektenfleisch
+
+Scripts/Items/Food/ItemInsectMeatRaw@Description:
+Ekelerregendes Insektenfleisch. Vielleicht ist es in gekochter Form etwas weniger eklig.
+
+Scripts/Items/Food/ItemInsectMeatRaw@Name:
+Rohes Insektenfleisch
 
 Scripts/Items/Food/ItemJamBerries@Description:
 Eine leckere Beerenmarmelade.
@@ -820,6 +844,12 @@ Brennmaterial (auch als Lampenöl bekannt) kann zum Auffüllen verschiedener Lic
 Scripts/Items/Generic/ItemCampFuel@Name:
 Brennmaterial
 
+Scripts/Items/Generic/ItemCanEmpty@Description:
+Leere Dosen können zur Zubereitung verschiedener Konserven und Getränke verwendet werden.
+
+Scripts/Items/Generic/ItemCanEmpty@Name:
+Leere Dosen
+
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
 Leerer Metallkanister. Dient zur Aufbewahrung leichtflüchtiger Flüssigkeiten.
 
@@ -887,10 +917,10 @@ Scripts/Items/Generic/ItemComponentsElectronic@Name:
 Elektronische Komponenten
 
 Scripts/Items/Generic/ItemComponentsHighTech@Description:
-Moderne Hi-Tech-Komponenten zur Herstellung komplexer Geräte.
+Moderne High-Tech-Komponenten zur Herstellung komplexer Geräte.
 
 Scripts/Items/Generic/ItemComponentsHighTech@Name:
-Hi-Tech-Komponenten
+High-Tech-Komponenten
 
 Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Description:
 Diverse Chemikalien, die von industriellem Nutzen sind.
@@ -921,6 +951,12 @@ Diverse Waffenkomponenten, die zur Herstellung modernster Schusswaffen benötigt
 
 Scripts/Items/Generic/ItemComponentsWeapon@Name:
 Waffenkomponenten
+
+Scripts/Items/Generic/ItemDuctTape@Description:
+Spezialklebeband mit einem extra starken Haftmittel und einer Außenschicht aus verstärktem Verbundstoff.
+
+Scripts/Items/Generic/ItemDuctTape@Name:
+Isolierband
 
 Scripts/Items/Generic/ItemExplosives@Description:
 Hochgradig explosives Material, das zum Bau einer Vielzahl von Sprengkörpern verwendet werden kann.
@@ -1134,22 +1170,22 @@ Scripts/Items/Generic/ItemOreLithium@Name:
 Lithiumsalze
 
 Scripts/Items/Generic/ItemOrePragmium@Description:
-Ein begehrtes Metall, das einzigartige Eigenschaften miteinander verbindet, die in keiner anderen gängigen Substanz vorhanden sind. Pragmium kann zur Herstellung von Hi-Tech-Geräten oder als Energiequelle benutzt werden.
+Ein begehrtes Metall, das einzigartige Eigenschaften miteinander verbindet, die in keiner anderen gängigen Substanz vorhanden sind. Pragmium kann zur Herstellung von High-Tech-Geräten oder als Energiequelle benutzt werden.
 
 Scripts/Items/Generic/ItemOrePragmium@Name:
 Pragmium
 
-Scripts/Items/Generic/ItemOrePyrite@Description:
-Pyriterz kann durch Erhitzen zu Schwefelsäure verarbeitet werden.
-
-Scripts/Items/Generic/ItemOrePyrite@Name:
-Pyriterz
-
 Scripts/Items/Generic/ItemPaper@Description:
-Gutes altes Papier.
+Papier ist ein vielseitiges Material mit diversen Einsatzmöglichkeiten und lässt sich leicht aus Holz herstellen.
 
 Scripts/Items/Generic/ItemPaper@Name:
 Papier
+
+Scripts/Items/Generic/ItemPasta@Description:
+Die Grundlage vieler leckerer Gerichte!
+
+Scripts/Items/Generic/ItemPasta@Name:
+Ungekochte Pasta
 
 Scripts/Items/Generic/ItemPlanks@Description:
 Finden oft als Baumaterial Verwendung. Können auch als Brennstoff benutzt werden.
@@ -1174,6 +1210,12 @@ Kleine, vielseitige Energiezelle, die in einer Vielzahl von elektronischen Gerä
 
 Scripts/Items/Generic/ItemPowerCell@Name:
 Energiezelle
+
+Scripts/Items/Generic/ItemPreservative@Description:
+Nahrungskonservierungsmittel. Kann verpackten Lebenmitteln hinzugefügt werden, um diese wesentlich haltbarer zu machen.
+
+Scripts/Items/Generic/ItemPreservative@Name:
+Konservierungsmittel
 
 Scripts/Items/Generic/ItemRope@Description:
 Ein herkömmliches Seil. Vielseitig einsetzbar. Überschüssiges Seil kann verbrannt werden.
@@ -1204,6 +1246,24 @@ Sand findet bei der Herstellung von Glas und als Baumaterial Anwendung.
 
 Scripts/Items/Generic/ItemSand@Name:
 Sand
+
+Scripts/Items/Generic/ItemSlime@Description:
+Grüner Schleim, der vermutlich von irgendeiner Kreatur stammt.
+
+Scripts/Items/Generic/ItemSlime@Name:
+Schleim
+
+Scripts/Items/Generic/ItemSolarPanel@Description:
+Teuer in der Herstellung, dafür langlebig in der Stromproduktion und extrem wartungsfreundlich.
+
+Scripts/Items/Generic/ItemSolarPanel@Name:
+Solarpanel
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Description:
+Defekte Panels können recycelt werden, um neue Solarpanels herzustellen.
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Name:
+Defektes Solarpanel
 
 Scripts/Items/Generic/ItemSolvent@Description:
 Speziell entwickeltes Lösungsmittel des Weltraumzeitalters, das die Eigenschaften von polaren und unpolaren Lösungsmitteln miteinander kombiniert.
@@ -1294,6 +1354,12 @@ Geerntetes Getreide vom Weizenfeld. Kann zu Mehl verarbeitet oder ausgesät werd
 
 Scripts/Items/Generic/ItemWheatGrains@Name:
 Weizen
+
+Scripts/Items/Generic/ItemWire@Description:
+Spule mit isoliertem Stromkabel.
+
+Scripts/Items/Generic/ItemWire@Name:
+Kabel
 
 Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
 Du hast keine Powerbank ausgerüstet
@@ -1445,6 +1511,12 @@ Erlesene Zigarre mit exquisitem Aroma und Geschmack. Genussmittel.
 Scripts/Items/Medical/ItemCigarPremium@Name:
 Premium-Zigarre
 
+Scripts/Items/Medical/ItemEnergyTablets@Description:
+Einfaches Medikament, das gegen Müdigkeit hilft.
+
+Scripts/Items/Medical/ItemEnergyTablets@Name:
+Energietabletten
+
 Scripts/Items/Medical/ItemHeatPreExposure@Description:
 Hitzeresistentes Gel verhindert eine direkte Wärmeübertragung und reflektiert Hitze. Das macht es möglich, Areale mit hohen Temperaturen für eine kurze Zeit zu betreten.
 
@@ -1572,103 +1644,58 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 Stärkeschub (klein)
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
-Setzling einer Birke. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
+Setzling eines Baums. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
 
 Scripts/Items/Seeds/ItemSaplingBirch@Name:
 Birkensetzling
 
-Scripts/Items/Seeds/ItemSaplingOak@Description:
-Setzling einer Eiche. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
-
 Scripts/Items/Seeds/ItemSaplingOak@Name:
 Eichensetzling
-
-Scripts/Items/Seeds/ItemSaplingPine@Description:
-Setzling einer Kiefer. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
 
 Scripts/Items/Seeds/ItemSaplingPine@Name:
 Kiefernsetzling
 
-Scripts/Items/Seeds/ItemSaplingPineBoreal@Description:
-Setzling der nordischen Variante einer Kiefer. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
-
 Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
 Nordischer Kiefernsetzling
 
-Scripts/Items/Seeds/ItemSaplingPoplar@Description:
-Setzling einer Pappel. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
-
 Scripts/Items/Seeds/ItemSaplingPoplar@Name:
 Pappelsetzling
-
-Scripts/Items/Seeds/ItemSaplingRubbertree@Description:
-Setzling eines Gummibaums. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
 
 Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
 Gummibaumsetzling
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
-Können gepflanzt werden, um Paprikaschoten heranwachsen zu lassen.
+Kleine Tüte mit fruchtbaren Samen. Können in die Erde eingepflanzt werden.
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
 Paprikasamen
 
-Scripts/Items/Seeds/ItemSeedsCarrot@Description:
-Können gepflanzt werden, um Karotten heranwachsen zu lassen.
-
 Scripts/Items/Seeds/ItemSeedsCarrot@Name:
 Karottensamen
-
-Scripts/Items/Seeds/ItemSeedsChiliPepper@Description:
-Können gepflanzt werden, um Chilischoten heranwachsen zu lassen.
 
 Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
 Chilischotensamen
 
-Scripts/Items/Seeds/ItemSeedsCorn@Description:
-Kann gepflanzt werden, um Mais heranwachsen zu lassen.
-
 Scripts/Items/Seeds/ItemSeedsCorn@Name:
 Maissaat
-
-Scripts/Items/Seeds/ItemSeedsCucumber@Description:
-Können gepflanzt werden, um Gurken heranwachsen zu lassen.
 
 Scripts/Items/Seeds/ItemSeedsCucumber@Name:
 Gurkensamen
 
-Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Description:
-Können gepflanzt werden, um blauen Salbei heranwachsen zu lassen.
-
 Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Samen des Blauen Salbeis
-
-Scripts/Items/Seeds/ItemSeedsFlowerOni@Description:
-Oniblumensamen. Können zum Erhalt weiterer Blumen gepflanzt werden.
 
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Oniblumensamen
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Description:
-Ogurin war eine der ersten Pflanzen, die speziell für diesen Planeten entwickelt wurden.
-
 Scripts/Items/Seeds/ItemSeedsOgurin@Name:
 Ogurinsamen
-
-Scripts/Items/Seeds/ItemSeedsTobacco@Description:
-Können gepflanzt werden, um Tabak heranwachsen zu lassen.
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Tabaksamen
 
-Scripts/Items/Seeds/ItemSeedsTomato@Description:
-Tomatensamen für eine saftige, speziell auf diesen Planeten abgestimmte Tomatensorte.
-
 Scripts/Items/Seeds/ItemSeedsTomato@Name:
 Tomatensamen
-
-Scripts/Items/Seeds/ItemSeedsWheat@Description:
-Speziell aufbereitetes Weizensaatgut, das sofort ausgesät werden kann.
 
 Scripts/Items/Seeds/ItemSeedsWheat@Name:
 Weizensaat
@@ -1758,19 +1785,13 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 Spitzhacke aus Stein
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
-Ein guter Werkzeugkoffer ist für jedes Bauprojekt unabkömmlich.
+Der Werkzeugkoffer wird zum Bauen oder Reparieren deiner Gebäudekonstruktionen benötigt. Stelle sicher, dass du ihn ausgerüstet und ausgewählt hast.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
 Einfacher Werkzeugkoffer
 
-Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Description:
-Ein guter Werkzeugkoffer ist für jedes Bauprojekt unabkömmlich.
-
 Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
 Eiserner Werkzeugkoffer
-
-Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Description:
-Ein guter Werkzeugkoffer ist für jedes Bauprojekt unabkömmlich.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
 Werkzeugkoffer aus Stahl

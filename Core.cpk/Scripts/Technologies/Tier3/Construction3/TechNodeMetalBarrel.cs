@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectBarrelMetal>();
 
-            config.SetRequiredNode<TechNodeSteelDoor>();
+            config.SetRequiredNode<TechNodeLargeSteelCrate>();
         }
     }
 }

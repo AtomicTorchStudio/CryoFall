@@ -1,0 +1,1707 @@
+﻿UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
+Zniszczenie:
+
+UI/CoreStrings@Button_Accept:
+Akceptuj
+
+UI/CoreStrings@Button_Add:
+Dodaj
+
+UI/CoreStrings@Button_Apply:
+Zastosuj
+
+UI/CoreStrings@Button_Back:
+Wróć
+
+UI/CoreStrings@Button_BrowseRecipes:
+Przeglądaj przepisy
+
+UI/CoreStrings@Button_Cancel:
+Anuluj
+
+UI/CoreStrings@Button_Close:
+Zamknij
+
+UI/CoreStrings@Button_Configure:
+Konfiguruj
+
+UI/CoreStrings@Button_Continue:
+Kontynuuj
+
+UI/CoreStrings@Button_Deny:
+Odrzuć
+
+UI/CoreStrings@Button_Drain:
+Opróżnij
+
+UI/CoreStrings@Button_Drain_DialogConfirmation:
+`Czy na pewno opróżnić?
+[br]Ta operacja jest nieodwracalna.`
+
+UI/CoreStrings@Button_Drink:
+Wypij
+
+UI/CoreStrings@Button_Edit:
+Edytuj
+
+UI/CoreStrings@Button_Help:
+Pomoc
+
+UI/CoreStrings@Button_OK:
+OK
+
+UI/CoreStrings@Button_Quit:
+Wyjdź
+
+UI/CoreStrings@Button_Reset:
+Resetuj
+
+UI/CoreStrings@Button_Retry:
+Ponów
+
+UI/CoreStrings@Button_Save:
+Zapisz
+
+UI/CoreStrings@Button_Upgrade:
+Ulepsz
+
+UI/CoreStrings@CharacterStatName_Food:
+Żywność
+
+UI/CoreStrings@CharacterStatName_Health:
+Zdrowie
+
+UI/CoreStrings@CharacterStatName_Stamina:
+Wytrzymałość
+
+UI/CoreStrings@CharacterStatName_Water:
+Woda
+
+UI/CoreStrings@Chat_MessageMenu_Block:
+Blokuj
+
+UI/CoreStrings@Chat_MessageMenu_CopyName:
+Kopiuj nazwę
+
+UI/CoreStrings@Chat_MessageMenu_InviteToParty:
+Zaproś do grupy
+
+UI/CoreStrings@Chat_MessageMenu_Mention:
+Wspomnij
+
+UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
+Wiadomość prywatna
+
+UI/CoreStrings@Chat_MessageMenu_Unblock:
+Odblokuj
+
+UI/CoreStrings@ConstructionMetaInfo_Decoration:
+Służy tylko do dekoracji.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerConsumer:
+Wymaga elektryczności do działania.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
+Ta struktura wytwarza elektryczność.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
+Ta struktura magazynuje elektryczność.
+
+UI/CoreStrings@Copy:
+Kopiuj
+
+UI/CoreStrings@CraftingCountSelector_Max:
+MAKS
+
+UI/CoreStrings@CraftingCountSelector_Min:
+MIN.
+
+UI/CoreStrings@CraftingQueue_Title:
+RZEMIOSŁO
+
+UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
+`[b]Lewy przycisk[/b]
+[br]Ustaw przepis jako pierwszy w kolejce.
+[br]
+[br][b]Prawy przycisk[/b]
+[br]Anuluj przepis.`
+
+UI/CoreStrings@CraftingRecipeDetails_ButtonStartCraft:
+WYKONAJ
+
+UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
+`Nie znasz żadnych przepisów dla tego stołu rzemieślniczego.
+[br][br][br]
+Dodatkowe przepisy możesz odblokować w menu technologii.`
+
+UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
+Odblokowane przepisy
+
+UI/CoreStrings@Defense_Format_Chemical:
+Ochrona chemiczna: {0}
+
+UI/CoreStrings@Defense_Format_Cold:
+Ochrona przed zimnem: {0}
+
+UI/CoreStrings@Defense_Format_Electrical:
+Ochrona przed elektrycznością: {0}
+
+UI/CoreStrings@Defense_Format_Heat:
+Ochrona przed przegrzaniem: {0}
+
+UI/CoreStrings@Defense_Format_Impact:
+Ochrona przed uderzeniami: {0}
+
+UI/CoreStrings@Defense_Format_Kinetic:
+Ochrona kinetyczna: {0}
+
+UI/CoreStrings@Defense_Format_Psi:
+Ochrona przed Psi: {0}
+
+UI/CoreStrings@Defense_Format_Radiation:
+Ochrona przed promieniowaniem: {0}
+
+UI/CoreStrings@DepositAvailableForClaiming_Message:
+Możliwość przejęcia za:
+
+UI/CoreStrings@DepositCapacityStats_Message:
+To złoże się wyczerpie za:
+
+UI/CoreStrings@DepositCapacityStats_Title:
+Zasobność złoża
+
+UI/CoreStrings@EnergyUnitAbbreviation:
+JE
+
+UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
+JE/s
+
+UI/CoreStrings@Extras_DiscordTooltip:
+Oficjalny serwer Discord CryoFall (tylko w języku angielskim)
+
+UI/CoreStrings@Extras_PatchnotesTooltip:
+Wszystkie informacje o poprawkach CryoFall (tylko w języku angielskim)
+
+UI/CoreStrings@Extras_RoadmapTooltip:
+Dalszy rozwój CryoFall (tylko w języku angielskim)
+
+UI/CoreStrings@FarmPlantTooltip_NotWatered:
+Nie podlano
+
+UI/CoreStrings@FarmPlantTooltip_PossibleHarvestsCount:
+Możliwe zbiory
+
+UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
+Do zbiorów:
+
+UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
+teraz!
+
+UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
+Podlane
+
+UI/CoreStrings@Field_Email:
+E-mail
+
+UI/CoreStrings@Field_Password:
+Hasło
+
+UI/CoreStrings@Gender_Female:
+Kobieta
+
+UI/CoreStrings@Gender_Male:
+Mężczyzna
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
+Budownictwo
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
+Rzemiosło
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
+Wyposażenie
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
+Mapa
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Politics:
+Polityka
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Quests:
+Zadania
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Skills:
+Umiejętności
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Social:
+Społecznościowe
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
+Technologie
+
+UI/CoreStrings@HUDEnergyChargeIndicator_TotalCapacity:
+Łączna pojemność:
+
+UI/CoreStrings@HUDEnergyChargeIndicator_TotalCharge:
+Łączny ładunek
+
+UI/CoreStrings@HUDQuestTrackingEntry_QuestTitleFormat:
+Zadanie: {0}
+
+UI/CoreStrings@ImplantSlotOnStation_Biomaterial:
+Biomateriał
+
+UI/CoreStrings@ImplantSlotOnStation_Button_Uninstall:
+Odinstaluj
+
+UI/CoreStrings@ImplantSlotOnStation_ImplantInstalled:
+Zainstalowany implant
+
+UI/CoreStrings@ImplantSlotOnStation_InstallImplant:
+Zainstaluj implant
+
+UI/CoreStrings@ImplantSlotOnStation_NoImplantInstalled:
+Brak zainstalowanego implantu
+
+UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
+Dodaj implant do zainstalowania
+
+UI/CoreStrings@ImplantSlotOnStation_Requirement:
+Wymaga
+
+UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
+Skróty
+
+UI/CoreStrings@ItemsContainer_Button_MatchDown:
+Połącz w dół
+
+UI/CoreStrings@ItemsContainer_Button_MatchUp:
+Połącz w górę
+
+UI/CoreStrings@ItemsContainer_Button_TakeAll:
+Weź wszystko
+
+UI/CoreStrings@ItemsContainer_CapacityExceededTakeOnly:
+Przekroczono pojemność. Wszystkie pozycje są tylko na wynos.
+
+UI/CoreStrings@ItemsContainer_Title:
+Przedmioty
+
+UI/CoreStrings@ItemsContainer_TitleInput:
+Użyj
+
+UI/CoreStrings@ItemsContainer_TitleOutput:
+Wynik
+
+UI/CoreStrings@LearningPoints:
+Punkty technologii
+
+UI/CoreStrings@LearningPointsAbbreviation:
+PT
+
+UI/CoreStrings@LinkSteamAccountForm_Title:
+Aby połączyć konto Steam, podaj dane konta [url=atomictorch.com]AtomicTorch.com[/url].
+
+UI/CoreStrings@ListFilters:
+Filtry
+
+UI/CoreStrings@LoadingSplashScreen_Title:
+WCZYTYWANIE
+
+UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
+Zaloguj
+
+UI/CoreStrings@LoginAtomicTorchForm_KeepMeLoggedIn:
+Nie wylogowuj
+
+UI/CoreStrings@LoginAtomicTorchForm_Title:
+Zaloguj się za pomocą konta [url=atomictorch.com/Account/Register]AtomicTorch.com[/url]
+
+UI/CoreStrings@MainMenu_TabCredits:
+TWÓRCY
+
+UI/CoreStrings@MainMenu_TabCurrentGame:
+AKTUALNA GRA
+
+UI/CoreStrings@MainMenu_TabHome:
+GŁÓWNA
+
+UI/CoreStrings@MainMenu_TabOptions:
+OPCJE
+
+UI/CoreStrings@MainMenu_TabQuit:
+WYJDŹ
+
+UI/CoreStrings@MainMenu_TabServers:
+SERWERY
+
+UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
+Połącz konta
+
+UI/CoreStrings@MainMenuOverlay_Button_Logout:
+Wyloguj
+
+UI/CoreStrings@MainMenuOverlay_YouAreLoggedInAs:
+Zalogowano jako
+
+UI/CoreStrings@MasterServer:
+Serwer główny
+
+UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
+Opuść
+
+UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
+Pokaż wiadomość powitalną
+
+UI/CoreStrings@MenuCurrentGame_NotConnected:
+Brak połączenia.
+
+UI/CoreStrings@MenuHome_Forums:
+Fora
+
+UI/CoreStrings@MenuHome_News:
+Aktualności
+
+UI/CoreStrings@MenuHome_ReadMore:
+Czytaj dalej...
+
+UI/CoreStrings@MenuHome_RecentServers:
+Najnowsze serwery
+
+UI/CoreStrings@MenuHome_ServerHistoryEmpty:
+`Historia serwera jest pusta.
+[br][br]Tu możesz szybko dołączyć do
+[br]serwera, na którym ostatnio grasz.`
+
+UI/CoreStrings@MenuHome_Social:
+Społecznościowe
+
+UI/CoreStrings@MenuLogin_SteamError_Message:
+Wyjdź z gry, zrestartuj klienta Steam i uruchom grę ponownie.
+
+UI/CoreStrings@MenuLogin_SteamError_Title:
+Błąd klienta Steam
+
+UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Message:
+Chcesz zastosować zmiany?
+
+UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Title:
+Nie zastosowano zmian
+
+UI/CoreStrings@MenuQuit_QuestionAreYouSure:
+Czy na pewno wyjść do pulpitu?
+
+UI/CoreStrings@MenuServers_AwaitingServerList:
+Oczekiwanie na listę serwerów...
+
+UI/CoreStrings@MenuServers_Button_AddCustomServer:
+Dodaj serwer niestandardowy
+
+UI/CoreStrings@MenuServers_Button_ClearList:
+Wyczyść listę
+
+UI/CoreStrings@MenuServers_Button_EditAddress:
+Edytuj adres
+
+UI/CoreStrings@MenuServers_Button_JoinServer:
+Dołącz do serwera
+
+UI/CoreStrings@MenuServers_Button_RefreshAll:
+Odśwież wszystkie
+
+UI/CoreStrings@MenuServers_Button_RefreshServer:
+Odśwież serwer
+
+UI/CoreStrings@MenuServers_Button_RemoveServer:
+Usuń serwer
+
+UI/CoreStrings@MenuServers_Checkbox_ShowEmpty:
+Pokaż puste
+
+UI/CoreStrings@MenuServers_Checkbox_ShowIncompatible:
+Pokaż niezgodne
+
+UI/CoreStrings@MenuServers_ClickToCopy:
+Kliknij, aby skopiować!
+
+UI/CoreStrings@MenuServers_ColumnInfo:
+Informacje o serwerze
+
+UI/CoreStrings@MenuServers_ListTitleCommunity:
+Społeczność
+
+UI/CoreStrings@MenuServers_ListTitleCustom:
+Niestandardowe
+
+UI/CoreStrings@MenuServers_ListTitleFavorite:
+Ulubione
+
+UI/CoreStrings@MenuServers_ListTitleFeatured:
+Promowane
+
+UI/CoreStrings@MenuServers_ListTitleModded:
+Zmodyfikowane
+
+UI/CoreStrings@MenuServers_ListTitleRecent:
+Najnowsze
+
+UI/CoreStrings@MenuServers_NoServersInThisList:
+Brak serwerów na liście
+
+UI/CoreStrings@MenuServers_PublicGUID:
+Publiczny GUID
+
+UI/CoreStrings@MenuServers_ServersCount:
+Serwery
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
+Promowane serwery zazwyczaj zapewniają wysoką jakość usług, podobnie jak serwery oficjalne. Jednak serwery te są nadal udostępniane przez społeczność.
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Title:
+PROMOWANY
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
+Ten serwer jest modyfikowany przez osoby trzecie. Możesz zauważyć istotne zmiany w stosunku do oryginalnej gry. Pamiętaj również, że zmodyfikowane serwery mogą zawierać błędy wprowadzone przez modyfikacje. Korzystasz z nich na własne ryzyko.
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
+ZMODYFIKOWANY
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Description:
+Jest to jeden z oficjalnych serwerów CryoFall udostępnianych przez twórców.
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Title:
+OFICJALNY
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Description:
+`Jest to serwer PvE przeznaczony do spokojnej eksploracji i rozwoju.
+Gracz jest chroniony przed innymi graczami, ale nie przed zagrożeniami w świecie gry!
+Dołączenie do serwera PvE to dobry pomysł, jeśli po raz pierwszy grasz w CryoFall.`
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Title:
+PvE
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Description:
+`Jest to serwer PvP, gdzie nacisk jest położony na walkę, najazdy i kontrolowanie mapy. Serwery
+PvP nie mają żadnych ograniczeń – możesz tu zabijać i sam zginąć.
+Gotuj się do walki!`
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
+PvP
+
+UI/CoreStrings@Network_Jitter:
+Jitter
+
+UI/CoreStrings@Network_Jitter_SeverityRed:
+`Wysoka wartość jitter połączenia internetowego.
+[br]Mogą występować problemy z ruchem postaci (częste pasmowanie) lub twoje ataki mogą nie trafiać celu z powodu znacznych opóźnień względem serwera.`
+
+UI/CoreStrings@Network_Jitter_SeverityYellow:
+`Średnia wartość jitter połączenia internetowego.
+[br]Mogą występować nieznaczne problemy z ruchem postaci (okazjonalne pasmowanie) lub twoje ataki mogą niekiedy nie trafiać celu z powodu pewnych opóźnień względem serwera.`
+
+UI/CoreStrings@Network_Perfect:
+`Połączenie sieciowe działa poprawnie.
+[br]Miłego grania!`
+
+UI/CoreStrings@Network_PingAverage:
+Ping (średni)
+
+UI/CoreStrings@Network_PingAverage_SeverityRed:
+`Bardzo wysoka wartość ping podczas połączenia internetowego z serwerem.
+[br]Niektóre działania w grze (które wymagają odpowiedzi ze strony serwera) 
+będą trwać znacznie dłużej.
+[br]Przykładowo: twoje ataki mogą nie trafiać celu z powodu znacznych opóźnień względem serwera.
+[br]Często będzie występować pasmowanie lub nagłe ruchy postaci.`
+
+UI/CoreStrings@Network_PingAverage_SeverityYellow:
+`Stosunkowo wysoka wartość ping podczas połączenia internetowego z serwerem.
+[br]Niektóre działania w grze (które wymagają odpowiedzi ze strony serwera) 
+będą trwać dłużej.
+[br]Przykładowo: twoje ataki mogą nie trafiać celu z powodu opóźnień względem serwera.
+[br]Może występować pasmowanie lub nagłe ruchy postaci.`
+
+UI/CoreStrings@Network_PingFluctuationRange:
+Zakres zmiany pingu
+
+UI/CoreStrings@Network_PingFluctuationRange_SeverityRed:
+`Bardzo zmienna wartość ping podczas połączenia internetowego z serwerem.
+[br]Niektóre pakiety sieciowe są odbierane z zaskakującymi i zmiennymi opóźnieniami, więc zmieniono wartość buforowania. Oznacza to, że zwiększyła się wartość ping.`
+
+UI/CoreStrings@Network_PingFluctuationRange_SeverityYellow:
+`Wysoka wartość zmiany pingu podczas połączenia internetowego z serwerem.
+[br]Niektóre pakiety sieciowe są odbierane z zaskakującymi i zmiennymi opóźnieniami, więc zmieniono wartość buforowania. Oznacza to, że zwiększyła się wartość ping.`
+
+UI/CoreStrings@Network_PingGame:
+Ping (gra)
+
+UI/CoreStrings@Network_Suggestions:
+`[b]Sugestie:[/b]
+[*] Graj na serwerze znajdującym się [b]w twoim regionie geograficznym[/b] (jeśli taki serwer istnieje).
+[*] Warto [b]zamknąć[/b] inne aplikacje (zwłaszcza przeglądarki internetowe, klienty Torrent i menedżery pobierania plików).
+[*] Można wybrać [b]połączenie kablowe[/b], jeśli komputer jest połączony przez Wi-Fi lub połączenie komórkowe. Połączenia bezprzewodowe często są przyczynami opóźnień w komunikacji.`
+
+UI/CoreStrings@NicknameOfflinePlayer:
+Offline...
+
+UI/CoreStrings@No:
+Nie
+
+UI/CoreStrings@Notification_ActionForbidden:
+Niedozwolone
+
+UI/CoreStrings@Notification_CannotPlaceThere_Title:
+Nie można tam umieścić
+
+UI/CoreStrings@Notification_ObstaclesOnTheWay:
+Przeszkody na drodze!
+
+UI/CoreStrings@Notification_TooFar:
+Za daleko!
+
+UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
+Aktualny tryb dostępu
+
+UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
+Tryb dostępu
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Button:
+Dodaj członków grupy
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Dialog:
+Czy na pewno uwzględnić wszystkich członków grupy na tej liście?
+
+UI/CoreStrings@ObjectOwnersList_AddPlayer:
+Dodaj gracza
+
+UI/CoreStrings@ObjectOwnersList_Empty:
+Brak właścicieli
+
+UI/CoreStrings@ObjectOwnersList_OnlyOwnerCanAdd:
+Tylko właściciel może zapewnić i wycofywać dostęp.
+
+UI/CoreStrings@ObjectOwnersList_RemoveOwner:
+Usuń właściciela
+
+UI/CoreStrings@ObjectOwnersList_Title:
+Właściciele
+
+UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
+ZAKUP
+
+UI/CoreStrings@ObjectTradingStationDisplay_ModeSelling:
+SPRZEDAŻ
+
+UI/CoreStrings@OptionsInput_ContainerMenuCategory:
+Menu zasobnika
+
+UI/CoreStrings@PartyManagement_Button_CreateParty:
+Utwórz grupę
+
+UI/CoreStrings@PartyManagement_Button_Invite:
+Zaproś
+
+UI/CoreStrings@PartyManagement_Button_Leave:
+Opuść grupę
+
+UI/CoreStrings@PartyManagement_CurrentPartySize:
+Wielkość grupy
+
+UI/CoreStrings@PartyManagement_HowToInvite:
+Aby zaprosić gracza, poniżej wprowadź jego nazwę, lub prawym przyciskiem myszy kliknij dowolną nazwę gracza na czacie.
+
+UI/CoreStrings@PartyManagement_InfoExperienceSharing:
+Część punktów technologii uzyskiwanych przez wszystkich członków jest po równo dzielona między wszystkimi członkami.
+
+UI/CoreStrings@PartyManagement_InviteMember:
+Zaproś członka
+
+UI/CoreStrings@PartyManagement_NoParty:
+`Jeszcze nie masz grupy.
+[br]
+[*]Możesz dołączyć do grupy, wysyłając i przyjmując zaproszenia.
+[*]Możesz założyć własną grupę i zaprosić innych graczy.`
+
+UI/CoreStrings@PartyManagement_Title:
+Grupa
+
+UI/CoreStrings@Performance__VRAM_SeverityYellow:
+`Układ GPU ma trudności z dodaniem wszystkich wymaganych tekstur do pamięci VRAM, co może skutkować szarpaniem renderowanego obrazu.
+[br]Zmniejsz wartość opcji [b]Jakość tekstury[/b] w menu [b]Opcje grafiki[/b].`
+
+UI/CoreStrings@Performance_FPS_SeverityRed:
+Komputer ma problemy z szybkim przetwarzaniem gry, co powoduje znaczne obniżenie płynności obrazu.
+
+UI/CoreStrings@Performance_FPS_SeverityYellow:
+Komputer ma problemy z szybkim przetwarzaniem gry, co powoduje obniżenie płynności obrazu.
+
+UI/CoreStrings@Performance_FramerateAverage:
+Płynność (średnia)
+
+UI/CoreStrings@Performance_Perfect:
+`Gra działa poprawnie.
+[br]Miłego grania!`
+
+UI/CoreStrings@Performance_Suggestions:
+`[b]Sugestie:[/b]
+[br]Najpierw upewnij się, że komputer spełnia minimalne wymagania sprzętowe.
+[br]Następnie zwiększ wydajność:
+[*] Aktualizując sterowniki karty graficznej.
+[*] Zamykając inne aplikacje (zwłaszcza przeglądarki internetowe, ponieważ nawet po zminimalizowaniu pochłaniają one bardzo dużo zasobów).
+[*] Jeśli to nie pomoże, obniż jakość grafiki w menu Opcje grafiki.`
+
+UI/CoreStrings@Performance_VRAM_SeverityRed:
+`Pojemność pamięci VRAM procesora graficznego nie wystarcza do przechowywania wszystkich wymaganych tekstur, dlatego wymagane jest kopiowanie każdej ramki z pamięci RAM. Powoduje to zacinanie gry i utratę płynności.
+[br]Zmniejsz wartość opcji [b]Jakość tekstur[/b] w menu [b]Opcje grafiki[/b].`
+
+UI/CoreStrings@Performance_VRAMUsage:
+Wykorzystanie VRAM
+
+UI/CoreStrings@PleaseWait:
+Proszę czekać...
+
+UI/CoreStrings@PowerGrid_NotConnectedMessage:
+Nie można połączyć z siecią energetyczną.
+
+UI/CoreStrings@PowerGridState_ActiveFormat:
+(aktywne: {0})
+
+UI/CoreStrings@PowerGridState_Button_RestorePower:
+Przywróć zasilanie
+
+UI/CoreStrings@PowerGridState_Capacity:
+Wydajność:
+
+UI/CoreStrings@PowerGridState_Consumers:
+Użytkownicy:
+
+UI/CoreStrings@PowerGridState_CurrentConsumption:
+Bieżące zużycie:
+
+UI/CoreStrings@PowerGridState_CurrentGeneration:
+Bieżące wytwarzanie:
+
+UI/CoreStrings@PowerGridState_DepletedIn:
+Wyczerpanie:
+
+UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
+Nigdy
+
+UI/CoreStrings@PowerGridState_EfficiencyFormat:
+(wydajność {0}%)
+
+UI/CoreStrings@PowerGridState_EnergyInformation:
+Informacje o energii
+
+UI/CoreStrings@PowerGridState_Generators:
+Generatory:
+
+UI/CoreStrings@PowerGridState_GridSize:
+Wielkość sieci:
+
+UI/CoreStrings@PowerGridState_GridStatus:
+Status sieci:
+
+UI/CoreStrings@PowerGridState_MaxDefenseConsumption:
+Maks. zużycie obronne:
+
+UI/CoreStrings@PowerGridState_MaxGeneration:
+Maks. wytwarzanie:
+
+UI/CoreStrings@PowerGridState_MaxTotalConsumption:
+Maks. zużycie łącznie:
+
+UI/CoreStrings@PowerGridState_PowerGridInformation:
+Info. o sieci energetycznej
+
+UI/CoreStrings@PowerGridState_Status_Blackout:
+Blackout
+
+UI/CoreStrings@PowerGridState_Status_Nominal:
+Normalny
+
+UI/CoreStrings@PowerGridState_Storages:
+Magazynowanie:
+
+UI/CoreStrings@Quest_Button_ClaimReward:
+Odbierz
+
+UI/CoreStrings@Quest_Label_Completed:
+Ukończone
+
+UI/CoreStrings@Quest_Label_New:
+NOWE
+
+UI/CoreStrings@Quest_Label_Ready:
+GOTOWE
+
+UI/CoreStrings@QuestionAreYouSure:
+Na pewno?
+
+UI/CoreStrings@RebindKeyWindow_RebindingKey:
+Zmiana funkcji klawisza
+
+UI/CoreStrings@RecipesBrowserRecipeDetails_Button_CancelRecipeSelection:
+ANULUJ
+
+UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
+WYBIERZ
+
+UI/CoreStrings@ScreenshotNotification_NotificationFormat:
+Zrzut ekranu gotowy: {0} (kliknij, aby otworzyć)
+
+UI/CoreStrings@SelectUsernameForm_Message:
+Wybierz nazwę użytkownika dla konta AtomicTorch.com
+
+UI/CoreStrings@ServerAddress:
+Adres
+
+UI/CoreStrings@ServerPing:
+Ping
+
+UI/CoreStrings@ServerPlayersCount:
+Gracze
+
+UI/CoreStrings@ServerWipedDate:
+Czyszczenie
+
+UI/CoreStrings@Skill:
+Umiejętność
+
+UI/CoreStrings@StatusEffect_TitleIntensity:
+Wartość
+
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Message:
+`[b]Możesz:[/b]
+[*] Pobrać i uruchomić kopie gry CryoFall bez Steam i nadal w pełni korzystać z tych samych postaci i serwerów.
+[*] Uzyskać dostęp do listy mailingowej AtomicTorch i otrzymywać powiadomienia o nowych funkcjach, wersjach gry i inne informacje.
+[*] Uczestniczyć w ankietach dla użytkowników AtomicTorch.
+[br]
+[br][b]Wkrótce:[/b]
+[*] Wygodnie wypożyczać oficjalne serwery w chmurze dla CryoFall przeznaczone do własnych zastosowań.`
+
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Title:
+Dlaczego warto połączyć konto AtomicTorch?
+
+UI/CoreStrings@SteamAccountRegisterOrLinkForm_CheckboxAcceptLicenseAgreement:
+Akceptuję [url=atomictorch.com/Pages/Terms-of-Service]Warunki świadczenia usług[/url] wraz z [url=atomictorch.com/Pages/Privacy-Policy]Polityką prywatności[/url]
+
+UI/CoreStrings@SteamAccountRegisterOrLinkForm_ConfirmEmail:
+Potwierdź e-mail
+
+UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
+`Rejestracja konta AtomicTorch.com
+[br](dla ID Steam).`
+
+UI/CoreStrings@TechGroupTooltip_Requirements:
+Wymagania
+
+UI/CoreStrings@TechGroupTooltip_TechnologiesAvailableCount:
+Dostępne technologie
+
+UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
+Odblokowane technologie
+
+UI/CoreStrings@TechNodeTooltip_Perks:
+Atuty
+
+UI/CoreStrings@TechNodeTooltip_Recipes:
+Przepisy
+
+UI/CoreStrings@TechNodeTooltip_Structures:
+Struktury
+
+UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
+Wymóg technologiczny
+
+UI/CoreStrings@Technology:
+Technologia
+
+UI/CoreStrings@TextBoxSearchPlaceholder:
+Wyszukaj...
+
+UI/CoreStrings@Title:
+Nazwa
+
+UI/CoreStrings@TitleActionFailed:
+Błąd działania
+
+UI/CoreStrings@TitleArea:
+Powierzchnia
+
+UI/CoreStrings@TitleAttention:
+Uwaga!
+
+UI/CoreStrings@TitleConnecting:
+Łączenie...
+
+UI/CoreStrings@TitleDestructionTimeout:
+Czas do zniszczenia
+
+UI/CoreStrings@TitleDurability:
+Trwałość
+
+UI/CoreStrings@TitleEnergyCharge:
+Naładowanie
+
+UI/CoreStrings@TitleFreshness:
+Świeżość
+
+UI/CoreStrings@TitleFuel:
+Paliwo
+
+UI/CoreStrings@TitleLevel:
+Poziom
+
+UI/CoreStrings@TitleLiquidGasoline:
+Benzyna
+
+UI/CoreStrings@TitleLiquidMineralOil:
+Olej mineralny
+
+UI/CoreStrings@TitleLiquidPetroleum:
+Ropa naftowa
+
+UI/CoreStrings@TitleLiquidWater:
+Woda
+
+UI/CoreStrings@TitleLoading:
+Wczytywanie...
+
+UI/CoreStrings@TitleModeAlwaysOn:
+Zawsze wł.
+
+UI/CoreStrings@TitleModeAuto:
+Auto
+
+UI/CoreStrings@TitleModeOff:
+Wył.
+
+UI/CoreStrings@TitleModeOn:
+Wł.
+
+UI/CoreStrings@TitleNoUpgradesAvailable:
+Brak dostępnych ulepszeń
+
+UI/CoreStrings@TitleOwner:
+Właściciel
+
+UI/CoreStrings@TitlePowerGrid:
+Sieć energetyczna
+
+UI/CoreStrings@TitleSafeStorage:
+Bezpieczne przechowywanie
+
+UI/CoreStrings@TitleStructurePoints:
+Punkty struktury
+
+UI/CoreStrings@TradingStationResources_ThisLotIsDisabled:
+Nieaktywne
+
+UI/CoreStrings@TradingTooltip_CoinsPenny:
+Małe monety
+
+UI/CoreStrings@TradingTooltip_CoinsShiny:
+Błyszczące monety
+
+UI/CoreStrings@UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAccount:
+Kontynuuj bez tworzenia konta
+
+UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
+Pierwszy raz uruchamiasz CryoFall. Czy chcesz połączyć grę z istniejącym kontem [url=atomictorch.com]AtomicTorch.com[/url]?
+
+UI/CoreStrings@Window_Tab_Main:
+Główna
+
+UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
+`Wprowadź publiczny GUID lub adres hosta.
+[br][br]
+Przykłady:
+[*]localhost
+[*]atomictorch.com:1234
+[*]FF11223344556677889900AABBCCDDEE`
+
+UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
+Wylosuj
+
+UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
+Wymagane na początek
+
+UI/CoreStrings@WindowConstructionMenu_Button_Build:
+Buduj
+
+UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
+`Ważne! Aby [b]zbudować[/b] lub [b]naprawić[/b] cokolwiek, musisz mieć [b]skrzynkę z narzędziami[/b]!
+[br]Dodaj ją do paska, aby móc budować i naprawiać.`
+
+UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
+Ustaw
+
+UI/CoreStrings@WindowConstructionMenu_TotalRequired:
+Wymagane przedmioty
+
+UI/CoreStrings@WindowDataLog_Content:
+Zawartość
+
+UI/CoreStrings@WindowDataLog_From:
+Od
+
+UI/CoreStrings@WindowDataLog_Location:
+Lokalizacja
+
+UI/CoreStrings@WindowDataLog_To:
+Do
+
+UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
+PANELE SŁONECZNE
+
+UI/CoreStrings@WindowInventory_Button_Customize:
+Dostosuj
+
+UI/CoreStrings@WindowInventory_Button_Unstuck:
+Odblokuj!
+
+UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
+Posiadanie działki nie umożliwia przechowywania zasobów ani przedmiotów podstawowych.
+
+UI/CoreStrings@WindowLandClaim_DecayInfo:
+Informacje o rozpadzie
+
+UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
+Bezpiecznie przechowywane przedmioty są współdzielone we wszystkich strukturach posiadanych działek w tej bazie.
+
+UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
+Tylko właściciel może ulepszyć tę strukturę.
+
+UI/CoreStrings@WindowLandClaim_UpgradingRequiresLearningTech:
+Ulepszenie tej struktury wymaga opanowania odpowiedniej technologii.
+
+UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
+Wymagane
+
+UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
+Najlepszy przepis
+
+UI/CoreStrings@WindowManufacturer_Button_ApplyMatchingRecipe:
+Zastosuj przepis
+
+UI/CoreStrings@WindowManufacturer_CurrentRecipe:
+Aktualny przepis
+
+UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchAnyRecipe:
+Przedmioty nie pasują do żadnego przepisu!
+
+UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchCurrentRecipe:
+Przedmioty nie pasują do aktualnego przepisu!
+
+UI/CoreStrings@WindowManufacturer_ErrorNoAvailableSpaceInOutput:
+Brak wolnego miejsca do wytworzenia!
+
+UI/CoreStrings@WindowManufacturer_ErrorNotEnoughInputItemsForCurrentRecipe:
+Za mało przedmiotów do wytworzenia aktualnego przepisu!
+
+UI/CoreStrings@WindowManufacturer_FuelRequired:
+Wymagane paliwo!
+
+UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
+Puste
+
+UI/CoreStrings@WindowObjectLight_TitleLightMode:
+Tryb oświetlenia
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
+Okres najazdów trwa. Pozostały czas: {0}.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_DescriptionFormat:
+`Najazdy na działki posiadane przez innych graczy są możliwe tylko podczas okresu najazdu od {0} do {1} (łącznie: {2}).
+[br]Struktury poza posiadanymi działkami nie są chronione przez ten system i można je atakować oraz niszczyć w dowolnym czasie.`
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Disabled:
+Na tym serwerze wyłączono ochronę przed najazdami offline.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_NextRaidWindowTimeout:
+Następny okres najazdów za {0}.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
+Ochrona przed najazdem
+
+UI/CoreStrings@WindowPowerStorage_NotConnectedToPowerGrid:
+Ta akumulatorownia nie jest podłączona do żadnej sieci energetycznej.
+
+UI/CoreStrings@WindowQuests_CompletionReward:
+Nagroda za ukończenie
+
+UI/CoreStrings@WindowQuests_CurrentQuests:
+Aktualne zadania
+
+UI/CoreStrings@WindowQuests_Hints:
+Wskazówki
+
+UI/CoreStrings@WindowQuests_MessageAllAvailableQuestsCompleted:
+Ukończono wszystkie dostępne zadania.
+
+UI/CoreStrings@WindowQuests_MessageNoCompletedText:
+Nie ukończono jeszcze żadnych zadań.
+
+UI/CoreStrings@WindowQuests_TitleCompletedQuestsCount:
+Ukończone zadania
+
+UI/CoreStrings@WindowQuests_TitleUnlockedQuestsCount:
+Odblokowane zadania
+
+UI/CoreStrings@WindowRechargingStation_Title:
+DOŁADOWANIE
+
+UI/CoreStrings@WindowRespawn_Button_RespawnAtYourBed:
+Odrodzenie w łóżku
+
+UI/CoreStrings@WindowRespawn_Button_RespawnInTheWorld:
+Odrodzenie w terenie
+
+UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
+Odr. w pobliżu łóżka
+
+UI/CoreStrings@WindowRespawn_DamageSources:
+Ostatnie przyczyny obrażeń:
+
+UI/CoreStrings@WindowRespawn_Message:
+Wygląda na to, że żegnasz się z tym światem! Tracisz wszystkie przedmioty! Pałasz rządzą zemsty?
+
+UI/CoreStrings@WindowRespawn_MessageDespawned:
+Twoja postać zbyt długo pozostawała poza obszarem posiadanej działki i została usunięta ze świata. Możesz się standardowo odrodzić bez utraty żadnych przedmiotów.
+
+UI/CoreStrings@WindowRespawn_MessagePvE:
+Wygląda na to, że żegnasz się z tym światem! Pałasz rządzą zemsty?
+
+UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
+Zabił cię inny gracz. Na szczęście nadal działa ochrona nowego, więc nie tracisz żadnych przedmiotów. Uważaj na siebie, bo następnym razem może już nie być tak wesoło!
+
+UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
+`Ostatnio odradzasz się w łóżku.
+[br][b]Poczekaj na odrodzenie[/b].`
+
+UI/CoreStrings@WindowSignPicture_Title:
+Wybierz obraz
+
+UI/CoreStrings@WindowSkills_CurrentLevelFormat:
+Poziom {0}
+
+UI/CoreStrings@WindowSkills_CurrentLevelFormat2:
+Aktualny poziom: {0}
+
+UI/CoreStrings@WindowSkills_MaxLevelReached:
+Zdobywasz maksymalny poziom!
+
+UI/CoreStrings@WindowSkills_NoDiscoveredSkills:
+`Nie znasz jeszcze żadnych umiejętności.
+[br][br]
+Umiejętności są automatycznie odblokowywane, gdy zgromadzisz
+[br]wystarczająco dużo doświadczenia, wykonując daną czynność.
+[br]Zrób coś innego i zobacz, co się stanie!`
+
+UI/CoreStrings@WindowSkills_ProgressTowardsTheNextLevel:
+Do następnego poziomu umiejętności
+
+UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
+Odkryte umiejętności
+
+UI/CoreStrings@WindowSocial_OnlineNow:
+Online
+
+UI/CoreStrings@WindowSocial_ServerStatistics:
+Statystyki serwera
+
+UI/CoreStrings@WindowSocial_TitleOnlinePlayersList:
+Gracze online
+
+UI/CoreStrings@WindowSocial_TotalPlayers:
+Gracze ogółem
+
+UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
+Utwórz nowe konto AtomicTorch
+
+UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
+Połącz z moim istniejącym kontem AtomicTorch
+
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
+Nie musisz tego robić. Jeśli chcesz, możesz dalej grać za pomocą istniejącego konta Steam. Są jednak pewne korzyści z połączenia z kontem AtomicTorch.com.
+
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
+Absolutnie nie musisz tego robić i możesz po prostu grać za pomocą istniejącego konta Steam. Jednak ominą cię pewne korzyści.
+
+UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
+Możesz połączyć swoje konto Steam z kontem AtomicTorch.com lub utworzyć nowe.
+
+UI/CoreStrings@WindowTechnologies_Info_AdditionalTechnologies:
+`Te dodatkowe technologie pozwalają na dogłębne wyspecjalizowanie się w różnych dziedzinach.
+[br]W przypadku wyższych poziomów NIE należy uczyć się ich wszystkich. Zastanów się, zanim podejmiesz wybór.`
+
+UI/CoreStrings@WindowTechnologies_Info_PrimaryTechnologies:
+Podstawowe technologie zalecane są dla wszystkich graczy. Pozwalają one uzyskać dostęp do podstawowej bazy technologicznej w CryoFall.
+
+UI/CoreStrings@WindowTechnologies_TechGroupLocked:
+Zablokowane
+
+UI/CoreStrings@WindowTechnologies_TechGroupPreview:
+Podgląd
+
+UI/CoreStrings@WindowTechnologies_TechGroupResearch:
+Odkryj
+
+UI/CoreStrings@WindowTechnologies_TechGroupResearchCost:
+Koszt badania:
+
+UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
+Odblokuj
+
+UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
+Technologie podstawowe
+
+UI/CoreStrings@WindowTechnologies_TitleSpecializedTechnologies:
+Technologie specjalne
+
+UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
+`Punkty technologii (PT) dostajesz za
+[br]wykonywanie sensownych działań w grze.
+[br]Liczba otrzymywanych PT jest proporcjonalna
+[br]do poziomu zyskiwanego doświadczenia w umiejętnościach.`
+
+UI/CoreStrings@WindowTinkerTable_Button_Repair:
+Napraw
+
+UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
+Konf. handlu
+
+UI/CoreStrings@WindowTradingStationAdmin_LotsConfiguration:
+Konfig. handlu
+
+UI/CoreStrings@WindowTradingStationAdmin_RadioButton_GroupTitle:
+Stacja handlowa zapewnia
+
+UI/CoreStrings@WindowTradingStationAdmin_RadioButton_ModeBuyingItems:
+Zakupy
+
+UI/CoreStrings@WindowTradingStationAdmin_RadioButton_ModeSellingItems:
+Sprzedaż
+
+UI/CoreStrings@WindowTradingStationAdmin_Stock:
+Towary
+
+UI/CoreStrings@WindowTradingStationLotEditor_ListTitleAllItems:
+WSZYSTKIE PRZEDMIOTY
+
+UI/CoreStrings@WindowTradingStationLotEditor_ListTitleExistingItems:
+ISTNIEJĄCE PRZEDMIOTY
+
+UI/CoreStrings@WindowTradingStationLotEditor_Price:
+Cena
+
+UI/CoreStrings@WindowTradingStationLotEditor_Quantity:
+Ilość
+
+UI/CoreStrings@WindowTradingStationLotEditor_SelectedLotItem:
+Wybrana pozycja
+
+UI/CoreStrings@WindowTradingStationUser_Button_Buy:
+Kupuj
+
+UI/CoreStrings@WindowTradingStationUser_Button_Sell:
+Sprzedaj
+
+UI/CoreStrings@WindowTradingStationUser_BuyingMode_Message:
+Ta stacja handlowa kupuje następujące przedmioty:
+
+UI/CoreStrings@WindowTradingStationUser_BuyingMode_Title:
+Zakup
+
+UI/CoreStrings@WindowTradingStationUser_SellingMode_Message:
+Ta stacja handlowa sprzedaje następujące przedmioty:
+
+UI/CoreStrings@WindowTradingStationUser_SellingMode_Title:
+Na sprzedaż
+
+UI/CoreStrings@WindowTrashCan_Title:
+Tutaj wstaw dowolne przedmioty, aby się ich trwale pozbyć.
+
+UI/CoreStrings@WipedDate_DaysAgo_Format:
+{0} dni temu
+
+UI/CoreStrings@WipedDate_HoursAgo_Format:
+{0} godz. temu
+
+UI/CoreStrings@WipedDate_JustWiped:
+Właśnie wyczyszczono
+
+UI/CoreStrings@WipedDate_Yesterday:
+Wczoraj
+
+UI/CoreStrings@WorldMap_MapExplored:
+Poznana mapa
+
+UI/CoreStrings@WorldMap_PointedPosition:
+Wskazane położenie
+
+UI/CoreStrings@WorldMap_YourPosition:
+Twoje położenie
+
+UI/CoreStrings@WorldMapMarkCurrentBed_Tooltip:
+`[b]Łóżko[/b]
+[br]W tym miejscu odradzasz się po śmierci.`
+
+UI/CoreStrings@WorldMapMarkDroppedItems_Tooltip:
+`[b]Upuszczone przedmioty[/b]
+[br]Upuszczone przedmioty znajdują się tutaj.`
+
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
+`[b]Posiadane działki[/b]
+[br]To ziemie, do których masz dostęp.`
+
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
+`[b]Posiadana działka[/b]
+[br]To twoje włości.`
+
+UI/CoreStrings@WorldMapMarkRaid_Tooltip:
+`[b]Baza jest atakowana[/b]
+[br]Trwa atak na bazę!`
+
+UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
+`[b]Źródło geotermalne[/b]
+[br]Złoże litu.`
+
+UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
+`[b]Ropa[/b]
+[br]Złoże naturalnej ropy naftowej.`
+
+UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
+`[b]Stacja handlowa[/b]
+[br]Inny gracz jest właścicielem tej stacji handlowej.`
+
+UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
+`[b]Stacja handlowa (twoja)[/b]
+[br]Jesteś właścicielem tej stacji handlowej.`
+
+UI/CoreStrings@Yes:
+Tak
+
+UI/LanguageFonts@FontCondensed:
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
+
+UI/LanguageFonts@FontDefault:
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
+
+UI/LanguageFonts@FontPlayerDialogue:
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
+
+UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
+Połączone
+
+UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleNotConnected:
+Niepołączone
+
+UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatCopyMessageFormat:
+Od @{0}: {1}
+
+UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
+[Developer]
+
+UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
+`Czy chcesz zamknąć prywatny czat z: {0}?
+[br]Historia czatu zostanie zapisana, a czat możesz otworzyć później.`
+
+UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
+Przepis zawiera psujące się składniki, więc nie można go anulować.
+
+UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
+Nie można anulować tego przepisu
+
+UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
+Tego przedmiotu nie można używać bezpośrednio.
+
+UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationNoFreeSpaceToMoveItem:
+Brak miejsca na przeniesienie przedmiotu.
+
+UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_MessageFormat:
+`Do mapy został dodany znacznik.
+[br]Przedmioty znikną za: {0}.`
+
+UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
+Przedmioty zostały upuszczone
+
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
+`Jedna z twoich baz jest atakowana!
+[br]({0};{1})`
+
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Title:
+Trwa atak!
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
+`{0} – w lokalizacji {1};{2}.
+[br]Zasób można przejąć za:
+[br]{3}.
+[br]Łap broń i przejmuj zasoby!`
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
+Dostępne nowe zasoby
+
+UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
+Kopiuj współrzędne
+
+UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuTeleport:
+Teleport
+
+UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
+Odblokuj mnie!
+
+UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
+`Jeśli zamurujesz się wewnątrz domu, to się z niego nie wydostaniesz.
+[br]Ktoś cię załatwił i nie możesz się ruszyć?
+[br]Za pomocą tej funkcji przeteleportujesz swoją postać.
+[br]Musisz tylko odczekać 5 minut.`
+
+UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
+Odblokuj
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@AltLeftClickOnItem_Description:
+`Użyj/zjedz wskazany przedmiot
+[br](Dotyczy tylko przedmiotów do spożycia/użycia).`
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@AltLeftClickOnItem_Title:
+Alt + kliknięcie przedmiotu lewym przyciskiem myszy
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Description:
+`Upuść wskazaną grupę przedmiotów.
+[br](Przytrzymaj klawisz Ctrl, aby upuścić tylko jeden przedmiot, gdy masz ich więcej zgrupowanych).`
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Title:
+Alt + kliknięcie przedmiotu prawym przyciskiem myszy
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Description:
+Przenieś pojedynczy przedmiot ze wskazanej grupy do innego zasobnika.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Title:
+Ctrl + kliknięcie przedmiotów prawym/lewym przyciskiem myszy
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Description:
+Weź ten przedmiot lub przedmioty.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Title:
+Kliknij przedmiot lewym przyciskiem myszy (z pustymi rękami)
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Description:
+`Jeżeli gniazdo jest puste, wstaw do niego przedmiot.
+[br]Jeżeli gniazdo nie jest puste, połącz lub wymień przedmiot.`
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Title:
+Kliknij gniazdo lewym przyciskiem myszy (trzymasz coś w ręce)
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Description:
+Sortuj ekwipunek (w dowolnej wskazanej siatce przedmiotów).
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Title:
+Kliknięcie kółkiem myszy
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Description:
+Weź połowę wskazanych przedmiotów.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Title:
+Kliknij przedmioty prawym przyciskiem myszy (z pustymi rękami)
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Description:
+Jeżeli gniazdo jest puste lub zawiera ten sam typ przedmiotu,[br]przenieś pojedynczy przedmiot z ręki do gniazda.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Title:
+Kliknij gniazdo prawym przyciskiem myszy (trzymasz coś w ręce)
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Description:
+Przenieś wszystkie zgrupowane typy wskazanych przedmiotów do innego zasobnika.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Title:
+Shift + kliknięcie przedmiotu lewym przyciskiem myszy
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftRightClickOnItems_Description:
+Przenieś tylko wskazaną grupę przedmiotów do innego zasobnika.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftRightClickOnItems_Title:
+Shift + kliknięcie przedmiotu prawym przyciskiem myszy
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@TitleItemSlotActions:
+Gniazda na przedmioty – działania
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleBottom:
+Dół
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleFace:
+Twarz
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
+Włosy
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
+Góra
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
+Czy na pewno opuścić grupę?
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
+Czy na pewno usunąć gracza [b]{0}[/b] z grupy?
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
+Stwór
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
+Wybuch
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleItem:
+Przedmiot
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleOther:
+Inne
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitlePlayer:
+Gracz
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
+Efekt
+
+UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
+następny poziom
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier1Letter:
+I
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier2Letter:
+II
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier3Letter:
+III
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier4Letter:
+IV
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
+V
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
+Poziom {0}
+
+UI/Controls/Game/Technologies/Data/ViewModelWindowTechnologies@DialogDoYouWantToResearch:
+Chcesz poznać: {0}?
+
+UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
+Wytwarzanie proste
+
+UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
+Napraw
+
+UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
+Produkty łatwo psujące się można przechowywać ~{0} razy dłużej.
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListEmpty:
+Możesz zapewnić innym ocalałym dostęp do swojej działki.
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
+Dostęp
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
+`Porzucone konstrukcje zaczną się rozpadać po pewnym czasie
+[br]i w końcu znikną, aby nie zaśmiecać mapy.
+[br]
+[br]Ta struktura zacznie się rozpadać za: [b]{0}[/b].
+[br]Następnie w ciągu [b]{1}[/b] będzie niszczeć, a po tym czasie zostanie uruchomiony licznik zniszczenia ([b]{2}[/b]).
+[br]
+[br]Aby uniknąć rozpadu, odwiedzaj bazę raz na [b]{0}[/b]
+[br](dowolny gracz na tej liście dostępowej może zresetować licznik rozpadu).
+[br]
+[br]Można opóźnić rozpad, [b]ulepszając[/b] posiadane działki do wyższego poziomu.
+[br]Opóźnienie rozpadu całej bazy jest zależne od [b]najwyższego[/b] poziomu posiadanej działki.`
+
+UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
+To złoże zostało wyczerpane.
+
+UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
+To złoże jest nieskończone.
+
+UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
+Brak paliwa
+
+UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Title:
+Nie można włączyć
+
+UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Message:
+Nie można zainstalować dwóch implantów tego samego typu.
+
+UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Title:
+Już zainstalowano
+
+UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationNotEnoughBiomaterial:
+Za mało biomateriału
+
+UI/Controls/Game/WorldObjects/Plants/Data/ViewModelFarmPlantTooltip@TitlePermanent:
+nieodwracalne
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSolar@ElectricityProductionInfoTextFormat:
+`Bieżące wytwarzanie: {0} JE/s przy {1}% poziomie oświetlenia.
+[br]Maks. wydajność {2} JE/s.`
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@ElectricityProductionInfoTextFormat:
+`Bieżące wytwarzanie: {0} JE/s przy {1}°C ({2}% wydajności).
+[br]Maks. wydajność {3} JE/s.`
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
+`Bieżące wytwarzanie: {0} JE/s.
+[br]Maks. wydajność {1} JE/s.`
+
+UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
+Oczekiwanie na odpowiedź logowania.
+
+UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterEmail:
+Podaj adres e-mail.
+
+UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterPassword:
+Wpisz hasło.
+
+UI/Controls/Menu/Login/Data/ViewModelSelectUsernameFormControl@Dialog_AcceptUsername:
+`Czy imię [b]{0}[/b] ci odpowiada? Nie ma możliwości późniejszej jego zmiany.
+[br]Imię będzie używane podczas gry na wszystkich serwerach.`
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_CapsLock:
+Caps Lock
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_LeftMouseButton:
+Lewy przycisk myszy
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton1:
+Dodatkowy przycisk myszy 1
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton2:
+Dodatkowy przycisk myszy 2
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseScrollButton:
+Kółko myszy
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_PageDown:
+Page Down
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_PageUp:
+Page Up
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_RightMouseButton:
+Prawy przycisk myszy
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
+Spacja
+
+UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
+Czy chcesz zresetować opcje [b]{0}[/b]?[br]Wartości domyślne zostaną zastosowane i zapisane.
+
+UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessageCannotBindToKey:
+Nie można przypisać do tego klawisza:[br][b]{0}[/b]
+
+UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessageFormatKeyAlreadyBound:
+`Naciśnięty klawisz jest już przypisany do przycisku:
+[br][b]{0}[/b]
+[br]
+[br]Ponownie naciśnij ten klawisz, aby zmienić przypisanie klawisza
+[br]lub naciśnij inny klawisz.`
+
+UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessagePressToBind:
+Naciśnij klawisz, aby przypisać lub naciśnij klawisz Escape, aby anulować.
+
+UI/Controls/Menu/Servers/WindowAddOrEditServer.xaml@DialogServerAddressNotValid:
+Błędy adres serwera. Sprawdź adres.
+
+UI/Controls/Menu/Servers/Controllers/MultiplayerMenuServersController@DialogRemoveServerFromList:
+Czy na pewno usunąć serwer listy?
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogEditorMode_Message:
+Nie można nawiązać połączenia z żadnym serwerem w trybie edytora.
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogEditorMode_Title:
+Grasz w trybie edytora.
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Advice_ConnectNewServer:
+Połącz się z serwerem w nowszej wersji.
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Advice_UpdateClient:
+Zaktualizuj klienta gry do najnowszej wersji.
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_MessageFormat:
+`[br]Wersja serwera {0}
+[br]Wersja gry {1}`
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Title:
+Niezgodny serwer
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionTitle_Newer:
+Ten serwer obsługuje nowszą wersję gry
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionTitle_Older:
+Ten serwer obsługuje starszą wersję gry
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
+`[b]Problem z połączeniem internetowym[/b]
+[br]Brak łączności z serwerem z powodu niestabilnego połączenia sieciowego lub nieudanego przekierowania po stronie dostawcy internetu.`
+
+UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_MessageNoMods:
+Modyfikacje nie są używane na tym serwerze.
+
+UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_Title:
+Modyfikacje serwera
+
+UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerNotAccessibleTitle:
+Serwer jest niedostępny.
+
+UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
+Serwer offline
+
+UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
+Czy na pewno wyczyścić listę serwerów?
+
+UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
+Wyczyść listę serwerów
+
+UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
+Czekaj na pobranie informacji o serwerze.
+
+UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Title:
+Nie można połączyć
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_IncorrectEmailOrPassword:
+Podany adres e-mail lub hasło są nieprawidłowe. Jeśli masz pewność, że dane są prawidłowe, spróbuj ponownie lub użyj funkcji resetowania hasła w serwisie AtomicTorch.com.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailAlreadyUsed:
+Wprowadzony adres e-mail jest już używany na innym koncie. Użyj innego adresu e-mail.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailNotActivated:
+`Podany adres e-mail nie jest aktywowany.
+[br]Przejdź do swojego konta e-mail i kliknij otrzymane łącze aktywacyjne. Pamiętaj, że nasza wiadomość mogła trafić do spamu.`
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_Title:
+Nie można połączyć konta
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageAlreadyLinkedToAnotherAtomicTorchAccount:
+Konto Steam jest już połączone z innym kontem.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageAlreadyLinkedToAnotherSteamId:
+Konto jest już połączone z innym ID Steam. Użyj innego konta AtomicTorch.com.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageRestartSteamClient:
+Ponownie uruchom klienta Steam.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_Title:
+Nie można się zarejestrować
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorConfirmEmailDoesntMatch:
+Potwierdzenie adresu e-mail niezgodne z wcześniej wpisanym adresem e-mail.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterEmail:
+Wpisz adres e-mail.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterPassword:
+Wpisz hasło.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
+Aby kontynuować, musisz zaakceptować Warunki świadczenia usług.
+
+UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
+Próbujesz zarejestrować się za pomocą konta e-mail z serwera należącego do firmy Microsoft. Niestety Microsoft bezpośrednio [b]blokuje[/b] wszelkie wiadomości e-mail, które nie pochodzą od dużych dostawców, co skutecznie uniemożliwi nam wysyłanie jakichkolwiek wiadomości na twoje konto. Skorzystaj z innego konta e-mail, np. [b]gmail.com[/b].
+

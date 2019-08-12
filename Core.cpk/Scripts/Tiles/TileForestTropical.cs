@@ -100,7 +100,7 @@
             settings.AddDecal(
                 new ProtoTileDecal(jungleGrass1Textures,
                                    size: (2, 2),
-                                   offset: Vector2Ushort.One,
+                                   offset: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsUnder,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: jungleGrass1NoiseSelector));
@@ -135,7 +135,7 @@
             settings.AddDecal(
                 new ProtoTileDecal(jungleGrass2Textures,
                                    size: (2, 2),
-                                   offset: Vector2Ushort.One,
+                                   offset: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsUnder,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: jungleGrass2NoiseSelector));
@@ -143,7 +143,7 @@
             // add fern decal
             settings.AddDecal(
                 new ProtoTileDecal("Terrain/ForestTropical/Fern*",
-                                   size: Vector2Ushort.One,
+                                   size: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new CombinedNoiseSelector(
@@ -163,7 +163,7 @@
             // add flower decal
             settings.AddDecal(
                 new ProtoTileDecal("Terrain/ForestTropical/JungleFlower*",
-                                   size: Vector2Ushort.One,
+                                   size: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new CombinedNoiseSelector(

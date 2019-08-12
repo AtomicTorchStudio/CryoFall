@@ -5,7 +5,7 @@
         public override string Description =>
             "Basic respirator design that can filter out radioactive particles and harmful gases. Doesn't offer any other protection.";
 
-        public override ushort DurabilityMax => 500;
+        public override uint DurabilityMax => 500;
 
         public override bool IsHairVisible => true;
 

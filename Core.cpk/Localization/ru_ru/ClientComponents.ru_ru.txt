@@ -20,16 +20,18 @@ Scripts/ClientComponents/Input/GameButton@RunToggle:
 Бег (вкл./выкл.)
 
 Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
-Действие: использовать предмет
+`Действие:
+[br]использовать предмет`
 
 Scripts/ClientComponents/Input/GameButton@ActionInteract:
-Действие: взаимодействовать
+`Действие:
+[br]взаимодействовать`
 
 Scripts/ClientComponents/Input/GameButton@ItemReload:
 Перезарядка
 
 Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
-Выбор режима/выбор боеприпасов
+Выбор режима предмета/выбор боеприпасов
 
 Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
 Включение фонаря на шлеме
@@ -98,5 +100,13 @@ Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
 Убрать похожие наверх
 
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
-Отображать зону контроля и шкалы здоровья
+`Отображать зону контроля
+[br]и шкалы здоровья`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
+`Строительство и ремонт построек запрещены.
+[br]Рейд-блокировка закончится через: {0}.`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
+На этой базе действует рейд-блокировка
 

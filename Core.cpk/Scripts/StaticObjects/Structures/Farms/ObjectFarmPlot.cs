@@ -23,6 +23,12 @@
             = new TextureResource("Terrain/Field/TileField1.jpg",
                                   isTransparent: false);
 
+        protected override TextureResource TextureFieldFertilized { get; }
+            = new TextureResource("Terrain/Field/FertilizedField.png");
+
+        protected override TextureResource TextureFieldWatered { get; }
+            = new TextureResource("Terrain/Field/WetField.png");
+
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
             => this.Texture;
 

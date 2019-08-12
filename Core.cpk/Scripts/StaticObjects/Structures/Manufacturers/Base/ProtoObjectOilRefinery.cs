@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
+    using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
@@ -16,6 +17,8 @@
             ObjectManufacturerPublicState,
             StaticObjectClientState>
     {
+        public sealed override byte ContainerFuelSlotsCount => 0;
+
         public override bool IsAutoSelectRecipe => true;
 
         public override bool IsFuelProduceByproducts => false;
@@ -62,7 +65,7 @@
 
         protected override BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
         {
-            var privateState = data.SyncPrivateState;
+            var privateState = data.PrivateState;
             return WindowOilRefinery.Open(
                 new ViewModelWindowOilRefinery(
                     data.GameObject,
@@ -72,7 +75,6 @@
                     this.ManufacturingConfig,
                     this.ManufacturingConfigGasoline,
                     this.ManufacturingConfigMineralOil,
-                    privateState.FuelBurningState,
                     privateState.LiquidStateRawPetroleum,
                     privateState.LiquidStateGasoline,
                     privateState.LiquidStateMineralOil,
@@ -88,7 +90,7 @@
 
             return new ManufacturingConfig(
                 this,
-                new List<Recipe>
+                recipes: new List<Recipe>
                 {
                     GetProtoEntity<RecipeOilRefineryEmptyCanisterFromPetroleumCanister>()
                 },
@@ -103,7 +105,7 @@
 
             this.ManufacturingConfigGasoline = new ManufacturingConfig(
                 this,
-                new List<Recipe>
+                recipes: new List<Recipe>
                 {
                     GetProtoEntity<RecipeOilRefineryGasolineCanister>()
                 },
@@ -113,7 +115,7 @@
 
             this.ManufacturingConfigMineralOil = new ManufacturingConfig(
                 this,
-                new List<Recipe>
+                recipes: new List<Recipe>
                 {
                     GetProtoEntity<RecipeOilRefineryMineralOilCanister>()
                 },
@@ -211,7 +213,6 @@
             var worldObject = data.GameObject;
             var deltaTime = data.DeltaTime;
             var privateState = data.PrivateState;
-            var fuelBurningState = privateState.FuelBurningState;
             var manufacturingStateRawPetroleum = data.PrivateState.ManufacturingState;
             var manufacturingStateProcessedGasoline = data.PrivateState.ManufacturingStateGasoline;
             var manufacturingStateProcessedMineralOil = data.PrivateState.ManufacturingStateMineralOil;
@@ -245,45 +246,46 @@
             // Update fuel state:
             // need fuel when processed liquids capacities are not full
             // or any of the manufacturing states has active recipe.
-            var isLiquidsCapacitiesFull = liquidStateProcessedGasoline.Amount
-                                          >= this.LiquidConfigGasoline.Capacity
-                                          && liquidStateProcessedMineralOil.Amount
-                                          >= this.LiquidConfigMineralOil.Capacity;
+            var isLiquidsCapacitiesFull
+                = liquidStateProcessedGasoline.Amount >= this.LiquidConfigGasoline.Capacity
+                  && liquidStateProcessedMineralOil.Amount >= this.LiquidConfigMineralOil.Capacity;
 
-            var isNeedFuelNow = (!isLiquidsCapacitiesFull && liquidStateRawPetroleum.Amount > 0)
-                                || manufacturingStateProcessedGasoline.HasActiveRecipe
-                                || manufacturingStateProcessedMineralOil.HasActiveRecipe;
+            var isNeedElectricityNow = (!isLiquidsCapacitiesFull && liquidStateRawPetroleum.Amount > 0)
+                                       || manufacturingStateProcessedGasoline.HasActiveRecipe
+                                       || manufacturingStateProcessedMineralOil.HasActiveRecipe;
 
-            // update fuel burning progress
-            FuelBurningMechanic.Update(
-                worldObject,
-                fuelBurningState,
-                privateState.FuelBurningByproductsQueue,
-                this.ManufacturingConfig,
-                data.DeltaTime,
-                isNeedFuelNow,
-                forceRefreshFuel: isLiquidStatesChanged);
+            // Consuming electricity.
+            // Active only if electricity state is on and has active recipe.
+            var isActive = false;
+            var publicState = data.PublicState;
+            if (publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOn)
+            {
+                isActive = isNeedElectricityNow;
+            }
 
-            var isFuelBurning = fuelBurningState.FuelUseTimeRemainsSeconds > 0;
             // set IsActive flag in public state - this is used to play sound and animation on client
-            data.PublicState.IsManufacturingActive = isFuelBurning;
+            data.PublicState.IsActive = isActive;
 
             // Update crafting queue for raw petroleum:
             // on complete it will consume petroleum canister (if available), increase oil level, produce empty canister.
             ManufacturingMechanic.UpdateCraftingQueueOnly(manufacturingStateRawPetroleum, deltaTime);
 
-            if (!isFuelBurning)
+            if (!isActive)
             {
-                // cannot progress while fuel is not burning
+                // cannot progress while electricity is not provided
                 return;
             }
 
-            // fuel is burning, we can "transfer" liquids and progress crafting queues for processed liquids
+            // apply extraction rate multiplier (it applies to oil refinery production rate)
+            var deltaTimeLiquidProcessing = deltaTime;
+            deltaTimeLiquidProcessing *= StructureConstants.ManufacturingSpeedMultiplier;
+
+            // active, we can "transfer" liquids and progress crafting queues for processed liquids
             // try transfer ("use") raw petroleum bar
             LiquidContainerSystem.UpdateWithoutManufacturing(
                 liquidStateRawPetroleum,
                 this.LiquidConfigRawPetroleum,
-                deltaTime,
+                deltaTimeLiquidProcessing,
                 // petroleum is not produced via this system (it's produced on recipe completion)
                 isProduceLiquid: false,
                 // use petroleum liquid if other capacities are not full
@@ -297,7 +299,7 @@
                 LiquidContainerSystem.UpdateWithoutManufacturing(
                     liquidStateProcessedGasoline,
                     this.LiquidConfigGasoline,
-                    deltaTime,
+                    deltaTimeLiquidProcessing,
                     isProduceLiquid: true,
                     isUseRequested: false,
                     wasUsed: out _);
@@ -306,7 +308,7 @@
                 LiquidContainerSystem.UpdateWithoutManufacturing(
                     liquidStateProcessedMineralOil,
                     this.LiquidConfigMineralOil,
-                    deltaTime,
+                    deltaTimeLiquidProcessing,
                     isProduceLiquid: true,
                     isUseRequested: false,
                     wasUsed: out _);

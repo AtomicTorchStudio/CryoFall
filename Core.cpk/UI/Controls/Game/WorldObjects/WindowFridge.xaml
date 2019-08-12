@@ -1,0 +1,68 @@
+﻿<core:BaseUserControlWithWindow
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.WindowFridge"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowFridge, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory"
+                                  SoundOpening="{StaticResource SoundWindowContainerOpen}"
+                                  SoundClosing="{StaticResource SoundWindowContainerClose}">
+        <Grid VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <controls:ItemsContainerExchangeControl Grid.Row="1"
+                                                    DataContext="{Binding ViewModelItemsContainerExchange}" />
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,4">
+
+                <StackPanel.Resources>
+                    <Style x:Key="TextBlockStatusStyle" TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="0,5" />
+                        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                        <Setter Property="FontSize" Value="13" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                        <Setter Property="TextAlignment" Value="Center" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <Path Fill="{StaticResource BrushColorAlt6}"
+                      Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                      Data="m 35.37978,210.52267 v 10.7735 l -8.09459,-4.67982 -4.10931,7.09414 12.2039,7.06934 v 15.8998 l -13.70872,-7.92096 -0.0248,-14.16348 -8.20208,0.0165 0.0165,9.40925 L 4.10104,228.61352 0,235.71593 l 9.33483,5.39088 -8.10287,4.66328 4.08451,7.11068 12.22871,-7.03626 13.75833,7.94576 -13.70872,7.9127 -12.27832,-7.06107 -4.08451,7.11068 8.15248,4.69635 -9.35964,5.39916 4.10104,7.10241 9.33484,-5.39089 -0.0165,9.35137 8.20208,0.0165 0.0248,-14.1056 13.75833,-7.9375 v 15.82539 l -12.25351,7.10241 4.10931,7.09414 8.1442,-4.71289 V 297 h 8.20209 v -10.77351 l 8.09459,4.67982 4.10931,-7.09414 -12.2039,-7.06933 v -15.89981 l 13.70872,7.92096 0.0248,14.16348 8.20208,-0.0165 -0.0165,-9.40924 9.35964,5.40742 4.10104,-7.10241 -9.33483,-5.39089 8.10286,-4.66328 -4.0845,-7.11067 -12.22044,7.03626 -13.76661,-7.94577 13.717,-7.92096 12.27005,7.06933 4.0845,-7.11067 -8.15247,-4.69636 9.35964,-5.39915 -4.10105,-7.10241 -9.33483,5.39089 0.0165,-9.35137 -8.20208,-0.0165 -0.0248,14.1056 -13.75833,7.9375 V 230.8129 l 12.25351,-7.10241 -4.10931,-7.09414 -8.1442,4.71289 v -10.80657 z"
+                      Height="16"
+                      Width="16"
+                      Stretch="Uniform"
+                      VerticalAlignment="Center"
+                      Margin="0,0,4,0" />
+
+                <TextBlock Text="{Binding PerishableItemsStorageDurationText}"
+                           Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                           Style="{StaticResource TextBlockStatusStyle}"
+                           Foreground="{StaticResource BrushColorAlt6}" />
+
+                <!-- Text: Not connected to the power grid. -->
+                <TextBlock Text="{x:Static loc:CoreStrings.PowerGrid_NotConnectedMessage}"
+                           Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                           Style="{StaticResource TextBlockStatusStyle}"
+                           Foreground="{StaticResource BrushColor5}" />
+            </StackPanel>
+        </Grid>
+    </core:WindowMenuWithInventory>
+</core:BaseUserControlWithWindow>

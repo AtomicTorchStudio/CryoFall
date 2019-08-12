@@ -102,10 +102,7 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 새로운 제조법 추가 불가
 
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Message:
-토지 소유자가 아닙니다.
-
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Title:
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 해체 불가
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
@@ -127,6 +124,9 @@ Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNoNeedToRefill:
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
 이 아이템에는 다시 채울 수 없습니다.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
+다른 토지 점유소와 너무 가깝습니다.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 이곳은 다른 플레이어가 이미 점유했거나, 다른 플레이어의 토지 점유소와 너무 가깝습니다.
 
@@ -147,6 +147,15 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `습격받고 있습니다.
 [br]기지가 공격받고 있는 동안에는 새로운 구조물을 지을 수 없습니다.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
+이 구조물은 당신의 토지 점유 영역 내에만 배치할 수 있습니다.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
+토지 소유자가 아닙니다.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
+기지가 습격 중입니다.
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
 초보자 보호 기능 취소
 
@@ -154,7 +163,7 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProte
 정말로 초보자 보호를 취소하시겠습니까? 취소 후에는 다시 사용할 수 없습니다.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
-초보자 보호 기능이 활성화되어 있습니다. 당신의 캐릭터를 다른 플레이어가 살해하더라도 아이템 및 학습 포인트를 잃지 않습니다. 또한 사망으로 인해 떨어뜨린 당신의 아이템을 다른 플레이어가 주울 수 없습니다. 필수 도구와 무기를 만드는 퀘스트를 따라가며, 최대한 빨리 작은 기지를 지으세요!
+초보자 보호 기능이 활성화되어 있습니다. 당신의 캐릭터를 다른 플레이어가 살해하더라도 아이템을 잃지 않습니다. 또한 사망으로 인해 떨어뜨린 당신의 아이템을 다른 플레이어가 주울 수 없습니다. 필수 도구와 무기를 만드는 퀘스트를 따라가며, 최대한 빨리 작은 기지를 지으세요!
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 초보자 보호 기능 유효 시간:
@@ -225,6 +234,18 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySame
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 서버 관리자로부터 받은 제재 때문에 초대할 수 없습니다.
 
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
+초대한 플레이어가 오프라인 상태입니다. 온라인 플레이어만 파티에 초대할 수 있습니다.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
+상호작용 불가 - 너무 멀거나 접근할 수 없는 건물입니다.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
+전력망이 없습니다.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
+전력망에 전력이 충분하지 않습니다.
+
 Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
 결투 모드 비활성화
 
@@ -255,7 +276,8 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDam
 대미지 없음
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
-습격 시간대가 끝났습니다.
+`습격 시간대가 끝났습니다.
+[br]진행 중인 습격은 계속됩니다.`
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 아직 수확할 것 없음
@@ -338,8 +360,8 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} 레벨 {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`{0}개 이상의 학습 포인트 (LP)가 모였습니다. 그것으로 새로운 기술의 잠금을 해제하는 것이 좋습니다. 사망하게 되면 보유하고 있는 LP 중 극히 일부만 유지됩니다.
-[br](기술 메뉴를 열려면 클릭)`
+`{0}개 이상의 학습 포인트 (LP)가 모였습니다. 그것으로 새로운 기술의 잠금을 해제하는 것이 좋습니다.
+[br](기술 메뉴를 열려면 클릭.)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
 기술 잠금 해제 불가

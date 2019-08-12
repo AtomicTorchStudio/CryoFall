@@ -36,7 +36,7 @@
             // adding LP
             var technologies = character.SharedGetTechnologies();
             technologies.ServerAddLearningPoints(UsageGivesLearningPointsAmount
-                                                 * TechConstants.LearningPointsGainMultiplier);
+                                                 * TechConstants.ServerLearningPointsGainMultiplier);
 
             // add pain
             character.ServerAddStatusEffect<StatusEffectPain>(intensity: 1.0); // max

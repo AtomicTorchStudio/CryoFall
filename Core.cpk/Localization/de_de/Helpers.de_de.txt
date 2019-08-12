@@ -70,11 +70,12 @@ Ungültiger Benutzername
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
 `Anforderungen für Benutzernamen:
-[*] müssen eine Länge von [b]3[/b] bis [b]24[/b] Zeichen besitzen
-[*] [b]dürfen[/b] Buchstaben, Zahlen, Unterstriche und Bindestriche enthalten
-[*] [b]dürfen keine[/b] Leerzeichen oder andere Zeichen enthalten
-[*] müssen mit einem [b]Buchstaben[/b] oder einer [b]Zahl[/b] beginnen und enden
-[*] dürfen [b]keine[/b] mehrfach aufeinanderfolgende [b]-[/b] oder [b]_[/b] enthalten`
+[*] Müssen eine Länge von [b]3[/b] bis [b]24[/b] Zeichen besitzen
+[*] [b]Können[/b] Buchstaben, Zahlen, Unterstriche und Bindestriche enthalten
+[*] [b]Können keine[/b] Leerzeichen oder andere Zeichen enthalten
+[*] Müssen mit einem [b]Buchstaben[/b] beginnen
+[*] Müssen mit einem [b]Buchstaben[/b] oder einer [b]Zahl[/b] enden
+[*] Können [b]keine[/b] mehrfach aufeinanderfolgenden [b]-[/b] oder [b]_[/b] enthalten`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
 `Der gewählte Benutzername wird bereits von einer anderen Person verwendet.

@@ -12,7 +12,7 @@
         // no decay
         public override double LifetimeTotalDurationSeconds => 0;
 
-        public override string Name => "Geothermal spring (infinite)";
+        public override string Name => "Infinite geothermal spring";
 
         public override float StructurePointsMax => 9001; // it's non-damageable anyway
 

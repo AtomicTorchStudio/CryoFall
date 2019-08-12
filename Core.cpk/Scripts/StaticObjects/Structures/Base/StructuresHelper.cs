@@ -11,7 +11,9 @@
         private static readonly Lazy<IReadOnlyList<IProtoObjectStructure>> allConstructableStructures =
             new Lazy<IReadOnlyList<IProtoObjectStructure>>(
                 () => Api.FindProtoEntities<IProtoObjectStructure>()
-                         .Where(s => s.ConfigBuild.IsAllowed)
+                         .Where(s => s.ConfigBuild.IsAllowed
+                                     && (s.IsAutoUnlocked
+                                         || s.IsListedInTechNodes))
                          .ToList());
 
         public static IReadOnlyList<IProtoObjectStructure> AllConstructableStructures =>

@@ -45,7 +45,6 @@
                                      .Add<ItemCoal>(count: 5,        countRandom: 15,  weight: 1 / 4.0)
                                      .Add<ItemOreCopper>(count: 25,  countRandom: 75,  weight: 1 / 10.0)
                                      .Add<ItemOreIron>(count: 25,    countRandom: 75,  weight: 1 / 10.0)
-                                     .Add<ItemOrePyrite>(count: 25,  countRandom: 75,  weight: 1 / 10.0)
                                      .Add<ItemSand>(count: 50,       countRandom: 100, weight: 1 / 10.0)
                                      .Add<ItemStone>(count: 50,      countRandom: 100, weight: 1 / 10.0)
                                      .Add<ItemCement>(count: 10,     countRandom: 40,  weight: 1 / 10.0)
@@ -89,22 +88,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (0.8, 0.35),
-                    offset: (0.1, 0.65),
-                    group: CollisionGroups.Default)
-                .AddShapeRectangle(
-                    size: (0.8, 0.4),
-                    offset: (0.1, 0.65),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (0.8, 0.4),
-                    offset: (0.1, 0.65),
-                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(
-                    size: (0.8, 0.6),
-                    offset: (0.1, 0.65),
-                    group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.8, 0.35), offset: (0.1, 0.65))
+                .AddShapeRectangle(size: (0.8, 0.4),  offset: (0.1, 0.65), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.6, 0.15), offset: (0.2, 1.3),  group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.8, 0.6),  offset: (0.1, 0.65), group: CollisionGroups.ClickArea);
         }
     }
 }

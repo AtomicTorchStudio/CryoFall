@@ -8,6 +8,6 @@
 
         bool ClientCanStartRefill(IItem item);
 
-        void ClientOnRefilled(IItem item);
+        void ClientOnRefilled(IItem item, bool isCurrentHotbarItem);
     }
 }

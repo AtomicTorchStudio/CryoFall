@@ -16,12 +16,6 @@
 
         private UIElementCollection stackPanelSlotsChildren;
 
-        private ViewModelHUDItemsHotbarControl viewModel;
-
-        public HUDItemsHotbarControl()
-        {
-        }
-
         protected override void InitControl()
         {
             this.stackPanelSlotsChildren = this.GetByName<StackPanel>("StackPanelItemsSlots").Children;
@@ -50,8 +44,6 @@
 
         protected override void OnLoaded()
         {
-            base.OnLoaded();
-
             if (IsDesignTime)
             {
                 return;
@@ -62,24 +54,16 @@
 
             this.controller.SetContainer(containerHotbar);
             this.controller.IsLoaded = true;
-
-            this.DataContext = this.viewModel = new ViewModelHUDItemsHotbarControl();
         }
 
         protected override void OnUnloaded()
         {
-            base.OnUnloaded();
-
             if (IsDesignTime)
             {
                 return;
             }
 
             this.controller.IsLoaded = false;
-
-            this.DataContext = null;
-            this.viewModel.Dispose();
-            this.viewModel = null;
         }
 
         private void ControllerSlotControlAddedHandler(HotbarItemSlotControl itemSlotControl, byte slotId)
@@ -93,12 +77,6 @@
             var controlDelimiter = new ContentControl() { Template = this.controlTemplateSlotDelimiter };
             this.controller.PanelContainerChildren.Add(controlDelimiter);
             itemSlotControl.Tag = controlDelimiter;
-
-            //if (slotId == 4)
-            //{
-            //	// increase spacing between first 5 slots and last 5 slots
-            //	itemSlotControl.Margin = new Thickness(0, 0, 20, 0);
-            //}
         }
 
         private void ControllerSlotControlRemovedHandler(HotbarItemSlotControl itemSlotControl, byte slotId)

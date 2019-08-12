@@ -1,0 +1,1707 @@
+﻿UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
+Yok edildi
+
+UI/CoreStrings@Button_Accept:
+Kabul et
+
+UI/CoreStrings@Button_Add:
+Ekle
+
+UI/CoreStrings@Button_Apply:
+Uygula
+
+UI/CoreStrings@Button_Back:
+Geri
+
+UI/CoreStrings@Button_BrowseRecipes:
+Tarif bak
+
+UI/CoreStrings@Button_Cancel:
+Vazgeç
+
+UI/CoreStrings@Button_Close:
+Kapat
+
+UI/CoreStrings@Button_Configure:
+Yapılandır
+
+UI/CoreStrings@Button_Continue:
+Devam et
+
+UI/CoreStrings@Button_Deny:
+İnkâr et
+
+UI/CoreStrings@Button_Drain:
+Boşalt
+
+UI/CoreStrings@Button_Drain_DialogConfirmation:
+`İçeriği boşaltmak istediğine emin misin?
+[br]Geri alamayacaksın.`
+
+UI/CoreStrings@Button_Drink:
+İç
+
+UI/CoreStrings@Button_Edit:
+Düzenle
+
+UI/CoreStrings@Button_Help:
+Yardım
+
+UI/CoreStrings@Button_OK:
+TAMAM
+
+UI/CoreStrings@Button_Quit:
+Çık
+
+UI/CoreStrings@Button_Reset:
+Sıfırla
+
+UI/CoreStrings@Button_Retry:
+Yeniden dene
+
+UI/CoreStrings@Button_Save:
+Kaydet
+
+UI/CoreStrings@Button_Upgrade:
+Geliştirme
+
+UI/CoreStrings@CharacterStatName_Food:
+Yiyecek
+
+UI/CoreStrings@CharacterStatName_Health:
+Sağlık
+
+UI/CoreStrings@CharacterStatName_Stamina:
+Dayanıklılık
+
+UI/CoreStrings@CharacterStatName_Water:
+Su
+
+UI/CoreStrings@Chat_MessageMenu_Block:
+Engelle
+
+UI/CoreStrings@Chat_MessageMenu_CopyName:
+İsmi kopyala
+
+UI/CoreStrings@Chat_MessageMenu_InviteToParty:
+Takıma davet et
+
+UI/CoreStrings@Chat_MessageMenu_Mention:
+Bahset
+
+UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
+Özel mesaj
+
+UI/CoreStrings@Chat_MessageMenu_Unblock:
+Engelini Kaldır
+
+UI/CoreStrings@ConstructionMetaInfo_Decoration:
+Bu yapı tamamen dekoratiftir.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerConsumer:
+Bu yapının çalışması için elektrik gerekir.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
+Bu yapı elektrik üretir.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
+Bu yapı elektrik depolar.
+
+UI/CoreStrings@Copy:
+Kopya
+
+UI/CoreStrings@CraftingCountSelector_Max:
+MAX
+
+UI/CoreStrings@CraftingCountSelector_Min:
+MIN
+
+UI/CoreStrings@CraftingQueue_Title:
+ÜRETME
+
+UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
+`[b]SOL FARE tıkla[/b]
+[br]Bu tarifi ilk sıraya al
+[br]
+[br][b]SAĞ FARE tıkla[/b]
+[br]Bu tarifi iptal et.`
+
+UI/CoreStrings@CraftingRecipeDetails_ButtonStartCraft:
+ÜRET
+
+UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
+`Bu üretme istasyonu için tarif bilmiyorsun.
+[br][br][br]
+Teknoloji menüsünde daha fazla tarif açabilirsin.`
+
+UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
+Tarifler açıldı
+
+UI/CoreStrings@Defense_Format_Chemical:
+Kimyasal koruma: {0}
+
+UI/CoreStrings@Defense_Format_Cold:
+Soğuktan koruma: {0}
+
+UI/CoreStrings@Defense_Format_Electrical:
+Elektriksel koruma: {0}
+
+UI/CoreStrings@Defense_Format_Heat:
+Isı koruması: {0}
+
+UI/CoreStrings@Defense_Format_Impact:
+Etki koruması: {0}
+
+UI/CoreStrings@Defense_Format_Kinetic:
+Kinetik koruma: {0}
+
+UI/CoreStrings@Defense_Format_Psi:
+Psi koruma: {0}
+
+UI/CoreStrings@Defense_Format_Radiation:
+Radyasyon koruması: {0}
+
+UI/CoreStrings@DepositAvailableForClaiming_Message:
+Şu kadar sürede ele geçirmeye uygun olacak:
+
+UI/CoreStrings@DepositCapacityStats_Message:
+Bu yatak şu kadar sürede bitecek:
+
+UI/CoreStrings@DepositCapacityStats_Title:
+Yatak kapasitesi
+
+UI/CoreStrings@EnergyUnitAbbreviation:
+EB
+
+UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
+EB/s
+
+UI/CoreStrings@Extras_DiscordTooltip:
+Resmî CryoFall Discord sunucusu (Sadece İngilizce)
+
+UI/CoreStrings@Extras_PatchnotesTooltip:
+Bütün CryoFall güncelleme notları (Sadece İngilizce)
+
+UI/CoreStrings@Extras_RoadmapTooltip:
+CryoFall geliştirme yol haritası (Sadece İngilizce)
+
+UI/CoreStrings@FarmPlantTooltip_NotWatered:
+Sulanmamış
+
+UI/CoreStrings@FarmPlantTooltip_PossibleHarvestsCount:
+Muhtemel mahsuller
+
+UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
+Toplama başlayacak
+
+UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
+şimdi!
+
+UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
+Sulandı
+
+UI/CoreStrings@Field_Email:
+E-posta
+
+UI/CoreStrings@Field_Password:
+Parola
+
+UI/CoreStrings@Gender_Female:
+Kadın
+
+UI/CoreStrings@Gender_Male:
+Erkek
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
+İnşaat
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
+Üretme
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
+Teçhizat
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
+Harita
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Politics:
+Siyaset
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Quests:
+Görevler
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Skills:
+Yetenekler
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Social:
+Sosyal
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
+Teknoloji
+
+UI/CoreStrings@HUDEnergyChargeIndicator_TotalCapacity:
+Toplam kapasite
+
+UI/CoreStrings@HUDEnergyChargeIndicator_TotalCharge:
+Toplam fiyat
+
+UI/CoreStrings@HUDQuestTrackingEntry_QuestTitleFormat:
+Görev: {0}
+
+UI/CoreStrings@ImplantSlotOnStation_Biomaterial:
+Biyomateryal
+
+UI/CoreStrings@ImplantSlotOnStation_Button_Uninstall:
+Kaldır
+
+UI/CoreStrings@ImplantSlotOnStation_ImplantInstalled:
+İmplant yüklendi
+
+UI/CoreStrings@ImplantSlotOnStation_InstallImplant:
+İmplantı yükle
+
+UI/CoreStrings@ImplantSlotOnStation_NoImplantInstalled:
+Hiçbir implant yüklenmedi
+
+UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
+Yüklemek için bir implant yerleştir
+
+UI/CoreStrings@ImplantSlotOnStation_Requirement:
+Gereksinimler
+
+UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
+Kısayollar
+
+UI/CoreStrings@ItemsContainer_Button_MatchDown:
+Alt eşleşme
+
+UI/CoreStrings@ItemsContainer_Button_MatchUp:
+Üst eşleşme
+
+UI/CoreStrings@ItemsContainer_Button_TakeAll:
+Hepsini al
+
+UI/CoreStrings@ItemsContainer_CapacityExceededTakeOnly:
+Kapasite aşıldı. Bütün eşyalar sadece çıkarılabilir.
+
+UI/CoreStrings@ItemsContainer_Title:
+Eşyalar
+
+UI/CoreStrings@ItemsContainer_TitleInput:
+Giriş
+
+UI/CoreStrings@ItemsContainer_TitleOutput:
+Çıkış
+
+UI/CoreStrings@LearningPoints:
+Eğitim puanları
+
+UI/CoreStrings@LearningPointsAbbreviation:
+EP
+
+UI/CoreStrings@LinkSteamAccountForm_Title:
+Steam hesabını bağlamak için lütfen [url=atomictorch.com]AtomicTorch.com[/url] hesap detaylarınızı girin.
+
+UI/CoreStrings@ListFilters:
+Filtreler
+
+UI/CoreStrings@LoadingSplashScreen_Title:
+YÜKLENİYOR
+
+UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
+Giriş yap
+
+UI/CoreStrings@LoginAtomicTorchForm_KeepMeLoggedIn:
+Beni hatırla
+
+UI/CoreStrings@LoginAtomicTorchForm_Title:
+[url=atomictorch.com/Account/Register]AtomicTorch.com[/url] hesabınızla giriş yapın
+
+UI/CoreStrings@MainMenu_TabCredits:
+JENERİK
+
+UI/CoreStrings@MainMenu_TabCurrentGame:
+GÜNCEL OYUN
+
+UI/CoreStrings@MainMenu_TabHome:
+ANA MENÜ
+
+UI/CoreStrings@MainMenu_TabOptions:
+SEÇENEKLER
+
+UI/CoreStrings@MainMenu_TabQuit:
+ÇIKIŞ YAP
+
+UI/CoreStrings@MainMenu_TabServers:
+SUNUCULAR
+
+UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
+Hesap bağla
+
+UI/CoreStrings@MainMenuOverlay_Button_Logout:
+Çıkış yap
+
+UI/CoreStrings@MainMenuOverlay_YouAreLoggedInAs:
+Şu adla giriş yaptınız
+
+UI/CoreStrings@MasterServer:
+Ana Sunucu
+
+UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
+Çıkış yap
+
+UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
+Hoş geldin mesajını göster
+
+UI/CoreStrings@MenuCurrentGame_NotConnected:
+Bağlı değil.
+
+UI/CoreStrings@MenuHome_Forums:
+Forumlar
+
+UI/CoreStrings@MenuHome_News:
+Haberler
+
+UI/CoreStrings@MenuHome_ReadMore:
+Daha fazla…
+
+UI/CoreStrings@MenuHome_RecentServers:
+En son sunucular
+
+UI/CoreStrings@MenuHome_ServerHistoryEmpty:
+`Sunucu geçmişi temiz.
+[br][br]Yakın zamanda oynadığınız bir sunucuya
+[br]hızlıca bağlanmak için bu sekmeyi kullanabilirsiniz.`
+
+UI/CoreStrings@MenuHome_Social:
+Sosyal
+
+UI/CoreStrings@MenuLogin_SteamError_Message:
+Lütfen oyundan çıkın, Steam'i yeniden başlatın ve oyunu tekrar çalıştırın.
+
+UI/CoreStrings@MenuLogin_SteamError_Title:
+Steam Hatası
+
+UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Message:
+Değişiklikleri uygulamak istiyor musunuz?
+
+UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Title:
+Değişiklikleri uygulamadınız.
+
+UI/CoreStrings@MenuQuit_QuestionAreYouSure:
+Masaüstüne çıkmak istediğinize emin misiniz?
+
+UI/CoreStrings@MenuServers_AwaitingServerList:
+Sunucu listesi bekleniyor…
+
+UI/CoreStrings@MenuServers_Button_AddCustomServer:
+Özel Sunucu Ekle
+
+UI/CoreStrings@MenuServers_Button_ClearList:
+Listeyi Temizle
+
+UI/CoreStrings@MenuServers_Button_EditAddress:
+Adresi Düzenle
+
+UI/CoreStrings@MenuServers_Button_JoinServer:
+Sunucuya Katıl
+
+UI/CoreStrings@MenuServers_Button_RefreshAll:
+Hepsini Yenile
+
+UI/CoreStrings@MenuServers_Button_RefreshServer:
+Sunucuyu Yenile
+
+UI/CoreStrings@MenuServers_Button_RemoveServer:
+Sunucuyu Kaldır
+
+UI/CoreStrings@MenuServers_Checkbox_ShowEmpty:
+Boş göster
+
+UI/CoreStrings@MenuServers_Checkbox_ShowIncompatible:
+Uyumsuz göster
+
+UI/CoreStrings@MenuServers_ClickToCopy:
+Kopyalamak için tıklayın!
+
+UI/CoreStrings@MenuServers_ColumnInfo:
+Sunucu bilgisi
+
+UI/CoreStrings@MenuServers_ListTitleCommunity:
+Topluluk
+
+UI/CoreStrings@MenuServers_ListTitleCustom:
+Özel
+
+UI/CoreStrings@MenuServers_ListTitleFavorite:
+Favoriler
+
+UI/CoreStrings@MenuServers_ListTitleFeatured:
+Öne Çıkan
+
+UI/CoreStrings@MenuServers_ListTitleModded:
+Modlanmış
+
+UI/CoreStrings@MenuServers_ListTitleRecent:
+Yakın zamandakiler
+
+UI/CoreStrings@MenuServers_NoServersInThisList:
+Bu listede sunucu yok
+
+UI/CoreStrings@MenuServers_PublicGUID:
+Ortak GUID
+
+UI/CoreStrings@MenuServers_ServersCount:
+Sunucular
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
+Özellikli sunucular genelde resmî sunuculara benzer şekilde yüksek kalitede tecrübe sunmalarıyla bilinirler. Ama bu sunuculara hâlâ topluluk ev sahipliği yapar.
+
+UI/CoreStrings@MenuServers_ServerTag_Featured_Title:
+ÖZELLİKLİ
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
+Bu sunucuda üçüncü taraf düzenlemeler bulunur. Orijinal oyuna kıyasla önemli değişiklikler görebilirsiniz. Lütfen modlanmış sunucularda, modlardan kaynaklanan hatalar da olabileceğini unutmayın. Riski kabul ederek kullanın.
+
+UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
+MODLANMIŞ
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Description:
+Bu, geliştiricilerin ev sahipliği yaptığı resmî CryoFall sunucularından biridir.
+
+UI/CoreStrings@MenuServers_ServerTag_Official_Title:
+RESMÎ
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Description:
+`Bu, huzurlu keşif ve gelişim için düzenlenmiş bir "player versus environment" sunucusudur.
+Diğer oyunculara karşı korunuyorsunuz ama vahşi hayat ve çevresel tehlikelere karşı korunmuyorsunuz!
+CryoFall'ı ilk defa oynuyorsanız bir PvE sunucusuna katılmak iyi bir seçimdir.`
+
+UI/CoreStrings@MenuServers_ServerTag_PvE_Title:
+PvE
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Description:
+`Bu, savaş, harita kontrolü ve baskına odaklanan bir "player versus player" sunucusudur.
+PvP sunucularında kısıtlama yoktur - burada öldürebilir, ölebilirsiniz.
+Savaşmaya hazır olun!`
+
+UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
+PvP
+
+UI/CoreStrings@Network_Jitter:
+Gecikme
+
+UI/CoreStrings@Network_Jitter_SeverityRed:
+`Görünüşe göre sunucuyla olan İnternet bağlantınızda ağır bir titreme yaşanıyor.
+[br]Sonuç olarak karakter oynatma sorunları (sık takılmalar gibi) yaşayabilirsiniz veya sunucuyla olan uyuşmazlıktan dolayı vuruşlarınız sıkça ıskalayabilir.`
+
+UI/CoreStrings@Network_Jitter_SeverityYellow:
+`Görünüşe göre sunucuyla olan İnternet bağlantınızda bir titreme yaşanıyor.
+[br]Sonuç olarak hafif oynatma sorunları (ara sıra takılmalar gibi) yaşayabilirsiniz veya sunucuyla olan uyuşmazlıktan dolayı vuruşlarınız sıkça ıskalayabilir.`
+
+UI/CoreStrings@Network_Perfect:
+`İnternet bağlantınız güzel gözüküyor.
+[br]Oyunun tadını çıkarın!`
+
+UI/CoreStrings@Network_PingAverage:
+Ping (ortalama)
+
+UI/CoreStrings@Network_PingAverage_SeverityRed:
+`Görünüşe göre sunucuyla olan İnternet bağlantınızda ağır bir gecikme yaşanıyor (çok yüksek ping).
+[br]Sonuç olarak oyunda yaptıklarınız (etkili olması için sunucudan cevap alması gerekir)
+gerçekleşmesi ve işlenmesi çok daha uzun sürecek.
+[br]Örneğin sunucuyla olan uyuşmazlıktan dolayı vuruşlarınız sıkça ıskalayabilir. 
+[br]Ayrıca sık sık takılmalar yaşayabilirsiniz veya anlık pozisyon düzeltmesi olabilir.`
+
+UI/CoreStrings@Network_PingAverage_SeverityYellow:
+`Görünüşe göre sunucuyla olan İnternet bağlantınızda bir gecikme yaşanıyor (yüksek ping).
+[br]Sonuç olarak oyunda yaptıklarınız (etkili olması için sunucudan cevap alması gerekir)
+gerçekleşmesi ve işlenmesi daha uzun sürecek.
+[br]Örneğin sunucuyla olan uyuşmazlıktan dolayı vuruşlarınız ara sıra ıskalayabilir. 
+[br]Ayrıca sık sık takılmalar yaşayabilirsiniz veya anlık pozisyon düzeltmesi olabilir.`
+
+UI/CoreStrings@Network_PingFluctuationRange:
+Ping dalgalanma aralığı
+
+UI/CoreStrings@Network_PingFluctuationRange_SeverityRed:
+`Görünüşe göre sunucuyla olan İnternet bağlantınızda ağır gecikme dalgalanmaları yaşanıyor.
+[br]Bazı ağ paketleri olağandışı derecede yüksek rastgele gecikmeyle geliyor, o yüzden oyun, arabelleğe alma değerlerini yükseltmek zorunda kalıyor, bu da etkili bir şekilde daha yüksek bir gecikmeyle (daha yüksek ping) oynamak demek oluyor.`
+
+UI/CoreStrings@Network_PingFluctuationRange_SeverityYellow:
+`Görünüşe göre sunucuyla olan İnternet bağlantınızda gecikme dalgalanmaları yaşanıyor.
+[br]Bazı ağ paketleri olağandışı derecede yüksek rastgele gecikmeyle geliyor, o yüzden oyun, arabelleğe alma değerlerini yükseltmek zorunda kalıyor, bu da etkili bir şekilde daha yüksek bir gecikmeyle (yüksek ping) oynamak demek oluyor.`
+
+UI/CoreStrings@Network_PingGame:
+Ping (oyun)
+
+UI/CoreStrings@Network_Suggestions:
+`[b]Öneriler:[/b]
+[*] En iyi tecrübe için [b]bölgenizdeki[/b] (eğer varsa) bir sunucuda oynamanız tavsiye edilir.
+[*] Diğer uygulamaları (özellikle ağ tarayıcılarını, torrent hizmetlerini ve yüklemeleri) [b]kapatmayı[/b] düşünün.
+[*] Bilgisayarınız Wi-Fi veya mobil bağlantıyla bağlıysa [b]kablolu bağlantıya[/b] geçmeyi düşünün (yüksek titreme ve gecikme dalgalanmalarının en sık görülen nedeni kablosuz bağlantılardır).`
+
+UI/CoreStrings@NicknameOfflinePlayer:
+Çevrimdışı Zzz…
+
+UI/CoreStrings@No:
+Hayır
+
+UI/CoreStrings@Notification_ActionForbidden:
+Yasak
+
+UI/CoreStrings@Notification_CannotPlaceThere_Title:
+Oraya yerleştirilemez
+
+UI/CoreStrings@Notification_ObstaclesOnTheWay:
+Engeller var!
+
+UI/CoreStrings@Notification_TooFar:
+Çok uzak!
+
+UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
+Güncel erişim modu
+
+UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
+Erişim modu
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Button:
+Takım üyesi ekle
+
+UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Dialog:
+Tüm takım üyelerini bu listeye eklemek istediğinize emin misiniz?
+
+UI/CoreStrings@ObjectOwnersList_AddPlayer:
+Oyuncu ekle
+
+UI/CoreStrings@ObjectOwnersList_Empty:
+Sahip yok
+
+UI/CoreStrings@ObjectOwnersList_OnlyOwnerCanAdd:
+Sadece sahip erişim ekleyip kaldırabilir.
+
+UI/CoreStrings@ObjectOwnersList_RemoveOwner:
+Sahip kaldır
+
+UI/CoreStrings@ObjectOwnersList_Title:
+Sahipler
+
+UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
+SATIN ALMA
+
+UI/CoreStrings@ObjectTradingStationDisplay_ModeSelling:
+SATILIK
+
+UI/CoreStrings@OptionsInput_ContainerMenuCategory:
+Sandık menüsü
+
+UI/CoreStrings@PartyManagement_Button_CreateParty:
+Takım yarat
+
+UI/CoreStrings@PartyManagement_Button_Invite:
+Davet et
+
+UI/CoreStrings@PartyManagement_Button_Leave:
+Takımdan çık
+
+UI/CoreStrings@PartyManagement_CurrentPartySize:
+Takım büyüklüğü
+
+UI/CoreStrings@PartyManagement_HowToInvite:
+Davet etmek için aşağıya oyuncu ismini yaz veya sohbette bir oyuncunun üstüne sağ tıkla.
+
+UI/CoreStrings@PartyManagement_InfoExperienceSharing:
+Her üyenin kazandığı eğitim puanlarının bir kısmı eşit olarak üyeler arasında paylaştırılır.
+
+UI/CoreStrings@PartyManagement_InviteMember:
+Üye davet et
+
+UI/CoreStrings@PartyManagement_NoParty:
+`Henüz bir takımın yok.
+[br]
+[*]Bir davet alarak ve kabul ederek bir takıma kabul edilebilirsin.
+[*]Kendi takımını kurup başka oyuncuları davet edebilirsin.`
+
+UI/CoreStrings@PartyManagement_Title:
+Takım
+
+UI/CoreStrings@Performance__VRAM_SeverityYellow:
+`GPU'nuz tüm gereken dokuları VRAM'e sığdırmada zorlanıyor, bu da görüntünün rastgele takılarak oynamasına neden olabilir.
+[br][b]Ekran Ayarları[/b] menüsünde [b]Doku Kalitesi[/b] seçeneğini düşürmeyi deneyin.`
+
+UI/CoreStrings@Performance_FPS_SeverityRed:
+Bilgisayarınız, oyunu yeterince hızlı işlemede zorlanıyor gibi gözüküyor. Bu da kara sayısını önemli derecede düşürüyor.
+
+UI/CoreStrings@Performance_FPS_SeverityYellow:
+Bilgisayarınız, oyunu yeterince hızlı işlemede zorlanıyor gibi gözüküyor. Bu da kara sayısını önemli derecede düşürüyor.
+
+UI/CoreStrings@Performance_FramerateAverage:
+Kare hızı (ortalama)
+
+UI/CoreStrings@Performance_Perfect:
+`Oyununuzun performansı iyi duruyor.
+[br]Oyunun tadını çıkartın!`
+
+UI/CoreStrings@Performance_Suggestions:
+`[b]Öneriler:[/b]
+[br]Öncelikle lütfen donanımınızın, minimum sistem gereksinimlerini karşıladığından emin olun.
+[br]Sonrasında performansı arttırmak için şunları deneyebilirsiniz:
+[*] Ekran kartı sürücülerini güncelleştirmek.
+[*] Oyun çalışırken diğer uygulamaları kapatmak (özellikle ağ tarayıcıları, çünkü simge durumuna alındıklarında bile sistem kaynaklarının yüksek bir miktarını tüketirler).
+[*] Ve hiçbiri işe yaramazsa - Ekran Ayarları'nda grafik kalitesini düşürmek.`
+
+UI/CoreStrings@Performance_VRAM_SeverityRed:
+`GPU'nuzun VRAM kapasitesi tüm gereken dokuları hafızaya almaya yeterli değil, o yüzden her karede onları RAM'den kopyalaması gerekiyor. Bunun sonucunda önemli derecede takılarak ilerleme ve düşük kare hızı sorunları yaşayabilirsiniz.
+[br]Lütfen [b]Ekran Ayarları[/b] menüsünden [b]Doku Kalitesi[/b] seçeneğini düşürün.`
+
+UI/CoreStrings@Performance_VRAMUsage:
+VRAM kullanımı
+
+UI/CoreStrings@PleaseWait:
+Lütfen bekleyin…
+
+UI/CoreStrings@PowerGrid_NotConnectedMessage:
+Güç şebekesine bağlı değil.
+
+UI/CoreStrings@PowerGridState_ActiveFormat:
+(aktif{0})
+
+UI/CoreStrings@PowerGridState_Button_RestorePower:
+Gücü geri getir
+
+UI/CoreStrings@PowerGridState_Capacity:
+Kapasite:
+
+UI/CoreStrings@PowerGridState_Consumers:
+Tüketiciler:
+
+UI/CoreStrings@PowerGridState_CurrentConsumption:
+Mevcut tüketim:
+
+UI/CoreStrings@PowerGridState_CurrentGeneration:
+Mevcut üretim:
+
+UI/CoreStrings@PowerGridState_DepletedIn:
+Tükenmesine kalan:
+
+UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
+Asla
+
+UI/CoreStrings@PowerGridState_EfficiencyFormat:
+(verimlilik {0}%)
+
+UI/CoreStrings@PowerGridState_EnergyInformation:
+Enerji bilgisi
+
+UI/CoreStrings@PowerGridState_Generators:
+Jeneratörler:
+
+UI/CoreStrings@PowerGridState_GridSize:
+Şebeke boyutu:
+
+UI/CoreStrings@PowerGridState_GridStatus:
+Şebeke durumu:
+
+UI/CoreStrings@PowerGridState_MaxDefenseConsumption:
+Maks savunma tüketimi:
+
+UI/CoreStrings@PowerGridState_MaxGeneration:
+Maks üretim:
+
+UI/CoreStrings@PowerGridState_MaxTotalConsumption:
+Maks toplam tüketim:
+
+UI/CoreStrings@PowerGridState_PowerGridInformation:
+Güç şebekesi bilgisi
+
+UI/CoreStrings@PowerGridState_Status_Blackout:
+Karartma
+
+UI/CoreStrings@PowerGridState_Status_Nominal:
+Nominal
+
+UI/CoreStrings@PowerGridState_Storages:
+Depolar:
+
+UI/CoreStrings@Quest_Button_ClaimReward:
+Al
+
+UI/CoreStrings@Quest_Label_Completed:
+Tamamlandı
+
+UI/CoreStrings@Quest_Label_New:
+YENİ
+
+UI/CoreStrings@Quest_Label_Ready:
+HAZIR
+
+UI/CoreStrings@QuestionAreYouSure:
+Emin misin?
+
+UI/CoreStrings@RebindKeyWindow_RebindingKey:
+Yeniden atama tuşu
+
+UI/CoreStrings@RecipesBrowserRecipeDetails_Button_CancelRecipeSelection:
+İPTAL ET
+
+UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
+SEÇ
+
+UI/CoreStrings@ScreenshotNotification_NotificationFormat:
+Ekran görüntüsü hazır: {0} (açmak için tıkla)
+
+UI/CoreStrings@SelectUsernameForm_Message:
+Lütfen AtomicTorch.com hesabınız için bir kullanıcı adı seçin
+
+UI/CoreStrings@ServerAddress:
+Adres
+
+UI/CoreStrings@ServerPing:
+Ping
+
+UI/CoreStrings@ServerPlayersCount:
+Oyuncular
+
+UI/CoreStrings@ServerWipedDate:
+Temizlendi
+
+UI/CoreStrings@Skill:
+Yetenek
+
+UI/CoreStrings@StatusEffect_TitleIntensity:
+Yoğunluk
+
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Message:
+`[b]Yapabilecekleriniz:[/b]
+[*]CryoFall'ın Steam'e bedava olan kopyasını indirip çalıştırabilirsiniz ve aynı karakter ve sunucularla oyuna tam erişime sahip olursunuz. 
+[*] AtomicTorch'un e-posta listesine erişip gelecek özellikler, yeni versiyon çıkışları ve diğer güzel şeylerle ilgili bildirim alabilirsiniz.
+[*] AtomicTorch kullanıcılarına özel anketlere katılabilirsiniz.
+[br]
+[br][b]Yakında:[/b]
+[*] Tek bir tuşa basarak kendiniz ve arkadaşlarınız için resmî CryoFall bulut sunucuları kiralayabilirsiniz.`
+
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Title:
+AtomicTorch'a bağlanmak neden tavsiye ediliyor?
+
+UI/CoreStrings@SteamAccountRegisterOrLinkForm_CheckboxAcceptLicenseAgreement:
+Gizlilik politikası dâhil [url=atomictorch.com/Pages/Terms-of-Service]olmak üzere[/url]hizmet kullanım şartlarını[url=atomictorch.com/Pages/Privacy-Policy]kabul ediyorum[/url]
+
+UI/CoreStrings@SteamAccountRegisterOrLinkForm_ConfirmEmail:
+E-postayı doğrula
+
+UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
+`AtomicTorch.com hesap kaydı
+[br](Steam ID'niz için)`
+
+UI/CoreStrings@TechGroupTooltip_Requirements:
+Gereksinimler
+
+UI/CoreStrings@TechGroupTooltip_TechnologiesAvailableCount:
+Mevcut teknolojiler
+
+UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
+Açılan teknolojiler
+
+UI/CoreStrings@TechNodeTooltip_Perks:
+Özellikler
+
+UI/CoreStrings@TechNodeTooltip_Recipes:
+Tarifler
+
+UI/CoreStrings@TechNodeTooltip_Structures:
+Yapılar
+
+UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
+Teknolojik ön şartlar
+
+UI/CoreStrings@Technology:
+Teknoloji
+
+UI/CoreStrings@TextBoxSearchPlaceholder:
+Araştır…
+
+UI/CoreStrings@Title:
+Unvan
+
+UI/CoreStrings@TitleActionFailed:
+Eylem başarısız
+
+UI/CoreStrings@TitleArea:
+Bölge
+
+UI/CoreStrings@TitleAttention:
+Dikkat!
+
+UI/CoreStrings@TitleConnecting:
+Bağlanıyor…
+
+UI/CoreStrings@TitleDestructionTimeout:
+Yıkım arası
+
+UI/CoreStrings@TitleDurability:
+Dayanıklılık
+
+UI/CoreStrings@TitleEnergyCharge:
+Ücret
+
+UI/CoreStrings@TitleFreshness:
+Tazelik
+
+UI/CoreStrings@TitleFuel:
+Yakıt
+
+UI/CoreStrings@TitleLevel:
+Seviye
+
+UI/CoreStrings@TitleLiquidGasoline:
+Benzin
+
+UI/CoreStrings@TitleLiquidMineralOil:
+Mineral yağı
+
+UI/CoreStrings@TitleLiquidPetroleum:
+Petrol
+
+UI/CoreStrings@TitleLiquidWater:
+Su
+
+UI/CoreStrings@TitleLoading:
+Yükleniyor…
+
+UI/CoreStrings@TitleModeAlwaysOn:
+Hep açık
+
+UI/CoreStrings@TitleModeAuto:
+Oto
+
+UI/CoreStrings@TitleModeOff:
+Kapalı
+
+UI/CoreStrings@TitleModeOn:
+Açık
+
+UI/CoreStrings@TitleNoUpgradesAvailable:
+Gelişme yok
+
+UI/CoreStrings@TitleOwner:
+Sahip
+
+UI/CoreStrings@TitlePowerGrid:
+Güç şebekesi
+
+UI/CoreStrings@TitleSafeStorage:
+Güvenli depo
+
+UI/CoreStrings@TitleStructurePoints:
+Yapı puanları
+
+UI/CoreStrings@TradingStationResources_ThisLotIsDisabled:
+Bu yer devre dışı
+
+UI/CoreStrings@TradingTooltip_CoinsPenny:
+Sikkeler
+
+UI/CoreStrings@TradingTooltip_CoinsShiny:
+Parlak sikkeler
+
+UI/CoreStrings@UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAccount:
+Hesap oluşturmadan devam et
+
+UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
+Görünüşe göre CryoFall'ı ilk defa çalıştırıyorsunuz. Mevcut [url=atomictorch.com]AtomicTorch.com[/url] hesabınıza bağlamak ister misiniz?
+
+UI/CoreStrings@Window_Tab_Main:
+Ana
+
+UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
+`Lütfen sunucu açık GUID veya kapı adresini giriniz.
+[br][br]
+Örnekler:
+[*]yerelkapı
+[*]atomictorch.com:1234
+[*]FF11223344556677889900AABBCCDDEE`
+
+UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
+Rastgele
+
+UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
+Tasarım gereksinimi
+
+UI/CoreStrings@WindowConstructionMenu_Button_Build:
+İnşa et
+
+UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
+`Önemli! Bir şeyi [b]inşa etmek[/b] veya [b]tamir etmek[/b] için bir [b]alet çantan[/b] olması gerekir!
+[br]İnşa edebilmek için araç çubuğunda bir alet çantası kuşan.`
+
+UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
+Şablonu yerleştir
+
+UI/CoreStrings@WindowConstructionMenu_TotalRequired:
+Gerekli olan toplam
+
+UI/CoreStrings@WindowDataLog_Content:
+İçerik
+
+UI/CoreStrings@WindowDataLog_From:
+Kimden
+
+UI/CoreStrings@WindowDataLog_Location:
+Yer
+
+UI/CoreStrings@WindowDataLog_To:
+Kime
+
+UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
+GÜNEŞ PANELLERİ
+
+UI/CoreStrings@WindowInventory_Button_Customize:
+Özelleştir
+
+UI/CoreStrings@WindowInventory_Button_Unstuck:
+Sıkışıklıktan kurtar!
+
+UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
+Kaynak ve temel eşya depolamak için alan tutucu kullanamazsın.
+
+UI/CoreStrings@WindowLandClaim_DecayInfo:
+Çürüme bilgisi
+
+UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
+Güvenli depolanan eşyalar bu üsteki bütün alan tutucu yapılar arasında paylaştırılır.
+
+UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
+Bu yapıyı sadece sahibi geliştirebilir.
+
+UI/CoreStrings@WindowLandClaim_UpgradingRequiresLearningTech:
+Bu yapıyı geliştirmek için ilgili teknolojiyi öğrenmen gerekiyor.
+
+UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
+Gerekli
+
+UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
+En iyi eşleştiren tarif
+
+UI/CoreStrings@WindowManufacturer_Button_ApplyMatchingRecipe:
+Eşleştiren tarifi uygula
+
+UI/CoreStrings@WindowManufacturer_CurrentRecipe:
+Mevcut tarif
+
+UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchAnyRecipe:
+Girilen eşyalar hiçbir tarifle uyuşmuyor!
+
+UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchCurrentRecipe:
+Girilen eşyalar mevcut tarifle uyuşmuyor!
+
+UI/CoreStrings@WindowManufacturer_ErrorNoAvailableSpaceInOutput:
+Çıkışta uygun yer yok!
+
+UI/CoreStrings@WindowManufacturer_ErrorNotEnoughInputItemsForCurrentRecipe:
+Mevcut tarif için yeteri kadar giriş eşyası yok!
+
+UI/CoreStrings@WindowManufacturer_FuelRequired:
+Yakıt gerekiyor!
+
+UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
+Boş
+
+UI/CoreStrings@WindowObjectLight_TitleLightMode:
+Işık modu
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
+Baskın aralığı artık açık ({0} kaldı).
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_DescriptionFormat:
+`Bir alan tutucuya baskın yapmak sadece {0} ve {1} arasındaki zaman aralığında mümkündür. (Toplamda {2})
+[br]Alan tutucuların dışındaki yapılar bu sistem tarafından korunmaz ve istenilen zamanda saldırılıp yok edilebilir.`
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Disabled:
+Bu sunucuda çevrimdışı baskın koruması kapatılmıştır.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_NextRaidWindowTimeout:
+Bir sonraki baskın aralığı {0}'da başlıyor.
+
+UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
+Baskın koruması
+
+UI/CoreStrings@WindowPowerStorage_NotConnectedToPowerGrid:
+Bu güç deposu herhangi bir güç şebekesine bağlı değil.
+
+UI/CoreStrings@WindowQuests_CompletionReward:
+Tamamlama ödülü
+
+UI/CoreStrings@WindowQuests_CurrentQuests:
+Şu anki görevler
+
+UI/CoreStrings@WindowQuests_Hints:
+İpuçları
+
+UI/CoreStrings@WindowQuests_MessageAllAvailableQuestsCompleted:
+Tüm mevcut görevleri tamamladın.
+
+UI/CoreStrings@WindowQuests_MessageNoCompletedText:
+Henüz bir görev tamamlamadın.
+
+UI/CoreStrings@WindowQuests_TitleCompletedQuestsCount:
+Tamamlanan görevler
+
+UI/CoreStrings@WindowQuests_TitleUnlockedQuestsCount:
+Açılan görevler
+
+UI/CoreStrings@WindowRechargingStation_Title:
+ŞARJ ET
+
+UI/CoreStrings@WindowRespawn_Button_RespawnAtYourBed:
+Yatağında yeniden doğ
+
+UI/CoreStrings@WindowRespawn_Button_RespawnInTheWorld:
+Dünyada yeniden doğ
+
+UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
+Yatağının yakınlarında yeniden doğ
+
+UI/CoreStrings@WindowRespawn_DamageSources:
+En son zarar kaynakları:
+
+UI/CoreStrings@WindowRespawn_Message:
+Görünüşe göre bu zalim dünyadan zorla ayırıldın… ve tüm eşyalarını kaybettin! İntikam istiyor musun?
+
+UI/CoreStrings@WindowRespawn_MessageDespawned:
+Karakterini, tutucu alanın dışında çok uzun süre bıraktın ve dünyadan kaldırıldı. Normal olarak yeniden doğabilirsin. Eşyalarını kaybetmedin.
+
+UI/CoreStrings@WindowRespawn_MessagePvE:
+Görünüşe göre bu zalim dünyadan zorla ayırıldın… İntikam istiyor musun?
+
+UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
+Görünüşe göre başka bir oyuncu tarafından öldürüldün. Ama neyse ki hâlâ çaylak koruman var, o yüzden eşyalarını kaybetmedin. Dikkatli ol - bir dahaki sefere gerçekten ölebilirsin!
+
+UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
+`Yakın bir zamanda yatakta yeniden doğdun.
+[br]Lütfen [b]yenileme[/b] zamanlayıcısını bekle.`
+
+UI/CoreStrings@WindowSignPicture_Title:
+Fotoğraf seç
+
+UI/CoreStrings@WindowSkills_CurrentLevelFormat:
+Seviye {0}
+
+UI/CoreStrings@WindowSkills_CurrentLevelFormat2:
+Mevcut seviye: {0}
+
+UI/CoreStrings@WindowSkills_MaxLevelReached:
+En yüksek seviyeye ulaşıldı!
+
+UI/CoreStrings@WindowSkills_NoDiscoveredSkills:
+`Henüz bir yetenek keşfetmedin.
+[br][br]
+Belirli bir aktiviteden yeteri kadar tecrübe topladığında
+[br]yetenekler otomatik olarak açılır.
+[br]Yeni bir şey dene ve gör bakalım neler oluyor!`
+
+UI/CoreStrings@WindowSkills_ProgressTowardsTheNextLevel:
+Yeteneğin bir sonraki seviyesine doğru ilerle
+
+UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
+Yetenek keşfedildi
+
+UI/CoreStrings@WindowSocial_OnlineNow:
+Şimdi çevrimiçi
+
+UI/CoreStrings@WindowSocial_ServerStatistics:
+Sunucu istatistikleri
+
+UI/CoreStrings@WindowSocial_TitleOnlinePlayersList:
+Çevrimiçi oyuncular
+
+UI/CoreStrings@WindowSocial_TotalPlayers:
+Toplam oyuncu saıyıs
+
+UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
+AtomicTorch hesabı yarat
+
+UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
+Var olan AtomicTorch hesabıma bağlan
+
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
+Yapmak zorunda değilsin - istersen var olan Steam hesabını kullanarak oynayabilirsin. Fakat AtomicTorch.com hesabına bağlanmanın belirli yararları vardır.
+
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
+Kesinlikle yapmak zorunda değilsin ve oynamak için var olan Steam hesabını kullanabilrisin. Ama yapmanda belirli yararlar var.
+
+UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
+Steam hesabını AtomicTorch.com hesabınla bağlayabilirsin veya yeni bir hesap açabilirsin.
+
+UI/CoreStrings@WindowTechnologies_Info_AdditionalTechnologies:
+`Bu ek teknolojiler farklı bölgelerde daha da uzmanlaşmanı sağlar.
+[br]Daha yüksek aşamalarda hepsini öğrenmen GEREKMİYOR. Bilgece seçim yap.`
+
+UI/CoreStrings@WindowTechnologies_Info_PrimaryTechnologies:
+İlkel teknolojiler, bütün oyuncuların CryoFall'daki temel teknolojik temele erişebilmesi için önerilir.
+
+UI/CoreStrings@WindowTechnologies_TechGroupLocked:
+Kilitli
+
+UI/CoreStrings@WindowTechnologies_TechGroupPreview:
+Önizleme
+
+UI/CoreStrings@WindowTechnologies_TechGroupResearch:
+Araştırma
+
+UI/CoreStrings@WindowTechnologies_TechGroupResearchCost:
+Araştırma maliyeti
+
+UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
+Kilidi aç
+
+UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
+Ana teknolojiler
+
+UI/CoreStrings@WindowTechnologies_TitleSpecializedTechnologies:
+Özelleşmiş teknolojiler
+
+UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
+`Oyunda herhangi bir anlamlı aktiviteyi
+[br]yaparak EP (eğitim puanı) kazanabilirsin.
+[br]EP kazancı doğrudan doğruya
+[br]karakter yetenek tecrübesi kazancınla orantılıdır.`
+
+UI/CoreStrings@WindowTinkerTable_Button_Repair:
+Tamir
+
+UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
+Yer yapılandır
+
+UI/CoreStrings@WindowTradingStationAdmin_LotsConfiguration:
+Yer yapılandırması
+
+UI/CoreStrings@WindowTradingStationAdmin_RadioButton_GroupTitle:
+Bu ticaret istasyonu
+
+UI/CoreStrings@WindowTradingStationAdmin_RadioButton_ModeBuyingItems:
+Eşya satın alınıyor
+
+UI/CoreStrings@WindowTradingStationAdmin_RadioButton_ModeSellingItems:
+Eşya satılıyor
+
+UI/CoreStrings@WindowTradingStationAdmin_Stock:
+Stok
+
+UI/CoreStrings@WindowTradingStationLotEditor_ListTitleAllItems:
+TÜM EŞYALAR
+
+UI/CoreStrings@WindowTradingStationLotEditor_ListTitleExistingItems:
+VAR OLAN EŞYALAR
+
+UI/CoreStrings@WindowTradingStationLotEditor_Price:
+Fiyat
+
+UI/CoreStrings@WindowTradingStationLotEditor_Quantity:
+Miktar
+
+UI/CoreStrings@WindowTradingStationLotEditor_SelectedLotItem:
+Seçilen yer eşyası
+
+UI/CoreStrings@WindowTradingStationUser_Button_Buy:
+Satın al
+
+UI/CoreStrings@WindowTradingStationUser_Button_Sell:
+Sat
+
+UI/CoreStrings@WindowTradingStationUser_BuyingMode_Message:
+Bu ticaret istasyonu aşağıdaki eşyaları satın alıyor:
+
+UI/CoreStrings@WindowTradingStationUser_BuyingMode_Title:
+Satın alınır
+
+UI/CoreStrings@WindowTradingStationUser_SellingMode_Message:
+Bu ticaret istasyonu aşağıdaki eşyaları satıyor:
+
+UI/CoreStrings@WindowTradingStationUser_SellingMode_Title:
+Satılık
+
+UI/CoreStrings@WindowTrashCan_Title:
+Tamamen kurtulmak için her eşyayı buraya yerleştirebilirsin.
+
+UI/CoreStrings@WipedDate_DaysAgo_Format:
+{0} gün önce
+
+UI/CoreStrings@WipedDate_HoursAgo_Format:
+{0} saat önce
+
+UI/CoreStrings@WipedDate_JustWiped:
+Yeni temizlendi
+
+UI/CoreStrings@WipedDate_Yesterday:
+Dün
+
+UI/CoreStrings@WorldMap_MapExplored:
+Harita keşfedildi
+
+UI/CoreStrings@WorldMap_PointedPosition:
+Gösterilen pozisyon
+
+UI/CoreStrings@WorldMap_YourPosition:
+Senin pozisyonun
+
+UI/CoreStrings@WorldMapMarkCurrentBed_Tooltip:
+`[b]Yatak[/b]
+[br]Öldükten sonra bu konumda yeniden doğabilirsin.`
+
+UI/CoreStrings@WorldMapMarkDroppedItems_Tooltip:
+`[b]Düşen eşyalar[/b]
+[br]Düşen eşyaların bu konumda.`
+
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
+`[b]Alan tutucu[/b]
+[br]Erişimin olan alan tutucu bu.`
+
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
+`[b]Alan tutucu[/b]
+[br]Bu senin alan tutucun.`
+
+UI/CoreStrings@WorldMapMarkRaid_Tooltip:
+`[b]Üs baskına uğruyor[/b]
+[br]Üssün saldırı altında!`
+
+UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
+`[b]Jeotermal kaynak[/b]
+[br]Lityum yatağı`
+
+UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
+`[b]Petrol birikintisi[/b]
+[br]Ham petrol yağı yatağı`
+
+UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
+`[b]Ticaret istasyonu[/b]
+[br]Bu ticaret istasyonunun sahibi başka bir oyuncu.`
+
+UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
+`[b]Ticaret istasyonu (senin)[/b]
+[br]Bu ticaret istasyonunun sahibi sensin`
+
+UI/CoreStrings@Yes:
+Evet
+
+UI/LanguageFonts@FontCondensed:
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
+
+UI/LanguageFonts@FontDefault:
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
+
+UI/LanguageFonts@FontPlayerDialogue:
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
+
+UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
+Bağlandı
+
+UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleNotConnected:
+Bağlanmadı
+
+UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatCopyMessageFormat:
+`"@{0}'dan: {1}`
+
+UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
+[Geliştirici]
+
+UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
+`{0} ile olan özel sohbeti kapatmak istiyor musunuz?
+[br] Sohbet geçmişi saklanacak ve daha sonra sohbeti yeniden açabileceksiniz.`
+
+UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
+Bu tarifte parçalanabilir bileşenler bulunduğu için iptal edemezsin.
+
+UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
+Bu tarifi iptal edemezsin
+
+UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
+Bu eşyayı doğrudan kullanamazsın.
+
+UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationNoFreeSpaceToMoveItem:
+Eşyayı oynayacak boş alan yok.
+
+UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_MessageFormat:
+`Haritaya bir işaret eklendi.
+[br] Eşyalar yok olmadan önce {0} süren var.`
+
+UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
+Eşyaların düştü
+
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
+`Üslerinden biri baskına uğruyor!
+[br]({0};{1})`
+
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Title:
+Saldırı altında!
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
+`{1};{2}'da bulunan {0}.
+[br]Şu kadar sonra ele geçirmeye uygun olacak:
+[br]{3}.
+[br]Silahlarını al ve ele geçirmeye hazır ol!`
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
+Yeni kaynak mevcut
+
+UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
+Koordinatları kopyala
+
+UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuTeleport:
+Işınlan
+
+UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
+Sıkışıklıktan kurtar beni!
+
+UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
+`Kendini evine tıkadın ve çıkamıyor musun?
+[br]Ya da biri seni rahatsız etti ve sıkıştın mı?
+[br]Bu fonksiyonu kullanıp karakterini başka bir yere ışınlayabilirsin.
+[br]Lütfen zaman gecikmesini bekle (5 dakika).`
+
+UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
+Sıkışıklıktan kurtar
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@AltLeftClickOnItem_Description:
+`İşaret edilen eşyayı kullan/ye.
+[br](sadece kullanılabilen/yenilebilen eşyalar için geçerli)`
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@AltLeftClickOnItem_Title:
+Bir eşyaya Alt + Sol tıkla
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Description:
+`İşaret edilen eşya yığınını yere bırak.
+[br](yığından tek bir eşya bırakmak için aynı zamanda Ctrl'ye basılı tut)`
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Title:
+Bir eşyaya Alt + Sağ tıkla
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Description:
+İşaret edilen yığından bir eşyayı başka bir sandığa taşı.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Title:
+Eşyalara Ctrl + Sol veya Sağ tıkla.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Description:
+O eşyayı veya eşyaları al.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Title:
+Boş bir elle bir eşyaya sol tıkla
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Description:
+`Yer boşsa - eşyayı veya eşyaları oraya koy.
+[br]Yer boş değilse - eşyaları birleştir veya değiştir.`
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Title:
+Dolu bir elle bir yere sol tıkla
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Description:
+Envanteri sınıflandır (işaret edilen bütün eşyalarda kullanılabilir).
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Title:
+Orta tuşa (fare tekerleği) tıkla
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Description:
+Eşyaların yarısını al.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Title:
+Boş bir elle bir eşyaya sağ tıkla
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Description:
+Yer boşsa veya aynı türden eşya varsa—[br]tek bir eşyayı elden yere koy.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Title:
+Dolu bir elle bir yere sağ tıkla
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Description:
+İşaret edilen eşya türünün hepsini başka bir sandığa taşı.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Title:
+Eşyalara Shift + Sol tıkla
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftRightClickOnItems_Description:
+Sadece işaret edilen eşya yığınını başka bir sandığa taşı.
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftRightClickOnItems_Title:
+Eşyalara Shift + Sağ tıkla
+
+UI/Controls/Game/Player/Data/ContainerHelpStrings@TitleItemSlotActions:
+Eşya yeri eylemleri
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleBottom:
+Alt
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleFace:
+Yüz
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
+Saç
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
+Üst
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
+Takımdan çıkmak istediğine emin misin?
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
+[b]{0}[/b]'i takımdan atmak istediğine emin misin?
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
+Yaratık
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
+Patlama
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleItem:
+Eşya
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleOther:
+Diğer
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitlePlayer:
+Oyuncu
+
+UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
+Durum etkisi
+
+UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
+sonraki seviye
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier1Letter:
+I
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier2Letter:
+II
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier3Letter:
+III
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier4Letter:
+IV
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
+V
+
+UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
+Aşama {0}
+
+UI/Controls/Game/Technologies/Data/ViewModelWindowTechnologies@DialogDoYouWantToResearch:
+{0}'ı araştırmak istiyor musun?
+
+UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
+El yapımı
+
+UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
+Tamir et
+
+UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
+Bozulabilir eşyalar ~{0} daha uzun süre dayanır.
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListEmpty:
+Diğer hayatta kalanlara alan tutucuna erişim sağlayabilirsin.
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
+Eriş
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
+`Terk edilmiş yapılar bir süre sonra çürümeye başlar
+[br]ve nihayetinde haritada kargaşa yaratmamaları için yok olurlar.
+[br]
+[br]Bu alan tutucu binası [b]{0}[/b] içinde çürümeye başlayacak.
+[br]Ondan sonra [b]{1}[/b] içinde çürüyecek ve yok oluş süresi başlayacak ([b]{2}[/b]).
+[br]
+[br]Çürümeyi engellemek için, bu üssü en azından [b]{0}[/b] sürede bir ziyaret edin
+[br](erişim listesindeki her oyuncu çürüme zamanlayıcısını sıfırlayabilir).
+[br]
+[br]Çürüme geciktirmesini herhangi bir alan tutucusunu daha üst aşamaya [b]yükselterek[/b] artırabilirsin.
+[br]Bütün üssün çürüme gecikmesi [b]en yüksek[/b] aşamadaki alan tutucu binasına göre düzenlenir.`
+
+UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
+Bu yatak bitti.
+
+UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
+Bu yatak sonsuz.
+
+UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
+Yakıt yok
+
+UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Title:
+Çalıştırılamaz
+
+UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Message:
+Aynı anda iki implant yükleyemezsin
+
+UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Title:
+Zaten yüklü
+
+UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationNotEnoughBiomaterial:
+Yeteri kadar biyomateryal yok
+
+UI/Controls/Game/WorldObjects/Plants/Data/ViewModelFarmPlantTooltip@TitlePermanent:
+kalıcı
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSolar@ElectricityProductionInfoTextFormat:
+`Mevcut üretim %{1} ışık seviyesinde {0} EB/s.
+[br]Maksimum çıktı {2} EB/s.`
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@ElectricityProductionInfoTextFormat:
+`Mevcut üretim {1}°C'de (%{2} verimlilik) ile {0} EB/s.
+[br]Maksimum çıktı {3} EB/s.`
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
+`Mevcut üretim {0} EB/s.
+[br]Maksimum çıktı {1} EB/s.`
+
+UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
+Giriş cevabı bekleniyor.
+
+UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterEmail:
+Lütfen e-posta adresinizi girin.
+
+UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterPassword:
+Lütfen parolanızı girin.
+
+UI/Controls/Menu/Login/Data/ViewModelSelectUsernameFormControl@Dialog_AcceptUsername:
+`[b]{0}[/b] iyi mi? Daha sonra değiştiremeyeceksin.
+[br]Oyun sunucularında oynadığında bu isim kullanılacak.`
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_CapsLock:
+Caps Lock
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_LeftMouseButton:
+Sol fare tuşu
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton1:
+Fare ekstra tuş 1
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton2:
+Fare ekstra tuş 2
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseScrollButton:
+Fare tekerleği tuşu
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_PageDown:
+Page Down
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_PageUp:
+Page Up
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_RightMouseButton:
+Sağ fare tuşu
+
+UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
+Boşluk tuşu
+
+UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
+[b]{0}[/b] seçeneklerini sıfırlamak istiyor musun? [br]Varsayılan değerler yüklenip kaydedilecek.
+
+UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessageCannotBindToKey:
+Bu tuşa atayamazsın:[br][b]{0}[/b]
+
+UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessageFormatKeyAlreadyBound:
+`Basılan tuş zaten şuna bağlı:
+[br][b]{0}[/b]
+[br]
+[br]Tuşu tekrar atamak için bu tuşa tekrar bas
+[br]ya da başka bir tuşa bas.`
+
+UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessagePressToBind:
+Lütfen atamak için bir tuşa bas veya iptal etmek için Escape'e bas.
+
+UI/Controls/Menu/Servers/WindowAddOrEditServer.xaml@DialogServerAddressNotValid:
+Sunucu adresi geçerli değil. Lütfen kontrol edin.
+
+UI/Controls/Menu/Servers/Controllers/MultiplayerMenuServersController@DialogRemoveServerFromList:
+Sunucuyu listeden çıkarmak istediğine emin misin?
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogEditorMode_Message:
+Editör modunda hiçbir sunucuya bağlanılamaz.
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogEditorMode_Title:
+Oyunu editör modunda çalıştırıyorsunuz.
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Advice_ConnectNewServer:
+Lütfen daha yeni versiyonun sunucusuna bağlanın.
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Advice_UpdateClient:
+Lütfen oyununuzu güncelleyin.
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_MessageFormat:
+`[br]Sunucu versiyonu {0}
+[br]Oyununuzun versiyonu {1}`
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Title:
+Uyumsuz sunucu
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionTitle_Newer:
+Bu oyun sunucusu, oyunun yeni bir versiyonunu çalıştırıyor
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionTitle_Older:
+Bu oyun sunucusu, oyunun eski bir versiyonunu çalıştırıyor
+
+UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
+`[b]Internet bağlantı problemi[/b]
+[br]Sabit olmayan ağ bağlantısı veya İnternet hizmet sunucunuzun doğru şekilde iletilmemesinden dolayı oyun sunucusuna ulaşılamıyor.`
+
+UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_MessageNoMods:
+Bu sunucuda mod kullanılmıyor.
+
+UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_Title:
+Sunucu modları
+
+UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerNotAccessibleTitle:
+Sunucuya ulaşılamıyor.
+
+UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
+Sunucu çevrimdışı
+
+UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
+Bu sunucu listesini temizlemek istediğinize emin misiniz?
+
+UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
+Sunucu listesini temizle
+
+UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
+Lütfen sunucu bilgisi alınana kadar bekleyin.
+
+UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Title:
+Bağlanılamıyor
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_IncorrectEmailOrPassword:
+Girdiğiniz e-posta adresi veya parola yanlış. Doğru e-postayı girdiğinizden eminseniz lütfen tekrar deneyin ya da AtomicTorch.com'daki paraloyı Sıfırla özelliğini kullanın.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailAlreadyUsed:
+Girilen e-posta adresi başka bir hesap tarafından kullanılıyor. Lütfen farklı bir e-posta adresi kullanın.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailNotActivated:
+`Girdiğiniz e-posta adresi aktifleştirilmedi.
+[br]Lütfen e-posta adresinizi açın ve size gönderdiğimiz aktivasyon linkine tıklayın. (Lütfen e-postanın, istenmiyenler kutusunda olabileceğini unutmayın).`
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_Title:
+Hesap bağlanılamıyor
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageAlreadyLinkedToAnotherAtomicTorchAccount:
+Steam hesabı başka bir hesaba bağlı.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageAlreadyLinkedToAnotherSteamId:
+Bu hesap başka bir Steam ID'ye bağlı. Lütfen farklı bir AtomicTorch.com hesabı kullanın.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageRestartSteamClient:
+Lütfen Steam'i yeniden başlatmayı deneyin.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_Title:
+Kayıt olunamıyor
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorConfirmEmailDoesntMatch:
+Doğrulama e-postası girilen e-postayla aynı değil.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterEmail:
+Lütfen e-posta adresinizi girin.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterPassword:
+Lütfen parolanızı girin.
+
+UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
+Devam etmek için hizmet kullanım şartlarını kabul etmeniz gerekiyor.
+
+UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
+Görünüşe göre Microsoft'un sahip olduğu bir sunucudan bir e-posta adresini kullanarak kayıt olmaya çalışıyorsunuz. Microsoft, büyük sağlayıcılardan olmayan e-postaları hemen [b]engelliyor[/b], bu da hesabınıza e-posta göndermemizi engelliyor. Lütfen [b]gmail.com[/b] gibi başka bir e-posta hizmeti kullanın.
+

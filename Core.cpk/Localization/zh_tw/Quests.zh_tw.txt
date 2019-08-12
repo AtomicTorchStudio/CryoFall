@@ -86,7 +86,7 @@ Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Description:
 Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Hints:
 `[*] 你需要將斧頭放進[b]工具欄[/b]。打開物品欄並將斧頭拖拽進工具欄，然後關閉物品欄。
 [*] 現在你可以通過按下對應按鍵[b]選擇[/b]工具欄物品，或通過鼠標點擊選擇。
-[*] 默認情況下[b]鼠標左鍵[/b]將使用你握持的物品，按下[b]鼠標右鍵[/b]來與環境物品互動。 `
+[*] 默認情況下[b]鼠標左鍵[/b]將使用你握持的物品，按下[b]鼠標右鍵[/b]來與環境物品互動。`
 
 Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Name:
 砍樹
@@ -464,6 +464,21 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 使用撬棍進行拆解
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
+某些資源，如石油和鋰，是開發先進技術的必要素材。瞭解如何獲得它們是極為重要的。
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
+`[*] 你可以在[u]寒林[/u]中發現石油果。使用它們可以讓你獲得少量石油。
+[*] 你可以在開採一般鹽礦時獲得[u]鋰鹽[/u]。
+[*] 你可以在沙漠中的[u]鹽原[/u]找到大量鹽礦。
+[*] 學習[u]外星科技[/u]讓你可以能以工業規模制取這些資源。`
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
+高級資源的獲取
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+開採鹽礦
+
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 工業和建築的進步需要硬科學，尤其是化學方面的基礎。
 
@@ -492,6 +507,20 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 掌握技術 - 第二部分
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
+為基地建立電網是提升效率的重要步驟。 有許多高級建築需要電力才能運轉。
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
+`[*] 電器只有在[b]佔領區域內[/b]才能生效。在佔領區域外間建造電器是沒有任何意義的。
+[*] [b]儲電[/b]設施可以儲藏電力，以備不時之需。提高基地的電力容量是個不錯的選擇。
+[*] 不同的[b]發電裝置[/b]，例如蒸汽發電機，太陽能發電機和汽油發電機都能產生電能。
+[*] 如果[u]電力不足[/u]，你的基地就會陷入[b]斷電[/b]，此時你必須手動恢復電力。
+[*] 你可以通過與儲電設施互動來查看[b]電網詳情[/b]。
+[*] 數個連接的佔領區域可以共用[b]單一電網/b]。`
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
+建立電網
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
 還有一些難以到達的生物群落可能帶來額外的挑戰，但也提供了一些獨特的資源。
 
@@ -501,6 +530,12 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
 探索生態圈 - 第三部分
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
+[*] [b]火山生態圈[/b] 極其危險並且需要能夠對抗[b]極端熱量[/b]的裝備才能探索。
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
+探索生態圈 - 第四部分
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 遺址是尋找稀有元件和某些資源的最佳地點。如果你有所需裝備的話可以去經常探索。
@@ -530,4 +565,7 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 狩獵大師 - 第四部分
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
+狩獵大師 - 第五部分
 

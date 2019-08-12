@@ -2,9 +2,11 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     public class InteractableStaticWorldObjectHelper : ProtoEntity
@@ -15,6 +17,12 @@
 
         private bool isAwaitingServerInteraction;
 
+        public delegate void DelegateClientMenuCreated(
+            IStaticWorldObject worldObject,
+            BaseUserControlWithWindow menu);
+
+        public static event DelegateClientMenuCreated ClientMenuCreated;
+
         public override string Name => nameof(InteractableStaticWorldObjectHelper);
 
         public static void ClientStartInteract(IStaticWorldObject worldObject)
@@ -24,7 +32,7 @@
 
         public static void ServerTryAbortInteraction(ICharacter character, IStaticWorldObject worldObject)
         {
-            InteractionCheckerSystem.Unregister(character, worldObject, isAbort: true);
+            InteractionCheckerSystem.SharedUnregister(character, worldObject, isAbort: true);
         }
 
         protected override void PrepareProto()
@@ -46,7 +54,7 @@
             }
 
             var character = Client.Characters.CurrentPlayerCharacter;
-            if (InteractionCheckerSystem.GetCurrentInteraction(character) == worldObject)
+            if (InteractionCheckerSystem.SharedGetCurrentInteraction(character) == worldObject)
             {
                 // already interacting with this object
                 return;
@@ -76,9 +84,11 @@
                 return;
             }
 
+            Api.SafeInvoke(() => ClientMenuCreated?.Invoke(worldObject, menuWindow));
+
             ClientCurrentInteractionMenu.RegisterMenuWindow(menuWindow);
 
-            InteractionCheckerSystem.Register(
+            InteractionCheckerSystem.SharedRegister(
                 character,
                 worldObject,
                 finishAction: _ => menuWindow.CloseWindow());
@@ -89,7 +99,7 @@
                 onMenuClosedByClient:
                 () =>
                 {
-                    InteractionCheckerSystem.Unregister(character, worldObject, isAbort: false);
+                    InteractionCheckerSystem.SharedUnregister(character, worldObject, isAbort: false);
                     if (!worldObject.IsDestroyed)
                     {
                         ++lastRequestId;
@@ -133,7 +143,7 @@
         private void ServerRemote_OnClientInteractFinish(IStaticWorldObject worldObject)
         {
             var character = ServerRemoteContext.Character;
-            if (!InteractionCheckerSystem.Unregister(character, worldObject, isAbort: false))
+            if (!InteractionCheckerSystem.SharedUnregister(character, worldObject, isAbort: false))
             {
                 return;
             }
@@ -166,7 +176,7 @@
             }
 
             // register private scope exit on interaction cancel
-            InteractionCheckerSystem.Register(
+            InteractionCheckerSystem.SharedRegister(
                 character,
                 worldObject,
                 finishAction: isAbort =>

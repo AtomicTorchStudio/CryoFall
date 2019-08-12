@@ -8,7 +8,7 @@
 
     public class StatusEffectThirst : ProtoStatusEffect
     {
-        private const double DamagePerSecond = 0.4;
+        public const double DamagePerSecond = 0.4;
 
         public override string Description => "You are suffering from severe dehydration!";
 
@@ -32,6 +32,9 @@
         {
             // no health regeneration while thirsty
             effects.AddPercent(this, StatName.HealthRegenerationPerSecond, -100);
+
+            // add info to tooltip that this effect deals damage
+            effects.AddValue(this, StatName.VanityContinuousDamage, 1);
         }
 
         protected override IEnumerable<ICharacter> ServerAutoAddGetCharacterCandidates()
@@ -52,7 +55,7 @@
         protected override void ServerUpdate(StatusEffectData data)
         {
             var character = data.Character;
-            if (!character.IsOnline)
+            if (!character.ServerIsOnline)
             {
                 // only online characters are affected by thirst
                 return;

@@ -1,0 +1,72 @@
+﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
+Şişe kır
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+Varili benzinle doldur
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:
+Varili mineral yağıyla doldur
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddPetroleum@Name:
+Varili ham petrolle doldur
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddWater@Name:
+Varili suyla doldur
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveGasoline@Name:
+Bidonu varilden gelen benzinle doldur
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveMineralOil@Name:
+Bidonu varilden gelen mineral yağıyla doldur
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemovePetroleum@Name:
+Bidonu varilden gelen petrolle doldur
+
+Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveWater@Name:
+Şişeyi varilden gelen suyla doldur
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromLogs@Name:
+Odun ateşinin yan ürünleri
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromPlanks@Name:
+Kalas ateşinin yan ürünleri
+
+Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
+Dal ateşinin yan ürünleri
+
+Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
+Su kaynat (boşa giden)
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
+Madeni parayı geri dönüştür
+
+Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
+Parlak madeni parayı geri dönüştür
+
+Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBottleFromFullBottle@Name:
+Buhar jeneratörünü suyla doldur
+
+Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
+Motor jeneratörüne tenekeden benzin doldur
+
+Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
+Lityum cevheri çıkarıcıdan gelen lityum tuzları
+
+Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
+Bidonu yağ pompasından gelen ham petrolle doldur
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
+Bidondan petrol rafinerisine ham petrol ekle
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryGasolineCanister@Name:
+Bidonu petrol rafinerisinden gelen benzinle doldur
+
+Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanister@Name:
+Bidonu petrol rafinerisinden gelen mineral yağıyla doldur
+
+Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
+Su kaynat
+
+Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
+Şişeyi kuyudan gelen suyla doldur
+

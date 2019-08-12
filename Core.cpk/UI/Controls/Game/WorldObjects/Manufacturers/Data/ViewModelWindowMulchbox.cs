@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data
 {
-    using System.Windows;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -10,53 +9,32 @@
     {
         private readonly ObjectMulchboxPrivateState privateState;
 
+        private readonly IProtoObjectMulchbox protoMulchbox;
+
         public ViewModelWindowMulchbox()
         {
         }
 
         public ViewModelWindowMulchbox(
             IStaticWorldObject worldObjectManufacturer,
-            ManufacturingState manufacturingState,
+            ObjectMulchboxPrivateState privateState,
             ManufacturingConfig manufacturingConfig)
             : base(
                 worldObjectManufacturer,
-                manufacturingState,
-                manufacturingConfig,
-                null)
+                privateState,
+                manufacturingConfig)
         {
-            var protoMulchbox = (IProtoObjectMulchbox)worldObjectManufacturer.ProtoStaticWorldObject;
-            this.OrganicCapacity = protoMulchbox.OrganicCapacity;
+            this.protoMulchbox = (IProtoObjectMulchbox)worldObjectManufacturer.ProtoStaticWorldObject;
+            this.privateState = privateState;
 
-            this.privateState = protoMulchbox.GetMulchboxPrivateState(worldObjectManufacturer);
             this.privateState.ClientSubscribe(
                 _ => _.OrganicAmount,
-                _ => this.RefreshOrganicAmount(),
+                _ => this.NotifyPropertyChanged(nameof(this.OrganicAmount)),
                 this);
-
-            manufacturingState.ClientSubscribe(
-                _ => _.SelectedRecipe,
-                _ => this.RefreshRecipe(),
-                this);
-
-            this.RefreshOrganicAmount();
-            this.RefreshRecipe();
         }
 
-        public ushort OrganicAmount { get; set; }
+        public ushort OrganicAmount => this.privateState.OrganicAmount;
 
-        public ushort OrganicCapacity { get; }
-
-        public Visibility ProgressBarVisibility { get; set; } = Visibility.Visible;
-
-        private void RefreshOrganicAmount()
-        {
-            this.OrganicAmount = this.privateState.OrganicAmount;
-        }
-
-        private void RefreshRecipe()
-        {
-            var recipe = this.ViewModelManufacturingState.SelectedRecipe;
-            this.ProgressBarVisibility = recipe != null ? Visibility.Visible : Visibility.Hidden;
-        }
+        public ushort OrganicCapacity => this.protoMulchbox.OrganicCapacity;
     }
 }

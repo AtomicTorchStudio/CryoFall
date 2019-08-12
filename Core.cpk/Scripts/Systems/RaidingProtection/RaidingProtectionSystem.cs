@@ -122,31 +122,32 @@
                                 _ => _.ClientRemote_ShowNotificationRaidingNotAvailableNow());
         }
 
-        public static void ServerSetRaidingWindow(TimeInterval newWindow)
+        public static void ServerSetRaidingWindow(TimeInterval newWindowUTC)
         {
-            if (newWindow.DurationHours <= 0
-                || newWindow.DurationHours > 24)
+            if (newWindowUTC.DurationHours <= 0
+                || newWindowUTC.DurationHours > 24)
             {
                 // full day raiding - disable raiding protection
-                newWindow = new TimeInterval(fromHour: newWindow.FromHour,
-                                             toHour: newWindow.FromHour + 24);
+                newWindowUTC = new TimeInterval(fromHour: newWindowUTC.FromHour,
+                                             toHour: newWindowUTC.FromHour + 24);
             }
 
-            if (ServerRaidingWindowUTC.Equals(newWindow))
+            if (ServerRaidingWindowUTC.Equals(newWindowUTC))
             {
                 return;
             }
 
-            ServerRaidingWindowUTC = newWindow;
+            ServerRaidingWindowUTC = newWindowUTC;
             Server.Database.Set(nameof(RaidingProtectionSystem),
                                 DatabaseKeyRaidingWindowUTC,
                                 ServerRaidingWindowUTC);
             Logger.Important($"Set raiding window: {ServerRaidingWindowUTC} (UTC time)");
 
-            var allCharacters = Server
-                                .Characters.EnumerateAllPlayerCharacters(onlyOnline: true, exceptSpectators: false);
+            var allCharacters = Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true,
+                                                                               exceptSpectators: false);
 
-            Instance.CallClient(allCharacters, _ => _.ClientRemote_RaidingWindowInfo(ServerRaidingWindowUTC));
+            Instance.CallClient(allCharacters, 
+                                _ => _.ClientRemote_RaidingWindowInfo(ServerRaidingWindowUTC));
         }
 
         public static TimeSpan SharedCalculateTimeUntilNextRaid()
@@ -273,22 +274,20 @@
         {
             isThereAnyLandClaimArea = false;
             isThereAnyLandClaimAreaUnderRaid = false;
-            using (var landClaimAreas = Api.Shared.GetTempList<ILogicObject>())
+            using var landClaimAreas = Api.Shared.GetTempList<ILogicObject>();
+            LandClaimSystem.SharedGetAreasInBounds(targetObjectBounds,
+                                                   landClaimAreas,
+                                                   addGracePadding: false);
+            foreach (var area in landClaimAreas)
             {
-                LandClaimSystem.SharedGetAreasInBounds(targetObjectBounds,
-                                                       landClaimAreas,
-                                                       addGracePadding: false);
-                foreach (var area in landClaimAreas)
+                isThereAnyLandClaimArea = true;
+                if (!LandClaimSystem.SharedIsAreaUnderRaid(area))
                 {
-                    isThereAnyLandClaimArea = true;
-                    if (!LandClaimSystem.SharedIsAreaUnderRaid(area))
-                    {
-                        continue;
-                    }
-
-                    isThereAnyLandClaimAreaUnderRaid = true;
-                    return;
+                    continue;
                 }
+
+                isThereAnyLandClaimAreaUnderRaid = true;
+                return;
             }
         }
 

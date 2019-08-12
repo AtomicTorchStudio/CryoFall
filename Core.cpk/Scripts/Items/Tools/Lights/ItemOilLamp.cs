@@ -11,7 +11,7 @@
         public override string Description =>
             "Portable light source in a convenient package! Can be quickly refilled with camp fuel.";
 
-        public override ushort DurabilityMax => 7000;
+        public override uint DurabilityMax => 7000;
 
         public override string Name => "Oil lamp";
 

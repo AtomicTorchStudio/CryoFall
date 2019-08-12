@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -81,6 +82,11 @@
 
             var multiplier = protoGatherable.GetGatheringSpeedMultiplier(staticWorldObject, character);
             durationSeconds /= multiplier;
+
+            if (CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                durationSeconds = 0.1;
+            }
 
             return new GatheringActionState(
                 character,

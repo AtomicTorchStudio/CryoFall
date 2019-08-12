@@ -17,7 +17,7 @@
             spawnList.CreatePreset(interval: 6, padding: 1)
                      .Add<ObjectLootPileGarbageLarge>(weight: 4)
                      .Add<ObjectLootCrateMilitary>(weight: 2)
-                     .Add<ObjectLootCrateSupply>(weight: 2)
+                     .Add<ObjectLootCrateSupply>(weight: 1)
                      .Add<ObjectLootCrateMedical>(weight: 1)
                      .SetCustomPaddingWithSelf(9);
         }

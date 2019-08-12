@@ -5,6 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Documents;
+    using AtomicTorch.CBND.CoreMod.ClientLanguages;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -256,7 +257,8 @@
                     span.FontStyle = FontStyles.Italic;
                 }
 
-                if (modeIsUnderline)
+                if (modeIsUnderline
+                    && ClientLanguagesManager.CurrentLanguageDefinition.IsFontUnderlineEnabled)
                 {
                     // TODO: due to the scan-lines effect in the DataLog window the underline might be invisible
                     // currently there is no way of regulating the underline thickness

@@ -2,7 +2,6 @@
 {
     using System.Windows;
     using System.Windows.Input;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -52,7 +51,7 @@
 
         protected override void OnLoaded()
         {
-            ClientComponentUpdateHelper.UpdateCallback += this.UpdatePopupPosition;
+            ClientUpdateHelper.UpdateCallback += this.UpdatePopupPosition;
 
             this.Refresh();
             this.UpdatePopupPosition();
@@ -60,7 +59,7 @@
 
         protected override void OnUnloaded()
         {
-            ClientComponentUpdateHelper.UpdateCallback -= this.UpdatePopupPosition;
+            ClientUpdateHelper.UpdateCallback -= this.UpdatePopupPosition;
         }
 
         private void Refresh()

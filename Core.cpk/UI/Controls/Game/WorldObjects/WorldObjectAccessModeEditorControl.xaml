@@ -5,11 +5,13 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
                     xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
                     mc:Ignorable="d"
                     d:DesignHeight="450" d:DesignWidth="800"
                     d:DataContext="{d:DesignInstance data:ViewModelWorldObjectAccessModeEditor, IsDesignTimeCreatable=True}"
                     FontWeight="Bold"
-                    Foreground="White" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+                    Foreground="White"
+                    FontSize="12">
     <Grid>
         <StackPanel Orientation="Vertical"
                     Visibility="{Binding CanSetAccessMode, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
@@ -29,9 +31,8 @@
                         VerticalAlignment="Center"
                         Margin="0,0,0,3">
                 <!-- Text: Access mode -->
-                <TextBlock
-                    Text="{x:Static loc:CoreStrings.ObjectAccessModeEditor_TitleAccessModeSelection}"
-                    FontSize="14" />
+                <TextBlock Text="{x:Static loc:CoreStrings.ObjectAccessModeEditor_TitleAccessModeSelection}"
+                           FontSize="14" />
                 <TextBlock Text=":"
                            FontSize="14" />
             </StackPanel>
@@ -56,7 +57,8 @@
                                         IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
                                         Margin="0,2">
                                         <RadioButton.Content>
-                                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+                                            <TextBlock Text="{Binding Description}"
+                                                       TextWrapping="Wrap" />
                                         </RadioButton.Content>
                                     </RadioButton>
                                 </ControlTemplate>

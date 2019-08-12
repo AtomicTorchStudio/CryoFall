@@ -1,0 +1,86 @@
+﻿Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
+d
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixHours:
+h
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
+m
+
+Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
+s
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
+`Uyumsuz ağ sürümü.
+[br]Siz ve sunucu farklı modlar kullanıyor olabilirsiniz.`
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@MasterServerDisallowed:
+Ana Sunucu bu bağlantıyı reddetti. Lütfen yeniden dene veya oyunu yeniden başlat.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ReasonUnknown:
+Bilinmeyen hata. Lütfen yeniden dene.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerFull:
+Sunucu şu anda tam kapasitede. Lütfen diğer oyuncuların ayrılmasını bekle, daha sonra sunucuya tekrar katılmayı dene.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerUnreachable:
+Oyun sunucusuna şu anda erişilemiyor. Muhtemel nedenler: sunucu yeniden başlatılıyor, sunucu kapatılıyor, güvenlik duvarı yapılandırılıyor, ağ sorunları yaşanıyor, vb. Lütfen daha sonra tekrar dene.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ShutdownScheduled:
+Oyun sunucusu şu anda tekrar başlatılıyor veya kapatılmak üzere.
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleConnectionRejectedByServer:
+Bağlantı reddedildi
+
+Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleDefault:
+Oyun sunucusuna bağlanılamıyor
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@AccountBlocked:
+Hesabın engellendi.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@DefaultTitle:
+Giriş başarısız
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Message:
+`Aktivasyon bağlantısı içeren bir eposta
+[br]hesabınagönderildi ve kısa süre içerisinde ulaşacaktır.
+[br]Lütfen eposta hesabını aç ve aktivasyon bağlantısına tıkla, ardından devam etmek için oyuna geri dön.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Title:
+Yeni hesabınızı etkinleştirmen gerekmektedir!
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@GameNotOwned:
+Bu hesabında oyuna sahip değilsiniz.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@IncorrectEmailOrPassword:
+Yanlış e-posta adresi veya şifre.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UnknownError:
+Bilinmeyen hata. Lütfen tekrar dene.
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Message:
+`Sağlanan kullanıcı bilgileri zaten (farklı) bir Steam hesabı ile ilişkilendirilmiş durumda.
+[br] Bu AtomicTorch.com hesabını mevcut Steam hesabı ile ilişkilendiremezsiniz.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Title:
+Hesaplar bağlanamıyor
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameInvalid_Title:
+Geçersiz kullanıcı adı
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
+`Kullanıcı adı gereksinimleri:
+[*] Uzunluğu [b]3[/b] ila [b]24[/b] karakter arasında olmalı
+[*] Harfler, sayılar, alt çizgiler ve tireler [b]içerebilir[/b]
+[*] Boşluk veya başka karakterler [b]içeremez[/b]
+[*] Bir [b]harf[/b] ile başlamalıdır
+[*] Bir [b]harf[/b] veya [b]sayı[/b] ile bitmelidir
+[*] Art arda birden fazla [b]-[/b] veya [b]_[/b] karakterleri [b]içermemelidir[/b]`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
+`Seçilen kullanıcı adı bir başkası tarafından kullanılıyor.
+[br]Lütfen farklı bir kullanıcı adı seç.`
+
+Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Title:
+Kullanıcı adı zaten kullanılıyor
+

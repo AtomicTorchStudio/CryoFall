@@ -70,9 +70,6 @@ L'usage continu d'armes de corps à corps vous amène à exceller avec ce type d
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
 Armes de corps à corps
 
-Scripts/Skills/Skills/Misc/SkillSearching@Flags.ChanceToFindRareItems:
-Chance de trouver des objets rares
-
 Scripts/Skills/Skills/Misc/SkillSearching@Description:
 L'attention aux détails les plus infimes augmente vos chances de découvrir des objets supplémentaires.
 
@@ -132,4 +129,10 @@ Fabriquer des objets de plus en plus complexes tout en comprenant leur structure
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Artisanat
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
+Vous permet de réparer et entretenir divers objets et équipements. S'applique au travail réalisé sur la table de bricolage.
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
+Entretien
 

@@ -5,42 +5,50 @@
     using System.Linq;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Data.Logic;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    public class ClientLandClaimAreaManager
+    public static class ClientLandClaimAreaManager
     {
-        private static readonly ClientLandClaimAreaRenderer RendererAreasNotOwnedByPlayer;
+        private static readonly ClientLandClaimGroupsRendererManager RendererManagerGraceAreas;
 
-        private static readonly ClientLandClaimAreaRenderer RendererAreasOwnedByPlayer;
+        private static readonly ClientLandClaimGroupsRendererManager RendererManagerNotOwnedByPlayer;
 
-        private static readonly ClientLandClaimAreaRenderer RendererGraceAreas;
+        private static readonly ClientLandClaimGroupsRendererManager RendererManagerOwnedByPlayer;
 
-        private static readonly Color ZoneColorGraceArea = Color.FromArgb(0x30, 0x33, 0x33, 0x33);
+        private static readonly Dictionary<ILogicObject, StateSubscriptionStorage> stateSubscriptionStorages
+            = new Dictionary<ILogicObject, StateSubscriptionStorage>();
 
-        private static readonly Color ZoneColorNotOwnedByPlayer = Color.FromArgb(0x40, 0xDD, 0x00, 0x00);
+        private static readonly Color ZoneColorGraceArea
+            = Color.FromArgb(0x30, 0x33, 0x33, 0x33);
 
-        private static readonly Color ZoneColorOwnedByPlayer = Color.FromArgb(0x30, 0x00, 0xFF, 0x00);
+        private static readonly Color ZoneColorNotOwnedByPlayer
+            = Color.FromArgb(0x40, 0xDD, 0x00, 0x00);
+
+        private static readonly Color ZoneColorOwnedByPlayer
+            = Color.FromArgb(0x30, 0x00, 0xFF, 0x00);
 
         private static NetworkSyncList<ILogicObject> areaObjects;
 
         static ClientLandClaimAreaManager()
         {
-            RendererGraceAreas = new ClientLandClaimAreaRenderer(
+            RendererManagerGraceAreas = new ClientLandClaimGroupsRendererManager(
                 ZoneColorGraceArea,
                 drawOrder: DrawOrder.Overlay - 3,
                 isGraceAreaRenderer: true);
 
-            RendererAreasOwnedByPlayer = new ClientLandClaimAreaRenderer(
-                ZoneColorOwnedByPlayer,
+            RendererManagerNotOwnedByPlayer = new ClientLandClaimGroupsRendererManager(
+                ZoneColorNotOwnedByPlayer,
                 drawOrder: DrawOrder.Overlay - 2);
 
-            RendererAreasNotOwnedByPlayer = new ClientLandClaimAreaRenderer(
-                ZoneColorNotOwnedByPlayer,
+            RendererManagerOwnedByPlayer = new ClientLandClaimGroupsRendererManager(
+                ZoneColorOwnedByPlayer,
                 drawOrder: DrawOrder.Overlay - 1);
 
             Api.Client.World.WorldBoundsChanged += WorldBoundsChangedHandler;
@@ -52,13 +60,26 @@
                                   () =>
                                   {
                                       var isDisplayed = ClientInputManager.IsButtonHeld(GameButton.DisplayLandClaim)
-                                                        || Api.Client.Input.IsKeyHeld(InputKey.Alt)
-                                                        || (ConstructionPlacementSystem
-                                                                   .IsObjectPlacementComponentEnabled);
+                                                        || Api.Client.Input.IsKeyHeld(InputKey.Alt,
+                                                                                      evenIfHandled: true)
+                                                        || ConstructionPlacementSystem
+                                                            .IsObjectPlacementComponentEnabled;
 
-                                      RendererAreasOwnedByPlayer.IsVisible = isDisplayed;
-                                      RendererAreasNotOwnedByPlayer.IsVisible = isDisplayed;
-                                      RendererGraceAreas.IsVisible = isDisplayed;
+                                      if (isDisplayed)
+                                      {
+                                          var isDisplayOverlays = Api.Client.Input.IsKeyHeld(InputKey.Control, 
+                                                                                             evenIfHandled: true);
+
+                                          RendererManagerOwnedByPlayer.IsDisplayOverlays
+                                              = RendererManagerNotOwnedByPlayer.IsDisplayOverlays
+                                                    = RendererManagerGraceAreas.IsDisplayOverlays
+                                                          = isDisplayOverlays;
+                                      }
+
+                                      RendererManagerOwnedByPlayer.IsEnabled
+                                          = RendererManagerNotOwnedByPlayer.IsEnabled
+                                                = RendererManagerGraceAreas.IsEnabled
+                                                      = isDisplayed;
                                   });
         }
 
@@ -120,12 +141,28 @@
 
         private static void AddArea(ILogicObject area)
         {
-            RendererGraceAreas.AddRenderer(area);
-            var renderer = LandClaimSystem.ClientIsOwnedArea(area)
-                               ? RendererAreasOwnedByPlayer
-                               : RendererAreasNotOwnedByPlayer;
+            // register for group change event
+            var stateSubscriptionStorage = new StateSubscriptionStorage();
+            stateSubscriptionStorages[area] = stateSubscriptionStorage;
 
-            renderer.AddRenderer(area);
+            var areaPublicState = LandClaimArea.GetPublicState(area);
+            areaPublicState.ClientSubscribe(
+                o => o.LandClaimAreasGroup,
+                newValue =>
+                {
+                    //Api.Logger.Dev($"Received LandClaimAreasGroup changed: {newValue} for {area}");
+                    OnAreaModified(area);
+                },
+                stateSubscriptionStorage);
+
+            // register area
+            RendererManagerGraceAreas.RegisterArea(area);
+
+            var renderer = LandClaimSystem.ClientIsOwnedArea(area)
+                               ? RendererManagerOwnedByPlayer
+                               : RendererManagerNotOwnedByPlayer;
+
+            renderer.RegisterArea(area);
 
             AreaAdded?.Invoke(area);
         }
@@ -170,15 +207,14 @@
 
         private static void RemoveArea(ILogicObject area)
         {
-            RendererGraceAreas.RemoveRenderer(area);
-            // yes, here we're using | instead of ||
-            var isRemoved = RendererAreasOwnedByPlayer.RemoveRenderer(area)
-                            | RendererAreasNotOwnedByPlayer.RemoveRenderer(area);
+            stateSubscriptionStorages[area].Dispose();
+            stateSubscriptionStorages.Remove(area);
 
-            if (isRemoved)
-            {
-                AreaRemoved?.Invoke(area);
-            }
+            RendererManagerGraceAreas.UnregisterArea(area);
+            RendererManagerOwnedByPlayer.UnregisterArea(area);
+            RendererManagerNotOwnedByPlayer.UnregisterArea(area);
+
+            AreaRemoved?.Invoke(area);
         }
 
         private static void Reset()
@@ -188,9 +224,9 @@
                 return;
             }
 
-            RendererGraceAreas.Reset();
-            RendererAreasOwnedByPlayer.Reset();
-            RendererAreasNotOwnedByPlayer.Reset();
+            RendererManagerGraceAreas.Reset();
+            RendererManagerOwnedByPlayer.Reset();
+            RendererManagerNotOwnedByPlayer.Reset();
 
             foreach (var area in areaObjects)
             {

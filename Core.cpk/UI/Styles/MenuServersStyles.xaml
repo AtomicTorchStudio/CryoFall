@@ -14,13 +14,20 @@
 
     <system:Double x:Key="ServerIconSize">42</system:Double>
     <GridLength x:Key="ColumnWidthServerIcon">50</GridLength>
-    <GridLength x:Key="ColumnWidthPing">120</GridLength>
-    <GridLength x:Key="ColumnWidthPlayers">120</GridLength>
-    <GridLength x:Key="ColumnWidthFavorite">60</GridLength>
+    <GridLength x:Key="ColumnWidthPadding">20</GridLength>
+    <GridLength x:Key="ColumnWidthPing">70</GridLength>
+    <GridLength x:Key="ColumnWidthPlayers">70</GridLength>
+    <GridLength x:Key="ColumnWidthWiped">90</GridLength>
+    <GridLength x:Key="ColumnWidthFavorite">50</GridLength>
 
     <Color x:Key="ColorServerItemBackground">#FF447799</Color>
 
     <SolidColorBrush x:Key="ServerAddressForegroundBrush" Color="White" Opacity="0.6" />
+
+    <ControlTemplate x:Key="ColumnWipedDateContentTemplate"
+                     TargetType="ContentControl">
+        <ContentPresenter />
+    </ControlTemplate>
 
     <Style x:Key="TextBlockServerTitleStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="White" />
@@ -39,13 +46,14 @@
         <Setter Property="FontSize" Value="9" />
     </Style>
 
-    <Style x:Key="TextBlockServerDescriptionStyle" TargetType="{x:Type TextBlock}">
-        <Setter Property="Foreground" Value="White" />
+    <!-- Used for ping, players number, and wipe date columns -->
+    <Style x:Key="TextBlockServerStatStyle" BasedOn="{StaticResource TextBlockServerTitleStyle}"
+           TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="LineHeight" Value="13" />
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="FontFamily" Value="{StaticResource DigitsFontFamily}" />
-        <Setter Property="FontSize" Value="12" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
 
     <Style x:Key="ServersLoadingTextBlockStyle" TargetType="{x:Type core:FormattedTextBlock}">
@@ -205,25 +213,32 @@
     <DataTemplate x:Key="ServerInfoEntryTemplate"
                   DataType="{x:Type data:ViewModelServerInfoListEntry}">
         <ContentControl>
-            <Grid VerticalAlignment="Top" Background="Transparent"
+            <Grid VerticalAlignment="Top"
+                  Background="Transparent"
                   services:DoubleClickService.CommandOnDoubleClick="{Binding ViewModelServerInfo.CommandJoinServer}"
                   services:DoubleClickService.CommandOnDoubleClickParameter="{Binding ViewModelServerInfo}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{DynamicResource ColumnWidthServerIcon}" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="{DynamicResource ColumnWidthPadding}" />
                     <ColumnDefinition Width="{DynamicResource ColumnWidthPing}" />
                     <ColumnDefinition Width="{DynamicResource ColumnWidthPlayers}" />
+                    <ColumnDefinition Width="{DynamicResource ColumnWidthWiped}" />
                     <ColumnDefinition Width="{DynamicResource ColumnWidthFavorite}" />
                 </Grid.ColumnDefinitions>
 
-                <Rectangle Width="{DynamicResource ServerIconSize}" Height="{DynamicResource ServerIconSize}"
+                <Rectangle Width="{DynamicResource ServerIconSize}"
+                           Height="{DynamicResource ServerIconSize}"
                            Fill="#11FFFFFF" />
 
-                <Rectangle Width="{DynamicResource ServerIconSize}" Height="{DynamicResource ServerIconSize}"
+                <Rectangle Width="{DynamicResource ServerIconSize}"
+                           Height="{DynamicResource ServerIconSize}"
                            Fill="{Binding ViewModelServerInfo.Icon}" />
 
-                <Rectangle Width="{DynamicResource ServerIconSize}" Height="{DynamicResource ServerIconSize}"
-                           Visibility="{Binding ViewModelServerInfo.IncompatibleVisibility}" Fill="#44FF0000" />
+                <Rectangle Width="{DynamicResource ServerIconSize}"
+                           Height="{DynamicResource ServerIconSize}"
+                           Visibility="{Binding ViewModelServerInfo.IncompatibleVisibility}"
+                           Fill="#44FF0000" />
 
                 <!--<game:LoadingDisplayControl Width="16" Height="16"
                                             HorizontalAlignment="Center"
@@ -265,19 +280,22 @@
                            Text="{Binding ViewModelServerInfo.Address.HostAddress}"
                            Style="{StaticResource TextBlockServerAddressStyle}" />
 
-                <TextBlock Grid.Column="2"
-                           Text="{Binding ViewModelServerInfo.PingText}"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Style="{StaticResource TextBlockServerDescriptionStyle}" />
-
                 <TextBlock Grid.Column="3"
-                           Text="{Binding ViewModelServerInfo.PlayersText}"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Style="{StaticResource TextBlockServerDescriptionStyle}" />
+                           Text="{Binding ViewModelServerInfo.PingText}"
+                           Style="{StaticResource TextBlockServerStatStyle}" />
 
-                <StackPanel Grid.Column="4"
+                <TextBlock Grid.Column="4"
+                           Text="{Binding ViewModelServerInfo.PlayersText}"
+                           Style="{StaticResource TextBlockServerStatStyle}" />
+
+                <ContentControl Grid.Column="5"
+                                Template="{DynamicResource ColumnWipedDateContentTemplate}">
+                    <TextBlock Text="{Binding ViewModelServerInfo.WipedDateText}"
+                               TextAlignment="Center"
+                               Style="{StaticResource TextBlockServerStatStyle}" />
+                </ContentControl>
+
+                <StackPanel Grid.Column="6"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <CheckBox Style="{StaticResource CheckBoxFavoriteStyle}"
@@ -364,8 +382,10 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="{DynamicResource ColumnWidthServerIcon}" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="{DynamicResource ColumnWidthPadding}" />
                             <ColumnDefinition Width="{DynamicResource ColumnWidthPing}" />
                             <ColumnDefinition Width="{DynamicResource ColumnWidthPlayers}" />
+                            <ColumnDefinition Width="{DynamicResource ColumnWidthWiped}" />
                             <ColumnDefinition Width="{DynamicResource ColumnWidthFavorite}" />
                         </Grid.ColumnDefinitions>
 
@@ -377,14 +397,19 @@
                                    Margin="4,0,0,0" />
 
                         <!-- Text: Ping -->
-                        <TextBlock Grid.Column="2"
+                        <TextBlock Grid.Column="3"
                                    Text="{x:Static loc:CoreStrings.ServerPing}"
                                    HorizontalAlignment="Center"
                                    Margin="7,0,0,0" />
 
                         <!-- Text: Players -->
-                        <TextBlock Grid.Column="3"
+                        <TextBlock Grid.Column="4"
                                    Text="{x:Static loc:CoreStrings.ServerPlayersCount}"
+                                   HorizontalAlignment="Center"
+                                   Margin="7,0,0,0" />
+
+                        <TextBlock Grid.Column="5"
+                                   Text="{x:Static loc:CoreStrings.ServerWipedDate}"
                                    HorizontalAlignment="Center"
                                    Margin="7,0,0,0" />
                     </Grid>

@@ -6,7 +6,7 @@
     public class ItemImplantATPEnergyExtractor : ProtoItemEquipmentImplant
     {
         public override string Description =>
-            "Uses natural metabolism to extract energy directly from ATP in the cells and convert it to electrical energy at the cost of increased hunger. Requires an equipped power bank device to have any effect.";
+            "Uses natural metabolism to extract energy directly from ATP in the cells and convert it to electrical energy at the cost of increased hunger. Requires an equipped powerbank device to have any effect.";
 
         public override string Name => "ATP energy extractor implant";
 

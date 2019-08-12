@@ -1,0 +1,138 @@
+﻿Scripts/Skills/Categories/SkillCategoryAgriculture@Name:
+Rolnictwo
+
+Scripts/Skills/Categories/SkillCategoryCombat@Name:
+Walka
+
+Scripts/Skills/Categories/SkillCategoryMisc@Name:
+Inne
+
+Scripts/Skills/Categories/SkillCategoryPersonal@Name:
+Osoba
+
+Scripts/Skills/Categories/SkillCategoryProduction@Name:
+Produkcja
+
+Scripts/Skills/Categories/SkillCategoryTechnical@Name:
+Technika
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Flags.AdditionalYield:
+Szansa na dodatkowe zbiory
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
+Lepsze sposoby uprawy roli pozwalają na zwiększenie wydajności upraw, tempa wzrostu roślin, szybkości dojrzewania, a nawet czasami dają dodatkowe plony.
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
+Rolnictwo
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
+Szansa na dodatkowe zbiory
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
+Dobre poznanie flory planety pozwala przyspieszyć wzrost zbiorów i zwiększa szanse na uzyskanie lepszych plonów.
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Name:
+Zbieranie
+
+Scripts/Skills/Skills/Agriculture/SkillHunting@Description:
+Lepszy łowca ma większe szanse na zdobycie większej ilości łupów z każdej zwierzyny.
+
+Scripts/Skills/Skills/Agriculture/SkillHunting@Name:
+Polowanie
+
+Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Description:
+Większe doświadczenie w posługiwaniu się wszystkimi rodzajami broni tradycyjnej pozwala zapoznać się ze wszystkimi ich niuansami i umożliwia bardziej efektywne posługiwanie się nimi.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Name:
+Broń tradycyjna
+
+Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Description:
+Częstsze używanie broni energetycznej pozwala lepiej zrozumieć jej działanie i poprawić jej ogólną wydajność.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Name:
+Broń energetyczna
+
+Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Description:
+Wykorzystywanie egzotycznej broni w walce pozwala lepiej poznać jej tajemnice, pozwalając zrozumieć jej potencjał.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Name:
+Broń egzotyczna
+
+Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Description:
+Używanie ciężkiej broni uczy obchodzenia się z nią, zapewniając dodatkowe możliwości zadawania obrażeń.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Name:
+Broń ciężka
+
+Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Description:
+Ciągłe korzystanie z broni do walki przyzwyczaja do stosowanie jej, co skutkuje zwiększonymi obrażeniami i skutecznością.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
+Broń ręczna
+
+Scripts/Skills/Skills/Misc/SkillSearching@Description:
+Zauważanie najdrobniejszych szczegóły zwiększa szanse na znalezienie dodatkowych przedmiotów.
+
+Scripts/Skills/Skills/Misc/SkillSearching@Name:
+Szukanie
+
+Scripts/Skills/Skills/Personal/SkillAthletics@Description:
+Trening przyzwyczaja ciało do biegania na długich dystansach, dzięki czemu zużywa się mniej energii podczas biegu.
+
+Scripts/Skills/Skills/Personal/SkillAthletics@Name:
+Lekkoatletyka
+
+Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Description:
+Częste korzystanie z technologii cybernetycznych sprawia, że ciało jest bardziej przyzwyczajone do ich obecności.
+
+Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Name:
+Umiejętności cybernetyczne
+
+Scripts/Skills/Skills/Personal/SkillLearning@Description:
+Przetrwać w nieznanym środowisku obcego świata nie jest łatwo, ale pozwala to uczyć się nowych rzeczy, których nie da się dowiedzieć w inny sposób.
+
+Scripts/Skills/Skills/Personal/SkillLearning@Name:
+Uczenie się
+
+Scripts/Skills/Skills/Personal/SkillSurvival@Description:
+Maksymalizuje szanse na przetrwanie, zwiększając liczbę punktów zdrowia, żywności, wody i energii. Trudniej cię zabić!
+
+Scripts/Skills/Skills/Personal/SkillSurvival@Name:
+Przetrwanie
+
+Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
+Szansa na dodatkowe zbiory
+
+Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Szansa na znalezienie kamieni szlachetnych podczas wydobycia
+
+Scripts/Skills/Skills/Production/SkillMining@Description:
+Dobra znajomość geologii i złóż minerałów zwiększa szybkość wydobycia, ilość wydobytych materiałów i szanse na znalezienie rzadkich zasobów. Działa tylko podczas używania kilofu.
+
+Scripts/Skills/Skills/Production/SkillMining@Name:
+Wydobycie
+
+Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
+Zapoznanie się z technikami drwali przyspiesza ścinanie drzew. Działa tylko podczas używania siekiery.
+
+Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
+Drwalnictwo
+
+Scripts/Skills/Skills/Technical/SkillBuilding@Description:
+Rozwinięte umiejętności budowlane pozwalają szybciej stawiać budowle. Działa w przypadku wszystkich zadań (budowanie, naprawa) wykonywanych z użyciem skrzynki z narzędziami.
+
+Scripts/Skills/Skills/Technical/SkillBuilding@Name:
+Budowanie
+
+Scripts/Skills/Skills/Technical/SkillCrafting@Description:
+Tworzenie skomplikowanych przedmiotów i rozumienie ich działania pozwala zrozumieć, jak działają tutejsze technologie.
+
+Scripts/Skills/Skills/Technical/SkillCrafting@Name:
+Rzemiosło
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
+Umożliwia naprawianie i konserwowanie wyposażenia oraz sprzętów przy stole majsterkowicza.
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
+Konserwacja
+

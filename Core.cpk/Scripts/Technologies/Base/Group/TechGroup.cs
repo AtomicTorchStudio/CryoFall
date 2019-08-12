@@ -16,6 +16,8 @@
     {
         public const string ErrorNotEnoughLearningPoints = "Not enough learning points";
 
+        public const string ErrorTechGroupIsLocked = "The tech tree is locked";
+
         public const string ErrorTechIsAlreadyUnlocked = "The tech is already unlocked";
 
         private static readonly Lazy<List<TechNode>> LazyAllNodesWithoutFiltering
@@ -52,8 +54,6 @@
 
         public event Action NodesChanged;
 
-        public IReadOnlyList<TechNode> Nodes { get; private set; }
-
         public abstract string Description { get; }
 
         public IReadOnlyTechGroupRequirements GroupRequirements { get; private set; }
@@ -69,6 +69,8 @@
 
         public ushort LearningPointsPrice { get; private set; }
 
+        public IReadOnlyList<TechNode> Nodes { get; private set; }
+
         public virtual int Order { get; } = 0;
 
         public IReadOnlyList<TechNode> RootNodes { get; private set; }
@@ -81,7 +83,7 @@
 
         protected virtual double GroupUnlockPriceMultiplier { get; } = 1;
 
-        public bool SharedCanUnlock(ICharacter character, out string error)
+        public bool SharedCanUnlock(ICharacter character, bool skipLearningPointsCheck, out string error)
         {
             var technologies = character.SharedGetTechnologies();
             if (technologies.SharedIsGroupUnlocked(this))
@@ -90,15 +92,14 @@
                 return false;
             }
 
-            if (technologies.LearningPoints
-                < this.LearningPointsPrice)
-            {
-                error = ErrorNotEnoughLearningPoints;
-                return false;
-            }
-
             foreach (var requirement in this.GroupRequirements)
             {
+                if (skipLearningPointsCheck 
+                    && requirement is TechGroupRequirementLearningPoints)
+                {
+                    continue;
+                }
+
                 if (!requirement.IsSatisfied(character, out error))
                 {
                     return false;
@@ -109,9 +110,9 @@
             return true;
         }
 
-        public void SharedValidateCanUnlock(ICharacter character)
+        public void SharedValidateCanUnlock(ICharacter character, bool skipLearningPointsCheck)
         {
-            if (!this.SharedCanUnlock(character, out var error))
+            if (!this.SharedCanUnlock(character, skipLearningPointsCheck, out var error))
             {
                 throw new Exception($"Cannot unlock: {this}{Environment.NewLine}{error}");
             }
@@ -180,13 +181,13 @@
         private void SharedRebuildAllNodes()
         {
             this.Nodes = LazyAllNodesWithoutFiltering
-                            .Value
-                            .Where(n => n.Group == this
-                                        && n.IsAvailable)
-                            .OrderBy(n => n.HierarchyLevel)
-                            .ThenBy(n => n.Order)
-                            .ThenBy(n => n.ShortId)
-                            .ToList();
+                         .Value
+                         .Where(n => n.Group == this
+                                     && n.IsAvailable)
+                         .OrderBy(n => n.HierarchyLevel)
+                         .ThenBy(n => n.Order)
+                         .ThenBy(n => n.ShortId)
+                         .ToList();
 
             Api.SafeInvoke(this.NodesChanged);
         }

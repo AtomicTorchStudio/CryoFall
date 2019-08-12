@@ -29,20 +29,20 @@
         /// </summary>
         public double GroupNodesUnlockedPercent { get; }
 
-        protected override bool IsSatisfied(CharacterContext context, out string error)
+        protected override bool IsSatisfied(CharacterContext context, out string errorMessage)
         {
             if (!context.Technologies.SharedIsGroupUnlocked(
                     this.Group,
                     this.GroupNodesUnlockedPercent))
             {
-                error = string.Format(DescriptionFormat,
-                                      this.Group.Name,
-                                      (int)Math.Round(this.GroupNodesUnlockedPercent * 100,
-                                                      MidpointRounding.AwayFromZero));
+                errorMessage = string.Format(DescriptionFormat,
+                                             this.Group.Name,
+                                             (int)Math.Round(this.GroupNodesUnlockedPercent * 100,
+                                                             MidpointRounding.AwayFromZero));
                 return false;
             }
 
-            error = null;
+            errorMessage = null;
             return true;
         }
     }

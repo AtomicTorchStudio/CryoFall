@@ -7,11 +7,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
-    /// <summary>
-    /// Note: drunk status effect affects psi protection and offers 30% defense (calculated inside the psi effect)
-    /// Note: it also works the same as painkiller but reduces pain by half (calculated inside the pain effect)
-    /// Note: it also provides 100% protection against dazed effect (calculated inside the dazed effect)
-    /// </summary>
     public class StatusEffectDrunk : ProtoStatusEffect
     {
         public const string NotificationMessage =
@@ -42,11 +37,17 @@
             // energy regeneration +25%
             effects.AddPercent(this, StatName.StaminaRegenerationPerSecond, 25);
 
-            // no health regeneration while under the effect of alcohol
-            effects.AddPercent(this, StatName.HealthRegenerationPerSecond, -100);
+            // movement speed -10%
+            effects.AddPercent(this, StatName.MoveSpeed, -10);
 
-            // movement speed -15%
-            effects.AddPercent(this, StatName.MoveSpeed, -15);
+            // pain -50%
+            effects.AddPercent(this, StatName.PainIncreaseRateMultiplier, -50);
+
+            // psi damage -25%
+            effects.AddPercent(this, StatName.PsiEffectMultiplier, -25);
+
+            // dazed -100%, dazed effect cannot be added if character is drunk
+            effects.AddPercent(this, StatName.DazedIncreaseRateMultiplier, -100);
         }
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)

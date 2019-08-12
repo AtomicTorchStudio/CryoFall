@@ -5,7 +5,7 @@
         public override string Description =>
             "Decent early armor; especially suitable to protect against cold. Not very expensive, and it's comfy!";
 
-        public override ushort DurabilityMax => 800;
+        public override uint DurabilityMax => 800;
 
         public override string Name => "Fur coat";
 

@@ -15,7 +15,9 @@
             var date = (DateTime)value;
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
             var format = parameter as string ?? "d MMMM yyyy";
-            return date.ToLocalTime().ToString(format).ToUpperInvariant();
+            return date.ToLocalTime()
+                       .ToString(format, CultureInfo.CurrentUICulture)
+                       .ToUpperInvariant();
         }
 
         public object ConvertBack(

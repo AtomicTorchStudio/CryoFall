@@ -6,13 +6,7 @@
 
     public static class ClientCurrentCharacterHelper
     {
-        private static ICharacter character;
-
-        public static ICharacter Character
-        {
-            get => character;
-            //?? throw new Exception("Current player character is not assigned yet");
-        }
+        public static ICharacter Character { get; private set; }
 
         public static PlayerCharacterPrivateState PrivateState { get; private set; }
 
@@ -20,9 +14,11 @@
 
         public static void Init(ICharacter character)
         {
-            ClientCurrentCharacterHelper.character = character;
-            PrivateState = PlayerCharacter.GetPrivateState(Character);
-            PublicState = PlayerCharacter.GetPublicState(Character);
+            Character = character;
+            PrivateState = PlayerCharacter.GetPrivateState(character);
+            PublicState = PlayerCharacter.GetPublicState(character);
+
+            ClientCurrentCharacterFinalStatsHelper.Init(character);
         }
     }
 }

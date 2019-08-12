@@ -12,12 +12,6 @@
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        /// <summary>
-        /// The construction site doesn't have structure points max itself.
-        /// Please use SharedGetStructurePointsMax method instead.
-        /// </summary>
-        public override float StructurePointsMax => 0;
-
         protected override bool IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(
             ConstructionSitePublicState publicState)
         {

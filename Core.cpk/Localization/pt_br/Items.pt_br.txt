@@ -53,7 +53,7 @@ Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
 Munição perfurante de .300 mm
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
-Cartucho de munição pesada incendiária calibre .300
+Cartucho de munição incendiária pesada calibre .300, capaz de perfurar a armadura e incendiar o alvo.
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 Munição incendiária de .300 mm
@@ -455,10 +455,22 @@ Scripts/Items/Food/ItemCannedFish@Name:
 Peixe em lata
 
 Scripts/Items/Food/ItemCannedMeat@Description:
-Carne em lata de origem duvidosa. A embalagem é decente, pelo menos.
+Carne em lata cozida com elevada concentração de gordura. Longo período de conservação.
 
 Scripts/Items/Food/ItemCannedMeat@Name:
 Carne em lata
+
+Scripts/Items/Food/ItemCannedMixedMeat@Description:
+Carne em lata de origem duvidosa. A embalagem é decente, pelo menos.
+
+Scripts/Items/Food/ItemCannedMixedMeat@Name:
+Conservas de carne mista
+
+Scripts/Items/Food/ItemCarbonara@Description:
+Macarrão, ovo, queijo e carne transformam-se nesta delícia culinária!
+
+Scripts/Items/Food/ItemCarbonara@Name:
+Carbonara
 
 Scripts/Items/Food/ItemCarrot@Description:
 Um vegetal de cor laranja rico em carotenoides.
@@ -514,11 +526,11 @@ Uma planta de grãos saborosa, queridinha dos escritores de terror.
 Scripts/Items/Food/ItemCorn@Name:
 Milho
 
-Scripts/Items/Food/ItemCornOnCob@Description:
-Quem não gosta de uma espiga de milho quentinha? E o que significa espiga?
+Scripts/Items/Food/ItemCornGrilled@Description:
+Este milho grelhado conserva toda a doçura e acrescenta sabores defumados. Muito saboroso!
 
-Scripts/Items/Food/ItemCornOnCob@Name:
-Espiga de milho
+Scripts/Items/Food/ItemCornGrilled@Name:
+Milho grelhado
 
 Scripts/Items/Food/ItemCucumber@Description:
 Um fruto rico em água conhecido por ser o terror dos gatos.
@@ -573,6 +585,18 @@ Muito saborosos, sejam fritos ou cozidos. Não devem ser consumidos crus, pois p
 
 Scripts/Items/Food/ItemEggsRaw@Name:
 Ovos de animal
+
+Scripts/Items/Food/ItemInsectMeatFried@Description:
+Cozinhar esta carne tornou-a um pouco menos nojenta… Mas prepare-se para vomitar se decidir comer.
+
+Scripts/Items/Food/ItemInsectMeatFried@Name:
+Carne de inseto frita
+
+Scripts/Items/Food/ItemInsectMeatRaw@Description:
+Carne de inseto nojenta. De repente, cozinhando ela se torne um pouco menos nojenta.
+
+Scripts/Items/Food/ItemInsectMeatRaw@Name:
+Carne crua de inseto
 
 Scripts/Items/Food/ItemJamBerries@Description:
 Uma deliciosa geleia de frutinhas.
@@ -820,6 +844,12 @@ O combustível (também conhecido como combustível de acampamento ou óleo de l
 Scripts/Items/Generic/ItemCampFuel@Name:
 Combustível
 
+Scripts/Items/Generic/ItemCanEmpty@Description:
+As latas vazias podem ser usadas para preparar diferentes tipos de comida e bebidas enlatadas.
+
+Scripts/Items/Generic/ItemCanEmpty@Name:
+Latas vazias
+
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
 Reservatório de metal vazio. Pode ser usado para armazenar líquidos voláteis.
 
@@ -921,6 +951,12 @@ Diversas peças essenciais para a montagem de armas de fogo mais avançadas.
 
 Scripts/Items/Generic/ItemComponentsWeapon@Name:
 Componentes de armas
+
+Scripts/Items/Generic/ItemDuctTape@Description:
+Fita adesiva especial com composto adesivo extra forte e camada externa heterogênea reforçada.
+
+Scripts/Items/Generic/ItemDuctTape@Name:
+Fita adesiva
 
 Scripts/Items/Generic/ItemExplosives@Description:
 Material altamente explosivo que pode ser usado para criar diversos dispositivos explosivos.
@@ -1139,17 +1175,17 @@ Um mineral muito procurado. Possui propriedades que não são encontradas em nen
 Scripts/Items/Generic/ItemOrePragmium@Name:
 Prágmio
 
-Scripts/Items/Generic/ItemOrePyrite@Description:
-O minério de pirita pode ser aquecido para obter ácido sulfúrico.
-
-Scripts/Items/Generic/ItemOrePyrite@Name:
-Minério de pirita
-
 Scripts/Items/Generic/ItemPaper@Description:
-O bom e velho papel.
+O papel é um material versátil com muitos usos, podendo ser facilmente preparado a partir da madeira.
 
 Scripts/Items/Generic/ItemPaper@Name:
 Papel
+
+Scripts/Items/Generic/ItemPasta@Description:
+A base de inúmeros pratos deliciosos!
+
+Scripts/Items/Generic/ItemPasta@Name:
+Macarrão cru
 
 Scripts/Items/Generic/ItemPlanks@Description:
 São muito usadas como material de construção. Também servem de combustível para fogo.
@@ -1174,6 +1210,12 @@ Uma célula de energia universal usada em diversos dispositivos eletrônicos par
 
 Scripts/Items/Generic/ItemPowerCell@Name:
 Célula de energia
+
+Scripts/Items/Generic/ItemPreservative@Description:
+Conservante alimentar. Pode-se adicionar a alimentos embalados, permitindo que durem muito mais tempo.
+
+Scripts/Items/Generic/ItemPreservative@Name:
+Conservante
 
 Scripts/Items/Generic/ItemRope@Description:
 Uma corda normal. Pode ser usada de várias maneiras. Cordas sobressalentes podem ser queimadas.
@@ -1204,6 +1246,24 @@ A areia pode ser usada para produzir vidro ou como material de construção.
 
 Scripts/Items/Generic/ItemSand@Name:
 Areia
+
+Scripts/Items/Generic/ItemSlime@Description:
+Meleca verde, provavelmente deixado por alguma criatura.
+
+Scripts/Items/Generic/ItemSlime@Name:
+Meleca
+
+Scripts/Items/Generic/ItemSolarPanel@Description:
+De produção dispendiosa, fornece eletricidade durante muito tempo sem nenhuma manutenção.
+
+Scripts/Items/Generic/ItemSolarPanel@Name:
+Painel solar
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Description:
+Os painéis quebrados podem ser reciclados para produzir novos painéis solares.
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Name:
+Painel solar quebrado
 
 Scripts/Items/Generic/ItemSolvent@Description:
 Solvente criado especialmente para a era espacial que combina propriedades de solventes polares e apolares.
@@ -1294,6 +1354,12 @@ Grãos colhidos de uma plantação de trigo. Podem ser transformados em farinha 
 
 Scripts/Items/Generic/ItemWheatGrains@Name:
 Grãos de trigo
+
+Scripts/Items/Generic/ItemWire@Description:
+Bobina de fio elétrico isolado.
+
+Scripts/Items/Generic/ItemWire@Name:
+Fio
 
 Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
 Você não tem nenhuma bateria equipada
@@ -1445,6 +1511,12 @@ Charuto de alta qualidade, com aroma e sabor refinados. Estimulante.
 Scripts/Items/Medical/ItemCigarPremium@Name:
 Charuto premium
 
+Scripts/Items/Medical/ItemEnergyTablets@Description:
+Medicamento simples para recuperar rapidamente a fadiga.
+
+Scripts/Items/Medical/ItemEnergyTablets@Name:
+Comprimidos energéticos
+
 Scripts/Items/Medical/ItemHeatPreExposure@Description:
 Gel termorresistente que bloqueia a troca de calor direta e reflete o calor radiante, possibilitando explorar áreas de alta temperatura por um curto período.
 
@@ -1572,103 +1644,58 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 Fortalecedor (pequeno)
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
-Muda de uma bétula. Pode ser plantada para que cresça e se torne uma árvore.
+Muda de uma árvore. Pode ser plantada para que cresça e se torne uma árvore.
 
 Scripts/Items/Seeds/ItemSaplingBirch@Name:
 Muda de bétula
 
-Scripts/Items/Seeds/ItemSaplingOak@Description:
-Muda de um carvalho. Pode ser plantada para que cresça e se torne uma árvore.
-
 Scripts/Items/Seeds/ItemSaplingOak@Name:
 Muda de carvalho
-
-Scripts/Items/Seeds/ItemSaplingPine@Description:
-Muda de um pinheiro. Pode ser plantada para que cresça e se torne uma árvore.
 
 Scripts/Items/Seeds/ItemSaplingPine@Name:
 Muda de pinheiro
 
-Scripts/Items/Seeds/ItemSaplingPineBoreal@Description:
-Muda de uma espécie de pinheiro do norte. Pode ser plantada para que cresça e se torne uma árvore.
-
 Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
 Muda de pinheiro-boreal
 
-Scripts/Items/Seeds/ItemSaplingPoplar@Description:
-Muda de um álamo. Pode ser plantada para que cresça e se torne uma árvore.
-
 Scripts/Items/Seeds/ItemSaplingPoplar@Name:
 Muda de álamo
-
-Scripts/Items/Seeds/ItemSaplingRubbertree@Description:
-Muda de uma seringueira. Pode ser plantada para que cresça e se torne uma árvore.
 
 Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
 Muda de seringueira
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
-Podem ser plantadas para cultivar pimentão.
+Pequeno saco de sementes preparadas para o plantio. Pode ser plantado no solo.
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
 Sementes de pimentão
 
-Scripts/Items/Seeds/ItemSeedsCarrot@Description:
-Podem ser plantadas para cultivar cenoura.
-
 Scripts/Items/Seeds/ItemSeedsCarrot@Name:
 Sementes de cenoura
-
-Scripts/Items/Seeds/ItemSeedsChiliPepper@Description:
-Podem ser plantadas para cultivar pimenta.
 
 Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
 Sementes de pimenta
 
-Scripts/Items/Seeds/ItemSeedsCorn@Description:
-Podem ser plantadas para cultivar milho.
-
 Scripts/Items/Seeds/ItemSeedsCorn@Name:
 Sementes de milho
-
-Scripts/Items/Seeds/ItemSeedsCucumber@Description:
-Podem ser plantadas para cultivar pepino.
 
 Scripts/Items/Seeds/ItemSeedsCucumber@Name:
 Sementes de pepino
 
-Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Description:
-Podem ser plantadas para cultivar sálvia-azul.
-
 Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Sementes de sálvia-azul
-
-Scripts/Items/Seeds/ItemSeedsFlowerOni@Description:
-Sementes de oniflor. Podem ser plantadas para cultivar mais flores.
 
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Sementes de oniflor
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Description:
-O ogurín foi uma das primeiras plantas geneticamente criadas para este planeta.
-
 Scripts/Items/Seeds/ItemSeedsOgurin@Name:
 Sementes de ogurín
-
-Scripts/Items/Seeds/ItemSeedsTobacco@Description:
-Podem ser plantadas para cultivar tabaco.
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Sementes de tabaco
 
-Scripts/Items/Seeds/ItemSeedsTomato@Description:
-Sementes de tomate de uma espécie muito suculenta especialmente selecionada para este planeta.
-
 Scripts/Items/Seeds/ItemSeedsTomato@Name:
 Sementes de tomate
-
-Scripts/Items/Seeds/ItemSeedsWheat@Description:
-Sementes de trigo especialmente selecionadas prontas para o plantio.
 
 Scripts/Items/Seeds/ItemSeedsWheat@Name:
 Sementes de trigo
@@ -1758,19 +1785,13 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 Picareta de pedra
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
-Uma boa caixa de ferramentas é essencial para construir qualquer estrutura.
+A caixa de ferramentas é necessária para construir ou consertar qualquer uma das suas estruturas. Lembre-se de equipá-la e selecioná-la.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
 Caixa de ferramentas simples
 
-Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Description:
-Uma boa caixa de ferramentas é essencial para construir qualquer estrutura.
-
 Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
 Caixa de ferramentas de ferro
-
-Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Description:
-Uma boa caixa de ferramentas é essencial para construir qualquer estrutura.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
 Caixa de ferramentas de aço

@@ -1,0 +1,6 @@
+﻿Scripts/Perks/PerkClaimDeposits@Name:
+Petrol ve lityum yataklarını ele geçir
+
+Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
+Maksimum alan tutucu sayısı: {0}
+

@@ -15,7 +15,7 @@
                     callbackTakeAllItemsSuccess: null)
                 {
                     IsContainerTitleVisible = false,
-                    IsManagementButtonsVisibile = false
+                    IsManagementButtonsVisible = false
                 };
         }
 

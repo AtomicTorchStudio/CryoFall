@@ -84,8 +84,8 @@
                 return;
             }
 
-            var privateState = data.SyncPrivateState;
-            var publicState = data.SyncPublicState;
+            var privateState = data.PrivateState;
+            var publicState = data.PublicState;
 
             this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
             this.SharedApplyInput(character, privateState, publicState);

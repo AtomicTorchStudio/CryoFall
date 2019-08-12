@@ -115,7 +115,7 @@
             if (growthStage < this.GrowthStagesCount)
             {
                 var serverTime = Api.Server.Game.FrameTime;
-                var duration = this.CalculateGrowthStageDuration(growthStage, privateState, publicState);
+                var duration = this.ServerCalculateGrowthStageDuration(growthStage, privateState, publicState);
                 privateState.ServerTimeNextGrowthStage = serverTime + duration;
             }
 
@@ -123,14 +123,6 @@
             //Logger.WriteDev(
             //    $"Vegetation growth stage set: {worldObject} growthStage={growthStage} nextStageDuration={duration:F2}s");
             this.ServerOnGrowthStageUpdated(worldObject, privateState, publicState);
-        }
-
-        protected virtual double CalculateGrowthStageDuration(
-            byte growthStage,
-            TPrivateState privateState,
-            TPublicState publicState)
-        {
-            return this.cachedGrowthStageDurationSeconds;
         }
 
         protected virtual byte CalculateGrowthStagesCount()
@@ -154,7 +146,7 @@
 
             var gameObject = data.GameObject;
             var clientState = data.ClientState;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
 
             clientState.LastGrowthStage = publicState.GrowthStage;
 
@@ -184,7 +176,7 @@
             base.ClientUpdate(data);
 
             var clientState = data.ClientState;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             if (clientState.LastGrowthStage != publicState.GrowthStage)
             {
                 SystemVegetation.ClientRefreshVegetationRendering(
@@ -245,6 +237,14 @@
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
         {
             return ObjectsSoundsPresets.ObjectVegetation;
+        }
+
+        protected virtual double ServerCalculateGrowthStageDuration(
+            byte growthStage,
+            TPrivateState privateState,
+            TPublicState publicState)
+        {
+            return this.cachedGrowthStageDurationSeconds;
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

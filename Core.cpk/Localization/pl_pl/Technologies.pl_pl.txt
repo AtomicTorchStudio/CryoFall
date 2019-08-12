@@ -1,0 +1,333 @@
+﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
+Wymaga {0} z {1}% poznanych technologii.
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
+Za mało punktów technologii
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechGroupIsLocked:
+Drzewko technologii jest zablokowane
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
+Technologię już odblokowano
+
+Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
+Wymagane PT: {0}, (masz tylko: {1}).
+
+Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
+Wymaga odblokowanej technologii: {0}
+
+Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
+Zawiera schematy wszystkich typów budynków podstawowych i pozwala na stworzenie prostej bazy.
+
+Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Name:
+Budownictwo
+
+Scripts/Technologies/Tier1/Construction/TechNodeBasicBuilding@Name:
+Budynek podstawowy
+
+Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
+Zawiera przepisy umożliwiające produkcję lepszego pożywienia.
+
+Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
+Gotowanie
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
+Schematy podstawowej broni i pancerzy.
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
+Obrona
+
+Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
+Pancerz kostny
+
+Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
+Pleciony pancerz
+
+Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
+Pancerz płócienny
+
+Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
+Pancerz drewniany
+
+Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
+Przygotowanie nasion do zasadzenia, podstawowego nawozu i innych.
+
+Scripts/Technologies/Tier1/Farming/TechGroupFarming@Name:
+Rolnictwo
+
+Scripts/Technologies/Tier1/Farming/TechNodeFarmingBasics@Name:
+Podstawy rolnictwa
+
+Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Description:
+Wszystkie podstawowe technologie przemysłowe niezbędne do korzystania z zalet produkcji i wytwórstwa.
+
+Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Name:
+Przemysł
+
+Scripts/Technologies/Tier1/Industry/TechNodeGlassware@Name:
+Wyroby szklane
+
+Scripts/Technologies/Tier1/Industry/TechNodeIronTools@Name:
+Narzędzia żelazne
+
+Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
+Wytapianie
+
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
+Schematy prymitywnych broni.
+
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
+Atak
+
+Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
+Korzystanie z różnych związków i reakcji chemicznych.
+
+Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
+Chemia
+
+Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
+Bardziej złożone i użyteczne struktury.
+
+Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
+Budownictwo 2
+
+Scripts/Technologies/Tier2/Construction2/TechNodeStoneConstructions@Name:
+Konstrukcje kamienne
+
+Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
+Bardziej zaawansowane przepisy kulinarne pozwalające gotować nowe potrawy.
+
+Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
+Gotowanie 2
+
+Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
+Lepsze technologie ochronne zapewniające lepsze schematy pancerzy.
+
+Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Name:
+Obrona 2
+
+Scripts/Technologies/Tier2/Defense2/TechNodeFurArmor@Name:
+Hełm futrzany
+
+Scripts/Technologies/Tier2/Defense2/TechNodeFurHeadgear@Name:
+Futrzane nakrycie głowy
+
+Scripts/Technologies/Tier2/Defense2/TechNodeLeatherArmor@Name:
+Skórzany pancerz
+
+Scripts/Technologies/Tier2/Defense2/TechNodeLeatherHeadgear@Name:
+Skórzane nakrycie głowy
+
+Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
+Pikowany pancerz
+
+Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
+Pikowane nakrycie głowy
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
+Podstawowa infrastruktura elektryczna.
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
+Elektryczność
+
+Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
+Zaawansowane techniki rolnicze pozwalające hodować nowe uprawy i korzystać z lepszych nawozów.
+
+Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
+Rolnictwo 2
+
+Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
+Ulepszone technologie przemysłowe pozwalają korzystać z nowych procesów przemysłowych i rozwiązań.
+
+Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
+Przemysł 2
+
+Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
+Wytapianie stali
+
+Scripts/Technologies/Tier2/Industry2/TechNodeSteelTools@Name:
+Narzędzia stalowe
+
+Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Description:
+Tworzenie wyposażenia medycznego.
+
+Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Name:
+Medycyna
+
+Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Description:
+Bardziej zaawansowane technologie ofensywne, w tym potężniejsze rodzaje broni palnej i amunicji.
+
+Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Name:
+Atak 2
+
+Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
+Korzystanie z różnych zaawansowanych związków i reakcji chemicznych.
+
+Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
+Chemia 2
+
+Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
+Waluty i handel, wybijanie i przetwarzanie monet oraz budowa automatycznych stacji handlowych.
+
+Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Name:
+Handel
+
+Scripts/Technologies/Tier3/Commerce/TechNodeCoinMinting@Name:
+Wybijanie monet
+
+Scripts/Technologies/Tier3/Commerce/TechNodeCoinRecycling@Name:
+Przetapianie monet
+
+Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Description:
+Konstrukcje zaawansowane.
+
+Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
+Budownictwo 3
+
+Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
+Konstrukcje murowane
+
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
+Jeszcze bardziej skomplikowane przepisy kulinarne dla prawdziwych koneserów wykwintnej kuchni.
+
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
+Gotowanie 3
+
+Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
+Zaawansowane technologie ochronne.
+
+Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Name:
+Obrona 3
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMetalArmor@Name:
+Pancerz metalowy
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMetalHeadgear@Name:
+Metalowe nakrycie głowy
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
+Pancerz wojskowy
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
+Wojskowe nakrycie głowy
+
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
+Zaawansowana infrastruktura elektryczna.
+
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
+Elektryczność 2
+
+Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
+Zaawansowane technologie rolnicze i jeszcze większa różnorodność upraw.
+
+Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
+Rolnictwo 3
+
+Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
+Zaawansowane technologie przemysłowe pozwalają korzystać ze złożonych procesów przemysłowych i rozwiązań.
+
+Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
+Przemysł 3
+
+Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
+Pozwala korzystać z większego zakresu rozwiązań medycznych.
+
+Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Name:
+Medycyna 2
+
+Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Description:
+Bardzo zaawansowane technologie ofensywne, w tym w pełni automatyczna broń palna i bardziej zróżnicowane rodzaje amunicji.
+
+Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Name:
+Atak 3
+
+Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
+Produkcja napojów alkoholowych i podobnych.
+
+Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
+Rekreacja
+
+Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
+Technologie niezbędne do korzystania z zasobów obcego świata.
+
+Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
+Ksenogeologia
+
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
+Przygotowywanie żywności w puszkach, którą można przechowywać bardzo długo.
+
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
+Puszkowanie
+
+Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
+Zaawansowane procesy chemiczne i złożone reakcje.
+
+Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
+Chemia 3
+
+Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
+Konstrukcje zaawansowane technologicznie.
+
+Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
+Budownictwo 4
+
+Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
+Konstrukcje betonowe
+
+Scripts/Technologies/Tier4/Construction4/TechNodeSteelConstructions@Name:
+Konstrukcje stalowe
+
+Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
+Tworzenie i stosowanie implantów cybernetycznych i biologicznych.
+
+Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
+Cybernetyka
+
+Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
+Zaawansowane technologie ochronne.
+
+Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Name:
+Obrona 4
+
+Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
+Pancerz szturmowy
+
+Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
+Szturmowe nakrycie głowy
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
+Nowoczesna infrastruktura elektryczna.
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
+Elektryczność 3
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
+Broń energetyczną dzieli przepaść technologiczna do broni konwencjonalnej.
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
+Broń energetyczna
+
+Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
+Zaawansowane technologie przemysłowe umożliwiające korzystanie z najbardziej złożonych procesów technologicznych.
+
+Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
+Przemysł 4
+
+Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Description:
+Obróbka metali szlachetnych i biżuterii.
+
+Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Name:
+Ozdoby
+
+Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Description:
+Rozwój i zastosowanie najbardziej zaawansowanych technologii medycznych.
+
+Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Name:
+Medycyna 3
+
+Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
+Nowoczesne technologie ofensywne pozwalające korzystać z maksymalnego potencjału konwencjonalnej broni palnej.
+
+Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
+Atak 4
+

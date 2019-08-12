@@ -66,16 +66,14 @@
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
         {
-            using (var tempFiles = Api.Shared.FindFiles(ContentPaths.Textures + GenerateTexturePath(thisType)))
-            {
-                this.textures = new TextureResource[tempFiles.Count];
+            using var tempFiles = Api.Shared.FindFiles(ContentPaths.Textures + GenerateTexturePath(thisType));
+            this.textures = new TextureResource[tempFiles.Count];
 
-                var list = tempFiles.AsList();
-                for (var index = 0; index < list.Count; index++)
-                {
-                    var tempFile = list[index];
-                    this.textures[index] = new TextureResource(tempFile);
-                }
+            var list = tempFiles.AsList();
+            for (var index = 0; index < list.Count; index++)
+            {
+                var tempFile = list[index];
+                this.textures[index] = new TextureResource(tempFile);
             }
 
             return this.textures[0];
@@ -135,17 +133,9 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeCircle(
-                    radius: 0.2,
-                    center: (0.5, 0.5))
-                .AddShapeCircle(
-                    radius: 0.45,
-                    center: (0.5, 0.5),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(
-                    radius: 0.45,
-                    center: (0.5, 0.5),
-                    group: CollisionGroups.HitboxRanged);
+                .AddShapeCircle(radius: 0.2,  center: (0.5, 0.5))
+                .AddShapeCircle(radius: 0.45, center: (0.5, 0.5), group: CollisionGroups.HitboxMelee);
+            // no ranged hitbox
         }
 
         private static void ServerRestartDestroyTimer(PrivateState privateState)

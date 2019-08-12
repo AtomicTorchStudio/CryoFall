@@ -5,7 +5,7 @@
         public override string Description =>
             "Not exactly the fanciest of outfits, but it could protect you in a pinch. Offers better environmental protection than closest alternatives.";
 
-        public override ushort DurabilityMax => 500;
+        public override uint DurabilityMax => 500;
 
         public override string Name => "Braided chestplate";
 

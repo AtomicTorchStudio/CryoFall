@@ -56,7 +56,7 @@
             var piQuarter = pi / 4;
 
             var angle = character.ProtoCharacter.SharedGetRotationAngleRad(character);
-            ;
+
             if (angle > piQuarter
                 && angle < pi - piQuarter)
             {
@@ -105,12 +105,17 @@
             }
 
             var decrease = this.DurabilityDecreasePerAction;
-            if (hitObjects.Any(o => o.WorldObject.ProtoWorldObject is IProtoObjectWall
-                                    || o.WorldObject.ProtoWorldObject is IProtoObjectDoor
-                                    || o.WorldObject.ProtoWorldObject is IProtoObjectTradingStation))
+            foreach (var hit in hitObjects)
             {
-                // hit wall, door or station
-                decrease *= 5;
+                var protoObject = hit.WorldObject.ProtoWorldObject;
+                if (protoObject is IProtoObjectWall
+                    || protoObject is IProtoObjectDoor
+                    || protoObject is IProtoObjectTradingStation)
+                {
+                    // hit wall, door or station
+                    decrease *= 5;
+                    break;
+                }
             }
 
             ItemDurabilitySystem.ServerModifyDurability(

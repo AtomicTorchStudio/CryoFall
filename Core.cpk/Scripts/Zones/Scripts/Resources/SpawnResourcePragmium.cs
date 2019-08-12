@@ -18,11 +18,12 @@
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
+            // this resource is not spawned on the world init
             triggers
-                // trigger on world init
-                .Add(GetTrigger<TriggerWorldInit>())
                 // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromHours(8)));
+                .Add(GetTrigger<TriggerTimeInterval>().Configure(
+                         intervalFrom: TimeSpan.FromHours(6),
+                         intervalTo: TimeSpan.FromHours(10)));
 
             var presetPragmiumSource = spawnList.CreatePreset(interval: 180, padding: 3)
                                                 .Add<ObjectMineralPragmiumSource>()

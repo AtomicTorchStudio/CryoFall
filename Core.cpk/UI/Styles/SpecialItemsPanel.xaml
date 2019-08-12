@@ -35,6 +35,8 @@
 
     <Style x:Key="TextBlockItemTitleStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="11" />
+        <Setter Property="LineHeight" Value="11" />
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
         <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
         <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
         <Setter Property="FontWeight" Value="Bold" />

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data
 {
+    using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems;
@@ -22,6 +23,8 @@
 
         private readonly ICharacter character;
 
+        private readonly Action<Recipe> customCallbackOnRecipeSelect;
+
         private readonly bool validateItemsAvailabilityInPlayerInventory;
 
         private ushort countToCraft = 1;
@@ -34,9 +37,12 @@
 
         private ViewModelCraftingRecipe viewModelRecipe;
 
-        public ViewModelCraftingMenuRecipeDetails(bool validateItemsAvailabilityInPlayerInventory)
+        public ViewModelCraftingMenuRecipeDetails(
+            bool validateItemsAvailabilityInPlayerInventory,
+            Action<Recipe> customCallbackOnRecipeSelect = null)
         {
             this.validateItemsAvailabilityInPlayerInventory = validateItemsAvailabilityInPlayerInventory;
+            this.customCallbackOnRecipeSelect = customCallbackOnRecipeSelect;
             this.countToCraftString = this.countToCraft.ToString();
 
             if (IsDesignTime)
@@ -99,9 +105,10 @@
                 }
                 else
                 {
-                    if (value > CraftingSystem.MaxCraftingQueueEntriesCount)
+                    var maxCraftingQueueEntriesCount = CraftingSystem.ClientCurrentMaxCraftingQueueEntriesCount;
+                    if (value > maxCraftingQueueEntriesCount)
                     {
-                        value = CraftingSystem.MaxCraftingQueueEntriesCount;
+                        value = maxCraftingQueueEntriesCount;
                     }
                 }
 
@@ -273,8 +280,14 @@
                 return;
             }
 
-            await Api.GetProtoEntity<CraftingSystem>()
-                     .ClientStartCrafting(this.viewModelRecipe.Recipe, this.countToCraft);
+            if (this.customCallbackOnRecipeSelect != null)
+            {
+                this.customCallbackOnRecipeSelect.Invoke(this.viewModelRecipe.Recipe);
+            }
+            else
+            {
+                await CraftingSystem.ClientStartCrafting(this.viewModelRecipe.Recipe, this.countToCraft);
+            }
 
             // after starting craft - automatically limit count to craft to the maximum value
             var max = this.MaximumCraftingCount;

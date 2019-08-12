@@ -2,7 +2,6 @@
 {
     using System.Windows.Media.Animation;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Respawn.Data;
@@ -53,7 +52,7 @@
                         || loadingSplashScreenState == LoadingSplashScreenState.Showing
                             ? 0
                             : 2;
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 delaySeconds: delay,
                 action: () =>
                         {

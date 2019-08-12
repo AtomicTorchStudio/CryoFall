@@ -22,7 +22,7 @@
                 .Add(RequirementVisitTile.Require<TileBarren>());
 
             prerequisites
-                .Add<QuestExploreRuins>()
+                .Add<QuestEstablishPowerGrid>()
                 .Add<QuestBuildMedicalLab>();
         }
     }

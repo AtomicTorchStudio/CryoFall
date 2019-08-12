@@ -55,7 +55,7 @@
         {
             var worldObject = data.GameObject;
             var clientState = data.ClientState;
-            var itemsContainer = data.SyncPublicState.ItemsContainer;
+            var itemsContainer = data.PublicState.ItemsContainer;
 
             // create sprite renderer for back part
             Client.Rendering.CreateSpriteRenderer(
@@ -134,14 +134,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((0.8, 0.35), offset: (0.1, 0.1))
-                .AddShapeRectangle((0.8, 1.5),  (0.1, 0), CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((0.8, 1.5),
-                                   (0.1, 0),
-                                   group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((0.8, 1.5),
-                                   (0.1, 0),
-                                   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.8, 0.35), offset: (0.1, 0.1))
+                .AddShapeRectangle(size: (0.8, 1.5),  offset: (0.1, 0),   group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.8, 0.4),  offset: (0.1, 0.9), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.8, 1.5),  offset: (0.1, 0),   group: CollisionGroups.ClickArea);
         }
     }
 }

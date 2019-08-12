@@ -20,7 +20,6 @@
             duration = CraftingDuration.Second;
 
             inputItems.Add<ItemLogs>(count: 2);
-            inputItems.Add<ItemOrePyrite>(count: 10);
             inputItems.Add<ItemBottleWater>(count: 1);
 
             outputItems.Add<ItemPaper>(count: 10);

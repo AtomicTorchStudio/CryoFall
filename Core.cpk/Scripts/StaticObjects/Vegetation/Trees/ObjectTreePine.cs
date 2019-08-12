@@ -10,7 +10,7 @@
 
     public class ObjectTreePine : ProtoObjectTree
     {
-        public override string Name => "Pine tree";
+        public override string Name => "Spruce tree";
 
         protected override TimeSpan TimeToMature => TimeSpan.FromHours(2);
 
@@ -44,17 +44,9 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (0.8, 0.4),
-                    offset: (0.1, 0.1))
-                .AddShapeRectangle(
-                    size: (0.8, 1),
-                    offset: (0.1, 0.1),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (0.7, 1.1),
-                    offset: (0.15, 0.1),
-                    group: CollisionGroups.HitboxRanged);
+                .AddShapeRectangle(size: (0.8, 0.4), offset: (0.1, 0.1))
+                .AddShapeRectangle(size: (0.8, 1),   offset: (0.1, 0.1),  group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.4, 0.35), offset: (0.3, 0.8), group: CollisionGroups.HitboxRanged);
         }
     }
 }

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Windows.Controls;
     using System.Windows.Media.Animation;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Quests;
     using AtomicTorch.CBND.CoreMod.UI.Services;
@@ -49,7 +48,7 @@
                 = new Dictionary<PlayerCharacterQuests.CharacterQuestEntry, HUDQuestTrackingEntryControl>();
             this.stateSubscriptionStorage = new StateSubscriptionStorage();
 
-            ClientComponentUpdateHelper.UpdateCallback += this.Update;
+            ClientUpdateHelper.UpdateCallback += this.Update;
             this.questsList = ClientCurrentCharacterHelper.PrivateState.Quests.Quests;
             this.questsList.ClientElementInserted += this.QuestsListElementInserted;
             this.questsList.ClientElementRemoved += this.QuestsListElementRemoved;
@@ -62,7 +61,7 @@
 
         protected override void OnUnloaded()
         {
-            ClientComponentUpdateHelper.UpdateCallback -= this.Update;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
             this.questsList.ClientElementInserted -= this.QuestsListElementInserted;
             this.questsList.ClientElementRemoved -= this.QuestsListElementRemoved;
             this.questsList = null;

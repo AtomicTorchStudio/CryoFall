@@ -4,11 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
 
@@ -32,6 +34,20 @@
         private const int MaxItemsToConsumePerRefill = 1;
 
         public override string Name => "Item fuel refill system";
+
+        public static void ServerNotifyItemRefilled(IItem item)
+        {
+            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(item, scopedBy);
+            if (scopedBy.Count == 0)
+            {
+                return;
+            }
+
+            var currentFuelAmount = item.GetPrivateState<ItemWithFuelPrivateState>()
+                                        .FuelAmount;
+            Instance.CallClient(scopedBy, _ => _.ClientRemote_SetItemFuelAmount(item, currentFuelAmount));
+        }
 
         public ItemFuelRefillRequest ClientTryCreateRequest(ICharacter character, IItem item)
         {
@@ -124,8 +140,9 @@
             }
 
             protoItemFuelRefillable.ItemFuelConfig
-                                   .SharedOnRefilled(item, currentFuelAmount);
-            this.CallClient(character, _ => _.ClientRemote_SetItemFuelAmount(item, currentFuelAmount));
+                                   .SharedOnRefilled(item,
+                                                     currentFuelAmount,
+                                                     serverNotifyClients: true);
         }
 
         protected override ItemFuelRefillActionState SharedTryCreateState(ItemFuelRefillRequest request)
@@ -333,9 +350,13 @@
         {
             var protoItemFuelRefillable = (IProtoItemWithFuel)item.ProtoItem;
             protoItemFuelRefillable.ItemFuelConfig
-                                   .SharedOnRefilled(item, fuelAmount);
+                                   .SharedOnRefilled(item,
+                                                     fuelAmount,
+                                                     serverNotifyClients: false);
 
-            protoItemFuelRefillable.ClientOnRefilled(item);
+            protoItemFuelRefillable.ClientOnRefilled(
+                item,
+                isCurrentHotbarItem: item == ClientCurrentCharacterHelper.PublicState.SelectedHotbarItem);
         }
     }
 }

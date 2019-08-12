@@ -7,8 +7,7 @@
 
     public class ItemSeedsTomato : ProtoItemSeed
     {
-        public override string Description =>
-            "Tomato seeds for a very juicy variety of tomatoes specifically selected for this planet.";
+        public override string Description => GetProtoEntity<ItemSeedsBellPepper>().Description;
 
         public override string Name => "Tomato seeds";
 

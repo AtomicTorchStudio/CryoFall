@@ -38,7 +38,7 @@ Scripts/Base/Stats/StatName@WoodcuttingSpeed:
 Скорость рубки леса
 
 Scripts/Base/Stats/StatName@ForagingSpeed:
-Скорость собирательства
+Скорость сбора
 
 Scripts/Base/Stats/StatName@BuildingSpeed:
 Скорость строительства/сноса
@@ -54,6 +54,9 @@ Scripts/Base/Stats/StatName@FarmingTasksSpeed:
 
 Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
 Скорость роста растений
+
+Scripts/Base/Stats/StatName@SearchingSpeed:
+Скорость поиска
 
 Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 Бонус к урону
@@ -115,9 +118,6 @@ Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Время перезарядки
 
-Scripts/Base/Stats/StatName@LearningPointsRetainedAfterDeath:
-Остаток ОТ в случае смерти
-
 Scripts/Base/Stats/StatName@CraftingSpeed:
 Скорость крафтинга
 
@@ -145,12 +145,48 @@ Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
 Способность есть испорченную еду
 
-Scripts/Base/Stats/StatName@SearchingSpeed:
-Скорость поиска
-
-Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 Урон от радиационного поражения
 
-Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+Scripts/Base/Stats/StatName@RadiationPoisoningIncreaseRateMultiplier:
 Скорость накопления радиации
+
+Scripts/Base/Stats/StatName@ToxinsIncreaseRateMultiplier:
+Скорость накопления токсинов
+
+Scripts/Base/Stats/StatName@BleedingIncreaseRateMultiplier:
+Кровотечение
+
+Scripts/Base/Stats/StatName@HeatIncreaseRateMultiplier:
+Скорость увеличения перегрева
+
+Scripts/Base/Stats/StatName@HeatEffectMultiplier:
+Урон от перегрева
+
+Scripts/Base/Stats/StatName@PainIncreaseRateMultiplier:
+Боль
+
+Scripts/Base/Stats/StatName@PsiEffectMultiplier:
+Урон от пси-воздействия
+
+Scripts/Base/Stats/StatName@DazedIncreaseRateMultiplier:
+Оглушение
+
+Scripts/Base/Stats/StatName@LandClaimsMaxNumber:
+Макс. кол-во зон контроля
+
+Scripts/Base/Stats/StatName@VanityContinuousDamage:
+Продолжительный урон
+
+Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
+Невозможно есть или пить
+
+Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
+Получение очков технологий
+
+Scripts/Base/Stats/StatName@TinkerTableBonus:
+Эффективность стола мастера
+
+Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
+Ячейки очереди крафтинга
 

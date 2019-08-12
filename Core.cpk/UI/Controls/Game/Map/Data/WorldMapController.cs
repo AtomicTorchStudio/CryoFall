@@ -9,7 +9,6 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Shapes;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -47,10 +46,6 @@
         private readonly List<Vector2Ushort> queueChunks
             = new List<Vector2Ushort>(capacity: 10000);
 
-        private readonly TextBlock textBlockCurrentPosition;
-
-        private readonly TextBlock textBlockPointedPosition;
-
         private ClientComponentWorldMapCurrentCharacterUpdater componentCurrentCharacterUpdater;
 
         private bool isDisposed;
@@ -71,12 +66,13 @@
 
         private double? timeForNextUpdate = 0;
 
+        private ViewModelControlWorldMap viewModelControlWorldMap;
+
         private BoundsUshort worldBounds;
 
         public WorldMapController(
             PanningPanel panningPanel,
-            TextBlock textBlockCurrentPosition,
-            TextBlock textBlockPointedPosition,
+            ViewModelControlWorldMap viewModelControlWorldMap,
             bool isEditorMap)
         {
             this.cancellationTokenSource = new CancellationTokenSource();
@@ -85,8 +81,7 @@
                                      .Token;
 
             this.panningPanel = panningPanel;
-            this.textBlockCurrentPosition = textBlockCurrentPosition;
-            this.textBlockPointedPosition = textBlockPointedPosition;
+            this.viewModelControlWorldMap = viewModelControlWorldMap;
             this.IsEditorMap = isEditorMap;
             this.canvasMap = new Canvas();
             this.canvasMapChildren = this.canvasMap.Children;
@@ -120,7 +115,7 @@
             WorldService.WorldBoundsChanged += this.WorldBoundsChangedHandler;
             panningPanel.MouseLeftButtonClick += this.PanningPanelMouseLeftButtonClickHandler;
             panningPanel.PreviewMouseLeftButtonDown += this.PanningPanelPreviewMouseLeftButtonDownHandler;
-            ClientComponentUpdateHelper.UpdateCallback += this.Update;
+            ClientUpdateHelper.UpdateCallback += this.Update;
 
             // init map
             this.InitMap();
@@ -181,7 +176,7 @@
             WorldService.WorldBoundsChanged -= this.WorldBoundsChangedHandler;
             this.panningPanel.MouseLeftButtonClick -= this.PanningPanelMouseLeftButtonClickHandler;
             this.panningPanel.PreviewMouseLeftButtonDown -= this.PanningPanelPreviewMouseLeftButtonDownHandler;
-            ClientComponentUpdateHelper.UpdateCallback -= this.Update;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
 
             this.cancellationTokenSource.Cancel();
         }
@@ -388,12 +383,14 @@
             this.UpdateMapBoundsIfDirty();
             this.UpdateExtraControlsZoom();
 
+            this.UpdateMapExplorationProgress();
+
             var currentWorldPosition = this.componentCurrentCharacterUpdater.WorldPosition.ToVector2Ushort();
             var currentMapPosition = currentWorldPosition - this.worldBounds.Offset;
             if (currentMapPosition != this.lastCurrentMapPosition)
             {
                 this.lastCurrentMapPosition = currentMapPosition;
-                this.textBlockCurrentPosition.Text = currentMapPosition.ToString();
+                this.viewModelControlWorldMap.CurrentPositionText = currentMapPosition.ToString();
                 if (this.newChunksHashSet.Count == 0)
                 {
                     // reorder queue to load chunks which are closer to the character first
@@ -409,7 +406,7 @@
             if (pointedMapPosition != this.lastPointedMapPosition)
             {
                 this.lastPointedMapPosition = pointedMapPosition;
-                this.textBlockPointedPosition.Text = pointedMapPosition.ToString();
+                this.viewModelControlWorldMap.PointedPositionText = pointedMapPosition.ToString();
             }
 
             // helper local func to center map on the player position
@@ -585,6 +582,20 @@
                 maxY: this.WorldToCanvasPosition((0, boundsVisible.MinY)).Y);
 
             this.panningPanel.SetZoom(this.panningPanel.CurrentZoom);
+        }
+
+        private void UpdateMapExplorationProgress()
+        {
+            if (Api.Client.Characters.IsCurrentPlayerCharacterSpectator)
+            {
+                this.viewModelControlWorldMap.MapExploredPercent = 100;
+                return;
+            }
+
+            var totalWorldChunksCount = WorldService.DiscoverableWorldChunksTotalCount;
+            var percent = WorldService.DiscoveredWorldChunksCount / (double)totalWorldChunksCount;
+            percent = Math.Min(percent, 1.0);
+            this.viewModelControlWorldMap.MapExploredPercent = (byte)Math.Ceiling(100 * percent);
         }
 
         private void WorldBoundsChangedHandler()

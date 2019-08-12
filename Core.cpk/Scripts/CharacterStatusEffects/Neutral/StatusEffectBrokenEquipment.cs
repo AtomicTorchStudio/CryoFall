@@ -15,8 +15,6 @@
         // does not decrease, it is purely informative effect
         public override double IntensityAutoDecreasePerSecondValue => 0;
 
-        public override bool IsIntensityPercentVisible => false;
-
         public override StatusEffectKind Kind => StatusEffectKind.Debuff;
 
         public override string Name => "Broken equipment";

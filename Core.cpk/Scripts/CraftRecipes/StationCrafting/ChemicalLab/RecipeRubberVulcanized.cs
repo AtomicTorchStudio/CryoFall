@@ -19,7 +19,7 @@
             duration = CraftingDuration.Short;
 
             inputItems.Add<ItemRubberRaw>(count: 5);
-            inputItems.Add<ItemSulfurPowder>(count: 20);
+            inputItems.Add<ItemSulfurPowder>(count: 10);
 
             outputItems.Add<ItemRubberVulcanized>(count: 1);
         }

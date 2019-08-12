@@ -9,7 +9,7 @@
         public override string Description
             => "Stone axe can be used to chop trees.";
 
-        public override ushort DurabilityMax => 500;
+        public override uint DurabilityMax => 500;
 
         public override string Name => "Stone axe";
     }

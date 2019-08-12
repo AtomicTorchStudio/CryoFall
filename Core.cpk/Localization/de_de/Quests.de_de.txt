@@ -2,7 +2,7 @@
 Baue: {0}
 
 Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-Stelle Technologiegruppe fertig: {0}
+Vollenden: {0} (Technologiegruppe)
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
 an {0}
@@ -23,19 +23,19 @@ Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
 Rüste aus: {0}
 
 Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-Lerne Fähigkeit: {0} auf Level {1}
+Lerne {0} (Fähigkeit) auf Level {1}
 
 Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-Lerne Fähigkeiten: {0} auf Level {1}
+Lerne {0} (Fähigkeiten) auf Level {1}
 
 Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-Schalte Technologiegruppe frei: {0}
+Freischalten: {0} (Tech.-Gruppe)
 
 Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-Schalte {0} Technologiegruppe frei: {1}
+Freischalten: {0} ({1} Tech.-Gruppen)
 
 Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-Erlerne Technologie: {0} (zu finden in Gruppe: {1})
+Erlerne: {0} (in {1} Tech.-Gruppe)
 
 Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
 Töte: {0}
@@ -464,6 +464,21 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Brechstange zum Abreißen benutzen
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
+Bestimmte Ressourcen wie Erdöl und Lithium werden für erweiterte Technologien verwendet. Es ist von enormer Wichtigkeit zu lernen, wie diese sich gewinnen lassen.
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Ölschotenfrüchte sind überall in den [u]nördlichen Wäldern[/u] zu finden. Aus ihnen lässt sich eine kleine Menge von Erdöl gewinnen.
+[*] [u]Lithiumsalz[/u] ist ein Nebenprodukt des herkömmlichen Salzabbaus.
+[*] Salze sind in den [u]Salztonebenen[/u] der Wüste zu finden.
+[*] Das Erlernen von [u]Xenogeologie[/u] bietet Möglichkeiten zur industriellen Gewinnung dieser Ressourcen.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
+Erweitere Ressourcenbeschaffung
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Baue Salz ab
+
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Fortschritte in der Industrie und Konstruktion erfordern wissenschaftliche Grundlagen, insbesondere der Chemie.
 
@@ -492,6 +507,20 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Das Meistern von Technologien – Teil 2
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
+Der Aufbau eines Stromnetzes in deiner Basis wird deine Effizienz zunehmend verbessern. Es gibt viele erweiterte Konstruktionen, die Strom benötigen, um zu funktionieren.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
+`[*] Elektronische Geräte funktionieren ausschließlich [b]innerhalb[/b] eines Land Claim-Bereichs. Elektronische Geräte außerhalb eines Land Claim-Bereichs zu bauen, ist zwecklos.
+[*] Strom wird in Gebäuden zur [b]Stromspeicherung[/b] gelagert und kann so jederzeit bequem genutzt werden. Es ist sinnvoll, die Gesamtstromkapazität deiner Basis zu erhöhen.
+[*] Verschiedene Arten von [b]Generatoren[/b], z.B. Dampferzeuger, Solar- und Motorgeneratoren, können gemeinsam zur Stromerzeugung genutzt werden.
+[*] Solltest du [u]nicht genügend[/u] Strom gespeichert haben, kommt es in deiner Basis zu einem [b]Stromausfall[/b] und du musst die Stromversorgung manuell wiederherstellen.
+[*] [b]Detaillierte Informationen zum Stromnetz[/b] lassen sich beim Interagieren mit Stromspeichern oder deinem Land Claim abrufen.
+[*] Mehrere miteinander verbundene Land Claims gelten als [b]einzelnes Stromnetz[/b].`
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
+Baue ein Stromnetz auf
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
 Es gibt Biome, die schwerer zugänglich sind und so eine zusätzliche Herausforderung darstellen können, jedoch bieten sie dir im Gegenzug dazu einzigartige Ressourcen.
 
@@ -501,6 +530,12 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
 Biome erkunden – Teil 3
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
+[*] [b]Vulkanische Biome[/b] sind extrem gefährlich. Ihr Besuch erfordert Schutz vor extremer [b]Hitze[/b].
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
+Biome erkunden – Teil 4
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 Alte Ruinen sind der beste Ort, um seltene Komponenten und Ressourcen zu finden. Es bietet sich an, sie gelegentlich zu erkunden, vor allem wenn du die dafür notwendige Ausrüstung besitzt.
@@ -530,4 +565,7 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 Meisterjäger – Teil 4
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
+Meisterjäger – Teil 5
 

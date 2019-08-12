@@ -58,8 +58,9 @@
 
         public string LabelFormat => "{0:F0}/{1:F0} " + CoreStrings.EnergyUnitAbbreviation;
 
-        private static Brush GetBrush(double fraction)
+        public static Brush GetBrush(double charge, double capacity)
         {
+            var fraction = charge / capacity;
             if (fraction > 0.5)
             {
                 return BrushGreen;
@@ -76,7 +77,7 @@
         private void Refresh()
         {
             this.Charge = (uint)this.itemPrivateState.EnergyCharge;
-            this.Brush = GetBrush(this.Charge / (double)this.Capacity);
+            this.Brush = GetBrush(this.Charge, this.Capacity);
         }
     }
 }

@@ -9,7 +9,6 @@
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Data"
     xmlns:editor="clr-namespace:AtomicTorch.CBND.CoreMod.Editor"
     xmlns:notifications="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;assembly=Core"
-    xmlns:questTracking="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Quests.QuestTracking;assembly=Core"
     mc:Ignorable="d"
     d:DesignWidth="1280" d:DesignHeight="800"
     d:DataContext="{d:DesignInstance data:ViewModelEditorHUDLayoutControl, IsDesignTimeCreatable=True}"

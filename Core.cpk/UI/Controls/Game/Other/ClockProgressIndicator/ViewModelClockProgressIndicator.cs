@@ -118,31 +118,29 @@
                               height / 2 + height * 2 * Math.Sin(angleRad));
 
             // let's build geometry to make a "clock"-style cutout
-            using (var ctx = streamGeometry.Open())
+            using var ctx = streamGeometry.Open();
+            ctx.BeginFigure(new Point(width / 2, 0), true, true);
+            ctx.LineTo(new Point(width / 2,      height / 2), true, true);
+            ctx.LineTo(new Point(point.X,        point.Y),    true, true);
+
+            if (angleDeg < 45)
             {
-                ctx.BeginFigure(new Point(width / 2, 0), true, true);
-                ctx.LineTo(new Point(width / 2,      height / 2), true, true);
-                ctx.LineTo(new Point(point.X,        point.Y),    true, true);
+                ctx.LineTo(new Point(width, 0), true, true);
+            }
 
-                if (angleDeg < 45)
-                {
-                    ctx.LineTo(new Point(width, 0), true, true);
-                }
+            if (angleDeg < 180)
+            {
+                ctx.LineTo(new Point(width, height), true, true);
+            }
 
-                if (angleDeg < 180)
-                {
-                    ctx.LineTo(new Point(width, height), true, true);
-                }
+            if (angleDeg < 270)
+            {
+                ctx.LineTo(new Point(0, height), true, true);
+            }
 
-                if (angleDeg < 270)
-                {
-                    ctx.LineTo(new Point(0, height), true, true);
-                }
-
-                if (angleDeg < 315)
-                {
-                    ctx.LineTo(new Point(0, 0), true, true);
-                }
+            if (angleDeg < 315)
+            {
+                ctx.LineTo(new Point(0, 0), true, true);
             }
         }
 

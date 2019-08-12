@@ -100,3 +100,10 @@ Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
 顯示土地所有者與生命條
 
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
+`維修和建築行動受到限制。
+[br]襲擊防護結束於： {0}。`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
+此基地正遭受襲擊。
+

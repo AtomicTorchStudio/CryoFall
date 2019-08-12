@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
+    using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Zones;
@@ -22,6 +23,11 @@
               StaticObjectClientState>,
           IProtoObjectExtractor
     {
+        /// <summary>
+        /// Public extractors are x2 faster in PvP.
+        /// </summary>
+        public const double PublicExtractorSpeedMultiplierInPvP = 2.0;
+
         public override bool IsAutoSelectRecipe => true;
 
         public override bool IsFuelProduceByproducts => false;
@@ -45,6 +51,32 @@
             }
 
             base.ServerApplyDecay(worldObject, deltaTime);
+        }
+
+        public override bool SharedOnDamage(
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject,
+            double damagePreMultiplier,
+            out double obstacleBlockDamageCoef,
+            out double damageApplied)
+        {
+            foreach (var tileObject in targetObject.OccupiedTile.StaticObjects)
+            {
+                if (tileObject.ProtoStaticWorldObject is IProtoObjectDeposit protoObjectDeposit
+                    && protoObjectDeposit.LifetimeTotalDurationSeconds <= 0)
+                {
+                    // damaging extractor built over the infinite deposit
+                    damageApplied = 0;
+                    obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
+                    return true;
+                }
+            }
+
+            return base.SharedOnDamage(weaponCache,
+                                       targetObject,
+                                       damagePreMultiplier,
+                                       out obstacleBlockDamageCoef,
+                                       out damageApplied);
         }
 
         protected override void ClientDeinitializeStructure(IStaticWorldObject gameObject)
@@ -90,14 +122,15 @@
             objectDeposit?.ClientInitialize();
         }
 
-        protected virtual void ClientSetupOilPumpActiveAnimation(
+        protected virtual void ClientSetupExtractorActiveAnimation(
             IStaticWorldObject worldObject,
             ObjectManufacturerPublicState serverPublicState,
             ITextureAtlasResource textureAtlasResource,
             Vector2D positionOffset,
             double frameDurationSeconds,
             bool autoInverseAnimation = false,
-            bool playSounds = true,
+            bool randomizeInitialFrame = false,
+            bool playAnimationSounds = true,
             OnRefreshActiveState onRefresh = null)
         {
             var clientState = worldObject.GetClientState<StaticObjectClientState>();
@@ -117,20 +150,21 @@
                 ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
                     textureAtlasResource,
                     autoInverse: autoInverseAnimation),
-                frameDurationSeconds: frameDurationSeconds);
+                frameDurationSeconds: frameDurationSeconds,
+                randomizeInitialFrame: randomizeInitialFrame);
 
             // we play Active sound for pumping on both up and down position of the oil pump
             var componentActiveState = sceneObject.AddComponent<ClientComponentOilPumpActiveState>();
-            componentActiveState.Setup(overlayRenderer, spriteSheetAnimator, worldObject, playSounds);
+            componentActiveState.Setup(overlayRenderer, spriteSheetAnimator, worldObject, playAnimationSounds);
 
             serverPublicState.ClientSubscribe(
-                s => s.IsManufacturingActive,
+                s => s.IsActive,
                 callback: RefreshActiveState,
                 subscriptionOwner: clientState);
 
             spriteSheetAnimator.IsEnabled = overlayRenderer.IsEnabled = false;
 
-            RefreshActiveState(serverPublicState.IsManufacturingActive);
+            RefreshActiveState(serverPublicState.IsActive);
 
             void RefreshActiveState(bool isActive)
             {
@@ -195,16 +229,19 @@
             var objectDeposit = this.SharedGetDepositWorldObject(worldObject.OccupiedTile);
 
             var isPvEserver = PveSystem.ServerIsPvE;
+            var fuelBurningState = privateState.FuelBurningState;
             if (objectDeposit == null
                 && !isPvEserver)
             {
                 // no deposit object - stop progressing
                 privateState.LiquidContainerState.Amount = 0;
-                privateState.FuelBurningState.FuelUseTimeRemainsSeconds = 0;
+                if (fuelBurningState != null)
+                {
+                    fuelBurningState.FuelUseTimeRemainsSeconds = 0;
+                }
+
                 return;
             }
-
-            var fuelBurningState = privateState.FuelBurningState;
 
             var deltaTime = data.DeltaTime;
             var deltaTimeForManufacturing = deltaTime;
@@ -212,23 +249,61 @@
                 && isPvEserver)
             {
                 // On PvE servers extractors work on reduced speed
-                // if there is no deposit.
+                // if there is no deposit (the extractor built by player anywhere).
                 deltaTimeForManufacturing *= PveSystem.DepositExtractorWithoutDepositActionSpeedMultiplier;
             }
+            else if (objectDeposit != null
+                     && !isPvEserver
+                     && objectDeposit.ProtoStaticWorldObject is IProtoObjectDeposit protoObjectDeposit
+                     && protoObjectDeposit.LifetimeTotalDurationSeconds <= 0)
+            {
+                // Public extractor (for infinite deposit) in PvP. Much faster extraction.
+                deltaTimeForManufacturing *= PublicExtractorSpeedMultiplierInPvP;
+            }
 
-            // Please note: fuel is used only to produce oil.
-            // Fuel is not used for "petroleum canister" crafting.
+            // apply extraction rate multiplier
+            deltaTimeForManufacturing *= StructureConstants.ManufacturingSpeedMultiplier;
+
+            var isActive = false;
             var isFull = privateState.LiquidContainerState.Amount >= this.LiquidContainerConfig.Capacity;
-            FuelBurningMechanic.Update(
-                worldObject,
-                fuelBurningState,
-                null,
-                this.ManufacturingConfig,
-                deltaTime,
-                isNeedFuelNow: !isFull);
 
-            var isFuelBurning = fuelBurningState.FuelUseTimeRemainsSeconds > 0;
-            data.PublicState.IsManufacturingActive = isFuelBurning;
+            if (fuelBurningState == null)
+            {
+                // no fuel burning state
+                if (this.ElectricityConsumptionPerSecondWhenActive <= 0)
+                {
+                    // no fuel burning and no electricity consumption - always active
+                    isActive = true;
+                }
+                else
+                {
+                    // Consuming electricity.
+                    // Active only if electricity state is on and has active recipe.
+                    var publicState = data.PublicState;
+                    if (publicState.ElectricityConsumerState == ElectricityConsumerState.PowerOn)
+                    {
+                        isActive = !isFull;
+                    }
+                }
+            }
+            else
+            {
+                // Please note: fuel is used only to produce oil.
+                // Fuel is not used for "petroleum canister" crafting.
+                FuelBurningMechanic.Update(
+                    worldObject,
+                    fuelBurningState,
+                    byproductsCraftQueue: null,
+                    this.ManufacturingConfig,
+                    deltaTime,
+                    byproductsQueueRate: 1,
+                    isNeedFuelNow: !isFull);
+
+                var isFuelBurning = fuelBurningState.FuelUseTimeRemainsSeconds > 0;
+                isActive = isFuelBurning;
+            }
+
+            data.PublicState.IsActive = isActive;
 
             LiquidContainerSystem.UpdateWithManufacturing(
                 worldObject,
@@ -237,8 +312,8 @@
                 data.PrivateState.ManufacturingState,
                 this.ManufacturingConfig,
                 deltaTimeForManufacturing,
-                // the pump produce petroleum only when fuel is burning
-                isProduceLiquid: isFuelBurning,
+                // the pump produce petroleum only when active
+                isProduceLiquid: data.PublicState.IsActive,
                 forceUpdateRecipe: true);
         }
 

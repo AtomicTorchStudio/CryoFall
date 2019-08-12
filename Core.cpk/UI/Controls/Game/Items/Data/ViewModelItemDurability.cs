@@ -2,17 +2,18 @@
 {
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
 
     public class ViewModelItemDurability : BaseViewModel
     {
-        private static readonly Brush BrushGreen = new SolidColorBrush(Color.FromArgb(0x99, 0x20, 0xC0, 0x20));
+        public static readonly Brush BrushGreen = new SolidColorBrush(Color.FromArgb(0x99, 0x20, 0xC0, 0x20));
 
-        private static readonly Brush BrushRed = new SolidColorBrush(Color.FromArgb(0xBB, 0xE0, 0x10, 0x10));
+        public static readonly Brush BrushRed = new SolidColorBrush(Color.FromArgb(0xBB, 0xE0, 0x10, 0x10));
 
-        private static readonly Brush BrushYellow = new SolidColorBrush(Color.FromArgb(0xAA, 0xE0, 0xE0, 0x10));
+        public static readonly Brush BrushYellow = new SolidColorBrush(Color.FromArgb(0xAA, 0xE0, 0xE0, 0x10));
 
         private IItemWithDurabilityPrivateState durabilityPrivateState;
 
@@ -20,9 +21,9 @@
 
         public Brush Brush { get; private set; }
 
-        public ushort DurabilityCurrent { get; set; }
+        public uint DurabilityCurrent { get; set; }
 
-        public ushort DurabilityMax { get; private set; }
+        public uint DurabilityMax { get; private set; }
 
         public IItem Item
         {
@@ -58,12 +59,12 @@
 
         private static Brush GetBrush(double fraction)
         {
-            if (fraction > 0.5)
+            if (fraction >= ItemDurabilitySystem.ThresholdFractionGreenStatus)
             {
                 return BrushGreen;
             }
 
-            if (fraction > 0.2)
+            if (fraction >= ItemDurabilitySystem.ThresholdFractionYellowStatus)
             {
                 return BrushYellow;
             }

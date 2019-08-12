@@ -58,15 +58,15 @@
 
             if (container.ProtoItemsContainer is IProtoItemsContainerFridge protoFridge)
             {
-                var freshnessDecreaseCoefficient = protoFridge.GetFoodFreshnessDecreaseCoefficient(container);
+                var freshnessDecreaseCoefficient = protoFridge.SharedGetCurrentFoodFreshnessDecreaseCoefficient(container);
                 if (freshnessDecreaseCoefficient <= 0)
                 {
-                    // this fridge container stops spoilage!
+                    // this fridge container stops spoilage
                     return;
                 }
 
                 freshnessDecreaseCoefficient = Math.Min(freshnessDecreaseCoefficient, 1);
-                if (freshnessDecreaseCoefficient < 1.0f)
+                if (freshnessDecreaseCoefficient < 1.0)
                 {
                     // calculate freshness decrease value 
                     freshnessDecrease = (uint)Math.Round(freshnessDecrease * freshnessDecreaseCoefficient,

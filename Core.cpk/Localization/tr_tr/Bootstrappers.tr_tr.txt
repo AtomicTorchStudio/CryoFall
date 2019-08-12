@@ -1,0 +1,17 @@
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+`İstemci, Ana Sunucu ile bağlantı kuramadı.
+[br]Lütfen internet bağlantınızın olduğundan ve güvenlik duvarınızın
+[br]veya ISS'nizin bağlantınızı engellemediğinden emin olun.`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Title:
+Ana Sunucuya bağlanılamıyor
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_MessageFormat:
+`Bu oyun sunucusu aşağıdaki modları gerektiriyor:
+[br]{0}
+[br][br]Katılmak için lütfen bu modları indirin ve kurun.
+[br]Modlara resmi forumlardan ulaşabilirsiniz: http://forums.atomictorch.com/index.php?board=24.0`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_Title:
+Bağlanılamıyor—eksik modlar
+

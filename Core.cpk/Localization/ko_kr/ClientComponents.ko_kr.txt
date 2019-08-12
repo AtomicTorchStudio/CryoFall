@@ -100,3 +100,10 @@ Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
 점유한 토지 및 체력 막대 표시
 
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
+`수리 및 건축 활동이 제한됩니다.
+[br]습격 방해가 만료되기까지 남은 시간: {0}.`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
+이 기지는 습격 방해 상태입니다
+

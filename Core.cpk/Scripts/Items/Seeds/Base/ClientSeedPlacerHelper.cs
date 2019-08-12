@@ -51,8 +51,7 @@
                 isDrawConstructionGrid: true,
                 isBlockingInput: false,
                 validateCanPlaceCallback: OnValidate,
-                placeSelectedCallback: OnPlaceSelected,
-                maxDistance: MaxSeedPlacementDistance);
+                placeSelectedCallback: OnPlaceSelected);
         }
 
         private static void OnPlaceSelected(Vector2Ushort tilePosition)
@@ -60,13 +59,18 @@
             currentSelectedProtoSeed.ClientPlaceAt(currentSelectedSeedItem, tilePosition);
         }
 
-        private static bool OnValidate(Vector2Ushort tilePosition, bool logErrors)
+        private static void OnValidate(
+            Vector2Ushort tilePosition,
+            bool logErrors,
+            out bool canPlace,
+            out bool isTooFar)
         {
-            var character = Client.Characters.CurrentPlayerCharacter;
-            return currentSelectedProtoSeed.SharedIsValidPlacementPosition(
+            currentSelectedProtoSeed.SharedIsValidPlacementPosition(
                 tilePosition,
-                character,
-                logErrors: logErrors);
+                Client.Characters.CurrentPlayerCharacter,
+                logErrors: logErrors,
+                canPlace: out canPlace,
+                isTooFar: out isTooFar);
         }
     }
 }

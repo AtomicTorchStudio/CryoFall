@@ -1,6 +1,12 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 곰
 
+Scripts/Characters/Mobs/MobBlackBeetle@Name:
+검은 딱정벌레
+
+Scripts/Characters/Mobs/MobBurrower@Name:
+땅굴벌레
+
 Scripts/Characters/Mobs/MobChicken@Name:
 닭
 
@@ -13,6 +19,9 @@ Scripts/Characters/Mobs/MobCrab@Name:
 Scripts/Characters/Mobs/MobCrawler@Name:
 크롤러
 
+Scripts/Characters/Mobs/MobFireLizard@Name:
+불꽃 도마뱀
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 벌꿀오소리
 
@@ -21,6 +30,9 @@ Scripts/Characters/Mobs/MobHyena@Name:
 
 Scripts/Characters/Mobs/MobPangolin@Name:
 천산갑
+
+Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
+프라그뮴 딱정벌레
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 달팽이

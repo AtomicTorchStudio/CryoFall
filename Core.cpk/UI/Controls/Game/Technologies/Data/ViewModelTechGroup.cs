@@ -16,10 +16,10 @@
             this.TechGroup = techGroup;
             this.Icon = Client.UI.GetTextureBrush(this.TechGroup.Icon);
 
-            this.TechGroup.NodesChanged += this.TechNodesChangedHandler;
-            ClientComponentTechnologiesWatcher.TechGroupsChanged += this.TechGroupsChangedHandler;
-            ClientComponentTechnologiesWatcher.TechNodesChanged += this.TechNodesChangedHandler;
-            ClientComponentTechnologiesWatcher.LearningPointsChanged += this.LearningPointsChangedHandler;
+            this.TechGroup.NodesChanged += this.Refresh;
+            ClientComponentTechnologiesWatcher.TechGroupsChanged += this.Refresh;
+            ClientComponentTechnologiesWatcher.TechNodesChanged += this.Refresh;
+            ClientComponentTechnologiesWatcher.LearningPointsChanged += this.Refresh;
 
             this.Refresh();
         }
@@ -27,6 +27,31 @@
         public bool CanUnlock { get; private set; }
 
         public string Description => this.TechGroup.Description;
+
+        public IReadOnlyList<BaseViewModelTechGroupRequirement> DisplayedRequirements
+        {
+            get
+            {
+                if (this.requirements != null)
+                {
+                    return this.requirements;
+                }
+
+                var list = new List<BaseViewModelTechGroupRequirement>(this.TechGroup.GroupRequirements.Count);
+                foreach (var requirement in this.TechGroup.GroupRequirements)
+                {
+                    if (requirement is TechGroupRequirementLearningPoints)
+                    {
+                        // do not display such requirement as we display it separately now
+                        continue;
+                    }
+
+                    list.Add(requirement.CreateViewModel());
+                }
+
+                return this.requirements = list;
+            }
+        }
 
         public Brush Icon { get; }
 
@@ -40,24 +65,7 @@
 
         public int NodesUnlockedCount { get; private set; }
 
-        public IReadOnlyList<BaseViewModelTechGroupRequirement> Requirements
-        {
-            get
-            {
-                if (this.requirements == null)
-                {
-                    var list = new List<BaseViewModelTechGroupRequirement>(this.TechGroup.GroupRequirements.Count);
-                    foreach (var requirement in this.TechGroup.GroupRequirements)
-                    {
-                        list.Add(requirement.CreateViewModel());
-                    }
-
-                    this.requirements = list;
-                }
-
-                return this.requirements;
-            }
-        }
+        public ushort RequiredLearningPoints => this.TechGroup.LearningPointsPrice;
 
         public TechGroup TechGroup { get; }
 
@@ -97,7 +105,9 @@
             }
             else
             {
-                var canUnlock = this.TechGroup.SharedCanUnlock(Client.Characters.CurrentPlayerCharacter, out _);
+                var canUnlock = this.TechGroup.SharedCanUnlock(Client.Characters.CurrentPlayerCharacter, 
+                                                               skipLearningPointsCheck: true,
+                                                               out _);
                 this.CanUnlock = canUnlock;
                 this.VisibilityLockedCanUnlock = canUnlock ? Visibility.Visible : Visibility.Collapsed;
                 this.VisibilityLockedCannotUnlock = !canUnlock ? Visibility.Visible : Visibility.Collapsed;
@@ -117,25 +127,10 @@
         {
             base.DisposeViewModel();
 
-            this.TechGroup.NodesChanged -= this.TechNodesChangedHandler;
-            ClientComponentTechnologiesWatcher.TechGroupsChanged -= this.TechGroupsChangedHandler;
-            ClientComponentTechnologiesWatcher.TechNodesChanged -= this.TechNodesChangedHandler;
-            ClientComponentTechnologiesWatcher.LearningPointsChanged -= this.LearningPointsChangedHandler;
-        }
-
-        private void LearningPointsChangedHandler()
-        {
-            this.Refresh();
-        }
-
-        private void TechGroupsChangedHandler()
-        {
-            this.Refresh();
-        }
-
-        private void TechNodesChangedHandler()
-        {
-            this.Refresh();
+            this.TechGroup.NodesChanged -= this.Refresh;
+            ClientComponentTechnologiesWatcher.TechGroupsChanged -= this.Refresh;
+            ClientComponentTechnologiesWatcher.TechNodesChanged -= this.Refresh;
+            ClientComponentTechnologiesWatcher.LearningPointsChanged -= this.Refresh;
         }
     }
 }

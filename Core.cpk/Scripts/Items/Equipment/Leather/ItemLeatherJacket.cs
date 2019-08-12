@@ -5,7 +5,7 @@
         public override string Description =>
             "Leather armor offers good overall protection and is ideal for early stages of development.";
 
-        public override ushort DurabilityMax => 800;
+        public override uint DurabilityMax => 800;
 
         public override string Name => "Leather jacket";
 

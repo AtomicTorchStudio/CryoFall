@@ -11,7 +11,7 @@
     public abstract class ProtoItemBatteryDisposable
         : ProtoItemGeneric, IProtoItemFuelElectricity, IProtoItemUsableFromContainer
     {
-        public const string NotificationNoPowerBanksEquipped = "You don't have any power banks equipped";
+        public const string NotificationNoPowerBanksEquipped = "You don't have any powerbanks equipped";
 
         public const string NotificationNoRechargingRequired = "No recharging required";
 

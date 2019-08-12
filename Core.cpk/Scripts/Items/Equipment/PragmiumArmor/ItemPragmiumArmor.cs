@@ -5,7 +5,7 @@
         public override string Description =>
             "Experimental armor incorporating a pragmium lattice embedded in thin metal plates as its structural foundation. Very light and durable.";
 
-        public override ushort DurabilityMax => 1200;
+        public override uint DurabilityMax => 1200;
 
         public override bool IsHairVisible => false;
 

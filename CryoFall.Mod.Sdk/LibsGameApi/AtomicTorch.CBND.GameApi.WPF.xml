@@ -845,6 +845,16 @@
             Enumerators all the nested item containers (if there are many, or simply returns the current container).
             </summary>
         </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.Logic.ILogicObject">
+            <summary>
+            Special scriptable GameObject which don't have any world representation.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.Data.Logic.IProtoLogicObject">
+            <summary>
+            Logic object type - scriptable GameObjectType for LogicObject.
+            </summary>
+        </member>
         <member name="P:AtomicTorch.CBND.GameApi.Data.Structures.IQuadTreeNode.IsEmpty">
             <summary>
             Returns true is FilledPositionsCount==0 (but works much faster, without calculating the count).
@@ -1077,13 +1087,13 @@
             Client state of game object.
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ClientInitializeData.SyncPrivateState">
+        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ClientInitializeData.PrivateState">
             <summary>
             Synchronized server private state for this game object.<br />
             It will throw exception if you don't have this game object in your private state.
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ClientInitializeData.SyncPublicState">
+        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ClientInitializeData.PublicState">
             <summary>
             Synchronized server public state for this game object.
             </summary>
@@ -1108,13 +1118,13 @@
             Client state of game object.
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ClientUpdateData.SyncPrivateState">
+        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ClientUpdateData.PrivateState">
             <summary>
             Synchronized server private state for this game object.<br />
             It will throw exception if you don't have this game object in your private state.
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ClientUpdateData.SyncPublicState">
+        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ClientUpdateData.PublicState">
             <summary>
             Synchronized server public state for this game object.
             </summary>
@@ -1133,11 +1143,6 @@
             <summary>
             Returns true if the game object was created and never initialized yet. For objects loaded from savegames it will return
             false.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ServerInitializeData.IsReloading">
-            <summary>
-            Returns true is the game object was already created and this is reloading (not first initialization).
             </summary>
         </member>
         <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoGameObject`4.ServerInitializeData.PrivateState">
@@ -1211,16 +1216,6 @@
             Interface for game object proto-classes.
             </summary>
             <typeparam name="TGameObject">GameObject of this object type</typeparam>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.Logic.ILogicObject">
-            <summary>
-            Special scriptable GameObject which don't have any world representation.
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.Logic.IProtoLogicObject">
-            <summary>
-            Logic object type - scriptable GameObjectType for LogicObject.
-            </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.World.IProtoTile">
             <summary>
@@ -1489,22 +1484,6 @@
         <member name="T:AtomicTorch.CBND.GameApi.Data.World.IProtoWorldObject`1">
             <summary>
             World object type for specific <typeparamref name="TWorldObject" /> type of world objects.
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoLanguageDefinition.FallbackLanguages">
-            <summary>
-            This property allows to specify an array of languages
-            which the game will use (from latter to first) to provide the localized string
-            in case the current language doesn't have a translation.
-            For example, if you specify { "en_us", "ru_ru" } then the game will try to look for a localized string
-            for the current language definition, then for "ru_ru", then if it's still missing - in "en_us".
-            </summary>
-        </member>
-        <member name="P:AtomicTorch.CBND.GameApi.Data.ProtoLanguageDefinition.LanguageTag">
-            <summary>
-            IETF language code (such as "en-US"). https://en.wikipedia.org/wiki/IETF_language_tag
-            Use ISO 639 and ISO 3166-1 alpha-2 codes.
-            Please note that Icon texture path is automatically generated based on this code.
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.GameObjectType">

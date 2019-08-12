@@ -18,11 +18,11 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemIngotSteel>(count: 15);
-            inputItems.Add<ItemRubberVulcanized>(count: 20);
+            inputItems.Add<ItemIngotSteel>(count: 10);
+            inputItems.Add<ItemRubberVulcanized>(count: 10);
             inputItems.Add<ItemFluxPowder>(count: 10);
 
-            outputItems.Add<ItemComponentsMechanical>(count: 5);
+            outputItems.Add<ItemComponentsMechanical>(count: 10);
         }
     }
 }

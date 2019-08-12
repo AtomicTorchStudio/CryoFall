@@ -60,17 +60,9 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (1, 0.3),
-                    offset: (0.0, 0.35))
-                .AddShapeRectangle(
-                    size: (0.9, 0.5),
-                    offset: (0.05, 0.3),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (1, 0.6),
-                    offset: (0, 0.25),
-                    group: CollisionGroups.HitboxRanged);
+                .AddShapeRectangle(size: (1, 0.3),   offset: (0.0, 0.35))
+                .AddShapeRectangle(size: (0.9, 0.5), offset: (0.05, 0.3), group: CollisionGroups.HitboxMelee);
+            // no ranged hitbox here, the sand is too small and flat on the ground
         }
     }
 }

@@ -11,11 +11,9 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Perishable;
 
-        public override string Name => "Berries";
+        public override string Name => "Violet berries";
 
         public override ushort OrganicValue => 3;
-
-        public override float StaminaRestore => 25;
 
         public override float WaterRestore => 3;
 

@@ -27,18 +27,9 @@
         IsDisplayLabel="True"
         IsDisplayPercents="True"
         IsDisplayTooltip="False">
-
         <core:ValueBarControl.Template>
             <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
                 <Grid x:Name="LayoutRoot">
-                    <!--<Border x:Name="Border"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5" />
-                    <ContentPresenter
-                        Margin="{TemplateBinding Padding}"
-                        HorizontalAlignment="Left" />-->
                     <TextBlock x:Name="TextBlockValueDisplay"
                                Style="{StaticResource ItemCountTextBlockStyle}"
                                Foreground="{Binding Brush}" />

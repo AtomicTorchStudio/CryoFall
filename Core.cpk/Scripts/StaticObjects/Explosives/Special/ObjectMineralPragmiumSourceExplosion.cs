@@ -3,7 +3,6 @@
     using System;
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
@@ -24,11 +23,13 @@
             = new Lazy<ObjectMineralPragmiumSource>(
                 GetProtoEntity<ObjectMineralPragmiumSource>);
 
-        public override double DamageRadius => 9; // large annihilation radius
+        public override double DamageRadius => 13; // large annihilation radius
 
         public override TimeSpan ExplosionDelay => TimeSpan.FromSeconds(3);
 
         public override bool IsActivatesRaidModeForLandClaim => false;
+
+        public override bool IsDamageThroughObstacles => true;
 
         public override string Name => "Pragmium source explosion";
 
@@ -73,11 +74,12 @@
                               toPercents: 120,
                               durationSeconds: 1);
 
-            Api.Client.Audio.CreateSoundEmitter(data.GameObject,
-                                                new SoundResource("Ambient/Earthquake"),
-                                                true,
-                                                radius: 7,
-                                                isLooped: true);
+            var soundEmitter = Api.Client.Audio.CreateSoundEmitter(data.GameObject,
+                                                                   new SoundResource("Ambient/Earthquake"),
+                                                                   true,
+                                                                   radius: 7,
+                                                                   isLooped: true);
+            soundEmitter.Seek(0);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -152,7 +154,7 @@
                                                               worldDistanceMin: (float)(intensity * -shakesDistanceMin),
                                                               worldDistanceMax: (float)(intensity * shakesDistanceMax));
 
-            ClientComponentTimersManager.AddAction(shakesInterval, () => this.ClientAddShakes(component));
+            ClientTimersSystem.AddAction(shakesInterval, () => this.ClientAddShakes(component));
         }
     }
 }

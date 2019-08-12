@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectSignDigital>();
 
-            config.SetRequiredNode<TechNodeFloorLampLarge>();
+            config.SetRequiredNode<TechNodeTrashCan>();
         }
     }
 }

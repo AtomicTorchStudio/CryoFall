@@ -7,6 +7,15 @@ Nenhum lugar vazio para soltar itens
 Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
 Itens terrestres
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
+Você só pode construir em:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
+Você não pode construir em:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
+Tipo de terreno inadequado
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 Não é possível construir em áreas restritas.
 
@@ -40,15 +49,6 @@ Não é possível construir: perto demais de um penhasco ou declive.
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
 Não é possível construir: perto demais da água.
 
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
-Você só pode construir em:
-
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
-Você não pode construir em:
-
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
-Tipo de terreno inadequado
-
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
 Configurar
 
@@ -75,6 +75,9 @@ Pegar
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 Abrir
+
+Scripts/StaticObjects/Base/InteractionTooltipTexts@TogglePower:
+Ativar/desativar energia
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
 Escrever
@@ -275,14 +278,14 @@ Construções
 Scripts/StaticObjects/Structures/Categories/StructureCategoryDecorations@Name:
 Decorações
 
+Scripts/StaticObjects/Structures/Categories/StructureCategoryElectricity@Name:
+Eletricidade
+
 Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
 Comida
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
 Indústria
-
-Scripts/StaticObjects/Structures/Categories/StructureCategoryLights@Name:
-Luz
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
 Outros
@@ -479,17 +482,47 @@ Refrigerador primitivo cujo principal método de resfriamento é a evaporação.
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
 Geladeira primitiva
 
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Description:
+Congelador potente capaz de armazenar alimentos a uma temperatura abaixo de zero, assegurando que permaneçam frescos durante muito mais tempo.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Name:
+Freezer
+
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
-Maneira conveniente de armazenar grandes quantidades de alimentos perecíveis. A geladeira manterá o frescor dos alimentos por mais tempo. Utiliza um gerador de energia solar embutido.
+Maneira conveniente de armazenar grandes quantidades de alimentos perecíveis. A geladeira manterá o frescor dos alimentos por mais tempo.
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
 Geladeira grande
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
-Maneira conveniente de armazenar alimentos perecíveis. A geladeira manterá o frescor dos alimentos por mais tempo. Utiliza um gerador de energia solar embutido.
+Maneira conveniente de armazenar alimentos perecíveis. A geladeira manterá o frescor dos alimentos por mais tempo.
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
 Frigobar
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Description:
+Decompõe a matéria orgânica em gás metano, usado para produzir pequenas quantidades de energia elétrica. Não é apropriado como fonte primária de eletricidade.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Name:
+Biorreator
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
+Este grande gerador usa gasolina para produzir energia elétrica.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
+Gerador motor
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
+Instalação básica para geração de energia solar. Requer painéis solares individuais para funcionar.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Name:
+Gerador solar
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
+Este gerador utiliza vapor quente para acionar uma turbina e produzir eletricidade. Leva tempo para ferver a água até que atinja a potência máxima.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
+Gerador de vapor
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 Torna a base mais segura, evitando que outros sobreviventes construam ou desconstruam qualquer coisa na área circundante. A posse de terra também garante que suas estruturas não se deteriorem com o tempo.
@@ -540,7 +573,7 @@ Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@Notificatio
 Melhoria realizada com sucesso
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
-Luminária de piso elétrica. Produz uma luz branca extremamente poderosa, capaz de iluminar uma sala grande com facilidade. Usa baterias descartáveis.
+Luminária de piso elétrica. Produz uma luz branca extremamente poderosa, capaz de iluminar uma sala grande com facilidade.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
 Luminária de piso grande
@@ -552,7 +585,7 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
 Luminária de piso a óleo
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
-Versão menor da luminária de piso elétrica. Para o tamanho, é muito brilhante. Usa baterias descartáveis.
+Versão menor da luminária de piso elétrica. Para o tamanho, é muito brilhante.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Luminária de piso pequena
@@ -587,8 +620,11 @@ Pode ser usado para fundir minério em lingotes de metal, além de processar out
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
 Fornalha
 
-Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-O extrator exige uma mola geotérmica.
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Description:
+Usa eletricidade e aquecimento por indução para processamento de recursos e uma fusão mais rápida.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
+Forno elétrico
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
 Permite a extração de sais de lítio de nascentes geotérmicas.
@@ -596,20 +632,23 @@ Permite a extração de sais de lítio de nascentes geotérmicas.
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Extrator de sais de lítio
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
+Extrator avançado de sais de lítio
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Pode ser usado para converter qualquer tipo de matéria orgânica em adubo. Essencialmente, um fertilizante orgânico.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Composteira
 
-Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@ErrorRequiresOilSeep:
-A bomba exige um poço de petróleo.
-
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
 Pode ser construída sobre um poço de petróleo para extrair petróleo bruto diretamente do solo.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Bomba de petróleo
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
+Bomba de óleo avançada
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
 Refina o petróleo bruto em componentes mais úteis, como combustível e óleo mineral.
@@ -629,11 +668,23 @@ Coletor de água simples, projetado para captar pequenas quantidades de água. P
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 Coletor de água
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
+Utiliza uma bomba elétrica para extrair rapidamente a água do reservatório subterrâneo.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Name:
+Bomba d’água
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
 Oferece uma fonte inesgotável de água fresca. Agora você nunca vai morrer de sede. Por algum motivo, não funciona em desertos nem outros lugares rochosos...
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 Poço
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
+O extrator exige uma mola geotérmica.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
+A bomba exige um poço de petróleo.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Este tipo de solo não oferece acesso ao lençol freático.
@@ -644,11 +695,53 @@ Posto médico automatizado especial que pode ser usado para instalar ou remover 
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Posto médico
 
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
+Estrutura defensiva que, enquanto ativo, projeta um campo psíquico de alta intensidade.
+
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
+Projetor psiônico
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
+Pode ser usado para recarregar qualquer equipamento eletrônico portátil, como um carregador portátil ou uma lanterna.
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
+Estação de recarga
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
+Precisa de mais componentes.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
+Coloque dois itens idênticos para reparar.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_NoRepairNecessary:
+Não é necessário reparar.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFull:
+Antes de nada, quita el objeto de la ranura de resultado.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
+Não é possível reparar
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
+Esta estação de trabalho é especialmente conveniente para consertar ou reparar diferentes itens.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Name:
+Bancada de trabalhos manuais
+
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
 Você pode usar essa lixeira para descartar qualquer item indesejado na mesma hora. Permanentemente!
 
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 Lixeira
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
+Permite armazenar a energia elétrica produzida pelos geradores na base para uso posterior.
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Name:
+Armazenamento de energia
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorageLarge@Name:
+Armazenamento de energia de grande capacidade
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
 Permite que você exiba uma imagem para o mundo. Utiliza painéis solares na parte de trás, eliminando qualquer necessidade de fonte de energia externa.
@@ -880,6 +973,12 @@ Cacto
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
 Árvore morta
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
+Árvore morta
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
+Árvore morta
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
 Durio
 
@@ -904,14 +1003,26 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
 Seringueira
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
+Galho com musgo
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
 Cepo de árvore
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
+Cepo com musgo
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
 Cepo de árvore
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
+Árvore de pântano
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
 Árvore tropical
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
+Salgueiro
 
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Use um machado para cortar esta árvore.

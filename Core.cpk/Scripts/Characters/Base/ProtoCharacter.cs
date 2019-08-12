@@ -8,7 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -41,7 +41,9 @@
         /// </summary>
         public abstract float CharacterWorldHeight { get; }
 
-        public float CharacterWorldWeaponOffset => this.CharacterWorldHeight * 0.4f;
+        public virtual float CharacterWorldWeaponOffsetMelee => this.CharacterWorldWeaponOffsetRanged;
+
+        public virtual float CharacterWorldWeaponOffsetRanged => this.CharacterWorldHeight * 0.4f;
 
         /// <summary>
         /// Update every frame.
@@ -162,18 +164,15 @@
             base.ClientInitialize(data);
             var character = data.GameObject;
             var clientState = data.ClientState;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
 
             if (!character.IsCurrentClientCharacter)
             {
+                var yOffset = character.ProtoCharacter.CharacterWorldHeight;
                 clientState.HealthbarControl = Client.UI.AttachControl(
                     character,
-                    new CharacterHealthBarControl()
-                        { CharacterCurrentStats = publicState.CurrentStats },
-                    positionOffset: (
-                                        0,
-                                        character.ProtoCharacter
-                                                 .CharacterWorldHeight),
+                    new CharacterOverlayControl(character),
+                    positionOffset: (0, yOffset),
                     isFocusable: false);
             }
 
@@ -216,7 +215,7 @@
             base.ClientUpdate(data);
             var character = data.GameObject;
             var clientState = data.ClientState;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
 
             ClientCharacterAnimationHelper.ClientUpdateAnimation(
                 character,

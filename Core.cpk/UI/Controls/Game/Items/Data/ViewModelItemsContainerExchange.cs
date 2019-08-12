@@ -20,15 +20,24 @@
     {
         private readonly Action callbackTakeAllItemsSuccess;
 
-        private readonly ClientInputContext inputListener;
-
         private IClientItemsContainer container;
 
-        public ViewModelItemsContainerExchange(IItemsContainer container, Action callbackTakeAllItemsSuccess)
+        private ClientInputContext inputListener;
+
+        public ViewModelItemsContainerExchange(
+            IItemsContainer container,
+            Action callbackTakeAllItemsSuccess,
+            bool enableShortcuts = true)
         {
             this.callbackTakeAllItemsSuccess = callbackTakeAllItemsSuccess;
             this.Container = (IClientItemsContainer)container;
 
+            if (!enableShortcuts)
+            {
+                return;
+            }
+
+            // setup shortcuts
             var character = ClientCurrentCharacterHelper.Character;
             ClientContainersExchangeManager.Register(
                 this,
@@ -52,9 +61,11 @@
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
             this.inputListener = ClientInputContext
                                  .Start("Container exchange")
-                                 .HandleButtonDown(GameButton.ContainerTakeAll,            this.ExecuteCommandTakeAll)
-                                 .HandleButtonDown(GameButton.ContainerMoveItemsMatchDown, this.ExecuteCommandMatchDown)
-                                 .HandleButtonDown(GameButton.ContainerMoveItemsMatchUp,   this.ExecuteCommandMatchUp);
+                                 .HandleButtonDown(GameButton.ContainerTakeAll, this.ExecuteCommandTakeAll)
+                                 .HandleButtonDown(GameButton.ContainerMoveItemsMatchDown,
+                                                   this.ExecuteCommandMatchDown)
+                                 .HandleButtonDown(GameButton.ContainerMoveItemsMatchUp,
+                                                   this.ExecuteCommandMatchUp);
         }
 
         public BaseCommand CommandMatch => new ActionCommandWithParameter(this.ExecuteCommandMatch);
@@ -79,7 +90,7 @@
 
         public bool IsContainerTitleVisible { get; set; } = true;
 
-        public bool IsManagementButtonsVisibile { get; set; } = true;
+        public bool IsManagementButtonsVisible { get; set; } = true;
 
         public void ExecuteCommandMatch(bool isUp)
         {
@@ -162,6 +173,8 @@
 
         public void ExecuteCommandTakeAll()
         {
+            this.ExecuteCommandMatchDown();
+
             var scriptingApi = Api.Client;
             var character = scriptingApi.Characters.CurrentPlayerCharacter;
             character.ProtoCharacter.ClientTryTakeAllItems(character,
@@ -176,7 +189,8 @@
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
-            this.inputListener.Stop();
+            this.inputListener?.Stop();
+            this.inputListener = null;
         }
 
         private void ExecuteCommandMatch(object direction)

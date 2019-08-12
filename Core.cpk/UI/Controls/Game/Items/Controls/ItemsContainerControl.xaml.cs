@@ -15,7 +15,8 @@
                 typeof(ItemsContainerControl),
                 new PropertyMetadata(null, ContainerPropertyChanged));
 
-        // Using a DependencyProperty as the backing store for DesignTimeSlotsCount.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for DesignTimeSlotsCount.
+        // This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DesignTimeSlotsCountProperty
             = DependencyProperty.Register(
                 nameof(DesignTimeSlotsCount),
@@ -57,8 +58,8 @@
             }
             else
             {
-                this.controller =
-                    new GenericItemsContainerController<ItemSlotControl>(this.wrapPanelItemsSlotsChildren);
+                this.controller = new GenericItemsContainerController<ItemSlotControl>(
+                    this.wrapPanelItemsSlotsChildren);
                 this.RefreshContainer();
             }
         }

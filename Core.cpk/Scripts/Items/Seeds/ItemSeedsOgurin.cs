@@ -7,8 +7,7 @@
 
     public class ItemSeedsOgurin : ProtoItemSeed
     {
-        public override string Description =>
-            "Ogurin was one of the very first plants specifically engineered for this planet.";
+        public override string Description => GetProtoEntity<ItemSeedsBellPepper>().Description;
 
         public override string Name => "Ogurin seeds";
 

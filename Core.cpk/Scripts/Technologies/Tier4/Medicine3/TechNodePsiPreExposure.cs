@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipePsiPreExposure>();
 
-            config.SetRequiredNode<TechNodeAntiToxinPreExposure>();
+            config.SetRequiredNode<TechNodeStimpack>();
         }
     }
 }

@@ -52,7 +52,7 @@
         }
 
         public static ViewModelDebugToolsOverlay Instance
-            => instance ?? (instance = new ViewModelDebugToolsOverlay());
+            => instance ??= new ViewModelDebugToolsOverlay();
 
         public bool IsClientLagPredictionEnabled
         {

@@ -1,8 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Language.Data
 {
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.ClientLanguages;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ViewModelLanguageDefinition : BaseViewModel

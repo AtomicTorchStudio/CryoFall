@@ -2,9 +2,10 @@
 {
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Construction;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Cooking;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Defense;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Farming;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier1.OffenseAndDefense;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Offense;
 
     public class QuestCompleteTier1Technologies : ProtoQuest
     {
@@ -23,9 +24,10 @@
             requirements
                 .Add(RequirementCompleteTechGroup.Require<TechGroupConstruction>())
                 .Add(RequirementCompleteTechGroup.Require<TechGroupIndustry>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupOffenseAndDefense>())
                 .Add(RequirementCompleteTechGroup.Require<TechGroupFarming>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupCooking>());
+                .Add(RequirementCompleteTechGroup.Require<TechGroupCooking>())
+                .Add(RequirementCompleteTechGroup.Require<TechGroupOffense>())
+                .Add(RequirementCompleteTechGroup.Require<TechGroupDefense>());
 
             prerequisites
                 .Add<QuestExploreBiomes2>()

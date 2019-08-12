@@ -16,17 +16,23 @@ Has usado medicamentos y tu cuerpo se recupera poco a poco.
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
 Curación
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
+Acabas de disfrutar de una comida muy sana, repleta de vitaminas, microelementos y otros nutrientes importantes. Te sientes genial.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Name:
+Comida sana
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
+Acabas de comer muy bien. Todo lo que hagas te resultará más fácil.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
+Comida vigorizante
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Estás bajo los efectos de un estimulante que te vuelve temporalmente más fuerte. Te será más fácil llevar a cabo tareas que requieran fuerza.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Fuerza aumentada
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Description:
-Hace poco has comido muy bien y te encuentras de maravilla. Todo lo que hagas te resultará más fácil.
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
-Estómago lleno
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Estás sangrando. Si no tratas tus heridas, seguirás perdiendo salud sin parar. Las heridas pequeñas dejarán de sangrar por sí solas, pero para las más graves necesitarás vendas o medicamentos hemostáticos.
@@ -119,7 +125,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
 Toxinas
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
-Te sientes muy débil. Puede que sea buena idea evitar exponerte a elementos peligrosos, tales como la radiación.
+Te sientes débil. Te cuesta mucho más hacer cualquier tarea. Tómate tu tiempo para mejorar tu estado y evita las situaciones peligrosas.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
 Debilidad

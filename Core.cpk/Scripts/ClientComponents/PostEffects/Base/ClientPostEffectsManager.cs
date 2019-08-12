@@ -115,44 +115,42 @@
             {
                 isPostEffectsRenderingNow = true;
 
-                using (var tempDestination = Api.Client.Rendering.GetTempRenderTexture(
+                using var tempDestination = Api.Client.Rendering.GetTempRenderTexture(
                     source.Width,
-                    source.Height))
+                    source.Height);
+                // we will swap these render targets during post-effects rendering
+                var rtA = source;
+                var rtB = (IRenderTarget2D)tempDestination;
+
+                for (var index = 0; index < ActivePostEffects.Count; index++)
                 {
-                    // we will swap these render targets during post-effects rendering
-                    var rtA = source;
-                    var rtB = (IRenderTarget2D)tempDestination;
-
-                    for (var index = 0; index < ActivePostEffects.Count; index++)
+                    var effect = ActivePostEffects[index];
+                    try
                     {
-                        var effect = ActivePostEffects[index];
-                        try
+                        if (!effect.IsCanRender)
                         {
-                            if (!effect.IsCanRender)
-                            {
-                                continue;
-                            }
+                            continue;
+                        }
 
-                            effect.Render(rtA, rtB);
-                            // swap for the next post-effect
-                            var temp = rtA;
-                            rtA = rtB;
-                            rtB = temp;
-                        }
-                        catch (Exception ex)
-                        {
-                            ActivePostEffects.Remove(effect);
-                            Api.Logger.Exception(ex, "Problem with post-effect rendering: " + effect);
-                        }
+                        effect.Render(rtA, rtB);
+                        // swap for the next post-effect
+                        var temp = rtA;
+                        rtA = rtB;
+                        rtB = temp;
                     }
-
-                    if (rtA == tempDestination)
+                    catch (Exception ex)
                     {
-                        // we have rtA as destination and rtB as source
-                        // need to blit result to source
-                        device.SetRenderTarget(source);
-                        device.Blit(tempDestination, blendState: BlendMode.Opaque);
+                        ActivePostEffects.Remove(effect);
+                        Api.Logger.Exception(ex, "Problem with post-effect rendering: " + effect);
                     }
+                }
+
+                if (rtA == tempDestination)
+                {
+                    // we have rtA as destination and rtB as source
+                    // need to blit result to source
+                    device.SetRenderTarget(source);
+                    device.Blit(tempDestination, blendState: BlendMode.Opaque);
                 }
             }
             finally

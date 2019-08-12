@@ -37,15 +37,14 @@
             = "{0} was removed from the party by {1}";
 
         public const string Notification_RemovedFromTheParty
-            = "{0} has removed you from the party";
+            = "{0} has removed you from the party.";
 
         public static readonly ObservableCollection<string> ClientCurrentInvitationsFromCharacters
             = IsClient
                   ? new ObservableCollection<string>()
                   : null;
 
-        // this value is kept here for compatibility, remove in A23
-        public static ushort ClientPartyMembersMax = 10;
+        public static ushort ClientPartyMembersMax;
 
         public static Action ClientPartyMembersMaxChanged;
 
@@ -96,7 +95,10 @@
             ErrorInviteeAlreadySamePartyMember = 4,
 
             [Description("You cannot invite, as you're muted by the server operator.")]
-            ErrorMuted = 5
+            ErrorMuted = 5,
+
+            [Description("The invited player is offline. Only online players can be invited into a party.")]
+            ErrorInviteeOffline = 3,
         }
 
         public static ILogicObject ClientCurrentParty { get; private set; }
@@ -141,7 +143,6 @@
 
         public static async void ClientInviteMember(string inviteeName)
         {
-            Api.Assert(ClientCurrentParty != null, "Don't have a party");
             if (ClientIsPartyMember(inviteeName))
             {
                 ProcessResult(InvitationCreateResult.ErrorInviteeAlreadySamePartyMember);
@@ -186,7 +187,7 @@
             Instance.CallServer(_ => _.ServerRemote_RemovePartyMember(memberName));
         }
 
-        public static void ServerCreateParty(ICharacter character)
+        public static ILogicObject ServerCreateParty(ICharacter character)
         {
             Api.Assert(!character.IsNpc, "NPC cannot create a party");
 
@@ -199,6 +200,7 @@
             party = Server.World.CreateLogicObject<Party>();
             Logger.Important($"Created party: {party} for {character}", character);
             ServerAddMember(character, party);
+            return party;
         }
 
         public static ILogicObject ServerGetParty(ICharacter character)
@@ -208,7 +210,7 @@
 
         public static ILogicObject ServerGetPartyChat(ILogicObject party)
         {
-            return party.GetPrivateState<Party.PartyPrivateState>()
+            return Party.GetPrivateState(party)
                         .ServerPartyChatHolder;
         }
 
@@ -364,8 +366,9 @@
             }
 
             ClientCurrentParty = party;
-            clientCurrentPartyMembersList = party?.GetPrivateState<Party.PartyPrivateState>()
-                                                 .Members;
+            clientCurrentPartyMembersList = party != null
+                                                ? Party.GetPrivateState(party).Members
+                                                : null;
 
             if (clientCurrentPartyMembersList != null)
             {
@@ -446,7 +449,29 @@
 
         private static NetworkSyncList<string> ServerGetPartyMembersEditable(ILogicObject party)
         {
-            return party.GetPrivateState<Party.PartyPrivateState>().Members;
+            return Party.GetPrivateState(party)
+                        .Members;
+        }
+
+        private static void ServerPlayerNameChangedHandler(string oldName, string newName)
+        {
+            foreach (var partyEntry in ServerCharacterPartyDictionary.Values)
+            {
+                var members = Party.GetPrivateState(partyEntry).Members;
+
+                for (var index = 0; index < members.Count; index++)
+                {
+                    var memberName = members[index];
+                    if (!string.Equals(memberName, oldName, StringComparison.Ordinal))
+                    {
+                        continue;
+                    }
+
+                    members[index] = newName;
+                    Logger.Important($"Replaced party member username: {oldName}->{newName} in {partyEntry}");
+                    break;
+                }
+            }
         }
 
         private static void ServerRemoveMember(string characterName, ILogicObject party)
@@ -467,11 +492,11 @@
                 var character = Server.Characters.GetPlayerCharacter(characterName);
                 if (character != null)
                 {
-                    if (ServerCharacterPartyDictionary.TryGetValue(character, out var currentParty)
-                        && currentParty == party)
-                    {
-                        ServerCharacterPartyDictionary.Remove(character);
-                    }
+                    //if (ServerCharacterPartyDictionary.TryGetValue(character, out var currentParty)
+                    //    && currentParty == party)
+                    //{
+                    ServerCharacterPartyDictionary.Remove(character);
+                    //}
 
                     // remove all requests by this character
                     ServerInvitations.RemoveAllInvitationsBy(character);
@@ -580,6 +605,11 @@
                     return InvitationCreateResult.ErrorInviteeNotFound;
                 }
 
+                if (!invitee.ServerIsOnline)
+                {
+                    return InvitationCreateResult.ErrorInviteeOffline;
+                }
+
                 return ServerInviteMember(invitee, inviter: ServerRemoteContext.Character);
             }
             catch (Exception ex)
@@ -672,7 +702,9 @@
                 //    ServerRegisterParty(party);
                 //}
 
-                TriggerTimeInterval.ServerConfigureAndRegister(TimeSpan.FromSeconds(1),
+                Server.Characters.PlayerNameChanged += ServerPlayerNameChangedHandler;
+
+                TriggerTimeInterval.ServerConfigureAndRegister(TimeSpan.FromSeconds(10),
                                                                ServerInvitations.UpdateInvitationsExpiration,
                                                                "Party invitations expiration updater");
             }
@@ -749,17 +781,13 @@
 
             public static InvitationCreateResult AddInvitation(ICharacter invitee, ICharacter inviter)
             {
-                var party = ServerGetParty(inviter);
-                if (party == null)
-                {
-                    Logger.Warning("Player don't have a party and so cannot invite anyone", inviter);
-                    return InvitationCreateResult.Unknown;
-                }
-
                 if (ServerPlayerMuteSystem.IsMuted(invitee.Name, out _))
                 {
                     return InvitationCreateResult.ErrorMuted;
                 }
+
+                var party = ServerGetParty(inviter)
+                            ?? ServerCreateParty(inviter);
 
                 var invitation = GetInvitation(party, invitee);
                 if (invitation != null)

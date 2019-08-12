@@ -1,10 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Zones
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Characters.Mobs;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -15,18 +19,21 @@
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
+            // this resource is not spawned on the world init
             triggers
-                // trigger on world init
-                .Add(GetTrigger<TriggerWorldInit>())
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>()
                          .Configure(
                              intervalFrom: TimeSpan.FromHours(1),
                              intervalTo: TimeSpan.FromHours(2)));
 
+            var restrictionInfiniteGeothermalSpring = spawnList.CreateRestrictedPreset()
+                                                               .Add<ObjectDepositGeothermalSpringInfinite>();
+
             var presetGeothermalSpring = spawnList.CreatePreset(interval: 220, padding: 1);
             presetGeothermalSpring.AddExact<ObjectDepositGeothermalSpring>()
                                   .SetCustomPaddingWithSelf(75)
+                                  .SetCustomPaddingWith(restrictionInfiniteGeothermalSpring, 75)
                                   // ensure no spawn near cliffs
                                   .SetCustomCanSpawnCheckCallback(
                                       (physicsSpace, position)
@@ -47,6 +54,19 @@
             paddingToLandClaimsSize += 6;
 
             presetGeothermalSpring.SetCustomPaddingWith(restrictionPresetLandclaim, paddingToLandClaimsSize);
+        }
+
+        protected override void ServerOnObjectSpawned(IGameObjectWithProto spawnedObject)
+        {
+            // spawn some guardian mobs so it will be harder to claim this deposit
+            var objectGeothermalSpring = (IStaticWorldObject)spawnedObject;
+            ServerMobSpawnHelper.ServerTrySpawnMobsCustom(
+                protoMob: Api.GetProtoEntity<MobCloakedLizard>(),
+                countToSpawn: 3,
+                excludeBounds: objectGeothermalSpring.Bounds.Inflate(1),
+                maxSpawnDistanceFromExcludeBounds: 2,
+                noObstaclesCheckRadius: 0.5,
+                maxAttempts: 200);
         }
     }
 }

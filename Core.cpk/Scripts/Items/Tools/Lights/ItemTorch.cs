@@ -32,7 +32,7 @@
         public override string Description =>
             "This will keep you sane at night. Make sure you have a spare just in case.";
 
-        public override ushort DurabilityMax =>
+        public override uint DurabilityMax =>
             0; // Important! No durability limit here, the item will be destroyed when the fuel amount is zero
 
         public override string Name => "Torch";
@@ -86,7 +86,8 @@
             fireAnimator.Setup(
                 fireRenderer,
                 ClientComponentSpriteSheetAnimator.CreateAnimationFrames(TextureAtlasFire),
-                frameDurationSeconds: 1 / 15.0);
+                frameDurationSeconds: 1 / 15.0,
+                randomizeInitialFrame: true);
 
             var slotNameClone = "Weapon_Torch";
             skeletonRenderer.CloneSlot("Weapon", slotNameClone);

@@ -14,6 +14,7 @@
         private const double DrawOffsetDestroyed = 1;
 
         private const double PhysicsOffsetDestroyed = 0.27;
+
         private const double PhysicsOffsetDestroyedSmall = PhysicsOffsetDestroyed / 2.0;
 
         public static readonly WallPattern[] PatternsOverlay =
@@ -306,7 +307,8 @@
                 drawOffsetDestroyed: DrawOffsetDestroyed,
                 physicsNormal: _ => _.AddShapeRectangle(
                                    size: (1 - 2 * PhysicsOffset, 1 - 2 * PhysicsOffset),
-                                   offset: (PhysicsOffset, PhysicsOffset)))
+                                   offset: (PhysicsOffset, PhysicsOffset)),
+                isValidDestroyed: false)
         };
     }
 }

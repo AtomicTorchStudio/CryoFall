@@ -15,36 +15,38 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
 
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Canvas Margin="-15,-21,0,0"
-                        HorizontalAlignment="Center">
-                    <Rectangle Fill="{StaticResource LiquidIconPetroleum}"
-                               Width="18"
-                               Height="18" />
-                </Canvas>
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal"
+                            Margin="2,0,0,0">
 
-                <StackPanel Orientation="Horizontal" Margin="2,0,0,0">
-
-                    <Grid Margin="0,-14,10,0">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <StackPanel Orientation="Vertical" Grid.Row="0" VerticalAlignment="Top">
+                        <!-- Input slot in case of no fuel container -->
+                        <StackPanel Orientation="Vertical"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="3"
+                                    VerticalAlignment="Center"
+                                    Visibility="{Binding VisibilityElectricityControls}">
                             <!-- Text: Input -->
                             <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
                                        Style="{StaticResource TextBlockStyleCraftingCaption}"
                                        HorizontalAlignment="Center"
-                                       Margin="0,0,4,0" />
+                                       Margin="0" />
 
                             <StackPanel Orientation="Horizontal">
                                 <controls:ItemsContainerControl
@@ -55,7 +57,42 @@
                                 <core:ValueBarControl
                                     Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
                                     Foreground="{StaticResource LiquidBrushPetroleum}"
-                                    Margin="0,0,-6,0"
+                                    Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />
+                            </StackPanel>
+
+                            <Canvas
+                                Visibility="{Binding IsManufacturingActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+                                <fuelBurningIndicator:FuelBurningIndicator
+                                    FuelIcon="{StaticResource IconElectricity}"
+                                    FuelColor="{StaticResource ColorElectricity}"
+                                    Canvas.Top="24" />
+                            </Canvas>
+
+                        </StackPanel>
+
+                        <!-- Input slot in case of fuel container -->
+                        <StackPanel Orientation="Vertical"
+                                    Grid.Row="0"
+                                    VerticalAlignment="Top"
+                                    Visibility="{Binding VisibilityFuelControls}"
+                                    Margin="0,-14,0,0">
+                            <!-- Text: Input -->
+                            <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                                       Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                       HorizontalAlignment="Center"
+                                       Margin="0" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <controls:ItemsContainerControl
+                                    Container="{Binding ViewModelManufacturingState.ContainerInput}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    DesignTimeSlotsCount="1" />
+                                <core:ValueBarControl
+                                    Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
+                                    Foreground="{StaticResource LiquidBrushPetroleum}"
                                     Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />
                             </StackPanel>
                         </StackPanel>
@@ -63,7 +100,8 @@
                         <StackPanel Orientation="Vertical"
                                     Grid.Row="2"
                                     VerticalAlignment="Bottom"
-                                    HorizontalAlignment="Left">
+                                    HorizontalAlignment="Left"
+                                    Visibility="{Binding VisibilityFuelControls}">
                             <Canvas
                                 DataContext="{Binding ViewModelBurningFuel}"
                                 Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -89,18 +127,27 @@
                                 Value="{Binding ViewModelFuelBurningState.FuelUsageCurrentValue}"
                                 MaxValue="{Binding ViewModelFuelBurningState.FuelUsageMaxValue}"
                                 Foreground="{StaticResource BrushFuel}"
-                                Margin="0,0,0,-6"
                                 Style="{StaticResource ItemSlotCraftingProgressHorizontalBar}" />
                         </StackPanel>
 
                     </Grid>
 
-                    <core:ValueBarControl
-                        Value="{Binding ViewModelLiquidContainerState.Amount}"
-                        MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
-                        Foreground="{StaticResource LiquidBrushPetroleum}"
-                        Margin="15,0"
-                        Style="{StaticResource LiquidMediumValueBar}" />
+                    <Grid Margin="15,0">
+                        <Canvas Margin="-18,-21,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top">
+                            <Rectangle Fill="{StaticResource LiquidIconPetroleum}"
+                                       Width="18"
+                                       Height="18" />
+                        </Canvas>
+
+                        <core:ValueBarControl
+                            Value="{Binding ViewModelLiquidContainerState.Amount}"
+                            MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
+                            Foreground="{StaticResource LiquidBrushPetroleum}"
+                            Style="{StaticResource LiquidMediumValueBar}" />
+                    </Grid>
+
 
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Left"
@@ -119,7 +166,8 @@
                 </StackPanel>
             </StackPanel>
 
-            <Control Style="{StaticResource ControlVerticalSeparator}" Grid.Column="1" />
+            <Control Style="{StaticResource ControlVerticalSeparator}"
+                     Grid.Column="1" />
 
             <manufacturers:DepositCapacityStatsControl
                 Grid.Column="2"

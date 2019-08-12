@@ -70,9 +70,6 @@ Usar armas de contato com frequência proporciona destreza com esse tipo de arma
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
 Armas de contato
 
-Scripts/Skills/Skills/Misc/SkillSearching@Flags.ChanceToFindRareItems:
-Chance de encontrar itens raros
-
 Scripts/Skills/Skills/Misc/SkillSearching@Description:
 Prestar atenção aos mínimos detalhes aumenta suas chances de encontrar itens extras.
 
@@ -132,4 +129,10 @@ Produzir itens cada vez mais complexos e entender a estrutura deles é uma boa m
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Produção
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
+Permite consertar e fazer a manutenção de diferentes itens e equipamentos. Aplica-se a trabalhos realizados na bancada de trabalhos manuais.
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
+Manutenção
 

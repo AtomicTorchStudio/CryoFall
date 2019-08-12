@@ -7,9 +7,12 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.CurrentGame.Data"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelMenuCurrentGame, IsDesignTimeCreatable=True}"
-    d:DesignWidth="1300" d:DesignHeight="660" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    d:DesignWidth="1300"
+    d:DesignHeight="660">
     <ContentControl Style="{StaticResource MainMenuWidgetStyle}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -23,6 +26,7 @@
 
                 <TextBlock Text="{Binding ServerName}"
                            FontSize="16"
+                           FontWeight="Bold"
                            TextWrapping="Wrap"
                            HorizontalAlignment="Center"
                            Margin="0,5,0,0" />
@@ -31,14 +35,16 @@
                         HorizontalAlignment="Center"
                         Padding="2"
                         BorderThickness="1"
-                        BorderBrush="{StaticResource WidgetBorderBrush}"
+                        BorderBrush="{StaticResource BrushColorAlt2}"
                         Margin="0,5">
                     <Rectangle Width="160"
                                Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
                                Fill="{Binding Icon}" />
                 </Border>
 
-                <Grid Margin="0,5">
+                <Grid Margin="0,5"
+                      HorizontalAlignment="Center"
+                      MinWidth="200">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="10" />
@@ -47,35 +53,89 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Row="0" Grid.Column="0"
+                    <StackPanel Grid.Row="0"
+                                Grid.Column="0"
                                 Orientation="Horizontal">
                         <!-- Text: Address -->
                         <TextBlock Text="{x:Static loc:CoreStrings.ServerAddress}" />
                         <TextBlock Text=":" />
                     </StackPanel>
-                    <TextBlock Text="{Binding ServerAddress}"
+                    <TextBlock Text="{Binding ServerAddress.HostAddress}"
                                Grid.Row="0"
                                Grid.Column="2"
                                HorizontalAlignment="Right" />
 
-                    <StackPanel Grid.Row="1" Grid.Column="0"
+                    <StackPanel Grid.Row="1"
+                                Grid.Column="0"
+                                Orientation="Horizontal">
+                        <!-- Text: Public GUID -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_PublicGUID}" />
+                        <TextBlock Text=":" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="2"
+                               Text="{Binding ServerAddress.PublicGuid}"
+                               MaxWidth="100"
+                               HorizontalAlignment="Right"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction
+                                    Command="{Binding CommandCopyPublicGuidToClipboard}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <base:ToolTipServiceExtend.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding ServerAddress.PublicGuid}" />
+                                <!-- Text: Click to copy it! -->
+                                <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ClickToCopy}" />
+                            </StackPanel>
+                        </base:ToolTipServiceExtend.ToolTip>
+                    </TextBlock>
+
+                    <StackPanel Grid.Row="2"
+                                Grid.Column="0"
                                 Orientation="Horizontal">
                         <!-- Text: Ping -->
                         <TextBlock Text="{x:Static loc:CoreStrings.ServerPing}" />
                         <TextBlock Text=":" />
                     </StackPanel>
                     <TextBlock Text="{Binding PingAverageMilliseconds}"
-                               Grid.Row="1"
+                               Grid.Row="2"
+                               Grid.Column="2"
+                               HorizontalAlignment="Right" />
+
+                    <StackPanel Grid.Row="3"
+                                Grid.Column="0"
+                                Orientation="Horizontal">
+                        <!-- Text: Wiped -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.ServerWipedDate}" />
+                        <TextBlock Text=":" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding WipedDateText}"
+                               Grid.Row="3"
                                Grid.Column="2"
                                HorizontalAlignment="Right" />
                 </Grid>
 
-                <core:FormattedTextBlock Content="{Binding ServerDescription}" />
+                <Control Style="{StaticResource ControlHorizontalSeparator}"
+                         Margin="0,5,0,8" />
+
+                <core:FormattedTextBlock Content="{Binding ServerDescription}"
+                                         Width="200"
+                                         FontSize="13"
+                                         HorizontalAlignment="Center"
+                                         LineHeight="14.5"
+                                         LineStackingStrategy="BlockLineHeight" />
 
                 <Grid HorizontalAlignment="Stretch"
-                      Margin="0,10,0,0">
+                      Margin="0,15,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
@@ -97,7 +157,7 @@
                 <!-- Text: Disconnect -->
                 <Button Content="{x:Static loc:CoreStrings.MenuCurrentGame_Button_Disconnect}"
                         Command="{Binding CommandDisconnect}"
-                        Margin="0,10" />
+                        Margin="0,10,0,5" />
             </StackPanel>
 
             <StackPanel Visibility="{Binding VisibilityNotConnected}"

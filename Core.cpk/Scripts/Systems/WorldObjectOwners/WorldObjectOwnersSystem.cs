@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -35,6 +36,13 @@
         public static event Action<IStaticWorldObject> ServerOwnersChanged;
 
         public override string Name => "World object owners system";
+
+        public static void ClientOnCannotInteractNotOwner(IStaticWorldObject worldObject)
+        {
+            CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
+                                                                DialogCannotSetOwners_MessageNotOwner,
+                                                                isOutOfRange: false);
+        }
 
         public static async void ClientSetOwners(IStaticWorldObject door, List<string> newOwners)
         {
@@ -93,9 +101,9 @@
                 throw new Exception("This object doesn't support owners list: " + worldObject);
             }
 
-            if (!InteractionCheckerSystem.HasInteraction(ServerRemoteContext.Character,
-                                                         worldObject,
-                                                         requirePrivateScope: true))
+            if (!InteractionCheckerSystem.SharedHasInteraction(ServerRemoteContext.Character,
+                                                               worldObject,
+                                                               requirePrivateScope: true))
             {
                 throw new Exception("The player character is not interacting with " + worldObject);
             }
@@ -214,7 +222,7 @@
         {
             if (IsServer)
             {
-                Server.Characters.PlayerNameChanged += PlayerNameChangedHandler;
+                Server.Characters.PlayerNameChanged += ServerPlayerNameChangedHandler;
             }
         }
 
@@ -223,12 +231,23 @@
             return structure.GetPrivateState<IObjectWithOwnersPrivateState>();
         }
 
-        private static void PlayerNameChangedHandler(string oldName, string newName)
+        private static void ServerInvokeOwnersChangedEvent(IStaticWorldObject worldObject)
+        {
+            try
+            {
+                ServerOwnersChanged?.Invoke(worldObject);
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex, $"Exception during the {nameof(ServerOwnersChanged)} event call");
+            }
+        }
+
+        private static void ServerPlayerNameChangedHandler(string oldName, string newName)
         {
             var worldObjectsWithOwnerLists = Server.World.FindStaticWorldObjectsOfProto<IProtoObjectWithOwnersList>();
             foreach (var worldObject in worldObjectsWithOwnerLists)
             {
-                
                 var owners = GetPrivateState(worldObject).Owners;
                 if (owners == null)
                 {
@@ -247,29 +266,15 @@
                     owners.RemoveAt(index);
                     owners.Insert(index, newName);
                     Logger.Important($"Replaced owner entry: {oldName}->{newName} in {worldObject}");
+                    break;
                 }
-            }
-        }
-
-        private static void ServerInvokeOwnersChangedEvent(IStaticWorldObject worldObject)
-        {
-            try
-            {
-                ServerOwnersChanged?.Invoke(worldObject);
-            }
-            catch (Exception ex)
-            {
-                Logger.Exception(ex, $"Exception during the {nameof(ServerOwnersChanged)} event call");
             }
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
         private void ClientRemote_OnCannotInteractNotOwner(IStaticWorldObject worldObject)
         {
-            worldObject.ProtoStaticWorldObject.ClientOnCannotInteract(
-                worldObject,
-                DialogCannotSetOwners_MessageNotOwner,
-                isOutOfRange: false);
+            ClientOnCannotInteractNotOwner(worldObject);
         }
 
         private string ServerRemote_SetOwners(IStaticWorldObject worldObject, List<string> newOwners)

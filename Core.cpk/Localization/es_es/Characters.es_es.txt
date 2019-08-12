@@ -1,6 +1,12 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Oso
 
+Scripts/Characters/Mobs/MobBlackBeetle@Name:
+Escarabajo negro
+
+Scripts/Characters/Mobs/MobBurrower@Name:
+Excavador
+
 Scripts/Characters/Mobs/MobChicken@Name:
 Gallina
 
@@ -13,6 +19,9 @@ Cangrejo
 Scripts/Characters/Mobs/MobCrawler@Name:
 Acechador
 
+Scripts/Characters/Mobs/MobFireLizard@Name:
+Lagarto de fuego
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Ratel
 
@@ -21,6 +30,9 @@ Hiena
 
 Scripts/Characters/Mobs/MobPangolin@Name:
 Pangolín
+
+Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
+Escarabajo de pragmio
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Caracol

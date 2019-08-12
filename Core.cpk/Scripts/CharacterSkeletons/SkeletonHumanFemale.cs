@@ -5,12 +5,18 @@
 
     public class SkeletonHumanFemale : SkeletonHuman
     {
-        // sorry, dear women, we have not completed female skeletons yet! :-(
+        // WIP, use this to toggle female skeleton on/off
+        public const bool IsFemaleSkeletonEnabled = false;
+
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("Human/CharacterMaleBack");
+            = IsFemaleSkeletonEnabled
+                  ? new SkeletonResource("Human/FemaleBack")
+                  : new SkeletonResource("Human/MaleBack");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Human/CharacterMaleFront");
+            = IsFemaleSkeletonEnabled
+                  ? new SkeletonResource("Human/FemaleFront")
+                  : new SkeletonResource("Human/MaleFront");
 
         public override void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier)
         {

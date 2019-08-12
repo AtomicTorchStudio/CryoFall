@@ -15,10 +15,10 @@
         private static readonly ILogger Logger = Api.Logger;
 
         /// <summary>
-        /// Updates manufacturing state.
+        /// Updates fuel burning state.
         /// </summary>
         /// <param name="objectManufacturer">Instance of world object performing manufacturing.</param>
-        /// <param name="state">Instance of manufacturing state.</param>
+        /// <param name="state">Instance of fuel burning state.</param>
         /// <param name="byproductsCraftQueue"></param>
         /// <param name="config">Manufacturing config.</param>
         /// <param name="deltaTime">Delta time to progress on.</param>
@@ -29,6 +29,7 @@
             CraftingQueue byproductsCraftQueue,
             ManufacturingConfig config,
             double deltaTime,
+            double byproductsQueueRate,
             bool isNeedFuelNow,
             bool forceRefreshFuel = false)
         {
@@ -72,7 +73,8 @@
                     throw new Exception("No byproductsCraftQueue");
                 }
 
-                CraftingMechanics.ServerUpdate(byproductsCraftQueue, deltaTime);
+                CraftingMechanics.ServerUpdate(byproductsCraftQueue, 
+                                               deltaTime * byproductsQueueRate);
             }
         }
 

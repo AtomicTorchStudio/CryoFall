@@ -19,7 +19,7 @@
 
             // mobs
             scripts
-                .Add(GetScript<SpawnMobsLizard>().Configure(densityMultiplier: 0.5))
+                .Add(GetScript<SpawnMobsCloackedLizard>().Configure(densityMultiplier: 0.5))
                 .Add(GetScript<SpawnMobsCrawler>());
         }
     }

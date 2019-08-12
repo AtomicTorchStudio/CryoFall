@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data
 {
     using System.Windows;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -90,7 +89,7 @@
             this.UpdateDisplayedTimeNoTimer();
 
             // schedule refresh of the displayed time
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 TimerRefreshIntervalSeconds,
                 this.TimerUpdateDisplayedTime);
         }

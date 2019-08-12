@@ -16,7 +16,7 @@
             = null;
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Crab/CrabFront");
+            = new SkeletonResource("Crab/Front");
 
         public override double WorldScale => 0.4f;
 
@@ -30,20 +30,15 @@
 
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
-            physicsBody.AddShapeRectangle(
-                size: (0.6, 0.25),
-                offset: (-0.3, -0.15),
-                group: CollisionGroups.Default);
-
-            physicsBody.AddShapeCircle(
-                radius: 0.4,
-                center: (0, 0.25),
-                group: CollisionGroups.HitboxMelee);
-
-            physicsBody.AddShapeCircle(
-                radius: 0.4,
-                center: (0, 0.25),
-                group: CollisionGroups.HitboxRanged);
+            physicsBody
+                .AddShapeRectangle(size: (0.6, 0.25),
+                                   offset: (-0.3, -0.15))
+                .AddShapeCircle(radius: 0.4,
+                                center: (0, 0.25),
+                                group: CollisionGroups.HitboxMelee)
+                .AddShapeCircle(radius: 0.4,
+                                center: (0, 0.25),
+                                group: CollisionGroups.HitboxRanged);
         }
     }
 }

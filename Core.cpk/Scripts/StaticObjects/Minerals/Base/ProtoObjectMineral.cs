@@ -90,7 +90,7 @@
             this.ClientAddAutoStructurePointsBar(data);
 
             var gameObject = data.GameObject;
-            var textureResource = this.ClientGetTextureResource(gameObject, data.SyncPublicState);
+            var textureResource = this.ClientGetTextureResource(gameObject, data.PublicState);
 
             var spriteRenderer = Client.Rendering.CreateSpriteRenderer(
                 gameObject,
@@ -101,7 +101,7 @@
 
             Client.Scene.GetSceneObject(gameObject)
                   .AddComponent<ClientComponentObjectMineralStageWatcher>()
-                  .Setup(gameObject, data.SyncPublicState, this.ClientOnRockDestroyStageChanged);
+                  .Setup(gameObject, data.PublicState, this.ClientOnRockDestroyStageChanged);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -243,17 +243,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (1, 0.5),
-                    offset: (0.0, 0.15))
-                .AddShapeRectangle(
-                    size: (0.9, 0.8),
-                    offset: (0.05, 0.1),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (1, 0.9),
-                    offset: (0, 0.05),
-                    group: CollisionGroups.HitboxRanged);
+                .AddShapeRectangle(size: (1, 0.5),    offset: (0.0, 0.15))
+                .AddShapeRectangle(size: (0.9, 0.8),  offset: (0.05, 0.1), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.8, 0.15), offset: (0.1, 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeLineSegment(point1: (0.5, 0.2), point2: (0.5, 0.85), group: CollisionGroups.HitboxRanged);
         }
 
         private void ClientOnRockDestroyStageChanged(IStaticWorldObject mineralObject)

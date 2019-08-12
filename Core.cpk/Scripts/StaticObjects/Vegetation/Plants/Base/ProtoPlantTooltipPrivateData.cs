@@ -15,6 +15,8 @@
 
         public readonly double ServerTimeWateringEnds;
 
+        public readonly float SkillGrowthSpeedMultiplier;
+
         public readonly float SpeedMultiplier;
 
         public ProtoPlantTooltipPrivateData(
@@ -26,6 +28,7 @@
             this.AppliedFertilzerProto = privateState.AppliedFertilizerProto;
             this.ServerTimeWateringEnds = privateState.ServerTimeWateringEnds;
             this.LastWateringDuration = privateState.LastWateringDuration;
+            this.SkillGrowthSpeedMultiplier = (float)privateState.SkillGrowthSpeedMultiplier;
             this.ServerTimeNextHarvest = serverTimeNextHarvest;
             this.SpeedMultiplier = speedMultiplier;
         }

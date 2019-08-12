@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     public class TechnologiesSystem : ProtoSystem<TechnologiesSystem>
@@ -14,11 +15,8 @@
 
         public static void ClientUnlockGroup(TechGroup techGroup)
         {
-            if (!techGroup.SharedCanUnlock(Client.Characters.CurrentPlayerCharacter, out var error))
+            if (!ClientValidateCanUnlock(techGroup, showErrorNotification: true))
             {
-                NotificationSystem.ClientShowNotification(NotificationCannotUnlockTech,
-                                                          error,
-                                                          NotificationColor.Bad);
                 return;
             }
 
@@ -36,6 +34,27 @@
             }
 
             Instance.CallServer(_ => _.ServerRemote_UnlockNode(techNode));
+        }
+
+        public static bool ClientValidateCanUnlock(
+            TechGroup techGroup,
+            bool showErrorNotification)
+        {
+            if (techGroup.SharedCanUnlock(Client.Characters.CurrentPlayerCharacter,
+                                          skipLearningPointsCheck: false,
+                                          out var error))
+            {
+                return true;
+            }
+
+            if (showErrorNotification)
+            {
+                NotificationSystem.ClientShowNotification(NotificationCannotUnlockTech,
+                                                          error,
+                                                          NotificationColor.Bad);
+            }
+
+            return false;
         }
 
         public static void ServerInitCharacterTechnologies(PlayerCharacterTechnologies technologies)
@@ -75,7 +94,7 @@
 
         public static void ServerUnlockGroup(ICharacter character, TechGroup techGroup)
         {
-            techGroup.SharedValidateCanUnlock(character);
+            techGroup.SharedValidateCanUnlock(character, skipLearningPointsCheck: false);
             var technologies = character.SharedGetTechnologies();
             technologies.ServerRemoveLearningPoints(techGroup.LearningPointsPrice);
             technologies.ServerAddGroup(techGroup);
@@ -89,6 +108,11 @@
             technologies.ServerAddNode(techNode);
         }
 
+        private double ServerRemote_RequestLearningPointsGainMultiplierRate()
+        {
+            return TechConstants.ServerLearningPointsGainMultiplier;
+        }
+
         private void ServerRemote_UnlockGroup(TechGroup techGroup)
         {
             ServerUnlockGroup(ServerRemoteContext.Character, techGroup);
@@ -97,6 +121,28 @@
         private void ServerRemote_UnlockNode(TechNode techNode)
         {
             ServerUnlockNode(ServerRemoteContext.Character, techNode);
+        }
+
+        // This bootstrapper requests ServerLearningPointsGainMultiplier rate value from server.
+        private class Bootstrapper : BaseBootstrapper
+        {
+            public override void ClientInitialize()
+            {
+                Client.Characters.CurrentPlayerCharacterChanged += Refresh;
+                Refresh();
+
+                async void Refresh()
+                {
+                    if (Api.Client.Characters.CurrentPlayerCharacter == null)
+                    {
+                        return;
+                    }
+
+                    var rate = await Instance.CallServer(
+                                   _ => _.ServerRemote_RequestLearningPointsGainMultiplierRate());
+                    TechConstants.ClientSetLearningPointsGainMultiplier(rate);
+                }
+            }
         }
     }
 }

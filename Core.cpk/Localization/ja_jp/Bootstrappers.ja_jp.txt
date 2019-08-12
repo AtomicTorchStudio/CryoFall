@@ -1,0 +1,17 @@
+﻿Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Message:
+`メインサーバーに接続できません。
+[br]インターネットに接続していること、ファイアウォールや
+[br]ISPが接続をブロックしていないことを確認してください。`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Title:
+メインサーバーに接続できません
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_MessageFormat:
+`ゲームサーバーは以下のMODを必要とします：
+[br]{0}
+[br] [br]参加するには、これらのmodをダウンロードしてインストールしてください。
+[br]公式フォーラムでmodを探すことができます：http：//forums.atomictorch.com/index.php？board = 24.0`
+
+Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_Title:
+接続できません - 必要なMODが導入されていません。
+

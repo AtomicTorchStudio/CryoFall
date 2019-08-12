@@ -6,10 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Quests.Data"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data:ViewModelQuestEntry, d:IsDesignTimeCreatable=True}"
-    Focusable="True" 
+    Focusable="True"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
     <base:BaseUserControl.Resources>
@@ -54,10 +53,6 @@
                 <Setter Property="noesis:Text.Stroke" Value="#AA000000" />
                 <Setter Property="noesis:Text.StrokeThickness" Value="1" />
             </Style>
-
-            <!-- this is a requirement description text limit (used as a dynamic resource) -->
-            <!-- ReSharper disable once Xaml.RedundantResource -->
-            <system:Double x:Key="QuestRequirementDescriptionMaxWidth">141</system:Double>
 
         </ResourceDictionary>
     </base:BaseUserControl.Resources>

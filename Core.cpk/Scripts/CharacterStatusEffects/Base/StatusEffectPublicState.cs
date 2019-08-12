@@ -16,6 +16,9 @@
             networkDataType: typeof(float))]
         public double Intensity { get; private set; }
 
+        [TempOnly]
+        public bool ServerIsAddedToCharacterPublicState { get; set; }
+
         public void SetIntensity(double newIntensity)
         {
             if (newIntensity <= 0)

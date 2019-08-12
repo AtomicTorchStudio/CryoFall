@@ -16,17 +16,23 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
 치유
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
+최근에 비타민과 미량원소, 그 밖의 중요한 영양소가 가득 들어 있는 매우 건강한 식사를 했습니다. 그래서인지 기분이 좋습니다.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Name:
+건강한 음식
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
+최근에 양이 푸짐한 식사를 했습니다. 모든 작업이 보다 쉽게 느껴지게 됩니다.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
+푸짐한 음식
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 자극제의 영향으로, 일정 시간 동안 더 강해집니다. 힘이 필요한 작업을 보다 쉽게 수행할 수 있습니다.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 강화된 힘
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Description:
-최근에 충분한 식사를 하게 되었습니다. 기분이 좋아졌습니다. 수행하는 모든 작업이 보다 쉽게 느껴지게 됩니다.
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
-포만감
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 치료를 하지 않으면 계속 체력을 잃게 됩니다. 경미한 출혈은 저절로 사라지지만, 그보다 훨씬 심각한 부상은 붕대 또는 지혈제의 사용이 필요합니다.
@@ -119,7 +125,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
 독성 물질
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
-평소보다 몸이 약해진 것만 같은 기분이 듭니다. 방사능처럼 유해한 상황에 노출되는 것을 피하는 게 좋을 겁니다.
+기운이 빠진듯한 느낌이 듭니다. 모든 작업이 평소보다 어렵게 느껴집니다. 상태를 회복하고 위험한 상황에서 벗어날 시간을 가지십시오.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
 쇠약

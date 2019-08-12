@@ -5,7 +5,7 @@
         public override string Description =>
             "Specially designed suit that protects its user from most types of environmental hazards. Should not be used in combat, as it will quickly lose its integrity.";
 
-        public override ushort DurabilityMax => 400;
+        public override uint DurabilityMax => 400;
 
         public override bool IsHairVisible => false;
 

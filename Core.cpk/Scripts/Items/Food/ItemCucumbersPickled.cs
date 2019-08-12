@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
-    using System;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using System;
 
     public class ItemCucumbersPickled : ProtoItemFood
     {
@@ -9,7 +9,7 @@
 
         public override float FoodRestore => 8;
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.LongLasting;
 
         public override string Name => "Pickled cucumbers";
 
@@ -21,5 +21,6 @@
         {
             return ItemsSoundPresets.ItemFood;
         }
+
     }
 }

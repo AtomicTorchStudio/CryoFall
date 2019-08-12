@@ -98,5 +98,13 @@ Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
 Aunar objetos arriba
 
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
-Mostrar terrenos adjudicados y barras de salud
+`Mostrar terrenos adjudicados
+[br]y barras de salud`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
+`Las acciones de construcción y reparación están restringidas.
+[br]El bloqueo de asalto acabará en: {0}.`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
+Esta base está bajo bloqueo de asalto
 

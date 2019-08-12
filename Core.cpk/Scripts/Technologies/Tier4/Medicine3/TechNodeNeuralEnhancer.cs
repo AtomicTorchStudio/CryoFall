@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeNeuralEnhancer>();
 
-            config.SetRequiredNode<TechNodeStimpack>();
+            config.SetRequiredNode<TechNodePsiPreExposure>();
         }
     }
 }

@@ -7,7 +7,9 @@
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
+    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data;
@@ -37,6 +39,7 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
+        // TODO: consider removing this
         public const string Notification_CannotInteractWhileDazed = "Cannot interact while dazed.";
 
         public bool IsInteractableObject { get; private set; }
@@ -50,6 +53,16 @@
 
         protected virtual ReadOnlySoundPreset<ObjectSoundMaterial> MaterialDestroySoundPreset
             => MaterialDestroySoundPresets.Default;
+
+        public static void ClientOnCannotInteract(
+            IWorldObject worldObject,
+            string message,
+            bool isOutOfRange = false)
+        {
+            CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
+                                                                message,
+                                                                isOutOfRange);
+        }
 
         public static bool SharedHasObstaclesOnTheWay(
             ICharacter character,
@@ -169,25 +182,6 @@
             this.ClientInteractStart(gameObject);
         }
 
-        public virtual void ClientOnCannotInteract(
-            TWorldObject worldObject,
-            string message,
-            bool isOutOfRange = false)
-        {
-            CannotInteractMessageDisplay.ShowOn(worldObject, message);
-
-            var soundKey = isOutOfRange ? ObjectSound.InteractOutOfRange : ObjectSound.InteractFail;
-            worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
-                       .PlaySound(soundKey);
-        }
-
-        public void ClientOnCannotInteract(IWorldObject worldObject, string message, bool isOutOfRange = false)
-        {
-            this.ClientOnCannotInteract((TWorldObject)worldObject,
-                                        message,
-                                        isOutOfRange);
-        }
-
         public virtual void ClientOnServerPhysicsUpdate(
             IWorldObject worldObject,
             Vector2D serverPosition,
@@ -211,6 +205,26 @@
             if (character.GetPublicState<ICharacterPublicState>().IsDead)
             {
                 return false;
+            }
+
+            if (worldObject is IStaticWorldObject staticWorldObject)
+            {
+                if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                {
+                    if (!PveSystem.SharedValidateInteractionIsNotForbidden(character, staticWorldObject, writeToLog))
+                    {
+                        // action forbidden by PvE system
+                        return false;
+                    }
+                }
+                else // PvP servers have newbie protection system
+                {
+                    if (!NewbieProtectionSystem.SharedValidateInteractionIsNotForbidden( character, staticWorldObject, writeToLog))
+                    {
+                        // action forbidden by newbie protection system
+                        return false;
+                    }
+                }
             }
 
             return this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
@@ -255,7 +269,7 @@
         /// Check if the character's interaction area collides with the world object click area.
         /// The character also should not be dead.
         /// </summary>
-        public bool SharedIsInsideCharacterInteractionArea(
+        public virtual bool SharedIsInsideCharacterInteractionArea(
             ICharacter character,
             TWorldObject worldObject,
             bool writeToLog,
@@ -301,16 +315,14 @@
             if (worldObject.PhysicsBody.HasShapes)
             {
                 // check that the world object is inside the interaction area of the character
-                using (var objectsInCharacterInteractionArea
+                using var objectsInCharacterInteractionArea
                     = InteractionCheckerSystem.SharedGetTempObjectsInCharacterInteractionArea(
                         character,
                         writeToLog,
-                        requiredCollisionGroup))
-                {
-                    isInsideInteractionArea =
-                        objectsInCharacterInteractionArea?.Any(t => t.PhysicsBody.AssociatedWorldObject == worldObject)
-                        ?? false;
-                }
+                        requiredCollisionGroup);
+                isInsideInteractionArea =
+                    objectsInCharacterInteractionArea?.Any(t => t.PhysicsBody.AssociatedWorldObject == worldObject)
+                    ?? false;
             }
             else
             {
@@ -358,7 +370,7 @@
 
                     if (IsClient)
                     {
-                        this.ClientOnCannotInteract(worldObject, CoreStrings.Notification_TooFar, isOutOfRange: true);
+                        ClientOnCannotInteract(worldObject, CoreStrings.Notification_TooFar, isOutOfRange: true);
                     }
                 }
 
@@ -392,9 +404,9 @@
 
                 if (IsClient)
                 {
-                    this.ClientOnCannotInteract(worldObject,
-                                                CoreStrings.Notification_ObstaclesOnTheWay,
-                                                isOutOfRange: true);
+                    ClientOnCannotInteract(worldObject,
+                                           CoreStrings.Notification_ObstaclesOnTheWay,
+                                           isOutOfRange: true);
                 }
             }
 
@@ -448,14 +460,12 @@
 
         protected void ServerSendObjectDestroyedEvent(IWorldObject targetObject)
         {
-            using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-            {
-                Server.World.GetScopedByPlayers(targetObject, scopedBy);
+            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(targetObject, scopedBy);
 
-                this.CallClient(
-                    scopedBy,
-                    _ => _.ClientRemote_OnObjectDestroyed(targetObject.TilePosition));
-            }
+            this.CallClient(
+                scopedBy,
+                _ => _.ClientRemote_OnObjectDestroyed(targetObject.TilePosition));
         }
 
         protected abstract void SharedCreatePhysics(CreatePhysicsData data);
@@ -498,40 +508,38 @@
             // local method for testing if there is an obstacle from current to the specified position
             bool TestHasObstacle(Vector2D toPosition)
             {
-                using (var obstaclesOnTheWay = physicsSpace.TestLine(
+                using var obstaclesOnTheWay = physicsSpace.TestLine(
                     characterCenter,
                     toPosition,
                     CollisionGroup.GetDefault(),
-                    sendDebugEvent: sendDebugEvents))
+                    sendDebugEvent: sendDebugEvents);
+                foreach (var test in obstaclesOnTheWay)
                 {
-                    foreach (var test in obstaclesOnTheWay)
+                    var testPhysicsBody = test.PhysicsBody;
+                    if (testPhysicsBody.AssociatedProtoTile != null)
                     {
-                        var testPhysicsBody = test.PhysicsBody;
-                        if (testPhysicsBody.AssociatedProtoTile != null)
-                        {
-                            // obstacle tile on the way
-                            return true;
-                        }
-
-                        var testWorldObject = testPhysicsBody.AssociatedWorldObject;
-                        if (testWorldObject == character
-                            || testWorldObject == worldObject)
-                        {
-                            // not an obstacle - it's the character or world object itself
-                            continue;
-                        }
-
-                        if (!testWorldObject.ProtoWorldObject
-                                            .SharedIsAllowedObjectToInteractThrough(testWorldObject))
-                        {
-                            // obstacle object on the way
-                            return true;
-                        }
+                        // obstacle tile on the way
+                        return true;
                     }
 
-                    // no obstacles
-                    return false;
+                    var testWorldObject = testPhysicsBody.AssociatedWorldObject;
+                    if (testWorldObject == character
+                        || testWorldObject == worldObject)
+                    {
+                        // not an obstacle - it's the character or world object itself
+                        continue;
+                    }
+
+                    if (!testWorldObject.ProtoWorldObject
+                                        .SharedIsAllowedObjectToInteractThrough(testWorldObject))
+                    {
+                        // obstacle object on the way
+                        return true;
+                    }
                 }
+
+                // no obstacles
+                return false;
             }
         }
 
@@ -565,22 +573,17 @@
             /// <summary>
             /// Client state for this world object.
             /// </summary>
-            public TClientState ClientState => this.clientState ?? (this.clientState = GetClientState(this.GameObject));
+            public TClientState ClientState => this.clientState ??= GetClientState(this.GameObject);
 
             /// <summary>
             /// Synchronized server private state for this world object.
             /// </summary>
-            public TPrivateState SyncPrivateState => this.privateState
-                                                     ?? (this.privateState =
-                                                             GetPrivateState(
-                                                                 this.GameObject));
+            public TPrivateState PrivateState => this.privateState ??= GetPrivateState(this.GameObject);
 
             /// <summary>
             /// Synchronized server public state for this world object.
             /// </summary>
-            public TPublicState SyncPublicState => this.publicState
-                                                   ?? (this.publicState =
-                                                           GetPublicState(this.GameObject));
+            public TPublicState PublicState => this.publicState ??= GetPublicState(this.GameObject);
         }
 
         protected struct CreatePhysicsData
@@ -604,22 +607,17 @@
             /// <summary>
             /// Client state for this world object.
             /// </summary>
-            public TClientState ClientState => this.clientState ?? (this.clientState = GetClientState(this.GameObject));
+            public TClientState ClientState => this.clientState ??= GetClientState(this.GameObject);
 
             /// <summary>
             /// Synchronized server private state for this world object.
             /// </summary>
-            public TPrivateState SyncPrivateState => this.privateState
-                                                     ?? (this.privateState =
-                                                             GetPrivateState(
-                                                                 this.GameObject));
+            public TPrivateState PrivateState => this.privateState ??= GetPrivateState(this.GameObject);
 
             /// <summary>
             /// Synchronized server public state for this world object.
             /// </summary>
-            public TPublicState SyncPublicState => this.publicState
-                                                   ?? (this.publicState =
-                                                           GetPublicState(this.GameObject));
+            public TPublicState PublicState => this.publicState ??= GetPublicState(this.GameObject);
         }
     }
 }

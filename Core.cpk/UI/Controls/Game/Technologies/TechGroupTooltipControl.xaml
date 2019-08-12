@@ -165,7 +165,7 @@
 
         <StackPanel Visibility="{Binding VisibilityLocked}"
                     Orientation="Vertical"
-                    Margin="0,0,0,10">
+                    Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal">
                 <!-- Text: Technologies available -->
                 <TextBlock Text="{x:Static loc:CoreStrings.TechGroupTooltip_TechnologiesAvailableCount}" />
@@ -177,6 +177,16 @@
         <StackPanel Visibility="{Binding VisibilityRequirements}"
                     Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
+                <!-- Text: Research cost -->
+                <TextBlock Text="{x:Static loc:CoreStrings.WindowTechnologies_TechGroupResearchCost}" />
+                <TextBlock Text=": " />
+                <TextBlock Text="{Binding RequiredLearningPoints}" FontWeight="Bold" />
+                <TextBlock Text=" " />
+                <TextBlock Text="{x:Static loc:CoreStrings.LearningPointsAbbreviation}" FontWeight="Bold" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,5,0,0">
                 <!-- Text: Requirements -->
                 <TextBlock Text="{x:Static loc:CoreStrings.TechGroupTooltip_Requirements}"
                            FontWeight="Bold" />
@@ -186,7 +196,7 @@
             <ListBox
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
-                ItemsSource="{Binding Requirements}">
+                ItemsSource="{Binding DisplayedRequirements}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Vertical" />

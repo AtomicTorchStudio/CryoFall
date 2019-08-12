@@ -11,14 +11,14 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowMulchbox, IsDesignTimeCreatable=True}">
-    <manufacturers:WindowMulchboxBase.Resources>
-        <SolidColorBrush x:Key="BrushOrganic" Color="#FF664433" />
-    </manufacturers:WindowMulchboxBase.Resources>
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
 
                 <controls:ItemsContainerControl Container="{Binding ViewModelManufacturingState.ContainerInput}"
                                                 HorizontalAlignment="Left"
@@ -29,9 +29,12 @@
                     Value="{Binding OrganicAmount}"
                     MaxValue="{Binding OrganicCapacity}"
                     Margin="20,0,20,0"
-                    Style="{StaticResource LiquidMediumValueBar}" Foreground="{StaticResource BrushOrganic}" />
+                    Style="{StaticResource LiquidMediumValueBar}"
+                    Foreground="{StaticResource BrushOrganic}" />
 
-                <Grid Visibility="{Binding ProgressBarVisibility}" Margin="-6,0,0,0">
+                <Grid
+                    Visibility="{Binding ViewModelManufacturingState.SelectedRecipe, ConverterParameter={StaticResource BoolToVisibilityConverter}}"
+                    Margin="-6,0,0,0">
                     <core:ValueBarControl
                         Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
                         Style="{StaticResource ItemSlotCraftingProgressVerticalBar}"

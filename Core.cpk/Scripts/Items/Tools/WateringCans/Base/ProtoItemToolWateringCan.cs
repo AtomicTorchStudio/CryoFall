@@ -137,7 +137,7 @@
                     _ => _.ProtoStaticWorldObject is ProtoObjectWell);
 
             if (objectWell != null
-                || data.SyncPrivateState.WaterAmount == 0)
+                || data.PrivateState.WaterAmount == 0)
             {
                 // try to refill
                 WateringCanRefillSystem.Instance.ClientTryStartAction();

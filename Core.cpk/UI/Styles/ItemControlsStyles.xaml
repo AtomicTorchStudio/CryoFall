@@ -226,7 +226,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:ItemSlotControlForBinding}">
-                    <controls:ItemSlotControl x:Name="ItemSlotControl" IsBackgroundEnabled="False" />
+                    <controls:ItemSlotControl x:Name="ItemSlotControl" IsBackgroundEnabled="{TemplateBinding IsBackgroundEnabled}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

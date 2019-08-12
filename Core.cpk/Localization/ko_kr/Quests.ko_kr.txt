@@ -150,7 +150,7 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Description:
 기본 도구를 만들려면 몇 가지 자원을 모아야 합니다.
 
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
-`[u]돌[/u]이나 [u]잔가지[/u], [u]풀[/u]과 같이 땅에 떨어져 있는 [b]아이템은 주울 수 있습니다[/b].
+`[*] [u]돌[/u]이나 [u]잔가지[/u], [u]풀[/u]과 같이 땅에 떨어져 있는 [b]아이템은 주울 수 있습니다[/b].
 [*] 땅에 떨어져 있는 아이템을 [b]마우스 오른쪽 버튼[/b]으로 간단히 클릭하면, 해당 아이템이 인벤토리에 추가됩니다.`
 
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
@@ -464,6 +464,21 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 쇠지렛대를 사용하여 해체하기
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
+원유와 리튬 같은 특정 자원은 첨단 기술에 필요합니다. 따라서 해당 자원을 얻는 방법을 배우는 것은 매우 중요합니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
+`[*] [u]아한대 숲[/u] 어디에서나 석유꼬투리 열매를 찾을 수 있습니다. 이 열매에서는 소량의 원유를 추출할 수 있습니다.
+[*] 일반 소금 광물을 채굴할 때 [u]리튬 소금[/u]도 얻을 수 있습니다.
+[*] 사막의 [u]소금 평지[/u]에서 소금 광물을 찾을 수 있습니다.
+[*] [u]외계지질학[/u]을 학습하면 이러한 자원을 얻을 수 있는 공업 수준의 방법을 배우게 됩니다.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
+고급 자원 획득
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+소금 광물 채굴하기
+
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 공업 건설 분야를 발전시키려면 어려운 과학, 특히 화학의 기반을 잘 닦아야 합니다.
 
@@ -492,6 +507,20 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 기술 숙달하기-제2부
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
+기지에 전력망을 까는 것은 효율성을 증대시키기 위한 중요한 단계입니다. 작동하려면 전기가 필요한 발전된 구조물들이 많이 있습니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
+`[*] 전기 장치는 토지 점유 구역 [b]내[/b]에 있을 때만 작동합니다. 토지 점구 구역 밖에 전기 장치를 설치하는 것은 무의미합니다.
+[*] 전기 에너지는 필요할 때 간편하게 사용할 수 있도록  [b]전기 저장소[/b]에 축적됩니다. 기지의 총 에너지 용량을 늘리는 것이 좋습니다.
+[*] 증기, 태양열, 엔진과 같은 다양한 유형의 [b]발전기[/b]로 전기를 생산할 수 있습니다.
+[*] 축적된 전기가 [u]부족[/u]해지면 [b]정전[/b] 모드로 전환되고, 수동으로 전기를 복구해야 합니다.
+[*] 전기 저장소나 토지 점유소에서 [b]자세한 전력망 정보[/b]를 볼 수 있습니다.
+[*] 연결된 수개의 토지 점유 구역은 [b]하나의 전력망[/b]으로 간주됩니다.`
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
+전력망 깔기
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
 또한, 더욱 도전적인 환경은 탐험하긴 어렵지만, 그곳에서만 얻을 수 있는 독특한 자원이 있습니다.
 
@@ -501,6 +530,12 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
 환경 탐험-제3부
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
+[*] [b]화산 환경[/b]은 극도로 위험하며 극한의 [b]열기[/b]에서 자신을 보호할 수 있는 장비가 필요합니다.
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
+환경 탐험-제4부
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 오래된 유적은 희귀한 부품과 특정 자원을 찾을 수 있는 가장 좋은 곳입니다. 특히 만들어야 할 것이 생겼을 때, 가끔 유적을 탐험해 보는 것은 어떨까요?
@@ -530,4 +565,7 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 사냥 숙달하기-제4부
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
+사냥 숙달하기-제5부
 

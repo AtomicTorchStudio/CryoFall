@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectCrateSteel>();
 
-            config.SetRequiredNode<TechNodeFridgeSmall>();
+            config.SetRequiredNode<TechNodeTinkerTable>();
         }
     }
 }

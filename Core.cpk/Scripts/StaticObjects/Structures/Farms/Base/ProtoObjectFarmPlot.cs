@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms
 {
+    using System.Linq;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Tiles;
@@ -48,14 +50,20 @@
         protected virtual ITextureResource BlendMaskTexture { get; }
             = new TextureResource("Terrain/Field/MaskField");
 
+        protected abstract TextureResource TextureFieldFertilized { get; }
+
+        protected abstract TextureResource TextureFieldWatered { get; }
+
         public override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {
             var renderer = blueprint.SpriteRenderer;
             renderer.TextureResource = this.DefaultTexture;
 
             // setup drawing of the top left chunk of the texture
-            renderer.CustomTextureSourceRectangle =
-                new RectangleInt(0, 0, ScriptingConstants.TileSizeRealPixels, ScriptingConstants.TileSizeRealPixels);
+            renderer.CustomTextureSourceRectangle = new RectangleInt(0,
+                                                                     0,
+                                                                     ScriptingConstants.TileSizeRealPixels,
+                                                                     ScriptingConstants.TileSizeRealPixels);
 
             // change draw world position and origin to draw the top left chunk of the texture
             renderer.PositionOffset = (0, 1);
@@ -74,16 +82,47 @@
             this.ClientAddAutoStructurePointsBar(data);
 
             var worldObject = data.GameObject;
+            var tile = worldObject.OccupiedTile;
+
+            var drawOrder = DrawOrder.GroundBlend + 2;
             var renderer = Client.Rendering.CreateSpriteRenderer(
                 worldObject,
-                this.Texture);
+                this.Texture,
+                drawOrder: drawOrder);
             renderer.RenderingMaterial = MaterialGround;
-            renderer.DrawOrder = DrawOrder.GroundBlend + 2;
             this.ClientSetupRenderer(renderer);
 
             data.ClientState.Renderer = renderer;
 
-            this.clientBlendHelper.Update(worldObject.OccupiedTile);
+            this.clientBlendHelper.Update(tile);
+
+            // TODO: restore this code when we add proper sprites for watered and fertilized plot
+            //var plant = SharedGetFarmPlantWorldObject(tile);
+            //if (plant != null)
+            //{
+            //    // Add extra sprites for watered and fertilized plants.
+            //    // Please note - the farm plot is re-initialized by plant object when its state changed.
+            //    var plantPublicState = plant.GetPublicState<PlantPublicState>();
+            //    if (plantPublicState.IsWatered)
+            //    {
+            //        Client.Rendering.CreateSpriteRenderer(
+            //            worldObject,
+            //            this.TextureFieldWatered,
+            //            positionOffset: (0.5, 0.4),
+            //            spritePivotPoint: (0.5, 0.5),
+            //            drawOrder: drawOrder + 2);
+            //    }
+
+            //    if (plantPublicState.IsFertilized)
+            //    {
+            //        Client.Rendering.CreateSpriteRenderer(
+            //            worldObject,
+            //            this.TextureFieldFertilized,
+            //            positionOffset: (0.5, 0.4),
+            //            spritePivotPoint: (0.5, 0.5),
+            //            drawOrder: drawOrder + 2);
+            //    }
+            //}
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -130,6 +169,12 @@
             this.clientBlendHelper = IsClient
                                          ? new ClientFarmPlotBlendHelper(this)
                                          : null;
+        }
+
+        private static IStaticWorldObject SharedGetFarmPlantWorldObject(Tile tile)
+        {
+            return tile.StaticObjects.FirstOrDefault(
+                o => o.ProtoStaticWorldObject is IProtoObjectPlant);
         }
     }
 

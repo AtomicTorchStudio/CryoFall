@@ -53,7 +53,7 @@ Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
 .300 장갑 관통탄
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
-중화기 반물질 .300 소이탄
+장갑을 뚫고 목표 대상에 불을 붙일 수 있는 .300 소이탄.
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 .300 소이탄
@@ -392,19 +392,19 @@ Scripts/Items/Food/ItemBerriesOrange@Description:
 맛있는 주황색 베리.
 
 Scripts/Items/Food/ItemBerriesOrange@Name:
-베리
+주황색 베리
 
 Scripts/Items/Food/ItemBerriesRed@Description:
 맛있는 빨간색 베리.
 
 Scripts/Items/Food/ItemBerriesRed@Name:
-베리
+빨간색 베리
 
 Scripts/Items/Food/ItemBerriesViolet@Description:
 맛있는 보라색 베리.
 
 Scripts/Items/Food/ItemBerriesViolet@Name:
-베리
+보라색 베리
 
 Scripts/Items/Food/ItemBottleWater@Description:
 수분 보충 및 다양한 요리에 사용됩니다.
@@ -455,10 +455,22 @@ Scripts/Items/Food/ItemCannedFish@Name:
 생선 통조림
 
 Scripts/Items/Food/ItemCannedMeat@Description:
-재료를 알 수 없는 고기 통조림. 그래도 겉포장은 꽤 괜찮아 보입니다.
+지방이 많이 함유되어 있는 고기 스튜 통조림. 장기간 저장용입니다.
 
 Scripts/Items/Food/ItemCannedMeat@Name:
 고기 통조림
+
+Scripts/Items/Food/ItemCannedMixedMeat@Description:
+재료를 알 수 없는 고기 통조림. 그래도 겉 포장은 꽤 괜찮아 보입니다.
+
+Scripts/Items/Food/ItemCannedMixedMeat@Name:
+혼합육 통조림
+
+Scripts/Items/Food/ItemCarbonara@Description:
+파스타, 계란, 치즈, 고기로 이렇게나 맛있는 음식을 만들 수 있답니다!
+
+Scripts/Items/Food/ItemCarbonara@Name:
+카르보나라
 
 Scripts/Items/Food/ItemCarrot@Description:
 카로틴이 풍부한 주황색 채소.
@@ -514,11 +526,11 @@ Scripts/Items/Food/ItemCorn@Description:
 Scripts/Items/Food/ItemCorn@Name:
 옥수수
 
-Scripts/Items/Food/ItemCornOnCob@Description:
-옥수숫대에 붙은 뜨거운 옥수수를 좋아하지 않는 사람이 있을까요? 근데 옥수숫대가 뭘까요?
+Scripts/Items/Food/ItemCornGrilled@Description:
+단맛을 간직하고 있으면서도 훈제향이 더해진 구운 옥수수. 아주 맛있습니다!
 
-Scripts/Items/Food/ItemCornOnCob@Name:
-통 옥수수
+Scripts/Items/Food/ItemCornGrilled@Name:
+구운 옥수수
 
 Scripts/Items/Food/ItemCucumber@Description:
 고양이들에게 두려움을 심어주는 수분이 많이 함유된 채소.
@@ -573,6 +585,18 @@ Scripts/Items/Food/ItemEggsRaw@Description:
 
 Scripts/Items/Food/ItemEggsRaw@Name:
 동물의 알
+
+Scripts/Items/Food/ItemInsectMeatFried@Description:
+이 고기를 요리해서 그나마 덜 역겨워졌지만... 그래도 먹기 전에는 토할 준비를 먼저 해야 할 것입니다.
+
+Scripts/Items/Food/ItemInsectMeatFried@Name:
+튀긴 곤충 고기
+
+Scripts/Items/Food/ItemInsectMeatRaw@Description:
+역겨운 곤충 고기. 요리하면 약간 덜 역겨워질 겁니다.
+
+Scripts/Items/Food/ItemInsectMeatRaw@Name:
+생 곤충 고기
 
 Scripts/Items/Food/ItemJamBerries@Description:
 베리로 만든 맛있는 잼.
@@ -820,6 +844,12 @@ Scripts/Items/Generic/ItemCampFuel@Description:
 Scripts/Items/Generic/ItemCampFuel@Name:
 캠프 연료
 
+Scripts/Items/Generic/ItemCanEmpty@Description:
+빈 깡통은 다양한 종류의 통조림이나 음료를 담는 데 사용됩니다.
+
+Scripts/Items/Generic/ItemCanEmpty@Name:
+빈 깡통
+
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
 비어 있는 금속 용기. 휘발성 액체를 담을 수 있습니다.
 
@@ -921,6 +951,12 @@ Scripts/Items/Generic/ItemComponentsWeapon@Description:
 
 Scripts/Items/Generic/ItemComponentsWeapon@Name:
 무기 부품
+
+Scripts/Items/Generic/ItemDuctTape@Description:
+추가적인 강력 접착 화합물과 강화 합성 외피로 이루어진 특수 접착 테이프.
+
+Scripts/Items/Generic/ItemDuctTape@Name:
+강력 접착 테이프
 
 Scripts/Items/Generic/ItemExplosives@Description:
 다양한 폭발 장치를 만드는 데 사용할 수 있는 고폭탄 소재.
@@ -1139,17 +1175,17 @@ Scripts/Items/Generic/ItemOrePragmium@Description:
 Scripts/Items/Generic/ItemOrePragmium@Name:
 프라그뮴
 
-Scripts/Items/Generic/ItemOrePyrite@Description:
-황철광은 가열하여 황산으로 가공할 수 있습니다.
-
-Scripts/Items/Generic/ItemOrePyrite@Name:
-황철광
-
 Scripts/Items/Generic/ItemPaper@Description:
-평범한 종이.
+종이는 다양한 용도로 사용할 수 있는 다용도 재료이며, 나무로 쉽게 만들 수 있습니다.
 
 Scripts/Items/Generic/ItemPaper@Name:
 종이
+
+Scripts/Items/Generic/ItemPasta@Description:
+맛있는 요리의 기본 재료!
+
+Scripts/Items/Generic/ItemPasta@Name:
+익히지 않은 파스타
 
 Scripts/Items/Generic/ItemPlanks@Description:
 주로 건설 자재로 사용됩니다. 또한, 연료로 사용할 수도 있습니다.
@@ -1174,6 +1210,12 @@ Scripts/Items/Generic/ItemPowerCell@Description:
 
 Scripts/Items/Generic/ItemPowerCell@Name:
 전지
+
+Scripts/Items/Generic/ItemPreservative@Description:
+식품 방부제. 포장된 음식에 추가할 수 있으며, 음식이 훨씬 더 오래 상하지 않게 해줍니다.
+
+Scripts/Items/Generic/ItemPreservative@Name:
+방부제
 
 Scripts/Items/Generic/ItemRope@Description:
 평범한 밧줄. 다양한 용도로 사용할 수 있습니다. 사용하고 남은 밧줄은 태울 수 있습니다.
@@ -1204,6 +1246,24 @@ Scripts/Items/Generic/ItemSand@Description:
 
 Scripts/Items/Generic/ItemSand@Name:
 모래
+
+Scripts/Items/Generic/ItemSlime@Description:
+초록색 점액, 어떤 생명체가 남긴 것 같습니다.
+
+Scripts/Items/Generic/ItemSlime@Name:
+점액
+
+Scripts/Items/Generic/ItemSolarPanel@Description:
+생산 비용은 비싸지만, 유지보수를 하지 않아도 아주 오랫동안 전기를 공급해줍니다.
+
+Scripts/Items/Generic/ItemSolarPanel@Name:
+태양 전지판
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Description:
+새 태양 전지판을 만들 때 망가진 태양 전지판을 재활용할 수 있습니다.
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Name:
+망가진 태양 전지판
 
 Scripts/Items/Generic/ItemSolvent@Description:
 극성 및 비극성 용매의 성질을 결합하여 특수 제작된 첨단 용매.
@@ -1294,6 +1354,12 @@ Scripts/Items/Generic/ItemWheatGrains@Description:
 
 Scripts/Items/Generic/ItemWheatGrains@Name:
 밀 낟알
+
+Scripts/Items/Generic/ItemWire@Description:
+절연 전선 타래
+
+Scripts/Items/Generic/ItemWire@Name:
+전선
 
 Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
 장비된 보조 배터리가 없습니다
@@ -1445,6 +1511,12 @@ Scripts/Items/Medical/ItemCigarPremium@Description:
 Scripts/Items/Medical/ItemCigarPremium@Name:
 고급 담배
 
+Scripts/Items/Medical/ItemEnergyTablets@Description:
+피로를 빠르게 회복할 수 있는 단순한 약.
+
+Scripts/Items/Medical/ItemEnergyTablets@Name:
+에너지 알약
+
 Scripts/Items/Medical/ItemHeatPreExposure@Description:
 내열성 젤을 바르면 직접적인 열전달을 방지하고 복사열을 반사하여 짧은 시간 동안은 고열 지대에 들어가도 괜찮아집니다.
 
@@ -1572,103 +1644,58 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 근력강화제 (소)
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
-자작나무 묘목. 새 나무를 심어서 키울 수 있습니다.
+나무 묘목. 새 나무를 심어서 키울 수 있습니다.
 
 Scripts/Items/Seeds/ItemSaplingBirch@Name:
 자작나무 묘목
 
-Scripts/Items/Seeds/ItemSaplingOak@Description:
-참나무 묘목. 새 나무를 심어서 키울 수 있습니다.
-
 Scripts/Items/Seeds/ItemSaplingOak@Name:
 참나무 묘목
-
-Scripts/Items/Seeds/ItemSaplingPine@Description:
-소나무 묘목. 새 나무를 심어서 키울 수 있습니다.
 
 Scripts/Items/Seeds/ItemSaplingPine@Name:
 소나무 묘목
 
-Scripts/Items/Seeds/ItemSaplingPineBoreal@Description:
-북부 지방에서 자라는 소나무 묘목. 새 나무를 심어서 키울 수 있습니다.
-
 Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
 아한대 소나무 묘목
 
-Scripts/Items/Seeds/ItemSaplingPoplar@Description:
-미루나무 묘목. 새 나무를 심어서 키울 수 있습니다.
-
 Scripts/Items/Seeds/ItemSaplingPoplar@Name:
 미루나무 묘목
-
-Scripts/Items/Seeds/ItemSaplingRubbertree@Description:
-고무나무 묘목. 새 나무를 심어서 키울 수 있습니다.
 
 Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
 고무나무 묘목
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
-피망을 심어서 키울 수 있습니다.
+씨앗이 든 작은 봉투. 흙에 심을 수 있습니다.
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
 피망씨
 
-Scripts/Items/Seeds/ItemSeedsCarrot@Description:
-당근을 심어서 키울 수 있습니다.
-
 Scripts/Items/Seeds/ItemSeedsCarrot@Name:
 당근씨
-
-Scripts/Items/Seeds/ItemSeedsChiliPepper@Description:
-고추를 심어서 키울 수 있습니다.
 
 Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
 고추씨
 
-Scripts/Items/Seeds/ItemSeedsCorn@Description:
-옥수수를 심어서 키울 수 있습니다.
-
 Scripts/Items/Seeds/ItemSeedsCorn@Name:
 옥수수씨
-
-Scripts/Items/Seeds/ItemSeedsCucumber@Description:
-오이를 심어서 키울 수 있습니다.
 
 Scripts/Items/Seeds/ItemSeedsCucumber@Name:
 오이씨
 
-Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Description:
-파란색 세이지 꽃을 심어서 키울 수 있습니다.
-
 Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 파란색 세이지씨
-
-Scripts/Items/Seeds/ItemSeedsFlowerOni@Description:
-도깨비꽃씨. 심어서 더 많은 꽃을 키울 수 있습니다.
 
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 도깨비꽃씨
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Description:
-오구린은 이 행성을 위해 특별히 만들어진 최초의 유전자 조작 식물 중 하나였습니다.
-
 Scripts/Items/Seeds/ItemSeedsOgurin@Name:
 오구린씨
-
-Scripts/Items/Seeds/ItemSeedsTobacco@Description:
-담배를 심어서 키울 수 있습니다.
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 담배씨
 
-Scripts/Items/Seeds/ItemSeedsTomato@Description:
-이 행성을 위해 특별히 선정된 과즙이 매우 많은 토마토의 씨앗.
-
 Scripts/Items/Seeds/ItemSeedsTomato@Name:
 토마토씨
-
-Scripts/Items/Seeds/ItemSeedsWheat@Description:
-심기 위해 특별히 마련해 놓은 밀의 씨앗.
 
 Scripts/Items/Seeds/ItemSeedsWheat@Name:
 밀 씨앗
@@ -1758,19 +1785,13 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 돌곡괭이
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
-무엇이든 지으려면 좋은 공구함이 필요합니다.
+공구함은 구조물을 짓거나 수리할 때 필요합니다. 장착 및 선택하였는지 확인하십시오.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
 단순한 공구함
 
-Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Description:
-무엇이든 지으려면 좋은 공구함이 필요합니다.
-
 Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
 철제 공구함
-
-Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Description:
-무엇이든 지으려면 좋은 공구함이 필요합니다.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
 강철제 공구함

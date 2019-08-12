@@ -54,9 +54,7 @@
                                                                             lacunarity: 1.45))));
 
             // add plants decals
-            AddDecalDoubleWithOffset(
-                settings,
-                ProtoTileDecal.CollectTextures("Terrain/Meadows/MeadowPlants*"),
+            settings.AddDecalDoubleWithOffset(ProtoTileDecal.CollectTextures("Terrain/Meadows/MeadowPlants*"),
                 size: (2, 2),
                 drawOrder: DrawOrder.GroundDecalsUnder,
                 noiseSelector: new CombinedNoiseSelector(
@@ -85,9 +83,7 @@
                         noise: new WhiteNoise(seed: 1238127464))));
 
             // add chamomile decals
-            AddDecalDoubleWithOffset(
-                settings,
-                ProtoTileDecal.CollectTextures("Terrain/Meadows/Chamomile*"),
+            settings.AddDecalDoubleWithOffset(ProtoTileDecal.CollectTextures("Terrain/Meadows/Chamomile*"),
                 size: (2, 2),
                 noiseSelector: new NoiseSelector(
                     from: 0.85,
@@ -99,9 +95,7 @@
                                            lacunarity: 1.2)));
 
             // add flowers decals
-            AddDecalDoubleWithOffset(
-                settings,
-                ProtoTileDecal.CollectTextures("Terrain/Meadows/YellowFlowers*"),
+            settings.AddDecalDoubleWithOffset(ProtoTileDecal.CollectTextures("Terrain/Meadows/YellowFlowers*"),
                 size: (2, 2),
                 noiseSelector: new CombinedNoiseSelector(
                     new NoiseSelector(
@@ -120,34 +114,6 @@
                                                octaves: 3,
                                                persistance: 0.6,
                                                lacunarity: 1.7))));
-        }
-
-        private static void AddDecalDoubleWithOffset(
-            Settings settings,
-            List<ITextureResource> textures,
-            Vector2Ushort size,
-            INoiseSelector noiseSelector,
-            DrawOrder drawOrder = DrawOrder.GroundDecals,
-            bool requiresFullSizeNoiseCoverage = false,
-            bool canFlipHorizontally = true)
-        {
-            settings.AddDecal(
-                new ProtoTileDecal(textures,
-                                   size: size,
-                                   drawOrder: drawOrder,
-                                   requiresCompleteNoiseSelectorCoverage: requiresFullSizeNoiseCoverage,
-                                   noiseSelector: noiseSelector,
-                                   canFlipHorizontally: canFlipHorizontally));
-
-            // add the same decal but with a little offset (to make a more dense diagonal placement)
-            settings.AddDecal(
-                new ProtoTileDecal(textures,
-                                   size: size,
-                                   drawOrder: drawOrder,
-                                   offset: Vector2Ushort.One,
-                                   requiresCompleteNoiseSelectorCoverage: requiresFullSizeNoiseCoverage,
-                                   noiseSelector: noiseSelector,
-                                   canFlipHorizontally: canFlipHorizontally));
         }
     }
 }

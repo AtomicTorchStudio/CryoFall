@@ -1,9 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -25,9 +28,15 @@
 
         private BaseCommand commandRefresh;
 
+        private DialogWindow dialogWindowPleaseWait;
+
+        private Action dialogWindowPleaseWaitCallbackOnInfoReceivedOrCannotReach;
+
         private string iconHash;
 
         private bool? isCompatible;
+
+        private bool isInaccessible;
 
         private bool isInfoReceived;
 
@@ -35,11 +44,11 @@
 
         private int lastIconLoadRequestId;
 
-        private ushort networkProtocolVersion;
-
         private ushort? ping;
 
         private string title = "...";
+
+        private DateTime? wipedDate;
 
         public ViewModelServerInfo(
             ServerAddress address,
@@ -139,6 +148,25 @@
 
         public bool IsFeatured { get; set; }
 
+        public bool IsInaccessible
+        {
+            get => this.isInaccessible;
+            set
+            {
+                if (this.isInaccessible == value)
+                {
+                    return;
+                }
+
+                this.isInaccessible = value;
+
+                if (this.isInaccessible)
+                {
+                    this.OnInfoReceivedOnInaccessible();
+                }
+            }
+        }
+
         public bool IsInfoReceived
         {
             get => this.isInfoReceived;
@@ -152,12 +180,15 @@
                 this.isInfoReceived = value;
                 this.NotifyThisPropertyChanged();
                 this.JoinServerButtonVisibility = this.isInfoReceived ? Visibility.Visible : Visibility.Collapsed;
+
+                if (this.isInfoReceived)
+                {
+                    this.OnInfoReceivedOnInaccessible();
+                }
             }
         }
 
         public bool IsModded { get; set; }
-
-        public bool IsNotAccessible { get; set; }
 
         public bool IsOfficial { get; set; }
 
@@ -233,15 +264,133 @@
 
         public AppVersion Version { get; set; }
 
-        public void RefreshAndDisplayPleaseWaitDialog()
+        public DateTime? WipedDate
         {
-            // try refresh
-            this.CommandRefresh?.Execute(this);
-            DialogWindow.ShowDialog(
-                title: null, //DialogCannotConnect_Title,
-                text: DialogCannotConnect_Message,
+            get => this.wipedDate;
+            set
+            {
+                if (this.wipedDate == value)
+                {
+                    return;
+                }
+
+                this.wipedDate = value;
+                this.NotifyThisPropertyChanged();
+
+                this.NotifyPropertyChanged(nameof(this.WipedDateText));
+            }
+        }
+
+        public string WipedDateText
+            => FormatWipedDate(this.wipedDate);
+
+        public static string FormatWipedDate(DateTime? wipedDate)
+        {
+            if (!wipedDate.HasValue)
+            {
+                return "...";
+            }
+
+            // test random wipe dates
+            //this.wipedDate = DateTime.Now;
+            //if (RandomHelper.RollWithProbability(0.9))
+            //{
+            //    this.wipedDate -= TimeSpan.FromHours(RandomHelper.Next(0, 60));
+            //}
+
+            var now = DateTime.Now;
+            if (now <= wipedDate.Value)
+            {
+                return CoreStrings.WipedDate_JustWiped;
+            }
+
+            var deltaTime = now - wipedDate.Value;
+
+            var totalDays = deltaTime.TotalDays;
+            if (totalDays > 10000)
+            {
+                return "—";
+            }
+
+            if (totalDays >= 1)
+            {
+                if (totalDays < 2)
+                {
+                    return CoreStrings.WipedDate_Yesterday;
+                }
+
+                return string.Format(CoreStrings.WipedDate_DaysAgo_Format, (int)totalDays);
+            }
+
+            var totalHours = deltaTime.TotalHours;
+            if (totalHours >= 2)
+            {
+                return string.Format(CoreStrings.WipedDate_HoursAgo_Format, (int)totalHours);
+            }
+
+            return CoreStrings.WipedDate_JustWiped;
+        }
+
+        public void RefreshAndDisplayPleaseWaitDialog(
+            Action onInfoReceivedOrCannotReach)
+        {
+            if (this.IsInaccessible)
+            {
+                this.CommandRefresh?.Execute(this);
+            }
+
+            this.dialogWindowPleaseWait?.Close(DialogResult.Cancel);
+            this.dialogWindowPleaseWait = null;
+
+            var dialogContent = new Grid();
+
+            // prepare dialog content
+            {
+                var dialogLoadingDisplay = new LoadingDisplayControl()
+                {
+                    Width = 48,
+                    Height = 48,
+                    Margin = new Thickness(0, 5, 0, 5)
+                };
+
+                dialogContent.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+                dialogContent.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(10) });
+                dialogContent.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                Grid.SetRow(dialogLoadingDisplay, 2);
+                dialogContent.Children.Add(dialogLoadingDisplay);
+
+                var dialogText = DialogWindow.CreateTextElement(DialogCannotConnect_Message, TextAlignment.Center);
+                dialogContent.Children.Add(dialogText);
+            }
+
+            // display dialog
+            var dialog = DialogWindow.ShowDialog(
+                title: null,
+                content: dialogContent,
                 closeByEscapeKey: true,
-                zIndexOffset: 100000);
+                cancelText: CoreStrings.Button_Cancel,
+                hideOkButton: true,
+                hideCancelButton: false,
+                zIndexOffset: 100000,
+                focusOnCancelButton: false);
+
+            this.dialogWindowPleaseWait = dialog;
+            this.dialogWindowPleaseWaitCallbackOnInfoReceivedOrCannotReach = onInfoReceivedOrCannotReach;
+
+            dialog.Closed += DialogClosedHandler;
+
+            void DialogClosedHandler(object s, EventArgs e)
+            {
+                if (dialog != this.dialogWindowPleaseWait)
+                {
+                    return;
+                }
+
+                this.dialogWindowPleaseWait = null;
+                this.dialogWindowPleaseWaitCallbackOnInfoReceivedOrCannotReach = null;
+                dialog.Closed -= DialogClosedHandler;
+            }
         }
 
         public async void ReloadIcon()
@@ -274,7 +423,6 @@
         public void Reset()
         {
             this.IsInfoReceived = false;
-            this.networkProtocolVersion = 0;
             this.ping = null;
             //this.Title = string.Empty;
             //this.IsFeatured = false; // do not reset is featured flag!
@@ -285,13 +433,14 @@
             this.LoadingDisplayVisibility = Visibility.Visible;
             this.IncompatibleVisibility = Visibility.Collapsed;
             this.JoinServerButtonVisibility = Visibility.Collapsed;
-            this.IsNotAccessible = false;
+            this.IsInaccessible = false;
             this.IsPingMeasurementDone = false;
             this.IsCompatible = null;
             this.Version = AppVersion.Zero;
             this.IconHash = null;
             this.IsPvP = false;
             this.IsPvE = false;
+            this.WipedDate = null;
         }
 
         /// <summary>
@@ -301,6 +450,21 @@
         {
             this.address = newAddress;
             this.NotifyPropertyChanged(nameof(this.Address));
+        }
+
+        private void OnInfoReceivedOnInaccessible()
+        {
+            var callback = this.dialogWindowPleaseWaitCallbackOnInfoReceivedOrCannotReach;
+            if (callback == null)
+            {
+                return;
+            }
+
+            this.dialogWindowPleaseWaitCallbackOnInfoReceivedOrCannotReach = null;
+            this.dialogWindowPleaseWait?.Close(DialogResult.Cancel);
+            Logger.Info("Server info received or server address inaccessible - executing action callback: "
+                        + this.address);
+            Api.SafeInvoke(callback);
         }
     }
 }

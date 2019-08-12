@@ -1,0 +1,437 @@
+﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
+Aby napełnić butelkę, stań w pobliżu wody lub zanurz ją w studni.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
+Brak wyposażonych banków zasilania.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NotEnoughCharge:
+Rozładowane banki zasilania.
+
+Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
+Nie można użyć: {0}
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
+`Możesz odrodzić się w swoim łóżku za {0} s.
+[br]Albo możesz się odrodzić w świecie gry już teraz.`
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Title:
+Czas do odrodzenia w łóżku
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Inaccessible:
+Łóżko jest niedostępne (brak wolnej przestrzeni wokół).
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_NoBed:
+Nie masz już łóżka.
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Title:
+Nie można odrodzić w łóżku
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Message:
+Nie ma dobrego miejsca do odrodzenia.
+
+Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Title:
+Nie można odrodzić się w pobliżu łóżka
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Message:
+Poczekaj na realizację żądania.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Title:
+Wysłano już żądanie odblokowania
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Message:
+Gdy zegar odlicza, nie poruszaj się. Anulowano żądanie odblokowania.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Title:
+Anulowano odblokowanie
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Dead:
+Postać nie żyje.
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Title:
+Nie można odblokować
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_MessageFormat:
+`Odczekaj: {0}
+[br]Jeśli się ruszysz, żądanie odblokowania zostanie anulowane.`
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_Title:
+Zażądano odblokowania
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Message:
+Możesz się ruszać. Baw się dobrze!
+
+Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
+Odblokowano pomyślnie
+
+Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
+Administrator serwera zabronił ci korzystania z czatu. Blokada wygasa za: {0}
+
+Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
+{0} opuszcza grę
+
+Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
+{0} dołącza do gry
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
+Czy na pewno {0} gracza {1}?
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
+Możesz odblokować tego gracza później, korzystając z menu społecznościowego.
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
+Globalny
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
+Lokalny
+
+Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
+Tam nie można budować
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationCannotPlace:
+Nie można umieścić
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Message:
+Potrzeba więcej przedmiotów.
+
+Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Title:
+Nie można budować
+
+Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
+Kolejka wytwarzania jest pełna.
+
+Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
+Nie można dodać nowego przepisu
+
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
+Nie można wyburzyć
+
+Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
+{0} ulega uszkodzeniu. Nie można odzyskać.
+
+Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_Title:
+Przedmiot się zepsuł
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_MessageFormat:
+`Aby uzupełnić, musisz mieć odpowiednie paliwowo:
+[br]{0}.`
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_Title:
+Nie można uzupełnić ponownie
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNoNeedToRefill:
+Nie trzeba uzupełniać
+
+Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
+Tego przedmiotu nie można uzupełnić.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
+Zbyt blisko innej działki.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
+Właścicielem obszaru jest inny gracz lub obszar znajduje się zbyt blisko działki posiadanej przez innego gracza.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
+Złoża zasobów dopiero się pojawiły i nie można ich posiadać. Budowa wokół nich jest tymczasowo wzbroniona.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
+Przecina się z inną posiadaną działką
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
+`Masz już maksymalną liczbę działek.
+[br]Aby uzyskać kolejne, musisz odkryć nowe technologie.`
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
+Musisz rozwinąć Ksenologię do poziomu 3., aby zawłaszczyć złoża ropy/litu lub móc posiadać działkę w ich pobliżu.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
+`Trwa najazd.
+[br]Nie możesz budować nowych struktur, gdy twoja baza jest atakowana.`
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
+Tę strukturę można ustawić tylko na obszarze posiadanej działki.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
+Nie jesteś właścicielem gruntu.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
+Trwa atak na bazę.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
+Wyłącz ochronę nowego
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
+Czy na pewno wyłączyć ochronę nowego? Tej opcji nie można włączyć ponownie.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
+Nowi gracze są chronieni. Ochrona zabezpiecza przed utratą przedmiotów po zabiciu cię przez innego gracza. Ponadto w przypadku śmierci spowodowanej w dowolny sposób inni gracze nie mogą zabrać twoich przedmiotów. Wykonuj zadania, twórz wymagane narzędzia oraz bronie i jak najszybciej zbuduj małą bazę!
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
+Koniec ochrony nowego:
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
+Ochrona nowego uniemożliwia ci atakowanie innych graczy i zgarnianie ich toreb i przedmiotów. Ochronę możesz wyłączyć w dowolnej chwili w menu polityki.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
+Nie możesz wykonać tego działania, gdy włączona jest ochrona nowego. Ochronę nowego możesz wyłączyć w każdej chwili w menu polityki.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
+Ta torba jest objęta ochroną nowego, więc tylko właściciel może ją podnieść.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_ProtectionExpired:
+Koniec ochrony nowego. Teraz możesz już brać udział w walkach z innymi graczami. Pamiętaj - po śmierci możesz stracić wszystkie przedmioty.
+
+Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Title_NewbieProtection:
+Ochrona nowego
+
+Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
+Brak miejsca w ekwipunku
+
+Scripts/Systems/Notifications/NotificationSystem@NotificationSomeItemsDropped:
+Niektóre przedmioty zostały wyrzucone!
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageFormat:
+[b]{0}[/b] zaprasza cię do grupy.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
+Uwaga: jeśli zaakceptujesz to zaproszenie, [b]opuścisz[/b] swoją aktualną grupę.
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationSentMessageFormat:
+Wysłano zaproszenie do grupy do gracza: [b]{0}[/b].
+
+Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
+Zaproszenie do grupy
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerAcceptedInviteFormat:
+{0} dołącza do grupy po zaproszeniu przez {1}
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerInvitedFormat:
+{0} zaprasza {1} do grupy
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerLeftPartyFormat:
+{0} opuszcza grupę
+
+Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
+{0} – usunięto z grupy przez {1}
+
+Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
+{0} usuwa cię z grupy
+
+Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
+Nie znaleziono zaproszenia lub zaproszenie wygasło.
+
+Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
+Za późno – grupa jest pełna.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
+Nie znaleziono zaproszonego gracza.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
+Grupa jest pełna.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySamePartyMember:
+Zaproszony gracz jest już członkiem twojej grupy.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
+Nie możesz zaprosić z powodu wyciszenia twojej postaci przez operatora serwera.
+
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
+Zaproszony gracz jest w trybie offline. Do grupy można zaprosić tylko graczy online.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
+Nie można wykonać – za daleko lub przeszkody.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
+Brak sieci energetycznej.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
+Niewystarczająca moc sieci energetycznej.
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
+Wyłącz tryb pojedynku
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Button_Enable:
+Włącz tryb pojedynku
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Description:
+`Możesz włączyć tryb pojedynku, aby walczyć z innymi graczami.
+[br]Po śmierci w pojedynku nie stracisz przedmiotów.
+[br]Obaj gracze muszą mieć włączony tryb pojedynku.`
+
+Scripts/Systems/PvE/PveSystem@DuelMode_Title:
+Tryb pojedynku
+
+Scripts/Systems/PvE/PveSystem@Notification_CannotDamagePlayers_Message:
+Na serwerze PvE nie możesz zranić innych graczy ani uszkodzić ich struktur.
+
+Scripts/Systems/PvE/PveSystem@Notification_OtherPlayerDontHaveDuelMode_Message:
+Aby walczyć, obaj gracze muszą włączyć tryb pojedynku.
+
+Scripts/Systems/PvE/PveSystem@Notification_StuffBelongsToAnotherPlayer_Message:
+Należy do innego gracza.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Message:
+Niszczenie struktur na obszarze działki posiadanej przez innego gracza jest możliwe tylko podczas okresu najazdów.
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Title:
+Brak uszkodzeń
+
+Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
+`Okres najazdu zakończony.
+[br]Można nadal kontynuować trwające najazdy.`
+
+Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
+Nic do zebrania
+
+Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
+SERWER: Tworzenie kopii świata zaczynie się za {0} s.
+
+Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
+SERWER: Utworzono kopię zapasową świata!
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
+Operator zablokował cię na tym serwerze
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinKicked:
+`Wyrzucono cię z tego serwera. Skontaktuj się z operatorem serwera, aby poznać przyczynę.
+[br][br]Możesz ponownie dołączyć do serwera za {0}.`
+
+Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhitelist:
+`Do tego serwera można dołączyć tylko na zaproszenie.
+[br]Zapoznaj się z opisem serwera.`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
+`Witaj na oficjalnym serwerze CryoFall!
+[br]
+[br]
+[b]Ważne:[/b]
+To jest serwer PvE (gracz kontra środowisko gry). Na tym serwerze gracze w żaden sposób nie mogą atakować siebie wzajemnie. Działania na tym serwerze skupiają się na spokojnej eksploracji. Nie możesz zabijać, niszczyć ani okradać innych graczy. Ponadto serwer oferuje wszystkie funkcje gry CryoFall: niebezpieczne stwory, technologie do odblokowania i świat do eksplorowania. Wybierz się na wyprawę.
+[br]
+[br]
+Jeśli wolisz większe emocje bez ograniczeń, dołącz do serwera PvP.
+[br]
+[br]
+[b]Reguły serwera:[/b]
+[*]Bądź uprzejmy dla innych. Nie tolerujemy żadnej przemocy ani dyskryminacji.
+[*]Stosuj się do zaleceń moderatorów.
+[*]Nie spamuj ani nie zalewaj kanału wiadomościami. Powstrzymuj się od przeklinania.
+[*]Nie próbuj obchodzić żadnych ograniczeń rozgrywki PvE.
+[*]Nie naginaj zasad ani mechanik gry w celu uprzykrzania życia innym graczom.
+[br]
+[br]
+Baw się dobrze! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
+`Witaj na oficjalnym serwerze CryoFall!
+[br]
+[br]
+[b]Ważne:[/b]
+To jest darmowy server PvP. Pamiętaj, że na serwerach PvP można spotkać się z agresywnymi zachowaniami innych graczy. Musisz walczyć, bronić się i zawsze uważać na siebie. Możesz również połączyć siły z innymi ocalałymi i wspólnie próbować przetrwać.
+[br]
+[br]
+Jeśli wolisz spokojniejszą grę, zwłaszcza jeśli grasz pierwszy raz, dołącz raczej do serwera PvE.
+[br]
+[br]
+[b]Regulamin serwera:[/b]
+[*]Bądź uprzejmy względem innych. Nie tolerujemy żadnych form przemocy, dyskryminacji itp.
+[*]Dostosowuj się do wszystkich próśb moderatorów serwera.
+[*]Nie spamuj, nie flooduj na czacie ani nie przeklinaj za bardzo.
+[br]
+[br]
+Powodzenia! :)`
+
+Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
+Witaj na serwerze {0}
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
+`Wyłączenie serwera za {0}.
+[br]
+[br]Przyczyna:
+[br]{1}
+[br]
+[br]Znajdź bezpieczne miejsce i rozłącz się, w przeciwnym razie nastąpi automatyczne rozłączenie po upływie limitu czasu.`
+
+Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_Title:
+Wyłączenie
+
+Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillDiscovered:
+Odkryto umiejętność {0}.
+
+Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLevel:
+{0} – poziom {1}.
+
+Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
+`Masz ponad {0} pkt. technologii (PT). Warto ich użyć do odblokowania nowych technologii.
+[br](Kliknij, aby otworzyć menu technologii).`
+
+Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
+Nie można odblokować technologii
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationBoughtTitle:
+Zakupiono
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMorePennyCoins:
+Wymagane dodatkowe małe monety: {0}.
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMoreShinyCoins:
+Wymagane dodatkowe błyszczące monety: {0}.
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotificationSoldTitle:
+Sprzedano
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotBuy_Title:
+Nie można kupić
+
+Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
+Nie można sprzedać
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
+Roślina jest gotowa do zbioru. Nie ma sensu jej podlewać.
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
+Podlewać można tylko rośliny hodowlane.
+
+Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_Title:
+Nie można podlać
+
+Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Message:
+Aby napełnić, wybierz studnię lub miej butelki z wodą w ekwipunku.
+
+Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Title:
+Nie można uzupełnić ponownie
+
+Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Message:
+Nie można przeładować broni.
+
+Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
+Brak amunicji
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
+Otwarte dla właścicieli
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwnersOrAreaOwners:
+Otwarte dla właścicieli lub właścicieli gruntów
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToEveryone:
+Otwarte dla wszystkich
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
+Zawsze zamknięte
+
+Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
+Brak dostępu!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
+Nie można edytować listy właścicieli.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveLastOwner:
+Nie można usunąć ostatniego właściciela.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveSelf:
+Nie możesz usunąć siebie z listy właścicieli. Poproś o to innego gracza.
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageFormatPlayerNotFound:
+Nie odnaleziono gracza [b]{0}[/b].
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
+Nie jesteś właścicielem.
+

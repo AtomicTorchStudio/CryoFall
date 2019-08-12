@@ -14,11 +14,13 @@
 
         IReadOnlyList<IProtoItem> FuelProtoItemsList { get; }
 
+        string FuelTitle { get; }
+
         double FuelUsePerSecond { get; }
 
-        double RefillDuration { get; }
+        bool IsElectricity { get; }
 
-        string FuelTitle { get; }
+        double RefillDuration { get; }
 
         ITextureResource ClientGetFuelIcon();
 
@@ -26,7 +28,10 @@
 
         double SharedGetFuelAmount(IItem item);
 
-        void SharedOnRefilled(IItem item, double fuelAmount);
+        void SharedOnRefilled(
+            IItem item,
+            double newFuelAmount,
+            bool serverNotifyClients);
 
         void SharedTryConsumeFuel(
             IItem item,

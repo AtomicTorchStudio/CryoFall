@@ -19,7 +19,7 @@
         {
             requirements
                 .Add(RequirementBuildStructure.Require<ObjectChemicalLab>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeAcidSulfuricFromPyrite>())
+                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeAcidSulfuric>())
                 .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeAcidNitric>())
                 .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeNitrocellulosePowder>());
 

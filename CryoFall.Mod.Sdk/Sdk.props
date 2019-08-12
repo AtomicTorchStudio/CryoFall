@@ -6,7 +6,7 @@
     <OutputPath>.temp\bin\</OutputPath>
     <BaseIntermediateOutputPath>.temp\obj\</BaseIntermediateOutputPath>
     <TargetFramework>net471</TargetFramework>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />  
@@ -144,7 +144,7 @@
     <Page Remove="**\*.*" />
     <Compile Remove="**\*.*" />
 
-    <None Include="**\*.*" Exclude="*.*;.*\**;packages\**;LibsGameApi\**;**\*.cs;**\*.xaml" />
+    <None Include="**\*.*" Exclude="*.*;.*\**;packages\**;LibsGameApi\**;**\*.cs;**\*.xaml;**\*.json" />
     <None Include="License.txt" />
     <None Include="Header.xml" />       
 

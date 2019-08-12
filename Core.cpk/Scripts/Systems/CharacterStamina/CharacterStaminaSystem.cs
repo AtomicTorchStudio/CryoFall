@@ -26,7 +26,8 @@
         }
 
         /// <summary>
-        /// Server update of player character's stamina (every frame, called directly from PlayerCharacter).
+        /// Shared (current chararacter on client, server) update of
+        /// player character's stamina (every frame, called directly from PlayerCharacter).
         /// </summary>
         public static void SharedUpdate(
             ICharacter character,
@@ -34,7 +35,7 @@
             PlayerCharacterPrivateState privateState,
             float deltaTime)
         {
-            if (!character.IsOnline
+            if (!character.ServerIsOnline
                 || publicState.IsDead)
             {
                 return;

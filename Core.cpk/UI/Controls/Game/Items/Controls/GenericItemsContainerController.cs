@@ -63,6 +63,11 @@
 
         public void SetContainer(IClientItemsContainer containerToSet)
         {
+            if (this.container == containerToSet)
+            {
+                return;
+            }
+
             this.UnsubscribeContainerEvents();
             this.container = containerToSet;
             this.RefreshItemSlots(true);

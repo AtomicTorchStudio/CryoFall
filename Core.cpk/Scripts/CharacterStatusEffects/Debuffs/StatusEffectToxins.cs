@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Stats;
 
     public class StatusEffectToxins : ProtoStatusEffect
@@ -24,34 +24,25 @@
         {
             // no health regeneration while affected by toxins
             effects.AddPercent(this, StatName.HealthRegenerationPerSecond, -100);
+
+            // add info to tooltip that this effect deals damage
+            effects.AddValue(this, StatName.VanityContinuousDamage, 1);
         }
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
         {
-            // does the character has toxin protection?
-            if (data.Character.SharedHasStatusEffect<StatusEffectProtectionToxins>())
-            {
-                intensityToAdd *= 0.5;
-            }
-
-            // exponent to use when adding the two values together using "hypotenuse" algorithm
-            var exponent = 2;
-
-            // calculating the new intensity
-            var newIntensity = Math.Sqrt(Math.Pow(data.Intensity, exponent) + Math.Pow(intensityToAdd, exponent));
-
-            // saving new intensity
-            data.Intensity = newIntensity;
+            intensityToAdd *= data.Character.SharedGetFinalStatMultiplier(StatName.ToxinsIncreaseRateMultiplier);
+            // new intensity is calculated with hypotenuse formula
+            data.Intensity = Math.Sqrt(data.Intensity * data.Intensity
+                                       + intensityToAdd * intensityToAdd);
         }
 
         protected override void ServerUpdate(StatusEffectData data)
         {
-            // damage
-            var damage = (DamagePerSecondBase + DamagePerSecondByIntensity * data.Intensity) * data.DeltaTime;
+            var damage = (DamagePerSecondBase + DamagePerSecondByIntensity * data.Intensity)
+                         * data.DeltaTime;
 
-            // reduce character health
-            var stats = data.CharacterCurrentStats;
-            stats.ServerReduceHealth(damage, this);
+            data.CharacterCurrentStats.ServerReduceHealth(damage, this);
         }
     }
 }

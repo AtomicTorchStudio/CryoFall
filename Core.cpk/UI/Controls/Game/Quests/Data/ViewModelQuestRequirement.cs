@@ -18,6 +18,8 @@
 
         private readonly QuestRequirementStateWithCount requirementStateWithCount;
 
+        private static readonly SoundResource SoundResourceQuestRequirementSatisfied = new SoundResource("UI/Quests/QuestRequirementSatisfied.ogg");
+
         public ViewModelQuestRequirement(
             IQuestRequirement requirement,
             // can be null when the quest is completed
@@ -31,15 +33,16 @@
                 isSatisfiedNow =>
                 {
                     this.NotifyPropertyChanged(nameof(this.IsSatisfied));
-                    if (isSatisfiedNow)
+                    if (!isSatisfiedNow)
                     {
-                        // play requirement satisfied sound (not more often than once per frame)
-                        if (lastRequirementSatisfiedFrame != Client.CurrentGame.ServerFrameNumber)
-                        {
-                            lastRequirementSatisfiedFrame = Client.CurrentGame.ServerFrameNumber;
-                            Api.Client.Audio.PlayOneShot(
-                                new SoundResource("UI/Quests/QuestRequirementSatisfied.ogg"));
-                        }
+                        return;
+                    }
+
+                    // play requirement satisfied sound (not more often than once per frame)
+                    if (lastRequirementSatisfiedFrame != Client.CurrentGame.ServerFrameNumber)
+                    {
+                        lastRequirementSatisfiedFrame = Client.CurrentGame.ServerFrameNumber;
+                        Api.Client.Audio.PlayOneShot(SoundResourceQuestRequirementSatisfied, volume: 0.5f);
                     }
                 },
                 this);

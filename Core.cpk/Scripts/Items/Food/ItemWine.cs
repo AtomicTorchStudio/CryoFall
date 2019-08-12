@@ -12,7 +12,7 @@
 
         public override float FoodRestore => 3; // Yes, wine has calories
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.LongLasting;
 
         // Restores 3 hp instantly, but given that you cannot drink more than a couple of bottles, it cannot be abused.
         public override float HealthRestore => 3;

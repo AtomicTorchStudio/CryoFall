@@ -156,7 +156,15 @@
 
             // notify client
             var publicState = objectPlant.GetPublicState<PlantPublicState>();
-            publicState.ServerOnFertilizerApplied();
+            if (!publicState.IsFertilized)
+            {
+                publicState.IsFertilized = true;
+            }
+            else
+            {
+                // ensure the client will request update data
+                publicState.ServerForceIsFertilizedSync();
+            }
 
             Logger.Important($"Fertilizer applied: {this} to {objectPlant}");
             return true;

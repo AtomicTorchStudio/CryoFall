@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Items.Food;
+    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -30,10 +31,10 @@
             skeleton = GetProtoEntity<SkeletonStarfish>();
 
             // random loot
-            lootDroplist.Add<ItemMeatRaw>(count: 1, probability: 1 / 2.0);
+            lootDroplist.Add<ItemSlime>(count: 1, countRandom: 1);
 
             // extra loot
-            lootDroplist.Add<ItemMeatRaw>(count: 1, condition: SkillHunting.ServerRollExtraLoot);
+            lootDroplist.Add<ItemSlime>(count: 1, condition: SkillHunting.ServerRollExtraLoot);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)

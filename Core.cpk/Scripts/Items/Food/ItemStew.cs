@@ -18,13 +18,13 @@
 
         public override ushort OrganicValue => 10;
 
-        public override float StaminaRestore => 100;
+        public override float StaminaRestore => 50;
 
         public override float WaterRestore => 5;
 
         protected override void ServerOnEat(ItemEatData data)
         {
-            data.Character.ServerAddStatusEffect<StatusEffectWellFed>(intensity: 0.5); // 5 minutes
+            data.Character.ServerAddStatusEffect<StatusEffectHeartyFood>(intensity: 0.5); // 5 minutes
 
             base.ServerOnEat(data);
         }

@@ -95,6 +95,18 @@ UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Разблокировать
 
+UI/CoreStrings@ConstructionMetaInfo_Decoration:
+Это просто украшение.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerConsumer:
+Для работы этой постройки требуется электричество.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
+Эта постройка производит электричество.
+
+UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
+Эта постройка накапливает электроэнергию.
+
 UI/CoreStrings@Copy:
 Копировать
 
@@ -107,6 +119,13 @@ UI/CoreStrings@CraftingCountSelector_Min:
 UI/CoreStrings@CraftingQueue_Title:
 КРАФТИНГ
 
+UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
+`[b]Щелчок ЛКМ[/b]
+[br]Переместить рецепт в начало очереди.
+[br]
+[br][b]Щелчок ПКМ[/b]
+[br]Отменить этот рецепт.`
+
 UI/CoreStrings@CraftingRecipeDetails_ButtonStartCraft:
 СОЗДАТЬ
 
@@ -117,9 +136,6 @@ UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Открыто рецептов
-
-UI/CoreStrings@CryoFallDevelopmentRoadmap:
-План развития CryoFall
 
 UI/CoreStrings@Defense_Format_Chemical:
 Защита от химикатов: {0}
@@ -155,7 +171,19 @@ UI/CoreStrings@DepositCapacityStats_Title:
 Потенциал месторождения
 
 UI/CoreStrings@EnergyUnitAbbreviation:
-ЭЕ
+Эн.
+
+UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
+Эн./с
+
+UI/CoreStrings@Extras_DiscordTooltip:
+Официальный сервер Discord для CryoFall (только на английском)
+
+UI/CoreStrings@Extras_PatchnotesTooltip:
+Все обновления и исправления CryoFall (только на английском)
+
+UI/CoreStrings@Extras_RoadmapTooltip:
+План развития CryoFall (только на английском)
 
 UI/CoreStrings@FarmPlantTooltip_NotWatered:
 Не полито
@@ -212,7 +240,7 @@ UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
 Технологии
 
 UI/CoreStrings@HUDEnergyChargeIndicator_TotalCapacity:
-Общая ёмкость
+Общая емкость
 
 UI/CoreStrings@HUDEnergyChargeIndicator_TotalCharge:
 Общий заряд
@@ -252,6 +280,9 @@ UI/CoreStrings@ItemsContainer_Button_MatchUp:
 
 UI/CoreStrings@ItemsContainer_Button_TakeAll:
 Взять все
+
+UI/CoreStrings@ItemsContainer_CapacityExceededTakeOnly:
+Полная загрузка. Предметы можно только вынимать.
 
 UI/CoreStrings@ItemsContainer_Title:
 Предметы
@@ -405,11 +436,11 @@ UI/CoreStrings@MenuServers_ListTitleCustom:
 UI/CoreStrings@MenuServers_ListTitleFavorite:
 Избранные
 
+UI/CoreStrings@MenuServers_ListTitleFeatured:
+Рекомендуемые
+
 UI/CoreStrings@MenuServers_ListTitleModded:
 С модами
-
-UI/CoreStrings@MenuServers_ListTitleOfficial:
-Официальные
 
 UI/CoreStrings@MenuServers_ListTitleRecent:
 Недавние
@@ -479,13 +510,13 @@ UI/CoreStrings@Network_PingAverage_SeverityRed:
 `Похоже, интернет-соединение с сервером работает с очень долгим откликом (очень большая задержка сигнала).
 [br]В результате некоторые ваши действия в игре, требующие отклика сервера, занимают слишком много времени.
 [br]Например, из-за плохого соединения с сервером ваши удары часто могут не достигать цели.
-Также движения вашего персонажа и корректировка его положения в пространстве часто могут быть неравномерными.`
+[br]Также движения вашего персонажа и корректировка его положения в пространстве часто могут быть неравномерными.`
 
 UI/CoreStrings@Network_PingAverage_SeverityYellow:
 `Похоже, интернет-соединение с сервером работает с долгим откликом (большая задержка сигнала).
 [br]В результате некоторые ваши действия в игре, требующие отклика сервера, занимают больше времени, чем обычно.
 [br]Например, из-за плохого соединения с сервером ваши удары иногда могут не достигать цели.
-Также движения вашего персонажа и корректировка его положения в пространстве иногда могут быть неравномерными.`
+[br]Также движения вашего персонажа и корректировка его положения в пространстве иногда могут быть неравномерными.`
 
 UI/CoreStrings@Network_PingFluctuationRange:
 Разброс пинга
@@ -626,6 +657,69 @@ UI/CoreStrings@Performance_VRAMUsage:
 UI/CoreStrings@PleaseWait:
 Пожалуйста, подождите...
 
+UI/CoreStrings@PowerGrid_NotConnectedMessage:
+Не подключено к электросети.
+
+UI/CoreStrings@PowerGridState_ActiveFormat:
+(работает {0})
+
+UI/CoreStrings@PowerGridState_Button_RestorePower:
+Восстановить подачу электричества
+
+UI/CoreStrings@PowerGridState_Capacity:
+Энергоемкость:
+
+UI/CoreStrings@PowerGridState_Consumers:
+Потребители:
+
+UI/CoreStrings@PowerGridState_CurrentConsumption:
+Текущее потребление:
+
+UI/CoreStrings@PowerGridState_CurrentGeneration:
+Текущая выработка:
+
+UI/CoreStrings@PowerGridState_DepletedIn:
+Израсходуется через:
+
+UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
+Никогда
+
+UI/CoreStrings@PowerGridState_EfficiencyFormat:
+(эффективность {0}%)
+
+UI/CoreStrings@PowerGridState_EnergyInformation:
+Данные электроэнергии
+
+UI/CoreStrings@PowerGridState_Generators:
+Генераторы:
+
+UI/CoreStrings@PowerGridState_GridSize:
+Размер сети:
+
+UI/CoreStrings@PowerGridState_GridStatus:
+Статус сети:
+
+UI/CoreStrings@PowerGridState_MaxDefenseConsumption:
+Макс. потребление обороны:
+
+UI/CoreStrings@PowerGridState_MaxGeneration:
+Макс. выработка:
+
+UI/CoreStrings@PowerGridState_MaxTotalConsumption:
+Макс. общее потребление:
+
+UI/CoreStrings@PowerGridState_PowerGridInformation:
+Данные электросети
+
+UI/CoreStrings@PowerGridState_Status_Blackout:
+Отключение
+
+UI/CoreStrings@PowerGridState_Status_Nominal:
+Номинальный
+
+UI/CoreStrings@PowerGridState_Storages:
+Накопители:
+
 UI/CoreStrings@Quest_Button_ClaimReward:
 Получить
 
@@ -664,6 +758,12 @@ UI/CoreStrings@ServerPing:
 
 UI/CoreStrings@ServerPlayersCount:
 Игроки
+
+UI/CoreStrings@ServerWipedDate:
+Вайп
+
+UI/CoreStrings@Skill:
+Навык
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
 Интенсивность
@@ -759,8 +859,14 @@ UI/CoreStrings@TitleLiquidMineralOil:
 UI/CoreStrings@TitleLiquidPetroleum:
 Нефть
 
+UI/CoreStrings@TitleLiquidWater:
+Вода
+
 UI/CoreStrings@TitleLoading:
 Загрузка...
+
+UI/CoreStrings@TitleModeAlwaysOn:
+Всегда включено
 
 UI/CoreStrings@TitleModeAuto:
 Авто
@@ -776,6 +882,9 @@ UI/CoreStrings@TitleNoUpgradesAvailable:
 
 UI/CoreStrings@TitleOwner:
 Владелец
+
+UI/CoreStrings@TitlePowerGrid:
+Электросеть
 
 UI/CoreStrings@TitleSafeStorage:
 Сейф
@@ -840,11 +949,23 @@ UI/CoreStrings@WindowDataLog_Location:
 UI/CoreStrings@WindowDataLog_To:
 До
 
+UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
+СОЛНЕЧНЫЕ ПАНЕЛИ
+
 UI/CoreStrings@WindowInventory_Button_Customize:
 Изменить
 
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 Спасите!
+
+UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
+Нельзя использовать точку контроля для хранения ресурсов и базовых предметов.
+
+UI/CoreStrings@WindowLandClaim_DecayInfo:
+Ветшание
+
+UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
+Предметы в сейфе доступны из всех точек контроля этой базы.
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 Только владелец может улучшить эту постройку.
@@ -865,10 +986,10 @@ UI/CoreStrings@WindowManufacturer_CurrentRecipe:
 Текущий рецепт
 
 UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchAnyRecipe:
-Размещённые ингредиенты не встречаются ни в одном рецепте!
+Размещенные ингредиенты не встречаются ни в одном рецепте!
 
 UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchCurrentRecipe:
-Размещённые ингредиенты не встречаются в текущем рецепте!
+Размещенные ингредиенты не встречаются в текущем рецепте!
 
 UI/CoreStrings@WindowManufacturer_ErrorNoAvailableSpaceInOutput:
 Нет места для полученного продукта!
@@ -879,11 +1000,11 @@ UI/CoreStrings@WindowManufacturer_ErrorNotEnoughInputItemsForCurrentRecipe:
 UI/CoreStrings@WindowManufacturer_FuelRequired:
 Требуется топливо!
 
+UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
+Пусто
+
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
 Режим освещения
-
-UI/CoreStrings@WindowOilRefinery_EmptyCanistersOutput:
-Пусто
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 Период рейда начался (осталось: {0}).
@@ -900,6 +1021,9 @@ UI/CoreStrings@WindowPolitics_RaidingRestriction_NextRaidWindowTimeout:
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
 Защита от рейдов
+
+UI/CoreStrings@WindowPowerStorage_NotConnectedToPowerGrid:
+Этот энергонакопитель не подключен к электросети.
 
 UI/CoreStrings@WindowQuests_CompletionReward:
 Награда за выполнение
@@ -922,6 +1046,9 @@ UI/CoreStrings@WindowQuests_TitleCompletedQuestsCount:
 UI/CoreStrings@WindowQuests_TitleUnlockedQuestsCount:
 Открыто квестов
 
+UI/CoreStrings@WindowRechargingStation_Title:
+ЗАРЯДИТЬ
+
 UI/CoreStrings@WindowRespawn_Button_RespawnAtYourBed:
 В постели
 
@@ -938,13 +1065,13 @@ UI/CoreStrings@WindowRespawn_Message:
 Похоже, вас силой заставили покинуть этот мир... и вы потеряли все вещи, накопленные непосильным трудом! Где вы возродитесь, чтобы отомстить?
 
 UI/CoreStrings@WindowRespawn_MessageDespawned:
-Ваш персонаж оставался за пределами своей зоны контроля слишком долго и был выведен из мира. Вы можете снова возродиться. Вы не потеряли содержимое инвентаря и ОТ.
+Вы оставили персонажа за пределами своей зоны контроля на слишком долгое время, и он был убран с карты. Вы можете снова возродиться, как обычно. Вы не потеряете свои вещи.
 
 UI/CoreStrings@WindowRespawn_MessagePvE:
 Похоже, вас силой заставили покинуть этот жестокий мир... Хотите отомстить?
 
 UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
-Похоже, вас убил другой игрок. К счастью, у вас была защита новичка, поэтому вы не потеряли предметы и очки технологий. Будьте осторожны, в следующий раз этой защиты уже может не быть!
+Похоже, вас убил другой игрок. К счастью, у вас была защита новичка, поэтому вы не потеряли предметы. Будьте осторожны, в следующий раз этой защиты уже может не быть!
 
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `Вы недавно возродились в своей постели.
@@ -955,6 +1082,9 @@ UI/CoreStrings@WindowSignPicture_Title:
 
 UI/CoreStrings@WindowSkills_CurrentLevelFormat:
 Уровень {0}
+
+UI/CoreStrings@WindowSkills_CurrentLevelFormat2:
+Текущий уровень: {0}
 
 UI/CoreStrings@WindowSkills_MaxLevelReached:
 Получен максимальный уровень!
@@ -998,11 +1128,24 @@ UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccou
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 Вы можете связать свою учетную запись Steam с учетной записью AtomicTorch.com или создать новую.
 
-UI/CoreStrings@WindowTechnologies_LearningPointsRetainedAfterDeath:
-Остаток ОТ в случае смерти
+UI/CoreStrings@WindowTechnologies_Info_AdditionalTechnologies:
+`Эти дополнительные технологии позволят вам глубже освоить разные специальности.
+[br]НЕ имеет смысла достигать высшего уровня во всех. Выбирайте с умом.`
+
+UI/CoreStrings@WindowTechnologies_Info_PrimaryTechnologies:
+Основные технологии рекомендуется освоить всем игрокам, чтобы получить доступ к базовым технологическим умениям в CryoFall.
 
 UI/CoreStrings@WindowTechnologies_TechGroupLocked:
 Недоступно
+
+UI/CoreStrings@WindowTechnologies_TechGroupPreview:
+Просмотр
+
+UI/CoreStrings@WindowTechnologies_TechGroupResearch:
+Исследовать
+
+UI/CoreStrings@WindowTechnologies_TechGroupResearchCost:
+Стоимость исследования
 
 UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 Открыть
@@ -1013,16 +1156,14 @@ UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
 UI/CoreStrings@WindowTechnologies_TitleSpecializedTechnologies:
 Специализированные технологии
 
-UI/CoreStrings@WindowTechnologies_TooltipExplanationHowLearningPointsRetainedOnDeath:
-`Когда ваш персонаж умирает, он теряет все
-[br]накопленные ОТ, кроме указанного тут количества.
-[br]Чем лучше ваш навык [i]Изучения технологий[/i], тем выше этот показатель.`
-
 UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
 `Вы получаете ОТ (очки технологий)
 [br]за любую осмысленную деятельность.
 [br]Они прямо пропорциональны полученному 
 [br]опыту при использовании навыков.`
+
+UI/CoreStrings@WindowTinkerTable_Button_Repair:
+Починить
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
 Настройка
@@ -1076,7 +1217,22 @@ UI/CoreStrings@WindowTradingStationUser_SellingMode_Title:
 Продажа
 
 UI/CoreStrings@WindowTrashCan_Title:
-Вы можете разместить здесь любые предметы, чтобы избавиться от них навсегда.
+Положите сюда любые предметы, от которых хотите избавиться навсегда.
+
+UI/CoreStrings@WipedDate_DaysAgo_Format:
+{0} дн. назад
+
+UI/CoreStrings@WipedDate_HoursAgo_Format:
+{0} ч. назад
+
+UI/CoreStrings@WipedDate_JustWiped:
+Только что
+
+UI/CoreStrings@WipedDate_Yesterday:
+Вчера
+
+UI/CoreStrings@WorldMap_MapExplored:
+Исследовано карты
 
 UI/CoreStrings@WorldMap_PointedPosition:
 Указанная позиция
@@ -1090,11 +1246,15 @@ UI/CoreStrings@WorldMapMarkCurrentBed_Tooltip:
 
 UI/CoreStrings@WorldMapMarkDroppedItems_Tooltip:
 `[b]Потерянные предметы[/b]
-[br]Здесь лежат предметы, которые вы потеряли.`
+[br]Здесь лежат предметы, которые вы выронили.`
 
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
 `[b]Зона контроля[/b]
 [br]Это территория, на которую у вас есть доступ.`
+
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
+`[b]Зона контроля[/b]
+[br]Это ваша зона контроля.`
 
 UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 `[b]На базу напали[/b]
@@ -1120,13 +1280,13 @@ UI/CoreStrings@Yes:
 Да
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Roboto Condensed
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 Подключено
@@ -1139,6 +1299,10 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatCopyMessageFormat:
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 [Разработчик]
+
+UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
+`Хотите закрыть личный чат с игроком {0}?
+[br]История чата будет сохранена, вы сможете открыть этот чат позже.`
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 Поскольку рецепт включает портящиеся компоненты, отменить его нельзя.
@@ -1159,11 +1323,11 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 Вы потеряли свои вещи
 
-UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAttack_MessageFormat:
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
 `На одну из ваших баз нападают!
 [br]({0};{1})`
 
-UI/Controls/Game/Map/ClientWorldMapLandClaimVisualizer@NotificationBaseUnderAttack_Title:
+UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Title:
 Нападение!
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
@@ -1278,7 +1442,7 @@ UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemo
 Вы точно хотите удалить игрока [b]{0}[/b] из группы?
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
-Существо
+Тварь
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
 Взрыв
@@ -1317,7 +1481,7 @@ UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
 Ранг {0}
 
 UI/Controls/Game/Technologies/Data/ViewModelWindowTechnologies@DialogDoYouWantToResearch:
-Хотите изучить технологию {0}?
+Исследовать технологию {0}?
 
 UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
 Изготовление вручную
@@ -1325,11 +1489,27 @@ UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlo
 UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
 Починить
 
+UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
+Скоропортящиеся продукты хранятся дольше примерно в {0} раз.
+
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListEmpty:
-Вы можете разрешить определённым выжившим посещать вашу зону контроля.
+Вы можете разрешить другим выжившим доступ к вашей зоне контроля.
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
 Доступ
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
+`Заброшенные постройки со временем ветшают
+[br]и затем исчезают, чтобы не загромождать карту.
+[br]
+[br]Эта постройка зоны контроля начнет портиться через [b]{0}[/b].
+[br]После этого она будет портиться в течение [b]{1}[/b], а затем запустится таймер уничтожения ([b]{2}[/b]).
+[br]
+[br]Чтобы предотвратить ветшание, нужно просто побывать на базе хотя бы раз в течение [b]{0}[/b]
+[br](любой игрок с доступом может сбросить таймер ветшания).
+[br]
+[br]Вы можете увеличить задержку ветшания, [b]улучшив[/b] любую точку контроля до более высокого уровня.
+[br]Задержка ветшания всей базы определяется точкой контроля [b]самого высокого[/b] уровня.`
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
 Это месторождение истощилось.
@@ -1354,6 +1534,18 @@ UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation
 
 UI/Controls/Game/WorldObjects/Plants/Data/ViewModelFarmPlantTooltip@TitlePermanent:
 вечный
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSolar@ElectricityProductionInfoTextFormat:
+`Выработка электроэнергии: {0} Эн./с при {1}% уровне освещенности.
+[br]Предельная мощность: {2} Эн./с.`
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@ElectricityProductionInfoTextFormat:
+`Выработка электроэнергии: {0} Эн./с при {1}°C ({2}% эффективности).
+[br]Предельная мощность: {3} Эн./с.`
+
+UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
+`Выработка электроэнергии: {0} Эн./с.
+[br]Предельная мощность: {1} Эн./с.`
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
 Ожидание ответа.

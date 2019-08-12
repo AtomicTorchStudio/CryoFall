@@ -14,7 +14,7 @@
     VerticalAlignment="Bottom"
     Margin="0,0,3,3"
     UseLayoutRounding="False"
-    Opacity="0.7" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    Opacity="0.7">
     <StackPanel Orientation="Horizontal">
         <!-- Text: Fuel/charge -->
         <TextBlock Text="{Binding FuelTitle}"

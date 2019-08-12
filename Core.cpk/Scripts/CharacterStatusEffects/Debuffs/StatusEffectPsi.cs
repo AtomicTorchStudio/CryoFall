@@ -1,8 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs.Client;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
     using AtomicTorch.CBND.CoreMod.Objects;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -12,6 +12,8 @@
 
     public class StatusEffectPsi : ProtoRadiantStatusEffect
     {
+        public const double DamagePerSecondByIntensity = 5;
+
         public override string Description =>
             "You are under the influence of a strong psi field, causing you to go insane. Leave the affected area or use psi-blocking medicine to prevent further damage.";
 
@@ -48,36 +50,17 @@
 
             // reduced energy regeneration
             effects.AddPercent(this, StatName.StaminaRegenerationPerSecond, -50);
+
+            // add info to tooltip that this effect deals damage
+            effects.AddValue(this, StatName.VanityContinuousDamage, 1);
         }
 
-        protected override void ServerUpdate(StatusEffectData data)
-        {
-            base.ServerUpdate(data);
-
-            var damage = 5 * Math.Pow(data.Intensity, 1.5) * data.DeltaTime;
-
-            if (data.Character.SharedHasStatusEffect<StatusEffectProtectionPsi>())
-            {
-                // has an active protection against psi damage
-                damage *= 0.333;
-            }
-
-            if (data.Character.SharedHasStatusEffect<StatusEffectDrunk>())
-            {
-                // surprisingly alcohol providing some benefits :-)
-                damage *= 0.667;
-            }
-
-            // reduce character health
-            var stats = data.CharacterCurrentStats;
-            stats.ServerReduceHealth(damage, this);
-        }
-
-        protected override double SharedCalculateObjectEnvironmentalIntensity(
+        protected override double ServerCalculateObjectEnvironmentalIntensity(
             ICharacter character,
             IWorldObject worldObject)
         {
-            if (!(worldObject.ProtoWorldObject is IProtoObjectPsiSource protoPsiSource))
+            if (!(worldObject.ProtoWorldObject is IProtoObjectPsiSource protoPsiSource)
+                || !protoPsiSource.ServerIsPsiSourceActive(worldObject))
             {
                 return 0;
             }
@@ -104,6 +87,20 @@
             var intensity = 1 - MathHelper.Clamp(distanceCoef, 0, 1);
 
             return intensity * MathHelper.Clamp(protoPsiSource.PsiIntensity, 0, 1);
+        }
+
+        protected override void ServerUpdate(StatusEffectData data)
+        {
+            base.ServerUpdate(data);
+
+            var damage = DamagePerSecondByIntensity
+                         * Math.Pow(data.Intensity, 1.5)
+                         * data.DeltaTime;
+
+            // modify damage based on effect multiplier
+            damage *= data.Character.SharedGetFinalStatMultiplier(StatName.PsiEffectMultiplier);
+
+            data.CharacterCurrentStats.ServerReduceHealth(damage, this);
         }
     }
 }

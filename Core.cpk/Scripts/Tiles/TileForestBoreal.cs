@@ -138,7 +138,7 @@
             settings.AddDecal(
                 new ProtoTileDecal(whiteFlowersTextures,
                                    size: whiteFlowersSize,
-                                   offset: Vector2Ushort.One,
+                                   offset: (1, 1),
                                    noiseSelector: whiteFlowersNoiseSelector,
                                    requiredGroundTextures: new[] { groundTextureForest1, groundTextureForest3 }));
 
@@ -163,13 +163,13 @@
             settings.AddDecal(
                 new ProtoTileDecal(violetFlowersTextures,
                                    size: violetFlowersSize,
-                                   offset: Vector2Ushort.One,
+                                   offset: (1, 1),
                                    noiseSelector: violetFlowersNoiseSelector));
 
             // add clover bush decal
             settings.AddDecal(
                 new ProtoTileDecal("Terrain/ForestBoreal/CloverBush01*",
-                                   size: Vector2Ushort.One,
+                                   size: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new NoiseSelector(
@@ -180,7 +180,7 @@
             // add fungi decal
             settings.AddDecal(
                 new ProtoTileDecal("Terrain/ForestBoreal/Fungi01*",
-                                   size: Vector2Ushort.One,
+                                   size: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    noiseSelector: new NoiseSelector(

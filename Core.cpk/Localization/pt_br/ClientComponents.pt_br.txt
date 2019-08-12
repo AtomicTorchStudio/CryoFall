@@ -98,5 +98,12 @@ Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
 Corresponder itens acima
 
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
-Exibir barras de posse de terra e de vida
+Exibir posses de terra[br]e barras de vida
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
+`As ações de reparo e construção estão restritas.
+[br]O bloqueio por ataque terminará em: {0}.`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
+Esta base está sob o bloqueio por invasão
 

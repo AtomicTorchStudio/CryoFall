@@ -16,17 +16,23 @@ Você usou algum remédio e seu corpo está se curando lentamente.
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
 Cura
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
+Você comeu uma refeição muito saudável cheia de vitaminas, microelementos e outros nutrientes importantes há pouco tempo. Está se sentindo muito bem.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Name:
+Comida saudável
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
+Você comeu uma refeição saudável há pouco tempo. Todas as tarefas que executar parecerão mais fáceis.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
+Comida saudável
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Você está sob a influência de um estimulante, ficando temporariamente muito mais forte. Agora, é capaz de executar tarefas que exigem força com mais facilidade.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Força aumentada
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Description:
-Você comeu uma refeição saudável há pouco tempo e está se sentindo muito bem. Todas as tarefas que executar parecerão mais fáceis.
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
-Bem alimentado
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Você está sangrando, o que, se não for tratado, fará você perder vida de forma constante. Pequenos sangramentos desaparecem sozinhos, mas ferimentos mais graves podem exigir bandagens ou remédios hemostáticos.
@@ -119,7 +125,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
 Toxinas
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
-Você se sente um pouco fraco. Deve ser uma boa ideia evitar se expor a situações perigosas, como radiação.
+Você se sente muito fraco. Executar qualquer tarefa parece muito mais difícil. Espere algum tempo para recuperar a sua condição e evitar situações perigosas.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
 Enfraquecido

@@ -18,8 +18,7 @@
 
         [CanBeNull]
         public IProtoSkill ProtoSkill
-            => this.cachedProtoSkill
-               ?? (this.cachedProtoSkill = this.GetProtoSkill());
+            => this.cachedProtoSkill ??= this.GetProtoSkill();
 
         private IProtoSkill GetProtoSkill()
         {

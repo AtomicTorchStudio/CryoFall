@@ -25,7 +25,7 @@
 
             prerequisites
                 .Add<QuestExploreRuins>()
-                .Add<QuestBuildChemicalLab>();
+                .Add<QuestEstablishPowerGrid>();
         }
     }
 }

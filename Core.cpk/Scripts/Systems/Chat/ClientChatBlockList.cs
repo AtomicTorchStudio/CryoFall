@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using System.Globalization;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -53,12 +53,6 @@
 
         public static void SetBlockStatus(string characterName, bool block, bool askConfirmation)
         {
-            if (characterName == ClientCurrentCharacterHelper.Character?.Name)
-            {
-                // cannot block self
-                block = false;
-            }
-
             if (askConfirmation)
             {
                 var actionText = block
@@ -66,7 +60,7 @@
                                      : CoreStrings.Chat_MessageMenu_Unblock;
 
                 var message = string.Format(DialogBlockOrUnblockPlayer,
-                                            actionText,
+                                            actionText.ToLower(CultureInfo.CurrentUICulture),
                                             characterName);
                 if (block)
                 {
@@ -91,11 +85,11 @@
 
         private static void SetBlockStatus(string characterName, bool block)
         {
-            if (characterName == ClientCurrentCharacterHelper.Character?.Name)
-            {
-                // cannot block self
-                block = false;
-            }
+            //if (characterName == ClientCurrentCharacterHelper.Character?.Name)
+            //{
+            //    // cannot block self
+            //    block = false;
+            //}
 
             var isChanged = block
                                 ? clientListBlocked.Add(characterName)

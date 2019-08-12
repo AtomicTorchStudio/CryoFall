@@ -17,25 +17,25 @@
     {
         private const byte BackgroundOpacity = 0x88;
 
-        private static readonly Brush BrushBuffTier0
+        public static readonly Brush BrushBuffTier0
             = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0x44, 0xAA, 0x44));
 
-        private static readonly Brush BrushBuffTier1
+        public static readonly Brush BrushBuffTier1
             = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0x33, 0xBB, 0x33));
 
-        private static readonly Brush BrushBuffTier2
+        public static readonly Brush BrushBuffTier2
             = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0x00, 0xCC, 0x00));
 
-        private static readonly Brush BrushDebuffTier0
+        public static readonly Brush BrushDebuffTier0
             = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0xFF, 0xCC, 0x33));
 
-        private static readonly Brush BrushDebuffTier1
+        public static readonly Brush BrushDebuffTier1
             = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0xFF, 0x88, 0x22));
 
-        private static readonly Brush BrushDebuffTier2
+        public static readonly Brush BrushDebuffTier2
             = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0xFF, 0x11, 0x11));
 
-        private static readonly Brush BrushNeutral
+        public static readonly Brush BrushNeutral
             = new SolidColorBrush(Color.FromArgb(BackgroundOpacity, 0xBB, 0xBB, 0xBB));
 
         private readonly Lazy<IReadOnlyList<StatModificationData>> lazyEffects;
@@ -68,29 +68,19 @@
         [CanBeNull]
         public IReadOnlyList<StatModificationData> Effects => this.lazyEffects.Value;
 
-        public Brush Icon
-        {
-            get
-            {
-                var icon = this.protoStatusEffect.ClientGetIcon(this.statusEffect);
-                return Api.Client.UI.GetTextureBrush(icon);
-            }
-        }
+        public Brush Icon => Api.Client.UI.GetTextureBrush(this.protoStatusEffect.Icon);
 
         public byte IntensityPercent { get; private set; }
 
         public bool IsFlickering { get; private set; }
+
+        public bool IsIntensityPercentVisible => this.protoStatusEffect.IsIntensityPercentVisible;
 
         public IProtoStatusEffect ProtoStatusEffect => this.protoStatusEffect;
 
         public string Title => this.protoStatusEffect.Name;
 
         public Visibility Visibility { get; private set; } = Visibility.Collapsed;
-
-        public Visibility VisibilityIntensityPercent
-            => this.protoStatusEffect.IsIntensityPercentVisible
-                   ? Visibility.Visible
-                   : Visibility.Collapsed;
 
         public static Brush GetBrush(StatusEffectKind kind, double intensity)
         {

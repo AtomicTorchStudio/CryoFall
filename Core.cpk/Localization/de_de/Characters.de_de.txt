@@ -1,6 +1,12 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Bär
 
+Scripts/Characters/Mobs/MobBlackBeetle@Name:
+Schwarzer Käfer
+
+Scripts/Characters/Mobs/MobBurrower@Name:
+Erdgräber
+
 Scripts/Characters/Mobs/MobChicken@Name:
 Huhn
 
@@ -13,6 +19,9 @@ Krabbe
 Scripts/Characters/Mobs/MobCrawler@Name:
 Spinnentier
 
+Scripts/Characters/Mobs/MobFireLizard@Name:
+Feuerechse
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Honigdachs
 
@@ -21,6 +30,9 @@ Hyäne
 
 Scripts/Characters/Mobs/MobPangolin@Name:
 Schuppentier
+
+Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
+Pragmiumkäfer
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Schnecke

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -39,9 +38,10 @@
 
             this.Refresh();
 
-            foreach (var craftingQueueItem in this.craftingQueueItems)
+            for (var index = 0; index < this.craftingQueueItems.Count; index++)
             {
-                this.AddControl(craftingQueueItem);
+                var craftingQueueItem = this.craftingQueueItems[index];
+                this.AddControl(craftingQueueItem, index);
             }
 
             this.ItemControlHiddenHandler();
@@ -60,11 +60,12 @@
             base.DisposeViewModel();
         }
 
-        private void AddControl(CraftingQueueItem craftingQueueItem)
+        private void AddControl(CraftingQueueItem craftingQueueItem, int index)
         {
             var control = new CraftingQueueItemControl
             {
                 DeleteCallback = this.DeleteCraftingQueueItemHandler,
+                MakeFirstCallback = this.MakeFirstInQueueHandler,
                 HiddenCallback = this.ItemControlHiddenHandler,
                 CountToCraftChangedCallback = this.ItemControlCountToCraftChangedCallback
             };
@@ -72,7 +73,7 @@
             control.Setup(this.craftingQueue, craftingQueueItem);
 
             this.craftingQueueItemsControls[craftingQueueItem] = control;
-            this.itemsChildrenCollection.Add(control);
+            this.itemsChildrenCollection.Insert(index, control);
 
             this.Refresh();
         }
@@ -88,7 +89,7 @@
                 return;
             }
 
-            CraftingSystem.Instance.ClientDeleteQueueItem(craftingQueueItem);
+            CraftingSystem.ClientDeleteQueueItem(craftingQueueItem);
         }
 
         private void ItemControlCountToCraftChangedCallback(CraftingQueueItem _ = null)
@@ -104,6 +105,11 @@
             }
         }
 
+        private void MakeFirstInQueueHandler(CraftingQueueItem craftingQueueItem)
+        {
+            CraftingSystem.ClientMakeItemFirstInQueue(craftingQueueItem);
+        }
+
         private void QueueClientElementRemovedHandler(
             NetworkSyncList<CraftingQueueItem> source,
             int index,
@@ -112,7 +118,7 @@
             if (this.craftingQueueItems.Count == 0)
             {
                 // queue finished sounds
-                ClientComponentTimersManager.AddAction(
+                ClientTimersSystem.AddAction(
                     delaySeconds: 0.3,
                     action: () => Client.Audio.PlayOneShot(new SoundResource("UI/Crafting/Completed")));
             }
@@ -125,7 +131,7 @@
             int index,
             CraftingQueueItem value)
         {
-            this.AddControl(value);
+            this.AddControl(value, index);
         }
 
         private void Refresh()

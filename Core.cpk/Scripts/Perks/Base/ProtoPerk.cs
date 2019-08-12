@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data;
@@ -9,11 +10,13 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.GameEngine.Common.Extensions;
 
-    public abstract class ProtoPerk : ProtoEntity
+    public abstract class ProtoPerk : ProtoEntity, IProtoPerk
     {
         private List<TechNode> listedInTechNodes;
 
         public abstract ITextureResource Icon { get; }
+
+        public IReadOnlyStatsDictionary ProtoEffects { get; private set; }
 
         public void PrepareProtoSetLinkWithTechNode(TechNode techNode)
         {
@@ -50,6 +53,23 @@
             }
 
             return false;
+        }
+
+        protected virtual void PrepareEffects(Effects effects)
+        {
+        }
+
+        protected sealed override void PrepareProto()
+        {
+            var effects = new Effects();
+            this.PrepareEffects(effects);
+            this.ProtoEffects = effects.ToReadOnly();
+
+            this.PrepareProtoPerk();
+        }
+
+        protected virtual void PrepareProtoPerk()
+        {
         }
     }
 }

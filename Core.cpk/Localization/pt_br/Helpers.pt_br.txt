@@ -70,11 +70,11 @@ Nome de usuário inválido
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
 `Requisitos de nome de usuário:
-[*] deve ter de [b]3[/b] a [b]24[/b] caracteres
-[*] [b]pode[/b] conter letras, números, traços inferior ou superior
-[*] [b]não pode[/b] conter espaços ou outros caracteres
-[*] deve começar e terminar com uma [b]letra[/b] ou [b]número[/b]
-[*] [b]não deve[/b] conter diversos caracteres [b]-[/b] ou [b]_[/b] seguidos`
+[*] Deve ter de [b]3[/b] a [b]24[/b] caracteres de comprimento
+[*] [b]Pode[/b] ter letras, números, traços underlines e hífens
+[*] [b]Não pode[/b] ter espaços ou quaisquer outros caracteres
+[*] Deve iniciar por uma [b]letra[/b]￼[*] Deve terminar com uma [b]letra[/b] ou [b]número[/b]
+[*] [b]Não deve[/b] ter diversos caracteres [b]-[/b] ou [b]_[/b] seguidos`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
 `Este nome de usuário já está sendo utilizado por alguém.

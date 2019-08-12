@@ -173,15 +173,12 @@
         {
             var result = StructuresHelper.ClientGetAvailableToBuildStructures();
             // update categories
-            var grouppedByCategory = result.GroupBy(r => r.Category).ToDictionary(r => r.Key);
+            var grouppedByCategory = result.GroupBy(r => r.Category)
+                                           .ToDictionary(r => r.Key);
             foreach (var viewModelCategory in this.Categories)
             {
                 var isAvailable = grouppedByCategory.ContainsKey(viewModelCategory.Category);
                 viewModelCategory.IsEnabled = isAvailable;
-                // doesn't work with NoesisGUI 2.2.0b5
-                //viewModelCategory.Visibility = isAvailable
-                //                                   ? Visibility.Visible
-                //                                   : Visibility.Collapsed;
             }
 
             return result;

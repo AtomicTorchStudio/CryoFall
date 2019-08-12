@@ -5,7 +5,7 @@
         public override string Description =>
             "Simple watering can made from lightweight plastic. Holds the most water of all watering cans.";
 
-        public override ushort DurabilityMax => 600; // 12*50
+        public override uint DurabilityMax => 600; // 12*50
 
         public override string Name => "Plastic watering can";
 

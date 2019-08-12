@@ -51,22 +51,11 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            var hitboxMelee = CollisionGroups.HitboxMelee;
-            var hitboxRanged = CollisionGroups.HitboxRanged;
-            var clickArea = CollisionGroups.ClickArea;
-
             data.PhysicsBody
-                // static collider
-                .AddShapeRectangle((2, 0.7), offset: (0, 0.1))
-
-                // melee hitbox
-                .AddShapeRectangle((1.8, 0.8), offset: (0.1, 0.2), group: hitboxMelee)
-
-                // ranged hitbox
-                .AddShapeRectangle((1.8, 0.8), offset: (0.1, 0.2), group: hitboxRanged)
-
-                // click area
-                .AddShapeRectangle((1.8, 0.9), offset: (0.1, 0.2), group: clickArea);
+                .AddShapeRectangle((2, 0.7),   offset: (0, 0.1))
+                .AddShapeRectangle((1.8, 0.8), offset: (0.1, 0.2),  group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1.6, 0.2), offset: (0.2, 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((1.8, 0.9), offset: (0.1, 0.2),  group: CollisionGroups.ClickArea);
         }
     }
 }

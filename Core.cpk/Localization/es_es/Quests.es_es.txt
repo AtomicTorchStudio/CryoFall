@@ -464,6 +464,21 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Usa la palanca para desmantelar
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
+Las tecnologías avanzadas requieren ciertos recursos, tales como el petróleo o el litio. Por eso mismo, es de vital importancia saber la forma de conseguirlos.
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Encontrarás abundantes frutos de vaina de petróleo en el [u]bosque boreal[/u]. Podrás usarlos para extraer pequeñas cantidades de petróleo.
+[*] Puedes conseguir [u]sales de litio[/u] al excavar sales minerales normales.
+[*] Encontrarás sales minerales en las [u]salinas[/u] del desierto.
+[*] Aprender [u]Xenogeología[/u] te ofrecerá métodos industriales para conseguir estos recursos.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
+Adquisición de recursos avanzados
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Extrae sales minerales
+
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Los avances en industria y construcción requieren unos férreos conocimientos científicos, sobre todo de química.
 
@@ -492,6 +507,20 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Dominio de tecnologías, parte 2
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
+Montar una red eléctrica en tu base es un paso importante de cara a obtener una mayor eficiencia. Hay muchas estructuras avanzadas que necesitan electricidad para funcionar.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
+`[*] Los dispositivos eléctricos solo funcionan cuando están [b]dentro[/b] de la zona de terreno adjudicado. No sirve de nada construir dispositivos eléctricos fuera de la zona de terreno adjudicado.
+[*] La energía eléctrica se almacena en edificios de [b]almacenamiento de energía[/b], para poder usarla cuando sea necesaria. Es recomendable aumentar la capacidad energética general de la base.
+[*] Hay distintos tipos de [b]generadores[/b], tales como los de vapor, solares o motores, que se podrán usar para producir electricidad.
+[*] Si [u]no tienes suficiente[/u] electricidad almacenada, la base sufrirá un [b]apagón[/b] y tendrás que restaurar la energía manualmente.
+[*] Al interactuar con el almacenamiento de energía de tu terreno adjudicado, podrás ver una [b]ventana de información detallada[/b].
+[*] Si conectas varias zonas de terreno adjudicado, se comportarán como [b]una única red eléctrica[/b].`
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
+Establece una red eléctrica
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
 También hay algunos biomedios muy remotos que podrían ofrecer desafíos adicionales pero que, del mismo modo, cuentan con recursos únicos.
 
@@ -501,6 +530,12 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
 Explora biomedios, parte 3
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
+[*] Los [b]biomedios volcánicos[/b] son extremadamente peligrosos y, para visitarlos, necesitas una protección adecuada contra el [b]calor[/b] extremo.
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
+Explorar biomedios, parte 4
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 Las ruinas antiguas son el mejor lugar para encontrar componentes raros y determinados recursos. Suele ser buena idea explorarlas cada cierto tiempo, sobre todo si tienes el equipo necesario.
@@ -530,4 +565,7 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 Dominio de la caza, parte 4
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
+Dominio de la caza, parte 5
 

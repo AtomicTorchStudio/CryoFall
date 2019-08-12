@@ -3,7 +3,6 @@
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Camera;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.Editor.Data;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts;
@@ -42,7 +41,7 @@
         {
             ClientInputManager.RegisterButtonsEnum<EditorButton>();
 
-            ClientComponentUpdateHelper.UpdateCallback += this.ClientUpdateCallback;
+            ClientUpdateHelper.UpdateCallback += this.ClientUpdateCallback;
             BootstrapperClientGame.InitEditorModeCallback += this.InitEditorMode;
             BootstrapperClientGame.ResetCallback += this.Reset;
 

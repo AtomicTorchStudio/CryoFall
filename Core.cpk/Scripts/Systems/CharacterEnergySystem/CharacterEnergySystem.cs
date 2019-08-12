@@ -6,10 +6,12 @@
     using AtomicTorch.CBND.CoreMod.Items.Devices;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.DataStructures;
 
@@ -18,9 +20,9 @@
     /// </summary>
     public class CharacterEnergySystem : ProtoSystem<CharacterEnergySystem>
     {
-        public const string NotificationCannotUse_NoPowerBanksEquipped = "No power banks equipped.";
+        public const string NotificationCannotUse_NoPowerBanksEquipped = "No powerbanks equipped.";
 
-        public const string NotificationCannotUse_NotEnoughCharge = "Not enough charge in power banks.";
+        public const string NotificationCannotUse_NotEnoughCharge = "Not enough charge in powerbanks.";
 
         // {0} is item name
         public const string NotificationCannotUse_Title = "Cannot use {0}";
@@ -61,9 +63,49 @@
 
         public static void ServerAddEnergyCharge(ICharacter character, double energyAmountToAdd)
         {
-            ServerAddEnergyChargeInternal(character,
-                                          energyAmountToAdd,
-                                          invokeServerOnBatteryItemCharged: true);
+            if (energyAmountToAdd <= 0)
+            {
+                return;
+            }
+
+            using var tempItemsList = SharedGetTempListPowerBanksForCharacter(character, true);
+            ServerAddEnergyInternal(energyAmountToAdd, tempItemsList);
+        }
+
+        public static void ServerAddEnergyCharge(IItemsContainer container, double energyAmountToAdd)
+        {
+            if (energyAmountToAdd <= 0
+                || container == null
+                || container.IsDestroyed)
+            {
+                return;
+            }
+
+            ITempList<IItem> tempItemsList;
+            if (container.Owner is ICharacter ownerCharacter)
+            {
+                tempItemsList = SharedGetTempListPowerBanksForCharacter(ownerCharacter, onlyEquippedDevices: false);
+            }
+            else
+            {
+                tempItemsList = Api.Shared.GetTempList<IItem>();
+                SharedFindPowerBanks(container, tempItemsList);
+
+                if (container.Owner is IWorldObject worldObject)
+                {
+                    foreach (var character in InteractionCheckerSystem.SharedEnumerateCurrentInteractionCharacters(
+                        worldObject))
+                    {
+                        using var tempCharacterPowerBanks = SharedGetTempListPowerBanksForCharacter(character,
+                                                                                                    onlyEquippedDevices:
+                                                                                                    false);
+                        tempItemsList.AddRange(tempCharacterPowerBanks);
+                    }
+                }
+            }
+
+            ServerAddEnergyInternal(energyAmountToAdd, tempItemsList);
+            tempItemsList.Dispose();
         }
 
         /// <summary>
@@ -77,164 +119,111 @@
                 return true;
             }
 
-            using (var tempItemsList = SharedGetTempListEquippedPowerBanks(character))
+            using var tempItemsList = SharedGetTempListPowerBanksForCharacter(character, onlyEquippedDevices: true);
+            if (tempItemsList.Count == 0)
             {
-                if (tempItemsList.Count == 0)
-                {
-                    // there are no battery packs equipped
-                    return false;
-                }
-
-                if (!SharedHasEnergyCharge(tempItemsList, requiredEnergyAmount))
-                {
-                    // not enough energy stored in the battery packs
-                    return false;
-                }
-
-                // deduct energy in reverse order
-                var list = tempItemsList.AsList();
-                for (var index = list.Count - 1; index >= 0; index--)
-                {
-                    var item = list[index];
-                    var privateState = SharedGetPrivateState(item);
-                    var charge = privateState.EnergyCharge;
-                    if (charge == 0)
-                    {
-                        // no charge there
-                        continue;
-                    }
-
-                    if (charge >= requiredEnergyAmount)
-                    {
-                        // there are more than enough charge available
-                        privateState.EnergyCharge -= requiredEnergyAmount;
-                        return true;
-                    }
-
-                    // use all the remaining charge in this item
-                    requiredEnergyAmount -= charge;
-                    privateState.EnergyCharge = 0;
-                }
-
-                throw new Exception("Should be impossible");
+                // there are no battery packs equipped
+                return false;
             }
+
+            if (!SharedHasEnergyCharge(tempItemsList, requiredEnergyAmount))
+            {
+                // not enough energy stored in the battery packs
+                return false;
+            }
+
+            // deduct energy in reverse order
+            var list = tempItemsList.AsList();
+            for (var index = list.Count - 1; index >= 0; index--)
+            {
+                var item = list[index];
+                var privateState = SharedGetPrivateState(item);
+                var charge = privateState.EnergyCharge;
+                if (charge <= 0)
+                {
+                    // no charge there
+                    continue;
+                }
+
+                if (charge >= requiredEnergyAmount)
+                {
+                    // there are more than enough charge available
+                    privateState.EnergyCharge -= requiredEnergyAmount;
+                    ServerOnEnergyUsed(item, requiredEnergyAmount);
+                    return true;
+                }
+
+                // use all the remaining charge in this item
+                requiredEnergyAmount -= charge;
+                privateState.EnergyCharge = 0;
+                ServerOnEnergyUsed(item, charge);
+            }
+
+            throw new Exception("Should be impossible");
         }
 
         public static uint SharedCalculateTotalEnergyCapacity(ICharacter character)
         {
-            using (var tempItemsList = SharedGetTempListEquippedPowerBanks(character))
-            {
-                return SharedCalculateTotalEnergyCapacity(tempItemsList);
-            }
+            using var tempItemsList = SharedGetTempListPowerBanksForCharacter(character, onlyEquippedDevices: true);
+            return SharedCalculateTotalEnergyCapacity(tempItemsList);
         }
 
         public static double SharedCalculateTotalEnergyCharge(ICharacter character)
         {
-            using (var tempItemsList = SharedGetTempListEquippedPowerBanks(character))
-            {
-                return SharedCalculateTotalEnergyCharge(tempItemsList);
-            }
+            using var tempItemsList = SharedGetTempListPowerBanksForCharacter(character, onlyEquippedDevices: true);
+            return SharedCalculateTotalEnergyCharge(tempItemsList);
         }
 
         public static bool SharedHasEnergyCharge(ICharacter character, double energyRequired)
         {
-            using (var tempItemsList = SharedGetTempListEquippedPowerBanks(character))
-            {
-                return SharedHasEnergyCharge(tempItemsList, energyRequired);
-            }
+            using var tempItemsList = SharedGetTempListPowerBanksForCharacter(character, onlyEquippedDevices: true);
+            return SharedHasEnergyCharge(tempItemsList, energyRequired);
         }
 
-        private static void ServerAddEnergyChargeInternal(
-            ICharacter character,
-            double energyAmountToAdd,
-            bool invokeServerOnBatteryItemCharged)
+        private static void ServerAddEnergyInternal(double energyAmountToAdd, ITempList<IItem> powerBanks)
         {
-            if (energyAmountToAdd <= 0)
+            foreach (var item in powerBanks)
             {
-                return;
-            }
-
-            using (var tempItemsList = SharedGetTempListEquippedPowerBanks(character))
-            {
-                if (tempItemsList.Count == 0)
+                if (item.IsDestroyed)
                 {
-                    // there are no battery packs equipped
+                    continue;
+                }
+
+                var privateState = SharedGetPrivateState(item);
+                var protoItem = (IProtoItemPowerBank)item.ProtoItem;
+                var capacity = protoItem.EnergyCapacity;
+
+                var charge = privateState.EnergyCharge;
+                if (charge >= capacity)
+                {
+                    // cannot add charge there
+                    continue;
+                }
+
+                var newCharge = charge + energyAmountToAdd;
+                if (newCharge <= capacity)
+                {
+                    // this battery can take the whole remaining energyAmountToAdd
+                    privateState.EnergyCharge = newCharge;
                     return;
                 }
 
-                // add energy in direct order
-                foreach (var item in tempItemsList)
-                {
-                    if (item.IsDestroyed)
-                    {
-                        continue;
-                    }
-
-                    var privateState = SharedGetPrivateState(item);
-                    var protoItem = (IProtoItemPowerBank)item.ProtoItem;
-                    var capacity = protoItem.EnergyCapacity;
-
-                    var charge = privateState.EnergyCharge;
-                    if (charge >= capacity)
-                    {
-                        // cannot add charge there
-                        continue;
-                    }
-
-                    var newCharge = charge + energyAmountToAdd;
-                    if (newCharge <= capacity)
-                    {
-                        // this battery can take the whole remaining energyAmountToAdd
-                        privateState.EnergyCharge = newCharge;
-                        if (invokeServerOnBatteryItemCharged)
-                        {
-                            ServerOnBatteryItemCharged(item, energyAmountToAdd);
-                        }
-
-                        return;
-                    }
-
-                    // add as much energy to this item as possible and go to the next item
-                    privateState.EnergyCharge = capacity;
-                    var energyAdded = capacity - charge;
-                    energyAmountToAdd -= energyAdded;
-                    if (invokeServerOnBatteryItemCharged)
-                    {
-                        ServerOnBatteryItemCharged(item, energyAdded);
-                    }
-                }
+                // add as much energy to this item as possible and go to the next item
+                privateState.EnergyCharge = capacity;
+                var energyAdded = capacity - charge;
+                energyAmountToAdd -= energyAdded;
             }
         }
 
-        private static void ServerOnBatteryItemCharged(IItem item, double energyAdded)
+        private static void ServerOnEnergyUsed(IItem item, double energyAmountUsed)
         {
-            if (energyAdded <= 0)
+            if (energyAmountUsed <= 0)
             {
                 return;
             }
 
-            var container = item.Container;
-            // reduce durability proportionally to the added charge
-            ItemDurabilitySystem.ServerModifyDurability(item, -(int)Math.Ceiling(energyAdded));
-
-            if (!item.IsDestroyed)
-            {
-                return;
-            }
-
-            // item was destroyed during recharging
-            var character = container?.OwnerAsCharacter;
-            if (character == null
-                || character.SharedGetPlayerContainerEquipment() != container)
-            {
-                return;
-            }
-
-            // redistribute remaining energy to other energy bank devices
-            var energyRemains = SharedGetPrivateState(item).EnergyCharge;
-            ServerAddEnergyChargeInternal(character,
-                                          energyRemains,
-                                          invokeServerOnBatteryItemCharged: false);
+            // reduce durability proportionally to the removed charge
+            ItemDurabilitySystem.ServerModifyDurability(item, -(int)Math.Ceiling(energyAmountUsed));
         }
 
         private static uint SharedCalculateTotalEnergyCapacity(ITempList<IItem> tempItemsList)
@@ -273,22 +262,35 @@
             return result;
         }
 
-        private static ItemPowerBankPrivateState SharedGetPrivateState(IItem itemPowerBank)
+        private static void SharedFindPowerBanks(IItemsContainer container, ITempList<IItem> tempList)
         {
-            return itemPowerBank.GetPrivateState<ItemPowerBankPrivateState>();
-        }
-
-        private static ITempList<IItem> SharedGetTempListEquippedPowerBanks(ICharacter character)
-        {
-            var tempList = Api.Shared.GetTempList<IItem>();
-            foreach (var item in character.SharedGetPlayerContainerEquipment().Items)
+            foreach (var item in container.Items)
             {
                 if (item.ProtoItem is IProtoItemPowerBank)
                 {
                     tempList.Add(item);
                 }
             }
+        }
 
+        private static ItemPowerBankPrivateState SharedGetPrivateState(IItem itemPowerBank)
+        {
+            return itemPowerBank.GetPrivateState<ItemPowerBankPrivateState>();
+        }
+
+        private static ITempList<IItem> SharedGetTempListPowerBanksForCharacter(
+            ICharacter character,
+            bool onlyEquippedDevices)
+        {
+            var tempList = Api.Shared.GetTempList<IItem>();
+            SharedFindPowerBanks(character.SharedGetPlayerContainerEquipment(), tempList);
+            if (onlyEquippedDevices)
+            {
+                return tempList;
+            }
+
+            SharedFindPowerBanks(character.SharedGetPlayerContainerInventory(), tempList);
+            SharedFindPowerBanks(character.SharedGetPlayerContainerHotbar(),    tempList);
             return tempList;
         }
 

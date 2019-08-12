@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CraftRecipes
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.CoreMod.Systems;
@@ -8,8 +9,6 @@
 
     public class RecipeCampFuelSynthetic : Recipe.RecipeForStationCrafting
     {
-        public override string Name => "Camp fuel (synthetic)";
-
         protected override void SetupRecipe(
             StationsList stations,
             out TimeSpan duration,
@@ -25,6 +24,11 @@
 
             outputItems.Add<ItemCampFuel>(count: 5);
             outputItems.Add<ItemCanisterEmpty>(count: 4);
+
+            this.Icon = ClientItemIconHelper.CreateComposedIcon(
+                name: this.Id + "Icon",
+                primaryIcon: GetItem<ItemCampFuel>().Icon,
+                secondaryIcon: GetItem<ItemCanisterGasoline>().Icon);
         }
     }
 }

@@ -8,7 +8,8 @@
             = new HashSet<string>()
             {
                 "ai_enabled",
-                "Lurler"
+                "Lurler",
+                "AtomicTorch"
             };
 
         public static bool IsDeveloper(string name)

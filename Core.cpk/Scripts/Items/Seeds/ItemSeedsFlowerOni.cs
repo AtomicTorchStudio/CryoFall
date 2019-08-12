@@ -7,7 +7,7 @@
 
     public class ItemSeedsFlowerOni : ProtoItemSeed
     {
-        public override string Description => "Oniflower seeds. Can be planted to grow more flowers.";
+        public override string Description => GetProtoEntity<ItemSeedsBellPepper>().Description;
 
         public override string Name => "Oniflower seeds";
 

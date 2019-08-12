@@ -102,10 +102,7 @@ Die Handwerkswarteschlange ist voll.
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Neue Rezeptur kann nicht hinzugefügt werden
 
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Message:
-Du bist nicht der Besitzer dieser Landfläche.
-
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Title:
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Kein Abriss möglich
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
@@ -127,6 +124,9 @@ Befüllen nicht notwendig
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
 Dieser Gegenstand lässt sich nicht befüllen.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
+Zu nah an einem anderen Land Claim.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Dieses Gebiet wird von einem anderen Spieler beansprucht oder befindet sich zu nah an einem anderen Land Claim.
 
@@ -147,6 +147,15 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `Überfall im Gange.
 [br]Du kannst keine neuen Strukturen bauen, während deine Basis angegriffen wird.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
+Du kannst diese Konstruktion nur innerhalb deines Land Claim-Bereichs platzieren.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
+Du bist nicht der Besitzer dieser Landfläche.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
+Die Basis wird angegriffen.
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
 Anfängerschutz ausschalten
 
@@ -154,7 +163,7 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProte
 Bist du sicher, dass du den Anfängerschutz ausschalten möchtest? Deine Entscheidung kann nicht rückgängig gemacht werden.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
-Du stehst unter Anfängerschutz. Dieser bewahrt dich davor, deine Gegenstände oder Lernpunkte im Falle deines Todes durch einen anderen Spieler zu verlieren. Zudem können die Gegenstände, die du nach dem Tod fallenlässt, nicht von anderen Spielern geplündert werden. Bitte folge den jeweiligen Quests, um die nötigen Werkzeuge und Waffen anzufertigen und errichte so bald wie möglich eine kleine Basis!
+Du stehst unter Anfängerschutz. Dieser bewahrt dich davor, deine Gegenstände im Falle deines Todes durch einen anderen Spieler zu verlieren. Zudem können die Gegenstände, die du nach dem Tod fallenlässt, nicht von anderen Spielern geplündert werden. Bitte folge den jeweiligen Quests, um die nötigen Werkzeuge und Waffen anzufertigen und errichte so bald wie möglich eine kleine Basis!
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 Der Anfängerschutz erlischt in:
@@ -225,6 +234,18 @@ Eingeladener Spieler ist bereits ein Mitglied deiner Gruppe.
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 Du kannst niemanden einladen, da du vom Server-Besitzer stummgeschaltet wurdest.
 
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
+Der eingeladene Spieler ist offline. Nur Spieler, die online sind, können in eine Gruppe eingeladen werden.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
+Keine Interaktion möglich – zu weit entfernt oder Gebäude unzugänglich.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
+Kein Stromnetz vorhanden.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
+Nicht genug Strom im Stromnetz.
+
 Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
 Duellmodus deaktivieren
 
@@ -255,7 +276,8 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDam
 Kein Schaden
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
-Das Raid-Zeitfenster ist nun geschlossen.
+`Das Raid-Zeitfenster ist nun geschlossen.
+[br]Bereits laufende Raids können fortgesetzt werden.`
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Noch keine Ernte möglich
@@ -338,8 +360,8 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} Level {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`Du hast mehr als {0} Lernpunkte (LP) angesammelt. Du solltest erwägen, diese in das Freischalten neuer Technologien zu investieren. Nach dem Tod steht dir nur ein kleiner Teil deiner gesammelten LP zur Verfügung.
-[br](Klicken zum Öffnen des Technologiemenüs)`
+`Du hast mehr als {0} Lernpunkte (LP) angesammelt. Du solltest erwägen, diese in das Freischalten neuer Technologien zu investieren.
+[br](Klicken zum Öffnen des Technologiemenüs.)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
 Technologie nicht freischaltbar

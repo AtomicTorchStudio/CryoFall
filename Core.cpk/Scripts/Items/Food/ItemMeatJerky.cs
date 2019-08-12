@@ -9,13 +9,11 @@
 
         public override float FoodRestore => 15;
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.LongLasting;
 
         public override string Name => "Jerky";
 
         public override ushort OrganicValue => 10;
-
-        public override float StaminaRestore => 50;
 
         public override float WaterRestore => -10;
     }

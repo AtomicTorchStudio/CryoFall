@@ -5,7 +5,7 @@
         public override string Description =>
             "Necessity is the mother of invention. Not the most comfy, but quite decent protection early on.";
 
-        public override ushort DurabilityMax => 500;
+        public override uint DurabilityMax => 500;
 
         public override string Name => "Wooden chestplate";
 

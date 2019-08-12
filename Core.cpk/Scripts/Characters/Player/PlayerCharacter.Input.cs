@@ -131,7 +131,7 @@
             PlayerCharacterPrivateState privateState,
             PlayerCharacterPublicState publicState)
         {
-            var characterIsOffline = !character.IsOnline;
+            var characterIsOffline = !character.ServerIsOnline;
             if (characterIsOffline)
             {
                 privateState.Input = default;
@@ -165,10 +165,13 @@
             }
 
             double moveSpeed;
-            if (characterIsOffline)
+            if (characterIsOffline
+                || (privateState.CurrentActionState?.IsBlocksMovement ?? false))
             {
+                // offline or current action blocks movement
                 moveSpeed = 0;
                 isRunning = false;
+                input.MoveModes = CharacterMoveModes.None;
             }
             else
             {

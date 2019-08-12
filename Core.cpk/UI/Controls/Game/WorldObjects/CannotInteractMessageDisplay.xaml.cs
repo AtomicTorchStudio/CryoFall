@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects
 {
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -12,6 +13,20 @@
         private static CannotInteractMessageDisplay lastControl;
 
         private IComponentAttachedControl componentAttachedControl;
+
+        public static void ClientOnCannotInteract(
+            IWorldObject worldObject,
+            string message,
+            bool isOutOfRange = false)
+        {
+            ShowOn(worldObject, message);
+
+            var soundKey = isOutOfRange
+                               ? ObjectSound.InteractOutOfRange
+                               : ObjectSound.InteractFail;
+            worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
+                       .PlaySound(soundKey);
+        }
 
         public static void Hide()
         {

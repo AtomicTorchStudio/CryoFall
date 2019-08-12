@@ -7,15 +7,15 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Skills;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
+    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
-    using AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Plants;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -38,8 +38,6 @@
         where TClientState : PlantClientState, new()
     {
         public const string ErrorRequiresFarmPlot = "Requires farm plot.";
-
-        private static readonly double WateringGrowthSpeedMultiplier = 4.0;
 
         private IComponentAttachedControl currentDisplayedTooltip;
 
@@ -94,21 +92,6 @@
             return character.SharedGetFinalStatMultiplier(StatName.FarmingTasksSpeed);
         }
 
-        public override void ServerOnDestroy(IStaticWorldObject gameObject)
-        {
-            base.ServerOnDestroy(gameObject);
-
-            // reset decay for the farm(s) in the tile where the plant was growing
-            foreach (var tileObject in gameObject.OccupiedTile.StaticObjects)
-            {
-                if (tileObject.ProtoStaticWorldObject is IProtoObjectFarm)
-                {
-                    StructureDecaySystem.ServerResetDecayTimer(
-                        tileObject.GetPrivateState<StructurePrivateState>());
-                }
-            }
-        }
-
         public void ServerOnWatered(
             ICharacter byCharacter,
             IStaticWorldObject worldObjectPlant,
@@ -160,7 +143,7 @@
             var progressMultiplier = remainingDuration / previousDuration;
 
             // calculate the actual growth duration (with current bonuses)
-            var duration = this.CalculateGrowthStageDuration(publicState.GrowthStage, privateState, publicState);
+            var duration = this.ServerCalculateGrowthStageDuration(publicState.GrowthStage, privateState, publicState);
 
             // calculate and apply the remaining duration (with current bonuses)
             remainingDuration = duration * progressMultiplier;
@@ -189,6 +172,7 @@
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
         {
             return PveSystem.SharedValidateInteractionIsNotForbidden(character, worldObject, writeToLog)
+                   && NewbieProtectionSystem.SharedValidateInteractionIsNotForbidden(character, worldObject, writeToLog)
                    && this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
         }
 
@@ -202,29 +186,6 @@
             var farmObject = tile.StaticObjects.FirstOrDefault(
                 _ => _.ProtoStaticWorldObject is IProtoObjectFarm);
             return (IProtoObjectFarm)farmObject?.ProtoStaticWorldObject;
-        }
-
-        protected override double CalculateGrowthStageDuration(
-            byte growthStage,
-            TPrivateState privateState,
-            TPublicState publicState)
-        {
-            var speedMultiplier = CalculateGrowthSpeedMultiplier(privateState, publicState);
-            double durationSeconds;
-
-            if (growthStage < this.GrowthStagesCount - 1)
-            {
-                // not grown - use growth duration
-                durationSeconds = this.stageTimeToMatureTotalSeconds;
-            }
-            else
-            {
-                // next stage is last - it will produce harvest
-                // use duration for harvest producing
-                durationSeconds = this.TimeToGiveHarvestTotalSeconds;
-            }
-
-            return durationSeconds / speedMultiplier;
         }
 
         protected override void ClientAddShadowRenderer(ClientInitializeData data)
@@ -244,14 +205,29 @@
         {
             base.ClientInitialize(data);
 
-            var tile = data.GameObject.OccupiedTile;
-            ClientAddPlantRenderingOffsetFromFarm(tile, data.ClientState.Renderer);
+            var worldObject = data.GameObject;
+            var publicState = data.PublicState;
+            var clientState = data.ClientState;
+            var tile = worldObject.OccupiedTile;
+            ClientAddPlantRenderingOffsetFromFarm(tile, clientState.Renderer);
 
-            var rendererShadow = data.ClientState.RendererShadow;
+            var rendererShadow = clientState.RendererShadow;
             if (rendererShadow != null)
             {
                 ClientAddPlantRenderingOffsetFromFarm(tile, rendererShadow);
             }
+
+            var objectFarmPlot = SharedGetFarmPlotWorldObject(worldObject.OccupiedTile);
+            // force reinitialize the farm plot to ensure it correctly uses the watered state of the plant over it
+            objectFarmPlot?.ClientInitialize();
+
+            publicState.ClientSubscribe(_ => _.IsWatered,
+                                        _ => objectFarmPlot?.ClientInitialize(),
+                                        clientState);
+
+            publicState.ClientSubscribe(_ => _.IsFertilized,
+                                        _ => objectFarmPlot?.ClientInitialize(),
+                                        clientState);
         }
 
         protected override void ClientObserving(ClientObjectData data, bool isObserving)
@@ -267,7 +243,7 @@
             var control = new FarmPlantTooltip
             {
                 ObjectPlant = worldObject,
-                PlantPublicState = data.SyncPublicState,
+                PlantPublicState = data.PublicState,
                 VerticalAlignment = VerticalAlignment.Bottom
             };
 
@@ -278,18 +254,6 @@
                                     worldObject)
                                 + (0, 1.12),
                 isFocusable: false);
-        }
-
-        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
-        {
-            if (base.SharedIsAllowedObjectToInteractThrough(worldObject))
-            {
-                return true;
-            }
-
-            // allow to interact through farm objects (plot, pot, etc) and other plants
-            var proto = worldObject.ProtoWorldObject;
-            return proto is IProtoObjectFarm || proto is IProtoObjectPlant;
         }
 
         protected override void PrepareDroplistOnDestroy(DropItemsList droplist)
@@ -325,6 +289,29 @@
                                                 is IProtoObjectFarm)));
         }
 
+        protected override double ServerCalculateGrowthStageDuration(
+            byte growthStage,
+            TPrivateState privateState,
+            TPublicState publicState)
+        {
+            var speedMultiplier = ServerCalculateGrowthSpeedMultiplier(privateState, publicState);
+            double durationSeconds;
+
+            if (growthStage < this.GrowthStagesCount - 1)
+            {
+                // not grown - use growth duration
+                durationSeconds = this.stageTimeToMatureTotalSeconds;
+            }
+            else
+            {
+                // next stage is last - it will produce harvest
+                // use duration for harvest producing
+                durationSeconds = this.TimeToGiveHarvestTotalSeconds;
+            }
+
+            return durationSeconds / speedMultiplier;
+        }
+
         protected void ServerClearHarvestState(IStaticWorldObject worldObject, ICharacter gatheredByCharacter)
         {
             var publicState = GetPublicState(worldObject);
@@ -356,6 +343,8 @@
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
+
+            data.PublicState.IsFertilized = data.PrivateState.AppliedFertilizerProto != null;
         }
 
         protected override void ServerOnGathered(IStaticWorldObject worldObject, ICharacter byCharacter)
@@ -412,6 +401,18 @@
             base.ServerUpdate(data);
         }
 
+        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
+        {
+            if (base.SharedIsAllowedObjectToInteractThrough(worldObject))
+            {
+                return true;
+            }
+
+            // allow to interact through farm objects (plot, pot, etc) and other plants
+            var proto = worldObject.ProtoWorldObject;
+            return proto is IProtoObjectFarm || proto is IProtoObjectPlant;
+        }
+
         protected override void SharedProcessCreatedPhysics(CreatePhysicsData data)
         {
             base.SharedProcessCreatedPhysics(data);
@@ -426,30 +427,6 @@
             // TODO: actually, we should not remove the hitboxes - just offset their position
             data.PhysicsBody.RemoveShapesOfGroup(CollisionGroups.HitboxMelee);
             data.PhysicsBody.RemoveShapesOfGroup(CollisionGroups.HitboxRanged);
-        }
-
-        private static double CalculateGrowthSpeedMultiplier(
-            TPrivateState privateState,
-            TPublicState publicState)
-        {
-            var multiplier = 1.0;
-
-            if (privateState.AppliedFertilizerProto != null)
-            {
-                // apply fertilizer effect (as percents)
-                multiplier += Math.Max(0, privateState.AppliedFertilizerProto.PlantGrowthSpeedMultiplier - 1);
-            }
-
-            if (publicState.IsWatered)
-            {
-                // apply watering effect (as percents)
-                multiplier += WateringGrowthSpeedMultiplier - 1;
-            }
-
-            // apply skill growth speed multiplier (as percents)
-            multiplier += Math.Max(0, privateState.SkillGrowthSpeedMultiplier - 1);
-
-            return multiplier;
         }
 
         private static void ClientAddPlantRenderingOffsetFromFarm(Tile tile, IComponentSpriteRenderer renderer)
@@ -474,6 +451,39 @@
             renderer.DrawOrderOffsetY -= drawOffset.Y;
         }
 
+        private static double ServerCalculateGrowthSpeedMultiplier(
+            TPrivateState privateState,
+            TPublicState publicState)
+        {
+            var multiplier = 1.0;
+
+            if (privateState.AppliedFertilizerProto != null)
+            {
+                // apply fertilizer effect (as percents)
+                multiplier += Math.Max(0, privateState.AppliedFertilizerProto.PlantGrowthSpeedMultiplier - 1);
+            }
+
+            if (publicState.IsWatered)
+            {
+                // apply watering effect (as percents)
+                multiplier += FarmingConstants.WateringGrowthSpeedMultiplier - 1;
+            }
+
+            // apply skill growth speed multiplier (as percents)
+            multiplier += Math.Max(0, privateState.SkillGrowthSpeedMultiplier - 1);
+
+            // apply growth rate multiplier
+            multiplier *= FarmingConstants.FarmPlantsGrowthSpeedMultiplier;
+
+            return multiplier;
+        }
+
+        private static IStaticWorldObject SharedGetFarmPlotWorldObject(Tile tile)
+        {
+            return tile.StaticObjects.FirstOrDefault(
+                o => o.ProtoStaticWorldObject is IProtoObjectFarmPlot);
+        }
+
         private double ServerCalculateTotalGrowthTimeToNextHarvest(
             TPrivateState privateState,
             TPublicState publicState)
@@ -492,7 +502,7 @@
             var growthStage = (byte)(currentGrowthStage + 1);
             while (growthStage < this.GrowthStagesCount)
             {
-                result += this.CalculateGrowthStageDuration(growthStage, privateState, publicState);
+                result += this.ServerCalculateGrowthStageDuration(growthStage, privateState, publicState);
                 growthStage++;
             }
 
@@ -513,7 +523,7 @@
             }
 
             var privateState = GetPrivateState(worldObjectPlant);
-            var speedMultiplier = CalculateGrowthSpeedMultiplier(privateState, GetPublicState(worldObjectPlant));
+            var speedMultiplier = ServerCalculateGrowthSpeedMultiplier(privateState, GetPublicState(worldObjectPlant));
             var serverTimeNextHarvest = this.ServerCalculateTotalGrowthTimeToNextHarvest(
                 privateState,
                 GetPublicState(worldObjectPlant));

@@ -2,6 +2,8 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -75,6 +77,7 @@
         private void TechNodesClientAnyModificationHandler(NetworkSyncList<TechNode> source)
         {
             TechNodesChanged?.Invoke();
+            ClientCurrentCharacterHelper.Character.SharedSetFinalStatsCacheDirty();
         }
     }
 }

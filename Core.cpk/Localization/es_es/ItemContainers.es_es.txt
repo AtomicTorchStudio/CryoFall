@@ -1,21 +1,21 @@
-﻿Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationCannotEquip:
+﻿Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationCannotEquip:
 No se puede equipar
 
-Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationRemoveFullBody:
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationRemoveFullBody:
 Debes quitar primero el equipo de cuerpo entero.
 
-Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationRemoveOtherEquipment:
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationRemoveOtherEquipment:
 Debes quitar primero el otro equipo.
 
-Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Message:
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Message:
 Debes usar el puesto médico para instalar el implante.
 
-Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Title:
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Title:
 No se puede instalar
 
-Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Message:
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Message:
 Debes usar el puesto médico para quitar el implante.
 
-Scripts/ItemContainers/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
 No se puede quitar
 

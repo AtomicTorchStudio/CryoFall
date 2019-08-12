@@ -95,9 +95,11 @@
             this.lastCountToCraft = this.craftingQueueItem.CountToCraftRemains;
 
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-            this.TextCountToCraftRemains = this.craftingQueueItem.CountToCraftRemains > 1
-                                               ? this.craftingQueueItem.CountToCraftRemains + "x"
-                                               : string.Empty;
+            this.TextCountToCraftRemains =
+                this.craftingQueueItem.CountToCraftRemains > 1
+                || this.craftingQueueItem.Recipe.OutputItems.Items[0].ProtoItem.IsStackable
+                    ? this.craftingQueueItem.CountToCraftRemains + "x"
+                    : string.Empty;
         }
 
         private void UpdateProgress()

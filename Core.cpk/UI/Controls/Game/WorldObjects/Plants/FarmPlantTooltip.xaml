@@ -13,8 +13,9 @@
     FontWeight="Bold"
     Focusable="False"
     IsHitTestVisible="False"
+    Visibility="{Binding Visibility}"
     d:DataContext="{d:DesignInstance data:ViewModelFarmPlantTooltip, IsDesignTimeCreatable=True}"
-    Visibility="{Binding Visibility}" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
     <base:BaseUserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -28,6 +29,22 @@
             <Setter Property="noesis:Text.Stroke" Value="#99000000" />
             <Setter Property="noesis:Text.StrokeThickness" Value="2.5" />
         </Style>
+
+        <Style x:Key="IconBorderStyle" TargetType="Border">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="Background" Value="#88555555" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+        <Style x:Key="TextBlockBonusDescriptionStyle" TargetType="core:FormattedTextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="LineHeight" Value="17" />
+            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+        </Style>
+
     </base:BaseUserControl.Resources>
 
     <Border
@@ -88,9 +105,6 @@
                                            Style="{StaticResource BarTextStyle}" />
                                 <TextBlock Text=": " Style="{StaticResource BarTextStyle}" />
                                 <TextBlock Text="{Binding HarvestInTimeText}" Style="{StaticResource BarTextStyle}" />
-                                <Rectangle Width="16" Height="20" VerticalAlignment="Center"
-                                           Fill="{StaticResource LiquidIconWater}"
-                                           Visibility="{Binding VisibilityWatered}" />
                             </StackPanel>
                         </Viewbox>
                     </ContentControl>
@@ -158,30 +172,59 @@
                     </ContentControl>
                 </Grid>
 
-                <Grid Visibility="{Binding VisibilityFertilizer}"
-                      Margin="0,5,0,0">
+                <Grid
+                    Visibility="{Binding WateringSpeedBonusText, Converter={StaticResource NullToVisibilityConverter}}"
+                    Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Border HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Padding="3"
-                            Background="#88555555"
-                            CornerRadius="5"
-                            Grid.Column="0"
-                            Grid.Row="0">
-                        <Rectangle Width="48"
-                                   Height="48"
-                                   Fill="{Binding IconFertilizer}" />
+                    <Border Style="{StaticResource IconBorderStyle}">
+                        <Rectangle Fill="{StaticResource LiquidIconWater}"
+                                   Width="40"
+                                   Height="40"
+                                   Margin="4" />
                     </Border>
 
                     <core:FormattedTextBlock Grid.Column="1"
-                                             Content="{Binding TextFertilizerBonus}"
-                                             VerticalAlignment="Center"
-                                             HorizontalAlignment="Left"
-                                             FontSize="16"
-                                             Margin="5,0,0,0" />
+                                             Content="{Binding WateringSpeedBonusText}"
+                                             Style="{StaticResource TextBlockBonusDescriptionStyle}" />
+                </Grid>
+
+                <Grid
+                    Visibility="{Binding FertilizerBonusText, Converter={StaticResource NullToVisibilityConverter}}"
+                    Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource IconBorderStyle}">
+                        <Rectangle Fill="{Binding IconFertilizer}"
+                                   Width="48"
+                                   Height="48" />
+                    </Border>
+
+                    <core:FormattedTextBlock Grid.Column="1"
+                                             Content="{Binding FertilizerBonusText}"
+                                             Style="{StaticResource TextBlockBonusDescriptionStyle}" />
+                </Grid>
+
+                <Grid
+                    Visibility="{Binding SkillGrowthSpeedBonusText, Converter={StaticResource NullToVisibilityConverter}}"
+                    Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource IconBorderStyle}">
+                        <Rectangle Fill="{Binding IconSkillFarming}"
+                                   Width="48"
+                                   Height="48" />
+                    </Border>
+
+                    <core:FormattedTextBlock Grid.Column="1"
+                                             Content="{Binding SkillGrowthSpeedBonusText}"
+                                             Style="{StaticResource TextBlockBonusDescriptionStyle}" />
                 </Grid>
             </StackPanel>
         </Grid>

@@ -52,7 +52,8 @@
         ItemReload,
 
         // Switch item mode (for example, switch/alternate the ammo type for current weapon)
-        [Description("Switch item mode/switch ammo")]
+        [Description(@"Switch item mode
+  [br]/switch ammo")]
         [ButtonInfo(InputKey.B)]
         ItemSwitchMode,
 
@@ -185,7 +186,7 @@
         ContainerMoveItemsMatchUp,
 
         // Hold to display the land claim zones and healthbars for all damaged objects on the screen (or you can also just hold the Alt key).
-        [Description("Display land claim and health bars")]
+        [Description("Display land claim[br]and health bars")]
         [ButtonInfo(InputKey.L)]
         DisplayLandClaim,
     }

@@ -17,7 +17,7 @@
         {
             stations.Add<ObjectWorkbench>();
 
-            duration = CraftingDuration.Medium;
+            duration = CraftingDuration.Short;
 
             inputItems.Add<ItemPlanks>(count: 25);
             inputItems.Add<ItemRope>(count: 3);

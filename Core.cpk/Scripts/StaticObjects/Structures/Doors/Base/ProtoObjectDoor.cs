@@ -126,6 +126,9 @@
 
         protected virtual double DoorOpenCloseAnimationDuration => 0.2f;
 
+        // Large bases have multiple doors so making them a little quiet is a good idea.
+        protected virtual float SoundsVolume => 0.5f;
+
         protected TextureResource TextureBaseHorizontal { get; set; }
 
         public void ClientRefreshRenderer(IStaticWorldObject door)
@@ -191,12 +194,10 @@
 
         void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         ObjectDoorPrivateState IProtoObjectDoor.GetPrivateState(IStaticWorldObject door)
@@ -302,7 +303,7 @@
 
             this.ClientAddAutoStructurePointsBar(data);
 
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             var clientState = data.ClientState;
 
             this.ClientSetupDoor(data);
@@ -318,18 +319,21 @@
                     clientState.SpriteAnimator.Start(isPositiveDirection: newIsOpened);
                     Client.Audio.PlayOneShot(
                         this.SoundResourceDoorStart,
-                        staticWorldObject);
+                        staticWorldObject,
+                        volume: this.SoundsVolume);
 
                     // we don't use the looped "process" door sound
                     //Client.Audio.PlayOneShotLooped(
                     //    this.SoundResourceDoorProcess,
                     //    staticWorldObject,
-                    //    duration: this.DoorOpenCloseAnimationDuration);
+                    //    duration: this.DoorOpenCloseAnimationDuration,
+                    //    volume: SoundsVolume);
 
                     Client.Audio.PlayOneShot(
                         this.SoundResourceDoorEnd,
                         staticWorldObject,
-                        delay: this.DoorOpenCloseAnimationDuration - this.DoorOpenCloseAnimationDuration / 5f);
+                        delay: this.DoorOpenCloseAnimationDuration - this.DoorOpenCloseAnimationDuration / 5f,
+                        volume: this.SoundsVolume);
                 },
                 subscriptionOwner: clientState);
 
@@ -529,19 +533,19 @@
                     // horizontal door hitboxes
                     physicsBody
                         .AddShapeRectangle(
-                            size: (doorWidth: doorSize, 0.6),
-                            offset: (0, WallPatterns.PhysicsOffset),
+                            size: (doorWidth: doorSize, 0.25), // Y value same as for wall
+                            offset: (0, 0.75), // Y value same as for wall
                             group: CollisionGroups.HitboxMelee)
-                        .AddShapeRectangle(
-                            size: (doorWidth: doorSize, 1.0),
-                            offset: (0, WallPatterns.PhysicsOffset),
+                    .AddShapeRectangle(
+                            size: (doorWidth: doorSize, y: 0.57),  // Y value same as for wall
+                            offset: (x: 0, y: 0.85), // Y value same as for wall
                             group: CollisionGroups.HitboxRanged);
                 }
 
                 // click area
                 physicsBody
                     .AddShapeRectangle(
-                        size: (doorWidth: doorSize, doorSize),
+                        size: (doorWidth: doorSize, 1),
                         offset: (0, WallPatterns.PhysicsOffset),
                         group: CollisionGroups.ClickArea);
                 return;
@@ -573,11 +577,11 @@
                 // vertical door hitboxes
                 physicsBody
                     .AddShapeRectangle(
-                        size: (verticalDoorWidth, doorSize + 0.35),
+                        size: (verticalDoorWidth, doorSize + 0.76),
                         offset: (horizontalOffset, 0),
                         group: CollisionGroups.HitboxMelee)
                     .AddShapeRectangle(
-                        size: (verticalDoorWidth, doorSize + 0.75),
+                        size: (verticalDoorWidth, doorSize + 0.86),
                         offset: (horizontalOffset, 0),
                         group: CollisionGroups.HitboxRanged);
             }
@@ -585,13 +589,14 @@
             // click area
             physicsBody
                 .AddShapeRectangle(
-                    size: (doorWidth: 1, doorSize + 0.75),
+                    size: (doorWidth: 0.5, doorSize + 0.75),
+                    offset: (0.25, 0),
                     group: CollisionGroups.ClickArea);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             var isHorizontalDoor = publicState.IsHorizontalDoor;
             var isOpened = publicState.IsOpened;
 
@@ -625,7 +630,7 @@
         private void ClientSetupDoor(ClientInitializeData data)
         {
             var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             var clientState = data.ClientState;
             var isHorizontalDoor = publicState.IsHorizontalDoor;
             var isOpened = publicState.IsOpened;
@@ -700,51 +705,49 @@
                 return false;
             }
 
-            using (var charactersNearby = Api.Shared.GetTempList<ICharacter>())
+            using var charactersNearby = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(worldObject, charactersNearby);
+            if (charactersNearby.Count == 0)
             {
-                Server.World.GetScopedByPlayers(worldObject, charactersNearby);
-                if (charactersNearby.Count == 0)
+                // no characters nearby
+                return false;
+            }
+
+            var objectOpeningBounds = this.SharedGetDoorOpeningBounds(worldObject);
+            foreach (var character in charactersNearby)
+            {
+                if (!character.ServerIsOnline
+                    || character.ProtoCharacter is PlayerCharacterSpectator)
                 {
-                    // no characters nearby
-                    return false;
+                    continue;
                 }
 
-                var objectOpeningBounds = this.SharedGetDoorOpeningBounds(worldObject);
-                foreach (var character in charactersNearby)
+                if (!objectOpeningBounds.Contains(character.Position))
                 {
-                    if (!character.IsOnline
-                        || character.ProtoCharacter is PlayerCharacterSpectator)
-                    {
-                        continue;
-                    }
+                    // too far from this door
+                    continue;
+                }
 
-                    if (!objectOpeningBounds.Contains(character.Position))
-                    {
-                        // too far from this door
-                        continue;
-                    }
+                if (!WorldObjectAccessModeSystem.ServerHasAccess(worldObject,
+                                                                 character,
+                                                                 mode,
+                                                                 writeToLog: false))
+                {
+                    continue;
+                }
 
-                    if (!WorldObjectAccessModeSystem.ServerHasAccess(worldObject,
-                                                                     character,
-                                                                     mode,
-                                                                     writeToLog: false))
-                    {
-                        continue;
-                    }
+                // we don't do this check because it requires character to be the door owner
+                //if (!this.SharedCanInteract(character, gameObject, writeToLog: false))
+                //{
+                //    return false;
+                //}
 
-                    // we don't do this check because it requires character to be the door owner
-                    //if (!this.SharedCanInteract(character, gameObject, writeToLog: false))
-                    //{
-                    //    return false;
-                    //}
-
-                    // we do this check instead
-                    // ensure that the character is inside the interaction area
-                    // and there is a direct line of sight between the character and the door
-                    if (this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog: false))
-                    {
-                        return true;
-                    }
+                // we do this check instead
+                // ensure that the character is inside the interaction area
+                // and there is a direct line of sight between the character and the door
+                if (this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog: false))
+                {
+                    return true;
                 }
             }
 

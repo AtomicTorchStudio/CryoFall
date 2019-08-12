@@ -1,8 +1,11 @@
 ﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
-Требуется: {0} с {1}% изученных технологий.
+Требуется: {0} с {1}% исследованных технологий.
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
 Не хватает очков технологий
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechGroupIsLocked:
+Древо технологий недоступно
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 Технология уже открыта
@@ -28,6 +31,24 @@ Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
 Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
 Готовка
 
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
+Чертежи базовых видов одежды и брони.
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
+Защита
+
+Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
+Костяная броня
+
+Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
+Плетеная броня
+
+Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
+Тканевая броня
+
+Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
+Деревянная броня
+
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
 Подготовка семян к посадке, изготовление удобрений и многое другое.
 
@@ -52,23 +73,11 @@ Scripts/Technologies/Tier1/Industry/TechNodeIronTools@Name:
 Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
 Выплавка
 
-Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Description:
-Содержит чертежи базовых видов оружия, одежды и брони.
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
+Чертежи примитивного оружия.
 
-Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Name:
-Атака и защита
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBoneArmor@Name:
-Костяная броня
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBraidedArmor@Name:
-Плетеная броня
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeClothArmor@Name:
-Тканевая броня
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeWoodArmor@Name:
-Деревянная броня
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
+Атака
 
 Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
 Работа с разнообразными химическими соединениями и реакциями.
@@ -114,6 +123,12 @@ Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
 Стеганые головные уборы
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
+Базовое электрооборудование.
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
+Электричество
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
 Сложные технологии фермерства открывают доступ к разнообразным посевам и более эффективным удобрениям.
@@ -172,6 +187,12 @@ Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
 Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
 Строительство из кирпича
 
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
+Очень сложные рецепты изысканных блюд для настоящих гурманов.
+
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
+Готовка 3
+
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 Улучшенные технологии защиты.
 
@@ -190,6 +211,12 @@ Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
 Военный шлем
 
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
+Продвинутое электрооборудование.
+
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
+Электричество 2
+
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
 Улучшенное фермерское хозяйство и широкий выбор растений для посева.
 
@@ -201,9 +228,6 @@ Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
 Производство 3
-
-Scripts/Technologies/Tier3/Industry3/TechNodeGoldSmelting@Name:
-Плавка золота
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
 Обеспечивает более широкий выбор передовых медицинских средств.
@@ -223,20 +247,17 @@ Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 Стимуляторы
 
-Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoAged@Name:
-Выдержанный табак
-
-Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoProcessing@Name:
-Производство табака
-
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
-Технологии, необходимые для использования ресурсов из недр других планет (таких, как эта).
+Технологии, необходимые для разработки недр.
 
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
 Ксеногеология
 
-Scripts/Technologies/Tier3/XenoGeology/TechNodeIngotLithium@Name:
-Очистка лития
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
+Производство консервированной еды, которая хранится очень долго.
+
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
+Консервирование
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
 Передовые химические процессы и сложные реакции.
@@ -273,6 +294,12 @@ Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
 
 Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
 Штурмовой шлем
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
+Высокотехнологичное электрооборудование.
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
+Электричество 3
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
 Энергетическое оружие — это новый технологический скачок в будущее по сравнению с обычным вооружением.

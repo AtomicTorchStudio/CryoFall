@@ -1,0 +1,6 @@
+﻿Scripts/Perks/PerkClaimDeposits@Name:
+油およびリチウムの沈殿物を要求
+
+Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
+最大所有地数：{0}
+

@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeRubberVulcanized>();
 
-            config.SetRequiredNode<TechNodeChemicalLab>();
+            config.SetRequiredNode<TechNodeFirelog>();
         }
     }
 }

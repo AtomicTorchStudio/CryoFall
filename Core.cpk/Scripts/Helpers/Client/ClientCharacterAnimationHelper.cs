@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -81,7 +80,7 @@
                 clientState.SoundEmitterLoopMovemement.Stop();
 
                 // hide skeleton after timeout
-                ClientComponentTimersManager.AddAction(
+                ClientTimersSystem.AddAction(
                     CorpseTimeoutSeconds,
                     HideBody);
 

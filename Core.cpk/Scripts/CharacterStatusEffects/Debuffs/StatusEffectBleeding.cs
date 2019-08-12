@@ -1,12 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Stats;
 
     public class StatusEffectBleeding : ProtoStatusEffect
     {
-        public const double DamagePerSecond = 1;
+        public const double DamagePerSecondBase = 0.1;
+
+        public const double DamagePerSecondByIntensity = 1;
 
         public override string Description =>
             "You are bleeding, which will cause you to continuously lose health if not treated. Minor bleeding will go away on its own, but more serious injuries might require use of bandages or hemostatic medicine.";
@@ -22,34 +24,26 @@
         {
             // no health regeneration while bleeding
             effects.AddPercent(this, StatName.HealthRegenerationPerSecond, -100);
+
+            // add info to tooltip that this effect deals damage
+            effects.AddValue(this, StatName.VanityContinuousDamage, 1);
         }
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
         {
-            //does the character has bleeding protection?
-            if (data.Character.SharedHasStatusEffect<StatusEffectProtectionBleeding>())
-            {
-                intensityToAdd *= 0.5;
-            }
-
-            // exponent to use when adding the two values together using "hypotenuse" alorithm
-            var exponent = 2;
-
-            // calculating the new intensity
-            var newIntensity = Math.Sqrt(Math.Pow(data.Intensity, exponent) + Math.Pow(intensityToAdd, exponent));
-
-            // saving new intensity
-            data.Intensity = newIntensity;
+            intensityToAdd *= data.Character.SharedGetFinalStatMultiplier(StatName.BleedingIncreaseRateMultiplier);
+            // new intensity is calculated with hypotenuse formula
+            data.Intensity = Math.Sqrt(data.Intensity * data.Intensity
+                                       + intensityToAdd * intensityToAdd);
         }
 
         protected override void ServerUpdate(StatusEffectData data)
         {
             // basic damage has a fixed component plus is affected by intensity
-            var damage = (DamagePerSecond * data.Intensity + 0.1) * data.DeltaTime;
+            var damage = (DamagePerSecondBase + DamagePerSecondByIntensity * data.Intensity)
+                         * data.DeltaTime;
 
-            // reduce character health
-            var stats = data.CharacterCurrentStats;
-            stats.ServerReduceHealth(damage, this);
+            data.CharacterCurrentStats.ServerReduceHealth(damage, this);
         }
     }
 }

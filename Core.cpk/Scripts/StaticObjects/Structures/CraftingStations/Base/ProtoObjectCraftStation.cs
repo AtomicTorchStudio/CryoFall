@@ -24,7 +24,7 @@
             var menuWindow = WindowCraftingStation.Open(this);
             ClientCurrentInteractionMenu.RegisterMenuWindow(menuWindow);
 
-            InteractionCheckerSystem.Register(
+            InteractionCheckerSystem.SharedRegister(
                 character,
                 worldObject,
                 finishAction: _ => menuWindow.CloseWindow());
@@ -33,7 +33,7 @@
                 worldObject,
                 menuWindow,
                 onMenuClosedByClient:
-                () => InteractionCheckerSystem.Unregister(
+                () => InteractionCheckerSystem.SharedUnregister(
                     character,
                     worldObject,
                     isAbort: false));

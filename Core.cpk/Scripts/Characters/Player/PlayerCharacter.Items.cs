@@ -50,7 +50,7 @@
             }
 
             // estimate how many slots are required
-            var groundSlotsCount = groundContainer.OccupiedSlotsCount;
+            var groundSlotsCount = (int)groundContainer.OccupiedSlotsCount;
             groundSlotsCount += (int)Math.Ceiling(countToSpawn / (double)protoItem.MaxItemsPerStack);
             ServerItemsService.SetSlotsCount(
                 groundContainer,

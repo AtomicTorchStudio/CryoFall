@@ -5,7 +5,7 @@
 
     public class LiquidContainerState : BaseNetObject
     {
-        [SyncToClient(DeliveryMode.UnreliableSequenced)]
+        [SyncToClient(DeliveryMode.UnreliableSequenced, maxUpdatesPerSecond: 2)]
         public float Amount { get; set; }
     }
 }

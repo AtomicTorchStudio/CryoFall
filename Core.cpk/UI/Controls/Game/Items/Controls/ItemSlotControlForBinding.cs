@@ -7,6 +7,12 @@
 
     public class ItemSlotControlForBinding : BaseControl
     {
+        public static readonly DependencyProperty IsBackgroundEnabledProperty =
+            DependencyProperty.Register(nameof(IsBackgroundEnabled),
+                                        typeof(bool),
+                                        typeof(ItemSlotControlForBinding),
+                                        new PropertyMetadata(default(bool)));
+
         public static readonly DependencyProperty IsSelectableProperty =
             DependencyProperty.Register(
                 nameof(IsSelectable),
@@ -51,6 +57,12 @@
         {
             get => (IClientItemsContainer)this.GetValue(ContainerProperty);
             set => this.SetValue(ContainerProperty, value);
+        }
+
+        public bool IsBackgroundEnabled
+        {
+            get => (bool)this.GetValue(IsBackgroundEnabledProperty);
+            set => this.SetValue(IsBackgroundEnabledProperty, value);
         }
 
         public bool IsSelectable

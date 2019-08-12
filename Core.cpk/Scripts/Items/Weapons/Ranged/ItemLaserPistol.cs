@@ -17,7 +17,7 @@
         public override string Description =>
             "Laser pistol emits a strong pulse of high-energy light, mostly in infrared spectrum, that burns the target.";
 
-        public override ushort DurabilityMax => 600;
+        public override uint DurabilityMax => 600;
 
         public override double EnergyUsePerShot => 20;
 
@@ -38,7 +38,7 @@
         {
             damageDescription = new DamageDescription(
                 damageValue: 12,
-                armorPiercingCoef: 0.3,
+                armorPiercingCoef: 0.45,
                 finalDamageMultiplier: 1,
                 rangeMax: 10,
                 damageDistribution: new DamageDistribution(DamageType.Heat, 1));

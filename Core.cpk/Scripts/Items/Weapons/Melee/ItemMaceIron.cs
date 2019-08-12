@@ -12,7 +12,7 @@
 
         public override string Description => "Heavier and deadlier counterpart of the copper mace.";
 
-        public override ushort DurabilityMax => 140;
+        public override uint DurabilityMax => 140;
 
         public override double FireAnimationDuration => 0.8;
 

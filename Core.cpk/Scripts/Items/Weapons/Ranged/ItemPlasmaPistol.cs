@@ -13,7 +13,7 @@
         public override string Description =>
             "Plasma pistol forms and projects concentrated plasma packets that burn the target upon impact, dealing heavy damage. High power consumption.";
 
-        public override ushort DurabilityMax => 300;
+        public override uint DurabilityMax => 300;
 
         public override double EnergyUsePerShot => 100;
 

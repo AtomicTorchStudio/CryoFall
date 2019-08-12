@@ -9,5 +9,7 @@
         double PsiRadiusMax { get; }
 
         double PsiRadiusMin { get; }
+
+        bool ServerIsPsiSourceActive(IWorldObject worldObject);
     }
 }

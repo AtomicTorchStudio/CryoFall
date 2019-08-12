@@ -190,6 +190,7 @@
             this.State = GameWindowState.Closing;
 
             this.storyboardClose.Begin(this.windowChrome);
+            Cleanup();
         }
 
         public void Open()
@@ -361,8 +362,6 @@
             this.IsEnabled = false;
 
             Api.Logger.Info("Window closed: " + this.WindowName);
-
-            Cleanup();
         }
 
         private void StoryboardOpenCompletedHandler(object sender, EventArgs e)

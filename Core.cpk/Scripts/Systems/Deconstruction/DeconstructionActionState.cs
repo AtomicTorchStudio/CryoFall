@@ -10,10 +10,12 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -68,6 +70,12 @@
             if (stagesCount <= 0)
             {
                 // force at least 1 deconstruction stage
+                stagesCount = 1;
+            }
+
+            if (CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                // force single stage
                 stagesCount = 1;
             }
 
@@ -126,8 +134,20 @@
                 this.WorldObject);
         }
 
+        protected override void SetupPublicState(PublicState state)
+        {
+            base.SetupPublicState(state);
+            state.ProtoItemCrowbarTool = this.ProtoItemCrowbarTool;
+        }
+
         private double CalculateStageDurationSeconds(ICharacter character, bool isFirstStage)
         {
+            if (CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                // force instant deconstruct
+                return 0;
+            }
+
             var durationSeconds = DefaultDeconstructionStepDurationSeconds;
             durationSeconds /= (this.ProtoItemCrowbarTool?.DeconstructionSpeedMultiplier ?? 1);
             durationSeconds /= character.SharedGetFinalStatMultiplier(StatName.BuildingSpeed);
@@ -219,6 +239,9 @@
 
         public class PublicState : PublicActionStateWithTargetObjectSounds
         {
+            [SyncToClient(receivers: SyncToClientReceivers.ScopePlayers)]
+            public IProtoItemToolCrowbar ProtoItemCrowbarTool { get; set; }
+
             protected override void ClientOnCompleted()
             {
                 // don't play base sounds
@@ -227,7 +250,8 @@
 
             protected override ReadOnlySoundPreset<ObjectSound> SharedGetObjectSoundPreset()
             {
-                return ObjectsSoundsPresets.ObjectConstructionSite;
+                return this.ProtoItemCrowbarTool?.ObjectInteractionSoundsPreset
+                       ?? Api.GetProtoEntity<ItemCrowbar>().ObjectInteractionSoundsPreset;
             }
         }
     }

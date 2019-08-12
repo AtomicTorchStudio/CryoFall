@@ -44,7 +44,7 @@
 
         public override double StructureExplosiveDefenseCoef => 0.5;
 
-        public override float StructurePointsMax => 40000;
+        public override float StructurePointsMax => 50000;
 
         protected override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,
@@ -57,9 +57,9 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 6);
             build.AddStageRequiredItem<ItemComponentsMechanical>(count: 1);
-            build.AddStageRequiredItem<ItemCement>(count: 20);
+            build.AddStageRequiredItem<ItemCement>(count: 25);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

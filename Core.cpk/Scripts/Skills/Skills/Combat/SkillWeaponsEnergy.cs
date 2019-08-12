@@ -9,6 +9,12 @@
         public override string Description =>
             "Using energy weapons more often allows you to better understand how they work, thus improving the overall efficiency.";
 
+        public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.2;
+
+        public override double ExperienceAddedPerDamageDoneMultiplier => 0.5;
+
+        public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
+
         public override string Name => "Energy weapons";
 
         public override StatName StatNameDamageBonusMultiplier

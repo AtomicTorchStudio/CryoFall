@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -29,10 +30,10 @@
         {
             base.ClientInitialize(data);
 
-            if (data.GameObject.OccupiedTile.StaticObjects.All(
-                o => o.ProtoStaticWorldObject == this))
+            if (!data.GameObject.OccupiedTile.StaticObjects.Any(
+                    o => o.ProtoStaticWorldObject is IProtoObjectExtractor))
             {
-                // create sound emitter only if this is the only object in the tile
+                // create sound emitter as there is no extractor
                 data.ClientState.SoundEmitter = Client.Audio.CreateSoundEmitter(
                     data.GameObject,
                     SoundResourceActive,

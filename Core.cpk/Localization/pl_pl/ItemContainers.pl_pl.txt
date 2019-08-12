@@ -1,0 +1,21 @@
+﻿Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationCannotEquip:
+Nie można wyposażyć
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationRemoveFullBody:
+Najpierw zdejmij całe wyposażenie zewnętrzne.
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationRemoveOtherEquipment:
+Najpierw usuń inne urządzenia.
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Message:
+Implant można zainstalować w stacji medycznej.
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Title:
+Nie można zainstalować
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Message:
+Implant można usunąć w stacji medycznej.
+
+Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
+Nie można usunąć
+

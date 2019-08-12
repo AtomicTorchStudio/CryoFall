@@ -4,8 +4,10 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client.Physics;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterUnstuck;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -124,15 +126,16 @@
             }
 
             WeaponAmmoSystem.SharedUpdateReloading(state, character, deltaTime);
-            
-            if (state.SharedGetInputIsFiring()
-                && !character.IsOnline)
+
+            if (Api.IsServer
+                && !character.ServerIsOnline
+                && state.SharedGetInputIsFiring())
             {
                 state.SharedSetInputIsFiring(false);
             }
 
             // check ammo (if applicable to this weapon prototype)
-            var canFire = state.WeaponReloadingState == null 
+            var canFire = state.WeaponReloadingState == null
                           && protoWeapon.SharedCanFire(character, state);
             if (state.CooldownSecondsRemains > 0)
             {
@@ -276,13 +279,10 @@
             else // if this is Server
             {
                 // notify other clients about finished firing weapon
-                using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-                {
-                    Server.World.GetScopedByPlayers(character, scopedBy);
-                    Instance.CallClient(
-                        scopedBy,
-                        _ => _.ClientRemote_OnWeaponFinished(character));
-                }
+                using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+                Server.World.GetScopedByPlayers(character, scopedBy);
+                Instance.CallClient(scopedBy,
+                                    _ => _.ClientRemote_OnWeaponFinished(character));
             }
         }
 
@@ -299,13 +299,11 @@
             else // if this is Server
             {
                 // notify other clients about finished firing weapon
-                using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-                {
-                    Server.World.GetScopedByPlayers(character, scopedBy);
-                    Instance.CallClient(
-                        scopedBy,
-                        _ => _.ClientRemote_OnWeaponInputStop(character));
-                }
+                using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+                Server.World.GetScopedByPlayers(character, scopedBy);
+                Instance.CallClient(
+                    scopedBy,
+                    _ => _.ClientRemote_OnWeaponInputStop(character));
             }
         }
 
@@ -318,12 +316,10 @@
             }
             else // if IsServer
             {
-                using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-                {
-                    Server.World.GetScopedByPlayers(character, scopedBy);
-                    Instance.CallClient(scopedBy,
-                                        _ => _.ClientRemote_OnWeaponShot(character));
-                }
+                using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+                Server.World.GetScopedByPlayers(character, scopedBy);
+                Instance.CallClient(scopedBy,
+                                    _ => _.ClientRemote_OnWeaponShot(character));
             }
         }
 
@@ -339,12 +335,10 @@
             }
             else // if IsServer
             {
-                using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-                {
-                    Server.World.GetScopedByPlayers(character, scopedBy);
-                    Instance.CallClient(scopedBy,
-                                        _ => _.ClientRemote_OnWeaponStart(character));
-                }
+                using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+                Server.World.GetScopedByPlayers(character, scopedBy);
+                Instance.CallClient(scopedBy,
+                                    _ => _.ClientRemote_OnWeaponStart(character));
             }
         }
 
@@ -362,8 +356,8 @@
                                        : null;
             if (IsServer)
             {
-                // give experience for shot
-                protoWeaponSkill?.ServerOnShot(playerCharacterSkills);
+                protoWeaponSkill?.ServerOnShot(playerCharacterSkills); // give experience for shot
+                CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(character);
             }
 
             var weaponCache = weaponState.WeaponCache;
@@ -375,172 +369,270 @@
             }
 
             // raycast possible victims
+            var isMeleeWeapon = protoWeapon is IProtoItemWeaponMelee;
             var fromPosition = character.Position
-                               + (0, character.ProtoCharacter.CharacterWorldWeaponOffset);
+                               + (0, isMeleeWeapon
+                                         ? character.ProtoCharacter.CharacterWorldWeaponOffsetMelee
+                                         : character.ProtoCharacter.CharacterWorldWeaponOffsetRanged);
 
             var toPosition = fromPosition
                              + new Vector2D(weaponCache.RangeMax, 0)
                                  .RotateRad(character.ProtoCharacter.SharedGetRotationAngleRad(character));
 
-            var collisionGroup = protoWeapon is IProtoItemWeaponMelee
+            var collisionGroup = isMeleeWeapon
                                      ? CollisionGroups.HitboxMelee
                                      : CollisionGroups.HitboxRanged;
 
-            using (var lineTestResults = character.PhysicsBody.PhysicsSpace.TestLine(
+            using var lineTestResults = character.PhysicsBody.PhysicsSpace.TestLine(
                 fromPosition: fromPosition,
                 toPosition: toPosition,
-                collisionGroup: collisionGroup))
+                collisionGroup: collisionGroup);
+            var damageMultiplier = 1d;
+            var hitObjects = new List<WeaponHitData>(isMeleeWeapon ? 1 : lineTestResults.Count);
+            var characterTileHeight = character.Tile.Height;
+
+            if (IsClient 
+                && ClientComponentPhysicsSpaceVisualizer.IsVisualizerEnabled)
             {
-                var damageMultiplier = 1d;
-                var isMeleeWeapon = protoWeapon is IProtoItemWeaponMelee;
-                var hitObjects = new List<WeaponHitData>(isMeleeWeapon ? 1 : lineTestResults.Count);
+                ClientComponentPhysicsSpaceVisualizer.VisualizeTestResults(lineTestResults, collisionGroup);
+            }
 
-                foreach (var testResult in lineTestResults)
+            foreach (var testResult in lineTestResults)
+            {
+                var testResultPhysicsBody = testResult.PhysicsBody;
+                var attackedProtoTile = testResultPhysicsBody.AssociatedProtoTile;
+                if (attackedProtoTile != null)
                 {
-                    var testResultPhysicsBody = testResult.PhysicsBody;
-                    var attackedProtoTile = testResultPhysicsBody.AssociatedProtoTile;
-                    if (attackedProtoTile != null)
+                    if (attackedProtoTile.Kind != TileKind.Solid)
                     {
-                        if (attackedProtoTile.Kind != TileKind.Solid)
-                        {
-                            // non-solid obstacle - skip
-                            continue;
-                        }
-
-                        // tile on the way - blocking damage ray
-                        break;
-                    }
-
-                    var damagedObject = testResultPhysicsBody.AssociatedWorldObject;
-                    if (damagedObject == character)
-                    {
-                        // ignore collision with self
+                        // non-solid obstacle - skip
                         continue;
                     }
 
-                    if (!(damagedObject.ProtoGameObject is IDamageableProtoWorldObject damageableProto))
+                    var attackedTile = IsServer
+                                           ? Server.World.GetTile((Vector2Ushort)testResultPhysicsBody.Position)
+                                           : Client.World.GetTile((Vector2Ushort)testResultPhysicsBody.Position);
+
+                    if (attackedTile.Height < characterTileHeight)
                     {
-                        // shoot through this object
+                        // attacked tile is below - ignore it
                         continue;
                     }
 
-                    if (!damageableProto.SharedOnDamage(
-                            weaponCache,
-                            damagedObject,
-                            damageMultiplier,
-                            out var obstacleBlockDamageCoef,
-                            out var damageApplied))
-                    {
-                        // not hit
-                        continue;
-                    }
-
-                    if (IsServer)
-                    {
-                        weaponCache.ProtoWeapon
-                                   .ServerOnDamageApplied(weaponCache.Weapon, character, damagedObject, damageApplied);
-
-                        if (damageApplied > 0
-                            && protoWeaponSkill != null)
-                        {
-                            // give experience for damage
-                            protoWeaponSkill.ServerOnDamageApplied(playerCharacterSkills, damagedObject, damageApplied);
-
-                            if (damagedObject is ICharacter damagedCharacter
-                                && damagedCharacter.GetPublicState<ICharacterPublicState>().CurrentStats.HealthCurrent
-                                <= 0)
-                            {
-                                // give weapon experience for kill
-                                Logger.Info("Killed " + damagedCharacter, character);
-                                protoWeaponSkill.ServerOnKill(playerCharacterSkills, killedCharacter: damagedCharacter);
-
-                                if (damagedCharacter.ProtoCharacter is ProtoCharacterMob protoMob)
-                                {
-                                    // give hunting skill experience for mob kill
-                                    var experience = SkillHunting.ExperienceForKill;
-                                    experience *= protoMob.MobKillExperienceMultiplier;
-                                    if (experience > 0)
-                                    {
-                                        playerCharacterSkills.ServerAddSkillExperience<SkillHunting>(experience);
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (obstacleBlockDamageCoef < 0
-                        || obstacleBlockDamageCoef > 1)
-                    {
-                        Logger.Error(
-                            "Obstacle block damage coefficient should be >= 0 and <= 1 - wrong calculation by "
-                            + damageableProto);
-                        break;
-                    }
-
-                    //var hitPosition = testResultPhysicsBody.Position + testResult.Penetration;
-                    hitObjects.Add(new WeaponHitData(damagedObject)); //, hitPosition));
-
-                    if (isMeleeWeapon)
-                    {
-                        // currently melee weapon could attack only one object on the ray
-                        break;
-                    }
-
-                    damageMultiplier = damageMultiplier * (1.0 - obstacleBlockDamageCoef);
-                    if (damageMultiplier <= 0)
-                    {
-                        // target blocked the damage ray
-                        break;
-                    }
+                    // tile on the way - blocking damage ray
+                    break;
                 }
 
-                if (hitObjects.Count > 0)
+                var damagedObject = testResultPhysicsBody.AssociatedWorldObject;
+                if (damagedObject == character)
                 {
-                    if (IsClient)
+                    // ignore collision with self
+                    continue;
+                }
+
+                if (!(damagedObject.ProtoGameObject is IDamageableProtoWorldObject damageableProto))
+                {
+                    // shoot through this object
+                    continue;
+                }
+
+                var damagedCharacter = damagedObject as ICharacter;
+                if (!ReferenceEquals(damagedCharacter, null))
+                {
+                    // don't allow damage is there is no direct line of sight on physical colliders layer between the two objects
+                    if (SharedHasTileObstacle(character, characterTileHeight, damagedCharacter))
                     {
-                        // display weapon shot on Client-side
-                        WeaponSystemClientDisplay.OnWeaponHit(protoWeapon, hitObjects);
+                        continue;
                     }
-                    else // if server
-                    {
-                        // display damages on clients in scope of every damaged object
-                        using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-                        {
-                            foreach (var hitObject in hitObjects)
-                            {
-                                if (hitObject.WorldObject.IsDestroyed)
-                                {
-                                    continue;
-                                }
+                }
+                else if (damagedObject is IStaticWorldObject staticWorldObject
+                         && characterTileHeight != staticWorldObject.OccupiedTile.Height)
+                {
+                    // don't allow damage to static objects on a different height level
+                    continue;
+                }
 
-                                Server.World.GetScopedByPlayers(hitObject.WorldObject, scopedBy);
-                                // don't notify the attacking character
-                                scopedBy.Remove(character);
-
-                                if (hitObject.WorldObject is ICharacter damagedCharacter)
-                                {
-                                    // notify the damaged character
-                                    scopedBy.Add(damagedCharacter);
-                                }
-
-                                if (scopedBy.Count == 0)
-                                {
-                                    continue;
-                                }
-
-                                Instance.CallClient(scopedBy,
-                                                    _ => _.ClientRemote_OnWeaponHit(protoWeapon, hitObject));
-                                scopedBy.Clear();
-                            }
-                        }
-                    }
+                if (!damageableProto.SharedOnDamage(
+                        weaponCache,
+                        damagedObject,
+                        damageMultiplier,
+                        out var obstacleBlockDamageCoef,
+                        out var damageApplied))
+                {
+                    // not hit
+                    continue;
                 }
 
                 if (IsServer)
                 {
-                    protoWeapon.ServerOnShot(character, weaponItem, protoWeapon, hitObjects);
+                    weaponCache.ProtoWeapon
+                               .ServerOnDamageApplied(weaponCache.Weapon, character, damagedObject, damageApplied);
+
+                    if (damageApplied > 0
+                        && !ReferenceEquals(damagedCharacter, null))
+                    {
+                        CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(damagedCharacter);
+                    }
+
+                    if (damageApplied > 0
+                        && protoWeaponSkill != null)
+                    {
+                        // give experience for damage
+                        protoWeaponSkill.ServerOnDamageApplied(playerCharacterSkills, damagedObject, damageApplied);
+
+                        if (!ReferenceEquals(damagedCharacter, null)
+                            && (damagedCharacter.GetPublicState<ICharacterPublicState>()
+                                                .CurrentStats
+                                                .HealthCurrent
+                                <= 0))
+                        {
+                            // give weapon experience for kill
+                            Logger.Info("Killed " + damagedCharacter, character);
+                            protoWeaponSkill.ServerOnKill(playerCharacterSkills, killedCharacter: damagedCharacter);
+
+                            if (damagedCharacter.ProtoCharacter is ProtoCharacterMob protoMob)
+                            {
+                                // give hunting skill experience for mob kill
+                                var experience = SkillHunting.ExperienceForKill;
+                                experience *= protoMob.MobKillExperienceMultiplier;
+                                if (experience > 0)
+                                {
+                                    playerCharacterSkills.ServerAddSkillExperience<SkillHunting>(experience);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (obstacleBlockDamageCoef < 0
+                    || obstacleBlockDamageCoef > 1)
+                {
+                    Logger.Error(
+                        "Obstacle block damage coefficient should be >= 0 and <= 1 - wrong calculation by "
+                        + damageableProto);
+                    break;
+                }
+
+                //var hitPosition = testResultPhysicsBody.Position + testResult.Penetration;
+                hitObjects.Add(new WeaponHitData(damagedObject)); //, hitPosition));
+
+                if (isMeleeWeapon)
+                {
+                    // currently melee weapon could attack only one object on the ray
+                    break;
+                }
+
+                damageMultiplier = damageMultiplier * (1.0 - obstacleBlockDamageCoef);
+                if (damageMultiplier <= 0)
+                {
+                    // target blocked the damage ray
+                    break;
                 }
             }
+
+            if (hitObjects.Count > 0)
+            {
+                if (IsClient)
+                {
+                    // display weapon shot on Client-side
+                    WeaponSystemClientDisplay.OnWeaponHit(protoWeapon, hitObjects);
+                }
+                else // if server
+                {
+                    // display damages on clients in scope of every damaged object
+                    using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+                    foreach (var hitObject in hitObjects)
+                    {
+                        if (hitObject.WorldObject.IsDestroyed)
+                        {
+                            continue;
+                        }
+
+                        Server.World.GetScopedByPlayers(hitObject.WorldObject, scopedBy);
+                        // don't notify the attacking character
+                        scopedBy.Remove(character);
+
+                        if (hitObject.WorldObject is ICharacter damagedCharacter)
+                        {
+                            // notify the damaged character
+                            scopedBy.Add(damagedCharacter);
+                        }
+
+                        if (scopedBy.Count == 0)
+                        {
+                            continue;
+                        }
+
+                        Instance.CallClient(scopedBy,
+                                            _ => _.ClientRemote_OnWeaponHit(protoWeapon, hitObject));
+                        scopedBy.Clear();
+                    }
+                }
+            }
+
+            if (IsServer)
+            {
+                protoWeapon.ServerOnShot(character, weaponItem, protoWeapon, hitObjects);
+            }
+        }
+
+        private static bool SharedHasTileObstacle(
+            ICharacter character,
+            byte characterTileHeight,
+            ICharacter damagedCharacter)
+        {
+            const double maxFirindgDistanceThroughPits = 2;
+
+            var characterPosition = character.Position;
+            var anyCliffIsAnObstacle = characterTileHeight != damagedCharacter.Tile.Height;
+
+            using var testResults = character.PhysicsBody.PhysicsSpace.TestLine(
+                characterPosition,
+                damagedCharacter.Position,
+                collisionGroup: CollisionGroups.Default);
+
+            foreach (var testResult in testResults)
+            {
+                var testResultPhysicsBody = testResult.PhysicsBody;
+                var protoTile = testResultPhysicsBody.AssociatedProtoTile;
+
+                if (ReferenceEquals(protoTile, null)
+                    || protoTile.Kind != TileKind.Solid)
+                {
+                    continue;
+                }
+
+                var testResultPosition = testResultPhysicsBody.Position;
+                var attackedTile = IsServer
+                                       ? Server.World.GetTile((Vector2Ushort)testResultPosition)
+                                       : Client.World.GetTile((Vector2Ushort)testResultPosition);
+                if (attackedTile.IsSlope)
+                {
+                    // slope is not an obstacle
+                    continue;
+                }
+
+                // found collision with a cliff
+                if (anyCliffIsAnObstacle)
+                {
+                    return true;
+                }
+
+                if (attackedTile.Height >= characterTileHeight)
+                {
+                    return true; // cliff to higher tile is always an obstacle
+                }
+
+                // TODO: we can remove this check when we will have proper AI system with pathfinding
+                if (characterPosition.DistanceSquaredTo(testResultPosition + (0.5, 0.5))
+                    > maxFirindgDistanceThroughPits * maxFirindgDistanceThroughPits)
+                {
+                    // cliff to a lower height is an obstacle as it's too far from the firing position
+                    return true;
+                }
+            }
+
+            return false; // no obstacles
         }
 
         private static bool SharedShouldFireMore(WeaponState state)
@@ -612,10 +704,8 @@
         [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 60)]
         private void ClientRemote_OnWeaponHit(IProtoItemWeapon protoWeapon, WeaponHitData hitObject)
         {
-            using (var tempList = Api.Shared.WrapObjectInTempList(hitObject))
-            {
-                WeaponSystemClientDisplay.OnWeaponHit(protoWeapon, tempList);
-            }
+            using var tempList = Api.Shared.WrapObjectInTempList(hitObject);
+            WeaponSystemClientDisplay.OnWeaponHit(protoWeapon, tempList);
         }
 
         [RemoteCallSettings(

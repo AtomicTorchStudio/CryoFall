@@ -14,6 +14,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using JetBrains.Annotations;
 
     public class NotificationSystem : ProtoSystem<NotificationSystem>
     {
@@ -145,11 +146,13 @@
                                    color: NotificationColor.Bad);
         }
 
-        public static void ClientShowNotificationNoSpaceInInventoryItemsDroppedToGround()
+        public static void ClientShowNotificationNoSpaceInInventoryItemsDroppedToGround(
+            [CanBeNull] IProtoItem protoItemForIcon)
         {
             ClientShowNotification(title: NotificationNoFreeSpace,
                                    message: NotificationSomeItemsDropped,
-                                   color: NotificationColor.Bad);
+                                   color: NotificationColor.Bad,
+                                   icon: protoItemForIcon?.Icon);
         }
 
         public static void ServerSendItemsNotification(
@@ -165,6 +168,21 @@
             ICharacter character,
             CreateItemResult createItemResult)
         {
+            if (createItemResult.TotalCreatedCount == 0)
+            {
+                return;
+            }
+
+            // clone the result object to not modify the original
+            createItemResult = new CreateItemResult(new Dictionary<IItem, ushort>(createItemResult.ItemAmounts),
+                                                    createItemResult.TotalCreatedCount);
+            // do not send notifications for the items which were not added to the character
+            createItemResult.ItemAmounts.RemoveAllByKey(k => k.Container.Owner != character);
+            if (createItemResult.TotalCreatedCount == 0)
+            {
+                return;
+            }
+
             var itemsChangedCount = SharedGetItemsChangedCount(createItemResult);
             if (itemsChangedCount != null)
             {
@@ -238,11 +256,13 @@
                 _ => _.ClientRemote_ShowNotificationNoSpaceInInventory());
         }
 
-        public static void ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(ICharacter character)
+        public static void ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
+            ICharacter character,
+            [CanBeNull] IProtoItem protoItemForIcon)
         {
             Instance.CallClient(
                 character,
-                _ => _.ClientRemote_ShowNotificationNoSpaceInInventoryItemsDroppedToGround());
+                _ => _.ClientRemote_ShowNotificationNoSpaceInInventoryItemsDroppedToGround(protoItemForIcon));
         }
 
         public static Dictionary<IProtoItem, int> SharedGetItemsChangedCount(CreateItemResult createItemResult)
@@ -356,9 +376,10 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_ShowNotificationNoSpaceInInventoryItemsDroppedToGround()
+        private void ClientRemote_ShowNotificationNoSpaceInInventoryItemsDroppedToGround(
+            [CanBeNull] IProtoItem protoItemForIcon)
         {
-            ClientShowNotificationNoSpaceInInventoryItemsDroppedToGround();
+            ClientShowNotificationNoSpaceInInventoryItemsDroppedToGround(protoItemForIcon);
         }
     }
 }

@@ -12,6 +12,9 @@
 
     public class ViewModelWindowQuests : BaseViewModel
     {
+        private static readonly SoundResource SoundResourceQuestUnlocked =
+            new SoundResource("UI/Quests/QuestUnlocked.ogg");
+
         private static ulong lastQuestUnlockedFrame;
 
         public ViewModelWindowQuests()
@@ -92,7 +95,7 @@
             if (lastQuestUnlockedFrame != Client.CurrentGame.ServerFrameNumber)
             {
                 lastQuestUnlockedFrame = Client.CurrentGame.ServerFrameNumber;
-                Api.Client.Audio.PlayOneShot(new SoundResource("UI/Quests/QuestUnlocked.ogg"));
+                Api.Client.Audio.PlayOneShot(SoundResourceQuestUnlocked, volume: 0.5f);
             }
 
             this.NotifyPropertyChanged(nameof(this.UnlockedQuestsCount));

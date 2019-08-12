@@ -55,8 +55,9 @@
                     break;
 
                 case GameServerConnectingFailedReason.ShutdownScheduled:
+                    // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                     errorMessage = ShutdownScheduled
-                                   + Environment.NewLine
+                                   + "[br]"
                                    + scriptingRestrictionMessage;
                     break;
 

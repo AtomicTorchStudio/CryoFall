@@ -24,7 +24,5 @@
         public bool IsSelected { get; set; }
 
         public string Title { get; }
-
-        public Visibility Visibility { get; set; } = Visibility.Visible;
     }
 }

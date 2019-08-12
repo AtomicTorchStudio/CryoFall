@@ -53,7 +53,7 @@ Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
 Munición perforante de calibre .300
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
-Proyectiles incendiarios antimateria pesados del calibre .300.
+Proyectiles pesados incendiarios del calibre 300. Pueden atravesar blindajes y prender fuego al objetivo.
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 Munición incendiaria de calibre .300
@@ -392,19 +392,19 @@ Scripts/Items/Food/ItemBerriesOrange@Description:
 Sabrosas bayas naranjas.
 
 Scripts/Items/Food/ItemBerriesOrange@Name:
-Bayas
+Bayas naranjas
 
 Scripts/Items/Food/ItemBerriesRed@Description:
 Sabrosas bayas rojas.
 
 Scripts/Items/Food/ItemBerriesRed@Name:
-Bayas
+Bayas rojas
 
 Scripts/Items/Food/ItemBerriesViolet@Description:
 Sabrosas bayas moradas.
 
 Scripts/Items/Food/ItemBerriesViolet@Name:
-Bayas
+Bayas moradas
 
 Scripts/Items/Food/ItemBottleWater@Description:
 Se puede consumir para hidratarse. También es útil en infinidad de recetas.
@@ -455,10 +455,22 @@ Scripts/Items/Food/ItemCannedFish@Name:
 Lata de pescado
 
 Scripts/Items/Food/ItemCannedMeat@Description:
-Una lata de carne de origen desconocido. Al menos está bien envasada.
+Una lata de carne guisada con una elevada concentración de grasa. Se puede conservar durante mucho tiempo.
 
 Scripts/Items/Food/ItemCannedMeat@Name:
 Lata de carne
+
+Scripts/Items/Food/ItemCannedMixedMeat@Description:
+Una lata de carne de origen desconocido. Al menos está bien envasada.
+
+Scripts/Items/Food/ItemCannedMixedMeat@Name:
+Lata de mezcla de carnes
+
+Scripts/Items/Food/ItemCarbonara@Description:
+¡Con pasta, huevos, queso y carne, puedes convertir esto en una delicia divina!
+
+Scripts/Items/Food/ItemCarbonara@Name:
+Carbonara
 
 Scripts/Items/Food/ItemCarrot@Description:
 Una hortaliza de color naranja y rica en caroteno.
@@ -514,11 +526,11 @@ Una planta muy sabrosa con la que, por algún motivo, están obsesionados los au
 Scripts/Items/Food/ItemCorn@Name:
 Maíz
 
-Scripts/Items/Food/ItemCornOnCob@Description:
-¿A quién no le gusta una buena mazorca de maíz? Aunque... ¿qué es una mazorca?
+Scripts/Items/Food/ItemCornGrilled@Description:
+Este maíz a la parrilla conserva la dulzura a la par que añade sabores ahumados. ¡Está delicioso!
 
-Scripts/Items/Food/ItemCornOnCob@Name:
-Mazorca de maíz
+Scripts/Items/Food/ItemCornGrilled@Name:
+Maíz a la parrilla
 
 Scripts/Items/Food/ItemCucumber@Description:
 Una planta acuosa a la que los gatos tienen pánico y pavor.
@@ -573,6 +585,18 @@ Están deliciosos tanto cocidos como fritos. No es recomendable comerlos crudos,
 
 Scripts/Items/Food/ItemEggsRaw@Name:
 Huevos de animal
+
+Scripts/Items/Food/ItemInsectMeatFried@Description:
+Al preparar esta carne, se te hace un poco menos asquerosa... No obstante, si decides comerla, prepárate para vomitar por si acaso.
+
+Scripts/Items/Food/ItemInsectMeatFried@Name:
+Carne de insecto frita
+
+Scripts/Items/Food/ItemInsectMeatRaw@Description:
+Una asquerosa carne de insecto. Puede que se te haga un poco menos asquerosa si la preparas.
+
+Scripts/Items/Food/ItemInsectMeatRaw@Name:
+Carne de insecto cruda
 
 Scripts/Items/Food/ItemJamBerries@Description:
 Sabrosa mermelada de bayas.
@@ -820,6 +844,12 @@ El nafta (también conocido como parafina) se puede usar para rellenar diferente
 Scripts/Items/Generic/ItemCampFuel@Name:
 Nafta
 
+Scripts/Items/Generic/ItemCanEmpty@Description:
+Puedes usar las latas vacías para preparar distintos tipos de comidas y bebidas enlatadas.
+
+Scripts/Items/Generic/ItemCanEmpty@Name:
+Latas vacías
+
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
 Bidón metálico vacío. Se puede usar para almacenar líquidos volátiles.
 
@@ -921,6 +951,12 @@ Varias piezas de armas. Fundamentales para montar armas de fuego más avanzadas.
 
 Scripts/Items/Generic/ItemComponentsWeapon@Name:
 Componentes de armas
+
+Scripts/Items/Generic/ItemDuctTape@Description:
+Cinta adhesiva especial, con un compuesto adhesivo extrafuerte y una capa exterior reforzada.
+
+Scripts/Items/Generic/ItemDuctTape@Name:
+Cinta adhesiva
 
 Scripts/Items/Generic/ItemExplosives@Description:
 Material altamente explosivo que se podría usar para crear diversos dispositivos explosivos.
@@ -1139,17 +1175,17 @@ Un mineral muy codiciado. Combina propiedades únicas que no se encuentran en ni
 Scripts/Items/Generic/ItemOrePragmium@Name:
 Pragmio
 
-Scripts/Items/Generic/ItemOrePyrite@Description:
-El mineral de pirita se puede calentar para procesarlo en ácido sulfúrico.
-
-Scripts/Items/Generic/ItemOrePyrite@Name:
-Mineral de pirita
-
 Scripts/Items/Generic/ItemPaper@Description:
-Un papel de lo más básico.
+El papel es un material versátil y con numerosos usos. Se puede crear con facilidad a partir de la madera.
 
 Scripts/Items/Generic/ItemPaper@Name:
 Papel
+
+Scripts/Items/Generic/ItemPasta@Description:
+¡La base de numerosos platos deliciosos!
+
+Scripts/Items/Generic/ItemPasta@Name:
+Pasta sin preparar
 
 Scripts/Items/Generic/ItemPlanks@Description:
 Se usa mucho como material de construcción. También se puede quemar como combustible.
@@ -1174,6 +1210,12 @@ Pequeña célula de energía universal que se usa en diversos dispositivos elect
 
 Scripts/Items/Generic/ItemPowerCell@Name:
 Célula de energía
+
+Scripts/Items/Generic/ItemPreservative@Description:
+Conservante alimenticio. Se puede añadir a la comida empaquetada para conseguir que dure mucho más tiempo.
+
+Scripts/Items/Generic/ItemPreservative@Name:
+Conservante
 
 Scripts/Items/Generic/ItemRope@Description:
 Una cuerda normal y corriente. Se puede usar de diversas formas. El exceso de cuerda se puede quemar.
@@ -1204,6 +1246,24 @@ La arena se puede usar tanto como material de construcción como en la fabricaci
 
 Scripts/Items/Generic/ItemSand@Name:
 Arena
+
+Scripts/Items/Generic/ItemSlime@Description:
+Pingue verde. Posiblemente lo haya segregado alguna criatura.
+
+Scripts/Items/Generic/ItemSlime@Name:
+Pringue
+
+Scripts/Items/Generic/ItemSolarPanel@Description:
+Es caro de producir, pero te ofrecerá electricidad durante muchísimo tiempo sin necesidad de mantenimiento alguno.
+
+Scripts/Items/Generic/ItemSolarPanel@Name:
+Panel solar
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Description:
+Los paneles solares se pueden reciclar para producir nuevos paneles solares.
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Name:
+Panel solar roto
 
 Scripts/Items/Generic/ItemSolvent@Description:
 Disolvente de la era espacial, fabricado específicamente para combinar propiedades de los disolventes polares y de los no polares.
@@ -1294,6 +1354,12 @@ Granos obtenidos de un campo de trigo. Se pueden procesar para obtener harina o 
 
 Scripts/Items/Generic/ItemWheatGrains@Name:
 Granos de trigo
+
+Scripts/Items/Generic/ItemWire@Description:
+Una bobina de cable eléctrico aislado.
+
+Scripts/Items/Generic/ItemWire@Name:
+Cable
 
 Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
 No tienes ninguna batería portátil equipada.
@@ -1445,6 +1511,12 @@ Un buen puro, con un aroma excelente. Estimulante.
 Scripts/Items/Medical/ItemCigarPremium@Name:
 Puro de calidad
 
+Scripts/Items/Medical/ItemEnergyTablets@Description:
+Un medicamento básico para recuperarse rápidamente de la fatiga.
+
+Scripts/Items/Medical/ItemEnergyTablets@Name:
+Pastillas energéticas
+
 Scripts/Items/Medical/ItemHeatPreExposure@Description:
 Un gel de resistencia térmica que previene la transferencia térmica directa y refleja el calor radiante. Esto te permite acceder, durante un breve período de tiempo, a zonas con altas temperaturas.
 
@@ -1572,103 +1644,58 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 Aumento de fuerza (pequeño)
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
-Retoño de abedul. Se puede plantar para que crezca un árbol nuevo.
+Retoño de árbol. Se puede plantar para que crezca un árbol nuevo.
 
 Scripts/Items/Seeds/ItemSaplingBirch@Name:
 Retoño de abedul
 
-Scripts/Items/Seeds/ItemSaplingOak@Description:
-Retoño de roble. Se puede plantar para que crezca un árbol nuevo.
-
 Scripts/Items/Seeds/ItemSaplingOak@Name:
 Retoño de roble
-
-Scripts/Items/Seeds/ItemSaplingPine@Description:
-Retoño de pino. Se puede plantar para que crezca un árbol nuevo.
 
 Scripts/Items/Seeds/ItemSaplingPine@Name:
 Retoño de pino
 
-Scripts/Items/Seeds/ItemSaplingPineBoreal@Description:
-Retoño de una variedad norteña de pino. Se puede plantar para que crezca un árbol nuevo.
-
 Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
 Retoño de pino boreal
 
-Scripts/Items/Seeds/ItemSaplingPoplar@Description:
-Retoño de álamo. Se puede plantar para que crezca un árbol nuevo.
-
 Scripts/Items/Seeds/ItemSaplingPoplar@Name:
 Retoño de álamo
-
-Scripts/Items/Seeds/ItemSaplingRubbertree@Description:
-Retoño de árbol del caucho. Se puede plantar para que crezca un árbol nuevo.
 
 Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
 Retoño de árbol del caucho
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
-Se puede plantar para obtener pimientos morrones.
+Bolsa pequeña de semillas preparadas para plantar. Se pueden plantar en zonas de tierra.
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
 Semillas de pimiento morrón
 
-Scripts/Items/Seeds/ItemSeedsCarrot@Description:
-Se pueden plantar para obtener zanahorias.
-
 Scripts/Items/Seeds/ItemSeedsCarrot@Name:
 Semillas de zanahoria
-
-Scripts/Items/Seeds/ItemSeedsChiliPepper@Description:
-Se puede plantar para obtener chiles.
 
 Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
 Semillas de chile
 
-Scripts/Items/Seeds/ItemSeedsCorn@Description:
-Se pueden plantar para obtener maíz.
-
 Scripts/Items/Seeds/ItemSeedsCorn@Name:
 Semillas de maíz
-
-Scripts/Items/Seeds/ItemSeedsCucumber@Description:
-Se pueden plantar para obtener pepinos.
 
 Scripts/Items/Seeds/ItemSeedsCucumber@Name:
 Semillas de pepino
 
-Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Description:
-Se pueden plantar para obtener flores de salvia azul.
-
 Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Semillas de salvia azul
-
-Scripts/Items/Seeds/ItemSeedsFlowerOni@Description:
-Semillas de oniflor. Se pueden plantar para obtener más flores.
 
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Semillas de oniflor
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Description:
-La ogurín fue una de las primeras plantas que se crearon específicamente para este planeta.
-
 Scripts/Items/Seeds/ItemSeedsOgurin@Name:
 Semillas de ogurín
-
-Scripts/Items/Seeds/ItemSeedsTobacco@Description:
-Se pueden plantar para obtener tabaco.
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Semillas de tabaco
 
-Scripts/Items/Seeds/ItemSeedsTomato@Description:
-Las semillas de una variedad de tomates muy jugosos, que fueron seleccionados específicamente para este planeta.
-
 Scripts/Items/Seeds/ItemSeedsTomato@Name:
 Semillas de tomate
-
-Scripts/Items/Seeds/ItemSeedsWheat@Description:
-Semillas de trigo especialmente preparadas para ser plantadas.
 
 Scripts/Items/Seeds/ItemSeedsWheat@Name:
 Semillas de trigo
@@ -1758,19 +1785,13 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 Pico de piedra
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
-Una buena caja de herramientas es fundamental para construir cualquier estructura.
+Se necesita la caja de herramientas para construir o reparar cualquiera de tus estructuras. Asegúrate de equiparla y seleccionarla.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
 Caja de herramientas sencilla
 
-Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Description:
-Una buena caja de herramientas es fundamental para construir cualquier estructura.
-
 Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
 Caja de herramientas de hierro
-
-Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Description:
-Una buena caja de herramientas es fundamental para construir cualquier estructura.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
 Caja de herramientas de acero

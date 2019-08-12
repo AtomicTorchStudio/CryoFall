@@ -71,10 +71,11 @@ Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameInvalid_Titl
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
 `사용자 이름 조건:
 [*] 글자 개수는 [b]3[/b] ~ [b]24[/b]자까지
-[*] 알파벳, 숫자, 밑줄, 대시 포함 [b]가능[/b]
-[*] 공백이나 다른 문자는 포함 [b]불가능[/b]
-[*] 첫 글자와 마지막 글자는 반드시 [b]알파벳[/b] 또는 [b]숫자[/b]
-[*] 연속으로 여러 개의 [b]-[/b] 또는 [b]_[/b] [b]불가능[/b]`
+[*] 문자, 숫자, 밑줄, 하이픈 포함 [b]가능[/b]
+[*] 공백이나 다른 글자는 포함 [b]불가[/b]
+[*] 반드시 [b]문자[/b]로 시작
+[*] 마지막 글자는 반드시 [b]문자[/b] 또는 [b]숫자[/b]
+[*] 연속으로 여러 개의 [b]-[/b] 또는 [b]_[/b] [b]불가[/b]`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
 `선택하신 사용자 이름은 이미 다른 플레이어가 사용하고 있습니다.

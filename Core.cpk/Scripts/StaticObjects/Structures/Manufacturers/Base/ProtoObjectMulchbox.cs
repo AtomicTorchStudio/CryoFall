@@ -44,7 +44,7 @@
             return WindowMulchbox.Open(
                 new ViewModelWindowMulchbox(
                     data.GameObject,
-                    data.SyncPrivateState.ManufacturingState,
+                    data.PrivateState,
                     this.ManufacturingConfig));
         }
 
@@ -52,7 +52,7 @@
         {
             base.ServerInitialize(data);
             // setup input container to allow only organic on input
-            Server.Items.SetContainerType<ItemsContainerAnyOrganicContainer>(
+            Server.Items.SetContainerType<ItemsContainerOrganics>(
                 data.PrivateState.ManufacturingState.ContainerInput);
         }
 
@@ -68,31 +68,32 @@
 
             // try consume input item and add it's organic value into the mulchbox organic amount
             var inputItem = privateState.ManufacturingState.ContainerInput.GetItemAtSlot(0);
-            if (inputItem != null
-                && inputItem.ProtoItem is IProtoItemOrganic protoItemOrganic)
+            if (inputItem == null
+                || !(inputItem.ProtoItem is IProtoItemOrganic protoItemOrganic))
             {
-                var count = inputItem.Count;
-                while (count > 0)
-                {
-                    if (organicAmount > 0
-                        && organicAmount + protoItemOrganic.OrganicValue > this.OrganicCapacity)
-                    {
-                        // don't add this item - it will lead to over capacity
-                        break;
-                    }
+                return;
+            }
 
-                    organicAmount += protoItemOrganic.OrganicValue;
-                    count--;
+            var count = inputItem.Count;
+            while (count > 0)
+            {
+                if (organicAmount > 0
+                    && organicAmount + protoItemOrganic.OrganicValue > this.OrganicCapacity)
+                {
+                    // don't add this item - it will lead to over capacity
+                    break;
                 }
 
-                organicAmount = Math.Min(organicAmount, this.OrganicCapacity);
+                organicAmount += protoItemOrganic.OrganicValue;
+                count--;
+            }
 
-                privateState.OrganicAmount = organicAmount;
+            organicAmount = Math.Min(organicAmount, this.OrganicCapacity);
+            privateState.OrganicAmount = organicAmount;
 
-                if (count != inputItem.Count)
-                {
-                    Server.Items.SetCount(inputItem, count);
-                }
+            if (count != inputItem.Count)
+            {
+                Server.Items.SetCount(inputItem, count);
             }
         }
     }

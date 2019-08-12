@@ -12,7 +12,8 @@
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowConstructionMenu, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services">
+    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
+    xmlns:construction="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Construction">
     <core:BaseUserControlWithWindow.Resources>
         <ResourceDictionary>
 
@@ -108,14 +109,14 @@
                     </ListBox.Template>
 
                     <ListBox.Resources>
-                        <ResourceDictionary 
+                        <ResourceDictionary
                             d:DataContext="{d:DesignInstance data:ViewModelStructure, IsDesignTimeCreatable=True}">
                             <Style TargetType="{x:Type ListBoxItem}">
                                 <Setter Property="core:SoundUI.ClickSound"
                                         Value="{StaticResource SoundListElementClick}" />
                                 <Setter Property="core:SoundUI.EnterSound"
                                         Value="{StaticResource SoundListElementEnter}" />
-                                <Setter Property="services:DoubleClickService.CommandOnDoubleClick" 
+                                <Setter Property="services:DoubleClickService.CommandOnDoubleClick"
                                         Value="{Binding DataContext.CommandBuild,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" />
                                 <Setter Property="Background" Value="{StaticResource ItemBackgroundNormalBrush}" />
                                 <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
@@ -236,7 +237,6 @@
                     </Grid.RowDefinitions>
 
                     <Grid>
-
                         <!-- Structure title glow effect -->
                         <ContentControl Width="{Binding ActualWidth, ElementName=StructureDetailsTitle}"
                                         VerticalAlignment="Stretch"
@@ -256,20 +256,22 @@
                                    HorizontalAlignment="Center"
                                    Foreground="{StaticResource BrushColor6}"
                                    FontSize="22"
+                                   LineHeight="22"
+                                   LineStackingStrategy="BlockLineHeight"
                                    FontWeight="Bold"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
                                    FontFamily="{StaticResource CondensedFontFamily}"
                                    x:Name="StructureDetailsTitle" />
                     </Grid>
 
-
                     <!-- Big icon (structure preview) -->
-                    <Rectangle
-                        Fill="{Binding Icon}"
-                        Grid.Row="1"
-                        Width="150"
-                        Height="150"
-                        VerticalAlignment="Center"
-                        Margin="10" />
+                    <Rectangle Fill="{Binding Icon}"
+                               Grid.Row="1"
+                               Width="150"
+                               Height="150"
+                               VerticalAlignment="Center"
+                               Margin="10" />
 
                     <!-- Description text -->
                     <TextBlock Grid.Row="2"
@@ -277,8 +279,17 @@
                                HorizontalAlignment="Center"
                                Foreground="{StaticResource BrushColor7}"
                                FontSize="12"
+                               LineHeight="14"
+                               LineStackingStrategy="BlockLineHeight"
                                TextWrapping="Wrap"
                                FontWeight="Bold" />
+
+                    <!-- Building type icon -->
+                    <Grid Grid.Row="3"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Top">
+                        <construction:ConstructionMetaInfoControl ProtoObjectStructure="{Binding ProtoStructure}" />
+                    </Grid>
 
                     <!-- Item requirements display -->
                     <Border Grid.Row="4"
@@ -309,13 +320,20 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Text: Blueprint requires -->
-                                    <TextBlock Text="{x:Static loc:CoreStrings.WindowConstructionMenu_BlueprintRequires}"
-                                               Grid.Row="0" Grid.Column="1" FontSize="10"
-                                               Foreground="{StaticResource BrushColor6}" FontWeight="Bold" />
+                                    <TextBlock
+                                        Text="{x:Static loc:CoreStrings.WindowConstructionMenu_BlueprintRequires}"
+                                        Grid.Row="0" 
+                                        Grid.Column="1"
+                                        FontSize="10"
+                                        Foreground="{StaticResource BrushColor6}" 
+                                        FontWeight="Bold" />
                                     <!-- Text: Total required -->
                                     <TextBlock Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
-                                               Grid.Row="0" Grid.Column="3" FontSize="10"
-                                               Foreground="{StaticResource BrushColor6}" FontWeight="Bold" />
+                                               Grid.Row="0" 
+                                               Grid.Column="3" 
+                                               FontSize="10"
+                                               Foreground="{StaticResource BrushColor6}"
+                                               FontWeight="Bold" />
 
                                     <!-- Display icons for required items (one stage only) -->
                                     <controls:RequiredItemsPanelControl Grid.Row="1" Grid.Column="1"
@@ -327,10 +345,13 @@
 
                                     <Control Template="{StaticResource ItemSlotDelimiterVerticalControlTemplate}"
                                              Grid.Column="2"
-                                             Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" />
+                                             Grid.Row="
+                                             0" Grid.RowSpan="2" 
+                                             HorizontalAlignment="Center" />
 
                                     <!-- Display icons for required items (total) -->
-                                    <controls:RequiredItemsPanelControl Grid.Row="1" Grid.Column="3"
+                                    <controls:RequiredItemsPanelControl Grid.Row="1"
+                                                                        Grid.Column="3"
                                                                         Items="{Binding StageRequiredItems}"
                                                                         CountMultiplier="{Binding StagesCount}"
                                                                         IconSize="40"
@@ -346,8 +367,10 @@
 
                                     <!-- Text: Total required -->
                                     <TextBlock Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
-                                               Grid.Row="0" FontSize="10"
-                                               Foreground="{StaticResource BrushColor6}" FontWeight="Bold"
+                                               Grid.Row="0" 
+                                               FontSize="10"
+                                               Foreground="{StaticResource BrushColor6}"
+                                               FontWeight="Bold"
                                                HorizontalAlignment="Center" />
 
                                     <!-- Display icons for required items (total) -->

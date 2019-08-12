@@ -30,8 +30,7 @@
         }
 
         public static ControlsCache<TControl> Instance
-            => instance
-               ?? (instance = new ControlsCache<TControl>());
+            => instance ??= new ControlsCache<TControl>();
 
         public static ControlsCache<TControl> InstanceFor(object key)
         {

@@ -1,0 +1,42 @@
+﻿<powerGrid:WindowGeneratorBioBase
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.WindowGeneratorBio"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:powerGrid="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.PowerGrid.Data"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowGeneratorBio, IsDesignTimeCreatable=True}">
+
+    <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+
+                <controls:ItemsContainerControl Container="{Binding InputItemsContainer}"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                DesignTimeSlotsCount="1" />
+
+                <core:ValueBarControl
+                    Value="{Binding OrganicAmount}"
+                    MaxValue="{Binding OrganicCapacity}"
+                    Margin="20,0,20,0"
+                    Style="{StaticResource LiquidMediumValueBar}"
+                    Foreground="{StaticResource BrushOrganic}" />
+
+            </StackPanel>
+
+            <powerGrid:PowerProducerStatsControl />
+
+        </StackPanel>
+    </core:WindowMenuWithInventory>
+
+</powerGrid:WindowGeneratorBioBase>

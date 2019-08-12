@@ -1,12 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Languages
 {
-    using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.CoreMod.ClientLanguages;
 
     public class Language_zh_cn : ProtoLanguageDefinition
     {
         public override string AcceptText => "接受";
 
         public override bool IsEnabled => true;
+
+        public override bool IsFontUnderlineEnabled => false;
 
         public override string LanguageTag => "zh_cn";
 

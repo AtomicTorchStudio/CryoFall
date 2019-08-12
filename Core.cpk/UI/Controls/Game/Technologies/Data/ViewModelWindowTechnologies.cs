@@ -1,14 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies.Data
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Text;
     using System.Windows;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -17,7 +13,6 @@
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
-    using AtomicTorch.GameEngine.Common.Extensions;
 
     public class ViewModelWindowTechnologies : BaseViewModel
     {
@@ -56,21 +51,13 @@
                 this);
 
             this.technologies.Groups.ClientElementInserted += this.GroupInserted;
-
-            ClientCurrentCharacterHelper.PrivateState.ClientSubscribe(
-                _ => _.FinalStatsCache,
-                _ => this.NotifyPropertyChanged(
-                    nameof(this.LearningPointsRetainedAfterDeath)),
-                this);
         }
 
         public BaseCommand CommandCloseDetails { get; }
 
-        public int LearningPoints => this.technologies.LearningPoints;
+        public BaseCommand CommandUnlockTechGroup => new ActionCommand(this.ExecuteCommandUnlockTechGroup);
 
-        public ushort LearningPointsRetainedAfterDeath
-            => ServerCharacterDeathMechanic.SharedGetLearningPointsRetainedAfterDeath(
-                Client.Characters.CurrentPlayerCharacter);
+        public int LearningPoints => this.technologies.LearningPoints;
 
         public ViewModelTechGroup ListSelectedTechGroup
         {
@@ -99,36 +86,25 @@
                 // (it's never triggered when the item selected in the ListBox)
                 SoundUI.PlaySound(GroupSelectedSoundUI);
 
-                if (this.listSelectedTechGroup.IsUnlocked)
+                if (this.listSelectedTechGroup.IsUnlocked
+                    || this.listSelectedTechGroup.CanUnlock)
                 {
                     this.SelectedTechGroup = this.listSelectedTechGroup;
                     return;
                 }
 
-                // the group is locked
+                // the group is locked but can be unlocked
                 this.SelectedTechGroup = null;
 
                 // apply hack - reset selected tech group at next frame
-                ClientComponentTimersManager.AddAction(
+                ClientTimersSystem.AddAction(
                     0,
                     () => this.ListSelectedTechGroup = null);
 
-                if (!this.listSelectedTechGroup?.CanUnlock ?? false)
+                if (this.listSelectedTechGroup != null)
                 {
-                    NotificationSystem.ClientShowNotification(
-                        TechnologiesSystem.NotificationCannotUnlockTech,
-                        message: this.listSelectedTechGroup
-                                     .Requirements
-                                     .Where(r => !r.IsSatisfied)
-                                     .Select(r => r.GetErrorMessage())
-                                     .GetJoinedString("[br]"),
-                        color: NotificationColor.Bad,
-                        icon: this.listSelectedTechGroup.TechGroup.Icon);
-                    return;
+                    this.ShowCannotUnlockTechGroup();
                 }
-
-                // can unlock group
-                this.DisplayUnlockGroupDialog(this.listSelectedTechGroup);
             }
         }
 
@@ -209,26 +185,49 @@
             this.technologies.Groups.ClientElementInserted -= this.GroupInserted;
         }
 
-        private void CloseDetails()
+        private static void DisplayUnlockGroupDialog(ViewModelTechGroup viewModelTechGroup)
         {
-            this.ListSelectedTechGroup = null;
-        }
+            var techGroup = viewModelTechGroup.TechGroup;
+            if (!TechnologiesSystem.ClientValidateCanUnlock(techGroup, showErrorNotification: true))
+            {
+                return;
+            }
 
-        private void DisplayUnlockGroupDialog(ViewModelTechGroup techGroup)
-        {
             DialogWindow.ShowDialog(
                 CoreStrings.QuestionAreYouSure,
                 new TextBlock()
                 {
-                    Text = string.Format(DialogDoYouWantToResearch, techGroup.Title),
+                    Text = string.Format(DialogDoYouWantToResearch, viewModelTechGroup.Title),
                     TextAlignment = TextAlignment.Center,
                     TextWrapping = TextWrapping.Wrap,
                     MaxWidth = 400
                 },
                 okText: CoreStrings.Yes,
                 cancelText: CoreStrings.No,
-                okAction: () => TechnologiesSystem.ClientUnlockGroup(techGroup.TechGroup),
+                okAction: () => TechnologiesSystem.ClientUnlockGroup(techGroup),
                 cancelAction: () => { });
+        }
+
+        private void CloseDetails()
+        {
+            this.ListSelectedTechGroup = null;
+        }
+
+        private void ExecuteCommandUnlockTechGroup()
+        {
+            var techGroup = this.SelectedTechGroup;
+            if (techGroup == null)
+            {
+                return;
+            }
+
+            if (!techGroup.CanUnlock)
+            {
+                this.ShowCannotUnlockTechGroup();
+                return;
+            }
+
+            DisplayUnlockGroupDialog(techGroup);
         }
 
         private void GroupInserted(NetworkSyncList<TechGroup> source, int index, TechGroup value)
@@ -243,6 +242,36 @@
                 // added group which was selected last time
                 this.ListSelectedTechGroup = this.lastGroupSelected;
             }
+        }
+
+        private void ShowCannotUnlockTechGroup()
+        {
+            var character = ClientCurrentCharacterHelper.Character;
+
+            var requirements = this.listSelectedTechGroup
+                                   .TechGroup
+                                   .GroupRequirements;
+            var stringBuilder = new StringBuilder();
+            foreach (var requirement in requirements)
+            {
+                if (requirement.IsSatisfied(character, out var errorMessage))
+                {
+                    continue;
+                }
+
+                if (stringBuilder.Length > 0)
+                {
+                    stringBuilder.Append("[br]");
+                }
+
+                stringBuilder.Append(errorMessage);
+            }
+
+            NotificationSystem.ClientShowNotification(
+                TechnologiesSystem.NotificationCannotUnlockTech,
+                message: stringBuilder.ToString(),
+                color: NotificationColor.Bad,
+                icon: this.listSelectedTechGroup.TechGroup.Icon);
         }
     }
 }

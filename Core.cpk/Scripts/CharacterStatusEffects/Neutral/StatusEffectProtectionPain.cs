@@ -1,10 +1,7 @@
-﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
+﻿using AtomicTorch.CBND.CoreMod.Stats;
+
+namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
 {
-    /// <summary>
-    /// Note: This status effect has no logic by itself. Instead the effect that adds
-    /// pain does the checking.
-    /// While this effect is active no new pain effect can be added.
-    /// </summary>
     public class StatusEffectProtectionPain : ProtoStatusEffect
     {
         public override string Description =>
@@ -16,5 +13,11 @@
         public override StatusEffectKind Kind => StatusEffectKind.Neutral;
 
         public override string Name => "Pain protection";
+
+        protected override void PrepareEffects(Effects effects)
+        {
+            // complete defense from pain
+            effects.AddPercent(this, StatName.PainIncreaseRateMultiplier, -100);
+        }
     }
 }

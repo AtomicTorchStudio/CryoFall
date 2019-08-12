@@ -66,7 +66,9 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Control Grid.Row="1" Style="{StaticResource MultiplayerTableHeaderControlStyle}" Margin="5,0,14,5"
+                    <Control Grid.Row="1" 
+                             Style="{StaticResource MultiplayerTableHeaderControlStyle}"
+                             Margin="5,0,14,5"
                              Visibility="{Binding ListNotEmptyVisibility}" />
 
                     <ListBox Grid.Row="2"
@@ -137,7 +139,8 @@
                                         Fill="{Binding ViewModelServerInfo.Icon}" />
                                 </Border>
 
-                                <core:LoadingDisplayControl Width="32" Height="32"
+                                <core:LoadingDisplayControl Width="32"
+                                                            Height="32"
                                                             Visibility="{Binding ViewModelServerInfo.LoadingDisplayVisibility}"
                                                             HorizontalAlignment="Center"
                                                             VerticalAlignment="Center" />
@@ -158,6 +161,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Grid.RowDefinitions>
+                                    <RowDefinition />
                                     <RowDefinition />
                                     <RowDefinition />
                                     <RowDefinition />
@@ -219,7 +223,20 @@
                                 <TextBlock Grid.Row="3" Grid.Column="1"
                                            Text="{Binding ViewModelServerInfo.PlayersText}"
                                            HorizontalAlignment="Right" />
+
+                                <StackPanel Grid.Row="4" Grid.Column="0"
+                                            Orientation="Horizontal">
+                                    <!-- Text: Wiped -->
+                                    <TextBlock Text="{x:Static loc:CoreStrings.ServerWipedDate}" />
+                                    <TextBlock Text=": " />
+                                </StackPanel>
+                                <TextBlock Grid.Row="4" Grid.Column="1"
+                                           Text="{Binding ViewModelServerInfo.WipedDateText}"
+                                           HorizontalAlignment="Right" />
                             </Grid>
+
+                            <Control Style="{StaticResource ControlHorizontalSeparator}" 
+                                     Margin="0,0,0,5"/>
 
                             <!-- Selectable text for description (based on read-only textbox) -->
                             <ScrollViewer Margin="0,0,-10,10">
@@ -299,13 +316,13 @@
 
             <core:TabControlCached Margin="0,3,0,0">
                 <TabItem
-                    DataContext="{Binding PublicServers}"
+                    DataContext="{Binding FeaturedServers}"
                     IsSelected="{Binding IsActive, Mode=TwoWay}">
                     <TabItem.Header>
-                        <!-- Text: Official -->
+                        <!-- Text: Featured -->
                         <servers:ServerTabItemHeaderControl
-                            Text="{x:Static loc:CoreStrings.MenuServers_ListTitleOfficial}"
-                            IconImageSource="/UI/Images/Icons/MenuServers/Official.png"
+                            Text="{x:Static loc:CoreStrings.MenuServers_ListTitleFeatured}"
+                            IconImageSource="/UI/Images/Icons/MenuServers/Featured.png"
                             ServersCount="{Binding ServersCount}"
                             MinWidth="110" />
                     </TabItem.Header>

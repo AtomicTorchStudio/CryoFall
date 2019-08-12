@@ -15,6 +15,7 @@ buttplug*
 clit*
 cock*
 cunt*
+chink*
 dick*
 dildo*
 fag*
@@ -37,6 +38,8 @@ penis*
 *phuk*
 piss*
 puss*
+rape*
+rapin*
 retard*
 *sex*
 *shit*
@@ -52,6 +55,9 @@ vagin*
 vulv*
 wank*
 *whore*
+wtf
+wtsf
+stfu 
 
 #whitelist
 -arsenal

@@ -6,44 +6,52 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:fuelBurningIndicator="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.FuelBurningIndicator"
     xmlns:manufacturers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowObjectLight, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    FontFamily="{StaticResource CondensedFontFamily}"
+    FontWeight="Bold"
+    FontSize="12">
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
 
             <StackPanel Orientation="Horizontal">
-
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <Canvas Visibility="{Binding IsLightActive, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Grid VerticalAlignment="Center">
+                    <Canvas Visibility="{Binding IsLightActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
                         <fuelBurningIndicator:FuelBurningIndicator
                             FuelIcon="{Binding FuelIcon}"
                             FuelColor="{Binding FuelColor}"
-                            Canvas.Left="-24"
-                            Canvas.Top="28" />
-
+                            Canvas.Left="-24" />
                     </Canvas>
 
-                    <!-- Text: Fuel -->
-                    <TextBlock Text="{x:Static loc:CoreStrings.TitleFuel}"
-                               Style="{StaticResource TextBlockStyleCraftingCaption}"
-                               HorizontalAlignment="Center"
-                               Margin="0,-13,0,0" />
+                    <StackPanel Orientation="Vertical">
+                        <!-- Text: Fuel -->
+                        <TextBlock Text="{x:Static loc:CoreStrings.TitleFuel}"
+                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,-13,0,0"
+                                   Visibility="{Binding IsUsingFuel, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-                    <controls:ItemsContainerControl Container="{Binding ContainerInput}"
-                                                    HorizontalAlignment="Left"
-                                                    VerticalAlignment="Center"
-                                                    DesignTimeSlotsCount="1" />
-                </StackPanel>
+                        <controls:ItemsContainerControl Container="{Binding ContainerInput}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        DesignTimeSlotsCount="1"
+                                                        Visibility="{Binding IsUsingFuel, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    </StackPanel>
+                </Grid>
 
-                <Canvas>
-                    <Rectangle HorizontalAlignment="Center" Width="18" Height="18" Fill="{Binding FuelIcon}"
+                <Canvas Visibility="{Binding IsUsingFuel, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Rectangle HorizontalAlignment="Center"
+                               Fill="{Binding FuelIcon}"
+                               Width="18"
+                               Height="18"
                                Canvas.Left="20"
                                Canvas.Top="-20" />
                 </Canvas>
@@ -52,7 +60,8 @@
                     Value="{Binding FuelAmount}"
                     MaxValue="{Binding FuelCapacity}"
                     Margin="20,0,20,0"
-                    Style="{StaticResource LiquidMediumValueBar}">
+                    Style="{StaticResource LiquidMediumValueBar}"
+                    Visibility="{Binding IsUsingFuel, Converter={StaticResource BoolToVisibilityConverter}}">
                     <core:ValueBarControl.Foreground>
                         <SolidColorBrush Color="{Binding FuelColor}" />
                     </core:ValueBarControl.Foreground>
@@ -75,7 +84,7 @@
                     </StackPanel>
 
                     <!-- Checkbox: On -->
-                    <CheckBox Content="{x:Static loc:CoreStrings.TitleModeOn}"
+                    <CheckBox Content="{x:Static loc:CoreStrings.TitleModeAlwaysOn}"
                               IsChecked="{Binding LightModeIsOn}" />
 
                     <!-- Checkbox: Auto -->
@@ -85,7 +94,8 @@
 
                     <!-- Checkbox: Off -->
                     <CheckBox Content="{x:Static loc:CoreStrings.TitleModeOff}"
-                              IsChecked="{Binding LightModeIsOff}" />
+                              IsChecked="{Binding LightModeIsOff}"
+                              Visibility="{Binding IsUsingFuel,Converter={StaticResource BoolToVisibilityConverter}}" />
                 </StackPanel>
             </StackPanel>
 

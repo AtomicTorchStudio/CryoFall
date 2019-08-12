@@ -5,7 +5,7 @@
         public override string Description =>
             "Advanced materials used in the manufacturing of this armor make it an ideal protection against small arms and other basic weapons.";
 
-        public override ushort DurabilityMax => 1000;
+        public override uint DurabilityMax => 1000;
 
         public override string Name => "Military jacket";
 

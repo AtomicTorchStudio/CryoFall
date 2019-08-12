@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
 
-    public class WindowSignBase
+    public abstract class WindowSignBase
         : BaseUserControlWithWindowAndViewModel
             <WindowSign, ViewModelWindowSign>
     {

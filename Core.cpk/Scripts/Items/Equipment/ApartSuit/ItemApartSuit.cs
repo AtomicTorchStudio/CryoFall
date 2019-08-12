@@ -5,7 +5,7 @@
         public override string Description =>
             "Advanced environmental protection armor that offers the ideal combination of combat and environmental defense.";
 
-        public override ushort DurabilityMax => 1200;
+        public override uint DurabilityMax => 1200;
 
         public override bool IsHairVisible => false;
 

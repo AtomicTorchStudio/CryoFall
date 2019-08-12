@@ -1,0 +1,571 @@
+﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
+İnşa et: {0}
+
+Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
+Tamamla: {0} (teknoloji sınıfı)
+
+Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
+üzerinde {0}
+
+Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
+Üret
+
+Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
+Yok et: {0}
+
+Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
+Topla: {0}
+
+Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
+Biriktir: {0}
+
+Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
+Kuşan: {0}
+
+Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
+Yeteneği öğren: {0} / {1} seviyesine
+
+Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
+Yetenekleri öğren: {0} / {1} seviyesine
+
+Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
+Teknoloji sınıfının kilidini aç: {0}
+
+Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
+Teknoloji sınıflarının {0} kilidini aç: {1}
+
+Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
+Öğren: {0} ({1} teknoloji sınıfı içinde)
+
+Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
+Öldür: {0}
+
+Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
+İmal et: {0}
+
+Scripts/Quests/Requirements/RequirementRun@DescriptionText:
+10 metre depar at
+
+Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
+Envanterdeki eşyaları sırala
+
+Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
+Kullan: {0}
+
+Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
+Ziyaret et: {0}
+
+Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
+Ziyaret et: {0}
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+Bir yatak yerleştirerek yeniden doğma noktanı belirleyebilirsin. Bir sonraki seferde karakterin yeniden doğduğunda orada ortaya çıkacaktır.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
+`[*] Yatak inşa menüsünde bulunan "Diğer" kategorisi altında bulunmaktadır.
+[*] En iyi strateji, yatağını evine veya üssüne kurup bir sonraki seferde "evinde" canlanmaktır.
+[*] İlk yatağınız için diğer oyunculardan uzakta daha sonra üs olarak da kullanabileceğiniz sessiz bir yer bulmaya çalışın. Endişelenmeyin, daha sonra taşıyabilirsiniz.`
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
+Bir yatak kur
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
+Artık bir alet çantan olduğuna göre teknoloji menüsünde kilidini açtığın yapıları inşa etmeye başlayabilirsin. Yemek pişirmek için kullanabileceğin bir kamp ateşiyle başlayalım.
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
+`[*] Kontrolleri değiştirmediysen, [b]inşa menüsüne[/b] hızlıca ulaşmak için "Sekme" tuşunu kullanabilirsin.
+[*] İnşa menüsünde daha fazla yapının kilidini açtıkça farklı [b]yapı türlerinden[/b] oluşan [b]birkaç sayfa/b] bulunabilir.
+[*] Alet çantasını yalnızca yapıları [b]inşa etmek[/b] için değil, aynı zamanda [b]tamir[/b] etmek için de kullanabilirsin.`
+
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
+Bir kamp ateşi kur
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Description:
+Odun toplama zamanı geldi! Bir ağaç bul ve onu baltanla kes.
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Hints:
+`[*] Baltayı [b]araç çubuğuna[/b] yerleştirmen gerekiyor. Envanterini aç ve ürettiğin baltayı aşağıda bulunan araç çubuğuna sürükle, sonra envanteri kapat.
+[*] Şimdi (envanterin kapalı olduğu zaman) ilgili numaranın tuşuna basarak veya fare ile tıklayarak eşyayı [b]seçebilirsin[/b].
+[*] Varsayılan olarak [b]sol fare tuşuyla[/b] elinde bulunan nesneyi kullanırsın,  [b]sağ fare tuşuyla[/b] dünyadaki bir nesneyle etkileşime geçersin.`
+
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Name:
+Bir ağaç kes
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@TaskEatAnyFood:
+Bir şey ye
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Description:
+Artık bir kamp ateşi kurduğuna göre bazı basit yiyecekleri pişirebilirsin. Mantar veya etin varsa, pişirerek onları daha güvenli ve besleyici bir hale getirebilirsin.
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
+`[*] Kamp ateşindeki "Tariflere göz at" seçeneğine tıklarsan [b]yapabileceğin tüm tarifleri[/b] görebilirsin.
+[*] Bir şeyler pişirmek için yapman gereken [b]uygun bir tarif seçmek[/b].
+[*] Kamp ateşinin yanması için [b]yakıt[/b] gerekir. Yakıt yuvasına bir miktar [b]odun veya kömür[/b] yerleştir.
+[*] [b]Yeni tarifleri[/b] daha sonra [b]teknoloji menüsünden[/b] öğrenebilirsin.
+[*] Herhangi bir eşyayı (yiyecek dahil) doğrudan [b]envanterinden[/b] veya [b]araç çubuğuna[/b] yerleştirerek oyunda kullanabilirsin.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
+Bir yemek pişir
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
+Artık bazı kaynaklara sahip olduğuna göre üretime başlayabilirsin. Önce bir halat üret, hazır olduğunda bir balta üret.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
+`[*] Varsayılan klavye ayarları değiştirmediysen, "C" tuşuyla üretim menüsüne "E" tuşuyla envantere hızlı bir şekilde ulaşabilirsin.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
+Bir balta üret
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
+Farklı mineraller kazmak, CryoFall'daki en değerli kaynaklara ulaşmanı sağlar. Minerallere ulaşmak için bir kazma üretmen gerekiyor.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
+`[*] Bir kazma üretmek için üretim menüsünü (varsayılan olarak "C") kullan.
+[*] Daha önce üretmediysen bir halat üretmen gerekli olabilir.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
+Bir kazma üret
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Description:
+Yapı (eviniz gibi) inşa etmek bir alet çantasına ihtiyacın var. Alet çantası CryoFall'da ana inşa aracıdır.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Hints:
+`[*] Bir alet çantası üretmek için üretim menüsünü kullan.
+[*] Daha önce üretmediysen bir halat üretmen gerekebilir.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Name:
+Bir alet çantası üret
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Description:
+Bir çok insan geceleri karanlığı gömüldüğünde yolunu bulabileceğini düşünür. Bir meşale veya fener kullanabileceğini düşünce bu çok anlamsız.
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Hints:
+`[*] Meşale kullanmak için yalnızca onu [b]araç çubuğa[/b] yerleştir ve aynı diğer eşyalarda olduğu gibi etkinleştir.
+[*] Taşınabilir veya sabit daha sonra kilidini açabileceğin bir çok ışık kaynağı bulunuyor.`
+
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Name:
+Bir meşale üret ve kullan
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Description:
+Basit aletler üretmek için bazı kaynaklar toplamalısın.
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
+`[*] [u]Taş[/u], [u]dal[/u] ve [u]çimen[/u] gibi nesneleri yerden [b]toplayabilirsin[/b].
+[*] Yerdeki bir nesneyi envanterine eklemek için yalnızca [b]sağ tıkla[/b].`
+
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
+Kaynak topla
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
+`Daha fazla yapıya ulaşmak için teknoloji menüsü altındaki "basit yapıların" kilidini açman gerekiyor.`
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
+`[*] Kontrolleri değiştirmediysen, "G" tuşuna basarak teknoloji menüsüne hızlıca ulaşabilirsin.
+[*] Bir teknoloji ağının kilidini açmak için [b]EP[/b] (eğitim puanları) gereklidir.
+[*] Eğitim puanları anlamlı etkinliklerden kazanılır ve yetenek deneyimi kazancıyla doğrudan orantılıdır.`
+
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
+Basit inşa teknolojisi öğren
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
+Taş kaz
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Description:
+Artık şu kazmayı kullanalım. Biraz mineral kaz ve ne elde ettiğini gör. Ayrıca büyük kayalardan biraz taş çıkarman gerekiyor.
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
+`[*] Diğer çok kullanılan aletlerde olduğu gibi kazmayı da [b]araç çubuğuna[/b] yerleştirmelisin.
+[*] Mineral bulmak için en iyi yer [b]dağlardır[/b]. İyi bir nokta belirlemek için haritanı (varsayılan olarak "M") kullan.
+[*] Farklı mineralleri kazmak farklı süreler alır ve farklı kaynak türleri verir.
+[*] [b]Yüksek miktarda[/b] taş toplamanın en iyi yolu onları büyük kayalardan [b]kazmaktır[/b].
+[*] Madencilik yeteneğin yeterince yüksekse, bazı mineralleri kazarken altın gibi değerli taşlar bulabilirsin.`
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
+Bir mineral kaz
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
+CryoFall'ın tadını tam olarak çıkartmak için envanterinizi nasıl sıralayabileceğin veya nasıl depar atabileceğin gibi bilmen gereken bir kaç özellik daha var.
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
+`[*] Envanteri sıralamak için yalnızca envanteri aç ve envanter sisteminde gezinirken [u]orta fare tuşuna[/u] veya [u]Z tuşuna[/u] (kontrol ayarlarını değiştirmediysen) bas. [b]TÜM[/b] envanter sistemini bu şekilde sıralayabilirsin (ör. sandıklar).
+[*] Depar atmak için hareket halindeyken [u]Shift[/u] tuşunu basılı tut. Denemek için  birkaç metre depar at. Depar atmak tehlikeli avcılardan uzaklaşmana yardımcı olur.`
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
+Basit eylemler gerçekleştir
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
+Su soğanı topla
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Description:
+Basit bir su kaynağının nasıl ele geçirileceğini öğrenmenin zamanı geldi. Bu gezegen ilk oluşturulduğunda, yetiştirilen ilk bitkilerden biri su soğanı çalısıydı. Temiz ve erişimi kolay bir su kaynağı.
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Hints:
+`[*] Su soğanı bitkisi hemen hemen tüm ortamlarda yetişir fakat çok bulunduğu ortam [b]Ilıman çimenliklerdir[/b].
+[*] Diğer tüm bitkiler ve yiyecekler gibi çabuk bozulur. Daha sonrası için saklamak yerine, susadığın an toplayıp tüketmelisin.`
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Name:
+Basit su kaynağı ele geçir
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Description:
+Çalışma tezgahı, CryoFall'daki çoğu tarifin üretimi için ana çalışma ortamıdır. Yeni bir üs kurduğunda, çalışma tezgahı inşa etmek ilk önceliğin olmalı.
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Hints:
+[*] Teknoloji menüsünde, hangi tarifin nerede üretildiğini görebilirsin. Bu bilgi tarifin adının altında görüntülenir.
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Name:
+Çalışma tezgahının kilidini aç ve inşa et
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@TaskPlantAnySeeds:
+Bir tohum ek
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
+Tarım, çok miktarda yiyecek almanın en iyi ve sürdürülebilir yöntemidir. Ellerini kirletmenin zamanı geldi!
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
+`[*] Tarlalarını duvarlarının [b]içerisine[/b] inşa etmek iyi bir fikir olabilir, diğer oyuncular ürünlerini senin yerine toplayabilir :)
+[*] Bitkilerin olgunlaşma süresi, toplanacak ürün miktarı ve diğer özellikleri birbirinden farklıdır.
+[*] Daha sonra tarlalarının verimliliğini artırmak için gübre veya başka şeyler araştırabilirsin.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
+Bir tarla inşa et
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Description:
+Yeni başlayanlar için meşale gayet iyidir fakat daha çok ışık veren ve kullanımı daha kolay bir şeye geçmek istiyorsan bir fener veya yer lambası üretmenin zamanı gelmiştir.
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
+`[*] Fenerler, meşaleyle kıyaslandığında daha [b]büyük aydınlık çapına[/b] sahiptir ve daha istikrarlıdır.
+[*] Meşaleler ve yer lambaları, yanıp biten meşalenin aksine kamp yakıtı ile [b]bir çok defa yeniden doldurulabilir[/b].
+[*] Kamp yakıtı (gaz yağı olarak da bilinir) üretmenin iki yolu vardır—hayvan yağlarından veya petrol ürünlerinden.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
+Işık kaynakları
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
+`Üssünü nasıl koruyacağını bilmen çok önemlidir! Doğru yapılmazsa, diğer oyuncular üssüne baskın yapabilir.
+[br]
+[br]En önemli nokta üssünü korumak için alan tutucuları doğru bir şekilde kullanabilmektir. Üssünün yapısını daha iyi planlamak için duvar, kapı ve benzeri yapıları inşa etmeden önce alan tutucuları inşa etmek gereklidir.
+[br]
+[br]Alan tutucuyu iyi bir noktaya inşa ettikten sonra duvarları yerleştirmeye başlayabilirsin. Duvarları alan tutucunun koruyucu alanı [b][u]içerisine[/u][/b] yerleştirmek çok önemlidir yoksa diğer oyuncular duvarlarını [b]saniyeler içinde yıkabilir[/b].
+[br]
+[br]Alan tutucunun etki alanı daha fazla araziyi korumak için genişletilebilir ve duvarlarını ek katmanlarla kalınlaştırabilirsin. Genelde iki katman salgırdanları vazgeçirmeye yeter tabi ki duvarların içerisinde çok değerli bir şeye sahip değilsen.
+[br]
+[br]Üssünüze açılan en az iki kapı olması tavsiye edilir fakat daha fazlası daha iyidir.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Hints:
+`[*] Alan tutucuyla etkileşime girmek için alan tutucu menüsünü aç. Alan tutucu hakkında detaylı bilgi burada görebilirsin veya alan tutucuyu bir üst aşamaya geliştirebilirsin.
+[*] Alan tutucunun etki bölgesinin dışına inşa edilen yapılar bir iki gün içerisinde çürüyecektir. Yapıları alan tutucunun etki bölgesinin içerisine inşa ettiğinden emin ol.
+[*] Herhangi bir yapıyı alan tutucu bölgesinde olduğu sürece levye ( İnşaat Aşama 1) kullanarak hızlıca ve kolayca yıkabilirsin.
+[*] Tüm üretim istasyonlarını ve diğer yapıları üssünün içine inşa etmen gerekmez. Çalınacak bir şey olmadığı için diğer oyuncular onları rahat bırakacaktır, böylece üssünün içinde sandıklar ve ocaklar gibi önemli yapılar için daha fazla yer olacaktır.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Name:
+Kalıcı bir üs inşa et
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Description:
+Daha sonrası için saklayamayacaksan bu kadar yiyecek biriktirmenin ne faydası var ki? Neyse ki bunun için de bir çözüm var.
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Hints:
+`[*] Dolap yiyeceklerin bozulması süresini uzatır. Dolap ne kadar iyi olursa süre de o kadar uzun olur.
+[*] Yiyeceklerin bozulması için gereken süre yiyeceğin türüne göre değişir. Et çabuk bozulurken konserve yiyecekler yıllarca saklanabilir.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Name:
+Basit bir buzdolabı inşa et
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Description:
+Yakın zamanda zaten Peredozin kullandın, bir sonraki sığmayabilir...
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Hints:
+`[*] Hangi tarifin nerede üretileceğini teknoloji menüsünden öğrenebilirsin. Bu bilgi tarif adının altında görüntülenir.
+[*] Bakır minerali kazarak eritim için yeterince bakır cevherine sahip olabilirsin.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Name:
+Bir ocak inşa et ve bakır erit
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseMulch:
+Malç kullan
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseWateringCan:
+Sulama kabı kullan
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Description:
+Bitkilerinin büyüme hızını onları düzenli olarak sulayarak ve gübre kullanarak hızlandırabilirsin.
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Hints:
+`[*] Bitkilerini düzenli olarak sulamak büyümelerini hızlandırmanın en iyi yoludur. Ayrıca sudan başka kaynağa gerek duyulmaz.
+[*] Sulama kabını su kolektöründe veya kuyuda doldurabilirsin. Tek yapman gereken araç çubuğundan sulama kabını seçmek.
+[*] Malç yaratmak için herhangi organik bir eşyayı (bitki, çürük yemek vs.) bırak ve çözünmelerini bekle.
+[*] Malç elde etmek kolaydır ve tamamen doğal bir gübredir. Bitkilerinin büyüme hızını artırmak için kullanabilirsin.`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Name:
+Tarım verimi
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Description:
+Hayatta kalmak ve gelişmek için yüksek oranda suya kolayca erişebilmelisin. Sadece içmek için değil endüstriyel sebeplerle de.
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Hints:
+`[*] [b]sahilde veya kıyıda[/b] sınırsız oranda sanal [b]kumu[/b] her zaman bulabilirsin.
+[*] Odunları, özellikle çerçöpleri yaktıktan sonra [b]kül[/b] bulabilirsin.
+[*] Su birçok zanaatkârlık tarifinde kullanılmaktadır bu yüzden ihtiyacın olacağı zaman için hep yedekte su tutmalısın.
+[*] Su kolektörü kullanmak yerine göl suyunu kaynatarak arındırıp içmek için veya zanaatkârlıkta kullanabilirsin.
+[*] Kuyular, basit su kolektörlerinden çok daha verimlidir.
+[*] Tuzlu okyanus suyunu kaynatarak tuz elde edebilirsin.`
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Name:
+Daha iyi su kaynağı bul
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
+Zorlu muharebeler sonucunda sağlığını kaybedersin. Bunun çözümü sağlığını kazanmanı sağlayacak ve seni ızdıraplarından kurtaracak olan farklı ilaçlar üretmektir. Sadece yeşil otları kullanmak bir yere kadar.
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
+`[*] CyroFall'da birçok farklı ilaç türü var. Bazıları sağlığı yenilerken diğerleri de belli bir hastalığı iyileştirebilir veya başka yararları olabilir.
+[*] Üst düzey ilaç türlerini üretmek için belirli tarif ve teknolojiler gerekir.
+[*] Bitkisel tedavi, pişirme kategorisinde bulunabilir.
+[*] Ağaç kabukları, belirli ağaçları keserken toplanabilir.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
+Bitki topla ve ilaç yap
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Description:
+İleri düzey teknolojilere ilerlemek için daha önceki teknolojilerde usta olman gerekir.
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Hints:
+[*] Daha karışık teknolojilere, tariflere ve yapılara ulaşmak için teknolojik grup aşamalarını açabilirsin.
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
+Teknolojilerde usta olmak - birinci kısım
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
+Bir yaratığı öldür
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCreature:
+Bir yaratığın parçalarını topla
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Description:
+Bıçaklar, daha az tehlikeli yaratıklara karşı kullanmak için iyi ilk silahlardandır. Daha önemli bir şey üretene kadar bıçak taşıman her zaman iyidir.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
+[*] CyroFall'daki her silahın kendine özgü [b]bazı özellikleri[/b] vardır. Örneğin bıçakların kanamaya sebep olma ihtimali daha yüksekken körelmiş silahlar kemik kırabilir veya düşmanı sersemletebilir.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
+Bir bıçak üret ve bir yaratığı öldür
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
+Daha iyi koruma sağlama vakti geldi.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
+`[*] "Saldırı & Savunma" teknoloji grubunda ilgili bütün teknolojileri açabilirsin.
+[*] Ahşap zırh en iyi seçenek olmayabilir ama üretmesi ucuzdur ve kesinlikle kumaş zırhtan çok daha iyidir.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
+Daha iyi zırh üret ve kuşan
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Description:
+Koruma olmadan etrafta dolaşmanın sonu hızlı bir ölümdür. Basit bir zırh bile giymek her zaman iyi fikirdir. Basit kumaş zırhı araştır, üret ve kuşan.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
+`[*] Kumaş zırh, önemli derecede bir koruma sağlamayabilir ama üretmesi ucuzdur ve hiçbir şey giymemekten iyidir.
+[*] [b]Farkı zarar tipleri[/b] vardır ve farklı zırhlar, her biri için farklı koruma değerleri sunar. Bu bilgiyi, envanter ekranında görebilirsin.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
+Kumaş zırh üret ve kuşan
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Description:
+Artık metalurjiye ulaşabildiğine göre araçlarını geliştirmek doğaldır. Demir araçlar, ilkel taş araçlardan hem daha dayanıklı hem de daha etkilidir.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
+Önemli bir verimlilik artışı sağladıkları için açıldıklarında her zaman daha iyi araçlara yükselmeye çalış.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
+Daha iyi araçlar üret
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
+Bir gürz ile kafatası parçalamak güzeldir ama bazen menzilli bir şey istersin. Özellikle daha ciddi düşmanlara karşı olduğunda.
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
+`[*] "Saldırı & Savunma" teknoloji grubunda ilgili bütün teknolojileri açabilirsin.
+[*] Kâğıt kovan üretmen için öncelikle [b]barut[/b] ve [b]kâğıt[/b] üretmen gerekir.
+[*] [b]Farkı zarar tipleri[/b] vardır ve farklı zırhlar, her biri için farklı koruma değerleri sunar. Bu bilgiyi, envanter ekranında görebilirsin.`
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
+Menzilli silah üret
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
+Her farklı çevrenin, başka özellikleri dışında kendine özel bir bitki örtüsü ve faunası vardır. Hepsinden en iyi şekilde yararlanmak için temel çevrelerin hepsini tanımak iyi bir fikirdir.
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Hints:
+`[*] Çayırlarda araştıracak fazlaca çalı, bitki ve başka yararlı otlar vardır.
+[*] Bir kıyının yakınlarında bir sürü su hayvanı bulabilirsin.`
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Name:
+Çevreleri keşfet - birinci kısım
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Description:
+Farklı çevrelerde bulunabilecek farkı kaynaklar ve o bölgede yaşayan farklı hayvanlar vardır. Nelerin mevcut olduğunu görmek için üssünü olabildiği kadar keşfetmek iyi bir fikirdir.
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Hints:
+`[*] Taşlı dağlar, bir sürü mineral yatağı bulmak için harika bir yoldur.
+[*] Kil çukurları, inşaat için fazlaca kil bulmanın ana kaynağıdır.
+[*] Kutupaltı ormanı, kıtanın kuzeyinde bulunabilir.`
+
+Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Name:
+Çevreleri keşfet - ikinci kısım
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
+Dışarıda bulunabilecek çok daha iyi tıbbi eşyalar vardır ama gerektiğinde sağlığını biraz doldurmak için yeşil bitkileri kullanabilirsin.
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
+`[*] Yeşil bitki, ilaçların en temel türüdür ve bulması oldukça kolaydır.
+[*] Ormandaki çayırlarda büyüyen fazlaca bitki ve başka otlar bulabilirsin.
+[*] Sandıkların yeşil bitkilerle dolup taşıyorsa onları oldukları gibi kullanabilirsin ama aksi takdirde onları, düzgün tıbbi eşyalar üretmek için kullanmak akıllıcadır.`
+
+Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
+Yeşil bitki bul ve kullan
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
+Avlanma zamanı! Başlarda daha tehlikeli hayvanlardan kaçınmak daha iyi olabilir ama başka bir sürü seçenek var.
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Hints:
+`[*] Her hayvanda farklı bir şey bulabilirsin. Avlanma yeteneğin de bu konuda önemli bir rol oynuyor.
+[*] Tecrübe ve eğitim puanı kazanmak için avlanmak harika bir yoldur.
+[*] Lütfen bunu gerçek hayatta yapmayın :(`
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Name:
+Usta avcı - birinci kısım
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
+Avlanma zamanı! Hâlâ bulunacak bir sürü hayvan ve yaratık var.
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
+`[*] Her hayvan ve yaratığın normalde bulunabilecekleri kendi alanları vardır. Dünyayı keşfedip içinde bulunan farklı yaratıkları görmeye çalış.
+[*] Bir hayvan veya yaratığın ne kadar tehlikeli olduğuna bağlı olarak farklı miktarlarda avlanma tecrübesi edineceksin.`
+
+Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
+Usta avcı - ikinci kısım
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
+Bir yetenek aç
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Description:
+CryoFall'da her bir yeni yetenek, belirli bir alanda belirli bir şeyler yaparak açılır. Daha fazla yetenek açmak iyi bir uzun vadeli stratejidir çünkü o alanlardaki becerini arttırırlar.
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
+[*] Yüksek yetenek seviyeleri hem o alandaki genel becerini arttırır hem de başka türlü ulaşamayacağın bazı özellikler sunar.
+
+Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
+Birkaç yetenek öğren
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
+Her şeyi inşa edebilmek güzel ama binalarını nasıl yıkacağını bilmek de isteyebilirsin. Bunu yapmak için bir levye kullanabilirsin! Tabii ki yıkmak istediğin bina, senin alan tutucu bölgende olduğu sürece.
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
+`[*] Bu görev için bir duvarın veya onun kadar ucuz bir şeyin bir bölgesini yıkabilirsin, böylece değerli kaynak kaybetmezsin.
+[*] [b]Sadece[/b] alan tutucu bölgenin [b]içindeki[/b] binaları yıkabilirsin.
+[*] Yıkım, gereksiz veya eski bir binayı veya yapıyı ortadan kaldırmanın en iyi yoludur.`
+
+Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
+Yıkım için levye kullan
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
+Gaz yağı ve lityum gibi bazı kaynaklar ileri seviye teknoloji için şarttır. Onları elde etmeyi öğrenmek çok önemlidir.
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Oilpod meyvelerini [u]boreal ormanında[/u] her yerde bulabilirsin. Onları kullanman ufak seviyede gaz yağı çıkarmanı sağlar.
+[*] Sıradan tuz madenlerini çıkarken [u]lityum tuzu[/u] elde edebilirsin.
+[*] Tuz madenlerini çöldeki [u]tuzlu bölgelerde[/u] bulabilirsin.
+[*] [u]Zenojeoloji[/u]yi öğrenmek bu kaynakları elde konusunda endüstriyel boyutta yöntemler sunar.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
+Gelişmiş kaynak edinme
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Tuz minerali kaz
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
+Sanayi ve inşaatta ilerlemek için başta kimya olmak üzere pozitif bilimlerde temel bilgi gerekir.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Hints:
+[*] Kimya, bilimin en önemli alanlarından biridir ve çoğu hayatta kalan için tavsiye edilir.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Name:
+Kimya laboratuvarı inşa et
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Description:
+Tıp bilimi sadece yaraları veya hastalıkları iyileştirebilmeni sağlamakla kalmayıp çeşitli yararlı etkilere ve imkânlara da erişmeni mümkün kılar.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Hints:
+[*] Tıbbi teknoloji, daha güçlü iyileşme eşyalarına ve başka ilaçlara erişmeni sağlar.
+
+Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Name:
+Tıbbi laboratuvar inşa et
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Description:
+Belirli bir alanda daha ileri özelleştirme için sağlam bir temel elde etmek adına bu noktada tüm Aşama 2 teknolojilerini tamamlamak iyi bir fikir olabilir.
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
+`[*] İlk teknolojileri (Aşama 1 ve 2) açması oldukça ucuzdur, o yüzden hepsini öğrenmek her zaman iyi bir fikirdir.
+[*] İleri teknolojilerin hepsinde (Aşama 3 ve üstü) sadece birkaçında ustalaşmak iyi bir fikirdir. Hepsini öğrenmeye çalışmak yerine hangilerinin senin için en önemli olduğunu düşün.`
+
+Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
+Teknolojilerde usta olmak - ikinci kısım
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
+Üssünde bir güç şebekesi inşa etmen verimliliği artırmak için önemli bir adımdır. Çalışmak için elektrik gerektiren birçok gelişmiş yapı vardır.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
+`[*] Elektrikli cihazlar sadece alan tutucu bölgenin [b]içinde[/b] çalışır. Alan tutucu bölgenin dışına herhangi bir elektrikli cihaz kurmak anlamsızdır.
+[*] Elektrik enerjisi [b]güç deposu[/b] binalarında, daha sonra gerektiğinde kullanılmak üzere depolanır. Üssün genel enerji kapasitesini yükseltmek iyi bir fikirdir.
+[*] Buhar, güneş ve motor gibi farklı türde [b]jeneratörler[/b] birlikte elektrik gücü üretmek için kullanılabilirler.
+[*] Eğer depondaki elektrik gücü [u]yeterli değilse[/u] üssün [b]karartma[/b] moduna girer ve gücü bizzat geri getirmen gerekir.
+[*] Güç deposuyla etkileşime girerken veya alan tutucunda [b]detaylı şebeke bilgisini[/b] görebilirsin.
+[*] Birden fazla bağlı alan tutucu bölgeleri [b]tek bir güç şebekesi[/b] rolü üstlenir.`
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
+Güç şebekesi kur
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
+Daha fazla zorluk çıkaran ama eşsiz kaynaklar sunan ulaşması daha zor çevreler de vardır.
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
+`[*] Çorak çevrede birçok çöl hayvanı bulunur.
+[*] Tuzlu arazilerde bolca tuz kaynağı bulunur.`
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
+Çevreleri keşfet - üçüncü kısım
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
+[*] [b]Volkanik çevre[/b] aşırı tehlikelidir ve ziyaret etmek için aşırı [b]ısı[/b]ya karşı koruma gerektirir.
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
+Çevreleri keşfet - dördüncü kısım
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
+Eski harabeler, nadir parçalar ve belirli kaynakları bulmak için en iyi yerlerdir. Arada sırada oraları keşfetmek her zaman iyi bir fikirdir, özellikle gerekli teçhizata sahipsen.
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
+`[*] Harabelerin üç türü vardır: yerleşim yeri (T1), sanayi (T2), askerî (T2) ve bilimsel (T3).
+[*] Harabelerin zorluk derecesi herkesin keşfedebileceği T1'le, CryoFall2daki en iyi teçhizat ve ilaçlara sahip olmayı gerektiren T3 arasında değişiklik gösterir.
+[*] Belirli nadir eşyaları elde etmenin tek yolu harabeleri keşfetmektir. Onları bulma ihtimali, harabelerin zorluk derecesine bağlıdır ve en değerli eşyalar sadece T3 harabelerinde bulunabilir.`
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
+Eski harabeleri keşfet
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
+Daha fazla avlanma vakti! Bu sefer daha tehlikeli hayvanlarla.
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Hints:
+[*] Dikkatli ol - bu hayvanlar saldırgandır ve onları avlarken en iyisi düzgün uzun menzilli silahlar kullanmaktır.
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Name:
+Usta avcı - üçüncü kısım
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Description:
+Aşırı avlanma zamanı! Bu sefer sadece hayvanlar bile değil!
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
+[*] Dikkatli ol - bu yaratıklar son derece saldırgan ve tehlikelidir. Bir şansın olması için güçlü menzilli silahlara ve düzgün bir zırha ihtiyacın olacak.
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
+Usta avcı - dördüncü kısım
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
+Usta avcı - beşinci kısım
+

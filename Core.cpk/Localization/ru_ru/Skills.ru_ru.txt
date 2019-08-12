@@ -26,7 +26,7 @@ Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 Фермерство
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
-Шанс получить больше урожая
+Шанс собрать больше
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
 Полученные знания о флоре этой планеты позволяют повысить скорость и результативность сбора ягод, грибов и плодов других диких растений.
@@ -69,9 +69,6 @@ Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Description:
 
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
 Оружие ближнего боя
-
-Scripts/Skills/Skills/Misc/SkillSearching@Flags.ChanceToFindRareItems:
-Шанс найти редкие предметы
 
 Scripts/Skills/Skills/Misc/SkillSearching@Description:
 Повышенное внимание к малоприметным деталям повышает ваши шансы найти редкие предметы.
@@ -132,4 +129,10 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Крафтинг
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
+Позволяет ремонтировать и настраивать различные предметы и оборудование. Относится к работам, выполняемым на столе мастера.
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
+Отладка
 

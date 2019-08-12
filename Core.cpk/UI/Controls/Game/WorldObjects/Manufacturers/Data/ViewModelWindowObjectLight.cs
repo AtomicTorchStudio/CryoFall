@@ -89,6 +89,8 @@
 
         public bool IsLightActive { get; set; }
 
+        public bool IsUsingFuel => this.FuelCapacity > 0;
+
         public bool LightModeIsAuto
         {
             get => this.selectedLightMode == ObjectLightMode.Auto;
@@ -120,6 +122,9 @@
         private void RefreshMode()
         {
             this.selectedLightMode = this.privateState.Mode;
+            this.NotifyPropertyChanged(nameof(this.LightModeIsOn));
+            this.NotifyPropertyChanged(nameof(this.LightModeIsAuto));
+            this.NotifyPropertyChanged(nameof(this.LightModeIsOff));
         }
 
         private void SetLightMode(ObjectLightMode mode)
@@ -130,6 +135,7 @@
             }
 
             if (mode == ObjectLightMode.On
+                && this.IsUsingFuel
                 && this.FuelAmount <= 0)
             {
                 NotificationSystem.ClientShowNotification(
@@ -141,7 +147,7 @@
             }
 
             this.selectedLightMode = mode;
-            this.protoObjectLight.ClientSetServerMode(this.worldObject, mode);
+            this.protoObjectLight.ClientSetLightMode(this.worldObject, mode);
 
             this.NotifyPropertyChanged(nameof(this.LightModeIsOn));
             this.NotifyPropertyChanged(nameof(this.LightModeIsOff));

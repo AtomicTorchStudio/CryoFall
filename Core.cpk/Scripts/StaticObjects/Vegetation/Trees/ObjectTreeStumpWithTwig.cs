@@ -50,9 +50,9 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeCircle(radius: 0.2, center: (0.5, 0.3), group: CollisionGroups.Default)
-                .AddShapeCircle(radius: 0.2, center: (0.5, 0.3), group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.2, center: (0.5, 0.3), group: CollisionGroups.HitboxRanged);
+                .AddShapeCircle(radius: 0.2, center: (0.5, 0.3))
+                .AddShapeCircle(radius: 0.2, center: (0.5, 0.3), group: CollisionGroups.HitboxMelee);
+            // no ranged hitbox
         }
     }
 }

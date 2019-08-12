@@ -14,13 +14,13 @@
 
         public override string Name => "Bedroll";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
 
         public override double ObstacleBlockDamageCoef => 0.3;
 
         public override double RespawnCooldownDurationSeconds => 4 * 60;
 
-        public override float StructurePointsMax => 500;
+        public override float StructurePointsMax => 200;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -56,9 +56,11 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            // no physics - can walk over
-
-            data.PhysicsBody.AddShapeRectangle((1, 2), group: CollisionGroups.ClickArea);
+            // no static collider - can walk over
+            // but has melee weapon collider - could be destroyed with a melee weapon
+            data.PhysicsBody
+                .AddShapeRectangle(size: (0.3, 1),   offset: (0.35, 0.5), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.8, 1.7), offset: (0.1, 0.15), group: CollisionGroups.ClickArea);
         }
     }
 }

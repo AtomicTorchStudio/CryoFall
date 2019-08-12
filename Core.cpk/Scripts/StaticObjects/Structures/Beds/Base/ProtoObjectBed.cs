@@ -88,7 +88,7 @@
             var (isSuccess, name) = await this.CallServer(_ => _.ServerRemote_GetBedOwnerName(bedObject));
             if (!isSuccess)
             {
-                this.ClientOnCannotInteract(bedObject, CoreStrings.Notification_TooFar, isOutOfRange: true);
+                ClientOnCannotInteract(bedObject, CoreStrings.Notification_TooFar, isOutOfRange: true);
                 return;
             }
 

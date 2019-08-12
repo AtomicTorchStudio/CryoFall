@@ -14,7 +14,5 @@
         public override string Name => "Roasted meat";
 
         public override ushort OrganicValue => 10;
-
-        public override float StaminaRestore => 100;
     }
 }

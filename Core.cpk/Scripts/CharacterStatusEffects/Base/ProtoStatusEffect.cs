@@ -88,18 +88,10 @@
             }
         }
 
-        public ITextureResource ClientGetIcon(ILogicObject statusEffect)
-        {
-            return this.ClientGetIcon(new StatusEffectData(statusEffect, deltaTime: 0));
-        }
-
         public void ServerAddIntensity(ILogicObject statusEffect, double intensityToAdd)
         {
             var effectData = new StatusEffectData(statusEffect, deltaTime: 0);
-
-            this.ServerAddIntensity(
-                effectData,
-                intensityToAdd);
+            this.ServerAddIntensity(effectData, intensityToAdd);
 
             if (effectData.Intensity <= 0)
             {
@@ -110,6 +102,8 @@
 
             Logger.Info(
                 $"Status effect intensity added: {statusEffect}: intensity {effectData.StatusEffectPublicState.Intensity:F3} (added {intensityToAdd:F3}) to {effectData.Character}");
+
+            this.ServerRefreshPublicStatusEffectEntry(effectData);
         }
 
         public sealed override void ServerOnDestroy(ILogicObject gameObject)
@@ -117,12 +111,21 @@
             var statusEffectData = new StatusEffectData(gameObject, deltaTime: 0);
             this.ServerDestroy(statusEffectData);
 
+            var character = statusEffectData.Character;
+            if (character == null
+                || character.IsDestroyed)
+            {
+                return;
+            }
+
             if (this.HasStatEffects
-                && statusEffectData.Character != null
-                && !statusEffectData.Character.IsDestroyed)
+                && !character.IsDestroyed)
             {
                 statusEffectData.CharacterPrivateState.SetFinalStatsCacheIsDirty();
             }
+
+            // try remove the public status effect entry
+            this.ServerRefreshPublicStatusEffectEntry(statusEffectData);
         }
 
         public void ServerSetup(ILogicObject statusEffect, ICharacter character)
@@ -140,11 +143,6 @@
         protected virtual void ClientDeinitialize(StatusEffectData data)
         {
             Logger.Info($"Status effect destroyed: {data.StatusEffect} for {data.Character}");
-        }
-
-        protected virtual ITextureResource ClientGetIcon(StatusEffectData data)
-        {
-            return this.Icon;
         }
 
         protected sealed override void ClientInitialize(ClientInitializeData data)
@@ -306,10 +304,48 @@
             {
                 this.ServerOnAutoDecreaseIntensity(effectData);
             }
+
+            this.ServerRefreshPublicStatusEffectEntry(effectData);
         }
 
         protected virtual void ServerUpdate(StatusEffectData data)
         {
+        }
+
+        private void ServerRefreshPublicStatusEffectEntry(in StatusEffectData effectData)
+        {
+            if (this.VisibilityIntensityThreshold >= 1)
+            {
+                // never show this effect
+                return;
+            }
+
+            var effectState = effectData.StatusEffectPublicState;
+            if (effectState.Intensity >= this.VisibilityIntensityThreshold
+                && !effectState.GameObject.IsDestroyed)
+            {
+                if (effectState.ServerIsAddedToCharacterPublicState)
+                {
+                    return;
+                }
+
+                // add public status effect
+                var publicStatusEffects = effectData.Character.GetPublicState<ICharacterPublicState>()
+                                                    .CurrentPublicStatusEffects;
+                publicStatusEffects.Add(this);
+                effectState.ServerIsAddedToCharacterPublicState = true;
+                return;
+            }
+
+            // intensity is 0
+            if (effectState.ServerIsAddedToCharacterPublicState)
+            {
+                // remove public status effect
+                var publicStatusEffects = effectData.Character.GetPublicState<ICharacterPublicState>()
+                                                    .CurrentPublicStatusEffects;
+                publicStatusEffects.Remove(this);
+                effectState.ServerIsAddedToCharacterPublicState = false;
+            }
         }
 
         public struct StatusEffectData
@@ -344,12 +380,10 @@
                 => this.CharacterPublicState.CurrentStats;
 
             public BaseCharacterPrivateState CharacterPrivateState
-                => this.characterPrivateState
-                   ?? (this.characterPrivateState = this.Character.GetPrivateState<BaseCharacterPrivateState>());
+                => this.characterPrivateState ??= this.Character.GetPrivateState<BaseCharacterPrivateState>();
 
             public ICharacterPublicState CharacterPublicState
-                => this.characterPublicState
-                   ?? (this.characterPublicState = this.Character.GetPublicState<ICharacterPublicState>());
+                => this.characterPublicState ??= this.Character.GetPublicState<ICharacterPublicState>();
 
             public double Intensity
             {
@@ -361,15 +395,13 @@
             /// Server private state of this game object.
             /// </summary>
             public TPrivateState StatusEffectPrivateState
-                => this.statusEffectPrivateState
-                   ?? (this.statusEffectPrivateState = GetPrivateState(this.StatusEffect));
+                => this.statusEffectPrivateState ??= GetPrivateState(this.StatusEffect);
 
             /// <summary>
             /// Server public state of this game object.
             /// </summary>
             public TPublicState StatusEffectPublicState
-                => this.publicState
-                   ?? (this.publicState = GetPublicState(this.StatusEffect));
+                => this.publicState ??= GetPublicState(this.StatusEffect);
         }
     }
 

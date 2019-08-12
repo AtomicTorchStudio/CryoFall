@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -27,7 +26,7 @@
             var tilePosition = position.ToVector2Ushort();
             CurrentExplosions.Add(tilePosition);
 
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 delaySeconds,
                 () =>
                 {
@@ -54,7 +53,7 @@
 
                     groundSceneObject.Destroy(duration);
 
-                    ClientComponentTimersManager.AddAction(
+                    ClientTimersSystem.AddAction(
                         duration,
                         () => CurrentExplosions.Remove(tilePosition));
                 });

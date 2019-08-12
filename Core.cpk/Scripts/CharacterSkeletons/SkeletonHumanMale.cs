@@ -6,10 +6,10 @@
     public class SkeletonHumanMale : SkeletonHuman
     {
         public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("Human/CharacterMaleBack");
+            = new SkeletonResource("Human/MaleBack");
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Human/CharacterMaleFront");
+            = new SkeletonResource("Human/MaleFront");
 
         public override void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier)
         {

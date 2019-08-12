@@ -1,10 +1,7 @@
-﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
+﻿using AtomicTorch.CBND.CoreMod.Stats;
+
+namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
 {
-    /// <summary>
-    /// Note: This status effect has no logic by itself. Instead the effect that adds
-    /// heat influence does the checking to see if the amount applied should be reduced
-    /// based on this (based on whether this effect is present or not).
-    /// </summary>
     public class StatusEffectProtectionHeat : ProtoStatusEffect
     {
         public override string Description =>
@@ -16,5 +13,12 @@
         public override StatusEffectKind Kind => StatusEffectKind.Neutral;
 
         public override string Name => "Heat protection";
+
+        protected override void PrepareEffects(Effects effects)
+        {
+            effects.AddPercent(this, StatName.HeatEffectMultiplier, -50);
+
+            effects.AddPercent(this, StatName.HeatIncreaseRateMultiplier, -25);
+        }
     }
 }

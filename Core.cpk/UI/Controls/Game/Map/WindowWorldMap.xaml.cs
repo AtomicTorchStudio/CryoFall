@@ -5,13 +5,13 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.ConsoleCommands.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -36,9 +36,11 @@
         {
             var controller = this.controlWorldMap.WorldMapController;
 
+            var landClaimGroupVisualizer = new ClientWorldMapLandClaimsGroupVisualizer(controller);
             this.visualisers = new IWorldMapVisualizer[]
             {
-                new ClientWorldMapLandClaimVisualizer(controller),
+                landClaimGroupVisualizer,
+                new ClientWorldMapLandClaimVisualizer(controller, landClaimGroupVisualizer),
                 new ClientWorldMapBedVisualizer(controller),
                 new ClientWorldMapDroppedItemsVisualizer(controller),
                 new ClientWorldMapTradingTerminalsVisualizer(controller),
@@ -159,7 +161,7 @@
             {
                 contextMenu.Closed -= ContextMenuOnClosed;
                 // remove context menu with the delay (to avoid teleport-on-click when context menu is closed)
-                ClientComponentTimersManager.AddAction(
+                ClientTimersSystem.AddAction(
                     delaySeconds: 0.1,
                     () =>
                     {

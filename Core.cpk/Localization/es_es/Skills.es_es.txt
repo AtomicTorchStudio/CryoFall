@@ -70,9 +70,6 @@ El uso continuo de armas cuerpo a cuerpo te otorga un gran dominio de este tipo 
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
 Armas cuerpo a cuerpo
 
-Scripts/Skills/Skills/Misc/SkillSearching@Flags.ChanceToFindRareItems:
-Probabilidad de encontrar objetos raros
-
 Scripts/Skills/Skills/Misc/SkillSearching@Description:
 Prestar atención a los pequeños detalles aumentará la probabilidad de encontrar objetos adicionales.
 
@@ -132,4 +129,10 @@ Fabricar objetos cada vez más complejos y entender su estructura es una gran fo
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 Fabricación
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
+Te permite reparar y mantener diferentes objetos y equipo. Se aplica a los trabajos realizados en una mesa de manitas.
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
+Mantenimiento
 

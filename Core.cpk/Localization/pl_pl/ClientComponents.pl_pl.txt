@@ -1,0 +1,110 @@
+﻿Scripts/ClientComponents/Input/GameButton@CancelOrClose:
+Anuluj lub zamknij
+
+Scripts/ClientComponents/Input/GameButton@MoveUp:
+Ruch w górę
+
+Scripts/ClientComponents/Input/GameButton@MoveLeft:
+Ruch w lewo
+
+Scripts/ClientComponents/Input/GameButton@MoveDown:
+Ruch w dół
+
+Scripts/ClientComponents/Input/GameButton@MoveRight:
+Ruch w prawo
+
+Scripts/ClientComponents/Input/GameButton@RunTemporary:
+Bieg (przytrzymaj)
+
+Scripts/ClientComponents/Input/GameButton@RunToggle:
+Bieg (przełącz)
+
+Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
+Działanie – użyj przedmiotu
+
+Scripts/ClientComponents/Input/GameButton@ActionInteract:
+Działanie – interakcja
+
+Scripts/ClientComponents/Input/GameButton@ItemReload:
+Przeładowanie
+
+Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
+Przełączanie trybu przedmiotu/amunicji
+
+Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
+Włącznik czołówki
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot1:
+Gniazdo 1
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot2:
+Gniazdo 2
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot3:
+Gniazdo 3
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot4:
+Gniazdo 4
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot5:
+Gniazdo 5
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot6:
+Gniazdo 6
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot7:
+Gniazdo 7
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
+Gniazdo 8
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
+Gniazdo 9
+
+Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
+Gniazdo 10
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
+Powiększenie widoku
+
+Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
+Pomniejszenie widoku
+
+Scripts/ClientComponents/Input/GameButton@OpenChat:
+Rozmowa
+
+Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
+Konsola programisty
+
+Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
+Narzędzia do debugowania
+
+Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
+Przełączanie trybu pełnoekranowego
+
+Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
+Zrzut ekranu
+
+Scripts/ClientComponents/Input/GameButton@ContainerSort:
+Sortuj zasobnik
+
+Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
+Weź wszystkie przedmioty
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
+Połącz przedmioty – dół
+
+Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
+Połącz przedmioty – góra
+
+Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
+`Wyświetl posiadaną działkę
+[br]i paski zdrowia`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
+`Naprawa i budowanie są ograniczone.
+[br]Zakończenie blokady najazdów: {0}.`
+
+Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
+Baza objęta blokadą najazdów
+

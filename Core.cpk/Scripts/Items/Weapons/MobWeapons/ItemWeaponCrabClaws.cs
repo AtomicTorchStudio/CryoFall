@@ -18,7 +18,7 @@
     {
         public override string Description => null;
 
-        public override ushort DurabilityMax => 0;
+        public override uint DurabilityMax => 0;
 
         public override bool CanDamageStructures => false;
 

@@ -1,8 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs.Client;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
     using AtomicTorch.CBND.CoreMod.Objects;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -12,6 +12,8 @@
 
     public class StatusEffectHeat : ProtoRadiantStatusEffect
     {
+        public const double DamagePerSecondByIntensity = 10;
+
         public override string Description =>
             "You are exposed to a high level of heat from a nearby heat source. Immediately leave the area to prevent further damage.";
 
@@ -41,24 +43,20 @@
             ClientComponentStatusEffectHeatManager.TargetIntensity = data.Intensity;
         }
 
-        protected override void ServerUpdate(StatusEffectData data)
+        protected override void PrepareEffects(Effects effects)
         {
-            base.ServerUpdate(data);
-
-            var damage = 10 * Math.Pow(data.Intensity, 1.5) * data.DeltaTime;
-
-            if (data.Character.SharedHasStatusEffect<StatusEffectProtectionHeat>())
-            {
-                // has an active protection against heat damage
-                damage *= 0.333;
-            }
-
-            // reduce character health
-            var stats = data.CharacterCurrentStats;
-            stats.ServerReduceHealth(damage, this);
+            // add info to tooltip that this effect deals damage
+            effects.AddValue(this, StatName.VanityContinuousDamage, 1);
         }
 
-        protected override double SharedCalculateObjectEnvironmentalIntensity(
+        protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
+        {
+            intensityToAdd *= data.Character.SharedGetFinalStatMultiplier(StatName.HeatIncreaseRateMultiplier);
+
+            base.ServerAddIntensity(data, intensityToAdd);
+        }
+
+        protected override double ServerCalculateObjectEnvironmentalIntensity(
             ICharacter character,
             IWorldObject worldObject)
         {
@@ -89,6 +87,26 @@
             var intensity = 1 - MathHelper.Clamp(distanceCoef, 0, 1);
 
             return intensity * MathHelper.Clamp(protoHeatSource.HeatIntensity, 0, 1);
+        }
+
+        protected override void ServerUpdate(StatusEffectData data)
+        {
+            base.ServerUpdate(data);
+
+            var damage = DamagePerSecondByIntensity
+                         * Math.Pow(data.Intensity, 1.5)
+                         * data.DeltaTime;
+
+            // modify damage based on effect multiplier
+            damage *= data.Character.SharedGetFinalStatMultiplier(StatName.HeatEffectMultiplier);
+
+            // modify damage based on armor
+            // divided by 2 because otherwise many armor pieces would give practically complete immunity to heat
+            // so 100% armor would give 50% reduction in damage
+            var defenseHeat = data.Character.SharedGetFinalStatValue(StatName.DefenseHeat);
+            damage *= Math.Max(0, 1 - defenseHeat / 2.0);
+
+            data.CharacterCurrentStats.ServerReduceHealth(damage, this);
         }
     }
 }

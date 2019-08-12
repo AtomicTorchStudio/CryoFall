@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -41,6 +42,8 @@
 
         public override ITextureResource Icon { get; }
 
+        public ReadOnlySoundPreset<ObjectSound> ObjectInteractionSoundsPreset { get; private set; }
+
         public virtual void ClientSetupSkeleton(
             IItem item,
             ICharacter character,
@@ -72,6 +75,14 @@
         {
             ConstructionSystem.ClientTryStartAction();
         }
+
+        protected sealed override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
+        {
+            this.ObjectInteractionSoundsPreset = this.PrepareSoundPresetToolbox();
+            return ItemsSoundPresets.ItemGeneric;
+        }
+
+        protected abstract ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetToolbox();
     }
 
     /// <summary>

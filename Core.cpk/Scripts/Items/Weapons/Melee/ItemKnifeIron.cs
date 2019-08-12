@@ -10,7 +10,7 @@
     {
         public override string Description => "Military knife. Affectionately known as pig sticker.";
 
-        public override ushort DurabilityMax => 120;
+        public override uint DurabilityMax => 120;
 
         public override string Name => "Iron knife";
 

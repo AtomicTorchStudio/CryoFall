@@ -11,11 +11,11 @@
             this.ProtoItem = protoItem;
         }
 
+        public string Description => this.ProtoItem?.Description;
+
         public Brush Icon => Api.Client.UI.GetTextureBrush(this.ProtoItem?.Icon);
 
         public string Name => this.ProtoItem?.Name;
-        
-        public string Description => this.ProtoItem?.Description;
 
         public IProtoItem ProtoItem { get; }
     }

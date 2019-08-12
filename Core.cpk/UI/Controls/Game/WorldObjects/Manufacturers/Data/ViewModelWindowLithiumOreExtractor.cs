@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data
 {
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data;
@@ -10,15 +11,13 @@
         public ViewModelWindowLithiumOreExtractor(
             IStaticWorldObject worldObjectManufacturer,
             IStaticWorldObject worldObjectDeposit,
-            ManufacturingState manufacturingState,
+            ObjectManufacturerPrivateState privateState,
             ManufacturingConfig manufacturingConfig,
-            FuelBurningState fuelBurningState,
             LiquidContainerState liquidContainerState,
             LiquidContainerConfig liquidContainerConfig)
             : base(worldObjectManufacturer,
-                   manufacturingState,
-                   manufacturingConfig,
-                   fuelBurningState)
+                   privateState,
+                   manufacturingConfig)
         {
             this.ViewModelLiquidContainerState = new ViewModelLiquidContainerState(liquidContainerState,
                                                                                    liquidContainerConfig);

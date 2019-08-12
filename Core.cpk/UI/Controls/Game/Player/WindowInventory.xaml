@@ -72,16 +72,8 @@
                     <Rectangle Margin="25,25,25,0">
                         <Rectangle.Fill>
                             <RadialGradientBrush>
-                                <GradientStop Color="#00000000" Offset="1" />
-                                <GradientStop Color="#FF000000" Offset="0.4" />
-                            </RadialGradientBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                    <Rectangle Margin="25,25,25,0">
-                        <Rectangle.Fill>
-                            <RadialGradientBrush>
-                                <GradientStop Color="#0000FFFF" Offset="1" />
-                                <GradientStop Color="#440088FF" Offset="0.4" />
+                                <GradientStop Color="#000088BB" Offset="1" />
+                                <GradientStop Color="#440077DD" Offset="0.4" />
                             </RadialGradientBrush>
                         </Rectangle.Fill>
                     </Rectangle>

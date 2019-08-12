@@ -98,21 +98,26 @@
         public bool SharedCanUnlock(ICharacter character, out string error)
         {
             var technologies = character.SharedGetTechnologies();
+            if (!technologies.SharedIsGroupUnlocked(this.Group))
+            {
+                error = TechGroup.ErrorTechGroupIsLocked;
+                return false;
+            }
+
             if (technologies.SharedIsNodeUnlocked(this))
             {
                 error = TechGroup.ErrorTechIsAlreadyUnlocked;
                 return false;
             }
 
-            if (this.RequiredNode != null)
+            if (this.RequiredNode != null
+                && this.RequiredNode.IsAvailable)
             {
                 if (!technologies.SharedIsNodeUnlocked(this.RequiredNode))
                 {
                     error = string.Format(ErrorRequiresUnlockedTechGroup, this.RequiredNode.Name);
                     return false;
                 }
-
-                this.RequiredNode.PrepareRegisterDependentNode(this);
             }
 
             if (technologies.LearningPoints
@@ -152,6 +157,8 @@
 
             this.RequiredNode = requiredNode;
             this.ValidateRequiredNode();
+
+            this.RequiredNode?.PrepareRegisterDependentNode(this);
 
             if (effects != null)
                 //&& effects.Count > 0)

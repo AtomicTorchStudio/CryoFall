@@ -7,6 +7,12 @@
         public override string Description =>
             "Gaining more experience with all conventional firearms makes you accustomed to all of their nuances and enables you to use any of them more effectively.";
 
+        public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.2;
+
+        public override double ExperienceAddedPerDamageDoneMultiplier => 0.5;
+
+        public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
+
         public override string Name => "Conventional weapons";
 
         public override StatName StatNameDamageBonusMultiplier

@@ -7,7 +7,10 @@
     {
         public readonly BaseEditorToolGeneratorAlgorithm Generator;
 
-        public EditorToolGeneratorItem(BaseEditorToolGeneratorAlgorithm generator) : base(generator.Name, generator.Id)
+        public EditorToolGeneratorItem(BaseEditorToolGeneratorAlgorithm generator) : base(
+            generator.Name,
+            generator.Id,
+            displayShortName: false)
         {
             this.Generator = generator;
         }

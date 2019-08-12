@@ -96,7 +96,7 @@
                                                            Text="{Binding Title}"
                                                            Style="{StaticResource TextBlockItemTitleStyle}"
                                                            Margin="6,0,0,0"
-                                                           MaxWidth="110" />
+                                                           MaxWidth="108" />
 
                                                 <!-- Progress -->
                                                 <core:ValueBarControl

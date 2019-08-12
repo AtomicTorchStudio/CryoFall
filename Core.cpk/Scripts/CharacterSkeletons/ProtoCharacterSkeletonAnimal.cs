@@ -16,10 +16,16 @@
                     var preset = new SoundPreset<GroundSoundMaterial>();
                     foreach (var enumValue in EnumExtensions.GetValues<GroundSoundMaterial>())
                     {
-                        // use Solid sound for all ground materials except Vegetation
-                        var soundFileName = enumValue == GroundSoundMaterial.Vegetation
-                                                ? GroundSoundMaterial.Vegetation
-                                                : GroundSoundMaterial.Solid;
+                        var soundFileName = GroundSoundMaterial.Solid;
+
+                        // use Solid sound for all ground materials except Vegetation and Mud
+                        switch (enumValue)
+                        {
+                            case GroundSoundMaterial.Vegetation:
+                            case GroundSoundMaterial.Mud:
+                                soundFileName = enumValue;
+                                break;
+                        }
 
                         preset.Add(enumValue, localSoundsFolderPath + soundFileName);
                     }

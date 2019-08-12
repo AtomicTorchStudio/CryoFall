@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
     public class ShutdownNotificationSystem : ProtoSystem<ShutdownNotificationSystem>
@@ -18,6 +19,12 @@
 
         public const string NotificationShutdown_Title = "Shutdown";
 
+        private HUDNotificationControl notification;
+
+        private string shutdownReasonMessage;
+
+        private double shutdownServerTime;
+
         public override string Name => "Shutdown notification system";
 
         protected override void PrepareSystem()
@@ -30,22 +37,41 @@
             }
         }
 
-        private void ClientRemote_ShutdownNotification(string shutdownReasonMessage, double shutdownServerTime)
+        private void ClientRemote_ShutdownNotification(
+            string shutdownReasonMessage,
+            double shutdownServerTime)
         {
-            var timeRemains = shutdownServerTime - Client.CurrentGame.ServerFrameTimeRounded;
-            var secondsRemains = (uint)Math.Round(timeRemains, MidpointRounding.AwayFromZero);
+            this.notification?.Hide(quick: true); // hide already existing notification
+
+            this.shutdownReasonMessage = shutdownReasonMessage;
+            this.shutdownServerTime = shutdownServerTime;
 
             Logger.Important(string.Format(NotificationShutdown_MessageFormat,
-                                           ClientTimeFormatHelper.FormatTimeDuration(secondsRemains),
+                                           ClientTimeFormatHelper.FormatTimeDuration(this.GetSecondsRemains()),
                                            shutdownReasonMessage));
 
-            NotificationSystem.ClientShowNotification(
+            this.notification = NotificationSystem.ClientShowNotification(
                 title: NotificationShutdown_Title,
-                message: string.Format(NotificationShutdown_MessageFormat,
-                                       ClientTimeFormatHelper.FormatTimeDuration(secondsRemains),
-                                       shutdownReasonMessage),
+                message: this.GetShutdownMessage(),
                 color: NotificationColor.Bad,
                 autoHide: false);
+
+            this.UpdateMessage();
+        }
+
+        private uint GetSecondsRemains()
+        {
+            var timeRemains = Math.Max(0, this.shutdownServerTime - Client.CurrentGame.ServerFrameTimeRounded);
+            var secondsRemains = (uint)Math.Round(timeRemains, MidpointRounding.AwayFromZero);
+            return secondsRemains;
+        }
+
+        private string GetShutdownMessage()
+        {
+            var secondsRemains = this.GetSecondsRemains();
+            return string.Format(NotificationShutdown_MessageFormat,
+                                 ClientTimeFormatHelper.FormatTimeDuration(secondsRemains),
+                                 this.shutdownReasonMessage);
         }
 
         private void ShutdownNotificationHandler(string shutdownReasonMessage, double shutdownServerTime)
@@ -53,6 +79,23 @@
             this.CallClient(
                 Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true),
                 _ => _.ClientRemote_ShutdownNotification(shutdownReasonMessage, shutdownServerTime));
+        }
+
+        private void UpdateMessage()
+        {
+            if (this.notification.IsHiding)
+            {
+                return;
+            }
+
+            var secondsRemains = this.GetSecondsRemains();
+            if (secondsRemains <= 0)
+            {
+                return;
+            }
+
+            this.notification.SetMessage(this.GetShutdownMessage());
+            ClientTimersSystem.AddAction(1, this.UpdateMessage);
         }
     }
 }

@@ -102,6 +102,9 @@
         [RelatedToSkill(typeof(SkillFarming))]
         FarmingPlantGrowSpeed,
 
+        [Description("Searching speed")]
+        SearchingSpeed,
+
         [Description("Damage bonus")]
         [RelatedToSkill(typeof(SkillWeaponsConventional))]
         WeaponConventionalDamageBonusMultiplier,
@@ -182,9 +185,6 @@
         //[RelatedToSkill(typeof(SkillWeaponsExotic))]
         WeaponExoticReloadingSpeedMultiplier,
 
-        [Description("LP retained after death")]
-        LearningPointsRetainedAfterDeath,
-
         [Description("Crafting speed")]
         CraftingSpeed,
 
@@ -213,15 +213,59 @@
         [Description("Ability to eat spoiled food")]
         PerkEatSpoiledFood,
 
-        [Description("Searching speed")]
-        SearchingSpeed,
-
-
-
         [Description("Radiation poisoning damage")]
-        RadiationPoisoningDamageMultiplier,
+        RadiationPoisoningEffectMultiplier,
 
         [Description("Radiation accumulation rate")]
-        RadiationPoisoningAccumulationMultiplier
+        RadiationPoisoningIncreaseRateMultiplier,
+
+        [Description("Toxins accumulation rate")]
+        ToxinsIncreaseRateMultiplier,
+
+        [Description("Bleeding")]
+        BleedingIncreaseRateMultiplier,
+
+        [Description("Heat increase rate")]
+        HeatIncreaseRateMultiplier,
+
+        [Description("Heat damage")]
+        HeatEffectMultiplier,
+
+        [Description("Pain")]
+        PainIncreaseRateMultiplier,
+
+        [Description("Psi damage")]
+        PsiEffectMultiplier,
+
+        [Description("Dazed")]
+        DazedIncreaseRateMultiplier,
+
+        [Description("Maximum number of land claims")]
+        LandClaimsMaxNumber,
+
+        /// <summary>
+        /// This is a vanity stat. It is not used in any calculations and simply exists to be displayed in tooltip for status
+        /// effects that damage the player.
+        /// </summary>
+        [Description("Continuous damage")]
+        [StatNameHiddenValue]
+        VanityContinuousDamage,
+
+        /// <summary>
+        /// This is a vanity stat. It is not used in any calculations and simply exists to be displayed in tooltip for status
+        /// effects that damage the player.
+        /// </summary>
+        [Description("Can't eat or drink")]
+        [StatNameHiddenValue]
+        VanityCantEatOrDrink,
+
+        [Description("Learning points gain")]
+        LearningsPointsGainMultiplier,
+
+        [Description("Tinker table effectiveness")]
+        TinkerTableBonus,
+
+        [Description("Crafting queue slots")]
+        CraftingQueueMaxSlotsCount
     }
 }

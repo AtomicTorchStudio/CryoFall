@@ -4,6 +4,9 @@ Erfordert {0} mit {1}% der erforschten Technologien.
 Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
 Nicht genügend Lernpunkte
 
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechGroupIsLocked:
+Dieser Technologiezweig ist nicht freigeschaltet
+
 Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 Diese Technologie wurde bereits freigeschaltet
 
@@ -27,6 +30,24 @@ Enthält eine Reihe von Rezepten, die die Herstellung besserer Lebensmittel erm�
 
 Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
 Kochen
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
+Pläne für einfache Kleidung und Rüstung.
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
+Verteidigung
+
+Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
+Knochenrüstung
+
+Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
+Geflochtene Rüstung
+
+Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
+Stoffrüstung
+
+Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
+Holzrüstung
 
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
 Aufbereitung von Pflanzensamen, herkömmlichem Dünger und mehr.
@@ -52,23 +73,11 @@ Eisenwerkzeuge
 Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
 Verhüttung
 
-Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Description:
-Schematische Darstellungen grundlegender Waffen, Kleidung und Rüstung.
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
+Pläne für einfache Waffen.
 
-Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Name:
-Angriff & Verteidigung
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBoneArmor@Name:
-Knochenrüstung
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBraidedArmor@Name:
-Geflochtene Rüstung
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeClothArmor@Name:
-Stoffrüstung
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeWoodArmor@Name:
-Holzrüstung
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
+Angriff
 
 Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
 Verarbeitung diverser chemischer Verbindungen und Reaktionen.
@@ -114,6 +123,12 @@ Gesteppte Rüstung
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
 Gesteppte Kopfbedeckungen
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
+Einfache elektrische Infrastruktur.
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
+Elektrizität
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
 Komplexe Anbaumethoden, die das Arbeiten mit vielfältigen Kulturpflanzen und verbesserten Düngemitteln ermöglichen.
@@ -172,6 +187,12 @@ Konstruktion 3
 Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
 Ziegelbauten
 
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
+Noch komplexere Kochrezepte für absolute Feinschmecker.
+
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
+Kochen 3
+
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 Erweiterte Schutztechnologien.
 
@@ -190,6 +211,12 @@ Militärrüstung
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
 Militärische Kopfbedeckungen
 
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
+Fortgeschrittene elektrische Infrastruktur.
+
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
+Elektrizität 2
+
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
 Fortschrittliche Landwirtschaftstechniken und eine noch größere Saatvielfalt.
 
@@ -201,9 +228,6 @@ Fortschrittliche Industrietechnologien, die eine Vielzahl von Industrieprozessen
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
 Industrie 3
-
-Scripts/Technologies/Tier3/Industry3/TechNodeGoldSmelting@Name:
-Goldverhüttung
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
 Ermöglicht die Nutzung einer Vielzahl von fortschrittlichen medizinischen Produkten.
@@ -223,20 +247,17 @@ Das Brauen von alkoholischen Getränken und ähnlichen Dingen.
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 Entspannung
 
-Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoAged@Name:
-Tabakreifung
-
-Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoProcessing@Name:
-Tabakverarbeitung
-
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 Notwendige Technologien zur Ressourcenausbeutung fremder Welten.
 
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
 Xenogeologie
 
-Scripts/Technologies/Tier3/XenoGeology/TechNodeIngotLithium@Name:
-Lithiumveredelung
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
+Die Herstellung sehr lange haltbarer Nahrungskonserven.
+
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
+Konserven
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
 Fortgeschrittene chemische Prozesse und komplexe Verbindungen.
@@ -245,7 +266,7 @@ Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
 Chemie 3
 
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
-Hi-Tech-Konstruktionen.
+High-Tech-Konstruktionen.
 
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
 Konstruktion 4
@@ -263,7 +284,7 @@ Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
 Kybernetik
 
 Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
-Hi-Tech-Schutztechnologien.
+High-Tech-Schutztechnologien.
 
 Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Name:
 Verteidigung 4
@@ -274,6 +295,12 @@ Sturmrüstung
 Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
 Sturmkopfbedeckungen
 
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
+Hochentwickelte elektrische Infrastruktur.
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
+Elektrizität 3
+
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
 Energiewaffen sind eine technologische Weiterentwicklung konventioneller Feuerwaffen.
 
@@ -281,7 +308,7 @@ Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
 Energiewaffen
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
-Industrielle Hi-Tech-Technologien, die den Zugang zu hochkomplexen technischen Prozessen ermöglichen.
+Industrielle High-Tech-Technologien, die den Zugang zu hochkomplexen technischen Prozessen ermöglichen.
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
 Industrie 4
@@ -299,7 +326,7 @@ Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Name:
 Medizin 3
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
-Offensive Hi-Tech-Technologien, die das Maximalpotenzial konventioneller Feuerwaffen ausschöpfen.
+Offensive High-Tech-Technologien, die das Maximalpotenzial konventioneller Feuerwaffen ausschöpfen.
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Angriff 4

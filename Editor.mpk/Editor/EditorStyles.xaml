@@ -56,6 +56,16 @@
                                             Margin="1" />
                                 </Border>
 
+                                <TextBlock Text="{Binding ShortName}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Bottom"
+                                           TextAlignment="Center"
+                                           FontSize="10"
+                                           LineHeight="10"
+                                           LineStackingStrategy="BlockLineHeight"
+                                           FontFamily="{StaticResource CondensedFontFamily}"
+                                           Margin="0,0,0,2" />
+
                                 <Border x:Name="BorderSelected" BorderBrush="#CCFFFF66" BorderThickness="2"
                                         CornerRadius="3" />
                             </Grid>

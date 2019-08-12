@@ -1,0 +1,48 @@
+﻿Scripts/Tiles/TileBarren@Name:
+Jałowa gleba
+
+Scripts/Tiles/TileBeachBoreal@Name:
+Plaża (tajga)
+
+Scripts/Tiles/TileBeachTemperate@Name:
+Plaża (umiarkowany)
+
+Scripts/Tiles/TileClay@Name:
+Gliniane wyrobisko
+
+Scripts/Tiles/TileForestBoreal@Name:
+Las (tajga)
+
+Scripts/Tiles/TileForestTemperate@Name:
+Las (umiarkowany)
+
+Scripts/Tiles/TileForestTropical@Name:
+Las (tropikalny)
+
+Scripts/Tiles/TileLakeShore@Name:
+Wybrzeże jeziora
+
+Scripts/Tiles/TileMeadows@Name:
+Łąki
+
+Scripts/Tiles/TileRocky@Name:
+Skały
+
+Scripts/Tiles/TileRuins@Name:
+Ruiny
+
+Scripts/Tiles/TileSaltFlats@Name:
+Słone równiny
+
+Scripts/Tiles/TileSwamp@Name:
+Bagno
+
+Scripts/Tiles/TileVolcanic@Name:
+Teren wulkaniczny
+
+Scripts/Tiles/TileWaterLake@Name:
+Woda (jezioro)
+
+Scripts/Tiles/TileWaterSea@Name:
+Woda (morze)
+

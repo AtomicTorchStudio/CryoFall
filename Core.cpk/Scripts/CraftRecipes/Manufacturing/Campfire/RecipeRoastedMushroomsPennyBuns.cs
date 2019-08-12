@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CraftRecipes
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems;
@@ -9,8 +10,6 @@
     public class RecipeRoastedMushroomsPennyBuns : Recipe.RecipeForManufacturing
     {
         public override bool IsAutoUnlocked => true;
-
-        public override string Name => "Roasted mushrooms (penny buns)";
 
         protected override void SetupRecipe(
             StationsList stations,
@@ -25,6 +24,11 @@
             inputItems.Add<ItemMushroomPennyBun>(count: 1);
 
             outputItems.Add<ItemRoastedMushrooms>();
+
+            this.Icon = ClientItemIconHelper.CreateComposedIcon(
+                name: this.Id + "Icon",
+                primaryIcon: GetItem<ItemRoastedMushrooms>().Icon,
+                secondaryIcon: GetItem<ItemMushroomPennyBun>().Icon);
         }
     }
 }

@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectWall
         <TPrivateState,
@@ -59,11 +58,9 @@
 
         protected override ITextureResource ClientCreateIcon()
         {
-            using (var result = WallTextureChunkSelector.GetRegion(NeighborsPattern.None, NeighborsPattern.None))
-            {
-                return this.TextureAtlasPrimary.Chunk((byte)result.Primary.AtlasChunkPosition.X,
-                                                      (byte)result.Primary.AtlasChunkPosition.Y);
-            }
+            using var result = WallTextureChunkSelector.GetRegion(NeighborsPattern.None, NeighborsPattern.None);
+            return this.TextureAtlasPrimary.Chunk((byte)result.Primary.AtlasChunkPosition.X,
+                                                  (byte)result.Primary.AtlasChunkPosition.Y);
         }
 
         protected override void ClientDeinitializeStructure(IStaticWorldObject gameObject)
@@ -180,32 +177,53 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             ProtoObjectWallHelper.SharedCalculateNeighborsPattern(
-                data.GameObject.OccupiedTile,
+                tile: data.GameObject.OccupiedTile,
                 protoWall: this,
-                out var sameTypeNeighbors,
-                out _,
+                sameTypeNeighbors: out var sameTypeNeighbors,
+                compatibleTypeNeighbors: out _,
                 isConsiderDestroyed: true,
                 isConsiderConstructionSites: true);
+
+            var physicsBody = data.PhysicsBody;
 
             foreach (var pattern in WallPatterns.PatternsPrimary)
             {
                 if (pattern.IsPass(sameTypeNeighbors))
                 {
-                    pattern.SetupPhysicsNormal?.Invoke(data.PhysicsBody);
+                    pattern.SetupPhysicsNormal?.Invoke(physicsBody);
                     break;
                 }
             }
 
-            // hitboxes
-            data.PhysicsBody
-                .AddShapeRectangle(
-                    new Vector2D(1, 0.7),
-                    new Vector2D(0, 0.3),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    new Vector2D(1, 1.27),
-                    new Vector2D(0, 0.15),
-                    group: CollisionGroups.HitboxRanged);
+            // setup hitboxes
+            const double paddingIfNoNeighbor = 0.2;
+            double width = 1.0,
+                   offsetX = 0.0;
+
+            if ((sameTypeNeighbors & NeighborsPattern.Left) != NeighborsPattern.Left)
+            {
+                width -= paddingIfNoNeighbor;
+                offsetX += paddingIfNoNeighbor;
+            }
+
+            if ((sameTypeNeighbors & NeighborsPattern.Right) != NeighborsPattern.Right)
+            {
+                width -= paddingIfNoNeighbor;
+            }
+
+            if ((sameTypeNeighbors & (NeighborsPattern.Bottom)) != 0)
+            {
+                // has another wall (or door) below - use full height hitboxes
+                physicsBody
+                    .AddShapeRectangle((width, 1),    offset: (offsetX, 0),    group: CollisionGroups.HitboxMelee)
+                    .AddShapeRectangle((width, 1.27), offset: (offsetX, 0.15), group: CollisionGroups.HitboxRanged);
+            }
+            else // "half"-height hitboxes
+            {
+                physicsBody
+                    .AddShapeRectangle((width, 0.25), offset: (offsetX, 0.75), group: CollisionGroups.HitboxMelee)
+                    .AddShapeRectangle((width, 0.57), offset: (offsetX, 0.85), group: CollisionGroups.HitboxRanged);
+            }
         }
     }
 

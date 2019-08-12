@@ -5,7 +5,6 @@
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Input;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -38,7 +37,7 @@
             this.isHiddenOrHiding = true;
             var hideRequestId = ++this.lastHideRequestId;
 
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 delaySeconds,
                 () =>
                 {
@@ -175,20 +174,15 @@
             contextMenu = new ContextMenu();
             var contextMenuItems = contextMenu.Items;
 
-            if (this.viewModel.VisibilityCanMentionOrSendPrivateMessage == Visibility.Visible)
+            var canMentionOrSendPrivateMessage =
+                this.viewModel.VisibilityCanMentionOrSendPrivateMessage == Visibility.Visible;
+            if (canMentionOrSendPrivateMessage)
             {
                 contextMenuItems.Add(
                     new MenuItem()
                     {
                         Header = CoreStrings.Chat_MessageMenu_Mention,
                         Command = this.viewModel.CommandMention
-                    });
-
-                contextMenuItems.Add(
-                    new MenuItem()
-                    {
-                        Header = CoreStrings.Chat_MessageMenu_PrivateMessage,
-                        Command = this.viewModel.CommandOpenPrivateChat
                     });
             }
 
@@ -213,6 +207,16 @@
                     {
                         Header = CoreStrings.Chat_MessageMenu_InviteToParty,
                         Command = this.viewModel.CommandInviteToParty,
+                    });
+            }
+
+            if (canMentionOrSendPrivateMessage)
+            {
+                contextMenuItems.Add(
+                    new MenuItem()
+                    {
+                        Header = CoreStrings.Chat_MessageMenu_PrivateMessage,
+                        Command = this.viewModel.CommandOpenPrivateChat
                     });
             }
 

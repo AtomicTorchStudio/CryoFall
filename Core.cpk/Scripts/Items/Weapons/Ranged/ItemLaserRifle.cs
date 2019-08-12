@@ -16,7 +16,7 @@
         public override string Description =>
             "Laser rifle emits quick pulses of high-energy light, mostly in infrared spectrum, that burns the target. Offers much higher firing rate than laser pistol at a cost of higher energy consumption.";
 
-        public override ushort DurabilityMax => 1200;
+        public override uint DurabilityMax => 1200;
 
         public override double EnergyUsePerShot => 20;
 
@@ -37,7 +37,7 @@
         {
             damageDescription = new DamageDescription(
                 damageValue: 7,
-                armorPiercingCoef: 0.5,
+                armorPiercingCoef: 0.6,
                 finalDamageMultiplier: 1,
                 rangeMax: 10,
                 damageDistribution: new DamageDistribution(DamageType.Heat, 1));

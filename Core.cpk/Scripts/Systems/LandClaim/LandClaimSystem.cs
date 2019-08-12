@@ -3,14 +3,17 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
+    using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Perks;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
-    using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -21,6 +24,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -33,6 +37,7 @@
     using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
 
     public class LandClaimSystem : ProtoSystem<LandClaimSystem>
     {
@@ -42,7 +47,8 @@
         public const string ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed =
             "The area is claimed by another player, or it's too close to someone else's land claim.";
 
-        // We have a resource contesting system preventing the players to claim or build near the recently spawned oil and other resource deposits.
+        // The game has a resource contesting system preventing the players
+        // to claim or build near the recently spawned oil and other resource deposits.
         public const string ErrorCannotBuild_DepositCooldown =
             "The resource deposit has only just appeared and cannot be claimed yet. Construction around it is temporary restricted.";
 
@@ -59,6 +65,12 @@
         public const string ErrorCannotBuild_RaidUnderWay =
             @"Raid under way.
               [br]You cannot build new structures while your base is under attack.";
+
+        public const string ErrorCannotBuild_RequiresOwnedArea =
+            "You can place this structure only inside your land claim area.";
+
+        public const string ErrorNotLandOwner_Message =
+            "You're not the land area owner.";
 
         public const string ErrorRaidBlockActionRestricted_Message =
             "The base is under raid.";
@@ -78,7 +90,10 @@
 
         private static ILogicObject serverLandClaimManagerInstance;
 
-        private static NetworkSyncList<ILogicObject> sharedLandClaimAreas;
+        private static NetworkSyncList<ILogicObject> sharedLandClaimAreas
+            = IsClient
+                  ? new NetworkSyncList<ILogicObject>() // workaround for client so it will be able to query (empty) list
+                  : null;
 
         public static readonly ConstructionTileRequirements.Validator ValidatorIsOwnedOrFreeArea
             = new ConstructionTileRequirements.Validator(
@@ -135,6 +150,27 @@
 
                     // if we've come to here here and there are any areas it means the player doesn't own any of them
                     return noAreasThere;
+                });
+
+        public static readonly ConstructionTileRequirements.Validator ValidatorIsOwnedArea
+            = new ConstructionTileRequirements.Validator(
+                ErrorCannotBuild_RequiresOwnedArea,
+                context =>
+                {
+                    var forCharacter = context.CharacterBuilder;
+                    if (forCharacter == null)
+                    {
+                        return true;
+                    }
+
+                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                    {
+                        return true;
+                    }
+
+                    return SharedIsOwnedLand(context.Tile.Position,
+                                             forCharacter,
+                                             out _);
                 });
 
         public static readonly ConstructionTileRequirements.Validator ValidatorNoRaid
@@ -272,25 +308,9 @@
                     }
 
                     // calculate max number of land claims
-                    var maxNumber = 0;
-                    // TODO: redone this (the max number should be derived from the character cache as a stat or something like that)
-                    if (Api.GetProtoEntity<PerkIncreaseLandClaimLimitT1>()
-                           .SharedIsPerkUnlocked(forCharacter))
-                    {
-                        maxNumber++;
-                    }
-
-                    if (Api.GetProtoEntity<PerkIncreaseLandClaimLimitT2>()
-                           .SharedIsPerkUnlocked(forCharacter))
-                    {
-                        maxNumber++;
-                    }
-
-                    if (Api.GetProtoEntity<PerkIncreaseLandClaimLimitT3>()
-                           .SharedIsPerkUnlocked(forCharacter))
-                    {
-                        maxNumber++;
-                    }
+                    var finalStatsCache = forCharacter.SharedGetFinalStatsCache();
+                    var maxNumber = (int)Math.Round(finalStatsCache[StatName.LandClaimsMaxNumber],
+                                                    MidpointRounding.AwayFromZero);
 
                     // calculate current number of land claims
                     var currentNumber = 0;
@@ -429,10 +449,35 @@
                 () => new Vector2Ushort((ushort)(8 + 2 * MaxLandClaimSizeWithGraceArea.Value),
                                         (ushort)(8 + 2 * MaxLandClaimSizeWithGraceArea.Value)));
 
+        // how long the items dropped on the ground from the safe storage should remain there
+        private static readonly TimeSpan DestroyedLandClaimDroppedItemsDestructionTimeout = TimeSpan.FromDays(1);
+
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;
 
+        public delegate void DelegateServerObjectLandClaimDestroyed(
+            IStaticWorldObject landClaimStructure,
+            RectangleInt areaBounds);
+
+        public delegate void ServerLandClaimsGroupChangedDelegate(
+            ILogicObject area,
+            [CanBeNull] ILogicObject areasGroupFrom,
+            [CanBeNull] ILogicObject areasGroupTo);
+
+        public static event ServerLandClaimsGroupChangedDelegate ServerAreaGroupChanged;
+
+        public static event Action<ILogicObject> ServerAreasGroupCreated;
+
+        public static event Action<ILogicObject> ServerAreasGroupDestroyed;
+
+        public static event DelegateServerObjectLandClaimDestroyed ServerObjectLandClaimDestroyed;
+
         public override string Name => "Land claim system";
+
+        public static Task<LandClaimsGroupDecayInfo> ClientGetDecayInfoText(IStaticWorldObject landClaimWorldObject)
+        {
+            return Instance.CallServer(_ => _.ServerRemote_GetDecayInfo(landClaimWorldObject));
+        }
 
         public static bool ClientIsOwnedArea(ILogicObject area)
         {
@@ -464,12 +509,11 @@
                 color: NotificationColor.Bad);
         }
 
-        public static void ClientShowNotificationCannotUnstuckUnderRaidblock()
+        public static void ClientShowNotificationActionForbiddenUnderRaidblock()
         {
             NotificationSystem.ClientShowNotification(
                 CoreStrings.Notification_ActionForbidden,
-                // TODO: enable this for A23 version
-                //ErrorRaidBlockActionRestricted_Message,
+                ErrorRaidBlockActionRestricted_Message,
                 color: NotificationColor.Bad);
         }
 
@@ -500,6 +544,44 @@
                                     : 8; // damage multiplier for explosive
 
             return damageMultiplier;
+        }
+
+        public static ILogicObject ServerFindLandClaimAreasGroup(
+            Vector2Ushort tilePosition,
+            bool addGracePadding = false)
+        {
+            // TODO: the lookup is really slow on the populated servers. Consider Grid or QuadTree optimization to locate areas quickly.
+            foreach (var area in sharedLandClaimAreas)
+            {
+                var areaBounds = SharedGetLandClaimAreaBounds(area, addGracePadding);
+                if (!areaBounds.Contains(tilePosition))
+                {
+                    continue;
+                }
+
+                var areaPublicState = LandClaimArea.GetPublicState(area);
+                var areasGroup = areaPublicState.LandClaimAreasGroup;
+                return areasGroup;
+            }
+
+            return null;
+        }
+
+        public static double ServerGetDecayDelayDurationForLandClaimAreas(List<ILogicObject> areas)
+        {
+            var decayDelayDuration = StructureConstants.StructuresAbandonedDecayDelaySeconds;
+            foreach (var area in areas)
+            {
+                var worldObject = LandClaimArea.GetPrivateState(area)
+                                               .ServerLandClaimWorldObject;
+
+                var protoObjectLandClaim = (IProtoObjectLandClaim)worldObject.ProtoStaticWorldObject;
+                decayDelayDuration = Math.Max(protoObjectLandClaim.DecayDelayDuration.TotalSeconds
+                                              * StructureConstants.StructuresLandClaimDecayDelayDurationMultiplier,
+                                              decayDelayDuration);
+            }
+
+            return decayDelayDuration;
         }
 
         public static ILogicObject ServerGetLandClaimArea(IStaticWorldObject landClaimStructure)
@@ -538,6 +620,7 @@
 
             // create new area for this land claim structure
             var area = Api.Server.World.CreateLogicObject<LandClaimArea>();
+            Logger.Important($"Created land claim area: {area}");
             var areaPrivateState = LandClaimArea.GetPrivateState(area);
             var areaPublicState = LandClaimArea.GetPublicState(area);
             var founderName = byCharacter.Name;
@@ -556,6 +639,9 @@
             landClaimStructure.GetPublicState<ObjectLandClaimPublicState>()
                               .LandClaimAreaObject = area;
 
+            ServerEstablishAreasGroup(
+                SharedCalculateLandClaimAreaBounds(area));
+
             ServerOnAddLandOwner(area, byCharacter, notify: false);
 
             Logger.Important("Land claim area added: " + area);
@@ -571,7 +657,6 @@
             }
 
             var area = ServerGetLandClaimArea(landClaimStructure);
-
             if (area == null)
             {
                 // area was already released (upgrade?)
@@ -580,10 +665,53 @@
 
             var areaBounds = SharedGetLandClaimAreaBounds(area);
 
-            ServerWorld.DestroyObject(area);
-
-            Logger.Important("Land claim area removed: " + area);
             StructureDecaySystem.ServerBeginDecayForStructuresInArea(areaBounds);
+            var areaPublicState = LandClaimArea.GetPublicState(area);
+            var areasGroup = areaPublicState.LandClaimAreasGroup;
+            var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
+            var areasGroupBounds = SharedGetLandClaimGroupsBoundingArea(areasGroup);
+            using var oldAreasInGroup = Api.Shared.WrapInTempList(areasGroupPrivateState.ServerLandClaimsAreas);
+            oldAreasInGroup.Remove(area);
+
+            ServerWorld.DestroyObject(area);
+            Logger.Important("Land claim area removed: " + area);
+
+            ServerCleanupAreasGroup(areasGroup);
+
+            if (areasGroup.IsDestroyed)
+            {
+                // last land claim destroyed
+                ServerDropItems(landClaimStructure, areasGroup);
+            }
+
+            ServerTryRebuildLandClaimsGroups(areasGroupBounds);
+
+            if (Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true)
+                      .Any(
+                          c =>
+                              PlayerCharacter.GetPublicState(c).CurrentPublicActionState is
+                                  DeconstructionActionState.PublicState deconstructionState
+                              && deconstructionState.TargetWorldObject == landClaimStructure))
+            {
+                // land claim structure is deconstructed by a crowbar
+            }
+            else
+            {
+                // land claim structure simply destroyed
+                Api.SafeInvoke(() => ServerObjectLandClaimDestroyed?.Invoke(landClaimStructure, areaBounds));
+            }
+
+            if (!oldAreasInGroup.SequenceEqual(areasGroupPrivateState.ServerLandClaimsAreas))
+            {
+                // areas group changed/broken to several areas
+                var newGroups = oldAreasInGroup
+                                .GroupBy(areas => LandClaimArea.GetPublicState(areas).LandClaimAreasGroup)
+                                .Select(g => g.Key)
+                                .ToList();
+
+                newGroups.Remove(areasGroup);
+                LandClaimAreasGroup.ServerOnBaseBroken(areasGroup, newGroups);
+            }
         }
 
         public static void ServerOnRaid(RectangleInt bounds, ICharacter byCharacter)
@@ -599,40 +727,48 @@
                 return;
             }
 
-            var time = Server.Game.FrameTime;
-            using (var tempList = Api.Shared.GetTempList<ILogicObject>())
+            using var tempList = Api.Shared.GetTempList<ILogicObject>();
+            SharedGetAreasInBounds(bounds, tempList, addGracePadding: false);
+
+            foreach (var area in tempList)
             {
-                SharedGetAreasInBounds(bounds, tempList, addGracePadding: false);
-
-                foreach (var area in tempList)
+                if (ServerIsOwnedArea(area, byCharacter))
                 {
-                    if (ServerIsOwnedArea(area, byCharacter))
-                    {
-                        // don't start the raid timer if attack is performed by the owner of the area
-                        continue;
-                    }
-
-                    var privateState = LandClaimArea.GetPrivateState(area);
-                    var publicState = LandClaimArea.GetPublicState(area);
-                    publicState.LastRaidTime = time;
-
-                    Logger.Important(
-                        string.Format("Land claim area being raided: {0}{1}Land owners: {2}",
-                                      privateState.ServerLandClaimWorldObject,
-                                      Environment.NewLine,
-                                      privateState.LandOwners.GetJoinedString()));
+                    // don't start the raid timer if attack is performed by the owner of the area
+                    continue;
                 }
+
+                ServerSetRaidblock(area);
             }
         }
 
         public static void ServerRegisterArea(ILogicObject area)
         {
             Api.Assert(area.ProtoLogicObject is LandClaimArea, "Wrong object type");
-            var areaPublicState = LandClaimArea.GetPublicState(area);
-            // reset the title
-            // TODO: remove this in A23
-            areaPublicState.Title = null;
             sharedLandClaimAreas.Add(area);
+        }
+
+        public static void ServerSetRaidblock(ILogicObject area)
+        {
+            var areaPrivateState = LandClaimArea.GetPrivateState(area);
+            var areaPublicState = LandClaimArea.GetPublicState(area);
+            var areasGroup = areaPublicState.LandClaimAreasGroup;
+            var areasGroupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
+            var time = Server.Game.FrameTime;
+
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (areasGroupPublicState.LastRaidTime == time)
+            {
+                return;
+            }
+
+            areasGroupPublicState.LastRaidTime = time;
+            Logger.Important(
+                string.Format("Land claim area(s) being raided: {1}{0}Areas group: {2}{0}Land owners: {3}",
+                              Environment.NewLine,
+                              areaPrivateState.ServerLandClaimWorldObject,
+                              areasGroup,
+                              areaPrivateState.LandOwners.GetJoinedString()));
         }
 
         public static void ServerUnregisterArea(ILogicObject area)
@@ -682,6 +818,15 @@
                 Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true),
                 _ => _.ClientRemote_OnLandClaimUpgraded(area));
 
+            ServerEstablishAreasGroup(
+                SharedCalculateLandClaimAreaBounds(area));
+
+            // Even though the area's group didn't change,
+            // we need to notify power system so it will rebuild power grid for the area's group.
+            Api.SafeInvoke(() => ServerAreaGroupChanged?.Invoke(area,
+                                                                areaPublicState.LandClaimAreasGroup,
+                                                                null));
+
             return upgradedObject;
         }
 
@@ -703,6 +848,13 @@
             var calculatedSize = new Vector2Ushort((ushort)(endX - start.X),
                                                    (ushort)(endY - start.Y));
             return new RectangleInt(start, size: calculatedSize);
+        }
+
+        public static RectangleInt SharedCalculateLandClaimAreaBounds(ILogicObject area)
+        {
+            var areaPublicState = LandClaimArea.GetPublicState(area);
+            return SharedCalculateLandClaimAreaBounds(areaPublicState.LandClaimCenterTilePosition,
+                                                      areaPublicState.LandClaimSize);
         }
 
         public static ushort SharedCalculateLandClaimGraceAreaPaddingSizeOneDirection(ushort landClaimSize)
@@ -845,14 +997,6 @@
         }
 
         public static void SharedGetAreasInBounds(
-            IStaticWorldObject worldObject,
-            ITempList<ILogicObject> result,
-            bool addGracePadding)
-        {
-            SharedGetAreasInBounds(worldObject.Bounds, result, addGracePadding);
-        }
-
-        public static void SharedGetAreasInBounds(
             RectangleInt bounds,
             ITempList<ILogicObject> result,
             bool addGracePadding)
@@ -896,14 +1040,56 @@
                 size);
         }
 
-        /// <summary>
-        /// Returns true if the area is under the raid.
-        /// Client could determine this only if it's own the area (has the private state).
-        /// </summary>
-        public static bool SharedIsAreaUnderRaid(ILogicObject area)
+        public static ILogicObject SharedGetLandClaimAreaGroup(ILogicObject area)
         {
-            var publicState = LandClaimArea.GetPublicState(area);
-            if (!publicState.LastRaidTime.HasValue)
+            return LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+        }
+
+        public static RectangleInt SharedGetLandClaimGroupsBoundingArea(ILogicObject group, 
+                                                                        bool addGraceAreaPadding = false)
+        {
+            var hasBounds = false;
+            ushort minX = ushort.MaxValue,
+                   minY = ushort.MaxValue,
+                   maxX = 0,
+                   maxY = 0;
+            foreach (var area in sharedLandClaimAreas)
+            {
+                var areaPublicState = LandClaimArea.GetPublicState(area);
+                var otherGroup = areaPublicState.LandClaimAreasGroup;
+                if (otherGroup != group)
+                {
+                    continue;
+                }
+
+                hasBounds = true;
+                var bounds = SharedCalculateLandClaimAreaBounds(area);
+                if (addGraceAreaPadding)
+                {
+                    bounds = bounds.Inflate(areaPublicState.LandClaimGraceAreaPaddingSizeOneDirection);
+                }
+
+                minX = Math.Min(minX, (ushort)Math.Min(bounds.X,                 ushort.MaxValue));
+                minY = Math.Min(minY, (ushort)Math.Min(bounds.Y,                 ushort.MaxValue));
+                maxX = Math.Max(maxX, (ushort)Math.Min(bounds.X + bounds.Width,  ushort.MaxValue));
+                maxY = Math.Max(maxY, (ushort)Math.Min(bounds.Y + bounds.Height, ushort.MaxValue));
+            }
+
+            if (!hasBounds)
+            {
+                return default;
+            }
+
+            return new RectangleInt(x: minX,
+                                    y: minY,
+                                    width: maxX - minX,
+                                    height: maxY - minY);
+        }
+
+        public static bool SharedIsAreasGroupUnderRaid(ILogicObject areasGroup)
+        {
+            var groupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
+            if (!groupPublicState.LastRaidTime.HasValue)
             {
                 // not under raid
                 return false;
@@ -913,8 +1099,19 @@
                            ? Client.CurrentGame.ServerFrameTimeRounded
                            : Server.Game.FrameTime;
 
-            var timeSinceRaid = time - publicState.LastRaidTime.Value;
-            return timeSinceRaid < RaidBlockDurationSeconds;
+            var timeSinceRaidStart = time - groupPublicState.LastRaidTime.Value;
+            return timeSinceRaidStart < RaidBlockDurationSeconds;
+        }
+
+        /// <summary>
+        /// Returns true if the area is under the raid.
+        /// Client could determine this only if it's own the area (has the private state).
+        /// </summary>
+        public static bool SharedIsAreaUnderRaid(ILogicObject area)
+        {
+            var areaPublicState = LandClaimArea.GetPublicState(area);
+            var areasGroup = areaPublicState.LandClaimAreasGroup;
+            return SharedIsAreasGroupUnderRaid(areasGroup);
         }
 
         public static bool SharedIsFoundedArea(ILogicObject area, ICharacter forCharacter)
@@ -971,14 +1168,16 @@
             return SharedIsLandClaimedByAnyone(worldObject.Bounds);
         }
 
-        public static bool SharedIsObjectInsideOwnedOrFreeArea(IStaticWorldObject gameObject, ICharacter who)
+        public static bool SharedIsObjectInsideOwnedOrFreeArea(IStaticWorldObject worldObject, ICharacter who)
         {
             var foundAnyAreas = false;
-            var startTilePosition = gameObject.TilePosition;
+            var startTilePosition = worldObject.TilePosition;
+            var worldObjectLayoutTileOffsets = worldObject.ProtoStaticWorldObject.Layout.TileOffsets;
+
             foreach (var area in sharedLandClaimAreas)
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area);
-                foreach (var tileOffset in gameObject.ProtoStaticWorldObject.Layout.TileOffsets)
+                foreach (var tileOffset in worldObjectLayoutTileOffsets)
                 {
                     var tilePosition = startTilePosition.AddAndClamp(tileOffset);
                     if (!areaBounds.Contains(tilePosition))
@@ -1069,6 +1268,7 @@
             var protoStaticWorldObject = staticWorldObject.ProtoStaticWorldObject;
             var startTilePosition = staticWorldObject.TilePosition;
             var validatorNoRaid = ValidatorNoRaid;
+
             foreach (var tileOffset in protoStaticWorldObject.Layout.TileOffsets)
             {
                 var occupiedTile = world.GetTile(
@@ -1091,22 +1291,17 @@
                     continue;
                 }
 
-                // raid is under way - cannot build/repair/deconstruct
-                ConstructionSystem.SharedShowCannotBuildNotification(
-                    character,
-                    validatorNoRaid.ErrorMessage,
-                    protoStaticWorldObject);
                 return true;
             }
 
             return false;
         }
 
-        public static void SharedSendNotificationActionRestrictedUnderRaidblock(ICharacter character)
+        public static void SharedSendNotificationActionForbiddenUnderRaidblock(ICharacter character)
         {
             if (IsClient)
             {
-                ClientShowNotificationCannotUnstuckUnderRaidblock();
+                Instance.ClientRemote_ShowNotificationCannotUnstuckUnderRaidblock();
             }
             else
             {
@@ -1119,43 +1314,155 @@
         {
             if (IsServer)
             {
-                Server.Characters.PlayerNameChanged += PlayerNameChangedHandler;
+                Server.Characters.PlayerNameChanged += ServerPlayerNameChangedHandler;
             }
         }
 
-        private static void PlayerNameChangedHandler(string oldName, string newName)
+        /// <summary>
+        /// Checks the area land claims, release those that do not belong to the group anymore.
+        /// Destroys group if it's empty.
+        /// </summary>
+        private static void ServerCleanupAreasGroup(ILogicObject areasGroup)
         {
-            foreach (var area in sharedLandClaimAreas)
+            if (areasGroup == null
+                || areasGroup.IsDestroyed)
             {
-                var privateState = LandClaimArea.GetPrivateState(area);
-                if (!string.Equals(privateState.LandClaimFounder, oldName, StringComparison.Ordinal))
+                return;
+            }
+
+            using var tempRemovedAreas = Api.Shared.GetTempList<ILogicObject>();
+            var areas = LandClaimAreasGroup.GetPrivateState(areasGroup).ServerLandClaimsAreas;
+            for (var index = 0; index < areas.Count; index++)
+            {
+                var area = areas[index];
+                if (!area.IsDestroyed
+                    && areasGroup == LandClaimArea.GetPublicState(area).LandClaimAreasGroup)
                 {
                     continue;
                 }
 
-                privateState.LandClaimFounder = newName;
-                Logger.Important(
-                    $"Replaced owner entry for land claim: {oldName}->{newName} in {area}, {privateState.ServerLandClaimWorldObject}");
+                // this area now doesn't belong to the areas group
+                areas.RemoveAt(index);
+                index--;
+                Logger.Important($"Land claim areas group {areasGroup} - released area: {area}");
+                tempRemovedAreas.Add(area);
+                Api.SafeInvoke(() => ServerAreaGroupChanged?.Invoke(area, areasGroup, null));
+            }
 
-                var owners = privateState.LandOwners;
-                if (owners == null)
+            if (areas.Count > 0)
+            {
+                return;
+            }
+
+            // areas group has no areas which is using it
+            Api.SafeInvoke(() => ServerAreasGroupDestroyed?.Invoke(areasGroup));
+            Logger.Important("Destroying land claim areas group - not used anymore: " + areasGroup);
+            Api.Server.World.DestroyObject(areasGroup);
+
+            foreach (var area in tempRemovedAreas)
+            {
+                if (area.IsDestroyed)
                 {
                     continue;
                 }
 
-                for (var index = 0; index < owners.Count; index++)
+                var otherAreasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+                if (otherAreasGroup == null)
                 {
-                    var owner = owners[index];
-                    if (!string.Equals(owner, oldName, StringComparison.Ordinal))
-                    {
-                        continue;
-                    }
+                    continue;
+                }
 
-                    // replace owner entry
-                    owners.RemoveAt(index);
-                    owners.Insert(index, newName);
-                    Logger.Important(
-                        $"Replaced owner entry: {oldName}->{newName} in {area}, {privateState.ServerLandClaimWorldObject}");
+                LandClaimAreasGroup.ServerOnBaseMerged(areasGroup, otherAreasGroup);
+                // that's correct! we return here as the base might be merged only with a single other base
+                return;
+            }
+        }
+
+        private static void ServerDropItems(IStaticWorldObject landClaimStructure, ILogicObject areasGroup)
+        {
+            // try drop items from the safe storage
+            var itemsContainer = LandClaimAreasGroup.GetPrivateState(areasGroup).ItemsContainer;
+            if (itemsContainer.OccupiedSlotsCount == 0)
+            {
+                // no items to drop
+                return;
+            }
+
+            var groundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                landClaimStructure.OccupiedTile,
+                itemsContainer);
+
+            if (groundContainer == null)
+            {
+                // no items dropped
+                return;
+            }
+
+            // set custom timeout for the dropped ground items container
+            ObjectGroundItemsContainer.ServerSetDestructionTimeout(
+                (IStaticWorldObject)groundContainer.Owner,
+                DestroyedLandClaimDroppedItemsDestructionTimeout.TotalSeconds);
+        }
+
+        private static void ServerEstablishAreasGroup(RectangleInt bounds)
+        {
+            // First, try to find all the connected areas (and their groups) within the bounds.
+            using var tempListAreas = Api.Shared.GetTempList<ILogicObject>();
+            using var tempListGroups = Api.Shared.GetTempList<ILogicObject>();
+            SharedGatherAreasAndGroups(bounds, tempListAreas, tempListGroups);
+
+            // Obviously, all the areas there now will belong to the same group.
+            // The rest groups will be destroyed.
+            // For a candidate for the group let's take the currently existing group
+            // with the max number of the land claims.
+            var currentGroup = tempListGroups.MaximumOrDefault(
+                g => LandClaimAreasGroup.GetPrivateState(g).ServerLandClaimsAreas.Count);
+
+            if (currentGroup == null)
+            {
+                // need to create a new group
+                currentGroup = Api.Server.World.CreateLogicObject<LandClaimAreasGroup>();
+                Logger.Important("Created land claim areas group: " + currentGroup);
+
+                Api.SafeInvoke(() => ServerAreasGroupCreated?.Invoke(currentGroup));
+            }
+
+            var groupPrivateState = LandClaimAreasGroup.GetPrivateState(currentGroup);
+            if (groupPrivateState.ServerLandClaimsAreas == null)
+            {
+                groupPrivateState.ServerLandClaimsAreas = new List<ILogicObject>();
+            }
+
+            var areasGroupAreasList = groupPrivateState.ServerLandClaimsAreas;
+
+            // assign the group to all the land claim areas there
+            foreach (var area in tempListAreas)
+            {
+                var areaPublicState = LandClaimArea.GetPublicState(area);
+                var areaGroup = areaPublicState.LandClaimAreasGroup;
+                if (areaGroup == currentGroup)
+                {
+                    continue;
+                }
+
+                areaPublicState.LandClaimAreasGroup = currentGroup;
+                Logger.Important($"Assigned land claim areas group: {currentGroup} - to {area}");
+                areasGroupAreasList.Add(area);
+
+                if (areaGroup != null)
+                {
+                    // group changed - copy necessary properties such as last raid time
+                    LandClaimAreasGroup.ServerOnGroupChanged(area, areaGroup, currentGroup);
+                }
+
+                Api.SafeInvoke(() => ServerAreaGroupChanged?.Invoke(area, areaGroup, currentGroup));
+            }
+
+            foreach (var otherGroup in tempListGroups)
+            {
+                if (currentGroup != otherGroup)
+                {
+                    ServerCleanupAreasGroup(otherGroup);
                 }
             }
         }
@@ -1203,13 +1510,150 @@
             Instance.CallClient(removedPlayer, _ => _.ClientRemote_OnLandOwnerStateChanged(area, false));
         }
 
+        private static void ServerPlayerNameChangedHandler(string oldName, string newName)
+        {
+            foreach (var area in sharedLandClaimAreas)
+            {
+                var privateState = LandClaimArea.GetPrivateState(area);
+                if (string.Equals(privateState.LandClaimFounder, oldName, StringComparison.Ordinal))
+                {
+                    privateState.LandClaimFounder = newName;
+                    Logger.Important(
+                        $"Replaced founder owner entry for land claim: {oldName}->{newName} in {area}, {privateState.ServerLandClaimWorldObject}");
+                }
+
+                // find and rename access list entry for this player
+                var owners = privateState.LandOwners;
+                if (owners == null)
+                {
+                    continue;
+                }
+
+                for (var index = 0; index < owners.Count; index++)
+                {
+                    var owner = owners[index];
+                    if (!string.Equals(owner, oldName, StringComparison.Ordinal))
+                    {
+                        continue;
+                    }
+
+                    // replace owner entry
+                    owners.RemoveAt(index);
+                    owners.Insert(index, newName);
+                    Logger.Important(
+                        $"Replaced access owner entry: {oldName}->{newName} in {area}, {privateState.ServerLandClaimWorldObject}");
+                    break;
+                }
+            }
+        }
+
+        private static void ServerTryRebuildLandClaimsGroups(RectangleInt bounds)
+        {
+            using var tempListAreas = Api.Shared.GetTempList<ILogicObject>();
+            using var tempListGroups = Api.Shared.GetTempList<ILogicObject>();
+            SharedGatherAreasAndGroups(bounds, tempListAreas, tempListGroups);
+
+            foreach (var areasGroup in tempListGroups)
+            {
+                ServerReleaseGroupUnconnectedAreas(areasGroup);
+            }
+
+            // rebuild groups for every land claim without a group there
+            foreach (var otherArea in tempListAreas)
+            {
+                if (LandClaimArea.GetPublicState(otherArea).LandClaimAreasGroup == null)
+                {
+                    ServerEstablishAreasGroup(
+                        SharedCalculateLandClaimAreaBounds(otherArea));
+                }
+            }
+
+            void ServerReleaseGroupUnconnectedAreas(ILogicObject areasGroup)
+            {
+                ServerCleanupAreasGroup(areasGroup);
+
+                var currentAreas = LandClaimAreasGroup.GetPrivateState(areasGroup).ServerLandClaimsAreas;
+                using var tempListCurrentGroupAreas = Api.Shared.GetTempList<ILogicObject>();
+                SharedGetConnectedAreas(tempListCurrentGroupAreas.AsList(),
+                                        SharedCalculateLandClaimAreaBounds(currentAreas[0]));
+
+                for (var index = 0; index < currentAreas.Count; index++)
+                {
+                    var area = currentAreas[index];
+                    if (tempListCurrentGroupAreas.Contains(area))
+                    {
+                        continue;
+                    }
+
+                    // this area is no longer belongs to this group
+                    currentAreas.RemoveAt(index);
+                    index--;
+
+                    LandClaimArea.GetPublicState(area).LandClaimAreasGroup = null;
+                    Logger.Important($"Reset land claim areas group: null - to {area}");
+                }
+            }
+        }
+
+        private static void SharedGatherAreasAndGroups(
+            RectangleInt bounds,
+            ITempList<ILogicObject> tempListAreas,
+            ITempList<ILogicObject> tempListGroups)
+        {
+            SharedGetConnectedAreas(tempListAreas.AsList(), bounds);
+
+            // gather all groups for the areas found there
+            foreach (var area in tempListAreas)
+            {
+                var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+                if (areasGroup != null)
+                {
+                    tempListGroups.AddIfNotContains(areasGroup);
+                }
+            }
+        }
+
+        private static void SharedGetConnectedAreas(List<ILogicObject> result, RectangleInt bounds)
+        {
+            // find areas in bounds
+            foreach (var area in sharedLandClaimAreas)
+            {
+                if (area.IsDestroyed)
+                {
+                    continue;
+                }
+
+                var areaBounds = SharedGetLandClaimAreaBounds(area);
+                if (areaBounds.Intersects(bounds))
+                {
+                    result.Add(area);
+                }
+            }
+
+            // collect adjacent areas
+            for (var index = 0; index < result.Count; index++)
+            {
+                var currentArea = result[index];
+                var currentAreaBounds = SharedCalculateLandClaimAreaBounds(currentArea);
+                // find adjacent areas
+                foreach (var otherArea in sharedLandClaimAreas)
+                {
+                    var otherAreaBounds = SharedGetLandClaimAreaBounds(otherArea);
+                    if (otherAreaBounds.Intersects(currentAreaBounds)
+                        && !result.Contains(otherArea))
+                    {
+                        // found new area - it will be also checked for adjacent neighbors
+                        result.Add(otherArea);
+                    }
+                }
+            }
+        }
+
         private void ClientRemote_OnCannotInteractNotOwner(IStaticWorldObject worldObject)
         {
-            worldObject.ProtoStaticWorldObject.ClientOnCannotInteract(
-                worldObject,
-                // TODO: move this text to here
-                DeconstructionSystem.NotificationNotLandOwner_Message,
-                isOutOfRange: false);
+            CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
+                                                                ErrorNotLandOwner_Message,
+                                                                isOutOfRange: false);
         }
 
         private void ClientRemote_OnLandClaimUpgraded(ILogicObject area)
@@ -1225,7 +1669,10 @@
 
         private void ClientRemote_ShowNotificationCannotUnstuckUnderRaidblock()
         {
-            ClientShowNotificationCannotUnstuckUnderRaidblock();
+            NotificationSystem.ClientShowNotification(
+                CoreStrings.Notification_ActionForbidden,
+                ErrorRaidBlockActionRestricted_Message,
+                color: NotificationColor.Bad);
         }
 
         private ILogicObject ServerRemote_AcquireLandClaimManager()
@@ -1246,9 +1693,37 @@
             return serverLandClaimManagerInstance;
         }
 
+        private LandClaimsGroupDecayInfo ServerRemote_GetDecayInfo(IStaticWorldObject landClaimStructure)
+        {
+            var character = ServerRemoteContext.Character;
+            if (!Server.World.IsInPrivateScope(landClaimStructure, character))
+            {
+                throw new Exception("Cannot interact with the land claim object is not in private scope: "
+                                    + landClaimStructure);
+            }
+
+            var area = ServerGetLandClaimArea(landClaimStructure);
+            var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
+            var areas = LandClaimAreasGroup.GetPrivateState(areasGroup).ServerLandClaimsAreas;
+            var decayDelayDuration = ServerGetDecayDelayDurationForLandClaimAreas(areas);
+
+            decayDelayDuration = Math.Max(decayDelayDuration,
+                                          StructureConstants.StructuresAbandonedDecayDelaySeconds);
+
+            return new LandClaimsGroupDecayInfo(decayDelayDuration,
+                                                decayDuration: StructureConstants.StructuresDecayDurationSeconds);
+        }
+
         private string ServerRemote_SetAreaOwners(ILogicObject area, List<string> newOwners)
         {
             var owner = ServerRemoteContext.Character;
+
+            if (!Server.World.IsInPrivateScope(area, owner))
+            {
+                throw new Exception("Cannot interact with the land claim object as the area is not in private scope: "
+                                    + area);
+            }
+
             var privateState = LandClaimArea.GetPrivateState(area);
             var currentOwners = privateState.LandOwners;
 
@@ -1316,6 +1791,19 @@
             return null;
         }
 
+        public readonly struct LandClaimsGroupDecayInfo : IRemoteCallParameter
+        {
+            public readonly double DecayDelayDuration;
+
+            public readonly double DecayDuration;
+
+            public LandClaimsGroupDecayInfo(double decayDelayDuration, double decayDuration)
+            {
+                this.DecayDelayDuration = decayDelayDuration;
+                this.DecayDuration = decayDuration;
+            }
+        }
+
         [PrepareOrder(afterType: typeof(BootstrapperServerCore))]
         public class BootstrapperLandClaimSystem : BaseBootstrapper
         {
@@ -1340,8 +1828,8 @@
                                                     .LandClaimAreas;
                     Logger.Important($"Land claim areas received from server: {areas.Count} areas total");
 
-                    ClientLandClaimAreaManager.SetAreas(areas);
                     sharedLandClaimAreas = areas;
+                    ClientLandClaimAreaManager.SetAreas(areas);
                 }
             }
 

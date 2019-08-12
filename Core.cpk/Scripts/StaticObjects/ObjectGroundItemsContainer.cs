@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -400,7 +401,8 @@
                 tile.Position,
                 writeWarningsToLog: false);
 
-            if (groundContainer != null)
+            if (groundContainer != null
+                && groundContainer.OccupiedSlotsCount < groundContainer.SlotsCount)
             {
                 return groundContainer;
             }
@@ -421,13 +423,15 @@
                 groundContainer = ServerTryGetOrCreateGroundContainerAtTile(
                     neighborTile.Position,
                     writeWarningsToLog: false);
-                if (groundContainer != null)
+                if (groundContainer != null
+                    && groundContainer.OccupiedSlotsCount < groundContainer.SlotsCount)
                 {
-                    break;
+                    // found a ground container with some empty space
+                    return groundContainer;
                 }
             }
 
-            return groundContainer;
+            return null;
         }
 
         public bool CheckTileRequirements(Vector2Ushort startTilePosition, ICharacter character, bool logErrors)
@@ -466,19 +470,6 @@
             return isCanInteract
                        ? CursorId.PickupPossible
                        : CursorId.PickupImpossible;
-        }
-
-        public void ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
-        {
-            // actually, we don't need client-server interaction for this container 
-            // as client is aware about the items container
-            GetPrivateState(worldObject).ServerLastInteractCharacter = who;
-        }
-
-        public void ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
-        {
-            // actually, we don't need client-server interaction for this container 
-            // as client is aware about the items container
         }
 
         public IStaticWorldObject ServerRemote_DropItemOnGround(
@@ -563,22 +554,37 @@
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
         {
-            if (!base.SharedCanInteract(character, worldObject, writeToLog))
+            // don't use the base implementation as it will not work in PvE
+            // (action forbidden if player doesn't have access to the land claim)
+            if (character.GetPublicState<ICharacterPublicState>().IsDead)
             {
                 return false;
             }
 
-            NewbieProtectionSystem.SharedValidateNewbieCannotPickupItemsDuringRaidAnotherArea(
-                character,
-                worldObject.TilePosition,
-                out var isAllowedToPickup,
-                writeToLog);
-            return isAllowedToPickup;
+            if (!NewbieProtectionSystem.SharedValidateInteractionIsNotForbidden(character, worldObject, writeToLog))
+            {
+                return false;
+            }
+
+            return this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
             return (0.5, 0.15);
+        }
+
+        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        {
+            // actually, we don't need client-server interaction for this container 
+            // as client is aware about the items container
+            GetPrivateState(worldObject).ServerLastInteractCharacter = who;
+        }
+
+        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        {
+            // actually, we don't need client-server interaction for this container 
+            // as client is aware about the items container
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -588,7 +594,7 @@
 
             var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
             sceneObject.AddComponent<ComponentObjectGroundItemsContainerRenderer>()
-                       .Setup(data.SyncPublicState.ItemsContainer);
+                       .Setup(data.PublicState.ItemsContainer);
         }
 
         protected override void ClientInteractStart(ClientObjectData data)
@@ -601,7 +607,7 @@
             }
 
             var currentPlayerCharacter = Client.Characters.CurrentPlayerCharacter;
-            var containerGround = data.SyncPublicState.ItemsContainer;
+            var containerGround = data.PublicState.ItemsContainer;
 
             // can pickup all objects if these are simply items dropped on the ground and not an item sack
             // which is automatically displayed when there are more than 4 items
@@ -701,12 +707,10 @@
             if (data.PrivateState.ServerLastInteractCharacter != null)
             {
                 // notify other players that the ground items were picked up
-                using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-                {
-                    Server.World.GetScopedByPlayers(worldObject, scopedBy);
-                    scopedBy.Remove(data.PrivateState.ServerLastInteractCharacter);
-                    this.CallClient(scopedBy, _ => _.ClientRemote_OtherPlayerPickedUp(worldObject.TilePosition));
-                }
+                using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+                Server.World.GetScopedByPlayers(worldObject, scopedBy);
+                scopedBy.Remove(data.PrivateState.ServerLastInteractCharacter);
+                this.CallClient(scopedBy, _ => _.ClientRemote_OtherPlayerPickedUp(worldObject.TilePosition));
             }
 
             // actually destroy it

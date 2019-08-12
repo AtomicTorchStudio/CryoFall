@@ -124,17 +124,15 @@
                               ? (ProtoTrigger)Api.GetProtoEntity<TriggerWorldInit>()
                               : (ProtoTrigger)Api.GetProtoEntity<TriggerTimeInterval>();
 
-            using (var tempList = Api.Shared.GetTempList<IZoneScriptConfig>())
-            {
-                // process attached scripts in the random order (same as real triggers in the game)
-                tempList.AddRange(protoZone.AttachedScripts);
-                // Disabled because it break some spawn scripts order!
-                //tempList.Shuffle();
+            using var tempList = Api.Shared.GetTempList<IZoneScriptConfig>();
+            // process attached scripts in the random order (same as real triggers in the game)
+            tempList.AddRange(protoZone.AttachedScripts);
+            // Disabled because it break some spawn scripts order!
+            //tempList.Shuffle();
 
-                foreach (var script in tempList)
-                {
-                    script.ServerInvoke(trigger, serverZoneInstance);
-                }
+            foreach (var script in tempList)
+            {
+                script.ServerInvoke(trigger, serverZoneInstance);
             }
         }
     }

@@ -57,14 +57,7 @@
                 // dead character
                 return true;
             }
-
-            if (ClientCurrentCharacterHelper.PrivateState.CurrentActionState?.IsBlocksMovement
-                ?? false)
-            {
-                // current action blocks input
-                return true;
-            }
-
+            
             if (!MainMenuOverlay.IsHidden)
             {
                 // main menu displayed - suppress input
@@ -85,7 +78,7 @@
         {
             var mouseWorldPosition = Api.Client.Input.MouseWorldPosition;
             var deltaPositionToMouseCursor = this.character.Position
-                                             + (0, this.character.ProtoCharacter.CharacterWorldWeaponOffset)
+                                             + (0, this.character.ProtoCharacter.CharacterWorldWeaponOffsetRanged)
                                              - mouseWorldPosition;
 
             //var mouseScreenPosition = Api.Client.Input.MouseScreenPosition;
@@ -108,7 +101,7 @@
 
             //// uncomment visualize rotation angle correctness with Physics Visualizer
             //var fromPosition = this.character.Position
-            //                   + (0, this.character.ProtoCharacter.CharacterWorldWeaponOffset);
+            //                   + (0, this.character.ProtoCharacter.CharacterWorldWeaponOffsetRanged);
             //var toPosition = fromPosition + (30, 0).RotateRad(rotationAngleRad);
             //Client.Characters.CurrentPlayerCharacter.PhysicsBody.PhysicsSpace.TestLine(
             //    fromPosition,

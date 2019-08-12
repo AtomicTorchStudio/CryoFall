@@ -15,18 +15,11 @@
         public static readonly SolidColorBrush BrushBackgroundRed
             = new SolidColorBrush(Color.FromArgb(0x70, 0xA0, 0x10, 0x10));
 
-        public static readonly SolidColorBrush BrushTextWhite
-            = new SolidColorBrush(Color.FromArgb(0xF3, 0xFF, 0xFF, 0xFF));
-
-        private SolidColorBrush backgroundBrush;
-
         private int deltaCount;
 
         private string deltaCountText;
 
         private float requiredHeight;
-
-        private SolidColorBrush textBrush;
 
         public ViewModelHUDItemNotificationControl(IProtoItem protoItem, int deltaCount)
         {
@@ -62,7 +55,7 @@
             this.Icon = Client.UI.GetTextureBrush(iconToLoad);
         }
 
-        public SolidColorBrush BackgroundBrush => this.backgroundBrush;
+        public SolidColorBrush BackgroundBrush { get; private set; }
 
         public int DeltaCount
         {
@@ -72,8 +65,7 @@
                 this.deltaCount = value;
                 var isPositive = this.deltaCount > 0;
                 this.deltaCountText = isPositive ? '+' + this.deltaCount.ToString() : this.deltaCount.ToString();
-                this.textBrush = BrushTextWhite; //isPositive ? BrushTextGreen : BrushTextRed;
-                this.backgroundBrush = isPositive ? BrushBackgroundGreen : BrushBackgroundRed;
+                this.BackgroundBrush = isPositive ? BrushBackgroundGreen : BrushBackgroundRed;
             }
         }
 
@@ -92,8 +84,6 @@
                 this.NotifyThisPropertyChanged();
             }
         }
-
-        public SolidColorBrush TextBrush => this.textBrush;
 
         public string TooltipText => this.ProtoItem.Name;
     }

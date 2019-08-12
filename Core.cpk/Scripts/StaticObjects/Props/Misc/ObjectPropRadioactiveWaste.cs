@@ -19,14 +19,14 @@
 
         protected override void CreateLayout(StaticObjectLayout layout)
         {
-            layout.Setup(
-                "##");
+            layout.Setup("##");
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
                 .AddShapeRectangle(size: (1.7, 1.0), offset: (0.15, 0.0));
+            AddFullHeightWallHitboxes(data, width: 1.6, offsetX: 0.2);
         }
     }
 }

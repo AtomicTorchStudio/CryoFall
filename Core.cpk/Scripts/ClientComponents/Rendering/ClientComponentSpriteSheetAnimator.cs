@@ -2,9 +2,9 @@
 {
     using System;
     using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Helpers;
 
     public class ClientComponentSpriteSheetAnimator : ClientComponent
     {
@@ -17,6 +17,8 @@
         private ITextureResource[] framesTextureResources;
 
         private IComponentSpriteRenderer spriteRenderer;
+
+        private double timeOffset;
 
         private double totalDurationSeconds;
 
@@ -114,14 +116,16 @@
 
         public void Reset()
         {
-            this.currentTime = 0f;
+            this.currentTime = this.timeOffset;
         }
 
         public void Setup(
             IComponentSpriteRenderer spriteRenderer,
             ITextureResource[] framesTextureResources,
             double frameDurationSeconds,
-            bool isManualUpdate = false)
+            bool isManualUpdate = false,
+            int? initialFrameOffset = 0,
+            bool randomizeInitialFrame = false)
         {
             if (framesTextureResources == null
                 || framesTextureResources.Length == 0)
@@ -134,6 +138,14 @@
             this.frameDurationSeconds = frameDurationSeconds;
             this.totalDurationSeconds = frameDurationSeconds * framesTextureResources.Length;
             this.IsManualUpdate = isManualUpdate;
+
+            if (!initialFrameOffset.HasValue
+                && randomizeInitialFrame)
+            {
+                initialFrameOffset = RandomHelper.Next(0, this.FramesCount);
+            }
+
+            this.timeOffset = (initialFrameOffset ?? 0) * frameDurationSeconds;
 
             this.Reset();
 

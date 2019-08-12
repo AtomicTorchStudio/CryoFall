@@ -9,7 +9,7 @@
         public override string Description =>
             "Convenient helmet that also provides a portable light source and keeps your hands free. Requires disposable batteries.";
 
-        public override ushort DurabilityMax => 800;
+        public override uint DurabilityMax => 800;
 
         public override bool IsHairVisible => false;
 
@@ -39,7 +39,7 @@
             lightConfig.ScreenOffset = (20, -3);
             lightConfig.Size = 17;
 
-            fuelConfig.FuelCapacity = 500; // about 8.5 minutes
+            fuelConfig.FuelCapacity = 1000; // >10 minutes
             fuelConfig.FuelAmountInitial = 0;
             fuelConfig.FuelUsePerSecond = 1;
             fuelConfig.FuelProtoItemsList.AddAll<IProtoItemFuelElectricity>();

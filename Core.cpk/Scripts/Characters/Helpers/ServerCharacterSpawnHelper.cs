@@ -34,14 +34,12 @@
             }
 
             var physicsSpace = ServerWorldService.GetPhysicsSpace();
-            using (var objectsNearby = physicsSpace.TestCircle(
-                position,
-                SpawnNoPlayerBuiltStructuresRadius,
-                CollisionGroups.Default,
-                sendDebugEvent: false))
+            foreach (var t in physicsSpace.TestCircle(position,
+                                                      SpawnNoPlayerBuiltStructuresRadius,
+                                                      CollisionGroups.Default,
+                                                      sendDebugEvent: false))
             {
-                if (objectsNearby.Any(
-                    t => t.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject is IProtoObjectStructure))
+                if (t.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject is IProtoObjectStructure)
                 {
                     // some structure nearby
                     return false;
@@ -51,15 +49,13 @@
             if (isPlayer)
             {
                 // check if mobs nearby
-                using (var mobsNearby = physicsSpace.TestCircle(
-                    position,
-                    SpawnPlayerNoMobsRadius,
-                    CollisionGroups.Default,
-                    sendDebugEvent: false))
+                foreach (var t in physicsSpace.TestCircle(position,
+                                                          SpawnPlayerNoMobsRadius,
+                                                          CollisionGroups.Default,
+                                                          sendDebugEvent: false))
                 {
-                    if (mobsNearby.Any(
-                        t => t.PhysicsBody.AssociatedWorldObject is ICharacter otherCharacter
-                             && otherCharacter.IsNpc))
+                    if (t.PhysicsBody.AssociatedWorldObject is ICharacter otherCharacter
+                        && otherCharacter.IsNpc)
                     {
                         // mobs nearby
                         return false;
@@ -68,16 +64,14 @@
             }
             else
             {
-                // check if mobs nearby
-                using (var mobsNearby = physicsSpace.TestCircle(
-                    position,
-                    SpawnMobNoPlayersRadius,
-                    CollisionGroups.Default,
-                    sendDebugEvent: false))
+                // check if players nearby
+                foreach (var t in physicsSpace.TestCircle(position,
+                                                          SpawnMobNoPlayersRadius,
+                                                          CollisionGroups.Default,
+                                                          sendDebugEvent: false))
                 {
-                    if (mobsNearby.Any(
-                        t => t.PhysicsBody.AssociatedWorldObject is ICharacter otherCharacter
-                             && !otherCharacter.IsNpc))
+                    if (t.PhysicsBody.AssociatedWorldObject is ICharacter otherCharacter
+                        && !otherCharacter.IsNpc)
                     {
                         // players nearby
                         return false;
@@ -86,11 +80,10 @@
             }
 
             // check if any physics object nearby
-            using (var objectsNearby = physicsSpace.TestCircle(
-                position,
-                SpawnNoPhysicsObjectsRadius,
-                CollisionGroups.Default,
-                sendDebugEvent: false))
+            using (var objectsNearby = physicsSpace.TestCircle(position,
+                                                               SpawnNoPhysicsObjectsRadius,
+                                                               CollisionGroups.Default,
+                                                               sendDebugEvent: false))
             {
                 if (objectsNearby.Count > 0)
                 {

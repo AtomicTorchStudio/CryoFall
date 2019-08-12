@@ -7,7 +7,7 @@
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeSyntheticFiber>();
+                  .AddRecipe<RecipeFibersFromPlastic>();
 
             config.SetRequiredNode<TechNodePlastic>();
         }

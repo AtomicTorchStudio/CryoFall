@@ -42,34 +42,23 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 20);
+            build.AddStageRequiredItem<ItemPlanks>(count: 10);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
             build.AddStageRequiredItem<ItemBottleWater>(count: 1);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 20);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 5);
             repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            var hitboxMelee = CollisionGroups.HitboxMelee;
-            var hitboxRanged = CollisionGroups.HitboxRanged;
-            var clickArea = CollisionGroups.ClickArea;
-
             data.PhysicsBody
-                // static collider
-                .AddShapeRectangle((3, 0.8), offset: (0, 0))
-
-                // melee hitbox
-                .AddShapeRectangle((3, 0.8), offset: (0, 0.2), group: hitboxMelee)
-
-                // ranged hitbox
-                .AddShapeRectangle((3, 0.8), offset: (0, 0.2), group: hitboxRanged)
-
-                // click area
-                .AddShapeRectangle((3, 1.1), offset: (0, 0), group: clickArea);
+                .AddShapeRectangle((3, 0.8),   offset: (0, 0))
+                .AddShapeRectangle((3, 0.8),   offset: (0, 0.2),    group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((2.6, 0.2), offset: (0.2, 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((3, 1.1),   offset: (0, 0),      group: CollisionGroups.ClickArea);
         }
     }
 }

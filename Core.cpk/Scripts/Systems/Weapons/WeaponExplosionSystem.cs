@@ -49,6 +49,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                                          damageDistanceDynamicObjectsOnly,
                                          weaponFinalCache,
                                          damageOnlyDynamicObjects: true,
+                                         isDamageThroughObstacles: false,
                                          callbackCalculateDamageCoefByDistance:
                                          callbackCalculateDamageCoefByDistanceForDynamicObjects);
 
@@ -121,6 +122,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             double damageDistanceMax,
             WeaponFinalCache weaponFinalCache,
             bool damageOnlyDynamicObjects,
+            bool isDamageThroughObstacles,
             Func<double, double> callbackCalculateDamageCoefByDistance)
         {
             var protoObjectExplosive = weaponFinalCache.ProtoObjectExplosive;
@@ -131,110 +133,109 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
             // collect all damaged physics objects
             var collisionGroup = CollisionGroups.Default;
-            using (var testResults = physicsSpace.TestCircle(positionEpicenter,
-                                                             radius: damageDistanceMax,
-                                                             collisionGroup: collisionGroup))
+            using var testResults = physicsSpace.TestCircle(positionEpicenter,
+                                                            radius: damageDistanceMax,
+                                                            collisionGroup: collisionGroup);
+            foreach (var testResult in testResults)
             {
-                foreach (var testResult in testResults)
-                {
-                    var testResultPhysicsBody = testResult.PhysicsBody;
-                    var damagedObject = testResultPhysicsBody.AssociatedWorldObject;
+                var testResultPhysicsBody = testResult.PhysicsBody;
+                var damagedObject = testResultPhysicsBody.AssociatedWorldObject;
 
-                    if (damageOnlyDynamicObjects
-                        && damagedObject is IStaticWorldObject)
+                if (damageOnlyDynamicObjects
+                    && damagedObject is IStaticWorldObject)
+                {
+                    continue;
+                }
+
+                if (!(damagedObject?.ProtoWorldObject is IDamageableProtoWorldObject))
+                {
+                    // non-damageable world object
+                    continue;
+                }
+
+                damageCandidates.Add(damagedObject);
+            }
+
+            if (!damageOnlyDynamicObjects)
+            {
+                // Collect all the damageable static objects in the explosion radius
+                // which don't have a collider colliding with the collision group.
+                var startTilePosition = positionEpicenter.ToVector2Ushort();
+                var damageDistanceMaxRounded = (int)damageDistanceMax;
+                var damageDistanceMaxSqr = damageDistanceMax * damageDistanceMax;
+                var minTileX = startTilePosition.X - damageDistanceMaxRounded;
+                var minTileY = startTilePosition.Y - damageDistanceMaxRounded;
+                var maxTileX = startTilePosition.X + damageDistanceMaxRounded;
+                var maxTileY = startTilePosition.Y + damageDistanceMaxRounded;
+
+                for (var x = minTileX; x <= maxTileX; x++)
+                for (var y = minTileY; y <= maxTileY; y++)
+                {
+                    if (x < 0
+                        || x > ushort.MaxValue
+                        || y < 0
+                        || y > ushort.MaxValue)
                     {
                         continue;
                     }
 
-                    if (!(damagedObject?.ProtoWorldObject is IDamageableProtoWorldObject))
+                    if (new Vector2Ushort((ushort)x, (ushort)y)
+                            .TileSqrDistanceTo(startTilePosition)
+                        > damageDistanceMaxSqr)
                     {
-                        // non-damageable world object
+                        // too far
                         continue;
                     }
 
-                    damageCandidates.Add(damagedObject);
-                }
-
-                if (!damageOnlyDynamicObjects)
-                {
-                    // Collect all the damageable static objects in the explosion radius
-                    // which don't have a collider colliding with the collision group.
-                    var startTilePosition = positionEpicenter.ToVector2Ushort();
-                    var damageDistanceMaxRounded = (int)damageDistanceMax;
-                    var damageDistanceMaxSqr = damageDistanceMax * damageDistanceMax;
-                    var minTileX = startTilePosition.X - damageDistanceMaxRounded;
-                    var minTileY = startTilePosition.Y - damageDistanceMaxRounded;
-                    var maxTileX = startTilePosition.X + damageDistanceMaxRounded;
-                    var maxTileY = startTilePosition.Y + damageDistanceMaxRounded;
-
-                    for (var x = minTileX; x <= maxTileX; x++)
-                    for (var y = minTileY; y <= maxTileY; y++)
-                    {
-                        if (x < 0
-                            || x > ushort.MaxValue
-                            || y < 0
-                            || y > ushort.MaxValue)
-                        {
-                            continue;
-                        }
-
-                        if (new Vector2Ushort((ushort)x, (ushort)y)
-                                .TileSqrDistanceTo(startTilePosition)
-                            > damageDistanceMaxSqr)
-                        {
-                            // too far
-                            continue;
-                        }
-
-                        var tileObjects = Api.Server.World.GetStaticObjects(new Vector2Ushort((ushort)x, (ushort)y));
-                        if (tileObjects.Count == 0)
-                        {
-                            continue;
-                        }
-
-                        foreach (var tileObject in tileObjects)
-                        {
-                            if (!(tileObject.ProtoStaticWorldObject is IDamageableProtoWorldObject))
-                            {
-                                // non-damageable
-                                continue;
-                            }
-
-                            if (tileObject.PhysicsBody.HasAnyShapeCollidingWithGroup(collisionGroup))
-                            {
-                                // has a collider colliding with the collision group so we ignore this
-                                continue;
-                            }
-
-                            damageCandidates.Add(tileObject);
-                        }
-                    }
-                }
-
-                // order by distance to explosion center
-                var orderedDamagedObjects =
-                    damageCandidates.OrderBy(ServerExplosionGetDistanceToEpicenter(positionEpicenter));
-                // process all damaged objects
-                foreach (var damagedObject in orderedDamagedObjects)
-                {
-                    if (ServerHasObstacleForExplosion(physicsSpace, positionEpicenter, damagedObject))
+                    var tileObjects = Api.Server.World.GetStaticObjects(new Vector2Ushort((ushort)x, (ushort)y));
+                    if (tileObjects.Count == 0)
                     {
                         continue;
                     }
 
-                    var distanceToDamagedObject = ServerCalculateDistanceToDamagedObject(positionEpicenter,
-                                                                                         damagedObject);
-                    var damageMultiplier = callbackCalculateDamageCoefByDistance(distanceToDamagedObject);
-                    damageMultiplier = MathHelper.Clamp(damageMultiplier, 0, 1);
+                    foreach (var tileObject in tileObjects)
+                    {
+                        if (!(tileObject.ProtoStaticWorldObject is IDamageableProtoWorldObject))
+                        {
+                            // non-damageable
+                            continue;
+                        }
 
-                    var damageableProto = (IDamageableProtoWorldObject)damagedObject.ProtoGameObject;
-                    damageableProto.SharedOnDamage(
-                        weaponFinalCache,
-                        damagedObject,
-                        damageMultiplier,
-                        out _,
-                        out _);
+                        if (tileObject.PhysicsBody.HasAnyShapeCollidingWithGroup(collisionGroup))
+                        {
+                            // has a collider colliding with the collision group so we ignore this
+                            continue;
+                        }
+
+                        damageCandidates.Add(tileObject);
+                    }
                 }
+            }
+
+            // order by distance to explosion center
+            var orderedDamagedObjects =
+                damageCandidates.OrderBy(ServerExplosionGetDistanceToEpicenter(positionEpicenter));
+            // process all damaged objects
+            foreach (var damagedObject in orderedDamagedObjects)
+            {
+                if (!isDamageThroughObstacles
+                    && ServerHasObstacleForExplosion(physicsSpace, positionEpicenter, damagedObject))
+                {
+                    continue;
+                }
+
+                var distanceToDamagedObject = ServerCalculateDistanceToDamagedObject(positionEpicenter,
+                                                                                     damagedObject);
+                var damageMultiplier = callbackCalculateDamageCoefByDistance(distanceToDamagedObject);
+                damageMultiplier = MathHelper.Clamp(damageMultiplier, 0, 1);
+
+                var damageableProto = (IDamageableProtoWorldObject)damagedObject.ProtoGameObject;
+                damageableProto.SharedOnDamage(
+                    weaponFinalCache,
+                    damagedObject,
+                    damageMultiplier,
+                    out _,
+                    out _);
             }
         }
 
@@ -328,50 +329,48 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             var targetPosition = ServerGetClosestPointToExplosionEpicenter(targetWorldObject.PhysicsBody,
                                                                            positionEpicenter);
 
-            using (var obstaclesOnTheWay = physicsSpace.TestLine(
+            using var obstaclesOnTheWay = physicsSpace.TestLine(
                 positionEpicenter,
                 targetPosition,
-                collisionGroup: CollisionGroups.Default))
+                collisionGroup: CollisionGroups.Default);
+            //obstaclesOnTheWay.SortBy(
+            //    ServerExplosionGetDistanceToEpicenter(positionEpicenter));
+
+            foreach (var testResult in obstaclesOnTheWay)
             {
-                //obstaclesOnTheWay.SortBy(
-                //    ServerExplosionGetDistanceToEpicenter(positionEpicenter));
-
-                foreach (var testResult in obstaclesOnTheWay)
+                var testPhysicsBody = testResult.PhysicsBody;
+                if (testPhysicsBody.AssociatedProtoTile != null)
                 {
-                    var testPhysicsBody = testResult.PhysicsBody;
-                    if (testPhysicsBody.AssociatedProtoTile != null)
-                    {
-                        // obstacle tile on the way
-                        return true;
-                    }
-
-                    var testWorldObject = testPhysicsBody.AssociatedWorldObject;
-                    if (testWorldObject == targetWorldObject)
-                    {
-                        // not an obstacle - it's the target object itself
-                        // stop checking collisions as we've reached the target object
-                        return false;
-                    }
-
-                    if (testWorldObject is ICharacter)
-                    {
-                        // not an obstacle - character is not considered as an obstacle for the explosion
-                        continue;
-                    }
-
-                    if (testWorldObject.ProtoWorldObject is IDamageableProtoWorldObject damageableProtoWorldObject
-                        && damageableProtoWorldObject.ObstacleBlockDamageCoef < 1)
-                    {
-                        // damage goes through
-                        continue;
-                    }
-
-                    // obstacle object on the way
+                    // obstacle tile on the way
                     return true;
                 }
 
-                return false;
+                var testWorldObject = testPhysicsBody.AssociatedWorldObject;
+                if (testWorldObject == targetWorldObject)
+                {
+                    // not an obstacle - it's the target object itself
+                    // stop checking collisions as we've reached the target object
+                    return false;
+                }
+
+                if (testWorldObject is ICharacter)
+                {
+                    // not an obstacle - character is not considered as an obstacle for the explosion
+                    continue;
+                }
+
+                if (testWorldObject.ProtoWorldObject is IDamageableProtoWorldObject damageableProtoWorldObject
+                    && damageableProtoWorldObject.ObstacleBlockDamageCoef < 1)
+                {
+                    // damage goes through
+                    continue;
+                }
+
+                // obstacle object on the way
+                return true;
             }
+
+            return false;
         }
     }
 }

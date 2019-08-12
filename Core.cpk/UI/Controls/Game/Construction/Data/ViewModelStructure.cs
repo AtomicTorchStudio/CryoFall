@@ -12,8 +12,6 @@
 
     public class ViewModelStructure : BaseViewModel
     {
-        public readonly IProtoObjectStructure ProtoStructure;
-
         public ViewModelStructure(IProtoObjectStructure protoStructure)
         {
             this.ProtoStructure = protoStructure;
@@ -54,6 +52,8 @@
         public bool IsCanBuild { get; private set; }
 
         public bool IsSelected { get; set; }
+
+        public IProtoObjectStructure ProtoStructure { get; }
 
         public IReadOnlyList<ProtoItemWithCount> StageRequiredItems
             => this.ProtoStructure.ConfigBuild.StageRequiredItems;

@@ -1,84 +1,29 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
-    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.CoreMod.Systems.PvE;
-    using AtomicTorch.CBND.CoreMod.Tiles;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    public class ObjectOilPump : ProtoObjectExtractor
+    public class ObjectOilPump : ProtoObjectOilPump
     {
-        public const string ErrorRequiresOilSeep = "The pump requires an oil seep.";
-
-        private static readonly ConstructionTileRequirements.Validator ValidatorForPvP
-            = new ConstructionTileRequirements.Validator(
-                ErrorRequiresOilSeep,
-                c =>
-                {
-                    if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
-                    {
-                        // don't validate this condition on PvE servers
-                        return true;
-                    }
-
-                    foreach (var obj in c.Tile.StaticObjects)
-                    {
-                        if (obj.ProtoStaticWorldObject is ObjectDepositOilSeep)
-                        {
-                            return true;
-                        }
-                    }
-
-                    return false;
-                });
-
-        private static readonly ConstructionTileRequirements.Validator ValidatorForPvE
-            = new ConstructionTileRequirements.Validator(
-                () => "[b]"
-                      + ConstructionTileRequirements.Error_UnsuitableGround_Title
-                      + "[/b]"
-                      + "[br]"
-                      + ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn
-                      + "[*]"
-                      + Api.GetProtoEntity<TileBarren>().Name,
-                c =>
-                {
-                    if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
-                    {
-                        // don't validate this condition on PvP servers
-                        return true;
-                    }
-
-                    return c.Tile.ProtoTile == Api.GetProtoEntity<TileBarren>();
-                });
-
         private readonly TextureAtlasResource textureAtlasOilPumpActive;
 
         public ObjectOilPump()
         {
             this.textureAtlasOilPumpActive = new TextureAtlasResource(
                 this.GenerateTexturePath() + "Active",
-                columns: 8,
+                columns: 4,
                 rows: 2,
                 isTransparent: true);
         }
 
         public override byte ContainerFuelSlotsCount => 1;
-
-        public override byte ContainerInputSlotsCount => 1;
-
-        public override byte ContainerOutputSlotsCount => 1;
 
         public override string Description =>
             "Can be built over an oil seep to extract raw petroleum oil directly from the ground.";
@@ -93,39 +38,38 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 10000;
+        public override float StructurePointsMax => 2500;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
+            var worldObject = data.GameObject;
+            var publicState = data.PublicState;
 
-            var animatedSpritePositionOffset = (300 / (double)ScriptingConstants.TileSizeRealPixels,
-                                                376 / (double)ScriptingConstants.TileSizeRealPixels);
+            var animatedSpritePositionOffset = (84 / (double)ScriptingConstants.TileSizeRealPixels,
+                                                122 / (double)ScriptingConstants.TileSizeRealPixels);
 
-            this.ClientSetupOilPumpActiveAnimation(
-                data.GameObject,
-                data.SyncPublicState,
+            this.ClientSetupExtractorActiveAnimation(
+                worldObject,
+                publicState,
                 this.textureAtlasOilPumpActive,
                 animatedSpritePositionOffset,
-                frameDurationSeconds: 0.04,
-                autoInverseAnimation: true);
-        }
+                frameDurationSeconds: 0.08,
+                autoInverseAnimation: false,
+                playAnimationSounds: false);
 
-        protected override BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
-        {
-            var objectDeposit = data.GameObject.OccupiedTile.StaticObjects.FirstOrDefault(
-                o => o.ProtoStaticWorldObject is ObjectDepositOilSeep);
+            var soundEmitter = this.ClientCreateActiveStateSoundEmitterComponent(worldObject);
 
-            var privateState = data.SyncPrivateState;
-            return WindowOilPump.Open(
-                new ViewModelWindowOilPump(
-                    data.GameObject,
-                    objectDeposit,
-                    privateState.ManufacturingState,
-                    this.ManufacturingConfig,
-                    privateState.FuelBurningState,
-                    privateState.LiquidContainerState,
-                    this.LiquidContainerConfig));
+            publicState.ClientSubscribe(_ => _.IsActive,
+                                        _ => RefreshActiveState(),
+                                        data.ClientState);
+
+            RefreshActiveState();
+
+            void RefreshActiveState()
+            {
+                soundEmitter.IsEnabled = publicState.IsActive;
+            }
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -142,42 +86,21 @@
         }
 
         protected override void PrepareConstructionConfig(
-            ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
             ConstructionStageConfig repair,
-            ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
             category = GetCategory<StructureCategoryIndustry>();
 
-            // Oil pump requires each tile to contain an oil seep.
-            // Notice: technically it will be possible to construct one oil pump on two oil seeps if they're nearby,
-            // so there should be the oil spawn limitation to avoid that case!
-            tileRequirements
-                .Clear()
-                .Add(ValidatorForPvP)
-                .Add(ValidatorForPvE)
-                .Add(ConstructionTileRequirements.BasicRequirements)
-                .Add(ConstructionTileRequirements.ValidatorClientOnlyNoCurrentPlayer)
-                .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyDynamic)
-                .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
-                     c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
-                              c.Tile,
-                              o => o.PhysicsBody.IsStatic
-                                   && !(o.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject
-                                            is ObjectDepositOilSeep)))
-                .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
-                .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea);
-
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 20);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 15);
-            build.AddStageRequiredItem<ItemCement>(count: 25);
+            build.StageDurationSeconds = BuildDuration.Medium;
+            build.AddStageRequiredItem<ItemPlanks>(count: 20);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 5);
+            build.AddStageRequiredItem<ItemCement>(count: 10);
 
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            repair.StageDurationSeconds = BuildDuration.Medium;
+            repair.AddStageRequiredItem<ItemPlanks>(count: 10);
             repair.AddStageRequiredItem<ItemIngotCopper>(count: 2);
         }
 
@@ -198,15 +121,9 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle((2.8, 2.2), (0.1, 0))
-                .AddShapeRectangle((2.8, 2.4), (0.1, 0), CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((2.8, 2.6), (0.1, 0), CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((2.8, 2.8), (0.1, 0), CollisionGroups.ClickArea);
-        }
-
-        protected override IStaticWorldObject SharedGetDepositWorldObject(Tile tile)
-        {
-            return tile.StaticObjects.FirstOrDefault(
-                o => o.ProtoStaticWorldObject is ObjectDepositOilSeep);
+                .AddShapeRectangle((2.8, 1.7), (0.1, 0.7), CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((2.8, 1.6), (0.1, 0.8), CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((2.8, 2.8), (0.1, 0),   CollisionGroups.ClickArea);
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class ItemPaper : ProtoItemGeneric, IProtoItemFuelSolid
     {
-        public override string Description => "Just plain ol' paper.";
+        public override string Description => "Paper is a versatile material with many uses and can be easily prepared from wood.";
 
         public double FuelAmount => 10;
 

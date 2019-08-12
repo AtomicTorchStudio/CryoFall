@@ -10,7 +10,7 @@
     {
         public override string Description => "Basic knife. Better than fists, but not by much.";
 
-        public override ushort DurabilityMax => 60;
+        public override uint DurabilityMax => 60;
 
         public override string Name => "Stone knife";
 

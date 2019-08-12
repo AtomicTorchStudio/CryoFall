@@ -4,7 +4,7 @@
     {
         public override string Description => "Raw tobacco leaves and pods. Can be dried and made into cigars.";
 
-        public override string Name => "Tobacco (raw)";
+        public override string Name => "Raw tobacco";
 
         public ushort OrganicValue => 2;
     }

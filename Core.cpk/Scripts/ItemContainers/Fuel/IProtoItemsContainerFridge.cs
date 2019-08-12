@@ -10,6 +10,6 @@
         /// <summary>
         /// Gets the current food spoilage rate for the container instance of this type.
         /// </summary>
-        float GetFoodFreshnessDecreaseCoefficient(IItemsContainer container);
+        double SharedGetCurrentFoodFreshnessDecreaseCoefficient(IItemsContainer container);
     }
 }

@@ -225,7 +225,7 @@
             }
 
             this.ServerOnEat(itemEatData);
-            Logger.Important(character + " has eaten " + item);
+            Logger.Important(character + " consumed " + item);
 
             this.ServerNotifyItemUsed(character, item);
             // decrease item count

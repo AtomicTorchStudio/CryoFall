@@ -19,7 +19,7 @@
 
         public override string Description => null;
 
-        public override ushort DurabilityMax => 0;
+        public override uint DurabilityMax => 0;
 
         public override double FireInterval => this.FireAnimationDuration * 1.5;
 

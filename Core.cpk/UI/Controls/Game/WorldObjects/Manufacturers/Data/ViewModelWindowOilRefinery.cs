@@ -10,6 +10,8 @@
 
     public class ViewModelWindowOilRefinery : BaseViewModel
     {
+        private readonly ObjectManufacturerPublicState manufacturerPublicState;
+
         public ViewModelWindowOilRefinery(
             IStaticWorldObject worldObject,
             ManufacturingState manufacturingState,
@@ -18,7 +20,6 @@
             ManufacturingConfig manufacturingConfig,
             ManufacturingConfig manufacturingConfigProcessedGasoline,
             ManufacturingConfig manufacturingConfigProcessedMineralOil,
-            FuelBurningState fuelBurningState,
             LiquidContainerState liquidStateRawPetroleum,
             LiquidContainerState liquidStateProcessedGasoline,
             LiquidContainerState liquidStateProcessedMineralOil,
@@ -27,10 +28,6 @@
             LiquidContainerConfig liquidConfigProcessedMineralOil)
         {
             this.WorldObjectManufacturer = worldObject;
-
-            // please note - the order of creating these view models is important for the proper container exchange order
-            this.ViewModelFuelBurningState = new ViewModelFuelBurningState(fuelBurningState);
-            this.ViewModelBurningFuel = ViewModelBurningFuel.Create(this.WorldObjectManufacturer, fuelBurningState);
 
             this.ViewModelManufacturingStateRawPetroleum = new ViewModelManufacturingState(
                 worldObject,
@@ -60,27 +57,18 @@
                 liquidConfigProcessedMineralOil);
 
             // prepare active state property
-            var manufacturerPublicState = worldObject.GetPublicState<ObjectManufacturerPublicState>();
-            manufacturerPublicState.ClientSubscribe(_ => _.IsManufacturingActive,
-                                                    _ => RefreshIsManufacturerActive(),
-                                                    this);
-            RefreshIsManufacturerActive();
-
-            void RefreshIsManufacturerActive()
-            {
-                this.IsManufacturerActive = manufacturerPublicState.IsManufacturingActive;
-            }
+            this.manufacturerPublicState = worldObject.GetPublicState<ObjectManufacturerPublicState>();
+            this.manufacturerPublicState.ClientSubscribe(_ => _.IsActive,
+                                                         _ => this.NotifyPropertyChanged(
+                                                             nameof(this.IsManufacturingActive)),
+                                                         this);
         }
 
         public ViewModelWindowOilRefinery()
         {
         }
 
-        public bool IsManufacturerActive { get; private set; }
-
-        public ViewModelBurningFuel ViewModelBurningFuel { get; }
-
-        public ViewModelFuelBurningState ViewModelFuelBurningState { get; }
+        public bool IsManufacturingActive => this.manufacturerPublicState.IsActive;
 
         public ViewModelLiquidContainerState ViewModelLiquidStateProcessedGasoline { get; }
 

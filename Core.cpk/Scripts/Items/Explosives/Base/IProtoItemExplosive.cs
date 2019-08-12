@@ -18,6 +18,11 @@
 
         void ServerOnUseActionFinished(ICharacter character, IItem item, Vector2Ushort targetPosition);
 
-        bool SharedValidatePlacement(ICharacter character, Vector2Ushort targetPosition, bool logErrors);
+        void SharedValidatePlacement(
+            ICharacter character,
+            Vector2Ushort targetPosition,
+            bool logErrors,
+            out bool canPlace,
+            out bool isTooFar);
     }
 }

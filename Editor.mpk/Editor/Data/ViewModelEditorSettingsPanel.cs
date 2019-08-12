@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor.Data
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Physics;
     using AtomicTorch.CBND.CoreMod.Tiles;
@@ -39,11 +38,11 @@
             ClientComponentPhysicsSpaceVisualizer.IsInstanceExistChanged
                 += () => this.NotifyPropertyChanged(nameof(this.IsPhysicsSpaceVisualizerEnabled));
 
-            ClientComponentUpdateHelper.UpdateCallback += this.Update;
+            ClientUpdateHelper.UpdateCallback += this.Update;
         }
 
         public static ViewModelEditorSettingsPanel Instance
-            => instance ?? (instance = new ViewModelEditorSettingsPanel());
+            => instance ??= new ViewModelEditorSettingsPanel();
 
         public ushort CursorWorldPositionX { get; set; }
 

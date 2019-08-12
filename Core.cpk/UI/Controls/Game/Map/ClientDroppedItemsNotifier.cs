@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -20,7 +19,7 @@
 
         public const string NotificationItemsDropped_Title = "Your items were dropped";
 
-        private static readonly Dictionary<DroppedLootInfo, HUDNotificationControl> notifications
+        private static readonly Dictionary<DroppedLootInfo, HUDNotificationControl> Notifications
             = new Dictionary<DroppedLootInfo, HUDNotificationControl>();
 
         private static NetworkSyncList<DroppedLootInfo> droppedItemsLocations;
@@ -34,13 +33,20 @@
                 droppedItemsLocations = null;
             }
 
+            foreach (var notification in Notifications)
+            {
+                notification.Value.Hide(quick: true);
+            }
+
+            Notifications.Clear();
+
             droppedItemsLocations = PlayerCharacter.GetPrivateState(character)
                                                    .DroppedLootLocations;
 
             droppedItemsLocations.ClientElementInserted += MarkerAddedHandler;
             droppedItemsLocations.ClientElementRemoved += MarkerRemovedHandler;
 
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 delaySeconds: 1,
                 () =>
                 {
@@ -77,7 +83,7 @@
             int index,
             DroppedLootInfo droppedLootInfo)
         {
-            if (notifications.TryGetValue(droppedLootInfo, out var notificationControl))
+            if (Notifications.TryGetValue(droppedLootInfo, out var notificationControl))
             {
                 notificationControl.Hide(quick: false);
             }
@@ -85,7 +91,7 @@
 
         private static void ShowNotification(DroppedLootInfo droppedLootInfo)
         {
-            if (notifications.TryGetValue(droppedLootInfo, out _))
+            if (Notifications.TryGetValue(droppedLootInfo, out _))
             {
                 // already has a notification
                 return;
@@ -101,7 +107,7 @@
                 autoHide: false);
 
             UpdateNotification(droppedLootInfo, notification);
-            notifications[droppedLootInfo] = notification;
+            Notifications[droppedLootInfo] = notification;
         }
 
         private static void UpdateNotification(DroppedLootInfo mark, HUDNotificationControl notification)
@@ -118,10 +124,10 @@
                 return;
             }
 
-            notification.ViewModel.Message = GetNotificationText(mark);
+            notification.SetMessage(GetNotificationText(mark));
 
             // schedule recursive update in a second
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 delaySeconds: 1,
                 () => UpdateNotification(mark, notification));
         }

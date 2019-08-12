@@ -137,18 +137,18 @@
         </core:Scalebox>
 
         <core:Scalebox Grid.Row="2" Grid.Column="2" Scale="1">
-            <Border VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                    Margin="5,5,5,100">
+            <Border VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="5,5,5,77">
                 <itemsNotifications:HUDItemsNotificationsPanelControl />
             </Border>
         </core:Scalebox>
 
-
         <core:Scalebox Grid.Row="2" Grid.Column="2" Scale="0.83">
-            <Grid
-                Width="270"
-                Margin="0,0,5,5"
-                VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Grid Width="270"
+                  Margin="0,0,5,5"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Right">
                 <ContentControl Template="{StaticResource HUDWidgetStatsBars}" RenderTransformOrigin="0.5,0.5">
                     <ContentControl.RenderTransform>
                         <TransformGroup>

@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data
 {
     using System.Text;
+    using System.Windows;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skills.Data;
@@ -26,6 +27,11 @@
                 return sb.ToString();
             }
         }
+
+        public Visibility EffectTextVisibility
+            => this.StatName.GetAttribute<StatNameHiddenValueAttribute>() == null
+                   ? Visibility.Visible
+                   : Visibility.Collapsed;
 
         public double Percent { get; set; }
 

@@ -7,6 +7,6 @@
         /// <summary>
         /// Current value of durability. Should never exceed the according item durability.
         /// </summary>
-        ushort DurabilityCurrent { get; set; }
+        uint DurabilityCurrent { get; set; }
     }
 }

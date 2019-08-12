@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Quests;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
+    using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -158,6 +159,8 @@
             questEntry.ServerSetCompleted();
 
             var rewardLearningPoints = quest.RewardLearningPoints;
+            rewardLearningPoints = (ushort)Math.Round(rewardLearningPoints * TechConstants.ServerLearningPointsGainMultiplier,
+                                                      MidpointRounding.AwayFromZero);
             this.Character.SharedGetTechnologies()
                 .ServerAddLearningPoints(rewardLearningPoints);
 

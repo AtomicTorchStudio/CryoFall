@@ -181,34 +181,37 @@
             if (error == TradingResult.ErrorNotEnoughMoneyOnPlayer)
             {
                 // calculate how many coins are needed
-                long shinyNotEnough = 0, pennyNotEnough = 0;
+                var character = Client.Characters.CurrentPlayerCharacter;
+                long deficitShiny = 0,
+                     deficitPenny = 0;
+
                 if (lot.PriceCoinShiny > 0)
                 {
-                    shinyNotEnough = lot.PriceCoinShiny
-                                     - Client.Characters.CurrentPlayerCharacter.CountItemsOfType(
-                                         ProtoItemCoinShiny.Value);
+                    deficitShiny = lot.PriceCoinShiny
+                                   - character.CountItemsOfType(ProtoItemCoinShiny.Value);
                 }
 
                 if (lot.PriceCoinPenny > 0)
                 {
-                    pennyNotEnough = lot.PriceCoinPenny
-                                     - Client.Characters.CurrentPlayerCharacter.CountItemsOfType(
-                                         ProtoItemCoinPenny.Value);
+                    deficitPenny = lot.PriceCoinPenny
+                                   - character.CountItemsOfType(ProtoItemCoinPenny.Value);
                 }
 
-                if (shinyNotEnough > 0
-                    || pennyNotEnough > 0)
+                if (deficitShiny > 0
+                    || deficitPenny > 0)
                 {
-                    if (shinyNotEnough > 0)
+                    if (deficitShiny > 0)
                     {
-                        message += Environment.NewLine
-                                   + string.Format(NotificationNeedMoreShinyCoins, shinyNotEnough);
+                        // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                        message += "[br]"
+                                   + string.Format(NotificationNeedMoreShinyCoins, deficitShiny);
                     }
 
-                    if (pennyNotEnough > 0)
+                    if (deficitPenny > 0)
                     {
-                        message += Environment.NewLine
-                                   + string.Format(NotificationNeedMorePennyCoins, pennyNotEnough);
+                        // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                        message += "[br]"
+                                   + string.Format(NotificationNeedMorePennyCoins, deficitPenny);
                     }
                 }
             }

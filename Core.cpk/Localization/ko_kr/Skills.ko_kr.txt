@@ -70,9 +70,6 @@ Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Description:
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
 근접 무기
 
-Scripts/Skills/Skills/Misc/SkillSearching@Flags.ChanceToFindRareItems:
-일정 확률로 희귀 아이템 발견
-
 Scripts/Skills/Skills/Misc/SkillSearching@Description:
 아주 미세한 것도 관심을 갖고 관찰하여 추가 아이템을 찾을 확률이 높아집니다.
 
@@ -132,4 +129,10 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
 제작
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
+여러 아이템과 장비를 수리하여 유지 보수할 수 있습니다. 수리공 탁자에서 작업을 수행할 수 있습니다.
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
+유지 보수
 

@@ -24,12 +24,10 @@
                 return;
             }
 
-            using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-            {
-                Server.World.GetScopedByPlayers(worldObject, scopedBy);
-                instance.CallClient(scopedBy,
-                                    _ => _.ClientRemote_PlayLootDroppedSound(worldObject.TilePosition));
-            }
+            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(worldObject, scopedBy);
+            instance.CallClient(scopedBy,
+                                _ => _.ClientRemote_PlayLootDroppedSound(worldObject.TilePosition));
         }
 
         protected override void PrepareProto()

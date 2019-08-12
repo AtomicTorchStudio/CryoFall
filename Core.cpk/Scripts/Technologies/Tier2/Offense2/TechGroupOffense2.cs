@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Technologies.Tier2.Offense2
 {
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier1.OffenseAndDefense;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Offense;
 
     public class TechGroupOffense2 : TechGroup
     {
@@ -14,7 +14,7 @@
 
         protected override void PrepareTechGroup(Requirements requirements)
         {
-            requirements.AddGroup<TechGroupOffenseAndDefense>(completion: 1);
+            requirements.AddGroup<TechGroupOffense>(completion: 1.0);
             requirements.AddGroup<TechGroupIndustry>(completion: 0.6);
         }
     }

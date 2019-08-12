@@ -11,7 +11,7 @@
                   .AddRecipe<RecipeMeatJerky>()
                   .AddStructure<ObjectDryingCabinet>();
 
-            config.SetRequiredNode<TechNodeCarrotGrilled>();
+            config.SetRequiredNode<TechNodeCornGrilled>();
         }
     }
 }

@@ -60,6 +60,72 @@
             this.RebuildAll();
         }
 
+        private static Vector2D GetDrawOffset(IItem item)
+        {
+            var allItems = item.Container.Items;
+            var virtualSlotId = 0;
+            // let's find the slot
+            foreach (var otherItem in allItems)
+            {
+                if (otherItem == item)
+                {
+                    break;
+                }
+
+                virtualSlotId++;
+            }
+
+            var occupiedSlotsCount = item.Container.OccupiedSlotsCount;
+            if (occupiedSlotsCount <= 1)
+            {
+                // center
+                return (0.5, 0.25);
+            }
+
+            if (occupiedSlotsCount <= 2)
+            {
+                // side-by-side two items
+                switch (virtualSlotId)
+                {
+                    case 0:
+                        return (0.25, 0.25);
+                    case 1:
+                        return (0.75, 0.25);
+                }
+            }
+
+            if (occupiedSlotsCount <= 3)
+            {
+                // triangle layout
+                switch (virtualSlotId)
+                {
+                    case 0:
+                        return (0.5, 0.5);
+                    case 1:
+                        return (0.75, 0.05);
+                    case 2:
+                        return (0.25, 0.05);
+                }
+            }
+
+            // quad layout (that's right, only first 4 objects of container can be drawn this way)
+            Vector2D drawOffset;
+            switch (virtualSlotId)
+            {
+                case 0:
+                    return (0.25, 0.55);
+                case 1:
+                    return (0.75, 0.55);
+                case 2:
+                    return (0.25, 0.05);
+                case 3:
+                    return (0.75, 0.05);
+                default:
+                    // drop by center
+                    return (0.5, 0.25);
+            }
+        }
+
         private void CreateSpriteRenderer(IItem item)
         {
             var protoItem = (IProtoItem)item.ProtoGameObject;
@@ -75,7 +141,7 @@
                 icon,
                 extractMaskFromColor: true);
 
-            spriteRenderer.PositionOffset = this.GetDrawOffset(item);
+            spriteRenderer.PositionOffset = GetDrawOffset(item);
             spriteRenderer.SpritePivotPoint = (0.5, 0);
             spriteRenderer.Scale = protoItem.GroundIconScale * ItemOnGroundScaleMultiplier;
 
@@ -124,80 +190,6 @@
             this.itemsContainer.ItemAdded -= this.ItemAddedHandler;
             this.itemsContainer.ItemRemoved -= this.ItemRemovedHandler;
             this.itemsContainer.ItemsReset -= this.ItemsResetHandler;
-        }
-
-        private Vector2D GetDrawOffset(IItem item)
-        {
-            var allItems = this.itemsContainer.Items;
-            var virtualSlotId = 0;
-            // let's find the slot
-            foreach (var otherItem in allItems)
-            {
-                if (otherItem == item)
-                {
-                    break;
-                }
-
-                virtualSlotId++;
-            }
-
-            var occupiedSlotsCount = this.itemsContainer.OccupiedSlotsCount;
-
-            if (occupiedSlotsCount <= 1)
-            {
-                // center
-                return (0.5, 0.25);
-            }
-
-            if (occupiedSlotsCount <= 2)
-            {
-                // side-by-side two items
-                switch (virtualSlotId)
-                {
-                    case 0:
-                        return (0.25, 0.25);
-                    case 1:
-                        return (0.75, 0.25);
-                }
-            }
-
-            if (occupiedSlotsCount <= 3)
-            {
-                // triangle layout
-                switch (virtualSlotId)
-                {
-                    case 0:
-                        return (0.5, 0.5);
-                    case 1:
-                        return (0.75, 0.05);
-                    case 2:
-                        return (0.25, 0.05);
-                }
-            }
-
-            // quad layout (that's right, only first 4 objects of container can be drawn this way)
-            Vector2D drawOffset;
-            switch (virtualSlotId)
-            {
-                case 0:
-                    drawOffset = (0.25, 0.55);
-                    break;
-                case 1:
-                    drawOffset = (0.75, 0.55);
-                    break;
-                case 2:
-                    drawOffset = (0.25, 0.05);
-                    break;
-                case 3:
-                    drawOffset = (0.75, 0.05);
-                    break;
-                default:
-                    // drop by center
-                    drawOffset = (0.5, 0.25);
-                    break;
-            }
-
-            return drawOffset;
         }
 
         private void ItemAddedHandler(IItem item)
@@ -297,7 +289,7 @@
         {
             foreach (var pair in this.slotRenderers)
             {
-                var drawOffset = this.GetDrawOffset(pair.Key);
+                var drawOffset = GetDrawOffset(pair.Key);
                 var slotRenderer = pair.Value;
                 slotRenderer.Renderer.PositionOffset = drawOffset;
 

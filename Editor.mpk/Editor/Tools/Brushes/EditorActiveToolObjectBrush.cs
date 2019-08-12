@@ -55,9 +55,16 @@
                 });
         }
 
-        private bool ValidateCanBuild(Vector2Ushort tilePosition, bool logErrors)
+        private void ValidateCanBuild(
+            Vector2Ushort tilePosition,
+            bool logErrors,
+            out bool canPlace,
+            out bool isTooFar)
         {
-            return this.protoStaticObject.CheckTileRequirements(tilePosition, character: null, logErrors: logErrors);
+            isTooFar = false;
+            canPlace = this.protoStaticObject.CheckTileRequirements(tilePosition,
+                                                                    character: null,
+                                                                    logErrors: logErrors);
         }
     }
 }

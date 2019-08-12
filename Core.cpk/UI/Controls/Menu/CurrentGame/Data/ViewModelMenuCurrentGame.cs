@@ -6,9 +6,12 @@
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerWelcomeMessage;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ViewModelMenuCurrentGame : BaseViewModel
     {
@@ -19,6 +22,8 @@
         private string iconHash;
 
         private int lastIconLoadRequestId;
+
+        private DateTime? wipedDate;
 
         public ViewModelMenuCurrentGame()
         {
@@ -45,6 +50,8 @@
 
             this.UpdateConnectionState();
             this.UpdateServerInfo();
+
+            this.RefreshWipedDateText();
         }
 
         public bool CanEditWelcomeMessage => ServerOperatorSystem.ClientIsOperator();
@@ -109,7 +116,7 @@
                 this.game.PingGameSeconds * 1000,
                 MidpointRounding.AwayFromZero);
 
-        public string ServerAddress { get; private set; }
+        public ServerAddress ServerAddress { get; private set; }
 
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
         public string ServerDescription { get; private set; } = "Server description text";
@@ -121,6 +128,29 @@
         public Visibility VisibilityEditorMode { get; private set; }
 
         public Visibility VisibilityNotConnected { get; private set; }
+
+        public DateTime? WipedDate
+        {
+            get => this.wipedDate;
+            set
+            {
+                if (this.wipedDate == value)
+                {
+                    return;
+                }
+
+                this.wipedDate = value;
+                this.NotifyThisPropertyChanged();
+
+                this.NotifyPropertyChanged(nameof(this.WipedDateText));
+            }
+        }
+
+        public string WipedDateText
+            => ViewModelServerInfo.FormatWipedDate(this.wipedDate);
+
+        public BaseCommand CommandCopyPublicGuidToClipboard
+            => new ActionCommand(() => Client.Core.CopyToClipboard(this.ServerAddress.PublicGuid.ToString()));
 
         public async void ReloadIcon()
         {
@@ -188,6 +218,20 @@
             this.NotifyPropertyChanged(nameof(this.PingGameMilliseconds));
         }
 
+        private void RefreshWipedDateText()
+        {
+            if (this.IsDisposed)
+            {
+                return;
+            }
+
+            this.NotifyPropertyChanged(nameof(this.WipedDateText));
+
+            // refresh every 10 minutes
+            ClientTimersSystem.AddAction(delaySeconds: 10 * 60,
+                                         this.RefreshWipedDateText);
+        }
+
         private void ServerInfoChangedHandler()
         {
             this.UpdateServerInfo();
@@ -209,9 +253,10 @@
             }
 
             this.ServerName = serverInfo.ServerName;
-            this.ServerAddress = serverInfo.ServerAddress.HostAddress;
+            this.ServerAddress = serverInfo.ServerAddress;
             this.ServerDescription = serverInfo.Description;
             this.IconHash = serverInfo.IconHash;
+            this.WipedDate = serverInfo.CreationDateUtc.ToLocalTime();
         }
     }
 }

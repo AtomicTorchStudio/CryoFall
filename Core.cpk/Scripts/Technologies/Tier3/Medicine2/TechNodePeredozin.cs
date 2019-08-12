@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipePeredozin>();
 
-            config.SetRequiredNode<TechNodeAntiToxin>();
+            config.SetRequiredNode<TechNodeHemostatic>();
         }
     }
 }

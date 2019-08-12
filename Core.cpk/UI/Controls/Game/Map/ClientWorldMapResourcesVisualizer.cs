@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Perks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
@@ -87,11 +86,11 @@
                 timeRemains = 1;
             }
 
-            tilePosition -= Api.Client.World.WorldBounds.Offset;
+            var localPosition = tilePosition - Api.Client.World.WorldBounds.Offset;
             return string.Format(Notification_NewResourceAvailable_MessageFormat,
                                  protoResource.Name,
-                                 tilePosition.X,
-                                 tilePosition.Y,
+                                 localPosition.X,
+                                 localPosition.Y,
                                  ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
         }
 
@@ -117,12 +116,13 @@
                 return;
             }
 
-            notification.ViewModel.Message = GetUpdatedRecentResourceNotificationText(protoResource,
-                                                                                      mark.Position,
-                                                                                      timeRemains);
+            notification.SetMessage(
+                GetUpdatedRecentResourceNotificationText(protoResource,
+                                                         mark.Position,
+                                                         timeRemains));
 
             // schedule recursive update in a second
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 delaySeconds: 1,
                 () => UpdateNotification(mark, notification));
         }

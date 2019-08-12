@@ -8,7 +8,6 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectTradingStationSmall : ProtoObjectTradingStation
     {
@@ -88,22 +87,11 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            Vector2D size = (0.9, 0.5);
-            Vector2D offset = ((1 - size.X) / 2, 0.05);
-
             data.PhysicsBody
-                .AddShapeRectangle(size,
-                                   offset: offset,
-                                   group: CollisionGroups.Default)
-                .AddShapeRectangle(size,
-                                   offset: offset,
-                                   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size,
-                                   offset: offset,
-                                   group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size + (0, 0.75),
-                                   offset: offset,
-                                   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((0.9, 0.5),  offset: (0.1, 0.05))
+                .AddShapeRectangle((0.95, 0.4), offset: (0.025, 0.8), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.9, 0.2),  offset: (0.05, 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((0.9, 1.25), offset: (0.1, 0.05),  group: CollisionGroups.ClickArea);
         }
     }
 }

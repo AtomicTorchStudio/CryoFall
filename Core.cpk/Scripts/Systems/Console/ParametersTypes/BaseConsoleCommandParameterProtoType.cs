@@ -31,9 +31,7 @@
         }
 
         protected IReadOnlyList<TProto> GetProtoEntities()
-        {
-            return protoEntities ?? (protoEntities = this.GetProtoEntitiesList());
-        }
+            => protoEntities ??= this.GetProtoEntitiesList();
 
         protected virtual List<TProto> GetProtoEntitiesList()
         {

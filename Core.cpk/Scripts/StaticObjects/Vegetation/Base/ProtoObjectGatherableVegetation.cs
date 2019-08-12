@@ -104,7 +104,7 @@
 
                 if (IsClient)
                 {
-                    this.ClientOnCannotInteract(
+                    ClientOnCannotInteract(
                         worldObject,
                         NotificationPlantNotMatured);
                 }

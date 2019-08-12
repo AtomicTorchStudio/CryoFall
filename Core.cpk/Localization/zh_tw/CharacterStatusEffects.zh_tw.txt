@@ -16,17 +16,23 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
 治療
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
+你最近吃了富含維生素、微量元素和其他重要的營養物質的健康膳食。 你感覺好極了。
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Name:
+健康食物
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
+你剛剛飽餐一度，感覺很棒。接下來做的工作都會容易一些。
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
+溫馨食物
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 你正處於刺激劑的影響下，短時間內獲得強化。你可以更加輕易地完成需要力量的工作。
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 力量提升
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Description:
-你剛剛飽餐一度，感覺很棒。接下來做的工作都會容易一些。
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
-飽腹
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 你正在出血，如果不進行治療將持續流失生命。微弱出血將會自愈，但是嚴重的傷害可能需要繃帶和止血藥劑。
@@ -119,7 +125,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
 中毒
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
-你感到虛弱。最好避免接觸危險環境，例如輻射。
+你覺得自己有力未逮。 進行工作更加困難了。花點時間休息一下，以避免造成進一步損害。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
 虛弱

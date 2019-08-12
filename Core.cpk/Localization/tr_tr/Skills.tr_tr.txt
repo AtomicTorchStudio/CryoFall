@@ -1,0 +1,138 @@
+﻿Scripts/Skills/Categories/SkillCategoryAgriculture@Name:
+Tarım
+
+Scripts/Skills/Categories/SkillCategoryCombat@Name:
+Savaş
+
+Scripts/Skills/Categories/SkillCategoryMisc@Name:
+Diğer
+
+Scripts/Skills/Categories/SkillCategoryPersonal@Name:
+Kişisel
+
+Scripts/Skills/Categories/SkillCategoryProduction@Name:
+Üretim
+
+Scripts/Skills/Categories/SkillCategoryTechnical@Name:
+Teknik
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Flags.AdditionalYield:
+Ek ürün alma ihtimali
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
+Daha iyi tarım teknolojileri, tarım etkisini, bitki büyüme hızını, olgunlaşma hızını arttırır ve hatta bazen ek ürün verir.
+
+Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
+Tarım
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
+Ek ürün alma ihtimali
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
+Gezegenin bitki örtüsünü anlamak, mahsul toplama hızını ve daha iyi ürün alma ihtimalini arttırır.
+
+Scripts/Skills/Skills/Agriculture/SkillForaging@Name:
+Kaynak toplama
+
+Scripts/Skills/Skills/Agriculture/SkillHunting@Description:
+Daha iyi bir avcı olmak her avdan daha fazla ganimet alma şansını arttırır.
+
+Scripts/Skills/Skills/Agriculture/SkillHunting@Name:
+Avcılık
+
+Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Description:
+Geleneksel silahlarla daha fazla tecrübe kazanarak silahların ince ayrıntılarını öğrenebilirsin ve daha etkili bir şekilde kullanabilirsin.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Name:
+Geleneksel silahlar
+
+Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Description:
+Enerji silahlarını daha sık kullanmak nasıl çalıştıklarını daha iyi anlamanı sağlar, böylece de genel verimliliği arttırır.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Name:
+Enerji silahları
+
+Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Description:
+Savaşta egzotik silahları kullanarak sırlarını anlayabilir, böylece potansiyellerini nasıl maksimuma çekeceğini daha iyi anlayabilirsin.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Name:
+Egzotik silahlar
+
+Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Description:
+Ağır silahları kullanmak seni, onları daha iyi şekilde kullanma konusunda eğitir ve ek av yolları sağlar.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Name:
+Ağır silahlar
+
+Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Description:
+Sürekli yakın dövüş silahı kullanmak bu tür silahlarda sana hüner kazandırır ve beraberinde verdiğin zarar ve etki artar.
+
+Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
+Yakın dövüş silahları
+
+Scripts/Skills/Skills/Misc/SkillSearching@Description:
+En ince detaylara dikkat etmek fazladan eşya bulma şansını arttırır.
+
+Scripts/Skills/Skills/Misc/SkillSearching@Name:
+Aramak
+
+Scripts/Skills/Skills/Personal/SkillAthletics@Description:
+Egzersiz yapmak vücudunu, uzun mesafeli koşulara alıştırır. Sonuç olarak koşarken daha az enerji harcarsın.
+
+Scripts/Skills/Skills/Personal/SkillAthletics@Name:
+Atletizm
+
+Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Description:
+Vücudunu sürekli sibernetik teknolojiye maruz bırakmak seni ve bağışıklık sistemini, varlıklarına daha alışkın hâle getirdi.
+
+Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Name:
+Sibernetik eğilim
+
+Scripts/Skills/Skills/Personal/SkillLearning@Description:
+Yabancı bir dünyanın bilinmedik bir çevresinde hayatta kalmak zordur ama başka türlü bilmeyeceğin şeyleri öğrenmek için eşsiz fırsatlar da sunar.
+
+Scripts/Skills/Skills/Personal/SkillLearning@Name:
+Öğrenmek
+
+Scripts/Skills/Skills/Personal/SkillSurvival@Description:
+Maksimum canını, yiyeceğini, suyunu ve enerji rezervlerini geliştirerek hayatta kalma şansını arttır. Bir o kadar öldürmesi zor olursun!
+
+Scripts/Skills/Skills/Personal/SkillSurvival@Name:
+Hayatta kalma
+
+Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
+Ek ürün alma ihtimali
+
+Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
+Maden çıkarırken değerli taş bulma ihtimali
+
+Scripts/Skills/Skills/Production/SkillMining@Description:
+Maden yataklarını bilmek, kazı hızını, kazancını ve nadir kaynaklar bulma şansını arttırır. Sadece kazma kullanırken geçerlidir.
+
+Scripts/Skills/Skills/Production/SkillMining@Name:
+Maden çıkarma
+
+Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
+Daha iyi çalışma ve mesleği anlamak odun kesme hızını arttırır. Sadece balta kullanırken geçerlidir.
+
+Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
+Odun kesme
+
+Scripts/Skills/Skills/Technical/SkillBuilding@Description:
+Daha iyi inşa etme yetenekleri, inşaat hızını arttırır. Alet çantasıyla yapılan tüm görevlerde (inşa ve tamir etmek) geçerlidir.
+
+Scripts/Skills/Skills/Technical/SkillBuilding@Name:
+İnşa etme
+
+Scripts/Skills/Skills/Technical/SkillCrafting@Description:
+Daha karmaşık eşyalar üretmek ve yapılarını anlamak, bu dünyanın teknolojisini işleten şeyin ne olduğunu anlamanın iyi bir yoludur.
+
+Scripts/Skills/Skills/Technical/SkillCrafting@Name:
+Üretim
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
+Farklı eşyaları ve ekipmanları onarmanı ve bakım yapmanı sağlar. Tamir masasında yapılacak işlerde kullanılır.
+
+Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
+Bakım
+

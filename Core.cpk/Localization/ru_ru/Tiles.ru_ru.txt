@@ -34,6 +34,12 @@ Scripts/Tiles/TileRuins@Name:
 Scripts/Tiles/TileSaltFlats@Name:
 Солончаки
 
+Scripts/Tiles/TileSwamp@Name:
+Болото
+
+Scripts/Tiles/TileVolcanic@Name:
+Вулкан
+
 Scripts/Tiles/TileWaterLake@Name:
 Вода (озеро)
 

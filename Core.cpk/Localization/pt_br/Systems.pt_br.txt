@@ -102,10 +102,7 @@ A fila de produção está cheia.
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Não é possível adicionar uma nova receita
 
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Message:
-Você não é o dono da área.
-
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Title:
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Não é possível desconstruir
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
@@ -127,6 +124,9 @@ Não é necessário reabastecer
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
 Não é possível reabastecer este item.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
+Muito perto de outra posse de terra.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 A posse de terra desta área pertence ou está muito próxima a outro de jogador.
 
@@ -145,7 +145,16 @@ Você precisa pesquisar Xenogeologia (Nível 3) para reivindicar os depósitos d
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `Você está sob ataque.[br]
-Enquanto sua base estiver sob ataque, não é possível construir novas estruturas.`
+Enquanto sua base estiver sendo invadida, não é possível construir novas estruturas.`
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
+Você pode colocar esta estrutura somente dentro da área da sua posse de terra.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
+Você não é o dono da área.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
+A base está sendo invadia.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
 Cancelar proteção de novato
@@ -154,7 +163,7 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProte
 Quer mesmo cancelar a proteção de novato? Você não vai poder reativá-la.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
-Você está sob a proteção de novato. Ela protege você contra a perda dos itens e pontos de aprendizagem se seu personagem for morto por outro jogador. Além disso, em outros casos de morte, os itens que você derrubar não podem ser saqueados por outros jogadores. Siga as missões para produzir as ferramentas e armas necessárias, e construir uma pequena base o mais rápido possível!
+Você está sob a proteção de novato. Ela protege você contra a perda dos itens se seu personagem for morto por outro jogador. Além disso, em outros casos de morte, os itens que você derrubar não podem ser saqueados por outros jogadores. Siga as missões para produzir as ferramentas e armas necessárias, e construir uma pequena base o mais rápido possível!
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 A proteção de novato vai expirar em:
@@ -225,6 +234,18 @@ A pessoa convidada já faz parte do grupo.
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 Você não pode fazer convites porque o operador do servidor te bloqueou.
 
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
+O(a) jogador(a) convidado está offline. Somente jogadores online podem ser convidados para um grupo.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
+Não é possível interagir (longe demais ou construção inacessível).
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
+Nenhuma rede elétrica existente.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
+Sem energia suficiente na rede elétrica.
+
 Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
 Desativar modo duelo
 
@@ -255,7 +276,8 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDam
 Nenhum dano
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
-A fase de invasão acabou.
+`A janela de invasão acabou.
+[br]As invasões em andamento podem continuar.`
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Ainda não há nada para colher
@@ -337,7 +359,7 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} nível {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`Você tem mais de {0} pontos de aprendizado (PA) acumulados. Que tal desbloquear novas tecnologias? Depois de morrer, você conserva apenas uma pequena fração desses PAs.
+`Você tem mais de {0} pontos de aprendizagem (PA) acumulados. Que tal desbloquear novas tecnologias?
 [br](Clique para abrir o menu de tecnologias)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:

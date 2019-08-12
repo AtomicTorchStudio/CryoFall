@@ -55,6 +55,9 @@ Velocidade de tarefas agrícolas
 Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
 Velocidade de crescimento de plantas
 
+Scripts/Base/Stats/StatName@SearchingSpeed:
+Velocidade de procura
+
 Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 Bônus de dano
 
@@ -115,9 +118,6 @@ Tempo de recarga
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Tempo de recarga
 
-Scripts/Base/Stats/StatName@LearningPointsRetainedAfterDeath:
-PA conservado depois de morrer
-
 Scripts/Base/Stats/StatName@CraftingSpeed:
 Velocidade de produção
 
@@ -145,12 +145,48 @@ Regeneração da carga de energia (por minuto)
 Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
 Capacidade de consumir comida estragada
 
-Scripts/Base/Stats/StatName@SearchingSpeed:
-Velocidade de procura
-
-Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 Dano de envenenamento por radiação
 
-Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+Scripts/Base/Stats/StatName@RadiationPoisoningIncreaseRateMultiplier:
 Taxa de acúmulo de radiação
+
+Scripts/Base/Stats/StatName@ToxinsIncreaseRateMultiplier:
+Taxa de acúmulo de toxinas
+
+Scripts/Base/Stats/StatName@BleedingIncreaseRateMultiplier:
+Sangramento
+
+Scripts/Base/Stats/StatName@HeatIncreaseRateMultiplier:
+Taxa de aumento de calor
+
+Scripts/Base/Stats/StatName@HeatEffectMultiplier:
+Dano causado por calor
+
+Scripts/Base/Stats/StatName@PainIncreaseRateMultiplier:
+Dor
+
+Scripts/Base/Stats/StatName@PsiEffectMultiplier:
+Dano psíquico
+
+Scripts/Base/Stats/StatName@DazedIncreaseRateMultiplier:
+Atordoado
+
+Scripts/Base/Stats/StatName@LandClaimsMaxNumber:
+Quantidade máxima de posses de terra
+
+Scripts/Base/Stats/StatName@VanityContinuousDamage:
+Dano contínuo
+
+Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
+Não é possível comer nem beber
+
+Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
+Ganho de pontos de aprendizagem
+
+Scripts/Base/Stats/StatName@TinkerTableBonus:
+Eficácia da bancada de trabalhos manuais
+
+Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
+Espaços da fila de produção
 

@@ -28,7 +28,8 @@
             double drawOffsetNormal = 0,
             double? drawOffsetDestroyed = null,
             Action<IPhysicsBody> physicsNormal = null,
-            Action<IPhysicsBody> physicsDestroyed = null)
+            Action<IPhysicsBody> physicsDestroyed = null,
+            bool isValidDestroyed = true)
         {
             this.Name = name;
             this.AtlasChunkPosition = atlasChunk;
@@ -37,7 +38,10 @@
             this.DrawOffsetDestroyed = drawOffsetDestroyed ?? drawOffsetNormal;
             this.SetupPhysicsNormal = physicsNormal;
             this.SetupPhysicsDestroyed = physicsDestroyed ?? physicsNormal;
+            this.IsValidDestroyed = isValidDestroyed;
         }
+
+        public bool IsValidDestroyed { get; }
 
         public bool IsPass(NeighborsPattern variant)
         {

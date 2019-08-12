@@ -5,7 +5,7 @@
         public override string Description =>
             "Safety helmets provide basic protection for the head from impacts, debris, electric shock and other hazards.";
 
-        public override ushort DurabilityMax => 600;
+        public override uint DurabilityMax => 600;
 
         public override bool IsHairVisible => false;
 

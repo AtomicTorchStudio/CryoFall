@@ -48,10 +48,12 @@
             this.TechNode = techNode;
 
             this.HierarchyLevel = techNode.HierarchyLevel;
-            ClientComponentTechnologiesWatcher.TechNodesChanged += this.TechNodesOrLearningPointsChanged;
-            ClientComponentTechnologiesWatcher.LearningPointsChanged += this.TechNodesOrLearningPointsChanged;
 
-            this.RefreshIsUnlocked();
+            ClientComponentTechnologiesWatcher.TechGroupsChanged += this.Refresh;
+            ClientComponentTechnologiesWatcher.TechNodesChanged += this.Refresh;
+            ClientComponentTechnologiesWatcher.LearningPointsChanged += this.Refresh;
+
+            this.Refresh();
         }
 
         public ViewModelTechNode(
@@ -99,21 +101,21 @@
 
         public IReadOnlyList<ViewModelTechNodeEffectPerkUnlock> EffectsPerks
             => this.listEffectsPerks
-               ?? (this.listEffectsPerks =
-                       this.CollectEffectsOfType<TechNodeEffectPerkUnlock, ViewModelTechNodeEffectPerkUnlock
-                           >());
+                   ??= this.CollectEffectsOfType
+                       <TechNodeEffectPerkUnlock,
+                           ViewModelTechNodeEffectPerkUnlock>();
 
         public IReadOnlyList<ViewModelTechNodeEffectRecipeUnlock> EffectsRecipes
             => this.listEffectsRecipes
-               ?? (this.listEffectsRecipes =
-                       this.CollectEffectsOfType<TechNodeEffectRecipeUnlock, ViewModelTechNodeEffectRecipeUnlock
-                           >());
+                   ??= this.CollectEffectsOfType
+                       <TechNodeEffectRecipeUnlock,
+                           ViewModelTechNodeEffectRecipeUnlock>();
 
         public IReadOnlyList<ViewModelTechNodeEffectStructureUnlock> EffectsStructures
             => this.listEffectsStructures
-               ?? (this.listEffectsStructures =
-                       this.CollectEffectsOfType<TechNodeEffectStructureUnlock, ViewModelTechNodeEffectStructureUnlock
-                           >());
+                   ??= this.CollectEffectsOfType
+                       <TechNodeEffectStructureUnlock,
+                           ViewModelTechNodeEffectStructureUnlock>();
 
         public int HierarchyLevel { get; }
 
@@ -194,11 +196,14 @@
             base.DisposeViewModel();
 
             this.IsUnlockedChanged = null;
-            if (this.TechNode != null)
+            if (this.TechNode == null)
             {
-                ClientComponentTechnologiesWatcher.TechNodesChanged -= this.TechNodesOrLearningPointsChanged;
-                ClientComponentTechnologiesWatcher.LearningPointsChanged -= this.TechNodesOrLearningPointsChanged;
+                return;
             }
+
+            ClientComponentTechnologiesWatcher.TechGroupsChanged -= this.Refresh;
+            ClientComponentTechnologiesWatcher.TechNodesChanged -= this.Refresh;
+            ClientComponentTechnologiesWatcher.LearningPointsChanged -= this.Refresh;
         }
 
         private IReadOnlyList<TViewModel> CollectEffectsOfType<TEffect, TViewModel>()
@@ -220,7 +225,7 @@
             return list;
         }
 
-        private void RefreshIsUnlocked()
+        private void Refresh()
         {
             var isUnlocked = ClientComponentTechnologiesWatcher.CurrentTechnologies
                                                                .SharedIsNodeUnlocked(this.TechNode);
@@ -255,11 +260,6 @@
             }
 
             this.childrenNodes.Add(childNode);
-        }
-
-        private void TechNodesOrLearningPointsChanged()
-        {
-            this.RefreshIsUnlocked();
         }
     }
 }

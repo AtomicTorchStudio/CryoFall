@@ -66,7 +66,7 @@
                 && !Server.Core.IsInPrivateScope(request.Character, request.Item))
             {
                 throw new Exception(
-                    $"{request.Character} cannot access {request.Item} because it's container is not in the private scope");
+                    $"{request.Character} cannot access {request.Item} because its container is not in the private scope");
             }
 
             if (!(request.Item.ProtoItem is IProtoItemExplosive protoItemExplosive))
@@ -74,11 +74,19 @@
                 throw new Exception("The item must be an explosive");
             }
 
-            if (!protoItemExplosive.SharedValidatePlacement(request.Character,
-                                                            request.TargetPosition,
-                                                            logErrors: true))
+            protoItemExplosive.SharedValidatePlacement(request.Character,
+                                                       request.TargetPosition,
+                                                       logErrors: true,
+                                                       canPlace: out var canPlace,
+                                                       isTooFar: out var isTooFar);
+            if (!canPlace)
             {
-                throw new Exception("The explosive item deploy distance exceeded");
+                throw new Exception("The explosive item deploy requirements are not satisfied");
+            }
+
+            if (isTooFar)
+            {
+                throw new Exception("The explosive item deploy distance is exceeded");
             }
         }
 
@@ -91,9 +99,12 @@
                 return null;
             }
 
-            if (!protoItemExplosive.SharedValidatePlacement(character,
-                                                            targetPosition,
-                                                            logErrors: true))
+            protoItemExplosive.SharedValidatePlacement(character,
+                                                       targetPosition,
+                                                       logErrors: true,
+                                                       canPlace: out var canPlace,
+                                                       isTooFar: out var isTooFar);
+            if (!canPlace || isTooFar)
             {
                 return null;
             }

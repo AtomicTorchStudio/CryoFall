@@ -82,6 +82,12 @@
 
         public virtual bool IsAutoUnlocked => false;
 
+        public bool IsListedInTechNodes
+            => this.listedInTechNodes != null
+               && this.listedInTechNodes.Count != 0;
+
+        public virtual bool IsRepeatPlacement => true;
+
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
 
         public IReadOnlyList<TechNode> ListedInTechNodes
@@ -197,6 +203,12 @@
         {
         }
 
+        public override void ServerOnDestroy(IStaticWorldObject gameObject)
+        {
+            base.ServerOnDestroy(gameObject);
+            ServerStructuresManager.NotifyObjectDestroyed(gameObject);
+        }
+
         public virtual void SharedCreatePhysicsConstructionBlueprint(IPhysicsBody physicsBody)
         {
             foreach (Vector2D tileOffset in this.Layout.TileOffsets)
@@ -207,7 +219,9 @@
         }
 
         public virtual float SharedGetStructurePointsMax(IStaticWorldObject worldObject)
-            => this.StructurePointsMax;
+        {
+            return this.StructurePointsMax;
+        }
 
         public bool SharedIsTechUnlocked(ICharacter character, bool allowIfAdmin = true)
         {
@@ -217,8 +231,7 @@
                 return true;
             }
 
-            if (this.listedInTechNodes == null
-                || this.listedInTechNodes.Count == 0)
+            if (!this.IsListedInTechNodes)
             {
                 return this.IsAutoUnlocked;
             }
@@ -293,7 +306,7 @@
                 var tooltipDisplayedForObject =
                     ((ConstructionOrRepairRequirementsTooltip)this.currentDisplayedRepairTooltip.Control).WorldObject;
                 if (data.GameObject == tooltipDisplayedForObject
-                    && !this.IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(data.SyncPublicState))
+                    && !this.IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(data.PublicState))
                 {
                     // destroy tooltip
                     this.currentDisplayedRepairTooltip?.Destroy();
@@ -302,7 +315,7 @@
             }
 
             if (this.currentDisplayedRepairTooltip == null
-                && this.IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(data.SyncPublicState))
+                && this.IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(data.PublicState))
             {
                 // display tooltip
                 var worldObject = data.GameObject;
@@ -383,7 +396,14 @@
 
             if (data.IsFirstTimeInit)
             {
-                StructureDecaySystem.ServerResetDecayTimer(data.PrivateState);
+                StructureDecaySystem.ServerResetDecayTimer(data.PrivateState,
+                                                           StructureConstants.StructuresAbandonedDecayDelaySeconds);
+            }
+            else
+            {
+                var publicState = data.PublicState;
+                publicState.StructurePointsCurrent = Math.Min(publicState.StructurePointsCurrent,
+                                                              this.SharedGetStructurePointsMax(data.GameObject));
             }
         }
 
@@ -510,7 +530,9 @@
 
     public abstract class ProtoObjectStructure
         : ProtoObjectStructure
-            <StructurePrivateState, StaticObjectPublicState, StaticObjectClientState>
+            <StructurePrivateState,
+                StaticObjectPublicState,
+                StaticObjectClientState>
     {
     }
 }

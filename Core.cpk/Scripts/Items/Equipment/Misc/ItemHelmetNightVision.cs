@@ -15,7 +15,7 @@
         public override string Description =>
             "Lightweight tactical helmet with special night-vision goggles to enable near perfect vision at night. Requires disposable batteries.";
 
-        public override ushort DurabilityMax => 1200;
+        public override uint DurabilityMax => 1200;
 
         public override bool IsHairVisible => false;
 
@@ -69,7 +69,7 @@
         {
             lightConfig.IsLightEnabled = false;
 
-            fuelConfig.FuelCapacity = 500; // about 8.5 minutes
+            fuelConfig.FuelCapacity = 1000;
             fuelConfig.FuelAmountInitial = 0;
             fuelConfig.FuelUsePerSecond = 1;
             fuelConfig.FuelProtoItemsList.AddAll<IProtoItemFuelElectricity>();

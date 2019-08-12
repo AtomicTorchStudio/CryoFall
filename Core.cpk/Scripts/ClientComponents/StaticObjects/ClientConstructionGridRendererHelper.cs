@@ -4,7 +4,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
-    using AtomicTorch.GameEngine.Common.Primitives;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Rendering;
 
     public static class ClientConstructionGridRendererHelper
     {
@@ -20,39 +20,25 @@
             IClientSceneObject sceneObjectForComponents,
             IProtoStaticWorldObject protoStaticWorldObject)
         {
-            // create construction grid renderer
+            // let's create a construction grid renderer
             var layout = protoStaticWorldObject.Layout;
-            var bounds = layout.Bounds;
-            if (bounds.Size == Vector2Int.One)
-            {
-                CreateGridRenderer().PositionOffset = (0.5, 0.5);
-            }
-            else
-            {
-                var b = new BoundsDouble(
-                    bounds.MinX + 0.5,
-                    bounds.MinY + 0.5,
-                    bounds.MaxX - 0.5,
-                    bounds.MaxY - 0.5);
+            var bounds = layout.Bounds.ToRectangleInt();
 
-                CreateGridRenderer().PositionOffset = (b.MinX, b.MinY);
-                CreateGridRenderer().PositionOffset = (b.MinX, b.MaxY);
-                CreateGridRenderer().PositionOffset = (b.MaxX, b.MinY);
-                CreateGridRenderer().PositionOffset = (b.MaxX, b.MaxY);
-            }
+            // make construction grid size a 3 tiles larger on each side
+            // than the construction blueprint object size
+            bounds = bounds.Inflate(3, 3);
 
-            IComponentSpriteRenderer CreateGridRenderer()
-            {
-                var gridRenderer = Api.Client.Rendering.CreateSpriteRenderer(
-                    sceneObjectForComponents,
-                    TextureResourceConstructionGrid,
-                    DrawOrder.Shadow + 2);
+            var renderer = Api.Client.Rendering.CreateSpriteRenderer(
+                sceneObjectForComponents,
+                TextureResourceConstructionGrid,
+                DrawOrder.Shadow + 2);
 
-                gridRenderer.SpritePivotPoint = (0.5, 0.5);
-                gridRenderer.PositionOffset = (0.5, 0.5);
-                gridRenderer.RenderingMaterial = RenderingMaterial;
-                return gridRenderer;
-            }
+            renderer.SpritePivotPoint = (0, 0);
+            renderer.SortByWorldPosition = false;
+            renderer.BlendMode = BlendMode.Screen;
+            renderer.RenderingMaterial = RenderingMaterial;
+            renderer.PositionOffset = (bounds.X, bounds.Y);
+            renderer.Scale = (bounds.Width, bounds.Height);
         }
     }
 }

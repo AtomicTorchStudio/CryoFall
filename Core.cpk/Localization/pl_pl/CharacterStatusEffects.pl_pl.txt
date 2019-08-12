@@ -1,0 +1,198 @@
+﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
+Używasz środków pobudzających i twoja regeneracja wytrzymałości jest znacznie szybsza.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
+Kop energetyczny
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Description:
+Używasz mocnych środków leczniczych i szybko zdrowiejesz.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Name:
+Szybkie gojenie
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
+Używasz środków leczniczych i powoli zdrowiejesz.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
+Leczenie
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
+Ostatni obfity posiłek był bardzo zdrowy i pełen witamin, mikroelementów i innych składników odżywczych. Czujesz się świetnie.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Name:
+Zdrowa żywność
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
+Ostatni obfity posiłek był bardzo zdrowy. Każde zadanie będzie teraz łatwiejsze.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
+Zdrowa żywność
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
+Jesteś pod wpływem stymulatora, który powoduje, że przez pewien czas wzrasta twoja siła. Możesz łatwiej wykonywać zadania wymagające siły.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
+Zwiększona siła
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
+Niezatamowane krwawienie będzie powodować ciągłą utratę zdrowia. Niewielkie krwawienie ustąpi samoistnie, ale poważniejsze urazy mogą wymagać użycia bandaży lub leków hemostatycznych.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Name:
+Krwawienie
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
+Zepsuty implant w twoim ciele negatywnie wpływa na twoje samopoczucie – maksymalny poziom zdrowia (PZ) jest obniżony.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
+Zepsuty implant
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
+Złamana nogę utrudnia poruszanie się. Próba biegania spowoduje silny ból. Użyj szyny, aby wyleczyć złamanie.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
+Złamana noga
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
+Oszołomiona postać nie może atakować.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
+Oszołomienie niedługo minie, poczekaj chwilę, aby dojść od siebie.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
+Oszołomienie
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
+Czujesz bardzo wysoką temperaturę z pobliskiego źródła ciepła. Natychmiast opuść teren, aby uniknąć dalszych obrażeń.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Name:
+Ciepło
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
+Umierasz z głodu!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
+Głód
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
+Po narażeniu na ekstremalnie intensywne promieniowanie komórki w twoim ciele zaczęły mutować. Nie jest zabawnie! Nie wchodź już do stref promieniowania.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Name:
+Mutacja
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
+Nie możesz nic jeść ani pić.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Description:
+Nie czujesz się najlepiej... Podczas mdłości nie możesz nic jeść ani pić. Odczekaj lub zażyj leki przeciw mdłościom.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Name:
+Mdłości
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Description:
+Silny ból zmniejsza tempo regeneracji wytrzymałości i uniemożliwia odzyskiwanie zdrowia. Znajdź środki przeciwbólowe lub postaraj się przetrzymać ból.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
+Silny ból
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Description:
+Jesteś pod wpływem silnego pola Psi, co powoduje, że zaczynasz tracić zmysły. Opuść ten obszar lub użyj leku blokującego działania Psi, aby zminimalizować szkody.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
+Wpływ Psi
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
+Odczuwasz bardzo negatywne skutki zatrucia promieniowaniem, które powoli cię zabija. Znajdź lek na promieniowanie, aby zminimalizować obrażenia.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Name:
+Zatrucie promieniowaniem
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Description:
+Złamaną kończynę umieszczasz w szynie. Noga powoli się goi. Nie możesz jednak biegać w tym stanie. Poczekaj aż noga się zrośnie.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Name:
+Złamana noga
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Description:
+Poważne odwodnienie!
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Name:
+Pragnienie
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Description:
+Pod narażeniu na działanie niebezpiecznych toksyn zaczynasz czuć się coraz gorzej. Zażyj antytoksyny.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
+Toksyny
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
+Czujesz się słabo. Wszystkie zadania stają się dużo trudniejsze. Poczekaj chwilę i unikaj niebezpiecznych sytuacji.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
+Osłabienie
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Description:
+Trwałość co najmniej jednego elementu wyposażenia jest bardzo niska. Niedługo ulegnie on uszkodzeniu.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
+Uszkodzone wyposażenie
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
+Po spożyciu dużych ilości alkoholu zaczyna ci odbijać.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Description:
+Alkohol robi swoje...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Name:
+Upojenie
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
+Jesteś na haju i z nieznanych powodów czujesz radość...
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
+Na haju
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
+Nadużywasz leków i odczuwasz negatywne skutki swojej lekkomyślności – podupadasz na zdrowiu.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
+W krótkim czasie spożywasz zbyt wiele leków. Odczekaj chwilę albo nie będzie wesoło. Zignorowanie tego ostrzeżenia może zakończyć się śmiercią.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
+Przedawkowanie leków
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
+Jesteś pod wpływem leku hemostatycznego, który redukuje negatywny wpływ nowych krwawiących ran.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Name:
+Zabezpieczenie przed krwawieniem
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Description:
+Masz na sobie żel żaroodporny znacznie ograniczający wszelkie obrażenia od temperatur.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Name:
+Ochrona przed temperaturą
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Description:
+Jesteś pod wpływem silnych środków przeciwbólowych. Nie czujesz żadnego bólu, czy ci się to podoba czy nie.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Name:
+Zabezpieczenie przeciwbólowe
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Description:
+Jesteś pod wpływem ochrony Psi i działanie czynników Psi na ciebie jest znacznie zredukowane.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Name:
+Ochrona przed Psi
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Description:
+Jesteś pod wpływem środków chroniących przed promieniowaniem, a każde nowe narażenie na promieniowanie ma na ciebie mniejszy wpływ.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Name:
+Ochrona przed promieniowaniem
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Description:
+Jesteś pod wpływem środków chroniących przed toksynami, a każde nowe narażenie na toksyny ma na ciebie mniejszy wpływ.
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Name:
+Ochrona przed toksynami
+

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
@@ -54,8 +55,10 @@
                                                  }
                                                  else if (ClientInputManager.IsButtonDown(GameButton.ActionInteract))
                                                  {
-                                                     ClientInputManager.ConsumeButton(GameButton.ActionInteract);
-                                                     TryPlaceItemInHandOnGround(count: 1);
+                                                     if (TryPlaceItemInHandOnGround(count: 1))
+                                                     {
+                                                         ClientInputManager.ConsumeButton(GameButton.ActionInteract);
+                                                     }
                                                  }
                                              });
                 }
@@ -115,18 +118,18 @@
             ItemInHand = HandContainer.GetItemAtSlot(0);
         }
 
-        private static void TryPlaceItemInHandOnGround(ushort? count = null)
+        private static bool TryPlaceItemInHandOnGround(ushort? count = null)
         {
             if (Api.Client.UI.GetVisualInPointedPosition() != null)
             {
                 // mouse is over some UI control which can take the input/focus
-                return;
+                return false;
             }
 
             var item = ItemInHand;
             if (item == null)
             {
-                return;
+                return false;
             }
 
             var countToDrop = count.HasValue
@@ -135,9 +138,23 @@
                                   : item.Count;
 
             var tilePosition = (Vector2Ushort)Api.Client.Input.MouseWorldPosition;
+
+            var tileObjects = Api.Client.World
+                                 .GetStaticObjects(tilePosition);
+            if (tileObjects.Count > 0
+                && !tileObjects.Any(o => o.ProtoStaticWorldObject is ObjectGroundItemsContainer)
+                && tileObjects.Any(o => o.ProtoStaticWorldObject is IInteractableProtoStaticWorldObject))
+            {
+                // A tile with an interactive world object found.
+                // Don't try to place item there and allow interaction with it.
+                return false;
+            }
+
             ObjectGroundItemsContainer.ClientTryDropItemOnGround(item,
                                                                  countToDrop,
                                                                  tilePosition);
+
+            return true;
         }
     }
 }

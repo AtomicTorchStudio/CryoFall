@@ -44,8 +44,8 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemPlanks>(count: 20);
-            build.AddStageRequiredItem<ItemIngotIron>(count: 3);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 3);
+            build.AddStageRequiredItem<ItemIngotIron>(count: 2);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
@@ -56,30 +56,17 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            var hitboxMelee = CollisionGroups.HitboxMelee;
-            var hitboxRanged = CollisionGroups.HitboxRanged;
-            var clickArea = CollisionGroups.ClickArea;
-
             data.PhysicsBody
-                // static collider
-                .AddShapeRectangle((3, 0.75), offset: (0, 1))
-                .AddShapeRectangle((1.1, 1),  offset: (0, 0))
-                .AddShapeRectangle((1.1, 1),  offset: (1.9, 0))
-
-                // melee hitbox
-                .AddShapeRectangle((3, 0.75), offset: (0, 1),   group: hitboxMelee)
-                .AddShapeRectangle((1.1, 1),  offset: (0, 0),   group: hitboxMelee)
-                .AddShapeRectangle((1.1, 1),  offset: (1.9, 0), group: hitboxMelee)
-
-                // ranged hitbox
-                .AddShapeRectangle((3, 0.75), offset: (0, 1),   group: hitboxRanged)
-                .AddShapeRectangle((1.1, 1),  offset: (0, 0),   group: hitboxRanged)
-                .AddShapeRectangle((1.1, 1),  offset: (1.9, 0), group: hitboxRanged)
-
-                // click area
-                .AddShapeRectangle((3, 1.25), offset: (0, 1),   group: clickArea)
-                .AddShapeRectangle((1.1, 1),  offset: (0, 0),   group: clickArea)
-                .AddShapeRectangle((1.1, 1),  offset: (1.9, 0), group: clickArea);
+                .AddShapeRectangle((3, 0.75),  offset: (0, 1))
+                .AddShapeRectangle((1.1, 1),   offset: (0, 0))
+                .AddShapeRectangle((1.1, 1),   offset: (1.9, 0))
+                .AddShapeRectangle((3, 0.75),  offset: (0, 1),     group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1.1, 1),   offset: (0, 0),     group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1.1, 1),   offset: (1.9, 0),   group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((2.8, 0.3), offset: (0.1, 1.9), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((3, 1.25),  offset: (0, 1),     group: CollisionGroups.ClickArea)
+                .AddShapeRectangle((1.1, 1),   offset: (0, 0),     group: CollisionGroups.ClickArea)
+                .AddShapeRectangle((1.1, 1),   offset: (1.9, 0),   group: CollisionGroups.ClickArea);
         }
     }
 }

@@ -87,25 +87,13 @@
         {
             if (CreativeModeSystem.SharedIsInCreativeMode(character))
             {
-                Api.Logger.Important(character + " is in the admin mode - free construction is allowed.");
+                Api.Logger.Important(character + " is in creative - no items usage on construction.");
                 return;
             }
 
             // assume all the validation has been done before this action
-            var serverItemsService = Api.Server.Items;
-            var itemsChangedCount = new Dictionary<IProtoItem, int>();
-
-            foreach (var requiredItem in this.StageRequiredItems)
-            {
-                serverItemsService.DestroyItemsOfType(
-                    character,
-                    requiredItem.ProtoItem,
-                    requiredItem.Count,
-                    out _);
-                itemsChangedCount[requiredItem.ProtoItem] = -requiredItem.Count;
-            }
-
-            NotificationSystem.ServerSendItemsNotification(character, itemsChangedCount);
+            var requiredItems = this.StageRequiredItems;
+            InputItemsHelper.ServerDestroyItems(character, requiredItems);
         }
 
         public void ServerReturnRequiredItems(ICharacter character, byte stagesCount = 1)

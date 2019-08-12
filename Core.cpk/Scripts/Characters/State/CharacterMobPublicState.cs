@@ -1,9 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters
 {
     using AtomicTorch.CBND.CoreMod.Characters.Input;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using static GameApi.Data.State.SyncToClientReceivers;
 
     public class CharacterMobPublicState : BasePublicState, ICharacterPublicState
@@ -26,11 +28,16 @@
 
         [SyncToClient(receivers: ScopePlayers)]
         [TempOnly]
+        public NetworkSyncList<IProtoStatusEffect> CurrentPublicStatusEffects { get; private set; }
+
+        [SyncToClient(receivers: ScopePlayers)]
+        [TempOnly]
         public IItem SelectedHotbarItem { get; private set; }
 
         public void EnsureEverythingCreated()
         {
             this.AppliedInput = new AppliedCharacterInput();
+            this.CurrentPublicStatusEffects = new NetworkSyncList<IProtoStatusEffect>();
 
             if (this.CurrentStats == null)
             {

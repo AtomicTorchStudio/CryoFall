@@ -66,7 +66,7 @@
             // add dry grass decals
             settings.AddDecal(
                 new ProtoTileDecal("Terrain/Beach/Grass*",
-                                   size: Vector2Ushort.One,
+                                   size: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
                                    requiresCompleteProtoTileCoverage: true,

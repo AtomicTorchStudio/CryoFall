@@ -5,10 +5,9 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
-    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
-    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
@@ -19,7 +18,6 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
-    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ServerCharacterDeathMechanic
@@ -38,7 +36,7 @@
 
         /// <summary>
         /// Moves the character to the "graveyard" so a respawn will be required on login.
-        /// No penalty in items or LP loss.
+        /// No penalty in items or "weakened" status effect.
         /// </summary>
         public static void DespawnCharacter(ICharacter character)
         {
@@ -103,16 +101,16 @@
             // register death (required even if the player is not a newbie)
             NewbieProtectionSystem.ServerRegisterDeath(deadCharacter,
                                                        isPvPdeath,
-                                                       out var shouldDropLootAndLoseLP);
+                                                       out var shouldSufferDeathConsequences);
 
-            if (shouldDropLootAndLoseLP)
+            if (shouldSufferDeathConsequences)
             {
-                DeductPlayerLearningPoints(deadCharacter);
                 DropPlayerLoot(deadCharacter);
             }
             else
             {
-                Api.Logger.Important("Player character is dead - newbie PvP case, no loot drop", deadCharacter);
+                Api.Logger.Important("Player character is dead - newbie PvP case, no loot drop or other consequences",
+                                     deadCharacter);
             }
 
             onCharacterDeath = CharacterDeath;
@@ -150,35 +148,16 @@
             IItem weapon,
             IProtoItemWeapon protoWeapon)
         {
+            if (attackerCharacter == null)
+            {
+                return;
+            }
+
             Api.Logger.Important(
                 $"Character killed: {targetCharacter} by {attackerCharacter} with {weapon?.ToString() ?? protoWeapon?.ToString()}");
 
             Api.SafeInvoke(
                 () => CharacterKilled?.Invoke(attackerCharacter, targetCharacter));
-        }
-
-        public static ushort SharedGetLearningPointsRetainedAfterDeath(ICharacter character)
-        {
-            return (ushort)MathHelper.Clamp(
-                character.SharedGetFinalStatValue(StatName.LearningPointsRetainedAfterDeath),
-                0,
-                ushort.MaxValue);
-        }
-
-        private static void DeductPlayerLearningPoints(ICharacter character)
-        {
-            // reset learning points
-            var technologies = character.SharedGetTechnologies();
-            technologies.ServerResetLearningPointsRemainder();
-
-            var learningPointsRetainedAfterDeath = SharedGetLearningPointsRetainedAfterDeath(character);
-            var lostLp = technologies.LearningPoints - learningPointsRetainedAfterDeath;
-            if (lostLp > 0)
-            {
-                technologies.ServerSetLearningPoints(learningPointsRetainedAfterDeath);
-                character.ServerAddSkillExperience<SkillLearning>(
-                    lostLp * SkillLearning.ExperienceAddedPerLPLost);
-            }
         }
 
         private static void DropPlayerLoot(ICharacter character)
@@ -260,18 +239,16 @@
             IItemsContainer toContainer)
         {
             // decrease durability for all equipped items (which will be dropped as the full loot)
-            using (var tempList = Api.Shared.WrapInTempList(fromContainer.Items))
+            using var tempList = Api.Shared.WrapInTempList(fromContainer.Items);
+            foreach (var item in tempList)
             {
-                foreach (var item in tempList)
+                item.ProtoItem.ServerOnCharacterDeath(item,
+                                                      isEquipped: isEquipmentContainer,
+                                                      out var shouldDrop);
+                if (shouldDrop
+                    && !item.IsDestroyed)
                 {
-                    item.ProtoItem.ServerOnCharacterDeath(item,
-                                                          isEquipped: isEquipmentContainer,
-                                                          out var shouldDrop);
-                    if (shouldDrop
-                        && !item.IsDestroyed)
-                    {
-                        ServerItemsService.MoveOrSwapItem(item, toContainer, out _);
-                    }
+                    ServerItemsService.MoveOrSwapItem(item, toContainer, out _);
                 }
             }
         }
@@ -322,6 +299,8 @@
             {
                 world.SetPosition(character, (Vector2D)position);
             }
+
+            CharacterRespawnSystem.ServerRemoveInvalidStatusEffects(character);
         }
     }
 }

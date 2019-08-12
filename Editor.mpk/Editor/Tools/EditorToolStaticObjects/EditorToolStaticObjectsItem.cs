@@ -9,7 +9,9 @@
         public readonly IProtoStaticWorldObject ProtoStaticObject;
 
         public EditorToolStaticObjectsItem(IProtoStaticWorldObject protoStaticObject)
-            : base(protoStaticObject.Name, protoStaticObject.ShortId)
+            : base(protoStaticObject.Name,
+                   protoStaticObject.ShortId,
+                   displayShortName: false)
         {
             this.ProtoStaticObject = protoStaticObject;
         }

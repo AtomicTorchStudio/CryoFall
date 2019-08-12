@@ -6,13 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:fuelBurningIndicator="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.FuelBurningIndicator"
     xmlns:manufacturers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowOilRefinery, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:fuelBurningIndicator="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.FuelBurningIndicator">
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -54,7 +54,7 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                         <!-- Text: Empty -->
-                        <TextBlock Text="{x:Static loc:CoreStrings.WindowOilRefinery_EmptyCanistersOutput}"
+                        <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"
                                    HorizontalAlignment="Center"
                                    Margin="0" />
@@ -79,41 +79,23 @@
                         Style="{StaticResource LiquidBigValueBar}" />
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10,0">
-                    <Control Template="{StaticResource ControlTemplateArrow}" Margin="0,23,0,0" Width="46" Height="46">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="10,90,10,0">
+                    <Control Template="{StaticResource ControlTemplateArrow}" Width="46" Height="46">
                         <Control.LayoutTransform>
                             <RotateTransform Angle="-90" />
                         </Control.LayoutTransform>
                     </Control>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,20,0,0">
-                        <!-- Text: Fuel -->
-                        <TextBlock Text="{x:Static loc:CoreStrings.TitleFuel}"
-                                   Style="{StaticResource TextBlockStyleCraftingCaption}"
-                                   HorizontalAlignment="Center"
-                                   Margin="0" />
-
-                        <controls:ItemsContainerControl Container="{Binding ViewModelFuelBurningState.ContainerFuel}"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Center"
-                                                        DesignTimeSlotsCount="1" />
-                        <core:ValueBarControl
-                            Value="{Binding ViewModelFuelBurningState.FuelUsageCurrentValue}"
-                            MaxValue="{Binding ViewModelFuelBurningState.FuelUsageMaxValue}"
-                            Foreground="{StaticResource BrushFuel}"
-                            Margin="0,0,0,-6"
-                            Style="{StaticResource ItemSlotCraftingProgressHorizontalBar}" />
-
-                        <Canvas
-                            DataContext="{Binding ViewModelBurningFuel}"
-                            Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <fuelBurningIndicator:FuelBurningIndicator
-                                FuelIcon="{Binding FuelIcon}"
-                                FuelColor="{Binding FuelColor}"
-                                Canvas.Left="25"
-                                Canvas.Top="27" />
-                        </Canvas>
-                    </StackPanel>
+                    <Canvas
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Center"
+                        Margin="0,20,0,0">
+                        <fuelBurningIndicator:FuelBurningIndicator
+                            Visibility="{Binding IsManufacturingActive, Converter={StaticResource BoolToVisibilityConverter}}"
+                            FuelIcon="{StaticResource IconElectricity}"
+                            FuelColor="{StaticResource ColorElectricity}"
+                            Canvas.Top="24" />
+                    </Canvas>
                 </StackPanel>
 
                 <!-- Gasoline bar -->
@@ -174,8 +156,8 @@
 
 
                 <!-- Mineral oil input/output slots -->
-                <StackPanel Orientation="Vertical" 
-                            VerticalAlignment="Center" 
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center"
                             Margin="20,0,0,0">
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center">
@@ -191,7 +173,7 @@
                             Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />
                     </StackPanel>
 
-                    <Control Template="{StaticResource ControlTemplateArrow}" 
+                    <Control Template="{StaticResource ControlTemplateArrow}"
                              Margin="3" />
 
                     <!-- Text: Mineral oil -->

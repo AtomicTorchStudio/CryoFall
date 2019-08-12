@@ -7,7 +7,7 @@
 
     public class ItemSeedsCarrot : ProtoItemSeed
     {
-        public override string Description => "Can be planted to grow carrots.";
+        public override string Description => GetProtoEntity<ItemSeedsBellPepper>().Description;
 
         public override string Name => "Carrot seeds";
 

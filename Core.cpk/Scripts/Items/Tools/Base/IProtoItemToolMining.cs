@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
 
-    public interface IProtoItemToolMining : IProtoItemWeapon
+    public interface IProtoItemToolMining : IProtoItemWeapon, IProtoItemTool
     {
         double DamageToMinerals { get; }
     }

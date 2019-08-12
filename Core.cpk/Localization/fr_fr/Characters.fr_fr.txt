@@ -1,6 +1,12 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Ours
 
+Scripts/Characters/Mobs/MobBlackBeetle@Name:
+Scarabée noir
+
+Scripts/Characters/Mobs/MobBurrower@Name:
+Enfouisseur
+
 Scripts/Characters/Mobs/MobChicken@Name:
 Poulet
 
@@ -13,6 +19,9 @@ Crabe
 Scripts/Characters/Mobs/MobCrawler@Name:
 Rampant
 
+Scripts/Characters/Mobs/MobFireLizard@Name:
+Lézard de feu
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Ratel
 
@@ -21,6 +30,9 @@ Hyène
 
 Scripts/Characters/Mobs/MobPangolin@Name:
 Pangolin
+
+Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
+Scarabée de pragmium
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Escargot

@@ -7,6 +7,15 @@ Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationNoFreeSpaceToDrop:
 Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
 Предметы на земле
 
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
+Можно строить только на:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
+Нельзя строить на:
+
+Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
+Неподходящий тип почвы
+
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
 Нельзя построить в запретной зоне.
 
@@ -40,15 +49,6 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSl
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
 Нельзя построить — слишком близко к воде.
 
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
-Можно строить только на:
-
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
-Нельзя строить на:
-
-Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
-Неподходящий тип почвы
-
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
 Настроить
 
@@ -56,7 +56,7 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Deconstruct:
 Разобрать
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
-Изучить
+Обыскать
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
 Собрать
@@ -76,6 +76,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 Вскрыть
 
+Scripts/StaticObjects/Base/InteractionTooltipTexts@TogglePower:
+Переключить питание
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
 Написать
 
@@ -92,7 +95,7 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 Месторождение нефти (бесконечное)
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
-Шахтёрская взрывчатка
+Шахтерская взрывчатка
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombModern@Name:
 Современная бомба
@@ -152,10 +155,10 @@ Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerIt
 {0} роется в ваших брошенных предметах...
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Title:
-Ваши предметы стали чужой добычей
+Ваши вещи стали чужой добычей
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Message:
-{0} забирает все брошенные вами предметы. Маркер удален с карты.
+{0} забирает все ваши выроненные вещи. Метка удалена с карты.
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Title:
 Ваши вещи забрали!
@@ -242,7 +245,7 @@ Scripts/StaticObjects/Structures/Beds/ObjectBed@Name:
 Кровать
 
 Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Description:
-Разместите спальный мешок на своей базе - он станет специальным местом вашего возрождения, которое вы сможете выбрать в случае смерти.
+Разместите спальный мешок на своей базе — он станет специальным местом вашего возрождения, которое вы сможете выбрать в случае смерти.
 
 Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Name:
 Спальный мешок
@@ -275,14 +278,14 @@ Scripts/StaticObjects/Structures/Categories/StructureCategoryBuildings@Name:
 Scripts/StaticObjects/Structures/Categories/StructureCategoryDecorations@Name:
 Украшения
 
+Scripts/StaticObjects/Structures/Categories/StructureCategoryElectricity@Name:
+Электр.
+
 Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
 Питание
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
 Производство
-
-Scripts/StaticObjects/Structures/Categories/StructureCategoryLights@Name:
-Освещение
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
 Другое
@@ -479,17 +482,47 @@ Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Description:
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
 Испаритель
 
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Description:
+Мощная морозильная камера сохраняет еду при температуре ниже нуля, что позволяет ей оставаться свежей гораздо дольше.
+
+Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Name:
+Морозильная камера
+
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
-В нем можно хранить большое количество скоропортящейся пищи. Холодильник долго сохраняет ее свежей. Для работы используются встроенные солнечные батареи.
+В нем можно хранить большое количество скоропортящейся пищи. Холодильник долго сохраняет ее свежей.
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
 Большой холодильник
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
-В нем можно хранить скоропортящуюся пищу. Холодильник долго сохраняет ее свежей. Для работы используются встроенные солнечные батареи.
+В нем можно хранить скоропортящуюся пищу. Холодильник долго сохраняет ее свежей.
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
 Малый холодильник
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Description:
+Разлагает органические вещества в метан, который используется для производства небольшого количества электроэнергии. Не подходит в качестве основного источника электроэнергии.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Name:
+Биореактор
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
+Этот большой генератор работает на бензине и производит электроэнергию.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
+Бензиновый генератор
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
+Базовая установка для производства солнечной энергии. Для работы требуются индивидуальные солнечные панели.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Name:
+Солнечный генератор
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
+Этот генератор использует горячий пар для вращения турбин и выработки электроэнергии. Требуется время, чтобы он смог вскипятить воду и заработал на полную мощность.
+
+Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
+Паровой электрогенератор
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 Защищает вашу базу, не позволяя другим игрокам строить или разбирать что-либо на выделенной территории. Также постройки в зоне контроля не будут портиться со временем.
@@ -540,7 +573,7 @@ Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@Notificatio
 Успешное улучшение
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
-Электрический напольный светильник. Испускает очень мощный белый свет, освещающий даже большие помещения. Использует одноразовые батарейки.
+Электрический напольный светильник. Испускает очень мощный белый свет, освещающий даже большие помещения.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
 Большая напольная лампа
@@ -552,7 +585,7 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
 Масляная напольная лампа
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
-Небольшой электрический напольный светильник. Довольно яркий для своего размера. Использует одноразовые батарейки.
+Небольшой электрический напольный светильник. Довольно яркий для своего размера.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Малая напольная лампа
@@ -587,8 +620,11 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
 Плавильная печь
 
-Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-Для работы экстрактора нужен геотермальный источник.
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Description:
+Использует электричество и метод индукционного нагрева для ускорения выплавки и обработки ресурсов.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
+Электрическая плавильная печь
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
 Позволяет извлекать литиевую соль из геотермальных источников.
@@ -596,20 +632,23 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Descrip
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Экстрактор лития
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
+Продвинутый экстрактор лития
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Позволяет превратить любую органическую материю в перегной. Источник органических удобрений.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Ящик с перегноем
 
-Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@ErrorRequiresOilSeep:
-Для работы насоса требуется месторождение нефти.
-
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
 Устанавливается на месторождении нефти, позволяя добывать сырую нефть прямо из земли.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Нефтекачалка
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
+Продвинутая нефтекачалка
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
 Перерабатывает сырую нефть в более полезные компоненты, например топливо и минеральное масло.
@@ -629,11 +668,23 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 Водосборник
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
+Выкачивает воду из подземного резервуара с помощью электрического насоса.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Name:
+Водяной насос
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
 Неиссякаемый источник питьевой воды. Теперь смерть от жажды вам не грозит. Почему-то бесполезен в пустыне или в горной местности...
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 Колодец
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
+Для работы экстрактора нужен геотермальный источник.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
+Для работы нефтекачалки требуется месторождение нефти.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Этот тип почвы не позволяет достать до грунтовых вод.
@@ -644,11 +695,53 @@ Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Медицинская станция
 
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
+Защитное сооружение, которое при активации производит псионическое поле высокой интенсивности.
+
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
+Пси-излучатель
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
+Может использоваться для зарядки портативного электронного оборудования, такого как аккумулятор или фонарик.
+
+Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
+Зарядная станция
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
+Требуется больше компонентов.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
+Для починки поместите два одинаковых предмета.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_NoRepairNecessary:
+Починка не требуется.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFull:
+Сначала заберите предмет из ячейки выхода.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
+Невозможно починить
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
+Рабочая станция, предназначенная для починки и отладки различных предметов.
+
+Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Name:
+Стол мастера
+
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
 Выбрасывайте ненужные вещи в этот мусорный бак, чтобы избавиться от них. Навсегда!
 
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 Мусорный бак
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
+Позволяет накапливать электроэнергию, производимую генераторами на базе.
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Name:
+Энергонакопитель
+
+Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorageLarge@Name:
+Большой энергонакопитель
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
 Позволяет демонстрировать окружающим какое-либо изображение. Использует солнечные батареи на задней панели, поэтому подзаряжать его не нужно.
@@ -881,6 +974,12 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
 Засохшее дерево
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
+Засохшее дерево
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
+Засохшее дерево
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
 Дуриан
 
@@ -894,10 +993,10 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
 Пальма
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Сосна
+Ель
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
-Северная сосна
+Сосна
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
 Тополь
@@ -905,14 +1004,26 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
 Каучуковое дерево
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
+Замшелая коряга
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
 Пенек
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
+Замшелый пень
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
 Пенек
 
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
+Болотное дерево
+
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
 Тропическое дерево
+
+Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
+Ива
 
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Чтобы срубить это дерево, используйте топор.

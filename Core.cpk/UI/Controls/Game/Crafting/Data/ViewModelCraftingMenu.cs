@@ -17,13 +17,15 @@
         public ViewModelCraftingMenu(
             IReadOnlyCollection<Recipe> recipes,
             int recipesCountTotal,
-            bool validateItemsAvailabilityInPlayerInventory)
+            bool validateItemsAvailabilityInPlayerInventory,
+            Action<Recipe> customCallbackOnRecipeSelect = null)
         {
             this.RecipesCountTotal = recipesCountTotal;
             this.ValidateItemsAvailabilityInPlayerInventory = validateItemsAvailabilityInPlayerInventory;
             this.RecipesList = recipes.Select(
                     recipe => new ViewModelCraftingMenuRecipeDetails(
-                            validateItemsAvailabilityInPlayerInventory)
+                            validateItemsAvailabilityInPlayerInventory,
+                            customCallbackOnRecipeSelect)
                         {
                             ViewModelRecipe = new ViewModelCraftingRecipe(recipe)
                         }
@@ -36,7 +38,8 @@
         public ViewModelCraftingMenu(bool validateItemsAvailabilityInPlayerInventory)
             : this(CreateTestRecipesList(),
                    CreateTestRecipesList().Count,
-                   validateItemsAvailabilityInPlayerInventory)
+                   validateItemsAvailabilityInPlayerInventory,
+                   customCallbackOnRecipeSelect: null)
         {
             if (!IsDesignTime)
             {
@@ -135,7 +138,7 @@
             {
                 new RecipeToolboxT1(),
                 new RecipeAxeIron(),
-                new RecipeJamBerriesRed()
+                new RecipeJamFromBerriesRed()
             };
         }
     }

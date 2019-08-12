@@ -21,15 +21,10 @@
         /// <summary>
         /// Please dispose after use - apply "using" pattern.
         /// </summary>
-        public static TempStatsCache GetFromPool(bool isMultipliersSummed)
-        {
-            var result = Pool.Count > 0
-                             ? Pool.Pop()
-                             : new TempStatsCache();
-
-            result.IsMultipliersSummed = isMultipliersSummed;
-            return result;
-        }
+        public static TempStatsCache GetFromPool()
+            => Pool.Count > 0
+                   ? Pool.Pop()
+                   : new TempStatsCache();
 
         public void Clear()
         {
@@ -37,7 +32,6 @@
             this.Values.Clear();
             this.Multipliers.Clear();
             this.Sources.Clear();
-            this.IsMultipliersSummed = false;
         }
 
         public void Dispose()

@@ -5,6 +5,12 @@
     public class SkillCrafting : ProtoSkill
     {
         /// <summary>
+        /// Base number of crafting queue slots.
+        /// This skill is adding additional slots (see below).
+        /// </summary>
+        public const byte BaseCraftingSlotsCount = 4;
+
+        /// <summary>
         /// Exp given for each individual item crafted.
         /// </summary>
         public const double ExperiencePerItemCrafted = 1.0;
@@ -34,33 +40,31 @@
         {
             config.Category = GetCategory<SkillCategoryTechnical>();
 
-            var statName = StatName.CraftingSpeed;
-
-            config.AddStatEffect(
-                statName,
-                level: 1,
-                percentBonus: 10);
-
-            config.AddStatEffect(
-                statName,
-                formulaPercentBonus: level => level * 3);
-
-            config.AddStatEffect(
-                statName,
-                level: 10,
-                percentBonus: 5);
-
-            config.AddStatEffect(
-                statName,
-                level: 15,
-                percentBonus: 10);
-
-            config.AddStatEffect(
-                statName,
-                level: 20,
-                percentBonus: 15);
-
             // Note: total effect would be +100% crafting speed (or -50% crafting duration) at level 20.
+            config.AddStatEffect(
+                StatName.CraftingSpeed,
+                formulaPercentBonus: level => level * 4);
+
+            config.AddStatEffect(
+                StatName.CraftingSpeed,
+                level: 10,
+                percentBonus: 10);
+
+            config.AddStatEffect(
+                StatName.CraftingSpeed,
+                level: 20,
+                percentBonus: 10);
+
+            // add 2 extra slots at lvl 15 and 10
+            config.AddStatEffect(
+                StatName.CraftingQueueMaxSlotsCount,
+                level: 5,
+                valueBonus: 1);
+
+            config.AddStatEffect(
+                StatName.CraftingQueueMaxSlotsCount,
+                level: 15,
+                valueBonus: 1);
         }
     }
 }

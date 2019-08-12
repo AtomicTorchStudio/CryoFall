@@ -76,7 +76,7 @@
 
                 if (IsClient)
                 {
-                    this.ClientOnCannotInteract(worldObject, this.InteractionFailedNoFruitsMessage);
+                    ClientOnCannotInteract(worldObject, this.InteractionFailedNoFruitsMessage);
                 }
             }
 
@@ -149,7 +149,7 @@
         protected override void ClientUpdate(ClientUpdateData data)
         {
             var clientState = data.ClientState;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             if (clientState.LastGrowthStage == publicState.GrowthStage
                 && clientState.LastHasHarvest == publicState.HasHarvest)
             {

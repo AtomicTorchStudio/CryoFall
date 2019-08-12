@@ -93,8 +93,9 @@
         protected IEnumerable<ViewModelServerInfoListEntry> GetOrderedList()
         {
             return this.ServerAddressToServerViewModel.Values
-                       // featured first (yes, it should use negated IsFeatured bool flag)
-                       .OrderBy(s => !s.ViewModelServerInfo.IsFeatured)
+                       // official first (yes, it should use negated bool flag)
+                       .OrderBy(s => !s.ViewModelServerInfo.IsOfficial)
+                       .ThenBy(s => !s.ViewModelServerInfo.IsFeatured)
                        .ThenBy(s => s.ViewModelServerInfo.Title);
 
             // TODO: implement sort controls and use the code below

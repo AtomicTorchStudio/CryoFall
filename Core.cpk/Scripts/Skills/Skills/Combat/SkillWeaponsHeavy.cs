@@ -11,6 +11,12 @@
         public override string Description =>
             "Heavy weaponry usage trains you to operate it with greater skill, providing additional means to bring on the hurt.";
 
+        public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.2;
+
+        public override double ExperienceAddedPerDamageDoneMultiplier => 0.5;
+
+        public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
+
         public override string Name => "Heavy weapons";
 
         public override StatName StatNameDamageBonusMultiplier

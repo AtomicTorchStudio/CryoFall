@@ -11,7 +11,7 @@
     <TextBlock Text="{Binding CurrentTimeText, ElementName=UserControl}"
                FontFamily="{StaticResource DigitsFontFamily}"
                FontSize="20"
-               Foreground="#AAFFFFFF"
+               Foreground="{Binding TextBrush, ElementName=UserControl}"
                noesis:Text.StrokeThickness="1"
                noesis:Text.Stroke="#66000000" />
 </base:BaseUserControl>

@@ -3,6 +3,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -28,6 +29,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
                     is PlayerCharacterSpectator)
             {
                 // don't apply this limitation to the spectator player
+                return true;
+            }
+
+            if (CreativeModeSystem.SharedIsInCreativeMode(ClientCurrentCharacterHelper.Character))
+            {
+                // don't apply this limitation to the player in creative mode
                 return true;
             }
 

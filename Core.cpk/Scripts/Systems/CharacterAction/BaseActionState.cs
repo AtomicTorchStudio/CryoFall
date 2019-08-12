@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Logging;
@@ -134,7 +133,7 @@
             {
                 if (Api.IsClient)
                 {
-                    ClientComponentTimersManager.AddAction(
+                    ClientTimersSystem.AddAction(
                         delaySeconds: 0, // invoke on the next frame because current action completion is not yet processed
                         () => ClientComponentObjectInteractionHelper.OnInteractionFinished(this.TargetWorldObject));
                 }

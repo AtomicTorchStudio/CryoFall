@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -34,12 +32,23 @@
                 }
 
                 // found current interaction
-                Unregister(character, action.Key.WorldObject, isAbort: true);
+                SharedUnregister(character, action.Key.WorldObject, isAbort: true);
                 return;
             }
         }
 
-        public static IWorldObject GetCurrentInteraction(ICharacter character)
+        public static IEnumerable<ICharacter> SharedEnumerateCurrentInteractionCharacters(IWorldObject worldObject)
+        {
+            foreach (var pair in RegisteredActions.Keys)
+            {
+                if (pair.WorldObject == worldObject)
+                {
+                    yield return pair.Character;
+                }
+            }
+        }
+
+        public static IWorldObject SharedGetCurrentInteraction(ICharacter character)
         {
             foreach (var pair in RegisteredActions.Keys)
             {
@@ -53,38 +62,6 @@
             }
 
             return null;
-        }
-
-        public static bool HasInteraction(
-            ICharacter character,
-            IWorldObject worldObject,
-            bool requirePrivateScope)
-        {
-            var pair = new Pair(character, worldObject);
-            if (!RegisteredActions.ContainsKey(pair))
-            {
-                return false;
-            }
-
-            if (requirePrivateScope)
-            {
-                if (IsServer && !Server.Core.IsInPrivateScope(character, worldObject)
-                    || IsClient && !Client.Core.IsInPrivateScope(worldObject))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public static void Register(
-            ICharacter character,
-            IWorldObject worldObject,
-            DelegateFinishAction finishAction)
-        {
-            CancelCurrentInteraction(character);
-            RegisteredActions[new Pair(character, worldObject)] = new PairAction(finishAction);
         }
 
         [CanBeNull]
@@ -125,7 +102,39 @@
             return tempObjectsInCharacterInteractionArea;
         }
 
-        public static bool Unregister(ICharacter character, IWorldObject worldObject, bool isAbort)
+        public static bool SharedHasInteraction(
+            ICharacter character,
+            IWorldObject worldObject,
+            bool requirePrivateScope)
+        {
+            var pair = new Pair(character, worldObject);
+            if (!RegisteredActions.ContainsKey(pair))
+            {
+                return false;
+            }
+
+            if (requirePrivateScope)
+            {
+                if (IsServer && !Server.Core.IsInPrivateScope(character, worldObject)
+                    || IsClient && !Client.Core.IsInPrivateScope(worldObject))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static void SharedRegister(
+            ICharacter character,
+            IWorldObject worldObject,
+            DelegateFinishAction finishAction)
+        {
+            CancelCurrentInteraction(character);
+            RegisteredActions[new Pair(character, worldObject)] = new PairAction(finishAction);
+        }
+
+        public static bool SharedUnregister(ICharacter character, IWorldObject worldObject, bool isAbort)
         {
             var pair = new Pair(character, worldObject);
             if (!RegisteredActions.TryGetValue(pair, out var action))
@@ -157,15 +166,15 @@
             }
             else // if (IsClient)
             {
-                ClientComponentTimersManager.AddAction(CheckTimeIntervalSeconds, this.TimerTickCallback);
+                ClientTimersSystem.AddAction(CheckTimeIntervalSeconds, this.TimerTickCallback);
             }
         }
 
         // check if character can interact
-        private static bool IsValidInteraction(Pair key)
+        private static bool SharedIsValidInteraction(Pair key)
         {
             var character = key.Character;
-            if (!character.IsOnline)
+            if (!character.ServerIsOnline)
             {
                 // character is offline - cannot interact
                 return false;
@@ -191,12 +200,12 @@
         {
             if (IsClient)
             {
-                ClientComponentTimersManager.AddAction(CheckTimeIntervalSeconds, this.TimerTickCallback);
+                ClientTimersSystem.AddAction(CheckTimeIntervalSeconds, this.TimerTickCallback);
             }
 
             RegisteredActions.ProcessAndRemove(
                 // remove if cannot interact
-                removeCondition: pair => !IsValidInteraction(pair),
+                removeCondition: pair => !SharedIsValidInteraction(pair),
                 // abort action when pair removed due to the interaction check failed
                 removeCallback: pair => pair.Value.FinishAction?.Invoke(isAbort: true));
         }

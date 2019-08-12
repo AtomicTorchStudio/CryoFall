@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Construction2;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Cooking2;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Defense2;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Electricity;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Farming2;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Industry2;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Medicine;
@@ -31,12 +32,13 @@
                 .Add(RequirementCompleteTechGroup.Require<TechGroupDefense2>())
                 .Add(RequirementCompleteTechGroup.Require<TechGroupFarming2>())
                 .Add(RequirementCompleteTechGroup.Require<TechGroupIndustry2>())
+                .Add(RequirementCompleteTechGroup.Require<TechGroupElectricity>())
                 .Add(RequirementCompleteTechGroup.Require<TechGroupMedicine>())
                 .Add(RequirementCompleteTechGroup.Require<TechGroupOffense2>());
 
             prerequisites
-                .Add<QuestMasterHunter4>()
-                .Add<QuestExploreBiomes3>();
+                .Add<QuestMasterHunter5>()
+                .Add<QuestExploreBiomes4>();
         }
     }
 }

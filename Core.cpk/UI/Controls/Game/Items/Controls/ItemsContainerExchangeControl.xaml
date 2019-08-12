@@ -15,8 +15,13 @@
     d:DataContext="{d:DesignInstance data:ViewModelItemsContainerExchange, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
 
-    <StackPanel VerticalAlignment="Center"
-                HorizontalAlignment="Stretch">
+    <Grid VerticalAlignment="Center"
+          HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <TextBlock Text="{Binding ContainerTitle}"
                    Visibility="{Binding IsContainerTitleVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                    HorizontalAlignment="Center"
@@ -25,17 +30,19 @@
                    FontSize="10"
                    Margin="0,0,0,5" />
 
-        <controls:ItemsContainerControl Container="{Binding Container}"
+        <controls:ItemsContainerControl Grid.Row="1"
+                                        Container="{Binding Container}"
                                         DesignTimeSlotsCount="8"
                                         MaxWidth="436"
                                         MaxHeight="212"
                                         HorizontalAlignment="Center" />
 
         <!-- Container management buttons -->
-        <StackPanel Orientation="Horizontal"
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Margin="0,3,0,0"
-                    Visibility="{Binding IsManagementButtonsVisibile, Converter={StaticResource BoolToVisibilityConverter}}">
+                    Visibility="{Binding IsManagementButtonsVisible, Converter={StaticResource BoolToVisibilityConverter}}">
             <Button Command="{Binding CommandTakeAll}"
                     Style="{StaticResource SmallButtonStyle}"
                     Margin="0,0,5,0"
@@ -78,5 +85,5 @@
                 <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_Button_DisplayShortcuts}" Margin="5,0" />
             </Button>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </base:BaseUserControl>

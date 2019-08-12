@@ -68,12 +68,13 @@ Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameInvalid_Titl
 用戶名不可用
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
-`用戶名需要：
-[*] 長度為[b]3[/b]-[b]24[/b]個字符
-[*] [b]可以[/b]包含字符，數字，下劃線以及破折號
-[*] [b]不可[/b]包含空格或其他特殊字符
-[*] 必須以[b]字符[/b]或[b]數字[/b]開頭與結尾
-[*] [b]不可[/b]連續使用多個[b]-[/b]或[b]_[/b]`
+`用戶名規則:
+[*] 必須為[b]3[/b]至[b]24[/b]個字元
+[*] [b]可以[/b]包含字母，數位，底線以及連字號
+[*] [b]不可以[/b]包含空格或其他字元
+[*] 必須以[b]字母[/b]開頭
+[*] 必須以[b]字母[/b]或[b]數字[/b]結尾
+[*] [b]不可以[/b]連續使用多個[b]-[/b]或[b]_[/b]`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
 `所選用戶名已被其他玩家使用。

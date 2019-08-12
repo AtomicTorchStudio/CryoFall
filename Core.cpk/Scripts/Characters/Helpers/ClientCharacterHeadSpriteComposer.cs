@@ -97,13 +97,18 @@
             string helmetFront = null, helmetBehind = null;
             if (protoItemHeadEquipment != null)
             {
-                GetHeadEquipmentSprites(itemHeadEquipment,
-                                        protoItemHeadEquipment,
-                                        isMale,
-                                        isFrontFace,
-                                        data.SkeletonResource,
-                                        out helmetFront,
-                                        out helmetBehind);
+                protoItemHeadEquipment.ClientGetHeadSlotSprites(
+                    itemHeadEquipment,
+                    isMale,
+                    data.SkeletonResource,
+                    isFrontFace,
+                    out helmetFront,
+                    out helmetBehind);
+
+                if (helmetFront == null)
+                {
+                    throw new Exception("Helmet attachment is not available for " + protoItemHeadEquipment);
+                }
             }
 
             var isHeadVisible = protoItemHeadEquipment?.IsHeadVisible ?? true;
@@ -207,7 +212,6 @@
             out string helmetFront,
             out string helmetBehind)
         {
-            helmetFront = helmetBehind = null;
             protoHelmet.ClientGetHeadSlotSprites(
                 itemHeadEquipment,
                 isMale,

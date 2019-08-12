@@ -15,11 +15,13 @@
 
         public override double CharacterAnimationAimingRecoilDuration => 0.5;
 
-        public override double DamageMultiplier => 1.1; // slightly higher
+        public override double DamageMultiplier => 1.25; // higher damage
+
+        public override double RangeMultipier => 1.3; // significantly higher range
 
         public override string Description => "Heavy anti-material rifle developed for high-power .300 rounds.";
 
-        public override ushort DurabilityMax => 360;
+        public override uint DurabilityMax => 360;
 
         public override double FireInterval => 0.6; // slow firing rate
 

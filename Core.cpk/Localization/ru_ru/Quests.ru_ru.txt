@@ -2,10 +2,10 @@
 Построить: {0}
 
 Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-Изучить: {0} (древо технологий)
+Завершить: {0} (древо технологий)
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-место: {0}
+постройка: {0}
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
 Изготовить
@@ -29,13 +29,13 @@ Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
 Изучить навыки: {0} до {1} ур.
 
 Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-Открыть древо технологий: {0}
+Исследовать: {0} (древо технологий)
 
 Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-Открыть {0} шт. древ технологий: {1}
+Исследовать {0} шт. древ технологий: {1}
 
 Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-Изучить: {0} (в {1} техн. древе)
+Исследовать: {0} (в техн. древе {1})
 
 Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
 Убить: {0}
@@ -101,7 +101,7 @@ Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
 `[*] [b]Все возможные рецепты[/b] можно увидеть в меню костра, если нажать "Просмотр рецептов".
 [*] Чтобы начать готовку, необходимо [b]выбрать нужный рецепт[/b].
 [*] Чтобы костер горел, требуется [b]топливо[/b]. Разместите в слоте топлива [b]дерево или древесный уголь[/b].
-[*] Позже вы сможете изучить [b]новые рецепты[/b] в [b]меню технологий[/b].
+[*] Позже вы сможете исследовать [b]новые рецепты[/b] в [b]меню технологий[/b].
 [*] Можно использовать любой предмет (в том числе пищу) прямо [b]из инвентаря[/b] или разместить его на [b]панели предметов[/b] и применять в процессе игры.`
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
@@ -157,7 +157,7 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 Собрать ресурсы
 
 Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
-`Чтобы получить доступ к зданиям, необходимо изучить "Базовые постройки" в меню технологий.`
+`Чтобы получить доступ к зданиям, необходимо исследовать "Базовые постройки" в меню технологий.`
 
 Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
 `[*] Нажмите клавишу "G" для быстрого доступа к меню технологий, если вы не меняли управление.
@@ -165,7 +165,7 @@ Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
 [*] Очки технологий можно получить за любую осмысленную деятельность. Они прямо пропорциональны полученному опыту при использовании навыков.`
 
 Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
-Изучить базовые постройки
+Исследовать базовые постройки
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
 Добыть камень
@@ -223,7 +223,7 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
 `[*] Разумно построить ферму [b]внутри[/b] защитного периметра стен, чтобы другие выжившие не собрали ваш урожай за вас :)
-[*] У разных растений свой срок созревания, количество урожаев и другие важные параметры.
+[*] У разных растений свой срок созревания, количество урожаев и другие важные свойства.
 [*] Позже вы сможете открыть полезные удобрения и прочие способы повышения эффективности фермы.`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
@@ -334,7 +334,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
 Изучение технологий: часть первая
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
-Убить любое дикое животное
+Убить любого зверя
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCreature:
 Собрать добычу
@@ -346,7 +346,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 [*] У каждого оружия в CryoFall есть [b]особые свойства[/b]. Например, нож с высокой вероятностью вызовет кровотечение, а ударное оружие может оглушить врага или сломать ему кости.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
-Изготовить нож и убить любое дикое животное
+Изготовить нож и убить любого зверя
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Пора обзавестись защитой получше.
@@ -396,18 +396,17 @@ Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Hints:
 [*] На берегах водится много водных животных.`
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Name:
-Исследование климатических зон: часть первая
+Разведка климатических зон: часть первая
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Description:
-В каждой климатической зоне встречаются разные ресурсы и разные виды животных, которые там обитают. Постарайтесь исследовать как можно большее пространство вокруг вашей базы, чтобы узнать, что вы можете добыть.
+В каждой климатической зоне встречаются разные ресурсы и разные виды животных, которые там обитают. Постарайтесь разведать как можно большее пространство вокруг вашей базы, чтобы узнать, что вы можете добыть.
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Hints:
-`[*] В скалистых горах можно отыскать много месторождений минералов.
-[*] Глиняные ямы — отличный источник глины для возведения разных построек.
-[*] Северные леса расположены на севере континента.`
+`[*] В скалистых горах можно отыскать много разнообразных минералов.
+[*] Глиняные ямы — отличный источник глины для возведения разных построек.`
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Name:
-Исследование климатических зон: часть вторая
+Разведка климатических зон: часть вторая
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
 В будущем вы сможете изготавливать более эффективные лекарства, но пока можно использовать зеленую траву, чтобы восстановить небольшой объем здоровья.
@@ -451,7 +450,7 @@ Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
 [*] Высокий уровень навыка не только повышает ваше мастерство, но и дает вам особые качества, которые не доступны другими путями.
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
-Изучить некоторые навыки
+Изучить несколько навыков
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
 Хорошо, когда можно что-то построить, но также важно знать, как разобрать имеющуюся постройку. Для этого используйте лом! Но только если здание, которое вы хотите разобрать, находится внутри вашей зоны контроля.
@@ -463,6 +462,21 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Используйте лом для разборки
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
+Некоторые ресурсы, такие как нефть и литий, необходимы для продвинутых технологий. Крайне важно научиться их добывать.
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
+`[*] Вы можете собирать ягоды нефтяники в [u]северном лесу[/u]. Из них можно добыть небольшое количество нефти.
+[*] Разрабатывая обычное месторождение соли, вы можете получить [u]литиевую соль[/u].
+[*] Можно отыскать соль в [u]солончаках[/u] посреди пустыни.
+[*]Изучение [u]ксеногеологии[/u] позволит добывать эти ресурсы в промышленных масштабах.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
+Продвинутая добыча ресурсов
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Добыть соль
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Изучение точных наук, особенно химии, помогает добиться успехов в производстве и строительстве.
@@ -486,21 +500,41 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Description:
 На этом этапе разумно завершить все технологии ранга 2, чтобы получить возможность для дальнейшей специализации в любой интересной вам технологической ветке.
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
-`[*] Ранние технологии (ранга 1 и 2) легко открыть, поэтому имеет смысл изучить их все.
+`[*] Ранние технологии (ранга 1 и 2) легко открыть, поэтому имеет смысл исследовать их все.
 [*] Из продвинутых технологий (ранга 3 и выше) лучше освоить только некоторые. Решите сами, какие из них более ценные для вас, и не тратьте силы на изучение всего подряд.`
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 Изучение технологий: часть вторая
 
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
+Создание электросети на базе — важный шаг к повышению эффективности. Электричество необходимо для работы многих продвинутых построек.
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
+`[*] Электрические постройки работают, только когда они находятся [b]внутри[/b] зоны контроля. Бессмысленно размещать электрические постройки вне зоны контроля.
+[*] Электроэнергия хранится в [b]энергонакопителях[/b], это удобно для дальнейшего использования. Повышение энергоемкости вашей базы принесет вам несомненную пользу.
+[*] Для производства электроэнергии можно использовать различные виды [b]генераторов[/b], например паровой, солнечный, бензиновый.
+[*] Если накопленной электроэнергии [u]не хватит[/u], на базе произойдет [b]отключение электричества[/b] и вам придется вручную восстановить подачу электроэнергии.
+[*] [b]Подробную информацию об электросети[/b] можно увидеть при взаимодействии с энергонакопителем или точкой контроля.
+[*] Соседние зоны контроля будут работать как [b]единая электросеть[/b].`
+
+Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
+Создать электросеть
+
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
-Существуют климатические зоны, до которых нелегко добраться, зато в награду там можно добыть уникальные ресурсы.
+Есть удалённые климатические зоны, в которых труднее выживать, зато там можно добыть уникальные ресурсы.
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
 `[*] В пустоши обитают пустынные животные.
 [*] Солончаки — это ценный источник большого количества соли.`
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
-Исследование климатических зон: часть третья
+Разведка климатических зон: часть третья
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
+[*] [b]Вулканическая зона[/b] чрезвычайно опасна. Чтобы побывать в ней, требуется защита от [b]перегрева[/b].
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
+Разведка климатических зон: часть четвертая
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 В старых руинах можно отыскать редкие компоненты и особые ресурсы. Наткнувшись на такое место, обязательно исследуйте его, особенно если у вас есть необходимое снаряжение.
@@ -530,4 +564,7 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
 Мастерство охотника: часть четвертая
+
+Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
+Мастерство охотника: часть пятая
 

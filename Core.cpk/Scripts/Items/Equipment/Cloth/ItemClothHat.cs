@@ -4,7 +4,7 @@
     {
         public override string Description => GetProtoEntity<ItemClothShirt>().Description;
 
-        public override ushort DurabilityMax => 300;
+        public override uint DurabilityMax => 300;
 
         public override bool IsHairVisible => false;
 

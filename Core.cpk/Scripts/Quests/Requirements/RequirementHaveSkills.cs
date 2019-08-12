@@ -99,17 +99,17 @@
         {
             if (isActive)
             {
-                PlayerCharacterSkills.CharacterSkillLevelChanged +=
-                    this.CharacterSkillLevelChangedHandler;
+                PlayerCharacterSkills.ServerCharacterSkillLevelChanged +=
+                    this.ServerCharacterSkillLevelChangedHandler;
             }
             else
             {
-                PlayerCharacterSkills.CharacterSkillLevelChanged -=
-                    this.CharacterSkillLevelChangedHandler;
+                PlayerCharacterSkills.ServerCharacterSkillLevelChanged -=
+                    this.ServerCharacterSkillLevelChangedHandler;
             }
         }
 
-        private void CharacterSkillLevelChangedHandler(
+        private void ServerCharacterSkillLevelChangedHandler(
             ICharacter character,
             IProtoSkill skill,
             SkillLevelData skillLevelData)

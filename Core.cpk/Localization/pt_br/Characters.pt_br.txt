@@ -1,6 +1,12 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Urso
 
+Scripts/Characters/Mobs/MobBlackBeetle@Name:
+Besouro negro
+
+Scripts/Characters/Mobs/MobBurrower@Name:
+Entocado
+
 Scripts/Characters/Mobs/MobChicken@Name:
 Galinha
 
@@ -13,6 +19,9 @@ Caranguejo
 Scripts/Characters/Mobs/MobCrawler@Name:
 Aracnídeo
 
+Scripts/Characters/Mobs/MobFireLizard@Name:
+Lagarto de fogo
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Ratel
 
@@ -21,6 +30,9 @@ Hiena
 
 Scripts/Characters/Mobs/MobPangolin@Name:
 Pangolim
+
+Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
+Besouro de prágmio
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Lesma

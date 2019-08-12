@@ -25,7 +25,7 @@
                      .AppendLine(" final stats cache:");
 
             foreach (var pair in finalStatsCache.EnumerateFinalValues()
-                                                .OrderBy(s => s.Key))
+                                                .OrderBy(s => s.Key.ToString()))
             {
                 sb.Append("* ")
                   .Append(pair.Key)
@@ -38,7 +38,7 @@
 
             foreach (var group in finalStatsCache.Sources.List
                                                  .GroupBy(e => e.StatName)
-                                                 .OrderBy(s => s.Key))
+                                                 .OrderBy(s => s.Key.ToString()))
             {
                 var statName = group.Key;
 

@@ -34,6 +34,12 @@ Ruines
 Scripts/Tiles/TileSaltFlats@Name:
 Salants
 
+Scripts/Tiles/TileSwamp@Name:
+Marais
+
+Scripts/Tiles/TileVolcanic@Name:
+Volcanique
+
 Scripts/Tiles/TileWaterLake@Name:
 Eau (lac)
 

@@ -4,7 +4,7 @@
     {
         public override string Description => "Luxurious golden attire. Befitting of true rulers.";
 
-        public override ushort DurabilityMax => 800;
+        public override uint DurabilityMax => 800;
 
         public override string Name => "Gold chestplate";
 

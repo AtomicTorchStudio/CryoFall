@@ -34,19 +34,17 @@
         public SoundResourceSet Add(string localSoundFilePath, double weight = 1)
         {
             localSoundFilePath = localSoundFilePath.TrimEnd('*');
-            using (var tempFilesList = Api.Shared.FindFilesWithTrailingNumbers(
-                ContentPaths.Sounds + localSoundFilePath))
+            using var tempFilesList = Api.Shared.FindFilesWithTrailingNumbers(
+                ContentPaths.Sounds + localSoundFilePath);
+            if (tempFilesList.Count == 0)
             {
-                if (tempFilesList.Count == 0)
-                {
-                    // no sounds found - add "placeholder" file
-                    return this.Add(new SoundResource(localSoundFilePath), weight);
-                }
+                // no sounds found - add "placeholder" file
+                return this.Add(new SoundResource(localSoundFilePath), weight);
+            }
 
-                foreach (var file in tempFilesList)
-                {
-                    this.sounds.Add(new ValueWithWeight<SoundResource>(new SoundResource(file), weight));
-                }
+            foreach (var file in tempFilesList)
+            {
+                this.sounds.Add(new ValueWithWeight<SoundResource>(new SoundResource(file), weight));
             }
 
             return this;

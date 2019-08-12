@@ -17,7 +17,7 @@
         public override string Description =>
             "Bundle of useful hunter's tools makes looting any creature much quicker.";
 
-        public override ushort DurabilityMax => 100;
+        public override uint DurabilityMax => 100;
 
         public override string Name => "Hunter's tools";
 

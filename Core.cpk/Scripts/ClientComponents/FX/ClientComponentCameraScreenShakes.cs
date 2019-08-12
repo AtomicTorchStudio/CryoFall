@@ -126,10 +126,9 @@
                 var currentTask = this.shakeTasks[0];
                 var currentDistance = currentTask.Distance;
 
-                result = (
-                             // because the game is 2D 3/4 view, we don't want to offset the camera too much in horizontal direction
-                             (float)(0.25 * currentDistance * Math.Cos(currentTask.Direction)),
-                             (float)(currentDistance * Math.Sin(currentTask.Direction)));
+                // because the game is 2D 3/4 view, we don't want to offset the camera too much in horizontal direction
+                result = ((float)(0.25 * currentDistance * Math.Cos(currentTask.Direction)),
+                          (float)(currentDistance * Math.Sin(currentTask.Direction)));
 
                 currentTask.TimeLeft -= deltaTime;
                 if (currentTask.TimeLeft <= 0)

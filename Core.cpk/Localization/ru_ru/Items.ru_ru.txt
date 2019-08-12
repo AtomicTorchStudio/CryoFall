@@ -29,7 +29,7 @@ Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Name:
 Заряд картечи 12-го калибра
 
 Scripts/Items/Ammo/ItemAmmo12gaPellets@Description:
-Дробь разлетается по большой области, поэтому она эффективна против незащищённой живой силы и, особенно, групп врагов. И совсем не эффективна против бронированных целей.
+Дробь разлетается по большой области, поэтому она эффективна против незащищенной живой силы и, особенно, групп врагов. И совсем не эффективна против бронированных целей.
 
 Scripts/Items/Ammo/ItemAmmo12gaPellets@Name:
 Заряд дроби 12-го калибра
@@ -41,10 +41,10 @@ Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
 Патроны 12-го калибра с солью
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
-Пули имеют более высокую останавливающую силу, чем дробь, и используются против различных целей. Благодаря массивности пули эффективны даже против хорошо бронированных целей.
+Жакан имеет более высокую останавливающую силу, чем дробь, и подходит против большинства целей. Благодаря массивности пули эффективны даже против хорошо бронированных целей.
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
-Пули 12-го калибра
+Пули жакан 12-го калибра
 
 Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Description:
 Мощные боеприпасы калибра .300 с бронебойными свойствами.
@@ -53,7 +53,7 @@ Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
 Бронебойные патроны калибра .300
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
-Мощные зажигательные боеприпасы калибра .300.
+Мощные зажигательные боеприпасы калибра .300, способные пробить броню и воспламенить цель.
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 Зажигательные патроны калибра .300
@@ -314,7 +314,7 @@ Scripts/Items/Equipment/Misc/ItemRespirator@Name:
 Респиратор
 
 Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
-Экспериментальная броня, состоящая из прагмиевой кристаллической решётки на основе из тонких металлических пластин. Очень легкая и долговечная.
+Экспериментальная броня, состоящая из прагмиевой кристаллической решетки на основе из тонких металлических пластин. Очень легкая и долговечная.
 
 Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
 Прагмиевая броня
@@ -350,7 +350,7 @@ Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
 Специальное взрывное устройство, которое при первом же применении помогает добыть большое количество минералов. Необходимо установить рядом с месторождением минералов.
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Name:
-Шахтёрская взрывчатка
+Шахтерская взрывчатка
 
 Scripts/Items/Explosives/Bombs/ItemBombModern@Description:
 Сильное взрывное устройство для подрыва укрепленных построек.
@@ -365,7 +365,7 @@ Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Name:
 Примитивная бомба
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
-Специальная бомба, использующая уникальные свойства прагмиума для нанесения сквозного урона стенам и дверям, расположенным вплотную. Эффективна против хорошо укрепленных баз. Не повреждает другие строения.
+Специальная бомба, использующая уникальные свойства прагмия для нанесения сквозного урона стенам и дверям, расположенным вплотную. Эффективна против хорошо укрепленных баз. Не повреждает другие строения.
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 Резонансная бомба
@@ -392,19 +392,19 @@ Scripts/Items/Food/ItemBerriesOrange@Description:
 Вкусные оранжевые ягоды.
 
 Scripts/Items/Food/ItemBerriesOrange@Name:
-Ягоды
+Оранжевые ягоды
 
 Scripts/Items/Food/ItemBerriesRed@Description:
 Вкусные красные ягоды.
 
 Scripts/Items/Food/ItemBerriesRed@Name:
-Ягоды
+Красные ягоды
 
 Scripts/Items/Food/ItemBerriesViolet@Description:
 Вкусные фиолетовые ягоды.
 
 Scripts/Items/Food/ItemBerriesViolet@Name:
-Ягоды
+Фиолетовые ягоды
 
 Scripts/Items/Food/ItemBottleWater@Description:
 Можно пить для утоления жажды. Или использовать для приготовления разных блюд.
@@ -455,10 +455,22 @@ Scripts/Items/Food/ItemCannedFish@Name:
 Рыбные консервы
 
 Scripts/Items/Food/ItemCannedMeat@Description:
-Консервированное мясо непонятного происхождения. Ну, хотя бы упаковано на славу.
+Консервированная тушенка с высоким содержанием жира. Хранится долгое время.
 
 Scripts/Items/Food/ItemCannedMeat@Name:
 Мясные консервы
+
+Scripts/Items/Food/ItemCannedMixedMeat@Description:
+Консервированное мясо непонятного происхождения. Ну, хотя бы упаковано на славу.
+
+Scripts/Items/Food/ItemCannedMixedMeat@Name:
+Консервы из разных видов мяса
+
+Scripts/Items/Food/ItemCarbonara@Description:
+Вкусное блюдо из макарон, яиц, сыра и мяса!
+
+Scripts/Items/Food/ItemCarbonara@Name:
+Карбонара
 
 Scripts/Items/Food/ItemCarrot@Description:
 Оранжевый овощ, богатый каротином.
@@ -514,11 +526,11 @@ Scripts/Items/Food/ItemCorn@Description:
 Scripts/Items/Food/ItemCorn@Name:
 Кукуруза
 
-Scripts/Items/Food/ItemCornOnCob@Description:
-Кто же не любит вареную кукурузу в початках? Кстати, почему она так называется, она же не внутри початков?
+Scripts/Items/Food/ItemCornGrilled@Description:
+`Кукуруза-гриль сохраняет свою сладость, к которой добавляется вкус "с дымком". Объедение!`
 
-Scripts/Items/Food/ItemCornOnCob@Name:
-Кукуруза в початках
+Scripts/Items/Food/ItemCornGrilled@Name:
+Кукуруза-гриль
 
 Scripts/Items/Food/ItemCucumber@Description:
 Водянистый овощ, который вселяет страх в кошек.
@@ -573,6 +585,18 @@ Scripts/Items/Food/ItemEggsRaw@Description:
 
 Scripts/Items/Food/ItemEggsRaw@Name:
 Яйца животных
+
+Scripts/Items/Food/ItemInsectMeatFried@Description:
+В готовом виде это мясо кажется чуть менее отвратительным... Но если вы решили его отведать, вас может стошнить.
+
+Scripts/Items/Food/ItemInsectMeatFried@Name:
+Жареное мясо насекомых
+
+Scripts/Items/Food/ItemInsectMeatRaw@Description:
+Отвратительное мясо насекомых. Может быть, оно станет не таким гадким, если его приготовить.
+
+Scripts/Items/Food/ItemInsectMeatRaw@Name:
+Сырое мясо насекомых
 
 Scripts/Items/Food/ItemJamBerries@Description:
 Вкусное ягодное варенье.
@@ -695,7 +719,7 @@ Scripts/Items/Food/ItemTequila@Name:
 Текила
 
 Scripts/Items/Food/ItemTincture@Description:
-Травяная настойка, обладающая всевозможными полезными эффектами - и для улучшения здоровья в целом.
+Травяная настойка, обладающая всевозможными полезными эффектами — и для улучшения здоровья в целом.
 
 Scripts/Items/Food/ItemTincture@Name:
 Настойка
@@ -820,6 +844,12 @@ Scripts/Items/Generic/ItemCampFuel@Description:
 Scripts/Items/Generic/ItemCampFuel@Name:
 Ламповое масло
 
+Scripts/Items/Generic/ItemCanEmpty@Description:
+Пустые консервные банки пригодятся для приготовления различных видов консервированной еды и напитков.
+
+Scripts/Items/Generic/ItemCanEmpty@Name:
+Пустые консервные банки
+
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
 Пустая металлическая канистра. В ней можно хранить летучие жидкости.
 
@@ -922,6 +952,12 @@ Scripts/Items/Generic/ItemComponentsWeapon@Description:
 Scripts/Items/Generic/ItemComponentsWeapon@Name:
 Компоненты оружия
 
+Scripts/Items/Generic/ItemDuctTape@Description:
+Специальная клейкая лента с очень липким внутренним слоем и армированным композитным внешним слоем.
+
+Scripts/Items/Generic/ItemDuctTape@Name:
+Изолента
+
 Scripts/Items/Generic/ItemExplosives@Description:
 Взрывчатое вещество, которое используется для создания различных взрывных устройств.
 
@@ -939,7 +975,7 @@ Scripts/Items/Generic/ItemFertilizer@Name:
 Удобрение
 
 Scripts/Items/Generic/ItemFibers@Description:
-Натуральные и искусственные волокна. Из них можно сплести веревку или нить. Изготавливаются из травы или других растений.
+Натуральные или искусственные волокна. Из них можно сплести веревку или нить. Получаются из травы и других растений.
 
 Scripts/Items/Generic/ItemFibers@Name:
 Волокна
@@ -1139,17 +1175,17 @@ Scripts/Items/Generic/ItemOrePragmium@Description:
 Scripts/Items/Generic/ItemOrePragmium@Name:
 Прагмий
 
-Scripts/Items/Generic/ItemOrePyrite@Description:
-Из пиритной руды при нагревании можно получить серную кислоту.
-
-Scripts/Items/Generic/ItemOrePyrite@Name:
-Пиритная руда
-
 Scripts/Items/Generic/ItemPaper@Description:
-Старая добрая бумага.
+Бумага — это универсальный материал с множеством применений, который легко изготовить из древесины.
 
 Scripts/Items/Generic/ItemPaper@Name:
 Бумага
+
+Scripts/Items/Generic/ItemPasta@Description:
+Основа многих вкусных блюд!
+
+Scripts/Items/Generic/ItemPasta@Name:
+Сухие макароны
 
 Scripts/Items/Generic/ItemPlanks@Description:
 Обычно используются в строительстве. Также можно сжечь в качестве топлива.
@@ -1174,6 +1210,12 @@ Scripts/Items/Generic/ItemPowerCell@Description:
 
 Scripts/Items/Generic/ItemPowerCell@Name:
 Силовая ячейка
+
+Scripts/Items/Generic/ItemPreservative@Description:
+Пищевой консервант. Можно добавить в упакованную пищу, чтобы она дольше хранилась.
+
+Scripts/Items/Generic/ItemPreservative@Name:
+Консервант
 
 Scripts/Items/Generic/ItemRope@Description:
 Простая веревка. Можно использовать разными способами. Лишнюю веревку можно сжечь.
@@ -1205,6 +1247,24 @@ Scripts/Items/Generic/ItemSand@Description:
 Scripts/Items/Generic/ItemSand@Name:
 Песок
 
+Scripts/Items/Generic/ItemSlime@Description:
+Зеленая слизь. Наверное, осталась от какого-то существа.
+
+Scripts/Items/Generic/ItemSlime@Name:
+Слизь
+
+Scripts/Items/Generic/ItemSolarPanel@Description:
+Дорогая в производстве штука, но она будет обеспечивать вас электроэнергией в течение очень долгого времени без какого-либо обслуживания.
+
+Scripts/Items/Generic/ItemSolarPanel@Name:
+Солнечная панель
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Description:
+Сломанные панели могут быть переработаны для производства новых солнечных панелей.
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Name:
+Сломанная солнечная панель
+
 Scripts/Items/Generic/ItemSolvent@Description:
 Современный усовершенствованный растворитель, совмещающий свойства полярного и неполярного растворителей.
 
@@ -1233,13 +1293,13 @@ Scripts/Items/Generic/ItemThread@Description:
 Нитки нужны для изготовления одежды и других вещей.
 
 Scripts/Items/Generic/ItemThread@Name:
-Нить
+Нитки
 
 Scripts/Items/Generic/ItemTobaccoAged@Description:
-Старые листья табака. Из них можно скрутить хорошие сигары.
+Выдержанные листья табака. Из них можно скрутить хорошие сигары.
 
 Scripts/Items/Generic/ItemTobaccoAged@Name:
-Табак (старый)
+Табак (выдержанный)
 
 Scripts/Items/Generic/ItemTobaccoDried@Description:
 Высушенные листья табака. Из них можно скрутить дешевые сигары или дать им отлежаться и сделать хорошие сигары.
@@ -1294,6 +1354,12 @@ Scripts/Items/Generic/ItemWheatGrains@Description:
 
 Scripts/Items/Generic/ItemWheatGrains@Name:
 Пшеничные зерна
+
+Scripts/Items/Generic/ItemWire@Description:
+Катушка с изолированным электрическим проводом.
+
+Scripts/Items/Generic/ItemWire@Name:
+Провод
 
 Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
 У вас нет экипированного аккумулятора
@@ -1350,10 +1416,10 @@ Scripts/Items/Implants/ItemImplantHealingGland@Name:
 Исцеляющий имплант
 
 Scripts/Items/Implants/ItemImplantMetabolismModulator@Description:
-Повышает эффективность метаболизма за счет сжигания калорий и снижения уровня жидкости в организме.
+Повышает эффективность метаболизма, снижая расход калорий и воды в организме.
 
 Scripts/Items/Implants/ItemImplantMetabolismModulator@Name:
-Имплант повышенного метаболизма
+Имплант оптимизации метаболизма
 
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 Специальный материал из нановолокон, который вживляется под нижние слои кожи, обеспечивая серьезную дополнительную защиту.
@@ -1444,6 +1510,12 @@ Scripts/Items/Medical/ItemCigarPremium@Description:
 
 Scripts/Items/Medical/ItemCigarPremium@Name:
 Элитная сигара
+
+Scripts/Items/Medical/ItemEnergyTablets@Description:
+Простое лекарство для быстрого восстановления сил.
+
+Scripts/Items/Medical/ItemEnergyTablets@Name:
+Энергетические таблетки
 
 Scripts/Items/Medical/ItemHeatPreExposure@Description:
 Теплоупорный гель, который снижает термальные воздействия и отражает жар, позволяя на короткий срок входить в зоны с высокой температурой.
@@ -1572,103 +1644,58 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 Стимулятор силы (малый)
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
-Саженец березы. Можно посадить, чтобы вырастить новое дерево.
+Саженец дерева. Можно посадить, чтобы вырастить новое дерево.
 
 Scripts/Items/Seeds/ItemSaplingBirch@Name:
 Саженец березы
 
-Scripts/Items/Seeds/ItemSaplingOak@Description:
-Саженец дуба. Можно посадить, чтобы вырастить новое дерево.
-
 Scripts/Items/Seeds/ItemSaplingOak@Name:
 Саженец дуба
-
-Scripts/Items/Seeds/ItemSaplingPine@Description:
-Саженец ели. Можно посадить, чтобы вырастить новое дерево.
 
 Scripts/Items/Seeds/ItemSaplingPine@Name:
 Саженец ели
 
-Scripts/Items/Seeds/ItemSaplingPineBoreal@Description:
-Саженец северной разновидности сосны. Можно посадить, чтобы вырастить новое дерево.
-
 Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
-Саженец северной сосны
-
-Scripts/Items/Seeds/ItemSaplingPoplar@Description:
-Саженец тополя. Можно посадить, чтобы вырастить новое дерево.
+Саженец сосны
 
 Scripts/Items/Seeds/ItemSaplingPoplar@Name:
 Саженец тополя
-
-Scripts/Items/Seeds/ItemSaplingRubbertree@Description:
-Саженец каучукового дерева. Можно посадить, чтобы вырастить новое дерево.
 
 Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
 Саженец каучукового дерева
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
-Можно посадить, чтобы вырастить перец.
+Маленький пакетик семян, подготовленных к севу. Можно высаживать в почву.
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
 Семена перца
 
-Scripts/Items/Seeds/ItemSeedsCarrot@Description:
-Можно посадить, чтобы вырастить морковь.
-
 Scripts/Items/Seeds/ItemSeedsCarrot@Name:
 Семена моркови
-
-Scripts/Items/Seeds/ItemSeedsChiliPepper@Description:
-Можно посадить, чтобы вырастить перец чили.
 
 Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
 Семена перца чили
 
-Scripts/Items/Seeds/ItemSeedsCorn@Description:
-Можно посадить, чтобы вырастить кукурузу.
-
 Scripts/Items/Seeds/ItemSeedsCorn@Name:
 Зерна кукурузы
-
-Scripts/Items/Seeds/ItemSeedsCucumber@Description:
-Можно посадить, чтобы вырастить огурец.
 
 Scripts/Items/Seeds/ItemSeedsCucumber@Name:
 Семена огурца
 
-Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Description:
-Можно посадить, чтобы вырастить синий шалфей.
-
 Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Семена синего шалфея
-
-Scripts/Items/Seeds/ItemSeedsFlowerOni@Description:
-Семена красноцвета. Можно посадить, чтобы вырастить больше цветов.
 
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Семена красноцвета
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Description:
-Огурин — первое растение, модифицированное под условия этой планеты.
-
 Scripts/Items/Seeds/ItemSeedsOgurin@Name:
 Семена огурина
-
-Scripts/Items/Seeds/ItemSeedsTobacco@Description:
-Можно посадить, чтобы вырастить табак.
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Семена табака
 
-Scripts/Items/Seeds/ItemSeedsTomato@Description:
-Семена помидора, из которых можно вырастить вкусные помидоры, специально выведенные для этой планеты.
-
 Scripts/Items/Seeds/ItemSeedsTomato@Name:
 Семена помидора
-
-Scripts/Items/Seeds/ItemSeedsWheat@Description:
-Зерна пшеницы, специально подготовленные для посадки.
 
 Scripts/Items/Seeds/ItemSeedsWheat@Name:
 Зерна пшеницы
@@ -1758,19 +1785,13 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 Каменная кирка
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
-Для того чтобы возвести любую постройку, требуется хороший набор инструментов.
+Набор инструментов необходим для строительства или починки любой постройки. Убедитесь, что он надет и выбран.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
 Простой набор инструментов
 
-Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Description:
-Для того чтобы возвести любую постройку, требуется хороший набор инструментов.
-
 Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
 Набор железных инструментов
-
-Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Description:
-Для того чтобы возвести любую постройку, требуется хороший набор инструментов.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
 Набор стальных инструментов

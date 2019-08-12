@@ -13,7 +13,7 @@
 
         public override float FoodRestore => 3;
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Lasting;
 
         public override string Name => "Rustshroom";
 

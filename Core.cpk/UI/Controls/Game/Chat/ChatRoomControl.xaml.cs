@@ -5,10 +5,8 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
-    using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
     using AtomicTorch.CBND.CoreMod.UI.Services;
@@ -32,11 +30,14 @@
         private static readonly SoundResource SoundResourceActivity
             = new SoundResource("UI/Chat/Activity");
 
-        private static readonly SoundResource SoundResourceMessageReceived
+        private static readonly SoundResource SoundResourceGenericMessageReceived
             = new SoundResource("UI/Chat/Received");
 
         private static readonly SoundResource SoundResourceMessageSend
             = new SoundResource("UI/Chat/Send");
+
+        private static readonly SoundResource SoundResourcePrivateMessageReceived
+            = new SoundResource("UI/Chat/Private");
 
         private static uint lastMessageReceivedSoundPlayerFrameNumber;
 
@@ -215,7 +216,7 @@
         public void FocusInput()
         {
             // set focus on the next frame
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 0,
                 () =>
                 {
@@ -297,9 +298,7 @@
 
             lastMessageReceivedSoundPlayerFrameNumber = frameNumber;
 
-            Api.Client.Audio.PlayOneShot(chatEntry.IsService
-                                             ? SoundResourceActivity
-                                             : SoundResourceMessageReceived,
+            Api.Client.Audio.PlayOneShot(this.GetMessageReceivedSound(chatEntry),
                                          volume: SoundConstants.VolumeUIChat);
         }
 
@@ -308,6 +307,18 @@
             var control = new ChatEntryControl();
             control.Setup(this, chatEntry);
             return control;
+        }
+
+        private SoundResource GetMessageReceivedSound(ChatEntry chatEntry)
+        {
+            if (chatEntry.IsService)
+            {
+                return SoundResourceActivity;
+            }
+
+            return this.viewModelChatRoom.ChatRoom is ChatRoomPrivate
+                       ? SoundResourcePrivateMessageReceived
+                       : SoundResourceGenericMessageReceived;
         }
 
         private void HideEntries()

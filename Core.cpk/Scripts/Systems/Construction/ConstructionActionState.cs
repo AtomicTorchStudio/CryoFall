@@ -9,10 +9,11 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
-    using AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -115,8 +116,20 @@
                 this.WorldObject);
         }
 
+        protected override void SetupPublicState(PublicState state)
+        {
+            base.SetupPublicState(state);
+            state.ProtoItemConstructionTool = this.ProtoItemConstructionTool;
+        }
+
         private double CalculateStageDurationSeconds(ICharacter character, bool isFirstStage)
         {
+            if (CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                // force instant construct
+                return 0;
+            }
+
             var durationSeconds = this.Config.StageDurationSeconds;
             durationSeconds /= this.ProtoItemConstructionTool.ConstructionSpeedMultiplier;
             durationSeconds /= character.SharedGetFinalStatMultiplier(StatName.BuildingSpeed);
@@ -146,16 +159,12 @@
             {
                 // items are removing only on the Server-side
                 this.Config.ServerDestroyRequiredItems(this.Character);
-                
+
                 // notify tool was used
                 ServerItemUseObserver.NotifyItemUsed(this.Character, this.ItemConstructionTool);
 
                 // reduce tool durability
                 ItemDurabilitySystem.ServerModifyDurability(this.ItemConstructionTool, delta: -1);
-
-                // reset decay timer
-                StructureDecaySystem.ServerResetDecayTimer(
-                    this.WorldObject.GetPrivateState<StructurePrivateState>());
             }
 
             this.currentStageDurationSeconds = this.CalculateStageDurationSeconds(this.Character, isFirstStage: false);
@@ -221,7 +230,7 @@
                 // play success sound
                 /*this.TargetWorldObject.ProtoWorldObject.*/
                 Api.GetProtoEntity<ObjectConstructionSite>().SharedGetObjectSoundPreset()
-                    .PlaySound(ObjectSound.InteractSuccess);
+                   .PlaySound(ObjectSound.InteractSuccess);
             }
 
             this.SetCompleted(isCancelled: false);
@@ -237,6 +246,9 @@
 
         public class PublicState : PublicActionStateWithTargetObjectSounds
         {
+            [SyncToClient(receivers: SyncToClientReceivers.ScopePlayers)]
+            public IProtoItemToolToolbox ProtoItemConstructionTool { get; set; }
+
             protected override void ClientOnCompleted()
             {
                 // don't play base sounds
@@ -245,7 +257,7 @@
 
             protected override ReadOnlySoundPreset<ObjectSound> SharedGetObjectSoundPreset()
             {
-                return ObjectsSoundsPresets.ObjectConstructionSite;
+                return this.ProtoItemConstructionTool.ObjectInteractionSoundsPreset;
             }
         }
     }

@@ -52,11 +52,12 @@
             var animatedSpritePositionOffset = (541 / 256.0, 171 / 256.0);
             this.ClientSetupManufacturerActiveAnimation(
                 worldObject,
-                data.SyncPublicState,
+                data.PublicState,
                 this.textureAtlasActive,
                 animatedSpritePositionOffset,
                 frameDurationSeconds: 1 / 12f,
                 autoInverseAnimation: false,
+                randomizeInitialFrame: true,
                 onRefresh: isActive => { lightSource.IsEnabled = isActive; });
         }
 
@@ -84,14 +85,13 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemBricks>(count: 10);
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 5);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 4);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 4);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemBricks>(count: 5);
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 3);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 3);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
@@ -115,21 +115,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(
-                    size: (3, 0.7),
-                    offset: (0, 0))
-                .AddShapeRectangle(
-                    size: (2.6, 1.65),
-                    offset: (0.2, 0.1),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (2.6, 1.65),
-                    offset: (0.2, 0.1),
-                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(
-                    size: (2.6, 1.65),
-                    offset: (0.2, 0.1),
-                    group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (3, 0.7),    offset: (0, 0))
+                .AddShapeRectangle(size: (2.6, 1.65), offset: (0.2, 0.1), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (2.6, 0.3),  offset: (0.2, 0.8), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (2.6, 1.65), offset: (0.2, 0.1), group: CollisionGroups.ClickArea);
         }
     }
 }

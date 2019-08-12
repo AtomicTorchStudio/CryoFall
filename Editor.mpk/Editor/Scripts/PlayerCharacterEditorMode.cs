@@ -95,7 +95,7 @@
             }
 
             this.ClientUpdateMoveSpeed(character);
-            this.SharedApplyInput(character, data.SyncPrivateState);
+            this.SharedApplyInput(character, data.PrivateState);
             this.CallServer(_ => _.ServerRemote_SetPosition(character.Position));
         }
 

@@ -78,67 +78,65 @@
                 this.isBlurParametersDirty = true;
             }
 
-            using (var renderTarget1 = Rendering.GetTempRenderTexture(size.X, size.Y))
-            using (var renderTarget2 = Rendering.GetTempRenderTexture(size.X, size.Y))
+            using var renderTarget1 = Rendering.GetTempRenderTexture(size.X, size.Y);
+            using var renderTarget2 = Rendering.GetTempRenderTexture(size.X, size.Y);
+            if (this.isBlurParametersDirty)
             {
-                if (this.isBlurParametersDirty)
-                {
-                    this.SetBlurParameters(size);
-                }
-
-                // clear render target 1
-                this.device.SetRenderTarget(renderTarget1);
-                this.device.Clear(Color.FromArgb(0, 0, 0, 0));
-
-                // Pass 1: draw the scene into rendertarget 1,
-                // using a shader that extracts only the brightest parts of the image.
-                this.DrawFullscreenQuad(
-                    source,
-                    renderTarget1.Width,
-                    renderTarget1.Height,
-                    this.effectBloomExtract,
-                    IntermediateBuffer.PreBloom,
-                    blendState: BlendMode.Opaque);
-
-                // Pass 2: draw from rendertarget 1 into rendertarget 2,
-                // using a shader to apply a horizontal gaussian blur filter.
-                this.device.SetRenderTarget(renderTarget2);
-                this.DrawFullscreenQuad(
-                    renderTarget1,
-                    renderTarget2.Width,
-                    renderTarget2.Height,
-                    this.effectBlurHorizontal,
-                    IntermediateBuffer.BlurredHorizontally);
-
-                // Pass 3: draw from rendertarget 2 back into rendertarget 1,
-                // using a shader to apply a vertical gaussian blur filter.
-                this.device.SetRenderTarget(renderTarget1);
-                this.DrawFullscreenQuad(
-                    renderTarget2,
-                    renderTarget1.Width,
-                    renderTarget1.Height,
-                    this.effectBlurVertical,
-                    IntermediateBuffer.BlurredBothWays);
-
-                // Pass 4: draw both rendertarget 1 and the original scene image into the destination,
-                // using a shader that combines them to produce the final bloomed result.
-                this.device.SetRenderTarget(destination);
-
-                if (this.lastBloomCombineSource != source)
-                {
-                    this.lastBloomCombineSource = source;
-                    this.effectBloomCombine.Parameters.Set("BaseTexture", source);
-                }
-
-                var viewport = Rendering.ViewportSize;
-                this.DrawFullscreenQuad(
-                    renderTarget1,
-                    viewport.X,
-                    viewport.Y,
-                    this.effectBloomCombine,
-                    IntermediateBuffer.FinalResult,
-                    blendState: BlendMode.Opaque);
+                this.SetBlurParameters(size);
             }
+
+            // clear render target 1
+            this.device.SetRenderTarget(renderTarget1);
+            this.device.Clear(Color.FromArgb(0, 0, 0, 0));
+
+            // Pass 1: draw the scene into rendertarget 1,
+            // using a shader that extracts only the brightest parts of the image.
+            this.DrawFullscreenQuad(
+                source,
+                renderTarget1.Width,
+                renderTarget1.Height,
+                this.effectBloomExtract,
+                IntermediateBuffer.PreBloom,
+                blendState: BlendMode.Opaque);
+
+            // Pass 2: draw from rendertarget 1 into rendertarget 2,
+            // using a shader to apply a horizontal gaussian blur filter.
+            this.device.SetRenderTarget(renderTarget2);
+            this.DrawFullscreenQuad(
+                renderTarget1,
+                renderTarget2.Width,
+                renderTarget2.Height,
+                this.effectBlurHorizontal,
+                IntermediateBuffer.BlurredHorizontally);
+
+            // Pass 3: draw from rendertarget 2 back into rendertarget 1,
+            // using a shader to apply a vertical gaussian blur filter.
+            this.device.SetRenderTarget(renderTarget1);
+            this.DrawFullscreenQuad(
+                renderTarget2,
+                renderTarget1.Width,
+                renderTarget1.Height,
+                this.effectBlurVertical,
+                IntermediateBuffer.BlurredBothWays);
+
+            // Pass 4: draw both rendertarget 1 and the original scene image into the destination,
+            // using a shader that combines them to produce the final bloomed result.
+            this.device.SetRenderTarget(destination);
+
+            if (this.lastBloomCombineSource != source)
+            {
+                this.lastBloomCombineSource = source;
+                this.effectBloomCombine.Parameters.Set("BaseTexture", source);
+            }
+
+            var viewport = Rendering.ViewportSize;
+            this.DrawFullscreenQuad(
+                renderTarget1,
+                viewport.X,
+                viewport.Y,
+                this.effectBloomCombine,
+                IntermediateBuffer.FinalResult,
+                blendState: BlendMode.Opaque);
         }
 
         public void Setup(BloomSettings newSettings)

@@ -4,7 +4,7 @@
     {
         public override string Description => GetProtoEntity<ItemBoneJacket>().Description;
 
-        public override ushort DurabilityMax => 500;
+        public override uint DurabilityMax => 500;
 
         public override string Name => "Bone pants";
 

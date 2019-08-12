@@ -97,7 +97,7 @@
             Server.World.EnterPrivateScope(character, worldObject);
 
             // register private scope exit on interaction cancel
-            InteractionCheckerSystem.Register(
+            InteractionCheckerSystem.SharedRegister(
                 character,
                 worldObject,
                 finishAction: isAbort =>
@@ -254,7 +254,7 @@
                 isAutoClose: true);
 
             var character = Client.Characters.CurrentPlayerCharacter;
-            InteractionCheckerSystem.Register(
+            InteractionCheckerSystem.SharedRegister(
                 character,
                 worldObject,
                 finishAction: _ => menuWindow.CloseWindow());
@@ -265,7 +265,7 @@
                 onMenuClosedByClient:
                 () =>
                 {
-                    InteractionCheckerSystem.Unregister(character, worldObject, isAbort: false);
+                    InteractionCheckerSystem.SharedUnregister(character, worldObject, isAbort: false);
                     if (!worldObject.IsDestroyed)
                     {
                         this.CallServer(_ => _.ServerRemote_OnClientInteractFinish(worldObject));
@@ -281,7 +281,7 @@
         private void ServerRemote_OnClientInteractFinish(IStaticWorldObject worldObject)
         {
             var character = ServerRemoteContext.Character;
-            if (!InteractionCheckerSystem.Unregister(character, worldObject, isAbort: false))
+            if (!InteractionCheckerSystem.SharedUnregister(character, worldObject, isAbort: false))
             {
                 return;
             }

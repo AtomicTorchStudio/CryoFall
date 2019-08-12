@@ -4,7 +4,10 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -34,6 +37,35 @@
         public override double ObstacleBlockDamageCoef => 0.5;
 
         public override float StructurePointsMax => 250;
+
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            if (!base.SharedCanInteract(character, worldObject, writeToLog))
+            {
+                return false;
+            }
+
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(worldObject, character)
+                || CreativeModeSystem.SharedIsInCreativeMode(character))
+            {
+                return true;
+            }
+
+            // not the land owner
+            if (writeToLog)
+            {
+                Logger.Warning(
+                    $"Character cannot interact with {worldObject} - not the land owner.",
+                    character);
+
+                if (IsClient)
+                {
+                    WorldObjectOwnersSystem.ClientOnCannotInteractNotOwner(worldObject);
+                }
+            }
+
+            return false;
+        }
 
         BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
         {
@@ -76,6 +108,8 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Add(LandClaimSystem.ValidatorIsOwnedArea);
+
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 10;
@@ -96,8 +130,6 @@
         {
             base.ServerInitialize(data);
 
-            var worldObject = data.GameObject;
-
             var itemsContainer = data.PrivateState.ItemsContainer;
             const byte itemsSlotsCount = 4;
             if (itemsContainer != null)
@@ -108,7 +140,7 @@
             }
 
             itemsContainer = Server.Items.CreateContainer<ItemsContainerTrashCan>(
-                owner: worldObject,
+                owner: data.GameObject,
                 slotsCount: itemsSlotsCount);
 
             data.PrivateState.ItemsContainer = itemsContainer;
@@ -117,18 +149,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (0.7, 0.35),
-                                   offset: (0.15, 0.4),
-                                   group: CollisionGroups.Default)
-                .AddShapeRectangle(size: (0.6, 0.65),
-                                   offset: (0.2, 0.4),
-                                   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.6, 0.65),
-                                   offset: (0.2, 0.4),
-                                   group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (0.6, 0.8),
-                                   offset: (0.2, 0.4),
-                                   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.7, 0.35), offset: (0.15, 0.4))
+                .AddShapeRectangle(size: (0.6, 0.65), offset: (0.2, 0.4),  group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.7, 0.2),  offset: (0.15, 1.1), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.6, 0.8),  offset: (0.2, 0.4),  group: CollisionGroups.ClickArea);
         }
 
         public class PrivateState : StructurePrivateState

@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Skills
 {
-    using System.ComponentModel;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -10,17 +9,20 @@
     {
         public const double ExperienceAddWhenSearching = 250.0;
 
-        public static readonly DropItemConditionDelegate ConditionChanceToFindRareItems
-            = Flags.ChanceToFindRareItems.ToCondition();
+        //public static readonly DropItemConditionDelegate ConditionChanceToFindRareItems
+        //    = Flags.ChanceToFindRareItems.ToCondition();
 
         public enum Flags
         {
-            [Description("Chance to find rare items")]
-            ChanceToFindRareItems
+            // TODO: consider using this flag in the next version
+            //[Description("Chance to find rare items")]
+            //ChanceToFindRareItems
         }
 
         public override string Description =>
             "Attention to the tiniest details increases your chances of finding extra items.";
+
+        public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
 
         public override bool IsSharingLearningPointsWithPartyMembers => true;
 
@@ -72,10 +74,10 @@
                 level: 15,
                 percentBonus: 3);
 
-            // chance to find rare items
-            config.AddFlagEffect(
-                Flags.ChanceToFindRareItems,
-                level: 10);
+            //// chance to find rare items
+            //config.AddFlagEffect(
+            //    Flags.ChanceToFindRareItems,
+            //    level: 10);
         }
     }
 }

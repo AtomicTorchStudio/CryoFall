@@ -15,15 +15,14 @@
 
         public ViewModelWindowWell(
             IStaticWorldObject worldObjectManufacturer,
-            ManufacturingState manufacturingState,
+            ObjectManufacturerPrivateState privateState,
             ManufacturingConfig manufacturingConfig,
             LiquidContainerState liquidContainerState,
             LiquidContainerConfig liquidContainerConfig)
             : base(
                 worldObjectManufacturer,
-                manufacturingState,
-                manufacturingConfig: manufacturingConfig,
-                fuelBurningState: null)
+                privateState,
+                manufacturingConfig: manufacturingConfig)
         {
             this.CommandDrink = new ActionCommand(this.ExecuteCommandDrink);
             this.ViewModelLiquidContainerState = new ViewModelLiquidContainerState(

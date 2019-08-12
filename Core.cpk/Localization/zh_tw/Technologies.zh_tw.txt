@@ -4,6 +4,9 @@
 Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
 學習點數不夠
 
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechGroupIsLocked:
+科技樹被鎖定
+
 Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 科技已經解鎖
 
@@ -27,6 +30,24 @@ Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
 
 Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
 烹飪
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
+基礎服裝和護甲的藍圖。
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
+防禦
+
+Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
+骨甲
+
+Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
+編織盔甲
+
+Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
+布甲
+
+Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
+木制盔甲
 
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
 種子，基肥等農業用品的制備。
@@ -52,23 +73,11 @@ Scripts/Technologies/Tier1/Industry/TechNodeIronTools@Name:
 Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
 冶煉
 
-Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Description:
-提供基本武器，服裝和盔甲的藍圖。
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
+原始武器的藍圖。
 
-Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Name:
-進攻&防守
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBoneArmor@Name:
-骨甲
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBraidedArmor@Name:
-編織盔甲
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeClothArmor@Name:
-布甲
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeWoodArmor@Name:
-木制盔甲
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
+進攻
 
 Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
 使用各種化合物，操作化學反應。
@@ -114,6 +123,12 @@ Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
 縫制頭盔
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
+基礎電力設施。
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
+電力
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
 復雜的農業技術，能種植更多農作物，使用更好的肥料。
@@ -172,6 +187,12 @@ Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
 Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
 磚建築
 
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
+更高級的烹飪食譜，美食家必備。
+
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
+烹飪3
+
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 高級保護技術。
 
@@ -190,6 +211,12 @@ Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
 軍用頭盔
 
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
+高級電力設施。
+
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
+電力2
+
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
 先進的農業實踐和更廣泛的作物品種。
 
@@ -201,9 +228,6 @@ Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
 工業3
-
-Scripts/Technologies/Tier3/Industry3/TechNodeGoldSmelting@Name:
-黃金冶煉
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
 允許制造更廣泛的高級醫療物品。
@@ -223,20 +247,17 @@ Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 娛樂
 
-Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoAged@Name:
-煙草陳化
-
-Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoProcessing@Name:
-煙草加工
-
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 利用外星世界資源所必需的技術。
 
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
 外星科技
 
-Scripts/Technologies/Tier3/XenoGeology/TechNodeIngotLithium@Name:
-鋰精煉
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
+製造能夠長期儲存的罐頭食品。
+
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
+罐頭製造器
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
 先進的化學過程和復雜的化學反應。
@@ -273,6 +294,12 @@ Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
 
 Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
 突擊頭盔
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
+高科技電力設施。
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
+電力3
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
 能源武器是傳統槍械的技術飛躍。

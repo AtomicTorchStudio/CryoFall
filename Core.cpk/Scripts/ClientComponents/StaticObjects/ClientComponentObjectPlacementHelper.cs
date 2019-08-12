@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.UI.Services;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -21,13 +20,13 @@
 
         private ClientInputContext inputContext;
 
+        private bool isCanBuildChanged;
+
         private bool isCancelable;
 
         private bool isDrawConstructionGrid;
 
         private bool isRepeatCallbackIfHeld;
-
-        private double maxDistanceSqr;
 
         private PlaceSelectedDelegate placeSelectedCallback;
 
@@ -41,7 +40,11 @@
 
         public delegate void PlaceSelectedDelegate(Vector2Ushort tilePosition);
 
-        public delegate bool ValidateCanBuildDelegate(Vector2Ushort tilePosition, bool logErrors);
+        public delegate void ValidateCanBuildDelegate(
+            Vector2Ushort tilePosition,
+            bool logErrors,
+            out bool canPlace,
+            out bool isTooFar);
 
         public static bool HasInstance => instance != null;
 
@@ -63,13 +66,8 @@
             bool isBlockingInput,
             ValidateCanBuildDelegate validateCanPlaceCallback,
             PlaceSelectedDelegate placeSelectedCallback,
-            double? maxDistance = null,
             double delayRemainsSeconds = 0)
         {
-            this.maxDistanceSqr = maxDistance.HasValue
-                                      ? maxDistance.Value * maxDistance.Value
-                                      : double.MaxValue;
-
             this.protoStaticWorldObject = protoStaticWorldObject;
             this.isCancelable = isCancelable;
             this.isRepeatCallbackIfHeld = isRepeatCallbackIfHeld;
@@ -86,7 +84,8 @@
 
         public void Update()
         {
-            if (this.IsFrozen)
+            if (this.IsFrozen
+                || this.IsDestroyed)
             {
                 return;
             }
@@ -104,6 +103,7 @@
             }
 
             var isUpdateRequired = false;
+            this.isCanBuildChanged = false;
             if (this.blueprintRenderer == null)
             {
                 // first update called
@@ -117,9 +117,9 @@
                 if (ClientInputManager.IsButtonDown(GameButton.CancelOrClose)
                     || ClientInputManager.IsButtonDown(GameButton.ActionInteract))
                 {
+                    // cancel/quit placement mode by Escape key or interaction (RMB click)
                     ClientInputManager.ConsumeButton(GameButton.CancelOrClose);
                     ClientInputManager.ConsumeButton(GameButton.ActionInteract);
-                    // cancel building
                     this.Destroy();
                     return;
                 }
@@ -134,27 +134,25 @@
 
             var isPositionChanged = this.SceneObject.Position != tilePositionVector2D;
             if (isUpdateRequired
-                || isPositionChanged)
+                || isPositionChanged
+                || this.cachedTimeRemainsSeconds <= 0)
             {
                 this.SceneObject.Position = tilePositionVector2D;
                 this.UpdateBlueprint(tilePosition);
 
                 if (this.isRepeatCallbackIfHeld
-                    && isPositionChanged
-                    && this.blueprintRenderer.IsEnabled
+                    && (isPositionChanged
+                        || this.isCanBuildChanged)
+                    && (this.blueprintRenderer?.IsEnabled ?? false)
                     && ClientInputManager.IsButtonHeld(GameButton.ActionUseCurrentItem))
                 {
                     // mouse moved while LMB is held
                     this.OnPlaceSelected(tilePosition, isButtonHeld: true);
                 }
             }
-            else if (this.cachedTimeRemainsSeconds <= 0)
-            {
-                this.UpdateBlueprint(tilePosition);
-            }
 
             if (isCanBuildThisPhase
-                && this.blueprintRenderer.IsEnabled
+                && (this.blueprintRenderer?.IsEnabled ?? false)
                 && ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem))
             {
                 // clicked on place
@@ -187,7 +185,7 @@
             DestroyInstanceIfExist();
             instance = this;
 
-            this.inputContext = ClientInputContext.Start(nameof(ClientComponentObjectInteractionHelper))
+            this.inputContext = ClientInputContext.Start(nameof(ClientComponentObjectPlacementHelper))
                                                   .HandleAll(this.Update);
         }
 
@@ -206,16 +204,16 @@
                 return;
             }
 
-            // hack to avoid excessive error messages when player hold the button and move cursor around
-            var logErrors = !isButtonHeld;
+            this.validateCanBuildCallback(tilePosition,
+                                          logErrors: !isButtonHeld,
+                                          out var canPlace,
+                                          out var isTooFar);
 
-            if (!this.validateCanBuildCallback(tilePosition, logErrors: logErrors))
+            if (!canPlace || isTooFar)
             {
                 return;
             }
 
-            //this.blueprintRenderer.IsEnabled = false;
-            //this.tilesBlueprint.IsEnabled = false;
             this.placeSelectedCallback(tilePosition);
         }
 
@@ -279,28 +277,26 @@
             this.blueprintRenderer.IsEnabled = true;
             this.tilesBlueprint.IsEnabled = true;
             var tilePosition = tile.Position;
+            this.validateCanBuildCallback(tilePosition,
+                                          logErrors: false,
+                                          out var canPlace,
+                                          out var isTooFar);
 
-            var isCanBuild = this.validateCanBuildCallback(tilePosition, logErrors: false);
             if (this.blueprintRenderer == null)
             {
                 // this component have been disabled during the validation callback
                 return;
             }
 
-            this.blueprintRenderer.IsCanBuild = isCanBuild;
-            this.tilesBlueprint.IsCanBuild = isCanBuild;
-
-            if (this.maxDistanceSqr < double.MaxValue)
+            if (this.blueprintRenderer.IsCanBuild != canPlace
+                || this.blueprintRenderer.IsTooFar != isTooFar)
             {
-                var distance = tilePosition.TileSqrDistanceTo(
-                    Client.Characters.CurrentPlayerCharacter.TilePosition);
-                this.blueprintRenderer.IsTooFar = distance > this.maxDistanceSqr;
-            }
-            else
-            {
-                this.blueprintRenderer.IsTooFar = false;
+                this.isCanBuildChanged = true;
             }
 
+            this.blueprintRenderer.IsCanBuild = canPlace;
+            this.tilesBlueprint.IsCanBuild = canPlace;
+            this.blueprintRenderer.IsTooFar = isTooFar;
             this.blueprintRenderer.RefreshMaterial();
 
             // cache check result for 0.1 second

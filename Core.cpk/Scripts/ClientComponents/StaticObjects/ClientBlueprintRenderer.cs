@@ -37,7 +37,7 @@
                 TextureResource.NoTexture);
 
             this.SpriteRenderer.RenderingMaterial =
-                RenderingMaterial.Create(new EffectResource("ConstructionBlueprint"));
+                RenderingMaterial.Create(new EffectResource("ConstructionPlacement"));
 
             this.Reset();
         }

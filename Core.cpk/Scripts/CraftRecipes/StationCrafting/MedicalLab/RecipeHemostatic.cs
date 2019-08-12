@@ -20,7 +20,6 @@
             duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemComponentsPharmaceutical>(count: 5);
-            inputItems.Add<ItemAcidSulfuric>(count: 1);
             inputItems.Add<ItemHerbGreen>(count: 1);
 
             outputItems.Add<ItemHemostatic>(count: 1);

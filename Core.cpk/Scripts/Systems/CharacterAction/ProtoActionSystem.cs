@@ -54,7 +54,7 @@
 
             if (state.TargetWorldObject != null)
             {
-                InteractionCheckerSystem.Unregister(character, state.TargetWorldObject, isAbort: false);
+                InteractionCheckerSystem.SharedUnregister(character, state.TargetWorldObject, isAbort: false);
             }
 
             var canComplete = true;
@@ -84,7 +84,8 @@
                 }
             }
 
-            PlayerCharacter.GetPrivateState(character).SetCurrentActionState(null);
+            PlayerCharacter.GetPrivateState(character)
+                           .SetCurrentActionState(null);
         }
 
         public bool SharedStartAction(TActionRequest request)
@@ -141,7 +142,7 @@
 
             if (state.TargetWorldObject != null)
             {
-                InteractionCheckerSystem.Register(
+                InteractionCheckerSystem.SharedRegister(
                     character,
                     state.TargetWorldObject,
                     finishAction:
@@ -240,7 +241,7 @@
 
             if (state.TargetWorldObject != null)
             {
-                InteractionCheckerSystem.Unregister(character, state.TargetWorldObject, isAbort: false);
+                InteractionCheckerSystem.SharedUnregister(character, state.TargetWorldObject, isAbort: false);
             }
 
             if (IsClient

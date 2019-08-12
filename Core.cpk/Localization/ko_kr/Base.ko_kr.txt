@@ -55,6 +55,9 @@ Scripts/Base/Stats/StatName@FarmingTasksSpeed:
 Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
 식물 생장 속도
 
+Scripts/Base/Stats/StatName@SearchingSpeed:
+탐색 속도
+
 Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
 대미지 보너스
 
@@ -115,9 +118,6 @@ Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
 Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 재장전 소요 시간
 
-Scripts/Base/Stats/StatName@LearningPointsRetainedAfterDeath:
-사망 후 LP 보존량
-
 Scripts/Base/Stats/StatName@CraftingSpeed:
 제작 속도
 
@@ -145,12 +145,48 @@ Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
 Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
 상한 음식 섭취 능력
 
-Scripts/Base/Stats/StatName@SearchingSpeed:
-탐색 속도
-
-Scripts/Base/Stats/StatName@RadiationPoisoningDamageMultiplier:
+Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
 방사능 중독 대미지
 
-Scripts/Base/Stats/StatName@RadiationPoisoningAccumulationMultiplier:
+Scripts/Base/Stats/StatName@RadiationPoisoningIncreaseRateMultiplier:
 방사능 피폭률
+
+Scripts/Base/Stats/StatName@ToxinsIncreaseRateMultiplier:
+독소 축적률
+
+Scripts/Base/Stats/StatName@BleedingIncreaseRateMultiplier:
+출혈
+
+Scripts/Base/Stats/StatName@HeatIncreaseRateMultiplier:
+열기 증가율
+
+Scripts/Base/Stats/StatName@HeatEffectMultiplier:
+열기 대미지
+
+Scripts/Base/Stats/StatName@PainIncreaseRateMultiplier:
+통증
+
+Scripts/Base/Stats/StatName@PsiEffectMultiplier:
+초능력 대미지
+
+Scripts/Base/Stats/StatName@DazedIncreaseRateMultiplier:
+기절
+
+Scripts/Base/Stats/StatName@LandClaimsMaxNumber:
+지을 수 있는 토지 점유소 최대 개수
+
+Scripts/Base/Stats/StatName@VanityContinuousDamage:
+지속 대미지
+
+Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
+먹거나 마실 수 없습니다
+
+Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
+학습 포인트 획득
+
+Scripts/Base/Stats/StatName@TinkerTableBonus:
+수리공 탁자 효율성
+
+Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
+제작 대기 슬롯
 

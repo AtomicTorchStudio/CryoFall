@@ -6,8 +6,8 @@
     using AtomicTorch.CBND.GameApi.Data.World;
 
     public interface IProtoItemToolWateringCan
-        : IProtoItemWithCharacterAppearance,
-          IProtoItemWithDurablity,
+        : IProtoItemTool,
+          IProtoItemWithCharacterAppearance,
           IProtoItemWithHotbarOverlay
     {
         double ActionDurationWateringSeconds { get; }

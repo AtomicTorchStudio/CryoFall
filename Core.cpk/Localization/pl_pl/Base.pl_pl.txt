@@ -1,0 +1,192 @@
+﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
+Oszołomiona postać nie może nic robić.
+
+Scripts/Base/Stats/StatName@HealthMax:
+Maks. zdrowie
+
+Scripts/Base/Stats/StatName@StaminaMax:
+Maks. wytrzymałość
+
+Scripts/Base/Stats/StatName@FoodMax:
+Maks. jedzenie
+
+Scripts/Base/Stats/StatName@WaterMax:
+Maks. woda
+
+Scripts/Base/Stats/StatName@MoveSpeed:
+Szybkość poruszania
+
+Scripts/Base/Stats/StatName@MoveSpeedRunMultiplier:
+Szybkość biegu
+
+Scripts/Base/Stats/StatName@DamageAdd:
+Dodatkowe obrażenia
+
+Scripts/Base/Stats/StatName@RunningStaminaConsumptionPerSecond:
+Wyczerpanie podczas biegu
+
+Scripts/Base/Stats/StatName@StaminaRegenerationPerSecond:
+Regeneracja wytrzymałości
+
+Scripts/Base/Stats/StatName@HealthRegenerationPerSecond:
+Regeneracja zdrowia
+
+Scripts/Base/Stats/StatName@MiningSpeed:
+Szybkość wydobycia
+
+Scripts/Base/Stats/StatName@WoodcuttingSpeed:
+Szybkość ścinania drzew
+
+Scripts/Base/Stats/StatName@ForagingSpeed:
+Szybkość zbierania
+
+Scripts/Base/Stats/StatName@BuildingSpeed:
+Szybkość budowania/burzenia
+
+Scripts/Base/Stats/StatName@SearchingExtraLoot:
+Szansa na dodatkowe łupy – plądrowanie
+
+Scripts/Base/Stats/StatName@HuntingExtraLoot:
+Szansa na dodatkowe łupy – polowanie
+
+Scripts/Base/Stats/StatName@FarmingTasksSpeed:
+Szybkość pracy na roli
+
+Scripts/Base/Stats/StatName@FarmingPlantGrowSpeed:
+Szybkość wzrostu roślin
+
+Scripts/Base/Stats/StatName@SearchingSpeed:
+Szybkość szukania
+
+Scripts/Base/Stats/StatName@WeaponConventionalDamageBonusMultiplier:
+Premia – obrażenia
+
+Scripts/Base/Stats/StatName@WeaponMeleeDamageBonusMultiplier:
+Premia – obrażenia
+
+Scripts/Base/Stats/StatName@WeaponEnergyDamageBonusMultiplier:
+Premia – obrażenia
+
+Scripts/Base/Stats/StatName@WeaponHeavyDamageBonusMultiplier:
+Premia – obrażenia
+
+Scripts/Base/Stats/StatName@WeaponExoticDamageBonusMultiplier:
+Premia – obrażenia
+
+Scripts/Base/Stats/StatName@WeaponConventionalSpecialEffectChanceMultiplier:
+Szansa na efekt specjalny
+
+Scripts/Base/Stats/StatName@WeaponMeleeSpecialEffectChanceMultiplier:
+Szansa na efekt specjalny
+
+Scripts/Base/Stats/StatName@WeaponEnergySpecialEffectChanceMultiplier:
+Szansa na efekt specjalny
+
+Scripts/Base/Stats/StatName@WeaponHeavySpecialEffectChanceMultiplier:
+Szansa na efekt specjalny
+
+Scripts/Base/Stats/StatName@WeaponExoticSpecialEffectChanceMultiplier:
+Szansa na efekt specjalny
+
+Scripts/Base/Stats/StatName@WeaponConventionalDegradationRateMultiplier:
+Szybkość zużycia
+
+Scripts/Base/Stats/StatName@WeaponMeleeDegradationRateMultiplier:
+Szybkość zużycia
+
+Scripts/Base/Stats/StatName@WeaponEnergyDegradationRateMultiplier:
+Szybkość zużycia
+
+Scripts/Base/Stats/StatName@WeaponHeavyDegradationRateMultiplier:
+Szybkość zużycia
+
+Scripts/Base/Stats/StatName@WeaponExoticDegradationRateMultiplier:
+Szybkość zużycia
+
+Scripts/Base/Stats/StatName@WeaponConventionalReloadingSpeedMultiplier:
+Czas przeładowania
+
+Scripts/Base/Stats/StatName@WeaponMeleeReloadingSpeedMultiplier:
+Czas przeładowania
+
+Scripts/Base/Stats/StatName@WeaponEnergyWeaponEnergyConsumptionMultiplier:
+Zużycie energii
+
+Scripts/Base/Stats/StatName@WeaponHeavyReloadingSpeedMultiplier:
+Czas przeładowania
+
+Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
+Czas przeładowania
+
+Scripts/Base/Stats/StatName@CraftingSpeed:
+Szybkość wytwarzania
+
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Czas podkładania materiałów wybuchowych
+
+Scripts/Base/Stats/StatName@HuntingLootingSpeed:
+Szybkość zbierania łupów
+
+Scripts/Base/Stats/StatName@ImplantDegradationFromDamageMultiplier:
+Zużycie implantu spowodowane obrażeniami
+
+Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
+Szybkość zużycia zainstalowanego implantu
+
+Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
+Szybkość spożywania żywności
+
+Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
+Szybkość spożywania wody
+
+Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
+Regeneracja ładunku energetycznego (na min)
+
+Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
+Możliwość jedzenia zepsutej żywności
+
+Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
+Obrażenia spowodowane promieniowaniem
+
+Scripts/Base/Stats/StatName@RadiationPoisoningIncreaseRateMultiplier:
+Poziom akumulacji promieniowania
+
+Scripts/Base/Stats/StatName@ToxinsIncreaseRateMultiplier:
+Poziom akumulacji toksyn
+
+Scripts/Base/Stats/StatName@BleedingIncreaseRateMultiplier:
+Krwawienie
+
+Scripts/Base/Stats/StatName@HeatIncreaseRateMultiplier:
+Tempo wzrostu temperatury
+
+Scripts/Base/Stats/StatName@HeatEffectMultiplier:
+Obrażenia od temperatury
+
+Scripts/Base/Stats/StatName@PainIncreaseRateMultiplier:
+Ból
+
+Scripts/Base/Stats/StatName@PsiEffectMultiplier:
+Obrażenia PSI
+
+Scripts/Base/Stats/StatName@DazedIncreaseRateMultiplier:
+Oszołomienie
+
+Scripts/Base/Stats/StatName@LandClaimsMaxNumber:
+Maksymalna liczba posiadanych działek
+
+Scripts/Base/Stats/StatName@VanityContinuousDamage:
+Ciągłe obrażenia
+
+Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
+Nie możesz jeść ani pić
+
+Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
+Przyrost punktów technologii
+
+Scripts/Base/Stats/StatName@TinkerTableBonus:
+Skuteczność stołu majsterkowicza
+
+Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
+Gniazda w kolejce wytwarzania
+

@@ -9,7 +9,7 @@
         public override string Description
             => "Iron axe is great for chopping trees. Faster and more durable than stone axe.";
 
-        public override ushort DurabilityMax => 1000;
+        public override uint DurabilityMax => 1000;
 
         public override string Name => "Iron axe";
     }

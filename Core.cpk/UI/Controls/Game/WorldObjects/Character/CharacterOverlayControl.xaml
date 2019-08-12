@@ -1,0 +1,98 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character.CharacterOverlayControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:character="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character.Data"
+    xmlns:bars="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelCharacterOverlayControl, IsDesignTimeCreatable=True}"
+    VerticalAlignment="Bottom"
+    Opacity="1">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- Status effects control -->
+        <ItemsControl ItemsSource="{Binding ViewModelCharacterPublicStatusEffects.StatusEffects}"
+                      HorizontalAlignment="Center"
+                      Margin="0,0,0,4">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <!-- max width calculated to fit 5 icons -->
+                    <WrapPanel Orientation="Horizontal" MaxWidth="195" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="2.5"
+                        Background="{Binding BackgroundBrush}"
+                        CornerRadius="5">
+
+                        <Rectangle Fill="{Binding Icon}"
+                                   UseLayoutRounding="True"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Center"
+                                   Width="34"
+                                   Height="34" />
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Nickname control -->
+        <ContentControl Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding ViewModelCharacterNameControl, Converter={StaticResource NullToVisibilityConverter}}">
+            <character:CharacterNameControl DataContext="{Binding ViewModelCharacterNameControl}" />
+        </ContentControl>
+
+        <!-- Healthbar control -->
+        <bars:CharacterHealthBarControl Grid.Row="2"
+                                        HorizontalAlignment="Center"
+                                        Margin="0,4,0,0"
+                                        DataContext="{Binding ViewModelCharacterHealthBarControl}" />
+
+        <!-- State managers and triggers -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisibilityStates">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition To="Collapsed"
+                                      GeneratedDuration="0:0:0.25" />
+                    <VisualTransition To="Visible"
+                                      GeneratedDuration="0:0:0.25" />
+                </VisualStateGroup.Transitions>
+
+                <VisualState x:Name="Visible" />
+                <VisualState x:Name="Collapsed">
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         To="0" />
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <i:Interaction.Triggers>
+            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Visible">
+                <ei:GoToStateAction StateName="Visible" />
+            </ei:DataTrigger>
+            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Collapsed">
+                <ei:GoToStateAction StateName="Collapsed" />
+            </ei:DataTrigger>
+        </i:Interaction.Triggers>
+    </Grid>
+
+</base:BaseUserControl>

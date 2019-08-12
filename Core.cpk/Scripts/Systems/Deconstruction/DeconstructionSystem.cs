@@ -4,15 +4,11 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
-    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
-    using AtomicTorch.CBND.CoreMod.UI;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -21,9 +17,7 @@
 
     public class DeconstructionSystem : ProtoSystem<DeconstructionSystem>
     {
-        public const string NotificationNotLandOwner_Message = "You're not the land area owner.";
-
-        public const string NotificationNotLandOwner_Title = "Cannot deconstruct";
+        public const string NotificationCannotDeconstruct_Title = "Cannot deconstruct";
 
         public static event Action<DeconstructionActionState> ServerStructureDeconstructed;
 
@@ -138,38 +132,11 @@
                 return false;
             }
 
-            var canInteract =
-                ConstructionSystem.CheckCanInteractForConstructionByDistance(
-                    character,
-                    (IStaticWorldObject)worldObject);
-            if (!canInteract)
-            {
-                if (writeToLog)
-                {
-                    Logger.Warning(
-                        $"Cannot deconstruct - {character} cannot interact with the {worldObject}");
-
-                    if (IsClient)
-                    {
-                        CannotInteractMessageDisplay.ShowOn(worldObject, CoreStrings.Notification_TooFar);
-                        worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
-                                   .PlaySound(ObjectSound.InteractOutOfRange);
-                    }
-                }
-
-                return false;
-            }
-
-            if (!(worldObject.ProtoWorldObject is ObjectWallDestroyed))
-            {
-                if (LandClaimSystem.SharedIsUnderRaidBlock(character, (IStaticWorldObject)worldObject))
-                {
-                    // the building is in an area under the raid
-                    return false;
-                }
-            }
-
-            return true;
+            var staticWorldObject = (IStaticWorldObject)worldObject;
+            return ConstructionSystem.CheckCanInteractForConstruction(character,
+                                                                      staticWorldObject,
+                                                                      writeToLog,
+                                                                      checkRaidblock: true);
         }
 
         private static void SharedStartAction(ICharacter character, IWorldObject worldObject)
@@ -203,11 +170,10 @@
             if (!(selectedHotbarItem?.ProtoGameObject is IProtoItemToolCrowbar))
             {
                 selectedHotbarItem = null;
-                if (!(worldObject.ProtoWorldObject is ProtoObjectConstructionSite)
-                    && !(worldObject.ProtoWorldObject is ObjectWallDestroyed))
+                if (!(worldObject.ProtoWorldObject is ProtoObjectConstructionSite))
                 {
                     // no crowbar tool is selected, only construction sites
-                    // and destroyed walls can be deconstructed without the crowbar
+                    // can be deconstructed without the crowbar
                     return;
                 }
             }
@@ -223,8 +189,8 @@
                 if (Api.IsClient)
                 {
                     NotificationSystem.ClientShowNotification(
-                        NotificationNotLandOwner_Title,
-                        NotificationNotLandOwner_Message,
+                        NotificationCannotDeconstruct_Title,
+                        LandClaimSystem.ErrorNotLandOwner_Message,
                         NotificationColor.Bad,
                         selectedHotbarItem?.ProtoItem.Icon);
                 }

@@ -31,7 +31,7 @@
 
         protected override void SetupRecipeStations(StationsList stations)
         {
-            stations.Add<ObjectOilPump>();
+            stations.AddAll<ProtoObjectOilPump>();
         }
     }
 }

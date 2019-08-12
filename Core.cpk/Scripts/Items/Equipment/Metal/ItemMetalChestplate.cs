@@ -5,7 +5,7 @@
         public override string Description =>
             "Metal armor offers great protection from physical attacks, but barely any protection from environmental hazards.";
 
-        public override ushort DurabilityMax => 1000;
+        public override uint DurabilityMax => 1000;
 
         public override string Name => "Metal chestplate";
 

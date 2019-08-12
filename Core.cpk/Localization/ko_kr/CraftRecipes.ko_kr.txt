@@ -1,5 +1,5 @@
-﻿Scripts/CraftRecipes/HandCrafting/RecipeFillBottleWithWaterbulb@Name:
-수구의 물로 병 채우기
+﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
+병 깨뜨리기
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
 통에 휘발유 채우기
@@ -37,20 +37,17 @@ Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
 Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
 물 끓이기 (낭비)
 
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
-캠프 연료 (동물의 기름)
-
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
-구운 버섯 (그물버섯)
-
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
-구운 버섯 (녹버섯)
-
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
 티끌 주화 재활용
 
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
 반짝 주화 재활용
+
+Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBottleFromFullBottle@Name:
+증기 발전기에 물 채우기
+
+Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
+용기에서 엔진 발전기로 휘발유 옮기기
 
 Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
 리튬 광석에서 추출한 리튬 소금
@@ -70,30 +67,6 @@ Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanist
 Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 물 끓이기
 
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesOrange@Name:
-베리 잼 (주황색 베리)
-
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesRed@Name:
-베리 잼 (빨간색 베리)
-
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesViolet@Name:
-베리 잼 (보라색 베리)
-
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 우물에 든 물로 병 채우기
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromPyrite@Name:
-황산 (황철석에서 추출)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromSulfur@Name:
-황산 (황에서 추출)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeCampFuelSynthetic@Name:
-캠프 연료 (합성 물질)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeToxin@Name:
-독성 물질 추출
-
-Scripts/CraftRecipes/StationCrafting/Workbench/RecipeCanisterPetroleum@Name:
-원유가 든 용기 (석유꼬투리에서 추출)
 

@@ -127,9 +127,12 @@
             }
         }
 
-        public void ClientOnRefilled(IItem item)
+        public void ClientOnRefilled(IItem item, bool isCurrentHotbarItem)
         {
-            this.ClientTrySetActiveState(item, setIsActive: true);
+            if (isCurrentHotbarItem)
+            {
+                this.ClientTrySetActiveState(item, setIsActive: true);
+            }
         }
 
         public override void ClientSetupSkeleton(
@@ -185,8 +188,8 @@
         protected override void ClientInitialize(ClientInitializeData data)
         {
             var item = data.GameObject;
-            var publicState = data.SyncPublicState;
-            var privateState = data.SyncPrivateState;
+            var publicState = data.PublicState;
+            var privateState = data.PrivateState;
 
             publicState.ClientSubscribe(
                 _ => _.IsActive,
@@ -296,7 +299,7 @@
                 return;
             }
 
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
 
             // check if item is in a hotbar selected slot, if not - make it not active
             if (!SharedUpdateActiveState(item, publicState))
@@ -305,7 +308,7 @@
             }
 
             this.ItemFuelConfig.SharedTryConsumeFuel(item,
-                                                     data.SyncPrivateState,
+                                                     data.PrivateState,
                                                      data.DeltaTime,
                                                      out var isFuelRanOut);
             if (isFuelRanOut)
@@ -364,11 +367,12 @@
                     item));
         }
 
+        // it's shared - but can be executed for the current character on client side
         private static bool SharedUpdateActiveState(IItem item, TPublicState publicState)
         {
             var itemOwnerCharacter = item.Container?.OwnerAsCharacter;
             if (itemOwnerCharacter != null
-                && itemOwnerCharacter.IsOnline
+                && itemOwnerCharacter.ServerIsOnline
                 && item.Container == itemOwnerCharacter.SharedGetPlayerContainerEquipment())
             {
                 return publicState.IsActive;

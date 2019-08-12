@@ -102,10 +102,7 @@ La file d'attente de fabrication est pleine.
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Impossible d'ajouter une nouvelle recette
 
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Message:
-Vous n'êtes pas le propriétaire du territoire.
-
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Title:
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Déconstruction impossible
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
@@ -127,6 +124,9 @@ Remplissage non requis
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
 Cet objet ne se remplit pas.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
+Trop proche d'une autre revendication territoriale.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 La zone a été revendiquée par un autre joueur, ou bien elle est trop proche d'un territoire revendiqué par quelqu'un d'autre.
 
@@ -147,6 +147,15 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `Raid en cours.
 [br]Vous ne pouvez pas construire de nouvelle structure lorsque votre base est attaquée.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
+Vous ne pouvez placer cette structure qu'à l'intérieur de votre zone de revendication territoriale.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
+Vous n'êtes pas le propriétaire du territoire.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
+Un raid est en cours contre cette base.
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
 Annuler la protection pour néophyte
 
@@ -154,7 +163,7 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProte
 Souhaitez-vous vraiment annuler la protection pour néophyte ? Vous ne pourrez pas la réactiver !
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
-Vous bénéficiez de la protection pour néophyte. Elle vous protège des pertes d'objets et de points d'apprentissage si votre personnage est tué par un autre joueur. De plus, les objets lâchés en cas de mort causée par une autre source ne peuvent pas être ramassés par les autres joueurs. Suivez les quêtes vous permettant de fabriquer les outils et les armes de première nécessité, et construisez-vous une petite base le plus rapidement possible !
+Vous bénéficiez de la protection pour néophyte. Elle vous protège des pertes d'objets si votre personnage est tué par un autre joueur. De plus, les objets lâchés en cas de mort causée par une autre source ne peuvent pas être ramassés par les autres joueurs. Suivez les quêtes vous permettant de fabriquer les outils et les armes de première nécessité, et construisez-vous une petite base le plus rapidement possible !
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 La protection pour néophyte expirera dans :
@@ -225,6 +234,18 @@ Le joueur invité est déjà membre de votre groupe.
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 Impossible de lancer une invitation, car vous avez été rendu muet par l'administrateur du serveur.
 
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
+Le joueur invité est hors ligne. Seuls les joueurs en ligne peuvent être invités dans un groupe.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
+Interaction impossible - Trop éloigné ou bâtiment inaccessible.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
+Il n'y a pas de réseau électrique.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
+Pas assez de puissance dans le réseau électrique.
+
 Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
 Désactiver le mode Duel
 
@@ -255,7 +276,8 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDam
 Aucun dégât
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
-La fenêtre de raid est à présent fermée.
+`La fenêtre de raid est désormais fermée.
+[br]Les raids en cours peuvent continuer.`
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Rien à récolter pour l'instant
@@ -329,8 +351,8 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} niveau {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`Vous avez accumulé plus de {0} points d'apprentissage (PA). Vous devriez songer à les utiliser pour débloquer de nouvelles technologies. Seule une petite fraction des PA est conservée en cas de mort...
-[br](cliquez pour ouvrir le menu des technologies)`
+`Vous avez accumulé plus de {0} points d'apprentissage (PA). Vous devriez songer à les utiliser pour débloquer de nouvelles technologies.
+[br](cliquez pour ouvrir le menu des technologies.)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
 Déverrouillage de technologie impossible

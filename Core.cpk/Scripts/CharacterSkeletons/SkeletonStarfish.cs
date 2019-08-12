@@ -16,7 +16,7 @@
             = null;
 
         public override SkeletonResource SkeletonResourceFront { get; }
-            = new SkeletonResource("Starfish/StarfishFront");
+            = new SkeletonResource("Starfish/Front");
 
         public override double WorldScale => 0.3f;
 
@@ -30,20 +30,15 @@
 
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
-            physicsBody.AddShapeCircle(
-                radius: 0.25,
-                center: (0, 0.0),
-                group: CollisionGroups.Default);
-
-            physicsBody.AddShapeCircle(
-                radius: 0.4,
-                center: (0, 0.25),
-                group: CollisionGroups.HitboxMelee);
-
-            physicsBody.AddShapeCircle(
-                radius: 0.4,
-                center: (0, 0.25),
-                group: CollisionGroups.HitboxRanged);
+            physicsBody
+                .AddShapeCircle(radius: 0.25,
+                                center: (0, 0.0))
+                .AddShapeCircle(radius: 0.4,
+                                center: (0, 0.25),
+                                group: CollisionGroups.HitboxMelee)
+                .AddShapeCircle(radius: 0.4,
+                                center: (0, 0.25),
+                                group: CollisionGroups.HitboxRanged);
         }
     }
 }

@@ -24,9 +24,13 @@
 
         bool IsAutoUnlocked { get; }
 
+        bool IsListedInTechNodes { get; }
+
         IReadOnlyList<TechNode> ListedInTechNodes { get; }
 
         float StructurePointsMaxForConstructionSite { get; }
+
+        bool IsRepeatPlacement { get; }
 
         /// <summary>
         /// Returns actual config - for constructed object this is repair config (because it's constructed),

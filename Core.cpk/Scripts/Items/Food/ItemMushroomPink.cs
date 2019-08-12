@@ -11,7 +11,7 @@
         public override string Description =>
             "Extremely toxic mushroom. So toxic it glows at night.";
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.NonPerishable;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Lasting;
 
         public override string Name => "Pink mushroom";
 

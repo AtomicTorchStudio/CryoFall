@@ -2,11 +2,13 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -21,8 +23,11 @@
 
         private readonly StaticObjectPublicState publicState;
 
+        private readonly IStaticWorldObject worldObjectDeposit;
+
         public ViewModelDepositCapacityStatsControl(IStaticWorldObject worldObjectDeposit)
         {
+            this.worldObjectDeposit = worldObjectDeposit;
             if (worldObjectDeposit != null)
             {
                 this.publicState = worldObjectDeposit.GetPublicState<StaticObjectPublicState>();
@@ -33,7 +38,7 @@
                 // subscribe on updates
                 this.publicState.ClientSubscribe(
                     _ => _.StructurePointsCurrent,
-                    _ => this.Refresh(),
+                    _ => this.RefreshDepletion(),
                     this);
             }
             else
@@ -42,14 +47,22 @@
                 this.ValueMax = 0;
             }
 
-            this.Refresh();
+            this.RefreshDepletion();
+
+            this.RefreshAvailableToClaim();
         }
+
+        public bool CanClaim => this.CalculateTimeToClaim() <= 0;
 
         public Visibility DepletedInPrefixVisibility { get; private set; }
 
         public string DepletionDurationText { get; private set; }
 
         public string DepositTitle => this.protoDeposit?.Name;
+
+        public string TimeToClaimText
+            => ClientTimeFormatHelper.FormatTimeDuration(
+                this.CalculateTimeToClaim());
 
         public float ValueCurrent { get; private set; }
 
@@ -74,7 +87,47 @@
                        : $"{timeA.TotalHours:F1}~{timeB.TotalHours:F1}" + ClientTimeFormatHelper.SuffixHours;
         }
 
-        private void Refresh()
+        private int CalculateTimeToClaim()
+        {
+            if (this.worldObjectDeposit == null)
+            {
+                return 0;
+            }
+
+            var position = WorldMapResourceMarksSystem.SharedGetObjectCenterPosition(this.worldObjectDeposit);
+            var mark = WorldMapResourceMarksSystem.SharedEnumerateMarks()
+                                                  .FirstOrDefault(m => m.Position == position
+                                                                       && m.ProtoWorldObject == this.protoDeposit);
+
+            if (mark.Position == default)
+            {
+                return 0;
+            }
+
+            return (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(
+                mark.ServerSpawnTime);
+        }
+
+        private void RefreshAvailableToClaim()
+        {
+            if (this.IsDisposed)
+            {
+                return;
+            }
+
+            this.NotifyPropertyChanged(nameof(this.CanClaim));
+            this.NotifyPropertyChanged(nameof(this.TimeToClaimText));
+
+            if (!this.CanClaim)
+            {
+                // schedule recursive update in a second
+                ClientTimersSystem.AddAction(
+                    delaySeconds: 1,
+                    this.RefreshAvailableToClaim);
+            }
+        }
+
+        private void RefreshDepletion()
         {
             this.ValueCurrent = this.publicState?.StructurePointsCurrent ?? 0;
             if (this.ValueCurrent <= 0)

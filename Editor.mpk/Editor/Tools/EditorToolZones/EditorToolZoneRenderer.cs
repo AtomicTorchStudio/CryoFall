@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Windows.Media;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Core;
     using AtomicTorch.CBND.GameApi.Data.Structures;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -46,7 +45,7 @@
             this.ZoneProvider = zoneProvider;
             this.ZoneProvider.ZoneModified += this.ZoneModifiedHandler;
             this.ZoneProvider.ZoneReset += this.ZoneResetHandler;
-            ClientComponentUpdateHelper.UpdateCallback += this.Update;
+            ClientUpdateHelper.UpdateCallback += this.Update;
 
             this.RebuildAllRenderers();
         }
@@ -85,7 +84,7 @@
         {
             this.ZoneProvider.ZoneModified -= this.ZoneModifiedHandler;
             this.ZoneProvider.ZoneReset -= this.ZoneResetHandler;
-            ClientComponentUpdateHelper.UpdateCallback -= this.Update;
+            ClientUpdateHelper.UpdateCallback -= this.Update;
             this.sceneObject.Destroy();
         }
 

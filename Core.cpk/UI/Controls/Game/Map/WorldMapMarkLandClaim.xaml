@@ -11,7 +11,16 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core">
     <Canvas>
         <Image Source="Images/LandClaim.png"
-               Style="{StaticResource WorldMapMarkImagePinStyle}">
+               Style="{StaticResource WorldMapMarkImagePinStyle}"
+               Visibility="{Binding IsFounder, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.WorldMapMarkLandClaim_Tooltip_Owner}" />
+            </base:ToolTipServiceExtend.ToolTip>
+        </Image>
+
+        <Image Source="Images/LandClaimWithAccess.png"
+               Style="{StaticResource WorldMapMarkImagePinStyle}"
+               Visibility="{Binding IsFounder, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
             <base:ToolTipServiceExtend.ToolTip>
                 <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.WorldMapMarkLandClaim_Tooltip}" />
             </base:ToolTipServiceExtend.ToolTip>

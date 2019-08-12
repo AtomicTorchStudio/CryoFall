@@ -84,35 +84,91 @@
                                ? TrimSpacesOnEachLine(originalText)
                                : string.Empty;
 
-            var textBox = new TextBox
-            {
-                Text = originalText,
-                TextWrapping = TextWrapping.Wrap,
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                VerticalAlignment = VerticalAlignment.Stretch,
-                FontSize = 13,
-                Width = 350,
-                Height = 350,
-                TextAlignment = TextAlignment.Left,
-                HorizontalContentAlignment = HorizontalAlignment.Center,
-                VerticalContentAlignment = VerticalAlignment.Top,
-                AcceptsReturn = true,
-                Margin = new Thickness(-20, -15, -20, 0),
-                MaxLength = 4096
-            };
+            ScrollViewer scrollviewer;
+            TextBox textBox;
 
-            DialogWindow.ShowDialog(
+            {
+                scrollviewer = new ScrollViewer()
+                {
+                    Height = 530,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    VerticalAlignment = VerticalAlignment.Stretch,
+                    VerticalScrollBarVisibility = ScrollBarVisibility.Visible,
+                };
+
+                var grid = new Grid();
+                scrollviewer.Content = grid;
+
+                var textBlockInfo = new TextBlock()
+                {
+                    Text =
+                        "Available tags: BB code like [b], [u], [i], [url=example.com]links[/url], bullet points [*], and line breaks [br] (line breaks are added automatically for new lines).",
+                    TextWrapping = TextWrapping.Wrap,
+                    Margin = new Thickness(10, 0, 10, 0),
+                    FontSize = 11,
+                    LineHeight = 12,
+                    LineStackingStrategy = LineStackingStrategy.BlockLineHeight,
+                    FontWeight = FontWeights.Bold
+                };
+
+                originalText = originalText.Trim()
+                                           .Replace("\r",     "")
+                                           .Replace("\n[br]", "\n")
+                                           .Replace("\n",     "\n[br]");
+
+                textBox = new TextBox
+                {
+                    Text = originalText,
+                    TextWrapping = TextWrapping.Wrap,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    VerticalAlignment = VerticalAlignment.Stretch,
+                    FontSize = 13,
+                    TextAlignment = TextAlignment.Left,
+                    HorizontalContentAlignment = HorizontalAlignment.Left,
+                    VerticalContentAlignment = VerticalAlignment.Top,
+                    AcceptsReturn = true,
+                    Margin = default,
+                    MaxLength = 4096,
+                    BorderThickness = default
+                };
+
+                grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(7) });
+                grid.RowDefinitions.Add(new RowDefinition());
+                grid.Children.Add(textBlockInfo);
+                Grid.SetRow(textBox, 2);
+                grid.Children.Add(textBox);
+            }
+
+            var dialogWindow = DialogWindow.ShowDialog(
                 title: null,
-                content: textBox,
+                content: scrollviewer,
                 okAction: () =>
                           {
-                              var text = textBox.Text;
+                              var text = textBox.Text
+                                                .Trim()
+                                                .Replace("\r",     "")
+                                                .Replace("\n[br]", "\n")
+                                                .Replace("\n",     "\n[br]");
                               Instance.CallServer(_ => _.ServerRemote_SetWelcomeMessage(text));
                               lastGetWelcomeMessageTask = Task.FromResult(text);
+
+                              if (!ClientStorageLastServerMessage.TryLoad(
+                                      out Dictionary<ServerAddress, string> dictLastMessages))
+                              {
+                                  dictLastMessages = new Dictionary<ServerAddress, string>();
+                              }
+
+                              var serverAddress = Client.CurrentGame.ServerInfo.ServerAddress;
+                              dictLastMessages[serverAddress] = text;
+                              ClientStorageLastServerMessage.Save(dictLastMessages);
                           },
                 cancelAction: () => { },
                 okText: CoreStrings.Button_Save,
                 focusOnCancelButton: true);
+
+            dialogWindow.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+            dialogWindow.GameWindow.Width = 530;
         }
 
         public static async void ClientShowWelcomeMessage()
@@ -206,9 +262,7 @@
                 return;
             }
 
-            var gameServerInfo = Client.CurrentGame.ServerInfo;
-
-            var serverAddress = gameServerInfo.ServerAddress;
+            var serverAddress = Client.CurrentGame.ServerInfo.ServerAddress;
             lastGetWelcomeMessageTask = await Instance.CallServer(_ => _.ServerRemote_GetWelcomeMessage())
                                                       .ContinueWith(async t =>
                                                                     {

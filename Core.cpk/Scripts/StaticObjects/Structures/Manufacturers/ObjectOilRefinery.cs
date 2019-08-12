@@ -24,14 +24,14 @@
                 isTransparent: false);
         }
 
-        public override byte ContainerFuelSlotsCount => 1;
-
         public override byte ContainerInputSlotsCount => 1;
 
         public override byte ContainerOutputSlotsCount => 1;
 
         public override string Description =>
             "Refines raw petroleum oil into more useful components, such as fuel and mineral oil.";
+
+        public override double ElectricityConsumptionPerSecondWhenActive => 2;
 
         public override float LiquidCapacityGasoline => 100;
 
@@ -70,12 +70,16 @@
                                                 171 / (double)ScriptingConstants.TileSizeRealPixels);
             this.ClientSetupManufacturerActiveAnimation(
                 worldObject,
-                data.SyncPublicState,
+                data.PublicState,
                 this.textureAtlasOilPumpActive,
                 animatedSpritePositionOffset,
                 frameDurationSeconds: 0.3,
                 autoInverseAnimation: true,
-                onRefresh: isActive => { lightSource.IsEnabled = isActive; });
+                randomizeInitialFrame: true,
+                onRefresh: isActive => lightSource.IsEnabled = isActive);
+
+            data.ClientState.SoundEmitter.CustomMaxDistance = 10f;
+            data.ClientState.SoundEmitter.Volume = 0.5f;
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -101,14 +105,14 @@
             category = GetCategory<StructureCategoryIndustry>();
 
             build.StagesCount = 10;
-            build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 25);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 25);
-            build.AddStageRequiredItem<ItemCement>(count: 50);
+            build.StageDurationSeconds = BuildDuration.Medium;
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 4);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 4);
+            build.AddStageRequiredItem<ItemCement>(count: 10);
 
             repair.StagesCount = 10;
-            repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 5);
+            repair.StageDurationSeconds = BuildDuration.Medium;
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
             repair.AddStageRequiredItem<ItemIngotCopper>(count: 2);
         }
 
@@ -121,10 +125,10 @@
             CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((3, 2),   (0, 0))
-                .AddShapeRectangle((3, 2.2), (0, 0), CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((3, 2.4), (0, 0), CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((3, 2.6), (0, 0), CollisionGroups.ClickArea);
+                .AddShapeRectangle((3, 2),     (0, 0))
+                .AddShapeRectangle((2.8, 1.7), (0.1, 0.7), CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((2.8, 1.6), (0.1, 0.8), CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((3, 2.6),   (0, 0),     CollisionGroups.ClickArea);
         }
     }
 }

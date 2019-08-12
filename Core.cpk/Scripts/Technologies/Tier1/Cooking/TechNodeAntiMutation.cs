@@ -4,8 +4,6 @@
 
     public class TechNodeAntiMutation : TechNode<TechGroupCooking>
     {
-        public override FeatureAvailability AvailableIn => FeatureAvailability.OnlyPvE;
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects

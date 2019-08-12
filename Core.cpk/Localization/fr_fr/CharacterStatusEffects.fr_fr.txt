@@ -16,17 +16,23 @@ Vous avez utilisé un médicament : votre corps récupère progressivement.
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
 Guérison
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
+Vous avez récemment fait un repas sain, plein de vitamines, micro-éléments et autres éléments nutritifs essentiels. Vous vous sentez en pleine forme.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Name:
+Nourriture saine
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
+Vous avez récemment fait un repas copieux. Toutes les tâches que vous entreprenez semblent plus faciles.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
+Nourriture copieuse
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Vous êtes sous l'influence d'un stimulant qui augmente temporairement votre force : vous pouvez effectuer plus facilement les tâches faisant appel à la force.
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Force augmentée
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Description:
-Vous avez fait un bon repas et vous vous sentez vraiment bien : toutes les tâches que vous entreprendrez auront l'air plus faciles.
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectWellFed@Name:
-Bien nourri
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Vous saignez : vous allez continuer à perdre de la santé si vous ne vous soignez pas. Un saignement mineur finit par s'arrêter tout seul, mais les blessures graves nécessitent des bandages ou un médicament hémostatique.
@@ -119,7 +125,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
 Toxines
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
-Vous vous sentez faible : il vaudrait mieux éviter de vous retrouver exposé à certains dangers comme les radiations.
+Vous vous sentez plutôt faible. Les tâches que vous entreprenez semblent plus difficiles. Prenez le temps d'améliorer votre état de santé et évitez les situations dangereuses.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
 Affaibli

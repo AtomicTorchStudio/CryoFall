@@ -1,13 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data
 {
-    using System;
     using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
-    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Extensions;
 
     public class ViewModelWindowSocial : BaseViewModel
@@ -29,17 +27,17 @@
 
             var list = onlinePlayers
                        .ExceptOne(currentCharacterName)
-                       .Select(name => new ViewModelPlayer(name))
+                       .Select(name => new ViewModelPlayerEntry(name))
                        .ToList();
             list.Sort();
-            this.PlayersOnline = new SuperObservableCollection<ViewModelPlayer>(list);
+            this.PlayersOnline = new SuperObservableCollection<ViewModelPlayerEntry>(list);
 
             OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved += this.OnPlayerAddedOrRemovedHandler;
             OnlinePlayersSystem.ClientTotalServerPlayersCountChanged += this.TotalServerPlayersCountChangedHandler;
             ClientChatBlockList.CharacterBlockStatusChanged += this.CharacterBlockStatusChangedHandler;
         }
 
-        public SuperObservableCollection<ViewModelPlayer> PlayersOnline { get; }
+        public SuperObservableCollection<ViewModelPlayerEntry> PlayersOnline { get; }
 
         // add current player to the total online players count
         public int PlayersOnlineCount => this.PlayersOnline.Count + 1;
@@ -82,7 +80,7 @@
 
             if (isOnline)
             {
-                this.PlayersOnline.Add(new ViewModelPlayer(name));
+                this.PlayersOnline.Add(new ViewModelPlayerEntry(name));
                 this.PlayersOnline.Sort();
                 this.NotifyPropertyChanged(nameof(this.PlayersOnlineCount));
                 return;
@@ -109,61 +107,6 @@
         {
             this.NotifyPropertyChanged(nameof(this.PlayersTotalCount));
             this.NotifyPropertyChanged(nameof(this.PlayersTotalCountVisibility));
-        }
-
-        public class ViewModelPlayer : BaseViewModel, IComparable<ViewModelPlayer>, IComparable
-        {
-            public ViewModelPlayer(string name)
-                : base(isAutoDisposeFields: false)
-            {
-                this.Name = name;
-            }
-
-            public BaseCommand CommandToggleBlock
-                => new ActionCommand(() => ClientChatBlockList.SetBlockStatus(this.Name,
-                                                                              block: !this.IsBlocked,
-                                                                              askConfirmation: true));
-
-            public bool IsBlocked => ClientChatBlockList.IsBlocked(this.Name);
-
-            public string Name { get; }
-
-            public int CompareTo(ViewModelPlayer other)
-            {
-                if (ReferenceEquals(this, other))
-                {
-                    return 0;
-                }
-
-                if (ReferenceEquals(null, other))
-                {
-                    return 1;
-                }
-
-                return string.Compare(this.Name, other.Name, StringComparison.OrdinalIgnoreCase);
-            }
-
-            public int CompareTo(object obj)
-            {
-                if (ReferenceEquals(null, obj))
-                {
-                    return 1;
-                }
-
-                if (ReferenceEquals(this, obj))
-                {
-                    return 0;
-                }
-
-                return obj is ViewModelPlayer other
-                           ? this.CompareTo(other)
-                           : throw new ArgumentException($"Object must be of type {nameof(ViewModelPlayer)}");
-            }
-
-            public void RefreshBlockedStatus()
-            {
-                this.NotifyPropertyChanged(nameof(this.IsBlocked));
-            }
         }
     }
 }

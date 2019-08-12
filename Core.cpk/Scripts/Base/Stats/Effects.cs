@@ -9,11 +9,6 @@
     /// </summary>
     public sealed class Effects : BaseStatsDictionary
     {
-        public Effects()
-        {
-            this.IsMultipliersSummed = true;
-        }
-
         public void AddPerk(IProtoEntity source, StatName statName)
         {
             this.AddValue(source, statName, value: 1);

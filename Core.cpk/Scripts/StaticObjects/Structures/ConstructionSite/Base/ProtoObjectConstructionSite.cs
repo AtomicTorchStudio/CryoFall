@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -32,6 +33,12 @@
         public override string InteractionTooltipText => InteractionTooltipTexts.Deconstruct;
 
         public sealed override double ServerUpdateIntervalSeconds => 0.25;
+
+        /// <summary>
+        /// The construction site doesn't have structure points max itself.
+        /// Please use SharedGetStructurePointsMax method instead.
+        /// </summary>
+        public sealed override float StructurePointsMax => 0;
 
         public static IProtoObjectStructure SharedGetConstructionProto(IStaticWorldObject staticWorldObject)
         {
@@ -69,6 +76,11 @@
                    .ConfigBuild;
         }
 
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            return this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
+        }
+
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
             => GetPublicState((IStaticWorldObject)worldObject)
                .ConstructionProto
@@ -77,8 +89,21 @@
 
         public override float SharedGetStructurePointsMax(IStaticWorldObject worldObject)
             => GetPublicState(worldObject)
-               .ConstructionProto
-               .StructurePointsMaxForConstructionSite;
+               .ConstructionProto?
+               .StructurePointsMaxForConstructionSite
+               ?? 0;
+
+        public override bool SharedIsInsideCharacterInteractionArea(
+            ICharacter character,
+            IStaticWorldObject worldObject,
+            bool writeToLog,
+            CollisionGroup requiredCollisionGroup = null)
+        {
+            return ConstructionSystem.CheckCanInteractForConstruction(character,
+                                                                      worldObject,
+                                                                      writeToLog,
+                                                                      checkRaidblock: true);
+        }
 
         protected override ITextureResource ClientCreateIcon()
         {
@@ -98,7 +123,7 @@
             //base.ClientInitialize(data);
 
             var worldObject = data.GameObject;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
 
             var protoStructure = publicState.ConstructionProto;
             var blueprint = new ClientBlueprintRenderer(Client.Scene.GetSceneObject(worldObject));
@@ -130,11 +155,6 @@
         protected override void ClientInteractStart(ClientObjectData data)
         {
             DeconstructionSystem.ClientTryStartAction();
-        }
-
-        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
-        {
-            return true;
         }
 
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
@@ -181,7 +201,7 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            var constructionProto = data.SyncPublicState.ConstructionProto;
+            var constructionProto = data.PublicState.ConstructionProto;
             if (constructionProto == null)
             {
                 return;
@@ -189,6 +209,11 @@
 
             var physicsBody = data.PhysicsBody;
             constructionProto.SharedCreatePhysicsConstructionBlueprint(physicsBody);
+        }
+
+        protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
+        {
+            return true;
         }
     }
 }

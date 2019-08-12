@@ -28,7 +28,7 @@
         public override string Description =>
             "Primitive pistol. Uses paper cartridges for ammo. Holds two charges, which can be fired very quickly.";
 
-        public override ushort DurabilityMax => 150;
+        public override uint DurabilityMax => 150;
 
         public override double FireInterval => 0.2; // can fire as soon as reloaded
 
@@ -53,7 +53,7 @@
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()
         {
-            return WeaponsSoundPresets.WeaponRangedMusket;
+            return WeaponsSoundPresets.WeaponRangedFlintlockPistol;
         }
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)

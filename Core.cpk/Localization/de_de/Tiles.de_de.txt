@@ -34,6 +34,12 @@ Ruinen
 Scripts/Tiles/TileSaltFlats@Name:
 Salztonebenen
 
+Scripts/Tiles/TileSwamp@Name:
+Sumpf
+
+Scripts/Tiles/TileVolcanic@Name:
+Vulkanisch
+
 Scripts/Tiles/TileWaterLake@Name:
 Wasser (See)
 

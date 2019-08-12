@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs.Client;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.GameApi.Data.Characters;
 
@@ -34,29 +33,20 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            // energy regeneration -90%
-            effects.AddPercent(this, StatName.StaminaRegenerationPerSecond, -90);
+            // energy regeneration -75%
+            effects.AddPercent(this, StatName.StaminaRegenerationPerSecond, -75);
+
+            // more psi damage while under pain
+            effects.AddPercent(this, StatName.PsiEffectMultiplier, 25);
         }
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
         {
-            // does the character has painkillers effect? (pain protection)
-            if (data.Character.SharedHasStatusEffect<StatusEffectProtectionPain>())
+            intensityToAdd *= data.Character.SharedGetFinalStatMultiplier(StatName.PainIncreaseRateMultiplier);
+
+            if (intensityToAdd <= 0)
             {
-                // painkillers completely block any pain
                 return;
-            }
-
-            // does the player have drunk status effect?
-            if (data.Character.SharedHasStatusEffect<StatusEffectDrunk>())
-            {
-                intensityToAdd *= 0.5; // only half the effect
-            }
-
-            // does the player have high status effect?
-            if (data.Character.SharedHasStatusEffect<StatusEffectHigh>())
-            {
-                intensityToAdd *= 0.5; // only half the effect
             }
 
             // otherwise add as normal

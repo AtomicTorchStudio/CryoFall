@@ -8,7 +8,7 @@
 
         public override string Description => "Stone pickaxe can be used to mine mineral deposits.";
 
-        public override ushort DurabilityMax => 600;
+        public override uint DurabilityMax => 600;
 
         public override string Name => "Stone pickaxe";
     }

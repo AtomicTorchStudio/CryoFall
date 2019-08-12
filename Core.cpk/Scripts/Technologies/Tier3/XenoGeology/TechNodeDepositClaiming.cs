@@ -4,9 +4,7 @@
 
     public class TechNodeDepositClaiming : TechNode<TechGroupXenogeology>
     {
-        //public override ITextureResource Icon => IconPlaceholder;
-
-        //public override string Name => "Deposit claiming";
+        public override FeatureAvailability AvailableIn => FeatureAvailability.OnlyPvP;
 
         protected override void PrepareTechNode(Config config)
         {

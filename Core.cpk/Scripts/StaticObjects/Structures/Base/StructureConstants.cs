@@ -34,9 +34,13 @@
 
         public static readonly bool IsStructuresDecayEnabled;
 
-        public static readonly double StructuresDecayDelaySeconds;
+        public static readonly double ManufacturingSpeedMultiplier;
+
+        public static readonly double StructuresAbandonedDecayDelaySeconds;
 
         public static readonly double StructuresDecayDurationSeconds;
+
+        public static readonly double StructuresLandClaimDecayDelayDurationMultiplier;
 
         static StructureConstants()
         {
@@ -48,11 +52,18 @@
                     Set it to 1 to enable the structures decay.")
                 > 0;
 
-            StructuresDecayDelaySeconds = ServerRates.Get(
-                "StructuresDecayDelaySeconds",
+            StructuresAbandonedDecayDelaySeconds = ServerRates.Get(
+                "StructuresAbandonedDecayDelaySeconds",
                 defaultValue: 32 * 60 * 60,
-                @"Time (in real world seconds) before a structure will start decaying.
+                @"Time (in real world seconds) before an abandoned structure (without the land claim) will start decaying.
                   Default value: 32 hours or 115200 seconds. Don't set it higher than 2 billions.");
+
+            StructuresLandClaimDecayDelayDurationMultiplier = ServerRates.Get(
+                "StructuresLandClaimDecayDelayDurationMultiplier",
+                defaultValue: 1.0,
+                @"Time multiplier before an abandoned land claim (or base) will start decaying.
+                  For example, the default decay delay for the land claims (T1) is 32 hours,
+                  but with 2.0 multiplier it will be increased to 64 hours (for T1).");
 
             StructuresDecayDurationSeconds = ServerRates.Get(
                 "StructuresDecayDurationSeconds",
@@ -61,6 +72,11 @@
                   While decaying, the structure will receive a regular damage proportional to its HP.
                   It also means that if the structure is already damaged, it will decay even faster.
                   Default value: 24 hours or 86400 seconds. Don't set it higher than 2 billions.");
+
+            ManufacturingSpeedMultiplier = ServerRates.Get(
+                "ManufacturingSpeedMultiplier",
+                defaultValue: 1.0,
+                @"Manufacturing rate for all manufacturers (such as furnaces, oil/Li extractors, oil refineries, wells, mulchboxes, etc.)");
         }
 
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]

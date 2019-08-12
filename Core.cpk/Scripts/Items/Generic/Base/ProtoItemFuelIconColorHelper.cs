@@ -7,13 +7,17 @@
 
     public static class ProtoItemFuelIconColorHelper
     {
-        private static readonly Color ColorElectricity = Color.FromRgb(0xFF, 0xEE, 0x00);
+        private static readonly Color ColorElectricity
+            = Api.Client.UI.GetApplicationResource<Color>("ColorElectricity");
 
-        private static readonly Color ColorFuelOil = Color.FromRgb(0xFF, 0x88, 0x00);
+        private static readonly Color ColorFuelOil 
+            = Api.Client.UI.GetApplicationResource<Color>("ColorFuelOil");
 
-        private static readonly Color ColorFuelRefined = Color.FromRgb(0xFF, 0x66, 0x66);
+        private static readonly Color ColorFuelRefined
+            = Api.Client.UI.GetApplicationResource<Color>("ColorFuelRefined");
 
-        private static readonly Color ColorFuelSolid = Color.FromRgb(0xFF, 0x00, 0x00);
+        private static readonly Color ColorFuelSolid
+            = Api.Client.UI.GetApplicationResource<Color>("ColorFuelSolid");
 
         private static readonly TextureResource IconElectricity = new TextureResource("Icons/IconElectricity");
 

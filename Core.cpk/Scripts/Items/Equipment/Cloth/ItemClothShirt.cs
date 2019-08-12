@@ -5,7 +5,7 @@
         public override string Description =>
             "Doesn't really provide any actual protection. Could maybe stop a mosquito?";
 
-        public override ushort DurabilityMax => 300;
+        public override uint DurabilityMax => 300;
 
         public override string Name => "Cloth shirt";
 

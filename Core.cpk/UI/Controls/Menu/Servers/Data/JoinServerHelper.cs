@@ -50,12 +50,25 @@
                 throw new Exception("Bad server name");
             }
 
-            if (serverInfo.IsNotAccessible)
+            if (serverInfo.IsInaccessible)
             {
                 DialogWindow.ShowDialog(
                     title: null,
                     DialogServerInaccessible,
-                    okAction: () => serverInfo.CommandRefresh?.Execute(serverInfo),
+                    okAction: () =>
+                              {
+                                  if (!serverInfo.IsInaccessible)
+                                  {
+                                      // became accessible while dialog was displayed
+                                      ExecuteCommandJoinServer(serverInfo);
+                                      return;
+                                  }
+
+                                  // still inaccessible
+                                  serverInfo.CommandRefresh?.Execute(serverInfo);
+                                  serverInfo.RefreshAndDisplayPleaseWaitDialog(
+                                      onInfoReceivedOrCannotReach: () => ExecuteCommandJoinServer(serverInfo));
+                              },
                     cancelAction: () => { },
                     okText: CoreStrings.Button_Retry,
                     cancelText: CoreStrings.Button_Cancel,
@@ -66,7 +79,8 @@
 
             if (!serverInfo.IsInfoReceived)
             {
-                serverInfo.RefreshAndDisplayPleaseWaitDialog();
+                serverInfo.RefreshAndDisplayPleaseWaitDialog(
+                    onInfoReceivedOrCannotReach: () => ExecuteCommandJoinServer(serverInfo));
                 return;
             }
 

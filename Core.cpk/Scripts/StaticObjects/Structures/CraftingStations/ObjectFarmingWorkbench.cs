@@ -35,25 +35,21 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 10);
-            build.AddStageRequiredItem<ItemStone>(count: 5);
+            build.AddStageRequiredItem<ItemPlanks>(count: 4);
+            build.AddStageRequiredItem<ItemStone>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 5);
-            repair.AddStageRequiredItem<ItemStone>(count: 2);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
                 .AddShapeRectangle((2, 1))
-                .AddShapeRectangle((2, 1), offset: (0, 0), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    (1.8, 1),
-                    offset: (0.1, 0),
-                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((2, 1), offset: (0, 0), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((2, 1),     offset: (0, 0),      group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1.6, 0.2), offset: (0.2, 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((2, 1),     offset: (0, 0),      group: CollisionGroups.ClickArea);
         }
     }
 }

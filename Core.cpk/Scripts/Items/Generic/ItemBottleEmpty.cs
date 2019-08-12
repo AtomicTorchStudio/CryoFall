@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Generic
 {
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.BottleRefillSystem;
@@ -39,7 +40,9 @@
             if (createItemResult.IsEverythingCreated)
             {
                 // notify the owner about the spawned empty bottle
-                NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(character);
+                NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
+                    character,
+                    createItemResult.ItemAmounts.FirstOrDefault().Key?.ProtoItem);
                 return;
             }
 

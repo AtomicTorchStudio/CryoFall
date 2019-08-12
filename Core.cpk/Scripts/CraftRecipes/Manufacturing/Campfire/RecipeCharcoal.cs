@@ -16,8 +16,9 @@
             InputItems inputItems,
             OutputItems outputItems)
         {
-            stations.Add<ObjectCampfire>();
-            stations.Add<ObjectFurnace>();
+            stations.Add<ObjectCampfire>()
+                    .Add<ObjectFurnace>()
+                    .Add<ObjectFurnaceElectric>();
 
             duration = CraftingDuration.Short;
 

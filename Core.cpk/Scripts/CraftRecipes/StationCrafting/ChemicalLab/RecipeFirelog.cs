@@ -16,12 +16,12 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemLogs>(count: 4);
+            inputItems.Add<ItemLogs>(count: 5);
             inputItems.Add<ItemCoal>(count: 2);
             inputItems.Add<ItemFibers>(count: 10);
-            inputItems.Add<ItemPaper>(count: 5);
+            inputItems.Add<ItemPaper>(count: 10);
 
             outputItems.Add<ItemFirelog>(count: 1);
         }

@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -405,23 +406,62 @@
             var weaponAmmoCapacity = itemWeaponProto.AmmoCapacity;
 
             var selectedProtoItemAmmo = weaponReloadingState.ProtoItemAmmo;
+            var currentProtoItemAmmo = itemWeaponPrivateState.CurrentProtoItemAmmo;
 
             if (weaponAmmoCount > 0)
             {
-                if (selectedProtoItemAmmo != itemWeaponPrivateState.CurrentProtoItemAmmo
+                if (selectedProtoItemAmmo != currentProtoItemAmmo
                     && weaponAmmoCount > 0)
                 {
                     // unload current ammo
                     if (IsServer)
                     {
-                        Server.Items.CreateItem(
+                        var result = Server.Items.CreateItem(
                             toCharacter: character,
-                            protoItem: itemWeaponPrivateState.CurrentProtoItemAmmo,
+                            protoItem: currentProtoItemAmmo,
                             count: (ushort)weaponAmmoCount);
+
+                        if (!result.IsEverythingCreated)
+                        {
+                            // cannot unload current ammo - no space, try to unload to the ground
+                            result.Rollback();
+
+                            var tile = Api.Server.World.GetTile(character.TilePosition);
+                            var groundContainer = ObjectGroundItemsContainer
+                                .ServerTryGetOrCreateGroundContainerAtTileOrNeighbors(tile);
+
+                            if (groundContainer == null)
+                            {
+                                // cannot unload current ammo to the ground - no free space around character
+                                Instance.CallClient(character,
+                                                    _ => _.ClientRemote_NoSpaceForUnloadedAmmo(currentProtoItemAmmo));
+                                return;
+                            }
+
+                            result = Server.Items.CreateItem(
+                                container: groundContainer,
+                                protoItem: currentProtoItemAmmo,
+                                count: (ushort)weaponAmmoCount);
+
+                            if (!result.IsEverythingCreated)
+                            {
+                                // cannot unload current ammo to the ground - no space in ground containers near the character
+                                result.Rollback();
+                                Instance.CallClient(character,
+                                                    _ => _.ClientRemote_NoSpaceForUnloadedAmmo(
+                                                        currentProtoItemAmmo));
+                                return;
+                            }
+
+                            // notify player that there were not enough space in inventory so the items were dropped to the ground
+                            NotificationSystem.ServerSendNotificationNoSpaceInInventoryItemsDroppedToGround(
+                                character,
+                                result.ItemAmounts.First().Key?.ProtoItem);
+                        }
                     }
 
                     Logger.Info(
-                        $"Weapon ammo unloaded: {itemWeapon} -> {weaponAmmoCount} {itemWeaponPrivateState.CurrentProtoItemAmmo})",
+                        $"Weapon ammo unloaded: {itemWeapon} -> {weaponAmmoCount} {currentProtoItemAmmo})",
                         character);
 
                     weaponAmmoCount = 0;
@@ -439,7 +479,7 @@
             }
             else // if ammoCount == 0
             if (selectedProtoItemAmmo == null
-                && itemWeaponPrivateState.CurrentProtoItemAmmo == null)
+                && currentProtoItemAmmo == null)
             {
                 Logger.Info(
                     $"Weapon reloading cancelled: {itemWeapon} - already unloaded ({weaponAmmoCount}/{weaponAmmoCapacity})",
@@ -534,7 +574,7 @@
                 }
             }
 
-            if (itemWeaponPrivateState.CurrentProtoItemAmmo != selectedProtoItemAmmo)
+            if (currentProtoItemAmmo != selectedProtoItemAmmo)
             {
                 // another ammo type selected
                 itemWeaponPrivateState.CurrentProtoItemAmmo = selectedProtoItemAmmo;
@@ -586,6 +626,14 @@
             }
 
             return result;
+        }
+
+        private void ClientRemote_NoSpaceForUnloadedAmmo(IProtoItemAmmo protoAmmo)
+        {
+            NotificationSystem.ClientShowNotification("Cannot unload",
+                                                      "No space for unloaded ammo in inventory",
+                                                      NotificationColor.Bad,
+                                                      protoAmmo.Icon);
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered, maxCallsPerSecond: 60)]

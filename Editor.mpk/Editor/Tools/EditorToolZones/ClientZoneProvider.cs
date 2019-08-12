@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Editor.Data;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.GameApi.Data.Structures;
@@ -178,7 +177,7 @@
 
         private void ScheduleSyncToServer()
         {
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 CommitZoneChangesDelaySeconds / 4.0,
                 () => this.SyncToServer(forceImmediate: false));
         }

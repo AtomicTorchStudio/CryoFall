@@ -5,7 +5,7 @@
         public override string Description =>
             "This special assault armor provides amazing protection against enemy fire without compromising in other areas.";
 
-        public override ushort DurabilityMax => 1200;
+        public override uint DurabilityMax => 1200;
 
         public override string Name => "Assault armor jacket";
 

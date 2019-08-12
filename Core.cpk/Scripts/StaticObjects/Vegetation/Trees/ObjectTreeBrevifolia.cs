@@ -29,19 +29,10 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            const double offsetY = 0.175;
             data.PhysicsBody
-                .AddShapeCircle(
-                    radius: 0.25,
-                    center: (0.5, offsetY + 0.35))
-                .AddShapeRectangle(
-                    size: (0.75, 1),
-                    offset: (0.125, offsetY + 0.1),
-                    group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    size: (0.6, 1.1),
-                    offset: (0.2, offsetY + 0.1),
-                    group: CollisionGroups.HitboxRanged);
+                .AddShapeCircle(radius: 0.25, center: (0.5, 0.525))
+                .AddShapeRectangle(size: (0.75, 1),   offset: (0.125, 0.275), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.4, 0.35), offset: (0.3, 0.95),     group: CollisionGroups.HitboxRanged);
         }
     }
 }

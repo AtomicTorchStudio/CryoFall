@@ -39,6 +39,8 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
+        public const double DurabilityFractionReduceOnDeath = 0.1;
+
         /// <summary>
         /// This flag will be true only in case the method <see cref="ClientItemUseStart" /> or <see cref="ClientItemUseFinish" />
         /// has override.
@@ -207,9 +209,10 @@
             if (item.ProtoItem is IProtoItemWithDurablity protoItemWithDurablity)
             {
                 // -10% of durability reduced on death
-                const double durabilityFractionReduceOnDeath = 0.1;
-                var durabilityDelta = (ushort)(protoItemWithDurablity.DurabilityMax * durabilityFractionReduceOnDeath);
-                ItemDurabilitySystem.ServerModifyDurability(item, delta: -durabilityDelta);
+                var durabilityDelta = protoItemWithDurablity.DurabilityMax * DurabilityFractionReduceOnDeath;
+                ItemDurabilitySystem.ServerModifyDurability(item,
+                                                            delta: -durabilityDelta,
+                                                            roundUp: false);
             }
         }
 
@@ -396,9 +399,9 @@
 
             private TClientState clientState;
 
-            private TPrivateState syncPrivateState;
+            private TPrivateState privateState;
 
-            private TPublicState syncPublicState;
+            private TPublicState publicState;
 
             internal ClientHotbarItemData(IItem item, bool isSelected, bool isByPlayer)
                 : this()
@@ -411,22 +414,18 @@
             /// <summary>
             /// Client state of item.
             /// </summary>
-            public TClientState ClientState => this.clientState ?? (this.clientState = GetClientState(this.Item));
+            public TClientState ClientState => this.clientState ??= GetClientState(this.Item);
 
             /// <summary>
             /// Synchronized server private state for this item.<br />
             /// It will throw exception if you don't have this game object in your private state.
             /// </summary>
-            public TPrivateState SyncPrivateState
-                => this.syncPrivateState
-                   ?? (this.syncPrivateState = GetPrivateState(this.Item));
+            public TPrivateState PrivateState => this.privateState ??= GetPrivateState(this.Item);
 
             /// <summary>
             /// Synchronized server public state for this item.
             /// </summary>
-            public TPublicState SyncPublicState
-                => this.syncPublicState
-                   ?? (this.syncPublicState = GetPublicState(this.Item));
+            public TPublicState PublicState => this.publicState ??= GetPublicState(this.Item);
         }
 
         /// <summary>
@@ -441,9 +440,9 @@
 
             private TClientState clientState;
 
-            private TPrivateState syncPrivateState;
+            private TPrivateState privateState;
 
-            private TPublicState syncPublicState;
+            private TPublicState publicState;
 
             internal ClientItemData(IItem item) : this()
             {
@@ -453,22 +452,18 @@
             /// <summary>
             /// Client state of item.
             /// </summary>
-            public TClientState ClientState => this.clientState ?? (this.clientState = GetClientState(this.Item));
+            public TClientState ClientState => this.clientState ??= GetClientState(this.Item);
 
             /// <summary>
             /// Synchronized server private state for this item.<br />
             /// It will throw exception if you don't have this game object in your private state.
             /// </summary>
-            public TPrivateState SyncPrivateState
-                => this.syncPrivateState
-                   ?? (this.syncPrivateState = GetPrivateState(this.Item));
+            public TPrivateState PrivateState => this.privateState ??= GetPrivateState(this.Item);
 
             /// <summary>
             /// Synchronized server public state for this item.
             /// </summary>
-            public TPublicState SyncPublicState
-                => this.syncPublicState
-                   ?? (this.syncPublicState = GetPublicState(this.Item));
+            public TPublicState PublicState => this.publicState ??= GetPublicState(this.Item);
         }
 
         /// <summary>

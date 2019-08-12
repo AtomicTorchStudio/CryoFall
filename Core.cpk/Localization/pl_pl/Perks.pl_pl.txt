@@ -1,0 +1,6 @@
+﻿Scripts/Perks/PerkClaimDeposits@Name:
+Możliwość posiadania złóż litu i ropy
+
+Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
+Maksymalna liczba posiadanych działek: {0}
+

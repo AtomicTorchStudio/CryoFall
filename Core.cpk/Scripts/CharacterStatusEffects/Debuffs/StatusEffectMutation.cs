@@ -12,6 +12,8 @@
         /// </summary>
         public override double IntensityAutoDecreasePerSecondValue => 0;
 
+        public override bool IsIntensityPercentVisible => false;
+
         /// <summary>
         /// Not removed on respawn. Only with special medicine.
         /// </summary>
@@ -23,9 +25,9 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            effects.AddPercent(this, StatName.RadiationPoisoningDamageMultiplier, 1000);
+            effects.AddPercent(this, StatName.RadiationPoisoningEffectMultiplier, 1000);
 
-            effects.AddPercent(this, StatName.RadiationPoisoningAccumulationMultiplier, 10000);
+            effects.AddPercent(this, StatName.RadiationPoisoningIncreaseRateMultiplier, 10000);
         }
     }
 }

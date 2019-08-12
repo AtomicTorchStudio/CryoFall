@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Crafting
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -19,9 +20,7 @@
             bool isProduceByproducts,
             bool isAutoSelectRecipe)
         {
-            var enabledRecipes = recipes.ToList();
-            enabledRecipes.RemoveAll(r => !r.IsEnabled);
-            this.Recipes = enabledRecipes;
+            this.Recipes = recipes.Where(r => r.IsEnabled).ToArray();
             if (this.Recipes.Count == 0)
             {
                 Api.Logger.Error(
@@ -29,17 +28,15 @@
                     + protoManufacturer);
             }
 
-            if (recipesForByproducts == null)
-            {
-                recipesForByproducts = new List<Recipe.RecipeForManufacturingByproduct>();
-            }
+            this.RecipesForByproducts = recipesForByproducts != null
+                                            ? recipesForByproducts.ToArray()
+                                            : Array.Empty<Recipe.RecipeForManufacturingByproduct>();
 
-            this.RecipesForByproducts = recipesForByproducts.ToList();
             this.IsProduceByproducts = this.RecipesForByproducts.Count > 0 && isProduceByproducts;
             this.IsAutoSelectRecipe = isAutoSelectRecipe;
         }
 
-        public IReadOnlyCollection<Recipe> Recipes { get; }
+        public IReadOnlyList<Recipe> Recipes { get; }
 
         public IReadOnlyList<Recipe.RecipeForManufacturingByproduct> RecipesForByproducts { get; }
 

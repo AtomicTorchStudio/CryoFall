@@ -53,14 +53,14 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemStone>(count: 3);
             build.AddStageRequiredItem<ItemTwigs>(count: 3);
             build.AddStageRequiredItem<ItemFibers>(count: 3);
+            build.AddStageRequiredItem<ItemStone>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemStone>(count: 2);
-            repair.AddStageRequiredItem<ItemTwigs>(count: 2);
+            repair.AddStageRequiredItem<ItemTwigs>(count: 1);
+            repair.AddStageRequiredItem<ItemFibers>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)
@@ -73,9 +73,9 @@
             data.PhysicsBody
                 .AddShapeCircle(radius: 0.4, center: (0.75, 0.5))
                 .AddShapeCircle(radius: 0.4, center: (1.25, 0.5))
-                .AddShapeRectangle((1.4, 0.7), (0.3, 0.45),  CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((1.3, 0.7), (0.35, 0.35), CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((1.4, 0.8), (0.3, 0.25),  CollisionGroups.ClickArea);
+                .AddShapeRectangle((1.4, 0.7),      (0.3, 0.45),         CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (1, 0.25), offset: (0.5, 0.95), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((1.4, 0.8),      (0.3, 0.25),         CollisionGroups.ClickArea);
         }
     }
 }

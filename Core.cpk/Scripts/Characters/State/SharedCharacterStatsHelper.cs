@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Extensions;
 
@@ -34,7 +35,7 @@
             privateState.ContainerEquipmentLastStateHash = containerEquipment?.StateHash;
 
             FinalStatsCache finalStatsCache;
-            using (var tempStatsCache = TempStatsCache.GetFromPool(isMultipliersSummed: false))
+            using (var tempStatsCache = TempStatsCache.GetFromPool())
             {
                 // merge character prototype effects
                 tempStatsCache.Merge(protoEffects);
@@ -44,6 +45,18 @@
                     // merge skill effects
                     var skills = playerCharacterPrivateState.Skills;
                     skills.SharedFillEffectsCache(tempStatsCache);
+
+                    // merge perks from tech nodes
+                    foreach (var techNode in playerCharacterPrivateState.Technologies.Nodes)
+                    {
+                        foreach (var nodeEffect in techNode.NodeEffects)
+                        {
+                            if (nodeEffect is TechNodeEffectPerkUnlock perkUnlock)
+                            {
+                                tempStatsCache.Merge(perkUnlock.Perk.ProtoEffects);
+                            }
+                        }
+                    }
                 }
 
                 foreach (var statusEffect in privateState.StatusEffects)

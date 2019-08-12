@@ -19,7 +19,7 @@
 
         public override string Description => "Old grandpa shotgun. Uses 12ga ammunition.";
 
-        public override ushort DurabilityMax => 120;
+        public override uint DurabilityMax => 120;
 
         public override string Name => "Double-barreled shotgun";
 
@@ -42,7 +42,7 @@
 
         protected override ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon()
         {
-            return WeaponsSoundPresets.WeaponRangedShotgun;
+            return WeaponsSoundPresets.WeaponRangedShotgunDoublebarreled;
         }
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)

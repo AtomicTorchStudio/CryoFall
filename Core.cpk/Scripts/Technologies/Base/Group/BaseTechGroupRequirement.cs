@@ -9,12 +9,12 @@
     {
         public abstract BaseViewModelTechGroupRequirement CreateViewModel();
 
-        public bool IsSatisfied(ICharacter character, out string error)
+        public bool IsSatisfied(ICharacter character, out string errorMessage)
         {
-            return this.IsSatisfied(new CharacterContext(character), out error);
+            return this.IsSatisfied(new CharacterContext(character), out errorMessage);
         }
 
-        protected abstract bool IsSatisfied(CharacterContext context, out string error);
+        protected abstract bool IsSatisfied(CharacterContext context, out string errorMessage);
 
         protected struct CharacterContext
         {
@@ -29,9 +29,8 @@
             public ICharacter Character { get; }
 
             public PlayerCharacterTechnologies Technologies
-                => this.technologies
-                   ?? (this.technologies = this.Character.GetPrivateState<PlayerCharacterPrivateState>()
-                                               .Technologies);
+                => this.technologies ??= this.Character.GetPrivateState<PlayerCharacterPrivateState>()
+                                             .Technologies;
         }
     }
 }

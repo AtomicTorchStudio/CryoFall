@@ -18,9 +18,11 @@
 
         public override ushort OrganicValue => 0;
 
-        public override float StaminaRestore => 200;
+        public override float FoodRestore => 3;
 
-        public override float WaterRestore => 15;
+        public override float StaminaRestore => 100;
+
+        public override float WaterRestore => 25;
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {

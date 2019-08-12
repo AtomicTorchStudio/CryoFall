@@ -5,6 +5,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -108,16 +109,15 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
         private void ClientRemote_OnCannotInteractNoAccess(IStaticWorldObject worldObject)
         {
-            worldObject.ProtoStaticWorldObject.ClientOnCannotInteract(
-                worldObject,
-                NotificationDontHaveAccess,
-                isOutOfRange: false);
+            CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
+                                   NotificationDontHaveAccess,
+                                   isOutOfRange: false);
         }
 
         private void ServerRemote_SetMode(IStaticWorldObject worldObject, WorldObjectAccessMode mode)
         {
             var character = ServerRemoteContext.Character;
-            if (!InteractionCheckerSystem.HasInteraction(character,
+            if (!InteractionCheckerSystem.SharedHasInteraction(character,
                                                          worldObject,
                                                          requirePrivateScope: true))
             {

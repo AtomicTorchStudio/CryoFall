@@ -5,12 +5,10 @@
     using System.Windows;
     using System.Windows.Documents;
     using System.Windows.Media;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
@@ -20,6 +18,8 @@
         public const string ChatCopyMessageFormat = "From @{0}: {1}";
 
         public const string ChatNamePrefix_Developer = "[Developer]";
+
+        private const char NoBreakSpace = '\u00A0';
 
         private static readonly string ShortTimePattern
             = CultureInfo.InstalledUICulture.DateTimeFormat.ShortTimePattern;
@@ -109,12 +109,6 @@
                 if (name == Api.Client.Characters.CurrentPlayerCharacter?.Name)
                 {
                     // cannot invite self
-                    return Visibility.Collapsed;
-                }
-
-                if (PartySystem.ClientCurrentParty == null)
-                {
-                    // don't have a party
                     return Visibility.Collapsed;
                 }
 
@@ -214,32 +208,9 @@
             this.chatRoomControl.AddMention(this.chatEntry.From);
         }
 
-        private async void ExecuteCommandOpenPrivateChat()
+        private void ExecuteCommandOpenPrivateChat()
         {
-            var privateChat = await ChatSystem.ClientOpenPrivateChat(withCharacterName: this.chatEntry.From);
-            if (privateChat != null)
-            {
-                if (OpenChat(privateChat))
-                {
-                    return;
-                }
-
-                // chat not initialized yet - open on the next frame
-                ClientComponentTimersManager.AddAction(0,
-                                                       () => OpenChat(privateChat));
-            }
-
-            bool OpenChat(ILogicObject logicObject)
-            {
-                if (!logicObject.IsInitialized)
-                {
-                    return false;
-                }
-
-                ChatPanel.Instance.OpenChat(
-                    ChatSystem.SharedGetChatRoom(logicObject));
-                return true;
-            }
+            ChatSystem.ClientOpenPrivateChat(withCharacterName: this.chatEntry.From);
         }
 
         private void ExecuteCommandToggleBlock()
@@ -260,7 +231,9 @@
         {
             // convert timestamp of the chat entry to the local DateTime
             var date = TimeZone.CurrentTimeZone.ToLocalTime(this.chatEntry.UtcDate);
-            inlines.Add(new Run(date.ToString(ShortTimePattern) + " ")
+            inlines.Add(new Run(date.ToString(ShortTimePattern)
+                                    .Replace(' ', NoBreakSpace)
+                                + NoBreakSpace)
                             { FontWeight = FontWeights.Light });
 
             var name = this.chatEntry.From;
@@ -271,13 +244,20 @@
                 var dispayedName = name;
                 if (DevelopersListHelper.IsDeveloper(dispayedName))
                 {
-                    dispayedName = ChatNamePrefix_Developer + " " + dispayedName;
+                    dispayedName = ChatNamePrefix_Developer + NoBreakSpace + dispayedName;
                 }
 
                 inlines.Add(new Run(dispayedName) { FontWeight = FontWeights.SemiBold });
             }
 
-            inlines.Add(new Run((!isServiceMessage ? ": " : "") + this.chatEntry.Message));
+            if (isServiceMessage)
+            {
+                inlines.Add(new Run(this.chatEntry.Message));
+            }
+            else
+            {
+                inlines.Add(new Run(":" + NoBreakSpace + this.chatEntry.Message));
+            }
 
             var isFromCurrentPlayer = Api.Client.Characters.CurrentPlayerCharacter.Name?.Equals(name)
                                       ?? false;

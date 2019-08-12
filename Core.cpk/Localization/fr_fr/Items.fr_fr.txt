@@ -53,7 +53,7 @@ Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
 Balles anti-blindage calibre 7,62
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
-Des projectiles incendiaires de calibre 7,62 très puissants.
+Des projectiles incendiaires de calibre 7,62, capables de traverser une armure et de mettre feu à la cible.
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 Balles incendiaires calibre 7,62
@@ -392,19 +392,19 @@ Scripts/Items/Food/ItemBerriesOrange@Description:
 De savoureuses baies orange.
 
 Scripts/Items/Food/ItemBerriesOrange@Name:
-Baies
+Baies orange
 
 Scripts/Items/Food/ItemBerriesRed@Description:
 De savoureuses baies rouges.
 
 Scripts/Items/Food/ItemBerriesRed@Name:
-Baies
+Baies rouges
 
 Scripts/Items/Food/ItemBerriesViolet@Description:
 De savoureuses baies violettes.
 
 Scripts/Items/Food/ItemBerriesViolet@Name:
-Baies
+Baies violettes
 
 Scripts/Items/Food/ItemBottleWater@Description:
 Peut-être consommée pour se réhydrater. Également utile pour de nombreuses recettes.
@@ -455,10 +455,22 @@ Scripts/Items/Food/ItemCannedFish@Name:
 Poisson en boîte
 
 Scripts/Items/Food/ItemCannedMeat@Description:
-De la viande d'origine douteuse... Mais bon, l'emballage est plutôt pas mal.
+Un ragoût de viande en conserve, riche en graisse. Peut se conserver très longtemps.
 
 Scripts/Items/Food/ItemCannedMeat@Name:
 Viande en boîte
+
+Scripts/Items/Food/ItemCannedMixedMeat@Description:
+Une conserve de viande d'origine douteuse... Mais bon, l'emballage est pas mal.
+
+Scripts/Items/Food/ItemCannedMixedMeat@Name:
+Conserve de mélange de viandes
+
+Scripts/Items/Food/ItemCarbonara@Description:
+Des pâtes, des œufs, du fromage et de la viande transformés en un repas délicieux !
+
+Scripts/Items/Food/ItemCarbonara@Name:
+Carbonara
 
 Scripts/Items/Food/ItemCarrot@Description:
 Un légume orange riche en carotène.
@@ -514,10 +526,10 @@ Une plante qui donne des céréales très nourrissantes, et qui a souvent été 
 Scripts/Items/Food/ItemCorn@Name:
 Maïs
 
-Scripts/Items/Food/ItemCornOnCob@Description:
-Un épi de maïs cuit, piqué sur un bâton. Du grand art.
+Scripts/Items/Food/ItemCornGrilled@Description:
+Le maïs grillé garde toute sa douceur et ajoute un petit goût fumé. Un régal !
 
-Scripts/Items/Food/ItemCornOnCob@Name:
+Scripts/Items/Food/ItemCornGrilled@Name:
 Maïs grillé
 
 Scripts/Items/Food/ItemCucumber@Description:
@@ -573,6 +585,18 @@ Nourrissants, qu'ils soient cuits dans l'huile ou dans l'eau. Évitez de les man
 
 Scripts/Items/Food/ItemEggsRaw@Name:
 Œufs d'animaux
+
+Scripts/Items/Food/ItemInsectMeatFried@Description:
+Cuire cette viande permet de la rendre un peu moins dégoûtante. Mais préparez-vous à vomir si vous décidez de manger ça.
+
+Scripts/Items/Food/ItemInsectMeatFried@Name:
+Viande d'insecte frite
+
+Scripts/Items/Food/ItemInsectMeatRaw@Description:
+De la viande d'insecte peu ragoûtante. Peut-être qu'en la cuisant, elle deviendrait légèrement plus appétissante.
+
+Scripts/Items/Food/ItemInsectMeatRaw@Name:
+Viande d'insecte crue
 
 Scripts/Items/Food/ItemJamBerries@Description:
 De la confiture de baies, pour les gourmands.
@@ -820,6 +844,12 @@ Ce combustible (également appelé combustible de camping) peut servir à rechar
 Scripts/Items/Generic/ItemCampFuel@Name:
 Lampant
 
+Scripts/Items/Generic/ItemCanEmpty@Description:
+Les conserves vides peuvent être utilisées pour préparer des conserves de nourriture ou de boisson.
+
+Scripts/Items/Generic/ItemCanEmpty@Name:
+Conserves vides
+
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
 Un bidon métallique vide. Peut servir à stocker des liquides volatils.
 
@@ -921,6 +951,12 @@ Diverses pièces nécessaires à l'assemblage des armes à feu les plus sophisti
 
 Scripts/Items/Generic/ItemComponentsWeapon@Name:
 Composants militaires
+
+Scripts/Items/Generic/ItemDuctTape@Description:
+Un ruban adhésif spécialement résistant, doté d'un agent collant puissant et d'une couche extérieure renfoncée.
+
+Scripts/Items/Generic/ItemDuctTape@Name:
+Ruban adhésif
 
 Scripts/Items/Generic/ItemExplosives@Description:
 Des substances hautement explosives pouvant servir à créer divers engins explosifs.
@@ -1139,17 +1175,17 @@ Un minerai très recherché. Il combine des propriétés uniques que l'on ne ret
 Scripts/Items/Generic/ItemOrePragmium@Name:
 Pragmium
 
-Scripts/Items/Generic/ItemOrePyrite@Description:
-Le minerai de pyrite peut être chauffé afin d'obtenir de l'acide sulfurique.
-
-Scripts/Items/Generic/ItemOrePyrite@Name:
-Minerai de pyrite
-
 Scripts/Items/Generic/ItemPaper@Description:
-Du papier tout bête.
+Le papier est un matériau versatile aux utilisations nombreuses qui peut être facilement préparé à base de bois.
 
 Scripts/Items/Generic/ItemPaper@Name:
 Papier
+
+Scripts/Items/Generic/ItemPasta@Description:
+L'élément de base de nombreux plats délicieux !
+
+Scripts/Items/Generic/ItemPasta@Name:
+Pâtes crues
 
 Scripts/Items/Generic/ItemPlanks@Description:
 Principalement utilisées comme matériau de construction, elles peuvent également servir de combustible.
@@ -1174,6 +1210,12 @@ Une petite cellule énergétique universelle utilisable dans divers appareils é
 
 Scripts/Items/Generic/ItemPowerCell@Name:
 Cellule énergétique
+
+Scripts/Items/Generic/ItemPreservative@Description:
+Du conservateur alimentaire. Peut-être ajouté à toute nourriture emballée pour qu'elle se conserve bien plus longtemps.
+
+Scripts/Items/Generic/ItemPreservative@Name:
+Conservateur
 
 Scripts/Items/Generic/ItemRope@Description:
 De la corde normale. Peut être utilisée de différentes façons. Les morceaux superflus peuvent être brûlés.
@@ -1204,6 +1246,24 @@ Le sable peut servir à fabriquer du verre, ou comme matériau de construction.
 
 Scripts/Items/Generic/ItemSand@Name:
 Sable
+
+Scripts/Items/Generic/ItemSlime@Description:
+Du slime vert, probablement laissé par une créature.
+
+Scripts/Items/Generic/ItemSlime@Name:
+Slime
+
+Scripts/Items/Generic/ItemSolarPanel@Description:
+Cher à fabriquer, mais permet de fournir de l'électricité pendant très longtemps sans nécessiter le moindre entretien.
+
+Scripts/Items/Generic/ItemSolarPanel@Name:
+Panneau solaire
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Description:
+Les panneaux cassés peuvent être recyclés pour produire de nouveaux panneaux solaires.
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Name:
+Panneau solaire cassé
 
 Scripts/Items/Generic/ItemSolvent@Description:
 Un solvant de l'ère spatiale spécialement formulé, qui combine les propriétés des solvants polaires et non polaires.
@@ -1294,6 +1354,12 @@ Des céréales récoltées dans un champ de blé. Peuvent être transformés en 
 
 Scripts/Items/Generic/ItemWheatGrains@Name:
 Grains de blé
+
+Scripts/Items/Generic/ItemWire@Description:
+Une bobine de fil électrique isolé.
+
+Scripts/Items/Generic/ItemWire@Name:
+Fil électrique
 
 Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
 Vous n'avez pas équipé de batterie
@@ -1445,6 +1511,12 @@ Un cigare de qualité, à l'arôme et à la saveur exquis. Stimulant.
 Scripts/Items/Medical/ItemCigarPremium@Name:
 Cigare haut de gamme
 
+Scripts/Items/Medical/ItemEnergyTablets@Description:
+Un médicament simple permettant de réduire rapidement la fatigue.
+
+Scripts/Items/Medical/ItemEnergyTablets@Name:
+Pastilles énergétiques
+
 Scripts/Items/Medical/ItemHeatPreExposure@Description:
 Ce gel thermorésistant empêche le transfert thermique direct et réfléchit la chaleur radiante, ce qui vous permet de pénétrer dans des zones à haute température pendant une courte durée.
 
@@ -1572,103 +1644,58 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 Renfort de force (petit)
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
-Une pousse de bouleau. Peut être plantée pour obtenir un nouvel arbre.
+Une jeune pousse d'arbre. Peut être plantée pour obtenir un nouvel arbre.
 
 Scripts/Items/Seeds/ItemSaplingBirch@Name:
 Pousse de bouleau
 
-Scripts/Items/Seeds/ItemSaplingOak@Description:
-Une pousse de chêne. Peut être plantée pour obtenir un nouvel arbre.
-
 Scripts/Items/Seeds/ItemSaplingOak@Name:
 Pousse de chêne
-
-Scripts/Items/Seeds/ItemSaplingPine@Description:
-Une pousse de pin. Peut être plantée pour obtenir un nouvel arbre.
 
 Scripts/Items/Seeds/ItemSaplingPine@Name:
 Pousse de pin
 
-Scripts/Items/Seeds/ItemSaplingPineBoreal@Description:
-Une pousse d'une variété nordique de pin. Peut être plantée pour obtenir un nouvel arbre.
-
 Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
 Pousse de pin boréal
 
-Scripts/Items/Seeds/ItemSaplingPoplar@Description:
-Une pousse de peuplier. Peut être plantée pour obtenir un nouvel arbre.
-
 Scripts/Items/Seeds/ItemSaplingPoplar@Name:
 Pousse de peuplier
-
-Scripts/Items/Seeds/ItemSaplingRubbertree@Description:
-Une pousse d'hévéa. Peut être plantée pour obtenir un nouvel arbre.
 
 Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
 Pousse d'hévéa
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
-Peuvent être plantées afin de faire pousser des poivrons.
+Un petit sachet de graines prêtes à être plantées. Peuvent être plantées dans le sol.
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
 Semences de poivron
 
-Scripts/Items/Seeds/ItemSeedsCarrot@Description:
-Peuvent être plantées afin de faire pousser des carottes.
-
 Scripts/Items/Seeds/ItemSeedsCarrot@Name:
 Semences de carottes
-
-Scripts/Items/Seeds/ItemSeedsChiliPepper@Description:
-Peuvent être plantées afin de faire pousser des piments.
 
 Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
 Semences de piment
 
-Scripts/Items/Seeds/ItemSeedsCorn@Description:
-Peuvent être plantées afin de faire pousser du maïs.
-
 Scripts/Items/Seeds/ItemSeedsCorn@Name:
 Semences de maïs
-
-Scripts/Items/Seeds/ItemSeedsCucumber@Description:
-Peuvent être plantées afin de faire pousser des concombres.
 
 Scripts/Items/Seeds/ItemSeedsCucumber@Name:
 Semences de concombre
 
-Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Description:
-Peuvent être plantées afin de faire pousser de la sauge bleue.
-
 Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Semences de sauge bleue
-
-Scripts/Items/Seeds/ItemSeedsFlowerOni@Description:
-Des graines de fleur d'Oni. Peuvent être plantées afin de faire pousser des fleurs.
 
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Semences de fleur d'Oni
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Description:
-L'ogurine fut la toute première plante spécifiquement conçue pour cette planète.
-
 Scripts/Items/Seeds/ItemSeedsOgurin@Name:
 Semences d'ogurine
-
-Scripts/Items/Seeds/ItemSeedsTobacco@Description:
-Peuvent être plantées afin de faire pousser du tabac.
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Semences de tabac
 
-Scripts/Items/Seeds/ItemSeedsTomato@Description:
-Des semences d'une variété de tomate très juteuse, sélectionnée spécifiquement pour cette planète.
-
 Scripts/Items/Seeds/ItemSeedsTomato@Name:
 Semences de tomates
-
-Scripts/Items/Seeds/ItemSeedsWheat@Description:
-Des semences de blé préparées, prêtes à être plantées.
 
 Scripts/Items/Seeds/ItemSeedsWheat@Name:
 Semences de blé
@@ -1758,19 +1785,13 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 Pioche en pierre
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
-Une bonne boîte à outils est nécessaire pour pouvoir construire une structure digne de ce nom.
+Une boîte à outils est nécessaire pour construire ou réparer toutes vos structures. Vérifiez qu'elle est bien équipée et sélectionnée.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
 Boîte à outils simple
 
-Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Description:
-Une bonne boîte à outils est nécessaire pour pouvoir construire une structure digne de ce nom.
-
 Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
 Boîte à outils en fer
-
-Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Description:
-Une bonne boîte à outils est nécessaire pour pouvoir construire une structure digne de ce nom.
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
 Boîte à outils en acier

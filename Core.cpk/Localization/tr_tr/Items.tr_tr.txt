@@ -1,0 +1,1960 @@
+﻿Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Description:
+Daha yüksek zırh delme potansiyeline sahip özel olarak tasarlanmış 10mm mühimmat modifikasyonu. Zırhlı hedefler için idealdir, ancak biyolojik hedeflere karşı etkisi daha azdır.
+
+Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Name:
+10mm zırh delici mühimmat
+
+Scripts/Items/Ammo/ItemAmmo10mmBlank@Description:
+10mm özel kurusıkı mühimmat. Askeri tatbikatlar veya davetsiz misafirleri korkutmak için kullanılabilir.
+
+Scripts/Items/Ammo/ItemAmmo10mmBlank@Name:
+10mm kuru sıkı mühimmat
+
+Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Description:
+Biyolojik hedefler için özel olarak tasarlanmış 10mm mühimmat modifikasyonu. Mermi çarpmayla birlikte genişleyerek durdurma gücünün ve hasarın artmasını sağlar. Zırhlı hedeflere karşı tamamen etkisizdir.
+
+Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Name:
+10mm oyuk uçlu mühimmat
+
+Scripts/Items/Ammo/ItemAmmo10mmStandard@Description:
+Çeşitli hedeflere karşı genel kullanım için tasarlanmış standart 10mm mühimmat
+
+Scripts/Items/Ammo/ItemAmmo10mmStandard@Name:
+10mm standart mühimmat
+
+Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Description:
+Büyük saçma taneleri yayılma ve delme gücü arasında iyi bir denge sağlar. Bununla birlikte, patlayıcı olarak kullanılan barut, nitroselülozdan daha az itici güç üreterek bu mühimmatın limitlerini sınırlar.
+
+Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Name:
+12 kalibre iri saçma fişeği
+
+Scripts/Items/Ammo/ItemAmmo12gaPellets@Description:
+Saçmanın büyük bir alana dağılması nedeniyle kalabalık düşman gruplarına ve küçük biyolojik hedeflere oldukça etkilidir. Zırhlı hedeflere karşı etkisiz kalır.
+
+Scripts/Items/Ammo/ItemAmmo12gaPellets@Name:
+12 kalibre saçma fişeği
+
+Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Description:
+İri taneli tuzla dolu bu fişekler gerçek savaştan çok davetsiz misafirleri ve hırsızları korkutmak amacıyla kullanılır. Ancak bir tanesiyle vurulduğunda.. canının yanacağından emin olabilirsin.
+
+Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
+12 kalibre tuz fişeği
+
+Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
+Çeşitli hedeflere karşı kullanılabilen yivsiz mühimmat, saçma fişeklerinden çok daha iyi durdurma gücü sağlar. Büyük kütlesi nedeniyse ağır zırhlı hedeflere karşı oldukça kullanışlıdır.
+
+Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
+12 kalibre yivsiz mühimmat
+
+Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Description:
+Zırh delme kapasitesine sahip .300 ağır materyalsavar mermi.
+
+Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
+.300 zırh delici mühimmat
+
+Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
+Ağır .300 yanıcı mermileri, zırhı delip hedefi yakabilme özelliğine sahip.
+
+Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
+.300 yanıcı mühimmat
+
+Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
+8mm basit, kovansız mermi. Üretiminde kullanılan basit malzemeler ve teknikler nedeniyle gücü ve hassasiyeti düşüktür.
+
+Scripts/Items/Ammo/ItemAmmo8mmStandard@Name:
+8mm standart mühimmat
+
+Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
+İçerisinde küçük boşlukta konsantre toksinler bulunan ve darbeyle birlikte patlayarak düşmanı toksin hasarı veren 8mm mühimmat.
+
+Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
+8mm toksinli mühimmat
+
+Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
+Temel ateşli silah mühimmatı. Yalnızca zayıf hedefler için uygun, fakat üretilmesi ucuz ve kolay.
+
+Scripts/Items/Ammo/ItemAmmoPaperCartridge@Name:
+Kağıt kovan
+
+Scripts/Items/Base/ItemUseCaptions@Decrypt:
+Şifre çöz
+
+Scripts/Items/Base/ItemUseCaptions@Drink:
+İç
+
+Scripts/Items/Base/ItemUseCaptions@Eat:
+Ye
+
+Scripts/Items/Base/ItemUseCaptions@Read:
+Oku
+
+Scripts/Items/Base/ItemUseCaptions@Use:
+Kullan
+
+Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
+Veri Günlüğü (şifreli)
+
+Scripts/Items/Devices/ItemBiomaterialCollector@NotificationNoEmptyVials:
+Biyomateryal toplamak için boş şişe yok
+
+Scripts/Items/Devices/ItemBiomaterialCollector@Description:
+Hayvanlardan ve diğer canlılardan biyomateryal çıkarmak için kullanılan özel bir cihaz. Çalışması için boş biyomateryal şişesi gerekir.
+
+Scripts/Items/Devices/ItemBiomaterialCollector@Name:
+Biyomateryal toplayıcı
+
+Scripts/Items/Devices/ItemHuntersTools@Description:
+Bu kullanışlı avcılık aletleri canlıları yağmalamağı hızlandırır.
+
+Scripts/Items/Devices/ItemHuntersTools@Name:
+Avcılık aletleri
+
+Scripts/Items/Devices/ItemPowerBankLarge@Description:
+Hareket halindeyken kullanmak için büyük miktarda güç depolar. Herhangi bir cihaz veya enerji silahı kuşanılmış olan taşınabilir güç kaynağından enerji çeker.
+
+Scripts/Items/Devices/ItemPowerBankLarge@Name:
+Büyük taşınabilir güç kaynağı
+
+Scripts/Items/Devices/ItemPowerBankStandard@Description:
+Standart çift yönlü taşınabilir güç kaynağı. Hareket halindeyken kullanmak için yeterli miktarda güç depolar. Herhangi bir cihaz veya enerji silahı kuşanılmış olan taşınabilir güç kaynağından enerji çeker.
+
+Scripts/Items/Devices/ItemPowerBankStandard@Name:
+Standart taşınabilir güç kaynağı
+
+Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
+Savaş ve çevresel koruma arasında ideal bir denge sunan gelişmiş çevresel koruma zırhı.
+
+Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
+A.P.A.R.T zırhı
+
+Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
+Saldırı zırhı kaskı
+
+Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
+Bu özel saldırı zırhı, diğer kullanım amaçlarından ödün vermeden düşman ateşine karşı inanılmaz bir koruma sağlar.
+
+Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
+Saldırı zırhı ceketi
+
+Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
+Saldırı zırhı pantolonu
+
+Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
+Kask ışığı kuşanılmadı
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentDevice@NotificationCannotUseDirectly_Message:
+Cihaz yuvasına takılan tüm cihazlar otomatik olarak kullanılır.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentDevice@NotificationCannotUseDirectly_Title:
+Doğrudan kullanılamaz
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationCannotRefillWhileOn_Message:
+Yeniden doldurmadan önce kapat.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationCannotRefillWhileOn_Title:
+Yeniden doldurulamaz
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFuel_Message:
+Yeniden doldurma gerekli.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFuel_Title:
+Yakıt bitti
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
+Kask ışığını etkinleştirmek için lütfen bu eşyayı kuşan ve [{0}] tuşuna bas.
+
+Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
+Düğme ayarlanmadı
+
+Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
+Kapalı kemik kask
+
+Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
+Boynuzlu kemik kask
+
+Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
+Kemik zırh, fiyatı göz önüne alındığında iyi bir koruma sağlar ve ilk zamanlar için oldukça kullanışlıdır.
+
+Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
+Kemik ceket
+
+Scripts/Items/Equipment/Bone/ItemBonePants@Name:
+Kemik pantolon
+
+Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
+Süslü bir kıyafet sayılmaz, fakat başınız sıkıştığında sizi koruyabilir. En yakın alternatiflerinden daha iyi bir çevresel koruma sağlar.
+
+Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
+Örgü göğüs zırhı
+
+Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
+Örgü kask
+
+Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
+Geçici lambalı kask
+
+Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
+Örgü pantolon
+
+Scripts/Items/Equipment/Cloth/ItemClothHat@Name:
+Bez şapka
+
+Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
+Bez pantolon
+
+Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
+Herhangi bir koruma sağlamaz. Belki bir sivrisineği durdurabilir.
+
+Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
+Bez gömlek
+
+Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
+Başlangıç için uygun bir zırh; özellikle soğuğa karşı iyi bir koruma sağlar. Çok pahalı değil ve rahat.
+
+Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
+Kürk manto
+
+Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
+Kuyruklu kürk şapka
+
+Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
+Kazak şapkası
+
+Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
+Rus şapkası
+
+Scripts/Items/Equipment/Fur/ItemFurPants@Name:
+Kürk pantolon
+
+Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
+Gösterişli altın giysi. Yalnızca gerçek hükümdarlara yakışır.
+
+Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
+Altın göğüs zırhı
+
+Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
+Altın taç
+
+Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
+Altın pantolon
+
+Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
+Kullananları bir çok çevresel tehlikeye karşı koruyan özel tasarım kıyafet. Bütünlüğünü hızlı bir şekilde kaybedeceği için savaşta kullanılmamalıdır.
+
+Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
+Tehlikeli madde zırhı
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
+Kovboy şapkası
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
+Pilot şapkası
+
+Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
+Korsan şapkası
+
+Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
+Deri zırh iyi bir genel koruma sağlar ve gelişimin ilk aşamaları için idealdir.
+
+Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
+Deri ceket
+
+Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
+Deri pantolon
+
+Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
+Metal zırh, fiziksel saldırıları karşı büyük bir koruma sağlar, fakat çevresel tehlikelere karşı neredeyse etkisizdir.
+
+Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
+Metal göğüs zırhı
+
+Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
+Kapalı metal kask
+
+Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
+Metal kurukafa kaskı
+
+Scripts/Items/Equipment/Metal/ItemMetalPants@Name:
+Metal ayak zırhı
+
+Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
+Askeri kask
+
+Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
+Bu zırhın yapımında kullanılan gelişmiş malzemeler onu küçük ve temel silahlara karşı ideal bir koruma haline getiriyor.
+
+Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
+Askeri ceket
+
+Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
+Askeri pantolon
+
+Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
+Taşınabilir ışık kaynağı sunarak ellerinizin serbest kalması sağlayan kullanışlı bir kask. Tek kullanımlık pil gerektirir.
+
+Scripts/Items/Equipment/Misc/ItemHelmetMiner@Name:
+Madenci kaskı
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Description:
+Geceleri neredeyse mükemmel bir şekilde görmenizi sağlayan hafif taktik kask. Tek kullanımlık pil gerektirir.
+
+Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
+Gece görüş gözlüğü
+
+Scripts/Items/Equipment/Misc/ItemHelmetSafety@Description:
+Baret, kafaya gelen darbelere, molozlara ve elektrik çarpmalarına karşı temel bir koruma sağlar.
+
+Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
+Baret
+
+Scripts/Items/Equipment/Misc/ItemRespirator@Description:
+Radyoaktif partikülleri ve zararlı gazları filtreleyen basit solunum cihazı. Başka bir koruma sağlamaz.
+
+Scripts/Items/Equipment/Misc/ItemRespirator@Name:
+Solunum cihazı
+
+Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
+Yapısal temelinde ince metal plakalara yerleştirilen pragmium kafes bulunan deneysel zırh. Çok hafif ve dayanıklı.
+
+Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
+Pragmium zırh
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
+Her türlü çevresel ve fiziksel hasara karşı şaşırtıcı derecede iyi bir koruma sağlayan kalın pamuklu dolgulu kumaş.
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
+Dolgulu manto
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
+Dolgulu şapka
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
+Dolgulu kask
+
+Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
+Dolgulu pantolon
+
+Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
+Gereksinimler icatların anasıdır. Hiç rahat değil, fakat ilk başlarda iyi bir koruma sağlar.
+
+Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
+Ahşap göğüs zırhı
+
+Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
+Ahşap kask
+
+Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
+Ahşap pantolon
+
+Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
+Tek seferde büyük miktarda mineral çıkarmak için özel olarak tasarlanmış patlayıcı. Çıkarılacak mineralin yanına yerleştirilmelidir.
+
+Scripts/Items/Explosives/Bombs/ItemBombMining@Name:
+Mineral bombası
+
+Scripts/Items/Explosives/Bombs/ItemBombModern@Description:
+Güçlendirilmiş yapıları yıkmak için özel olarak tasarlanmış patlayıcı.
+
+Scripts/Items/Explosives/Bombs/ItemBombModern@Name:
+Modern bomba
+
+Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Description:
+Duvarları ve diğer güçlendirilmiş yapıları yıkmak için kullanılabilecek ilkel bir patlayıcı. Maksimum etki için hedefe mümkün olduğunca yakın yerleştirilmelidir.
+
+Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Name:
+İlkel bomba
+
+Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
+Aynı anda birden fazla duvar ve kapı katmanına zarar vermek için pragmiumun benzersiz özelliklerini kullanan özel bir patlayıcı. Özellikle iyi korunan askeri üslere karşı oldukça etkili. Diğer yapılara karşı etkisizdir.
+
+Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
+Titreşim bombası
+
+Scripts/Items/Food/ItemBanana@Description:
+Muzlara maymunlar da ulaşabilir fakat yıldızlara yalnızca insanlar ulaşabilir.
+
+Scripts/Items/Food/ItemBanana@Name:
+Muz
+
+Scripts/Items/Food/ItemBeer@Description:
+Ferahlatıcı ve serin. Bu hafif biranın yapımında yüksek kalite tahıllar kullanıldı.
+
+Scripts/Items/Food/ItemBeer@Name:
+Bira
+
+Scripts/Items/Food/ItemBellPepper@Description:
+Gerçek biberin kötü ama lezzetli bir kopyası. Birçok yemek için harika.
+
+Scripts/Items/Food/ItemBellPepper@Name:
+Dolma biber
+
+Scripts/Items/Food/ItemBerriesOrange@Description:
+Lezzetli turuncu böğürtlen.
+
+Scripts/Items/Food/ItemBerriesOrange@Name:
+Turuncu böğürtlen
+
+Scripts/Items/Food/ItemBerriesRed@Description:
+Lezzetli kırmızı böğürtlen.
+
+Scripts/Items/Food/ItemBerriesRed@Name:
+Kırmızı böğürtlen
+
+Scripts/Items/Food/ItemBerriesViolet@Description:
+Lezzetli mor böğürtlen.
+
+Scripts/Items/Food/ItemBerriesViolet@Name:
+Mor böğürtlen
+
+Scripts/Items/Food/ItemBottleWater@Description:
+Suyu tazelemek için tüketilebilir. Ayrıca birçok tarif için de oldukça kullanışlıdır.
+
+Scripts/Items/Food/ItemBottleWater@Name:
+Şişelenmiş saf su
+
+Scripts/Items/Food/ItemBottleWaterSalty@Description:
+Tuzlu deniz suyu. Susuzluğunu gidermek yerine seni daha çok susatır. İçindeki tuzu çıkarmak için buharlaştırılabilir.
+
+Scripts/Items/Food/ItemBottleWaterSalty@Name:
+Şişelenmiş tuzlu su
+
+Scripts/Items/Food/ItemBottleWaterStale@Description:
+Gölden alınan beklemiş su. Güvenli hale getirmek için önce kaynatılmalıdır. Yine de gerektiğinde susuzluğunu giderebilir.
+
+Scripts/Items/Food/ItemBottleWaterStale@Name:
+Şişelenmiş beklemiş su
+
+Scripts/Items/Food/ItemBread@Description:
+Beyaz ekmek somunu. Tüm şu karbonhidrata bak!
+
+Scripts/Items/Food/ItemBread@Name:
+Ekmek somunu
+
+Scripts/Items/Food/ItemCactusDrink@Description:
+Sıkılmış kaktüsten yapılan içecek. Tadı çok kötü ama başka bir seçeneğin kalmadığında susuzluğunu giderecek.
+
+Scripts/Items/Food/ItemCactusDrink@Name:
+Kaktüs suyu
+
+Scripts/Items/Food/ItemCactusFlesh@Description:
+Sulu kaktüs. Tam olarak yemek isteyeceğin bir şey değil ama başın sıkıştığında seni kurtarabilir.
+
+Scripts/Items/Food/ItemCactusFlesh@Name:
+Kaktüs
+
+Scripts/Items/Food/ItemCannedBeans@Description:
+Etraftaki en iyi yiyecek değil ama açlığa direnmene yardımcı olacaktır.
+
+Scripts/Items/Food/ItemCannedBeans@Name:
+Konserve fasulye
+
+Scripts/Items/Food/ItemCannedFish@Description:
+Muhtemelen ton balığı. İhtiyacın olan omega-3 desteği.
+
+Scripts/Items/Food/ItemCannedFish@Name:
+Konserve balık
+
+Scripts/Items/Food/ItemCannedMeat@Description:
+Yüksek oranda konsantre yağ içeren haşlanmış konserve et. Uzun süre dayanır.
+
+Scripts/Items/Food/ItemCannedMeat@Name:
+Konserve et
+
+Scripts/Items/Food/ItemCannedMixedMeat@Description:
+Kökeni şüpheli konserve et. En azından ambalajı iyi gözüküyor.
+
+Scripts/Items/Food/ItemCannedMixedMeat@Name:
+Konserve karışık et
+
+Scripts/Items/Food/ItemCarbonara@Description:
+Makarna, yumurta, peynir ve et bu leziz muhteşemliğe dönüyor!
+
+Scripts/Items/Food/ItemCarbonara@Name:
+Carbonara
+
+Scripts/Items/Food/ItemCarrot@Description:
+Karoten bakımından zengin turuncu bir sebze.
+
+Scripts/Items/Food/ItemCarrot@Name:
+Havuç
+
+Scripts/Items/Food/ItemCarrotGrilled@Description:
+Basit ama ateşli bir yemek.
+
+Scripts/Items/Food/ItemCarrotGrilled@Name:
+Kızarmış havuç
+
+Scripts/Items/Food/ItemChiliBeans@Description:
+Bekarların esas yemeği.
+
+Scripts/Items/Food/ItemChiliBeans@Name:
+Meksika fasulyesi
+
+Scripts/Items/Food/ItemChiliPepper@NotificationSpicy:
+Ah! Bu çok acı!
+
+Scripts/Items/Food/ItemChiliPepper@Description:
+Bir çok yemeğe acılık ve lezzet katan popüler bir baharat.
+
+Scripts/Items/Food/ItemChiliPepper@Name:
+Kırmızı biber
+
+Scripts/Items/Food/ItemCoffeeBeans@NotificationEatingCoffeeBadIdea:
+Kahve çekirdeklerini çiğ yemek belki de çok parlak bir fikir değil..
+
+Scripts/Items/Food/ItemCoffeeBeans@Description:
+Galaksi üzerindeki en yaygın ve geleneksel içeceklerden birini hazırlamak için kullanılabilir.
+
+Scripts/Items/Food/ItemCoffeeBeans@Name:
+Kahve çekirdeği
+
+Scripts/Items/Food/ItemCoffeeBerries@Description:
+Doğrudan yenilebilir veya kahve çekirdeği yapmak için fırında kızartılabilir.
+
+Scripts/Items/Food/ItemCoffeeBerries@Name:
+Kahve böğürtleni
+
+Scripts/Items/Food/ItemCoffeeCup@Description:
+Bir fincan sıcak espresso. Şimdi aptalca şeyler yapmak için daha fazla enerjiye sahipsin.
+
+Scripts/Items/Food/ItemCoffeeCup@Name:
+Bir fincan kahve
+
+Scripts/Items/Food/ItemCorn@Description:
+Özellikle korku yazarları tarafından tercih edilen bir tahıl bitkisi.
+
+Scripts/Items/Food/ItemCorn@Name:
+Mısır
+
+Scripts/Items/Food/ItemCornGrilled@Description:
+Bu kızartılmış mısır bütün tatlılığı koruduğu gibi isli tatlar da ekliyor. Çok lezzetli!
+
+Scripts/Items/Food/ItemCornGrilled@Name:
+Kızarmış mısır
+
+Scripts/Items/Food/ItemCucumber@Description:
+Kedilerin korkulu rüyası sulu bir bitki.
+
+Scripts/Items/Food/ItemCucumber@Name:
+Salatalık
+
+Scripts/Items/Food/ItemCucumbersPickled@Description:
+Taze ve kütür kütür turşu.
+
+Scripts/Items/Food/ItemCucumbersPickled@Name:
+Salatalık turşusu
+
+Scripts/Items/Food/ItemDrinkEnergy@Description:
+Gezegendeki en popüler enerji içeceği. Ciddi bir enerji artışı sağlar.
+
+Scripts/Items/Food/ItemDrinkEnergy@Name:
+Enerji içeceği
+
+Scripts/Items/Food/ItemDrinkHerbal@Description:
+Bitkilerden yapılan popüler bir içecek. Sağlığın için faydalı ve vücudunu toksinlerden arındırmak için iyi olmalı.
+
+Scripts/Items/Food/ItemDrinkHerbal@Name:
+Bitkisel içecek
+
+Scripts/Items/Food/ItemDrinkSoft@Description:
+Alkolsüz içki yedi asırdan beri sektörün en popüleri seçiliyor.
+
+Scripts/Items/Food/ItemDrinkSoft@Name:
+Alkolsüz içki
+
+Scripts/Items/Food/ItemDurian@Description:
+İnsanlar bu tropik meyveyi ya çok seviyor ya da nefret ediyor ancak kesinlikle kendine has bir tadı ve kokusu olduğunu inkar edemezsin.
+
+Scripts/Items/Food/ItemDurian@Name:
+Durian
+
+Scripts/Items/Food/ItemEggsBoiled@Description:
+Haşlanmış yumurta. Haşlamak kızartmaktan daha sağlıklı!
+
+Scripts/Items/Food/ItemEggsBoiled@Name:
+Haşlanmış yumurta
+
+Scripts/Items/Food/ItemEggsFried@Description:
+Kızarmış yumurta. Sarısı üst tarafta.
+
+Scripts/Items/Food/ItemEggsFried@Name:
+Kızarmış yumurta
+
+Scripts/Items/Food/ItemEggsRaw@Description:
+Kızarmış ya da haşlanmış, ne olursa olsun lezzetli. Çiğ olarak yemek gıda zehirlenmesine yol açabilir.
+
+Scripts/Items/Food/ItemEggsRaw@Name:
+Hayvan yumurtası
+
+Scripts/Items/Food/ItemInsectMeatFried@Description:
+Bu eti pişirmek onu biraz daha az iğrenç kıldı... Ama yemeye karar verirsen kusmaya hazır ol.
+
+Scripts/Items/Food/ItemInsectMeatFried@Name:
+Kızarmış böcek eti
+
+Scripts/Items/Food/ItemInsectMeatRaw@Description:
+İğrenç böcek eti. Belki pişirmek onu biraz daha az iğrenç kılar.
+
+Scripts/Items/Food/ItemInsectMeatRaw@Name:
+Çiğ böcek eti
+
+Scripts/Items/Food/ItemJamBerries@Description:
+Böğürtlenden yapılan lezzetli bir reçel.
+
+Scripts/Items/Food/ItemJamBerries@Name:
+Böğürtlen reçeli
+
+Scripts/Items/Food/ItemLiquor@Description:
+Yakut renginde güzel bir likör. İçindeki yüksek alkole rağmen içimi kolaydır.
+
+Scripts/Items/Food/ItemLiquor@Name:
+Likör
+
+Scripts/Items/Food/ItemMeatCharred@Description:
+Açık ateşte pişmiş et. Eti hazırlamak için en iyi yol değil ama çiğ yemekten iyidir.
+
+Scripts/Items/Food/ItemMeatCharred@Name:
+Alazlanmış et
+
+Scripts/Items/Food/ItemMeatJerky@Description:
+Kurutulmuş et. Lezzetli ama seni susatabilir. Bozulmadan uzun süre saklanabilir.
+
+Scripts/Items/Food/ItemMeatJerky@Name:
+Kurutulmuş et
+
+Scripts/Items/Food/ItemMeatRaw@Description:
+Çiğ et. Çeşitli şekillerde hazırlanabilir. Çiğ yemek muhtemelen çok iyi bir fikir değil..
+
+Scripts/Items/Food/ItemMeatRaw@Name:
+Çiğ et
+
+Scripts/Items/Food/ItemMeatRoasted@Description:
+Maydanozla birlikte servis edilen kızarmış et. Maydanoz nereden geliyor acaba? Kimse bilmiyor!
+
+Scripts/Items/Food/ItemMeatRoasted@Name:
+Kızarmış et
+
+Scripts/Items/Food/ItemMREImprovised@Description:
+Bu yemek bir kaç basit malzeme ve koruyucu madde olarak olarak kullanılan tuzla hazırlanır. Bozulmadan uzun süre saklanabilir.
+
+Scripts/Items/Food/ItemMREImprovised@Name:
+El yapımı hazır öğün
+
+Scripts/Items/Food/ItemMushroomPennyBun@Description:
+Yenilebilir mantar. Çiğ olarak tüketilebilir fakat pişirildiğinde veya yahniye eklendiğinde çok daha lezzetli olur.
+
+Scripts/Items/Food/ItemMushroomPennyBun@Name:
+Çörek mantarı
+
+Scripts/Items/Food/ItemMushroomPink@Description:
+Son derece zehirli bir mantar. İçindeki toksinlerden dolayı geceleri parlar.
+
+Scripts/Items/Food/ItemMushroomPink@Name:
+Pembe mantar
+
+Scripts/Items/Food/ItemMushroomRust@Description:
+Bu mantarlara koyu renginden dolayı pas mantarı denir. Pişirildiğinde oldukça lezzetlidir çiğ tüketildiğinde zehirlidir.
+
+Scripts/Items/Food/ItemMushroomRust@Name:
+Pas mantarı
+
+Scripts/Items/Food/ItemOgurin@Description:
+Tuhaf görünümlü ogurin meyveleri...oldukça lezzetli. Salatalığın genetiği değiştirilerek üretilmiştir.
+
+Scripts/Items/Food/ItemOgurin@Name:
+Ogurin meyvesi
+
+Scripts/Items/Food/ItemPieBerry@Description:
+Ağız sulandıran böğürtlen turtası. Tıpkı eskiden büyükannenizin hazırladığı gibi.
+
+Scripts/Items/Food/ItemPieBerry@Name:
+Böğürtlen turtası
+
+Scripts/Items/Food/ItemPineapple@Description:
+Tatlı ve acı tropik meyve. Çiğ yenebilir veya bazı yemeklerde kullanılabilir. Bazıları pizzaya bile yakıştığını düşünüyor.
+
+Scripts/Items/Food/ItemPineapple@Name:
+Ananas
+
+Scripts/Items/Food/ItemRoastedMushrooms@Description:
+Lezzetli kızarmış mantar
+
+Scripts/Items/Food/ItemRoastedMushrooms@Name:
+Kızarmış mantar
+
+Scripts/Items/Food/ItemSaladFruit@Description:
+Karışık meyve salatası. Tatlı, sağlıklı ve doyurucu!
+
+Scripts/Items/Food/ItemSaladFruit@Name:
+Meyve salatası
+
+Scripts/Items/Food/ItemSaladVegetable@Description:
+Karışık sebze salatası. Çok sağlıklı ve şaşırtıcı şekilde doyurucu!
+
+Scripts/Items/Food/ItemSaladVegetable@Name:
+Sebze salatası
+
+Scripts/Items/Food/ItemSandwich@Description:
+Yumuşak bir ekmek, sulu bir et ve sebzelerle birlikte tam bir klasik!
+
+Scripts/Items/Food/ItemSandwich@Name:
+Sandviç
+
+Scripts/Items/Food/ItemStew@Description:
+Mantar ve etle hazırlanan lezzetli bir yahni.
+
+Scripts/Items/Food/ItemStew@Name:
+Mantarlı ve etli yahni
+
+Scripts/Items/Food/ItemSugar@Description:
+Beyaz ve lezzetli. Çeşitli yemeklerde kullanılabilir. Çiğ yemek mümkün fakat çok iyi bir fikir değil.
+
+Scripts/Items/Food/ItemSugar@Name:
+Şeker
+
+Scripts/Items/Food/ItemTequila@Description:
+Çölde bulunan bitkilerden damıtılan güzel bir likör.
+
+Scripts/Items/Food/ItemTequila@Name:
+Tekila
+
+Scripts/Items/Food/ItemTincture@Description:
+Bu bitkisel tentürün, sağlığı artırmak da dahil birçok olumlu etkisi var.
+
+Scripts/Items/Food/ItemTincture@Name:
+Tentür
+
+Scripts/Items/Food/ItemTomato@Description:
+Domatesin aslında bir sebze değil de meyve olduğunu biliyor muydun?
+
+Scripts/Items/Food/ItemTomato@Name:
+Domates
+
+Scripts/Items/Food/ItemVodka@Description:
+Tanrıların ateşli sıvısı. Sorumsuzca kullanmanın sonuçları olur,  çok fazla içmeyin. Aynı zamanda seni sustacaktır ve hayır, radyasyona karşı koruma sağlamıyor.
+
+Scripts/Items/Food/ItemVodka@Name:
+Votka
+
+Scripts/Items/Food/ItemWaterbulb@Description:
+Su soğanı meyvesi. İçinde saf içme suyu var.
+
+Scripts/Items/Food/ItemWaterbulb@Name:
+Su soğanı meyvesi
+
+Scripts/Items/Food/ItemWine@Description:
+En iyi üzümlerden üretilen görkemli bir meyve nektarı. Seçkin bir tat ve aroma.
+
+Scripts/Items/Food/ItemWine@Name:
+Şarap
+
+Scripts/Items/Food/ItemYucca@Description:
+Çölde hayatta kalmanın meyvesi. Önce pişirilmesi gereklidir.
+
+Scripts/Items/Food/ItemYucca@Name:
+Yuka
+
+Scripts/Items/Food/ItemYuccaCharred@Description:
+Bu bitki gerektiğinde seni açlıktan ölmekten kurtaracak.
+
+Scripts/Items/Food/ItemYuccaCharred@Name:
+Alazlanmış yuka
+
+Scripts/Items/Food/ItemYuccaFried@Description:
+İyi pişmiş yuka meyvesi. Birinci sınıf bir yemek sayılmaz ama tadı güzel ve gerekli besleyiciliğe sahip.
+
+Scripts/Items/Food/ItemYuccaFried@Name:
+Kızarmış yuka
+
+Scripts/Items/Generic/ItemAcidNitric@Description:
+Bir şişe nitrik asit .
+
+Scripts/Items/Generic/ItemAcidNitric@Name:
+Nitrik asit
+
+Scripts/Items/Generic/ItemAcidSulfuric@Description:
+Bir şişe sülfürik asit.
+
+Scripts/Items/Generic/ItemAcidSulfuric@Name:
+Sülfürik asit
+
+Scripts/Items/Generic/ItemAnimalFat@Description:
+Hayvanlardan çıkarılan yağ. Yemek pişirmede veya endüstride yararlı olabilir.
+
+Scripts/Items/Generic/ItemAnimalFat@Name:
+Hayvan yağı
+
+Scripts/Items/Generic/ItemAramidFiber@Description:
+Yüksek esneklik katsayısına sahip güçlü sentetik bir lif. Zırh yapımında veya farklı amaçlarla kullanılabilir.
+
+Scripts/Items/Generic/ItemAramidFiber@Name:
+Aramit lifi
+
+Scripts/Items/Generic/ItemAsh@Description:
+Odun yaktıktan sonra arta kalan kül.
+
+Scripts/Items/Generic/ItemAsh@Name:
+Kül
+
+Scripts/Items/Generic/ItemBallisticPlate@Description:
+Bir çok konvansiyonel veya egzotik silahı durdurmak amacıyla tasarlanmış neredeyse delinemez alaşım plaka.
+
+Scripts/Items/Generic/ItemBallisticPlate@Name:
+Balistik plaka
+
+Scripts/Items/Generic/ItemBatteryDisposable@Description:
+Tek kullanımlık basit bir pil. Çok fazla enerji depolamaz fakat üretmesi kolay ve ucuzdur. Elektronik cihazları ve güç kaynaklarını şarj etmek için kullanılabilir.
+
+Scripts/Items/Generic/ItemBatteryDisposable@Name:
+Tek kullanımlık pil
+
+Scripts/Items/Generic/ItemBatteryHeavyDuty@Description:
+Uzun ömürlü tek kullanımlık pil. Küçük pillerden daha fazla enerji tutar. Elektronik cihazları veya güç kaynaklarını daha hızlı şarj etmek için kullanılabilir.
+
+Scripts/Items/Generic/ItemBatteryHeavyDuty@Name:
+Uzun ömürlü pil
+
+Scripts/Items/Generic/ItemBlackpowder@Description:
+Siyah barut olarak da bilinen normal barut. Basit malzemelerden kolayca üretilebilir.
+
+Scripts/Items/Generic/ItemBlackpowder@Name:
+Siyah barut
+
+Scripts/Items/Generic/ItemBones@Description:
+Hayvan kemikleri.
+
+Scripts/Items/Generic/ItemBones@Name:
+Kemik
+
+Scripts/Items/Generic/ItemBottleEmpty@Description:
+Boş bir şişe. Biraz su depolamak için kullanılabilir.
+
+Scripts/Items/Generic/ItemBottleEmpty@Name:
+Boş şişe
+
+Scripts/Items/Generic/ItemBricks@Description:
+Binalar ve duvarlar için yapı malzemesi.
+
+Scripts/Items/Generic/ItemBricks@Name:
+Tuğla
+
+Scripts/Items/Generic/ItemCampFuel@Description:
+Bu tip yakıtları kullanan ışık kaynaklarını doldurmak için kullanılan, lamba yağı olarak da bilinen kamp yakıtı.
+
+Scripts/Items/Generic/ItemCampFuel@Name:
+Kamp yakıtı
+
+Scripts/Items/Generic/ItemCanEmpty@Description:
+Boş konserve kutuları farklı türden konserve yiyecek ve içecekler hazırlamak için kullanılabilir.
+
+Scripts/Items/Generic/ItemCanEmpty@Name:
+Boş konserveler
+
+Scripts/Items/Generic/ItemCanisterEmpty@Description:
+Boş metal bidon. Uçucu sıvıları saklamak için kullanılabilir.
+
+Scripts/Items/Generic/ItemCanisterEmpty@Name:
+Boş bidon
+
+Scripts/Items/Generic/ItemCanisterGasoline@Description:
+Benzin için bidon.
+
+Scripts/Items/Generic/ItemCanisterGasoline@Name:
+Benzin bidonu
+
+Scripts/Items/Generic/ItemCanisterMineralOil@Description:
+Mineral yağı ile dolu bidon.
+
+Scripts/Items/Generic/ItemCanisterMineralOil@Name:
+Mineral yağı bidonu
+
+Scripts/Items/Generic/ItemCanisterPetroleum@Description:
+Ham petrol ile dolu bidon. Petrol rafine edilerek diğer bileşenlere dönüştürülebilir.
+
+Scripts/Items/Generic/ItemCanisterPetroleum@Name:
+Petrol bidonu
+
+Scripts/Items/Generic/ItemCement@Description:
+Yapılarda bağlayıcı madde olarak kullanılabilen kuru çimento karışımı.
+
+Scripts/Items/Generic/ItemCement@Name:
+Kuru çimento karışımı
+
+Scripts/Items/Generic/ItemCharcoal@Description:
+Odun ateşinin yan ürünü olarak ortaya çıkan kömür. Kendisi yakıt olarak kullanılabilir.
+
+Scripts/Items/Generic/ItemCharcoal@Name:
+Odun kömürü
+
+Scripts/Items/Generic/ItemClay@Description:
+Doğal yollarla ortaya çıkan ve yapılarda kullanılan kil.
+
+Scripts/Items/Generic/ItemClay@Name:
+Kil
+
+Scripts/Items/Generic/ItemCoal@Description:
+Yerden veya kömür yataklarından çıkarılan kömür. Yakıt olarak iyi iş görür.
+
+Scripts/Items/Generic/ItemCoal@Name:
+Kömür
+
+Scripts/Items/Generic/ItemCoinPenny@Description:
+Düşük değerli madeni para. Bu madeni parayı doğrudan diğer oyuncularla takas edebilir veya takas makinelerindeki ucuz ürünleri almak için kullanabilirsin.
+
+Scripts/Items/Generic/ItemCoinPenny@Name:
+Madeni para
+
+Scripts/Items/Generic/ItemCoinShiny@Description:
+Yüksek değerli madeni para.  Bu madeni parayı doğrudan diğer oyuncularla takas edebilir veya takas makinelerindeki pahalı ürünleri almak için kullanabilirsin.
+
+Scripts/Items/Generic/ItemCoinShiny@Name:
+Parlak madeni para
+
+Scripts/Items/Generic/ItemComponentsElectronic@Description:
+Çeşitli elektronik cihazların üretimini için gerekli olan elektronik parçalar. Terk edilmiş bilim binalarında kolayca bulunabilir.
+
+Scripts/Items/Generic/ItemComponentsElectronic@Name:
+Elektronik parçalar
+
+Scripts/Items/Generic/ItemComponentsHighTech@Description:
+Karmaşık cihazların yapımında kullanılan yüksek teknolojili elektronik parçalar.
+
+Scripts/Items/Generic/ItemComponentsHighTech@Name:
+Yüksek teknolojili parçalar
+
+Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Description:
+Endüstride kullanılan farklı kimyasal maddeler.
+
+Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Name:
+Endüstriyel kimyasallar
+
+Scripts/Items/Generic/ItemComponentsMechanical@Description:
+Karmaşık mekanik yapıların montajında kullanılan mekanik parçalar.
+
+Scripts/Items/Generic/ItemComponentsMechanical@Name:
+Mekanik parçalar
+
+Scripts/Items/Generic/ItemComponentsOptical@Description:
+Çok çeşitli endüstriyel ve askeri kullanıma sahip gelişmiş optik parçalar.
+
+Scripts/Items/Generic/ItemComponentsOptical@Name:
+Optik parçalar
+
+Scripts/Items/Generic/ItemComponentsPharmaceutical@Description:
+Bir çok farklı ilacın yapımında kullanılan ilaç kimyasalları.
+
+Scripts/Items/Generic/ItemComponentsPharmaceutical@Name:
+İlaç kimyasalları
+
+Scripts/Items/Generic/ItemComponentsWeapon@Description:
+Gelişmiş ateşli silahların yapımında kullanılan silah parçaları.
+
+Scripts/Items/Generic/ItemComponentsWeapon@Name:
+Silah parçaları
+
+Scripts/Items/Generic/ItemDuctTape@Description:
+Ekstra güçlü yapıştırıcı bileşime ve güçlendirilmiş alaşımdan dış katmana sahip özel bir bant.
+
+Scripts/Items/Generic/ItemDuctTape@Name:
+Selo bant
+
+Scripts/Items/Generic/ItemExplosives@Description:
+Patlayıcı cihazların yapımında kullanılan yüksek patlayıcılığa sahip materyal.
+
+Scripts/Items/Generic/ItemExplosives@Name:
+Patlayıcılar
+
+Scripts/Items/Generic/ItemFertilizer@ShortDescriptionText:
+`Büyüme hızını {0}% artırır
+[br]Verimi artırır`
+
+Scripts/Items/Generic/ItemFertilizer@Description:
+Bitkilerin büyüme hızını önemli ölçüde yükseltir ve tek bir bitkiden alınan ürün miktarını artırır.
+
+Scripts/Items/Generic/ItemFertilizer@Name:
+Gübre
+
+Scripts/Items/Generic/ItemFibers@Description:
+Doğal veya sentetik lifler. Halat veya iplik oluşturmak için kullanılır. Çim veya benzer bitkilerin toplanmasıyla oluşturulabilir.
+
+Scripts/Items/Generic/ItemFibers@Name:
+Lif
+
+Scripts/Items/Generic/ItemFirelog@Description:
+Özel olarak üretilmiş yapay kütükler. Doğal kütüklerden daha uzun süre yanarlar.
+
+Scripts/Items/Generic/ItemFirelog@Name:
+Ateş kütüğü
+
+Scripts/Items/Generic/ItemFlowerBlueSage@Description:
+Görünüşü çok güzel ve bazı ilaçların yapımı için oldukça kullanışlı.
+
+Scripts/Items/Generic/ItemFlowerBlueSage@Name:
+Mavi ada çayı
+
+Scripts/Items/Generic/ItemFlowerOni@Description:
+Kırmızı oni çiçeği. Adını kırmızı şeytandan aldı.
+
+Scripts/Items/Generic/ItemFlowerOni@Name:
+Oni çiçeği
+
+Scripts/Items/Generic/ItemFluxPowder@Description:
+Yüksek kalite metallerin üretilmesi için kullanılan eritme tozu.
+
+Scripts/Items/Generic/ItemFluxPowder@Name:
+Eritme tozu
+
+Scripts/Items/Generic/ItemFoodRotten@Description:
+Bu yiyecek tamamen bozulmuş.
+
+Scripts/Items/Generic/ItemFoodRotten@Name:
+Çürümüş yiyecek
+
+Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
+Yüksek performanslı silahlar için özel olarak üretilmiş ve şekillendirilmiş nitroselüloz tanecikler.
+
+Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
+Formüle barut
+
+Scripts/Items/Generic/ItemFur@Description:
+Kürk. Sıcak tutan kış kıyafetlerinin yapımında kullanılabilir.
+
+Scripts/Items/Generic/ItemFur@Name:
+Kürk
+
+Scripts/Items/Generic/ItemGemDiamond@Description:
+Parlak beyaz elmas!
+
+Scripts/Items/Generic/ItemGemDiamond@Name:
+Elmas
+
+Scripts/Items/Generic/ItemGemEmerald@Description:
+Parlak yeşil zümrüt!
+
+Scripts/Items/Generic/ItemGemEmerald@Name:
+Zümrüt
+
+Scripts/Items/Generic/ItemGemRuby@Description:
+Parlak kırmızı yakut!
+
+Scripts/Items/Generic/ItemGemRuby@Name:
+Yakut
+
+Scripts/Items/Generic/ItemGemSapphire@Description:
+Parlak mavi safir!
+
+Scripts/Items/Generic/ItemGemSapphire@Name:
+Safir
+
+Scripts/Items/Generic/ItemGemTopaz@Description:
+Parlak sarı topaz!
+
+Scripts/Items/Generic/ItemGemTopaz@Name:
+Topaz
+
+Scripts/Items/Generic/ItemGemTourmaline @Description:
+Parlak mor turmalin!
+
+Scripts/Items/Generic/ItemGemTourmaline @Name:
+Turmalin
+
+Scripts/Items/Generic/ItemGlassRaw@Description:
+Ham cam, şişe gibi bir çok cam eşyayı oluşturmak için kullanılabilir.
+
+Scripts/Items/Generic/ItemGlassRaw@Name:
+Ham cam
+
+Scripts/Items/Generic/ItemGlue@Description:
+Tutkal birçok eşyayı oluşturmak için kullanılabilir.
+
+Scripts/Items/Generic/ItemGlue@Name:
+Tutkal
+
+Scripts/Items/Generic/ItemGoldNugget@Description:
+Arıtılmamış küçük altın külçeleri.
+
+Scripts/Items/Generic/ItemGoldNugget@Name:
+Altın külçeleri
+
+Scripts/Items/Generic/ItemHygroscopicGranules@Description:
+Toprağı bütünleyici özel higroskopik tanecikler. Bu tanecikler havadaki nemi çekerek bitkinin suya olan ihtiyacını ortadan kaldırır.
+
+Scripts/Items/Generic/ItemHygroscopicGranules@Name:
+Higroskopik tanecikler
+
+Scripts/Items/Generic/ItemIngotCopper@Description:
+Saf bakır külçeler. Bakır külçelerin endüstriden elektroniğe kadar geniş bir kullanım alanı vardır.
+
+Scripts/Items/Generic/ItemIngotCopper@Name:
+Bakır külçe
+
+Scripts/Items/Generic/ItemIngotGold@Description:
+Saf küçük altın külçesi.
+
+Scripts/Items/Generic/ItemIngotGold@Name:
+Altın külçe
+
+Scripts/Items/Generic/ItemIngotIron@Description:
+Görece düşük karbon içeren demir külçeleri.
+
+Scripts/Items/Generic/ItemIngotIron@Name:
+Demir külçe
+
+Scripts/Items/Generic/ItemIngotLithium@Description:
+Saf lityum metali. Normalde yağla kaplanarak veya vakumlu kaplarda saklanır.
+
+Scripts/Items/Generic/ItemIngotLithium@Name:
+Lityum külçe
+
+Scripts/Items/Generic/ItemIngotSteel@Description:
+Yüksek miktarda karbon içeren endüstriyel çelik.
+
+Scripts/Items/Generic/ItemIngotSteel@Name:
+Çelik külçe
+
+Scripts/Items/Generic/ItemLeaf@Description:
+Yaprak... Muhtemelen bir ağaçtan geldi.
+
+Scripts/Items/Generic/ItemLeaf@Name:
+Yaprak
+
+Scripts/Items/Generic/ItemLeather@Description:
+Hayvan derisi. Zırh yapımı için kullanışlı olabilir.
+
+Scripts/Items/Generic/ItemLeather@Name:
+Deri
+
+Scripts/Items/Generic/ItemLogs@Description:
+Yapı malzemesi olarak çok kullanışlı. Aynı zamanda barbekü için de..
+
+Scripts/Items/Generic/ItemLogs@Name:
+Ahşap kütükler
+
+Scripts/Items/Generic/ItemMulch@ShortDescriptionText:
+Büyüme hızını {0}% artırır
+
+Scripts/Items/Generic/ItemMulch@Description:
+Malç aslında çürümüş organik materyalden meydana gelir. Doğal gübre olarak harika iş görür.
+
+Scripts/Items/Generic/ItemMulch@Name:
+Malç
+
+Scripts/Items/Generic/ItemNitrocellulosePowder@Description:
+Dumansız barut olarak da bilinen nitroselüloz. Bütün modern silahlar siyah barut yerine bunu kullanır.
+
+Scripts/Items/Generic/ItemNitrocellulosePowder@Name:
+Nitroselüloz barut
+
+Scripts/Items/Generic/ItemOilpod@Description:
+Özel olarak genetiği değiştirilmiş bir bitkinin yenmeyen meyvesi. Yüksek oranda konsantre petrol ürünleri ve türevlerini içerir.
+
+Scripts/Items/Generic/ItemOilpod@Name:
+Oilpod meyvesi
+
+Scripts/Items/Generic/ItemOreCopper@Description:
+Eritilerek saf bakır elde edilebilir.
+
+Scripts/Items/Generic/ItemOreCopper@Name:
+Bakır cevheri
+
+Scripts/Items/Generic/ItemOreIron@Description:
+Eritilerek saf demir elde edilebilir.
+
+Scripts/Items/Generic/ItemOreIron@Name:
+Demir cevheri
+
+Scripts/Items/Generic/ItemOreLithium@Description:
+Lityum tuzları jeotermal kaynaklardan çıkarılabilir ve saf lityum metali elde etmek için işlenebilir.
+
+Scripts/Items/Generic/ItemOreLithium@Name:
+Lityum tuzları
+
+Scripts/Items/Generic/ItemOrePragmium@Description:
+Çok aranan bir mineral. Benzerlerinde bulunmayan bir çok özelliği bir araya getirir. Pragmium yüksek teknolojili ekipmanların yapımında kullanılmasının yanı sıra güç kaynağı olarak da işe yarar.
+
+Scripts/Items/Generic/ItemOrePragmium@Name:
+Pragmiyum
+
+Scripts/Items/Generic/ItemPaper@Description:
+Kâğıt birçok kullanımı olan çok yönlü bir malzemedir ve odundan kolaylıkla elde edilebilir.
+
+Scripts/Items/Generic/ItemPaper@Name:
+Kağıt
+
+Scripts/Items/Generic/ItemPasta@Description:
+Birçok lezzetli yemeğin temeli!
+
+Scripts/Items/Generic/ItemPasta@Name:
+Pişmemiş makarna
+
+Scripts/Items/Generic/ItemPlanks@Description:
+Çoğunlukla yapı malzemesi olarak kullanılır. Aynı zamanda yakıt olarak da kullanılabilir.
+
+Scripts/Items/Generic/ItemPlanks@Name:
+Ahşap kalaslar
+
+Scripts/Items/Generic/ItemPlastic@Description:
+Ham plastik. Endüstride kullanılabilir.
+
+Scripts/Items/Generic/ItemPlastic@Name:
+Plastik
+
+Scripts/Items/Generic/ItemPotassiumNitrate@Description:
+Güherçile olarak da bilinen potasyum nitrat. Barut ve diğer birçok eşyanın yapımında kullanılabilir.
+
+Scripts/Items/Generic/ItemPotassiumNitrate@Name:
+Potasyum nitrat
+
+Scripts/Items/Generic/ItemPowerCell@Description:
+Birçok elektronik cihazda güç depolamak için kullanılan çok amaçlı güç bataryası. Kendi başına kullanılamaz.
+
+Scripts/Items/Generic/ItemPowerCell@Name:
+Güç bataryası
+
+Scripts/Items/Generic/ItemPreservative@Description:
+Gıda koruyucu. Paketlenmiş yiyeceklere eklenebilir, çok daha uzun süre dayanmalarını sağlar.
+
+Scripts/Items/Generic/ItemPreservative@Name:
+Koruyucu
+
+Scripts/Items/Generic/ItemRope@Description:
+Yalnızca normal halat. Çeşitli şekillerde kullanılabilir. Artan halatı yakabilirsin.
+
+Scripts/Items/Generic/ItemRope@Name:
+Halat
+
+Scripts/Items/Generic/ItemRubberRaw@Description:
+Lateks reçinesi olarak da bilinen doğal lastik. Kauçuk ağaçlarından çıkartılır. Kimyasal olarak sertleştirilmiş lastiğe dönüştürülebilir.
+
+Scripts/Items/Generic/ItemRubberRaw@Name:
+Doğal lastik
+
+Scripts/Items/Generic/ItemRubberVulcanized@Description:
+Sertleştirilmiş lastik. Yalıtkan olarak veya diğer su geçirmez maddelerin yapımı için idealdir.
+
+Scripts/Items/Generic/ItemRubberVulcanized@Name:
+Lastik
+
+Scripts/Items/Generic/ItemSalt@Description:
+Normal sofra tuzu... Yemeklerin yapımında kullanılabilir. Kimyagerler onu NaCl olarak tanır. Çok çeşitli kullanım alanına sahiptir.
+
+Scripts/Items/Generic/ItemSalt@Name:
+Tuz
+
+Scripts/Items/Generic/ItemSand@Description:
+Kum, cam yapımında veya yapı malzemesi olarak kullanılabilir.
+
+Scripts/Items/Generic/ItemSand@Name:
+Kum
+
+Scripts/Items/Generic/ItemSlime@Description:
+Yeşil balçık, muhtemelen bir yaratık tarafından bırakıldı.
+
+Scripts/Items/Generic/ItemSlime@Name:
+Balçık
+
+Scripts/Items/Generic/ItemSolarPanel@Description:
+Üretmesi pahalı ama çok uzun süre bakım gerekmeksizin elektrik sağlar.
+
+Scripts/Items/Generic/ItemSolarPanel@Name:
+Güneş paneli
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Description:
+Kırılan paneller yeni güneş panelleri üretmek için geri dönüştürülebilir.
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Name:
+Kırık güneş paneli
+
+Scripts/Items/Generic/ItemSolvent@Description:
+Özel olarak tasarlanmış uzay çağı solventi. Kutuplu ve kutupsuz solventlerin tüm özelliklerini barındırır.
+
+Scripts/Items/Generic/ItemSolvent@Name:
+Solvent
+
+Scripts/Items/Generic/ItemStone@Description:
+Taş... yuvarlak ve ağır. Yapı malzemesi olarak kullanışlıdır. Yerde bulunabilir veya kazılarak yüksek miktarda çıkarılabilir.
+
+Scripts/Items/Generic/ItemStone@Name:
+Taş
+
+Scripts/Items/Generic/ItemSulfurPowder@Description:
+Toz halinde saf kükürt.
+
+Scripts/Items/Generic/ItemSulfurPowder@Name:
+Kükürt tozu
+
+Scripts/Items/Generic/ItemTarpaulin@Description:
+Kalın dokuma kumaşı ve lastik dış tabakadan oluşan birleşik materyal.
+
+Scripts/Items/Generic/ItemTarpaulin@Name:
+Muşamba
+
+Scripts/Items/Generic/ItemThread@Description:
+İplik, kıyafet üretmek veya bir çok farklı amaç için kullanılabilir.
+
+Scripts/Items/Generic/ItemThread@Name:
+İplik
+
+Scripts/Items/Generic/ItemTobaccoAged@Description:
+Yıllanmış tütün yaprakları. Kaliteli purolar üretmek için kullanılabilir.
+
+Scripts/Items/Generic/ItemTobaccoAged@Name:
+Tütün (yıllanmış)
+
+Scripts/Items/Generic/ItemTobaccoDried@Description:
+Kurutulmuş tütün yaprakları. Kalitesiz purolar yapmak için kullanılabilir. Kaliteli purolar üretmek için bekletilmeleri gerekir.
+
+Scripts/Items/Generic/ItemTobaccoDried@Name:
+Tütün (kuru)
+
+Scripts/Items/Generic/ItemTobaccoRaw@Description:
+Taze tütün yaprakları ve kabukları. Kurutularak puro haline getirilebilir.
+
+Scripts/Items/Generic/ItemTobaccoRaw@Name:
+Tütün (taze)
+
+Scripts/Items/Generic/ItemToxin@Description:
+Kimyasal toksin. İçerisinde toksin bulunan mühimmatın veya bazı ilaçların yapımında kullanılabilir.
+
+Scripts/Items/Generic/ItemToxin@Name:
+Toksin
+
+Scripts/Items/Generic/ItemTreebark@Description:
+Ağaçlardan gelen kabuk. Ateşte yakılabilir veya farklı amaçlar için kullanılabilir.
+
+Scripts/Items/Generic/ItemTreebark@Name:
+Ağaç kabuğu
+
+Scripts/Items/Generic/ItemTwigs@Description:
+Yerden veya ağaçlardan toplanabilen dallar. Basit aletlerin yapımında kullanılabilir veya ateşte yakılabilir.
+
+Scripts/Items/Generic/ItemTwigs@Name:
+Dal
+
+Scripts/Items/Generic/ItemVialBiomaterial@Description:
+Biyomateryal şişesi. Sibernetikte ve ilaç yapımında kullanılır, özellikle implantların takılması ve çıkarılması sırasında oldukça kullanışlıdır.
+
+Scripts/Items/Generic/ItemVialBiomaterial@Name:
+Biyomateryal şişesi
+
+Scripts/Items/Generic/ItemVialEmpty@Description:
+Biyomateryal çıkarıcı ile birlikte kullanılmak üzere tasarlanmış boş şişe.
+
+Scripts/Items/Generic/ItemVialEmpty@Name:
+Boş biyomateryal şişesi
+
+Scripts/Items/Generic/ItemWheatFlour@Description:
+Birçok yemek ve pasta tarifini pişirmek için kullanılabilir.
+
+Scripts/Items/Generic/ItemWheatFlour@Name:
+Buğday unu
+
+Scripts/Items/Generic/ItemWheatGrains@Description:
+Buğday tarlasından toplanan tahıllar. Un yapmak için veya ekim için işlenebilir.
+
+Scripts/Items/Generic/ItemWheatGrains@Name:
+Buğday
+
+Scripts/Items/Generic/ItemWire@Description:
+Bir makara izole elektrik teli.
+
+Scripts/Items/Generic/ItemWire@Name:
+Tel
+
+Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
+Herhangi bir güç kaynağı kuşanılmadı
+
+Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoRechargingRequired:
+Yeniden doldurma gerekli değil
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@CannotApplyErrorTitle:
+Burası gübrelenemez
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationFertilizerAlreadyApplied:
+Zaten gübrelendi
+
+Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
+Bitki hasat edilmeye hazır. Daha fazla gübrelemenin bir yararı yok.
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
+Zaten sulandı
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
+Bitki hasat edilmeye hazır. Daha fazla sulamanın bir yararı yok.
+
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
+Buraya uygulanamaz
+
+Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
+Geceleri mükemmel görüş olanağı sunan, HDR destekli ışığa karşı yüksek duyarlılığı bulunan özel retina katmanı.
+
+Scripts/Items/Implants/ItemImplantArtificialRetina@Name:
+Yapay retina implantı
+
+Scripts/Items/Implants/ItemImplantArtificialStomach@Description:
+Güçlü bir mide zarını, daha etkili asitler ve zararlı maddeleri nötrleştiren veya parçalayan enzimlerle birleştirerek mideyi geliştirir. Bununla birlikte neredeyse bozulmuş olan yiyecekleri ve kirli suları hiçbir sorun olmadan tüketebilirsin.
+
+Scripts/Items/Implants/ItemImplantArtificialStomach@Name:
+Yapay mide implantı
+
+Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Description:
+Açlık pahasına doğal metabolizmayı kullanarak hücrelerde bulunan ATP içerisindeki enerjiyi elektrik enerjisine dönüştürür. Etki göstermesi için güç kaynağı kuşanılmalıdır.
+
+Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Name:
+ATP enerji çıkarıcı implantı
+
+Scripts/Items/Implants/ItemImplantBroken@Description:
+Vücudunda kırık implant parçaları bulunuyor. Bu senin için hiç iyi değil, bir an önce onları çıkarmalısın.
+
+Scripts/Items/Implants/ItemImplantBroken@Name:
+Kırık implant
+
+Scripts/Items/Implants/ItemImplantHealingGland@Description:
+Ek kök hücreleri üreterek ve kanın kimyasal bileşimini değiştirerek doğal yenilenmeyi artırır.
+
+Scripts/Items/Implants/ItemImplantHealingGland@Name:
+İyileştirici salgı implantı
+
+Scripts/Items/Implants/ItemImplantMetabolismModulator@Description:
+Metabolizmanın verimliliğini artırarak, vücudun kalori ve sıvı ihtiyacını azaltır.
+
+Scripts/Items/Implants/ItemImplantMetabolismModulator@Name:
+Metabolizma düzenleme implantı
+
+Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
+Önemli koruyucu özellikler sunan bu nanofiber implant, derinin üstüne yerleştirilebilir.
+
+Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
+Nanofiber deri implantı
+
+Scripts/Items/Medical/ItemAntiMutation@Description:
+Radyasyon sonucu hasar gören hücre DNA'sını korur ve yeniler. Vücuttaki istenmeyen mutasyonları durdurur.
+
+Scripts/Items/Medical/ItemAntiMutation@Name:
+Anti mutasyon ilacı
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Mutasyon yok
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+Vücutta kontrol dışı mutasyon saptanmadı.
+
+Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
+Bulantın yok. Bu ilacı şu anda kullanmanın bir yararı yok.
+
+Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Title:
+Bulantı yok
+
+Scripts/Items/Medical/ItemAntiNausea@Description:
+Bu ilaç, bulantı belirtilerini tamamen ortadan kaldırır.
+
+Scripts/Items/Medical/ItemAntiNausea@Name:
+Anti bulantı
+
+Scripts/Items/Medical/ItemAntiRadiation@NotificationNoRadiationPoisoning_Message:
+Radyasyon zehirlenmesi yaşamıyorsun. Bu ilacı şu anda kullanmanın bir yararı yok.
+
+Scripts/Items/Medical/ItemAntiRadiation@NotificationNoRadiationPoisoning_Title:
+Radyasyon zehirlenmesi yok
+
+Scripts/Items/Medical/ItemAntiRadiation@Description:
+Bu acil radyasyon tedavisi, vücutta biriken radyasyonun etkilerini hemen ortadan kaldırır.
+
+Scripts/Items/Medical/ItemAntiRadiation@Name:
+Anti radyasyon
+
+Scripts/Items/Medical/ItemAntiRadiationPreExposure@Description:
+Bu radyasyona karşı ön tedavi yöntemi, radyonüklidlerin vücutta birikmesi engeller ve iyonlaştırıcı radyasyonun etkilerini azaltır.
+
+Scripts/Items/Medical/ItemAntiRadiationPreExposure@Name:
+Radyasyon önleme desteği
+
+Scripts/Items/Medical/ItemAntiToxin@NotificationNoToxins_Message:
+Vücudunuzda herhangi bir toksin bulunmuyor. Bu ilacı şu anda kullanmanın bir yararı yok.
+
+Scripts/Items/Medical/ItemAntiToxin@NotificationNoToxins_Title:
+Toksin yok
+
+Scripts/Items/Medical/ItemAntiToxin@Description:
+Bu acil toksin tedavisi, vücutta biriken toksinlerin etkilerini hemen ortadan kaldırır.
+
+Scripts/Items/Medical/ItemAntiToxin@Name:
+Anti toksin
+
+Scripts/Items/Medical/ItemAntiToxinPreExposure@Description:
+Bu toksine karşı ön tedavi yöntemi, toksin emilimini önlemek, kan dolaşımına giren toksinler etkilerini azaltmak ve bağışıklık sistemini güçlendirmek için kullanılabilir.
+
+Scripts/Items/Medical/ItemAntiToxinPreExposure@Name:
+Toksin önleme desteği
+
+Scripts/Items/Medical/ItemBandage@Description:
+Bandajlar kanamaları durdurmak ve yaraları iyileştirmek için kullanılabilir.
+
+Scripts/Items/Medical/ItemBandage@Name:
+Bandaj
+
+Scripts/Items/Medical/ItemCigarCheap@Description:
+Kalitesiz ve hızlıca üretilmiş puro. Uyarıcı.
+
+Scripts/Items/Medical/ItemCigarCheap@Name:
+Kalitesiz puro
+
+Scripts/Items/Medical/ItemCigarNormal@Description:
+Aromalı düzgün bir puro. Uyarıcı.
+
+Scripts/Items/Medical/ItemCigarNormal@Name:
+Puro
+
+Scripts/Items/Medical/ItemCigarPremium@Description:
+Seçkin bir aroma ve tada sahip bir puro. Uyarıcı.
+
+Scripts/Items/Medical/ItemCigarPremium@Name:
+Yüksek kalite puro
+
+Scripts/Items/Medical/ItemEnergyTablets@Description:
+Yorgunluktan çabucak kurtulmak için basit bir ilaç.
+
+Scripts/Items/Medical/ItemEnergyTablets@Name:
+Enerji tabletleri
+
+Scripts/Items/Medical/ItemHeatPreExposure@Description:
+Isıya dayanıklı jel, sıcaklık geçişini önler ve radyasyon ısısını yansıtır böylece yüksek sıcaklıktaki bölgelere kısa bir süre için girmeni sağlar.
+
+Scripts/Items/Medical/ItemHeatPreExposure@Name:
+Isıya dayanıklı jel
+
+Scripts/Items/Medical/ItemHemostatic@NotificationNoBleeding_Message:
+Kanaman yok. Şu anda hemostatik ilaç kullanmanın bir yararı yok.
+
+Scripts/Items/Medical/ItemHemostatic@NotificationNoBleeding_Title:
+Kanama yok
+
+Scripts/Items/Medical/ItemHemostatic@Description:
+Hemostatik, kanamaları durdurmak ve etki süresi boyunca oluşacak diğer kanamaları kısmen de olsa engellemek için kullanılabilir.
+
+Scripts/Items/Medical/ItemHemostatic@Name:
+Hemostatik
+
+Scripts/Items/Medical/ItemHerbGreen@Description:
+Benzersiz iyileştirici ve antibakteriyel özelliklere sahip şifalı bitki. Olduğu gibi kullanılabilir fakat uygun bir şekilde hazırlandığında çok daha etkili bir hale gelir.
+
+Scripts/Items/Medical/ItemHerbGreen@Name:
+Yeşil bitki
+
+Scripts/Items/Medical/ItemHerbPurple@Description:
+Vücudun toksinlerden ve diğer doğal olmayan maddelerden kurtulmasına yardımcı olan şifalı bitki. Olduğu gibi kullanılabilir fakat uygun bir şekilde hazırladığında çok daha etkili bir hale gelir.
+
+Scripts/Items/Medical/ItemHerbPurple@Name:
+Mor bitki
+
+Scripts/Items/Medical/ItemHerbRed@Description:
+Güçlü bir uyarıcı etkisi olan şifalı bitki. İçerdiği toksinlerden dolayı çiğ olarak tüketilmemelidir.
+
+Scripts/Items/Medical/ItemHerbRed@Name:
+Kırmızı bitki
+
+Scripts/Items/Medical/ItemMedkit@Description:
+Tüm malzemeleri bir araya toplayan sağlık çantası. Sağlığı zamanla yeniler, bulantıyı ve kanamayı durdurur hatta kırık kemikler için bir atel içerir.
+
+Scripts/Items/Medical/ItemMedkit@Name:
+Sağlık çantası
+
+Scripts/Items/Medical/ItemNeuralEnhancer@NotificationNeuralEnhancer_Message:
+{0} EP kazandınız.
+
+Scripts/Items/Medical/ItemNeuralEnhancer@NotificationNeuralEnhancer_Title:
+Nöral güçlendirici
+
+Scripts/Items/Medical/ItemNeuralEnhancer@Description:
+Önceden programlanmış nanomakineler içeren tek kullanımlık nöral güçlendirici.  Beyindeki sinirsel bağlantıları yapay olarak geliştirerek düşüncelerin karmaşıklığını arttırır. Kullanım anında Eğitim Puanları verir.
+
+Scripts/Items/Medical/ItemNeuralEnhancer@Name:
+Nöral güçlendirici
+
+Scripts/Items/Medical/ItemPainkiller@Description:
+Ağrı kesici, ağrıları tamamen ortadan kaldırır ve etki süresi boyunca oluşabilecek ağrıları engeller.
+
+Scripts/Items/Medical/ItemPainkiller@Name:
+Ağrı kesici
+
+Scripts/Items/Medical/ItemPeredozin@NotificationNoMedicineOveruse_Message:
+Aşırı ilaç kullanımı belirtileri göstermiyorsun. Şu anda Peredozin kullanmanın bir yararı yok.
+
+Scripts/Items/Medical/ItemPeredozin@NotificationNoMedicineOveruse_Title:
+Aşırı ilaç kullanımı yok
+
+Scripts/Items/Medical/ItemPeredozin@NotificationRemovePants_Message:
+Bu rektal bir ilaç. Önce pantolonunu çıkarmalısın!
+
+Scripts/Items/Medical/ItemPeredozin@NotificationRemovePants_Title:
+Pantolon yolunu tıkıyor!
+
+Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Message:
+Yakın zamanda zaten Peredozin kullandın, bir sonraki sığmayabilir...
+
+Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Title:
+Çok fazla!
+
+Scripts/Items/Medical/ItemPeredozin@Description:
+Peredozin, sık ilaç kullanımının olumsuz etkilerini hafifletmeye yardımcı olur. Yalnızca rektal olarak kullanılabilir.
+
+Scripts/Items/Medical/ItemPeredozin@Name:
+Peredozin
+
+Scripts/Items/Medical/ItemPsiPreExposure@Description:
+Psi alanına maruz kalmaktan kaynaklanan nöral hasarı hafifletmeye yardımcı olan nöro değiştirici kimyasal.
+
+Scripts/Items/Medical/ItemPsiPreExposure@Name:
+Psi engelleyici
+
+Scripts/Items/Medical/ItemRemedyHerbal@Description:
+Ev yapımı bitkisel ilaç. Etki süresince sağlığı yeniler ve bulantıyı giderir. Herhangi bir yan etkisi yoktur.
+
+Scripts/Items/Medical/ItemRemedyHerbal@Name:
+Bitkisel ilaç
+
+Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
+Kırık bir kemiğin yok. Şu anda atel kullanmanın bir yararı yok.
+
+Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Title:
+Kırık kemik yok
+
+Scripts/Items/Medical/ItemSplint@Description:
+Atel, kırık bir kemiği sabitlemek ve iyileştirmek için kullanılır.
+
+Scripts/Items/Medical/ItemSplint@Name:
+Atel
+
+Scripts/Items/Medical/ItemStimpack@Description:
+Stimpak, kullanıldığı anda sağlığın bir bölümünü geri kazandırır. Özellikle savaşta oldukça yararlıdır fakat aşırı kullanımı ciddi komplikasyonlara neden olabilir.
+
+Scripts/Items/Medical/ItemStimpack@Name:
+Stimpak
+
+Scripts/Items/Medical/ItemStrengthBoostBig@Description:
+Güç artırıcı ilaç, seni geçici olarak güçlendirerek, fiziksel işleri daha kolay yapmanı sağlar.
+
+Scripts/Items/Medical/ItemStrengthBoostBig@Name:
+Güç artırıcı (büyük)
+
+Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
+Güç artırıcı ilaç, seni geçici olarak güçlendirerek, fiziksel işleri daha kolay yapmanı sağlar.
+
+Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
+Güç artırıcı (küçük)
+
+Scripts/Items/Seeds/ItemSaplingBirch@Description:
+Bir ağacın fidanı. Ağaç olarak yetiştirmek için ekilebilir.
+
+Scripts/Items/Seeds/ItemSaplingBirch@Name:
+Huş ağacı fidanı
+
+Scripts/Items/Seeds/ItemSaplingOak@Name:
+Meşe ağacı fidanı
+
+Scripts/Items/Seeds/ItemSaplingPine@Name:
+Çam ağacı fidanı
+
+Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
+Kuzey çamı fidanı
+
+Scripts/Items/Seeds/ItemSaplingPoplar@Name:
+Kavak ağacı fidanı
+
+Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
+Kauçuk ağacı fidanı
+
+Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
+Ekilmek için hazırlanmış ufak bir çanta dolusu tohum. Toprağa ekilebilir.
+
+Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
+Dolmalık biber tohumları
+
+Scripts/Items/Seeds/ItemSeedsCarrot@Name:
+Havuç tohumları
+
+Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
+Kırmızı biber tohumları
+
+Scripts/Items/Seeds/ItemSeedsCorn@Name:
+Mısır tohumları
+
+Scripts/Items/Seeds/ItemSeedsCucumber@Name:
+Salatalık tohumları
+
+Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
+Mavi ada çayı tohumları
+
+Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
+Oni çiçeği tohumları
+
+Scripts/Items/Seeds/ItemSeedsOgurin@Name:
+Ogurin tohumları
+
+Scripts/Items/Seeds/ItemSeedsTobacco@Name:
+Tütün tohumları
+
+Scripts/Items/Seeds/ItemSeedsTomato@Name:
+Domates tohumları
+
+Scripts/Items/Seeds/ItemSeedsWheat@Name:
+Buğday tohumları
+
+Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorSoilNotSuitable:
+Bu ağaç türü bu toprakta yetişmez.
+
+Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
+Bu fidanı dikebilmek için diğer ağaçlarla arasında en az bir boşluk bulunmalıdır.
+
+Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
+Gerektirir
+
+Scripts/Items/Tools/Axes/ItemAxeIron@Description:
+Demir balta ağaçları kesmek için oldukça iyidir. Taş baltadan daha hızlı ve dayanıklıdır.
+
+Scripts/Items/Tools/Axes/ItemAxeIron@Name:
+Demir balta
+
+Scripts/Items/Tools/Axes/ItemAxeSteel@Description:
+Çelik balta ağaçları kesmek için idealdir. Demir baltadan daha hızlı ve dayanıklıdır.
+
+Scripts/Items/Tools/Axes/ItemAxeSteel@Name:
+Çelik balta
+
+Scripts/Items/Tools/Axes/ItemAxeStone@Description:
+Taş balta ağaçları kesmek için kullanılabilir.
+
+Scripts/Items/Tools/Axes/ItemAxeStone@Name:
+Taş balta
+
+Scripts/Items/Tools/Crowbars/ItemCrowbar@Description:
+Alan tutucunun içerisindeki yapıları hızlıca ortadan kaldırmak için kullanışlıdır.
+
+Scripts/Items/Tools/Crowbars/ItemCrowbar@Name:
+Levye
+
+Scripts/Items/Tools/Lights/ItemFlashlight@Description:
+Güçlü bir el fenerinin yerini hiçbir şey tutmaz. Tek kullanımlık pil kullanan bu model 3.000 lümene kadar ışık üretebilir.
+
+Scripts/Items/Tools/Lights/ItemFlashlight@Name:
+El feneri
+
+Scripts/Items/Tools/Lights/ItemOilLamp@Description:
+Uygun bir pakette taşınabilir ışık kaynağı! Kamp yakıtı ile hızlıca yeniden doldurulabilir.
+
+Scripts/Items/Tools/Lights/ItemOilLamp@Name:
+Gaz lambası
+
+Scripts/Items/Tools/Lights/ItemTorch@NotificationBurnedOut:
+Meşale söndü.
+
+Scripts/Items/Tools/Lights/ItemTorch@Description:
+Geceleri akıl sağlığını koruyacak. Yanında bir yedek bulundurduğundan emin ol.
+
+Scripts/Items/Tools/Lights/ItemTorch@Name:
+Meşale
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationCannotRefillWhileOn_Message:
+Yeniden doldurmadan önce kapat.
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationCannotRefillWhileOn_Title:
+Yeniden doldurulamaz
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message:
+Yeniden doldurma gerekli.
+
+Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
+Yakıt bitti
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
+Demir kazma maden yataklarını kazmak için kullanılabilir. Taş kazmadan daha hızlı ve dayanıklıdır.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Name:
+Demir kazma
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeSteel@Description:
+Çelik kazma maden yataklarını kazmak için kullanılabilir. Demir kazmadan daha hızlı ve dayanıklıdır.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeSteel@Name:
+Çelik kazma
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Description:
+Taş kazma maden yataklarını kazmak için kullanılabilir.
+
+Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
+Taş kazma
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
+Yapılarını inşa etmen veya tamir etmen için alet çantası gereklidir. Kuşandığına ve seçili olduğuna emin ol.
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
+Basit alet çantası
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
+Demir alet çantası
+
+Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
+Çelik alet çantası
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Description:
+Klasik bakır sulama kabı tasarımı. Daha fazla su depolayabilir.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Name:
+Bakır sulama kabı
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Description:
+Hafif plastikten basit bir sulama kabı yapılabilir. Tüm sulama kapları arasında en fazla suyu bu kap depolar.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Name:
+Plastik sulama kabı
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanSteel@Description:
+İşlenmiş ince paslanmaz çelik saclardan yapılmış ve oldukça hafif. Çok fazla su depolayabilir.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanSteel@Name:
+Çelik sulama kabı
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Description:
+Basit sulama kabı. Kabaca yapılmış ve çok fazla su depolayamaz.
+
+Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Name:
+Ahşap sulama kabı
+
+Scripts/Items/Weapons/Melee/ItemKnifeIron@Description:
+Askeri bıçak. Domuz kasabı olarak da bilinir.
+
+Scripts/Items/Weapons/Melee/ItemKnifeIron@Name:
+Demir bıçak
+
+Scripts/Items/Weapons/Melee/ItemKnifeStone@Description:
+Basit bıçak. Yumruklardan daha iyidir fakat daha fazlası değil.
+
+Scripts/Items/Weapons/Melee/ItemKnifeStone@Name:
+Taş bıçak
+
+Scripts/Items/Weapons/Melee/ItemMaceCopper@Description:
+Bakır destekli darbe yüzeyine sahip ahşap gürz.
+
+Scripts/Items/Weapons/Melee/ItemMaceCopper@Name:
+Bakır gürz
+
+Scripts/Items/Weapons/Melee/ItemMaceIron@Description:
+Bakır gürzün daha ağır ve ölümcül meslektaşı.
+
+Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
+Demir gürz
+
+Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
+Silah yok
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
+Lazer kılıç (mavi)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
+Lazer kılıç (yeşil)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
+Lazer kılıç (mor)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
+Lazer kılıç (kırmızı)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
+Lazer kılıç (beyaz)
+
+Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
+Lazer kılıç (sarı)
+
+Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
+İnanılmaz derecede güçlü kısa menzilli silah. Çalıştırmak için enerji gereklidir.
+
+Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
+İlkel tabanca. Cephane olarak kağıt kovanları kullanır. Çok hızlı bir şekilde iki el ateş edilebilir.
+
+Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
+Çakmaklı tabanca
+
+Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
+10mm mermi için geliştirilen tabanca.
+
+Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
+Tabanca
+
+Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
+Lazer tabanca kızılötesi spektrumda güçlü bir yüksek enerjili ışık yayarak hedefi yakar.
+
+Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
+Lazer tabanca
+
+Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
+Lazer tüfek kızılötesi spektrumda hızlı bir yüksek enerjili ışık yayarak hedefi yakar. Daha çok enerji tüketimi karşılığında lazer tabancaya göre daha hızlı ateşleme olanağı sunar.
+
+Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
+Lazer tüfek
+
+Scripts/Items/Weapons/Ranged/ItemLuger@Description:
+Basit bir tasarıma sahip yarı otomatik tabanca. Modern silahlarla kıyaslandığında üretimi biraz daha ucuzdur.
+
+Scripts/Items/Weapons/Ranged/ItemLuger@Name:
+Luger
+
+Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
+Yüksek enerjili .300 mermi için geliştirilmiş ağır makineli tüfek.
+
+Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
+Ağır makineli tüfek
+
+Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
+8mm mermi için geliştirilmiş hafif makineli tabanca.
+
+Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
+Makineli tabanca
+
+Scripts/Items/Weapons/Ranged/ItemMusket@Description:
+Eski usül tüfek. Kağıt kovan kullanır. Çakmaklı tabanca ile kıyaslandığında menzili ve verdiği hasar daha yüksektir.
+
+Scripts/Items/Weapons/Ranged/ItemMusket@Name:
+Tüfek
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
+Plazma tabancası çarpma anında hedefi yakarak ağır hasara yol açan konsantre plazma paketleri oluşturur ve ateşler. Güç tüketimi yüksektir.
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
+Plazma tabancası
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
+Plazma tüfeği çarpma anında hedefi şiddetli bir şekilde yakarak çok ağır hasara yol açan plazma paketleri oluşturur ve ateşler. Güç tüketimi çok yüksektir.
+
+Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
+Plazma tüfeği
+
+Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
+Cephaneyi tutan döner bir silindire sahip basit bir tabanca.
+
+Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
+Altıpatlar
+
+Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
+Yüksek enerjili .300 mermi için geliştirilmiş ağır materyalsavar tüfek.
+
+Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
+Ağır tüfek
+
+Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
+Dedenin eski av tüfeği. 12 kalibre mühimmat kullanır.
+
+Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
+Çift namlulu av tüfeği
+
+Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
+Büyük cephane kapasitesine sahip askeri pompalı tüfek. 12 kalibre mermi kullanır.
+
+Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
+Askeri pompalı tüfek
+
+Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
+10mm mermi için geliştirilmiş hafif makineli tüfek.
+
+Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
+Hafif makineli tüfek
+

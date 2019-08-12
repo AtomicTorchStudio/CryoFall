@@ -73,7 +73,7 @@
 
         public virtual ushort DurabilityDecreasePerAction => 1;
 
-        public abstract ushort DurabilityMax { get; }
+        public abstract uint DurabilityMax { get; }
 
         public abstract double FireAnimationDuration { get; }
 
@@ -84,6 +84,8 @@
         public override ITextureResource Icon => new TextureResource("Items/Weapons/" + this.GetType().Name);
 
         public virtual bool IsLoopedAttackAnimation => (this.FireInterval / this.FireAnimationDuration) < 1.5;
+
+        public virtual bool IsRepairable => true;
 
         public sealed override ushort MaxItemsPerStack => 1;
 

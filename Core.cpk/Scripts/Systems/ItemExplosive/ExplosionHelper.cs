@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
@@ -112,7 +111,7 @@
             var blastAnimationDuration = explosionPreset.BlastwaveAnimationDuration;
             if (blastAnimationDuration > 0)
             {
-                ClientComponentTimersManager.AddAction(
+                ClientTimersSystem.AddAction(
                     explosionPreset.BlastwaveDelay,
                     () =>
                     {

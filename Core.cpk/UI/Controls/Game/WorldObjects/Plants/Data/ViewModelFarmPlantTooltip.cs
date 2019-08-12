@@ -1,10 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Plants.Data
 {
+    using System;
     using System.Windows;
     using System.Windows.Media;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -50,6 +51,11 @@
                 this);
 
             publicState.ClientSubscribe(
+                _ => _.IsFertilized,
+                _ => this.RefreshDataFromServer(),
+                this);
+
+            publicState.ClientSubscribe(
                 _ => _.IsWatered,
                 isWatered =>
                 {
@@ -72,6 +78,8 @@
         {
         }
 
+        public string FertilizerBonusText { get; private set; }
+
         public float HarvestInTimePercent { get; private set; } = 50;
 
         public string HarvestInTimeText { get; private set; } = "...";
@@ -87,7 +95,10 @@
 
         public Brush IconPlant => Api.Client.UI.GetTextureBrush(this.protoPlant.IconFullGrown);
 
-        public string TextFertilizerBonus { get; private set; }
+        public Brush IconSkillFarming
+            => Api.Client.UI.GetTextureBrush(Api.GetProtoEntity<SkillFarming>().Icon);
+
+        public string SkillGrowthSpeedBonusText { get; private set; }
 
         public string Title => this.protoPlant.Name;
 
@@ -97,8 +108,6 @@
 
         public Visibility VisibilityDataReceived { get; private set; } = Visibility.Collapsed;
 
-        public Visibility VisibilityFertilizer { get; private set; }
-
         public Visibility VisibilityNotWatered { get; private set; }
 
         public Visibility VisibilityWatered { get; private set; }
@@ -107,6 +116,8 @@
 
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
         public string WateringEndsTimeText { get; private set; } = "23h 59m 59s";
+
+        public string WateringSpeedBonusText { get; private set; }
 
         private static double GetTimeRemainingSeconds(double serverTime)
         {
@@ -137,11 +148,8 @@
             if (this.appliedFertilizedProto != data.AppliedFertilzerProto)
             {
                 this.appliedFertilizedProto = data.AppliedFertilzerProto;
-                this.TextFertilizerBonus = this.appliedFertilizedProto?.FertilizerShortDescription;
+                this.FertilizerBonusText = this.appliedFertilizedProto?.FertilizerShortDescription;
                 this.NotifyPropertyChanged(nameof(this.IconFertilizer));
-                this.VisibilityFertilizer = this.appliedFertilizedProto != null
-                                                ? Visibility.Visible
-                                                : Visibility.Collapsed;
             }
 
             this.HarvestsCount = data.ProducedHarvestsCount;
@@ -152,6 +160,13 @@
 
             this.wateringEndsTime = data.ServerTimeWateringEnds;
             this.wateringDuration = data.LastWateringDuration;
+
+            this.SkillGrowthSpeedBonusText =
+                data.SkillGrowthSpeedMultiplier > 1.0
+                    ? string.Format(ItemMulch.ShortDescriptionText,
+                                    "+"
+                                    + (int)Math.Ceiling(100 * (data.SkillGrowthSpeedMultiplier - 1.0)))
+                    : null;
 
             if (!this.isDataReceivedFromServer)
             {
@@ -175,7 +190,7 @@
             this.UpdateDisplayedTimeNoTimer();
 
             // schedule refresh of the displayed time
-            ClientComponentTimersManager.AddAction(
+            ClientTimersSystem.AddAction(
                 TimerRefreshIntervalSeconds,
                 this.TimerUpdateDisplayedTime);
         }
@@ -220,6 +235,13 @@
             var isWatered = this.publicState.IsWatered;
             this.VisibilityWatered = isWatered ? Visibility.Visible : Visibility.Collapsed;
             this.VisibilityNotWatered = !isWatered ? Visibility.Visible : Visibility.Collapsed;
+
+            this.WateringSpeedBonusText =
+                isWatered
+                    ? string.Format(ItemMulch.ShortDescriptionText,
+                                    "+"
+                                    + (int)Math.Ceiling(100 * (FarmingConstants.WateringGrowthSpeedMultiplier - 1.0)))
+                    : null;
         }
     }
 }

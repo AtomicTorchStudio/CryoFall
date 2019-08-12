@@ -102,10 +102,7 @@ Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 Невозможно добавить новый рецепт
 
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Message:
-Эта земля вам не принадлежит.
-
-Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationNotLandOwner_Title:
+Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
 Невозможно разобрать
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
@@ -127,6 +124,9 @@ Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNoNeedToRefill:
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
 Этот предмет не требует заправки.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
+Слишком близко к чужой зоне контроля.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Эта территория другого игрока, или она находится слишком близко к чужой зоне контроля.
 
@@ -137,8 +137,8 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnoth
 Пересечение с чужой зоной контроля
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`Достигнут лимит разрешенных зон контроля.
-[br]Увеличить их количество можно, изучив новые технологии.`
+`Достигнут лимит числа зон контроля.
+[br]Повысить лимит можно, исследовав новые технологии.`
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
 Необходимо исследовать ксеногеологию (ранг 3), чтобы взять под контроль месторождения нефти/лития или разместить точку контроля рядом с ними.
@@ -147,6 +147,15 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `Базу атакуют.
 [br]Вы не можете возводить новые постройки, когда на базу нападают.`
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
+Эту постройку можно разместить только внутри вашей зоны контроля.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
+Эта земля вам не принадлежит.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
+База подвергается рейдовой атаке.
+
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
 Отменить защиту новичка
 
@@ -154,7 +163,7 @@ Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProte
 Вы точно хотите отключить защиту новичка? Вы больше не сможете ее включить.
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
-Вы под защитой новичка. Она помогает вам не терять вещи и очки технологий, если вашего персонажа убьет другой игрок. К тому же, в случае смерти по другой причине ваши выроненные предметы не заберет другой игрок. Выполняйте квесты, чтобы создать необходимые инструменты и построить небольшую базу как можно скорее!
+Вы под защитой новичка. Она помогает вам не терять вещи, если вашего персонажа убьет другой игрок. К тому же, в случае смерти по другой причине ваши выроненные вещи не заберет другой игрок. Выполняйте квесты, чтобы создать необходимые инструменты и построить небольшую базу как можно скорее!
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
 Защита новичка закончится через:
@@ -193,10 +202,10 @@ Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTit
 Приглашение в группу
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerAcceptedInviteFormat:
-{0} присоединяется к группе по приглашению игрока {1}
+{0} присоединился к группе по приглашению игрока {1}
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerInvitedFormat:
-{0} приглашает игрока {1} присоединиться к группе
+{0} пригласил игрока {1} присоединиться к группе
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerLeftPartyFormat:
 {0} покинул группу
@@ -225,6 +234,18 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySame
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 Вы не можете приглашать, т.к. оператор сервера исключил вас из чата.
 
+Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
+Приглашенный игрок не в сети. В группу могут быть приглашены только игроки, которые сейчас в игре.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
+Невозможно взаимодействовать (слишком далеко или постройка недоступна).
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
+Нет электросети.
+
+Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
+Недостаточно энергии в электросети.
+
 Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
 Отключить режим дуэли
 
@@ -233,7 +254,7 @@ Scripts/Systems/PvE/PveSystem@DuelMode_Button_Enable:
 
 Scripts/Systems/PvE/PveSystem@DuelMode_Description:
 `Вы можете включить режим дуэли для того, чтобы вызвать других игроков на бой.
-[br]Вы не потеряете имущество после смерти.
+[br]Вы не потеряете вещи после смерти.
 [br]У обоих игроков должен быть включен режим дуэли.`
 
 Scripts/Systems/PvE/PveSystem@DuelMode_Title:
@@ -255,8 +276,8 @@ Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDam
 Нет урона
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
-`Период рейда окончен.
-[br]Идущие рейды могут продолжаться.`
+`Период рейда завершен.
+[br]Уже начавшиеся рейды продолжатся.`
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 Урожай собирать пока не с чего
@@ -283,10 +304,10 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Важно:[/b]
-Это сервер PvE (игрок против окружения). На этом сервере игроки не могут атаковать друг друга прямо или косвенно. Этот сервер предназначен для мирного исследования мира игры без противоборства с другими игроками. Нельзя убивать, уничтожать, красть или иным образом причинять вред другим игрокам. В остальном вы можете полноценно играть в CryoFall, охотясь на опасных существ, открывая новые технологии и изучая окружающий мир. Желаем вам интересного путешествия.
+Это сервер PvE (игрок против окружения). На этом сервере игроки не могут атаковать друг друга прямо или косвенно. Этот сервер предназначен для мирного исследования мира игры без противоборства с другими игроками. Нельзя убивать, уничтожать, красть или иным образом причинять вред другим игрокам. В остальном вы можете полноценно играть в CryoFall, охотясь на опасных существ, открывая новые технологии и изучая окружающий мир. Желаем вам интересного путешествия!
 [br]
 [br]
-Если вы предпочитаете более захватывающий и неограниченный игровой процесс, то рекомендуем вам перейти на сервер PvP (игрок против игроков).
+Если вы предпочитаете более захватывающий и рискованный игровой процесс, то рекомендуем попробовать сервер PvP (игрок против игроков).
 [br]
 [br]
 [b]Правила сервера:[/b]
@@ -339,8 +360,8 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLeve
 {0} уровень {1}.
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`Вы накопили более {0} очков технологий (ОТ). За них можно открыть новые технологии. Помните, что после смерти восстанавливается лишь небольшое количество ОТ.
-[br](щелкните, чтобы открыть меню технологий)`
+`Вы накопили более {0} очков технологий (ОТ). За них можно открыть новые технологии.
+[br](Щелкните, чтобы открыть меню технологий.)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
 Невозможно открыть технологию

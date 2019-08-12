@@ -5,33 +5,29 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
-    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
-    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ClientWorldMapLandClaimVisualizer : IWorldMapVisualizer
     {
-        public const string NotificationBaseUnderAttack_MessageFormat
-            = @"One of your bases is being raided!
-                [br]({0};{1})";
-
-        public const string NotificationBaseUnderAttack_Title = "Under attack!";
+        private readonly ClientWorldMapLandClaimsGroupVisualizer landClaimGroupVisualizer;
 
         private readonly Dictionary<ILogicObject, LandClaimMapData> visualizedAreas
             = new Dictionary<ILogicObject, LandClaimMapData>();
 
         private readonly WorldMapController worldMapController;
 
-        public ClientWorldMapLandClaimVisualizer(WorldMapController worldMapController)
+        public ClientWorldMapLandClaimVisualizer(
+            WorldMapController worldMapController,
+            ClientWorldMapLandClaimsGroupVisualizer landClaimGroupVisualizer)
         {
             this.worldMapController = worldMapController;
+            this.landClaimGroupVisualizer = landClaimGroupVisualizer;
 
             ClientLandClaimAreaManager.AreaAdded += this.AreaAddedHandler;
             ClientLandClaimAreaManager.AreaRemoved += this.AreaRemovedHandler;
@@ -71,59 +67,57 @@
                 return;
             }
 
-            this.visualizedAreas[area] = new LandClaimMapData(area, this.worldMapController);
+            var isFounder = string.Equals(LandClaimArea.GetPrivateState(area).LandClaimFounder,
+                                          ClientCurrentCharacterHelper.Character.Name,
+                                          StringComparison.Ordinal);
+
+            this.visualizedAreas[area] = new LandClaimMapData(area,
+                                                              this.worldMapController,
+                                                              this.landClaimGroupVisualizer,
+                                                              isFounder: isFounder);
         }
 
         private void AreaRemovedHandler(ILogicObject area)
         {
-            if (!this.visualizedAreas.TryGetValue(area, out var control))
+            if (!this.visualizedAreas.TryGetValue(area, out var data))
             {
                 return;
             }
 
             this.visualizedAreas.Remove(area);
-            control.Dispose();
+            data.Dispose();
         }
 
-        private class LandClaimMapData : IDisposable
+        public class LandClaimMapData : IDisposable
         {
             private readonly ILogicObject area;
 
-            private readonly WorldMapController worldMapController;
+            private readonly ClientWorldMapLandClaimsGroupVisualizer landClaimGroupVisualizer;
 
-            private bool isRaided;
+            private readonly WorldMapController worldMapController;
 
             private FrameworkElement markControl;
 
-            private FrameworkElement markRaidNotificationControl;
-
-            private StateSubscriptionStorage stateSubscriptionStorage;
-
-            public LandClaimMapData(ILogicObject area, WorldMapController worldMapController)
+            public LandClaimMapData(
+                ILogicObject area,
+                WorldMapController worldMapController,
+                ClientWorldMapLandClaimsGroupVisualizer landClaimGroupVisualizer,
+                bool isFounder)
             {
                 this.area = area;
-                var areaPublicState = LandClaimArea.GetPublicState(area);
                 this.worldMapController = worldMapController;
-                this.stateSubscriptionStorage = new StateSubscriptionStorage();
+                this.landClaimGroupVisualizer = landClaimGroupVisualizer;
 
                 // add land claim mark control to map
-                this.markControl = new WorldMapMarkLandClaim();
+                this.markControl = new WorldMapMarkLandClaim() { IsFounder = isFounder };
                 var canvasPosition = this.GetAreaCanvasPosition();
                 Canvas.SetLeft(this.markControl, canvasPosition.X);
                 Canvas.SetTop(this.markControl, canvasPosition.Y);
                 Panel.SetZIndex(this.markControl, 12);
 
                 worldMapController.AddControl(this.markControl);
-
-                areaPublicState.ClientSubscribe(
-                    o => o.LastRaidTime,
-                    this.RefreshRaidedState,
-                    this.stateSubscriptionStorage);
-
-                this.RefreshRaidedState();
+                this.landClaimGroupVisualizer.Register(this.area);
             }
-
-            protected bool IsDisposed => this.markControl == null;
 
             public void Dispose()
             {
@@ -133,10 +127,7 @@
                     this.markControl = null;
                 }
 
-                this.RemoveRaidNotificationControl();
-
-                this.stateSubscriptionStorage?.Dispose();
-                this.stateSubscriptionStorage = null;
+                this.landClaimGroupVisualizer.Unregister(this.area);
             }
 
             private Vector2D GetAreaCanvasPosition()
@@ -151,74 +142,10 @@
                         bounds.Y + bounds.Height / 2.0);
             }
 
-            private void RaidRefreshTimerCallback()
+            private void RefreshSubscriptions()
             {
-                if (this.IsDisposed
-                    || !this.isRaided)
-                {
-                    return;
-                }
-
-                this.RefreshRaidedState();
-
-                if (this.isRaided)
-                {
-                    // still raided
-                    ClientComponentTimersManager.AddAction(delaySeconds: 1,
-                                                           this.RaidRefreshTimerCallback);
-                }
-            }
-
-            private void RefreshRaidedState()
-            {
-                var isRaidedNow = LandClaimSystem.SharedIsAreaUnderRaid(this.area);
-                if (this.isRaided == isRaidedNow)
-                {
-                    // no changes
-                    return;
-                }
-
-                this.isRaided = isRaidedNow;
-                if (!this.isRaided)
-                {
-                    this.RemoveRaidNotificationControl();
-                    return;
-                }
-
-                var bounds = LandClaimSystem.SharedGetLandClaimAreaBounds(this.area);
-                var x = bounds.X + bounds.Width / 2.0;
-                var y = bounds.Y + bounds.Height / 2.0;
-
-                // add raid mark control to map
-                this.markRaidNotificationControl = new WorldMapMarkRaid();
-                var canvasPosition = this.GetAreaCanvasPosition();
-                Canvas.SetLeft(this.markRaidNotificationControl, canvasPosition.X);
-                Canvas.SetTop(this.markRaidNotificationControl, canvasPosition.Y);
-                Panel.SetZIndex(this.markRaidNotificationControl, 11);
-
-                this.worldMapController.AddControl(this.markRaidNotificationControl);
-
-                // show text notification
-                NotificationSystem.ClientShowNotification(
-                    NotificationBaseUnderAttack_Title,
-                    string.Format(NotificationBaseUnderAttack_MessageFormat, x, y),
-                    NotificationColor.Bad,
-                    icon: Api.GetProtoEntity<ObjectCharredGround>().Icon);
-
-                // start refresh timer
-                ClientComponentTimersManager.AddAction(1, this.RaidRefreshTimerCallback);
-            }
-
-            private void RemoveRaidNotificationControl()
-            {
-                this.isRaided = false;
-                if (this.markRaidNotificationControl == null)
-                {
-                    return;
-                }
-
-                this.worldMapController.RemoveControl(this.markRaidNotificationControl);
-                this.markRaidNotificationControl = null;
+                this.landClaimGroupVisualizer.Unregister(this.area);
+                this.landClaimGroupVisualizer.Register(this.area);
             }
         }
     }

@@ -25,11 +25,11 @@
 
         private Storyboard storyboardShow;
 
+        private ViewModelHUDNotificationControl viewModel;
+
         public bool IsAutoHide { get; private set; }
 
         public bool IsHiding { get; private set; }
-
-        public ViewModelHUDNotificationControl ViewModel { get; private set; }
 
         public static HUDNotificationControl Create(
             string title,
@@ -47,7 +47,7 @@
 
             return new HUDNotificationControl()
             {
-                ViewModel = new ViewModelHUDNotificationControl(
+                viewModel = new ViewModelHUDNotificationControl(
                     title,
                     message,
                     brushBackground,
@@ -86,7 +86,15 @@
 
         public bool IsSame(HUDNotificationControl other)
         {
-            return this.ViewModel.IsSame(other.ViewModel);
+            return this.viewModel.IsSame(other.viewModel);
+        }
+
+        public void SetMessage(string message)
+        {
+            if (this.viewModel != null)
+            {
+                this.viewModel.Message = message;
+            }
         }
 
         public void SetupAutoHideChecker(Func<bool> checker)
@@ -100,7 +108,7 @@
         {
             if (IsDesignTime)
             {
-                this.ViewModel = new ViewModelHUDNotificationControl();
+                this.viewModel = new ViewModelHUDNotificationControl();
                 return;
             }
 
@@ -108,13 +116,13 @@
             this.storyboardHide = this.GetResource<Storyboard>("StoryboardHide");
             this.storyboardFadeOut = this.GetResource<Storyboard>("StoryboardFadeOut");
             this.root = this.GetByName<Border>("Border");
-            this.DataContext = this.ViewModel;
+            this.DataContext = this.viewModel;
         }
 
         protected override void OnLoaded()
         {
             this.UpdateLayout();
-            this.ViewModel.RequiredHeight = (float)this.ActualHeight;
+            this.viewModel.RequiredHeight = (float)this.ActualHeight;
 
             if (IsDesignTime)
             {
@@ -145,8 +153,8 @@
             }
 
             this.DataContext = null;
-            this.ViewModel.Dispose();
-            this.ViewModel = null;
+            this.viewModel.Dispose();
+            this.viewModel = null;
 
             this.storyboardFadeOut.Completed -= this.StoryboardFadeOutCompletedHandler;
             this.storyboardHide.Completed -= this.StoryboardHideCompletedHandler;
@@ -168,7 +176,7 @@
         {
             e.Handled = true;
             this.Hide(quick: true);
-            this.ViewModel.CommandClick?.Execute(null);
+            this.viewModel.CommandClick?.Execute(null);
         }
 
         private void RootMouseButtonRightHandler(object sender, MouseButtonEventArgs e)
@@ -179,7 +187,7 @@
 
         private void RootMouseEnterHandler(object sender, MouseEventArgs e)
         {
-            ClientCursorSystem.CurrentCursorId = this.ViewModel.Cursor;
+            ClientCursorSystem.CurrentCursorId = this.viewModel.Cursor;
         }
 
         private void RootMouseLeaveHandler(object sender, MouseEventArgs e)

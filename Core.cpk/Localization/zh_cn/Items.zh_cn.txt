@@ -53,7 +53,7 @@ Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
 .300穿甲弹药
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
-重型反器材.300燃烧弹药
+重型.300燃烧弹，能够打穿装甲并点燃目标。
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 .300燃烧弹药
@@ -392,19 +392,19 @@ Scripts/Items/Food/ItemBerriesOrange@Description:
 美味的橙色浆果。
 
 Scripts/Items/Food/ItemBerriesOrange@Name:
-浆果
+橙色浆果
 
 Scripts/Items/Food/ItemBerriesRed@Description:
 美味的红色浆果。
 
 Scripts/Items/Food/ItemBerriesRed@Name:
-浆果
+红色浆果
 
 Scripts/Items/Food/ItemBerriesViolet@Description:
 美味的紫色浆果。
 
 Scripts/Items/Food/ItemBerriesViolet@Name:
-浆果
+紫色浆果
 
 Scripts/Items/Food/ItemBottleWater@Description:
 可以饮用并补充水分。也可以应用于各种配方之中。
@@ -455,10 +455,22 @@ Scripts/Items/Food/ItemCannedFish@Name:
 鱼罐头
 
 Scripts/Items/Food/ItemCannedMeat@Description:
-来历不明的肉类罐头。 至少包装看起来不错。
+有着大量脂肪的罐头炖肉。 能储存很长一段时间。
 
 Scripts/Items/Food/ItemCannedMeat@Name:
 肉罐头
+
+Scripts/Items/Food/ItemCannedMixedMeat@Description:
+来历不明的肉类罐头。 至少包装看起来不错。
+
+Scripts/Items/Food/ItemCannedMixedMeat@Name:
+杂肉罐头
+
+Scripts/Items/Food/ItemCarbonara@Description:
+意大利面、鸡蛋、奶酪和肉制成了这份人间美味！
+
+Scripts/Items/Food/ItemCarbonara@Name:
+卡波那拉
 
 Scripts/Items/Food/ItemCarrot@Description:
 富含胡萝卜素的橙色蔬菜。
@@ -514,10 +526,10 @@ Scripts/Items/Food/ItemCorn@Description:
 Scripts/Items/Food/ItemCorn@Name:
 玉米
 
-Scripts/Items/Food/ItemCornOnCob@Description:
-火一烤，料一刷，简直完美！
+Scripts/Items/Food/ItemCornGrilled@Description:
+烤玉米保留了玉米香甜又增添了烟熏风味，十分美味！
 
-Scripts/Items/Food/ItemCornOnCob@Name:
+Scripts/Items/Food/ItemCornGrilled@Name:
 烤玉米
 
 Scripts/Items/Food/ItemCucumber@Description:
@@ -573,6 +585,18 @@ Scripts/Items/Food/ItemEggsRaw@Description:
 
 Scripts/Items/Food/ItemEggsRaw@Name:
 动物蛋
+
+Scripts/Items/Food/ItemInsectMeatFried@Description:
+将这种肉烹饪之后能略微减少其恶心程度...但如果你打算吃最好还是做好呕吐的准备。
+
+Scripts/Items/Food/ItemInsectMeatFried@Name:
+炸昆虫肉
+
+Scripts/Items/Food/ItemInsectMeatRaw@Description:
+恶心的虫肉。 也许烹饪之后会不那么恶心。
+
+Scripts/Items/Food/ItemInsectMeatRaw@Name:
+生昆虫肉
 
 Scripts/Items/Food/ItemJamBerries@Description:
 用浆果制作的果酱。
@@ -815,10 +839,16 @@ Scripts/Items/Generic/ItemBricks@Name:
 砖
 
 Scripts/Items/Generic/ItemCampFuel@Description:
-营地燃料(也叫灯油)可以用来灌装各种需要此类型燃料的灯。 
+营地燃料(也叫灯油)可以用来灌装各种需要此类型燃料的灯。
 
 Scripts/Items/Generic/ItemCampFuel@Name:
 营地燃料
+
+Scripts/Items/Generic/ItemCanEmpty@Description:
+空罐可用于制造不同种类的罐头食品和饮料。
+
+Scripts/Items/Generic/ItemCanEmpty@Name:
+空罐
 
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
 空金属容器。可以用来装挥发性液体。
@@ -921,6 +951,12 @@ Scripts/Items/Generic/ItemComponentsWeapon@Description:
 
 Scripts/Items/Generic/ItemComponentsWeapon@Name:
 武器元件
+
+Scripts/Items/Generic/ItemDuctTape@Description:
+有着超强粘合剂和增强复合外层的特别胶带。
+
+Scripts/Items/Generic/ItemDuctTape@Name:
+胶带
 
 Scripts/Items/Generic/ItemExplosives@Description:
 能够制造爆破物的各种爆破材料。
@@ -1139,17 +1175,17 @@ Scripts/Items/Generic/ItemOrePragmium@Description:
 Scripts/Items/Generic/ItemOrePragmium@Name:
 普拉格
 
-Scripts/Items/Generic/ItemOrePyrite@Description:
-黄铁矿石可以通过加热制成硫酸。
-
-Scripts/Items/Generic/ItemOrePyrite@Name:
-黄铁矿石
-
 Scripts/Items/Generic/ItemPaper@Description:
-普通的纸。
+纸是一种多用途材料，可以很容易地从木材制备。
 
 Scripts/Items/Generic/ItemPaper@Name:
 纸
+
+Scripts/Items/Generic/ItemPasta@Description:
+许多美味餐点的基础！
+
+Scripts/Items/Generic/ItemPasta@Name:
+生意面
 
 Scripts/Items/Generic/ItemPlanks@Description:
 通常被用作建筑材料，拿来烧也行。
@@ -1174,6 +1210,12 @@ Scripts/Items/Generic/ItemPowerCell@Description:
 
 Scripts/Items/Generic/ItemPowerCell@Name:
 能量电池
+
+Scripts/Items/Generic/ItemPreservative@Description:
+食品的防腐剂。 可以对包装好的食物添加，让其保存更长时间。
+
+Scripts/Items/Generic/ItemPreservative@Name:
+防腐剂
 
 Scripts/Items/Generic/ItemRope@Description:
 普通的绳子。用途多多。你要拿来烧也行。
@@ -1204,6 +1246,24 @@ Scripts/Items/Generic/ItemSand@Description:
 
 Scripts/Items/Generic/ItemSand@Name:
 沙
+
+Scripts/Items/Generic/ItemSlime@Description:
+绿色粘液，估计是某种生物留下的。
+
+Scripts/Items/Generic/ItemSlime@Name:
+粘液
+
+Scripts/Items/Generic/ItemSolarPanel@Description:
+生产价格昂贵，但是能在无需维护的情况下长期提供电力。
+
+Scripts/Items/Generic/ItemSolarPanel@Name:
+太阳能电池板
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Description:
+破碎的面板可以被加工成全新的太阳能电池板。
+
+Scripts/Items/Generic/ItemSolarPanelBroken@Name:
+破碎的电池板
 
 Scripts/Items/Generic/ItemSolvent@Description:
 太空时代的特殊溶剂，同时具有传统的极性溶剂和非极性溶剂两种功效。
@@ -1294,6 +1354,12 @@ Scripts/Items/Generic/ItemWheatGrains@Description:
 
 Scripts/Items/Generic/ItemWheatGrains@Name:
 小麦
+
+Scripts/Items/Generic/ItemWire@Description:
+绝缘电线卷。
+
+Scripts/Items/Generic/ItemWire@Name:
+电缆
 
 Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
 你没有装备移动电源
@@ -1445,6 +1511,12 @@ Scripts/Items/Medical/ItemCigarPremium@Description:
 Scripts/Items/Medical/ItemCigarPremium@Name:
 优质雪茄
 
+Scripts/Items/Medical/ItemEnergyTablets@Description:
+简单的药物，可以迅速恢复疲劳。
+
+Scripts/Items/Medical/ItemEnergyTablets@Name:
+能量药片
+
 Scripts/Items/Medical/ItemHeatPreExposure@Description:
 抗热凝胶能够阻止热能的直接传递并反射辐射热，使你能在短时间内进入高热环境。
 
@@ -1572,103 +1644,58 @@ Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
 力量药剂(小)
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
-桦木树苗。可以种下并长出新树。
+树苗。可以种下并长出新树。
 
 Scripts/Items/Seeds/ItemSaplingBirch@Name:
 桦树苗
 
-Scripts/Items/Seeds/ItemSaplingOak@Description:
-橡树苗。可以种下并长出新树。
-
 Scripts/Items/Seeds/ItemSaplingOak@Name:
 橡树苗
-
-Scripts/Items/Seeds/ItemSaplingPine@Description:
-松树树苗。可以种下并长出新树。
 
 Scripts/Items/Seeds/ItemSaplingPine@Name:
 松树苗
 
-Scripts/Items/Seeds/ItemSaplingPineBoreal@Description:
-寒松树苗。可以种下并长出新树。
-
 Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
 寒松树苗
 
-Scripts/Items/Seeds/ItemSaplingPoplar@Description:
-白杨树苗。可以种下并长出新树。
-
 Scripts/Items/Seeds/ItemSaplingPoplar@Name:
 白杨树苗
-
-Scripts/Items/Seeds/ItemSaplingRubbertree@Description:
-橡胶树苗。可以种下并长出新树。
 
 Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
 橡胶树苗
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
-可以种下并长出甜椒。
+一小袋种子。可以种进土里。
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
 甜椒种子
 
-Scripts/Items/Seeds/ItemSeedsCarrot@Description:
-可以种下并长出萝卜。
-
 Scripts/Items/Seeds/ItemSeedsCarrot@Name:
 萝卜种子
-
-Scripts/Items/Seeds/ItemSeedsChiliPepper@Description:
-可以种下并长出辣椒。
 
 Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
 辣椒种子
 
-Scripts/Items/Seeds/ItemSeedsCorn@Description:
-可以种下并长出玉米。
-
 Scripts/Items/Seeds/ItemSeedsCorn@Name:
 玉米种子
-
-Scripts/Items/Seeds/ItemSeedsCucumber@Description:
-可以种下并长出黄瓜。
 
 Scripts/Items/Seeds/ItemSeedsCucumber@Name:
 黄瓜种子
 
-Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Description:
-可以种下并长出深蓝鼠尾草。
-
 Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 深蓝鼠尾草种子
-
-Scripts/Items/Seeds/ItemSeedsFlowerOni@Description:
-可以种下并长出鬼花。
 
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 鬼花种子
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Description:
-欧古因果是第一种为在此星球上种植而进行基因改良的植物。
-
 Scripts/Items/Seeds/ItemSeedsOgurin@Name:
 欧古因果种子
-
-Scripts/Items/Seeds/ItemSeedsTobacco@Description:
-可以种下并长出烟叶。
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 烟叶种子
 
-Scripts/Items/Seeds/ItemSeedsTomato@Description:
-可以种下并长出番茄。
-
 Scripts/Items/Seeds/ItemSeedsTomato@Name:
 番茄种子
-
-Scripts/Items/Seeds/ItemSeedsWheat@Description:
-特别准备的小麦种子。
 
 Scripts/Items/Seeds/ItemSeedsWheat@Name:
 小麦种子
@@ -1758,19 +1785,13 @@ Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 石镐
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
-一个好工具箱是建造所有建筑都必不可少的。
+对于修复和建造建筑来说工具箱必不可少。记得将其装备并选中。
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
 简易工具箱
 
-Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Description:
-一个好工具箱是建造所有建筑都必不可少的。
-
 Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
 铁工具箱
-
-Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Description:
-一个好工具箱是建造所有建筑都必不可少的。
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
 钢工具箱

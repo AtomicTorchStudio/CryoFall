@@ -106,15 +106,13 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
             // Local function for checking if the position is valid.
             bool IsValidPosition(Vector2D pos)
             {
-                using (var objectsNearby = physicsSpace.TestRectangle(
+                using var objectsNearby = physicsSpace.TestRectangle(
                     // include some padding, otherwise the check will include border-objects
                     position: pos + (0.01, 0.01),
                     size: (0.98, 0.98),
                     collisionGroup: collisionGroup,
-                    sendDebugEvent: false))
-                {
-                    return objectsNearby.Count == 0;
-                }
+                    sendDebugEvent: false);
+                return objectsNearby.Count == 0;
             }
         }
 

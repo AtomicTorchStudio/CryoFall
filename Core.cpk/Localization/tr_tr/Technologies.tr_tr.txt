@@ -1,0 +1,333 @@
+﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
+{0} ile birlikte araştırılmış teknolojilerin %{1}'i gerekiyor.
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
+Yeteri kadar eğitim puanı yok
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechGroupIsLocked:
+Teknoloji ağacı kilitli
+
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
+Teknoloji zaten açıldı
+
+Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
+{0} eğitim puanı gerekiyor (sadece {1} var).
+
+Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
+Açılmış teknoloji gerektiriyor: {0}
+
+Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
+Tüm temel inşa türlerinin şemalarını bulundurur ve kişinin basit bir üs kurmasını sağlar.
+
+Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Name:
+İnşaat
+
+Scripts/Technologies/Tier1/Construction/TechNodeBasicBuilding@Name:
+Temel bina
+
+Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
+Daha iyi yiyecek eşyalarının üretimini açmak için birden fazla tarif bulunduruyor.
+
+Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
+Yemek pişirme
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
+Temel giysi ve zırh için şematikler.
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
+Savunma
+
+Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
+Kemik zırh
+
+Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
+Örgü zırh
+
+Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
+Kumaş zırh
+
+Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
+Ahşap zırh
+
+Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
+Tohumların ekilmeye hazırlanması, temel gübre ve daha fazlası.
+
+Scripts/Technologies/Tier1/Farming/TechGroupFarming@Name:
+Tarım
+
+Scripts/Technologies/Tier1/Farming/TechNodeFarmingBasics@Name:
+Başlıca tarım
+
+Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Description:
+Başarılı üretim ve imalat oluşturmak için gerekli olan tüm temel endüstriyel teknolojiler.
+
+Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Name:
+Sanayi
+
+Scripts/Technologies/Tier1/Industry/TechNodeGlassware@Name:
+Zücaciye
+
+Scripts/Technologies/Tier1/Industry/TechNodeIronTools@Name:
+Demir araçlar
+
+Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
+Eritme
+
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
+İlkel silahlar için şemalar.
+
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
+Saldırı
+
+Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
+Çeşitli kimyasal bileşenler ve tepkimelerle uğraşmak.
+
+Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
+Kimya
+
+Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
+Daha geniş çapta yararlı kullanımları olan daha karmaşık yapılar.
+
+Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
+İnşaat 2
+
+Scripts/Technologies/Tier2/Construction2/TechNodeStoneConstructions@Name:
+Taş inşaatlar
+
+Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
+Çeşitli yeni yiyecekler için daha gelişmiş pişirme tarifleri.
+
+Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
+Yemek pişirme 2
+
+Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
+Gelişmiş koruma teknolojileri daha iyi zırh şemaları sağlar.
+
+Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Name:
+Savunma 2
+
+Scripts/Technologies/Tier2/Defense2/TechNodeFurArmor@Name:
+Kürk zırh
+
+Scripts/Technologies/Tier2/Defense2/TechNodeFurHeadgear@Name:
+Kürk başlık
+
+Scripts/Technologies/Tier2/Defense2/TechNodeLeatherArmor@Name:
+Deri zırh
+
+Scripts/Technologies/Tier2/Defense2/TechNodeLeatherHeadgear@Name:
+Deri başlık
+
+Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
+Kapitone zırh
+
+Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
+Kapitone başlıkı
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
+Temel elektrik altyapısı.
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
+Elektrik
+
+Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
+Daha geniş çaplı mahsul ve daha iyi gübrelerle çalışmak için karmaşık tarım teknikleri.
+
+Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
+Tarım 2
+
+Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
+Gelişmiş sanayi teknolojileri, daha çok endüstriyel işlemler ve uygulamalar sağlar.
+
+Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
+Sanayi 2
+
+Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
+Çelik eritme
+
+Scripts/Technologies/Tier2/Industry2/TechNodeSteelTools@Name:
+Çelik araçlar
+
+Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Description:
+Çeşitli tıbbi eşyaların yaratılması.
+
+Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Name:
+İlaç
+
+Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Description:
+Daha güçlü silahlar ve mühimmat türleri de dâhil daha gelişmiş saldırı araçları.
+
+Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Name:
+Saldırı 2
+
+Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
+Çeşitli karmaşık kimyasal bileşenler ve tepkimelerle uğraşmak.
+
+Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
+Kimya 2
+
+Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
+Para birimi ve kolaylaştırıcı ticaretle uğraşmak.  Sikke basımı ve geri dönüşümüyle birlikte otomatikleştirilmiş ticaret istasyonları inşa etmeyi sağlar.
+
+Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Name:
+Ticaret
+
+Scripts/Technologies/Tier3/Commerce/TechNodeCoinMinting@Name:
+Sikke basımı
+
+Scripts/Technologies/Tier3/Commerce/TechNodeCoinRecycling@Name:
+Sikke geri dönüşümü
+
+Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Description:
+Gelişmiş inşaatlar.
+
+Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
+İnşaat 3
+
+Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
+Tuğla inşaatlar
+
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
+İyi yemekten anlayanlar için daha da karmaşık yemek tarifleri.
+
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
+Yemek pişirme 3
+
+Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
+İleri koruma teknolojileri
+
+Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Name:
+Savunma 3
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMetalArmor@Name:
+Metal zırh
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMetalHeadgear@Name:
+Metal başlık
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
+Askerî zırh
+
+Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
+Askerî başlık
+
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
+Gelişmiş elektrik altyapısı.
+
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
+Elektrik 2
+
+Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
+İleri tarım uygulamaları ve daha da geniş mahsul çeşitliliği.
+
+Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
+Tarım 3
+
+Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
+İleri sanayi teknolojileri, daha karmaşık endüstriyel işlemler ve uygulamalar sağlar.
+
+Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
+Sanayi 3
+
+Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
+Daha geniş ileri düzey tıbbi eşyaları sağlar.
+
+Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Name:
+İlaç 2
+
+Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Description:
+Tam otomatik silahlar ve daha çeşitli mühimmat türleri dâhil aşırı ileri düzey saldırı teknolojileri.
+
+Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Name:
+Saldırı 3
+
+Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
+Alkollü içecekler ve o türde başka şeylerin yaratılması.
+
+Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
+Yeniden yaratma
+
+Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
+Yabancı dünyalardaki kaynakları kullanmak için gerekli teknolojiler.
+
+Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
+Zenojeoloji
+
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
+Çok uzun süre gıda depolamayı sağlayan konserve gıda yaratımı.
+
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
+Konserveleme
+
+Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
+İleri kimyasal işlemler ve karmaşık tepkimeler.
+
+Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
+Kimya 3
+
+Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
+Yüksek teknoloji inşaatler.
+
+Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
+İnşaat 4
+
+Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
+Beton inşaatlar
+
+Scripts/Technologies/Tier4/Construction4/TechNodeSteelConstructions@Name:
+Çelik inşaatlar
+
+Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
+Sibernetik ve biyolojik implantların oluşturulması ve yerleştirilmesi.
+
+Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
+Sibernetik
+
+Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
+Yüksek koruma teknolojileri
+
+Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Name:
+Savunma 4
+
+Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
+Saldırı zırhı
+
+Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
+Saldırı başlığı
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
+Yüksek teknolojili elektrik altyapısı.
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
+Elektrik 3
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
+Enerji silahları, geleneksel silahlardan sonra büyük bir teknolojik gelişme.
+
+Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
+Enerji silahları
+
+Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
+En karmaşık teknolojik işlemleri açan yüksek sanayi teknolojileri.
+
+Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
+Sanayi 4
+
+Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Description:
+Kıymetli metal ve mücevheratla uğraşmak.
+
+Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Name:
+Mücevherat
+
+Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Description:
+En gelişmiş tıbbi teknolojinin oluşturulması ve uygulanması.
+
+Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Name:
+İlaç 3
+
+Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
+Geleneksel silahları maksimum potansiyellerine çıkartan yüksek saldırı teknolojileri.
+
+Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
+Saldırı 4
+

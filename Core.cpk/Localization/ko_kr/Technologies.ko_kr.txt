@@ -4,6 +4,9 @@
 Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
 학습 포인트 부족
 
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechGroupIsLocked:
+기술 트리가 잠겨있습니다
+
 Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 이미 잠금 해제된 기술
 
@@ -11,8 +14,7 @@ Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFo
 {0} 학습 포인트 필요 (현재 {1}).
 
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
-`필요한 잠금 해제된 기술: {0}
-`
+필요한 잠금 해제된 기술: {0}
 
 Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
 모든 기본 건물 유형의 설계도가 포함되어 있으며, 단순한 기지를 만들 수 있습니다.
@@ -28,6 +30,24 @@ Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
 
 Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
 요리
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
+기본 의복 및 방어구 설계도.
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
+방어
+
+Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
+뼈 방어구
+
+Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
+편조 방어구
+
+Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
+천 방어구
+
+Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
+나무 방어구
 
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
 씨앗, 기본적인 비료 등을 만들 수 있습니다.
@@ -53,23 +73,11 @@ Scripts/Technologies/Tier1/Industry/TechNodeIronTools@Name:
 Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
 제련
 
-Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Description:
-기본적인 무기, 옷, 방어구의 설계도를 제공해줍니다.
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
+기초적인 무기 설계도.
 
-Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Name:
-공격 & 방어
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBoneArmor@Name:
-뼈 방어구
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBraidedArmor@Name:
-편조 방어구
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeClothArmor@Name:
-천 방어구
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeWoodArmor@Name:
-나무 방어구
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
+공격
 
 Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
 다양한 화학적 화합물과 반응을 통해 연구합니다.
@@ -115,6 +123,12 @@ Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
 누비 쓰개
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
+기본적인 전기 인프라 시설.
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
+전기
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
 더 다양한 농작물과 더 좋은 비료를 연구하기 위한 복합적 농사 기술.
@@ -173,6 +187,12 @@ Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
 Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
 벽돌조 건축물
 
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
+진정한 미식가들을 위한 훌륭한 요리를 만들 수 있는 더욱 복잡한 조리법.
+
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
+요리 3
+
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 발전된 보호 기술.
 
@@ -191,6 +211,12 @@ Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
 군용 쓰개
 
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
+발전된 전기 인프라 시설.
+
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
+전기 2
+
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
 발전된 농사 기술 및 더 다양해진 농작물.
 
@@ -202,9 +228,6 @@ Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
 공업 3
-
-Scripts/Technologies/Tier3/Industry3/TechNodeGoldSmelting@Name:
-금 제련
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
 더욱 다양한 발전된 의료 아이템 제조 가능.
@@ -224,20 +247,17 @@ Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 오락
 
-Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoAged@Name:
-담베 숙성
-
-Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoProcessing@Name:
-담배 가공
-
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 외계의 자원을 이용하기 위해 필요한 기술.
 
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
 외계지질학
 
-Scripts/Technologies/Tier3/XenoGeology/TechNodeIngotLithium@Name:
-리튬 정제
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
+아주 오랫동안 보존할 수 있는 통조림 생산.
+
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
+통조림 제조
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
 발전된 화학적 공정과 복합적 반응.
@@ -274,6 +294,12 @@ Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
 
 Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
 돌격용 쓰개
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
+첨단 전기 인프라 시설.
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
+전기 3
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
 에너지 무기는 재래식 무기로부터 새로운 기술적 비약을 이루어낸 무기입니다.

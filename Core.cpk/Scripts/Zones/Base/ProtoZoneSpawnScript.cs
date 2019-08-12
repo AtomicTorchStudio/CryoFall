@@ -773,21 +773,20 @@
 
             await yieldIfOutOfTime();
 
-            var densityMultiplier = config.DensityMultiplier;
-
             // calculate how many objects we need to spawn
-            var allSpawnRequests =
+            using var allSpawnRequests = Api.Shared.WrapInTempList(
                 this.SpawnList
                     .Where(preset => preset.Density > 0)
                     .Select(
                         preset =>
                         {
-                            var density = preset.Density * densityMultiplier;
+                            var density = preset.Density * config.DensityMultiplier;
                             var desiredCount = (int)(density * zonePositionsCount);
                             var currentCount = spawnedObjectsCount.Find(preset);
                             //if (isInitialSpawn)
                             //{
-                            var countToSpawn = Math.Max(0, desiredCount - currentCount);
+                            var countToSpawn =
+                                Math.Max(0, desiredCount - currentCount);
                             //}
 
                             // TODO: refactor this to be actually useful with local density
@@ -802,12 +801,13 @@
                             //}
 
                             // we're not using this feature
-                            NoiseSelector
-                                tileRandomSelector =
-                                    null; //this.CreateTileRandomSelector(density, preset, desiredCount);
+                            NoiseSelector tileRandomSelector = null;
+                            // = this.CreateTileRandomSelector(density, preset, desiredCount);
 
                             var useSectorDensity = preset.PresetUseSectorDensity
-                                                   && ((density * SpawnZoneAreaSize * SpawnZoneAreaSize)
+                                                   && ((density
+                                                        * SpawnZoneAreaSize
+                                                        * SpawnZoneAreaSize)
                                                        >= SectorDensityThreshold);
 
                             return new SpawnRequest(preset,
@@ -817,21 +817,22 @@
                                                     density,
                                                     tileRandomSelector,
                                                     useSectorDensity);
-                        })
-                    .ToList();
+                        }));
 
             var mobsTrackingManager = SpawnedMobsTrackingManagersStore.Get(this, zone);
-            var playersPositions = Server
-                                   .Characters.EnumerateAllPlayerCharacters(onlyOnline: true, exceptSpectators: true)
-                                   .Select(p => p.TilePosition)
-                                   .ToList();
+            using var tempPlayersPositions = Api.Shared.WrapInTempList(
+                Server.Characters.EnumerateAllPlayerCharacters(
+                          onlyOnline: true,
+                          exceptSpectators: true)
+                      .Select(p => p.TilePosition));
+            var playersPositions = tempPlayersPositions.AsList();
 
             var physicsSpace = Server.World.GetPhysicsSpace();
 
             // stage 1: global spawn
-            var activeSpawnRequestsList = allSpawnRequests.Where(request => !request.UseSectorDensity
-                                                                            && request.CountToSpawn > 0)
-                                                          .ToList();
+            using var activeSpawnRequestsList = Api.Shared.WrapInTempList(
+                allSpawnRequests.Where(request => !request.UseSectorDensity
+                                                  && request.CountToSpawn > 0));
             while (activeSpawnRequestsList.Count > 0)
             {
                 await yieldIfOutOfTime();
@@ -854,7 +855,7 @@
                     maxSpawnFailedAttemptsInRow *= 16;
                 }
 
-                var areasList = spawnZoneAreas.Values.ToList();
+                using var areasList = Api.Shared.WrapInTempList(spawnZoneAreas.Values);
                 areasList.Shuffle();
 
                 foreach (var area in areasList)

@@ -1,8 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Deposits
 {
     using System;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -39,25 +41,21 @@
                       data.ClientState.Renderer,
                       ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
                           (ITextureAtlasResource)this.DefaultTexture),
-                      frameDurationSeconds: animationFrameDurationSeconds);
+                      frameDurationSeconds: animationFrameDurationSeconds,
+                      randomizeInitialFrame: true);
 
-            // create sound emitter
-            data.ClientState.SoundEmitter = Client.Audio.CreateSoundEmitter(
-                data.GameObject,
-                SoundResourceActive,
-                isLooped: true,
-                volume: 0.5f,
-                radius: 1.5f);
-            data.ClientState.SoundEmitter.CustomMaxDistance = 5;
-        }
-
-        protected override void ClientUpdate(ClientUpdateData data)
-        {
-            base.ClientUpdate(data);
-
-            // play sound only if this is the only object in the tile
-            data.ClientState.SoundEmitter.IsEnabled =
-                data.GameObject.OccupiedTile.StaticObjects.Count == 1;
+            if (!data.GameObject.OccupiedTile.StaticObjects.Any(
+                    o => o.ProtoStaticWorldObject is IProtoObjectExtractor))
+            {
+                // create sound emitter as there is no extractor
+                data.ClientState.SoundEmitter = Client.Audio.CreateSoundEmitter(
+                    data.GameObject,
+                    SoundResourceActive,
+                    isLooped: true,
+                    volume: 0.5f,
+                    radius: 1.5f);
+                data.ClientState.SoundEmitter.CustomMaxDistance = 5;
+            }
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)

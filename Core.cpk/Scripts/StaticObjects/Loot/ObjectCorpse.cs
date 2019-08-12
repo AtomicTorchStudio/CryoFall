@@ -129,7 +129,7 @@
         {
             //base.ClientInitialize(data);
 
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             var worldOffset = publicState.TileOffset.ToVector2D();
             publicState.ProtoCharacterMob.SharedGetSkeletonProto(null,
                                                                  out var tempProtoSkeleton,
@@ -210,7 +210,7 @@
         {
             data.PhysicsBody
                 .AddShapeCircle(radius: 0.6,
-                                center: data.SyncPublicState.TileOffset.ToVector2D() + (0, 0.33),
+                                center: data.PublicState.TileOffset.ToVector2D() + (0, 0.33),
                                 group: CollisionGroups.ClickArea);
         }
 

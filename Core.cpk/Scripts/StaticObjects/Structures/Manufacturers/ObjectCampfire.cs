@@ -82,12 +82,13 @@
             // setup active animation
             this.ClientSetupManufacturerActiveAnimation(
                 worldObject,
-                data.SyncPublicState,
+                data.PublicState,
                 this.textureAtlasCampfireActive,
                 positionOffset: (0, 0),
                 drawOrderOffsetY: drawOrderOffsetY,
                 frameDurationSeconds: 1 / 12.5,
                 autoInverseAnimation: false,
+                randomizeInitialFrame: true,
                 onRefresh: isActive =>
                            {
                                // refresh primary sprite
@@ -135,14 +136,14 @@
                 .AddShapeCircle(radius: 0.3, center: (0.35, 0.45))
                 .AddShapeCircle(radius: 0.3, center: (0.65, 0.45))
                 .AddShapeCircle(radius: 0.4, center: (0.5, 0.45), group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.4, center: (0.5, 0.45), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.8, 0.2), offset: (0.1, 0.85), group: CollisionGroups.HitboxRanged)
                 .AddShapeCircle(radius: 0.4, center: (0.5, 0.45), group: CollisionGroups.ClickArea);
         }
 
         private ITextureResource GetTextureResource(IStaticWorldObject worldObject)
         {
             var publicState = GetPublicState(worldObject);
-            return publicState.IsBurned || publicState.IsManufacturingActive
+            return publicState.IsBurned || publicState.IsActive
                        ? this.textureResourceCampfireBurned
                        : this.DefaultTexture;
         }

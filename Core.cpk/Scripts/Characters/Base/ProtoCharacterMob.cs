@@ -15,6 +15,7 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
@@ -34,6 +35,22 @@
         where TPublicState : CharacterMobPublicState, new()
         where TClientState : BaseCharacterClientState, new()
     {
+        public const double AgroStateDuration = 5 * 60; // 5 minutes
+
+        // If the mob is too far away from the spawn position, it should be despawned after the delay.
+        private const int DespawnTileDistanceThreshold = 20; // 20+ tiles away
+
+        // If the mob is too far away from the spawn position it will be despawned after this delay.
+        private const int DespawnTimeThreshold = 15 * 60; // 15 minutes
+
+        private static readonly IWorldServerService ServerWorld = IsServer
+                                                                      ? Server.World
+                                                                      : null;
+
+        // ReSharper disable once StaticMemberInGenericType
+        private static readonly List<ICharacter> TempListPlayersInView
+            = new List<ICharacter>();
+
         private ProtoCharacterSkeleton protoSkeleton;
 
         private double protoSkeletonScale;
@@ -64,6 +81,12 @@
 
         public override double StatStaminaRegenerationPerSecond => 0.0; // currently we don't use energy for mobs
 
+        /// <summary>
+        /// Determines whether the creature should be automatically despawned
+        /// if it's too far from the spawn location for too long.
+        /// </summary>
+        protected virtual bool IsAutoDespawn => true;
+
         public override void ClientDeinitialize(ICharacter gameObject)
         {
             base.ClientDeinitialize(gameObject);
@@ -93,11 +116,9 @@
                 return;
             }
 
-            using (var tempList = Api.Shared.GetTempList<ICharacter>())
-            {
-                Server.World.GetScopedByPlayers(gameObject, tempList);
-                this.CallClient(tempList, _ => _.ClientRemote_OnCharacterMobDeath(gameObject.Position));
-            }
+            using var tempList = Api.Shared.GetTempList<ICharacter>();
+            ServerWorld.GetScopedByPlayers(gameObject, tempList);
+            this.CallClient(tempList, _ => _.ClientRemote_OnCharacterMobDeath(gameObject.Position));
         }
 
         public override IEnumerable<IItemsContainer> SharedEnumerateAllContainers(
@@ -120,8 +141,9 @@
             {
                 var mobPrivateState = GetPrivateState((ICharacter)targetObject);
                 mobPrivateState.CurrentAgroCharacter = weaponCache.Character;
+                mobPrivateState.CurrentAgroTimeRemains = AgroStateDuration;
                 //Logger.Dev(
-                //    $"Mob damaged by player, let's agro: {targetObject} by {mobPrivateState.CurrentAgroCharacter}");
+                //    $"Mob damaged by player, let's agro: {targetObject} by {mobPrivateState.CurrentAgroCharacter} on {mobPrivateState.CurrentAgroTimeRemains:F2}s");
             }
 
             return base.SharedOnDamage(weaponCache,
@@ -147,8 +169,8 @@
             ClientCharacterEquipmentHelper.ClientRebuildAppearance(
                 data.GameObject,
                 data.ClientState,
-                data.SyncPublicState,
-                data.SyncPublicState.SelectedHotbarItem);
+                data.PublicState,
+                data.PublicState.SelectedHotbarItem);
         }
 
         protected sealed override void PrepareProtoCharacter()
@@ -172,15 +194,21 @@
 
             this.ServerInitializeCharacterMob(data);
 
+            var character = data.GameObject;
+            var privateState = data.PrivateState;
             SharedCharacterStatsHelper.RefreshCharacterFinalStatsCache(this.ProtoCharacterDefaultEffects,
                                                                        data.PublicState,
-                                                                       data.PrivateState,
+                                                                       privateState,
                                                                        isFirstTime: data.IsFirstTimeInit);
 
-            var character = data.GameObject;
-            var weaponState = data.PrivateState.WeaponState;
+            var weaponState = privateState.WeaponState;
             WeaponSystem.RebuildWeaponCache(character, weaponState);
-            data.PrivateState.AttackRange = weaponState.WeaponCache?.RangeMax ?? 0;
+            privateState.AttackRange = weaponState.WeaponCache?.RangeMax ?? 0;
+
+            if (data.IsFirstTimeInit)
+            {
+                privateState.SpawnPosition = character.TilePosition;
+            }
         }
 
         protected virtual void ServerInitializeCharacterMob(ServerInitializeData data)
@@ -232,23 +260,27 @@
         protected sealed override void ServerUpdate(ServerUpdateData data)
         {
             var character = data.GameObject;
+            var privateState = data.PrivateState;
             var publicState = data.PublicState;
 
             if (publicState.IsDead)
             {
                 // should never happen as the ServerCharacterDeathMechanic should properly destroy the character
                 Logger.Error("(Should never happen) Destroying dead mob character: " + character);
-                Server.World.DestroyObject(character);
+                ServerWorld.DestroyObject(character);
                 return;
             }
 
-            this.ServerRebuildFinalCacheIfNeeded(character, data.PrivateState, publicState);
+            this.ServerRebuildFinalCacheIfNeeded(character, privateState, publicState);
+
+            ServerUpdateAgroState(privateState, data.DeltaTime);
             this.ServerUpdateMob(data);
+            this.ServerUpdateMobDespawn(character, privateState, data.DeltaTime);
 
             // update weapon state (fires the weapon if needed)
             WeaponSystem.SharedUpdateCurrentWeapon(
                 character,
-                data.PrivateState.WeaponState,
+                privateState.WeaponState,
                 data.DeltaTime);
         }
 
@@ -276,6 +308,25 @@
             scale = this.protoSkeletonScale;
         }
 
+        private static void ServerUpdateAgroState(TPrivateState privateState, double deltaTime)
+        {
+            if (privateState.CurrentAgroTimeRemains <= 0)
+            {
+                return;
+            }
+
+            var newAgroTime = privateState.CurrentAgroTimeRemains - deltaTime;
+            if (newAgroTime <= 0)
+            {
+                // reset agro state
+                newAgroTime = 0;
+                privateState.CurrentAgroCharacter = null;
+                //Logger.Dev("Agro state reset: " + privateState.GameObject);
+            }
+
+            privateState.CurrentAgroTimeRemains = newAgroTime;
+        }
+
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]
         private void ClientRemote_OnCharacterMobDeath(Vector2D deathPosition)
         {
@@ -298,6 +349,52 @@
             SharedCharacterStatsHelper.RefreshCharacterFinalStatsCache(this.ProtoCharacterDefaultEffects,
                                                                        publicState,
                                                                        privateState);
+        }
+
+        private void ServerUpdateMobDespawn(ICharacter characterMob, TPrivateState privateState, double deltaTime)
+        {
+            if (!this.IsAutoDespawn)
+            {
+                return;
+            }
+
+            var distanceToSpawnSqr = privateState.SpawnPosition
+                                                 .TileSqrDistanceTo(characterMob.TilePosition);
+            if (distanceToSpawnSqr < DespawnTileDistanceThreshold * DespawnTileDistanceThreshold)
+            {
+                // close to spawn area, no need to despawn
+                privateState.TimerDespawn = 0;
+                return;
+            }
+
+            // too far from spawn area, should despawn after delay
+            if (privateState.TimerDespawn < DespawnTimeThreshold)
+            {
+                // delay is not finished yet
+                privateState.TimerDespawn += deltaTime;
+                return;
+            }
+
+            // should despawn
+            // check that nobody is observing the mob
+            var playersInView = TempListPlayersInView;
+            playersInView.Clear();
+            ServerWorld.GetCharactersInView(characterMob,
+                                            playersInView,
+                                            onlyPlayerCharacters: true);
+
+            foreach (var playerCharacter in playersInView)
+            {
+                if (playerCharacter.ServerIsOnline)
+                {
+                    // cannot despawn - scoped by a player
+                    return;
+                }
+            }
+
+            // nobody is observing, can despawn
+            Logger.Important("Mob despawned as it went too far from the spawn position for too long: " + characterMob);
+            ServerWorld.DestroyObject(characterMob);
         }
     }
 

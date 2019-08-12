@@ -9,7 +9,7 @@
     public class ItemAmmo300Incendiary : ProtoItemAmmo, IAmmoCaliber300
     {
         public override string Description =>
-            "Heavy anti-material .300 incendiary rounds.";
+            "Heavy .300 incendiary rounds, able to punch through armor and ignite the target.";
 
         public override string Name => ".300 incendiary ammo";
 
@@ -35,7 +35,7 @@
             damageValue = 20;
             armorPiercingCoef = 0.2;
             finalDamageMultiplier = 1.5;
-            rangeMax = 11;
+            rangeMax = 10;
 
             damageDistribution.Set(DamageType.Kinetic, 0.6);
             damageDistribution.Set(DamageType.Heat,    0.4);

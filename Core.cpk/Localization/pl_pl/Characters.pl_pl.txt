@@ -1,0 +1,72 @@
+﻿Scripts/Characters/Mobs/MobBear@Name:
+Niedźwiedź
+
+Scripts/Characters/Mobs/MobBlackBeetle@Name:
+Czarny żuk
+
+Scripts/Characters/Mobs/MobBurrower@Name:
+Kopacz
+
+Scripts/Characters/Mobs/MobChicken@Name:
+Kurczak
+
+Scripts/Characters/Mobs/MobCloakedLizard@Name:
+Jaszczurka z kamuflażem
+
+Scripts/Characters/Mobs/MobCrab@Name:
+Krab
+
+Scripts/Characters/Mobs/MobCrawler@Name:
+Gąsienica
+
+Scripts/Characters/Mobs/MobFireLizard@Name:
+Jaszczurka ognista
+
+Scripts/Characters/Mobs/MobHoneyBadger@Name:
+Miodożer
+
+Scripts/Characters/Mobs/MobHyena@Name:
+Hiena
+
+Scripts/Characters/Mobs/MobPangolin@Name:
+Łuskowiec
+
+Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
+Żuk pragmiumowy
+
+Scripts/Characters/Mobs/MobRiverSnail@Name:
+Ślimak
+
+Scripts/Characters/Mobs/MobScorpion@Name:
+Skorpion
+
+Scripts/Characters/Mobs/MobSnakeBlue@Name:
+Niebieski wąż
+
+Scripts/Characters/Mobs/MobSnakeBrown@Name:
+Brązowy wąż
+
+Scripts/Characters/Mobs/MobSnakeGreen@Name:
+Zielony wąż
+
+Scripts/Characters/Mobs/MobStarfish@Name:
+Rozgwiazda
+
+Scripts/Characters/Mobs/MobTropicalBoar@Name:
+Knur tropikalny
+
+Scripts/Characters/Mobs/MobTurtle@Name:
+Żółw
+
+Scripts/Characters/Mobs/MobWildBoar@Name:
+Dzik
+
+Scripts/Characters/Mobs/MobWolf@Name:
+Wilk
+
+Scripts/Characters/Player/PlayerCharacter@Name:
+Gracz
+
+Scripts/Characters/Player/PlayerCharacterSpectator@Name:
+Gracz w trybie widza
+

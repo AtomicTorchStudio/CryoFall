@@ -1,10 +1,7 @@
-﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
+﻿using AtomicTorch.CBND.CoreMod.Stats;
+
+namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
 {
-    /// <summary>
-    /// Note: This status effect has no logic by itself. Instead the effect that adds
-    /// radiation does the checking to see if the amount applied should be reduced
-    /// based on this (based on whether this effect is present or not).
-    /// </summary>
     public class StatusEffectProtectionRadiation : ProtoStatusEffect
     {
         public override string Description =>
@@ -16,5 +13,10 @@
         public override StatusEffectKind Kind => StatusEffectKind.Neutral;
 
         public override string Name => "Radiation protection";
+
+        protected override void PrepareEffects(Effects effects)
+        {
+            effects.AddPercent(this, StatName.RadiationPoisoningIncreaseRateMultiplier, -50);
+        }
     }
 }

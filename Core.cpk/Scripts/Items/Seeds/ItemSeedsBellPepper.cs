@@ -7,7 +7,7 @@
 
     public class ItemSeedsBellPepper : ProtoItemSeed
     {
-        public override string Description => "Can be planted to grow bell pepper plants.";
+        public override string Description => "Small bag of seeds prepared for planting. Can be planted in the soil.";
 
         public override string Name => "Bell pepper seeds";
 

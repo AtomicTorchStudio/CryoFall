@@ -70,11 +70,12 @@ Nombre de usuario no válido
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
 `Requisitos de nombre de usuario:
-[*] ha de tener entre [b]3[/b] y [b]24[/b] caracteres de longitud
-[*] [b]puede[/b] contener letras, números, guiones y guiones bajos
-[*] [b]no puede[/b] contener espacios o cualquier otro caracter
-[*] ha de empezar y terminar con una [b]letra[/b] o un [b]número[/b]
-[*] [b]no[/b] debe contener varios caracteres [b]-[/b] o [b]_[/b] seguidos`
+[*] Ha de tener entre [b]3[/b] y [b]24[/b] caracteres de longitud.
+[*] [b]Puede[/b] contener letras, números, guiones y guiones bajos.
+[*] [b]No puede[/b] contener espacios o cualquier otro caracter.
+[*] Ha de empezar con una [b]letra[/b].
+[*] Ha de terminar con una [b]letra[/b] o un [b]número[/b].
+[*] [b]No[/b] debe contener varios caracteres [b]-[/b] o [b]_[/b] seguidos.`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
 `El nombre de usuario seleccionado ya está siendo utilizado por otra persona.

@@ -2,12 +2,14 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
+    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
     using static GameApi.Data.State.SyncToClientReceivers;
 
@@ -58,6 +60,10 @@
         [SyncToClient]
         public bool IsPveDuelModeEnabled { get; set; }
 
+        [SyncToClient()]//receivers: ScopePlayers)]
+        [TempOnly]
+        public NetworkSyncList<IProtoStatusEffect> CurrentPublicStatusEffects { get; private set; }
+
         [SyncToClient(receivers: ScopePlayers)]
         [TempOnly]
         public IItem SelectedHotbarItem { get; private set; }
@@ -65,6 +71,7 @@
         public void EnsureEverythingCreated()
         {
             this.AppliedInput = new AppliedCharacterInput();
+            this.CurrentPublicStatusEffects = new NetworkSyncList<IProtoStatusEffect>();
 
             if (this.CurrentStatsExtended == null)
             {

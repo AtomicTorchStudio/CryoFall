@@ -42,18 +42,8 @@
         [TempOnly]
         public ushort? ContainerOutputLastStateHash { get; set; }
 
-        public IItemsContainer[] InputContainersArray
-        {
-            get
-            {
-                if (this.inputContainersArray == null)
-                {
-                    this.inputContainersArray = this.CreateInputContainersArray();
-                }
-
-                return this.inputContainersArray;
-            }
-        }
+        public IItemsContainer[] InputContainersArray 
+            => this.inputContainersArray ??= this.CreateInputContainersArray();
 
         /// <summary>
         /// Special flag meaning that output container cannot accommodate output items of current recipe.

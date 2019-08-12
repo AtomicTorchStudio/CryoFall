@@ -19,11 +19,11 @@
             // +100% to energy regeneration
             effects.AddPercent(this, StatName.StaminaRegenerationPerSecond, 100);
 
-            // -50% energy consumption
-            effects.AddPercent(this, StatName.RunningStaminaConsumptionPerSecond, -50);
+            // -10% energy consumption
+            effects.AddPercent(this, StatName.RunningStaminaConsumptionPerSecond, -10);
 
-            // increase maximum energy by 50
-            effects.AddValue(this, StatName.StaminaMax, 50);
+            // increase maximum energy by 75
+            effects.AddValue(this, StatName.StaminaMax, 75);
         }
     }
 }

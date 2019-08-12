@@ -20,7 +20,6 @@
         {
             var dataNodes = new List<TestNode>();
 
-            RandomHelper.SetSeedRandom();
             GenerateTestNodes(dataNodes, parentNode: null, level: 0, maxLevel: MaxLevel, isUnlocked: true);
 
             Api.Logger.Important("Test nodes generated for tech tree. Total nodes: " + dataNodes.Count);

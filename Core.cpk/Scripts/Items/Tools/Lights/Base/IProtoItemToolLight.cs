@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Items;
 
-    public interface IProtoItemToolLight : IProtoItemWithFuel, IProtoItemWithCharacterAppearance
+    public interface IProtoItemToolLight : IProtoItemTool, IProtoItemWithFuel, IProtoItemWithCharacterAppearance
     {
         IReadOnlyItemLightConfig ItemLightConfig { get; }
 

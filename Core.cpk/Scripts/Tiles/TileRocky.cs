@@ -127,7 +127,7 @@
             settings.AddDecal(
                 new ProtoTileDecal(redGrassTextures,
                                    size: redGrassSize,
-                                   offset: Vector2Ushort.One,
+                                   offset: (1, 1),
                                    noiseSelector: redGrassNoiseSelector,
                                    hidingSetting: redGrassHidingSetting,
                                    drawOrder: redGrassDrawOrder));

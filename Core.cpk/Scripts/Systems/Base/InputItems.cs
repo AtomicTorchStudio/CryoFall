@@ -11,6 +11,8 @@
 
         public int Count => this.items.Count;
 
+        public ProtoItemWithCount this[int index] => this.items[index];
+
         public void Add<TProtoItem>(ushort count = 1)
             where TProtoItem : class, IProtoItem, new()
         {

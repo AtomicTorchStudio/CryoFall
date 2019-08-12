@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectTrashCan>();
 
-            config.SetRequiredNode<TechNodeFloorLampLarge>();
+            config.SetRequiredNode<TechNodeBed>();
         }
     }
 }

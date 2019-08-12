@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -22,7 +21,7 @@
         {
             if (Api.IsClient)
             {
-                ClientComponentTimersManager.AddAction(ClientTimerIntervalSeconds, ClientTimerCallback);
+                ClientTimersSystem.AddAction(ClientTimerIntervalSeconds, ClientTimerCallback);
             }
         }
 
@@ -65,7 +64,7 @@
         private static void ClientTimerCallback()
         {
             // schedule next callback
-            ClientComponentTimersManager.AddAction(ClientTimerIntervalSeconds, ClientTimerCallback);
+            ClientTimersSystem.AddAction(ClientTimerIntervalSeconds, ClientTimerCallback);
 
             // calculate expiration time
             var time = ClientCore.ClientRealTime - EntryLifetimeSeconds;

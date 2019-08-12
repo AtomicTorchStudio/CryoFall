@@ -3,7 +3,6 @@
     using System;
     using System.Windows.Controls;
     using System.Windows.Media;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -108,7 +107,7 @@
             if (notificationControl.IsAutoHide)
             {
                 // hide the notification control after delay
-                ClientComponentTimersManager.AddAction(
+                ClientTimersSystem.AddAction(
                     NotificationHideDelaySeconds,
                     () => notificationControl.Hide(quick: false));
             }

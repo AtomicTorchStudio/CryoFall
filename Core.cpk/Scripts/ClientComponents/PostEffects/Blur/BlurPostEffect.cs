@@ -187,44 +187,42 @@
                 this.isDirty = true;
             }
 
-            using (var renderTarget1 = Rendering.GetTempRenderTexture(size.X, size.Y))
-            using (var renderTarget2 = Rendering.GetTempRenderTexture(size.X, size.Y))
+            using var renderTarget1 = Rendering.GetTempRenderTexture(size.X, size.Y);
+            using var renderTarget2 = Rendering.GetTempRenderTexture(size.X, size.Y);
+            if (this.isDirty)
             {
-                if (this.isDirty)
-                {
-                    this.SetBlurEffectParameters();
-                }
-
-                for (var i = 0; i < this.passes; i++)
-                {
-                    // Pass 1: draw from source into rendertarget 1,
-                    // using a shader to apply a horizontal gaussian blur filter.
-                    this.device.SetRenderTarget(renderTarget1);
-                    this.device.DrawTexture(
-                        source,
-                        renderTarget1.Width,
-                        renderTarget1.Height,
-                        this.effectBlurHorizontal,
-                        BlendMode.Opaque);
-
-                    // Pass 2: draw from rendertarget 1 into rendertarget 2,
-                    // using a shader to apply a vertical gaussian blur filter.
-                    this.device.SetRenderTarget(renderTarget2);
-                    this.device.DrawTexture(
-                        renderTarget1,
-                        renderTarget2.Width,
-                        renderTarget2.Height,
-                        this.effectBlurVertical,
-                        BlendMode.Opaque);
-
-                    // for second and later passes use renderTarget2 as the source
-                    source = renderTarget2;
-                }
-
-                // Pass 3: draw rendertarget 2 into the destination
-                this.device.SetRenderTarget(destination);
-                this.device.Blit(renderTarget2, blendState: BlendMode.Opaque);
+                this.SetBlurEffectParameters();
             }
+
+            for (var i = 0; i < this.passes; i++)
+            {
+                // Pass 1: draw from source into rendertarget 1,
+                // using a shader to apply a horizontal gaussian blur filter.
+                this.device.SetRenderTarget(renderTarget1);
+                this.device.DrawTexture(
+                    source,
+                    renderTarget1.Width,
+                    renderTarget1.Height,
+                    this.effectBlurHorizontal,
+                    BlendMode.Opaque);
+
+                // Pass 2: draw from rendertarget 1 into rendertarget 2,
+                // using a shader to apply a vertical gaussian blur filter.
+                this.device.SetRenderTarget(renderTarget2);
+                this.device.DrawTexture(
+                    renderTarget1,
+                    renderTarget2.Width,
+                    renderTarget2.Height,
+                    this.effectBlurVertical,
+                    BlendMode.Opaque);
+
+                // for second and later passes use renderTarget2 as the source
+                source = renderTarget2;
+            }
+
+            // Pass 3: draw rendertarget 2 into the destination
+            this.device.SetRenderTarget(destination);
+            this.device.Blit(renderTarget2, blendState: BlendMode.Opaque);
         }
 
         protected override void OnDisable()

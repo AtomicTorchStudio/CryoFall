@@ -5,9 +5,11 @@
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
@@ -90,7 +92,6 @@
 
         void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
         {
-            // do nothing
         }
 
         protected static void ClientFixTradingStationContentDrawOffset(ClientInitializeData data)
@@ -110,7 +111,7 @@
             base.ClientInitialize(data);
 
             var worldObject = data.GameObject;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
 
             var rendererTradingStationContent = Client.Rendering.CreateSpriteRenderer(
                 worldObject,
@@ -191,7 +192,7 @@
         protected BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
         {
             var worldObject = data.GameObject;
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
 
             if (worldObject.ClientHasPrivateState
                 && !Client.Input.IsKeyHeld(InputKey.Alt))
@@ -199,7 +200,7 @@
                 // open admin window
                 return WindowTradingStationAdmin.Open(
                     new ViewModelWindowTradingStationAdmin(worldObject,
-                                                           data.SyncPrivateState,
+                                                           data.PrivateState,
                                                            publicState));
             }
 
@@ -316,6 +317,18 @@
             renderTexture.Dispose();
             request.ThrowIfCancelled();
             return generatedTexture;
+        }
+
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            // don't use the base implementation as it will not work in PvE
+            // (action forbidden if player doesn't have access to the land claim)
+            if (character.GetPublicState<ICharacterPublicState>().IsDead)
+            {
+                return false;
+            }
+
+            return this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
         }
     }
 

@@ -12,11 +12,6 @@
 
         protected readonly Dictionary<StatName, double> Values = new Dictionary<StatName, double>();
 
-        /// <summary>
-        /// Set special mode - sum of multipliers instead of multiplication.
-        /// </summary>
-        protected bool IsMultipliersSummed;
-
         private StatsSources sources;
 
         public bool IsEmpty => this.Values.Count == 0
@@ -39,57 +34,23 @@
 
             var multiplier = percent / 100d;
 
-            if (this.IsMultipliersSummed)
+            // simply sum multipliers (like values)
+            if (multiplier == 0)
             {
-                // simply sum multipliers (like values)
-                if (multiplier == 0)
-                {
-                    return;
-                }
+                return;
+            }
 
-                StatsSources.RegisterPercent(ref this.sources, source, statName, percent);
+            StatsSources.RegisterPercent(ref this.sources, source, statName, percent);
 
-                if (this.Multipliers.TryGetValue(statName, out var currentMultiplier))
-                {
-                    // simply sum with existing value
-                    multiplier += currentMultiplier;
-                }
-                else
-                {
-                    // non-existing multiplier - add base multiplier (one)
-                    multiplier += 1;
-                }
+            if (this.Multipliers.TryGetValue(statName, out var currentMultiplier))
+            {
+                // simply sum with existing value
+                multiplier += currentMultiplier;
             }
             else
             {
-                if (multiplier <= -1)
-                {
-                    // -100% or lower - wow!
-                    StatsSources.RegisterPercent(ref this.sources, source, statName, -100);
-                    this.Multipliers[statName] = 0;
-                    return;
-                }
-
-                StatsSources.RegisterPercent(ref this.sources, source, statName, percent);
-
+                // non-existing multiplier - add base multiplier (one)
                 multiplier += 1;
-
-                if (this.Multipliers.TryGetValue(statName, out var currentMultiplier))
-                {
-                    // Simply multiply multipliers.
-                    // We're doing this to avoid case when -50% + -50% = -100%
-                    // as it could broke the game in some cases (like movement speed).
-                    // But if percent is provided as -100%, then it will be converted to multiplier==0
-                    // so we still can reset some stats to 0 by using percent effects.
-
-                    if (currentMultiplier == 0d)
-                    {
-                        // early return - the final multiplier also will be 0 and nothing changes
-                        return;
-                    }
-
-                    multiplier *= currentMultiplier;
-                }
             }
 
             this.ValidateIsNotReadOnly();
@@ -117,12 +78,16 @@
 
         public FinalStatsCache CalculateFinalStatsCache()
         {
+            var finalMultipliers = new Dictionary<StatName, double>(this.Multipliers.Count);
+            foreach (var pair in this.Multipliers)
+            {
+                var multiplier = pair.Value;
+                multiplier = Math.Max(0, multiplier); // clamp multiplier so it cannot be negative
+                finalMultipliers.Add(pair.Key, multiplier);
+            }
+
             var finalValues = new Dictionary<StatName, double>(
                 capacity: Math.Max(this.Values.Count, this.Multipliers.Count));
-
-            var finalMultipliers =
-                new Dictionary<StatName, double>(this.Multipliers);
-
             foreach (var pair in this.Values)
             {
                 var value = pair.Value;
@@ -149,17 +114,15 @@
         {
             this.ValidateIsNotReadOnly();
 
-            // values are merged via sum
             this.Merge(
                 this.Values,
                 otherStatsCache.Values,
-                isMultiplied: false);
+                isMultipliers: false);
 
-            // multipliers are merged via multiplication
             this.Merge(
                 this.Multipliers,
                 otherStatsCache.Multipliers,
-                isMultiplied: !this.IsMultipliersSummed);
+                isMultipliers: true);
 
             StatsSources.Merge(ref this.sources, otherStatsCache.Sources);
         }
@@ -172,19 +135,16 @@
         protected void Merge(
             IDictionary<StatName, double> toDictionary,
             IReadOnlyDictionary<StatName, double> fromDictionary,
-            bool isMultiplied)
+            bool isMultipliers)
         {
             foreach (var pair in fromDictionary)
             {
                 if (toDictionary.TryGetValue(pair.Key, out var value))
                 {
-                    if (isMultiplied)
+                    value += pair.Value;
+                    if (isMultipliers)
                     {
-                        value *= pair.Value;
-                    }
-                    else
-                    {
-                        value += pair.Value;
+                        value -= 1.0;
                     }
                 }
                 else

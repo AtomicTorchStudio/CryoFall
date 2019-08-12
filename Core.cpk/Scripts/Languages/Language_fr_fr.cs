@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Languages
 {
-    using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.CoreMod.ClientLanguages;
 
     public class Language_fr_fr : ProtoLanguageDefinition
     {

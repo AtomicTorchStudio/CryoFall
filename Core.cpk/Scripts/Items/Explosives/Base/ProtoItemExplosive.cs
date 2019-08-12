@@ -60,7 +60,12 @@
         public void ServerOnUseActionFinished(ICharacter character, IItem item, Vector2Ushort targetPosition)
         {
             this.ServerValidateItemForRemoteCall(item, character);
-            if (!this.SharedValidatePlacement(character, targetPosition, logErrors: true))
+            this.SharedValidatePlacement(character,
+                                         targetPosition,
+                                         logErrors: true,
+                                         canPlace: out var canPlace,
+                                         isTooFar: out var isTooFar);
+            if (!canPlace || isTooFar)
             {
                 return;
             }
@@ -78,7 +83,39 @@
             Server.Items.SetCount(item, (ushort)(item.Count - 1));
         }
 
-        public bool SharedValidatePlacement(ICharacter character, Vector2Ushort targetPosition, bool logErrors)
+        public bool SharedIsTooFarToPlace(ICharacter character, Vector2Ushort targetPosition, bool logErrors)
+        {
+            if (targetPosition.TileDistanceTo(character.TilePosition)
+                <= this.DeployDistanceMax)
+            {
+                return false;
+            }
+
+            // distance exceeded - too far
+            if (!logErrors)
+            {
+                return true;
+            }
+
+            if (IsClient)
+            {
+                this.ClientShowCannotPlaceTooFarNotification();
+            }
+            else
+            {
+                Logger.Warning($"{character} cannot place {this} - too far");
+                this.CallClient(character, _ => _.ClientRemote_CannotPlaceTooFar());
+            }
+
+            return true;
+        }
+
+        public void SharedValidatePlacement(
+            ICharacter character,
+            Vector2Ushort targetPosition,
+            bool logErrors,
+            out bool canPlace,
+            out bool isTooFar)
         {
             if (NewbieProtectionSystem.SharedIsNewbie(character))
             {
@@ -88,7 +125,9 @@
                     NewbieProtectionSystem.SharedNotifyNewbieCannotPerformAction(character, this);
                 }
 
-                return false;
+                canPlace = false;
+                isTooFar = false;
+                return;
             }
 
             // check if there is a direct line of sight
@@ -100,35 +139,33 @@
             // local method for testing if there is an obstacle from current to the specified position
             bool TestHasObstacle(Vector2D toPosition)
             {
-                using (var obstaclesOnTheWay = physicsSpace.TestLine(
+                using var obstaclesOnTheWay = physicsSpace.TestLine(
                     characterCenter,
                     toPosition,
                     CollisionGroup.GetDefault(),
-                    sendDebugEvent: false))
+                    sendDebugEvent: false);
+                foreach (var test in obstaclesOnTheWay)
                 {
-                    foreach (var test in obstaclesOnTheWay)
+                    var testPhysicsBody = test.PhysicsBody;
+                    if (testPhysicsBody.AssociatedProtoTile != null)
                     {
-                        var testPhysicsBody = test.PhysicsBody;
-                        if (testPhysicsBody.AssociatedProtoTile != null)
-                        {
-                            // obstacle tile on the way
-                            return true;
-                        }
-
-                        var testWorldObject = testPhysicsBody.AssociatedWorldObject;
-                        if (testWorldObject == character)
-                        {
-                            // not an obstacle - it's the character or world object itself
-                            continue;
-                        }
-
-                        // obstacle object on the way
+                        // obstacle tile on the way
                         return true;
                     }
 
-                    // no obstacles
-                    return false;
+                    var testWorldObject = testPhysicsBody.AssociatedWorldObject;
+                    if (testWorldObject == character)
+                    {
+                        // not an obstacle - it's the character or world object itself
+                        continue;
+                    }
+
+                    // obstacle object on the way
+                    return true;
                 }
+
+                // no obstacles
+                return false;
             }
 
             // let's test by casting rays from character center to the center of the planted bomb
@@ -148,28 +185,9 @@
                     }
                 }
 
-                return false;
-            }
-
-            // validate distance to the character
-            if (targetPosition.TileDistanceTo(character.TilePosition)
-                > this.DeployDistanceMax)
-            {
-                // distance exceeded - too far
-                if (logErrors)
-                {
-                    if (IsClient)
-                    {
-                        this.ClientShowCannotPlaceTooFarNotification();
-                    }
-                    else
-                    {
-                        Logger.Warning($"{character} cannot place {this} - too far");
-                        this.CallClient(character, _ => _.ClientRemote_CannotPlaceTooFar());
-                    }
-                }
-
-                return false;
+                canPlace = false;
+                isTooFar = false;
+                return;
             }
 
             if (!this.ObjectExplosiveProto.CheckTileRequirements(targetPosition,
@@ -177,10 +195,21 @@
                                                                  logErrors))
             {
                 // explosive static object placement requirements failed
-                return false;
+                canPlace = false;
+                isTooFar = false;
+                return;
             }
 
-            return true;
+            // validate distance to the character
+            if (this.SharedIsTooFarToPlace(character, targetPosition, logErrors))
+            {
+                canPlace = true;
+                isTooFar = true;
+                return;
+            }
+
+            canPlace = true;
+            isTooFar = false;
         }
 
         protected override void ClientItemHotbarSelectionChanged(ClientHotbarItemData data)

@@ -53,14 +53,9 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle((1.9, 0.8), offset: (0.05, 0))
-                .AddShapeRectangle((2, 1),
-                                   offset: (0, 0),
-                                   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(
-                    (1.8, 1),
-                    offset: (0.1, 0),
-                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((2, 1.2), offset: (0, 0), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((2, 1),     offset: (0, 0),      group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1.6, 0.2), offset: (0.2, 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((2, 1.2),   offset: (0, 0),      group: CollisionGroups.ClickArea);
         }
     }
 }

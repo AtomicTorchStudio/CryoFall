@@ -72,7 +72,8 @@ Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements
 [*] entre [b]3[/b] et [b]24[/b] caractères de long
 [*] [b]peuvent[/b] contenir des lettres, des chiffres, des tirets ou des underscores
 [*] [b]ne peuvent pas[/b] contenir d'espace, ou tout autre caractère
-[*] doivent commencer et se finir par [b]une lettre[/b] ou [b]un chiffre[/b]
+[*] doivent commencer par [b]une lettre[/b]
+[*] doivent se finir par [b]une lettre[/b] ou [b]un chiffre[/b]
 [*] [b]ne doivent pas[/b] contenir plusieurs [b]-[/b] ou [b]_[/b] d'affilée`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:

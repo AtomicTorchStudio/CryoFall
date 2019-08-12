@@ -1,0 +1,189 @@
+﻿Scripts/ClientOptions/Audio/AudioOptionMuteAudioWhenUnfocused@Name:
+Odaklanmadığında sessize al
+
+Scripts/ClientOptions/Audio/AudioOptionsCategory@Name:
+Ses
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeAmbient@Name:
+Ortam sesi yüksekliği
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeMaster@Name:
+Ana ses yüksekliği
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeMusic@Name:
+Müzik sesi yüksekliği
+
+Scripts/ClientOptions/Audio/AudioOptionVolumeSounds@Name:
+Ses yüksekliği
+
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCategory:
+Genel
+
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
+Kontroller
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
+Yine de etkinleştir
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
+`Önemli! Geliştirici modunu etkinleştirmek üzeresiniz.
+[br][br]
+Geliştirici modunun bazı özelliklerini kullanmak oyununuzu bozabilir.
+[br][br]
+Gerçekten ne yaptığınızı bilmiyorsanız, geliştirici modunu kullanmamanız şiddete tavsiye edilir.
+[br]`
+
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
+Geliştirici modu
+
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
+Nesneyi göster[br]etkileşim bilgi çubuğu
+
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
+Nesneyi göster[br]isim bilgi çubuğu
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
+Kamera yakınlaştırma
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
+Araç çubuğu eşya seçimi
+
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
+Fare tekerleğini şunun için kullan
+
+Scripts/ClientOptions/General/GeneralOptionsCategory@Name:
+Genel
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Png:
+PNG (kayıpsız)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Jpeg95:
+JPEG
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Name:
+Ekran görüntüsü formatı
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Actual:
+Mevcut (geçerli çözünürlüğü kullan)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Closest:
+En yakın (en yakın standart çözünürlüğü kullan)
+
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
+Ekran görüntüsü çözünürlüğü
+
+Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
+UI ölçeği
+
+Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
+Ortam aydınlatması
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
+Hiçbiri
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx2:
+MSAA x2
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx4:
+MSAA x4
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx8:
+MSAA x8
+
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@Name:
+Kenar yumuşatma
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.VSync:
+Dikey eşitleme (önerilen)
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.DisplayRefreshRate:
+Ekran yenileme oranı
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.Off:
+Sınırsız (çok yüksek enerji tüketimi)
+
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@Name:
+FPS limiti
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Normal:
+Gerçek (en yüksek kalite)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale15:
+Düşük ölçeklendirilmiş x1.5 (daha hızlı)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale2:
+Düşük ölçeklendirilmiş x2 (en hızlı)
+
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
+Render çözünürlüğü
+
+Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
+Görüntü
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
+Tam ekran
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Windowed:
+Pencere
+
+Scripts/ClientOptions/Video/VideoOptionScreenMode@Name:
+Ekran modu
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Message:
+`Hareketli çözünürlük görüntü ayarı değiştirildi.
+[br]Değişikliklerin uygulanması için oyunun yeniden başlatılması gerekiyor.
+[br]Lütfen oyunu yeniden başlatın.`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Title:
+Yeniden başlatma gerekli
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Button:
+Yine de devam et
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_MessageFormat:
+`Önerilenden daha yüksek bir hareketli çözünürlük modu seçmeye çalışıyorsunuz.
+[br]
+[*] Önerilen mod: [b]{0}[/b]
+[*] Seçilen mod: [b]{1}[/b]
+[br]
+[br]Seçilen mod GPU'nuzun sahip olduğundan daha fazla VRAM kapasitesi gerektiriyor. Bu durum görüntüde tutukluluğa ve düşük kare hızına neden olabilir.`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:
+Çok yüksek ayar seçildi
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Ultra:
+Ultra 4K
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.High:
+Yüksek
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Low:
+Düşük (bulanık, kusurlu)
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Name:
+Hareketli çözünürlük[br](yeniden başlatma gerekli)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.High:
+Yüksek (önerilen)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Medium:
+Orta
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Low:
+Düşük
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.None:
+Hiçbiri (önerilmeyen)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Name:
+Arazi detayları
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.PPAA:
+PAAA zorla (düşük)
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.MSAA:
+Otomatik MSAA (en iyi)
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@Name:
+UI kenar yumuşatma
+

@@ -70,7 +70,9 @@
         public static void ConsolidateItemStacks(IClientItemsContainer container)
         {
             Api.Logger.Important("Consolidating item stacks in " + container);
-            var allItems = container.Items.ToList();
+
+            using var tempAllItems = Api.Shared.WrapInTempList(container.Items);
+            var allItems = tempAllItems.AsList();
 
             for (var index = allItems.Count - 1; index >= 0; index--)
             {
@@ -154,27 +156,28 @@
             ConsolidateItemStacks(container);
 
             Api.Logger.Important("Sorting items in " + container);
-            var allItems = container.Items.ToList();
 
-            var sorted = allItems.OrderBy(item => GetProtoItemSortIndex(item.ProtoItem))
-                                 .ThenBy(item => item.ProtoItem.Id)
-                                 .ThenByDescending(item =>
-                                                   {
-                                                       if (item.ProtoItem is IProtoItemWithDurablity)
-                                                       {
-                                                           return item
-                                                                  .GetPrivateState<IItemWithDurabilityPrivateState>()
-                                                                  .DurabilityCurrent;
-                                                       }
+            var sorted = container.Items
+                                  .ToList()
+                                  .OrderBy(item => GetProtoItemSortIndex(item.ProtoItem))
+                                  .ThenBy(item => item.ProtoItem.Id)
+                                  .ThenByDescending(item =>
+                                                    {
+                                                        if (item.ProtoItem is IProtoItemWithDurablity)
+                                                        {
+                                                            return item
+                                                                   .GetPrivateState<IItemWithDurabilityPrivateState>()
+                                                                   .DurabilityCurrent;
+                                                        }
 
-                                                       if (item.ProtoItem.IsStackable)
-                                                       {
-                                                           return item.Count;
-                                                       }
+                                                        if (item.ProtoItem.IsStackable)
+                                                        {
+                                                            return item.Count;
+                                                        }
 
-                                                       return 0;
-                                                   })
-                                 .ToList();
+                                                        return 0u;
+                                                    })
+                                  .ToList();
 
             //Api.Logger.WriteDev("Sorted:"
             //                    + Environment.NewLine

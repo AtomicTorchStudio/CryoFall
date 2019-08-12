@@ -35,8 +35,6 @@
             this.soundEmitter.Volume = (float)this.currentInterpolatedVolume;
         }
 
-        /// <param name="volumeceCoef">Distance coef (in [0;1] range, validate before call)</param>
-        /// <param name="suppression">Distance coef (in [0;1] range, validate before call)</param>
         public void SetTargetVolume(double volume)
         {
             volume *= AudioOptionVolumeAmbient.CurrentVolumeForAmbientSounds;
@@ -50,8 +48,8 @@
             this.soundEmitter.IsLooped = true;
             this.soundEmitter.IsUseSoundVolumeOption = false; // we control ambient volume separately from other sounds
             this.soundEmitter.Volume = (float)(this.currentInterpolatedVolume = this.targetVolume = 0);
-            this.soundEmitter.Seek(
-                Client.Core.ClientRealTime); // the ambient sound should never start from the beginning
+            // the ambient sound should never start from the beginning
+            this.soundEmitter.Seek(RandomHelper.NextDouble() * 100);
             this.soundEmitter.Play();
         }
 

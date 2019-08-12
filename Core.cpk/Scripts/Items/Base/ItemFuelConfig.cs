@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Systems.ItemFuelRefill;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -24,11 +25,16 @@
 
         public FuelProtoItemsList FuelProtoItemsList { get; } = new FuelProtoItemsList();
 
+        public string FuelTitle => this.IsElectricity
+                                       ? CoreStrings.TitleEnergyCharge
+                                       : CoreStrings.TitleFuel;
+
         public double FuelUsePerSecond { get; set; }
 
-        public double RefillDuration { get; set; } = 2;
+        public bool IsElectricity => this.FuelProtoItemsList.Count > 0
+                                     && this.FuelProtoItemsList[0] is IProtoItemFuelElectricity;
 
-        public string FuelTitle { get; set; } = CoreStrings.TitleFuel;
+        public double RefillDuration { get; set; } = 2;
 
         IReadOnlyList<IProtoItem> IReadOnlyItemFuelConfig.FuelProtoItemsList => this.FuelProtoItemsList;
 
@@ -69,10 +75,18 @@
             return privateState.FuelAmount;
         }
 
-        public void SharedOnRefilled(IItem item, double fuelAmount)
+        public void SharedOnRefilled(
+            IItem item,
+            double newFuelAmount,
+            bool serverNotifyClients)
         {
             var privateState = GetItemPrivateState(item);
-            privateState.FuelAmount = fuelAmount;
+            privateState.FuelAmount = MathHelper.Clamp(newFuelAmount, 0, this.FuelCapacity);
+
+            if (Api.IsServer && serverNotifyClients)
+            {
+                ItemFuelRefillSystem.ServerNotifyItemRefilled(item);
+            }
         }
 
         public void SharedTryConsumeFuel(

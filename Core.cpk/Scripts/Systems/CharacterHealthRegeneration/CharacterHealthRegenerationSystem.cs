@@ -50,7 +50,7 @@
                 var stats = publicState.CurrentStats;
                 if (!character.IsNpc)
                 {
-                    if (!character.IsOnline)
+                    if (!character.ServerIsOnline)
                     {
                         // don't regenerate health for offline players
                         continue;

@@ -4,6 +4,9 @@ Se necesita {0} con un {1}% de las tecnologías investigadas.
 Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
 No tienes suficientes puntos de aprendizaje
 
+Scripts/Technologies/Base/Group/TechGroup@ErrorTechGroupIsLocked:
+Árbol tecnológico bloqueado
+
 Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 Esta tecnología ya ha sido desbloqueada
 
@@ -27,6 +30,24 @@ Contiene diversas recetas que permiten la producción de alimentos mejores.
 
 Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
 Cocina
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
+Planos para armaduras y ropa básicas.
+
+Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
+Defensa
+
+Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
+Armadura de hueso
+
+Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
+Armadura trenzada
+
+Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
+Armadura de tela
+
+Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
+Armadura de madera
 
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
 Prepara las semillas para plantarlas, los fertilizantes básicos, etcétera.
@@ -52,23 +73,11 @@ Herramientas de hierro
 Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
 Fundición
 
-Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Description:
-Ofrece planos para armaduras, ropa y armas básicas.
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
+Planos de armas primitivas.
 
-Scripts/Technologies/Tier1/OffenseAndDefense/TechGroupOffenseAndDefense@Name:
-Ataque y defensa
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBoneArmor@Name:
-Armadura de hueso
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeBraidedArmor@Name:
-Armadura trenzada
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeClothArmor@Name:
-Armadura de tela
-
-Scripts/Technologies/Tier1/OffenseAndDefense/TechNodeWoodArmor@Name:
-Armadura de madera
+Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
+Ataque
 
 Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
 Trabaja con diversos compuestos químicos y reacciones.
@@ -114,6 +123,12 @@ Armadura acolchada
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
 Equipo para la cabeza acolchado
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
+Infraestructura eléctrica básica.
+
+Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
+Electricidad
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
 Técnicas agrícolas complejas, que permiten trabajar con un amplio abanico de cultivos y mejores fertilizantes.
@@ -172,6 +187,12 @@ Construcción 3
 Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
 Construcciones de ladrillo
 
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
+Recetas culinarias aún más complejas. Para los auténticos expertos en la cocina.
+
+Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
+Cocina 3
+
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 Tecnologías de protección avanzadas.
 
@@ -190,6 +211,12 @@ Armadura militar
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
 Cascos militares
 
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
+Infraestructura eléctrica avanzada.
+
+Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
+Electricidad 2
+
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
 Prácticas agrícolas avanzadas, con una mayor variedad de cultivos.
 
@@ -201,9 +228,6 @@ Tecnologías industriales avanzadas, que permiten aplicaciones y procesos indust
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
 Industria 3
-
-Scripts/Technologies/Tier3/Industry3/TechNodeGoldSmelting@Name:
-Fundición de oro
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
 Permite crear un amplio abanico de objetos médicos avanzados.
@@ -223,20 +247,17 @@ Preparación de bebidas alcohólicas y otras cosas de naturaleza similar.
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 Diversión
 
-Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoAged@Name:
-Envejecimiento del tabaco
-
-Scripts/Technologies/Tier3/Recreation/TechNodeTobaccoProcessing@Name:
-Elaboración de tabaco
-
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 Tecnologías necesarias para aprovechar los recursos de mundos alienígenas.
 
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
 Xenogeología
 
-Scripts/Technologies/Tier3/XenoGeology/TechNodeIngotLithium@Name:
-Refinado de litio
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
+Creación de comida enlatada, la cual se puede almacenar durante mucho tiempo.
+
+Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
+Enlatado
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
 Procesos químicos avanzados y reacciones complejas.
@@ -273,6 +294,12 @@ Armadura de asalto
 
 Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
 Cascos de asalto
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
+Infraestructura eléctrica muy avanzada.
+
+Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
+Electricidad 3
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
 Las armas de energía son un nuevo salto tecnológico con respecto a las armas de fuego convencionales.

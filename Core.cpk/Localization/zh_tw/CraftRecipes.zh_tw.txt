@@ -1,5 +1,5 @@
-﻿Scripts/CraftRecipes/HandCrafting/RecipeFillBottleWithWaterbulb@Name:
-用水莖裝滿瓶子
+﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
+打碎瓶子
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
 用汽油裝滿瓶子
@@ -37,20 +37,17 @@ Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
 Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
 燒水(浪費)
 
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeCampFuelFromFat@Name:
-營地燃料(動物脂肪)
-
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsPennyBuns@Name:
-烤蘑菇(牛肝菌)
-
-Scripts/CraftRecipes/Manufacturing/Campfire/RecipeRoastedMushroomsRust@Name:
-烤蘑菇(銹蓋菇)
-
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
 回收硬幣
 
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
 回收閃亮硬幣
+
+Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBottleFromFullBottle@Name:
+向蒸汽鍋爐里加水
+
+Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
+將罐子中的汽油倒入發電機
 
 Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
 從鋰礦萃取器中獲得鋰鹽
@@ -70,30 +67,6 @@ Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanist
 Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 燒水
 
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesOrange@Name:
-果醬(橙色野果)
-
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesRed@Name:
-果醬(紅色野果)
-
-Scripts/CraftRecipes/Manufacturing/Oven/RecipeJamBerriesViolet@Name:
-果醬(紫色野果)
-
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
 用井水裝滿瓶子
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromPyrite@Name:
-硫酸(自硫鐵礦)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeAcidSulfuricFromSulfur@Name:
-硫酸(自硫磺)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeCampFuelSynthetic@Name:
-營地燃料(人造)
-
-Scripts/CraftRecipes/StationCrafting/ChemicalLab/RecipeToxin@Name:
-毒素提取
-
-Scripts/CraftRecipes/StationCrafting/Workbench/RecipeCanisterPetroleum@Name:
-原油罐(自石油果)
 

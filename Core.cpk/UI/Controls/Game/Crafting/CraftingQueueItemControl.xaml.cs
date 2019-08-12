@@ -5,7 +5,6 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media.Animation;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.Timer;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -23,6 +22,8 @@
         public Action<CraftingQueueItem> DeleteCallback;
 
         public Action<CraftingQueueItemControl> HiddenCallback;
+
+        public Action<CraftingQueueItem> MakeFirstCallback;
 
         private Border border;
 
@@ -87,6 +88,7 @@
 
             this.storyboardFadeOut.Completed += this.StoryboardFadeOutCompletedHandler;
             this.storyboardHide.Completed += this.StoryboardHideCompletedHandler;
+            this.MouseLeftButtonUp += this.MouseLeftButtonUpHandler;
             this.MouseRightButtonUp += this.MouseRightButtonUpHandler;
 
             this.Refresh();
@@ -98,11 +100,17 @@
         {
             this.storyboardFadeOut.Completed -= this.StoryboardFadeOutCompletedHandler;
             this.storyboardHide.Completed -= this.StoryboardHideCompletedHandler;
+            this.MouseLeftButtonUp -= this.MouseLeftButtonUpHandler;
             this.MouseRightButtonUp -= this.MouseRightButtonUpHandler;
             this.Refresh();
 
             // invoke on the next frame
-            ClientComponentTimersManager.AddAction(0, () => this.HiddenCallback?.Invoke(this));
+            ClientTimersSystem.AddAction(0, () => this.HiddenCallback?.Invoke(this));
+        }
+
+        private void MouseLeftButtonUpHandler(object sender, MouseButtonEventArgs e)
+        {
+            this.MakeFirstCallback?.Invoke(this.craftingQueueItem);
         }
 
         private void MouseRightButtonUpHandler(object sender, MouseButtonEventArgs e)

@@ -13,7 +13,7 @@
 
         public override double MedicalToxicity => 0.2;
 
-        public override string Name => "Strength boost (small)";
+        public override string Name => "Small strength boost";
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {

@@ -215,9 +215,9 @@
             {
                 if (targetObject is IStaticWorldObject staticWorldObject)
                 {
-                    RaidingProtectionSystem.SharedCanRaid(staticWorldObject, 
-                                                                      showClientNotification: true);
-                    PveSystem.SharedIsAllowStructureDamage(staticWorldObject, 
+                    RaidingProtectionSystem.SharedCanRaid(staticWorldObject,
+                                                          showClientNotification: true);
+                    PveSystem.SharedIsAllowStructureDamage(staticWorldObject,
                                                            showClientNotification: true);
                 }
 
@@ -407,11 +407,9 @@
             this.PrepareDefense(defenseDescription);
             var defense = defenseDescription.ToReadOnly();
 
-            using (var effects = TempStatsCache.GetFromPool(isMultipliersSummed: true))
-            {
-                defense.FillEffects(this, effects, maximumDefensePercent: double.MaxValue);
-                this.DefenseStats = effects.CalculateFinalStatsCache();
-            }
+            using var effects = TempStatsCache.GetFromPool();
+            defense.FillEffects(this, effects, maximumDefensePercent: double.MaxValue);
+            this.DefenseStats = effects.CalculateFinalStatsCache();
 
             this.PrepareProtoStaticWorldObject();
         }
@@ -443,10 +441,6 @@
             [CanBeNull] IProtoItemWeapon byWeaponProto,
             IStaticWorldObject targetObject)
         {
-            if (byCharacter != null)
-            {
-                ServerStaticObjectDestroyObserver.NotifyObjectDestroyed(byCharacter, targetObject);
-            }
         }
 
         protected virtual void ServerOnStaticObjectZeroStructurePoints(
@@ -464,13 +458,20 @@
             this.ServerSendObjectDestroyedEvent(targetObject);
             Server.World.DestroyObject(targetObject);
 
-            if (weaponCache != null)
+            if (weaponCache == null)
             {
-                this.ServerOnStaticObjectDestroyedByCharacter(
-                    byCharacter,
-                    weaponCache.ProtoWeapon,
-                    (IStaticWorldObject)targetObject);
+                return;
             }
+
+            var staticWorldObject = (IStaticWorldObject)targetObject;
+            ServerStaticObjectDestroyObserver.NotifyObjectDestroyed(
+                byCharacter,
+                staticWorldObject);
+
+            this.ServerOnStaticObjectDestroyedByCharacter(
+                byCharacter,
+                weaponCache.ProtoWeapon,
+                staticWorldObject);
         }
 
         protected virtual double SharedCalculateDamageByWeapon(
@@ -485,7 +486,7 @@
                 // we don't apply any damage on the Client-side
                 return 0;
             }
-            
+
             if (!weaponCache.ProtoWeapon?.CanDamageStructures ?? false)
             {
                 // probably a mob weapon

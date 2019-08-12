@@ -36,6 +36,10 @@
             = WeaponRanged.Clone()
                           .Replace(Shot, "Weapons/Ranged/ShotMusket");
 
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedFlintlockPistol
+            = WeaponRanged.Clone()
+                          .Replace(Shot, "Weapons/Ranged/ShotFlintlockPistol");
+
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedPistol
             = WeaponRanged.Clone()
                           .Replace(Shot, "Weapons/Ranged/ShotPistol");
@@ -48,9 +52,21 @@
             = WeaponRanged.Clone()
                           .Replace(Shot, "Weapons/Ranged/ShotRevolver");
 
-        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedShotgun
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLuger
             = WeaponRanged.Clone()
-                          .Replace(Shot, "Weapons/Ranged/ShotShotgun");
+                          .Replace(Shot, "Weapons/Ranged/ShotLuger");
+
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedShotgunDoublebarreled
+            = WeaponRanged.Clone()
+                          .Replace(Shot, "Weapons/Ranged/ShotShotgunDoublebarreled");
+
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedShotgunMilitary
+            = WeaponRanged.Clone()
+                          .Replace(Shot, "Weapons/Ranged/ShotShotgunMilitary");
+
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedMachinePistol
+            = WeaponRanged.Clone()
+                          .Replace(Shot, "Weapons/Ranged/ShotMachinePistol");
 
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedSMG
             = WeaponRanged.Clone()

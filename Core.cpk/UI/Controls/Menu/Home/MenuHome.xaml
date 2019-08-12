@@ -12,7 +12,8 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance data2:ViewModelMenuHome, IsDesignTimeCreatable=True}"
-    d:DesignWidth="1340" d:DesignHeight="630" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    d:DesignWidth="1340" d:DesignHeight="630" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
 
@@ -24,9 +25,15 @@
             <!-- Override columns width for recent servers list -->
             <system:Double x:Key="ServerIconSize">28</system:Double>
             <GridLength x:Key="ColumnWidthServerIcon">28</GridLength>
+            <GridLength x:Key="ColumnWidthPadding">0</GridLength>
             <GridLength x:Key="ColumnWidthPing">50</GridLength>
             <GridLength x:Key="ColumnWidthPlayers">80</GridLength>
+            <GridLength x:Key="ColumnWidthWiped">0</GridLength>
             <GridLength x:Key="ColumnWidthFavorite">40</GridLength>
+            <ControlTemplate x:Key="ColumnWipedDateContentTemplate"
+                             TargetType="ContentControl">
+                <!-- No content in "Wiped" column -->
+            </ControlTemplate>
             <!-- ReSharper restore Xaml.RedundantResource -->
 
             <Style x:Key="DateTextBlockStyle" TargetType="TextBlock">
@@ -220,13 +227,77 @@
             <Image Source="/UI/Images/Backgrounds/MainMenuArt.jpg" Stretch="UniformToFill" />
         </ContentControl>
 
-        <core:HyperlinkControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3"
-                               HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                               Url="https://trello.com/b/B5ckffAW"
-                               Margin="20"
-                               base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.CryoFallDevelopmentRoadmap}">
-            <Image Source="/UI/Images/Icons/Social/btn_roadmap.png" Stretch="Uniform" Width="60" Opacity="0.667" />
-        </core:HyperlinkControl>
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3"
+                    VerticalAlignment="Top"
+                    Orientation="Vertical"
+                    Margin="20,15,0,0">
+            <TextBlock Text="{Binding UpdateTitle}"
+                       FontFamily="{StaticResource CondensedFontFamily}"
+                       FontSize="35"
+                       Foreground="#FFFFFFFF"
+                       noesis:Text.Stroke="#FF000000"
+                       noesis:Text.StrokeThickness="2.5" />
+            <TextBlock Text="{Binding UpdateReleaseDateText}"
+                       FontFamily="{StaticResource CondensedFontFamily}"
+                       FontSize="22"
+                       Margin="0,-5,0,0"
+                       Foreground="#FFFFFFFF"
+                       noesis:Text.Stroke="#FF000000"
+                       noesis:Text.StrokeThickness="2" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3"
+                    VerticalAlignment="Bottom"
+                    Orientation="Vertical"
+                    Opacity="0.75"
+                    Margin="20">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+                    <Setter Property="FontSize" Value="16" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="Margin" Value="5,0" />
+                </Style>
+            </StackPanel.Resources>
+            <core:HyperlinkControl Url="https://trello.com/b/B5ckffAW"
+                                   base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_RoadmapTooltip}">
+                <StackPanel Orientation="Horizontal"
+                            Background="Transparent">
+                    <Image Source="/UI/Images/Icons/Social/btn_roadmap.png"
+                           Stretch="Uniform"
+                           Width="40" />
+                    <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                    <TextBlock Text="Roadmap" />
+                </StackPanel>
+            </core:HyperlinkControl>
+
+            <core:HyperlinkControl Url="http://forums.atomictorch.com/index.php?board=2.0"
+                                   Margin="0,10,0,0"
+                                   base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_PatchnotesTooltip}">
+                <StackPanel Orientation="Horizontal"
+                            Background="Transparent">
+                    <Image Source="/UI/Images/Icons/Social/btn_patchnotes.png"
+                           Stretch="Uniform"
+                           Width="40" />
+                    <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                    <TextBlock Text="Patchnotes" />
+                </StackPanel>
+            </core:HyperlinkControl>
+
+            <core:HyperlinkControl Url="https://discord.gg/pRMGjRz"
+                                   Margin="0,10,0,0"
+                                   base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_DiscordTooltip}">
+                <StackPanel Orientation="Horizontal"
+                            Background="Transparent">
+                    <Image Source="/UI/Images/Icons/Social/btn_discord.png"
+                           Stretch="Uniform"
+                           Width="40" />
+                    <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                    <TextBlock Text="Discord" />
+                </StackPanel>
+            </core:HyperlinkControl>
+        </StackPanel>
 
         <ContentControl Grid.Row="3" Grid.Column="1" Style="{StaticResource MainMenuWidgetStyle}">
             <Grid>

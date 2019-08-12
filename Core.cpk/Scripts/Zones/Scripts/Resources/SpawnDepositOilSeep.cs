@@ -1,11 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Zones
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Characters.Mobs;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -16,9 +20,8 @@
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
+            // this resource is not spawned on the world init
             triggers
-                // trigger on world init
-                .Add(GetTrigger<TriggerWorldInit>())
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>()
                          .Configure(
@@ -28,9 +31,13 @@
             var restrictionPresetPragmium = spawnList.CreateRestrictedPreset()
                                                      .Add<ObjectMineralPragmiumSource>();
 
+            var restrictionInfiniteOilSeep = spawnList.CreateRestrictedPreset()
+                                                      .Add<ObjectDepositOilSeepInfinite>();
+
             var presetOilSeep = spawnList.CreatePreset(interval: 160, padding: 1);
             presetOilSeep.AddExact<ObjectDepositOilSeep>()
                          .SetCustomPaddingWithSelf(75)
+                         .SetCustomPaddingWith(restrictionInfiniteOilSeep, 75)
                          // ensure no spawn near Pragmium
                          .SetCustomPaddingWith(restrictionPresetPragmium,
                                                SpawnResourcePragmium.PaddingPragmiumWithOilDeposit)
@@ -54,6 +61,19 @@
             paddingToLandClaimsSize += 6;
 
             presetOilSeep.SetCustomPaddingWith(restrictionPresetLandclaim, paddingToLandClaimsSize);
+        }
+
+        protected override void ServerOnObjectSpawned(IGameObjectWithProto spawnedObject)
+        {
+            // spawn some guardian mobs so it will be harder to claim this deposit
+            var objectOilSeep = (IStaticWorldObject)spawnedObject;
+            ServerMobSpawnHelper.ServerTrySpawnMobsCustom(
+                protoMob: Api.GetProtoEntity<MobScorpion>(),
+                countToSpawn: 2,
+                excludeBounds: objectOilSeep.Bounds.Inflate(1),
+                maxSpawnDistanceFromExcludeBounds: 2,
+                noObstaclesCheckRadius: 1,
+                maxAttempts: 200);
         }
     }
 }

@@ -26,6 +26,7 @@
 
         public float LastAimCoef { get; set; }
 
+        [SubscribableProperty]
         public ushort? LastEquipmentContainerHash { get; set; }
 
         public double? LastInterpolatedRotationAngleRad { get; set; }

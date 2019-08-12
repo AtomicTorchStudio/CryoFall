@@ -7,14 +7,14 @@
         public override string Description =>
             "Continuous use of melee weapons grants you prowess with this type of arm, resulting in increased damage and efficiency.";
 
-        public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier =>
-            base.ExperienceAddedOnKillPerMaxEnemyHealthMultiplier * 2; // double exp for killing enemies
+        public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.4;
 
-        public override double ExperienceAddedPerDamageDoneMultiplier =>
-            base.ExperienceAddedPerDamageDoneMultiplier * 2; // double exp for dealing damage
+        public override double ExperienceAddedPerDamageDoneMultiplier => 1.0;
 
-        public override double ExperienceAddedPerShot =>
-            0; // since melee doesn't use any ammo we don't want any exp for just waving your knife around :)
+        // since melee doesn't use any ammo we don't want any exp for just waving your knife around :)
+        public override double ExperienceAddedPerShot => 0;
+
+        public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
 
         public override string Name => "Melee weapons";
 

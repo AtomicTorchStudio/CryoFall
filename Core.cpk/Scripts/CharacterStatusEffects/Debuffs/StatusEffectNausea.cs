@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs
 {
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral.Client;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
 
@@ -17,6 +18,12 @@
         public override StatusEffectKind Kind => StatusEffectKind.Debuff;
 
         public override string Name => "Nausea";
+
+        protected override void PrepareEffects(Effects effects)
+        {
+            // add info to tooltip
+            effects.AddValue(this, StatName.VanityCantEatOrDrink, 1);
+        }
 
         /// <summary>
         /// Shared method for checking (and notifying) whether the character is nauseous.

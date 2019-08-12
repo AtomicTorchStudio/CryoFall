@@ -61,7 +61,7 @@
             spriterRendererLiquidType.Scale = 2;
             this.ClientSetupLiquidTypeSpriteRenderer(spriterRendererLiquidType);
 
-            var publicState = data.SyncPublicState;
+            var publicState = data.PublicState;
             publicState.ClientSubscribe(
                 _ => _.LiquidType,
                 _ => UpdatePublicLiquidState(),
@@ -83,7 +83,7 @@
             return WindowBarrel.Open(
                 new ViewModelWindowBarrel(
                     data.GameObject,
-                    data.SyncPrivateState.ManufacturingState,
+                    data.PrivateState,
                     this.ManufacturingConfig));
         }
 
@@ -118,10 +118,9 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle((0.8, 0.5), offset: (0.1, 0))
-                .AddShapeRectangle(
-                    (0.7, 1),
-                    offset: (0.15, 0),
-                    group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((0.7, 1), offset: (0.15, 0), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.7, 0.2), offset: (0.15, 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((0.7, 1), offset: (0.15, 0), group: CollisionGroups.ClickArea);
         }
 
         private void ServerRemote_Drain(IStaticWorldObject worldObject)

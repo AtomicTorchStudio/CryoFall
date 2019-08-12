@@ -4,7 +4,7 @@
 
     public class ObjectMulchboxPrivateState : ObjectManufacturerPrivateState
     {
-        [SyncToClient(DeliveryMode.UnreliableSequenced)]
+        [SyncToClient(DeliveryMode.UnreliableSequenced, maxUpdatesPerSecond: 1)]
         public ushort OrganicAmount { get; set; }
     }
 }
