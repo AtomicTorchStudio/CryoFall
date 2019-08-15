@@ -31,6 +31,11 @@
         public virtual bool IsFontUnderlineEnabled => true;
 
         /// <summary>
+        /// Use char or word wrapping for the text strings. False==word wrapping, true==char wrapping.
+        /// </summary>
+        public virtual bool IsUseCharWrapping => false;
+
+        /// <summary>
         /// IETF language code (such as "en-US"). https://en.wikipedia.org/wiki/IETF_language_tag
         /// Use ISO 639 and ISO 3166-1 alpha-2 codes.
         /// Please note that Icon texture path is automatically generated based on this code.

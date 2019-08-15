@@ -5,10 +5,10 @@ Scripts/Characters/Mobs/MobBlackBeetle@Name:
 ブラックビートル
 
 Scripts/Characters/Mobs/MobBurrower@Name:
-掘穴動物
+掘穴虫
 
 Scripts/Characters/Mobs/MobChicken@Name:
-チキン
+鶏
 
 Scripts/Characters/Mobs/MobCloakedLizard@Name:
 エリマキトカゲ

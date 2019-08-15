@@ -20,7 +20,7 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemThread>(count: 10);
+            inputItems.Add<ItemThread>(count: 5);
 
             outputItems.Add<ItemClothPants>();
         }

@@ -24,7 +24,7 @@
         /// </summary>
         /// <param name="timeRemainingSeconds"></param>
         /// <returns>Formatted time.</returns>
-        public static string FormatTimeDuration(double timeRemainingSeconds, bool ceilSeconds = true)
+        public static string FormatTimeDuration(double timeRemainingSeconds, bool roundSeconds = true)
         {
             if (timeRemainingSeconds == double.MaxValue)
             {
@@ -32,13 +32,13 @@
             }
 
             return FormatTimeDuration(time: TimeSpan.FromSeconds(timeRemainingSeconds),
-                                      ceilSeconds: ceilSeconds);
+                                      roundSeconds: roundSeconds);
         }
 
         public static string FormatTimeDuration(
             TimeSpan time,
             bool trimRemainder = false,
-            bool ceilSeconds = true)
+            bool roundSeconds = true)
         {
             var sb = new StringBuilder();
             var hasPreviousValue = false;
@@ -86,14 +86,9 @@
             }
 
             var seconds = time.TotalSeconds % 60.0;
-            if (ceilSeconds)
-            {
-                seconds = Math.Ceiling(seconds);
-            }
-
             sb.Append(hasPreviousValue
                           ? ((int)seconds).ToString("D2") // display seconds as number with leading zero: 01, 02, ... 58, 59
-                          : (ceilSeconds
+                          : (roundSeconds
                                  ? seconds.ToString("F0") // format without any decimal digits (after the comma)
                                  : seconds.ToString("0.##") // format with up to two decimal digits (after the comma): 0, 0.1, 0.25
                                 ))

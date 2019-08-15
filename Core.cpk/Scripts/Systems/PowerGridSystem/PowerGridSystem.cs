@@ -24,6 +24,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -32,7 +33,13 @@
 
     public class PowerGridSystem : ProtoSystem<PowerGridSystem>
     {
-        public const double BaseCapacity = 1000.0;
+        public const double BaseCapacity = 5000.0;
+
+        // If the charge drops below 90% in the power grid, the required power producers (generators) will be automatically activated (to ensure the power generation surplus).
+        public const double PowerProductionChargeThreshold = 0.9;
+
+        private static readonly IWorldServerService ServerWorld
+            = IsServer ? Server.World : null;
 
         private enum SetPowerModeResult : byte
         {
@@ -153,8 +160,15 @@
 
             state.ElectricityCapacity = newCapacity;
 
-            var newAmount = Math.Min(state.ElectricityAmount,
-                                     newCapacity);
+            var newAmount = state.ElectricityAmount;
+            if (double.IsNaN(newAmount)
+                || double.IsInfinity(newAmount))
+            {
+                Logger.Error($"Incorrect energy amount in power grid, will reset to 0: {newAmount} {powerGrid}");
+                newAmount = 0;
+            }
+
+            newAmount = Math.Min(newAmount, newCapacity);
 
             if (oldCapacity > newCapacity)
             {
@@ -249,9 +263,12 @@
 
             // process producers
             {
+                var isPowerGridHasFullCharge = state.ElectricityAmount >= state.ElectricityCapacity;
+                var isPowerGridChargeBelowThreshold = (state.ElectricityAmount / state.ElectricityCapacity)
+                                                      < PowerProductionChargeThreshold;
+
                 // power demand is used only to handle generators idle/active state
-                var powerDemand = (state.ElectricityCapacity - state.ElectricityAmount)
-                                  + consumptionCurrent;
+                var powerDemand = consumptionCurrent;
                 if (state.ServerNeedToSortCacheProducers)
                 {
                     ServerSortProducers(state.ServerCacheProducers);
@@ -268,32 +285,57 @@
                     energyCurrent *= efficiencyMultiplier;
                     energyMax *= efficiencyMultiplier;
 
-                    // refresh power active/idle state for generator
-                    var publicState = producerObject.GetPublicState<IObjectElectricityProducerPublicState>();
-                    if (publicState.ElectricityProducerState != ElectricityProducerState.PowerOff)
-                    {
-                        if (productionCurrent >= powerDemand)
-                        {
-                            // this generator is not necessary now - go idle
-                            publicState.ElectricityProducerState = ElectricityProducerState.PowerOnIdle;
-                        }
-                        else
-                        {
-                            if (publicState.ElectricityProducerState != ElectricityProducerState.PowerOnActive)
-                            {
-                                publicState.ElectricityProducerState = ElectricityProducerState.PowerOnActive;
-                                // power demand is used only to handle generators idle/active state
-                                // assume the just enabled generator will instantly fill the power demand
-                                powerDemand -= energyMax;
-                            }
-                        }
-                    }
-
                     productionTotalAvailable += energyMax;
 
+                    var productionCurrentWithoutThisProducer = productionCurrent;
                     if (energyCurrent > 0)
                     {
                         productionCurrent += energyCurrent;
+                        numberProducersActive++;
+                    }
+
+                    var publicState = producerObject.GetPublicState<IObjectElectricityProducerPublicState>();
+                    if (publicState.ElectricityProducerState == ElectricityProducerState.PowerOff)
+                    {
+                        continue;
+                    }
+
+                    // refresh power active/idle state for generator
+                    if (publicState.ElectricityProducerState == ElectricityProducerState.PowerOnActive
+                        && isPowerGridHasFullCharge
+                        && (productionCurrent > powerDemand
+                            || (powerDemand == 0
+                                && productionCurrent == powerDemand)))
+                    {
+                        // this generator is not necessary now - go idle
+                        publicState.ElectricityProducerState = ElectricityProducerState.PowerOnIdle;
+                        //Logger.Dev("Producer is not required now and was deactivated: "
+                        //           + producerObject);
+                    }
+                    else if (publicState.ElectricityProducerState == ElectricityProducerState.PowerOnIdle)
+                    {
+                        // this generator is idle (not generating energy)
+                        if (!isPowerGridChargeBelowThreshold)
+                        {
+                            // no need to turn it on as threshold is not reached
+                            continue;
+                        }
+
+                        if (productionCurrentWithoutThisProducer >= powerDemand
+                            && numberProducersActive > 0)
+                        {
+                            // no need to turn it on as there is a power generation surplus
+                            // and more than a single generator is active
+                            continue;
+                        }
+
+                        //Logger.Dev("Production is below the generation threshold, producer activated: "
+                        //           + producerObject);
+                        publicState.ElectricityProducerState = ElectricityProducerState.PowerOnActive;
+                        // power demand is used only to handle generators idle/active state
+                        // assume the just enabled generator will instantly fill the power demand
+                        // (the correct value will be calculated on the next tick)
+                        powerDemand -= energyMax;
                         numberProducersActive++;
                     }
                 }
@@ -322,6 +364,13 @@
                     amount = state.ElectricityAmount
                              + productionCurrent * deltaTime;
                 }
+            }
+
+            if (double.IsNaN(amount)
+                || double.IsInfinity(amount))
+            {
+                Logger.Error($"Incorrect energy amount in power grid, will reset to 0: {amount} {powerGrid}");
+                amount = 0;
             }
 
             state.ElectricityAmount = MathHelper.Clamp(amount, 0, state.ElectricityCapacity);
@@ -371,10 +420,7 @@
             {
                 var badItem = exception.Item;
                 var circularDependencies = allProtoGenerators
-                                           .ToDictionary(e => e,
-                                                         (Func<IProtoObjectElectricityProducer,
-                                                             IEnumerable<IProtoObjectElectricityProducer>>)
-                                                         GetProducerDependencies)
+                                           .ToDictionary(e => e, GetProducerDependencies)
                                            .Where(p => p.Value.Contains(badItem)).Select(p => p.Key);
                 throw new Exception(
                     string.Format("There are circular dependencies for {1} and {2}."
@@ -456,7 +502,7 @@
         private static void ServerLandClaimsGroupCreatedHandler(ILogicObject areasGroup)
         {
             var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
-            var grid = Server.World.CreateLogicObject<PowerGrid>();
+            var grid = ServerWorld.CreateLogicObject<PowerGrid>();
             areasGroupPrivateState.PowerGrid = grid;
             PowerGrid.GetPublicState(grid).ServerAreasGroup = areasGroup;
             Logger.Important($"Power grid created: {grid} for {areasGroup}");
@@ -485,7 +531,7 @@
             ServerStopGenerators(powerGridPublicState);
 
             Logger.Important($"Power grid destroyed: {grid} for {areasGroup}");
-            Server.World.DestroyObject(grid);
+            ServerWorld.DestroyObject(grid);
         }
 
         private static void ServerRebuildPowerGrid(ILogicObject powerGrid)
@@ -536,14 +582,14 @@
                 areasBounds.Add(bounds);
             }
 
-            FillList(Server.World.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityConsumer>(boundingBox),
+            FillList(ServerWorld.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityConsumer>(boundingBox),
                      state.ServerCacheConsumers);
 
-            FillList(Server.World.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityProducer>(boundingBox),
+            FillList(ServerWorld.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityProducer>(boundingBox),
                      state.ServerCacheProducers);
             state.ServerNeedToSortCacheProducers = true;
 
-            FillList(Server.World.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityStorage>(boundingBox),
+            FillList(ServerWorld.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityStorage>(boundingBox),
                      state.ServerCacheStorage);
 
             // remove consumers with 0 max consumption
@@ -580,7 +626,9 @@
                             continue;
                         }
 
-                        resultList.Add(worldObject);
+                        // it's important to use "if not contains" check here
+                        // as the enumeration could provide the same object several times
+                        resultList.AddIfNotContains(worldObject);
                         break;
                     }
                 }
@@ -623,12 +671,11 @@
             return SetPowerModeResult.Success;
         }
 
-        private static SetPowerModeResult ServerSetProducerPowerMode(IStaticWorldObject worldObject, bool isOn)
+        private static SetPowerModeResult ServerSetProducerPowerMode(
+            IStaticWorldObject worldObject,
+            ElectricityProducerState newPowerState)
         {
             var publicState = worldObject.GetPublicState<IObjectElectricityProducerPublicState>();
-            var newPowerState = isOn
-                                    ? ElectricityProducerState.PowerOnIdle
-                                    : ElectricityProducerState.PowerOff;
 
             if (newPowerState == publicState.ElectricityProducerState
                 || (newPowerState == ElectricityProducerState.PowerOnIdle
@@ -638,9 +685,20 @@
             }
 
             var powerGrid = SharedGetPowerGrid(worldObject);
-            if (powerGrid == null && isOn)
+            if (powerGrid == null
+                && newPowerState != ElectricityProducerState.PowerOff)
             {
                 return SetPowerModeResult.NoPowerGridExist;
+            }
+
+            if (newPowerState == ElectricityProducerState.PowerOnActive)
+            {
+                var state = PowerGrid.GetPublicState(powerGrid);
+                if (state.ElectricityAmount >= state.ElectricityCapacity)
+                {
+                    // generation is not necessary now
+                    newPowerState = ElectricityProducerState.PowerOnIdle;
+                }
             }
 
             publicState.ElectricityProducerState = newPowerState;
@@ -698,7 +756,7 @@
 
                 state.ServerCacheProducers.Add(structure);
                 state.ServerNeedToSortCacheProducers = true;
-                ServerSetProducerPowerMode(structure, isOn: true);
+                ServerSetProducerPowerMode(structure, ElectricityProducerState.PowerOnIdle);
             }
 
             if (protoStructure is IProtoObjectElectricityStorage)
@@ -771,7 +829,7 @@
 
         private SetPowerModeResult ServerRemote_RestorePower(ILogicObject powerGrid)
         {
-            if (!Server.World.IsInPublicScope(powerGrid, ServerRemoteContext.Character))
+            if (!ServerWorld.IsInPublicScope(powerGrid, ServerRemoteContext.Character))
             {
                 return SetPowerModeResult.CannotInteractWithObject;
             }
@@ -821,13 +879,16 @@
                 return SetPowerModeResult.CannotInteractWithObject;
             }
 
-            if ((worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer protoProducer))
+            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer protoProducer)
             {
                 // producer
-                return ServerSetProducerPowerMode(worldObject, isOn);
+                return ServerSetProducerPowerMode(worldObject,
+                                                  isOn
+                                                      ? ElectricityProducerState.PowerOnActive
+                                                      : ElectricityProducerState.PowerOff);
             }
 
-            if ((worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer protoConsumer))
+            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer protoConsumer)
             {
                 // consumer
                 if (protoConsumer.ElectricityConsumptionPerSecondWhenActive <= 0)

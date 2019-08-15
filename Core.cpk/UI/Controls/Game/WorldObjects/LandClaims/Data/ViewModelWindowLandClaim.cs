@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -98,7 +99,8 @@
 
         public string FounderName => this.privateState.LandClaimFounder;
 
-        public bool IsOwner => this.FounderName == ClientCurrentCharacterHelper.Character.Name;
+        public bool IsOwner => this.FounderName == ClientCurrentCharacterHelper.Character.Name
+                               || CreativeModeSystem.ClientIsInCreativeMode();
 
         public bool IsSafeStorageAvailable => ItemsContainerLandClaimSafeStorage.ClientSafeItemsSlotsCapacity > 0;
 

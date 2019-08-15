@@ -72,7 +72,7 @@
                 if (this.isActive.Value)
                 {
                     this.activatedOnFrameNumber = Api.Client.CurrentGame.ServerFrameNumber;
-                    this.IsExpanded = true;
+                    this.SetIsExpanded(true);
                     this.ShowEntries();
 
                     this.textBoxChatInput.Visibility = Visibility.Visible;
@@ -98,7 +98,7 @@
                 else
                 {
                     // not active
-                    this.IsExpanded = false;
+                    this.SetIsExpanded(false);
                     this.textBoxChatInput.Visibility = Visibility.Hidden;
                     this.textBoxChatInput.Focusable = false;
 
@@ -141,52 +141,6 @@
                             this.FocusInput();
                         }
                     });
-                ;
-            }
-        }
-
-        private bool IsExpanded
-        {
-            get => this.isExpanded;
-            set
-            {
-                if (!this.isLoaded)
-                {
-                    return;
-                }
-
-                if (!value
-                    && this.scrollViewerChatLog.IsFocused)
-                {
-                    value = true;
-                }
-
-                if (this.isExpanded == value)
-                {
-                    return;
-                }
-
-                this.isExpanded = value;
-
-                if (this.isExpanded)
-                {
-                    this.scrollViewerChatLog.ClearValue(MaxHeightProperty);
-                    this.ShowEntries();
-                }
-                else
-                {
-                    this.LimitScrollViewerHeight();
-                    this.ScrollToBottom(force: true);
-                    this.HideEntries();
-                }
-
-                this.IsHitTestVisible = this.IsExpanded;
-                this.scrollViewerChatLog.IsHitTestVisible = this.IsExpanded;
-
-                foreach (ChatEntryControl entry in this.stackPanelChatLogChildren)
-                {
-                    entry.IsHitTestVisible = this.IsExpanded;
-                }
             }
         }
 
@@ -243,6 +197,11 @@
 
         protected override void OnLoaded()
         {
+            if (this.IsActive)
+            {
+                this.SetIsExpanded(true);
+            }
+
             ChatSystem.ClientChatRoomMessageReceived += this.ClientChatRoomMessageReceivedHandler;
             this.PopulateEntriesFromRoomLog();
         }
@@ -265,7 +224,7 @@
             this.ScrollToBottom(force: false);
 
             if (this.isLoaded
-                && !this.IsExpanded)
+                && !this.isExpanded)
             {
                 chatEntryControl.Hide(delaySeconds: DefaultNewEntryHideDelaySeconds);
             }
@@ -325,7 +284,7 @@
         {
             if (!this.isLoaded
                 || this.IsActive
-                || this.IsExpanded)
+                || this.isExpanded)
             {
                 return;
             }
@@ -473,7 +432,11 @@
 
                 var chatEntryControl = this.CreateChatEntryControl(chatEntry);
                 this.stackPanelChatLogChildren.Insert(0, chatEntryControl);
-                chatEntryControl.Hide(delaySeconds: DefaultChatHistoryInitialHideDelaySeconds);
+
+                if (!this.isExpanded)
+                {
+                    chatEntryControl.Hide(delaySeconds: DefaultChatHistoryInitialHideDelaySeconds);
+                }
             }
 
             this.ScrollToBottom(force: true);
@@ -509,6 +472,47 @@
                                             DateTime.Now));
 
             ChatSystem.ClientSendMessageToRoom(this.ViewModelChatRoom.ChatRoom, message);
+        }
+
+        private void SetIsExpanded(bool value)
+        {
+            if (!this.isLoaded)
+            {
+                return;
+            }
+
+            if (!value
+                && this.scrollViewerChatLog.IsFocused)
+            {
+                value = true;
+            }
+
+            if (this.isExpanded == value)
+            {
+                return;
+            }
+
+            this.isExpanded = value;
+
+            if (this.isExpanded)
+            {
+                this.scrollViewerChatLog.ClearValue(MaxHeightProperty);
+                this.ShowEntries();
+            }
+            else
+            {
+                this.LimitScrollViewerHeight();
+                this.ScrollToBottom(force: true);
+                this.HideEntries();
+            }
+
+            this.IsHitTestVisible = this.isExpanded;
+            this.scrollViewerChatLog.IsHitTestVisible = this.isExpanded;
+
+            foreach (ChatEntryControl entry in this.stackPanelChatLogChildren)
+            {
+                entry.IsHitTestVisible = this.isExpanded;
+            }
         }
 
         private void ShowEntries()

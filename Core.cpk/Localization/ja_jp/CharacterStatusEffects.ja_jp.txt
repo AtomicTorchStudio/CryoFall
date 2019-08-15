@@ -59,7 +59,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 目が眩んでいます！感覚を取り戻すための時間が必要です。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
-フラッシュ
+眩暈
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
 近くの熱源からの高レベルの熱にさらされています。これ以上のダメージを防ぐためにすぐにその場を離れてください。
@@ -95,13 +95,13 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
 激痛
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Description:
-強いpsi磁場の影響下にあり、興奮状態になります。さらなるダメージを防ぐために、影響箇所を離れるか、またはpsi遮断薬を使用してください。
+強いpsi磁場の影響下にあり、あなたは正気を失いました。さらなる被害を避けるために、影響箇所を離れるか、またはpsi遮断薬を使用してください。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
 psiの影響
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
-放射線中毒に苦しんでいます。ゆっくりと死に向かいます。影響を減らすために放射線治療を見つけてください。
+放射線中毒に苦しんでいます。ゆっくりと死に向かいます。影響を減らすために放射線治療薬物を見つけてください。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Name:
 放射線中毒
@@ -125,7 +125,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
 毒素
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
-体が弱っています。タスクをこなすのが困難になります。体の状態が回復吸うまで待つか、危険な状況は避けてください。
+体が弱っています。タスクをこなすのが困難になります。体の状態が回復するまで待つか、危険な状況は避けてください。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
 弱体
@@ -134,7 +134,7 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Description:
 装備品に耐久値が低いものがあり、すぐにでも壊れる可能性があります。
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
-劣化した機器
+破損した装備
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
 魚のようにものすごい勢いで飲んでいます。吐く気がするのも当然です...
@@ -152,7 +152,7 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 高揚
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
-医薬品を使いすぎて、結果として健康度にダメージを与えました。
+医薬品を使いすぎて、結果として健康に悪い影響を与えました。
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
 短期間であまりにも多くの薬を使ってきました。休憩を取らなければ、健康に悪い影響を与えます。警告を無視すると致命的になる可能性があります。

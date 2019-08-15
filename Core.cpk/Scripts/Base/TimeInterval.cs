@@ -62,12 +62,10 @@
 
         public double SharedCalculateHoursRemainsToEnd(double timeHours)
         {
-            this.NormalizeTime(ref timeHours,
-                               out var fromHour,
-                               out var toHour);
+            this.CalculateRange(ref timeHours,
+                                out var timeToStart,
+                                out var timeToEnd);
 
-            var timeToStart = fromHour - timeHours;
-            var timeToEnd = toHour - timeHours;
             if (timeToStart < 0
                 && timeToEnd > 0)
             {
@@ -79,12 +77,10 @@
 
         public double SharedCalculateHoursRemainsToStart(double timeHours)
         {
-            this.NormalizeTime(ref timeHours,
-                               out var fromHour,
-                               out var toHour);
+            this.CalculateRange(ref timeHours,
+                                out var timeToStart,
+                                out var timeToEnd);
 
-            var timeToStart = fromHour - timeHours;
-            var timeToEnd = toHour - timeHours;
             if (timeToStart < 0
                 && timeToEnd > 0)
             {
@@ -109,7 +105,10 @@
                                  this.DurationHours);
         }
 
-        private void NormalizeTime(ref double timeHours, out double fromHour, out double toHour)
+        private void CalculateRange(
+            ref double timeHours,
+            out double timeToStart,
+            out double timeToEnd)
         {
             timeHours %= 24;
             if (timeHours < 0)
@@ -117,16 +116,25 @@
                 timeHours += 24;
             }
 
-            fromHour = this.FromHour;
-            toHour = this.ToHourNormalized;
+            // normalize time
+            var fromHour = this.FromHour;
+            var toHour = this.ToHourNormalized;
             if (timeHours >= fromHour)
             {
-                return;
+                // timeHours is within the range
+            }
+            else if (toHour >= 24)
+            {
+                // timeHours is outside the range
+                // and toHour is overlapping the full 24 hours day
+                // get "range after midnight"
+                fromHour -= 24;
+                toHour -= 24;
             }
 
-            timeHours += 24;
-            fromHour += 24;
-            toHour += 24;
+            // calculate time range
+            timeToStart = fromHour - timeHours;
+            timeToEnd = toHour - timeHours;
         }
     }
 }

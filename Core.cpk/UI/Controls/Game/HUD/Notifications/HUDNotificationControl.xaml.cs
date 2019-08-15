@@ -165,11 +165,14 @@
 
             // to ensure that the control has a hiding flag (used for ClientComponentNotificationAutoHideChecker)
             this.IsHiding = true;
+
+            this.RemoveControl();
         }
 
         private void RemoveControl()
         {
-            ((Panel)this.Parent).Children.Remove(this);
+            var parent = this.Parent as Panel;
+            parent?.Children.Remove(this);
         }
 
         private void RootMouseButtonLeftHandler(object sender, MouseButtonEventArgs e)

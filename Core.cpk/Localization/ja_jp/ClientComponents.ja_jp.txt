@@ -14,7 +14,7 @@ Scripts/ClientComponents/Input/GameButton@MoveRight:
 右に移動
 
 Scripts/ClientComponents/Input/GameButton@RunTemporary:
-実行
+走る（押しっぱなし）
 
 Scripts/ClientComponents/Input/GameButton@RunToggle:
 実行（切り替え）
@@ -23,13 +23,14 @@ Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
 アクション - アイテム使用
 
 Scripts/ClientComponents/Input/GameButton@ActionInteract:
-アクション - インタラクション
+アクション - 操作
 
 Scripts/ClientComponents/Input/GameButton@ItemReload:
 アイテムをリロード
 
 Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
-アイテムモードの切り替え/弾薬の切り替え
+`アイテムモードの切り替え
+[br]/弾薬の切り替え`
 
 Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
 ヘルメットライト切り替え
@@ -74,7 +75,7 @@ Scripts/ClientComponents/Input/GameButton@OpenChat:
 チャット
 
 Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
-開発者モード
+開発者コンソール
 
 Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
 デバッグツール
@@ -92,10 +93,10 @@ Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
 全てのアイテムを取る
 
 Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
-一致するアイテムを下
+下にマッチする
 
 Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
-一致するアイテムを上
+上にマッチする
 
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
 土地の所有者と健康度ゲージを表示

@@ -32,7 +32,7 @@
                 }
 
                 return ClientTimeFormatHelper.FormatTimeDuration(duration, 
-                                                                 ceilSeconds: false);
+                                                                 roundSeconds: false);
             }
         }
 

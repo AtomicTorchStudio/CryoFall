@@ -344,10 +344,10 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFo
 
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `サーバーは{0}でシャットダウンします。
-[br]{0}
+[br]
 [br]理由：
-[br]{0}
-[br]{0}
+[br]{1}
+[br]
 [br]安全な場所を見つけて切断してください。そうしないと、タイムアウト時に自動的に切断されます。`
 
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_Title:

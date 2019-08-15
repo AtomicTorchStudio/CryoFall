@@ -13,6 +13,8 @@
     {
         public const string ErrorNoFruit = "No fruit!";
 
+        public override bool HasIncreasedScopeSize => true; // necessary as this bush has a large light source
+
         public override string Name => "Waterbulb plant";
 
         protected override string InteractionFailedNoFruitsMessage => ErrorNoFruit;

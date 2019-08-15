@@ -107,6 +107,8 @@
             => (ushort)(this.LandClaimSize
                         + 2 * this.LandClaimGraceAreaPaddingSizeOneDirection);
 
+        public override bool HasIncreasedScopeSize => true;
+
         public virtual ITextureResource TextureResourceObjectBroken { get; protected set; }
 
         public BaseUserControlWithWindow ClientOpenUI(IStaticWorldObject worldObject)
@@ -377,7 +379,8 @@
 
             if (result == ObjectLandClaimCanUpgradeCheckResult.Success)
             {
-                if (character.Name != founderName)
+                if (character.Name != founderName
+                    && !CreativeModeSystem.SharedIsInCreativeMode(character))
                 {
                     result = ObjectLandClaimCanUpgradeCheckResult.ErrorNotFounder;
                 }
@@ -396,9 +399,12 @@
             if (result == ObjectLandClaimCanUpgradeCheckResult.Success)
             {
                 // check there will be no intersection with other areas
-                if (!LandClaimSystem.SharedCheckCanPlaceOrUpgradeLandClaimThere(protoUpgradedLandClaim,
-                                                                                worldObjectLandClaim.TilePosition,
-                                                                                character))
+                var landClaimCenterTilePosition =
+                    LandClaimSystem.SharedCalculateLandClaimObjectCenterTilePosition(worldObjectLandClaim);
+                if (!LandClaimSystem.SharedCheckCanPlaceOrUpgradeLandClaimThere(
+                        protoUpgradedLandClaim,
+                        landClaimCenterTilePosition,
+                        character))
                 {
                     result = ObjectLandClaimCanUpgradeCheckResult.ErrorAreaIntersection;
                 }
@@ -586,6 +592,21 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category);
 
+        protected override void ServerOnStaticObjectDamageApplied(
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject,
+            float previousStructurePoints,
+            float currentStructurePoints)
+        {
+            LandClaimSystem.ServerOnRaid(targetObject.Bounds,
+                                         weaponCache.Character);
+
+            base.ServerOnStaticObjectDamageApplied(weaponCache,
+                                                   targetObject,
+                                                   previousStructurePoints,
+                                                   currentStructurePoints);
+        }
+
         protected override void ServerOnStaticObjectZeroStructurePoints(
             WeaponFinalCache weaponCache,
             ICharacter byCharacter,
@@ -649,7 +670,7 @@
             data.PhysicsBody
                 .AddShapeRectangle((width, height),
                                    offset: (offsetX, offsetY))
-                .AddShapeRectangle((width, 0.45),
+                .AddShapeRectangle((width, 0.55),
                                    offset: (offsetX, 0.6 + offsetY),
                                    group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((width, 0.25),

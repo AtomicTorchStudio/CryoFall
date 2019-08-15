@@ -207,6 +207,7 @@
                                   localPosition.X,
                                   localPosition.Y),
                     NotificationColor.Bad,
+                    autoHide: false,
                     icon: Api.GetProtoEntity<ObjectCharredGround>().Icon);
 
                 // start refresh timer

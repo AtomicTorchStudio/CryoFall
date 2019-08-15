@@ -43,6 +43,8 @@
 
         public sealed override double ObstacleBlockDamageCoef => 0f;
 
+        public override bool HasIncreasedScopeSize => true;
+
         public sealed override double ServerUpdateIntervalSeconds => 0; // every frame
 
         public double StructureDamage { get; set; }

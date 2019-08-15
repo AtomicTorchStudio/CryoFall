@@ -35,6 +35,7 @@
             }
 
             this.isHiddenOrHiding = true;
+            this.HorizontalAlignment = HorizontalAlignment.Left;
             var hideRequestId = ++this.lastHideRequestId;
 
             ClientTimersSystem.AddAction(
@@ -66,6 +67,7 @@
             if (this.isHiddenOrHiding)
             {
                 this.isHiddenOrHiding = false;
+                this.HorizontalAlignment = HorizontalAlignment.Stretch;
             }
 
             VisualStateManager.GoToElementState(this.textBlock, "Default", false);

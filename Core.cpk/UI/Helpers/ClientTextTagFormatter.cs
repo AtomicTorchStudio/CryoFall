@@ -396,6 +396,12 @@
                 rawText = string.Join("", split);
             }
 
+            if (ClientLanguagesManager.CurrentLanguageDefinition.IsUseCharWrapping)
+            {
+                // replace all spaces to no-break spaces
+                rawText = rawText.Replace(' ', '\u00A0');
+            }
+
             return rawText;
         }
     }

@@ -213,13 +213,10 @@
 
             if (IsClient)
             {
-                if (targetObject is IStaticWorldObject staticWorldObject)
-                {
-                    RaidingProtectionSystem.SharedCanRaid(staticWorldObject,
-                                                          showClientNotification: true);
-                    PveSystem.SharedIsAllowStructureDamage(staticWorldObject,
-                                                           showClientNotification: true);
-                }
+                RaidingProtectionSystem.SharedCanRaid(targetObject,
+                                                      showClientNotification: true);
+                PveSystem.SharedIsAllowStructureDamage(targetObject,
+                                                       showClientNotification: true);
 
                 damageApplied = 0;
                 return true;

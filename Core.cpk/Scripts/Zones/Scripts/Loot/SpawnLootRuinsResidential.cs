@@ -6,6 +6,8 @@
 
     public class SpawnLootRuinsResidential : ProtoZoneSpawnScript
     {
+        public override bool CanSpawnIfPlayersNearby => true;
+
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
             triggers

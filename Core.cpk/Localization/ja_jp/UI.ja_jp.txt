@@ -783,7 +783,7 @@ UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Title:
 AtomicTorchアカウントへのリンクが推奨されるのはなぜですか？
 
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_CheckboxAcceptLicenseAgreement:
-[url=atomictorch.com/Pages/Privacy-Policy]プライバシーポリシー[/url]を含む[url=atomictorch.com/Pages/Terms-of-Service]利用規約[/ url]に同意します。
+[url=atomictorch.com/Pages/Privacy-Policy]プライバシーポリシー[/url]を含む[url=atomictorch.com/Pages/Terms-of-Service]利用規約[/url]に同意します。
 
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_ConfirmEmail:
 Eメール確認
@@ -1012,7 +1012,7 @@ UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
 奇襲ウィンドウが開かれています (あと{0})。
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_DescriptionFormat:
-`{0} から {1} までの奇襲ウィンドウが開いている間のみ所有地に奇襲をかけることができます(合計{2})。
+`{0}から{1}までの奇襲ウィンドウが開いている間のみ所有地に奇襲をかけることができます(合計{2})。
 [br]所有地の外にある建物はシステムによって守られていないため、破壊される可能性があります。`
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_Disabled:

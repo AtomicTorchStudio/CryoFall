@@ -64,6 +64,8 @@
 
         public virtual Vector2D LightWorldOffset => (0.5, 0.5);
 
+        public override bool HasIncreasedScopeSize => true;
+
         protected virtual Vector2D LightWorldSpritePivotPoint => (0.5, 0.5);
 
         public void ClientSetLightMode(IStaticWorldObject lightObject, ObjectLightMode mode)

@@ -73,9 +73,9 @@ Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 ツールボックスが完成したので、技術メニューでアンロックしたさまざまな建築物を作ることができます。 キャンプファイヤーから始めましょう。食べ物を調理するのに使うことができます。
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*]コントロールを変更していなければ、[Tab]を押して[b]建築メニュー[/b]に素早くアクセスできます。
+`[*]コントロールを変更していなければ、"Tab"を押して[b]建築メニュー[/b]に素早くアクセスできます。
 [*]より多くの建築をアンロックすると、建築メニューは異なる[b]建築タイプ[/b]で[b]数ページ[/b]にもなります。
-[*]ツールボックスは[b]建築物を作成するためだけでなく、それらを修復するためにも使用できます。`
+[*]ツールボックスは建築物を作成するためだけでなく、それらを修復するためにも使用できます。`
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 キャンプファイヤーを造る
@@ -101,7 +101,7 @@ Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
 `[*]"レシピを参照"を押すと、キャンプファイヤーで作成できる[b]全てのレシピ[/b]を見ることができます。
 [*]何かを調理するためには、[b]適切なレシピを選びましょう[/b]。
 [*]キャンプファイヤーを燃やすには[b]燃料[/b]を必要とします。[b]木材または木炭[/b]を燃料スロットに入れます。
-[*]技術メニュー[/b]で[b]新しいレシピ[/b]を学ぶことができます。
+[*][b]技術メニュー[/b]で[b]新しいレシピ[/b]を学ぶことができます。
 [*][b]インベントリから[/b]直接、または[b]ホットバー[/b]に置いてゲーム内で使用することで、アイテム（食物を含む）を使用できます。`
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
@@ -242,13 +242,13 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
 `基地を守る方法を理解することは非常に重要です！怠ると、卑怯な生存者に襲われやすくなります。
-[br]{0}
+[br]
 [br]最も重要な点は、所有地を正しく使い、拠点をしっかり防御することです。 壁やドア、他の構造物を置く前に、所有地の基盤を作るべきです。
-[br]{0}
-[b]所有地を良い場所に置いたら、周りに壁を建設し始めることができます。所有地の防御区域の [b][u]内側に[/u][/b]壁を配置することが重要です。そうでなければ、他の生存者が、数秒で壁を破壊してしまうでしょう。
-[br]{0}
+[br]
+[br]所有地を良い場所に置いたら、周りに壁を建設し始めることができます。所有地の防御区域の [b][u]内側に[/u][/b]壁を配置することが重要です。そうでなければ、他の生存者が、数秒で壁を破壊してしまうでしょう。
+[br]
 [br]所有地の範囲は拡張することもできます。また、確実に防御されるように、追加のレイヤーで壁を厚くすることもできます。特別な価値のある何かを持っていない限り、一般的に2重の防御をしておけば、ほとんどの攻撃者から拠点を守るのには十分です。
-[br]{0}
+[br]
 [br]少なくとも基地に入るための２箇所の入り口をお勧めしますが、もっと多くあっても良いと思います。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Hints:
@@ -383,7 +383,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
 `[*]"攻撃&防御"技術グループ内の全ての関連技術のロックを解除することができます。
 [*]紙の薬莢を作るには、まず[b]火薬[/b]と[b]紙[/b]を作る必要があります。
-[*][b]ダメージの種類はそれぞれ異なり[b]、異なる防御力を発揮します。インベントリ画面で情報を見ることができます。`
+[*][b]ダメージの種類はそれぞれ異なり[/b]、異なる防御力を発揮します。インベントリ画面で情報を見ることができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
 遠距離武器を製作する

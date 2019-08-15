@@ -10,6 +10,8 @@
 
         public override bool IsFontUnderlineEnabled => false;
 
+        public override bool IsUseCharWrapping => true;
+
         public override string LanguageTag => "zh_cn";
 
         public override string NameEnglish => "Chinese Simplified";

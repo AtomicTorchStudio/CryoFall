@@ -2,14 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -22,7 +20,7 @@
 
         private static readonly ClientLandClaimGroupsRendererManager RendererManagerOwnedByPlayer;
 
-        private static readonly Dictionary<ILogicObject, StateSubscriptionStorage> stateSubscriptionStorages
+        private static readonly Dictionary<ILogicObject, StateSubscriptionStorage> StateSubscriptionStorages
             = new Dictionary<ILogicObject, StateSubscriptionStorage>();
 
         private static readonly Color ZoneColorGraceArea
@@ -33,8 +31,6 @@
 
         private static readonly Color ZoneColorOwnedByPlayer
             = Color.FromArgb(0x30, 0x00, 0xFF, 0x00);
-
-        private static NetworkSyncList<ILogicObject> areaObjects;
 
         static ClientLandClaimAreaManager()
         {
@@ -51,9 +47,6 @@
                 ZoneColorOwnedByPlayer,
                 drawOrder: DrawOrder.Overlay - 1);
 
-            Api.Client.World.WorldBoundsChanged += WorldBoundsChangedHandler;
-            WorldBoundsChangedHandler();
-
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
             ClientInputContext.Start("Land claim visualizer")
                               .HandleAll(
@@ -67,7 +60,7 @@
 
                                       if (isDisplayed)
                                       {
-                                          var isDisplayOverlays = Api.Client.Input.IsKeyHeld(InputKey.Control, 
+                                          var isDisplayOverlays = Api.Client.Input.IsKeyHeld(InputKey.Control,
                                                                                              evenIfHandled: true);
 
                                           RendererManagerOwnedByPlayer.IsDisplayOverlays
@@ -87,41 +80,9 @@
 
         public static event Action<ILogicObject> AreaRemoved;
 
-        private static NetworkSyncList<ILogicObject> AreaObjects
-        {
-            set
-            {
-                if (areaObjects == value)
-                {
-                    return;
-                }
-
-                if (areaObjects != null)
-                {
-                    areaObjects.ClientElementInserted -= LandClaimAreasElementInserted;
-                    areaObjects.ClientElementRemoved -= LandClaimAreasElementRemoved;
-                    Reset();
-                }
-
-                areaObjects = value;
-
-                if (areaObjects != null)
-                {
-                    areaObjects.ClientElementInserted += LandClaimAreasElementInserted;
-                    areaObjects.ClientElementRemoved += LandClaimAreasElementRemoved;
-                    Rebuild();
-                }
-            }
-        }
-
         public static IEnumerable<ILogicObject> EnumerateAreaObjects()
         {
-            if (areaObjects != null)
-            {
-                return areaObjects;
-            }
-
-            return Enumerable.Empty<ILogicObject>();
+            return LandClaimSystem.SharedEnumerateAllAreas();
         }
 
         public static void OnLandClaimUpgraded(ILogicObject area)
@@ -134,16 +95,19 @@
             OnAreaModified(area);
         }
 
-        public static void SetAreas(NetworkSyncList<ILogicObject> newAreas)
+        /// <summary>
+        /// This method should be called only by LandClaimSystem.
+        /// </summary>
+        internal static void AddArea(ILogicObject area)
         {
-            AreaObjects = newAreas;
-        }
+            if (StateSubscriptionStorages.ContainsKey(area))
+            {
+                return;
+            }
 
-        private static void AddArea(ILogicObject area)
-        {
             // register for group change event
             var stateSubscriptionStorage = new StateSubscriptionStorage();
-            stateSubscriptionStorages[area] = stateSubscriptionStorage;
+            StateSubscriptionStorages[area] = stateSubscriptionStorage;
 
             var areaPublicState = LandClaimArea.GetPublicState(area);
             areaPublicState.ClientSubscribe(
@@ -167,48 +131,18 @@
             AreaAdded?.Invoke(area);
         }
 
-        private static void LandClaimAreasElementInserted(
-            NetworkSyncList<ILogicObject> source,
-            int index,
-            ILogicObject value)
+        /// <summary>
+        /// This method should be called only by LandClaimSystem.
+        /// </summary>
+        internal static void RemoveArea(ILogicObject area)
         {
-            AddArea(value);
-        }
-
-        private static void LandClaimAreasElementRemoved(
-            NetworkSyncList<ILogicObject> source,
-            int index,
-            ILogicObject value)
-        {
-            RemoveArea(value);
-        }
-
-        private static void OnAreaModified(ILogicObject area)
-        {
-            RemoveArea(area);
-            AddArea(area);
-        }
-
-        private static void Rebuild()
-        {
-            Reset();
-
-            if (areaObjects == null)
+            if (!StateSubscriptionStorages.TryGetValue(area, out var token))
             {
                 return;
             }
 
-            // add all areas to quad tree
-            foreach (var area in areaObjects)
-            {
-                AddArea(area);
-            }
-        }
-
-        private static void RemoveArea(ILogicObject area)
-        {
-            stateSubscriptionStorages[area].Dispose();
-            stateSubscriptionStorages.Remove(area);
+            token.Dispose();
+            StateSubscriptionStorages.Remove(area);
 
             RendererManagerGraceAreas.UnregisterArea(area);
             RendererManagerOwnedByPlayer.UnregisterArea(area);
@@ -217,26 +151,15 @@
             AreaRemoved?.Invoke(area);
         }
 
-        private static void Reset()
+        private static void OnAreaModified(ILogicObject area)
         {
-            if (areaObjects == null)
+            if (!area.IsInitialized)
             {
                 return;
             }
 
-            RendererManagerGraceAreas.Reset();
-            RendererManagerOwnedByPlayer.Reset();
-            RendererManagerNotOwnedByPlayer.Reset();
-
-            foreach (var area in areaObjects)
-            {
-                AreaRemoved?.Invoke(area);
-            }
-        }
-
-        private static void WorldBoundsChangedHandler()
-        {
-            Rebuild();
+            RemoveArea(area);
+            AddArea(area);
         }
     }
 }

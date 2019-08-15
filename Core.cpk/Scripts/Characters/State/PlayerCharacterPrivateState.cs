@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -76,6 +77,10 @@
         public double? LastDeathTime { get; set; }
 
         [SyncToClient]
+        [TempOnly]
+        public NetworkSyncList<ILogicObject> OwnedLandClaimAreas { get; set; }
+
+        [SyncToClient]
         public PlayerCharacterQuests Quests { get; private set; }
 
         [SyncToClient(isSendChanges: false)]
@@ -100,6 +105,11 @@
             if (this.DroppedLootLocations == null)
             {
                 this.DroppedLootLocations = new NetworkSyncList<DroppedLootInfo>();
+            }
+
+            if (this.OwnedLandClaimAreas == null)
+            {
+                this.OwnedLandClaimAreas = new NetworkSyncList<ILogicObject>();
             }
 
             var serverItemsService = Api.Server.Items;

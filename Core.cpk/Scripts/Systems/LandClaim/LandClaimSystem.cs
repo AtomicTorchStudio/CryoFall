@@ -90,9 +90,9 @@
 
         private static ILogicObject serverLandClaimManagerInstance;
 
-        private static NetworkSyncList<ILogicObject> sharedLandClaimAreas
+        private static IList<ILogicObject> sharedLandClaimAreas
             = IsClient
-                  ? new NetworkSyncList<ILogicObject>() // workaround for client so it will be able to query (empty) list
+                  ? new List<ILogicObject>() // workaround for client so it will be able to query (empty) list
                   : null;
 
         public static readonly ConstructionTileRequirements.Validator ValidatorIsOwnedOrFreeArea
@@ -452,6 +452,9 @@
         // how long the items dropped on the ground from the safe storage should remain there
         private static readonly TimeSpan DestroyedLandClaimDroppedItemsDestructionTimeout = TimeSpan.FromDays(1);
 
+        private static readonly ICharactersServerService ServerCharacters
+            = IsServer ? Server.Characters : null;
+
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;
 
@@ -686,12 +689,12 @@
 
             ServerTryRebuildLandClaimsGroups(areasGroupBounds);
 
-            if (Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true)
-                      .Any(
-                          c =>
-                              PlayerCharacter.GetPublicState(c).CurrentPublicActionState is
-                                  DeconstructionActionState.PublicState deconstructionState
-                              && deconstructionState.TargetWorldObject == landClaimStructure))
+            if (ServerCharacters.EnumerateAllPlayerCharacters(onlyOnline: true)
+                                .Any(
+                                    c =>
+                                        PlayerCharacter.GetPublicState(c).CurrentPublicActionState is
+                                            DeconstructionActionState.PublicState deconstructionState
+                                        && deconstructionState.TargetWorldObject == landClaimStructure))
             {
                 // land claim structure is deconstructed by a crowbar
             }
@@ -746,6 +749,22 @@
         {
             Api.Assert(area.ProtoLogicObject is LandClaimArea, "Wrong object type");
             sharedLandClaimAreas.Add(area);
+
+            var owners = area.GetPrivateState<LandClaimAreaPrivateState>()
+                             .LandOwners;
+            if (owners == null)
+            {
+                return;
+            }
+
+            foreach (var owner in owners)
+            {
+                var player = ServerCharacters.GetPlayerCharacter(owner);
+                if (player != null)
+                {
+                    SharedGetPlayerOwnedAreas(player).Add(area);
+                }
+            }
         }
 
         public static void ServerSetRaidblock(ILogicObject area)
@@ -775,6 +794,22 @@
         {
             Api.Assert(area.ProtoLogicObject is LandClaimArea, "Wrong object type");
             sharedLandClaimAreas.Remove(area);
+
+            var owners = area.GetPrivateState<LandClaimAreaPrivateState>()
+                             .LandOwners;
+            if (owners == null)
+            {
+                return;
+            }
+
+            foreach (var owner in owners)
+            {
+                var player = ServerCharacters.GetPlayerCharacter(owner);
+                if (player != null)
+                {
+                    SharedGetPlayerOwnedAreas(player).Remove(area);
+                }
+            }
         }
 
         public static IStaticWorldObject ServerUpgrade(
@@ -815,7 +850,7 @@
             Logger.Important($"Successfully upgraded: {oldStructure} to {upgradedObject}", character);
 
             Instance.CallClient(
-                Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true),
+                ServerCharacters.EnumerateAllPlayerCharacters(onlyOnline: true),
                 _ => _.ClientRemote_OnLandClaimUpgraded(area));
 
             ServerEstablishAreasGroup(
@@ -964,13 +999,18 @@
 
         // need to verify that area bounds will not intersect with the any existing areas (except from the same founder)
         public static bool SharedCheckCanPlaceOrUpgradeLandClaimThere(
-            IProtoObjectLandClaim protoObjectLandClaim,
-            Vector2Ushort centerTilePosition,
+            IProtoObjectLandClaim newProtoObjectLandClaim,
+            Vector2Ushort landClaimCenterTilePosition,
             ICharacter forCharacter)
         {
+            if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+            {
+                return true;
+            }
+
             var newAreaBounds = SharedCalculateLandClaimAreaBounds(
-                centerTilePosition,
-                protoObjectLandClaim.LandClaimWithGraceAreaSize);
+                landClaimCenterTilePosition,
+                newProtoObjectLandClaim.LandClaimWithGraceAreaSize);
 
             foreach (var area in sharedLandClaimAreas)
             {
@@ -1045,8 +1085,9 @@
             return LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
         }
 
-        public static RectangleInt SharedGetLandClaimGroupsBoundingArea(ILogicObject group, 
-                                                                        bool addGraceAreaPadding = false)
+        public static RectangleInt SharedGetLandClaimGroupsBoundingArea(
+            ILogicObject group,
+            bool addGraceAreaPadding = false)
         {
             var hasBounds = false;
             ushort minX = ushort.MaxValue,
@@ -1314,7 +1355,7 @@
         {
             if (IsServer)
             {
-                Server.Characters.PlayerNameChanged += ServerPlayerNameChangedHandler;
+                ServerCharacters.PlayerNameChanged += ServerPlayerNameChangedHandler;
             }
         }
 
@@ -1488,8 +1529,10 @@
                     // The owner is already removed during the short delay? That's was quick!
                     return;
                 }
-
+                
                 ServerWorld.EnterPrivateScope(playerToAdd, area);
+                SharedGetPlayerOwnedAreas(playerToAdd).AddIfNotContains(area);
+
                 if (notify)
                 {
                     Instance.CallClient(
@@ -1506,6 +1549,7 @@
                 LandClaimArea.GetPrivateState(area).ServerLandClaimWorldObject);
 
             ServerWorld.ExitPrivateScope(removedPlayer, area);
+            SharedGetPlayerOwnedAreas(removedPlayer).Remove(area);
 
             Instance.CallClient(removedPlayer, _ => _.ClientRemote_OnLandOwnerStateChanged(area, false));
         }
@@ -1649,6 +1693,12 @@
             }
         }
 
+        private static NetworkSyncList<ILogicObject> SharedGetPlayerOwnedAreas(ICharacter player)
+        {
+            return PlayerCharacter.GetPrivateState(player)
+                                  .OwnedLandClaimAreas;
+        }
+
         private void ClientRemote_OnCannotInteractNotOwner(IStaticWorldObject worldObject)
         {
             CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
@@ -1675,24 +1725,6 @@
                 color: NotificationColor.Bad);
         }
 
-        private ILogicObject ServerRemote_AcquireLandClaimManager()
-        {
-            var character = ServerRemoteContext.Character;
-            Logger.Important("Land claim areas requested from server");
-            ServerWorld.ForceEnterScope(character, serverLandClaimManagerInstance);
-
-            // add to the character private scope all owned areas
-            foreach (var area in sharedLandClaimAreas)
-            {
-                if (ServerIsOwnedArea(area, character))
-                {
-                    ServerWorld.EnterPrivateScope(character, area);
-                }
-            }
-
-            return serverLandClaimManagerInstance;
-        }
-
         private LandClaimsGroupDecayInfo ServerRemote_GetDecayInfo(IStaticWorldObject landClaimStructure)
         {
             var character = ServerRemoteContext.Character;
@@ -1712,6 +1744,16 @@
 
             return new LandClaimsGroupDecayInfo(decayDelayDuration,
                                                 decayDuration: StructureConstants.StructuresDecayDurationSeconds);
+        }
+
+        private void ServerRemote_RequestOwnedAreas()
+        {
+            var character = ServerRemoteContext.Character;
+            // add to the character private scope all owned areas
+            foreach (var area in SharedGetPlayerOwnedAreas(character))
+            {
+                ServerWorld.EnterPrivateScope(character, area);
+            }
         }
 
         private string ServerRemote_SetAreaOwners(ILogicObject area, List<string> newOwners)
@@ -1754,7 +1796,7 @@
             foreach (var n in ownersToAdd)
             {
                 var name = n;
-                var playerToAdd = Server.Characters.GetPlayerCharacter(name);
+                var playerToAdd = ServerCharacters.GetPlayerCharacter(name);
                 if (playerToAdd == null)
                 {
                     return string.Format(WorldObjectOwnersSystem.DialogCannotSetOwners_MessageFormatPlayerNotFound,
@@ -1779,7 +1821,7 @@
 
                 Logger.Important($"Removed land owner: {name}, land: {area}", characterRelated: owner);
 
-                var removedPlayer = Server.Characters.GetPlayerCharacter(name);
+                var removedPlayer = ServerCharacters.GetPlayerCharacter(name);
                 if (removedPlayer == null)
                 {
                     continue;
@@ -1809,11 +1851,17 @@
         {
             public override void ClientInitialize()
             {
-                Client.Characters.CurrentPlayerCharacterChanged += ClientTryRequestAreasAsync;
+                var world = Api.Client.World;
+                world.WorldBoundsChanged += ClientReset;
+                world.ObjectEnterScope += ClientObjectEnterScopeHandler;
+                world.ObjectLeftScope += ClientObjectLeftScopeHandler;
+                ClientReset();
 
-                ClientTryRequestAreasAsync();
+                Client.Characters.CurrentPlayerCharacterChanged += ClientTryRequestOwnedAreas;
 
-                async void ClientTryRequestAreasAsync()
+                ClientTryRequestOwnedAreas();
+
+                static void ClientTryRequestOwnedAreas()
                 {
                     if (Api.Client.Characters.CurrentPlayerCharacter == null)
                     {
@@ -1821,22 +1869,60 @@
                     }
 
                     Logger.Important("Land claim areas requested from server");
-
-                    var landClaimManagerInstance = await Instance.CallServer(
-                                                       _ => _.ServerRemote_AcquireLandClaimManager());
-                    var areas = LandClaimAreaManager.GetPublicState(landClaimManagerInstance)
-                                                    .LandClaimAreas;
-                    Logger.Important($"Land claim areas received from server: {areas.Count} areas total");
-
-                    sharedLandClaimAreas = areas;
-                    ClientLandClaimAreaManager.SetAreas(areas);
+                    Instance.CallServer(_ => _.ServerRemote_RequestOwnedAreas());
                 }
             }
 
             public override void ServerInitialize(IServerConfiguration serverConfiguration)
             {
-                Server.World.WorldBoundsChanged += this.ServerWorldBoundsChangedHandler;
+                Server.World.WorldBoundsChanged += ServerWorldBoundsChangedHandler;
                 ServerLoadSystem();
+
+                static void ServerWorldBoundsChangedHandler()
+                {
+                    const string key = nameof(LandClaimAreaManager);
+                    Server.Database.Remove(key, key);
+                    Server.World.DestroyObject(serverLandClaimManagerInstance);
+                    ServerLoadSystem();
+                }
+            }
+
+            private static void ClientObjectEnterScopeHandler(IGameObjectWithProto obj)
+            {
+                if (obj is ILogicObject logicObject
+                    && obj.ProtoGameObject is LandClaimArea)
+                {
+                    sharedLandClaimAreas.Add(logicObject);
+                    ClientLandClaimAreaManager.AddArea(logicObject);
+                }
+            }
+
+            private static void ClientObjectLeftScopeHandler(IGameObjectWithProto obj)
+            {
+                if (obj is ILogicObject logicObject
+                    && obj.ProtoGameObject is LandClaimArea)
+                {
+                    sharedLandClaimAreas.Remove(logicObject);
+                    ClientLandClaimAreaManager.RemoveArea(logicObject);
+                }
+            }
+
+            private static void ClientReset()
+            {
+                // remove old areas
+                foreach (var area in sharedLandClaimAreas)
+                {
+                    ClientLandClaimAreaManager.RemoveArea(area);
+                }
+
+                sharedLandClaimAreas.Clear();
+
+                // add current areas
+                foreach (var area in Api.Client.World.FindGameObjectsOfProto<ILogicObject, LandClaimArea>())
+                {
+                    sharedLandClaimAreas.Add(area);
+                    ClientLandClaimAreaManager.AddArea(area);
+                }
             }
 
             private static void ServerLoadSystem()
@@ -1862,14 +1948,6 @@
                     var areaPublicState = LandClaimArea.GetPublicState(area);
                     areaPublicState.SetupAreaProperties(areaPrivateState);
                 }
-            }
-
-            private void ServerWorldBoundsChangedHandler()
-            {
-                const string key = nameof(LandClaimAreaManager);
-                Server.Database.Remove(key, key);
-                Server.World.DestroyObject(serverLandClaimManagerInstance);
-                ServerLoadSystem();
             }
         }
     }

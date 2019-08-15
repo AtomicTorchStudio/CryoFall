@@ -74,7 +74,7 @@
         public SuperObservableCollection<RssFeedEntry> NewsItemsList { get; }
             = new SuperObservableCollection<RssFeedEntry>();
 
-        public string UpdateReleaseDateText => new DateTime(2019, 7, 30)
+        public string UpdateReleaseDateText => new DateTime(2019, 8, 12)
                                                .ToString("MMMM yyyy", CultureInfo.CurrentUICulture)
                                                .ToUpperInvariant();
 

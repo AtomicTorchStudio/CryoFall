@@ -880,7 +880,7 @@ UI/CoreStrings@TitleOwner:
 Propriétaire
 
 UI/CoreStrings@TitlePowerGrid:
-Réseau électrique
+Réseau
 
 UI/CoreStrings@TitleSafeStorage:
 Stockage sécurisé
@@ -958,10 +958,10 @@ UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
 Vous ne pouvez pas utiliser les revendications territoriales pour stocker des ressources et des objets de base.
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
-Infos sur le délabrement
+Délabrement
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
-Les objets en stockage sécurisé sont partagés entre toutes les structures de revendications territoriales de cette base.
+Les objets stockés ici sont partagés entre les structures de revendications territoriales de la base.
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 Seul le propriétaire peut améliorer cette structure.

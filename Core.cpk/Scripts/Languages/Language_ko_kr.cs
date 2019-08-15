@@ -8,6 +8,8 @@
 
         public override bool IsFontUnderlineEnabled => false;
 
+        public override bool IsUseCharWrapping => true;
+
         public override string LanguageTag => "ko_kr";
 
         public override string NameEnglish => "Korean";

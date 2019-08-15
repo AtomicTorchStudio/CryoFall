@@ -97,7 +97,7 @@
             this.NotifyPropertyChanged(nameof(this.Visibility));
         }
 
-        private void UpdateNextRaidingInfo()
+        public void UpdateNextRaidingInfo()
         {
             if (this.IsDisposed)
             {

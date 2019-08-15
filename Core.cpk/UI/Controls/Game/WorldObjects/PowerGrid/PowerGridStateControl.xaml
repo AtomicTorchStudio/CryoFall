@@ -80,7 +80,8 @@
                         Orientation="Horizontal">
                 <TextBlock Text="{Binding NumberLandClaims}" />
                 <TextBlock Text=" " />
-                <TextBlock Text="{Binding EfficiencyPercent, StringFormat={x:Static loc:CoreStrings.PowerGridState_EfficiencyFormat}}" />
+                <TextBlock
+                    Text="{Binding EfficiencyPercent, StringFormat={x:Static loc:CoreStrings.PowerGridState_EfficiencyFormat}}" />
             </StackPanel>
 
 
@@ -142,18 +143,29 @@
 
             <!-- Text: Restore power -->
             <Button Grid.Row="6"
-                    Grid.ColumnSpan="3"
-                    Content="{x:Static loc:CoreStrings.PowerGridState_Button_RestorePower}"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3" 
                     Command="{Binding CommandRestorePower}"
                     Visibility="{Binding IsBlackout, Converter={StaticResource BoolToVisibilityConverter}}"
                     Style="{StaticResource DefaultButtonStyle}"
-                    Padding="5,3"
-                    FontSize="13"
+                    Padding="7,5"
                     Margin="0,4,0,0"
+                    MaxWidth="180"
                     MinHeight="0"
                     MinWidth="0"
-                    HorizontalAlignment="Center"
-                    Focusable="False" />
+                    Focusable="False">
+                <Button.Content>
+                        <TextBlock Text="{x:Static loc:CoreStrings.PowerGridState_Button_RestorePower}"
+                                   TextWrapping="Wrap"
+                                   FontSize="13" 
+                                   LineHeight="13"
+                                   LineStackingStrategy="BlockLineHeight"
+                                   Foreground="{StaticResource ButtonForeground}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center" />
+                </Button.Content>
+            </Button>
         </Grid>
 
         <Control Grid.Column="1"
@@ -261,14 +273,16 @@
             </Grid>
 
 
+            <!-- Disabled as we cannot calculate the exact time duration the power grid charge will last
+                 with the idle generators (active on thresholds). -->
             <!-- Text: Depleted in: -->
-            <TextBlock Grid.Row="2"
+            <!--<TextBlock Grid.Row="2"
                        Grid.Column="0"
                        Text="{x:Static loc:CoreStrings.PowerGridState_DepletedIn}" />
 
             <TextBlock Grid.Row="2"
                        Grid.Column="2"
-                       Text="{Binding DepletedInText}" />
+                       Text="{Binding DepletedInText}" />-->
 
 
             <!-- Text: Current generation: -->

@@ -142,10 +142,10 @@ Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_But
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_MessageFormat:
 `推奨モードより高いスプライト解像度を選択しようとしています。
-[br]{0}
-[*]推奨モード：[b] {0} [/ b]
-[*]選択モード：[b] {1} [/ b]
-[br]{0}
+[br]
+[*]推奨モード：[b]{0}[/b]
+[*]選択モード：[b]{1}[/b]
+[br]
 [br]選択したモードでは、多くのVRAMが必要になります。画像構造とフレームレートが低くなる可能性があります。`
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:

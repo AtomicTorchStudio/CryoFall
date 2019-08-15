@@ -15,7 +15,7 @@
         public override string Description =>
             "Helps you make your base safer by keeping other survivors from building or deconstructing anything in the surrounding area. Land claim also ensures that your structures do not decay over time.";
 
-        public override TimeSpan DestructionTimeout { get; } = TimeSpan.FromHours(24);
+        public override TimeSpan DestructionTimeout { get; } = TimeSpan.FromHours(1);
 
         public override ushort LandClaimSize => 16;
 
@@ -25,7 +25,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 14000;
+        public override float StructurePointsMax => 2000;
 
         protected override BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject)
         {

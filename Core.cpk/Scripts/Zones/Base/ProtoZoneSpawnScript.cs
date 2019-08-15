@@ -82,6 +82,8 @@
             this.DefaultConfiguration = new SpawnConfig(this, densityMultiplier: 1);
         }
 
+        public virtual bool CanSpawnIfPlayersNearby => false;
+
         public IZoneScriptConfig DefaultConfiguration { get; }
 
         public override string Name => "Zone spawn script: " + this.ShortId;
@@ -837,7 +839,10 @@
             {
                 await yieldIfOutOfTime();
                 var spawnPosition = zone.GetRandomPosition(Random);
-                TrySpawn(spawnPosition, checkPlayersNearby: true, out _, out _);
+                TrySpawn(spawnPosition,
+                         checkPlayersNearby: !this.CanSpawnIfPlayersNearby,
+                         out _,
+                         out _);
             }
 
             stopwatchTotal.Stop();
@@ -888,7 +893,8 @@
                         continue;
                     }
 
-                    if (ServerIsAnyPlayerNearby(area, playersPositions))
+                    if (!this.CanSpawnIfPlayersNearby 
+                        && ServerIsAnyPlayerNearby(area, playersPositions))
                     {
                         continue;
                     }

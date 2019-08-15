@@ -9,7 +9,7 @@
             {
                 "ai_enabled",
                 "Lurler",
-                "AtomicTorch"
+                "AtomicTorchStudio"
             };
 
         public static bool IsDeveloper(string name)

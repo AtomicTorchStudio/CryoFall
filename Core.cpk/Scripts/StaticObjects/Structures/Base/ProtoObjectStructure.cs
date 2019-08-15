@@ -214,7 +214,9 @@
             foreach (Vector2D tileOffset in this.Layout.TileOffsets)
             {
                 physicsBody.AddShapeRectangle(Vector2D.One, tileOffset, CollisionGroups.Default)
-                           .AddShapeRectangle(Vector2D.One, tileOffset, CollisionGroups.ClickArea);
+                           .AddShapeRectangle(Vector2D.One, tileOffset, CollisionGroups.ClickArea)
+                           .AddShapeRectangle(Vector2D.One, tileOffset, CollisionGroups.HitboxMelee)
+                           .AddShapeRectangle(Vector2D.One, tileOffset, CollisionGroups.HitboxRanged);
             }
         }
 

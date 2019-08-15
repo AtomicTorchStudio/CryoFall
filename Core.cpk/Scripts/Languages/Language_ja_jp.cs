@@ -8,6 +8,8 @@
 
         public override bool IsFontUnderlineEnabled => false;
 
+        public override bool IsUseCharWrapping => true;
+
         public override string LanguageTag => "ja_jp";
 
         public override string NameEnglish => "Japanese";

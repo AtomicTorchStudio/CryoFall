@@ -102,6 +102,8 @@
             this.MouseLeftButtonDown -= this.MouseLeftButtonHandler;
             this.MouseRightButtonDown -= this.MouseRightButtonHandler;
             this.MouseLeave -= this.MouseLeaveHandler;
+
+            this.RemoveControl();
         }
 
         private void MouseEnterHandler(object sender, MouseEventArgs e)
@@ -129,7 +131,8 @@
 
         private void RemoveControl()
         {
-            ((Panel)this.Parent).Children.Remove(this);
+            var parent = this.Parent as Panel;
+            parent?.Children.Remove(this);
         }
 
         private void StoryboardHideCompletedHandler(object sender, EventArgs e)

@@ -54,11 +54,10 @@
 
         public override void Update(double deltaTime)
         {
-            base.Update(deltaTime);
             this.secondsRemains -= deltaTime;
 
-            var truncatedValue = (int)(this.secondsRemains + 1);
-            truncatedValue = Math.Max(0, truncatedValue);
+            var truncatedValue = (int)Math.Max(1,
+                                               Math.Ceiling(this.secondsRemains));
 
             if (this.lastDisplayedValue == truncatedValue)
             {
