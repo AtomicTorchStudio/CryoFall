@@ -37,7 +37,7 @@
             Server.World.LoadWorld(new ServerMapResource(GetInitialMapName()));
 
             // set all loaded vegetation objects as full grown
-            var worldObjects = Server.World.FindStaticWorldObjectsOfProto<IProtoObjectVegetation>();
+            var worldObjects = Server.World.GetStaticWorldObjectsOfProto<IProtoObjectVegetation>();
             foreach (var worldObject in worldObjects)
             {
                 ((IProtoObjectVegetation)worldObject.ProtoWorldObject)
@@ -45,7 +45,7 @@
             }
 
             // destroy all land claim buildings as they don't work as intended when simply spawned
-            worldObjects = Server.World.FindStaticWorldObjectsOfProto<IProtoObjectLandClaim>();
+            worldObjects = Server.World.GetStaticWorldObjectsOfProto<IProtoObjectLandClaim>();
             foreach (var worldObject in Api.Shared.WrapInTempList(worldObjects))
             {
                 Server.World.DestroyObject(worldObject);

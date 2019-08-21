@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures
 {
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public static class StructureConstants
     {
@@ -80,8 +81,16 @@
         }
 
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]
-        public static void EnsureInitialized()
+        private static void EnsureInitialized()
         {
+        }
+
+        private class Bootstrapper : BaseBootstrapper
+        {
+            public override void ServerInitialize(IServerConfiguration serverConfiguration)
+            {
+                EnsureInitialized();
+            }
         }
     }
 }

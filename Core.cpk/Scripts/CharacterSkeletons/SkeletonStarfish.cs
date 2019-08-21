@@ -11,6 +11,8 @@
 
         public override bool HasStaticAttackAnimations => false;
 
+        public override float OrientationDownExtraAngle => 5;
+
         // no back-view
         public override SkeletonResource SkeletonResourceBack { get; }
             = null;

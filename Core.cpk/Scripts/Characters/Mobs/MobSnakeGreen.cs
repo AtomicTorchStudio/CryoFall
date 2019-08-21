@@ -8,7 +8,7 @@
 
     public class MobSnakeGreen : ProtoCharacterMob
     {
-        public override float CharacterWorldHeight => 1.2f;
+        public override float CharacterWorldHeight => 0.8f;
 
         public override double MobKillExperienceMultiplier => 1.0;
 

@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -119,22 +120,6 @@
 
         public string WateringSpeedBonusText { get; private set; }
 
-        private static double GetTimeRemainingSeconds(double serverTime)
-        {
-            if (serverTime == double.MaxValue)
-            {
-                return serverTime;
-            }
-
-            var delta = serverTime - Client.CurrentGame.ServerFrameTimeApproximated;
-            if (delta < 0)
-            {
-                delta = 0;
-            }
-
-            return delta;
-        }
-
         private async void RefreshDataFromServer()
         {
             var data = await this.protoPlant.ClientGetTooltipData(this.objectPlant);
@@ -199,12 +184,15 @@
         {
             {
                 // update harvest time
-                var totalDuration = this.totalHarvestDuration;
-                var timeRemainingSeconds = GetTimeRemainingSeconds(this.nextHarvestTime);
+                var fraction = ServerTimersSystem.SharedGetTimeRemainingFraction(
+                    this.nextHarvestTime, 
+                    this.totalHarvestDuration, 
+                    out var timeRemainingSeconds);
+
                 this.HarvestInTimeText = timeRemainingSeconds > 0
                                              ? ClientTimeFormatHelper.FormatTimeDuration(timeRemainingSeconds)
                                              : CoreStrings.FarmPlantTooltip_TitleHarvestInCountdown_Ready;
-                this.HarvestInTimePercent = (float)(100 * (totalDuration - timeRemainingSeconds) / totalDuration);
+                this.HarvestInTimePercent = (float)(100 * fraction);
             }
 
             if (this.VisibilityWatered == Visibility.Visible)
@@ -213,10 +201,12 @@
                 var totalDuration = this.wateringDuration;
                 if (totalDuration < double.MaxValue)
                 {
-                    var timeRemainingSeconds = GetTimeRemainingSeconds(this.wateringEndsTime);
-                    timeRemainingSeconds = MathHelper.Clamp(timeRemainingSeconds, 0, totalDuration);
+                    var fraction = ServerTimersSystem.SharedGetTimeRemainingFraction(
+                        this.wateringEndsTime, 
+                        totalDuration, 
+                        out var timeRemainingSeconds);
                     this.WateringEndsTimeText = ClientTimeFormatHelper.FormatTimeDuration(timeRemainingSeconds);
-                    this.WateringEndsTimePercent = (float)(100 * timeRemainingSeconds / totalDuration);
+                    this.WateringEndsTimePercent = (float)(100 * fraction);
                 }
                 else
                 {

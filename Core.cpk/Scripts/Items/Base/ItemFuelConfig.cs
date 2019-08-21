@@ -48,7 +48,7 @@
             var fuelType = this.FuelProtoItemsList.FirstOrDefault()?.GetType();
             if (fuelType == null)
             {
-                Api.Logger.Error("No fuel icon is overriden for " + this);
+                Api.Logger.Error("No fuel icon is overridden for " + this);
                 return TextureResource.NoTexture;
             }
 

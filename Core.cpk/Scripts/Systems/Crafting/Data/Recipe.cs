@@ -366,7 +366,7 @@
                 IStaticWorldObject objectManufacturer,
                 CraftingQueue craftingQueue)
             {
-                // do nothing (but could be overriden)
+                // do nothing (could be overridden)
             }
         }
 

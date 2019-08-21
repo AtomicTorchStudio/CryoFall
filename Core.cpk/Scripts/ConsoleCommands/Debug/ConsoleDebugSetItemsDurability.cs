@@ -34,12 +34,12 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
                     {
                         var privateState = item.GetPrivateState<IItemWithDurabilityPrivateState>();
                         var durability = protoItemWithDurablity.DurabilityMax * durabilityFraction;
-                        privateState.DurabilityCurrent = (uint)(Math.Round(durability, MidpointRounding.AwayFromZero));
+                        privateState.DurabilityCurrent = (uint)Math.Round(durability, MidpointRounding.AwayFromZero);
                     }
                 }
             }
 
-            return $"Durability of all items modified to {(durabilityFraction * 100)}%";
+            return $"Durability of all items modified to {durabilityFraction * 100}%";
         }
     }
 }

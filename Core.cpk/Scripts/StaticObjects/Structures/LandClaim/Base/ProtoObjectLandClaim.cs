@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
@@ -570,8 +571,9 @@
             tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersections);
             tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimsNearby);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimAmountLimit);
-            tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositRequireXenogeology);
-            tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositCooldown);
+            tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimDepositRequireXenogeology);
+            tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimDepositCooldown);
+            tileRequirements.Add(ObjectMineralPragmiumSource.ValidatorCheckNoPragmiumSourceNearbyOnPvE);
             this.PrepareLandClaimConstructionConfig(tileRequirements, build, repair, upgrade, out category);
 
             var landClaimSize = this.LandClaimSize;

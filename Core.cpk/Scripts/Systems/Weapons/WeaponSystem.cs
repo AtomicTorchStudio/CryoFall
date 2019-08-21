@@ -76,6 +76,9 @@
 
             // set firing mode on server
             Instance.CallServer(_ => _.ServerRemote_SetWeaponFiringMode(isFiring, shotsDone));
+            //Logger.Dev(isFiring
+            //               ? "SetWeaponFiringMode: firing!"
+            //               : $"SetWeaponFiringMode: stop firing! Shots done: {shotsDone}");
         }
 
         public static void RebuildWeaponCache(

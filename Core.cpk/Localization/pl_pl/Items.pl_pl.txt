@@ -1707,7 +1707,7 @@ Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
 Aby posadzić tę sadzonkę, musisz zachować co najmniej jedna płytkę odstępu od innych drzew.
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
-Wymaga 1 z:
+Wymaga
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 Żelazna siekiera dobrze sprawdza się podczas wyrębu drzew. Szybsza i bardziej wytrzymała niż siekiera kamienna.

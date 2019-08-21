@@ -104,7 +104,7 @@
 
             try
             {
-                TempList.AddRange(Server.World.FindGameObjectsOfProto<ILogicObject, LandClaimAreasGroup>());
+                TempList.AddRange(Server.World.GetGameObjectsOfProto<ILogicObject, LandClaimAreasGroup>());
 
                 foreach (var areasGroup in TempList)
                 {

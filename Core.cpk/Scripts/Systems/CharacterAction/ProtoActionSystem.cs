@@ -145,19 +145,18 @@
                 InteractionCheckerSystem.SharedRegister(
                     character,
                     state.TargetWorldObject,
-                    finishAction:
-                    isAbort =>
-                    {
-                        if (!isAbort)
-                        {
-                            return;
-                        }
+                    finishAction: isAbort =>
+                                  {
+                                      if (!isAbort)
+                                      {
+                                          return;
+                                      }
 
-                        Logger.Warning(
-                            $"InteractionCheckerSystem interaction check failed - cancelling \"{this.ShortId}\" action: {state}",
-                            character);
-                        this.SharedAbortActionInternal(character, state.Request);
-                    });
+                                      Logger.Warning(
+                                          $"InteractionCheckerSystem interaction check failed - cancelling \"{this.ShortId}\" action: {state}",
+                                          character);
+                                      this.SharedAbortActionInternal(character, state.Request);
+                                  });
             }
 
             return true;

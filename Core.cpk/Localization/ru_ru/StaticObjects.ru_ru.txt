@@ -642,7 +642,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Ящик с перегноем
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-Устанавливается на месторождении нефти, позволяя добывать сырую нефть прямо из земли.
+Устанавливается на месторождении нефти, позволяя добывать сырую нефть из земных недр.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Нефтекачалка
@@ -669,7 +669,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 Водосборник
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
-Выкачивает воду из подземного резервуара с помощью электрического насоса.
+Выкачивает воду из подземного источника с помощью электрического насоса.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Name:
 Водяной насос

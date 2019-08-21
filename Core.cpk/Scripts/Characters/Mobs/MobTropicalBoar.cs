@@ -11,7 +11,9 @@
 
     public class MobTropicalBoar : ProtoCharacterMob
     {
-        public override float CharacterWorldHeight => 1f;
+        public override float CharacterWorldHeight => 0.8f;
+
+        public override float CharacterWorldWeaponOffsetRanged => 0.35f;
 
         public override double MobKillExperienceMultiplier => 0.7;
 

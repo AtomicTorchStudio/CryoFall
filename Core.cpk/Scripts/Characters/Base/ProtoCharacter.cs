@@ -159,6 +159,13 @@
 
         public abstract void SharedRefreshFinalCacheIfNecessary(ICharacter character);
 
+        public void SharedReinitializeDefaultEffects()
+        {
+            var effects = new Effects();
+            this.FillDefaultEffects(effects);
+            this.ProtoCharacterDefaultEffects = effects.ToReadOnly();
+        }
+
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
@@ -249,9 +256,7 @@
         {
             base.PrepareProtoWorldObject();
 
-            var effects = new Effects();
-            this.FillDefaultEffects(effects);
-            this.ProtoCharacterDefaultEffects = effects.ToReadOnly();
+            this.SharedReinitializeDefaultEffects();
 
             this.PrepareProtoCharacter();
         }

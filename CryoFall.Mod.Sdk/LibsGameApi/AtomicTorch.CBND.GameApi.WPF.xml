@@ -2892,7 +2892,7 @@
             <summary>
             Gets or sets the scale to apply during draw.
             <br />For example, (1,1) means draw as-is, (2,2) will increase both width and height twice.
-            Please note: it's overriden by the Size parameter.
+            Please note: it's overridden by the Size parameter.
             </summary>
         </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSpriteRenderer.Size">
@@ -3426,12 +3426,12 @@
             Gets the tile at current mouse position.
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.IWorldClientService.FindGameObjectsOfProto``2">
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.IWorldClientService.GetGameObjectsOfProto``2">
             <summary>
             Please note - this method is not available during Bootstrapper execution.
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.IWorldClientService.FindStaticWorldObjectsOfProto``1">
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.IWorldClientService.GetStaticWorldObjectsOfProto``1">
             <summary>
             Please note - this method is not available during Bootstrapper execution.
             </summary>
@@ -3671,6 +3671,11 @@
             Provides properties to access the server API services (available only on Server-side).
             </summary>
         </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProto``1">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
+        </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetTile(AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort,System.Boolean)">
             <summary>
             Gets the tile for specified tile position.
@@ -3718,12 +3723,12 @@
             <param name="who"></param>
             <param name="gameObject"></param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.FindGameObjectsOfProto``2">
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetGameObjectsOfProto``2">
             <summary>
             Please note - this method is not available during Bootstrapper execution.
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.FindStaticWorldObjectsOfProto``1">
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsOfProto``1">
             <summary>
             Please note - this method is not available during Bootstrapper execution.
             </summary>

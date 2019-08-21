@@ -17,6 +17,11 @@
 
         public static void SharedSetFinalStatsCacheDirty(this ICharacter character)
         {
+            if (!character.IsInitialized)
+            {
+                return;
+            }
+
             character.GetPrivateState<BaseCharacterPrivateState>()
                      .SetFinalStatsCacheIsDirty();
         }

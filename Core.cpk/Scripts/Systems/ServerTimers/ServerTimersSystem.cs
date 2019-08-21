@@ -2,11 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using AtomicTorch.GameEngine.Common.Helpers;
 
     public class ServerTimersSystem : ProtoSystem<ServerTimersSystem>
     {
@@ -29,6 +31,48 @@
             Api.ValidateIsServer();
             var timeToInvokeAt = delaySeconds + Game.FrameTime;
             Instance.AddActionInternal(timeToInvokeAt, action);
+        }
+
+        public static double SharedGetTimeRemainingFraction(
+            double timeEnds,
+            double duration,
+            out double timeRemainingSeconds)
+        {
+            if (duration <= 0)
+            {
+                timeRemainingSeconds = 0;
+                return 0;
+            }
+
+            if (duration >= double.MaxValue)
+            {
+                // infinite
+                timeRemainingSeconds = double.MaxValue;
+                return 1.0;
+            }
+
+            timeRemainingSeconds = SharedGetTimeRemainingSeconds(timeEnds);
+            timeRemainingSeconds = MathHelper.Clamp(timeRemainingSeconds, 0, duration);
+            return timeRemainingSeconds / duration;
+        }
+
+        public static double SharedGetTimeRemainingSeconds(double serverTime)
+        {
+            if (serverTime == double.MaxValue)
+            {
+                return serverTime;
+            }
+
+            var delta = serverTime
+                        - (Api.IsServer
+                               ? Api.Server.Game.FrameTime
+                               : BaseViewModel.Client.CurrentGame.ServerFrameTimeApproximated);
+            if (delta < 0)
+            {
+                delta = 0;
+            }
+
+            return delta;
         }
 
         protected override void PrepareSystem()
@@ -135,10 +179,7 @@
         }
 
         private class ServerTimersSystemUpdater
-            : ProtoGameObject<ILogicObject,
-                  EmptyPrivateState,
-                  EmptyPublicState,
-                  EmptyClientState>,
+            : ProtoGameObject<ILogicObject, EmptyPrivateState, EmptyPublicState, EmptyClientState>,
               IProtoLogicObject
         {
             public override double ClientUpdateIntervalSeconds => double.MaxValue; // never

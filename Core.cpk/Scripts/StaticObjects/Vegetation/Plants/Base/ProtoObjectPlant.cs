@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Plants;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -100,6 +101,11 @@
             var privateState = GetPrivateState(worldObjectPlant);
             var publicState = GetPublicState(worldObjectPlant);
 
+            var previousWateringFraction = ServerTimersSystem.SharedGetTimeRemainingFraction(
+                privateState.ServerTimeWateringEnds,
+                privateState.LastWateringDuration,
+                out _);
+
             privateState.LastWateringDuration = wateringDuration;
             if (wateringDuration < double.MaxValue)
             {
@@ -120,6 +126,17 @@
             }
 
             this.ServerRefreshCurrentGrowthDuration(worldObjectPlant);
+
+            var newWateringFraction = ServerTimersSystem.SharedGetTimeRemainingFraction(
+                privateState.ServerTimeWateringEnds,
+                privateState.LastWateringDuration,
+                out _);
+
+            var wateringFractionAdded = newWateringFraction - previousWateringFraction;
+            wateringFractionAdded = MathHelper.Clamp(wateringFractionAdded, 0, 1);
+
+            byCharacter?.ServerAddSkillExperience<SkillFarming>(
+                SkillFarming.ExperienceForWatering * wateringFractionAdded);
         }
 
         public void ServerRefreshCurrentGrowthDuration(IStaticWorldObject worldObjectPlant)

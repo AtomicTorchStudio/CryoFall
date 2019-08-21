@@ -491,26 +491,26 @@
                                                                                                     damagePreMultiplier);
             }
 
-            var damage = base.SharedCalculateDamageByWeapon(weaponCache,
-                                                            damagePreMultiplier,
-                                                            targetObject,
-                                                            out obstacleBlockDamageCoef);
-            return damage;
+            return base.SharedCalculateDamageByWeapon(weaponCache,
+                                                      damagePreMultiplier,
+                                                      targetObject,
+                                                      out obstacleBlockDamageCoef);
         }
 
         protected void SharedCreateDoorPhysics(IPhysicsBody physicsBody, bool isHorizontalDoor, bool isOpened)
         {
+            const double horizontalDoorHeight = 0.5;
+            double doorSize = this.DoorSizeTiles;
+
             // custom center offset is used for interaction zone raycasting
             physicsBody.SetCustomCenterOffset(
                 isHorizontalDoor
-                    ? (0.5, 0.2)
-                    : (0.5, 0.5));
+                    ? (0.5 * doorSize, WallPatterns.PhysicsOffset + horizontalDoorHeight / 2)
+                    : (0.5, 0.5 * doorSize));
 
-            double doorSize = this.DoorSizeTiles;
             if (isHorizontalDoor)
             {
                 // horizontal door physics
-                const double horizontalDoorHeight = 0.5;
                 if (isOpened)
                 {
                     const double horizontalDoorBorderWidth = 0.125;
@@ -530,24 +530,22 @@
 
                 if (!isOpened)
                 {
-                    // horizontal door hitboxes
-                    physicsBody
-                        .AddShapeRectangle(
-                            size: (doorWidth: doorSize, 0.25), // Y value same as for wall
-                            offset: (0, 0.75), // Y value same as for wall
-                            group: CollisionGroups.HitboxMelee)
-                    .AddShapeRectangle(
-                            size: (doorWidth: doorSize, y: 0.57),  // Y value same as for wall
-                            offset: (x: 0, y: 0.85), // Y value same as for wall
-                            group: CollisionGroups.HitboxRanged);
+                    // add closed horizontal door hitboxes
+                    physicsBody.AddShapeRectangle(
+                                   size: (doorWidth: doorSize, 0.25), // Y value same as for wall
+                                   offset: (0, 0.75), // Y value same as for wall
+                                   group: CollisionGroups.HitboxMelee)
+                               .AddShapeRectangle(
+                                   size: (doorWidth: doorSize, y: 0.57), // Y value same as for wall
+                                   offset: (x: 0, y: 0.85), // Y value same as for wall
+                                   group: CollisionGroups.HitboxRanged);
                 }
 
                 // click area
-                physicsBody
-                    .AddShapeRectangle(
-                        size: (doorWidth: doorSize, 1),
-                        offset: (0, WallPatterns.PhysicsOffset),
-                        group: CollisionGroups.ClickArea);
+                physicsBody.AddShapeRectangle(
+                    size: (doorWidth: doorSize, 1),
+                    offset: (0, WallPatterns.PhysicsOffset),
+                    group: CollisionGroups.ClickArea);
                 return;
             }
 
@@ -574,24 +572,22 @@
 
             if (!isOpened)
             {
-                // vertical door hitboxes
-                physicsBody
-                    .AddShapeRectangle(
-                        size: (verticalDoorWidth, doorSize + 0.76),
-                        offset: (horizontalOffset, 0),
-                        group: CollisionGroups.HitboxMelee)
-                    .AddShapeRectangle(
-                        size: (verticalDoorWidth, doorSize + 0.86),
-                        offset: (horizontalOffset, 0),
-                        group: CollisionGroups.HitboxRanged);
+                // add closed vertical door hitboxes
+                physicsBody.AddShapeRectangle(
+                               size: (verticalDoorWidth, doorSize + 0.76),
+                               offset: (horizontalOffset, 0),
+                               group: CollisionGroups.HitboxMelee)
+                           .AddShapeRectangle(
+                               size: (verticalDoorWidth, doorSize + 0.86),
+                               offset: (horizontalOffset, 0),
+                               group: CollisionGroups.HitboxRanged);
             }
 
             // click area
-            physicsBody
-                .AddShapeRectangle(
-                    size: (doorWidth: 0.5, doorSize + 0.75),
-                    offset: (0.25, 0),
-                    group: CollisionGroups.ClickArea);
+            physicsBody.AddShapeRectangle(
+                size: (doorWidth: 0.5, doorSize + 0.75),
+                offset: (0.25, 0),
+                group: CollisionGroups.ClickArea);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
@@ -647,7 +643,7 @@
                                            : DrawWorldOffsetYVerticalDoor);
             renderer.DrawOrderOffsetY = isHorizontalDoor
                                             ? WallPatterns.DrawOffsetNormal - DrawWorldOffsetYHorizontalDoor
-                                            : this.DoorSizeTiles - 0.01 - DrawWorldOffsetYVerticalDoor;
+                                            : this.DoorSizeTiles + 0.1 - DrawWorldOffsetYVerticalDoor;
 
             var spriteSheetAnimator = sceneObject.AddComponent<ClientComponentDoorSpriteSheetAnimator>();
             var atlasColumnsCount = atlas.AtlasSize.ColumnsCount;
@@ -677,9 +673,7 @@
                     sceneObject,
                     atlas.Chunk((byte)(atlasColumnsCount - 1), 0),
                     drawOrder: DrawOrder.Default,
-                    positionOffset: (
-                                        0,
-                                        DrawWorldOffsetYHorizontalDoor));
+                    positionOffset: (0, DrawWorldOffsetYHorizontalDoor));
             }
 
             var framesCount = isHorizontalDoor ? atlasColumnsCount : atlasColumnsCount - 1;

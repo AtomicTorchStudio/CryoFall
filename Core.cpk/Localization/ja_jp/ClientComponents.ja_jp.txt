@@ -103,7 +103,7 @@ Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
 
 Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
 `修復および建築アクションは制限されています。
-[br]奇襲ブロックが失効します: {0}.`
+[br]奇襲ブロックが失効するまであと: {0}`
 
 Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
 この基地は奇襲ブロック中です

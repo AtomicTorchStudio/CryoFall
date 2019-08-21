@@ -13,6 +13,8 @@
     {
         public override float CharacterWorldHeight => 1.3f;
 
+        public override float CharacterWorldWeaponOffsetRanged => 0.45f;
+
         public override double MobKillExperienceMultiplier => 1.0;
 
         public override string Name => "Bear";

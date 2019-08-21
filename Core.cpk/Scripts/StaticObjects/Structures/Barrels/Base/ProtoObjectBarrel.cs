@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Barrels
 {
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
@@ -25,6 +27,8 @@
         where TPublicState : ProtoBarrelPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
+        public const bool DisallowDrainInRaidblock = false;
+
         // no fuel is used by this manufacturer
         public override byte ContainerFuelSlotsCount => 0;
 
@@ -42,6 +46,14 @@
 
         public void ClientDrainBarrel(IStaticWorldObject worldObject)
         {
+            if (DisallowDrainInRaidblock
+                && !LandClaimSystem.ValidateIsNotUnderRaidblock(worldObject,
+                                                                ClientCurrentCharacterHelper.Character))
+            {
+                // don't allow to drain barrel under raid block
+                return;
+            }
+
             this.CallServer(_ => _.ServerRemote_Drain(worldObject));
         }
 
@@ -118,9 +130,9 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle((0.8, 0.5), offset: (0.1, 0))
-                .AddShapeRectangle((0.7, 1), offset: (0.15, 0), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.7, 1),   offset: (0.15, 0),    group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((0.7, 0.2), offset: (0.15, 0.85), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((0.7, 1), offset: (0.15, 0), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((0.7, 1),   offset: (0.15, 0),    group: CollisionGroups.ClickArea);
         }
 
         private void ServerRemote_Drain(IStaticWorldObject worldObject)
@@ -132,6 +144,14 @@
                                         worldObject,
                                         writeToLog: true))
             {
+                return;
+            }
+
+            if (DisallowDrainInRaidblock
+                && !LandClaimSystem.ValidateIsNotUnderRaidblock(worldObject,
+                                                                character))
+            {
+                // don't allow to drain barrel under raid block
                 return;
             }
 

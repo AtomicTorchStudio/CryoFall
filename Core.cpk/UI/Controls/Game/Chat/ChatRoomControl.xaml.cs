@@ -5,6 +5,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -303,6 +304,13 @@
             if (this.activatedOnFrameNumber == Api.Client.CurrentGame.ServerFrameNumber)
             {
                 // ignore for now
+                return;
+            }
+
+            if (e.Key.IsModifier()
+                || e.Key == Key.PrintScreen)
+            {
+                // ignore
                 return;
             }
 

@@ -28,7 +28,7 @@
             instance = this;
         }
 
-        [RemoteCallSettings(DeliveryMode.Unreliable)]
+        [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 120, avoidBuffer: true)]
         private void ClientRemote_ProcessServerDebugPhysicsTesting(BasePhysicsShapeRemoteData wrappedShape)
         {
             var shape = PhysicsShapeRemoteDataHelper.Unwrap(wrappedShape);

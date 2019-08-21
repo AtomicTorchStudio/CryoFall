@@ -112,7 +112,7 @@
             if (!DeconstructionSystem.SharedCheckCanInteract(
                     this.Character,
                     this.WorldObject,
-                    writeToLog: false))
+                    writeToLog: true))
             {
                 this.AbortAction();
                 return;

@@ -79,8 +79,6 @@
 
             if (IsServer)
             {
-                character.ServerAddSkillExperience<SkillFarming>(SkillFarming.ExperienceForWatering);
-
                 // notify tool was used
                 ServerItemUseObserver.NotifyItemUsed(character, itemWateringCan);
 

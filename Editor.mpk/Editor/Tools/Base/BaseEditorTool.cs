@@ -57,8 +57,8 @@
             base.PrepareProto();
 
             var methodInfo = this.GetType().GetMethod(nameof(this.CreateSettingsControl));
-            var isCreateSettingsMethodOverriden = methodInfo.DeclaringType != typeof(BaseEditorTool);
-            this.HasSettings = isCreateSettingsMethodOverriden;
+            var isCreateSettingsMethodOverridden = methodInfo.DeclaringType != typeof(BaseEditorTool);
+            this.HasSettings = isCreateSettingsMethodOverridden;
         }
     }
 

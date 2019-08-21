@@ -26,7 +26,7 @@ UI/CoreStrings@Button_Configure:
 設定する
 
 UI/CoreStrings@Button_Continue:
-持続する
+次へ
 
 UI/CoreStrings@Button_Deny:
 拒否
@@ -243,7 +243,7 @@ UI/CoreStrings@HUDEnergyChargeIndicator_TotalCapacity:
 総容量
 
 UI/CoreStrings@HUDEnergyChargeIndicator_TotalCharge:
-総請求
+総充電
 
 UI/CoreStrings@HUDQuestTrackingEntry_QuestTitleFormat:
 クエスト:{0}
@@ -288,10 +288,10 @@ UI/CoreStrings@ItemsContainer_Title:
 アイテム
 
 UI/CoreStrings@ItemsContainer_TitleInput:
-入力
+投入
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
-出力
+生成
 
 UI/CoreStrings@LearningPoints:
 学習ポイント
@@ -416,7 +416,7 @@ UI/CoreStrings@MenuServers_Button_RemoveServer:
 サーバーを削除
 
 UI/CoreStrings@MenuServers_Checkbox_ShowEmpty:
-空のものを表示する
+空のサーバーを表示する
 
 UI/CoreStrings@MenuServers_Checkbox_ShowIncompatible:
 互換性のないものを表示する
@@ -729,7 +729,7 @@ UI/CoreStrings@Quest_Label_Completed:
 達成済み
 
 UI/CoreStrings@Quest_Label_New:
-新しい
+新規
 
 UI/CoreStrings@Quest_Label_Ready:
 準備完了
@@ -901,7 +901,7 @@ UI/CoreStrings@TradingTooltip_CoinsPenny:
 ペニーコイン
 
 UI/CoreStrings@TradingTooltip_CoinsShiny:
-光沢のあるコイン
+ピカピカのコイン
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAccount:
 アカウントを作成せずに続行する
@@ -934,7 +934,7 @@ UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
 [br]ホットバーにツールボックスを装備すれば建築できるようになります。`
 
 UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
-場所の設計図
+設計図
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 必要な材料
@@ -1099,7 +1099,7 @@ UI/CoreStrings@WindowSkills_NoDiscoveredSkills:
 [br]何か新しいことを試して、何が起こるのか見てください！`
 
 UI/CoreStrings@WindowSkills_ProgressTowardsTheNextLevel:
-次のレベルのスキルへの進歩
+次のレベルのスキルへの進捗
 
 UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
 スキル発見
@@ -1123,7 +1123,7 @@ UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
 私の既存のAtomicTorchアカウントへのリンク
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-それをする必要はありません-あなたがプレイするために単に既存のSteamアカウントを使い続けることができます。ただし、AtomicTorch.comアカウントにリンクすることには一定の利点があります。
+それをする必要はありません、あなたがプレイするために単に既存のSteamアカウントを使い続けることができます。ただし、AtomicTorch.comアカウントにリンクすることには一定の利点があります。
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
 絶対にそれをする必要はなく、単にプレイするために既存のSteamアカウントを使うことができます。ただし、そうすることには一定の利点があります。
@@ -1241,7 +1241,7 @@ UI/CoreStrings@WorldMap_PointedPosition:
 カーソル位置
 
 UI/CoreStrings@WorldMap_YourPosition:
-位置
+あなたの現在地
 
 UI/CoreStrings@WorldMapMarkCurrentBed_Tooltip:
 `[b]ベッド[/b]
@@ -1349,7 +1349,7 @@ UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuTeleport:
 テレポート
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
-私を解き放ちます！
+私をアンスタックする！
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `家の中に閉じこもり、外に出られないのですか？
@@ -1672,7 +1672,7 @@ UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccou
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailNotActivated:
 `入力したメールアドレスは有効になっていません。
-[br]Eメールアカウントを開き、私たちがあなたに送ったアクティベーションリンクをクリックしてください。（Eメールがスパム受信箱にあるかもしれないことに注意してください）。`
+[br]Eメールアカウントを開き、私たちがあなたに送ったアクティベーションリンクをクリックしてください。（Eメールが迷惑メール受信箱にあるかもしれないことに注意してください）。`
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_Title:
 アカウントをリンクできません

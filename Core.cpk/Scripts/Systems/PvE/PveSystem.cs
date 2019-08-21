@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -50,17 +51,19 @@
 
         static PveSystem()
         {
-            if (IsServer)
+            if (IsClient)
             {
-                serverIsPvE = ServerRates.Get("PvE",
-                                              defaultValue: 0,
-                                              description:
-                                              @"PvP / PvE mode switch.
+                return;
+            }
+
+            serverIsPvE = ServerRates.Get("PvE",
+                                          defaultValue: 0,
+                                          description:
+                                          @"PvP / PvE mode switch.
                               Set it to 1 to make this server PvE-only. Otherwise it will default to PvP.
                               Please note: this changes game mechanics dramatically.
                               Do NOT change it after the server world is created as it might lead to unexpected consequences.")
-                              > 0;
-            }
+                          > 0;
         }
 
         public static event Action ClientIsPvEChanged;
@@ -159,6 +162,7 @@
         }
 
         public static bool SharedIsAllowStructureDamage(
+            ICharacter character,
             IStaticWorldObject targetObject,
             bool showClientNotification)
         {
@@ -167,29 +171,44 @@
                 return true;
             }
 
-            if (!(targetObject.ProtoWorldObject is IProtoObjectStructure))
+            var protoWorldObject = targetObject.ProtoWorldObject;
+            var isStructure = protoWorldObject is IProtoObjectStructure;
+            var isVegetation = protoWorldObject is IProtoObjectVegetation;
+            if (!isStructure
+                && !isVegetation)
             {
+                // can damage such objects everywhere
                 return true;
             }
 
             if (!LandClaimSystem.SharedIsObjectInsideAnyArea(targetObject))
             {
-                // always allow damage to structures outside of land claim areas
+                // always allow damage outside of land claim areas
                 return true;
             }
 
-            // don't allow damage as the structure is inside the land claim area
+            if (character == null)
+            {
+                // non-player damage is always forbidden on the owned objects
+                return false;
+            }
+
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(targetObject, character))
+            {
+                if (isVegetation)
+                {
+                    // allow damaging vegetation in the owned land claim area
+                    return true;
+                }
+
+                // don't allow damaging the structures in the owned land claim area
+                return false;
+            }
+
+            // don't allow damage as the object is inside the not-owned land claim area
             if (IsClient && showClientNotification)
             {
-                if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(targetObject,
-                                                                        ClientCurrentCharacterHelper.Character))
-                {
-                    // that's the owned land claim area - no need to display a notification
-                }
-                else
-                {
-                    ClientShowNotificationCannotDamagePlayersAndStructures();
-                }
+                ClientShowNotificationCannotDamagePlayersAndStructures();
             }
 
             return false;

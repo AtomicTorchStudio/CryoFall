@@ -1,14 +1,14 @@
 ﻿Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Description:
-直径10mmの修正は、より高い装甲の貫通能力を提供するために特別に設計されています。装甲を着た標的に対して最適ですが、生物の標的には効果が薄れます。
+直径10mmの弾薬は、より高い装甲の貫通能力を提供するために特別に設計されています。装甲を着た標的に対して最適ですが、生物の標的には効果が薄れます。
 
 Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Name:
-10mmアーマーピアス弾
+10mm徹甲弾
 
 Scripts/Items/Ammo/ItemAmmo10mmBlank@Description:
 特別な10ミリ空砲弾。軍事演習や侵入者を追い払うために使用できます。
 
 Scripts/Items/Ammo/ItemAmmo10mmBlank@Name:
-10mm空砲
+10mm空包
 
 Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Description:
 生物用に特別に設計改良された10mm弾。命中時に弾丸が膨張し高い抑止力とダメージを与えます。装甲標的に対しては効果はありません。
@@ -29,7 +29,7 @@ Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Name:
 12ゲージ散弾
 
 Scripts/Items/Ammo/ItemAmmo12gaPellets@Description:
-ペレットはより広い範囲に広がり、より小さな生物学的標的、特に集団に対して理想的です。装甲標的に対してはあまり効果がありません。
+弾薬はより広い範囲に広がり、より小さな生物標的、特に集団に対して理想的です。装甲標的に対してはあまり効果がありません。
 
 Scripts/Items/Ammo/ItemAmmo12gaPellets@Name:
 12ゲージ拡散弾
@@ -50,10 +50,10 @@ Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Description:
 防具貫通機能を備えた重装甲用の弾丸。
 
 Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
-.300装甲貫通弾
+.300徹甲弾
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
-重い。放火直径300。装甲を貫通してパンチすることができ、敵に火をつけることができます。
+.300焼夷弾。装甲を貫通して燃やせることができます。
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 .300焼夷弾
@@ -95,10 +95,10 @@ Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 データログ（暗号化）
 
 Scripts/Items/Devices/ItemBiomaterialCollector@NotificationNoEmptyVials:
-生体材料を収集するための空の瓶がありません
+生体材料を収集するための空き試験管がありません
 
 Scripts/Items/Devices/ItemBiomaterialCollector@Description:
-動物や他の生き物から生体材料を抽出するための特別な装置。操作するには生体材料をいれる空の瓶が必要です。
+動物や他の生き物から生体材料を抽出するための特別な装置。操作するには生体材料をいれる空き試験管が必要です。
 
 Scripts/Items/Devices/ItemBiomaterialCollector@Name:
 生体材料コレクター
@@ -191,7 +191,7 @@ Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 編組ヘルメット
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
-間に合わせのランプヘルメット
+臨時的なランプヘルメット
 
 Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
 編組パンツ
@@ -314,7 +314,7 @@ Scripts/Items/Equipment/Misc/ItemRespirator@Name:
 人工呼吸器
 
 Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
-構造の基本はプラグ格子を薄い金属板に埋め込んだ実験装甲。とても軽くて丈夫。
+構造の基本はプラグミアムを薄い金属板に埋め込んだ実験装甲。とても軽くて丈夫。
 
 Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
 プラグアーマー
@@ -647,7 +647,7 @@ Scripts/Items/Food/ItemMushroomPennyBun@Name:
 ポルチーニ
 
 Scripts/Items/Food/ItemMushroomPink@Description:
-猛毒キノコ。その毒性ゆえ夜に光ります。
+猛毒キノコ。毒性が強くて、夜に光ります。
 
 Scripts/Items/Food/ItemMushroomPink@Name:
 桃色キノコ
@@ -710,7 +710,7 @@ Scripts/Items/Food/ItemSugar@Description:
 白くて甘い。さまざまな食品に使用できます。生で食べることもできますが、別に良い考えではありません。
 
 Scripts/Items/Food/ItemSugar@Name:
-シュガー
+砂糖
 
 Scripts/Items/Food/ItemTequila@Description:
 砂漠で見つかった植物から蒸留された美しい酒。
@@ -833,7 +833,7 @@ Scripts/Items/Generic/ItemBottleEmpty@Name:
 空の瓶
 
 Scripts/Items/Generic/ItemBricks@Description:
-建物や壁のための建築材料。
+建物や壁を建築するための建築材料。
 
 Scripts/Items/Generic/ItemBricks@Name:
 レンガ
@@ -908,10 +908,10 @@ Scripts/Items/Generic/ItemCoinShiny@Description:
 高額のコイン。トレーディングマシンでアイテムを購入するために使用されるか、他の生存者と直接取引される可能性があります。
 
 Scripts/Items/Generic/ItemCoinShiny@Name:
-光沢のあるコイン
+ピカピカのコイン
 
 Scripts/Items/Generic/ItemComponentsElectronic@Description:
-いろいろな電子機器の作成に必要な電子部品。放棄された科学の前哨基地で簡単に清掃できます。
+いろいろな電子機器の作成に必要な電子部品。廃棄された科学の前哨基地で簡単に収集できます。
 
 Scripts/Items/Generic/ItemComponentsElectronic@Name:
 電子部品
@@ -959,14 +959,14 @@ Scripts/Items/Generic/ItemDuctTape@Name:
 ダクトテープ
 
 Scripts/Items/Generic/ItemExplosives@Description:
-爆発装置を作成するのに使用する起爆性材料
+爆発装置を作成するのに使用する起爆性材料。
 
 Scripts/Items/Generic/ItemExplosives@Name:
 爆薬
 
 Scripts/Items/Generic/ItemFertilizer@ShortDescriptionText:
 `成長速度を{0}％向上させます
-[br]畑を改善します`
+[br]生産高を増やす`
 
 Scripts/Items/Generic/ItemFertilizer@Description:
 植物の成長速度を大幅に向上させ、単一の植物から収穫される量を増やします。
@@ -1254,7 +1254,7 @@ Scripts/Items/Generic/ItemSlime@Name:
 スライム
 
 Scripts/Items/Generic/ItemSolarPanel@Description:
-製造するには高価ですが、メンテナンス不要で驚くほど長い期間 電力を供給することができます。
+製造するには高価ですが、メンテナンス不要で驚くほど長い期間の電力を供給することができます。
 
 Scripts/Items/Generic/ItemSolarPanel@Name:
 ソーラーパネル
@@ -1320,7 +1320,7 @@ Scripts/Items/Generic/ItemToxin@Name:
 毒素
 
 Scripts/Items/Generic/ItemTreebark@Description:
-いくつかの木から樹皮します。火事でやけどまたは他の目的に使用することができます。
+いくつかの木からはがした樹皮です。燃やすか他の目的に使用することができます。
 
 Scripts/Items/Generic/ItemTreebark@Name:
 樹皮
@@ -1383,7 +1383,7 @@ Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
 植物は収穫の準備ができています。じょうろは使用できません。
 
 Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
-ここでは申し込みできません
+ここでは使用できません
 
 Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
 HDRサポートを備えた特別な高感光性網膜層。夜間にほぼ完璧な視力を与えます。
@@ -1485,7 +1485,7 @@ Scripts/Items/Medical/ItemAntiToxinPreExposure@Description:
 毒素を取り込む前の治療をすることで、体内での毒素の吸収を防ぐことができるだけでなく、免疫システムを強化して血流に入る毒素の影響を軽減することができます。
 
 Scripts/Items/Medical/ItemAntiToxinPreExposure@Name:
-毒素予防エイド
+毒素予防
 
 Scripts/Items/Medical/ItemBandage@Description:
 包帯は出血を止めて創傷の治癒を助けるのに役立ちます。
@@ -1710,19 +1710,19 @@ Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
 いずれかが必要
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
-鉄の斧は木を切り刻むのに最適です。石造りの斧より速く、より耐久性があります。
+鉄の斧は木を伐るのに最適です。石造りの斧より速く、より耐久性があります。
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Name:
 鉄の斧
 
 Scripts/Items/Tools/Axes/ItemAxeSteel@Description:
-鋼の斧は木を切り刻むのに理想的です。鉄の斧よりも速くて丈夫です。
+鋼の斧は木を伐るのに理想的です。鉄の斧よりも速くて丈夫です。
 
 Scripts/Items/Tools/Axes/ItemAxeSteel@Name:
 銅の斧
 
 Scripts/Items/Tools/Axes/ItemAxeStone@Description:
-石斧は木を切り刻むのに使用することができます。
+石斧は木を伐るのに使用することができます。
 
 Scripts/Items/Tools/Axes/ItemAxeStone@Name:
 石の斧
@@ -1734,7 +1734,7 @@ Scripts/Items/Tools/Crowbars/ItemCrowbar@Name:
 バール
 
 Scripts/Items/Tools/Lights/ItemFlashlight@Description:
-強力な懐中電灯に勝るものは何もありません。このモデルは、単純な使い捨て電池を使用しながら、3,000ルーメン以上を生産します。
+強力な懐中電灯に勝るものはありません。このタイプの懐中電灯は、使い捨て電池を使用し、3,000ルーメン以上の強い光を放つことができます。
 
 Scripts/Items/Tools/Lights/ItemFlashlight@Name:
 懐中電灯
@@ -1803,7 +1803,7 @@ Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Name:
 銅のじょうろ
 
 Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Description:
-軽量プラスチック製のシンプルなじょうろ。全てのじょうろの中で最も多くの水を保持します。
+軽量プラスチック製のシンプルなじょうろ。全てのじょうろの中で最も多くの水を貯めることができます。
 
 Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Name:
 プラスチックのじょうろ
@@ -1833,7 +1833,7 @@ Scripts/Items/Weapons/Melee/ItemKnifeStone@Name:
 石のナイフ
 
 Scripts/Items/Weapons/Melee/ItemMaceCopper@Description:
-銅で補強された衝撃面を備えた槌矛
+銅で補強された衝撃面を備えた槌矛。
 
 Scripts/Items/Weapons/Melee/ItemMaceCopper@Name:
 銅の槌矛
@@ -1917,13 +1917,13 @@ Scripts/Items/Weapons/Ranged/ItemMusket@Name:
 マスケット
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-プラズマピストルは衝突時に標的を燃やす集中プラズマパケットを形成して投射し大きなダメージを与えます。高消費電力
+プラズマピストルは衝突時に標的を燃やす集中プラズマパケットを形成して投射し大きなダメージを与えます。エネルギーの消耗が激しい。
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
 プラズマピストル
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
-プラズマライフルは、衝突時に標的を激しく燃やす大きな集中型プラズマパケットを形成して投射し大きなダメージを与えます。非常に高い消費電力
+プラズマライフルは、衝突時に標的を激しく燃やす大きな集中型プラズマパケットを形成して投射し大きなダメージを与えます。エネルギーの消耗が激しい。
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
 プラズマライフル

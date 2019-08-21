@@ -24,7 +24,7 @@ Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerFull:
 サーバーの収容数が最大に達しているため、他のプレイヤーが退場するのを待ってから再度接続を試してください。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerUnreachable:
-ゲームサーバーが見つかりません。理由：サーバーの再起動、シャットダウン、ファイアウォールの設定、ネットワークの問題など。数分後に再度接続を試してください。
+ゲームサーバーが見つかりません。可能な原因：サーバーの再起動、シャットダウン、ファイアウォールの設定、ネットワークの問題など。数分後に再度接続を試してください。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ShutdownScheduled:
 ゲームサーバーは現在再起動かシャットダウンしています。
@@ -42,15 +42,15 @@ Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@DefaultTitle:
 ログインに失敗しました
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Message:
-`アクティベーションリンクを記載したメールがあなたに送信されました。
-[br]間もなく到着するはずです。
+`アクティベーションリンクを記載したメールがあなた宛てに送信されました。
+[br]間もなく届くはずです。
 [br]Eメールアカウントを開いてアクティベーションリンクをクリックし、ゲームに戻って続行してください。`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Title:
 新しいアカウントのアクティベーションが必要です。
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@GameNotOwned:
-ゲームを所有していないアカウントです。
+あなたのアカウントはこのゲームを所有していません。
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@IncorrectEmailOrPassword:
 電子メールまたはパスワードが間違っています。
@@ -59,7 +59,7 @@ Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UnknownError:
 不明なエラー。再度接続を試してください。
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Message:
-`登録されたユーザーは既に関連付けられた（異なる）Steamアカウントを持っています。
+`提供されたユーザー情報は既に別のSteamアカウントと関連付けられました。
 [br]AtomicTorch.comアカウントを現在のSteamアカウントに関連付けることはできません。`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Title:
@@ -70,7 +70,7 @@ Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameInvalid_Titl
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
 `ユーザ名の条件：
-[*] [b]3[/b] ～ [b]24[/b] 文字以上
+[*] 長さは[b]3[/b] ～ [b]24[/b] 文字
 [*] 文字列、数字、アンダーバー、ハイフンが利用[b]可能[/b]
 [*] スペースやその他の文字は利用[b]不可[/b]
 [*] 先頭は[b]文字列[/b]

@@ -9,6 +9,8 @@
     {
         public override double DefaultMoveSpeed => 0.07;
 
+        public override float OrientationDownExtraAngle => 5;
+
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("RiverSnail/Back");
 

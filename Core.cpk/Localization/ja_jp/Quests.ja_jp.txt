@@ -2,7 +2,7 @@
 建築：{0}
 
 Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-完了：{0}（技術グループ）
+完成した技術グループ：{0}
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
 {0}に
@@ -14,7 +14,7 @@ Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
 破壊：{0}
 
 Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
-招集：{0}
+採取：{0}
 
 Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
 収集：{0}
@@ -38,10 +38,10 @@ Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
 技術を学ぶ：{0}（{1}類）
 
 Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
-キル：{0}
+殺す：{0}
 
 Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
-製造元：{0}
+製造：{0}
 
 Scripts/Quests/Requirements/RequirementRun@DescriptionText:
 10メートルダッシュする
@@ -63,8 +63,8 @@ Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
 `[*] 寝袋は製造メニューの" Other "カテゴリの下にあります。
-[*]最善の道は、寝袋を家や拠点に置いて、「家にいる」ことができるようにすることです。
-[*]最初の寝袋を置くにふさわしい場所を見つけましょう。 他のプレイヤーから離れた場所で、後で自分の拠点として使える場所です。 後で移動したくなっても、大丈夫です。`
+[*]最善の道は、寝袋を家や拠点に置いて、「家で復活する」ことができるようなります。
+[*]最初の寝袋を置くにふさわしい場所を見つけましょう。 他のプレイヤーから離れた場所で、後で自分の拠点として使える場所で設置しましょう。 後で移動したくなっても、大丈夫です。`
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
 寝袋を作る
@@ -92,7 +92,7 @@ Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Name:
 木を切り倒す
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@TaskEatAnyFood:
-食べ物を食べる
+任意の食物を食べる
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Description:
 キャンプファイヤーを作ったので、それを使って基本的な食べ物を作ることができます。きのこや肉を持っているなら、調理をして、より栄養価が高く安全な食べ物を作りましょう。
@@ -105,7 +105,7 @@ Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
 [*][b]インベントリから[/b]直接、または[b]ホットバー[/b]に置いてゲーム内で使用することで、アイテム（食物を含む）を使用できます。`
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
-食べ物を調理する
+任意の食物を調理する
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 材料がいくらかあるので、制作を始めましょう。まず、ロープを作り、次に斧を作ります。
@@ -184,7 +184,7 @@ Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
 鉱物を採掘する
 
 Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
-CryoFallを完全に楽しむには、在庫の並び替え方法やキャラクターを走らせる方法など、知っておくべきことがいくつかあります！
+CryoFallを完全に楽しむには、インベントリの並び替え方法やキャラクターを走らせる方法など、知っておくべきことがいくつかあります！
 
 Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
 `[*]インベントリを整理するには、インベントリグリッドの上にカーソルを置きながら[u]マウスの中央ボタン[/u]または[u]Zキー[/u]を押します（コントロール設定を変更していない場合）。 そのように[b]任意の[/b]インベントリグリッド（箱など）を整理することができます。
@@ -299,7 +299,7 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Name:
 農業効率
 
 Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Description:
-生き残るためには大量の水に簡単にアクセスする必要があります。飲むだけでなく、工業用にも。
+生き残るためには大量の水を獲得する必要があります。飲むだけでなく、工業用にも。
 
 Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Hints:
 `[*]簡単に、事実上無制限の[b]砂[/b]をあらゆる[b]砂浜または海岸[/b]で見つけることができます。
@@ -331,7 +331,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Hints:
 [*]より高いレベルの技術グループのロックを解除すると、より複雑な技術、レシピ、構造にアクセスできます。
 
 Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
-技術習得 - パート1
+技術習得1
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
 全てのクリーチャーを殺す
@@ -340,7 +340,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCre
 クリーチャーを略奪する
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Description:
-ナイフは弱い敵に対して使用する初期の武器です。何かもっと充実したものを作る前に持っておくのは良いことです。
+ナイフは弱い敵に対して使用する初期の武器です。もっといいものを作れる前に持っておくのは良いことです。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 [*] CryoFallの各武器はいくつかの[b]特別なプロパティ[/b]を持っています。例えば、ナイフは出血を起こす確率が高く、鈍器は骨を壊したり敵を麻痺させたりします。
@@ -396,7 +396,7 @@ Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Hints:
 [*]岸の近くにたくさんの水生動物を見つけることができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Name:
-バイオームの探索 - パート1
+バイオームの探索1
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Description:
 バイオームが異なれば、そこに見つかる材料やその地域に住む動物も異なります。利用可能なものを確認するために、できるだけ基地周辺を探索することをお勧めします。
@@ -407,7 +407,7 @@ Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Hints:
 [*]大陸北部に森林（寒帯）があります。`
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Name:
-バイオームの探索 - パート2
+バイオームの探索2
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
 入手可能な医療品は他にもたくさんありますが、緊急措置として、グリーンハーブを使って健康状態を回復するのもよいでしょう。
@@ -429,7 +429,7 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Hints:
 [*]ただし、実生活ではこれをしないでください。`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Name:
-狩りを習得 - パート1
+ハンター達人1
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 もう少し狩りをしてみましょう！動物やモンスターはまだたくさんいます。
@@ -439,7 +439,7 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 [*]動物やモンスターの危険度に応じて、狩猟経験値の量が変わります。`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
-狩りを習得する - パート2
+ハンター達人2
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
 スキルのロックを解除する
@@ -505,7 +505,7 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
 [*]高度な技術（ティア3以上）の場合は、ごく一部に特化することをお勧めします。どれを学ぶのか、あなたにとって最も重要なものをえらんでください。`
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
-技術習得 - パート2
+技術習得2
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
 基地に送電網を設置することは効果を上げる上で重要なステップです。操縦に電気を必要とする高度な構造物がたくさんあります。
@@ -529,13 +529,13 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
 [*]塩湖は大量の塩を含んでいる場合があります。`
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
-バイオームの探索 - パート3
+バイオームの探索3
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
 [*] [b]火山バイオーム[/b]は非常に危険で、訪れるには極度の[b]熱[/b]から身を守る必要があります。
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
-バイオームの探索 - パート4
+バイオームの探索4
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 古い遺跡は珍しい構成要素と特定の資源を見つけるのに最も良い場所です。あなたが十分な装備を持っているならば、探検してみると良いでしょう。
@@ -555,7 +555,7 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Hints:
 [*]注意してください。これらの動物は攻撃的です。狩るときにはかなりの長距離武器を使うのが最善です。
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Name:
-狩りを習得する - パート3
+ハンター達人3
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Description:
 もっともっともっと狩りをしましょう！今回は動物だけではありません！
@@ -564,8 +564,8 @@ Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
 [*]注意してください。これらの獣は非常に攻撃的で危険です。チャンスを得るために強力な遠隔武器と相当な防具を必要とするでしょう。
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
-狩りを習得する - パート4
+ハンター達人4
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
-狩りを習得する - パート5
+ハンター達人5
 

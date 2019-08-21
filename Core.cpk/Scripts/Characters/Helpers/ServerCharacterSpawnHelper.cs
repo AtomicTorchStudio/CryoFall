@@ -11,12 +11,14 @@
 
     public static class ServerCharacterSpawnHelper
     {
+        // no players distance for spawning a creature
         public const double SpawnMobNoPlayersRadius = 8;
 
         public const double SpawnNoPhysicsObjectsRadius = 1;
 
         public const double SpawnNoPlayerBuiltStructuresRadius = 8;
 
+        // no mobs distance for spawning a player character
         public const double SpawnPlayerNoMobsRadius = 8;
 
         private static readonly IWorldServerService ServerWorldService = Api.Server.World;
@@ -62,7 +64,7 @@
                     }
                 }
             }
-            else
+            else // a mob
             {
                 // check if players nearby
                 foreach (var t in physicsSpace.TestCircle(position,

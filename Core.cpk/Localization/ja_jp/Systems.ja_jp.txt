@@ -73,7 +73,7 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0}がゲームに参加しました
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-{1}{0}でよろしいですか？
+{1}を{0}するのはよろしいですか？
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 後でソーシャルメニューを使ってプレーヤーのブロックを解除することができます。
@@ -141,7 +141,7 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitE
 [br]新しい技術を研究することによってその数を増やすことができます。`
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
-ゼノジオロジー (Tier 3) を研究してデポジットを要求するか、その近くに所有地を配置してください。
+ゼノジオロジー (Tier 3) を研究して石油とリチウムの鉱床を占領するか、その近くに所有地を配置してください。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `奇襲を受けています。
@@ -220,13 +220,13 @@ Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundO
 招待状が見つからないか、招待状は期限切れです。
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
-遅すぎます。パーティーはすでにいっぱいです。
+遅すぎます。パーティーはすでに満員です。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
 招待者が見つかりません。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
-パーティーはいっぱいです。
+パーティーは満員です。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySamePartyMember:
 招待者はすでにパーティーのメンバーです。
@@ -373,7 +373,7 @@ Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMorePennyC
 あと{0}枚のペニーコインが必要です。
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMoreShinyCoins:
-あと{0}枚の光沢のあるコインが必要です。
+あと{0}枚のピカピカのコインが必要です。
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotificationSoldTitle:
 売却済み
@@ -394,7 +394,7 @@ Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_Title:
 水やりができない
 
 Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Message:
-補充するには、井戸の上でポイントするか、在庫に水の入ったボトルを入れます。
+補充するには、井戸やインベントリの中の水の入ったボトルを使ってください。
 
 Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Title:
 補充できません

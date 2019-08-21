@@ -13,6 +13,7 @@
 
         public const double ExperienceForSeedPlanting = 50.0; // 0.125 LP
 
+        // This experience is scaled proportionally to the % of watering bar added.
         public const double ExperienceForWatering = 25.0; // 0.0625 LP
 
         public static readonly DropItemConditionDelegate ConditionExtraYield

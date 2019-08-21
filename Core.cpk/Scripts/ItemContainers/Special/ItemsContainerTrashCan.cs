@@ -16,11 +16,10 @@
                 return true;
             }
 
-            if (LandClaimSystem.SharedIsUnderRaidBlock(character,
-                                                       context.Container.OwnerAsStaticObject))
+            if (!LandClaimSystem.ValidateIsNotUnderRaidblock(context.Container.OwnerAsStaticObject,
+                                                             character))
             {
                 // don't allow to place anything in a trash can while the area is under raid
-                LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(character);
                 return false;
             }
 

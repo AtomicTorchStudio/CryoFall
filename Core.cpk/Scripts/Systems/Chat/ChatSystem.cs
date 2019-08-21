@@ -110,7 +110,7 @@
 
             Task<ILogicObject> GetOrCreatePrivateChatAsync()
             {
-                var allChats = Client.World.FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>();
+                var allChats = Client.World.GetGameObjectsOfProto<ILogicObject, ChatRoomHolder>();
                 foreach (var chatRoomHolder in allChats)
                 {
                     if (SharedGetChatRoom(chatRoomHolder) is ChatRoomPrivate privateChatRoom
@@ -278,7 +278,7 @@
                     chatEntry);
             }
 
-            var allChats = Client.World.FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>();
+            var allChats = Client.World.GetGameObjectsOfProto<ILogicObject, ChatRoomHolder>();
             foreach (var chatRoomHolder in allChats)
             {
                 switch (SharedGetChatRoom(chatRoomHolder))
@@ -343,7 +343,7 @@
 
         private static void ServerPlayerNameChangedHandler(string oldName, string newName)
         {
-            foreach (var chatRoomHolder in Api.Server.World.FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>())
+            foreach (var chatRoomHolder in Api.Server.World.GetGameObjectsOfProto<ILogicObject, ChatRoomHolder>())
             {
                 if (!(SharedGetChatRoom(chatRoomHolder) is ChatRoomPrivate privateChatRoom))
                 {
@@ -575,7 +575,7 @@
                     () =>
                     {
                         foreach (var chatRoomHolder in ServerWorld
-                                                       .FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>()
+                                                       .GetGameObjectsOfProto<ILogicObject, ChatRoomHolder>()
                                                        .ToList())
                         {
                             if (!(SharedGetChatRoom(chatRoomHolder) is ChatRoomPrivate privateChatRoom))
@@ -603,7 +603,7 @@
             private void ServerWorldBoundsChangedHandler()
             {
                 foreach (var chatRoomHolder in ServerWorld
-                                               .FindGameObjectsOfProto<ILogicObject, ChatRoomHolder>()
+                                               .GetGameObjectsOfProto<ILogicObject, ChatRoomHolder>()
                                                .ToList())
                 {
                     Server.World.DestroyObject(chatRoomHolder);

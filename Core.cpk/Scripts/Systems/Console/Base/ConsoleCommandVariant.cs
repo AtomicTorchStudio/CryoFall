@@ -56,7 +56,7 @@
                         NotificationSystem.ServerSendNotification(
                             byCharacter,
                             "Command executed: " + this.ConsoleCommand.Name,
-                            resultStr,
+                            resultStr.Replace("\n","[br]"),
                             NotificationColor.Neutral);
                     }
                 }

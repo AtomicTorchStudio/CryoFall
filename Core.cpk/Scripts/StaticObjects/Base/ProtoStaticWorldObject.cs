@@ -213,9 +213,13 @@
 
             if (IsClient)
             {
+                // simply call these methods to display a client notification only!
+                // they are not used for anything else here
+                // to calculate damage they're used in WeaponDamageSystem.ServerCalculateTotalDamage method.
                 RaidingProtectionSystem.SharedCanRaid(targetObject,
                                                       showClientNotification: true);
-                PveSystem.SharedIsAllowStructureDamage(targetObject,
+                PveSystem.SharedIsAllowStructureDamage(weaponCache.Character,
+                                                       targetObject,
                                                        showClientNotification: true);
 
                 damageApplied = 0;

@@ -9,6 +9,8 @@
     {
         public override double DefaultMoveSpeed => 0.55;
 
+        public override float OrientationDownExtraAngle => 5;
+
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("Pangolin/Back");
 

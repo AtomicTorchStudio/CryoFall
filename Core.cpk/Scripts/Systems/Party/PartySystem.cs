@@ -695,8 +695,8 @@
 
             public override void ServerInitialize(IServerConfiguration serverConfiguration)
             {
-                // doesn't work here as FindGameObjectsOfProto is not available during bootstrap
-                //var allParties = Server.World.FindGameObjectsOfProto<ILogicObject, Party>();
+                // doesn't work here as GetGameObjectsOfProto is not available during bootstrap
+                //var allParties = Server.World.GetGameObjectsOfProto<ILogicObject, Party>();
                 //foreach (var party in allParties)
                 //{
                 //    ServerRegisterParty(party);

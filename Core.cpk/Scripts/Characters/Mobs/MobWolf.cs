@@ -10,7 +10,9 @@
 
     public class MobWolf : ProtoCharacterMob
     {
-        public override float CharacterWorldHeight => 1.2f;
+        public override float CharacterWorldHeight => 1.1f;
+
+        public override float CharacterWorldWeaponOffsetRanged => 0.4f;
 
         public override double MobKillExperienceMultiplier => 1.0;
 

@@ -10,6 +10,8 @@
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("Chicken/Back");
 
+        public override float OrientationDownExtraAngle => 5;
+
         public override SkeletonResource SkeletonResourceFront { get; }
             = new SkeletonResource("Chicken/Front");
 

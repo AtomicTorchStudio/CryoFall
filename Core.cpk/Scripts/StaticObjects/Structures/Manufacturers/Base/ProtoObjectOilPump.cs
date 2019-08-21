@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -106,6 +105,8 @@
                               o => o.PhysicsBody.IsStatic
                                    && !(o.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject
                                             is ObjectDepositOilSeep)))
+                .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
+                     c => c.Tile.StaticObjects.All(o => o.ProtoWorldObject is ObjectDepositOilSeep))
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                 .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea);
 
@@ -114,15 +115,15 @@
                                            out category);
         }
 
+        protected abstract void PrepareConstructionConfig(
+            ConstructionStageConfig build,
+            ConstructionStageConfig repair,
+            out ProtoStructureCategory category);
+
         protected override IStaticWorldObject SharedGetDepositWorldObject(Tile tile)
         {
             return tile.StaticObjects.FirstOrDefault(
                 o => o.ProtoStaticWorldObject is ObjectDepositOilSeep);
         }
-
-        protected abstract void PrepareConstructionConfig(
-            ConstructionStageConfig build,
-            ConstructionStageConfig repair,
-            out ProtoStructureCategory category);
     }
 }

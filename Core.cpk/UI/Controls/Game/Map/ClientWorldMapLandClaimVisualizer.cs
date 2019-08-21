@@ -141,12 +141,6 @@
                 return (bounds.X + bounds.Width / 2.0,
                         bounds.Y + bounds.Height / 2.0);
             }
-
-            private void RefreshSubscriptions()
-            {
-                this.landClaimGroupVisualizer.Unregister(this.area);
-                this.landClaimGroupVisualizer.Register(this.area);
-            }
         }
     }
 }

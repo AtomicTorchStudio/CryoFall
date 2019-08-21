@@ -14,7 +14,7 @@
         // So effectively it's about 5 real time days.
         public override uint DurabilityMax => 3 * 24 * 60;
 
-        public override double ElectricityProductionPerSecond => 0.5f;
+        public override double ElectricityProductionPerSecond => 1.0;
 
         public override string Name => "Solar panel";
 

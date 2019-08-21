@@ -19,6 +19,7 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterStamina;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.Skills;
@@ -321,6 +322,13 @@
             effects.AddPercent(this,
                                StatName.TinkerTableBonus,
                                SkillMaintenance.BaseTinkerTableBonus);
+
+            if (LandClaimSystemConstants.SharedLandClaimsNumberLimitIncrease > 0)
+            {
+                effects.AddValue(this,
+                                 StatName.LandClaimsMaxNumber,
+                                 LandClaimSystemConstants.SharedLandClaimsNumberLimitIncrease);
+            }
         }
 
         protected override void PrepareProtoCharacter()

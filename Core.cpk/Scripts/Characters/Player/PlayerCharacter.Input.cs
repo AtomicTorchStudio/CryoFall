@@ -106,7 +106,7 @@
                 .ComponentPlayerInputSender.Send(data);
         }
 
-        [RemoteCallSettings(DeliveryMode.UnreliableSequenced, maxCallsPerSecond: 120, avoidBuffer: true)]
+        [RemoteCallSettings(DeliveryMode.UnreliableSequenced, maxCallsPerSecond: 120)]
         internal void ServerRemote_SetInput(CharacterInputUpdate data, byte inputId)
         {
             var character = ServerRemoteContext.Character;

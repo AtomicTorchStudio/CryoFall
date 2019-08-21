@@ -35,7 +35,7 @@
                      UseLayoutRounding="False">
                 <Ellipse.Fill>
                     <RadialGradientBrush>
-                        <!-- Please note these values are overriden from the codebehind -->
+                        <!-- Please note these values are overridden from the codebehind -->
                         <GradientStop Color="#00FF6600" Offset="1" />
                         <GradientStop Color="#77FF6600" Offset="0.25" />
                     </RadialGradientBrush>

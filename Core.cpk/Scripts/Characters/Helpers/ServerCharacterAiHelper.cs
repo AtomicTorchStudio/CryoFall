@@ -88,7 +88,8 @@
             CalculateDistanceAndDirectionToEnemy(characterNpc,
                                                  enemyCharacter,
                                                  out var distanceToEnemy,
-                                                 out var directionToEnemy);
+                                                 out var directionToEnemyPosition,
+                                                 out var directionToEnemyHitbox);
 
             if (enemyCharacter == characterNpcPrivateState.CurrentAgroCharacter)
             {
@@ -99,8 +100,14 @@
 
             if (isRetreating)
             {
-                movementDirection = directionToEnemy = directionToEnemy * -1;
-                if (distanceToEnemy > distanceRetreat)
+                directionToEnemyHitbox *= -1;
+
+                if (distanceToEnemy <= distanceRetreat)
+                {
+                    // retreat
+                    movementDirection = directionToEnemyPosition * -1;
+                }
+                else
                 {
                     // retreat completed
                     movementDirection = Vector2F.Zero;
@@ -111,13 +118,13 @@
                 movementDirection = distanceToEnemy < distanceEnemyTooClose
                                     || distanceToEnemy > distanceEnemyTooFar
                                         ? Vector2F.Zero // too close or too far
-                                        : directionToEnemy;
+                                        : directionToEnemyPosition;
             }
 
             rotationAngleRad = characterNpc.GetPublicState<CharacterMobPublicState>()
                                            .AppliedInput
                                            .RotationAngleRad;
-            LookOnEnemy(directionToEnemy, ref rotationAngleRad);
+            LookOnEnemy(directionToEnemyHitbox, ref rotationAngleRad);
 
             var isFiring = !isRetreating
                            && !double.IsNaN(distanceToEnemy)
@@ -144,10 +151,16 @@
             CalculateDistanceAndDirectionToEnemy(characterNpc,
                                                  enemyCharacter,
                                                  out var distanceToEnemy,
-                                                 out var directionToEnemy);
+                                                 out var directionToEnemy,
+                                                 directionToEnemyHitbox: out _);
+            directionToEnemy *= -1;
 
-            movementDirection = directionToEnemy = directionToEnemy * -1;
-            if (distanceToEnemy > distanceRetreat)
+            if (distanceToEnemy <= distanceRetreat)
+            {
+                // retreat
+                movementDirection = directionToEnemy;
+            }
+            else
             {
                 // retreat completed
                 movementDirection = Vector2F.Zero;
@@ -156,6 +169,7 @@
             rotationAngleRad = characterNpc.GetPublicState<CharacterMobPublicState>()
                                            .AppliedInput
                                            .RotationAngleRad;
+            // look away from the enemy
             LookOnEnemy(directionToEnemy, ref rotationAngleRad);
         }
 
@@ -198,26 +212,33 @@
             ICharacter characterNpc,
             ICharacter enemyCharacter,
             out double distanceToEnemy,
-            out Vector2F directionToEnemy)
+            out Vector2F directionToEnemyPosition,
+            out Vector2F directionToEnemyHitbox)
         {
             if (enemyCharacter == null)
             {
                 distanceToEnemy = double.NaN;
-                directionToEnemy = Vector2F.Zero;
+                directionToEnemyPosition = directionToEnemyHitbox = Vector2F.Zero;
                 return;
             }
 
             var deltaPos = enemyCharacter.Position - characterNpc.Position;
             distanceToEnemy = deltaPos.Length;
-            directionToEnemy = (Vector2F)deltaPos;
+            directionToEnemyPosition = (Vector2F)deltaPos;
+
+
+            directionToEnemyHitbox = new Vector2F(directionToEnemyPosition.X,
+                                                  directionToEnemyPosition.Y
+                                                  + enemyCharacter.ProtoCharacter.CharacterWorldWeaponOffsetMelee
+                                                  - characterNpc.ProtoCharacter.CharacterWorldWeaponOffsetMelee);
         }
 
-        private static void LookOnEnemy(Vector2F directionToEnemy, ref double rotationAngleRad)
+        private static void LookOnEnemy(Vector2F directionToEnemyHitbox, ref double rotationAngleRad)
         {
-            if (directionToEnemy != Vector2F.Zero)
+            if (directionToEnemyHitbox != Vector2F.Zero)
             {
                 rotationAngleRad = Math.Abs(
-                    Math.Atan2(directionToEnemy.Y, directionToEnemy.X) + 2 * Math.PI);
+                    Math.Atan2(directionToEnemyHitbox.Y, directionToEnemyHitbox.X) + 2 * Math.PI);
             }
         }
     }

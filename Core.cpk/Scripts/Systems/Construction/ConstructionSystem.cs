@@ -65,35 +65,38 @@
                 canInteract = CreativeModeSystem.SharedIsInCreativeMode(character);
             }
 
-            if (!canInteract && writeToLog)
+            if (!canInteract)
             {
-                Logger.Warning(
-                    $"Character cannot interact with {worldObject} for (de)construction - too far.",
-                    character);
-
-                if (IsClient)
+                if (writeToLog)
                 {
-                    CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
-                                                                        CoreStrings.Notification_TooFar,
-                                                                        isOutOfRange: true);
+                    Logger.Warning(
+                        $"Character cannot interact with {worldObject} for (de)construction - too far.",
+                        character);
+
+                    if (IsClient)
+                    {
+                        CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
+                                                                            CoreStrings.Notification_TooFar,
+                                                                            isOutOfRange: true);
+                    }
                 }
 
                 return false;
             }
 
-            if (!checkRaidblock
-                || !LandClaimSystem.SharedIsUnderRaidBlock(character, worldObject))
+            if (checkRaidblock 
+                && LandClaimSystem.SharedIsUnderRaidBlock(character, worldObject))
             {
-                return true;
+                // the building is in an area under the raid
+                if (writeToLog)
+                {
+                    LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(character);
+                }
+
+                return false;
             }
 
-            // the building is in an area under the raid
-            if (writeToLog)
-            {
-                LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(character);
-            }
-
-            return false;
+            return true;
         }
 
         public static IStaticWorldObject ClientFindWorldObjectAtCurrentMousePosition()

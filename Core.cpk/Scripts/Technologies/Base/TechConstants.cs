@@ -20,26 +20,14 @@
         /// </summary>
         public const double SkillLearningPointMultiplierAtMaximumLevel = 0.25;
 
-        public static readonly double ServerLearningPointsGainMultiplier
-            = ServerRates.Get(
-                "LearningPointsGainMultiplier",
-                defaultValue: 1.0,
-                @"This rate determines the learning points rate
-                  from skills experience and neural enhancer consumable item.");
+        public static readonly double ServerLearningPointsGainMultiplier;
 
-        public static readonly double SkillExperienceGainMultiplier
-            = ServerRates.Get(
-                "SkillExperienceGainMultiplier",
-                defaultValue: 1.0,
-                @"This rate determines the skill experience gain multiplier.                
-                If you want to make faster or slower skill progression (and so faster LP gain as well)
-                you can modify this multiplier to a higher value.");
+        public static readonly double SkillExperienceGainMultiplier;
 
         // This rate determines the LP rate between skill experience to learning points.
         // Example: with 0.01 conversion rate 100 EXP will result in 1 LP gained.
         // However, it's affected by LearningPointsGainMultiplier which is configured via server rates config.
-        public static readonly double SkillExperienceToLearningPointsConversionMultiplier
-            = 0.01 * ServerLearningPointsGainMultiplier;
+        public static readonly double SkillExperienceToLearningPointsConversionMultiplier;
 
         public static readonly double[] TierGroupPriceMultiplier =
             new double[(byte)MaxTier]
@@ -66,6 +54,24 @@
                 // tier 4
                 10.0
             };
+
+        static TechConstants()
+        {
+            ServerLearningPointsGainMultiplier = ServerRates.Get(
+                "LearningPointsGainMultiplier",
+                defaultValue: 1.0,
+                @"This rate determines the learning points rate
+                  from skills experience and neural enhancer consumable item.");
+
+            SkillExperienceGainMultiplier = ServerRates.Get(
+                "SkillExperienceGainMultiplier",
+                defaultValue: 1.0,
+                @"This rate determines the skill experience gain multiplier.                
+                If you want to make faster or slower skill progression (and so faster LP gain as well)
+                you can modify this multiplier to a higher value.");
+
+            SkillExperienceToLearningPointsConversionMultiplier = 0.01 * ServerLearningPointsGainMultiplier;
+        }
 
         public static event Action ClientLearningPointsGainMultiplierChanged;
 

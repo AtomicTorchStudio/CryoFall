@@ -79,7 +79,7 @@
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         public static async void ClientEditWelcomeMessage()
         {
-            var originalText = await lastGetWelcomeMessageTask;
+            var originalText = await Instance.CallServer(_ => _.ServerRemote_GetWelcomeMessage());
             originalText = originalText != null
                                ? TrimSpacesOnEachLine(originalText)
                                : string.Empty;
@@ -143,25 +143,15 @@
             var dialogWindow = DialogWindow.ShowDialog(
                 title: null,
                 content: scrollviewer,
-                okAction: () =>
+                okAction: async () =>
                           {
                               var text = textBox.Text
                                                 .Trim()
                                                 .Replace("\r",     "")
                                                 .Replace("\n[br]", "\n")
                                                 .Replace("\n",     "\n[br]");
-                              Instance.CallServer(_ => _.ServerRemote_SetWelcomeMessage(text));
-                              lastGetWelcomeMessageTask = Task.FromResult(text);
-
-                              if (!ClientStorageLastServerMessage.TryLoad(
-                                      out Dictionary<ServerAddress, string> dictLastMessages))
-                              {
-                                  dictLastMessages = new Dictionary<ServerAddress, string>();
-                              }
-
-                              var serverAddress = Client.CurrentGame.ServerInfo.ServerAddress;
-                              dictLastMessages[serverAddress] = text;
-                              ClientStorageLastServerMessage.Save(dictLastMessages);
+                              await Instance.CallServer(_ => _.ServerRemote_SetWelcomeMessage(text));
+                              RefreshWelcomeMessage();
                           },
                 cancelAction: () => { },
                 okText: CoreStrings.Button_Save,
@@ -200,16 +190,38 @@
             }
         }
 
+        private static async Task<string> ClientOnWelcomeMessageReceivedFromServer(Task<string> t)
+        {
+            var message = t.Result;
+            await PveSystem.ClientAwaitPvEModeFromServer();
+
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                // no welcome message
+                if (!Client.CurrentGame.IsConnectedToOfficialServer)
+                {
+                    // don't have any welcome message
+                    return string.Empty;
+                }
+
+                // use official server welcome message
+                message = GetOfficialServerWelcomeMessage();
+            }
+            else if (Client.CurrentGame.IsConnectedToOfficialServer)
+            {
+                // append official welcome message to the custom welcome message
+                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                message += "[br][br]─────────────────────────────────────[br]" + GetOfficialServerWelcomeMessage();
+            }
+
+            return message;
+        }
+
         private static async void ClientShowWelcomeMessageInternal(string welcomeMessage)
         {
             if (string.IsNullOrWhiteSpace(welcomeMessage))
             {
-                if (!Client.CurrentGame.IsConnectedToOfficialServer)
-                {
-                    return;
-                }
-
-                welcomeMessage = GetOfficialServerWelcomeMessage();
+                return;
             }
 
             var game = Client.CurrentGame;
@@ -264,23 +276,10 @@
 
             var serverAddress = Client.CurrentGame.ServerInfo.ServerAddress;
             lastGetWelcomeMessageTask = await Instance.CallServer(_ => _.ServerRemote_GetWelcomeMessage())
-                                                      .ContinueWith(async t =>
-                                                                    {
-                                                                        await PveSystem.ClientAwaitPvEModeFromServer();
-                                                                        return t.Result;
-                                                                    },
+                                                      .ContinueWith(ClientOnWelcomeMessageReceivedFromServer,
                                                                     TaskContinuationOptions.ExecuteSynchronously);
 
             var welcomeMessage = await lastGetWelcomeMessageTask;
-            if (string.IsNullOrWhiteSpace(welcomeMessage))
-            {
-                if (!Client.CurrentGame.IsConnectedToOfficialServer)
-                {
-                    return;
-                }
-
-                welcomeMessage = GetOfficialServerWelcomeMessage();
-            }
 
             // load the last messages from storage
             if (!ClientStorageLastServerMessage.TryLoad(out Dictionary<ServerAddress, string> dictLastMessages))
@@ -320,7 +319,7 @@
             return Server.Core.WelcomeMessageText;
         }
 
-        private void ServerRemote_SetWelcomeMessage(string text)
+        private bool ServerRemote_SetWelcomeMessage(string text)
         {
             var character = ServerRemoteContext.Character;
             if (!ServerOperatorSystem.SharedIsOperator(character))
@@ -334,6 +333,7 @@
             Logger.Important("Server welcome message changed to:"
                              + Environment.NewLine
                              + text);
+            return true;
         }
     }
 }

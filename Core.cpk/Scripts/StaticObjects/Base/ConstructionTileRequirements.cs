@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
@@ -259,7 +260,8 @@
                                 .Add(ErrorTooCloseToWater,
                                      c => c.Tile.EightNeighborTiles.All(
                                          neighbor => neighbor.ProtoTile.Kind != TileKind.Water))
-                                .Add(LandClaimSystem.ValidatorCheckCharacterLandClaimDepositCooldown);
+                                .Add(LandClaimSystem.ValidatorCheckLandClaimDepositCooldown)
+                                .Add(ObjectMineralPragmiumSource.ValidatorCheckNoPragmiumSourceNearbyOnPvE);
 
             DefaultForStaticObjects = BasicRequirements
                                       .Clone()

@@ -232,7 +232,7 @@
 
             foreach (var item in tempItemsList)
             {
-                var protoItem = ((IProtoItemPowerBank)item.ProtoItem);
+                var protoItem = (IProtoItemPowerBank)item.ProtoItem;
                 result += protoItem.EnergyCapacity;
             }
 

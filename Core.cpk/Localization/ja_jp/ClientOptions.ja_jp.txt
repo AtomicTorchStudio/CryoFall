@@ -14,7 +14,7 @@ Scripts/ClientOptions/Audio/AudioOptionVolumeMusic@Name:
 音楽の音量
 
 Scripts/ClientOptions/Audio/AudioOptionVolumeSounds@Name:
-音量
+音効の音量
 
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCategory:
 全般
@@ -40,7 +40,7 @@ Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 表示オブジェクト[br]インタラクションツールチップ
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
-表示オブジェクト[br] ネームツールチップ
+オブジェクトの名称ヒントを表示
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 カメラズーム
@@ -55,7 +55,7 @@ Scripts/ClientOptions/General/GeneralOptionsCategory@Name:
 全般
 
 Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Png:
-PNG
+PNG（無損失）
 
 Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Jpeg95:
 JPEG
@@ -79,10 +79,10 @@ Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
 アンビエントオクルージョン
 
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
-なし
+None:
 
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx2:
-MSAA x2
+MSAAx2:
 
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx4:
 MSAA x4
@@ -130,7 +130,7 @@ Scripts/ClientOptions/Video/VideoOptionScreenMode@Name:
 画面モード
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Message:
-`スプライト解像度のビデオオプションが変更されました。
+`スプライトの解像度設定が変更されました。
 [br]ゲームの変更を適用するために再起動を必要とします。
 [br]ゲームを手動で再起動してください。`
 
@@ -149,7 +149,7 @@ Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Mes
 [br]選択したモードでは、多くのVRAMが必要になります。画像構造とフレームレートが低くなる可能性があります。`
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:
-高すぎる設定が選択されています
+高すぎる設定が検知されています
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Ultra:
 ウルトラ4K
@@ -179,7 +179,7 @@ Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Name:
 地形の詳細
 
 Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.PPAA:
-PPAAを強制（低）
+強制PPAA（低）
 
 Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.MSAA:
 自動MSAA（最高）

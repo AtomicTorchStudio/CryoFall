@@ -57,8 +57,9 @@
                         return true;
                     }
 
-                    return c.Tile.ProtoTile is TileForestTemperate
-                           || c.Tile.ProtoTile is TileForestBoreal;
+                    var protoTile = c.Tile.ProtoTile;
+                    return protoTile is TileForestTemperate
+                           || protoTile is TileForestBoreal;
                 });
 
         public override byte ContainerInputSlotsCount => 0;
@@ -86,6 +87,8 @@
                               t => t.PhysicsBody.IsStatic
                                    && !(t.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject is
                                             ObjectDepositGeothermalSpring)))
+                .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
+                     c => c.Tile.StaticObjects.All(o => o.ProtoWorldObject is ObjectDepositGeothermalSpring))
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                 .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea);
 

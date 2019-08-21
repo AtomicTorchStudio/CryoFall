@@ -889,7 +889,7 @@ UI/CoreStrings@TitlePowerGrid:
 Sieć energetyczna
 
 UI/CoreStrings@TitleSafeStorage:
-Bezpieczne przechowywanie
+Przechowywanie
 
 UI/CoreStrings@TitleStructurePoints:
 Punkty struktury
@@ -964,10 +964,10 @@ UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
 Posiadanie działki nie umożliwia przechowywania zasobów ani przedmiotów podstawowych.
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
-Informacje o rozpadzie
+Info. o rozpadzie
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
-Bezpiecznie przechowywane przedmioty są współdzielone we wszystkich strukturach posiadanych działek w tej bazie.
+Bezpiecznie przechowywane przedmioty są współdzielone we wszystkich posiadanych działkach w bazie.
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
 Tylko właściciel może ulepszyć tę strukturę.
@@ -1506,7 +1506,8 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]i w końcu znikną, aby nie zaśmiecać mapy.
 [br]
 [br]Ta struktura zacznie się rozpadać za: [b]{0}[/b].
-[br]Następnie w ciągu [b]{1}[/b] będzie niszczeć, a po tym czasie zostanie uruchomiony licznik zniszczenia ([b]{2}[/b]).
+[br]Następnie w ciągu [b]{1}[/b] będzie niszczeć, a po tym czasie zostanie
+[br]uruchomiony licznik zniszczenia ([b]{2}[/b]).
 [br]
 [br]Aby uniknąć rozpadu, odwiedzaj bazę raz na [b]{0}[/b]
 [br](dowolny gracz na tej liście dostępowej może zresetować licznik rozpadu).

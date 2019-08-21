@@ -60,17 +60,21 @@
         /// <summary>
         /// Duration of newbie protection (in seconds).
         /// </summary>
-        public static readonly int NewbieProtectionDuration =
-            ServerRates.Get("NewbieProtectionDuration",
-                            // 2 hours
-                            defaultValue: 2 * 60 * 60,
-                            @"Newbie protection duration (in seconds). Applies only to PvP servers.
-                              Default value: 2 hours or 7200 seconds. Don't set it higher than 2 billions.
-                              If you set it to 0 the Newbie Protection will be not applied to the new players.");
+        public static readonly int NewbieProtectionDuration;
 
         private static HashSet<ICharacter> serverNewbieLastDeathIsPvPlist;
 
         private static List<(ICharacter character, double timeRemains)> serverNewbies;
+
+        static NewbieProtectionSystem()
+        {
+            NewbieProtectionDuration = ServerRates.Get("NewbieProtectionDuration",
+                                                       // 2 hours
+                                                       defaultValue: 2 * 60 * 60,
+                                                       @"Newbie protection duration (in seconds). Applies only to PvP servers.
+                              Default value: 2 hours or 7200 seconds. Don't set it higher than 2 billions.
+                              If you set it to 0 the Newbie Protection will be not applied to the new players.");
+        }
 
         public static event Action<double> ClientNewbieProtectionTimeRemainingReceived;
 

@@ -245,7 +245,7 @@
 
         private static void ServerPlayerNameChangedHandler(string oldName, string newName)
         {
-            var worldObjectsWithOwnerLists = Server.World.FindStaticWorldObjectsOfProto<IProtoObjectWithOwnersList>();
+            var worldObjectsWithOwnerLists = Server.World.GetStaticWorldObjectsOfProto<IProtoObjectWithOwnersList>();
             foreach (var worldObject in worldObjectsWithOwnerLists)
             {
                 var owners = GetPrivateState(worldObject).Owners;

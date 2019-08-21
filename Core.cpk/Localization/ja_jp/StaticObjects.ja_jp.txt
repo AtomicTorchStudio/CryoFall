@@ -41,7 +41,7 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorPlayerNearby:
 近くに他のプレイヤーがいます。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
-独房に立っています！
+指定された建築の位置に立っています！
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSlope:
 建てられない - 崖や斜面に近すぎる。
@@ -68,7 +68,7 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Loot:
 戦利品
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
-開いた
+開く
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
 拾う
@@ -218,13 +218,13 @@ Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Name:
 鉄の樽
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Description:
-液体を貯えるのに使用することができる。組み立てが簡単
+液体を貯えるのに使用することができる。組み立てが簡単。
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Name:
 木樽
 
 Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Description:
-大量の液体を長期間保存できる貯水池
+大量の液体を長期間保存できる貯水池。
 
 Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Name:
 貯水池
@@ -507,22 +507,22 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Name:
 バイオリアクター
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
-ガソリン燃料を使って電力エネルギーを生産します。
+この大型の発電機はガソリン燃料を使って電力エネルギーを生産します。
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
-エンジンジェネレータ
+エンジン発電機
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
 ソーラー電力を生成する基本的な設備です。個々のソーラーパネルが必要です。
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Name:
-ソーラージェネレータ
+ソーラー発電機
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
 熱蒸気を使ってタービンを動かし電力を生成します。水が沸点に達して沸騰するまで時間がかかります。
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
-蒸気ジェネレータ
+蒸気発電機
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
 他の生存者が周辺地域で何かを建設または解体するのを防ぐことによって、基地をより安全にするのを助けます。所有地は、建物が時間の経過とともに劣化しないことを保証します。
@@ -944,10 +944,10 @@ Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPennyBun@Na
 ポルチーニ
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPink@Name:
-キノコ
+ピンク色のキノコ
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomRust@Name:
-ラッシュルーム
+錆キノコ
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallPineapple@Name:
 パイナップル

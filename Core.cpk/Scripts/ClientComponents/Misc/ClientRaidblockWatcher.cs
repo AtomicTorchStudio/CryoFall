@@ -46,7 +46,7 @@
 
             var time = Api.Client.CurrentGame.ServerFrameTimeRounded;
             var timeSinceRaidStart = time - lastRaidTime;
-            var timeRemainsToRaidEnd = LandClaimSystem.RaidBlockDurationSeconds - timeSinceRaidStart;
+            var timeRemainsToRaidEnd = LandClaimSystemConstants.SharedRaidBlockDurationSeconds - timeSinceRaidStart;
             timeRemainsToRaidEnd = Math.Max(timeRemainsToRaidEnd, 0);
 
             if (timeRemainsToRaidEnd <= 0)

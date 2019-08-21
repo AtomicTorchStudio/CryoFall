@@ -11,7 +11,9 @@
 
     public class MobCrawler : ProtoCharacterMob
     {
-        public override float CharacterWorldHeight => 1f;
+        public override float CharacterWorldHeight => 0.8f;
+
+        public override float CharacterWorldWeaponOffsetRanged => 0.2f;
 
         public override double MobKillExperienceMultiplier => 0.7;
 

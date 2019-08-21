@@ -8,7 +8,7 @@ Scripts/Characters/Mobs/MobBurrower@Name:
 掘穴虫
 
 Scripts/Characters/Mobs/MobChicken@Name:
-鶏
+チキン
 
 Scripts/Characters/Mobs/MobCloakedLizard@Name:
 エリマキトカゲ
@@ -68,5 +68,5 @@ Scripts/Characters/Player/PlayerCharacter@Name:
 プレイヤー
 
 Scripts/Characters/Player/PlayerCharacterSpectator@Name:
-観戦中のプレイヤー
+観察モード中のプレイヤー
 

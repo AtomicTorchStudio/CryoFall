@@ -3,10 +3,21 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public static class ClientCurrentCharacterHelper
     {
-        public static ICharacter Character { get; private set; }
+        private static ICharacter character;
+
+        public static ICharacter Character
+        {
+            get
+            {
+                Api.ValidateIsClient();
+                return character;
+            }
+            private set => character = value;
+        }
 
         public static PlayerCharacterPrivateState PrivateState { get; private set; }
 

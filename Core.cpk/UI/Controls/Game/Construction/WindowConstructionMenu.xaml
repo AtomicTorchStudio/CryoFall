@@ -232,7 +232,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="10" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
@@ -292,7 +292,25 @@
                     </Grid>
 
                     <!-- Item requirements display -->
+
                     <Border Grid.Row="4"
+                            Visibility="{Binding DataContext.VisibilityPleaseEquipTool, ElementName=UserControl}"
+                            Width="250"
+                            Padding="5"
+                            Margin="0,0,0,15"
+                            CornerRadius="3"
+                            BorderThickness="1"
+                            Background="{StaticResource BrushColorRed0}"
+                            BorderBrush="{StaticResource BrushColorRed4}">
+                        <!-- Toolbox required message -->
+                        <core:FormattedTextBlock
+                            Content="{x:Static loc:CoreStrings.WindowConstructionMenu_MessageToolboxRequired}"
+                            TextWrapping="Wrap"
+                            FontSize="10"
+                            Foreground="{StaticResource BrushColor7}" />
+                    </Border>
+
+                    <Border Grid.Row="5"
                             Width="300">
                         <Border Padding="5"
                                 CornerRadius="3"
@@ -322,15 +340,15 @@
                                     <!-- Text: Blueprint requires -->
                                     <TextBlock
                                         Text="{x:Static loc:CoreStrings.WindowConstructionMenu_BlueprintRequires}"
-                                        Grid.Row="0" 
+                                        Grid.Row="0"
                                         Grid.Column="1"
                                         FontSize="10"
-                                        Foreground="{StaticResource BrushColor6}" 
+                                        Foreground="{StaticResource BrushColor6}"
                                         FontWeight="Bold" />
                                     <!-- Text: Total required -->
                                     <TextBlock Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
-                                               Grid.Row="0" 
-                                               Grid.Column="3" 
+                                               Grid.Row="0"
+                                               Grid.Column="3"
                                                FontSize="10"
                                                Foreground="{StaticResource BrushColor6}"
                                                FontWeight="Bold" />
@@ -346,7 +364,8 @@
                                     <Control Template="{StaticResource ItemSlotDelimiterVerticalControlTemplate}"
                                              Grid.Column="2"
                                              Grid.Row="
-                                             0" Grid.RowSpan="2" 
+                                             0"
+                                             Grid.RowSpan="2"
                                              HorizontalAlignment="Center" />
 
                                     <!-- Display icons for required items (total) -->
@@ -367,7 +386,7 @@
 
                                     <!-- Text: Total required -->
                                     <TextBlock Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
-                                               Grid.Row="0" 
+                                               Grid.Row="0"
                                                FontSize="10"
                                                Foreground="{StaticResource BrushColor6}"
                                                FontWeight="Bold"
@@ -388,7 +407,8 @@
 
                     <!-- Build buttons -->
                     <Grid Grid.Row="6"
-                          Visibility="{Binding DataContext.VisibilityBuildButtons, ElementName=UserControl}">
+                          Visibility="{Binding DataContext.VisibilityBuildButtons, ElementName=UserControl}"
+                          Margin="0,10,0,-5">
                         <!-- Text: Place blueprint -->
                         <Button Content="{x:Static loc:CoreStrings.WindowConstructionMenu_PlaceBlueprint}"
                                 Command="{Binding DataContext.CommandBuild, ElementName=GameWindow}"
@@ -403,23 +423,6 @@
                                 HorizontalAlignment="Center"
                                 IsEnabled="{Binding IsCanBuild}" />
                     </Grid>
-
-                    <Border
-                        Grid.Row="6"
-                        Visibility="{Binding DataContext.VisibilityPleaseEquipTool, ElementName=UserControl}"
-                        Width="250"
-                        Padding="5"
-                        CornerRadius="3"
-                        BorderThickness="1"
-                        Background="{StaticResource BrushColorRed0}"
-                        BorderBrush="{StaticResource BrushColorRed4}">
-                        <!-- Toolbox required message -->
-                        <core:FormattedTextBlock
-                            Content="{x:Static loc:CoreStrings.WindowConstructionMenu_MessageToolboxRequired}"
-                            TextWrapping="Wrap"
-                            FontSize="10"
-                            Foreground="{StaticResource BrushColor7}" />
-                    </Border>
 
                 </Grid>
             </Grid>

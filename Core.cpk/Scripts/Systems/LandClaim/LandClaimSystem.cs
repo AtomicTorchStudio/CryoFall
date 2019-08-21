@@ -17,6 +17,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem;
@@ -80,13 +81,6 @@
         /// building in this neutral (grace) area by other players or claiming it.
         /// </summary>
         public const byte MinPaddingSizeOneDirection = 1;
-
-        /// <summary>
-        /// Determines the duration of "raid block" feature - preventing players from
-        /// repairing and building new structures after the bomb is exploded within their land claim area.
-        /// Applies only to bombs (except mining charge).
-        /// </summary>
-        public const double RaidBlockDurationSeconds = 10 * 60; // 10 minutes
 
         private static ILogicObject serverLandClaimManagerInstance;
 
@@ -332,7 +326,7 @@
                 });
 
         public static readonly ConstructionTileRequirements.Validator
-            ValidatorCheckCharacterLandClaimDepositRequireXenogeology
+            ValidatorCheckLandClaimDepositRequireXenogeology
                 = new ConstructionTileRequirements.Validator(
                     ErrorCannotBuild_NeedXenogeologyTech,
                     context =>
@@ -395,7 +389,7 @@
         public static readonly Lazy<ushort> MaxLandClaimSizeWithGraceArea
             = new Lazy<ushort>(() => (ushort)(MaxLandClaimSize.Value + MinPaddingSizeOneDirection * 2));
 
-        public static readonly ConstructionTileRequirements.Validator ValidatorCheckCharacterLandClaimDepositCooldown
+        public static readonly ConstructionTileRequirements.Validator ValidatorCheckLandClaimDepositCooldown
             = new ConstructionTileRequirements.Validator(
                 ErrorCannotBuild_DepositCooldown,
                 context =>
@@ -717,16 +711,26 @@
             }
         }
 
-        public static void ServerOnRaid(RectangleInt bounds, ICharacter byCharacter)
+        public static void ServerOnRaid(
+            RectangleInt bounds,
+            ICharacter byCharacter,
+            bool forceEvenIfNoCharacter = false)
         {
-            if (byCharacter == null)
+            if (!forceEvenIfNoCharacter
+                && byCharacter is null)
             {
+                return;
+            }
+
+            if (PveSystem.ServerIsPvE)
+            {
+                // no land claim raids on PvE
                 return;
             }
 
             if (!RaidingProtectionSystem.SharedCanRaid(bounds, showClientNotification: false))
             {
-                // Raiding is not possible now.
+                // raiding is not possible now
                 return;
             }
 
@@ -735,7 +739,8 @@
 
             foreach (var area in tempList)
             {
-                if (ServerIsOwnedArea(area, byCharacter))
+                if (!(byCharacter is null)
+                    && ServerIsOwnedArea(area, byCharacter))
                 {
                     // don't start the raid timer if attack is performed by the owner of the area
                     continue;
@@ -1141,7 +1146,7 @@
                            : Server.Game.FrameTime;
 
             var timeSinceRaidStart = time - groupPublicState.LastRaidTime.Value;
-            return timeSinceRaidStart < RaidBlockDurationSeconds;
+            return timeSinceRaidStart < LandClaimSystemConstants.SharedRaidBlockDurationSeconds;
         }
 
         /// <summary>
@@ -1351,6 +1356,30 @@
             }
         }
 
+        public static bool ValidateIsNotUnderRaidblock(IStaticWorldObject worldObject, 
+                                                       ICharacter forCharacter,
+                                                       bool showNotification = true)
+        {
+            if (!SharedIsUnderRaidBlock(forCharacter, worldObject))
+            {
+                return true;
+            }
+
+            if (showNotification)
+            {
+                SharedSendNotificationActionForbiddenUnderRaidblock(forCharacter);
+            }
+
+            return false;
+        }
+
+        public (ushort landClaimsNumberLimitIncrease, double raidBlockDurationSeconds)
+            ServerRemote_RequestLandClaimSystemConstants()
+        {
+            return (LandClaimSystemConstants.SharedLandClaimsNumberLimitIncrease,
+                    LandClaimSystemConstants.SharedRaidBlockDurationSeconds);
+        }
+
         protected override void PrepareSystem()
         {
             if (IsServer)
@@ -1529,7 +1558,7 @@
                     // The owner is already removed during the short delay? That's was quick!
                     return;
                 }
-                
+
                 ServerWorld.EnterPrivateScope(playerToAdd, area);
                 SharedGetPlayerOwnedAreas(playerToAdd).AddIfNotContains(area);
 
@@ -1918,7 +1947,7 @@
                 sharedLandClaimAreas.Clear();
 
                 // add current areas
-                foreach (var area in Api.Client.World.FindGameObjectsOfProto<ILogicObject, LandClaimArea>())
+                foreach (var area in Api.Client.World.GetGameObjectsOfProto<ILogicObject, LandClaimArea>())
                 {
                     sharedLandClaimAreas.Add(area);
                     ClientLandClaimAreaManager.AddArea(area);

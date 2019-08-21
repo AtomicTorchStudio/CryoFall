@@ -11,7 +11,9 @@
 
     public class MobFireLizard : ProtoCharacterMob
     {
-        public override float CharacterWorldHeight => 1.5f;
+        public override float CharacterWorldHeight => 1.3f;
+
+        public override float CharacterWorldWeaponOffsetRanged => 0.4f;
 
         public override double MobKillExperienceMultiplier => 2.0;
 

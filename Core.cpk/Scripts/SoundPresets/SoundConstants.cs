@@ -15,21 +15,21 @@
         /// Max distance of 3D sounds for spread  (in world units, 1 unit == 1 grid tile).
         /// Outside this distance objects will sound only from left or right channel (relative to audio listener).
         /// If the audio listener is located at distance==0, the sound will be heard from both channels.
-        /// Please note: can be overriden by <see cref="IComponentSoundEmitter" />.
+        /// Please note: can be overridden by <see cref="IComponentSoundEmitter" />.
         /// </summary>
         public const float AudioListener3DSpreadMaxDistance = 15f;
 
         /// <summary>
         /// Same as AudioListener3DSpreadMaxDistance but if object is closer than this distance
         /// it will be heard from both channels completely (i.e. it defines a dead zone).
-        /// Please note: can be overriden by <see cref="IComponentSoundEmitter" />.
+        /// Please note: can be overridden by <see cref="IComponentSoundEmitter" />.
         /// </summary>
         public const float AudioListener3DSpreadMinDistance = 5f;
 
         /// <summary>
         /// Max distance (in world units, 1 unit == 1 grid tile).
         /// Objects located with distance larger than this will be not audible.
-        /// Please note: can be overriden by <see cref="IComponentSoundEmitter" />.
+        /// Please note: can be overridden by <see cref="IComponentSoundEmitter" />.
         /// </summary>
         public const float AudioListenerMaxDistance = 15f;
 
@@ -42,7 +42,7 @@
         /// <summary>
         /// Same as AudioListenerMinDistance but if object is closer than this distance
         /// it will be played at full volume (i.e. it defines a dead zone).
-        /// Please note: can be overriden by <see cref="IComponentSoundEmitter" />.
+        /// Please note: can be overridden by <see cref="IComponentSoundEmitter" />.
         /// </summary>
         public const float AudioListenerMinDistance = 1f;
 

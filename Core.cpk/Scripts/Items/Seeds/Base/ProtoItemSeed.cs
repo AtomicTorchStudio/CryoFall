@@ -41,8 +41,8 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        // part of a message "Requires any: farm plot, plant pot"
-        public const string DescriptionAcceptedPlacementLocation = "Requires any";
+        // part of a message "Requires: farm plot, plant pot"
+        public const string DescriptionAcceptedPlacementLocation = "Requires";
 
         private IConstructionTileRequirementsReadOnly tileRequirementsPlantPlacement;
 
@@ -138,10 +138,9 @@
             }
 
             return new ConstructionTileRequirements()
-                   .Add(
+                   .Add(// ReSharper disable once CanExtractXamlLocalizableStringCSharp
                        DescriptionAcceptedPlacementLocation
-                       + ":"
-                       + Environment.NewLine
+                       + ":[br]"
                        + this.AllowedToPlaceAtFarmObjects.Select(s => s.Name).GetJoinedString(),
                        context =>
                        {

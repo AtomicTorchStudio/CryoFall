@@ -64,7 +64,6 @@
         protected override void ServerUpdateMob(ServerUpdateData data)
         {
             var character = data.GameObject;
-            var currentStats = data.PublicState.CurrentStats;
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,

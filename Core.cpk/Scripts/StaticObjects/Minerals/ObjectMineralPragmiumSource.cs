@@ -11,7 +11,10 @@
     using AtomicTorch.CBND.CoreMod.Objects;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -22,6 +25,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -35,6 +39,9 @@
     {
         // How many nodes the game server should spawn when Pragmium Source is destroyed.
         private const int DestroySpawnNodeCount = 12;
+
+        private const string ErrorCannotBuild_PragmiumSourceTooCloseOnPvE =
+            "Too close to a pragmium source[br](PvE-only restriction).";
 
         private const int MobDespawnDistance = 10;
 
@@ -54,6 +61,52 @@
 
         // How many nodes Pragmium Source will respawn at every spawn interval (ServerSpawnAndDecayIntervalSeconds).
         private const int ServerSpawnNodesMaxCountPerIteration = 2; // spawn at max 2 nodes
+
+        public static readonly ConstructionTileRequirements.Validator ValidatorCheckNoPragmiumSourceNearbyOnPvE
+            = new ConstructionTileRequirements.Validator(
+                ErrorCannotBuild_PragmiumSourceTooCloseOnPvE,
+                context =>
+                {
+                    var forCharacter = context.CharacterBuilder;
+                    if (forCharacter == null)
+                    {
+                        return true;
+                    }
+
+                    if (context.TileOffset != Vector2Int.Zero)
+                    {
+                        return true;
+                    }
+                    
+                    if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                    {
+                        // this limitation doesn't apply to PvP mode
+                        return true;
+                    }
+
+                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                    {
+                        return true;
+                    }
+
+                    var position = context.Tile.Position;
+                    var world = IsServer
+                                    ? (IWorldService)Server.World
+                                    : (IWorldService)Client.World;
+
+                    var pragmiumSources = world.GetStaticWorldObjectsOfProto<ObjectMineralPragmiumSource>();
+                    foreach (var objectPragmiumSource in pragmiumSources)
+                    {
+                        if (position.TileSqrDistanceTo(objectPragmiumSource.TilePosition)
+                            <= 16 * 16) // this value is derived from half distance of the max land claim size
+                        {
+                            // too close to a pragmium source
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
 
         private static readonly Lazy<IProtoCharacter> LazyProtoMob
             = new Lazy<IProtoCharacter>(
@@ -305,6 +358,12 @@
 
         private static void ServerTrySpawnMobs(IStaticWorldObject worldObject)
         {
+            if (LandClaimSystem.SharedIsLandClaimedByAnyone(worldObject.Bounds))
+            {
+                // don't spawn mobs as the land is claimed
+                return;
+            }
+
             // calculate how many creatures are still alive
             var mobsList = GetPrivateState(worldObject).MobsList;
 

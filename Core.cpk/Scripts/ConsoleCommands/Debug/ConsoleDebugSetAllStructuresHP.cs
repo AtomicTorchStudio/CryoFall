@@ -22,7 +22,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
         public string Execute(double hpPercent)
         {
             var hpFraction = MathHelper.Clamp(hpPercent / 100, 0, 1);
-            var list = Server.World.FindStaticWorldObjectsOfProto<IProtoObjectStructure>().ToList();
+            var list = Server.World.GetStaticWorldObjectsOfProto<IProtoObjectStructure>().ToList();
 
             foreach (var worldObject in list)
             {

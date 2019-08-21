@@ -31,7 +31,8 @@
             if (targetObject is IStaticWorldObject staticWorldObject
                 && (!RaidingProtectionSystem.SharedCanRaid(staticWorldObject,
                                                            showClientNotification: false)
-                    || !PveSystem.SharedIsAllowStructureDamage(staticWorldObject,
+                    || !PveSystem.SharedIsAllowStructureDamage(weaponCache.Character,
+                                                               staticWorldObject,
                                                                showClientNotification: false)))
             {
                 return 0;
@@ -163,6 +164,14 @@
             }
 
             var attackerCharacter = weaponCache.Character;
+            if (!(attackerCharacter is null)
+                && attackerCharacter.IsNpc
+                && targetCharacter.IsNpc)
+            {
+                // no creature-to-creature damage
+                damageApplied = 0;
+                return false;
+            }
 
             // calculate and apply damage on server
             var targetFinalStatsCache =
@@ -188,7 +197,7 @@
             totalDamage = Math.Min(totalDamage, 5 * targetCurrentStats.HealthMax);
 
             // apply damage
-            if (attackerCharacter != null)
+            if (!(attackerCharacter is null))
             {
                 targetCurrentStats.ServerReduceHealth(totalDamage, damageSource: attackerCharacter);
             }

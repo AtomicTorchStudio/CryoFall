@@ -11,10 +11,9 @@
                    || key == Key.LeftCtrl
                    || key == Key.RightCtrl
                    || key == Key.LeftAlt
-                   || key == Key.RightAlt;
-
-            // not supported by NoesisGUI
-            //|| key == Key.LWin || key == Key.RWin;
+                   || key == Key.RightAlt
+                   || key == Key.LWin // Win keys are not supported by NoesisGUI yet
+                   || key == Key.RWin;
         }
     }
 }

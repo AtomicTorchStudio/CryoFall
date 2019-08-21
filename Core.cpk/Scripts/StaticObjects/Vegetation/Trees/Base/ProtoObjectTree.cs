@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -102,10 +103,16 @@
             IStaticWorldObject targetObject,
             out double obstacleBlockDamageCoef)
         {
+            obstacleBlockDamageCoef = 1;
+            if (!PveSystem.SharedIsAllowStructureDamage(weaponCache.Character,
+                                                       targetObject,
+                                                       showClientNotification: false))
+            {
+                return 0;
+            }
+
             if (weaponCache.ProtoWeapon is IProtoItemToolWoodcutting protoItemToolWoodCutting)
             {
-                obstacleBlockDamageCoef = 1;
-
                 // get damage multiplier ("woodcutting speed")
                 var damageMultiplier = weaponCache.Character
                                                   .SharedGetFinalStatMultiplier(StatName.WoodcuttingSpeed);
@@ -118,8 +125,6 @@
             if (weaponCache.ProtoWeapon is ItemNoWeapon)
             {
                 // no damage with hands
-                obstacleBlockDamageCoef = 1;
-
                 if (IsClient)
                 {
                     NotificationSystem.ClientShowNotification(NotificationUseAxe,

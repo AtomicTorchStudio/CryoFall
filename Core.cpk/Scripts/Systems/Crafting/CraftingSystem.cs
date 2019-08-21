@@ -24,16 +24,20 @@
 
         public const string NotificationCraftingQueueFull_Title = "Cannot add new recipe";
 
-        public static readonly double ServerCraftingSpeedMultiplier
-            = ServerRates.Get(
+        public static readonly double ServerCraftingSpeedMultiplier;
+
+        // actual value is received from the server by bootstrapper
+        public static double ClientCraftingSpeedMultiplier = 1.0;
+
+        static CraftingSystem()
+        {
+            ServerCraftingSpeedMultiplier = ServerRates.Get(
                 "CraftingSpeedMultiplier",
                 defaultValue: 1.0,
                 @"This rate determines the crafting speed of recipes
                   started from crafting menu or from any workbench.
                   Does NOT apply to manufacturing structures (such as furnace) - edit ManufacturingSpeedMultiplier for these.");
-
-        // actual value is received from the server by bootstrapper
-        public static double ClientCraftingSpeedMultiplier = 1.0;
+        }
 
         public static event Action ClientCraftingSpeedMultiplierChanged;
 

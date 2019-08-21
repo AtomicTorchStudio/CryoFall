@@ -13,18 +13,22 @@
 
     public class DropItemsList : IReadOnlyDropItemsList
     {
-        public static readonly double DropListItemsCountMultiplier
-            = ServerRates.Get(
-                "DropListItemsCountMultiplier",
-                defaultValue: 1.0,
-                @"This rate determines the item droplist multiplier.                
-                  If you want the objects in game (such as trees, bushes, minerals, loot crates in radtowns, etc)
-                  to drop more items during gathering or destruction, you need to adjust this value.");
+        public static readonly double DropListItemsCountMultiplier;
 
         private readonly List<ValueWithWeight<Entry>> entries
             = new List<ValueWithWeight<Entry>>();
 
         private ArrayWithWeights<Entry> frozenEntries;
+
+        static DropItemsList()
+        {
+            DropListItemsCountMultiplier = ServerRates.Get(
+                "DropListItemsCountMultiplier",
+                defaultValue: 1.0,
+                @"This rate determines the item droplist multiplier.                
+                  If you want the objects in game (such as trees, bushes, minerals, loot crates in radtowns, etc)
+                  to drop more items during gathering or destruction, you need to adjust this value.");
+        }
 
         /// <summary>
         /// Create a drop list which will try to drop only the defined outputs.

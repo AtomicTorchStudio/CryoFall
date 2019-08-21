@@ -3,7 +3,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ConsoleDebugTestRaidblock : BaseConsoleCommand
@@ -17,7 +16,8 @@
         public string Execute(ushort x, ushort y)
         {
             LandClaimSystem.ServerOnRaid(new RectangleInt(x, y, 1, 1),
-                                         byCharacter: ServerRemoteContext.Character);
+                                         byCharacter: null,
+                                         forceEvenIfNoCharacter: true);
             return null;
         }
 

@@ -14,16 +14,16 @@ Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddWater@Name:
 樽を水で満たす
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveGasoline@Name:
-容器に樽からガソリン燃料を充填する
+樽の中のガソリン燃料を使って容器を満たす
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveMineralOil@Name:
-容器に樽から鉱油を充填する
+樽の中の鉱油を使って容器を満たす
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemovePetroleum@Name:
-容器に樽から原油を充填する
+樽の中の原油を使って容器を満たす
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveWater@Name:
-ボトルに樽から水を充填する
+樽の中の水を使ってボトルを満たす
 
 Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromLogs@Name:
 丸太：燃焼副産物
@@ -38,13 +38,13 @@ Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
 熱湯（無駄）
 
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
-銅貨をリサイクル
+コインをリサイクル
 
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
-光沢のあるコインをリサイクル
+ピカピカのコインをリサイクル
 
 Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBottleFromFullBottle@Name:
-蒸気ボイラーを水で満たす
+蒸気発電機を水で満たす
 
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
 ガソリンを缶からエンジン発電機に充填する
@@ -53,16 +53,16 @@ Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor
 リチウム鉱石抽出器からのリチウム
 
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
-缶にオイルポンプから原油を充填する
+オイルポンプの中の原油を使って容器を満たす
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
-缶の原油を製油所に充填する
+容器の中の原油を製油所に充填する
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryGasolineCanister@Name:
-製油所のガソリン燃料を缶に充填する
+製油所のガソリン燃料を容器に充填する
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanister@Name:
-製油所の鉱油を缶に充填する
+製油所の鉱油を容器に充填する
 
 Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 熱湯

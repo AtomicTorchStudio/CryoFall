@@ -86,7 +86,7 @@ Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
 化学
 
 Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
-複雑な構造
+もっと複雑な構造の建物を建築する、応用範囲がもっと広くなります。
 
 Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
 建設2

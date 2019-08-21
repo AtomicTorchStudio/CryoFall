@@ -21,7 +21,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
         {
             var proto = Api.GetProtoEntity<ObjectMineralPragmiumSource>();
             var allPragmiumSources =
-                Server.World.FindGameObjectsOfProto<IStaticWorldObject, ObjectMineralPragmiumSource>();
+                Server.World.GetGameObjectsOfProto<IStaticWorldObject, ObjectMineralPragmiumSource>();
 
             var count = 0;
             foreach (var worldObject in Api.Shared.WrapInTempList(allPragmiumSources))

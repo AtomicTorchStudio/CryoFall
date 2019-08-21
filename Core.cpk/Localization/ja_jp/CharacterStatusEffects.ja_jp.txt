@@ -1,5 +1,5 @@
 ﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
-興奮剤を使用しました。スタミナの消費が早くなっています。
+興奮剤を使用しました。スタミナの回復速度が上がります。
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
 エネルギーラッシュ
@@ -14,7 +14,7 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
 薬を使用しました。体はゆっくり回復しています。
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
-回復
+治療
 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
 あなたは最近、ビタミンや微量元素など、大事な栄養素がいっぱい含まれた非常にヘルシーな食事をしました。体の調子が良いです。

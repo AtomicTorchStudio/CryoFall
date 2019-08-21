@@ -37,7 +37,10 @@
 
         public sealed override bool HasMoveStartAnimations => false;
 
-        public override float OrientationDownExtraAngle => 15;
+        // This is a switch angle between front and back orientation.
+        // We've made it larger for aggressive creature as they look (target) the human's melee center hitbox.
+        // For peaceful creatures (like pangolin and snail) it should be overridden to a smaller value.
+        public override float OrientationDownExtraAngle => 40;
 
         public override float OrientationThresholdDownHorizontalFlipDeg => 5;
 

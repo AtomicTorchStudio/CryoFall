@@ -99,6 +99,21 @@
             return true;
         }
 
+        public override bool SharedCanInteract(
+            ICharacter character,
+            IStaticWorldObject staticWorldObject,
+            bool writeToLog)
+        {
+            if (character.GetPublicState<ICharacterPublicState>().IsDead)
+            {
+                return false;
+            }
+
+            return this.SharedIsInsideCharacterInteractionArea(character,
+                                                               staticWorldObject,
+                                                               writeToLog);
+        }
+
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
             var publicState = GetPublicState((IStaticWorldObject)worldObject);

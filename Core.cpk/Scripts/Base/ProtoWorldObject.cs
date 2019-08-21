@@ -211,7 +211,9 @@
             {
                 if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
                 {
-                    if (!PveSystem.SharedValidateInteractionIsNotForbidden(character, staticWorldObject, writeToLog))
+                    if (!PveSystem.SharedValidateInteractionIsNotForbidden(character,
+                                                                           staticWorldObject,
+                                                                           writeToLog))
                     {
                         // action forbidden by PvE system
                         return false;
@@ -219,7 +221,9 @@
                 }
                 else // PvP servers have newbie protection system
                 {
-                    if (!NewbieProtectionSystem.SharedValidateInteractionIsNotForbidden( character, staticWorldObject, writeToLog))
+                    if (!NewbieProtectionSystem.SharedValidateInteractionIsNotForbidden(character,
+                                                                                        staticWorldObject,
+                                                                                        writeToLog))
                     {
                         // action forbidden by newbie protection system
                         return false;
@@ -227,7 +231,9 @@
                 }
             }
 
-            return this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
+            return this.SharedIsInsideCharacterInteractionArea(character,
+                                                               worldObject,
+                                                               writeToLog);
         }
 
         public void SharedCreatePhysics(IWorldObject worldObject)

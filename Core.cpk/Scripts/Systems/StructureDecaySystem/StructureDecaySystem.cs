@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -85,8 +84,6 @@
                 interval: TimeSpan.FromSeconds(StructureConstants.StructureDecaySystemUpdateIntervalSeconds),
                 callback: this.ServerTimerTickCallback,
                 name: "System." + this.ShortId);
-
-            StructureConstants.EnsureInitialized();
         }
 
         private static bool ServerProcessDecay(IStaticWorldObject worldObject, double serverTime)
@@ -151,7 +148,7 @@
             try
             {
                 // TODO: this call might be too expensive if there are many built structures in the world
-                TempList.AddRange(Server.World.FindStaticWorldObjectsOfProto<IProtoObjectStructure>());
+                TempList.AddRange(Server.World.GetStaticWorldObjectsOfProto<IProtoObjectStructure>());
                 var objectsDecayedCount = 0;
 
                 foreach (var worldObject in TempList)
@@ -164,7 +161,7 @@
                 }
 
                 var timeSpent = ServerGame.FrameTime - serverTime;
-                Logger.Info(
+                Logger.Important(
                     string.Format(
                         "World decay updated. Total static world objects count: {0}. Decaying objects count: {1}. Total time spent (including time-slicing): {2:F2}s",
                         TempList.Count,

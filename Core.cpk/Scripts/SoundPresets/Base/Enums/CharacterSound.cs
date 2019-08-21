@@ -12,7 +12,7 @@
 
         /// <summary>
         /// Please note that this sound should be present only in CharacterPreset.
-        /// It cannot be overriden by equipment.
+        /// It cannot be overridden by equipment.
         /// </summary>
         Death,
 

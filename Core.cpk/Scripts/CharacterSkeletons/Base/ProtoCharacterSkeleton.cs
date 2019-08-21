@@ -88,7 +88,7 @@
 
         public virtual void CreatePhysics(IPhysicsBody physicsBody)
         {
-            // default skeleton physics (for test only, must be overriden in inherited classes)
+            // default skeleton physics (for test only, must be overridden in inherited classes)
             var radius = 0.2;
 
             physicsBody.AddShapeCircle(
@@ -253,7 +253,7 @@
             var protoSkeleton = (ProtoCharacterSkeleton)protoCharacter.ClientGetCurrentProtoSkeleton(character);
             if (soundPresetMovement == null)
             {
-                // movement sound preset is not overriden - use from this skeleton
+                // movement sound preset is not overridden - use from this skeleton
                 soundPresetMovement = protoSkeleton.SoundPresetFootsteps;
             }
 
