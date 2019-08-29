@@ -46,7 +46,7 @@
 
             // apply stat for planting speed
             durationSeconds *= request.Character.SharedGetFinalStatMultiplier(
-                StatName.ItemExplosivePlantingSpeedMultiplier);
+                StatName.ItemExplosivePlantingTimeMultiplier);
 
             if (IsClient)
             {

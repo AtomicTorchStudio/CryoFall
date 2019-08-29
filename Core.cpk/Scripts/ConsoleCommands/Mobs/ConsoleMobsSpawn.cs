@@ -77,7 +77,14 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mobs
                     size: (0.98, 0.98),
                     collisionGroup: collisionGroup,
                     sendDebugEvent: false);
-                return objectsNearby.Count == 0;
+                if (objectsNearby.Count > 0)
+                {
+                    return false;
+                }
+
+                var posTile = Server.World.GetTile(pos.ToVector2Ushort());
+                return ServerCharacterSpawnHelper.IsValidSpawnTile(posTile,
+                                                                   checkNeighborTiles: false);
             }
         }
 

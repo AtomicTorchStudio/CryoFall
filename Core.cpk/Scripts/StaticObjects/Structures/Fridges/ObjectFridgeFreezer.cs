@@ -11,7 +11,7 @@
         public override string Description =>
             "Powerful freezer that can store food at below-zero temperature, ensuring that it stays fresh much longer.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 2;
+        public override double ElectricityConsumptionPerSecondWhenActive => 0.4;
 
         public override double FreshnessDurationMultiplier => 25;
 

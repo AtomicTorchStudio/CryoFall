@@ -10,7 +10,7 @@
             "Better training and understanding of this profession improve your woodcutting speed. Applies only when you're using an axe.";
 
         public override double ExperienceToLearningPointsConversionMultiplier =>
-            0.5; // slightly lower since each tree gives 150 exp (which would mean 1.5LP without this multiplier)
+            0.4; // lower since each tree gives 150 exp (which would mean 1.5LP without this multiplier)
 
         public override bool IsSharingLearningPointsWithPartyMembers => true;
 

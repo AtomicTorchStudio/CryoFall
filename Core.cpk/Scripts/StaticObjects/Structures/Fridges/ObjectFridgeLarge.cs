@@ -11,7 +11,7 @@
         public override string Description =>
             "Convenient way to store large amounts of perishable food. Fridge will keep it fresh much longer.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 1;
+        public override double ElectricityConsumptionPerSecondWhenActive => 0.25;
 
         public override double FreshnessDurationMultiplier => 10;
 

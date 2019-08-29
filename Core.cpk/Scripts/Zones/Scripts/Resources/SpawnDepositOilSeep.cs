@@ -16,7 +16,7 @@
     public class SpawnDepositOilSeep : ProtoZoneSpawnScript
     {
         // because this script called very rare we're increasing the spawn attempts count
-        protected override double MaxSpawnAttempsMultiplier => 5;
+        protected override double MaxSpawnAttempsMultiplier => 50;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {

@@ -18,9 +18,20 @@
                                                              ? Api.Server.Game
                                                              : null;
 
-        private readonly SortedList<double, Action> sortedActionsList = new SortedList<double, Action>();
+        private readonly SortedList<double, Action> sortedActionsList
+            = IsServer
+                  ? new SortedList<double, Action>(capacity: 256)
+                  : null;
 
-        private readonly List<(double time, Action action)> tempActionsList = new List<(double time, Action action)>();
+        private readonly List<Action> tempExecutionList
+            = IsServer
+                  ? new List<Action>(capacity: 64)
+                  : null;
+
+        private readonly List<(double time, Action action)> tempScheduledActionsList
+            = IsServer
+                  ? new List<(double time, Action action)>(capacity: 64)
+                  : null;
 
         private bool isEnumerating;
 
@@ -89,7 +100,7 @@
         {
             if (this.isEnumerating)
             {
-                this.tempActionsList.Add((time, action));
+                this.tempScheduledActionsList.Add((time, action));
                 return;
             }
 
@@ -126,50 +137,56 @@
 
             var currentTime = Game.FrameTime;
 
-            var countToRemove = 0;
             this.isEnumerating = true;
 
+            // select actions to execute
             foreach (var pair in this.sortedActionsList)
             {
                 var time = pair.Key;
                 if (time > currentTime)
                 {
-                    // cannot remove this or any next entry (sorted list!)
+                    // this and following actions should be executed later so we stop here
                     break;
                 }
 
-                countToRemove++;
-                var action = pair.Value;
-                try
-                {
-                    action();
-                }
-                catch (Exception ex)
-                {
-                    Logger.Exception(ex, "Exception during execution of the delayed action.");
-                }
+                this.tempExecutionList.Add(pair.Value);
             }
 
-            // remove executed actions
-            for (var i = 0; i < countToRemove; i++)
+            if (this.tempExecutionList.Count > 0)
             {
-                this.sortedActionsList.RemoveAt(0);
+                // remove and execute the selected actions
+                for (var i = 0; i < this.tempExecutionList.Count; i++)
+                {
+                    this.sortedActionsList.RemoveAt(0);
+                }
+
+                foreach (var action in this.tempExecutionList)
+                {
+                    try
+                    {
+                        action();
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Exception(ex, "Exception during execution of the delayed action.");
+                    }
+                }
+
+                this.tempExecutionList.Clear();
             }
 
             this.isEnumerating = false;
 
-            if (this.tempActionsList.Count == 0)
+            if (this.tempScheduledActionsList.Count > 0)
             {
-                return;
-            }
+                // add entries scheduled to add during this method execution
+                foreach (var entry in this.tempScheduledActionsList)
+                {
+                    this.AddActionInternal(entry.time, entry.action);
+                }
 
-            // add entries scheduled to add during this method execution
-            foreach (var entry in this.tempActionsList)
-            {
-                this.AddActionInternal(entry.time, entry.action);
+                this.tempScheduledActionsList.Clear();
             }
-
-            this.tempActionsList.Clear();
         }
 
         private void ServerWorldBoundsChangedHandler()

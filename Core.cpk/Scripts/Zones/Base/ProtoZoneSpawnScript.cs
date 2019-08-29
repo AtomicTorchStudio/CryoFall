@@ -33,6 +33,8 @@
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public abstract class ProtoZoneSpawnScript : ProtoZoneScript<SpawnConfig>, IZoneScriptWithDefaultConfiguration
     {
+        public const int DefaultAreaSpawnAttempsCountPerPreset = SpawnZoneAreaSize * SpawnZoneAreaSize / 8;
+
         public const int DefaultSpawnMaxSpawnFailedAttemptsInRow = 150;
 
         public const int InitialSpawnMaxSpawnFailedAttemptsInRow = 300;
@@ -46,8 +48,6 @@
         /// but it limits max "padding" distance between objects to 2*specified value.
         /// </summary>
         internal const int SpawnZoneAreaSize = 40;
-
-        private const int AreaSpawnAttempsCountPerPreset = SpawnZoneAreaSize * SpawnZoneAreaSize / 8;
 
         private const double DefaultObjectSpawnPadding = 1;
 
@@ -764,7 +764,8 @@
                                                   ? InitialSpawnMaxSpawnFailedAttemptsInRow
                                                   : DefaultSpawnMaxSpawnFailedAttemptsInRow;
 
-            maxSpawnFailedAttemptsInRow = (int)(maxSpawnFailedAttemptsInRow * this.MaxSpawnAttempsMultiplier);
+            maxSpawnFailedAttemptsInRow = (int)Math.Min(int.MaxValue,
+                                                        maxSpawnFailedAttemptsInRow * this.MaxSpawnAttempsMultiplier);
 
             // calculate how many objects are already available
             var spawnedObjectsCount = spawnZoneAreas
@@ -854,7 +855,7 @@
             stopwatchTotal.Restart();
             if (allSpawnRequests.Any(r => r.UseSectorDensity))
             {
-                maxSpawnFailedAttemptsInRow = AreaSpawnAttempsCountPerPreset;
+                maxSpawnFailedAttemptsInRow = DefaultAreaSpawnAttempsCountPerPreset;
                 if (isInitialSpawn)
                 {
                     maxSpawnFailedAttemptsInRow *= 16;
@@ -893,14 +894,14 @@
                         continue;
                     }
 
-                    if (!this.CanSpawnIfPlayersNearby 
+                    if (!this.CanSpawnIfPlayersNearby
                         && ServerIsAnyPlayerNearby(area, playersPositions))
                     {
                         continue;
                     }
 
                     // make a few attempts to spawn in this area
-                    var attempts = activeSpawnRequestsList.Count * AreaSpawnAttempsCountPerPreset;
+                    var attempts = activeSpawnRequestsList.Count * DefaultAreaSpawnAttempsCountPerPreset;
                     for (var attempt = 0; attempt < attempts; attempt++)
                     {
                         await yieldIfOutOfTime();

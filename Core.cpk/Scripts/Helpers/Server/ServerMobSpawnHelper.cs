@@ -1,6 +1,7 @@
 namespace AtomicTorch.CBND.CoreMod.Helpers.Server
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -79,6 +80,13 @@ namespace AtomicTorch.CBND.CoreMod.Helpers.Server
                                                           sendDebugEvent: false))
                 {
                     // position is not valid for spawning
+                    return null;
+                }
+
+                if (!ServerCharacterSpawnHelper.IsValidSpawnTile(
+                        Api.Server.World.GetTile(worldPosition.ToVector2Ushort()),
+                        checkNeighborTiles: true))
+                {
                     return null;
                 }
 

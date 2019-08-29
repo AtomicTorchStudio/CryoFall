@@ -26,7 +26,7 @@
             effects.AddPercent(this, StatName.ForagingSpeed, -50);
             effects.AddPercent(this, StatName.HuntingLootingSpeed, -50);
             effects.AddPercent(this, StatName.SearchingSpeed, -50);
-            effects.AddPercent(this, StatName.ItemExplosivePlantingSpeedMultiplier, -50); // slower
+            effects.AddPercent(this, StatName.ItemExplosivePlantingTimeMultiplier, 50); // 50% slower
         }
     }
 }

@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Physics;
+    using AtomicTorch.CBND.CoreMod.Helpers.Physics;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterUnstuck;
@@ -394,12 +395,12 @@
             var hitObjects = new List<WeaponHitData>(isMeleeWeapon ? 1 : lineTestResults.Count);
             var characterTileHeight = character.Tile.Height;
 
-            if (IsClient 
-                && ClientComponentPhysicsSpaceVisualizer.IsVisualizerEnabled)
+            if (IsClient
+                || Api.IsEditor)
             {
-                ClientComponentPhysicsSpaceVisualizer.VisualizeTestResults(lineTestResults, collisionGroup);
+                SharedEditorPhysicsDebugger.SharedVisualizeTestResults(lineTestResults, collisionGroup);
             }
-
+            
             foreach (var testResult in lineTestResults)
             {
                 var testResultPhysicsBody = testResult.PhysicsBody;

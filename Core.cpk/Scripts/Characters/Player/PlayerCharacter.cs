@@ -330,27 +330,7 @@
                                  LandClaimSystemConstants.SharedLandClaimsNumberLimitIncrease);
             }
         }
-
-        protected override void PrepareProtoCharacter()
-        {
-            base.PrepareProtoCharacter();
-            CraftingMechanics.ServerNonManufacturingRecipeCrafted +=
-                craftingQueueItem =>
-                {
-                    if (!(craftingQueueItem.GameObject is ICharacter character)
-                        || character.ProtoCharacter.GetType() != typeof(PlayerCharacter))
-                    {
-                        return;
-                    }
-
-                    var exp = SkillCrafting.ExperiencePerItemCrafted;
-                    // we're adding extra experience matching the crafted recipe original duration
-                    exp += SkillCrafting.ExperiencePerItemCraftedRecipeDuration
-                           * craftingQueueItem.Recipe.OriginalDuration;
-                    character.ServerAddSkillExperience<SkillCrafting>(exp);
-                };
-        }
-
+        
         protected override void ServerInitializeCharacter(ServerInitializeData data)
         {
             base.ServerInitializeCharacter(data);

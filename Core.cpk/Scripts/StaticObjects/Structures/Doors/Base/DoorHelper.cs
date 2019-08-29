@@ -109,35 +109,6 @@
             return true;
         }
 
-        public static void RefreshDoorType(IStaticWorldObject door)
-        {
-            if (!(door.ProtoGameObject is IProtoObjectDoor))
-            {
-                // not a door
-                return;
-            }
-
-            door.GetPublicState<ObjectDoorPublicState>().IsHorizontalDoor
-                = IsHorizontalDoorNeeded(door.OccupiedTile, checkExistingDoor: false);
-        }
-
-        public static void RefreshNeighborDoorType(in Tile tile)
-        {
-            // this mechanic is causing the rotation of the already placed doors which is not expected by players
-            return;
-
-            foreach (var neighborTile in tile.FourNeighborTiles)
-            {
-                foreach (var staticWorldObject in neighborTile.StaticObjects)
-                {
-                    if (staticWorldObject.ProtoGameObject is IProtoObjectDoor)
-                    {
-                        RefreshDoorType(staticWorldObject);
-                    }
-                }
-            }
-        }
-
         private static bool IsHorizontalDoor(in Tile tileUp)
         {
             var door = tileUp.StaticObjects

@@ -19,6 +19,7 @@
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.DataStructures;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public class ClientComponentPhysicsSpaceVisualizer : ClientComponent
@@ -233,17 +234,23 @@
             instance?.DrawPhysicsTest(shape, isClient: false);
         }
 
-        public static void VisualizeTestResults(ITempList<TestResult> testResults, CollisionGroup collisionGroup)
+        public static void VisualizeTestResults(
+            IList<Vector2D> testResults,
+            CollisionGroup collisionGroup,
+            bool isClient)
         {
-            foreach (var testResult in testResults)
+            if (!IsVisualizerEnabled)
             {
-                var position = testResult.PhysicsBody.Position
-                               + testResult.Penetration;
+                return;
+            }
+
+            foreach (var position in testResults)
+            {
                 instance.DrawPhysicsTest(new CircleShape(
                                              center: position,
                                              radius: 0.05,
                                              collisionGroup),
-                                         isClient: true);
+                                         isClient: isClient);
             }
         }
 

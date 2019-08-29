@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Special
 {
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
@@ -21,7 +22,7 @@
 
         public const float Scale = 1f;
 
-        public override double ClientUpdateIntervalSeconds => 0; // every frame
+        public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
         public override StaticObjectKind Kind => StaticObjectKind.FloorDecal;
 
@@ -66,7 +67,17 @@
 
             if (ClientGroundExplosionAnimationHelper.HasActiveExplosion(tilePosition))
             {
-                renderer.IsEnabled = false;
+                // this is a fresh charred ground, animate the ground sprite
+                var animationDuration = ClientGroundExplosionAnimationHelper.ExplosionGroundDuration;
+                var framesTextureResources = ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
+                    ClientGroundExplosionAnimationHelper.ExplosionGroundTextureAtlas);
+                var componentAnimator = renderer.SceneObject.AddComponent<ClientComponentSpriteSheetAnimator>();
+                componentAnimator.Setup(renderer,
+                                        framesTextureResources,
+                                        frameDurationSeconds: animationDuration / framesTextureResources.Length);
+
+                componentAnimator.IsLooped = false;
+                componentAnimator.Destroy(1.5 * animationDuration);
             }
         }
 
@@ -85,20 +96,6 @@
             renderer.SpritePivotPoint = (0.5, 0.5);
             renderer.DrawOrder = DrawOrder.FloorCharredGround;
             renderer.Scale = Scale;
-        }
-
-        protected override void ClientUpdate(ClientUpdateData data)
-        {
-            base.ClientUpdate(data);
-
-            // enable renderer when the explosion renderer has been finished
-            var renderer = data.ClientState.Renderer;
-            if (!renderer.IsEnabled
-                && !ClientGroundExplosionAnimationHelper.HasActiveExplosion(
-                    data.GameObject.TilePosition))
-            {
-                renderer.IsEnabled = true;
-            }
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)

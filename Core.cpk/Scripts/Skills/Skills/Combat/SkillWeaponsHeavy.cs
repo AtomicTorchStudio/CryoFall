@@ -52,18 +52,18 @@
 
             // unlock bonus
             config.AddStatEffect(
-                StatName.ItemExplosivePlantingSpeedMultiplier,
+                StatName.ItemExplosivePlantingTimeMultiplier,
                 level: 1,
                 percentBonus: -5);
 
             // every level bonus
             config.AddStatEffect(
-                StatName.ItemExplosivePlantingSpeedMultiplier,
+                StatName.ItemExplosivePlantingTimeMultiplier,
                 formulaPercentBonus: level => -level * 2);
 
             // lvl 20 bonus
             config.AddStatEffect(
-                StatName.ItemExplosivePlantingSpeedMultiplier,
+                StatName.ItemExplosivePlantingTimeMultiplier,
                 level: 20,
                 percentBonus: -5);
         }

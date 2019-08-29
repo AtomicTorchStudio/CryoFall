@@ -7,7 +7,7 @@
         /// <summary>
         /// As you earn LP you also get EXP for this skill.
         /// </summary>
-        public const double ExperienceAddedPerLPEarned = 5.0;
+        public const double ExperienceAddedPerLPEarned = 10.0;
 
         public override string Description =>
             "Surviving in the unfamiliar environment of an alien world is difficult, but it offers unique opportunities to learn things you wouldn't know otherwise.";
@@ -23,16 +23,24 @@
         {
             config.Category = GetCategory<SkillCategoryPersonal>();
 
-            // Skill effects:
-            // each level +1% LP gain except first and last level which are providing +5% increase each.
             var statName = StatName.LearningsPointsGainMultiplier;
             config.AddStatEffect(
                 statName,
-                formulaPercentBonus: level => level);
+                formulaPercentBonus: level => level); // each level +1% LP gain
 
             config.AddStatEffect(
                 statName,
                 level: 1,
+                percentBonus: 5);
+
+            config.AddStatEffect(
+                statName,
+                level: 10,
+                percentBonus: 5);
+
+            config.AddStatEffect(
+                statName,
+                level: 15,
                 percentBonus: 5);
 
             config.AddStatEffect(

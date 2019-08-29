@@ -121,7 +121,7 @@ Nachladezeit
 Scripts/Base/Stats/StatName@CraftingSpeed:
 Fertigungsgeschwindigkeit
 
-Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Scripts/Base/Stats/StatName@ItemExplosivePlantingTimeMultiplier:
 Dauer des Legens von Sprengsätzen
 
 Scripts/Base/Stats/StatName@HuntingLootingSpeed:

@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.ItemExplosive
 {
-    using System.Linq;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
@@ -136,23 +135,20 @@
                                                 blastSpriteRenderer.Color = explosionPreset.BlastWaveColor
                                                                                            .WithAlpha(blastwaveAlpha);
 
-                                                var sizeX = MathHelper.Lerp((float)explosionPreset.BlastwaveSizeFrom.X,
-                                                                            (float)explosionPreset.BlastwaveSizeTo.X,
+                                                var sizeX = MathHelper.Lerp(explosionPreset.BlastwaveSizeFrom.X,
+                                                                            explosionPreset.BlastwaveSizeTo.X,
                                                                             alpha);
-                                                var sizeY = MathHelper.Lerp((float)explosionPreset.BlastwaveSizeFrom.Y,
-                                                                            (float)explosionPreset.BlastwaveSizeTo.Y,
+                                                var sizeY = MathHelper.Lerp(explosionPreset.BlastwaveSizeFrom.Y,
+                                                                            explosionPreset.BlastwaveSizeTo.Y,
                                                                             alpha);
                                                 blastSpriteRenderer.Size = new Size2F(sizeX, sizeY);
                                             });
                     });
             }
 
-            // add ground explosion animation
-            {
-                ClientGroundExplosionAnimationHelper.Explode(
-                    delaySeconds: explosionSpriteAnimationDuration / 2,
-                    position: position);
-            }
+            ClientGroundExplosionAnimationHelper.OnExplode(
+                delaySeconds: explosionSpriteAnimationDuration / 2,
+                position: position);
         }
 
         public static void ServerExplode(
@@ -168,25 +164,29 @@
 
             // schedule explosion charred ground spawning
             ServerTimersSystem.AddAction(
-                // the delay is quite small and just needed to ensure
-                // that the charred ground spawned some time after this object is destroyed
                 delaySeconds: explosionPreset.SpriteAnimationDuration * 0.5,
                 () =>
                 {
                     var tilePosition = (Vector2Ushort)epicenterPosition;
-                    if (!Server.World.GetTile(tilePosition)
-                               .StaticObjects
-                               .Any(so => so.ProtoStaticWorldObject is ObjectCharredGround))
+
+                    // remove existing charred ground objects at the same tile
+                    foreach (var staticWorldObject in Shared.WrapInTempList(
+                        Server.World.GetTile(tilePosition).StaticObjects))
                     {
-                        // spawn charred ground
-                        var objectCharredGround =
-                            Server.World.CreateStaticWorldObject<ObjectCharredGround>(tilePosition);
-                        var objectCharredGroundOffset = epicenterPosition - tilePosition.ToVector2D();
-                        if (objectCharredGroundOffset != Vector2D.Zero)
+                        if (staticWorldObject.ProtoStaticWorldObject is ObjectCharredGround)
                         {
-                            ObjectCharredGround.ServerSetWorldOffset(objectCharredGround,
-                                                                     objectCharredGroundOffset.ToVector2F());
+                            Server.World.DestroyObject(staticWorldObject);
                         }
+                    }
+
+                    // spawn charred ground
+                    var objectCharredGround = Server.World
+                                                    .CreateStaticWorldObject<ObjectCharredGround>(tilePosition);
+                    var objectCharredGroundOffset = epicenterPosition - tilePosition.ToVector2D();
+                    if (objectCharredGroundOffset != Vector2D.Zero)
+                    {
+                        ObjectCharredGround.ServerSetWorldOffset(objectCharredGround,
+                                                                 (Vector2F)objectCharredGroundOffset);
                     }
                 });
 

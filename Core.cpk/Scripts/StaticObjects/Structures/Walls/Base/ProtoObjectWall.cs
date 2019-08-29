@@ -126,15 +126,9 @@
         {
             base.ServerInitialize(data);
 
-            if (data.IsFirstTimeInit)
-            {
-                // just constructed - refresh nearby door types (horizontal/vertical)
-                DoorHelper.RefreshNeighborDoorType(data.GameObject.OccupiedTile);
-            }
-
-            SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(
-                data.GameObject.OccupiedTile,
-                isDestroy: false);
+            var occupiedTile = data.GameObject.OccupiedTile;
+            SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
+                                                                             isDestroy: false);
         }
 
         protected override void ServerOnStaticObjectZeroStructurePoints(

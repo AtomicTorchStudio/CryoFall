@@ -121,7 +121,7 @@ Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Scripts/Base/Stats/StatName@CraftingSpeed:
 制作速度
 
-Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Scripts/Base/Stats/StatName@ItemExplosivePlantingTimeMultiplier:
 爆破物安装时间
 
 Scripts/Base/Stats/StatName@HuntingLootingSpeed:

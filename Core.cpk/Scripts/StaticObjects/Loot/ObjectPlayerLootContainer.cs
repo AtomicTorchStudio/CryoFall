@@ -10,6 +10,8 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -81,9 +83,15 @@
 
         public static IItemsContainer ServerTryCreateLootContainer(ICharacter character)
         {
-            var tile = character.Tile;
-            return ServerTryCreateLootContainerInternal(character,    tile, ensureTheHeightIsTheSame: true)
-                   ?? ServerTryCreateLootContainerInternal(character, tile, ensureTheHeightIsTheSame: false);
+            return ServerTryCreateLootContainerInternal(character,
+                                                        ensureNoWallsOnTheWay: true,
+                                                        ensureNoClosedDoorsOnTheWay: true)
+                   ?? ServerTryCreateLootContainerInternal(character,
+                                                           ensureNoWallsOnTheWay: true,
+                                                           ensureNoClosedDoorsOnTheWay: false)
+                   ?? ServerTryCreateLootContainerInternal(character,
+                                                           ensureNoWallsOnTheWay: false,
+                                                           ensureNoClosedDoorsOnTheWay: false);
         }
 
         public override string ClientGetTitle(IStaticWorldObject worldObject)
@@ -404,10 +412,10 @@
         // try create the loot container nearby the character death position
         private static IItemsContainer ServerTryCreateLootContainerInternal(
             ICharacter character,
-            Tile startTile,
-            bool ensureTheHeightIsTheSame)
+            bool ensureNoWallsOnTheWay,
+            bool ensureNoClosedDoorsOnTheWay)
         {
-            var startTileHeight = startTile.Height;
+            var startTile = character.Tile;
 
             var checkQueue = new List<Tile>();
             checkQueue.Add(startTile);
@@ -415,8 +423,8 @@
             var checkedTiles = new HashSet<Vector2Ushort>();
             checkedTiles.Add(startTile.Position);
 
-            // try to drop the loot at max 10 tiles away from the requested tile
-            const byte maxNeighborFindIterations = 10;
+            // try to drop the loot at max 15 tiles away from the requested tile
+            const byte maxNeighborFindIterations = 15;
             var iterationAttempt = 0;
 
             while (true)
@@ -425,18 +433,6 @@
 
                 foreach (var tile in checkQueue)
                 {
-                    if (!tile.IsValidTile)
-                    {
-                        continue;
-                    }
-
-                    if (ensureTheHeightIsTheSame
-                        && tile.Height != startTileHeight)
-                    {
-                        // different tile height
-                        continue;
-                    }
-
                     var lootContainer = ServerTryCreateLootContainerAtPosition(
                         tile.Position,
                         character,
@@ -482,6 +478,50 @@
                     if (!checkedTiles.Add(neighborTile.Position))
                     {
                         // the tile is already checked
+                        continue;
+                    }
+
+                    var isValidTile = true;
+
+                    if (!neighborTile.IsValidTile)
+                    {
+                        isValidTile = false;
+                    }
+                    else if (ensureNoWallsOnTheWay
+                             || ensureNoClosedDoorsOnTheWay)
+                    {
+                        if (neighborTile.IsCliff)
+                        {
+                            isValidTile = false;
+                        }
+                        else
+                        {
+                            foreach (var staticObject in neighborTile.StaticObjects)
+                            {
+                                if (ensureNoWallsOnTheWay
+                                    && staticObject.ProtoStaticWorldObject is IProtoObjectWall)
+                                {
+                                    checkedTiles.Add(neighborTile.Position);
+                                    isValidTile = false;
+                                    break;
+                                }
+
+                                if (ensureNoClosedDoorsOnTheWay
+                                    && staticObject.ProtoStaticWorldObject is IProtoObjectDoor
+                                    && !staticObject.GetPublicState<ObjectDoorPublicState>().IsOpened)
+                                {
+                                    checkedTiles.Add(neighborTile.Position);
+                                    isValidTile = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (!isValidTile)
+                    {
+                        // invalid tile, don't check it anymore
+                        checkedTiles.Add(neighborTile.Position);
                         continue;
                     }
 

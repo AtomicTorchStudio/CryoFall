@@ -13,7 +13,7 @@
         public override string Description =>
             "Smaller version of the electric floor lamp. Quite bright for its size.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 1;
+        public override double ElectricityConsumptionPerSecondWhenActive => 0.75;
 
         public override Color LightColor => LightColors.ElectricCold;
 

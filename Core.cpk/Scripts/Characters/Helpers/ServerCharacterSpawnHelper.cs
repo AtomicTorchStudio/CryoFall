@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters
 {
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -27,11 +26,8 @@
             Vector2D position,
             bool isPlayer)
         {
-            var tile = ServerWorldService.GetTile(position.ToVector2Ushort());
-            if (!IsValidTile(tile)
-                || tile.EightNeighborTiles.Any(t => !IsValidTile(t)))
+            if (!IsValidSpawnPosition(position))
             {
-                // cliff/slope or water nearby
                 return false;
             }
 
@@ -97,9 +93,39 @@
             return true;
         }
 
-        private static bool IsValidTile(Tile tile)
+        public static bool IsValidSpawnPosition(Vector2D position)
         {
-            return !tile.IsCliffOrSlope
+            var tile = ServerWorldService.GetTile(position.ToVector2Ushort());
+            return IsValidSpawnTileInternal(tile);
+        }
+
+        public static bool IsValidSpawnTile(Tile tile, bool checkNeighborTiles)
+        {
+            if (!IsValidSpawnTileInternal(tile))
+            {
+                return false;
+            }
+
+            if (!checkNeighborTiles)
+            {
+                return true;
+            }
+
+            foreach (var t in tile.EightNeighborTiles)
+            {
+                if (!IsValidSpawnTileInternal(t))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool IsValidSpawnTileInternal(Tile tile)
+        {
+            return tile.IsValidTile
+                   && !tile.IsCliffOrSlope
                    && tile.ProtoTile.Kind == TileKind.Solid;
         }
     }

@@ -26,6 +26,8 @@
 
         public int FramesCount => this.framesTextureResources.Length;
 
+        public bool IsLooped { get; set; } = true;
+
         public bool IsManualUpdate { get; set; }
 
         //public ITextureResource[] FramesTextureResources => this.framesTextureResources;
@@ -101,9 +103,18 @@
             }
 
             this.currentTime += deltaTime;
-            this.frameIndex = this.totalDurationSeconds > 0
-                                  ? (int)(this.currentTime % this.totalDurationSeconds / this.frameDurationSeconds)
-                                  : 0;
+            if (this.IsLooped)
+            {
+                this.frameIndex = this.totalDurationSeconds > 0
+                                      ? (int)(this.currentTime % this.totalDurationSeconds / this.frameDurationSeconds)
+                                      : 0;
+            }
+            else
+            {
+                this.frameIndex = (int)Math.Min(this.FramesCount - 1,
+                                                this.currentTime / this.frameDurationSeconds);
+            }
+
             var textureResource = this.framesTextureResources[this.frameIndex];
             this.spriteRenderer.TextureResource = textureResource;
             //Api.Logger.Dev("Sprite animation frame: #"

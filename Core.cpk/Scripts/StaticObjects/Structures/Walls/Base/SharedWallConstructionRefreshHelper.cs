@@ -1,30 +1,108 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls
 {
+    using System;
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
+    using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Primitives;
+    using static GameApi.Scripting.Api;
 
+    /// <summary>
+    /// Find neighbor walls or construction sites (for walls)
+    /// and re-initialize them
+    /// (so they take into account new/updated neighbor for their rendering and physics body).
+    /// </summary>
     internal static class SharedWallConstructionRefreshHelper
     {
-        private static bool isRefreshing;
+        private static readonly HashSet<Tile> Queue = new HashSet<Tile>(TileComparer.Instance);
 
-        /// <summary>
-        /// Find neighbor objects of type wall or construction site (for wall) and refresh their renderers
-        /// according to their neighbors.
-        /// </summary>
+        private static bool isProcessingQueueNow;
+
         public static void SharedRefreshNeighborObjects(Tile tile, bool isDestroy)
         {
-            if (isRefreshing)
+            if (isProcessingQueueNow)
             {
                 // don't allow recursive refreshing
                 return;
             }
 
+            Queue.Add(tile);
+        }
+
+        public static void SharedRefreshNeighborObjects(IStaticWorldObject staticWorldObject, bool isDestroy)
+        {
+            if (isProcessingQueueNow)
+            {
+                // don't allow recursive refreshing
+                return;
+            }
+
+            var protoWorldObject = staticWorldObject.ProtoStaticWorldObject;
+            switch (protoWorldObject)
+            {
+                case IProtoObjectWall _:
+                case IProtoObjectDoor _:
+                case ObjectWallDestroyed _:
+                    SharedRefreshNeighborObjects(staticWorldObject.OccupiedTile, isDestroy);
+                    break;
+
+                case ProtoObjectConstructionSite _:
+                {
+                    var constructionProto = ProtoObjectConstructionSite.GetPublicState(staticWorldObject)
+                                                                       .ConstructionProto;
+                    switch (constructionProto)
+                    {
+                        case IProtoObjectWall _:
+                        case IProtoObjectDoor _:
+                            SharedRefreshNeighborObjects(staticWorldObject.OccupiedTile, isDestroy);
+                            break;
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        private static void SharedProcessQueue()
+        {
+            if (Queue.Count == 0)
+            {
+                return;
+            }
+
             try
             {
-                isRefreshing = true;
+                isProcessingQueueNow = true;
 
+                if (IsClient && Client.World.WorldBounds.Size == Vector2Ushort.Zero
+                    || IsServer && Server.World.WorldBounds.Size == Vector2Ushort.Zero)
+                {
+                    return;
+                }
+
+                foreach (var tile in Queue)
+                {
+                    try
+                    {
+                        SharedProcessTileNeighbors(in tile);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Exception(ex);
+                    }
+                }
+            }
+            finally
+            {
+                Queue.Clear();
+                isProcessingQueueNow = false;
+            }
+
+            static void SharedProcessTileNeighbors(in Tile tile)
+            {
                 foreach (var neighborTile in tile.EightNeighborTiles)
                 {
                     foreach (var obj in neighborTile.StaticObjects)
@@ -57,7 +135,7 @@
                         // helper local function
                         void RefreshWorldObject()
                         {
-                            if (Api.IsClient)
+                            if (IsClient)
                             {
                                 obj.ClientInitialize();
                             }
@@ -69,37 +147,36 @@
                     }
                 }
             }
-            finally
+        }
+
+        private class Bootstrapper : BaseBootstrapper
+        {
+            public override void ClientInitialize()
             {
-                isRefreshing = false;
+                ClientUpdateHelper.UpdateCallback += SharedProcessQueue;
+                Client.World.WorldBoundsChanged += () => Queue.Clear();
+            }
+
+            public override void ServerInitialize(IServerConfiguration serverConfiguration)
+            {
+                TriggerEveryFrame.ServerRegister(SharedProcessQueue,
+                                                 nameof(SharedWallConstructionRefreshHelper) + ".Process");
+                Server.World.WorldBoundsChanged += () => Queue.Clear();
             }
         }
 
-        public static void SharedRefreshNeighborObjects(IStaticWorldObject staticWorldObject, bool isDestroy)
+        private class TileComparer : IEqualityComparer<Tile>
         {
-            var protoWorldObject = staticWorldObject.ProtoStaticWorldObject;
-            switch (protoWorldObject)
+            public static readonly TileComparer Instance = new TileComparer();
+
+            public bool Equals(Tile a, Tile b)
             {
-                case IProtoObjectWall _:
-                case IProtoObjectDoor _:
-                case ObjectWallDestroyed _:
-                    SharedRefreshNeighborObjects(staticWorldObject.OccupiedTile, isDestroy);
-                    break;
+                return a.Position.Equals(b.Position);
+            }
 
-                case ProtoObjectConstructionSite _:
-                {
-                    var constructionProto = ProtoObjectConstructionSite.GetPublicState(staticWorldObject)
-                                                                       .ConstructionProto;
-                    switch (constructionProto)
-                    {
-                        case IProtoObjectWall _:
-                        case IProtoObjectDoor _:
-                            SharedRefreshNeighborObjects(staticWorldObject.OccupiedTile, isDestroy);
-                            break;
-                    }
-
-                    break;
-                }
+            public int GetHashCode(Tile tile)
+            {
+                return tile.Position.GetHashCode();
             }
         }
     }

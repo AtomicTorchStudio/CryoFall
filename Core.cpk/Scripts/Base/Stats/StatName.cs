@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Stats
 {
+    using System;
     using System.ComponentModel;
     using AtomicTorch.CBND.CoreMod.Skills;
 
@@ -181,6 +182,7 @@
         [RelatedToSkill(typeof(SkillWeaponsHeavy))]
         WeaponHeavyReloadingSpeedMultiplier,
 
+        [Obsolete("Currently not used and also the name is not matching the description")]
         [Description("Reloading time")]
         //[RelatedToSkill(typeof(SkillWeaponsExotic))]
         WeaponExoticReloadingSpeedMultiplier,
@@ -189,7 +191,7 @@
         CraftingSpeed,
 
         [Description("Explosive planting time")]
-        ItemExplosivePlantingSpeedMultiplier,
+        ItemExplosivePlantingTimeMultiplier,
 
         [RelatedToSkill(typeof(SkillHunting))]
         [Description("Looting speed")]

@@ -434,12 +434,6 @@
                                                                                 checkExistingDoor: false);
             publicState.IsOpened = true;
 
-            // refresh nearby door types (horizontal/vertical)
-            foreach (var occupiedTile in worldObject.OccupiedTiles)
-            {
-                DoorHelper.RefreshNeighborDoorType(occupiedTile);
-            }
-
             foreach (var occupiedTile in worldObject.OccupiedTiles)
             {
                 SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
