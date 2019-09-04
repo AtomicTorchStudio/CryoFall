@@ -68,8 +68,6 @@
 
         private IPhysicsSpace physicsSpace;
 
-        private ICharacter playerCharacter;
-
         private UIElementCollection visualizerControlRootChildren;
 
         private Canvas visualizerControlsRoot;
@@ -257,14 +255,12 @@
         protected override void OnDisable()
         {
             this.PhysicsSpace = null;
-            this.playerCharacter = null;
 
             Api.Client.UI.LayoutRootChildren.Remove(this.legendControl);
             this.legendControl.Setup(null);
             this.legendControl = null;
 
             Client.World.WorldBoundsChanged -= this.WorldBoundsChangedHandler;
-            Client.Characters.CurrentPlayerCharacterChanged -= this.CurrentPlayerCharacterChangedHandler;
         }
 
         protected override void OnEnable()
@@ -283,7 +279,6 @@
             Api.Client.UI.LayoutRootChildren.Add(this.legendControl);
 
             Client.World.WorldBoundsChanged += this.WorldBoundsChangedHandler;
-            Client.Characters.CurrentPlayerCharacterChanged += this.CurrentPlayerCharacterChangedHandler;
         }
 
         private static void DestroyPhysicsBodyVisualizer(
@@ -394,11 +389,6 @@
             }
         }
 
-        private void CurrentPlayerCharacterChangedHandler()
-        {
-            this.Refresh();
-        }
-
         private void DrawPhysicsTest(IPhysicsShape physicsShape, bool isClient)
         {
             if (isClient && !this.isClientTestRendered
@@ -506,9 +496,8 @@
 
         private void Refresh()
         {
-            this.playerCharacter = Client.Characters.CurrentPlayerCharacter;
             this.PhysicsSpace = null;
-            this.PhysicsSpace = this.playerCharacter?.PhysicsBody.PhysicsSpace;
+            this.PhysicsSpace = Client.World.GetPhysicsSpace();
         }
 
         private void RegisterPhysicsBody(IPhysicsBody physicsBody)

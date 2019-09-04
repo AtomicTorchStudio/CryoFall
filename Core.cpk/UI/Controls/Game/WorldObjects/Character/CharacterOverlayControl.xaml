@@ -10,6 +10,7 @@
     xmlns:bars="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelCharacterOverlayControl, IsDesignTimeCreatable=True}"
@@ -21,10 +22,12 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <!-- Status effects control -->
-        <ItemsControl ItemsSource="{Binding ViewModelCharacterPublicStatusEffects.StatusEffects}"
+        <ItemsControl Grid.Row="0"
+                      ItemsSource="{Binding ViewModelCharacterPublicStatusEffects.StatusEffects}"
                       HorizontalAlignment="Center"
                       Margin="0,0,0,4">
             <ItemsControl.ItemsPanel>
@@ -52,15 +55,32 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
+        <!-- Unstuck info control -->
+        <TextBlock Grid.Row="1"
+                   Visibility="{Binding ViewModelCharacterUnstuckInfoControl.VisibilityUnstuckInfo}"
+                   Text="{Binding ViewModelCharacterUnstuckInfoControl.UnstuckInfoMessage}"
+                   FontSize="23"
+                   LineHeight="23"
+                   FontWeight="Bold"
+                   FontFamily="{StaticResource CondensedFontFamily}"
+                   Foreground="{StaticResource BrushColorRed7}"
+                   noesis:Text.Stroke="Black"
+                   noesis:Text.StrokeThickness="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center"
+                   TextWrapping="NoWrap"
+                   Margin="0,-4,0,4" />
+
         <!-- Nickname control -->
-        <ContentControl Grid.Row="1"
+        <ContentControl Grid.Row="2"
                         HorizontalAlignment="Center"
                         Visibility="{Binding ViewModelCharacterNameControl, Converter={StaticResource NullToVisibilityConverter}}">
             <character:CharacterNameControl DataContext="{Binding ViewModelCharacterNameControl}" />
         </ContentControl>
 
         <!-- Healthbar control -->
-        <bars:CharacterHealthBarControl Grid.Row="2"
+        <bars:CharacterHealthBarControl Grid.Row="3"
                                         HorizontalAlignment="Center"
                                         Margin="0,4,0,0"
                                         DataContext="{Binding ViewModelCharacterHealthBarControl}" />

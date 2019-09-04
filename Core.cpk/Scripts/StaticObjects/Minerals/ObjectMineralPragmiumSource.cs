@@ -77,7 +77,7 @@
                     {
                         return true;
                     }
-                    
+
                     if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
                     {
                         // this limitation doesn't apply to PvP mode
@@ -135,6 +135,12 @@
         public override double ServerUpdateIntervalSeconds => ServerSpawnAndDecayIntervalSeconds;
 
         public override float StructurePointsMax => 5000;
+
+        // has light source
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -6,
+                                                                       minY: -2,
+                                                                       maxX: 6,
+                                                                       maxY: 4);
 
         public void ServerForceUpdate(IStaticWorldObject worldObject, double deltaTime)
         {

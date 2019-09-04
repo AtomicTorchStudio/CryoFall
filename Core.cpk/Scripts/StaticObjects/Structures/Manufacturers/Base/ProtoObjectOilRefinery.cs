@@ -250,9 +250,12 @@
                 = liquidStateProcessedGasoline.Amount >= this.LiquidConfigGasoline.Capacity
                   && liquidStateProcessedMineralOil.Amount >= this.LiquidConfigMineralOil.Capacity;
 
-            var isNeedElectricityNow = (!isLiquidsCapacitiesFull && liquidStateRawPetroleum.Amount > 0)
-                                       || manufacturingStateProcessedGasoline.HasActiveRecipe
-                                       || manufacturingStateProcessedMineralOil.HasActiveRecipe;
+            var isNeedElectricityNow
+                = (!isLiquidsCapacitiesFull && liquidStateRawPetroleum.Amount > 0)
+                  || (manufacturingStateProcessedGasoline.HasActiveRecipe
+                      && !manufacturingStateProcessedGasoline.CraftingQueue.IsContainerOutputFull)
+                  || (manufacturingStateProcessedMineralOil.HasActiveRecipe
+                      && !manufacturingStateProcessedMineralOil.CraftingQueue.IsContainerOutputFull);
 
             // Consuming electricity.
             // Active only if electricity state is on and has active recipe.

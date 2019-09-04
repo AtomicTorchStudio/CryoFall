@@ -120,10 +120,10 @@ UI/CoreStrings@CraftingQueue_Title:
 作成
 
 UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
-`[b]LMBクリック[/b]
+`[b]左クリック[/b]
 [br]このレシピをキューの最初にする
 [br]
-[br][b]RMBクリック[/b]
+[br][b]右クリック[/b]
 [br]このレシピをキャンセルする`
 
 UI/CoreStrings@CraftingRecipeDetails_ButtonStartCraft:
@@ -135,7 +135,7 @@ UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
 技術メニューでより多くのレシピをアンロックできます。`
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
-レシピのアンロック
+アンロックされたレシピ
 
 UI/CoreStrings@Defense_Format_Chemical:
 化学防護:{0}
@@ -162,7 +162,7 @@ UI/CoreStrings@Defense_Format_Radiation:
 放射線防護:{0}
 
 UI/CoreStrings@DepositAvailableForClaiming_Message:
-要求することができます：
+占領できるまで：
 
 UI/CoreStrings@DepositCapacityStats_Message:
 資源が枯渇するまで：
@@ -934,7 +934,7 @@ UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
 [br]ホットバーにツールボックスを装備すれば建築できるようになります。`
 
 UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
-設計図
+設計図を置く
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 必要な材料
@@ -1354,8 +1354,7 @@ UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `家の中に閉じこもり、外に出られないのですか？
 [br]今、あなたは立ち往生していますか？
-[br]この機能を使ってキャラクターをテレポートすることができます。
-[br] 5分お待ちください。`
+[br]この機能を使ってキャラクターをテレポートすることができます。`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 アンスタック
@@ -1381,17 +1380,17 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Title:
 アイテムの上でCtrl+左または右クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Description:
-そのアイテムを持っていってください。
+そのアイテムを持つ。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Title:
 空の手でアイテムを左クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Description:
-`スロットが空の場合は、そこにアイテムを入れてください。
-[br]スロットが空でない場合-アイテムを結合または交換します。`
+`スロットが空の場合は、そこにアイテムを入れます。
+[br]スロットが空でない場合はアイテムを結合または交換します。`
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Title:
-スロットをフルハンドで左クリック
+アイテムを持ってスロットを左クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Description:
 在庫を並べ替える（任意のポイントアイテムグリッドで使用できます）。
@@ -1400,16 +1399,16 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Title:
 中（スクロールホイール）クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Description:
-アイテムの半分を取る
+アイテムの半分を取る。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Title:
 空の手でアイテムを右クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Description:
-スロットが空の場合や同じアイテムタイプが含まれている場合-[br]単一のアイテムを手からスロットに移動します。
+スロットが空の場合や同じアイテムタイプが含まれている場合ー[br]単一のアイテムを手からスロットに移動します。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Title:
-スロットをフルハンドで右クリック
+アイテムを持ってスロットを右クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Description:
 指定したスタックアイテムを全て別のコンテナーに移動します。
@@ -1445,7 +1444,7 @@ UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemo
 本当に[b]{0}[/b]をパーティーから外しますか？
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
-クリーチャー
+生き物
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
 爆発
@@ -1505,7 +1504,7 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 `捨てられた建物はしばらく経つと腐敗が始まり、
 [br]地図が見づらくならないよう次第に消えていきます。
 [br]
-[br]この所有物が腐敗し始めるまで：[b]{0}[/b].
+[br]この所有物が腐敗し始めるまで：[b]{0}[/b]。
 [br]Aその後、[b]{1}[/b]で腐敗し解体タイマーが始まります([b]{2}[/b])。
 [br]
 [br]腐敗を避けるためには、最低[b]{0}[/b]回に1度は基地を訪れてください。

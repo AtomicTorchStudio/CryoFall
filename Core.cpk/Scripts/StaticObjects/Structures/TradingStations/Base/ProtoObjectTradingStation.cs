@@ -9,7 +9,6 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
-    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
@@ -54,6 +53,12 @@
 
         public abstract byte StockItemsContainerSlotsCount { get; }
 
+        // has light source
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -3,
+                                                                       minY: -3,
+                                                                       maxX: 3,
+                                                                       maxY: 3);
+
         public BaseUserControlWithWindow ClientOpenUI(IStaticWorldObject worldObject)
         {
             return this.ClientOpenUI(new ClientObjectData(worldObject));
@@ -73,6 +78,18 @@
         public bool SharedCanEditOwners(IStaticWorldObject worldObject, ICharacter byOwner)
         {
             return true;
+        }
+
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            // don't use the base implementation as it will not work in PvE
+            // (action forbidden if player doesn't have access to the land claim)
+            if (character.GetPublicState<ICharacterPublicState>().IsDead)
+            {
+                return false;
+            }
+
+            return this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
@@ -318,18 +335,6 @@
             request.ThrowIfCancelled();
             return generatedTexture;
         }
-
-        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
-        {
-            // don't use the base implementation as it will not work in PvE
-            // (action forbidden if player doesn't have access to the land claim)
-            if (character.GetPublicState<ICharacterPublicState>().IsDead)
-            {
-                return false;
-            }
-
-            return this.SharedIsInsideCharacterInteractionArea(character, worldObject, writeToLog);
-        }
     }
 
     public abstract class ProtoObjectTradingStation
@@ -339,4 +344,4 @@
                 ObjectTradingStationClientState>
     {
     }
-}
+}   

@@ -20,7 +20,7 @@ Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
 Zawiera schematy wszystkich typów budynków podstawowych i pozwala na stworzenie prostej bazy.
 
 Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Name:
-Budownictwo
+Budowanie
 
 Scripts/Technologies/Tier1/Construction/TechNodeBasicBuilding@Name:
 Budynek podstawowy
@@ -89,7 +89,7 @@ Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
 Bardziej złożone i użyteczne struktury.
 
 Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
-Budownictwo 2
+Budowanie 2
 
 Scripts/Technologies/Tier2/Construction2/TechNodeStoneConstructions@Name:
 Konstrukcje kamienne
@@ -182,7 +182,7 @@ Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Description:
 Konstrukcje zaawansowane.
 
 Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
-Budownictwo 3
+Budowanie 3
 
 Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
 Konstrukcje murowane
@@ -269,7 +269,7 @@ Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
 Konstrukcje zaawansowane technologicznie.
 
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
-Budownictwo 4
+Budowanie 4
 
 Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
 Konstrukcje betonowe

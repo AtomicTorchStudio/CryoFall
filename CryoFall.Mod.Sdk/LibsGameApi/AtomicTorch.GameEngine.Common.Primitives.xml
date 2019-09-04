@@ -1513,6 +1513,11 @@
             Will check intersection non-inclusive (so if edges touches this method will not consider this as an intersection).
             </summary>
         </member>
+        <member name="M:AtomicTorch.GameEngine.Common.Primitives.RectangleInt.IntersectsLoose(AtomicTorch.GameEngine.Common.Primitives.RectangleInt@)">
+            <summary>
+            Will check intersection non-inclusive (so if edges touches this method will not consider this as an intersection).
+            </summary>
+        </member>
         <member name="T:AtomicTorch.GameEngine.Common.Primitives.Vector2D">
             <summary>
             Vector2 using double-precision for coordinates

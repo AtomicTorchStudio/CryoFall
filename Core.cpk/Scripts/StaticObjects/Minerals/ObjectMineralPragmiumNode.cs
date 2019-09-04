@@ -11,11 +11,18 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectMineralPragmiumNode
         : ProtoObjectMineral
             <ObjectMineralPragmiumNode.PrivateState, StaticObjectPublicState, DefaultMineralClientState>
     {
+        // has light source
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
+                                                                       minY: -1,
+                                                                       maxX: 1,
+                                                                       maxY: 2);
+
         // The Node destruction will be postponed on this duration
         // if it cannot be destroy because there are characters observing it.
         private static readonly double DestructionTimeoutPostponeSeconds

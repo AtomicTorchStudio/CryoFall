@@ -393,13 +393,13 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 釘で打ち付けられた頭蓋骨
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
-真の豊かさの象徴。本当のお金持ちだけが建設できます。
+真のセレブの象徴。本当のお金持ちだけが建設できます。
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Name:
 金の像
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Description:
-アートの目的でこのような高価なものを破壊することで、自分の豊かさを表現できます。
+ただ美観にする為に貴重なクリスタルを無駄にした。所有者がいかに金持ちかを示す物。
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 プラグミアムの像
@@ -414,7 +414,7 @@ Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
 鉄の扉
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Description:
-鋼は上部です。最も強力な爆発物以外なら、攻撃を受けても曲がらないでしょう。
+鋼は丈夫です。最も強力な爆発物以外なら、攻撃を受けても曲がらないでしょう。
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Name:
 鋼の扉
@@ -426,7 +426,7 @@ Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
 木の扉
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
-大きな鋼のゲート。基地のメインエントランスとして便利です。
+大きな鋼の扉。基地のメインエントランスとして便利です。
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
 鋼のゲート
@@ -459,7 +459,7 @@ Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Name:
 コンクリートの床
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Description:
-上部でなめらか。軍用のバンカーとして良い選択です。
+丈夫でなめらか。軍用のバンカーとして良い選択です。
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Name:
 金属の床
@@ -642,7 +642,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 マルチボックス
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-原油を地面から直接抽出するための油だめの上に構築することができます。
+原油を地面から直接抽出することができ、油田の上に構築することができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 オイルポンプ
@@ -750,7 +750,7 @@ Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Name:
 デジタル看板
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Description:
-サインのより耐久性のある金属版。それでも同じように便利ですが、より破壊されにくくなりました。
+もっと頑丈な金属看板。効果は同じですが、より破壊されにくくなりました。
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Name:
 鉄の看板

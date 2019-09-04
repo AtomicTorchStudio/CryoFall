@@ -128,10 +128,10 @@ Scripts/Skills/Skills/Technical/SkillCrafting@Description:
 Tworzenie skomplikowanych przedmiotów i rozumienie ich działania pozwala zrozumieć, jak działają tutejsze technologie.
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
-Rzemiosło
+Wytwarzanie
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
-Umożliwia naprawianie i konserwowanie wyposażenia oraz sprzętów przy stole majsterkowicza.
+Umożliwia naprawianie i konserwowanie ekwipunku oraz sprzętów przy stole majsterkowicza.
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 Konserwacja

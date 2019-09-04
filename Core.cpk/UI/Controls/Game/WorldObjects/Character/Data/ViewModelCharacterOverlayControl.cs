@@ -22,6 +22,8 @@
                 this.ViewModelCharacterNameControl = new ViewModelCharacterNameControl(character);
             }
 
+            this.ViewModelCharacterUnstuckInfoControl = new ViewModelCharacterUnstuckInfoControl(character);
+
             this.ViewModelCharacterHealthBarControl = new ViewModelCharacterHealthBarControl
             {
                 CharacterCurrentStats = this.publicState
@@ -39,6 +41,8 @@
         public ViewModelCharacterNameControl ViewModelCharacterNameControl { get; }
 
         public ViewModelCharacterPublicStatusEffects ViewModelCharacterPublicStatusEffects { get; }
+
+        public ViewModelCharacterUnstuckInfoControl ViewModelCharacterUnstuckInfoControl { get; }
 
         public string VisualStateName { get; private set; } = "Collapsed";
 

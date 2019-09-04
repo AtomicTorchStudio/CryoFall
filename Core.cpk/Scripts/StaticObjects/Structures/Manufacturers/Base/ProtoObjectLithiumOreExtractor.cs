@@ -66,6 +66,21 @@
 
         public override byte ContainerOutputSlotsCount => 1;
 
+        protected override BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
+        {
+            var objectDeposit = data.GameObject.OccupiedTile.StaticObjects.FirstOrDefault(
+                o => o.ProtoStaticWorldObject is ObjectDepositGeothermalSpring);
+
+            return WindowLithiumOreExtractor.Open(
+                new ViewModelWindowLithiumOreExtractor(
+                    data.GameObject,
+                    objectDeposit,
+                    data.PrivateState,
+                    this.ManufacturingConfig,
+                    data.PrivateState.LiquidContainerState,
+                    this.LiquidContainerConfig));
+        }
+
         protected override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
@@ -104,21 +119,6 @@
         {
             return tile.StaticObjects.FirstOrDefault(
                 o => o.ProtoStaticWorldObject is ObjectDepositGeothermalSpring);
-        }
-
-        protected override BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
-        {
-            var objectDeposit = data.GameObject.OccupiedTile.StaticObjects.FirstOrDefault(
-                o => o.ProtoStaticWorldObject is ObjectDepositGeothermalSpring);
-
-            return WindowLithiumOreExtractor.Open(
-                new ViewModelWindowLithiumOreExtractor(
-                    data.GameObject,
-                    objectDeposit,
-                    data.PrivateState,
-                    this.ManufacturingConfig,
-                    data.PrivateState.LiquidContainerState,
-                    this.LiquidContainerConfig));
         }
     }
 }

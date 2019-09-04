@@ -263,7 +263,7 @@ Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
 レザーパンツ
 
 Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
-メタル装甲は物理的な攻撃からの棒業に優れていますが、環境の危険に対してはほとんど防御力がありません。
+メタル装甲は物理的な攻撃からの防御に優れていますが、環境の危険に対してはほとんど防御力がありません。
 
 Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
 メタル製チェスト

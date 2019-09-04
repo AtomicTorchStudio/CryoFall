@@ -699,6 +699,8 @@
         public const string UnregisteredSteamAccountWelcome_Title =
             "It seems you are launching CryoFall for the first time. Would you like to link it to your existing [url=atomictorch.com]AtomicTorch.com[/url] account?";
 
+        public const string UnstuckInFormat = "Unstuck in: {0}";
+
         public const string Window_Tab_Main = "Main";
 
         public const string WindowAddOrEditServer_PleaseEnterServerAddress =

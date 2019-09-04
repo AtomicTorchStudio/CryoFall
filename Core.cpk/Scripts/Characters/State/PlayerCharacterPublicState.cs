@@ -30,6 +30,10 @@
         [TempOnly]
         public BasePublicActionState CurrentPublicActionState { get; set; }
 
+        [SyncToClient] // we can set receivers: ScopePlayers but some players find it useful to mod the game and display it over their character
+        [TempOnly]
+        public NetworkSyncList<IProtoStatusEffect> CurrentPublicStatusEffects { get; private set; }
+
         public CharacterCurrentStats CurrentStats
         {
             get => this.CurrentStatsExtended;
@@ -60,13 +64,17 @@
         [SyncToClient]
         public bool IsPveDuelModeEnabled { get; set; }
 
-        [SyncToClient()]//receivers: ScopePlayers)]
-        [TempOnly]
-        public NetworkSyncList<IProtoStatusEffect> CurrentPublicStatusEffects { get; private set; }
-
         [SyncToClient(receivers: ScopePlayers)]
         [TempOnly]
         public IItem SelectedHotbarItem { get; private set; }
+
+        /// <summary>
+        /// When player is requesting unstuck, the special timer will be displayed over the players' character.
+        /// To know when the unstuck request will be fulfilled, the clients using this property.
+        /// </summary>
+        [SyncToClient]
+        [TempOnly]
+        public double UnstuckExecutionTime { get; set; }
 
         public void EnsureEverythingCreated()
         {

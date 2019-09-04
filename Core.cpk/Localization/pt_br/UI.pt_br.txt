@@ -1351,8 +1351,7 @@ Me tira daqui!
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `Ficou preso(a) entre as paredes de casa e não consegue sair?
 [br]Ou alguém te causou problemas até você ficar obstruído(a)?
-[br]É possível usar esta função para teletransportar seu personagem para fora daí.
-[br]Aguarde o tempo indicado (5 minutos).`
+[br]É possível usar esta função para teletransportar seu personagem para fora daí.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 Desobstrução

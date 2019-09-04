@@ -1354,8 +1354,7 @@ UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `你把自己围在自己的房子内，出不去吗？
 [br]或者有人恶意堵你，导致你被卡住了？
-[br]您可以使用此功能将您的角色传送出去。
-[br]请等待时间延迟（5分钟）。`
+[br]您可以使用此功能将您的角色传送出去。`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 解除卡死

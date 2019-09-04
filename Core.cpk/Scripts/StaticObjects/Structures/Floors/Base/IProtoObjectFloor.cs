@@ -9,6 +9,6 @@
         /// </summary>
         double CharacterMoveSpeedMultiplier { get; }
 
-        void ClientRefreshRenderer(IStaticWorldObject worldObject, bool isNeighborDestroy);
+        void ClientRefreshRenderer(IStaticWorldObject worldObject);
     }
 }

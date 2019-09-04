@@ -1,21 +1,18 @@
-﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls
+﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors
 {
     using System;
     using System.Collections.Generic;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
-    using static GameApi.Scripting.Api;
 
     /// <summary>
-    /// Find neighbor walls or construction sites (for walls)
-    /// and re-initialize them
+    /// Find neighbor floor and re-initialize them
     /// (so they take into account new/updated neighbor for their rendering and physics body).
     /// </summary>
-    public static class SharedWallConstructionRefreshHelper
+    public static class ClientFloorRefreshHelper
     {
         private static readonly HashSet<Tile> Queue = new HashSet<Tile>(TileComparer.Instance);
 
@@ -40,29 +37,9 @@
                 return;
             }
 
-            var protoWorldObject = staticWorldObject.ProtoStaticWorldObject;
-            switch (protoWorldObject)
+            if (staticWorldObject.ProtoStaticWorldObject is IProtoObjectFloor)
             {
-                case IProtoObjectWall _:
-                case IProtoObjectDoor _:
-                case ObjectWallDestroyed _:
-                    SharedRefreshNeighborObjects(staticWorldObject.OccupiedTile, isDestroy);
-                    break;
-
-                case ProtoObjectConstructionSite _:
-                {
-                    var constructionProto = ProtoObjectConstructionSite.GetPublicState(staticWorldObject)
-                                                                       .ConstructionProto;
-                    switch (constructionProto)
-                    {
-                        case IProtoObjectWall _:
-                        case IProtoObjectDoor _:
-                            SharedRefreshNeighborObjects(staticWorldObject.OccupiedTile, isDestroy);
-                            break;
-                    }
-
-                    break;
-                }
+                SharedRefreshNeighborObjects(staticWorldObject.OccupiedTile, isDestroy);
             }
         }
 
@@ -77,8 +54,8 @@
             {
                 isProcessingQueueNow = true;
 
-                if (IsClient && Client.World.WorldBounds.Size == Vector2Ushort.Zero
-                    || IsServer && Server.World.WorldBounds.Size == Vector2Ushort.Zero)
+                if (Api.IsClient && Api.Client.World.WorldBounds.Size == Vector2Ushort.Zero
+                    || Api.IsServer && Api.Server.World.WorldBounds.Size == Vector2Ushort.Zero)
                 {
                     return;
                 }
@@ -91,7 +68,7 @@
                     }
                     catch (Exception ex)
                     {
-                        Logger.Exception(ex);
+                        Api.Logger.Exception(ex);
                     }
                 }
             }
@@ -107,42 +84,9 @@
                 {
                     foreach (var obj in neighborTile.StaticObjects)
                     {
-                        var protoWorldObject = obj.ProtoWorldObject;
-                        switch (protoWorldObject)
+                        if (obj.ProtoWorldObject is IProtoObjectFloor protoFloor)
                         {
-                            case IProtoObjectWall _:
-                            case IProtoObjectDoor _:
-                            case ObjectWallDestroyed _:
-                                RefreshWorldObject();
-                                break;
-
-                            case ProtoObjectConstructionSite _:
-                            {
-                                var constructionProto = ProtoObjectConstructionSite.GetPublicState(obj)
-                                                                                   .ConstructionProto;
-                                switch (constructionProto)
-                                {
-                                    case IProtoObjectWall _:
-                                    case IProtoObjectDoor _:
-                                        RefreshWorldObject();
-                                        break;
-                                }
-
-                                break;
-                            }
-                        }
-
-                        // helper local function
-                        void RefreshWorldObject()
-                        {
-                            if (IsClient)
-                            {
-                                obj.ClientInitialize();
-                            }
-                            else
-                            {
-                                obj.ServerInitialize();
-                            }
+                            protoFloor.ClientRefreshRenderer(obj);
                         }
                     }
                 }

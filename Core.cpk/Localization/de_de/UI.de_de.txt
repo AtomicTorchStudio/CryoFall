@@ -1352,8 +1352,7 @@ Hol mich raus!
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `Hast du dich in deinem Haus eingemauert und kommst nicht mehr frei?
 [br]Oder hat dich jemand belagert und jetzt steckst du fest?
-[br]Du kannst diese Funktion benutzen, um deinen Charakter frei zu teleportieren.
-[br]Bitte beachte die Zeitverzögerung (5 Minuten).`
+[br]Du kannst diese Funktion benutzen, um deinen Charakter frei zu teleportieren.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 Befreien

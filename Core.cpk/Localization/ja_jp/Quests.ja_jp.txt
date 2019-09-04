@@ -5,7 +5,7 @@ Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
 完成した技術グループ：{0}
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-{0}に
+{0}
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
 作成
@@ -62,7 +62,7 @@ Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 寝袋を置くことで復活ポイントを指定することができます。 次回キャラクターが再出現すると、そこに現れます。
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
-`[*] 寝袋は製造メニューの" Other "カテゴリの下にあります。
+`[*] 寝袋は建設メニューの「その他」カテゴリの下にあります。
 [*]最善の道は、寝袋を家や拠点に置いて、「家で復活する」ことができるようなります。
 [*]最初の寝袋を置くにふさわしい場所を見つけましょう。 他のプレイヤーから離れた場所で、後で自分の拠点として使える場所で設置しましょう。 後で移動したくなっても、大丈夫です。`
 
@@ -98,7 +98,7 @@ Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Description:
 キャンプファイヤーを作ったので、それを使って基本的な食べ物を作ることができます。きのこや肉を持っているなら、調理をして、より栄養価が高く安全な食べ物を作りましょう。
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
-`[*]"レシピを参照"を押すと、キャンプファイヤーで作成できる[b]全てのレシピ[/b]を見ることができます。
+`[*]「レシピを閲覧」を押すと、キャンプファイヤーで作成できる[b]全てのレシピ[/b]を見ることができます。
 [*]何かを調理するためには、[b]適切なレシピを選びましょう[/b]。
 [*]キャンプファイヤーを燃やすには[b]燃料[/b]を必要とします。[b]木材または木炭[/b]を燃料スロットに入れます。
 [*][b]技術メニュー[/b]で[b]新しいレシピ[/b]を学ぶことができます。
@@ -131,7 +131,7 @@ Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Description:
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Hints:
 `[*]制作メニューを使ってツールボックスを作りましょう。
-[*]持っていないのなら、最初にロープを作らないといけません。`
+[*]ロープがなければ、ロープを作る必要があるかもしれません。`
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Name:
 ツールボックスを作成する
@@ -334,10 +334,10 @@ Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
 技術習得1
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
-全てのクリーチャーを殺す
+任意の生き物を殺す
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCreature:
-クリーチャーを略奪する
+任意の生き物を略奪する
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Description:
 ナイフは弱い敵に対して使用する初期の武器です。もっといいものを作れる前に持っておくのは良いことです。
@@ -346,7 +346,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 [*] CryoFallの各武器はいくつかの[b]特別なプロパティ[/b]を持っています。例えば、ナイフは出血を起こす確率が高く、鈍器は骨を壊したり敵を麻痺させたりします。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
-ナイフを作り、クリーチャーを殺す
+ナイフを作り、生き物を殺す
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 もっと良い防具が必要な時が来ました。
@@ -421,7 +421,7 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 グリーンハーブを見つけて使う
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
-狩りに行く時間です！初心者にとっては、危険な動物は避けた方がいいかもしれませんが、他にもたくさんの選択肢があります。
+狩りに行く時間です！初心者にとっては、危険な動物は避けた方がいいかもしれませんが、他にも色々狩りできる獲物がいます。
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Hints:
 `[*]動物を狩るといろいろな戦利品が手に入ります。狩猟スキルも重要な役割を果たしています。
@@ -501,14 +501,14 @@ Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Description:
 特定の分野において、さらに専門化を目指すため、全てのTier 2テクノロジーを完成させることで、強固な基盤を得るでしょう。
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
-`[*]初期の技術（ティア1と2）は比較的安価にアンロックすることができるので、すべて習得すると良いでしょう。
-[*]高度な技術（ティア3以上）の場合は、ごく一部に特化することをお勧めします。どれを学ぶのか、あなたにとって最も重要なものをえらんでください。`
+`[*]初期の技術（Tier 1と2）は比較的安価にアンロックすることができるので、すべて習得すると良いでしょう。
+[*]高度な技術（Tier 3以上）の場合は、ごく一部に特化することをお勧めします。どれを学ぶのか、あなたにとって最も重要なものをえらんでください。`
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
 技術習得2
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
-基地に送電網を設置することは効果を上げる上で重要なステップです。操縦に電気を必要とする高度な構造物がたくさんあります。
+基地に送電網を設置することは効果を上げる上で重要なステップです。操縦に電気を必要とする上級な建築物がたくさんあります。
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
 `[*]電気デバイスは自分の所有地の[b]中[/b]にある場合のみ、利用できます。所有地の外に電気デバイスを作っても意味がありません。

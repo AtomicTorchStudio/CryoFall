@@ -23,7 +23,7 @@
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
-            renderer.DrawOrderOffsetY = 1;
+            renderer.DrawOrderOffsetY = 1.4;
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)

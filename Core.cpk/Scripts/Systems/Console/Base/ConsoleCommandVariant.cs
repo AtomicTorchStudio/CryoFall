@@ -48,7 +48,7 @@
                         byCharacter);
 
                     if (sendNotification
-                        && resultStr.Length < 512
+                        && resultStr.Length < 10000
                         // it will break formatting so let's not include such results
                         && !resultStr.Contains('['))
                     {

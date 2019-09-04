@@ -131,10 +131,10 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
 Osłabienie
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Description:
-Trwałość co najmniej jednego elementu wyposażenia jest bardzo niska. Niedługo ulegnie on uszkodzeniu.
+Jeden lub kilka elementów ekwipunku, ma niską wytrzymałość i może szybko pęknąć.
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
-Uszkodzone wyposażenie
+Uszkodzony ekwipunek
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
 Po spożyciu dużych ilości alkoholu zaczyna ci odbijać.

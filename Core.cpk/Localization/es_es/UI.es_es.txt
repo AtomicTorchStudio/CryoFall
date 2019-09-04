@@ -1354,8 +1354,7 @@ UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `¿Te has atascado en las paredes de tu casa y no puedes salir?
 [br]¿O acaso alguien te ha dado problemas hasta atascarte?
-[br]Puedes usar esta función para teletransportar a tu personaje fuera de ahí.
-[br]Espera a que pase el tiempo indicado (5 minutos).`
+[br]Puedes usar esta función para teletransportar a tu personaje fuera de ahí.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 Liberación

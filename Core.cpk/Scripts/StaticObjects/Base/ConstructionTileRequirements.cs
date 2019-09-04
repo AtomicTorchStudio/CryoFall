@@ -226,7 +226,7 @@
 
         // please note - this is server-side validator only, it's safely skipped by client
         // this version will prevent even the server from spawning objects there
-        public static Validator ValidatorNotRestrictedAreaEvenForServer
+        public static readonly Validator ValidatorNotRestrictedAreaEvenForServer
             = new Validator(ErrorCannotBuildInRestrictedArea,
                             c =>
                             {

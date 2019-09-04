@@ -59,10 +59,6 @@
             droplist.Add(probability: 1 / 10.0,
                          nestedList:
                          new DropItemsList(outputs: 1)
-                             // resources
-                             .Add<ItemExplosives>(count: 25, countRandom: 25, weight: 1 / 4.0)
-                             .Add<ItemBombPrimitive>(weight: 1 / 5.0)
-                             .Add<ItemBombModern>(weight: 1 / 10.0)
                              // weapons
                              .Add<ItemKnifeIron>(weight: 1 / 1.0)
                              .Add<ItemRevolver8mm>(weight: 1 / 1.0)

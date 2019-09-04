@@ -327,7 +327,7 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Name:
 Laboratorium medyczne
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Description:
-Pozwala wytwarzać różne bronie, wyposażenie i amunicję.
+Pozwala wytwarzać różne bronie, ekwipunek i amunicję.
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Name:
 Stół rusznikarski

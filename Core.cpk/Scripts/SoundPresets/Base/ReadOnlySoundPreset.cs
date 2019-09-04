@@ -117,11 +117,28 @@
             float volume = 1,
             float pitch = 1)
         {
+            return this.PlaySound(key: key,
+                                  protoWorldObject: protoWorldObject,
+                                  emitter: out _,
+                                  worldPosition: worldPosition,
+                                  volume: volume,
+                                  pitch: pitch);
+        }
+
+        public bool PlaySound(
+            TSoundKey key,
+            IProtoWorldObject protoWorldObject,
+            Vector2D worldPosition,
+            out IComponentSoundEmitter emitter,
+            float volume = 1,
+            float pitch = 1)
+        {
             var soundResource = this.GetSound(key, repetitionProtectionKey: protoWorldObject);
             this.WriteLog($"Play sound: {key} (\"{soundResource}\") for {protoWorldObject} at {worldPosition}");
             if (soundResource == SoundResource.NoSound)
             {
                 Api.ValidateIsClient();
+                emitter = null;
                 return false;
             }
 
@@ -135,10 +152,10 @@
                 worldPosition += (0, protoCharacter.CharacterWorldHeight);
             }
 
-            var emitter = Api.Client.Audio.PlayOneShot(soundResource,
-                                                       worldPosition,
-                                                       volume: volume,
-                                                       pitch: pitch);
+            emitter = Api.Client.Audio.PlayOneShot(soundResource,
+                                                   worldPosition,
+                                                   volume: volume,
+                                                   pitch: pitch);
             this.ApplyCustomDistance(emitter);
             return true;
         }
@@ -188,18 +205,33 @@
             float volume = 1,
             float pitch = 1)
         {
+            return this.PlaySound(key: key,
+                                  worldPosition: worldPosition,
+                                  emitter: out _,
+                                  volume: volume,
+                                  pitch: pitch);
+        }
+
+        public bool PlaySound(
+            TSoundKey key,
+            Vector2D worldPosition,
+            out IComponentSoundEmitter emitter,
+            float volume = 1,
+            float pitch = 1)
+        {
             var soundResource = this.GetSound(key);
             this.WriteLog($"Play sound: {key} (\"{soundResource}\") at {worldPosition}");
             if (soundResource == SoundResource.NoSound)
             {
                 Api.ValidateIsClient();
+                emitter = null;
                 return false;
             }
 
-            var emitter = Api.Client.Audio.PlayOneShot(soundResource,
-                                                       worldPosition,
-                                                       volume: volume,
-                                                       pitch: pitch);
+            emitter = Api.Client.Audio.PlayOneShot(soundResource,
+                                                   worldPosition,
+                                                   volume: volume,
+                                                   pitch: pitch);
             this.ApplyCustomDistance(emitter);
             return true;
         }

@@ -24,6 +24,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectDoor
@@ -43,6 +44,12 @@
         private const double DrawWorldOffsetYHorizontalDoor = 0.17;
 
         private const double DrawWorldOffsetYVerticalDoor = 0.1;
+
+        private const double HorizontalDoorPhysicsHeight = 0.5;
+
+        private const double VerticalDoorPhysicsWidth = 0.4;
+
+        private const double VerticalDoorPhysicsWidthOffsetX = 0.5 - VerticalDoorPhysicsWidth * 0.5;
 
         private readonly Lazy<ProceduralTexture> lazyHorizontalDoorBlueprintTexture;
 
@@ -119,7 +126,7 @@
 
         public override float StructurePointsMaxForConstructionSite
             => this.StructurePointsMax / 25;
-
+        
         protected ITextureAtlasResource AtlasTextureHorizontal { get; set; }
 
         protected ITextureAtlasResource AtlasTextureVertical { get; set; }
@@ -460,10 +467,20 @@
         {
             var publicState = data.PublicState;
             var isOpened = publicState.IsOpened;
-            var isShouldBeOpened = this.ServerCheckIsDoorShouldBeOpened(data.GameObject, data.PrivateState);
+            var isShouldBeOpened = this.ServerCheckIsDoorShouldBeOpened(data.GameObject,
+                                                                        data.PrivateState);
             if (isOpened == isShouldBeOpened)
             {
                 return;
+            }
+
+            if (!isShouldBeOpened)
+            {
+                // check whether it's possible to close the door now (no obstacles)
+                if (!this.ServerCanCloseDoor(data.GameObject, data.PublicState))
+                {
+                    return;
+                }
             }
 
             isOpened = isShouldBeOpened;
@@ -493,13 +510,12 @@
 
         protected void SharedCreateDoorPhysics(IPhysicsBody physicsBody, bool isHorizontalDoor, bool isOpened)
         {
-            const double horizontalDoorHeight = 0.5;
             double doorSize = this.DoorSizeTiles;
 
             // custom center offset is used for interaction zone raycasting
             physicsBody.SetCustomCenterOffset(
                 isHorizontalDoor
-                    ? (0.5 * doorSize, WallPatterns.PhysicsOffset + horizontalDoorHeight / 2)
+                    ? (0.5 * doorSize, WallPatterns.PhysicsOffset + HorizontalDoorPhysicsHeight / 2)
                     : (0.5, 0.5 * doorSize));
 
             if (isHorizontalDoor)
@@ -509,16 +525,16 @@
                 {
                     const double horizontalDoorBorderWidth = 0.125;
                     physicsBody.AddShapeRectangle(
-                                   size: (horizontalDoorBorderWidth, horizontalDoorHeight),
+                                   size: (horizontalDoorBorderWidth, HorizontalDoorPhysicsHeight),
                                    offset: (0, WallPatterns.PhysicsOffset))
                                .AddShapeRectangle(
-                                   size: (horizontalDoorBorderWidth, horizontalDoorHeight),
+                                   size: (horizontalDoorBorderWidth, HorizontalDoorPhysicsHeight),
                                    offset: (doorSize - horizontalDoorBorderWidth, WallPatterns.PhysicsOffset));
                 }
                 else
                 {
                     physicsBody.AddShapeRectangle(
-                        size: (doorWidth: doorSize, horizontalDoorHeight),
+                        size: (doorWidth: doorSize, HorizontalDoorPhysicsHeight),
                         offset: (0, WallPatterns.PhysicsOffset));
                 }
 
@@ -544,36 +560,34 @@
             }
 
             // vertical door physics
-            const double verticalDoorWidth = 0.4,
-                         horizontalOffset = 0.5 - verticalDoorWidth * 0.5,
-                         doorOpenedColliderHeight = 0.125;
+            const double doorOpenedColliderHeight = 0.125;
 
             if (isOpened)
             {
                 physicsBody.AddShapeRectangle(
-                               size: (verticalDoorWidth, doorOpenedColliderHeight),
-                               offset: (horizontalOffset, 0))
+                               size: (VerticalDoorPhysicsWidth, doorOpenedColliderHeight),
+                               offset: (VerticalDoorPhysicsWidthOffsetX, 0))
                            .AddShapeRectangle(
-                               size: (verticalDoorWidth, doorOpenedColliderHeight),
-                               offset: (horizontalOffset, doorSize - doorOpenedColliderHeight));
+                               size: (VerticalDoorPhysicsWidth, doorOpenedColliderHeight),
+                               offset: (VerticalDoorPhysicsWidthOffsetX, doorSize - doorOpenedColliderHeight));
             }
             else
             {
                 physicsBody.AddShapeRectangle(
-                    size: (verticalDoorWidth, doorWidth: doorSize),
-                    offset: (horizontalOffset, 0));
+                    size: (VerticalDoorPhysicsWidth, doorWidth: doorSize),
+                    offset: (VerticalDoorPhysicsWidthOffsetX, 0));
             }
 
             if (!isOpened)
             {
                 // add closed vertical door hitboxes
                 physicsBody.AddShapeRectangle(
-                               size: (verticalDoorWidth, doorSize + 0.76),
-                               offset: (horizontalOffset, 0),
+                               size: (VerticalDoorPhysicsWidth, doorSize + 0.76),
+                               offset: (VerticalDoorPhysicsWidthOffsetX, 0),
                                group: CollisionGroups.HitboxMelee)
                            .AddShapeRectangle(
-                               size: (verticalDoorWidth, doorSize + 0.86),
-                               offset: (horizontalOffset, 0),
+                               size: (VerticalDoorPhysicsWidth, doorSize + 0.86),
+                               offset: (VerticalDoorPhysicsWidthOffsetX, 0),
                                group: CollisionGroups.HitboxRanged);
             }
 
@@ -685,7 +699,52 @@
             spriteSheetAnimator.SetCurrentFrame(isOpened ? spriteSheetAnimator.FramesTextureResources.Length : 0);
         }
 
-        private bool ServerCheckIsDoorShouldBeOpened(IStaticWorldObject worldObject, TPrivateState privateState)
+        private bool ServerCanCloseDoor(
+            IStaticWorldObject worldObject,
+            TPublicState publicState)
+        {
+            if (!publicState.IsOpened)
+            {
+                return true;
+            }
+
+            // we need to check to ensure there are no obstacles preventing it from closing as it's currently open
+            var physicsSpace = worldObject.PhysicsBody.PhysicsSpace;
+            ITempList<TestResult> testResult;
+
+            var doorSize = this.DoorSizeTiles;
+            if (publicState.IsHorizontalDoor)
+            {
+                testResult = physicsSpace.TestRectangle(
+                    worldObject.TilePosition.ToVector2D() + (0, WallPatterns.PhysicsOffset),
+                    size: (doorWidth: doorSize, HorizontalDoorPhysicsHeight),
+                    collisionGroup: CollisionGroups.Default);
+            }
+            else
+            {
+                testResult = physicsSpace.TestRectangle(
+                    worldObject.TilePosition.ToVector2D() + (VerticalDoorPhysicsWidthOffsetX, 0),
+                    size: (VerticalDoorPhysicsWidth, doorWidth: doorSize),
+                    collisionGroup: CollisionGroups.Default);
+            }
+
+            foreach (var result in testResult)
+            {
+                if (result.PhysicsBody.AssociatedWorldObject is ICharacter)
+                {
+                    // door should be kept opened as there is a character
+                    // which will stuck if the door is closed
+                    return false;
+                }
+            }
+
+            // no obstacles, can be closed
+            return true;
+        }
+
+        private bool ServerCheckIsDoorShouldBeOpened(
+            IStaticWorldObject worldObject,
+            TPrivateState privateState)
         {
             var mode = privateState.AccessMode;
             if (mode == WorldObjectAccessMode.Closed)
@@ -739,6 +798,7 @@
                 }
             }
 
+            // the door should be closed
             return false;
         }
     }

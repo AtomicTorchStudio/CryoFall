@@ -1,10 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
+    using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client.Physics;
     using AtomicTorch.CBND.CoreMod.Helpers.Physics;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Skills;
@@ -198,7 +198,7 @@
             {
                 // initialize delay to next shot
                 state.DamageApplyDelaySecondsRemains = protoWeapon.DamageApplyDelay;
-                SharedCallOnWeaponShot(character);
+                SharedCallOnWeaponShot(character, protoWeapon);
             }
 
             // decrease the remaining time to the damage application
@@ -311,19 +311,34 @@
             }
         }
 
-        private static void SharedCallOnWeaponShot(ICharacter character)
+        private static void SharedCallOnWeaponShot(ICharacter character, IProtoItemWeapon protoWeapon)
         {
             if (IsClient)
             {
                 // start firing weapon on Client-side
-                WeaponSystemClientDisplay.OnWeaponShot(character);
+                WeaponSystemClientDisplay.OnWeaponShot(character,
+                                                       protoWeapon: protoWeapon,
+                                                       fallbackProtoCharacter: character.ProtoCharacter,
+                                                       fallbackPosition: character.Position);
             }
             else // if IsServer
             {
-                using var scopedBy = Api.Shared.GetTempList<ICharacter>();
-                Server.World.GetScopedByPlayers(character, scopedBy);
-                Instance.CallClient(scopedBy,
-                                    _ => _.ClientRemote_OnWeaponShot(character));
+                using var observers = Api.Shared.GetTempList<ICharacter>();
+                var eventNetworkRadius = (byte)Math.Max(
+                    15,
+                    Math.Ceiling(protoWeapon.SoundPresetWeaponDistance.max));
+
+                Server.World.GetCharactersInRadius(character.TilePosition,
+                                                   observers,
+                                                   radius: eventNetworkRadius,
+                                                   onlyPlayers: true);
+                observers.Remove(character);
+
+                Instance.CallClient(observers,
+                                    _ => _.ClientRemote_OnWeaponShot(character,
+                                                                     protoWeapon,
+                                                                     character.ProtoCharacter,
+                                                                     character.Position));
             }
         }
 
@@ -400,7 +415,7 @@
             {
                 SharedEditorPhysicsDebugger.SharedVisualizeTestResults(lineTestResults, collisionGroup);
             }
-            
+
             foreach (var testResult in lineTestResults)
             {
                 var testResultPhysicsBody = testResult.PhysicsBody;
@@ -702,6 +717,12 @@
             groupName: RemoteCallSequenceGroupCharacterFiring)]
         private void ClientRemote_OnWeaponFinished(ICharacter whoFires)
         {
+            if (whoFires == null
+                || !whoFires.IsInitialized)
+            {
+                return;
+            }
+
             WeaponSystemClientDisplay.OnWeaponFinished(whoFires);
         }
 
@@ -719,13 +740,32 @@
             groupName: RemoteCallSequenceGroupCharacterFiring)]
         private void ClientRemote_OnWeaponInputStop(ICharacter whoFires)
         {
+            if (whoFires == null
+                || !whoFires.IsInitialized)
+            {
+                return;
+            }
+
             WeaponSystemClientDisplay.OnWeaponInputStop(whoFires);
         }
 
         [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 60)]
-        private void ClientRemote_OnWeaponShot(ICharacter whoFires)
+        private void ClientRemote_OnWeaponShot(
+            ICharacter whoFires,
+            IProtoItemWeapon protoWeapon,
+            IProtoCharacter fallbackProtoCharacter,
+            Vector2D fallbackPosition)
         {
-            WeaponSystemClientDisplay.OnWeaponShot(whoFires);
+            if (whoFires != null
+                && !whoFires.IsInitialized)
+            {
+                whoFires = null;
+            }
+
+            WeaponSystemClientDisplay.OnWeaponShot(whoFires,
+                                                   protoWeapon,
+                                                   fallbackProtoCharacter,
+                                                   fallbackPosition);
         }
 
         [RemoteCallSettings(
@@ -735,6 +775,12 @@
             groupName: RemoteCallSequenceGroupCharacterFiring)]
         private void ClientRemote_OnWeaponStart(ICharacter whoFires)
         {
+            if (whoFires == null
+                || !whoFires.IsInitialized)
+            {
+                return;
+            }
+
             WeaponSystemClientDisplay.OnWeaponStart(whoFires);
         }
 

@@ -213,13 +213,13 @@ UI/CoreStrings@Gender_Male:
 Mężczyzna
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
-Budownictwo
+Budowanie
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
-Rzemiosło
+Wytwarzanie
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
-Wyposażenie
+Ekwipunek
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
 Mapa
@@ -1354,8 +1354,7 @@ Odblokuj mnie!
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `Jeśli zamurujesz się wewnątrz domu, to się z niego nie wydostaniesz.
 [br]Ktoś cię załatwił i nie możesz się ruszyć?
-[br]Za pomocą tej funkcji przeteleportujesz swoją postać.
-[br]Musisz tylko odczekać 5 minut.`
+[br]Za pomocą tej funkcji przeteleportujesz swoją postać.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 Odblokuj

@@ -4,13 +4,16 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.SoundCue;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public static class WeaponSystemClientDisplay
     {
@@ -38,33 +41,37 @@
             foreach (var hitData in hitObjects)
             {
                 var worldObject = hitData.WorldObject;
-                if (worldObject?.ProtoGameObject == null)
+                if (worldObject != null
+                    && !worldObject.IsInitialized)
                 {
-                    // no such object in current context
-                    if (Api.IsEditor)
-                    {
-                        Api.Logger.Error("Unknown world object on OnWeaponHit(): " + worldObject);
-                    }
-                    else
-                    {
-                        Api.Logger.Warning("Unknown world object on OnWeaponHit(): " + worldObject);
-                    }
-
-                    continue;
+                    worldObject = null;
                 }
 
-                var protoWorldObject = worldObject.ProtoWorldObject;
+                var protoWorldObject = hitData.FallbackProtoWorldObject;
                 var objectSoundMaterial = protoWorldObject.SharedGetObjectSoundMaterial();
 
                 var volume = SoundConstants.VolumeHit;
                 // apply some volume variation
                 volume *= RandomHelper.Range(0.8f, 1.0f);
+                var pitch = RandomHelper.Range(0.95f, 1.05f);
 
-                protoWeapon.SoundPresetHit.PlaySound(
-                    objectSoundMaterial,
-                    worldObject,
-                    volume: volume,
-                    pitch: RandomHelper.Range(0.95f, 1.05f));
+                if (worldObject != null)
+                {
+                    protoWeapon.SoundPresetHit.PlaySound(
+                        objectSoundMaterial,
+                        worldObject,
+                        volume: volume,
+                        pitch: pitch);
+                }
+                else
+                {
+                    protoWeapon.SoundPresetHit.PlaySound(
+                        objectSoundMaterial,
+                        protoWorldObject,
+                        worldPosition: hitData.FallbackTilePosition.ToVector2D(),
+                        volume: volume,
+                        pitch: pitch);
+                }
             }
         }
 
@@ -97,72 +104,122 @@
             }
         }
 
-        public static void OnWeaponShot(ICharacter character)
+        public static void OnWeaponShot(
+            ICharacter character,
+            IProtoItemWeapon protoWeapon,
+            IProtoCharacter fallbackProtoCharacter,
+            Vector2D fallbackPosition)
         {
-            if (character?.ProtoGameObject == null)
-            {
-                if (Api.IsEditor)
-                {
-                    Api.Logger.Error("Unknown character on OnWeaponShot(): " + character);
-                }
-                else
-                {
-                    Api.Logger.Warning("Unknown character on OnWeaponShot(): " + character);
-                }
+            var position = character?.Position ?? fallbackPosition;
+            position += (0, fallbackProtoCharacter.CharacterWorldWeaponOffsetRanged);
 
-                return;
-            }
-
-            var clientState = character.GetClientState<BaseCharacterClientState>();
-            if (!clientState.HasWeaponAnimationAssigned)
-            {
-                return;
-            }
+            ClientSoundCueManager.OnSoundEvent(position);
 
             const float volume = SoundConstants.VolumeWeapon;
             var pitch = RandomHelper.Range(0.95f, 1.05f);
 
-            var skeletonRenderer = clientState.SkeletonRenderer;
-            var weapon = GetCharacterCurrentWeaponProto(character);
-
             IComponentSoundEmitter emitter;
-            if (weapon.SoundPresetWeapon.HasSound(WeaponSound.Shot))
+            var soundPresetWeapon = protoWeapon.SoundPresetWeapon;
+            if (soundPresetWeapon.HasSound(WeaponSound.Shot))
             {
                 // play shot sound from weapon
-                weapon.SoundPresetWeapon.PlaySound(WeaponSound.Shot,
-                                                   character,
-                                                   out emitter,
-                                                   volume: volume,
-                                                   pitch: pitch);
+                if (character != null)
+                {
+                    soundPresetWeapon.PlaySound(WeaponSound.Shot,
+                                                character,
+                                                out emitter,
+                                                volume: volume,
+                                                pitch: pitch);
+                }
+                else
+                {
+                    soundPresetWeapon.PlaySound(WeaponSound.Shot,
+                                                protoWorldObject: fallbackProtoCharacter,
+                                                worldPosition: position,
+                                                out emitter,
+                                                volume: volume,
+                                                pitch: pitch);
+                }
             }
             else
             {
                 // play sounds from the skeleton instead
-                var characterSkeleton = clientState.CurrentProtoSkeleton;
-                if (!characterSkeleton.SoundPresetWeapon.PlaySound(WeaponSound.Shot,
-                                                                   character,
-                                                                   out emitter,
-                                                                   volume))
+                ProtoCharacterSkeleton characterSkeleton = null;
+                if (character != null)
                 {
-                    // no method returned true
-                    // fallback to the default weapon sound (if there is no, it will be logged into the audio log)
-                    weapon.SoundPresetWeapon.PlaySound(WeaponSound.Shot,
-                                                       character,
-                                                       out emitter,
-                                                       volume: volume,
-                                                       pitch: pitch);
+                    var clientState = character.GetClientState<BaseCharacterClientState>();
+                    if (clientState.HasWeaponAnimationAssigned)
+                    {
+                        characterSkeleton = clientState.CurrentProtoSkeleton;
+                    }
+                }
+                else
+                {
+                    fallbackProtoCharacter.SharedGetSkeletonProto(character: null,
+                                                                  out var characterSkeleton1,
+                                                                  out _);
+                    characterSkeleton = (ProtoCharacterSkeleton)characterSkeleton1;
+                }
+
+                if (characterSkeleton == null)
+                {
+                    emitter = null;
+                }
+                else
+                {
+                    if (character != null)
+                    {
+                        if (!characterSkeleton.SoundPresetWeapon.PlaySound(WeaponSound.Shot,
+                                                                           character,
+                                                                           out emitter,
+                                                                           volume))
+                        {
+                            // no method returned true
+                            // fallback to the default weapon sound (if there is no, it will be logged into the audio log)
+                            soundPresetWeapon.PlaySound(WeaponSound.Shot,
+                                                        character,
+                                                        out emitter,
+                                                        volume: volume,
+                                                        pitch: pitch);
+                        }
+                    }
+                    else if (!characterSkeleton.SoundPresetWeapon.PlaySound(WeaponSound.Shot,
+                                                                            protoWorldObject: fallbackProtoCharacter,
+                                                                            worldPosition: position,
+                                                                            out emitter,
+                                                                            volume))
+                    {
+                        // no method returned true
+                        // fallback to the default weapon sound (if there is no, it will be logged into the audio log)
+                        soundPresetWeapon.PlaySound(WeaponSound.Shot,
+                                                    protoWorldObject: fallbackProtoCharacter,
+                                                    worldPosition: position,
+                                                    out emitter,
+                                                    volume: volume,
+                                                    pitch: pitch);
+                    }
                 }
             }
 
             if (emitter != null)
             {
-                var distance = weapon.SoundPresetWeaponDistance;
+                var distance = protoWeapon.SoundPresetWeaponDistance;
                 emitter.CustomMinDistance = distance.min;
                 emitter.CustomMaxDistance = distance.max;
             }
 
-            if (weapon is IProtoItemWeaponRanged rangedWeapon)
+            if (protoWeapon is IProtoItemWeaponRanged rangedWeapon
+                && character != null
+                && ReferenceEquals(protoWeapon, GetCharacterCurrentWeaponProto(character)))
             {
+                // add muzzle flash
+                var clientState = character.GetClientState<BaseCharacterClientState>();
+                if (!clientState.HasWeaponAnimationAssigned)
+                {
+                    return;
+                }
+
+                var skeletonRenderer = clientState.SkeletonRenderer;
                 CreateMuzzleFlash(rangedWeapon, character, skeletonRenderer);
 
                 var recoilAnimationName = rangedWeapon.CharacterAnimationAimingRecoilName;

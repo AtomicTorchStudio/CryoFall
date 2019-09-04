@@ -10,10 +10,17 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectSmallMushroomPink : ProtoObjectSmallGatherableVegetation
     {
         public override string Name => "Pink mushroom";
+
+        // has light source
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -3,
+                                                                       minY: -3,
+                                                                       maxX: 3,
+                                                                       maxY: 3);
 
         protected override TimeSpan TimeToMature => TimeSpan.FromHours(1);
 

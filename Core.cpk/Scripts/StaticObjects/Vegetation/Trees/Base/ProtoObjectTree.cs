@@ -35,6 +35,11 @@
 
         public override float StructurePointsMax => 600;
 
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
+                                                                       minY: 0,
+                                                                       maxX: 1,
+                                                                       maxY: 4);
+
         protected override void ClientAddShadowRenderer(ClientInitializeData data)
         {
             // no shadow
@@ -105,8 +110,8 @@
         {
             obstacleBlockDamageCoef = 1;
             if (!PveSystem.SharedIsAllowStructureDamage(weaponCache.Character,
-                                                       targetObject,
-                                                       showClientNotification: false))
+                                                        targetObject,
+                                                        showClientNotification: false))
             {
                 return 0;
             }
@@ -145,8 +150,8 @@
         {
             data.PhysicsBody
                 .AddShapeCircle(radius: 0.25, center: (0.5, 0.35))
-                .AddShapeRectangle(size: (0.75, 1),  offset: (0.125, 0.1), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.4, 0.35), offset: (0.3, 0.9), group: CollisionGroups.HitboxRanged);
+                .AddShapeRectangle(size: (0.75, 1),   offset: (0.125, 0.1), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.4, 0.35), offset: (0.3, 0.9),   group: CollisionGroups.HitboxRanged);
         }
     }
 

@@ -1351,8 +1351,7 @@ UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `Вы застряли в доме и не можете выйти?
 [br]Или кто-то жестоко подшутил над вами, и вы застряли?
-[br]Воспользуйтесь этой функцией, чтобы телепортировать своего персонажа.
-[br]Пожалуйста, немного подождите (5 минут).`
+[br]Воспользуйтесь этой функцией, чтобы телепортировать своего персонажа.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 `Помощь от "застревания"`

@@ -28,7 +28,6 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesServer;
-    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectPlayerLootContainer
@@ -262,13 +261,9 @@
         {
             tileRequirements
                 .Clear()
-                .Add(new ConstructionTileRequirements.Validator(ConstructionTileRequirements.ErrorNoFreeSpace,
-                                                                c => c.Tile.StaticObjects.All(
-                                                                    _ => _.ProtoStaticWorldObject.Kind
-                                                                         == StaticObjectKind.Floor)))
-                // ensure no static physical objects at tile
+                .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
                 .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyStatic)
-                // ensure no other static objects (including loot)
+                // ensure no other loot containers
                 .Add(new ConstructionTileRequirements.Validator(
                          // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                          "Tile already has a loot container",
@@ -451,7 +446,7 @@
                 }
 
                 // no container spawned - prepare for the next attempt
-                // enqueue all the neighbor tiles
+                // enqueue all the neighbor tiles for each of the tiles checked in the current iteration
                 var checkedQueueLength = checkQueue.Count;
                 for (var index = 0; index < checkedQueueLength; index++)
                 {
@@ -465,16 +460,19 @@
                 // trim checked queue items
                 checkQueue.RemoveRange(0, checkedQueueLength);
 
-                // randomize all the neighbors which will be checked on the next iteration
-                checkQueue.Shuffle();
+                if (checkQueue.Count == 0)
+                {
+                    // unable to create a loot container and neighbor tiles are not candidates for loot spawn
+                    return null;
+                }
             }
 
             // helper method to enqueue not yet checked tiles from the tile neighbors
             void EnqueueNeighbors(Tile tile)
             {
-                var neighborTiles = tile.EightNeighborTiles;
-                foreach (var neighborTile in neighborTiles)
+                for (byte direction = 0; direction < 8; direction++)
                 {
+                    var neighborTile = GetNeighborTile(in tile, direction);
                     if (!checkedTiles.Add(neighborTile.Position))
                     {
                         // the tile is already checked
@@ -501,7 +499,6 @@
                                 if (ensureNoWallsOnTheWay
                                     && staticObject.ProtoStaticWorldObject is IProtoObjectWall)
                                 {
-                                    checkedTiles.Add(neighborTile.Position);
                                     isValidTile = false;
                                     break;
                                 }
@@ -510,7 +507,6 @@
                                     && staticObject.ProtoStaticWorldObject is IProtoObjectDoor
                                     && !staticObject.GetPublicState<ObjectDoorPublicState>().IsOpened)
                                 {
-                                    checkedTiles.Add(neighborTile.Position);
                                     isValidTile = false;
                                     break;
                                 }
@@ -518,15 +514,29 @@
                         }
                     }
 
-                    if (!isValidTile)
+                    if (isValidTile)
                     {
-                        // invalid tile, don't check it anymore
-                        checkedTiles.Add(neighborTile.Position);
-                        continue;
+                        checkQueue.Add(neighborTile);
                     }
-
-                    checkQueue.Add(neighborTile);
                 }
+            }
+
+            // helper method to select neighbor tile
+            static Tile GetNeighborTile(in Tile tile, byte direction)
+            {
+                return direction switch
+                {
+                    0 => tile.NeighborTileLeft,
+                    1 => tile.NeighborTileUp,
+                    2 => tile.NeighborTileRight,
+                    3 => tile.NeighborTileDown,
+                    // diagonal directions are farther away so they checked last
+                    4 => tile.NeighborTileUpLeft,
+                    5 => tile.NeighborTileUpRight,
+                    6 => tile.NeighborTileDownRight,
+                    7 => tile.NeighborTileDownLeft,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
             }
         }
 

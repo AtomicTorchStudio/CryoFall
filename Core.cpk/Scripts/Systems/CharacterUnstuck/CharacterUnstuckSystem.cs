@@ -4,11 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -50,6 +52,8 @@
         public const string NotificationUnstuckSuccessful_Title =
             "Unstuck successful";
 
+        public const double UnstuckDelaySecondsOnEnemyBaseTotal = 10 * 60; // 10 minutes
+
         public const double UnstuckDelaySecondsTotal = 5 * 60; // 5 minutes
 
         private const double MaxUnstuckMovementDistance = 1.5;
@@ -58,6 +62,8 @@
             = IsServer
                   ? new Dictionary<ICharacter, CharacterUnstuckRequest>()
                   : null;
+
+        private static HUDNotificationControl ClientCurrentUnstuckNotification;
 
         public override string Name => "Character unstuck system";
 
@@ -84,30 +90,11 @@
                 return;
             }
 
+            ServerOnUnstuckRequestRemoved(character);
             ServerNotifyUnstuckCancelledCharacterMoved(character);
         }
 
-        protected override void PrepareSystem()
-        {
-            if (IsClient)
-            {
-                // only server will update food and water values
-                return;
-            }
-
-            // configure time interval trigger
-            TriggerTimeInterval.ServerConfigureAndRegister(
-                interval: TimeSpan.FromSeconds(1),
-                callback: this.ServerTimerTickCallback,
-                name: "System." + this.ShortId);
-        }
-
-        private static void ServerNotifyUnstuckCancelledCharacterMoved(ICharacter character)
-        {
-            Instance.CallClient(character, _ => _.ClientRemote_UnstuckFailedCharacterMoved());
-        }
-
-        private static bool SharedValidateCanUnstuck(ICharacter character)
+        public static bool SharedValidateCanUnstuck(ICharacter character)
         {
             using var tempAreas = Api.Shared.GetTempList<ILogicObject>();
             var bounds = new RectangleInt(
@@ -123,6 +110,91 @@
             }
 
             return true;
+        }
+
+        protected override void PrepareSystem()
+        {
+            if (IsClient)
+            {
+                ClientRefreshCurrentUnstuckRequestStatus();
+            }
+            else
+            {
+                // configure server time interval trigger
+                TriggerTimeInterval.ServerConfigureAndRegister(
+                    interval: TimeSpan.FromSeconds(1),
+                    callback: this.ServerTimerTickCallback,
+                    name: "System." + this.ShortId);
+            }
+        }
+
+        private static void ClientRefreshCurrentUnstuckRequestStatus()
+        {
+            // invoke self again a second later
+            ClientTimersSystem.AddAction(delaySeconds: 1,
+                                         ClientRefreshCurrentUnstuckRequestStatus);
+
+            var characterPublicState = ClientCurrentCharacterHelper.PublicState;
+            if (ClientCurrentUnstuckNotification != null)
+            {
+                if (ClientCurrentUnstuckNotification.IsHiding)
+                {
+                    ClientCurrentUnstuckNotification = null;
+                }
+                else if (ClientCurrentUnstuckNotification.Tag != characterPublicState)
+                {
+                    // outdated notification
+                    ClientCurrentUnstuckNotification?.Hide(quick: false);
+                    ClientCurrentUnstuckNotification = null;
+                }
+            }
+
+            if (characterPublicState == null)
+            {
+                ClientCurrentUnstuckNotification?.Hide(quick: false);
+                ClientCurrentUnstuckNotification = null;
+                return;
+            }
+
+            var timeRemains = characterPublicState.UnstuckExecutionTime
+                              - Client.CurrentGame.ServerFrameTimeApproximated;
+
+            if (timeRemains <= 0)
+            {
+                // no active unstuck requests
+                ClientCurrentUnstuckNotification?.Hide(quick: false);
+                ClientCurrentUnstuckNotification = null;
+                return;
+            }
+
+            // has active unstuck request, create or update the notification
+            var message = string.Format(NotificationUnstuckRequested_MessageFormat,
+                                        ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
+
+            if (ClientCurrentUnstuckNotification == null)
+            {
+                ClientCurrentUnstuckNotification = NotificationSystem.ClientShowNotification(
+                    NotificationUnstuckRequested_Title,
+                    message,
+                    autoHide: false);
+                ClientCurrentUnstuckNotification.Tag = characterPublicState;
+            }
+            else
+            {
+                ClientCurrentUnstuckNotification.SetMessage(message);
+            }
+        }
+
+        private static void ServerNotifyUnstuckCancelledCharacterMoved(ICharacter character)
+        {
+            Instance.CallClient(character,
+                                _ => _.ClientRemote_UnstuckFailedCharacterMoved());
+        }
+
+        private static void ServerOnUnstuckRequestRemoved(ICharacter character)
+        {
+            PlayerCharacter.GetPublicState(character)
+                           .UnstuckExecutionTime = 0;
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
@@ -152,15 +224,6 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_UnstuckQueued(double unstuckDelaySecondsTotal)
-        {
-            NotificationSystem.ClientShowNotification(
-                NotificationUnstuckRequested_Title,
-                string.Format(NotificationUnstuckRequested_MessageFormat,
-                              ClientTimeFormatHelper.FormatTimeDuration(unstuckDelaySecondsTotal)));
-        }
-
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
         private void ClientRemote_UnstuckSuccessful()
         {
             NotificationSystem.ClientShowNotification(
@@ -186,13 +249,18 @@
                 return;
             }
 
+            var delay = LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(character.TilePosition,
+                                                                              character)
+                            ? UnstuckDelaySecondsTotal
+                            : UnstuckDelaySecondsOnEnemyBaseTotal;
+
+            var unstuckTime = Server.Game.FrameTime + delay;
+            PlayerCharacter.GetPublicState(character).UnstuckExecutionTime = unstuckTime;
+
             serverRequests.Add(character,
                                new CharacterUnstuckRequest(
-                                   unstuckAfter: Server.Game.FrameTime
-                                                 + UnstuckDelaySecondsTotal,
+                                   unstuckAfter: unstuckTime,
                                    initialPosition: character.Position));
-
-            this.CallClient(character, _ => _.ClientRemote_UnstuckQueued(UnstuckDelaySecondsTotal));
         }
 
         private void ServerTimerTickCallback()
@@ -221,15 +289,15 @@
                         return true; // remove this request
                     }
 
+                    if (!SharedValidateCanUnstuck(character))
+                    {
+                        return true; // remove this request
+                    }
+
                     if (request.UnstuckAfter > time)
                     {
                         // time is not expired yet
                         return false; // don't remove this request
-                    }
-
-                    if (!SharedValidateCanUnstuck(character))
-                    {
-                        return true; // remove this request
                     }
 
                     // try to teleport player away but nearby
@@ -245,7 +313,11 @@
                     this.CallClient(character, _ => _.ClientRemote_UnstuckSuccessful());
                     return true; // remove this request
                 },
-                removeCallback: pair => { });
+                removeCallback: pair =>
+                                {
+                                    var character = pair.Key;
+                                    ServerOnUnstuckRequestRemoved(character);
+                                });
         }
 
         private readonly struct CharacterUnstuckRequest

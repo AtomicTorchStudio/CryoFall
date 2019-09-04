@@ -224,7 +224,7 @@
             void RefreshCurrentSelectedItem()
             {
                 previousSelectedProtoItem?.SharedGetItemSoundPreset()
-                                         .PlaySound(ItemSound.Deselect, limitOnePerFrame: false);
+                                         .PlaySound(ItemSound.Deselect, character);
 
                 currentItemIdleSoundEmitter.Stop();
                 var currentItem = publicState.SelectedHotbarItem;
@@ -238,7 +238,7 @@
                     return;
                 }
 
-                itemSoundPreset.PlaySound(ItemSound.Select, limitOnePerFrame: false);
+                itemSoundPreset.PlaySound(ItemSound.Select, character);
                 var idleSoundResource = itemSoundPreset.GetSound(ItemSound.Idle);
                 if (idleSoundResource != null)
                 {

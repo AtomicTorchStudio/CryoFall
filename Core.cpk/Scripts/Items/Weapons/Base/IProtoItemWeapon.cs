@@ -60,6 +60,11 @@
         double RangeMultipier { get; }
 
         /// <summary>
+        /// Delay (in seconds) when selecting this weapon in hotbar.
+        /// </summary>
+        double ReadyDelayDuration { get; }
+
+        /// <summary>
         /// Sound preset defining hit sounds upon various materials.
         /// </summary>
         ReadOnlySoundPreset<ObjectSoundMaterial> SoundPresetHit { get; }
@@ -71,11 +76,6 @@
         ProtoSkillWeapons WeaponSkillProto { get; }
 
         ITextureResource WeaponTextureResource { get; }
-
-        /// <summary>
-        /// Delay (in seconds) when selecting this weapon in hotbar.
-        /// </summary>
-        double ReadyDelayDuration { get; }
 
         string GetCharacterAnimationNameFire(ICharacter character);
 

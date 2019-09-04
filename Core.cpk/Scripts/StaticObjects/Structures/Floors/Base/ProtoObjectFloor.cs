@@ -43,9 +43,7 @@
 
         public sealed override double ObstacleBlockDamageCoef => 0;
 
-        public void ClientRefreshRenderer(
-            IStaticWorldObject worldObject,
-            bool isNeighborDestroy)
+        public void ClientRefreshRenderer(IStaticWorldObject worldObject)
         {
             if (worldObject.ProtoGameObject != this)
             {
@@ -60,15 +58,6 @@
                 return;
             }
 
-            var frameNumber = Client.CurrentGame.ServerFrameNumber;
-            if (clientState.LastFloorRendererRefreshFrameNumber == frameNumber
-                && !isNeighborDestroy)
-            {
-                // no need to refresh
-                return;
-            }
-
-            clientState.LastFloorRendererRefreshFrameNumber = frameNumber;
             var tile = worldObject.OccupiedTile;
             var textureResource = this.ClientGetTextureForTile(tile);
             clientState.Renderer.TextureResource = textureResource;
@@ -89,7 +78,7 @@
         protected override void ClientDeinitializeStructure(IStaticWorldObject gameObject)
         {
             base.ClientDeinitializeStructure(gameObject);
-            ClientRefreshNeighborFloorsRendering(gameObject, isDestroy: true);
+            ClientFloorRefreshHelper.SharedRefreshNeighborObjects(gameObject, isDestroy: true);
         }
 
         protected virtual ITextureResource ClientGetTextureForTile(Tile tile)
@@ -124,8 +113,8 @@
                 textureResource: null,
                 drawOrder: DrawOrder.Floor);
 
-            this.ClientRefreshRenderer(gameObject, isNeighborDestroy: false);
-            ClientRefreshNeighborFloorsRendering(gameObject, isDestroy: false);
+            this.ClientRefreshRenderer(gameObject);
+            ClientFloorRefreshHelper.SharedRefreshNeighborObjects(gameObject, isDestroy: false);
         }
 
         protected sealed override void PrepareConstructionConfig(
@@ -201,22 +190,6 @@
         // no physics for floor
         protected sealed override void SharedCreatePhysics(CreatePhysicsData data)
         {
-        }
-
-        private static void ClientRefreshNeighborFloorsRendering(
-            IStaticWorldObject gameObject,
-            bool isDestroy)
-        {
-            foreach (var neighborTile in gameObject.OccupiedTile.EightNeighborTiles)
-            {
-                foreach (var obj in neighborTile.StaticObjects)
-                {
-                    if (obj.ProtoWorldObject is IProtoObjectFloor protoFloor)
-                    {
-                        protoFloor.ClientRefreshRenderer(obj, isDestroy);
-                    }
-                }
-            }
         }
 
         /// <summary>

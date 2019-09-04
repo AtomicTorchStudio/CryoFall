@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterUnstuck;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -204,8 +205,16 @@
             }
 
             RegisteredActions.ProcessAndRemove(
-                // remove if cannot interact
-                removeCondition: pair => !SharedIsValidInteraction(pair),
+                removeCondition: pair =>
+                                 {
+                                     if (IsServer)
+                                     {
+                                         CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(pair.Character);
+                                     }
+                                     
+                                     // remove if cannot interact
+                                     return !SharedIsValidInteraction(pair);
+                                 },
                 // abort action when pair removed due to the interaction check failed
                 removeCallback: pair => pair.Value.FinishAction?.Invoke(isAbort: true));
         }

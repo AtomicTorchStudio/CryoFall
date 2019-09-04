@@ -86,6 +86,8 @@
 
         public float StructurePointsMax => 100;
 
+        public BoundsInt ViewBounds { get; } = StaticObjectLayout.DefaultOneTileLayout.Bounds;
+
         public IConstructionTileRequirementsReadOnly TileRequirements { get; }
             = new ConstructionTileRequirements()
               .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)

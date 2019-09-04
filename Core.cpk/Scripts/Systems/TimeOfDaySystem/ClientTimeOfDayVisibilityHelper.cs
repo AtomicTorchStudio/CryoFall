@@ -18,6 +18,14 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
                 return true;
             }
 
+            if (worldObject is ICharacter character
+                && !character.IsNpc)
+            {
+                // player characters are always visible in night
+                // (as it's too easy to override this with mod)
+                return true;
+            }
+
             if (ClientComponentLightingRenderer.AdditionalAmbientLight > 0
                 || ClientComponentLightingRenderer.AdditionalAmbightLightAdditiveFraction > 0)
             {
@@ -38,13 +46,14 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
                 return true;
             }
 
-            if (worldObject is ICharacter character
-                && !character.IsNpc
-                && PartySystem.ClientIsPartyMember(character.Name))
-            {
-                // party members are always visible in night
-                return true;
-            }
+            // not needed now as all characters are visible in night
+            //if (worldObject is ICharacter character
+            //    && !character.IsNpc
+            //    && PartySystem.ClientIsPartyMember(character.Name))
+            //{
+            //    // party members are always visible in night
+            //    return true;
+            //}
 
             // it's night, perform the distance check to closest light source
             Vector2D position;

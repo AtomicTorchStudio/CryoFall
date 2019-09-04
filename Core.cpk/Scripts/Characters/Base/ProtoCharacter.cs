@@ -244,8 +244,19 @@
 
         protected void PlaySound(CharacterSound soundKey, ICharacter character)
         {
-            var clientState = GetClientState(character);
-            clientState.CurrentProtoSkeleton.PlaySound(soundKey, character);
+            ProtoCharacterSkeleton protoCharacterSkeleton;
+            if (character.IsInitialized)
+            {
+                var clientState = GetClientState(character);
+                protoCharacterSkeleton = clientState.CurrentProtoSkeleton;
+            }
+            else
+            {
+                this.SharedGetSkeletonProto(null, out var protoCharacterSkeleton1, out _);
+                protoCharacterSkeleton = (ProtoCharacterSkeleton)protoCharacterSkeleton1;
+            }
+
+            protoCharacterSkeleton.PlaySound(soundKey, character);
         }
 
         protected virtual void PrepareProtoCharacter()

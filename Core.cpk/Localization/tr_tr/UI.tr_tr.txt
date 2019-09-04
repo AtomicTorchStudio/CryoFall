@@ -1354,8 +1354,7 @@ Sıkışıklıktan kurtar beni!
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `Kendini evine tıkadın ve çıkamıyor musun?
 [br]Ya da biri seni rahatsız etti ve sıkıştın mı?
-[br]Bu fonksiyonu kullanıp karakterini başka bir yere ışınlayabilirsin.
-[br]Lütfen zaman gecikmesini bekle (5 dakika).`
+[br]Bu fonksiyonu kullanıp karakterini başka bir yere ışınlayabilirsin.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 Sıkışıklıktan kurtar

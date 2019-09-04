@@ -1344,8 +1344,7 @@ Décoincez-moi !
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `Vous vous êtes emmuré chez vous et vous n'arrivez plus à sortir ?
 [br]Quelqu'un s'en est pris à vous, et vous êtes retrouvé coincé ?
-[br]Vous pouvez utiliser cette fonctionnalité pour téléporter votre personnage ailleurs.
-[br]Veuillez attendre 5 minutes.`
+[br]Vous pouvez utiliser cette fonctionnalité pour téléporter votre personnage ailleurs.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 Déblocage

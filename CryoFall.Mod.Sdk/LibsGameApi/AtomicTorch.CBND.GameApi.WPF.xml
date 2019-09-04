@@ -3723,16 +3723,6 @@
             <param name="who"></param>
             <param name="gameObject"></param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetGameObjectsOfProto``2">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsOfProto``1">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.FixMapTilesAll">
             <summary>
             Fix whole map. No updates will be sent to the players - use it ONLY during initialization of the game, when there are
@@ -3756,6 +3746,11 @@
             Set to true if the result should contain only the player characters (NPC's are
             excluded).
             </param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetGameObjectsOfProto``2">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetScopedByCharacters(AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto,AtomicTorch.GameEngine.Common.DataStructures.ITempList{AtomicTorch.CBND.GameApi.Data.Characters.ICharacter},System.Boolean)">
             <summary>
@@ -3790,6 +3785,11 @@
             <param name="character">Owner of the view.</param>
             <param name="result">Temporary list of static world objects to store the result.</param>
             <param name="sortByDistance">If true, the result will be sorted by distance.</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsOfProto``1">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsOfProtoInBounds``1(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
             <summary>

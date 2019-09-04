@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     internal class ObjectDecorationStatuePragmium : ProtoObjectDecoration
     {
@@ -21,6 +22,12 @@
         public override double ObstacleBlockDamageCoef => 1.0;
 
         public override float StructurePointsMax => 1000;
+
+        // has light source
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -3,
+                                                                       minY: -2,
+                                                                       maxX: 3,
+                                                                       maxY: 3);
 
         protected BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject)
         {

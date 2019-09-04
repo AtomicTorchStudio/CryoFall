@@ -1191,7 +1191,7 @@ Scripts/Items/Generic/ItemPlanks@Description:
 Materiał budowlany, który może również służyć jako paliwo opałowe.
 
 Scripts/Items/Generic/ItemPlanks@Name:
-Deski drewniane
+Deski
 
 Scripts/Items/Generic/ItemPlastic@Description:
 Tworzywo sztuczne wykorzystywane w przemyśle.

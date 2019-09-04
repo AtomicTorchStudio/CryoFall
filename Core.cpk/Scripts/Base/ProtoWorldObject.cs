@@ -522,19 +522,31 @@
                 foreach (var test in obstaclesOnTheWay)
                 {
                     var testPhysicsBody = test.PhysicsBody;
-                    if (testPhysicsBody.AssociatedProtoTile != null)
+                    if (!(testPhysicsBody.AssociatedProtoTile is null))
                     {
                         // obstacle tile on the way
                         return true;
                     }
 
                     var testWorldObject = testPhysicsBody.AssociatedWorldObject;
-                    if (testWorldObject == character
-                        || testWorldObject == worldObject)
+                    if (ReferenceEquals(testWorldObject, worldObject))
                     {
-                        // not an obstacle - it's the character or world object itself
+                        // not an obstacle - it's the world object itself
                         continue;
                     }
+
+                    if (testWorldObject is ICharacter)
+                    {
+                        // characters are not assumed as an obstacle
+                        continue;
+                    }
+
+                    // no need for this check anymore as we're checking for general "is ICharacter" above
+                    //if (ReferenceEquals(testWorldObject, character))
+                    //{
+                    //    // not an obstacle - it's the player's character itself
+                    //    continue;
+                    //}
 
                     if (!testWorldObject.ProtoWorldObject
                                         .SharedIsAllowedObjectToInteractThrough(testWorldObject))
