@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Props.Road;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Triggers;
@@ -42,6 +43,12 @@
                                                                           new Vector2D(position.X + 1.5,
                                                                                        position.Y + 1.5),
                                                                           radius: 7));
+
+            // don't spawn close to roads
+            var restrictionPresetRoads = spawnList.CreateRestrictedPreset()
+                                                  .Add<ObjectPropRoadHorizontal>()
+                                                  .Add<ObjectPropRoadVertical>();
+            presetGeothermalSpring.SetCustomPaddingWith(restrictionPresetRoads, 30);
 
             // special restriction preset for player land claims
             var restrictionPresetLandclaim = spawnList.CreateRestrictedPreset()

@@ -70,7 +70,7 @@
             ClientUpdateHelper.UpdateCallback += this.Update;
             this.storyboardShow.Begin();
             ClientTimersSystem.AddAction(delaySeconds: 5,
-                                                   () => this.StartHideAnimation(quick: false));
+                                         () => this.StartHideAnimation(quick: false));
         }
 
         protected override void OnUnloaded()

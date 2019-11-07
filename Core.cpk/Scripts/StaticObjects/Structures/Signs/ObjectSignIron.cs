@@ -45,9 +45,9 @@
         {
             category = GetCategory<StructureCategoryOther>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            build.AddStageRequiredItem<ItemIngotIron>(count: 2);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;

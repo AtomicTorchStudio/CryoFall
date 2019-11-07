@@ -25,7 +25,8 @@
             ITextureResource icon,
             Action onClick,
             bool autoHide,
-            SoundResource soundToPlay)
+            SoundResource soundToPlay,
+            bool writeToLog = true)
         {
             return instance.ShowInternal(title,
                                          message,
@@ -34,7 +35,8 @@
                                          icon,
                                          onClick,
                                          autoHide,
-                                         soundToPlay);
+                                         soundToPlay,
+                                         writeToLog);
         }
 
         protected override void InitControl()
@@ -81,14 +83,18 @@
             ITextureResource icon,
             Action onClick,
             bool autoHide,
-            SoundResource soundToPlay)
+            SoundResource soundToPlay,
+            bool writeToLog)
         {
-            Api.Logger.Important(
-                string.Format(
-                    "Showing notification:{0}Title: {1}{0}Message: {2}",
-                    Environment.NewLine,
-                    title,
-                    message));
+            if (writeToLog)
+            {
+                Api.Logger.Important(
+                    string.Format(
+                        "Showing notification:{0}Title: {1}{0}Message: {2}",
+                        Environment.NewLine,
+                        title,
+                        message));
+            }
 
             var notificationControl = HUDNotificationControl.Create(
                 title,
@@ -109,7 +115,13 @@
                 // hide the notification control after delay
                 ClientTimersSystem.AddAction(
                     NotificationHideDelaySeconds,
-                    () => notificationControl.Hide(quick: false));
+                    () =>
+                    {
+                        if (notificationControl.IsAutoHide) // still configured as auto hide
+                        {
+                            notificationControl.Hide(quick: false);
+                        }
+                    });
             }
 
             this.HideOldNotificationsIfTooManyDisplayed();

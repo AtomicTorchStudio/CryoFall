@@ -15,6 +15,8 @@
 
         public double FuelCapacity { get; private set; }
 
+        public string FuelTitle { get; private set; }
+
         public IItem Item
         {
             get => this.item;
@@ -48,8 +50,6 @@
                 this.Refresh();
             }
         }
-
-        public string FuelTitle { get; private set; }
 
         private void Refresh()
         {

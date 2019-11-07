@@ -6,11 +6,10 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
-    using AtomicTorch.CBND.CoreMod.Items.Weapons;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -43,10 +42,45 @@
             ICharacterPublicState publicState,
             IItem selectedItem)
         {
-            character.ProtoCharacter.SharedGetSkeletonProto(
-                character,
-                out var newProtoSkeleton,
-                out var skeletonScaleMultiplier);
+            if (!character.IsNpc)
+            {
+                var vehicle = character.SharedGetCurrentVehicle();
+                if (vehicle != null
+                    && !vehicle.IsInitialized)
+                {
+                    // Character has a vehicle which is not yet initialized.
+                    // Don't build a skeleton for it now.
+                    // When vehicle will be initialized,
+                    // it will automatically re-initialize the character and invoke this method.
+                    return;
+                }
+            }
+
+            IProtoCharacterSkeleton newProtoSkeleton = null;
+            double skeletonScaleMultiplier = 0;
+
+            if (publicState is PlayerCharacterPublicState playerCharacterPublicState
+                && playerCharacterPublicState.CurrentVehicle != null
+                && playerCharacterPublicState.CurrentVehicle.IsInitialized)
+            {
+                var protoVehicle = (IProtoVehicle)playerCharacterPublicState.CurrentVehicle.ProtoWorldObject;
+                protoVehicle.SharedGetSkeletonProto(null,
+                                                    out var protoSkeletonVehicle,
+                                                    out var scaleResult);
+                if (!(protoSkeletonVehicle is null))
+                {
+                    newProtoSkeleton = (ProtoCharacterSkeleton)protoSkeletonVehicle;
+                    skeletonScaleMultiplier = scaleResult;
+                }
+            }
+
+            if (newProtoSkeleton is null)
+            {
+                character.ProtoCharacter.SharedGetSkeletonProto(
+                    character,
+                    out newProtoSkeleton,
+                    out skeletonScaleMultiplier);
+            }
 
             var isSkeletonChanged = newProtoSkeleton != clientState.CurrentProtoSkeleton;
             clientState.CurrentProtoSkeleton = (ProtoCharacterSkeleton)newProtoSkeleton;
@@ -74,6 +108,12 @@
 
             var isNewSkeleton = false;
 
+            // create shadow renderer
+            clientState.RendererShadow?.Destroy();
+            clientState.RendererShadow = ((ProtoCharacterSkeleton)newProtoSkeleton)
+                .ClientCreateShadowRenderer(character,
+                                            skeletonScaleMultiplier);
+
             if (skeletonRenderer == null
                 || isSkeletonChanged)
             {
@@ -84,12 +124,11 @@
                     return;
                 }
 
-                var sceneObject = Api.Client.Scene.GetSceneObject(character);
                 var scale = clientState.CurrentProtoSkeleton.WorldScale
                             * clientState.CurrentProtoSkeletonScaleMultiplier;
 
                 // create new skeleton renderer
-                skeletonRenderer = CreateCharacterSkeleton(sceneObject, newProtoSkeleton, scale);
+                skeletonRenderer = CreateCharacterSkeleton(character.ClientSceneObject, newProtoSkeleton, scale);
 
                 clientState.SkeletonRenderer = skeletonRenderer;
                 isNewSkeleton = true;
@@ -119,10 +158,28 @@
                     skeletonComponents);
             }
 
+            if (!character.IsNpc)
+            {
+                var vehicle = character.SharedGetCurrentVehicle();
+                if (vehicle != null
+                    && vehicle.IsInitialized)
+                {
+                    var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
+                    protoVehicle.ClientSetupSkeleton(vehicle,
+                                                     newProtoSkeleton,
+                                                     skeletonRenderer,
+                                                     skeletonComponents);
+                }
+            }
+
             if (selectedItem != null)
             {
                 var activeProtoItem = selectedItem.ProtoGameObject as IProtoItemWithCharacterAppearance;
-                activeProtoItem?.ClientSetupSkeleton(selectedItem, character, skeletonRenderer, skeletonComponents);
+                activeProtoItem?.ClientSetupSkeleton(selectedItem,
+                                                     character,
+                                                     clientState.CurrentProtoSkeleton,
+                                                     skeletonRenderer,
+                                                     skeletonComponents);
             }
 
             if (character.IsCurrentClientCharacter
@@ -144,9 +201,7 @@
             BaseCharacterClientState clientState,
             ICharacterPublicStateWithEquipment publicState)
         {
-            var selectedItem = character.IsCurrentClientCharacter
-                                   ? ClientHotbarSelectedItemManager.SelectedItem
-                                   : publicState.SelectedHotbarItem;
+            var selectedItem = publicState.SelectedItem;
 
             var containerEquipment = publicState.ContainerEquipment;
             if (clientState.LastEquipmentContainerHash == containerEquipment.StateHash
@@ -207,10 +262,20 @@
                 && !(skeleton is SkeletonHumanFemale))
             {
                 // not a human
+                // setup only implants
+                using var equipmentImplants = Api.Shared.WrapInTempList(
+                    containerEquipment.GetItemsOfProto<IProtoItemEquipmentImplant>());
+                foreach (var item in equipmentImplants)
+                {
+                    var proto = (IProtoItemEquipmentImplant)item.ProtoGameObject;
+                    proto.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
+                }
+
                 return;
             }
 
             skeletonRenderer.ResetAttachments();
+            skeleton.ClientResetItemInHand(skeletonRenderer);
 
             bool isMale;
             CharacterHumanFaceStyle faceStyle;
@@ -235,18 +300,19 @@
             }
 
             // setup equipment items
-            var equipmentItems = containerEquipment.GetItemsOfProto<IProtoItemEquipment>().ToList();
-
+            using var equipmentItems = Api.Shared.WrapInTempList(
+                containerEquipment.GetItemsOfProto<IProtoItemEquipment>());
             if (!IsAllowNakedHumans)
             {
                 if (!equipmentItems.Any(i => i.ProtoGameObject is IProtoItemEquipmentLegs))
                 {
                     // no lower cloth - apply generic one
+                    var pants = GenericPantsAttachments.Value;
                     ClientSkeletonAttachmentsLoader.SetAttachments(
                         skeletonRenderer,
                         isMale
-                            ? GenericPantsAttachments.Value.SlotAttachmentsMale
-                            : GenericPantsAttachments.Value.SlotAttachmentsFemale);
+                            ? pants.SlotAttachmentsMale
+                            : pants.SlotAttachmentsFemale);
                 }
 
                 if (!equipmentItems.Any(i => i.ProtoGameObject is IProtoItemEquipmentChest))
@@ -277,7 +343,8 @@
             }
 
             // generate head sprites for human players
-            const string slotName = "Head", attachmentName = "Head";
+            const string slotName = "Head",
+                         attachmentName = "Head";
             skeletonRenderer.SetAttachmentSprite(
                 skeleton.SkeletonResourceFront,
                 slotName,
@@ -309,13 +376,6 @@
                             spriteQualityOffset: skeletonRenderer.SpriteQualityOffset),
                     isTransparent: true,
                     isUseCache: false));
-
-            ClientResetWeaponAttachments(skeletonRenderer);
-        }
-
-        private static void ClientResetWeaponAttachments(IComponentSkeleton skeletonRenderer)
-        {
-            ClientSkeletonItemInHandHelper.Reset(skeletonRenderer);
         }
 
         private static PlaceholderAttachments GetAttachments(

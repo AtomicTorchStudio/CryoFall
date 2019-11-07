@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Construction.Data
 {
-    using System.Windows;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
 

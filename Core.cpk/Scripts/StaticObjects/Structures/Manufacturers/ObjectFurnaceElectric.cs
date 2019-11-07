@@ -13,7 +13,7 @@
 
     public class ObjectFurnaceElectric : ProtoObjectManufacturer
     {
-        private const float VerticalOffset = 0.25f; // vertical offset of the entire thing
+        private const float VerticalOffset = 0.4f; // vertical offset of the entire thing
 
         private readonly TextureResource textureFurnaceActive;
 
@@ -48,7 +48,7 @@
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 1500;
+        public override float StructurePointsMax => 10000;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -57,11 +57,11 @@
             var publicState = data.PublicState;
 
             var worldObject = data.GameObject;
-            var sceneObject = Client.Scene.GetSceneObject(worldObject);
+            var sceneObject = worldObject.ClientSceneObject;
 
             // setup light source
             var lightSource = ClientLighting.CreateLightSourceSpot(
-                Client.Scene.GetSceneObject(worldObject),
+                worldObject.ClientSceneObject,
                 color: LightColors.WoodFiring,
                 size: 3.5,
                 spritePivotPoint: (0.5, 0.5),

@@ -10,7 +10,10 @@
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -19,8 +22,6 @@
 
     public class PveSystem : ProtoSystem<PveSystem>
     {
-        public const double DepositExtractorWithoutDepositActionSpeedMultiplier = 1 / 5.0;
-
         public const string DuelMode_Button_Disable = "Disable duel mode";
 
         public const string DuelMode_Button_Enable = "Enable duel mode";
@@ -41,6 +42,9 @@
         // Displayed when player attempting to take the dropped loot of another player on a PvE server.
         public const string Notification_StuffBelongsToAnotherPlayer_Message =
             "This belongs to another player.";
+
+        // in PvE oil refinery is working slowly but also consuming proportionally less electricity
+        public const double OilRefineryActionSpeedMultiplier = 1 / 4.0;
 
         private static readonly bool serverIsPvE;
 
@@ -206,6 +210,57 @@
             }
 
             // don't allow damage as the object is inside the not-owned land claim area
+            if (IsClient && showClientNotification)
+            {
+                ClientShowNotificationCannotDamagePlayersAndStructures();
+            }
+
+            return false;
+        }
+
+        public static bool SharedIsAllowVehicleDamage(
+            WeaponFinalCache weaponCache,
+            IDynamicWorldObject targetObject,
+            bool showClientNotification)
+        {
+            if (!SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+            {
+                return true;
+            }
+
+            var pilot = targetObject.GetPublicState<VehiclePublicState>()
+                                    .PilotCharacter;
+
+            if (pilot is null)
+            {
+                if (IsClient)
+                {
+                    // unfortunately we cannot perform owner check on the client
+                    return true;
+                }
+
+                if (weaponCache.Character is null)
+                {
+                    // vehicle cannot be damaged by explosions and other non-player stuff
+                    return false;
+                }
+
+                if (WorldObjectOwnersSystem.SharedIsOwner(weaponCache.Character, targetObject))
+                {
+                    // vehicle owner can always damage it
+                    return true;
+                }
+            }
+            else // pilot is not null
+            {
+                if (WeaponDamageSystem.SharedCanHitCharacter(weaponCache,
+                                                             targetCharacter: pilot))
+                {
+                    // probably the vehicle's pilot character is in duel mode
+                    return true;
+                }
+            }
+
             if (IsClient && showClientNotification)
             {
                 ClientShowNotificationCannotDamagePlayersAndStructures();

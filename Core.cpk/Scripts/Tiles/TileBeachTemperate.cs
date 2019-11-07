@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class TileBeachTemperate : ProtoTile
     {

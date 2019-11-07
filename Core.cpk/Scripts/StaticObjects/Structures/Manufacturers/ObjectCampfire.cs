@@ -66,7 +66,7 @@
 
             // setup light source
             var lightSource = ClientLighting.CreateLightSourceSpot(
-                Client.Scene.GetSceneObject(worldObject),
+                worldObject.ClientSceneObject,
                 color: LightColors.WoodFiring,
                 size: 11,
                 spritePivotPoint: (0.5, 0.5),

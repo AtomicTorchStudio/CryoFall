@@ -27,7 +27,7 @@
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 300;
+        public override float StructurePointsMax => 2000;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -46,7 +46,7 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 12);
+            build.AddStageRequiredItem<ItemPlanks>(count: 10);
             build.AddStageRequiredItem<ItemIngotIron>(count: 1);
             build.AddStageRequiredItem<ItemRope>(count: 1);
 

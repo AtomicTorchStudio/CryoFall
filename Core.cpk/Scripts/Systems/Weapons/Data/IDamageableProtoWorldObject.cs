@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.GameApi.Data.World;
 
-    public interface IDamageableProtoWorldObject
+    public interface IDamageableProtoWorldObject : IProtoWorldObject
     {
         /// <summary>
         /// This coefficient is used to decrease the damage done via ray-casting and explosion.

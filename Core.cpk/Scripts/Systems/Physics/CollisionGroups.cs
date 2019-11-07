@@ -14,8 +14,6 @@
 
         private static CollisionGroup defaultGroup;
 
-        private static CollisionGroup defaultWithCollisionToInteractionArea;
-
         private static CollisionGroup hitboxMelee;
 
         private static CollisionGroup hitboxRanged;
@@ -46,18 +44,6 @@
             {
                 InitializeIfNeeded();
                 return defaultGroup;
-            }
-        }
-
-        /// <summary>
-        /// Special group for collision detection between interaction areas and default collision group.
-        /// </summary>
-        public static CollisionGroup DefaultWithCollisionToInteractionArea
-        {
-            get
-            {
-                InitializeIfNeeded();
-                return defaultWithCollisionToInteractionArea;
             }
         }
 
@@ -156,12 +142,6 @@
             clickArea = new CollisionGroup("Click Area", isSensor: true);
             clickArea.SetCollidesWith(clickArea);
             clickArea.SetCollidesWith(characterInteractionArea);
-
-            defaultWithCollisionToInteractionArea = new CollisionGroup(
-                "Default with collision with the interaction area",
-                isSensor: true);
-            defaultWithCollisionToInteractionArea.SetCollidesWith(characterInteractionArea);
-            defaultWithCollisionToInteractionArea.SetCollidesWith(defaultGroup);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

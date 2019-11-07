@@ -129,7 +129,11 @@
                 state.CooldownSecondsRemains -= deltaTime;
             }
 
+            // TODO: restore this condition when we redo UI countdown animation for ViewModelHotbarItemWeaponOverlayControl.ReloadDurationSeconds
+            //if (state.CooldownSecondsRemains <= 0)
+            //{
             WeaponAmmoSystem.SharedUpdateReloading(state, character, deltaTime);
+            //}
 
             if (Api.IsServer
                 && !character.ServerIsOnline
@@ -318,7 +322,7 @@
                 // start firing weapon on Client-side
                 WeaponSystemClientDisplay.OnWeaponShot(character,
                                                        protoWeapon: protoWeapon,
-                                                       fallbackProtoCharacter: character.ProtoCharacter,
+                                                       protoCharacter: character.ProtoCharacter,
                                                        fallbackPosition: character.Position);
             }
             else // if IsServer
@@ -382,21 +386,21 @@
             var weaponCache = weaponState.WeaponCache;
             if (weaponCache == null)
             {
-                // calculate new weapon cache
                 RebuildWeaponCache(character, weaponState);
                 weaponCache = weaponState.WeaponCache;
             }
 
-            // raycast possible victims
+            var characterCurrentVehicle = character.IsNpc
+                                              ? null
+                                              : character.SharedGetCurrentVehicle();
+
             var isMeleeWeapon = protoWeapon is IProtoItemWeaponMelee;
-            var fromPosition = character.Position
-                               + (0, isMeleeWeapon
-                                         ? character.ProtoCharacter.CharacterWorldWeaponOffsetMelee
-                                         : character.ProtoCharacter.CharacterWorldWeaponOffsetRanged);
+            var characterProtoCharacter = (IProtoCharacterCore)character.ProtoCharacter;
+            var fromPosition = characterProtoCharacter.SharedGetWeaponFireWorldPosition(character, isMeleeWeapon);
 
             var toPosition = fromPosition
                              + new Vector2D(weaponCache.RangeMax, 0)
-                                 .RotateRad(character.ProtoCharacter.SharedGetRotationAngleRad(character));
+                                 .RotateRad(characterProtoCharacter.SharedGetRotationAngleRad(character));
 
             var collisionGroup = isMeleeWeapon
                                      ? CollisionGroups.HitboxMelee
@@ -443,7 +447,8 @@
                 }
 
                 var damagedObject = testResultPhysicsBody.AssociatedWorldObject;
-                if (damagedObject == character)
+                if (damagedObject == character
+                    || damagedObject == characterCurrentVehicle)
                 {
                     // ignore collision with self
                     continue;
@@ -471,81 +476,63 @@
                     continue;
                 }
 
-                if (!damageableProto.SharedOnDamage(
-                        weaponCache,
-                        damagedObject,
-                        damageMultiplier,
-                        out var obstacleBlockDamageCoef,
-                        out var damageApplied))
+                using (CharacterDamageContext.Create(attackerCharacter: character,
+                                                    damagedCharacter,
+                                                    protoWeaponSkill))
                 {
-                    // not hit
-                    continue;
-                }
-
-                if (IsServer)
-                {
-                    weaponCache.ProtoWeapon
-                               .ServerOnDamageApplied(weaponCache.Weapon, character, damagedObject, damageApplied);
-
-                    if (damageApplied > 0
-                        && !ReferenceEquals(damagedCharacter, null))
+                    if (!damageableProto.SharedOnDamage(
+                            weaponCache,
+                            damagedObject,
+                            damageMultiplier,
+                            out var obstacleBlockDamageCoef,
+                            out var damageApplied))
                     {
-                        CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(damagedCharacter);
+                        // not hit
+                        continue;
                     }
 
-                    if (damageApplied > 0
-                        && protoWeaponSkill != null)
+                    if (IsServer)
                     {
-                        // give experience for damage
-                        protoWeaponSkill.ServerOnDamageApplied(playerCharacterSkills, damagedObject, damageApplied);
+                        weaponCache.ProtoWeapon
+                                   .ServerOnDamageApplied(weaponCache.Weapon, character, damagedObject, damageApplied);
 
-                        if (!ReferenceEquals(damagedCharacter, null)
-                            && (damagedCharacter.GetPublicState<ICharacterPublicState>()
-                                                .CurrentStats
-                                                .HealthCurrent
-                                <= 0))
+                        if (damageApplied > 0
+                            && !ReferenceEquals(damagedCharacter, null))
                         {
-                            // give weapon experience for kill
-                            Logger.Info("Killed " + damagedCharacter, character);
-                            protoWeaponSkill.ServerOnKill(playerCharacterSkills, killedCharacter: damagedCharacter);
+                            CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(damagedCharacter);
+                        }
 
-                            if (damagedCharacter.ProtoCharacter is ProtoCharacterMob protoMob)
-                            {
-                                // give hunting skill experience for mob kill
-                                var experience = SkillHunting.ExperienceForKill;
-                                experience *= protoMob.MobKillExperienceMultiplier;
-                                if (experience > 0)
-                                {
-                                    playerCharacterSkills.ServerAddSkillExperience<SkillHunting>(experience);
-                                }
-                            }
+                        if (damageApplied > 0)
+                        {
+                            // give experience for damage
+                            protoWeaponSkill?.ServerOnDamageApplied(playerCharacterSkills, damagedObject, damageApplied);
                         }
                     }
-                }
 
-                if (obstacleBlockDamageCoef < 0
-                    || obstacleBlockDamageCoef > 1)
-                {
-                    Logger.Error(
-                        "Obstacle block damage coefficient should be >= 0 and <= 1 - wrong calculation by "
-                        + damageableProto);
-                    break;
-                }
+                    if (obstacleBlockDamageCoef < 0
+                        || obstacleBlockDamageCoef > 1)
+                    {
+                        Logger.Error(
+                            "Obstacle block damage coefficient should be >= 0 and <= 1 - wrong calculation by "
+                            + damageableProto);
+                        break;
+                    }
 
-                //var hitPosition = testResultPhysicsBody.Position + testResult.Penetration;
-                hitObjects.Add(new WeaponHitData(damagedObject)); //, hitPosition));
+                    //var hitPosition = testResultPhysicsBody.Position + testResult.Penetration;
+                    hitObjects.Add(new WeaponHitData(damagedObject)); //, hitPosition));
 
-                if (isMeleeWeapon)
-                {
-                    // currently melee weapon could attack only one object on the ray
-                    break;
-                }
+                    if (isMeleeWeapon)
+                    {
+                        // currently melee weapon could attack only one object on the ray
+                        break;
+                    }
 
-                damageMultiplier = damageMultiplier * (1.0 - obstacleBlockDamageCoef);
-                if (damageMultiplier <= 0)
-                {
-                    // target blocked the damage ray
-                    break;
+                    damageMultiplier = damageMultiplier * (1.0 - obstacleBlockDamageCoef);
+                    if (damageMultiplier <= 0)
+                    {
+                        // target blocked the damage ray
+                        break;
+                    }
                 }
             }
 

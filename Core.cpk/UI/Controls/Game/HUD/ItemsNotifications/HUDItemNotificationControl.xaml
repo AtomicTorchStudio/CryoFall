@@ -24,7 +24,8 @@
                 </DoubleAnimationUsingKeyFrames>
 
                 <DoubleAnimation Storyboard.TargetProperty="Height"
-                                 From="0" To="{Binding RequiredHeight}"
+                                 From="0"
+                                 To="{Binding RequiredHeight}"
                                  Duration="0:0:0.175" />
             </Storyboard>
 
@@ -34,6 +35,12 @@
                     <EasingDoubleKeyFrame Value="1" KeyTime="0" />
                     <EasingDoubleKeyFrame Value="0" KeyTime="0:0:1.5" />
                 </DoubleAnimationUsingKeyFrames>
+
+                <DoubleAnimation Storyboard.TargetProperty="Height"
+                                 From="{Binding RequiredHeight}"
+                                 To="0"
+                                 BeginTime="0:0:1.5"
+                                 Duration="0:0:0.175" />
             </Storyboard>
 
             <Style TargetType="{x:Type TextBlock}">

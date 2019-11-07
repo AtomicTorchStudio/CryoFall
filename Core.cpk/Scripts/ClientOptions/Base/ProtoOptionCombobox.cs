@@ -81,7 +81,7 @@
             out FrameworkElement labelControl,
             out FrameworkElement optionControl)
         {
-            labelControl  = new FormattedTextBlock()
+            labelControl = new FormattedTextBlock()
             {
                 Content = this.Name,
                 VerticalAlignment = VerticalAlignment.Center,

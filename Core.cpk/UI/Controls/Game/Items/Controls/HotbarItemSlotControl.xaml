@@ -50,12 +50,16 @@
             </Border.Style>
         </Border>
 
-        <controls:ItemSlotControl x:Name="ItemSlotControl" Margin="0,1" IsBackgroundEnabled="False" />
+        <controls:ItemSlotControl x:Name="ItemSlotControl" 
+                                  Margin="0,1" 
+                                  IsBackgroundEnabled="False" />
+
         <ContentControl Content="{Binding OverlayControl}" />
 
         <!-- Shortcut key label -->
         <Canvas HorizontalAlignment="Center"
-                VerticalAlignment="Bottom">
+                VerticalAlignment="Bottom"
+                Visibility="{Binding IsShortcutAvailable, ElementName=UserControl}">
             <Border Canvas.Top="-5"
                     Canvas.Left="-8"
                     Style="{StaticResource WidgetBackgroundBorder}"

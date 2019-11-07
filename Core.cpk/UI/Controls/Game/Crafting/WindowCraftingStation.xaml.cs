@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
@@ -8,15 +7,10 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Extensions;
 
     public partial class WindowCraftingStation : BaseUserControlWithWindow
     {
         private IProtoObjectCraftStation protoObjectCraftStation;
-
-        public WindowCraftingStation()
-        {
-        }
 
         public static WindowCraftingStation Instance { get; private set; }
 

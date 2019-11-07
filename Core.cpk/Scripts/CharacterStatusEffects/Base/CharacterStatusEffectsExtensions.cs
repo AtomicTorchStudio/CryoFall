@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -76,6 +77,16 @@
             }
 
             protoStatusEffect.ServerAddIntensity(statusEffect, intensity);
+
+            var publicState = statusEffect.GetPublicState<StatusEffectPublicState>();
+
+            var damageContext = CharacterDamageContext.Current;
+            var byCharacter = damageContext.AttackerCharacter;
+            if (!ReferenceEquals(byCharacter, null))
+            {
+                publicState.ServerStatusEffectWasAddedByCharacter = byCharacter;
+                publicState.ServerStatusEffectWasAddedByCharacterWeaponSkill = damageContext.ProtoWeaponSkill;
+            }
         }
 
         public static void ServerAddStatusEffect<TProtoStatusEffect>(

@@ -7,27 +7,18 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ConstructionTooltip.Data"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     mc:Ignorable="d"
+    x:Name="UserControl"
     VerticalAlignment="Bottom"
     Focusable="False"
     d:DataContext="{d:DesignInstance data:ViewModelConstructionBuildRequirementsTooltip, IsDesignTimeCreatable=True}">
 
-    <Grid MinWidth="128" MinHeight="192">
-        <!--<TextBlock Text="{Binding Title}"
-                   Foreground="#FFFFCC00"
-                   FontSize="24"
-                   FontFamily="{StaticResource CondensedFontFamily}"
-                   FontWeight="Bold"
-                   noesis:Text.Stroke="Black"
-                   noesis:Text.StrokeThickness="3"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"
-                   TextAlignment="Center" />-->
-
+    <Grid MinWidth="128"
+          MinHeight="192">
         <Canvas Width="128"
                 Margin="2.5,176,0,0"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Stretch"
                 IsHitTestVisible="False">
             <Border Width="128">
                 <controls:RequiredItemsPanelControl Items="{Binding StageRequiredItems}"
@@ -38,6 +29,44 @@
                                                     TextStrokeThickness="2" />
             </Border>
         </Canvas>
+
+        <Grid Margin="0,138,0,0"
+              HorizontalAlignment="Center"
+              IsHitTestVisible="False"
+              Visibility="{Binding CanBuildOrRepairNow, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Viewbox Height="25"
+                         Stretch="Uniform"
+                         VerticalAlignment="Center"
+                         Margin="0,-2,4,0">
+                    <Grid>
+                        <Path Stroke="Black"
+                              StrokeThickness="34"
+                              Data="{StaticResource IconGeometryMouseInput}" />
+
+                        <Path Fill="{Binding TextBrush, ElementName=UserControl}"
+                              Data="{StaticResource IconGeometryMouseInput}" />
+
+                        <Path Fill="White"
+                              Data="{StaticResource IconGeometryMouseInputLeftButton}" />
+                    </Grid>
+                </Viewbox>
+
+                <TextBlock Text="{Binding ActionTitle}"
+                           Foreground="{Binding TextBrush, ElementName=UserControl}"
+                           FontSize="27"
+                           LineHeight="24"
+                           LineStackingStrategy="BlockLineHeight"
+                           FontWeight="Bold"
+                           FontFamily="{StaticResource CondensedFontFamily}"
+                           noesis:Text.Stroke="Black"
+                           noesis:Text.StrokeThickness="3"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </Grid>
+
     </Grid>
 
 </base:BaseUserControl>

@@ -28,6 +28,12 @@ Você comeu uma refeição saudável há pouco tempo. Todas as tarefas que execu
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Comida saudável
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
+Há pouco tempo, você comeu uma refeição saborosa. Isso faz sua vida parecer mais alegre.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+Comida saborosa
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Você está sob a influência de um estimulante, ficando temporariamente muito mais forte. Agora, é capaz de executar tarefas que exigem força com mais facilidade.
 
@@ -44,7 +50,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 Um implante quebrado no corpo afeta e muito seu bem-estar. Por causa disso, o máximo de vida (PV) é reduzido.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
-Implante quebrado
+Doença por implante quebrado
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Você quebrou uma perna, o que afeta sua capacidade de movimento. Tentar correr com uma perna quebrada resultará em dor severa. Para curar a fratura, use uma tala.

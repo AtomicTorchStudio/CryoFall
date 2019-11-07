@@ -14,7 +14,7 @@
 
         public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
         {
-            damagedCharacter.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.025); // 15 sec of toxins
+            damagedCharacter.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.05); // 15 seconds
         }
 
         protected override void PrepareDamageDescription(

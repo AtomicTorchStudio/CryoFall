@@ -22,13 +22,13 @@
         // no growth time
         protected override TimeSpan TimeToMature => TimeSpan.Zero;
 
-        protected override void ClientOnObjectDestroyed(Vector2Ushort tilePosition)
+        protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             // play default destroy sound
             this.MaterialDestroySoundPreset.PlaySound(
                 this.ObjectSoundMaterial,
                 this,
-                worldPosition: tilePosition.ToVector2D() + this.Layout.Center,
+                worldPosition: position + this.Layout.Center,
                 volume: SoundConstants.VolumeDestroy,
                 pitch: RandomHelper.Range(0.95f, 1.05f));
         }

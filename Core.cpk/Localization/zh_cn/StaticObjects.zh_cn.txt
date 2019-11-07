@@ -86,13 +86,13 @@ Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
 地热泉
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-地热泉（无限）
+无限温泉
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 天然油田
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-天然油田（无限）
+无限油田
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 采矿炸药
@@ -138,6 +138,9 @@ Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
 大垃圾堆
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+小垃圾堆
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 石头
@@ -207,9 +210,6 @@ Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 裂缝
-
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-烧焦的地面
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 比木桶更宽敞，更坚固。适用于储存大量液体。
@@ -734,6 +734,12 @@ Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 垃圾箱
 
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+自动车辆组装平台。可以被用于生产各种载具。
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+载具组装平台
+
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 允许将电力储存，留作它用。
 
@@ -917,8 +923,14 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 鬼花
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-欧古因
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+奶瓜
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+米
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+香料
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 烟草
@@ -993,7 +1005,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
 棕榈树
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-松树
+云杉
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
 松树

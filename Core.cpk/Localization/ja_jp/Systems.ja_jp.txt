@@ -2,20 +2,20 @@
 ボトルに水を入れるには、水の近くに立つかボトルを井戸に入れてください。
 
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
-モバイルバッテリーが装備されていません。
+補助バッテリーが装備されていません。
 
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NotEnoughCharge:
-モバイルバッテリーに十分な充電がありません。
+補助バッテリーの充電が不足しています。
 
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 {0}を使用できません
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
 `{0}秒後にベッドで復活することができます。
-[br]または、今すぐ復活することができます。`
+[br]または、今すぐランダム地点で復活することもできます。`
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Title:
-ベッドで復活する
+ベッドで復活するまでの時間
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Inaccessible:
 ベッドにアクセスできないようです（周囲に空きスペースがありません）。
@@ -27,16 +27,16 @@ Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed
 ベッドで復活できません
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Message:
-あなたを復活させるのに良い場所はないようです。
+あなたを復活させるのに適した場所がないようです。
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Title:
-ベッドの近くで再出現できません
+ベッドの近くで復活できません
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Message:
 リクエストが処理されるまでお待ちください。
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Title:
-すでにアンスタックを要求しました
+既にアンスタックを要求しました
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Message:
 タイマーが作動している間はキャラクターを動かしてはいけません。アンスタック要求は取り消されました。
@@ -45,26 +45,26 @@ Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCance
 アンスタックをキャンセル済み
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Dead:
-キャラクターは死んでいます。
+キャラクターは死亡しました。
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Title:
-アンスタックができません
+アンスタックできません
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_MessageFormat:
-`{0}をお待ちください。
-[br]動かさないでください。アンスタック要求はキャンセルされます。`
+`{0}お待ちください。
+[br]キャラクターを動かすと、アンスタック要求はキャンセルされます。`
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_Title:
 アンスタック要求
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Message:
-自由です。楽しい！
+自由になりました。ゲームを楽しんで！
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
 アンスタック成功
 
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
-サーバー管理者によってチャットへの参加は禁止されています。禁止期間が切れるまで：{0}
+サーバー管理者によってチャットへの参加が禁止されました。制裁解除まで：{0}
 
 Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 {0}がゲームを離れました
@@ -72,11 +72,14 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0}がゲームに参加しました
 
-Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-{1}を{0}するのはよろしいですか？
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
+{0}をブロックしてもよろしいですか？
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
-後でソーシャルメニューを使ってプレーヤーのブロックを解除することができます。
+後でソーシャルメニューからプレーヤーのブロックを解除することができます。
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
+{0}をブロック解除してもよろしいですか？
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 グローバル
@@ -85,7 +88,7 @@ Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 ローカル
 
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
-そこに建てることはできません
+そこには建てられません
 
 Scripts/Systems/Construction/ConstructionSystem@NotificationCannotPlace:
 配置できません
@@ -94,7 +97,7 @@ Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Messa
 もっとアイテムが必要です。
 
 Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Title:
-建てることができません
+建てられません
 
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
 製作キューがいっぱいです。
@@ -106,13 +109,13 @@ Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruc
 解体できません
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
-{0}は故障し、永遠に消えています。
+{0}が壊れ、永遠に消えました。
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_Title:
-アイテムが壊れた
+アイテム破壊
 
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_MessageFormat:
-`補充するには、燃料アイテムが必要です。
+`補充に必要な燃料アイテム：
 [br]{0}`
 
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_Title:
@@ -128,72 +131,72 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooCl
 他の所有地に近すぎます。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
-その領域は他のプレイヤーが所有しているか、他のプレイヤーの所有地に近すぎます。
+この領域は他のプレイヤーが所有しているか、他のプレイヤーの所有地に近すぎます。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
-資源が出現したばかりでまだ要求できません。その周辺での建設は一時的に制限されています。
+出現したばかりの埋蔵地はまだ所有できません。周辺での建築は一時的に制限されています。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 他の所有地との干渉
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`割り当てられた所有地を使い果たしました。
+`割り当てられた所有地数を使い果たしました。
 [br]新しい技術を研究することによってその数を増やすことができます。`
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
-ゼノジオロジー (Tier 3) を研究して石油とリチウムの鉱床を占領するか、その近くに所有地を配置してください。
+異世界地質学 (レベル 3) を研究して油田とリチウム埋蔵地を所有するか、その近くに所有地を配置してください。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
-`奇襲を受けています。
-[br]基地が攻撃を受けている間は、新しい建造物を建設することはできません。`
+`襲撃を受けています。
+[br]拠点が攻撃を受けている間は、新しい建築物を建築することはできません。`
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
-この建築物は所有地内にのみ建てられます。
+この建築物は所有地内にのみ配置できます。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
 あなたは土地所有者ではありません。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
-基地が奇襲を受けています。
+拠点が襲撃を受けています。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
-新人保護をキャンセルする
+初心者保護をキャンセルする
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
-新人保護をキャンセルしますか？再度有効化することはできません。
+初心者保護をキャンセルしますか？再度有効化することはできません。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
-新人保護で守られています。別のキャラクターに殺された場合にアイテムを失うのを防ぎます。また、その他の死に方をした場合でも他のプレイヤーにアイテムが盗られることはありません。クエストに従って必要な道具や武器を生成し、なるべく早く基地を建設しましょう！
+あなたは現在初心者保護で守られています。他のプレイヤーに殺されてもアイテムを失いません。また、他の死因でアイテムを落とした場合でも他のプレイヤーに盗られることはありません。クエストに従って必要な道具や武器を製作し、なるべく早く拠点を建設しましょう！
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
-新人保護が切れるまで：
+初心者保護が失効するまで：
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-新人保護が有効な間は、他のプレイヤーを攻撃したりバッグやアイテムを奪うことはできません。ただし、この保護は政治メニューからいつでもキャンセルできます。
+初心者保護が有効な間は、他のプレイヤーを攻撃したりバッグやアイテムを奪うことはできません。ただし、この保護は政治メニューからいつでもキャンセルできます。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-新人保護が有効な間はこのアクションは実行できません。ただし、この保護は政治メニューからいつでもキャンセルできます。
+初心者保護が有効な間はこのアクションは実行できません。ただし、この保護は政治メニューからいつでもキャンセルできます。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
-このバッグは新人保護が有効になっているため、所有者のみ拾うことができます。
+このバッグは初心者保護が有効になっているため、所有者のみ拾うことができます。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_ProtectionExpired:
-新人保護が切れました。PvP戦闘に参加できます。ただし、キャラクターが死ぬとすべてのアイテムが失われます。
+初心者保護が失効しました。PvP戦闘に参加できます。ただし、キャラクターが死ぬとすべてのアイテムが失われます。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Title_NewbieProtection:
-新人保護
+初心者保護
 
 Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
-在庫に空き容量がない
+インベントリに空きがありません
 
 Scripts/Systems/Notifications/NotificationSystem@NotificationSomeItemsDropped:
 いくつかのアイテムが地面に落ちました！
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageFormat:
-[b]{0}[/b]はあなたをパーティーに招待しました。
+[b]{0}[/b]があなたをパーティーに招待しました。
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
-注意：あなたが招待を受け入れるなら、[b]現在のパーティーを去る[/b]ことになります。
+注意：あなたが招待を受諾すると、現在のパーティーを[b]去る[/b]ことになります。
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationSentMessageFormat:
 パーティーへの招待が[b]{0}[/b]へ送られました。
@@ -205,16 +208,16 @@ Scripts/Systems/Party/PartySystem@Notification_PlayerAcceptedInviteFormat:
 {0}が{1}からの招待でパーティーに参加しました
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerInvitedFormat:
-{0}が{1}をパーティーに招待しています
+{0}が{1}をパーティーに招待しました
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerLeftPartyFormat:
 {0}はパーティーを去りました
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
-{0}は{1}によってパーティーから削除されました
+{0}は{1}によってパーティーから追放されました
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
-{0}さんがあなたをパーティーから外しました
+{0}さんがあなたをパーティーから追放しました
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
 招待状が見つからないか、招待状は期限切れです。
@@ -232,7 +235,7 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySame
 招待者はすでにパーティーのメンバーです。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
-サーバーの運用者にミュートされたので、招待することはできません。
+サーバー管理者にミュートされたので、招待することはできません。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 招待したプレイヤーはオフラインです。オンラインのプレイヤーだけを招待することができます。
@@ -241,10 +244,10 @@ Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInterac
 やり取りできません。遠すぎるか、建物にアクセスできません。
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
-配電網がありません。
+送電網がありません。
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
-配電網に十分な電力がありません。
+送電網に十分な電力がありません。
 
 Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
 デュエルモードを無効化
@@ -261,7 +264,7 @@ Scripts/Systems/PvE/PveSystem@DuelMode_Title:
 デュエルモード
 
 Scripts/Systems/PvE/PveSystem@Notification_CannotDamagePlayers_Message:
-PvEサーバ上の他のプレイヤーや、プレイヤーに属している建築物にダメージを与えることはできません。
+PvEサーバー上の他のプレイヤーや、プレイヤーに属している建築物にダメージを与えることはできません。
 
 Scripts/Systems/PvE/PveSystem@Notification_OtherPlayerDontHaveDuelMode_Message:
 戦うには、どちらのプレイヤーもデュエルモードが有効化されている必要があります。
@@ -270,33 +273,33 @@ Scripts/Systems/PvE/PveSystem@Notification_StuffBelongsToAnotherPlayer_Message:
 これは他のプレイヤーの所有物です。
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Message:
-土地内にある建築物にダメージを与えられるのは、奇襲の間だけです。
+所有地内にある建築物にダメージを与えられるのは、襲撃の間だけです。
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Title:
 ダメージなし
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
-`奇襲が終了しました。
-[br]進行中の奇襲は継続できます。`
+`襲撃が終了しました。
+[br]進行中の襲撃は継続できます。`
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
-まだ収穫できる物がありません
+まだ収穫できる作物がありません
 
 Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-サーバー：ワールドバックアップが{0}秒で開始されます。
+サーバー：{0}秒後にワールドバックアップが開始されます。
 
 Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
 サーバー：ワールドバックアップが完了しました。
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
-運営者によって、このサーバーから禁止されています。
+運営者によって、このサーバーへの参加を禁止されています。
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinKicked:
-`サーバーから一時的に追い出されました。その他の詳細については、サーバーオペレーターにお問い合わせください。
-[br][br]{0}でサーバーに再参加できます。`
+`サーバーから一時的に追放されました。詳細については、サーバー管理者にお問い合わせください。
+[br][br]{0}後にサーバーに再度参加できます。`
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhitelist:
-`このサーバーの運営者は招待者のみの設定にしています。
+`このサーバーの管理者は招待者のみの設定にしています。
 [br]考えられるその他の詳細については、サーバーの説明を確認してください。`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
@@ -304,51 +307,51 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]重要：[/b]
-これはPvE（プレイヤー対環境）サーバーです。このサーバー上では、プレイヤーは直接または間接的にお互いを攻撃することはできません。このサーバは攻撃的なやり取りなく、平和的な探検のために作られています。殺したり、破壊したり、盗んだり、他のプレイヤーを殺すことはできません。そのような行為がなくとも、危険な生き物や技術のアンロック、世界の探検で最高のCryoFallを体験いただけます。この冒険でどんなことができるか見てみましょう。
+これはPvE（プレイヤー対環境）サーバーです。このサーバー上では、プレイヤーは直接または間接的にお互いを攻撃することはできません。このサーバーは攻撃的なやり取りなく、平和的な探検のために作られています。他のプレイヤーを殺したり、破壊したり、盗んだり、攻撃することはできません。その反面、危険な生物や技術のアンロック、世界の探検など、完全なるCryoFallを体験いただけます。この冒険でどんなことができるか見てみましょう。
 [br]
 [br]
-もっとスリリングで制限のない体験をしたい場合は、PvPサーバーに参加することを検討ください。
+もっとスリリングで制限のない体験をしたい場合は、PvPサーバーに参加することをオススメします。
 [br]
 [br]
 [b]サーバールール：[/b]
-[*]他の参加者を尊重しましょう。いかなる形式でも悪用や差別は許可されません。
-[*]サーバー管理者からの要求は守りましょう。
-[*]チャットを大量に送信したり、不適切な言葉を使用しないでください。
-[*]PvEの制限を厳守してください。
-[*]ゲームルールやメカニズムに違反しないでください。他のプレイヤーの迷惑になります。
+[*] 他のプレイヤーを尊重しましょう。いかなる形式の差別や攻撃的な言動も許されません。
+[*] サーバー管理者の要求を厳守してください。
+[*] 大量のチャットを送信したり不適切な言動は控えてください。
+[*] PvEの制限を厳守してください。
+[*] ゲームルールやメカニズムに違反しないでください。他のプレイヤーの迷惑になります。
 [br]
 [br]
-幸運を！:)`
+幸運を祈ります！:)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
 `CryoFallの公式サーバーへようこそ！
 [br]
 [br]
 [b]重要：[/b]
-これはPvPサーバーです。PvP中心サーバでは、他のプレイヤーから攻撃を受けることがあります。戦い、自分を守る必要があります。常に自分を守り、警戒している必要があります。他の生存者と協力してチャンスを広げることも検討してください。
+これはPvPサーバーです。PvP中心サーバでは、他のプレイヤーから攻撃を受けることがあります。戦って、自己防衛する必要があります。常に警戒し、自分自身をしっかり守らなければなりません。他の生存者と協力して生存確率を上げることも検討してください。
 [br]
 [br]
-もっとリラックスした体験をしたい場合、特に初めてプレイする場合は、PvEサーバーもご検討ください。
+もっと気楽にゲームをしたい、特に初めてプレイする場合は、PvEサーバーをオススメします。
 [br]
 [br]
 [b]サーバールール：[/b]
-[*]他のプレイヤーを尊重しましょう。いかなる形式の差別や攻撃的な言動も許されません。
-[*]サーバー管理者の要求を厳守してください。
-[*]大量のチャットを送信したり不適切な言動は控えてください。
+[*] 他のプレイヤーを尊重しましょう。いかなる形式の差別や攻撃的な言動も許されません。
+[*] サーバー管理者の要求を厳守してください。
+[*] 大量のチャットを送信したり不適切な言動は控えてください。
 [br]
 [br]
-幸運を！:)`
+幸運を祈ります！:)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 {0}へようこそ
 
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
-`サーバーは{0}でシャットダウンします。
+`サーバーは{0}後にシャットダウンします。
 [br]
 [br]理由：
 [br]{1}
 [br]
-[br]安全な場所を見つけて切断してください。そうしないと、タイムアウト時に自動的に切断されます。`
+[br]安全な場所を見つけて切断してください。タイムアウトになると自動的に切断されます。`
 
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_Title:
 シャットダウン
@@ -357,41 +360,65 @@ Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillDiscovered:
 {0}のスキルが見つかりました。
 
 Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLevel:
-{0}レベル{1}。
+{0} レベル{1}。
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-`{0}以上の学習ポイント(LP)があります。ポイントを利用して新しい技術をアンロックすることも検討してください。
+`{0}以上の学習ポイント(LP)があります。ポイントを利用して新しい技術をアンロックするとよいでしょう。
 [br](クリックして技術メニューを開く)`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
 技術をアンロックできません
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotificationBoughtTitle:
-購入済み
+購入完了
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMorePennyCoins:
-あと{0}枚のペニーコインが必要です。
+あと{0}枚の銅貨が必要です。
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMoreShinyCoins:
-あと{0}枚のピカピカのコインが必要です。
+あと{0}枚の金貨が必要です。
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotificationSoldTitle:
-売却済み
+売却完了
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotBuy_Title:
-買えない
+購入できません
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
-売れない
+売却できません
+
+Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
+ブロックされました。 乗り物を置くには組立台から人や物をどけてください。
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
+乗り物に乗れません
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
+乗り物がガレージにあります。どの乗り物組立台からでも取り出せます。
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
+いくつかの乗り物がガレージにあります。どの乗り物組立台からでも取り出せます。
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
+ガレージ内の乗り物
+
+Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
+エネルギーが枯渇しました。
+
+Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
+{0}を使用できません
+
+Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
+すでに水をやりました
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-植物は収穫の準備ができています。今水をまくことに意味はありません。
+収穫の準備ができています。もう水をやる必要はありません。
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 農場の植物だけに水をやることができます。
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_Title:
-水やりができない
+水やりができません
 
 Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Message:
 補充するには、井戸やインベントリの中の水の入ったボトルを使ってください。
@@ -403,7 +430,7 @@ Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Message:
 武器をリロードできません。
 
 Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
-弾薬はありません
+弾薬がありません
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
 所有者に公開
@@ -433,5 +460,5 @@ Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_
 [b]{0}[/b]という名前のプレイヤーが見つかりません。
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
-所有者ではありません。
+あなたは所有者ではありません。
 

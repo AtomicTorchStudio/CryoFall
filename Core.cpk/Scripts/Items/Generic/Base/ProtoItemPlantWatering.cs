@@ -1,12 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Generic
 {
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.Watering;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -27,10 +27,10 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        public const string NotificationAlreadyWatered = "Already watered";
+        // Cannot apply Hygroscopic granules (or similar item) on object as it could be applied only to plants.
+        public const string CanApplyOnlyOnPlants = "Can apply only on plants.";
 
-        public const string NotificationPlantHarvestReady = "The plant is ready to be harvested. No point in watering.";
-
+        // Cannot apply Hygroscopic granules (or similar item) on an object.
         public const string CannotApplyErrorTitle = "Cannot apply here";
 
         // ReSharper disable once StaticMemberInGenericType
@@ -79,7 +79,7 @@
             var objectPlant = tile.StaticObjects.FirstOrDefault(so => so.ProtoStaticWorldObject is IProtoObjectPlant);
             if (objectPlant == null)
             {
-                return GetPlantResult.Fail(CannotApplyErrorTitle, "Can apply only on plants.");
+                return GetPlantResult.Fail(CannotApplyErrorTitle, CanApplyOnlyOnPlants);
             }
 
             if (!objectPlant.ProtoStaticWorldObject
@@ -88,30 +88,10 @@
                                 objectPlant,
                                 writeToLog: false))
             {
-                return GetPlantResult.Fail("Too far!", "Come closer to apply it.");
+                return GetPlantResult.Fail(CoreStrings.Notification_TooFar, null);
             }
 
             return GetPlantResult.Success(objectPlant);
-        }
-
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_CannotApplyAlreadyApplied()
-        {
-            NotificationSystem.ClientShowNotification(
-                CannotApplyErrorTitle,
-                NotificationAlreadyWatered,
-                NotificationColor.Bad,
-                this.Icon);
-        }
-
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_CannotApplyLastHarvest()
-        {
-            NotificationSystem.ClientShowNotification(
-                CannotApplyErrorTitle,
-                NotificationPlantHarvestReady,
-                NotificationColor.Bad,
-                this.Icon);
         }
 
         private bool ServerRemote_ApplyWatering(Vector2Ushort tilePosition, IItem item)
@@ -128,29 +108,23 @@
 
             var objectPlant = result.ObjectPlant;
             var protoPlant = (IProtoObjectPlant)objectPlant.ProtoStaticWorldObject;
-            var plantPrivateState = objectPlant.GetPrivateState<PlantPrivateState>();
 
-            // validate if can apply this
-            var wateringDuration = this.WateringDuration;
-            if (plantPrivateState.ServerTimeWateringEnds >= double.MaxValue)
+            if (!WateringSystem.ServerIsWateringRequired(objectPlant,
+                                                         character,
+                                                         this,
+                                                         protoPlant,
+                                                         this.WateringDuration))
             {
-                // already applied
-                this.CallClient(character, _ => _.ClientRemote_CannotApplyAlreadyApplied());
-                return false;
-            }
-
-            if (plantPrivateState.ProducedHarvestsCount == protoPlant.NumberOfHarvests
-                && protoPlant.NumberOfHarvests > 0)
-            {
-                // no need to apply - last harvest
-                this.CallClient(character, _ => _.ClientRemote_CannotApplyLastHarvest());
+                // no watering required (an error notification is sent during the check)
                 return false;
             }
 
             // apply watering
             ServerItemUseObserver.NotifyItemUsed(character, item);
             Server.Items.SetCount(item, item.Count - 1);
-            protoPlant.ServerOnWatered(character, objectPlant, wateringDuration: wateringDuration);
+            protoPlant.ServerOnWatered(character,
+                                       objectPlant,
+                                       wateringDuration: this.WateringDuration);
 
             // notify client
             Logger.Important($"Watering applied: {this} to {objectPlant}");

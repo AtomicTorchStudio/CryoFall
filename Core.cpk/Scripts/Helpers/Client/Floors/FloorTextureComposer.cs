@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Media;
@@ -300,7 +299,6 @@
             return allCombinations;
         }
 
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         private async Task<IGeneratedTexture2D> GenerateProceduralTextureInternal(
             string textureName,
             TextureAtlasResource sourceTextureAtlas,

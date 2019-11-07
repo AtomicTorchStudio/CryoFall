@@ -34,15 +34,15 @@
             // setup animation
             var animationFrameDurationSeconds = 1 / 8.0;
 
-            Client.Scene
-                  .GetSceneObject(data.GameObject)
-                  .AddComponent<ClientComponentSpriteSheetAnimator>()
-                  .Setup(
-                      data.ClientState.Renderer,
-                      ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
-                          (ITextureAtlasResource)this.DefaultTexture),
-                      frameDurationSeconds: animationFrameDurationSeconds,
-                      randomizeInitialFrame: true);
+            data.GameObject
+                .ClientSceneObject
+                .AddComponent<ClientComponentSpriteSheetAnimator>()
+                .Setup(
+                    data.ClientState.Renderer,
+                    ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
+                        (ITextureAtlasResource)this.DefaultTexture),
+                    frameDurationSeconds: animationFrameDurationSeconds,
+                    randomizeInitialFrame: true);
 
             if (!data.GameObject.OccupiedTile.StaticObjects.Any(
                     o => o.ProtoStaticWorldObject is IProtoObjectExtractor))

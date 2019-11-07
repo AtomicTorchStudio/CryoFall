@@ -18,13 +18,14 @@
             <!--<controls:HotbarItemSlotControl />-->
         </StackPanel>
 
+        <!-- Splitter element in the center to visually distinct first 5 hotbar slots from the next 5 -->
         <Rectangle Width="5"
                    VerticalAlignment="Stretch"
                    Stretch="Fill"
                    UseLayoutRounding="False"
                    Margin="0,1">
             <Rectangle.Fill>
-                <RadialGradientBrush RadiusY="0.667">
+                <RadialGradientBrush RadiusY="0.667" Opacity="0.667">
                     <GradientStop Color="#FFFFFFFF" Offset="0" />
                     <GradientStop Color="#0000BBFF" Offset="1" />
                 </RadialGradientBrush>

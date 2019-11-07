@@ -1,0 +1,51 @@
+﻿Scripts/Vehicles/VehicleHoverboardMk1@Description:
+Lekka deska antygrawitacyjna; stosunkowo tania w produkcji, szybka i nie zużywa dużo paliwa.
+
+Scripts/Vehicles/VehicleHoverboardMk1@Name:
+Deska antygrawitacyjna wer. 1
+
+Scripts/Vehicles/VehicleHoverboardMk2@Description:
+Ciężka deska antygrawitacyjna; bardziej trwała, szybsza i zwrotna, ale droga w produkcji i zużywa więcej paliwa.
+
+Scripts/Vehicles/VehicleHoverboardMk2@Name:
+Deska antygrawitacyjna wer. 2
+
+Scripts/Vehicles/VehicleMechManul@Description:
+Średnia mechaniczna zbroja bojowa zapewniająca znaczną ochronę i pozwalająca przenosić duże ładunki bez kompromisów w innych aspektach.
+
+Scripts/Vehicles/VehicleMechManul@Name:
+Manul
+
+Scripts/Vehicles/VehicleMechSkipper@Description:
+Lekka mechaniczna zbroja bojowa, charakteryzująca się stosunkowo dużą prędkością, a jednocześnie zapewniająca dobrą ochronę i siłę ognia.
+
+Scripts/Vehicles/VehicleMechSkipper@Name:
+Szyper
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotBuildVehicleTitle:
+Nie można budować
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotRepairVehicleTitle:
+Nie można naprawić
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NotInteractingWithVehicleBay:
+Wybuduj ten pojazd w fabryce samochodów.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@RequiredItemsMissing:
+Za mało przedmiotów.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NeedsFreeSpace:
+Zablokowano.[br]Aby użyć schematu, w fabryce nie mogą znajdować się przedmioty ani ludzie.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@NotInteractingWithVehicle:
+Wybierz pojazd, aby go naprawić.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RequiredItemsMissing:
+Za mało przedmiotów.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
+Nie trzeba naprawiać.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
+Wstaw pojazd do fabryki, aby go naprawić.
+

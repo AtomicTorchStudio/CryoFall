@@ -42,8 +42,8 @@
                                     Grid.RowSpan="3"
                                     VerticalAlignment="Center"
                                     Visibility="{Binding VisibilityElectricityControls}">
-                            <!-- Text: Input -->
-                            <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                            <!-- Text: Empty -->
+                            <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
                                        Style="{StaticResource TextBlockStyleCraftingCaption}"
                                        HorizontalAlignment="Center"
                                        Margin="0" />
@@ -78,8 +78,8 @@
                                     VerticalAlignment="Top"
                                     Visibility="{Binding VisibilityFuelControls}"
                                     Margin="0,-14,0,0">
-                            <!-- Text: Input -->
-                            <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleInput}"
+                            <!-- Text: Empty -->
+                            <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
                                        Style="{StaticResource TextBlockStyleCraftingCaption}"
                                        HorizontalAlignment="Center"
                                        Margin="0" />

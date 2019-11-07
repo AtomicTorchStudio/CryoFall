@@ -28,6 +28,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Сытная пища
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
+Вы недавно поели вкусной еды. Теперь жизнь представляется вам более приятной.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+Вкусная пища
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Вы находитесь под действием стимулятора, который временно делает вас сильнее. Вам легче выполнять действия, требующие силы.
 
@@ -44,7 +50,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 Сломанный имплант в теле вредит вашему здоровью. Ваш максимальный уровень здоровья (ОЗ) снижен.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
-Сломанный имплант
+Боль от сломанного импланта
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 У вас сломана нога, ваши перемещения ограничены. Попытка бежать со сломанной ногой вызовет острую боль. Используйте шину, чтобы срастить перелом.

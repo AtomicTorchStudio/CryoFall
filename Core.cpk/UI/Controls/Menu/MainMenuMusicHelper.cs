@@ -21,7 +21,6 @@
             isInitialized = true;
             Client.MasterServer.LoggedInStateChanged += Refresh;
             Client.CurrentGame.ConnectionStateChanged += Refresh;
-            Client.Core.IsCompilingChanged += Refresh;
 
             Refresh();
         }

@@ -107,11 +107,11 @@
         public static void OnWeaponShot(
             ICharacter character,
             IProtoItemWeapon protoWeapon,
-            IProtoCharacter fallbackProtoCharacter,
+            IProtoCharacter protoCharacter,
             Vector2D fallbackPosition)
         {
             var position = character?.Position ?? fallbackPosition;
-            position += (0, fallbackProtoCharacter.CharacterWorldWeaponOffsetRanged);
+            position += (0, protoCharacter.CharacterWorldWeaponOffsetRanged);
 
             ClientSoundCueManager.OnSoundEvent(position);
 
@@ -123,23 +123,12 @@
             if (soundPresetWeapon.HasSound(WeaponSound.Shot))
             {
                 // play shot sound from weapon
-                if (character != null)
-                {
-                    soundPresetWeapon.PlaySound(WeaponSound.Shot,
-                                                character,
-                                                out emitter,
-                                                volume: volume,
-                                                pitch: pitch);
-                }
-                else
-                {
-                    soundPresetWeapon.PlaySound(WeaponSound.Shot,
-                                                protoWorldObject: fallbackProtoCharacter,
-                                                worldPosition: position,
-                                                out emitter,
-                                                volume: volume,
-                                                pitch: pitch);
-                }
+               soundPresetWeapon.PlaySound(WeaponSound.Shot,
+                                            protoWorldObject: protoCharacter,
+                                            worldPosition: position,
+                                            out emitter,
+                                            volume: volume,
+                                            pitch: pitch);
             }
             else
             {
@@ -155,7 +144,7 @@
                 }
                 else
                 {
-                    fallbackProtoCharacter.SharedGetSkeletonProto(character: null,
+                    protoCharacter.SharedGetSkeletonProto(character: null,
                                                                   out var characterSkeleton1,
                                                                   out _);
                     characterSkeleton = (ProtoCharacterSkeleton)characterSkeleton1;
@@ -167,24 +156,8 @@
                 }
                 else
                 {
-                    if (character != null)
-                    {
-                        if (!characterSkeleton.SoundPresetWeapon.PlaySound(WeaponSound.Shot,
-                                                                           character,
-                                                                           out emitter,
-                                                                           volume))
-                        {
-                            // no method returned true
-                            // fallback to the default weapon sound (if there is no, it will be logged into the audio log)
-                            soundPresetWeapon.PlaySound(WeaponSound.Shot,
-                                                        character,
-                                                        out emitter,
-                                                        volume: volume,
-                                                        pitch: pitch);
-                        }
-                    }
-                    else if (!characterSkeleton.SoundPresetWeapon.PlaySound(WeaponSound.Shot,
-                                                                            protoWorldObject: fallbackProtoCharacter,
+                    if (!characterSkeleton.SoundPresetWeapon.PlaySound(WeaponSound.Shot,
+                                                                            protoWorldObject: protoCharacter,
                                                                             worldPosition: position,
                                                                             out emitter,
                                                                             volume))
@@ -192,7 +165,7 @@
                         // no method returned true
                         // fallback to the default weapon sound (if there is no, it will be logged into the audio log)
                         soundPresetWeapon.PlaySound(WeaponSound.Shot,
-                                                    protoWorldObject: fallbackProtoCharacter,
+                                                    protoWorldObject: protoCharacter,
                                                     worldPosition: position,
                                                     out emitter,
                                                     volume: volume,
@@ -342,14 +315,14 @@
             }
 
             // get scene object (of character) to attach the components to
-            var sceneObject = Api.Client.Scene.GetSceneObject(characterWorldObject);
+            var sceneObject = characterWorldObject.ClientSceneObject;
             sceneObject.AddComponent<ClientComponentMuzzleFlash>()
                        .Setup(characterWorldObject, skeletonRenderer, protoWeapon);
         }
 
         private static IProtoItemWeapon GetCharacterCurrentWeaponProto(ICharacter character)
         {
-            return character.GetPublicState<ICharacterPublicState>().CurrentItemWeaponProto;
+            return character.GetPublicState<ICharacterPublicState>().SelectedItemWeaponProto;
         }
 
         private static void RefreshStaticAttackAnimation(
@@ -445,7 +418,7 @@
             IProtoItemWeaponRanged weaponProto,
             IComponentSkeleton skeletonRenderer)
         {
-            var sceneObject = Api.Client.Scene.GetSceneObject(character);
+            var sceneObject = character.ClientSceneObject;
             var componentRecoil = sceneObject.FindComponent<ClientComponentCharacterWeaponRecoilAnimation>()
                                   ?? sceneObject.AddComponent<ClientComponentCharacterWeaponRecoilAnimation>();
             componentRecoil.StartRecoil(character, weaponProto, skeletonRenderer);

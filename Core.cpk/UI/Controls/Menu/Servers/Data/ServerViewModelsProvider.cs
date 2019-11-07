@@ -434,7 +434,12 @@
             this.ScheduleAutoRefresh(viewModelServer);
         }
 
-        private void ServerPublicGuidAddressResolvedHandler(AtomicGuid guid, bool isSuccess, string hostAddress)
+        private void ServerPublicGuidAddressResolvedHandler(
+            AtomicGuid guid,
+            bool isSuccess,
+            string hostAddress,
+            bool isOfficial,
+            bool isFeatured)
         {
             var serverAddress = new ServerAddress(guid, hostAddress);
             var viewModelServer = this.serverViewModels.Find(serverAddress);
@@ -463,8 +468,10 @@
             this.serverViewModels.Remove(serverAddress);
             this.serverViewModels[serverAddress] = viewModelServer;
             viewModelServer.UpdateAddress(serverAddress);
-
             viewModelServer.Reset();
+
+            viewModelServer.IsOfficial = isOfficial;
+            viewModelServer.IsFeatured = isFeatured;
 
             if (this.serversProvider.AreInfoConnectionsEnabled)
             {

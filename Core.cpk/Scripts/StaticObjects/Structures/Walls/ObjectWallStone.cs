@@ -30,8 +30,8 @@
 
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemStone>(count: 4);
-            build.AddStageRequiredItem<ItemClay>(count: 4);
+            build.AddStageRequiredItem<ItemStone>(count: 3);
+            build.AddStageRequiredItem<ItemClay>(count: 3);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;

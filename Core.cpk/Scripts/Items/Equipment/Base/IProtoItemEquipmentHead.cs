@@ -8,7 +8,7 @@
     {
         bool IsHairVisible { get; }
 
-        bool IsHeadVisible  { get; }
+        bool IsHeadVisible { get; }
 
         /// <summary>
         /// Sound preset for character sounds played at "head" on various events.

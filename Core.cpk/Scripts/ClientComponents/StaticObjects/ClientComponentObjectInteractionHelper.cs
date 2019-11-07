@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Actions;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
@@ -24,49 +25,47 @@
         /// <summary>
         /// Current object with which the client is interacting (holding right mouse button).
         /// </summary>
-        private static IStaticWorldObject currentInteractObject;
-
-        private static IStaticWorldObject currentMouseOverObject;
+        private static IWorldObject interactingWithObject;
 
         private ClientInputContext inputContext;
 
-        public static IStaticWorldObject CurrentInteractObject
+        public static IWorldObject InteractingWithObject
         {
-            get => currentInteractObject;
+            get => interactingWithObject;
             private set
             {
-                if (currentInteractObject == value)
+                if (interactingWithObject == value)
                 {
                     return;
                 }
 
                 try
                 {
-                    currentInteractObject?.ProtoWorldObject.ClientInteractFinish(currentInteractObject);
+                    interactingWithObject?.ProtoWorldObject.ClientInteractFinish(interactingWithObject);
                 }
                 catch (Exception ex)
                 {
                     Logger.Exception(ex);
                 }
 
-                currentInteractObject = value;
+                interactingWithObject = value;
 
                 try
                 {
-                    currentInteractObject?.ProtoWorldObject.ClientInteractStart(currentInteractObject);
+                    interactingWithObject?.ProtoWorldObject.ClientInteractStart(interactingWithObject);
                 }
                 catch (Exception ex)
                 {
                     Logger.Exception(ex);
                 }
 
-                if (currentInteractObject == null)
+                if (interactingWithObject == null)
                 {
                     return;
                 }
 
                 var currentAction = ClientCurrentCharacterHelper.PrivateState.CurrentActionState;
-                if (currentAction?.TargetWorldObject == currentInteractObject)
+                if (currentAction?.TargetWorldObject == interactingWithObject)
                 {
                     // interaction is in progress — don't finish it early
                     return;
@@ -74,33 +73,26 @@
 
                 try
                 {
-                    currentInteractObject.ProtoWorldObject.ClientInteractFinish(currentInteractObject);
+                    interactingWithObject.ProtoWorldObject.ClientInteractFinish(interactingWithObject);
                 }
                 finally
                 {
-                    currentInteractObject = null;
+                    interactingWithObject = null;
                 }
             }
         }
 
-        public static IStaticWorldObject CurrentMouseOverObject => currentMouseOverObject;
+        public static IWorldObject MouseOverObject { get; private set; }
 
-        public static bool CurrentMouseOverObjectIsOverClickArea
-            => currentMouseOverObject != null
-               && currentMouseOverObject
-               == FindStaticObjectAtCurrentMousePosition(
-                   Client.Characters.CurrentPlayerCharacter,
-                   CollisionGroups.ClickArea);
-
-        public static IStaticWorldObject FindStaticObjectAtCurrentMousePosition(
+        public static IWorldObject FindObjectAtCurrentMousePosition(
             ICharacter forCharacter,
             CollisionGroup collisionGroup)
         {
-            return FindStaticObjectsAtCurrentMousePosition(forCharacter, collisionGroup)
+            return FindObjectsAtCurrentMousePosition(forCharacter, collisionGroup)
                 .FirstOrDefault();
         }
 
-        public static IEnumerable<IStaticWorldObject> FindStaticObjectsAtCurrentMousePosition(
+        public static IEnumerable<IWorldObject> FindObjectsAtCurrentMousePosition(
             ICharacter forCharacter,
             CollisionGroup collisionGroup)
         {
@@ -112,26 +104,38 @@
                                                              sendDebugEvent: false);
             var list = objectsInTile.AsList();
 
-            // find interactable static object
+            // find interactable object (can be dynamic or static object)
             for (var index = list.Count - 1; index >= 0; index--)
             {
                 var testResult = list[index];
-                var staticWorldObject = testResult.PhysicsBody.AssociatedWorldObject as IStaticWorldObject;
-                if (staticWorldObject?.ProtoStaticWorldObject is IInteractableProtoStaticWorldObject)
+                var worldObject = testResult.PhysicsBody.AssociatedWorldObject;
+                if (worldObject == forCharacter)
+                {
+                    continue;
+                }
+
+                if (worldObject?.ProtoWorldObject is IInteractableProtoWorldObject interactableProtoWorldObject
+                    && interactableProtoWorldObject.IsInteractableObject)
                 {
                     // return first found interactable static world object (latest added to tile if there are multiple objects)
-                    yield return staticWorldObject;
+                    yield return worldObject;
                 }
             }
 
-            // find non-interactable static object
+            // find non-interactable object (can be only static)
             for (var index = list.Count - 1; index >= 0; index--)
             {
                 var testResult = list[index];
-                if (testResult.PhysicsBody.AssociatedWorldObject is IStaticWorldObject staticWorldObject)
+                var worldObject = testResult.PhysicsBody.AssociatedWorldObject;
+                if (worldObject == forCharacter)
                 {
-                    // return first static world object (latest added to tile)
-                    yield return staticWorldObject;
+                    continue;
+                }
+
+                if (worldObject is IStaticWorldObject)
+                {
+                    // return first world object (latest added to tile)
+                    yield return worldObject;
                 }
             }
         }
@@ -139,12 +143,12 @@
         public static void OnInteractionFinished(IWorldObject worldObject)
         {
             if (worldObject == null
-                || CurrentInteractObject != worldObject)
+                || InteractingWithObject != worldObject)
             {
                 return;
             }
 
-            CurrentInteractObject = null;
+            InteractingWithObject = null;
         }
 
         protected override void OnDisable()
@@ -159,29 +163,31 @@
                                                   .HandleAll(this.Update);
         }
 
-        private static void SetCurrentMouseOverObjectWithClickArea(IStaticWorldObject value)
+        private static void SetCurrentMouseOverObject(IWorldObject value)
         {
-            if (value == null
-                && currentMouseOverObject == null)
+            if (value is null
+                && MouseOverObject is null)
             {
                 // no need to update
                 return;
             }
 
-            if (currentMouseOverObject != value)
+            if (MouseOverObject != value)
             {
-                currentMouseOverObject?.ProtoStaticWorldObject.ClientObserving(
-                    currentMouseOverObject,
+                MouseOverObject?.ProtoWorldObject.ClientObserving(
+                    MouseOverObject,
                     isObserving: false);
 
-                currentMouseOverObject = value;
+                MouseOverObject = value;
 
-                currentMouseOverObject?.ProtoStaticWorldObject.ClientObserving(
-                    currentMouseOverObject,
+                MouseOverObject?.ProtoWorldObject.ClientObserving(
+                    MouseOverObject,
                     isObserving: true);
             }
 
-            if (currentMouseOverObject == null)
+            if (MouseOverObject == null
+                // cannot interact while on vehicle
+                || ClientCurrentCharacterHelper.Character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle != null)
             {
                 ClientCursorSystem.CurrentCursorId = CursorId.Default;
                 InteractionTooltip.Hide();
@@ -189,7 +195,12 @@
                 return;
             }
 
-            if (!CurrentMouseOverObjectIsOverClickArea)
+            if (MouseOverObject == null
+                || !MouseOverObject.ProtoWorldObject.IsInteractableObject
+                || (MouseOverObject
+                    != FindObjectAtCurrentMousePosition(
+                        Client.Characters.CurrentPlayerCharacter,
+                        CollisionGroups.ClickArea)))
             {
                 ClientCursorSystem.CurrentCursorId = CursorId.Default;
                 WorldObjectTitleTooltip.Hide();
@@ -198,22 +209,22 @@
 
             if (GeneralOptionDisplayObjectNameTooltip.IsDisplay)
             {
-                var title = currentMouseOverObject.ProtoStaticWorldObject.ClientGetTitle(currentMouseOverObject);
+                var title = MouseOverObject.ProtoWorldObject.ClientGetTitle(MouseOverObject);
                 if (!string.IsNullOrEmpty(title))
                 {
-                    WorldObjectTitleTooltip.ShowOn(currentMouseOverObject, title);
+                    WorldObjectTitleTooltip.ShowOn(MouseOverObject, title);
                 }
             }
 
-            var canInteract = currentMouseOverObject.ProtoStaticWorldObject.SharedIsInsideCharacterInteractionArea(
+            var canInteract = MouseOverObject.ProtoWorldObject.SharedIsInsideCharacterInteractionArea(
                 Client.Characters.CurrentPlayerCharacter,
                 value,
                 writeToLog: false);
 
             CursorId cursorId;
 
-            if (currentMouseOverObject.ProtoStaticWorldObject
-                    is IProtoStaticWorldObjectCustomInteractionCursor cursorProvider)
+            if (MouseOverObject.ProtoWorldObject
+                    is IProtoWorldObjectCustomInteractionCursor cursorProvider)
             {
                 cursorId = cursorProvider.GetInteractionCursorId(canInteract);
             }
@@ -227,13 +238,13 @@
             ClientCursorSystem.CurrentCursorId = cursorId;
 
             if (GeneralOptionDisplayObjectInteractionTooltip.IsDisplay
-                && ClientComponentActionWithProgressWatcher.CurrentInteractionOverWorldObject
-                != currentMouseOverObject)
+                && (ClientComponentActionWithProgressWatcher.CurrentInteractionOverWorldObject
+                    != MouseOverObject))
             {
-                var interactionTooltipText = currentMouseOverObject.ProtoStaticWorldObject.InteractionTooltipText;
+                var interactionTooltipText = MouseOverObject.ProtoWorldObject.InteractionTooltipText;
                 if (interactionTooltipText != null)
                 {
-                    InteractionTooltip.ShowOn(currentMouseOverObject,
+                    InteractionTooltip.ShowOn(MouseOverObject,
                                               interactionTooltipText,
                                               canInteract);
                 }
@@ -245,22 +256,23 @@
             var character = Api.Client.Characters.CurrentPlayerCharacter;
             if (character == null)
             {
-                CurrentInteractObject = null;
+                InteractingWithObject = null;
                 return;
             }
 
             var isCannotStartNewInteraction = WindowsManager.OpenedWindowsCount > 0
                                               || !MainMenuOverlay.IsHidden
                                               || Api.Client.UI.LayoutRoot.IsMouseOver;
-            if (CurrentInteractObject == null
+
+            if (InteractingWithObject == null
                 && isCannotStartNewInteraction)
             {
-                CurrentInteractObject = null;
-                SetCurrentMouseOverObjectWithClickArea(null);
+                InteractingWithObject = null;
+                SetCurrentMouseOverObject(null);
                 return;
             }
 
-            IStaticWorldObject mouseOverObjectCandidate;
+            IWorldObject mouseOverObjectCandidate;
             if (isCannotStartNewInteraction)
             {
                 // cannot start new interaction - don't highlight the mouse over object
@@ -270,20 +282,23 @@
             {
                 // try to find static object at current mouse position
                 // first try to find by click area
-                mouseOverObjectCandidate = FindStaticObjectAtCurrentMousePosition(
-                    character,
-                    CollisionGroups.ClickArea);
+                mouseOverObjectCandidate = FindObjectAtCurrentMousePosition(character, CollisionGroups.ClickArea);
 
                 if (mouseOverObjectCandidate == null)
                 {
                     // second try to find by default collider
-                    mouseOverObjectCandidate = FindStaticObjectAtCurrentMousePosition(
-                        character,
-                        CollisionGroups.Default);
+                    mouseOverObjectCandidate = FindObjectAtCurrentMousePosition(character, CollisionGroups.Default);
                 }
             }
 
-            SetCurrentMouseOverObjectWithClickArea(mouseOverObjectCandidate);
+            SetCurrentMouseOverObject(mouseOverObjectCandidate);
+
+            if (character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle != null)
+            {
+                // cannot interact while on vehicle
+                InteractingWithObject = null;
+                return;
+            }
 
             // uncomment to restore "cancel action when the interact button released"
             //if (ClientInputManager.IsButtonUp(GameButton.ActionInteract))
@@ -295,47 +310,49 @@
 
             if (!ClientInputManager.IsButtonDown(GameButton.ActionInteract))
             {
-                if (CurrentInteractObject == null)
+                if (InteractingWithObject == null)
                 {
                     return;
                 }
 
                 // have a current interaction - check whether it's not valid anymore
-                if (!CurrentInteractObject.ProtoStaticWorldObject.SharedIsInsideCharacterInteractionArea(
+                if (!InteractingWithObject.ProtoWorldObject.SharedIsInsideCharacterInteractionArea(
                         Client.Characters.CurrentPlayerCharacter,
-                        CurrentInteractObject,
+                        InteractingWithObject,
                         writeToLog: false))
                 {
                     Logger.Important(
-                        $"Cannot interact with {nameof(CurrentInteractObject)}: {CurrentInteractObject} - finishing interaction");
-                    CurrentInteractObject = null;
+                        $"Cannot interact with {nameof(InteractingWithObject)}: {InteractingWithObject} - finishing interaction");
+                    InteractingWithObject = null;
                 }
 
                 return;
             }
 
-            if (CurrentInteractObject == null)
+            if (InteractingWithObject == null)
             {
                 // world object interaction button pressed
-                CurrentInteractObject = CurrentMouseOverObject;
+                InteractingWithObject = MouseOverObject;
             }
             else
             {
                 // already interacting with something
-                if (CurrentMouseOverObject == null)
+                if (MouseOverObject == null)
                 {
                     // no current interaction
-                    CurrentInteractObject = null;
+                    InteractingWithObject = null;
                 }
-                else if (CurrentMouseOverObject == CurrentInteractObject)
+                else if (MouseOverObject == InteractingWithObject)
                 {
                     // clicked again on the same object as the current interaction - cancel it
-                    CurrentInteractObject = null;
+                    InteractingWithObject = null;
                 }
-                else
+                else if (MouseOverObject?.ProtoWorldObject is IInteractableProtoWorldObject
+                             protoInteractableWorldObject
+                         && protoInteractableWorldObject.IsInteractableObject)
                 {
                     // change to interact with the current pointed object
-                    CurrentInteractObject = CurrentMouseOverObject;
+                    InteractingWithObject = MouseOverObject;
                 }
             }
         }

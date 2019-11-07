@@ -2,13 +2,26 @@
 {
     using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
+    using AtomicTorch.CBND.GameApi.Data.Items;
 
     public abstract class BaseViewModelConstructionRequirementsTooltip : BaseViewModel
     {
         private ushort stageCountRemains;
+
+        protected BaseViewModelConstructionRequirementsTooltip()
+        {
+            ClientHotbarSelectedItemManager.SelectedItemChanged += this.HotbarSelectedItemChangedHandler;
+            this.RefreshCanBuildOrRepairNow();
+        }
+
+        public abstract string ActionTitle { get; }
+
+        public bool CanBuildOrRepairNow { get; private set; }
 
         public ushort StageCountRemains
         {
@@ -26,8 +39,6 @@
         }
 
         public abstract IReadOnlyList<ProtoItemWithCount> StageRequiredItems { get; }
-
-        public abstract string Title { get; }
 
         protected ushort CalculateStagesCount(
             IConstructionStageConfigReadOnly config,
@@ -56,6 +67,23 @@
             }
 
             return (ushort)stageCountRemains;
+        }
+
+        protected override void DisposeViewModel()
+        {
+            ClientHotbarSelectedItemManager.SelectedItemChanged -= this.HotbarSelectedItemChangedHandler;
+            base.DisposeViewModel();
+        }
+
+        private void HotbarSelectedItemChangedHandler(IItem obj)
+        {
+            this.RefreshCanBuildOrRepairNow();
+        }
+
+        private void RefreshCanBuildOrRepairNow()
+        {
+            var selectedItem = ClientHotbarSelectedItemManager.SelectedItem;
+            this.CanBuildOrRepairNow = selectedItem?.ProtoItem is IProtoItemToolToolbox;
         }
     }
 }

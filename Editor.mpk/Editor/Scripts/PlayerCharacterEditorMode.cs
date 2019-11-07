@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects;
     using AtomicTorch.CBND.CoreMod.Editor.Data;
+    using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -21,9 +22,19 @@
     [RemoteAuthorizeServerOperator]
     public class PlayerCharacterEditorMode : PlayerCharacter
     {
+        private const double DefaultMoveSpeed = 7.5;
+
+        private const double MoveSpeedCtrlModifier = 1 / 3.0;
+
+        private const double MoveSpeedShiftModifier = 3.0;
+
         public override float CharacterWorldHeight => 0;
 
         public override string Name => "Player character in Editor mode";
+
+        public override double PhysicsBodyAccelerationCoef => 7;
+
+        public override double PhysicsBodyFriction { get; } = 7 * DefaultMoveSpeed * MoveSpeedShiftModifier;
 
         public override void ClientDeinitialize(ICharacter character)
         {
@@ -49,6 +60,7 @@
         public void ServerRemote_SwitchToEditorMode()
         {
             var character = ServerRemoteContext.Character;
+            VehicleSystem.ServerCharacterExitCurrentVehicle(character);
             // the order of calls is important here
             Server.Characters.SetSpectatorMode(character, isSpectator: true, reinitilize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacterEditorMode>());
@@ -77,9 +89,9 @@
             }
 
             BootstrapperClientGame.Init(character);
-            Client.Scene.GetSceneObject(character)
-                  .AddComponent<ComponentPlayerInputUpdater>()
-                  .Setup(character);
+            character.ClientSceneObject
+                     .AddComponent<ComponentPlayerInputUpdater>()
+                     .Setup(character);
 
             ClientPostEffectsManager.IsPostEffectsEnabled = false;
             //ClientTileBlendHelper.IsBlendingEnabled = false;
@@ -114,8 +126,9 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            // do not create any physics for spectator characters
+            // do not create any physic shapes for spectator characters
             //base.CreatePhysics(data);
+            data.PhysicsBody.Friction = this.PhysicsBodyFriction;
         }
 
         protected override void SharedGetSkeletonProto(
@@ -133,26 +146,26 @@
             var isShiftKeyHeld = inputService.IsKeyHeld(InputKey.Shift,  evenIfHandled: true);
             var isCtrlKeyHeld = inputService.IsKeyHeld(InputKey.Control, evenIfHandled: true);
 
-            var speed = 5.0;
+            var speed = DefaultMoveSpeed;
             if (isShiftKeyHeld)
             {
-                speed *= 3.0;
+                speed *= MoveSpeedShiftModifier;
             }
 
             if (isCtrlKeyHeld)
             {
-                speed *= 1 / 3.0;
+                speed *= MoveSpeedCtrlModifier;
             }
 
             // multiple speed on the reversed camera zoom factor
             speed *= 1.0 / Math.Sqrt(Client.Rendering.WorldCameraCurrentZoom);
 
-            if (Api.Client.Characters.GetCurrentCharacterMoveSpeed() == speed)
+            if (Api.Client.World.GetDynamicObjectMoveSpeed(character) == speed)
             {
                 return;
             }
 
-            Api.Client.Characters.SetCurrentCharacterMoveSpeed(speed);
+            Api.Client.World.SetDynamicObjectMoveSpeed(character, speed);
             this.CallServer(_ => _.ServerRemote_SetSpeed(speed));
         }
 
@@ -178,7 +191,7 @@
                 return;
             }
 
-            Server.Characters.SetMoveSpeed(character, speed);
+            Server.World.SetDynamicObjectMoveSpeed(character, speed);
         }
 
         private void SharedApplyInput(ICharacter character, PlayerCharacterPrivateState privateState)
@@ -211,21 +224,30 @@
                 directionX = 1;
             }
 
-            Vector2D directionVector = (directionX, directionY);
-
             var moveSpeed = IsServer
-                                ? Server.Characters.GetMoveSpeed(character)
-                                : Client.Characters.GetCurrentCharacterMoveSpeed();
+                                ? Server.World.GetDynamicObjectMoveSpeed(character)
+                                : Client.World.GetDynamicObjectMoveSpeed(character);
 
-            var moveVelocity = directionVector.Normalized * moveSpeed;
+            if (directionX == 0
+                && directionY == 0)
+            {
+                moveSpeed = 0;
+            }
+
+            Vector2D directionVector = (directionX, directionY);
+            var moveAcceleration = this.PhysicsBodyAccelerationCoef * moveSpeed * directionVector.Normalized;
 
             if (IsServer)
             {
-                Server.Characters.SetVelocity(character, moveVelocity);
+                Server.World.SetDynamicObjectPhysicsMovement(character,
+                                                             moveAcceleration,
+                                                             targetVelocity: moveSpeed);
             }
             else
             {
-                Client.Characters.SetVelocity(character, moveVelocity);
+                Client.World.SetDynamicObjectPhysicsMovement(character,
+                                                             moveAcceleration,
+                                                             targetVelocity: moveSpeed);
             }
         }
     }

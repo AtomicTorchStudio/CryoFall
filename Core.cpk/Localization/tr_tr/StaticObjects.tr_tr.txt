@@ -86,13 +86,13 @@ Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
 Jeotermal su kaynağı
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-Jeotermal su kaynağı (sonsuz)
+Sonsuz jeotermal kaynak
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Petrol birikintisi
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-Petrol birikintisi (sonsuz)
+Sonsuz petrol sızması
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Maden çıkarma ücreti
@@ -138,6 +138,9 @@ Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
 Büyük çöp yığını
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+Küçük çöp yığını
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Taş
@@ -207,9 +210,6 @@ Bu kaynaktan maden çıkarmak için kazmayı kullan.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Çatlak
-
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-Yakılmış zemin
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Ahşap varillerden daha geniş ve dayanıklı. Yüksek miktarda sıvı saklamak için kullanışlı.
@@ -734,6 +734,12 @@ Bu çöp kutusunu, istenmeyen eşyalardan hemen kurtulmak için kullanabilirsin.
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 Çöp kutusu
 
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+Araç toplaması için otomatik plarform. Belli bir şematikten yararlanarak her aracı üretmeye yarar.
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+Araç birleştirme sahası
+
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Kişinin jeneratörler tarafından üretilen elektrik enerjisini daha sonra kullanmak için üste depolamasını sağlar.
 
@@ -916,8 +922,14 @@ Mavi ada çayı
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Oni çiçeği
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-Ogurin
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+Sütkavun
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+Pirinç
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+Baharatlar
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 Tütün
@@ -992,7 +1004,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
 Palmiye ağacı
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Çam ağacı
+Ladin
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
 Çam ağacı

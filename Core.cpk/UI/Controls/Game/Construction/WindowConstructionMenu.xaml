@@ -40,7 +40,6 @@
                 <ColumnDefinition Width="180" />
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition />
-
             </Grid.ColumnDefinitions>
 
             <TabControl Grid.Row="0"
@@ -66,7 +65,8 @@
                 <Border BorderThickness="0,0,0,1"
                         BorderBrush="{StaticResource ItemBorderNormalBrush}"
                         Background="{StaticResource ItemBackgroundNormalBrush}">
-                    <core:TextBoxSearch SearchText="{Binding SearchText}"
+                    <core:TextBoxSearch x:Name="TextBoxSearch"
+                                        SearchText="{Binding SearchText}"
                                         Margin="1" />
                 </Border>
 
@@ -74,8 +74,7 @@
                          SelectedItem="{Binding SelectedStructure}"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Top"
-                         Grid.Row="1"
-                         Grid.Column="0">
+                         Grid.Row="1">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -85,9 +84,12 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Icon -->
-                                <Rectangle Fill="{Binding Icon}" Width="32" Height="32" />
+                                <Rectangle Fill="{Binding Icon}"
+                                           Width="32"
+                                           Height="32" />
 
-                                <TextBlock Text="{Binding Title}" Grid.Column="1"
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Title}"
                                            Style="{StaticResource TextBlockItemTitleStyle}"
                                            Margin="6,0,0,0" />
                             </Grid>
@@ -217,15 +219,17 @@
             <Control Style="{StaticResource ControlVerticalSeparatorRight}" Grid.Row="1" />
 
             <!-- Details view -->
-            <Grid Grid.Row="1"
-                  Grid.Column="3"
-                  Margin="0,-2,5,0"
-                  Width="320"
-                  Height="446"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Top"
-                  Visibility="{Binding VisibilityDetailsView}">
-                <Grid DataContext="{Binding SelectedStructure}">
+            <ScrollViewer Grid.Row="1"
+                          Grid.Column="3"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Top"
+                          Height="446"
+                          Visibility="{Binding SelectedStructure, Converter={StaticResource NullToVisibilityConverter}}"
+                          Margin="0,-2,5,0">
+                <Grid DataContext="{Binding SelectedStructure}"
+                      Width="320"
+                      VerticalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -266,12 +270,15 @@
                     </Grid>
 
                     <!-- Big icon (structure preview) -->
-                    <Rectangle Fill="{Binding Icon}"
-                               Grid.Row="1"
-                               Width="150"
-                               Height="150"
-                               VerticalAlignment="Center"
-                               Margin="10" />
+                    <Border Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="10"
+                            Padding="5">
+                        <Rectangle Fill="{Binding Icon}"
+                                   Width="140"
+                                   Height="140" />
+                    </Border>
 
                     <!-- Description text -->
                     <TextBlock Grid.Row="2"
@@ -346,12 +353,13 @@
                                         Foreground="{StaticResource BrushColor6}"
                                         FontWeight="Bold" />
                                     <!-- Text: Total required -->
-                                    <TextBlock Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
-                                               Grid.Row="0"
-                                               Grid.Column="3"
-                                               FontSize="10"
-                                               Foreground="{StaticResource BrushColor6}"
-                                               FontWeight="Bold" />
+                                    <TextBlock
+                                        Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
+                                        Grid.Row="0"
+                                        Grid.Column="3"
+                                        FontSize="10"
+                                        Foreground="{StaticResource BrushColor6}"
+                                        FontWeight="Bold" />
 
                                     <!-- Display icons for required items (one stage only) -->
                                     <controls:RequiredItemsPanelControl Grid.Row="1" Grid.Column="1"
@@ -385,12 +393,13 @@
                                     </Grid.RowDefinitions>
 
                                     <!-- Text: Total required -->
-                                    <TextBlock Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
-                                               Grid.Row="0"
-                                               FontSize="10"
-                                               Foreground="{StaticResource BrushColor6}"
-                                               FontWeight="Bold"
-                                               HorizontalAlignment="Center" />
+                                    <TextBlock
+                                        Text="{x:Static loc:CoreStrings.WindowConstructionMenu_TotalRequired}"
+                                        Grid.Row="0"
+                                        FontSize="10"
+                                        Foreground="{StaticResource BrushColor6}"
+                                        FontWeight="Bold"
+                                        HorizontalAlignment="Center" />
 
                                     <!-- Display icons for required items (total) -->
                                     <controls:RequiredItemsPanelControl Grid.Row="1"
@@ -425,7 +434,7 @@
                     </Grid>
 
                 </Grid>
-            </Grid>
+            </ScrollViewer>
 
         </Grid>
     </core:GameWindow>

@@ -6,8 +6,6 @@
 
     public class BaseUserControlWithWindow : BaseUserControl
     {
-        public GameWindow Window { get; private set; }
-
         public event Action EventWindowClosed;
 
         public event Action EventWindowClosing;
@@ -17,6 +15,8 @@
 
         public bool IsOpened => this.WindowState == GameWindowState.Opened
                                 || this.WindowState == GameWindowState.Opening;
+
+        public GameWindow Window { get; private set; }
 
         public GameWindowState WindowState => this.Window?.State ?? GameWindowState.Closed;
 

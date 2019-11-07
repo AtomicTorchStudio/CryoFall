@@ -20,6 +20,8 @@
 
         public override ushort LandClaimSize => 22;
 
+        public override byte LandClaimTier => 4;
+
         public override string Name => "Land claim (Tier 4)";
 
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;

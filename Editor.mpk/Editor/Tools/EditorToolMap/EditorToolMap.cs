@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolMap
 {
-    using System;
     using System.Diagnostics;
     using System.Threading.Tasks;
     using System.Windows;
@@ -70,7 +69,7 @@
             catch
             {
                 NotificationSystem.ClientShowNotification(
-                    "World is not saved! Read the error in the server log",
+                    "World is not saved![br]Read the error in the server log",
                     color: NotificationColor.Bad);
                 return;
             }
@@ -80,7 +79,7 @@
             }
 
             NotificationSystem.ClientShowNotification(
-                $"World saved successfully!{Environment.NewLine}It took: {stopwatch.Elapsed.TotalSeconds:0.#} sec.",
+                $"World saved successfully![br]It took: {stopwatch.Elapsed.TotalSeconds:0.#} sec.",
                 color: NotificationColor.Good);
         }
 

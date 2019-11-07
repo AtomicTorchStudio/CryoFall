@@ -9,15 +9,23 @@
     xmlns:hud="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     mc:Ignorable="d"
+    x:Name="UserControl"
     d:DataContext="{d:DesignInstance data:ViewModelHUD, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
 
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
 
+            <LinearGradientBrush x:Key="HUDButtonBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" Offset="1" />
+                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}" />
+            </LinearGradientBrush>
+
             <Style TargetType="{x:Type hud:HUDButton}">
-                <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
                 <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="Background" Value="{StaticResource HUDButtonBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource WidgetBorderBrush}" />
+                <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
                 <Setter Property="Focusable" Value="False" />
                 <Setter Property="Width" Value="48" />
                 <Setter Property="Height" Value="51" />
@@ -59,21 +67,12 @@
                                 </VisualStateManager.VisualStateGroups>
                                 <Border Background="#99000000"
                                         CornerRadius="0,0,5,5" />
-                                <Border BorderBrush="{StaticResource WidgetBorderBrush}"
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="1,0,1,1"
                                         CornerRadius="0,0,5,5">
                                     <Grid>
-                                        <Border CornerRadius="0,0,5,5" Margin="-1,0,-1,-1">
-                                            <Border.Background>
-                                                <LinearGradientBrush EndPoint="0.5,1" Opacity="0.75" StartPoint="0.5,0">
-                                                    <GradientStop
-                                                        Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
-                                                        Offset="1" />
-                                                    <GradientStop
-                                                        Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}" />
-                                                </LinearGradientBrush>
-                                            </Border.Background>
-                                        </Border>
+                                        <Border CornerRadius="0,0,5,5" Margin="-1,0,-1,-1"
+                                                Background="{TemplateBinding Background}" />
                                         <Border x:Name="BorderHighlight" CornerRadius="0,0,5,5" Visibility="Collapsed">
                                             <Border.Background>
                                                 <SolidColorBrush Color="#FF6DB6FF" Opacity="0.3" />
@@ -98,6 +97,12 @@
                                     <Rectangle x:Name="Icon" Fill="{TemplateBinding BrushNormal}" Width="40"
                                                Height="40" />
                                 </Button>
+                                <Border x:Name="BorderDisabled"
+                                        BorderThickness="1,0,1,1"
+                                        CornerRadius="0,0,5,5"
+                                        Background="#66777777" 
+                                        BorderBrush="#66777777"
+                                        Visibility="Collapsed" />
                             </Grid>
 
                             <ControlTemplate.Triggers>
@@ -112,6 +117,10 @@
                                     <Setter TargetName="Icon" Property="Fill"
                                             Value="{Binding BrushHighlighted, RelativeSource={RelativeSource TemplatedParent}}" />
                                 </Trigger>
+
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="BorderDisabled" Property="Visibility" Value="Visible" />
+                                </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -121,7 +130,9 @@
         </ResourceDictionary>
     </base:BaseUserControl.Resources>
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+    <StackPanel x:Name="ButtonsStackPanel"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
 
         <hud:HUDButton DataContext="{Binding MenuInventory}"
                        Command="{Binding CommandToggle}"
@@ -277,7 +288,8 @@
 
         <hud:HUDButton DataContext="{Binding MenuConstruction}"
                        Command="{Binding CommandToggle}"
-                       IsSelected="{Binding IsSelected}">
+                       IsSelected="{Binding IsSelected}"
+                       IsEnabled="{Binding DataContext.IsConstructionMenuAvailable, ElementName=UserControl}">
             <base:ToolTipServiceExtend.ToolTip>
                 <!-- Text: Construction -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Construction}">
@@ -293,6 +305,36 @@
                 <ImageBrush ImageSource="/UI/Images/Icons/icon_building_on.png" />
             </hud:HUDButton.BrushHighlighted>
         </hud:HUDButton>
+
+        <hud:HUDButton Command="{Binding CommandQuitVehicle}"
+                       Visibility="{Binding IsQuitVehicleButtonVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                       Margin="15,0,0,0">
+            <hud:HUDButton.BorderBrush>
+                <SolidColorBrush Color="#FF3DA83D" />
+            </hud:HUDButton.BorderBrush>
+            <Control.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#A0227F22" Offset="1" />
+                    <GradientStop Color="#00227F22" />
+                </LinearGradientBrush>
+            </Control.Background>
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Construction -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_DismountVehicle}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="VehicleEnterExit" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_dismount_vehicle.png" />
+            </hud:HUDButton.BrushNormal>
+            <!-- Never used because it's not an actual menu - it's just a button -->
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_dismount_vehicle.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
 
     </StackPanel>
 </base:BaseUserControl>

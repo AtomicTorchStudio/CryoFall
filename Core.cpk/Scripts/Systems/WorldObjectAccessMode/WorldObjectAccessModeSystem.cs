@@ -17,13 +17,13 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
 
         public override string Name => "World object access system";
 
-        public static void ClientSetMode(IStaticWorldObject worldObject, WorldObjectAccessMode mode)
+        public static void ClientSetMode(IWorldObject worldObject, WorldObjectAccessMode mode)
         {
             Instance.CallServer(_ => _.ServerRemote_SetMode(worldObject, mode));
         }
 
         public static bool ServerHasAccess(
-            IStaticWorldObject worldObject,
+            IWorldObject worldObject,
             ICharacter character,
             bool writeToLog)
         {
@@ -35,7 +35,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
         }
 
         public static bool ServerHasAccess(
-            IStaticWorldObject worldObject,
+            IWorldObject worldObject,
             ICharacter character,
             WorldObjectAccessMode currentAccessMode,
             bool writeToLog)
@@ -95,7 +95,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
             }
         }
 
-        public static bool SharedHasAccess(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        public static bool SharedHasAccess(ICharacter character, IWorldObject worldObject, bool writeToLog)
         {
             if (IsClient)
             {
@@ -107,19 +107,19 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_OnCannotInteractNoAccess(IStaticWorldObject worldObject)
+        private void ClientRemote_OnCannotInteractNoAccess(IWorldObject worldObject)
         {
             CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
-                                   NotificationDontHaveAccess,
-                                   isOutOfRange: false);
+                                                                NotificationDontHaveAccess,
+                                                                isOutOfRange: false);
         }
 
-        private void ServerRemote_SetMode(IStaticWorldObject worldObject, WorldObjectAccessMode mode)
+        private void ServerRemote_SetMode(IWorldObject worldObject, WorldObjectAccessMode mode)
         {
             var character = ServerRemoteContext.Character;
             if (!InteractionCheckerSystem.SharedHasInteraction(character,
-                                                         worldObject,
-                                                         requirePrivateScope: true))
+                                                               worldObject,
+                                                               requirePrivateScope: true))
             {
                 throw new Exception("The player character is not interacting with " + worldObject);
             }
@@ -130,7 +130,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
                 throw new Exception("The player character is not the owner of " + worldObject);
             }
 
-            if (!(worldObject.ProtoStaticWorldObject is IProtoObjectWithAccessMode protoObjectWithAccessMode))
+            if (!(worldObject.ProtoGameObject is IProtoObjectWithAccessMode protoObjectWithAccessMode))
             {
                 throw new Exception("This world object doesn't have an access mode");
             }

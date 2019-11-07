@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
@@ -43,24 +44,23 @@
         public override void ClientSetupSkeleton(
             IItem item,
             ICharacter character,
+            ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
             List<IClientComponent> skeletonComponents)
         {
-            base.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
+            base.ClientSetupSkeleton(item, character, protoCharacterSkeleton, skeletonRenderer, skeletonComponents);
 
             if (!this.ItemLightConfig.IsLightEnabled)
             {
                 return;
             }
 
-            var sceneObject = Client.Scene.GetSceneObject(character);
+            var sceneObject = character.ClientSceneObject;
             var componentLightSource = this.ClientCreateLightSource(item, character, sceneObject);
             var componentLightInSkeleton = sceneObject.AddComponent<ClientComponentLightInSkeleton>();
-            componentLightInSkeleton.Setup(character,
-                                           skeletonRenderer,
+            componentLightInSkeleton.Setup(skeletonRenderer,
                                            this.ItemLightConfig,
                                            componentLightSource,
-                                           "Weapon",
                                            "Weapon");
 
             skeletonComponents.Add(componentLightSource);
@@ -109,8 +109,13 @@
             return false;
         }
 
-        public override bool SharedCanSelect(IItem item, ICharacter character)
+        public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected)
         {
+            if (!base.SharedCanSelect(item, character, isAlreadySelected))
+            {
+                return false;
+            }
+
             var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(
                 character,
                 this.EnergyUsePerShot + this.EnergyUsePerHit);
@@ -120,6 +125,7 @@
                 return true;
             }
 
+            // cannot select
             if (IsClient)
             {
                 CharacterEnergySystem.ClientShowNotificationNotEnoughEnergyCharge(this);

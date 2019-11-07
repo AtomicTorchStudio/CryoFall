@@ -36,6 +36,15 @@
                     Text="{x:Static loc:CoreStrings.WindowSteamAccountLinking_YouCanLinkYourSteam}"
                     HorizontalAlignment="Left"
                     Margin="20,0,0,10" />
+            
+                <!-- Create new AtomicTorch account -->
+                <Button
+                    Content="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount}"
+                    Command="{Binding CommandOpenRegisterAccountForm}"
+                    IsTabStop="True"
+                    FontSize="18"
+                    HorizontalAlignment="Center"
+                    MinWidth="324" />
 
                 <!-- Link to my existing AtomicTorch account -->
                 <Button
@@ -44,17 +53,8 @@
                     IsTabStop="True"
                     FontSize="18"
                     HorizontalAlignment="Center"
-                    MinWidth="324" />
-
-                <!-- Create new AtomicTorch account -->
-                <Button
-                    Content="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount}"
-                    Command="{Binding CommandOpenRegisterAccountForm}"
-                    Margin="0,13,0,0"
-                    IsTabStop="True"
-                    FontSize="18"
-                    HorizontalAlignment="Center"
-                    MinWidth="324" />
+                    MinWidth="324"
+                    Margin="0,13,0,0" />
 
                 <!-- Cancel -->
                 <Button Content="{x:Static loc:CoreStrings.Button_Cancel}"

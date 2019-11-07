@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
@@ -26,6 +27,8 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
+        public override bool CanBeSelectedInVehicle => true;
+
         public override string CharacterAnimationAimingName => "WeaponRifleAiming";
 
         public virtual double CharacterAnimationAimingRecoilDuration => 0.3;
@@ -44,24 +47,25 @@
 
         public override double FireInterval => 0.5;
 
-        public override (float min, float max) SoundPresetWeaponDistance 
-            => (SoundConstants.AudioListenerMinDistanceRangedShot, 
-                SoundConstants.AudioListenerMaxDistanceRangedShot);
-
         public override ITextureResource Icon => new TextureResource("Items/Weapons/Ranged/" + this.GetType().Name);
 
         public IMuzzleFlashDescriptionReadOnly MuzzleFlashDescription { get; private set; }
 
+        public override (float min, float max) SoundPresetWeaponDistance
+            => (SoundConstants.AudioListenerMinDistanceRangedShot,
+                SoundConstants.AudioListenerMaxDistanceRangedShot);
+
         public override void ClientSetupSkeleton(
             IItem item,
             ICharacter character,
+            ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
             List<IClientComponent> skeletonComponents)
         {
             // preload the muzzle flash sprite sheet
             Client.Rendering.PreloadTextureAsync(this.MuzzleFlashDescription.TextureAtlas);
 
-            base.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
+            base.ClientSetupSkeleton(item, character, protoCharacterSkeleton, skeletonRenderer, skeletonComponents);
         }
 
         protected abstract void PrepareMuzzleFlashDescription(MuzzleFlashDescription description);

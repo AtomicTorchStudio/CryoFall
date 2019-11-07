@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeSeedsWheat>();
 
-            config.SetRequiredNode<TechNodeCorn>();
+            config.SetRequiredNode<TechNodeRice>();
         }
     }
 }

@@ -42,12 +42,12 @@
 
             var groundTextureForest3 = new ProtoTileGroundTexture(
                 texture: GroundTextureAtlas3,
-                blendMaskTexture: BlendMaskTextureSprayRough,
+                blendMaskTexture: BlendMaskTextureSprayStraightRough,
                 noiseSelector: null);
 
             var groundTextureForest2 = new ProtoTileGroundTexture(
                 texture: GroundTexture2,
-                blendMaskTexture: BlendMaskTextureSprayRough,
+                blendMaskTexture: BlendMaskTextureSprayStraightRough,
                 noiseSelector: new NoiseSelector(from: 0.5,
                                                  to: 1,
                                                  noise: new PerlinNoise(seed: 392721487,
@@ -58,7 +58,7 @@
 
             var groundTextureForest1 = new ProtoTileGroundTexture(
                 texture: GroundTexture1,
-                blendMaskTexture: BlendMaskTextureSprayRough,
+                blendMaskTexture: BlendMaskTextureSprayStraightRough,
                 noiseSelector: new NoiseSelector(from: 0.4,
                                                  to: 0.65,
                                                  noise: new PerlinNoise(seed: 498651212,

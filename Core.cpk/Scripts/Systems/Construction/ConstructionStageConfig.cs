@@ -87,7 +87,7 @@
         {
             if (CreativeModeSystem.SharedIsInCreativeMode(character))
             {
-                Api.Logger.Important(character + " is in creative - no items usage on construction.");
+                Api.Logger.Important(character + " is in creative mode - no items deduction on construction.");
                 return;
             }
 

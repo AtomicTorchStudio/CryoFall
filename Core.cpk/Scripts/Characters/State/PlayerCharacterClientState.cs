@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class PlayerCharacterClientState : BaseCharacterClientState
     {
@@ -17,7 +16,7 @@
                 if (this.componentPlayerInputSender == null)
                 {
                     // create and attach input sender component to the player scene object
-                    var sceneObject = Api.Client.Scene.GetSceneObject((IWorldObject)this.GameObject);
+                    var sceneObject = ((IWorldObject)this.GameObject).ClientSceneObject;
                     this.componentPlayerInputSender = sceneObject.AddComponent<ComponentPlayerInputSender>();
                     this.componentPlayerInputSender.Setup((PlayerCharacter)this.GameObject.ProtoGameObject);
                 }

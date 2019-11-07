@@ -13,6 +13,8 @@
 
     public class MobScorpion : ProtoCharacterMob, IProtoObjectPsiSource
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => false;
+
         public override float CharacterWorldHeight => 1.25f;
 
         public override double MobKillExperienceMultiplier => 2.0;
@@ -29,7 +31,7 @@
 
         public override double StatDefaultHealthMax => 240; // not very high hp because it has crazy armor
 
-        public override double StatMoveSpeed => 1.5;
+        public override double StatMoveSpeed => 2.25;
 
         public bool ServerIsPsiSourceActive(IWorldObject worldObject) => true;
 
@@ -56,17 +58,17 @@
             // primary loot
             lootDroplist
                 .Add<ItemInsectMeatRaw>(count: 1, countRandom: 1)
-                .Add<ItemAnimalFat>(count: 3, countRandom: 2)
-                .Add<ItemToxin>(count: 2,     countRandom: 2)
-                .Add<ItemSlime>(count: 2,     countRandom: 2);
+                .Add<ItemAnimalFat>(count: 3,     countRandom: 2)
+                .Add<ItemToxin>(count: 2,         countRandom: 2)
+                .Add<ItemSlime>(count: 2,         countRandom: 2);
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,
                              nestedList: new DropItemsList(outputs: 2)
                                          .Add<ItemInsectMeatRaw>(count: 1, countRandom: 1)
-                                         .Add<ItemAnimalFat>(count: 1, countRandom: 1)
-                                         .Add<ItemToxin>(count: 1,     countRandom: 1)
-                                         .Add<ItemSlime>(count: 1,     countRandom: 1));
+                                         .Add<ItemAnimalFat>(count: 1,     countRandom: 1)
+                                         .Add<ItemToxin>(count: 1,         countRandom: 1)
+                                         .Add<ItemSlime>(count: 1,         countRandom: 1));
         }
 
         protected override void ServerInitializeCharacterMob(ServerInitializeData data)
@@ -75,7 +77,7 @@
 
             var weaponProto = GetProtoEntity<ItemWeaponScorpionClaws>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)
@@ -85,11 +87,12 @@
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
                 isRetreating: false,
+                isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 0,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 10,
-                out var movementDirection,
-                out var rotationAngleRad);
+                movementDirection: out var movementDirection,
+                rotationAngleRad: out var rotationAngleRad);
 
             this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
         }

@@ -22,7 +22,7 @@
             }
 
             damagedCharacter.ServerAddStatusEffect<StatusEffectBleeding>(intensity: 0.1); // 1 minute
-            damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.2); // 20 seconds
+            damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.2);     // 20 seconds
 
             // 2% to add broken leg status effect
             if (RandomHelper.RollWithProbability(0.02))
@@ -101,7 +101,7 @@
             }
 
             damagedCharacter.ServerAddStatusEffect<StatusEffectBleeding>(intensity: 0.1); // 1 minute
-            damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.2); // 20 seconds
+            damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.2);     // 20 seconds
 
             // 2% to add broken leg status effect
             if (RandomHelper.RollWithProbability(0.02))

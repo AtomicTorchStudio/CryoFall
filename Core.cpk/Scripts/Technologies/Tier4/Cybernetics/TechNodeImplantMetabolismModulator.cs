@@ -8,8 +8,6 @@
         {
             config.Effects
                   .AddRecipe<RecipeImplantMetabolismModulator>();
-
-            config.SetRequiredNode<TechNodeImplantArtificialStomach>();
         }
     }
 }

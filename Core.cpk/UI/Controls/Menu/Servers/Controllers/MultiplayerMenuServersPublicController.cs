@@ -73,7 +73,7 @@
                     //viewModelServer.OnlinePlayersCountSet += this.ViewModelServerOnlinePlayersCountSetHandler;
                 }
 
-                this.ServerAddressToServerViewModel.Add(serverAddress, viewModelServer);
+                this.ServerAddressToServerViewModel.Add((serverAddress, viewModelServer));
             }
         }
 
@@ -81,30 +81,6 @@
         {
             this.RebuildServersList();
             this.IsListAvailable = isListAvailable;
-        }
-
-        private void ViewModelServerOnlinePlayersCountSetHandler(ViewModelServerInfo obj)
-        {
-            if (this.SortType == ServersListSortType.OnlinePlayersCount)
-            {
-                this.FillServersList();
-            }
-        }
-
-        private void ViewModelServerPingMeasurementDoneHandler(ViewModelServerInfo item)
-        {
-            if (this.SortType == ServersListSortType.Ping)
-            {
-                this.FillServersList();
-            }
-        }
-
-        private void ViewModelServerTitleSetHandler(ViewModelServerInfo item)
-        {
-            if (this.SortType == ServersListSortType.Title)
-            {
-                this.FillServersList();
-            }
         }
     }
 }

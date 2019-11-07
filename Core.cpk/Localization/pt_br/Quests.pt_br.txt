@@ -157,7 +157,7 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 Juntar recursos
 
 Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
-`Para ter acesso a mais estruturas, você precisa desbloquear "edifícios básicos" no menu de tecnologia.`
+`Para ter acesso a mais estruturas, você precisa desbloquear "construções básicas" no menu de tecnologia.`
 
 Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
 `[*] Se você não tiver alterado os controles, é possível acessar rapidamente o menu de tecnologias pressionando "G".
@@ -318,8 +318,7 @@ Batalhas difíceis resultarão em perda de vida. Para sanar isso, faça remédio
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
 `[*] Existem muitos tipos de remédios diferentes em CryoFall. Alguns recuperam vida, outros curam doenças específicas ou oferecem outros benefícios.
 [*] Preparar remédios avançados exige aprender receitas e tecnologias específicas.
-[*] O remédio herbal fica na categoria culinária.
-[*] É possível colher casca de árvore derrubando-se certos tipos de árvores.`
+[*] O remédio fitoterápico fica na categoria culinária.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
 Colher ervas e fazer remédios
@@ -352,7 +351,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Está na hora de arranjar uma proteção melhor.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*] Você pode desbloquear todas as tecnologias relevantes no grupo de tecnologia "Ataque e Defesa".
+`[*] Você pode desbloquear todas as tecnologias relevantes no grupo de tecnologia "Defesa".
 [*] Talvez a armadura de madeira não seja a melhor opção por aí, mas ainda é barata de produzir e, com certeza, muito melhor que a armadura de pano.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
@@ -381,7 +380,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Esmagar caveiras com uma maça é legal, mas às vezes você quer algo com alcance. Especialmente se enfrentar adversários mais sérios.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*] Você pode desbloquear todas as tecnologias relevantes no grupo de tecnologia "Ataque e Defesa".
+`[*] Você pode desbloquear todas as tecnologias relevantes no grupo de tecnologia "Ataque".
 [*] Para produzir cartuchos de papel, será necessário produzir [b]pólvora[/b] e [b]papel[/b] primeiro.
 [*] Existem [b]tipos de dano distintos[/b], e cada armadura diferente oferece valores diversos de proteção contra cada um deles. Você pode ver essas informações na tela do inventário.`
 
@@ -435,7 +434,8 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 Está na hora de caçar mais ainda! Existem mais animais e monstros por aí, esperando para ser encontrados.
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*] Cada animal e monstro tem uma área própria onde costuma ser encontrado. Tente explorar o mundo para ver todas as diferentes criaturas que o habitam.
+`[*] Você pode equipar suas ferramentas de caçador no "espaço de dispositivos" (à direita da foto do seu personagem no menu do inventário).
+[*] Cada animal e monstro tem uma área própria onde costuma ser encontrado. Tente explorar o mundo para ver todas as diferentes criaturas que o habitam.
 [*] Dependendo do nível de periculosidade de um animal ou monstro específico, você receberá quantidades diferentes de experiência de caça.`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
@@ -454,7 +454,7 @@ Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
 Aprender algumas habilidades
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
-Construir é excelente, mas saber como desconstruir edifícios também pode ser muito útil. Para isso, você precisará de um pé de cabra! Claro, contanto que o edifício que pretende desconstruir esteja dentro da sua posse de terra.
+Construir é excelente, mas saber como desconstruir edifícios também pode ser muito útil. Para isso, você precisará de um pé de cabra! Claro, contanto que a construção que pretende desconstruir esteja dentro da sua posse de terra.
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 `[*] Para os efeitos desta missão, você pode desconstruir uma parte da parede ou algo igualmente barato, assim você não perde recursos valiosos.
@@ -463,6 +463,9 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Usar o pé de cabra para desconstruir
+
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Garimpa sais minerais
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
 Alguns recursos, como petróleo bruto e lítio, são necessários para a tecnologia avançada. É extremamente importante aprender a adquiri-los.
@@ -475,9 +478,6 @@ Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
 Aquisição de recursos avançados
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Garimpa sais minerais
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Avanços na indústria e na construção exigem fundamentos científicos, especialmente em química.

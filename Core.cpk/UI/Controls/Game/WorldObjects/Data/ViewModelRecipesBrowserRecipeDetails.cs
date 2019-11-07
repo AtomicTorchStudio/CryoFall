@@ -8,7 +8,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public class ViewModelRecipesBrowserRecipeDetails : BaseViewModel
+    public class ViewModelRecipesBrowserRecipeDetails : BaseViewModel, IViewModelWithRecipe
     {
         private static readonly IReadOnlyList<ProtoItemWithCount> EmptyItemsList =
             new List<ProtoItemWithCount>(0).AsReadOnly();

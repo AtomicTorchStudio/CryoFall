@@ -35,11 +35,16 @@
                            .Replace(InteractFail,    "Objects/LockedContainer/InteractFail");
 
         // vegetation gathering sounds
+
         public static readonly ReadOnlySoundPreset<ObjectSound> ObjectVegetation
             = ObjectGeneric.Clone()
                            .Replace(InteractStart,   "Objects/Vegetation/InteractStart")
                            .Replace(InteractProcess, "Objects/Vegetation/InteractProcess")
                            .Replace(InteractSuccess, "Objects/Vegetation/InteractSuccess")
                            .Replace(InteractFail,    "Objects/Vegetation/InteractFail");
+
+        // TODO: we need proper sounds for searching garbage piles
+        public static readonly ReadOnlySoundPreset<ObjectSound> ObjectGarbagePile
+            = ObjectLockedContainer;
     }
 }

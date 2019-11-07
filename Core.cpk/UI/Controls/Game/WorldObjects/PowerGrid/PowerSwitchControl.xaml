@@ -26,7 +26,8 @@
 
     <Grid HorizontalAlignment="Stretch">
         <core:WidgetPanel InnerGlowSize="7"
-                          VisibilityBackgroundImage="Collapsed" />
+                          VisibilityBackgroundImage="Collapsed"
+                          WidgetBackground="{StaticResource WindowBackgroundBrush}" />
 
         <Grid Margin="5">
             <Grid.RowDefinitions>

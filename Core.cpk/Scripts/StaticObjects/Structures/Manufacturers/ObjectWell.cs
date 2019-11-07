@@ -36,9 +36,9 @@
 
         public override float StructurePointsMax => 1000;
 
-        public override float WaterCapacity => 50;
+        public override double WaterCapacity => 50;
 
-        public override float WaterProductionAmountPerSecond => 0.2f;
+        public override double WaterProductionAmountPerSecond => 0.2;
 
         public override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {
@@ -87,11 +87,11 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemStone>(count: 15);
+            build.AddStageRequiredItem<ItemStone>(count: 10);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemStone>(count: 7);
+            repair.AddStageRequiredItem<ItemStone>(count: 5);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

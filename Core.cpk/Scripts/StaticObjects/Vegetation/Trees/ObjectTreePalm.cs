@@ -58,8 +58,7 @@
 
             // bonus drop
             droplist
-                .Add<ItemLeaf>(count: 2,     countRandom: 1, probability: 0.5)
-                .Add<ItemTreebark>(count: 1, countRandom: 1, probability: 0.5);
+                .Add<ItemLeaf>(count: 2, countRandom: 1, probability: 0.5);
         }
     }
 }

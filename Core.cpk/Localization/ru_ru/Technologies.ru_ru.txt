@@ -247,6 +247,12 @@ Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 Стимуляторы
 
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+Технологии, необходимые для постройки различного транспорта.
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+Транспорт
+
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 Технологии, необходимые для разработки недр.
 
@@ -330,4 +336,10 @@ Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Атака 4
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+Продвинутая боевая техника и транспорт.
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+Транспорт 2
 

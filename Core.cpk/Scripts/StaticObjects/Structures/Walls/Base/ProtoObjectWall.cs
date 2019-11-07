@@ -147,26 +147,6 @@
             }
         }
 
-        protected override double SharedCalculateDamageByWeapon(
-            WeaponFinalCache weaponCache,
-            double damagePreMultiplier,
-            IStaticWorldObject targetObject,
-            out double obstacleBlockDamageCoef)
-        {
-            if (IsServer)
-            {
-                damagePreMultiplier = LandClaimSystem.ServerAdjustDamageToUnprotectedStrongBuilding(weaponCache,
-                                                                                                    targetObject,
-                                                                                                    damagePreMultiplier);
-            }
-
-            var damage = base.SharedCalculateDamageByWeapon(weaponCache,
-                                                            damagePreMultiplier,
-                                                            targetObject,
-                                                            out obstacleBlockDamageCoef);
-            return damage;
-        }
-
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             ProtoObjectWallHelper.SharedCalculateNeighborsPattern(

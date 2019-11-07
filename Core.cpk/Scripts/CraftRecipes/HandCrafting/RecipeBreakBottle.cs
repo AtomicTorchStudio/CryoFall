@@ -2,7 +2,6 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Items;
-    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.CoreMod.Systems;

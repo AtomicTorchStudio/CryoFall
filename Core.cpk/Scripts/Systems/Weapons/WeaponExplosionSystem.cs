@@ -29,19 +29,15 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             Func<double, double> callbackCalculateDamageCoefByDistanceForStaticObjects,
             Func<double, double> callbackCalculateDamageCoefByDistanceForDynamicObjects)
         {
-            var protoObjectExplosive = weaponFinalCache.ProtoObjectExplosive;
-            Api.Assert(protoObjectExplosive != null,
-                       "Weapon final cache should contain the exploded object");
-
             Api.Assert(damageDistanceMax >= damageDistanceFullDamage,
                        $"{nameof(damageDistanceMax)} must be >= {nameof(damageDistanceFullDamage)}");
 
             var world = Api.Server.World;
             var damagedObjects = new HashSet<IWorldObject>();
 
-            ProcessExplosionDirection(-1, 0); // left
-            ProcessExplosionDirection(0,  1); // top
-            ProcessExplosionDirection(1,  0); // right
+            ProcessExplosionDirection(-1, 0);  // left
+            ProcessExplosionDirection(0,  1);  // top
+            ProcessExplosionDirection(1,  0);  // right
             ProcessExplosionDirection(0,  -1); // bottom
 
             ServerProcessExplosionCircle(positionEpicenter,
@@ -125,35 +121,37 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             bool isDamageThroughObstacles,
             Func<double, double> callbackCalculateDamageCoefByDistance)
         {
-            var protoObjectExplosive = weaponFinalCache.ProtoObjectExplosive;
-            Api.Assert(protoObjectExplosive != null,
-                       "Weapon final cache should contain the exploded object");
-
+            // collect all damaged objects via physics space
             var damageCandidates = new HashSet<IWorldObject>();
+            var defaultCollisionGroup = CollisionGroups.Default;
+            CollectDamagedPhysicalObjects(defaultCollisionGroup);
+            CollectDamagedPhysicalObjects(CollisionGroups.HitboxMelee);
+            CollectDamagedPhysicalObjects(CollisionGroups.HitboxRanged);
 
-            // collect all damaged physics objects
-            var collisionGroup = CollisionGroups.Default;
-            using var testResults = physicsSpace.TestCircle(positionEpicenter,
-                                                            radius: damageDistanceMax,
-                                                            collisionGroup: collisionGroup);
-            foreach (var testResult in testResults)
+            void CollectDamagedPhysicalObjects(CollisionGroup collisionGroup)
             {
-                var testResultPhysicsBody = testResult.PhysicsBody;
-                var damagedObject = testResultPhysicsBody.AssociatedWorldObject;
-
-                if (damageOnlyDynamicObjects
-                    && damagedObject is IStaticWorldObject)
+                using var testResults = physicsSpace.TestCircle(positionEpicenter,
+                                                                radius: damageDistanceMax,
+                                                                collisionGroup: collisionGroup);
+                foreach (var testResult in testResults)
                 {
-                    continue;
-                }
+                    var testResultPhysicsBody = testResult.PhysicsBody;
+                    var damagedObject = testResultPhysicsBody.AssociatedWorldObject;
 
-                if (!(damagedObject?.ProtoWorldObject is IDamageableProtoWorldObject))
-                {
-                    // non-damageable world object
-                    continue;
-                }
+                    if (damageOnlyDynamicObjects
+                        && damagedObject is IStaticWorldObject)
+                    {
+                        continue;
+                    }
 
-                damageCandidates.Add(damagedObject);
+                    if (!(damagedObject?.ProtoWorldObject is IDamageableProtoWorldObject))
+                    {
+                        // non-damageable world object
+                        continue;
+                    }
+
+                    damageCandidates.Add(damagedObject);
+                }
             }
 
             if (!damageOnlyDynamicObjects)
@@ -201,7 +199,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                             continue;
                         }
 
-                        if (tileObject.PhysicsBody.HasAnyShapeCollidingWithGroup(collisionGroup))
+                        if (tileObject.PhysicsBody.HasAnyShapeCollidingWithGroup(defaultCollisionGroup))
                         {
                             // has a collider colliding with the collision group so we ignore this
                             continue;
@@ -353,9 +351,9 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     return false;
                 }
 
-                if (testWorldObject is ICharacter)
+                if (testWorldObject is IDynamicWorldObject)
                 {
-                    // not an obstacle - character is not considered as an obstacle for the explosion
+                    // not an obstacle - dynamic objects (such as characters and vehicles) are not considered as an obstacle for the explosion
                     continue;
                 }
 

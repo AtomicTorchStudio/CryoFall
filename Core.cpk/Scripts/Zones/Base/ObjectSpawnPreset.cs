@@ -90,6 +90,7 @@
 
         public bool IsContainsOnlyStaticObjects { get; private set; }
 
+        [Obsolete("It's not used anymore")]
         public RangeDouble IterationLimitFractionRange { get; }
 
         public double Padding { get; }

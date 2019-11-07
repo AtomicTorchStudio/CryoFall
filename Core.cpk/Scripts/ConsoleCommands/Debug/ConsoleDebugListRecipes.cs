@@ -133,6 +133,10 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
 
                 sb.AppendLine();
             }
+            else
+            {
+                sb.AppendLine($"<no {messagePrefix.ToLowerInvariant()} item recipes found>");
+            }
 
             if (structures.Count > 0)
             {
@@ -145,6 +149,10 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
                 }
 
                 sb.AppendLine();
+            }
+            else
+            {
+                sb.AppendLine($"<no {messagePrefix.ToLowerInvariant()} structures found>");
             }
 
             return sb.ToString();

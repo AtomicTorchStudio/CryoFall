@@ -1,21 +1,21 @@
 ﻿Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationCannotEquip:
-無法裝備
+當前伺服器已滿。請等伺服器有空位時再嘗試加入。
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationRemoveFullBody:
-你必須先脫下全身裝備。
+遊戲伺服器當前不可用。可能原因：伺服器重啟，伺服器關停，防火牆設置和網路問題等。請在數分鐘後重試。
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationRemoveOtherEquipment:
-你必須先移除其他裝備。
+遊戲伺服器正在重啟或即將關閉。
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Message:
-你必須使用醫療站來安裝植入物。
+連接被拒
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Title:
-無法安裝
+無法連接至遊戲伺服器
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Message:
-你必須使用醫療站來移除植入物。
+您的帳號已被封禁。
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
-無法移除
+登錄失敗
 

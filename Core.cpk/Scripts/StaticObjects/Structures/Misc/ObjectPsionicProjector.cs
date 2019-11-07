@@ -30,7 +30,7 @@
         public override string Description =>
             "Defensive structure that projects psionic field of high intensity while active.";
 
-        public double ElectricityConsumptionPerSecondWhenActive => 2;
+        public double ElectricityConsumptionPerSecondWhenActive => 1;
 
         public override string InteractionTooltipText => InteractionTooltipTexts.TogglePower;
 
@@ -62,7 +62,7 @@
             var worldObject = data.GameObject;
             var publicState = data.PublicState;
             var renderer = data.ClientState.Renderer;
-            var sceneObject = Client.Scene.GetSceneObject(worldObject);
+            var sceneObject = worldObject.ClientSceneObject;
 
             PowerGridSystem.ClientInitializeConsumerOrProducer(worldObject);
             var soundEmitter = Client.Audio.CreateSoundEmitter(

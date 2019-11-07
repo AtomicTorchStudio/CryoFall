@@ -105,7 +105,7 @@
     <Reference Include="WindowsBase" />
     <!-- Please note - these package references should be added as dependencies to NuGet specification -->
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.2" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
     <PackageReference Include="Microsoft.SDK.Expression.Blend" Version="1.0.0" />    
   </ItemGroup>
 
@@ -148,7 +148,7 @@
     <None Include="License.txt" />
     <None Include="Header.xml" />       
 
-    <Compile Include="**\*.cs" Exclude=".*\**" />
+    <Compile Include="**\*.cs" Exclude=".*\**;.*\.temp\**;" />
     <Page Include="**\*.xaml" Exclude=".*\**">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

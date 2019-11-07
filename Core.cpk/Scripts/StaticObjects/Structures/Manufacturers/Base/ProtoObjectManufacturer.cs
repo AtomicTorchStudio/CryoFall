@@ -31,7 +31,7 @@
               TClientState>,
           IProtoObjectManufacturer,
           IProtoObjectElectricityConsumerWithCustomRate,
-          IInteractableProtoStaticWorldObject
+          IInteractableProtoWorldObject
         where TPrivateState : ObjectManufacturerPrivateState, new()
         where TPublicState : ObjectManufacturerPublicState, new()
         where TClientState : StaticObjectClientState, new()
@@ -69,23 +69,23 @@
             this.CallServer(_ => _.ServerRemote_SelectRecipe(worldObject, recipe));
         }
 
-        public double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
+        public virtual double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
         {
             return GetPublicState(worldObject).IsActive
                        ? 1
                        : 0;
         }
 
-        BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
+        BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
         {
-            return this.ClientOpenUI(new ClientObjectData(worldObject));
+            return this.ClientOpenUI(new ClientObjectData((IStaticWorldObject)worldObject));
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
         }
 
@@ -110,7 +110,7 @@
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
         protected virtual BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
@@ -135,7 +135,7 @@
         {
             var clientState = worldObject.GetClientState<StaticObjectClientState>();
 
-            var sceneObject = Client.Scene.GetSceneObject(worldObject);
+            var sceneObject = worldObject.ClientSceneObject;
 
             var overlayRenderer = Client.Rendering.CreateSpriteRenderer(
                 sceneObject,

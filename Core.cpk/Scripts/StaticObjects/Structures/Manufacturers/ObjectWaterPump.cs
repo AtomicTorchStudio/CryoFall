@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     /// <summary>
@@ -25,18 +24,18 @@
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 1000;
+        public override float StructurePointsMax => 2000;
 
-        public override float WaterCapacity => 100;
+        public override double WaterCapacity => 100;
 
-        public override float WaterProductionAmountPerSecond => 2.0f;
+        public override double WaterProductionAmountPerSecond => 2.0;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
 
             var publicState = data.PublicState;
-            var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
+            var sceneObject = data.GameObject.ClientSceneObject;
 
             var soundEmitter =
                 this.ClientCreateActiveStateSoundEmitterComponent(data.GameObject);
@@ -101,9 +100,9 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle(size: (1.5, 1.1), offset: (0.25, 0.4))
-                .AddShapeRectangle(size: (1.2, 1.3), offset: (0.4, 0.5), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (1.2, 1.3), offset: (0.4, 0.5),  group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(size: (1.2, 0.3), offset: (0.4, 1.25), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (1.2, 1.3), offset: (0.4, 0.5), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (1.2, 1.3), offset: (0.4, 0.5),  group: CollisionGroups.ClickArea);
         }
     }
 }

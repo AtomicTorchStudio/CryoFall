@@ -15,6 +15,8 @@
 
         public Size2F Size { get; set; }
 
+        public Vector2D WorldOffset { get; set; }
+
         public IReadOnlyItemLightConfig ToReadOnly()
         {
             return this;

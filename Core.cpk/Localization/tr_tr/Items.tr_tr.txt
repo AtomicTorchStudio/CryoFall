@@ -58,6 +58,12 @@ Ağır .300 yanıcı mermileri, zırhı delip hedefi yakabilme özelliğine sahi
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 .300 yanıcı mühimmat
 
+Scripts/Items/Ammo/ItemAmmo50SH@Description:
+Çok güçlü yüksek kalibreli tabanca kartuşu.
+
+Scripts/Items/Ammo/ItemAmmo50SH@Name:
+.50 SH mermi
+
 Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
 8mm basit, kovansız mermi. Üretiminde kullanılan basit malzemeler ve teknikler nedeniyle gücü ve hassasiyeti düşüktür.
 
@@ -90,6 +96,9 @@ Oku
 
 Scripts/Items/Base/ItemUseCaptions@Use:
 Kullan
+
+Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
+Araç sürerken bu eşya kullanılamaz.
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Veri Günlüğü (şifreli)
@@ -484,6 +493,12 @@ Basit ama ateşli bir yemek.
 Scripts/Items/Food/ItemCarrotGrilled@Name:
 Kızarmış havuç
 
+Scripts/Items/Food/ItemCheese@Description:
+Süt proteininin katılaşmasından elde edilmiş, sütten yapılma geleneksel yemek.
+
+Scripts/Items/Food/ItemCheese@Name:
+Peynir
+
 Scripts/Items/Food/ItemChiliBeans@Description:
 Bekarların esas yemeği.
 
@@ -543,6 +558,12 @@ Taze ve kütür kütür turşu.
 
 Scripts/Items/Food/ItemCucumbersPickled@Name:
 Salatalık turşusu
+
+Scripts/Items/Food/ItemDough@Description:
+Farklı türde tarifler için yemek yapmakta kullanılabilir.
+
+Scripts/Items/Food/ItemDough@Name:
+Hamur
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Gezegendeki en popüler enerji içeceği. Ciddi bir enerji artışı sağlar.
@@ -634,6 +655,24 @@ Maydanozla birlikte servis edilen kızarmış et. Maydanoz nereden geliyor acaba
 Scripts/Items/Food/ItemMeatRoasted@Name:
 Kızarmış et
 
+Scripts/Items/Food/ItemMilk@Description:
+Besin açısından zengin süt. Olduğu gibi de kullanılabilir, yemekte de kullanılabilir.
+
+Scripts/Items/Food/ItemMilk@Name:
+Süt
+
+Scripts/Items/Food/ItemMilkmelon@Description:
+Gerçek süte benzer içeriğe sahip kalın sıvı sütü üretmesi için genetik mühendislikle yapılmış tesis.
+
+Scripts/Items/Food/ItemMilkmelon@Name:
+Sütkavun
+
+Scripts/Items/Food/ItemMRE@Description:
+Doğada veya askerî operasyonlar sırasında hayatta kalmak ve gereken sıvıyı sağlamak için için endüstriyel olarak hazırlanmış yüksek kalorili birkaç yemek.
+
+Scripts/Items/Food/ItemMRE@Name:
+MRE
+
 Scripts/Items/Food/ItemMREImprovised@Description:
 Bu yemek bir kaç basit malzeme ve koruyucu madde olarak olarak kullanılan tuzla hazırlanır. Bozulmadan uzun süre saklanabilir.
 
@@ -658,11 +697,11 @@ Bu mantarlara koyu renginden dolayı pas mantarı denir. Pişirildiğinde olduk�
 Scripts/Items/Food/ItemMushroomRust@Name:
 Pas mantarı
 
-Scripts/Items/Food/ItemOgurin@Description:
-Tuhaf görünümlü ogurin meyveleri...oldukça lezzetli. Salatalığın genetiği değiştirilerek üretilmiştir.
+Scripts/Items/Food/ItemOnigiri@Description:
+Pirinç topları olarak da bilinir. Yolda da yenilebilir. Basit ve doyurucudur. Baharat eklemek daha uzun süre taze tutar.
 
-Scripts/Items/Food/ItemOgurin@Name:
-Ogurin meyvesi
+Scripts/Items/Food/ItemOnigiri@Name:
+Onigiri
 
 Scripts/Items/Food/ItemPieBerry@Description:
 Ağız sulandıran böğürtlen turtası. Tıpkı eskiden büyükannenizin hazırladığı gibi.
@@ -675,6 +714,12 @@ Tatlı ve acı tropik meyve. Çiğ yenebilir veya bazı yemeklerde kullanılabil
 
 Scripts/Items/Food/ItemPineapple@Name:
 Ananas
+
+Scripts/Items/Food/ItemRiceCooked@Description:
+Olduğu gibi de yenebilir, daha karışık bir yemeğe de katılabilir.
+
+Scripts/Items/Food/ItemRiceCooked@Name:
+Pişmiş pirinç
 
 Scripts/Items/Food/ItemRoastedMushrooms@Description:
 Lezzetli kızarmış mantar
@@ -1004,12 +1049,6 @@ Yüksek kalite metallerin üretilmesi için kullanılan eritme tozu.
 Scripts/Items/Generic/ItemFluxPowder@Name:
 Eritme tozu
 
-Scripts/Items/Generic/ItemFoodRotten@Description:
-Bu yiyecek tamamen bozulmuş.
-
-Scripts/Items/Generic/ItemFoodRotten@Name:
-Çürümüş yiyecek
-
 Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 Yüksek performanslı silahlar için özel olarak üretilmiş ve şekillendirilmiş nitroselüloz tanecikler.
 
@@ -1081,6 +1120,12 @@ Toprağı bütünleyici özel higroskopik tanecikler. Bu tanecikler havadaki nem
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Name:
 Higroskopik tanecikler
+
+Scripts/Items/Generic/ItemImpulseEngine@Description:
+Çeşitli mekanizmalarda kullanılabilecek güçlü itici motor.
+
+Scripts/Items/Generic/ItemImpulseEngine@Name:
+İtici motor
 
 Scripts/Items/Generic/ItemIngotCopper@Description:
 Saf bakır külçeler. Bakır külçelerin endüstriden elektroniğe kadar geniş bir kullanım alanı vardır.
@@ -1217,11 +1262,35 @@ Gıda koruyucu. Paketlenmiş yiyeceklere eklenebilir, çok daha uzun süre dayan
 Scripts/Items/Generic/ItemPreservative@Name:
 Koruyucu
 
+Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
+Pragmium gibi reaktif enerji taşıyıcıyla doldurulabilecek boş bir reaktör çekirdeği.
+
+Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
+Boş reaktör çekirdeği
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Description:
+Pragmium dolu reaktör çekirdeği. Kısmen stabil, taşınabilir ve uzun süreli güç kaynağı.
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Name:
+Pragmium reaktör çekirdeği
+
+Scripts/Items/Generic/ItemRice@Description:
+Hasat edilmiş pirinç taneleri. Ekim için de hazırlanabilir, çeşitli yemekler için de pişirilebilir.
+
+Scripts/Items/Generic/ItemRice@Name:
+Pirinç
+
 Scripts/Items/Generic/ItemRope@Description:
 Yalnızca normal halat. Çeşitli şekillerde kullanılabilir. Artan halatı yakabilirsin.
 
 Scripts/Items/Generic/ItemRope@Name:
 Halat
+
+Scripts/Items/Generic/ItemRot@Description:
+Yiyecek veya başka bir organik madde tamamen bozulmuş ve bu çürümüş pelteye dönüşmüş.
+
+Scripts/Items/Generic/ItemRot@Name:
+Çürük
 
 Scripts/Items/Generic/ItemRubberRaw@Description:
 Lateks reçinesi olarak da bilinen doğal lastik. Kauçuk ağaçlarından çıkartılır. Kimyasal olarak sertleştirilmiş lastiğe dönüştürülebilir.
@@ -1271,11 +1340,29 @@ Scripts/Items/Generic/ItemSolvent@Description:
 Scripts/Items/Generic/ItemSolvent@Name:
 Solvent
 
+Scripts/Items/Generic/ItemSpices@Description:
+Yemek yaparken kullanılabilecek çeşitli türde baharatlar.
+
+Scripts/Items/Generic/ItemSpices@Name:
+Baharatlar
+
+Scripts/Items/Generic/ItemSpicesRaw@Description:
+Hasat edilmiş ham baharatlar. Kullanılmadan önce kurutulup işlemden geçirilmeleri gerek.
+
+Scripts/Items/Generic/ItemSpicesRaw@Name:
+Ham baharatlar
+
 Scripts/Items/Generic/ItemStone@Description:
 Taş... yuvarlak ve ağır. Yapı malzemesi olarak kullanışlıdır. Yerde bulunabilir veya kazılarak yüksek miktarda çıkarılabilir.
 
 Scripts/Items/Generic/ItemStone@Name:
 Taş
+
+Scripts/Items/Generic/ItemStructuralPlating@Description:
+Koruyucu dış kabuk olarak da, ek donanım yüklemeye dayanması için dayanıklı yapı olarak da kullanılabilecek zırh levhaları.
+
+Scripts/Items/Generic/ItemStructuralPlating@Name:
+Yapı levhası
 
 Scripts/Items/Generic/ItemSulfurPowder@Description:
 Toz halinde saf kükürt.
@@ -1299,19 +1386,19 @@ Scripts/Items/Generic/ItemTobaccoAged@Description:
 Yıllanmış tütün yaprakları. Kaliteli purolar üretmek için kullanılabilir.
 
 Scripts/Items/Generic/ItemTobaccoAged@Name:
-Tütün (yıllanmış)
+Eski tütün
 
 Scripts/Items/Generic/ItemTobaccoDried@Description:
 Kurutulmuş tütün yaprakları. Kalitesiz purolar yapmak için kullanılabilir. Kaliteli purolar üretmek için bekletilmeleri gerekir.
 
 Scripts/Items/Generic/ItemTobaccoDried@Name:
-Tütün (kuru)
+Kurumuş tütün
 
 Scripts/Items/Generic/ItemTobaccoRaw@Description:
 Taze tütün yaprakları ve kabukları. Kurutularak puro haline getirilebilir.
 
 Scripts/Items/Generic/ItemTobaccoRaw@Name:
-Tütün (taze)
+Ham tütün
 
 Scripts/Items/Generic/ItemToxin@Description:
 Kimyasal toksin. İçerisinde toksin bulunan mühimmatın veya bazı ilaçların yapımında kullanılabilir.
@@ -1319,17 +1406,17 @@ Kimyasal toksin. İçerisinde toksin bulunan mühimmatın veya bazı ilaçların
 Scripts/Items/Generic/ItemToxin@Name:
 Toksin
 
-Scripts/Items/Generic/ItemTreebark@Description:
-Ağaçlardan gelen kabuk. Ateşte yakılabilir veya farklı amaçlar için kullanılabilir.
-
-Scripts/Items/Generic/ItemTreebark@Name:
-Ağaç kabuğu
-
 Scripts/Items/Generic/ItemTwigs@Description:
 Yerden veya ağaçlardan toplanabilen dallar. Basit aletlerin yapımında kullanılabilir veya ateşte yakılabilir.
 
 Scripts/Items/Generic/ItemTwigs@Name:
 Dal
+
+Scripts/Items/Generic/ItemUniversalActuator@Description:
+Manyetik gücü hareketi için kullanan aşırı esnek ve çok güçlü bir uyarıcı.
+
+Scripts/Items/Generic/ItemUniversalActuator@Name:
+Evrensel uyarıcı
 
 Scripts/Items/Generic/ItemVialBiomaterial@Description:
 Biyomateryal şişesi. Sibernetikte ve ilaç yapımında kullanılır, özellikle implantların takılması ve çıkarılması sırasında oldukça kullanışlıdır.
@@ -1376,14 +1463,17 @@ Zaten gübrelendi
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
 Bitki hasat edilmeye hazır. Daha fazla gübrelemenin bir yararı yok.
 
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
-Zaten sulandı
-
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
-Bitki hasat edilmeye hazır. Daha fazla sulamanın bir yararı yok.
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CanApplyOnlyOnPlants:
+Sadece bitkilere uygulanabilir.
 
 Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Buraya uygulanamaz
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
+Biyomühendislikle yapay olarak yapılmış karaciğer. Kan süzümünü geliştirir, aşırı ilaç kullanım etkilerini sıfırlar.
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
+Yapay karaciğer
 
 Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
 Geceleri mükemmel görüş olanağı sunan, HDR destekli ışığa karşı yüksek duyarlılığı bulunan özel retina katmanı.
@@ -1427,17 +1517,17 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Nanofiber deri implantı
 
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+Vücutta kontrol dışı mutasyon saptanmadı.
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Mutasyon yok
+
 Scripts/Items/Medical/ItemAntiMutation@Description:
 Radyasyon sonucu hasar gören hücre DNA'sını korur ve yeniler. Vücuttaki istenmeyen mutasyonları durdurur.
 
 Scripts/Items/Medical/ItemAntiMutation@Name:
 Anti mutasyon ilacı
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
-Mutasyon yok
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
-Vücutta kontrol dışı mutasyon saptanmadı.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 Bulantın yok. Bu ilacı şu anda kullanmanın bir yararı yok.
@@ -1635,13 +1725,13 @@ Scripts/Items/Medical/ItemStrengthBoostBig@Description:
 Güç artırıcı ilaç, seni geçici olarak güçlendirerek, fiziksel işleri daha kolay yapmanı sağlar.
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Name:
-Güç artırıcı (büyük)
+Büyük güç artışı
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 Güç artırıcı ilaç, seni geçici olarak güçlendirerek, fiziksel işleri daha kolay yapmanı sağlar.
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
-Güç artırıcı (küçük)
+Küçük güç artışı
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Bir ağacın fidanı. Ağaç olarak yetiştirmek için ekilebilir.
@@ -1688,8 +1778,14 @@ Mavi ada çayı tohumları
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Oni çiçeği tohumları
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Name:
-Ogurin tohumları
+Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
+Sütkavun tohumları
+
+Scripts/Items/Seeds/ItemSeedsRice@Name:
+Pirinç tohumları
+
+Scripts/Items/Seeds/ItemSeedsSpices@Name:
+Baharat tohumları
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Tütün tohumları
@@ -1844,6 +1940,12 @@ Bakır gürzün daha ağır ve ölümcül meslektaşı.
 Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
 Demir gürz
 
+Scripts/Items/Weapons/Melee/ItemMachete@Description:
+Ağır çelik pala. Kafa kesmek için ideal.
+
+Scripts/Items/Weapons/Melee/ItemMachete@Name:
+Pala
+
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 Silah yok
 
@@ -1952,9 +2054,33 @@ Büyük cephane kapasitesine sahip askeri pompalı tüfek. 12 kalibre mermi kull
 Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
 Askeri pompalı tüfek
 
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
+Aşırı namlu enerjisi olan yarı otomatik tabanca.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
+Steppen Hawk
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
+Steppen Hawk tabancasının sınırlı üretim altın versiyonu.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
+Steppen Hawk Altın
+
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 10mm mermi için geliştirilmiş hafif makineli tüfek.
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Hafif makineli tüfek
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
+Mekanize savaş zırhlarında kullanılması için yapılmış ağır otomatik top. Yüksek kalibreli, anti-materyal mermisi kullanır.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
+Ağır otomatik top
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
+Mekanize savaş zırhlarında kullanılması için yapılmış hafif otomatik top. Hafif kalibreli mermi kullanır.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
+Hafif otomatik top
 

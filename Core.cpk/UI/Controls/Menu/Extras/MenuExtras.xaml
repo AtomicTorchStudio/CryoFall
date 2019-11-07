@@ -204,10 +204,10 @@
 
                 <TextBlock Style="{StaticResource Title}">Polish translation, proofread and LQA</TextBlock>
                 <TextBlock Style="{StaticResource Name}">Michał Tosza</TextBlock>
-                
+
                 <TextBlock Style="{StaticResource Title}">Turkish translation, proofread and LQA</TextBlock>
                 <TextBlock Style="{StaticResource Name}">AiBell Localization</TextBlock>
-                
+
 
                 <TextBlock Style="{StaticResource Section}">Special thanks</TextBlock>
                 <TextBlock Style="{StaticResource Name}"

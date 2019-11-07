@@ -22,7 +22,7 @@
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
-            var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
+            var sceneObject = data.GameObject.ClientSceneObject;
             var componentBombCountdown = sceneObject.FindComponent<ClientComponentBombCountdown>();
             componentBombCountdown.IsRendering = false;
         }

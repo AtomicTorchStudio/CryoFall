@@ -137,7 +137,7 @@
         {
             obstacleBlockDamageCoef = 0;
             damageApplied = 0; // no damage
-            return false; // no hit
+            return false;      // no hit
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -172,6 +172,7 @@
                                             ? DrawMode.FlipHorizontally
                                             : DrawMode.Default;
 
+            protoSkeleton.OnSkeletonCreated(skeletonRenderer);
             var shadowRenderer = protoSkeleton.ClientCreateShadowRenderer(data.GameObject,
                                                                           scaleMultiplier);
             shadowRenderer.PositionOffset += worldOffset;

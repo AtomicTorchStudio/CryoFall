@@ -24,12 +24,12 @@
         protected override StatName DefenseStatName => StatName.DefensePsi;
 
         /// <summary>
-        /// Time to remove full effect intensity back to zero in case the environmental intensity is 0.
+        /// Time to remove full effect intensity back to zero when the environmental intensity is 0.
         /// </summary>
         protected override double TimeToCoolDownToZeroSeconds => 3;
 
         /// <summary>
-        /// Time to reach the full intensity in case the environmental intensity is 1.
+        /// Time to reach the full intensity when the environmental intensity is 1.
         /// </summary>
         protected override double TimeToReachFullIntensitySeconds => 5;
 
@@ -93,14 +93,13 @@
         {
             base.ServerUpdate(data);
 
-            var damage = DamagePerSecondByIntensity
-                         * Math.Pow(data.Intensity, 1.5)
-                         * data.DeltaTime;
+            // calculate based damage for a given delta time
+            var damage = DamagePerSecondByIntensity * Math.Pow(data.Intensity, 1.5) * data.DeltaTime;
 
             // modify damage based on effect multiplier
             damage *= data.Character.SharedGetFinalStatMultiplier(StatName.PsiEffectMultiplier);
 
-            data.CharacterCurrentStats.ServerReduceHealth(damage, this);
+            data.CharacterCurrentStats.ServerReduceHealth(damage, data.StatusEffect);
         }
     }
 }

@@ -2,9 +2,16 @@
 {
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.World;
 
     public static class ProtoCharacterExtensions
     {
+        public static IDynamicWorldObject SharedGetCurrentVehicle(this ICharacter character)
+        {
+            return character.GetPublicState<PlayerCharacterPublicState>()
+                            .CurrentVehicle;
+        }
+
         /// <summary>
         /// Gets the stat multiplier from the FinalStatsCache of the character.
         /// </summary>

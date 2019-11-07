@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items;
-    using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
@@ -12,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
@@ -38,16 +38,23 @@
                 return 0;
             }
 
+            if (targetObject.ProtoGameObject is IProtoVehicle
+                && !PveSystem.SharedIsAllowVehicleDamage(weaponCache,
+                                                         (IDynamicWorldObject)targetObject,
+                                                         showClientNotification: false))
+            {
+                return 0;
+            }
+
             if (weaponCache.ProtoObjectExplosive != null
                 && targetObject.ProtoWorldObject is IProtoStaticWorldObject targetStaticWorldObjectProto)
             {
-                // special case - apply the explosive damage
+                // special case - apply the explosive damage to static object
                 return ServerCalculateTotalDamageByExplosive(weaponCache.ProtoObjectExplosive,
                                                              targetStaticWorldObjectProto,
                                                              damagePreMultiplier);
             }
 
-            // these two cases apply only if damage dealt not by a bomb
             if (ServerIsRestrictedPvPDamage(weaponCache,
                                             targetObject,
                                             out var isPvPcase,
@@ -113,11 +120,7 @@
             return totalDamage;
         }
 
-        public static bool SharedOnDamageToCharacter(
-            ICharacter targetCharacter,
-            WeaponFinalCache weaponCache,
-            double damageMultiplier,
-            out double damageApplied)
+        public static bool SharedCanHitCharacter(WeaponFinalCache weaponCache, ICharacter targetCharacter)
         {
             var targetPublicState = targetCharacter.GetPublicState<ICharacterPublicState>();
             var targetCurrentStats = targetPublicState.CurrentStats;
@@ -125,34 +128,28 @@
             if (targetCurrentStats.HealthCurrent <= 0)
             {
                 // target character is dead, cannot apply damage to it
-                damageApplied = 0;
                 return false;
             }
 
+            var damagingCharacter = weaponCache.Character;
+            if (!targetCharacter.IsNpc
+                && damagingCharacter != null
+                && NewbieProtectionSystem.SharedIsNewbie(damagingCharacter))
             {
-                if (!targetCharacter.IsNpc
-                    && weaponCache.Character is ICharacter damagingCharacter
-                    && NewbieProtectionSystem.SharedIsNewbie(damagingCharacter))
+                // no PvP damage by newbie
+                if (Api.IsClient)
                 {
-                    // no damage from newbie
-                    damageApplied = 0;
-                    if (Api.IsClient)
-                    {
-                        // display message to newbie
-                        NewbieProtectionSystem.ClientShowNewbieCannotDamageOtherPlayersOrLootBags(isLootBag: false);
-                    }
-
-                    // but the hit is registered so it's not possible to shoot through a character
-                    return true;
+                    // display message to newbie
+                    NewbieProtectionSystem.ClientShowNewbieCannotDamageOtherPlayersOrLootBags(isLootBag: false);
                 }
+
+                return false;
             }
 
             if (Api.IsClient)
             {
                 // we don't simulate the damage on the client side
-                damageApplied = 0;
-
-                if (weaponCache.Character is ICharacter damagingCharacter)
+                if (damagingCharacter != null)
                 {
                     // potentially a PvP case
                     PveSystem.ClientShowDuelModeRequiredNotificationIfNecessary(
@@ -163,20 +160,43 @@
                 return true;
             }
 
-            var attackerCharacter = weaponCache.Character;
-            if (!(attackerCharacter is null)
-                && attackerCharacter.IsNpc
+            if (damagingCharacter != null
+                && damagingCharacter.IsNpc
                 && targetCharacter.IsNpc)
             {
                 // no creature-to-creature damage
-                damageApplied = 0;
                 return false;
             }
 
+            return true;
+        }
+
+        public static void SharedTryDamageCharacter(
+            ICharacter targetCharacter,
+            WeaponFinalCache weaponCache,
+            double damageMultiplier,
+            out bool isHit,
+            out double damageApplied)
+        {
+            isHit = SharedCanHitCharacter(weaponCache, targetCharacter);
+            if (!isHit)
+            {
+                damageApplied = 0;
+                return;
+            }
+
+            // hit registered
+            if (Api.IsClient)
+            {
+                // damage is not calculated on the client side
+                damageApplied = 0;
+                return;
+            }
+
             // calculate and apply damage on server
-            var targetFinalStatsCache =
-                targetCharacter.GetPrivateState<BaseCharacterPrivateState>()
-                               .FinalStatsCache;
+            var attackerCharacter = weaponCache.Character;
+            var targetFinalStatsCache = targetCharacter.GetPrivateState<BaseCharacterPrivateState>()
+                                                       .FinalStatsCache;
 
             var totalDamage = ServerCalculateTotalDamage(
                 weaponCache,
@@ -186,10 +206,12 @@
                 clampDefenseTo1: true);
             if (totalDamage <= 0)
             {
-                // damage suppressed
                 damageApplied = 0;
-                return true;
+                return;
             }
+
+            var targetPublicState = targetCharacter.GetPublicState<ICharacterPublicState>();
+            var targetCurrentStats = targetPublicState.CurrentStats;
 
             // Clamp the max receivable damage to x5 from the max health.
             // This will help in case when the too much damage is dealt (mega-bomb!) 
@@ -216,18 +238,14 @@
 
             if (targetCurrentStats.HealthCurrent <= 0)
             {
-                // killed!
-                ServerCharacterDeathMechanic.OnCharacterKilled(
-                    targetCharacter,
-                    attackerCharacter,
-                    weaponCache.Weapon,
-                    weaponCache.ProtoWeapon);
+                Api.Logger.Important(
+                    $"Character killed: {targetCharacter} by {attackerCharacter} with {weaponCache.Weapon?.ToString() ?? weaponCache.ProtoWeapon?.ToString()}");
+                // no need to call it here as it's called automatically from ServerReduceHealth method
+                //ServerCharacterDeathMechanic.OnCharacterKilled(attackerCharacter, targetCharacter);
             }
 
             damageApplied = totalDamage;
             ServerApplyDamageToEquippedItems(targetCharacter, damageApplied);
-
-            return true;
         }
 
         private static void ServerApplyDamageToEquippedItems(ICharacter targetCharacter, double damageApplied)
@@ -315,6 +333,14 @@
             var damagingCharacter = weaponCache.Character;
             var targetCharacter = targetObject as ICharacter;
 
+            if (targetCharacter is null
+                && targetObject.ProtoGameObject is IProtoVehicle)
+            {
+                // the target object is vehicle so assume the target object is the vehicle's pilot
+                targetCharacter = targetObject.GetPublicState<VehiclePublicState>()
+                                              .PilotCharacter;
+            }
+
             isPvPcase = targetCharacter != null
                         && !targetCharacter.IsNpc
                         && damagingCharacter != null
@@ -322,7 +348,7 @@
 
             if (!isPvPcase)
             {
-                // not a PvP damage so it cannot be restricted
+                // not a PvP damage so damage cannot be restricted
                 return false;
             }
 

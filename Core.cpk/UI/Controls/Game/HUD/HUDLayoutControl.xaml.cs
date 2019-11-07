@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD
 {
     using System;
+    using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
@@ -8,14 +9,13 @@
     {
         private static ViewModelHUD viewModel;
 
-        public HUDLayoutControl()
-        {
-        }
-
         public static HUDLayoutControl Instance { get; private set; }
+
+        public UIElementCollection GridHotbarChildren { get; private set; }
 
         protected override void InitControl()
         {
+            this.GridHotbarChildren = this.GetByName<Grid>("GridHotbar").Children;
         }
 
         protected override void OnLoaded()

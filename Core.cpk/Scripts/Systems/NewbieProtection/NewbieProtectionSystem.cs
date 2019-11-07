@@ -98,11 +98,12 @@
         public static void ClientShowNewbieCannotDamageOtherPlayersOrLootBags(bool isLootBag)
         {
             NotificationSystem.ClientShowNotification(
-                title: Notification_CannotDamageOtherPlayersOrLootBags,
-                icon: isLootBag
-                          ? Api.GetProtoEntity<ObjectPlayerLootContainer>().Icon
-                          : null,
-                onClick: Menu.Open<WindowSocial>);
+                                  title: Notification_CannotDamageOtherPlayersOrLootBags,
+                                  icon: isLootBag
+                                            ? Api.GetProtoEntity<ObjectPlayerLootContainer>().Icon
+                                            : null,
+                                  onClick: Menu.Open<WindowSocial>)
+                              .HideAfterDelay(delaySeconds: 2 * 60);
         }
 
         public static void ServerDisableNewbieProtection(ICharacter character)
@@ -407,9 +408,8 @@
             if (ClientNewbieProtectionTimeRemaining > timeRemaining
                 && timeRemaining <= 0)
             {
-                NotificationSystem.ClientShowNotification(
-                    title: Notification_ProtectionExpired,
-                    autoHide: false);
+                NotificationSystem.ClientShowNotification(title: Notification_ProtectionExpired)
+                                  .HideAfterDelay(delaySeconds: 10 * 60);
             }
 
             ClientNewbieProtectionTimeRemaining = timeRemaining;

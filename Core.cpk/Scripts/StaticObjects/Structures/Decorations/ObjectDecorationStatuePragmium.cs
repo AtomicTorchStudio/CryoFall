@@ -21,7 +21,7 @@
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 1000;
+        public override float StructurePointsMax => 2500;
 
         // has light source
         public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -3,
@@ -42,7 +42,7 @@
         {
             base.ClientInitialize(data);
             data.ClientState.RendererLight = this.ClientCreateLightSource(
-                Client.Scene.GetSceneObject(data.GameObject));
+                data.GameObject.ClientSceneObject);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)

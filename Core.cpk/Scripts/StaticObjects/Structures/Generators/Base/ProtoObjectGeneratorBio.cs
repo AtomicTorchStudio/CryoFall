@@ -19,7 +19,7 @@
 
         public abstract ushort OrganicCapacity { get; }
 
-        public abstract float OrganicDecreasePerSecondWhenActive { get; }
+        public abstract double OrganicDecreasePerSecondWhenActive { get; }
 
         public override double ServerUpdateIntervalSeconds => 0.5;
 

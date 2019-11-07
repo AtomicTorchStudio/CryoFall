@@ -105,7 +105,7 @@
             }
             else
             {
-                var canUnlock = this.TechGroup.SharedCanUnlock(Client.Characters.CurrentPlayerCharacter, 
+                var canUnlock = this.TechGroup.SharedCanUnlock(Client.Characters.CurrentPlayerCharacter,
                                                                skipLearningPointsCheck: true,
                                                                out _);
                 this.CanUnlock = canUnlock;

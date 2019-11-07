@@ -311,13 +311,13 @@
             <!-- Text: CURRENT GAME -->
             <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabCurrentGame}"
                      IsSelected="{Binding IsCurrentGameTabSelected, Mode=TwoWay}"
-                     Visibility="{Binding IsCurrentGameTabVisible, Mode=TwoWay}"
+                     Visibility="{Binding IsCurrentGameTabEnabled, Converter={StaticResource BoolToVisibilityConverter}}"
                      Style="{StaticResource TabItemHeader}">
                 <currentGame:MenuCurrentGame />
             </TabItem>
 
             <TabItem Style="{StaticResource TabItemDelimiterStyle}"
-                     Visibility="{Binding IsCurrentGameTabVisible, Mode=TwoWay}" />
+                     Visibility="{Binding IsCurrentGameTabEnabled, Converter={StaticResource BoolToVisibilityConverter}}" />
 
             <!-- Text: SERVERS -->
             <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabServers}"

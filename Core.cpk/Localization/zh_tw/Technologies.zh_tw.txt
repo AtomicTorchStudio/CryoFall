@@ -1,333 +1,345 @@
 ﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
-{0}需要{1}％的已研究技術。
+{0}加入了遊戲
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
-學習點數不夠
+您確定要拉黑{0}嗎？
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorTechGroupIsLocked:
-科技樹被鎖定
+您可以稍後使用社交功能表解除遮罩此玩家。
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
-科技已經解鎖
+您確定要解除{0}的黑名單嗎？
 
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
-需要{0}個學習點（僅{1}可用）。
+無法在此處建造
 
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
-需要解鎖科技：{0}
+無法放置
 
 Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
-包含所有基本建築類型的藍圖，允許玩家建立一個簡單的基地。
+需要更多物品。
 
 Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Name:
-建築
+無法建造
 
 Scripts/Technologies/Tier1/Construction/TechNodeBasicBuilding@Name:
-基礎建築
+製造清單已滿
 
 Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
-包含許多配方，以生產更好的食品。
+無法添加新的配方
 
 Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
-烹飪
+無法拆除
 
 Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
-基礎服裝和護甲的藍圖。
+你的{0}已經破損並且永遠消失了。
 
 Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
-防禦
+物品損壞
 
 Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
-骨甲
+`"你需要燃料才能進行加油：`
 
 Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
-編織盔甲
+`[br]{0}。"`
 
 Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
-布甲
+不能補充
 
 Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
-木制盔甲
+無需重新填充
 
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
-種子，基肥等農業用品的制備。
+此物品不可再填充。
 
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Name:
-農業
+過於接近他人土地
 
 Scripts/Technologies/Tier1/Farming/TechNodeFarmingBasics@Name:
-農業基礎知識
+該區域已被另一個玩家佔領，或者它太接近別人的土地。
 
 Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Description:
-建立工業生產和制造所需的所有基本工業技術。
+資源點才剛剛出現，不能佔領。暫時限制其周圍建築。
 
 Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Name:
-工業
+與另一個玩家佔領的區域相交
 
 Scripts/Technologies/Tier1/Industry/TechNodeGlassware@Name:
-玻璃器皿
+`"你用完了你的佔領土地限額。`
 
 Scripts/Technologies/Tier1/Industry/TechNodeIronTools@Name:
-鐵工具
+`[br]你可以通過研究新技術來增加這個額度。"`
 
 Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
-冶煉
+你需要研究外星科技（T3）才能佔領原油/鋰礦，或在其附近放置佔領建築。
 
 Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
-原始武器的藍圖。
+`"襲擊正在進行中。`
 
 Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
-進攻
+`[br]你的基地受到攻擊時，你無法建造新的建築物。"`
 
 Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
-使用各種化合物，操作化學反應。
+你只能在自己的佔領區內建造這個建築。
 
 Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
-化學
+你並非此佔領區所有人。
 
 Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
-建造更復雜的建築，有更廣泛的應用。
+基地正遭受襲擊。
 
 Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
-建設2
+取消新手保護
 
 Scripts/Technologies/Tier2/Construction2/TechNodeStoneConstructions@Name:
-石頭建築
+確定要取消新手保護嗎？你無法再次將其開啟。
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
-更高級的烹飪食譜，適用於各種新食品。
+你正處於新手保護狀態下。你被其他角色殺死時不會掉落物品。另外，你死亡後掉落的物品無法被其他角色拾取。請跟隨任務，製造必須的工具和武器，儘快建造起一個小型基地！
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
-烹飪2
+新手保護結束于: {0}
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
-改進的保護技術提供了更好的裝甲藍圖。
+處於新手保護狀態下時無法攻擊其他玩家或是拾取他們的物品。但是你可以在任意時刻從政治功能表關閉新手保護狀態。
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Name:
-防守2
+你無法在新手保護狀態下進行此行動。但是你可以在任意時刻從政治功能表關閉新手保護狀態。
 
 Scripts/Technologies/Tier2/Defense2/TechNodeFurArmor@Name:
-毛皮盔甲
+此包裹處於新手保護狀態下，只有其所有者可以拾取。
 
 Scripts/Technologies/Tier2/Defense2/TechNodeFurHeadgear@Name:
-毛皮頭盔
+新手保護狀態已結束。你現在可以自由進行PVP活動，但請注意，角色死亡時將掉落身上所有的物品。
 
 Scripts/Technologies/Tier2/Defense2/TechNodeLeatherArmor@Name:
-皮革盔甲
+新手保護
 
 Scripts/Technologies/Tier2/Defense2/TechNodeLeatherHeadgear@Name:
-皮革頭盔
+物品欄沒有可用空間
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
-縫制盔甲
+有些物品掉到了地上！
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
-縫制頭盔
+[b]{0}[/b]邀請你加入他們的隊伍。
 
 Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
-基礎電力設施。
+請注意，如果你接受此邀請，將[b]離開[/b]當前隊伍。
 
 Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
-電力
+組隊邀請已發送至[b]{0}[/b]。
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
-復雜的農業技術，能種植更多農作物，使用更好的肥料。
+隊伍邀請
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
-農業2
+{0}通過{1}的邀請加入了隊伍
 
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
-改進的工業技術允許應用更多的工業流程。
+{0}邀請了{1}加入隊伍
 
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
-工業2
+{0}離開了隊伍
 
 Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
-鋼鐵冶煉
+{0}被{1}踢出了隊伍
 
 Scripts/Technologies/Tier2/Industry2/TechNodeSteelTools@Name:
-鋼鐵工具
+{0}已將你踢出了隊伍。
 
 Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Description:
-創造各種醫療用品。
+未找到邀請或邀請已過期。
 
 Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Name:
-醫學
+隊伍已滿。
 
 Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Description:
-更高級的武器，包括更強大的槍械和彈藥類型。
+被邀請人未找到。
 
 Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Name:
-進攻2
+隊伍已滿。
 
 Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
-使用各種復雜的化合物和化學反應。
+被邀請人已經處在你的隊伍中。
 
 Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
-化學2
+你被管理員遮罩，無法進行邀請。
 
 Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
-使用貨幣，進行商業活動。允許鑄造和回收硬幣以及建立自動化交易站。
+被邀請玩家處於離線狀態。只有線上玩家可以被邀請進入小隊。
 
 Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Name:
-商業
+無法互動-太遠或建築不可用。
 
 Scripts/Technologies/Tier3/Commerce/TechNodeCoinMinting@Name:
-硬幣鑄造
+沒有電網。
 
 Scripts/Technologies/Tier3/Commerce/TechNodeCoinRecycling@Name:
-硬幣回收
+電網中電力不足。
 
 Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Description:
-高級建築。
+禁止決鬥模式
 
 Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
-建設3
+啟用決鬥模式
 
 Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
-磚建築
+`"你可以啟用決鬥模式，以便與其他玩家進行戰鬥。`
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
-更高級的烹飪食譜，美食家必備。
+[br]你死亡後不會失去物品。
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
-烹飪3
+`[br]雙方玩家必須都啟用決鬥模式。"`
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
-高級保護技術。
+決鬥模式
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Name:
-防守3
+你不能在PVE伺服器中損害其他玩家或建築。
 
 Scripts/Technologies/Tier3/Defense3/TechNodeMetalArmor@Name:
-金屬盔甲
+雙方玩家必須都啟用決鬥模式。
 
 Scripts/Technologies/Tier3/Defense3/TechNodeMetalHeadgear@Name:
-金屬頭盔
+這屬於另一個玩家。
 
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
-軍裝甲
+只能在襲擊時間段內破壞任何土地所有範圍內的建築。
 
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
-軍用頭盔
+無傷害
 
 Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
-高級電力設施。
+`"襲擊時段現已結束。`
 
 Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
-電力2
+`[br]正在進行的襲擊可以繼續進行。"`
 
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
-先進的農業實踐和更廣泛的作物品種。
+尚無成熟作物
 
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
-農業3
+伺服器：世界備份將於{0}秒後開始。
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
-先進的工業技術可實現更多更復雜的工業流程。
+伺服器：世界備份完成！
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
-工業3
+您已被此伺服器管理員禁止使用此伺服器
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
-允許制造更廣泛的高級醫療物品。
+`"你被此伺服器暫時踢出。有關任何其他細節，請諮詢伺服器管理員。`
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Name:
-醫學2
+`[br][br]您可以在{0}後重新加入該伺服器。"`
 
 Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Description:
-高度先進的攻擊技術，包括全自動槍械和更多樣化的彈藥類型。
+`"此伺服器的管理員已將其設置為僅限邀請進入。`
 
 Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Name:
-進攻3
+`[br]請查看伺服器說明以瞭解其他詳細資訊。"`
 
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
-釀造酒精飲料以及類似性質的東西。
+`"歡迎來到CryoFall官方伺服器！`
 
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
-娛樂
+[br]
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+[br]
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+[b]重要:[/b]
 
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
-利用外星世界資源所必需的技術。
+[br]
 
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
-外星科技
+這是一個PVE伺服器。在本伺服器上玩家不能以任何方式傷害其他玩家。此伺服器致力於玩家的和平探索，對抗自然環境。玩家無法殺死其他玩家，摧毀其建築或盜取物品。除此之外，此伺服器和正常的遊戲體驗一致，有著危險的怪物，可解鎖的科技和奇幻的世界。去冒險吧。
 
 Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
-製造能夠長期儲存的罐頭食品。
+[br]
 
 Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
-罐頭製造器
+[br]
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
-先進的化學過程和復雜的化學反應。
+如果你希望獲得更加刺激，不受限制的遊戲體驗，請考慮加入PVP伺服器。
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
-化學3
+[br]
 
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
-高科技建築。
+[br]
 
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
-建設4
+[b]伺服器規則:[/b]
 
 Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
-混凝土建築
+[*]尊重其他玩家。我們不會容忍任何的濫用以及歧視行為。
 
 Scripts/Technologies/Tier4/Construction4/TechNodeSteelConstructions@Name:
-鋼建築
+[*]遵從伺服器管理員的安排。
 
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
-控制論和生物植入物的創建和應用。
+[*]不要在聊天欄刷屏或發送不雅內容。
 
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
-植入物
+[*]不要濫用PVE限制。
 
 Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
-高科技保護技術。
+[*]不要濫用遊戲規則或遊戲機制來對其他玩家造成麻煩。
 
 Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Name:
-防禦4
+[br]
 
 Scripts/Technologies/Tier4/Defense4/TechNodeAssaultArmor@Name:
-突擊裝甲
+[br]
 
 Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
-突擊頭盔
+`祝大家遊戲愉快! :)"`
 
 Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
-高科技電力設施。
+`"歡迎來到CryoFall官方伺服器！`
 
 Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
-電力3
+[br]
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
-能源武器是傳統槍械的技術飛躍。
+[br]
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
-能量武器
+[b]重要:[/b]
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
-高科技工業技術，實現最復雜的技術流程。
+[br]
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
-工業4
+這是一個PVP伺服器。請記住在PVP伺服器上，你將遭遇來自其他玩家的敵對行為。你要努力作戰，保護自己。你需要做好準備，時刻警惕。你也可以與其他玩家合作來提高自己的生存機會。
 
 Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Description:
-處理貴金屬和珠寶。
+[br]
 
 Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Name:
-首飾
+[br]
 
 Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Description:
-開發和應用最先進的醫療技術。
+如果你希望獲得更加平和的探索體驗，尤其如果這是你第一次進行遊戲，請考慮加入PVE伺服器。
 
 Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Name:
-醫學3
+[br]
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
-高科技攻擊技術使傳統槍械發揮最大潛力。
+[br]
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
-進攻4
+[b]伺服器規則:[/b]
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+[*]尊重其他玩家。我們不會容忍任何的濫用以及歧視行為。
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+[*]遵從伺服器管理員的安排。
 

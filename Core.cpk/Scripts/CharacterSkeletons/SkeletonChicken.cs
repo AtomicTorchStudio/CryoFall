@@ -7,10 +7,12 @@
 
     public class SkeletonChicken : ProtoCharacterSkeletonAnimal
     {
-        public override SkeletonResource SkeletonResourceBack { get; }
-            = new SkeletonResource("Chicken/Back");
+        public override double DefaultMoveSpeed => 1.5;
 
         public override float OrientationDownExtraAngle => 5;
+
+        public override SkeletonResource SkeletonResourceBack { get; }
+            = new SkeletonResource("Chicken/Back");
 
         public override SkeletonResource SkeletonResourceFront { get; }
             = new SkeletonResource("Chicken/Front");

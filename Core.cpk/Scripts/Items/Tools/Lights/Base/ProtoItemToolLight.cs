@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
@@ -17,7 +18,6 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -63,6 +63,8 @@
                 "Characters/Tools/Lights/" + name + "Active",
                 isProvidesMagentaPixelPosition: true);
         }
+
+        public override bool CanBeSelectedInVehicle => true;
 
         public override ITextureResource Icon { get; }
 
@@ -121,10 +123,11 @@
         public virtual void ClientSetupSkeleton(
             IItem item,
             ICharacter character,
+            ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
             List<IClientComponent> skeletonComponents)
         {
-            ClientSkeletonItemInHandHelper.Setup(
+            protoCharacterSkeleton.ClientSetupItemInHand(
                 skeletonRenderer,
                 "WeaponMelee",
                 this.GetCharacterTextureResource(item, character));
@@ -138,14 +141,12 @@
                 return;
             }
 
-            var sceneObject = Client.Scene.GetSceneObject(character);
-            var componentLightSource = this.ClientCreateLightSource(item, character, sceneObject);
+            var sceneObject = character.ClientSceneObject;
+            var componentLightSource = this.ClientCreateLightSource(item, character);
             var componentLightInSkeleton = sceneObject.AddComponent<ClientComponentLightInSkeleton>();
-            componentLightInSkeleton.Setup(character,
-                                           skeletonRenderer,
+            componentLightInSkeleton.Setup(skeletonRenderer,
                                            this.ItemLightConfig,
                                            componentLightSource,
-                                           "Weapon",
                                            "Weapon");
 
             skeletonComponents.Add(componentLightSource);
@@ -177,11 +178,10 @@
 
         protected virtual BaseClientComponentLightSource ClientCreateLightSource(
             IItem item,
-            ICharacter character,
-            IClientSceneObject sceneObject)
+            ICharacter character)
         {
             return ClientLighting.CreateLightSourceSpot(
-                sceneObject,
+                character.ClientSceneObject,
                 this.ItemLightConfig);
         }
 
@@ -460,14 +460,14 @@
                 return;
             }
 
-            var selectedHotbarItem = characterPublicState.SelectedHotbarItem;
+            var selectedHotbarItem = characterPublicState.SelectedItem;
             if (selectedHotbarItem != item)
             {
                 if (item.Container == characterPrivateState.ContainerHotbar)
                 {
                     // different hotbar item selected - select the required hotbar item
                     PlayerCharacter.SharedSelectHotbarSlotId(character, item.ContainerSlotId);
-                    selectedHotbarItem = characterPublicState.SelectedHotbarItem;
+                    selectedHotbarItem = characterPublicState.SelectedItem;
                 }
 
                 if (selectedHotbarItem != item)

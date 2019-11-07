@@ -4,7 +4,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
-    using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.GameEngine.Common.Primitives;

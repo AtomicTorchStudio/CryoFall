@@ -7,12 +7,14 @@
     {
         Color Color { get; }
 
-        bool IsLightEnabled { get; set; }
+        bool IsLightEnabled { get; }
+
+        Size2F? LogicalSize { get; }
 
         Vector2D ScreenOffset { get; }
 
         Size2F Size { get; }
 
-        Size2F? LogicalSize { get; set; }
+        Vector2D WorldOffset { get; }
     }
 }

@@ -22,8 +22,14 @@ Floresta (tropical)
 Scripts/Tiles/TileLakeShore@Name:
 Margem do lago
 
+Scripts/Tiles/TileLava@Name:
+Lava
+
 Scripts/Tiles/TileMeadows@Name:
 Prados
+
+Scripts/Tiles/TileRoads@Name:
+Estradas
 
 Scripts/Tiles/TileRocky@Name:
 Rochoso

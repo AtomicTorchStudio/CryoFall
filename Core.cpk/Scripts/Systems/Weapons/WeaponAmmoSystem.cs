@@ -3,12 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -373,16 +375,32 @@
 
         /// <summary>
         /// Returns compatible with weapon ammo group by ammo type.
+        /// Please note that it works only for player characters.
         /// </summary>
         private static List<IGrouping<IProtoItemAmmo, IItem>> SharedGetCompatibleAmmoGroups(
             ICharacter character,
             IProtoItemWeapon protoWeapon)
         {
             var compatibleAmmoProtos = protoWeapon.CompatibleAmmoProtos;
-            var containerInventory = character.SharedGetPlayerContainerInventory();
-            var containerHotbar = character.SharedGetPlayerContainerHotbar();
 
-            var allItems = containerInventory.Items.Concat(containerHotbar.Items);
+            IEnumerable<IItem> allItems = null;
+            var currentVehicle = character.SharedGetCurrentVehicle();
+            if (currentVehicle != null
+                && !((IProtoVehicle)currentVehicle.ProtoGameObject).IsPlayersHotbarAndEquipmentItemsAllowed)
+            {
+                // select items from the vehicle equipment container
+                allItems = currentVehicle.GetPrivateState<VehicleMechPrivateState>()
+                                         .EquipmentItemsContainer.Items;
+            }
+
+            if (allItems == null)
+            {
+                // select items from player's inventory
+                var containerInventory = character.SharedGetPlayerContainerInventory();
+                var containerHotbar = character.SharedGetPlayerContainerHotbar();
+                allItems = containerInventory.Items.Concat(containerHotbar.Items);
+            }
+
             return allItems
                    .Where(i => compatibleAmmoProtos.Contains(i.ProtoGameObject))
                    .GroupBy(a => (IProtoItemAmmo)a.ProtoItem)
@@ -416,9 +434,10 @@
                     // unload current ammo
                     if (IsServer)
                     {
+                        var targetContainers = SharedGetTargetContainersForAmmoUnloading(character);
                         var result = Server.Items.CreateItem(
-                            toCharacter: character,
                             protoItem: currentProtoItemAmmo,
+                            new AggregatedItemsContainers(targetContainers),
                             count: (ushort)weaponAmmoCount);
 
                         if (!result.IsEverythingCreated)
@@ -549,14 +568,6 @@
                         weaponAmmoCount += itemAmmoCount;
                     }
 
-                    // check if character owns this item
-                    if (itemAmmo.Container.OwnerAsCharacter != character)
-                    {
-                        Logger.Error("The character doesn't own " + itemAmmo + " - cannot use it to reload",
-                                     character);
-                        continue;
-                    }
-
                     // reduce ammo item count
                     if (IsServer)
                     {
@@ -595,6 +606,32 @@
             Logger.Info(
                 $"Weapon reloaded: {itemWeapon} - ammo {weaponAmmoCount}/{weaponAmmoCapacity} {selectedProtoItemAmmo?.ToString() ?? "<no ammo>"}",
                 character);
+        }
+
+        private static IEnumerable<IItemsContainer> SharedGetTargetContainersForAmmoUnloading(ICharacter character)
+        {
+            IEnumerable<IItemsContainer> targetContainers = Array.Empty<IItemsContainer>();
+            var currentVehicle = character.SharedGetCurrentVehicle();
+            if (currentVehicle == null
+                || ((IProtoVehicle)currentVehicle.ProtoGameObject).IsPlayersHotbarAndEquipmentItemsAllowed)
+            {
+                // no vehicle — use only character's containers
+                return character.ProtoCharacter.SharedEnumerateAllContainers(
+                    character,
+                    includeEquipmentContainer: false);
+            }
+
+            // select items from the vehicle equipment container
+            targetContainers = targetContainers.Append(currentVehicle
+                                                       .GetPrivateState<VehicleMechPrivateState>()
+                                                       .EquipmentItemsContainer);
+
+            // append character's containers
+            targetContainers = targetContainers.Concat(
+                character.ProtoCharacter.SharedEnumerateAllContainers(
+                    character,
+                    includeEquipmentContainer: false));
+            return targetContainers;
         }
 
         private static List<ItemWithCount> SharedSelectAmmoItemsFromGroup(

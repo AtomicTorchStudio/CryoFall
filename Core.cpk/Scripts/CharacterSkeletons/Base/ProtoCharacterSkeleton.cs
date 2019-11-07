@@ -18,6 +18,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoCharacterSkeleton : ProtoEntity, IProtoCharacterSkeleton
     {
@@ -26,12 +27,18 @@
             this.Name = this.GetType().Name;
         }
 
-        // move speed as the default scale, in world unites (tiles) per second
-        public virtual double DefaultMoveSpeed => 1.0;
+        /// <summary>
+        /// Move speed at the default scale, in world units (tiles) per second.
+        /// </summary>
+        public abstract double DefaultMoveSpeed { get; }
 
         public abstract bool HasMoveStartAnimations { get; }
 
         public virtual bool HasStaticAttackAnimations { get; } = true;
+
+        public virtual Vector2D InventoryOffset => Vector2D.Zero;
+
+        public virtual double InventoryScale => 1;
 
         public override string Name { get; }
 
@@ -46,6 +53,8 @@
         public abstract SkeletonResource SkeletonResourceBack { get; }
 
         public abstract SkeletonResource SkeletonResourceFront { get; }
+
+        public virtual string SlotNameItemInHand => "Weapon";
 
         public ReadOnlySoundPreset<CharacterSound> SoundPresetCharacter { get; private set; }
 
@@ -82,6 +91,20 @@
             rendererShadow.DrawOrder = DrawOrder.Shadow;
             this.ClientSetupShadowRenderer(rendererShadow, scaleMultiplier);
             return rendererShadow;
+        }
+
+        public virtual void ClientResetItemInHand(IComponentSkeleton skeletonRenderer)
+        {
+            skeletonRenderer.SetAttachment(this.SlotNameItemInHand, attachmentName: null);
+        }
+
+        public virtual void ClientSetupItemInHand(
+            IComponentSkeleton skeletonRenderer,
+            string attachmentName,
+            TextureResource textureResource)
+        {
+            skeletonRenderer.SetAttachmentSprite(this.SlotNameItemInHand, attachmentName, textureResource);
+            skeletonRenderer.SetAttachment(this.SlotNameItemInHand, attachmentName);
         }
 
         public abstract void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier);

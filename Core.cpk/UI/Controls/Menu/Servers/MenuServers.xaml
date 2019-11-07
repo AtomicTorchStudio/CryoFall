@@ -66,7 +66,7 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Control Grid.Row="1" 
+                    <Control Grid.Row="1"
                              Style="{StaticResource MultiplayerTableHeaderControlStyle}"
                              Margin="5,0,14,5"
                              Visibility="{Binding ListNotEmptyVisibility}" />
@@ -128,7 +128,7 @@
                                        Margin="0,5,0,7" />
 
                             <Grid>
-                                <Border CornerRadius="1" 
+                                <Border CornerRadius="1"
                                         HorizontalAlignment="Center"
                                         Padding="2"
                                         BorderThickness="1"
@@ -235,8 +235,8 @@
                                            HorizontalAlignment="Right" />
                             </Grid>
 
-                            <Control Style="{StaticResource ControlHorizontalSeparator}" 
-                                     Margin="0,0,0,5"/>
+                            <Control Style="{StaticResource ControlHorizontalSeparator}"
+                                     Margin="0,0,0,5" />
 
                             <!-- Selectable text for description (based on read-only textbox) -->
                             <ScrollViewer Margin="0,0,-10,10">

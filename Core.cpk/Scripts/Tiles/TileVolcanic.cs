@@ -40,7 +40,9 @@
         {
             settings.AmbientSoundProvider = new TileAmbientSoundProvider(
                 new AmbientSoundPreset(new SoundResource("Ambient/Rocky"),
-                                       suppression: 1));
+                                       // suppression is disabled otherwise lava sound would not be heard
+                                       suppressionCoef: 0,
+                                       isSupressingMusic: true));
 
             // rock plates
             settings.AddGroundTexture(

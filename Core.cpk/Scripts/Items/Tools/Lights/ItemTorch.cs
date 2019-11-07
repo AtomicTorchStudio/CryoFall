@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -41,16 +40,16 @@
 
         protected override BaseClientComponentLightSource ClientCreateLightSource(
             IItem item,
-            ICharacter character,
-            IClientSceneObject sceneObject)
+            ICharacter character)
         {
-            var lightSource = base.ClientCreateLightSource(item, character, sceneObject);
+            var lightSource = base.ClientCreateLightSource(item, character);
 
             // add light flickering
-            sceneObject.AddComponent<ClientComponentLightSourceEffectFlickering>()
-                       .Setup(lightSource,
-                              flickeringPercents: 10,
-                              flickeringChangePercentsPerSecond: 70);
+            character.ClientSceneObject
+                     .AddComponent<ClientComponentLightSourceEffectFlickering>()
+                     .Setup(lightSource,
+                            flickeringPercents: 10,
+                            flickeringChangePercentsPerSecond: 70);
 
             return lightSource;
         }
@@ -119,7 +118,7 @@
             lightConfig.Size = 16;
 
             fuelConfig.FuelCustomIcon = new TextureResource("Icons/IconFire");
-            fuelConfig.FuelCapacity = 6.5 * 60; // 6.5 minutes
+            fuelConfig.FuelCapacity = 6.5 * 60;                     // 6.5 minutes
             fuelConfig.FuelAmountInitial = fuelConfig.FuelCapacity; // torch is spawned with the full fuel amount
             fuelConfig.FuelUsePerSecond = 1;
             // fuel list is not populated - the item is spawned fully charged and destroyed when charge is 0

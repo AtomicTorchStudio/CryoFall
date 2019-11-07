@@ -18,9 +18,9 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemSand>(count: 50);
-            inputItems.Add<ItemComponentsIndustrialChemicals>(count: 4);
-            inputItems.Add<ItemOrePragmium>(count: 4);
+            inputItems.Add<ItemSand>(count: 20);
+            inputItems.Add<ItemComponentsIndustrialChemicals>(count: 1);
+            inputItems.Add<ItemOrePragmium>(count: 5);
 
             outputItems.Add<ItemHygroscopicGranules>(count: 10);
         }

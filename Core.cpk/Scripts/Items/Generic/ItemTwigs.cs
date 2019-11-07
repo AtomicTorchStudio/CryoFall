@@ -7,7 +7,7 @@
 
         public double FuelAmount => 10;
 
-        public override double GroundIconScale => 1.33f;
+        public override double GroundIconScale => 1.33;
 
         public override ushort MaxItemsPerStack => ItemStackSize.Big;
 

@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemTobaccoRaw>(count: 2);
             inputItems.Add<ItemSand>(count: 5);
-            inputItems.Add<ItemMulch>(count: 1);
+            inputItems.Add<ItemMulch>(count: 2);
 
             outputItems.Add<ItemSeedsTobacco>(count: 1);
         }

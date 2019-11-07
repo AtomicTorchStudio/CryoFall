@@ -22,8 +22,14 @@ Wald (tropisch)
 Scripts/Tiles/TileLakeShore@Name:
 Seeufer
 
+Scripts/Tiles/TileLava@Name:
+Lava
+
 Scripts/Tiles/TileMeadows@Name:
 Wiesen
+
+Scripts/Tiles/TileRoads@Name:
+Straßen
 
 Scripts/Tiles/TileRocky@Name:
 Felsenlandschaft

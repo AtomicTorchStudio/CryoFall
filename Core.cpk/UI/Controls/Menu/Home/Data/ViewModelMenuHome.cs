@@ -10,13 +10,16 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Controllers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
     using AtomicTorch.CBND.GameApi.ServicesClient;
+    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.FeaturesSlideshow;
 
     public class ViewModelMenuHome : BaseViewModel
     {
         private const string AtomicTorchForumsRssFeed =
             "http://forums.atomictorch.com/index.php?action=.xml;type=rss2&c=3&limit=15";
 
-        private const string AtomicTorchNewsRssFeed = "http://atomictorch.com/blog/rss";
+        private const string AtomicTorchNewsRssFeed = //"http://atomictorch.com/blog/rss";
+            "https://steamcommunity.com/games/829590/rss/";
 
         private ServerViewModelsProvider serverViewModelsProvider;
 
@@ -66,6 +69,9 @@
                 this.OnForumsRssFeedResult);
         }
 
+        public BaseCommand CommandShowFeaturesSlideshow
+            => new ActionCommand(this.ExecuteCommandShowFeaturesSlideshow);
+
         public SuperObservableCollection<RssFeedEntry> ForumsItemsList { get; }
             = new SuperObservableCollection<RssFeedEntry>();
 
@@ -74,20 +80,21 @@
         public SuperObservableCollection<RssFeedEntry> NewsItemsList { get; }
             = new SuperObservableCollection<RssFeedEntry>();
 
-        public string UpdateReleaseDateText => new DateTime(2019, 8, 12)
+        public string UpdateReleaseDateText => new DateTime(2019, 11, 1)
                                                .ToString("MMMM yyyy", CultureInfo.CurrentUICulture)
                                                .ToUpperInvariant();
 
-        public string UpdateTitle => "A23—Electricity Update";
-
-        public Visibility VisibilityLoadingForumsRssFeed { get; set; }
-
-        public Visibility VisibilityLoadingNewsRssFeed { get; set; }
+        public string UpdateTitle => "A24—Experimental version";
 
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
             this.serverViewModelsProvider = null;
+        }
+
+        private void ExecuteCommandShowFeaturesSlideshow()
+        {
+            FeaturesSlideshow.IsDisplayed = true;
         }
 
         private void OnForumsRssFeedResult(List<RssFeedEntry> rssFeedEntries)

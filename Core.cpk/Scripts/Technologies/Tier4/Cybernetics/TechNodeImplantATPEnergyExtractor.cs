@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeImplantATPEnergyExtractor>();
 
-            config.SetRequiredNode<TechNodeImplantArtificialRetina>();
+            config.SetRequiredNode<TechNodeImplantHealingGland>();
         }
     }
 }

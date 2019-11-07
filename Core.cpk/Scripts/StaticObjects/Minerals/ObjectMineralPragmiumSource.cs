@@ -37,30 +37,30 @@
               DefaultMineralClientState>,
           IProtoObjectPsiSource
     {
-        // How many nodes the game server should spawn when Pragmium Source is destroyed.
-        private const int DestroySpawnNodeCount = 12;
+        // How many nodes the game server should spawn when pragmium Source is destroyed.
+        private const int DestroySpawnNodeCount = 9;
 
         private const string ErrorCannotBuild_PragmiumSourceTooCloseOnPvE =
             "Too close to a pragmium source[br](PvE-only restriction).";
 
         private const int MobDespawnDistance = 10;
 
-        // How many guardian mobs Pragmium Source can have simultaneously.
+        // How many guardian mobs pragmium source can have simultaneously.
         private const int MobsCountLimit = 3;
 
         private const int MobSpawnDistance = 2;
 
-        // How many nodes Pragmium Source can have simultaneously.
-        private const int NodesCountLimit = 5;
+        // How many nodes a pragmium source can have simultaneously.
+        private const int NodesCountLimit = 3;
 
-        // How often Pragmium Source will attempt to spawn nodes and decay.
+        // How often a pragmium source will attempt to spawn nodes and decay.
         private const int ServerSpawnAndDecayIntervalSeconds = 10 * 60; // 10 minutes
 
-        // How many guardian mobs Pragmium Source will respawn at every spawn interval (ServerSpawnAndDecayIntervalSeconds).
-        private const int ServerSpawnMobsMaxCountPerIteration = 2; // spawn at max 2 mobs
+        // How many guardian mobs a pragmium source will respawn at every spawn interval (ServerSpawnAndDecayIntervalSeconds).
+        private const int ServerSpawnMobsMaxCountPerIteration = 2; // spawn at max 2 mobs per iteration
 
-        // How many nodes Pragmium Source will respawn at every spawn interval (ServerSpawnAndDecayIntervalSeconds).
-        private const int ServerSpawnNodesMaxCountPerIteration = 2; // spawn at max 2 nodes
+        // How many nodes a pragmium source will respawn at every spawn interval (ServerSpawnAndDecayIntervalSeconds).
+        private const int ServerSpawnNodesMaxCountPerIteration = 1; // spawn at max 1 nodes per iteration
 
         public static readonly ConstructionTileRequirements.Validator ValidatorCheckNoPragmiumSourceNearbyOnPvE
             = new ConstructionTileRequirements.Validator(
@@ -112,8 +112,8 @@
             = new Lazy<IProtoCharacter>(
                 GetProtoEntity<MobPragmiumBeetle>);
 
-        // Total lifetime of the Pragmium Source.
-        private static readonly double LifetimeTotalDurationSeconds = TimeSpan.FromDays(1).TotalSeconds;
+        private static readonly double LifetimeTotalDurationSeconds
+            = TimeSpan.FromHours(12).TotalSeconds;
 
         private static readonly Lazy<ObjectMineralPragmiumNode> ProtoNodeLazy
             = new Lazy<ObjectMineralPragmiumNode>(
@@ -158,8 +158,12 @@
             }
 
             publicState.StructurePointsCurrent = newStructurePoints;
-            ServerTrySpawnNodes(worldObject);
-            ServerTrySpawnMobs(worldObject);
+
+            if (!Server.World.IsObservedByAnyPlayer(worldObject))
+            {
+                ServerTrySpawnNodes(worldObject);
+                ServerTrySpawnMobs(worldObject);
+            }
         }
 
         public bool ServerIsPsiSourceActive(IWorldObject worldObject) => true;
@@ -216,7 +220,7 @@
             Vector2Ushort epicenterPosition,
             double explosionRadius)
         {
-            // let's spawn scatter Pragmium nodes around the explosion site 
+            // let's spawn scattered pragmium nodes around the explosion site 
             var countToSpawnRemains = DestroySpawnNodeCount;
             var attemptsRemains = 2000;
 
@@ -230,7 +234,7 @@
                 }
 
                 // calculate random distance from the explosion epicenter
-                var distance = RandomHelper.Range(0, explosionRadius);
+                var distance = RandomHelper.Range(2, explosionRadius);
 
                 // ensure we spawn more objects closer to the epicenter
                 var spawnProbability = 1 - (distance / explosionRadius);
@@ -246,7 +250,7 @@
                     (ushort)(epicenterPosition.X + distance * Math.Cos(angle)),
                     (ushort)(epicenterPosition.Y + distance * Math.Sin(angle)));
 
-                // try spawn a Pragmium node
+                // try spawn a pragmium node
                 if (ServerTrySpawnNode(spawnPosition))
                 {
                     // spawned successfully!
@@ -305,6 +309,7 @@
             var privateState = GetPrivateState((IStaticWorldObject)targetObject);
 
             base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
+
             Server.World.CreateStaticWorldObject<ObjectMineralPragmiumSourceExplosion>(tilePosition);
 
             ServerTimersSystem.AddAction(
@@ -314,16 +319,12 @@
                     // kill all spawned mobs
                     foreach (var character in Api.Shared.WrapInTempList(privateState.MobsList))
                     {
-                        if (character.IsDestroyed)
+                        if (!character.IsDestroyed)
                         {
-                            continue;
+                            character.GetPublicState<ICharacterPublicState>()
+                                     .CurrentStats
+                                     .ServerSetHealthCurrent(0);
                         }
-
-                        character.GetPublicState<ICharacterPublicState>()
-                                 .CurrentStats
-                                 .ServerSetHealthCurrent(0);
-
-                        Logger.Dev("Killed mob: " + character);
                     }
                 });
         }
@@ -422,10 +423,23 @@
         private static bool ServerTrySpawnNode(Vector2Ushort spawnPosition)
         {
             var protoNode = ProtoNodeLazy.Value;
-            return protoNode.CheckTileRequirements(spawnPosition,
-                                                   character: null,
-                                                   logErrors: false)
-                   && Server.World.CreateStaticWorldObject(protoNode, spawnPosition) != null;
+            if (!protoNode.CheckTileRequirements(spawnPosition,
+                                                 character: null,
+                                                 logErrors: false))
+            {
+                return false;
+            }
+
+            var node = Server.World.CreateStaticWorldObject(protoNode, spawnPosition);
+            if (node is null)
+            {
+                return false;
+            }
+
+            // make this node to despawn automatically
+            ObjectMineralPragmiumNode.ServerRestartDestroyTimer(
+                ObjectMineralPragmiumNode.GetPrivateState(node));
+            return true;
         }
 
         private static void ServerTrySpawnNodes(IStaticWorldObject worldObject)

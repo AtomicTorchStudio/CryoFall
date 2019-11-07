@@ -16,7 +16,7 @@
               TPublicState,
               TClientState>,
           IProtoObjectElectricityProducer,
-          IInteractableProtoStaticWorldObject
+          IInteractableProtoWorldObject
         where TPrivateState : StructurePrivateState, new()
         where TPublicState : StaticObjectPublicState, IObjectPublicStateWithActiveFlag, new()
         where TClientState : StaticObjectClientState, new()
@@ -27,18 +27,12 @@
 
         public override double ServerUpdateIntervalSeconds => 0.2;
 
-        public virtual void ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        public virtual void ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
-        public virtual void ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        public virtual void ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
-        }
-
-        protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
-        {
-            return base.PrepareSoundPresetObject().Clone()
-                       .Replace(ObjectSound.Active, "Objects/Structures/" + this.GetType().Name + "/Active");
         }
 
         public abstract void SharedGetElectricityProduction(
@@ -46,9 +40,9 @@
             out double currentProduction,
             out double maxProduction);
 
-        BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
+        BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
         {
-            return this.ClientOpenUI(new ClientObjectData(worldObject));
+            return this.ClientOpenUI(new ClientObjectData((IStaticWorldObject)worldObject));
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -59,10 +53,16 @@
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
         protected abstract BaseUserControlWithWindow ClientOpenUI(ClientObjectData data);
+
+        protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()
+        {
+            return base.PrepareSoundPresetObject().Clone()
+                       .Replace(ObjectSound.Active, "Objects/Structures/" + this.GetType().Name + "/Active");
+        }
     }
 
     public abstract class ProtoObjectGenerator

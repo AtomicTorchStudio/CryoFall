@@ -9,8 +9,9 @@
 
     public abstract class BaseMultiplayerMenuServersController : IDisposable
     {
-        protected readonly Dictionary<ServerAddress, ViewModelServerInfoListEntry> ServerAddressToServerViewModel =
-            new Dictionary<ServerAddress, ViewModelServerInfoListEntry>();
+        protected readonly List<(ServerAddress server, ViewModelServerInfoListEntry viewModel)>
+            ServerAddressToServerViewModel =
+                new List<(ServerAddress, ViewModelServerInfoListEntry)>();
 
         protected readonly ServerViewModelsProvider ServerViewModelsProvider;
 
@@ -92,42 +93,48 @@
 
         protected IEnumerable<ViewModelServerInfoListEntry> GetOrderedList()
         {
-            return this.ServerAddressToServerViewModel.Values
-                       // official first (yes, it should use negated bool flag)
-                       .OrderBy(s => !s.ViewModelServerInfo.IsOfficial)
-                       .ThenBy(s => !s.ViewModelServerInfo.IsFeatured)
-                       .ThenBy(s => s.ViewModelServerInfo.Title);
+            var entries = this.ServerAddressToServerViewModel.Select(s => s.viewModel);
+            if (this.sortType == ServersListSortType.None)
+            {
+                return entries;
+            }
+
+            return entries
+                   // official first (yes, it should use negated bool flag)
+                   .OrderBy(s => !s.ViewModelServerInfo.IsOfficial)
+                   .ThenBy(s => !s.ViewModelServerInfo.IsFeatured)
+                   .ThenBy(s => s.ViewModelServerInfo.Title);
 
             // TODO: implement sort controls and use the code below
             switch (this.sortType)
             {
                 case ServersListSortType.None:
-                    return this.ServerAddressToServerViewModel.Values;
+                    return entries;
 
                 case ServersListSortType.Title:
                     return
-                        this.ServerAddressToServerViewModel.Values
+                        entries
                             .Where(s => !string.IsNullOrEmpty(s.ViewModelServerInfo.Title))
                             .OrderBy(s => s.ViewModelServerInfo.Title)
                             .Concat(
-                                this.ServerAddressToServerViewModel.Values
+                                entries
                                     .Where(s => string.IsNullOrEmpty(s.ViewModelServerInfo.Title))
                                     .OrderBy(p => p.ViewModelServerInfo.Address));
 
                 case ServersListSortType.Ping:
                     return
-                        this.ServerAddressToServerViewModel.Values
+                        entries
                             .Where(v => v.ViewModelServerInfo.IsPingMeasurementDone)
                             .OrderBy(s => s.ViewModelServerInfo.Ping)
                             .ThenBy(s => s.ViewModelServerInfo.Title)
                             .Concat(
-                                this.ServerAddressToServerViewModel.Values
+                                entries
                                     .Where(v => !v.ViewModelServerInfo.IsPingMeasurementDone)
                                     .OrderBy(p => p.ViewModelServerInfo.Address));
 
                 case ServersListSortType.OnlinePlayersCount:
                     return
-                        this.ServerAddressToServerViewModel.Values
+                        entries
                             .OrderByDescending(s => s.ViewModelServerInfo.PlayersText)
                             .ThenBy(s => s.ViewModelServerInfo.Ping)
                             .ThenBy(s => s.ViewModelServerInfo.Title);
@@ -146,9 +153,9 @@
 
         private void RemoveAllViewModels()
         {
-            foreach (var server in this.ServerAddressToServerViewModel.Values)
+            foreach (var server in this.ServerAddressToServerViewModel)
             {
-                this.ServerViewModelsProvider.ReturnServerInfoViewModel(server);
+                this.ServerViewModelsProvider.ReturnServerInfoViewModel(server.viewModel);
             }
 
             this.ServerAddressToServerViewModel.Clear();

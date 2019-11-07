@@ -17,7 +17,7 @@
 
         public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
 
-        public override float StructurePointsMax => 200;
+        public override float StructurePointsMax => 400;
 
         public override ITextureResource Texture { get; }
             = new TextureResource("Terrain/Field/TileField1.jpg",
@@ -40,7 +40,7 @@
             build.StagesCount = 1;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemPlanks>(count: 25);
-            build.AddStageRequiredItem<ItemSand>(count: 25);
+            build.AddStageRequiredItem<ItemSand>(count: 10);
 
             repair.StagesCount = 1;
             repair.StageDurationSeconds = BuildDuration.Short;

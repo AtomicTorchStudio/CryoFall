@@ -210,7 +210,7 @@
         /// <param name="zone">Server zone instance.</param>
         /// <param name="protoItem">Prototype of item to spawn.</param>
         /// <param name="tilePosition">Position to try spawn at.</param>
-        protected IGameObjectWithProto ServerSpawnItem(
+        protected virtual IGameObjectWithProto ServerSpawnItem(
             IProtoTrigger trigger,
             IServerZone zone,
             IProtoItem protoItem,
@@ -239,7 +239,7 @@
         /// <param name="zone">Server zone instance.</param>
         /// <param name="protoMob">Prototype of character mob object to spawn.</param>
         /// <param name="tilePosition">Position to try spawn at.</param>
-        protected IGameObjectWithProto ServerSpawnMob(
+        protected virtual IGameObjectWithProto ServerSpawnMob(
             IProtoTrigger trigger,
             IServerZone zone,
             IProtoCharacterMob protoMob,
@@ -265,7 +265,7 @@
         /// <param name="zone">Server zone instance.</param>
         /// <param name="protoStaticWorldObject">Prototype of static object to spawn.</param>
         /// <param name="tilePosition">Position to try spawn at.</param>
-        protected IGameObjectWithProto ServerSpawnStaticObject(
+        protected virtual IGameObjectWithProto ServerSpawnStaticObject(
             IProtoTrigger trigger,
             IServerZone zone,
             IProtoStaticWorldObject protoStaticWorldObject,
@@ -307,7 +307,7 @@
                 {
                     // world initialization spawn
                     growProgress = RandomHelper.RollWithProbability(0.6)
-                                       ? 1 // 60% are spawned in full grown state
+                                       ? 1                          // 60% are spawned in full grown state
                                        : Random.Next(0, 11) / 10.0; // other are spawned with random growth progress
                 }
                 else
@@ -644,7 +644,12 @@
 
             using (var tempList = Api.Shared.GetTempList<IStaticWorldObject>())
             {
-                await zone.PopulateStaticObjectsInZone(tempList, callbackYieldIfOutOfTime);
+                // this check has a problem - it returns only objects strictly inside the zone,
+                // but we also need to consider objects nearby the zone for restriction presets
+                //await zone.PopulateStaticObjectsInZone(tempList, callbackYieldIfOutOfTime);
+
+                Api.Server.World.GetStaticWorldObjects(tempList);
+
                 foreach (var staticObject in tempList)
                 {
                     await YieldIfOutOfTime();
@@ -655,6 +660,11 @@
 
                     var position = staticObject.TilePosition;
                     var area = GetArea(position, isMobTrackingEnumeration: false);
+                    if (area is null)
+                    {
+                        continue;
+                    }
+
                     var protoStaticWorldObject = staticObject.ProtoStaticWorldObject;
                     if (!(protoStaticWorldObject is ObjectGroundItemsContainer))
                     {
@@ -666,7 +676,18 @@
                         }
 
                         // create entry for regular static object
-                        area.Add(this.FindPreset(protoStaticWorldObject), position);
+                        var preset = this.FindPreset(protoStaticWorldObject);
+                        if (preset != null
+                            && preset.Density > 0
+                            && !zone.IsContainsPosition(staticObject.TilePosition))
+                        {
+                            // this object is a part of the preset spawn list but it's not present in the zone
+                            // don't consider this object
+                            // TODO: this might cause a problem if there is a padding to this object check
+                            continue;
+                        }
+
+                        area.Add(preset, position);
                         continue;
                     }
 
@@ -675,7 +696,17 @@
                     foreach (var item in itemsContainer.Items)
                     {
                         // create entry for each item in the ground container
-                        area.Add(this.FindPreset(item.ProtoItem), position);
+                        var preset = this.FindPreset(item.ProtoItem);
+                        if (preset != null
+                            && preset.Density > 0
+                            && !zone.IsContainsPosition(staticObject.TilePosition))
+                        {
+                            // this object is a part of the preset spawn list but it's not present in the zone
+                            // don't consider this object
+                            continue;
+                        }
+
+                        area.Add(preset, position);
                     }
                 }
             }
@@ -705,7 +736,8 @@
                     return null;
                 }
 
-                throw new Exception("No zone area found for " + tilePosition);
+                return null;
+//                throw new Exception("No zone area found for " + tilePosition);
 
                 //var newArea = new SpawnZoneArea(zoneChunkStartPosition, zoneChunk);
                 //areas.Add(newArea);

@@ -18,7 +18,7 @@
         /// This multiplier will fall linearly from 1 at level 0 to the maximum value specified here.
         /// Effectively it reduces LP gain as player raises a particular skill level.
         /// </summary>
-        public const double SkillLearningPointMultiplierAtMaximumLevel = 0.25;
+        public const double SkillLearningPointMultiplierAtMaximumLevel = 0.33;
 
         public static readonly double ServerLearningPointsGainMultiplier;
 

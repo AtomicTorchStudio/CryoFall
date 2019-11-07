@@ -108,7 +108,7 @@
             {
                 // schedule next refresh
                 ClientTimersSystem.AddAction(delaySeconds: ViewModelPerformanceMetric.RefreshInterval,
-                                                       this.RefreshCallback);
+                                             this.RefreshCallback);
             }
         }
 

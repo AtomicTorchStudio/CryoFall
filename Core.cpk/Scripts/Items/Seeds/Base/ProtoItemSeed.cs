@@ -7,13 +7,11 @@
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
-    using AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -138,7 +136,7 @@
             }
 
             return new ConstructionTileRequirements()
-                   .Add(// ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                   .Add( // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                        DescriptionAcceptedPlacementLocation
                        + ":[br]"
                        + this.AllowedToPlaceAtFarmObjects.Select(s => s.Name).GetJoinedString(),

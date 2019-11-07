@@ -8,34 +8,34 @@ Scripts/Skills/Categories/SkillCategoryMisc@Name:
 その他
 
 Scripts/Skills/Categories/SkillCategoryPersonal@Name:
-パーソナル
+身体能力
 
 Scripts/Skills/Categories/SkillCategoryProduction@Name:
-製造品
+製造
 
 Scripts/Skills/Categories/SkillCategoryTechnical@Name:
 技術
 
 Scripts/Skills/Skills/Agriculture/SkillFarming@Flags.AdditionalYield:
-追加収穫のチャンス
+追加作物獲得チャンス
 
 Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
-より良い農業技術を習得すると、農業効率や植物の成長率、熟すスピードが向上し、追加の収穫ができるようになります。
+高レベルの農業技術を習得すると、農業効率や植物の成長率、熟成速度が向上し、時には追加で作物を獲得できるようになります。
 
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
 農業
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
-追加収穫のチャンス
+追加作物獲得チャンス
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
-植物の知識を習得すると、収穫速度や収量が向上します。
+植物の知識を習得すると、収穫速度や追加作物獲得確率が向上します。
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Name:
-採取
+採集
 
 Scripts/Skills/Skills/Agriculture/SkillHunting@Description:
-良いハンターであることは、より多くの戦利品を得るための確率を増やします。
+良い狩人になれば、より多くの戦利品を得る確率が増えます。
 
 Scripts/Skills/Skills/Agriculture/SkillHunting@Name:
 狩猟
@@ -47,31 +47,31 @@ Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Name:
 従来の武器
 
 Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Description:
-エネルギー兵器を頻繁に使用すると、それらがどのように機能するかをよりよく理解できるようになり、全体的な効率が向上します。
+エネルギー武器を頻繁に使用すると、それらがどのように機能するかをよりよく理解できるようになり、全体的な効率が向上します。
 
 Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Name:
-エネルギー兵器
+エネルギー武器
 
 Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Description:
-戦いでエキゾチックな武器を利用すると、その秘密についてより多くの洞察力を得ることができ、武器の可能性を最大にする活用する方法が理解できるようにあります。
+戦闘で新型武器を使用すればするほど、その武器の持つ秘密についてより多くの洞察力が得られ、潜在能力を最大限に引き出すことができるようになります。
 
 Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Name:
-エキゾチック武器
+新型武器
 
 Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Description:
-重火器を使用すると、より高いスキルでそれを操作するように訓練され、ダメージを与えるための追加手段が提供されます。
+重火器を何度も使用すると、武器の扱いに慣れて、標的に追加のダメージを与えられるようになります。
 
 Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Name:
 重火器
 
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Description:
-近接武器を継続して使用すると、このタイプの武器を上手く扱えるようになります。その結果、ダメージと効率が向上します。
+近接武器を継続して使用すると、このタイプの武器の扱いに慣れて、ダメージと効率が向上します。
 
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
 近接武器
 
 Scripts/Skills/Skills/Misc/SkillSearching@Description:
-細部に注意を払うことで、追加アイテムを見つけるチャンスが増えます。
+細部に注意を払うことで、追加アイテムを見つける確率が増えます。
 
 Scripts/Skills/Skills/Misc/SkillSearching@Name:
 探索
@@ -80,58 +80,58 @@ Scripts/Skills/Skills/Personal/SkillAthletics@Description:
 トレーニングをすることで身体が長距離走に慣れてきます。その結果、少ないエネルギーで全力疾走できるようになります。
 
 Scripts/Skills/Skills/Personal/SkillAthletics@Name:
-陸上競技
+運動
 
 Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Description:
-継続的に体をサイバネティックス技術にさらすことで、あなたと免疫システムがその存在に慣れていきます。
+継続的に身体を人工生体技術にさらすことによって、あなたと免疫システムがその存在に慣れていきます。
 
 Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Name:
-サイバネティックス親和性
+人工生体親和性
 
 Scripts/Skills/Skills/Personal/SkillLearning@Description:
-異星人の世界のなじみのない環境で生き残ることは困難ですが、ここでしか知ることのできない事柄を学ぶ機会が得られます。
+異世界のなじみのない環境で生き残ることはたやすくはないですが、ここでしか知ることのできない事を学ぶ機会が得られます。
 
 Scripts/Skills/Skills/Personal/SkillLearning@Name:
 学習
 
 Scripts/Skills/Skills/Personal/SkillSurvival@Description:
-最大健康度、食糧、水とエネルギーの備蓄を向上させることによって、生存のチャンスを増やします。あなたは殺されづらくなります！
+最大体力と食糧、水、エネルギーの貯蔵量を増加させることによって、生存の可能性を増やします。つまり、タフになっていくということです！
 
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
 サバイバル
 
 Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
-追加収穫のチャンス
+追加鉱物獲得チャンス
 
 Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
-採掘時に宝石を見つけるチャンス
+採掘時宝石獲得チャンス
 
 Scripts/Skills/Skills/Production/SkillMining@Description:
-鉱床に関するより良い知識は、発掘速度、収量および貴重な資源を見つける可能性を高めます。つるはしを使用している場合にのみ適用されます。
+鉱床に関する知識をつけると、発掘速度、採掘量が向上し、貴重な資源を見つける可能性が高まります。つるはしを使用しているときのみ適用されます。
 
 Scripts/Skills/Skills/Production/SkillMining@Name:
-採鉱
+採掘
 
 Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-職業のより良いトレーニングと理解は木こりの速度を向上させます。あなたが斧を使っているときだけ適用されます。
+伐採についてのトレーニングと理解を深めることにより伐採速度が向上します。斧を使用しているときのみ適用されます。
 
 Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
-木こり
+伐採
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
-より良い建築技術は建設速度を向上させます。ツールボックスを使用して実行される全てのタスク（構築、修復）に適用されます。
+より良い建築技術は建築速度を向上させます。工具箱を使用して実行される全てのタスク（建築、修理）に適用されます。
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Name:
 建築
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Description:
-ますます複雑なアイテムを作成し、それらの構造を理解することは、世界のテクノロジーを動かすものを学ぶための良い方法です。
+どんどん複雑なアイテムを製作し、それらの構造を理解することは、世界がどういうテクノロジーで動いているのかを学ぶための良い方法です。
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
-作成
+製作
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
-アイテムや設備を修理したりメンテナンスできるうようになります。職人のテーブルで実施する作業に適用されます。
+アイテムや設備を修理したりメンテナンスできるうようになります。職人の作業台で行う作業に適用されます。
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
 メンテナンス

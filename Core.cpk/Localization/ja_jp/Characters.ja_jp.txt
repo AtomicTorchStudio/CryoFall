@@ -1,14 +1,14 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
-熊
+クマ
 
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 ブラックビートル
 
 Scripts/Characters/Mobs/MobBurrower@Name:
-掘穴虫
+穴掘虫
 
 Scripts/Characters/Mobs/MobChicken@Name:
-チキン
+ニワトリ
 
 Scripts/Characters/Mobs/MobCloakedLizard@Name:
 エリマキトカゲ
@@ -17,7 +17,7 @@ Scripts/Characters/Mobs/MobCrab@Name:
 カニ
 
 Scripts/Characters/Mobs/MobCrawler@Name:
-クローラ
+クローラー
 
 Scripts/Characters/Mobs/MobFireLizard@Name:
 ファイアリザード
@@ -32,7 +32,7 @@ Scripts/Characters/Mobs/MobPangolin@Name:
 センザンコウ
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
-プラグミアムビートル
+プラグミウムビートル
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 カタツムリ
@@ -53,20 +53,20 @@ Scripts/Characters/Mobs/MobStarfish@Name:
 ヒトデ
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
-南国イノシシ
+熱帯イノシシ
 
 Scripts/Characters/Mobs/MobTurtle@Name:
-亀
+カメ
 
 Scripts/Characters/Mobs/MobWildBoar@Name:
 イノシシ
 
 Scripts/Characters/Mobs/MobWolf@Name:
-狼
+オオカミ
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 プレイヤー
 
 Scripts/Characters/Player/PlayerCharacterSpectator@Name:
-観察モード中のプレイヤー
+観戦モード中のプレイヤー
 

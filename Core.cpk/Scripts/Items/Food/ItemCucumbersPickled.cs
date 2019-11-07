@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
-    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using System;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
 
     public class ItemCucumbersPickled : ProtoItemFood
     {
@@ -21,6 +21,5 @@
         {
             return ItemsSoundPresets.ItemFood;
         }
-
     }
 }

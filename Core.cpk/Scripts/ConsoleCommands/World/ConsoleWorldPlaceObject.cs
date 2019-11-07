@@ -13,9 +13,9 @@
         public override string Alias => "place";
 
         public override string Description =>
-            @"Places a world object in the player character position or in any specified position.
+            @"Places a static world object in the player character position or in any specified position.
               You can use this to spawn new buildings and resources.
-              You need to provide a player character name to place the object in its position.
+              You need to provide a player character name to place an object in its position.
               Please note that the character must be in spectator mode.";
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;

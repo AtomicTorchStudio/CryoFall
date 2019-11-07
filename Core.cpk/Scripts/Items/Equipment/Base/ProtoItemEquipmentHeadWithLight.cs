@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ItemFuelRefill;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.HotbarOverlays;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -53,6 +54,8 @@
         public const string TitleButtonNotSet = "button not set";
 
         private ClientInputContext helperInputListener;
+
+        public override bool CanBeSelectedInVehicle => true; // required in order to enable light toggle on hoverboard
 
         public IReadOnlyItemFuelConfig ItemFuelConfig { get; private set; }
 
@@ -149,7 +152,7 @@
                 return;
             }
 
-            var sceneObject = Client.Scene.GetSceneObject(character);
+            var sceneObject = character.ClientSceneObject;
             var componentLightSource = this.ClientCreateLightSource(item, character, sceneObject);
             if (componentLightSource == null)
             {
@@ -157,11 +160,9 @@
             }
 
             var componentLightInSkeleton = sceneObject.AddComponent<ClientComponentLightInSkeleton>();
-            componentLightInSkeleton.Setup(character,
-                                           skeletonRenderer,
+            componentLightInSkeleton.Setup(skeletonRenderer,
                                            this.ItemLightConfig,
                                            componentLightSource,
-                                           "Head",
                                            "Head");
 
             skeletonComponents.Add(componentLightSource);
@@ -291,8 +292,9 @@
             base.ClientUpdate(data);
 
             var item = data.GameObject;
+            var currentCharacter = ClientCurrentCharacterHelper.Character;
             if (item.Container == null
-                || item.Container.OwnerAsCharacter != ClientCurrentCharacterHelper.Character
+                || item.Container.OwnerAsCharacter != currentCharacter
                 || item.Container != item.Container.OwnerAsCharacter.SharedGetPlayerContainerEquipment())
             {
                 // item of another character or not equipped
@@ -304,6 +306,13 @@
             // check if item is in a hotbar selected slot, if not - make it not active
             if (!SharedUpdateActiveState(item, publicState))
             {
+                return;
+            }
+
+            if (!this.SharedCanActivate(currentCharacter, item))
+            {
+                // deactivate
+                publicState.IsActive = false;
                 return;
             }
 
@@ -346,10 +355,17 @@
                 return;
             }
 
-            var itemOwnerCharacter = item.Container.OwnerAsCharacter;
-            if (itemOwnerCharacter != null)
+            var character = item.Container.OwnerAsCharacter;
+            if (character != null)
             {
-                ServerItemUseObserver.NotifyItemUsed(itemOwnerCharacter, item);
+                if (!this.SharedCanActivate(character, item))
+                {
+                    // deactivate
+                    publicState.IsActive = false;
+                    return;
+                }
+
+                ServerItemUseObserver.NotifyItemUsed(character, item);
             }
 
             this.ItemFuelConfig.SharedTryConsumeFuel(item, data.PrivateState, data.DeltaTime, out var isFuelRanOut);
@@ -357,6 +373,33 @@
             {
                 publicState.IsActive = false;
             }
+        }
+
+        protected virtual bool SharedCanActivate(ICharacter character, IItem item)
+        {
+            var vehicle = PlayerCharacter.GetPublicState(character).CurrentVehicle;
+            if (vehicle is null)
+            {
+                return true;
+            }
+
+            var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
+            if (this.CanBeSelectedInVehicle
+                && protoVehicle.IsPlayersHotbarAndEquipmentItemsAllowed)
+            {
+                return true;
+            }
+
+            if (IsClient
+                && protoVehicle.IsPlayersHotbarAndEquipmentItemsAllowed)
+            {
+                NotificationSystem.ClientShowNotification(this.Name,
+                                                          NotificationItemCannotBeUsedInVehicle,
+                                                          NotificationColor.Neutral,
+                                                          item.ProtoItem.Icon);
+            }
+
+            return false;
         }
 
         private static void ClientTryRefill(IItem item)
@@ -412,6 +455,16 @@
                 return;
             }
 
+            if (setIsActive && !this.SharedCanActivate(ClientCurrentCharacterHelper.Character, item))
+            {
+                setIsActive = false;
+            }
+
+            if (publicState.IsActive == setIsActive)
+            {
+                return;
+            }
+
             publicState.IsActive = setIsActive;
             Logger.Info($"Player switched head equipment light mode: {item}, isActive={setIsActive}");
             this.CallServer(_ => _.ServerRemote_SetMode(item, setIsActive));
@@ -438,6 +491,11 @@
             {
                 throw new Exception("The head equipment light item must be located in the character equipment: "
                                     + item);
+            }
+
+            if (setIsActive && !this.SharedCanActivate(character, item))
+            {
+                setIsActive = false;
             }
 
             if (setIsActive)

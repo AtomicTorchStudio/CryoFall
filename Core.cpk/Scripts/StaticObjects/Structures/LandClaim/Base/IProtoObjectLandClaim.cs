@@ -2,21 +2,22 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
-    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
 
     public interface IProtoObjectLandClaim : IProtoObjectStructure
     {
+        TimeSpan DecayDelayDuration { get; }
+
         TimeSpan DestructionTimeout { get; }
 
         ushort LandClaimGraceAreaPaddingSizeOneDirection { get; }
 
         ushort LandClaimSize { get; }
 
-        ushort LandClaimWithGraceAreaSize { get; }
+        byte LandClaimTier { get; }
 
-        TimeSpan DecayDelayDuration { get; }
+        ushort LandClaimWithGraceAreaSize { get; }
 
         void ClientUpgrade(IStaticWorldObject worldObjectLandClaim, IProtoObjectLandClaim upgradeStructure);
 

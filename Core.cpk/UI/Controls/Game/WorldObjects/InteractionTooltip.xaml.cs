@@ -3,10 +3,12 @@
     using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public partial class InteractionTooltip : BaseUserControl
     {
@@ -16,10 +18,10 @@
                                         typeof(InteractionTooltip),
                                         new PropertyMetadata(default(Brush)));
 
-        private static readonly Brush TextBrushCanInteract =
+        public static readonly Brush TextBrushCanInteract =
             new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xCC, 0x00));
 
-        private static readonly Brush TextBrushCannotInteract =
+        public static readonly Brush TextBrushCannotInteract =
             new SolidColorBrush(Color.FromArgb(0xFF, 0xBB, 0xBB, 0xBB));
 
         private static bool? lastCanInteract;
@@ -65,12 +67,21 @@
                 return;
             }
 
-            var staticWorldObject = worldObject as IStaticWorldObject;
-            var protoStaticWorldObject = staticWorldObject?.ProtoStaticWorldObject;
+            Vector2D positionOffset;
+            switch (worldObject)
+            {
+                case ICharacter _:
+                    goto default;
 
-            var positionOffset = protoStaticWorldObject != null
-                                     ? protoStaticWorldObject.SharedGetObjectCenterWorldOffset(staticWorldObject)
-                                     : (0, 0);
+                case IStaticWorldObject _:
+                case IDynamicWorldObject _:
+                    positionOffset = worldObject.ProtoWorldObject.SharedGetObjectCenterWorldOffset(worldObject);
+                    break;
+
+                default:
+                    positionOffset = (0, 0);
+                    break;
+            }
 
             positionOffset += (0, 1.025);
 
@@ -104,8 +115,10 @@
                                   .HandleAll(
                                       () =>
                                       {
-                                          if (ClientInputManager.IsButtonDown(GameButton.ActionInteract,
-                                                                              evenIfHandled: true))
+                                          if (ClientInputManager.IsButtonDown(GameButton.ActionUseCurrentItem,
+                                                                              evenIfHandled: true)
+                                              || ClientInputManager.IsButtonDown(GameButton.ActionInteract,
+                                                                                 evenIfHandled: true))
                                           {
                                               HideInternal();
                                           }

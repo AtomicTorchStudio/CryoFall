@@ -66,7 +66,7 @@
 
         public override void SharedUpdate(double deltaTime)
         {
-            if (this.CharacterPublicState.SelectedHotbarItem != this.ItemConstructionTool)
+            if (this.CharacterPublicState.SelectedItem != this.ItemConstructionTool)
             {
                 this.AbortAction();
                 return;

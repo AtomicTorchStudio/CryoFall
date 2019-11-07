@@ -86,13 +86,13 @@ Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
 Source géothermale
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-Source géothermale (infinie)
+Source géothermale infinie
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Nappe de pétrole
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-Nappe de pétrole (infinie)
+Nappe de pétrole infinie
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Charge de mine
@@ -138,6 +138,9 @@ Herbe
 
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
 Gros tas d'ordures
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+Petit tas d'ordures
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Pierre
@@ -207,9 +210,6 @@ Utilisez une pioche pour exploiter cette ressource.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Fissure
-
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-Terre brûlée
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Plus grand et robuste qu'un tonneau en bois. Utile pour stocker de grandes quantités de liquides.
@@ -734,6 +734,12 @@ Vous pouvez utiliser cette poubelle pour vous débarrasser immédiatement d'obje
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 Poubelle
 
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+Plate-forme automatisée pour l'assemblage de véhicules. Peut être utilisée pour fabriquer n'importe quel véhicule suivant les instructions d'un schéma.
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+Atelier de montage de véhicules
+
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Permet de stocker l'électricité produite par vos générateurs de la base pour une utilisation ultérieure.
 
@@ -916,8 +922,14 @@ Sauge bleue
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Fleur d'Oni
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-Ogurine
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+Melon à lait
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+Riz
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+Épices
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 Tabac
@@ -992,7 +1004,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
 Palmier
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Pin
+Épicéa
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
 Pin

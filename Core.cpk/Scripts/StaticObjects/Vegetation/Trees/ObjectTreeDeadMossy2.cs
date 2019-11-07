@@ -1,11 +1,13 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
-    using System;
 
     public class ObjectTreeDeadMossy2 : ProtoObjectTree
     {
+        public override string Name => "Dead tree";
+
         // dead wood, so less hp than normal
         public override float StructurePointsMax => base.StructurePointsMax / 2;
 
@@ -14,8 +16,6 @@
 
         // no growth time
         protected override TimeSpan TimeToMature => TimeSpan.Zero;
-
-        public override string Name => "Dead tree";
 
         protected override void PrepareDroplistOnDestroy(DropItemsList droplist)
         {

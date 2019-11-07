@@ -1,29 +1,29 @@
 ﻿Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationCannotDropItemThere:
-アイテムをここにドロップすることはできません。
+ここでアイテムを落とすことはできません。
 
 Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationNoFreeSpaceToDrop:
-アイテムをドロップするための空き場所がありません
+アイテムを落とすスペースがありません
 
 Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
-土地アイテム
+地面のアイテム
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
-建設できる場所：
+建築できる場所：
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
-建設できない場所：
+建築できない場所：
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
-土地のタイプが一致しません
+不適切な地形
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
-制限区域内には建造できません。
+制限区域内には建てられません。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnCliffOrSlope:
 崖や斜面の上には建てられません。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFarmPlot:
-農場では作れません。
+農場には建てられません。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFloor:
 床には建てられません。
@@ -32,7 +32,7 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCreaturesNearby:
 近くに生き物がいます。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNoFreeSpace:
-空き容量はありません。
+スペースがありません。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
 しっかりした地面ではありません。
@@ -41,16 +41,16 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorPlayerNearby:
 近くに他のプレイヤーがいます。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
-指定された建築の位置に立っています！
+指定された建設位置に立っています！
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSlope:
-建てられない - 崖や斜面に近すぎる。
+建設不可ー崖や斜面に近すぎます。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
-建てられない - 水に近すぎる。
+建設不可ー水辺に近すぎます。
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
-設定する
+設定
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Deconstruct:
 解体
@@ -65,7 +65,7 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 使う
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Loot:
-戦利品
+略奪
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
 開く
@@ -77,7 +77,7 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
 開ける
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@TogglePower:
-切り替えパワー
+電力切替
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
 書く
@@ -95,22 +95,22 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 油田（無限）
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
-採掘チャージ
+採掘爆弾
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombModern@Name:
-現代の爆弾
+新型爆弾
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombPrimitive@Name:
-原始爆弾
+通常爆弾
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
 共鳴爆弾
 
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
-付着爆弾
+埋蔵地爆発
 
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
-プラグミアム源爆弾
+プラグミウム源爆弾
 
 Scripts/StaticObjects/Loot/ObjectCorpse@Name:
 死体
@@ -119,7 +119,7 @@ Scripts/StaticObjects/Loot/ObjectLootCrateFood@Name:
 食料品の箱
 
 Scripts/StaticObjects/Loot/ObjectLootCrateHightech@Name:
-ハイテクな箱
+ハイテクの箱
 
 Scripts/StaticObjects/Loot/ObjectLootCrateIndustrial@Name:
 工業用の箱
@@ -128,16 +128,19 @@ Scripts/StaticObjects/Loot/ObjectLootCrateMedical@Name:
 医療用の箱
 
 Scripts/StaticObjects/Loot/ObjectLootCrateMilitary@Name:
-ミリタリー用の箱
+軍用の箱
 
 Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
-供給用の箱
+補給物資の箱
 
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 草
 
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-大きなゴミ杭
+大きなゴミの山
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+小さなゴミの山
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 石
@@ -152,13 +155,13 @@ Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageLootFromCurrentPlaye
 戦利品
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Message:
-{0}はドロップされたアイテムを調べています...
+{0}があなたが落としたアイテムを調べています…
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Title:
-アイテムは略奪されています
+あなたのアイテムが略奪されています
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Message:
-{0}はあなたが落としたアイテムを全て受け取りました。マーカーが地図から削除されました。
+{0}があなたが落としたアイテムを全て取りました。地図からマーカーが削除されました。
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Title:
 アイテムが盗られました！
@@ -176,31 +179,31 @@ Scripts/StaticObjects/Minerals/ObjectMineralCoal@Name:
 石炭
 
 Scripts/StaticObjects/Minerals/ObjectMineralCopper@Name:
-銅の沈殿物
+銅鉱床
 
 Scripts/StaticObjects/Minerals/ObjectMineralIron@Name:
-鉄鋼床
+鉄鉱床
 
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
-小さなプラグミアムノード
+小さなプラグミウム塊
 
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
-プラグミアム源
+プラグミウム源
 
 Scripts/StaticObjects/Minerals/ObjectMineralSalt@Name:
 塩
 
 Scripts/StaticObjects/Minerals/ObjectMineralSaltpeter@Name:
-硝石床
+硝石鉱床
 
 Scripts/StaticObjects/Minerals/ObjectMineralSand@Name:
-石英砂床
+珪砂鉱床
 
 Scripts/StaticObjects/Minerals/ObjectMineralStone@Name:
 石
 
 Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
-硫黄床
+硫黄鉱床
 
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 つるはしを使って資源を採掘してください。
@@ -208,50 +211,47 @@ Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 亀裂
 
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-焼かれた地
-
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
-木樽よりも広くて丈夫。大量の液体を保管するのに役立ちます。
+木樽よりも容量が大きくて丈夫。大量の液体を保管するのに役立ちます。
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Name:
-鉄の樽
+金属樽
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Description:
-液体を貯えるのに使用することができる。組み立てが簡単。
+液体を貯えるのに使用することができます。組み立てが簡単。
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Name:
 木樽
 
 Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Description:
-大量の液体を長期間保存できる貯水池。
+大量の液体を長期間保存できる貯蔵タンク。
 
 Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Name:
-貯水池
+貯蔵タンク
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
-構造物にダメージを与えるには武器や道具を使ってください。
+この建物にダメージを与えるには武器や道具を使ってください。
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
-説明なし
+説明なし。
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
 アップグレードの説明はありません。
 
 Scripts/StaticObjects/Structures/Beds/ObjectBed@Description:
-寝具に対する快適な改善
+寝袋よりずっと快適です。
 
 Scripts/StaticObjects/Structures/Beds/ObjectBed@Name:
 ベッド
 
 Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Description:
-基地に寝具を置いて復活ポイントとして使用することで、死亡後に特定の場所に再出現できるようにします。
+拠点に寝袋を置いて復活ポイントとして使用することで、死亡後に特定の場所に再出現できるようにします。
 
 Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Name:
-寝具
+寝袋
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Message:
-`それを現在のベッドにしたいですか？
+`これを現在のベッドにしたいですか？
 [br]アクティブな復活ポイントとして設定されます。`
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Title:
@@ -291,25 +291,25 @@ Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
 その他
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryStorage@Name:
-倉庫
+収納
 
 Scripts/StaticObjects/Structures/ConstructionSite/ObjectConstructionSite@Name:
-建設現場
+工事現場
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Description:
-一般的に鎧と服を製作できます。
+防具や服を製作できます。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Name:
-鎧用の作業台
+防具用作業台
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Description:
-ほとんどの種類の複雑な化学物質の処理と、それらに基づくたくさんのアイテムが製作できます。
+様々な種類の化学物質を処理し、多くのアイテムを製作できます。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Name:
 化学実験室
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Description:
-沸騰や揚げ物を必要としない簡単な食事や料理の準備ができます。
+煮たり揚げたりしない簡単な食事や料理を作れます。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Name:
 調理台
@@ -318,10 +318,10 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Descrip
 種子袋や肥料など、農業に関連するさまざまなアイテムを製作できます。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Name:
-農業用の作業台
+農業用作業台
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Description:
-多種多様な医薬品やアイテムの準備ができます。
+多種多様な医薬品やアイテムを製作できます。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Name:
 医療検査室
@@ -330,16 +330,16 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Descript
 多種多様な武器、物資、弾薬を製作できます。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Name:
-武器用の作業台
+武器用作業台
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Description:
-様々なアイテムを製作できます。ユニバーサルクラフトステーションとして機能します。手作りのレシピも全て含まれています。
+汎用的な作業設備として、様々なアイテムの製作に使われます。手作りアイテムのレシピも全て含まれています。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 作業台
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-単純な木箱よりも広いスペースを確保し、破壊されにくいです。
+単純な木箱よりも広いスペースを確保し、壊れにくいです。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
 鉄箱
@@ -357,13 +357,13 @@ Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
 大型の箱
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-自分の持ち物を保管するための一番シンプルな箱です。破壊されやすいです。
+自分の持ち物を保管するための一番シンプルな収納です。簡単に壊れます。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
 木箱
 
 Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Description:
-美術館を開いたり、あなたが長年にわたって獲得した全てのトロフィーを展示したいですか？今すぐできます！
+あなたが長年にわたって獲得したトロフィーを展示したいですか？今すぐできます！
 
 Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
 ショーケース
@@ -390,25 +390,25 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
 冗談ではないことを敵に見せてください。不法侵入は許されません。
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
-釘で打ち付けられた頭蓋骨
+頭蓋骨の墓標
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 真のセレブの象徴。本当のお金持ちだけが建設できます。
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Name:
-金の像
+黄金の像
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Description:
-ただ美観にする為に貴重なクリスタルを無駄にした。所有者がいかに金持ちかを示す物。
+この貴重なクリスタルをただ美しさのためだけに浪費することこそ、所有者がいかに金持ちかを示しています。
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
-プラグミアムの像
+プラグミウムの像
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 すでに床が装飾されています。
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
-ほとんどの侵入者に対する優れた防御。爆破物に耐えられるほど強くありません。
+ほとんどの侵入者に対する優れた防御手段。爆破物に耐えられるほどは強くありません。
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
 鉄の扉
@@ -420,7 +420,7 @@ Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Name:
 鋼の扉
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Description:
-招かれざる訪問者に対する簡単な防御。しかし、特定の敵に対してはほとんど効果がないでしょう。
+招かれざる客を防ぐ簡単な防御手段。しかし、悪意を持った敵に対してはほとんど効果がないでしょう。
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
 木の扉
@@ -432,25 +432,25 @@ Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
 鋼のゲート
 
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
-さまざまな作物や植物を栽培するのに使用できます。農地は肥沃な土地にしか作れません。
+さまざまな作物や植物を栽培するのに使用できます。農耕地は肥沃な土壌にしか設置できません。
 
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
-農場用の敷地
+農耕地
 
 Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
-花を育て、家を飾ったり、花を集めるのに使うことができます。どこでも作れます。
+花を育て、家を飾ったり、花を集めるのに使うことができます。どこでも設置できます。
 
 Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
 植物用の敷地
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
-このタイプの土壌は農業に適していません。
+この土壌は農業に適していません。
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Description:
 渋い選択ですが、素敵です。
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Name:
-れんが造りの床
+レンガの床
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Description:
 シンプルで実用的。工場の床や軍事基地に最適です。
@@ -459,7 +459,7 @@ Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Name:
 コンクリートの床
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Description:
-丈夫でなめらか。軍用のバンカーとして良い選択です。
+丈夫でなめらか。軍用のバンカーに似合います。
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Name:
 金属の床
@@ -471,31 +471,31 @@ Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Name:
 石の床
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Description:
-家を素敵で居心地の良いものにします。木製の壁によく合います。
+家を素敵で落ち着いた雰囲気にします。木の壁によく合います。
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Name:
 木の床
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Description:
-蒸発の力で冷却する原始的な冷蔵庫。現代の冷蔵庫ほど効果的ではありませんが、それでも食べ物をより長く新鮮に保ちます。
+蒸発の力で冷却する旧式の冷蔵庫。現代の冷蔵庫ほど効果的ではありませんが、それでも食料をより長く新鮮に保ちます。
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
-原始的な冷蔵庫
+旧式冷蔵庫
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Description:
-ゼロ度以下の温度で食物を保存できるパワフルな冷凍庫。新鮮なままより長持ちさせます。
+ゼロ度以下の温度で食料を保存できるパワフルな冷凍庫。新鮮なままより長持ちさせます。
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Name:
 冷凍庫
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
-腐りやすい食物を大量に保存するのに便利です。冷蔵庫があればより長持ちします。
+腐りやすい食料を大量に保存するのに便利です。冷蔵庫があればより長持ちします。
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
 大型冷蔵庫
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
-腐りやすい食物を保存するのに便利です。長持ちします。
+腐りやすい食料を保存するのに便利です。冷蔵庫があればより長持ちします。
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
 小型冷蔵庫
@@ -507,49 +507,49 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Name:
 バイオリアクター
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
-この大型の発電機はガソリン燃料を使って電力エネルギーを生産します。
+この大型の発電機はガソリンを使って電力を生産します。
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
 エンジン発電機
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
-ソーラー電力を生成する基本的な設備です。個々のソーラーパネルが必要です。
+ソーラー発電のための基本的な設備です。個々のソーラーパネルが必要です。
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Name:
 ソーラー発電機
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
-熱蒸気を使ってタービンを動かし電力を生成します。水が沸点に達して沸騰するまで時間がかかります。
+熱蒸気を使ってタービンを動かし電力を生成します。水が沸点に達して沸騰し、最大電力に達するまで時間がかかります。
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 蒸気発電機
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
-他の生存者が周辺地域で何かを建設または解体するのを防ぐことによって、基地をより安全にするのを助けます。所有地は、建物が時間の経過とともに劣化しないことを保証します。
+他の生存者が周辺地域で何かを建築または解体するのを防ぐことによって、拠点をより安全にします。また、所有地内では時間が経っても建物が劣化しにくくなります。
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Name:
-所有地（Tier 1）
+所有地（レベル 1）
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@DescriptionUpgrade:
-防御区域、建物完全性の最大値を拡大し、劣化のスピードを遅めます。
+保護区域を拡張し、建物耐久度の最大値を増やして、劣化速度を遅くします。
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@Name:
-所有地（Tier 2）
+所有地（レベル 2）
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT3@Name:
-所有地（Tier 3）
+所有地（レベル 3）
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
-所有地（Tier 4）
+所有地（レベル 4）
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT5@Name:
-所有地 (Tier 5)
+所有地 (レベル 5)
 
 Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
 所有地
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorAreaIntersection:
-アップグレードすると、他の人の所有地と交わることがあります。
+アップグレードすると、他人の所有地と重なってしまいます。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorRequirementsNotSatisfied:
 アップグレード要件が満たされていません。
@@ -564,22 +564,22 @@ Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@DialogCanno
 アップグレードできません
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationDontHaveAccess:
-所有地へのアクセスがありません。
+所有地へのアクセス権がありません。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Message:
-所有地の建物がアップグレードされました。
+所有地標がアップグレードされました。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Title:
 正常にアップグレードされました
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
-電気のフロアランプ。大きな部屋でも明るくできる非常に強力な白いライトを提供します。
+電気のフロアランプ。大きな部屋でも明るくできる非常に強力な白い明かりを提供します。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
 大型フロアランプ
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Description:
-単純な石油燃焼フロアランプそれが作り出す素敵な黄色の輝きで、どんな部屋でもより居心地の良い気分にさせることができます。
+単純な石油燃焼フロアランプ。素敵な黄色の輝きで、どんな部屋でも落ち着いた雰囲気にすることができます。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
 オイルフロアランプ
@@ -591,19 +591,19 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 小型フロアランプ
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
-基本的な光源として機能し、さらに重要なことに、揚げ肉などの簡単なレシピを調理することができます。
+基本的な照明として機能し、さらに重要なことに、肉を焼いたりなど簡単なレシピを調理することができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Name:
 キャンプファイヤー
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
-さまざまな金属から硬貨を作成するのに使用されます。硬貨を鋳塊に戻すこともできます。
+さまざまな金属から硬貨を製作するのに使用されます。硬貨をインゴットに戻すこともできます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
-貨幣
+貨幣鋳造機
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
-キャビネットを使用して、乾燥キノコや肉などの特定の種類の製品や食品を生産することができます。
+このキャビネットを使って、乾燥キノコやジャーキーなどの特定の種類の製品や食品を作ることができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Name:
 乾燥キャビネット
@@ -615,10 +615,10 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Name:
 発酵樽
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Description:
-金属鋳塊に精錬し、他の原料を処理するために使用することができます。
+鉱石をインゴットに製錬したり、他の原料を処理するために使用することができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
-炉
+溶鉱炉
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Description:
 電気と誘導加熱方式を利用してより早く原料を処理できます。
@@ -630,25 +630,25 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Descrip
 地熱泉からリチウム塩を抽出することができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
-リチウム塩抽出装置
+リチウム塩抽出機
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
-高度リチウム塩抽出装置
+上級リチウム塩抽出機
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
-あらゆる種類の有機物をマルチに変換するために使用できます。本質的に有機肥料です。
+あらゆる種類の有機物をマルチに変換するために使います。実質的な有機肥料ですね。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 マルチボックス
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-原油を地面から直接抽出することができ、油田の上に構築することができます。
+油田の上に建設して原油を地面から直接抽出することができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 オイルポンプ
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
-高級なオイルポンプ
+上級オイルポンプ
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
 原油を燃料や鉱物油などのより有用な成分に精製します。
@@ -657,85 +657,91 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Name:
 石油精製所
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
-ほとんどの調理活動に使用されます。キャンプファイヤーよりはるかに良い食事を作り出すことができます。
+ほとんどの料理で使われます。キャンプファイヤーよりはるかにおいしい食事を作り出すことができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 コンロ
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
-少量の水を集めるように設計されている簡単な水収集装置。砂漠や他の岩の多い場所では、実際にはうまくいきません。何らかの理由で...
+少量の水を集めるように設計されている簡単な水収集装置。どういう理由からか、砂漠や他の岩石地帯では使い物になりません…
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
 集水器
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
-貯水池から迅速に水を抽出するための電気ポンプ
+地下貯水池から迅速に水を抽出するための電気ポンプ。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Name:
 水ポンプ
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
-新鮮な水を無尽蔵に供給します。今、喉の渇きで死ぬことはありません。砂漠や他の岩の多い場所では、実際にはうまくいきません。何らかの理由で...
+新鮮な水を無尽蔵に供給します。今後、喉が渇いて死ぬことはないでしょう。どういう理由からか、砂漠や他の岩石地帯では使い物になりません…
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 井戸
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-抽出装置には地熱泉が必要です。
+抽出機には地熱泉が必要です。
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-ポンプには油が必要です。
+ポンプには油田が必要です。
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
-この土地タイプは地下水面へのアクセスを提供していません。
+この地形は地下水面へのアクセスを提供していません。
 
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
-あらゆるタイプのサイバネティックインプラントの取り付けまたは取り外しに使用できる特殊な自動医療ステーション。
+あらゆるタイプの人工生体インプラントの取り付けまたは取り外しができる特殊な自動医療ステーション。
 
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 医療ステーション
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
-アクティブな間、高強度なPSIを投影する防御構造
+稼働している間、高強度のサイオニック磁場を投影する防御装置。
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
-PSIプロジェクタ
+サイオニックプロジェクター
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
-モバイルバッテリーやフラッシュライトなどの携帯用電気製品を充電できます
+補助バッテリーや懐中電灯などの携帯用電気製品を充電できます。
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
 充電ステーション
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
-もっと多くのコンポーネントが必要です。
+もっと多くの材料が必要です。
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
-修理する2つのアイテムを置いてください。
+修理するには2つの同一アイテムを置いてください。
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_NoRepairNecessary:
 修理は必要ありません。
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFull:
-アイテムを出力プロットから外してください。
+先に生成スロットからアイテムを外してください。
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
 修理できません
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
-この作業場は異なるアイテムを修理するのに特に便利です
+この作業台はいろいろなアイテムを修理するのに特に便利です。
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Name:
-職人用テーブル
+職人の作業台
 
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
-ゴミ箱を使って、不要なものをすぐに処理できます。永久に！
+ゴミ箱は不要なものをすぐに処理できます。永久に！
 
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
-ごみ箱
+ゴミ箱
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+乗り物組み立て用の自動化プラットフォーム。特定の設計図によって乗り物を製造するのに使われます。
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+乗り物組立台
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
-基地のジェネレータで生成された電気エネルギーを溜めておくことができます。
+拠点の発電機で生産された電気エネルギーを溜めておくことができます。
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Name:
 電力貯蔵庫
@@ -744,41 +750,41 @@ Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorageLarge@Name:
 大型電力貯蔵庫
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
-世界に見えるように画像を表示できます。背面にソーラーパネルを使用しているため、外部電源が不要です。
+他の人に見えるように画像を掲示できます。背面にソーラーパネルを使用しているため、外部電源が不要です。
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Name:
 デジタル看板
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Description:
-もっと頑丈な金属看板。効果は同じですが、より破壊されにくくなりました。
+頑丈な金属看板。効果は同じですが、より破壊されにくくなりました。
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Name:
 鉄の看板
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Description:
-覚えておく必要があるものや他の人に知らせるために必要なものを全て書くための便利な木製看板。
+覚えておきたいことや他の人に知らせたいことを記入できる便利な木製看板。
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Name:
 木の看板
 
 Scripts/StaticObjects/Structures/Signs/Base/ProtoObjectSign@NotificationCannotEditSignWhenNotAreaOwner:
-`他の人の所有地で
+`他人の所有地で
 [br]看板を編集することはできません。`
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Description:
-大型自動取引ステーション。さまざまなアイテムを他の生存者と便利に交換するために使用できます。売り注文または買い注文のどちらかに構成できます。
+大型自動取引ステーション。さまざまなアイテムを他の生存者と便利にトレードするために使用できます。売注文または買注文のどちらもできます。
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Name:
 大型取引ステーション
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Description:
-自動取引ステーション。他の生存者とアイテムを交換するのに便利に使用できます。売り注文または買い注文のどちらかに構成できます。
+自動取引ステーション。他の生存者とアイテムをトレードするのに使用できます。売注文または買注文のどちらもできます。
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Name:
 小型取引ステーション
 
 Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNothingForSale:
-売り物は何もない
+ここでは売却できません
 
 Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNoTradingLots:
 ここに取引ロットはありません
@@ -796,19 +802,19 @@ Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorWrongMo
 間違った取引モード。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnPlayer:
-売るのに十分なアイテムがありません。
+売却できるアイテムが不足しています。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnStation:
-ステーションには購入できる十分なアイテムがありません。
+ステーションには購入するアイテムが不足しています。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnPlayer:
-アイテムを購入するのに十分なお金がありません。
+アイテムを購入するお金が不足しています。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnStation:
-ステーションにはアイテムを購入するのに十分なお金がありません。
+ステーションにアイテムを買い取るお金が不足しています。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnPlayerForPurchasedItem:
-購入したアイテムに十分なスペースがありません。
+購入したアイテムのためのスペースが不足しています。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnStationForSoldItem:
 ステーションには売りたいアイテムを保管するのに十分なスペースがありません。
@@ -826,34 +832,34 @@ Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoS
 スペースがない
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Disabled:
-なし
+利用不可
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Description:
-銃口に装備されたバンカー。究極の防御壁です。
+重厚に装甲されたバンカー壁。拠点を守る究極の防護壁です。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Name:
-防御壁
+防護壁
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
-金属で補強された硬いれんがの壁。貴重品を侵入者から守ります。爆発物にもある程度耐えることができます。
+金属で補強された硬いレンガの壁。侵入者から貴重品を守ります。爆発物にもある程度耐えることができます。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Name:
-れんがの壁
+レンガの壁
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
-強度の高い厚い鉄筋コンクリート壁。他のどの防御層よりもはるかに耐久性があります。
+高強度の厚いコンクリート壁。他のどの防壁よりもはるかに耐久性があります。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
 コンクリートの壁
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
-木製の壁よりもかなり優れています。ほとんどの侵入者が侵入しようとするのを防ぎますが、装備の整った侵入者に対してはそれほど役に立ちません。
+木製の壁よりもかなり優れています。ほとんどの侵入者を防ぎますが、装備の整った侵入者に対してはそれほど役に立ちません。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Name:
 石の壁
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Description:
-一般的には、地元の動植物に対する基本的な防御しかありません...最も基本的な武器以上のものからは守れません。
+周辺の動物等の襲撃に備えた基本的な防御手段。最も基本的な武器以上のものからは守れません。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Name:
 木の壁
@@ -866,28 +872,28 @@ Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@Notificati
 [br]まだ収穫することはできません。`
 
 Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationUseRightMouseButtonToInteract:
-マウスの右ボタンを使用して{0}してください。
+マウスを右クリックして{0}してください。
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushCoffee@Name:
 コーヒー
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushOilpod@Name:
-油ポッド
+オイルポッド
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushPurple@Name:
-ベリーの茂み（パープル）
+ベリーの木（紫）
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushRed@Name:
-ベリーの茂み（赤）
+ベリーの木（赤）
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@ErrorNoFruit:
-果物がありません！
+果実がありません！
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@Name:
 水球植物
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYellow@Name:
-ベリーの茂み（黄色）
+ベリーの木（黄）
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYucca@Name:
 ユッカ
@@ -899,16 +905,16 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantBellPepper@Name:
 ピーマン
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCarrot@Name:
-にんじん
+ニンジン
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantChiliPepper@Name:
 唐辛子
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCorn@Name:
-とうもろこし
+トウモロコシ
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCucumber@Name:
-きゅうり
+キュウリ
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
 ブルーセージ
@@ -916,8 +922,14 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 オニフラワー
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-オグリン
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+ミルクメロン
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+米
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+香辛料
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 タバコ
@@ -929,22 +941,22 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
 小麦
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
-農場の敷地図が必要です。
+農耕地が必要です。
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
 グリーンハーブ
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbPurple@Name:
-紫色のハーブ
+パープルハーブ
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbRed@Name:
-赤いハーブ
+レッドハーブ
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPennyBun@Name:
 ポルチーニ
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPink@Name:
-ピンク色のキノコ
+ピンクキノコ
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomRust@Name:
 錆キノコ
@@ -956,13 +968,13 @@ Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallSugarcane@Name:
 サトウキビ
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
-とげのある低木
+茨の木
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
 バナナの木
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
-バーチの木
+樺の木
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
 ブレビフォリアの木
@@ -980,7 +992,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
 枯れ木
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
-ドリアンツリー
+ドリアンの木
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
 倒木
@@ -1004,13 +1016,13 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
 ゴムの木
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
-コケ株
+苔むした枝株
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
 木の切り株
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
-コケの切り株
+苔むした切り株
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
 木の切り株

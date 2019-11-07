@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -9,7 +8,6 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.GameApi.Data.Items;
-    using AtomicTorch.GameEngine.Common.Extensions;
 
     public class ViewModelWindowHandCrafting : BaseViewModel
     {

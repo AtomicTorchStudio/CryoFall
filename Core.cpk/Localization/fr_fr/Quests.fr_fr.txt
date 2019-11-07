@@ -316,10 +316,9 @@ Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
 Votre santé sera souvent dégradée à l'issue d'un combat. Vous pouvez vous soigner en fabriquant divers médicaments qui vous permettront de guérir blessures et maladies. Utiliser des herbes vertes ne fera pas l'affaire bien longtemps.
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
-`[*] Il existe de nombreux types de médicaments dans CryoFall. Certains vous redonnent de la santé, tandis que d'autres soignent une maladie particulière ou vous apportent d'autres avantages.
-[*] La fabrication de médicaments évolués nécessite l'apprentissage de recettes et de technilogies spécifiques.
-[*] Les remèdes herbaux peuvent être trouvés dans la catégorie Cuisine.
-[*] L'écorce d'arbre peut être récupérée en abattant certains types d'arbres.`
+`[*] Il existe de nombreux types de médicaments dans CryoFall. Certains permettent de récupérer de la santé, alors que d'autres soignent une maladie spécifique ou apportent des avantages temporaires.
+[*] Pour fabriquer des médicaments évolués, il vous faudra apprendre des recettes et des technologies spécifiques.
+[*] Les remèdes à base de plantes peuvent être trouvés dans la catégorie Cuisine.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
 Ramasser des herbes et fabriquer des médicaments
@@ -352,8 +351,8 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Il est temps de mieux se protéger.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*] Vous pouvez débloquer toutes les technologies nécessaires dans le groupe de technologies Attaque et défense.
-[*] Les armures en bois ne sont pas idéales, mais elles ne coûtent pas cher à fabriquer et son bien plus efficaces que les armures de tissu.`
+`[*] Vous pouvez déverrouiller toutes les technologies nécessaires dans le groupe de technologies Défense.
+[*] Les armures en bois ne sont pas ce qu'il y a de plus robuste, mais elles sont simples à fabriquer et protègent mieux que le tissu.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
 Fabriquer et endosser une meilleure armure
@@ -381,9 +380,9 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Écraser des crânes à grands coups de massue est efficace, mais il est parfois utile de pouvoir tirer à distance, notamment quand vos adversaires commencent à devenir coriaces.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*] Vous pouvez débloquer toutes les technologies nécessaires dans le groupe de technologies Attaque et défense.
-[*] Pour fabriquer des cartouches en papier, vous devrez tout d'abord fabriquer de la [b]poudre à canon[/b] et du [b]papier[/b].
-[*] Il existe [b]plusieurs types de dégâts[/b], et chaque armure offrira une protection différente en fonction de ces types. Consultez les valeurs dans votre fenêtre d'inventaire.`
+`[*] Vous pouvez déverrouiller toutes les technologies nécessaires dans le groupe de technologies Attaque.
+[*] Pour fabriquer des cartouches en papier, vous devrez commencer par faire de la [b]poudre à canon[/b] et du [b]papier[/b].
+[*] Il existe [b]plusieurs types de dégâts[/b], et chaque armure offre des valeurs de protection différentes selon ces types. Vous pouvez consulter ces informations dans la fenêtre d'inventaire.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
 Fabriquer des armes de combat à distance
@@ -435,8 +434,9 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 Il est temps de repartir à la chasse ! Il reste plein d'animaux et de monstres à découvrir.
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*] Tous les animaux et les monstres ont des zones d'habitation qu'ils privilégient. Explorez le monde et notez où habitent les différentes créatures.
-[*] La quantité d'expérience de chasse que vous obtiendrez dépendra de la dangerosité de l'animal ou du monstre que vous chasserez.`
+`[*] Vous pouvez vous équiper de vos ustensiles de chasseur en les plaçant dans les emplacements d'équipement (situés à droite du portrait de votre personnage dans le menu d'inventaire).
+[*] Les animaux et les monstres disposent chacun d'un habitat spécifique dans lequel ils peuvent être trouvés. Explorez les différentes zones pour découvrir toutes les créatures qui les habitent.
+[*] La quantité d'expérience de chasse gagnée dépend de la dangerosité de l'animal ou du monstre que vous tuez.`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Maîtrise de la chasse - 2e partie
@@ -464,6 +464,9 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Démontage au pied-de-biche
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Extraire des sels minéraux
+
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
 Certaines ressources comme le pétrole brut et le lithium sont nécessaires pour les technologies plus évoluées. Il est indispensable de savoir comment les obtenir.
 
@@ -475,9 +478,6 @@ Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
 Acquisition de ressources évoluées
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Extraire des sels minéraux
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Afin de progresser dans l'industrie et la construction, vous devez acquérir des bases en sciences, notamment en chimie.

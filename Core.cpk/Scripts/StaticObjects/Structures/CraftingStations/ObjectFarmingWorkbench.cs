@@ -17,7 +17,7 @@
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
-        public override float StructurePointsMax => 300;
+        public override float StructurePointsMax => 1200;
 
         protected override void CreateLayout(StaticObjectLayout layout)
         {
@@ -33,10 +33,10 @@
         {
             category = GetCategory<StructureCategoryFood>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 4);
-            build.AddStageRequiredItem<ItemStone>(count: 1);
+            build.AddStageRequiredItem<ItemPlanks>(count: 5);
+            build.AddStageRequiredItem<ItemStone>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

@@ -57,6 +57,7 @@
                                      // ingredients
                                      .Add<ItemWheatFlour>(count: 10,  countRandom: 5,  weight: 1 / 10.0)
                                      .Add<ItemWheatGrains>(count: 20, countRandom: 20, weight: 1 / 10.0)
+                                     .Add<ItemRice>(count: 15,        countRandom: 10, weight: 1 / 10.0)
                                      .Add<ItemSugar>(count: 5,        countRandom: 5,  weight: 1 / 10.0)
                                      .Add<ItemSalt>(count: 15,        countRandom: 10, weight: 1 / 10.0));
 

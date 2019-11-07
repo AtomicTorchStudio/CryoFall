@@ -106,7 +106,7 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_CannotApplyLastHarvest()
+        private void ClientRemote_CannotApplyLastHarvestOrRotten()
         {
             NotificationSystem.ClientShowNotification(
                 CannotApplyErrorTitle,
@@ -139,11 +139,13 @@
                 return false;
             }
 
-            if (plantPrivateState.ProducedHarvestsCount == protoPlant.NumberOfHarvests
-                && protoPlant.NumberOfHarvests > 0)
+            var plantPublicState = objectPlant.GetPublicState<PlantPublicState>();
+            if ((plantPrivateState.ProducedHarvestsCount == protoPlant.NumberOfHarvests
+                 && protoPlant.NumberOfHarvests > 0)
+                || plantPublicState.IsSpoiled)
             {
-                // no need to apply - last harvest
-                this.CallClient(character, _ => _.ClientRemote_CannotApplyLastHarvest());
+                // no need to apply
+                this.CallClient(character, _ => _.ClientRemote_CannotApplyLastHarvestOrRotten());
                 return false;
             }
 

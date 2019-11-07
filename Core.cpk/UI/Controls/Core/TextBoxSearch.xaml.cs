@@ -24,10 +24,6 @@
             set => this.SetValue(SearchTextProperty, value);
         }
 
-        protected override void InitControl()
-        {
-        }
-
         private void ExecuteCommandSearchReset()
         {
             this.SearchText = string.Empty;

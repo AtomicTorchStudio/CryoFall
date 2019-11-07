@@ -21,7 +21,7 @@
 
         public override string Name => "Use scroll wheel for";
 
-        public override IProtoOption OrderAfterOption 
+        public override IProtoOption OrderAfterOption
             => GetOption<GeneralOptionScreenshotResolution>();
 
         public override Mode ValueProvider { get; set; }
@@ -29,8 +29,8 @@
         protected override void OnCurrentValueChanged(bool fromUi)
         {
             var isCameraZoom = this.CurrentValue == Mode.CameraZoom;
-            ClientComponentWorldCameraZoomManager.IsProcessingMouseWheel = isCameraZoom;
-            ClientComponentHotbarHelper.IsProcessingMouseWheel = !isCameraZoom;
+            ClientComponentWorldCameraZoomManager.IsUsingMouseWheelInputToZoom = isCameraZoom;
+            ClientComponentHotbarHelper.IsUsingMouseWheelInputToScrollHotbar = !isCameraZoom;
         }
     }
 }

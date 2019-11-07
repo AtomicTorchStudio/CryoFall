@@ -9,6 +9,14 @@
 
         public override bool CanAddItem(CanAddItemContext context)
         {
+            if (context.ByCharacter == null)
+            {
+                // server can place here anything
+                // (necessary for placing the broken solar panels)
+                return true;
+            }
+
+            // player can place here only solar panels
             var protoItem = context.Item.ProtoItem;
             return protoItem is IProtoItemSolarPanel;
         }

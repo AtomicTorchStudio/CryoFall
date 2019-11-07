@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Equipment.Assault;
-    using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
+    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
@@ -51,6 +51,7 @@
                              .Add<ItemAmmo12gaPellets>(count: 5,       countRandom: 10, weight: 1 / 2.0)
                              .Add<ItemAmmo300ArmorPiercing>(count: 5,  countRandom: 10, weight: 1 / 10.0)
                              .Add<ItemAmmo300Incendiary>(count: 5,     countRandom: 10, weight: 1 / 10.0)
+                             .Add<ItemAmmo50SH>(count: 5,              countRandom: 10, weight: 1 / 5.0)
                              // trash ammo
                              .Add<ItemAmmo10mmBlank>(count: 5,      countRandom: 10, weight: 1 / 15.0)
                              .Add<ItemAmmo12gaSaltCharge>(count: 5, countRandom: 10, weight: 1 / 15.0));
@@ -68,6 +69,7 @@
                              .Add<ItemShotgunDoublebarreled>(weight: 1 / 1.0)
                              .Add<ItemSubmachinegun10mm>(weight: 1 / 4.0)
                              .Add<ItemShotgunMilitary>(weight: 1 / 4.0)
+                             .Add<ItemSteppenHawk>(weight: 1 / 10.0)
                              // equipment
                              .Add<ItemMilitaryHelmet>(weight: 1 / 4.0)
                              .Add<ItemMilitaryJacket>(weight: 1 / 4.0)
@@ -80,6 +82,7 @@
                              .Add<ItemCigarPremium>(count: 3,       countRandom: 2, weight: 1 / 5.0)
                              .Add<ItemStrengthBoostSmall>(count: 3, countRandom: 2, weight: 1 / 5.0)
                              .Add<ItemStrengthBoostBig>(count: 3,   countRandom: 2, weight: 1 / 5.0)
+                             .Add<ItemMRE>(count: 1,                countRandom: 2, weight: 1 / 5.0)
                 );
 
             // extra loot from skill

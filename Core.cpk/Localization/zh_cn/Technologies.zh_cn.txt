@@ -247,6 +247,12 @@ Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 娱乐
 
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+生产各种载具所需要的科技。
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+载具
+
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 利用外星世界资源所必需的技术。
 
@@ -330,4 +336,10 @@ Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 进攻4
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+高级战斗载具
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+载具2
 

@@ -1,8 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting.Data;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class CraftingRecipeDetailsControl : BaseUserControl
@@ -16,6 +18,10 @@
                 new PropertyMetadata(null, RecipeChangedHandler));
 
         private Grid layoutRoot;
+
+        public static event Action<CraftingRecipeDetailsControl, IViewModelWithRecipe> ControlLoaded;
+
+        public static event Action<CraftingRecipeDetailsControl> ControlUnloaded;
 
         public ViewModelCraftingMenuRecipeDetails ViewModel { get; private set; }
 
@@ -41,10 +47,14 @@
             }
 
             this.RefreshViewModel();
+
+            Api.SafeInvoke(() => ControlLoaded?.Invoke(this, this.ViewModel));
         }
 
         protected override void OnUnloaded()
         {
+            Api.SafeInvoke(() => ControlUnloaded?.Invoke(this));
+
             this.DataContext = null;
             this.ViewModel.Dispose();
             this.ViewModel = null;

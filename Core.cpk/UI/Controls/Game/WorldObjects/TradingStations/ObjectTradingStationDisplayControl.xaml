@@ -69,7 +69,7 @@
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid IsItemsHost="True"
-                                     Rows="2" />
+                                     Rows="{Binding RowsNumber, ElementName=UserControl}" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.Template>

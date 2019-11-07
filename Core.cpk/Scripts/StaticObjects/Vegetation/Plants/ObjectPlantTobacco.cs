@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -26,13 +27,15 @@
         {
             base.ClientSetupRenderer(renderer);
             renderer.DrawOrderOffsetY = 0.6;
+
+            ClientGrassRenderingHelper.Setup(renderer, power: 0.05f, pivotY: 0.2f);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
         {
             return new TextureAtlasResource(
                 base.PrepareDefaultTexture(thisType),
-                columns: 4,
+                columns: 5,
                 rows: 1);
         }
 

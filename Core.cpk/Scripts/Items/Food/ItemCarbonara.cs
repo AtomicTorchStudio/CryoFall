@@ -6,7 +6,7 @@
 
     public class ItemCarbonara : ProtoItemFood
     {
-        public override string Description => "Pasta, egg, cheese and meat turn into this delicious goodness!";
+        public override string Description => "Pasta, egg, cheese and meat combine into this delicious goodness!";
 
         public override float FoodRestore => 40;
 
@@ -22,7 +22,8 @@
 
         protected override void ServerOnEat(ItemEatData data)
         {
-            data.Character.ServerAddStatusEffect<StatusEffectHeartyFood>(intensity: 0.5); // 5 minutes
+            data.Character.ServerAddStatusEffect<StatusEffectHeartyFood>(intensity: 0.5);
+            data.Character.ServerAddStatusEffect<StatusEffectSavoryFood>(intensity: 0.1);
 
             base.ServerOnEat(data);
         }

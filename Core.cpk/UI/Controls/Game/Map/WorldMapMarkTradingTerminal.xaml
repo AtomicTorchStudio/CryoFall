@@ -9,23 +9,29 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core">
+
     <Canvas>
         <Image Source="Images/TradingStationOwned.png"
-               Visibility="{Binding IsOwner, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}"
-               Style="{StaticResource WorldMapMarkImagePinStyle}">
-            <base:ToolTipServiceExtend.ToolTip>
-                <core:FormattedTextBlock
-                    Content="{x:Static loc:CoreStrings.WorldMapMarkTradingTerminal_Own_Tooltip}" />
-            </base:ToolTipServiceExtend.ToolTip>
-        </Image>
+               Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}}"
+               Style="{StaticResource WorldMapMarkImagePinStyle}" />
 
         <Image Source="Images/TradingStationNotOwned.png"
-               Visibility="{Binding IsOwner, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-               Style="{StaticResource WorldMapMarkImagePinStyle}">
-            <base:ToolTipServiceExtend.ToolTip>
-                <core:FormattedTextBlock
-                    Content="{x:Static loc:CoreStrings.WorldMapMarkTradingTerminal_OtherPlayer_Tooltip}" />
-            </base:ToolTipServiceExtend.ToolTip>
-        </Image>
+               Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+               Style="{StaticResource WorldMapMarkImagePinStyle}" />
     </Canvas>
+
+    <base:ToolTipServiceExtend.ToolTip>
+        <StackPanel Orientation="Vertical">
+            <core:FormattedTextBlock
+                Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}}"
+                Content="{x:Static loc:CoreStrings.WorldMapMarkTradingTerminal_Own_Tooltip}" />
+
+            <core:FormattedTextBlock
+                Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                Content="{x:Static loc:CoreStrings.WorldMapMarkTradingTerminal_OtherPlayer_Tooltip}" />
+
+            <ContentPresenter Content="{Binding TooltipControl}" Margin="0,5,0,0" />
+        </StackPanel>
+    </base:ToolTipServiceExtend.ToolTip>
+
 </base:BaseUserControl>

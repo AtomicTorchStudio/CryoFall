@@ -150,15 +150,16 @@
                                                Text="{Binding Date, Converter={StaticResource DateToStringConverter}}"
                                                Style="{StaticResource DateTextBlockStyle}" />
 
-                                    <TextBlock Text="{Binding Description}"
-                                               FontSize="12"
-                                               TextWrapping="Wrap"
-                                               FontFamily="{StaticResource DefaultFontFamily}"
-                                               Foreground="White" />
+                                    <!-- Commented out as Steam RSS doesn't provide proper short description -->
+                                    <!--<TextBlock Text="{Binding Description}"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   FontFamily="{StaticResource DefaultFontFamily}"
+                                                   Foreground="White" />
 
-                                    <!-- Text: Read more... -->
                                     <core:HyperlinkControl Content="{x:Static loc:CoreStrings.MenuHome_ReadMore}"
-                                                           Url="{Binding Url}" FontSize="11" />
+                                                           Url="{Binding Url}" 
+                                                           FontSize="11" />-->
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -260,7 +261,20 @@
                     <Setter Property="Margin" Value="5,0" />
                 </Style>
             </StackPanel.Resources>
+            <core:HyperlinkControl Command="{Binding CommandShowFeaturesSlideshow}"
+                                   base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_FeaturesTooltip}">
+                <StackPanel Orientation="Horizontal"
+                            Background="Transparent">
+                    <Image Source="/UI/Images/Icons/Social/btn_features.png"
+                           Stretch="Uniform"
+                           Width="40" />
+                    <!-- ReSharper disable once CanExtractXamlLocalizableStringXaml -->
+                    <TextBlock Text="Features" />
+                </StackPanel>
+            </core:HyperlinkControl>
+
             <core:HyperlinkControl Url="https://trello.com/b/B5ckffAW"
+                                   Margin="0,10,0,0"
                                    base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.Extras_RoadmapTooltip}">
                 <StackPanel Orientation="Horizontal"
                             Background="Transparent">

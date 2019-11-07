@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipePowerBankLarge>();
 
-            config.SetRequiredNode<TechNodeComponentsHighTech>();
+            config.SetRequiredNode<TechNodeBatteryHeavyDuty>();
         }
     }
 }

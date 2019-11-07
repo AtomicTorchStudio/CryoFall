@@ -1,9 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using JetBrains.Annotations;
 
     public class StatusEffectPublicState : BasePublicState
     {
@@ -18,6 +20,16 @@
 
         [TempOnly]
         public bool ServerIsAddedToCharacterPublicState { get; set; }
+
+        // source character of the status effect
+        [CanBeNull]
+        [TempOnly]
+        public ICharacter ServerStatusEffectWasAddedByCharacter { get; set; }
+        
+        // source character's weapon skill of the status effect
+        [CanBeNull]
+        [TempOnly]
+        public IProtoSkill ServerStatusEffectWasAddedByCharacterWeaponSkill { get; set; }
 
         public void SetIntensity(double newIntensity)
         {

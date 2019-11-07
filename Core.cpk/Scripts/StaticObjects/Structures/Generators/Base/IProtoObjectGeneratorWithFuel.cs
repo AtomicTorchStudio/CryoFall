@@ -7,7 +7,7 @@
     {
         byte ContainerFuelSlotsCount { get; }
 
-        float LiquidCapacity { get; }
+        double LiquidCapacity { get; }
 
         LiquidType LiquidType { get; }
     }

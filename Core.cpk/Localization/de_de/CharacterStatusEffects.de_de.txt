@@ -28,6 +28,12 @@ Du hast vor kurzem eine deftige Mahlzeit zu dir genommen. Jede Aufgabe, die du a
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Deftige Mahlzeit
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
+Du hast vor Kurzem eine herzhafte Mahlzeit zu dir genommen. Das Leben erscheint dir nun ein Stück erfreulicher.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+Herzhafte Mahlzeit
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Du stehst unter dem Einfluss einer Stimulanz, die dich vorübergehend stärker macht. Aufgaben, die Kraft erfordern, fallen dir nun leichter.
 
@@ -44,7 +50,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 Dein Wohlbefinden wird durch ein defektes Implantat im Körper erheblich beeinträchtigt. Deine maximale Gesundheit (HP) wird dadurch gesenkt.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
-Defektes Implantat
+Implantatdefizitskrankheit
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Du hast dir das Bein gebrochen, was deine Bewegungsfähigkeit einschränkt. Jeder Versuch, mit einem gebrochenen Bein zu laufen, führt zu starken Schmerzen. Benutze eine Schiene, um den Bruch zu heilen.

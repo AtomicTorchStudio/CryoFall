@@ -169,9 +169,11 @@
 
             if (tileKind == TileKind.Water)
             {
-                if (Api.IsEditor)
+                if (Api.IsEditor
+                    && Api.Shared.IsDebug)
                 {
-                    // we don't want to create an excessive load in the Editor with water tile physics
+                    // in debug version of Editor we don't want to create an excessive load
+                    // with water tile physics
                     return;
                 }
 
@@ -191,8 +193,7 @@
             }
 
             if (tileKind == TileKind.Solid
-                && !tile.IsCliff
-                && !tile.IsSlope)
+                && !tile.IsCliffOrSlope)
             {
                 // no blocking
                 return;
@@ -487,7 +488,6 @@
                 }
 
                 isShouldBeCliff = true;
-                //break;
             }
 
             if (isNeighborsFixRequired)
@@ -496,9 +496,8 @@
                 return;
             }
 
-            if (!isShouldBeCliff
-                && !tile.IsCliff
-                && !tile.IsSlope)
+            var isCliffOrSlope = tile.IsCliffOrSlope;
+            if (isShouldBeCliff == isCliffOrSlope)
             {
                 // this is a correct tile
                 return;
@@ -506,25 +505,17 @@
 
             if (!isShouldBeCliff)
             {
-                if (tile.IsCliff
-                    || tile.IsSlope)
-                {
-                    // cannot be a cliff or a slope
-                    Server.World.SetTileData(
-                        tilePosition: tile.Position,
-                        protoTile: null,
-                        tileHeight: tile.Height,
-                        isSlope: false,
-                        isCliff: false);
-                }
-
-                return;
+                // should not be a cliff or a slope
+                Server.World.SetTileData(
+                    tilePosition: tile.Position,
+                    protoTile: null,
+                    tileHeight: tile.Height,
+                    isSlope: false,
+                    isCliff: false);
             }
-
-            // should be a cliff or slope
-            if (!tile.IsCliff
-                && !tile.IsSlope)
+            else
             {
+                // should be a cliff
                 Server.World.SetTileData(
                     tilePosition: tile.Position,
                     protoTile: null,

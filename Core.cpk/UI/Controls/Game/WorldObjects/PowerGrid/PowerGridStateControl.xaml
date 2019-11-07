@@ -81,7 +81,7 @@
                 <TextBlock Text="{Binding NumberLandClaims}" />
                 <TextBlock Text=" " />
                 <TextBlock
-                    Text="{Binding EfficiencyPercent, StringFormat={x:Static loc:CoreStrings.PowerGridState_EfficiencyFormat}}" />
+                    Text="{Binding EfficiencyPercent, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_EfficiencyFormat}'}" />
             </StackPanel>
 
 
@@ -96,7 +96,7 @@
                 <TextBlock Text="{Binding NumberProducers}" />
                 <TextBlock Text=" " />
                 <TextBlock
-                    Text="{Binding NumberProducersActive, StringFormat={x:Static loc:CoreStrings.PowerGridState_ActiveFormat}}" />
+                    Text="{Binding NumberProducersActive, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_ActiveFormat}'}" />
             </StackPanel>
 
 
@@ -111,7 +111,7 @@
                 <TextBlock Text="{Binding NumberConsumers}" />
                 <TextBlock Text=" " />
                 <TextBlock
-                    Text="{Binding NumberConsumersActive, StringFormat={x:Static loc:CoreStrings.PowerGridState_ActiveFormat}}" />
+                    Text="{Binding NumberConsumersActive, StringFormat='{}{x:Static loc:CoreStrings.PowerGridState_ActiveFormat}'}" />
             </StackPanel>
 
 
@@ -144,7 +144,7 @@
             <!-- Text: Restore power -->
             <Button Grid.Row="6"
                     Grid.Column="0"
-                    Grid.ColumnSpan="3" 
+                    Grid.ColumnSpan="3"
                     Command="{Binding CommandRestorePower}"
                     Visibility="{Binding IsBlackout, Converter={StaticResource BoolToVisibilityConverter}}"
                     Style="{StaticResource DefaultButtonStyle}"
@@ -155,15 +155,15 @@
                     MinWidth="0"
                     Focusable="False">
                 <Button.Content>
-                        <TextBlock Text="{x:Static loc:CoreStrings.PowerGridState_Button_RestorePower}"
-                                   TextWrapping="Wrap"
-                                   FontSize="13" 
-                                   LineHeight="13"
-                                   LineStackingStrategy="BlockLineHeight"
-                                   Foreground="{StaticResource ButtonForeground}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   TextAlignment="Center" />
+                    <TextBlock Text="{x:Static loc:CoreStrings.PowerGridState_Button_RestorePower}"
+                               TextWrapping="Wrap"
+                               FontSize="13"
+                               LineHeight="13"
+                               LineStackingStrategy="BlockLineHeight"
+                               Foreground="{StaticResource ButtonForeground}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               TextAlignment="Center" />
                 </Button.Content>
             </Button>
         </Grid>

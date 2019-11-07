@@ -11,12 +11,6 @@
         {
             var texturePath = this.GenerateTexturePath();
 
-            this.AtlasTextureVertical = new TextureAtlasResource(
-                texturePath + "Vertical",
-                columns: 7,
-                rows: 1,
-                isTransparent: true);
-
             this.AtlasTextureHorizontal = new TextureAtlasResource(
                 texturePath + "Horizontal",
                 columns: 6,
@@ -25,6 +19,12 @@
 
             this.TextureBaseHorizontal = new TextureResource(
                 texturePath + "HorizontalBase",
+                isTransparent: true);
+
+            this.AtlasTextureVertical = new TextureAtlasResource(
+                texturePath + "Vertical",
+                columns: 8,
+                rows: 1,
                 isTransparent: true);
         }
 
@@ -50,8 +50,8 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 5);
-            build.AddStageRequiredItem<ItemStone>(count: 3);
+            build.AddStageRequiredItem<ItemPlanks>(count: 4);
+            build.AddStageRequiredItem<ItemStone>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

@@ -22,6 +22,7 @@
             inputItems.Add<ItemPasta>(count: 2);
             inputItems.Add<ItemEggsRaw>(count: 1);
             inputItems.Add<ItemMeatRoasted>(count: 1);
+            inputItems.Add<ItemCheese>(count: 1);
 
             outputItems.Add<ItemCarbonara>(count: 2);
         }

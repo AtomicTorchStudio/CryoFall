@@ -4,8 +4,8 @@
     {
         public const ushort TutorialRewardStage1 = 10;
 
-        public const ushort TutorialRewardStage2 = 25;
+        public const ushort TutorialRewardStage2 = 20;
 
-        public const ushort TutorialRewardStage3 = 100;
+        public const ushort TutorialRewardStage3 = 50;
     }
 }

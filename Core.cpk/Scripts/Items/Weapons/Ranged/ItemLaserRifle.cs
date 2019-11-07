@@ -36,9 +36,9 @@
             ref DamageDescription damageDescription)
         {
             damageDescription = new DamageDescription(
-                damageValue: 7,
+                damageValue: 9,
                 armorPiercingCoef: 0.6,
-                finalDamageMultiplier: 1,
+                finalDamageMultiplier: 1.1,
                 rangeMax: 10,
                 damageDistribution: new DamageDistribution(DamageType.Heat, 1));
         }

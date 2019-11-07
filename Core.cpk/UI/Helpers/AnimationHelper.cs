@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Helpers
 {
     using System;
-    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
@@ -37,7 +36,6 @@
             if (Math.Abs(fromY - toY) > double.Epsilon)
             {
                 var anim2 = new DoubleAnimation();
-                anim2 = new DoubleAnimation();
                 anim2.From = fromY;
                 anim2.To = toY;
                 anim2.Duration = new Duration(TimeSpan.FromSeconds(durationSeconds));
@@ -47,12 +45,7 @@
                 children.Add(anim2);
             }
 
-            if (onCompleted != null)
-            {
-                storyboard.Completed += delegate { onCompleted(); };
-            }
-
-            return storyboard;
+            return AddCompletedEventIfNecessary(storyboard, onCompleted);
         }
 
         /// <summary>
@@ -67,29 +60,25 @@
         {
             var storyboard = new Storyboard();
 
-            var properties = new List<string>(2)
+            foreach (var property in new[]
             {
                 ScaleTransform.ScaleXProperty.Name,
                 ScaleTransform.ScaleYProperty.Name
-            };
-
-            foreach (var property in properties)
+            })
             {
-                var anim = new DoubleAnimation();
-                anim.From = from;
-                anim.To = to;
-                anim.Duration = new Duration(TimeSpan.FromSeconds(durationSeconds));
+                var anim = new DoubleAnimation
+                {
+                    From = from,
+                    To = to,
+                    Duration = new Duration(TimeSpan.FromSeconds(durationSeconds))
+                };
+
                 Storyboard.SetTarget(anim, element);
                 Storyboard.SetTargetProperty(anim, new PropertyPath(property));
                 storyboard.Children.Add(anim);
             }
 
-            if (onCompleted != null)
-            {
-                storyboard.Completed += delegate { onCompleted(); };
-            }
-
-            return storyboard;
+            return AddCompletedEventIfNecessary(storyboard, onCompleted);
         }
 
         public static Storyboard CreateStoryboard(
@@ -112,12 +101,7 @@
             var storyboard = new Storyboard();
             storyboard.Children.Add(anim);
 
-            if (onCompleted != null)
-            {
-                storyboard.Completed += delegate { onCompleted(); };
-            }
-
-            return storyboard;
+            return AddCompletedEventIfNecessary(storyboard, onCompleted);
         }
 
         public static Storyboard CreateTransformMoveStoryboard(
@@ -156,12 +140,24 @@
                 children.Add(anim);
             }
 
-            if (onCompleted != null)
+            return AddCompletedEventIfNecessary(storyboard, onCompleted);
+        }
+
+        private static Storyboard AddCompletedEventIfNecessary(Storyboard storyboard, Action onCompleted)
+        {
+            if (onCompleted is null)
             {
-                storyboard.Completed += delegate { onCompleted(); };
+                return storyboard;
             }
 
+            storyboard.Completed += StoryboardCompletedHandler;
             return storyboard;
+
+            void StoryboardCompletedHandler(object sender, EventArgs e)
+            {
+                storyboard.Completed -= StoryboardCompletedHandler;
+                onCompleted();
+            }
         }
     }
 }

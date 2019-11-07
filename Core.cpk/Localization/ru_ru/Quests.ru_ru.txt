@@ -318,8 +318,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
 `[*] В игре CryoFall есть много видов лекарств. Одни помогут восстановить здоровье, другие — избавить от определенных недугов или принести пользу организму.
 [*] Чтобы приготовить улучшенные виды лекарств, необходимо знать специальные рецепты и технологии.
-[*] Лекарства на основе лечебных трав можно найти в разделе готовки.
-[*] Древесную кору можно получить при рубке некоторых видов деревьев.`
+[*] Лекарства на основе лечебных трав можно найти в разделе готовки.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
 Собрать травы и приготовить лекарство
@@ -352,7 +351,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Пора обзавестись защитой получше.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*] Все соответствующие технологии находятся в ветви технологий "Атака и защита".
+`[*] Все соответствующие технологии находятся в ветви технологий "Защита".
 [*] Деревянная броня — не самый лучший вариант, зато она проста в изготовлении и защищает лучше, чем тканевая броня.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
@@ -381,7 +380,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Булавой можно легко проломить череп, но иногда лучше разить врагов на расстоянии. Особенно если приходится сражаться с серьезным противником.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*] Все соответствующие технологии находятся в ветви технологий "Атака и защита".
+`[*] Все соответствующие технологии находятся в ветви технологий "Атака".
 [*] Чтобы изготовить бумажные патроны, сначала необходимо изготовить [b]порох[/b] и [b]бумагу[/b].
 [*] Существуют [b]разные виды урона[/b], а разные типы брони обладают определенным уровнем защиты от каждого из них. Подробнее об этом можно прочитать на экране инвентаря.`
 
@@ -434,7 +433,8 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 Пора снова отправляться на охоту! Вас ждут другие животные и чудовища.
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*] Каждое животное и чудовище обитает в определенном ареале, и именно там их следует искать. Исследуйте мир и постарайтесь запомнить, где какие существа встречаются.
+`[*] Вы можете положить оружие охотника в "ячейку для приборов" (справа от портрета персонажа в инвентаре).
+[*] Каждое животное и чудовище обитает в определенном ареале, и именно там их следует искать. Исследуйте мир и постарайтесь запомнить, где какие существа встречаются.
 [*] За охоту вы будете получать разное количество опыта охоты, в зависимости от опасности убитой твари.`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
@@ -463,6 +463,9 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Используйте лом для разборки
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Добыть соль
+
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
 Некоторые ресурсы, такие как нефть и литий, необходимы для продвинутых технологий. Крайне важно научиться их добывать.
 
@@ -474,9 +477,6 @@ Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
 Продвинутая добыча ресурсов
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Добыть соль
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Изучение точных наук, особенно химии, помогает добиться успехов в производстве и строительстве.

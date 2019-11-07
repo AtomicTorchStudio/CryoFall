@@ -247,6 +247,12 @@ Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 오락
 
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+다양한 탈것을 생산하는 데 필요한 기술.
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+탈것
+
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 외계의 자원을 이용하기 위해 필요한 기술.
 
@@ -330,4 +336,10 @@ Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 공격 4
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+발전된 전투 탈것 및 이동 수단.
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+탈것 2
 

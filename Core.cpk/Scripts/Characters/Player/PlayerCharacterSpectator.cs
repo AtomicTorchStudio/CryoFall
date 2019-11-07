@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -15,6 +16,10 @@
         public override float CharacterWorldHeight => 0;
 
         public override string Name => "Player character in Spectator mode";
+
+        public override double PhysicsBodyAccelerationCoef => 10;
+
+        public override double PhysicsBodyFriction => 60;
 
         public override double StatMoveSpeed => 5;
 
@@ -46,6 +51,7 @@
                 return;
             }
 
+            VehicleSystem.ServerCharacterExitCurrentVehicle(character);
             // the order of calls is important here
             Server.Characters.SetSpectatorMode(character, isSpectator: false, reinitilize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacterSpectator>());

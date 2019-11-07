@@ -7,7 +7,7 @@
 
     public class SkeletonRiverSnail : ProtoCharacterSkeletonAnimal
     {
-        public override double DefaultMoveSpeed => 0.07;
+        public override double DefaultMoveSpeed => 0.1;
 
         public override float OrientationDownExtraAngle => 5;
 

@@ -11,7 +11,7 @@
 
     public class RecipeLithiumOreExtractor : Recipe.RecipeForManufacturing
     {
-        private const float LiquidAmountToProduceOneOutputItem = 100;
+        private const double LiquidAmountToProduceOneOutputItem = 100;
 
         private ItemOreLithium outputItem;
 

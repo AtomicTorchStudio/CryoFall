@@ -8,6 +8,8 @@
 
     public class MobRiverSnail : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => true;
+
         public override float CharacterWorldHeight => 0.5f;
 
         public override double MobKillExperienceMultiplier => 0.1;
@@ -20,7 +22,7 @@
 
         public override double StatDefaultHealthMax => 40;
 
-        public override double StatMoveSpeed => 0.07;
+        public override double StatMoveSpeed => 0.1;
 
         protected override void PrepareProtoCharacterMob(
             out ProtoCharacterSkeleton skeleton,
@@ -31,7 +33,7 @@
 
             // random loot
             lootDroplist
-                .Add<ItemFoodRotten>(count: 1)
+                .Add<ItemRot>(count: 1)
                 .Add<ItemSlime>(count: 1);
 
             // extra loot

@@ -6,16 +6,26 @@
 
     public class AmbientSoundPreset : IEquatable<AmbientSoundPreset>
     {
-        public AmbientSoundPreset(SoundResource soundResource, double suppression = 0)
+        /// <param name="soundResource">Sound resource with ambient sound.</param>
+        /// <param name="suppressionCoef">How much other ambient sounds should be suppressed?</param>
+        /// <param name="isSupressingMusic">Should music pause when hearing this ambient sound?</param>
+        public AmbientSoundPreset(
+            SoundResource soundResource,
+            double suppressionCoef = 0,
+            bool isSupressingMusic = false)
         {
             this.SoundResource = soundResource;
-            Api.Assert(suppression >= 0 && suppression <= 1, nameof(suppression) + " must be in [0;1] range");
-            this.Suppression = suppression;
+            Api.Assert(suppressionCoef >= 0 && suppressionCoef <= 1,
+                       nameof(suppressionCoef) + " must be in [0;1] range");
+            this.SuppressionCoef = suppressionCoef;
+            this.IsSupressingMusic = isSupressingMusic;
         }
+
+        public bool IsSupressingMusic { get; }
 
         public SoundResource SoundResource { get; }
 
-        public double Suppression { get; }
+        public double SuppressionCoef { get; }
 
         public bool Equals(AmbientSoundPreset other)
         {
@@ -30,7 +40,7 @@
             }
 
             return this.SoundResource.Equals(other.SoundResource)
-                   && this.Suppression.Equals(other.Suppression);
+                   && this.SuppressionCoef.Equals(other.SuppressionCoef);
         }
 
         public override bool Equals(object obj)
@@ -58,7 +68,7 @@
             unchecked
             {
                 return ((this.SoundResource != null ? this.SoundResource.GetHashCode() : 0) * 397)
-                       ^ this.Suppression.GetHashCode();
+                       ^ this.SuppressionCoef.GetHashCode();
             }
         }
     }

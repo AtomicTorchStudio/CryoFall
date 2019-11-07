@@ -5,15 +5,16 @@
 
     public class ItemCornGrilled : ProtoItemFood
     {
-        public override string Description => "This grilled corn retains all of the sweetness and adds smoky flavors. Very tasty!";
+        public override string Description =>
+            "This grilled corn retains all of the sweetness and adds smoky flavors. Very tasty!";
 
-        public override float FoodRestore => 8;
+        public override float FoodRestore => 9;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 
         public override string Name => "Grilled corn";
 
-        public override ushort OrganicValue => 5;
+        public override ushort OrganicValue => 7;
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {

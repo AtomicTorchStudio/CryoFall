@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
-    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
@@ -25,6 +24,8 @@
             WateringActionState,
             WateringActionState.PublicState>
     {
+        public const string NotificationAlreadyWatered = "Already watered";
+
         public const string NotificationCannotWater_MessageHarvestReady =
             "The plant is ready to be harvested. No point in watering it now.";
 
@@ -35,9 +36,41 @@
 
         public override string Name => "Watering system";
 
+        public static bool ServerIsWateringRequired(
+            IWorldObject objectPlant,
+            ICharacter character,
+            IProtoItem protoItem,
+            IProtoObjectPlant protoPlant,
+            double proposedWateringDuration)
+        {
+            var plantPrivateState = objectPlant.GetPrivateState<PlantPrivateState>();
+            var plantPublicState = objectPlant.GetPublicState<PlantPublicState>();
+            if ((plantPrivateState.ProducedHarvestsCount == protoPlant.NumberOfHarvests
+                 && protoPlant.NumberOfHarvests > 0)
+                || plantPublicState.IsSpoiled)
+            {
+                // no need to water the plant
+                Instance.CallClient(character, _ => _.ClientRemote_CannotWaterLastHarvestOrRotten(protoItem));
+                return false;
+            }
+
+            if (plantPrivateState.ServerTimeWateringEnds >= double.MaxValue
+                || (proposedWateringDuration < double.MaxValue
+                    && (plantPrivateState.ServerTimeWateringEnds
+                        >= Server.Game.FrameTime + proposedWateringDuration - 60)))
+            {
+                // the plant is already watered enough
+                Instance.CallClient(character, _ => _.ClientRemote_CannotWanterAlreadyWatered(protoItem));
+                return false;
+            }
+
+            return true;
+        }
+
         protected override ItemWorldActionRequest ClientTryCreateRequest(ICharacter character)
         {
-            var worldObject = ClientComponentObjectInteractionHelper.CurrentMouseOverObject;
+            var worldObject = ClientComponentObjectInteractionHelper.MouseOverObject
+                                  as IStaticWorldObject;
             if (worldObject == null)
             {
                 return null;
@@ -133,6 +166,7 @@
 
         protected override void SharedValidateRequest(ItemWorldActionRequest request)
         {
+            var character = request.Character;
             var objectPlant = request.WorldObject;
             if (objectPlant == null
                 || !(objectPlant.ProtoWorldObject is IProtoObjectPlant protoPlant))
@@ -140,12 +174,12 @@
                 throw new Exception("The world object must be a plant");
             }
 
-            if (!objectPlant.ProtoWorldObject.SharedCanInteract(request.Character, objectPlant, true))
+            if (!objectPlant.ProtoWorldObject.SharedCanInteract(character, objectPlant, true))
             {
                 throw new Exception("Cannot interact with " + objectPlant);
             }
 
-            if (request.Item != request.Character.SharedGetPlayerSelectedHotbarItem())
+            if (request.Item != character.SharedGetPlayerSelectedHotbarItem())
             {
                 throw new Exception("The item is not selected");
             }
@@ -155,21 +189,29 @@
                 throw new Exception("The item must be a watering can");
             }
 
-            if (IsServer)
+            if (IsServer
+                && !ServerIsWateringRequired(objectPlant,
+                                             character,
+                                             protoItem,
+                                             protoPlant,
+                                             protoItem.WateringDuration.TotalSeconds))
             {
-                var plantPrivateState = objectPlant.GetPrivateState<PlantPrivateState>();
-                if (plantPrivateState.ProducedHarvestsCount == protoPlant.NumberOfHarvests
-                    && protoPlant.NumberOfHarvests > 0)
-                {
-                    // no need to apply - last harvest
-                    Instance.CallClient(request.Character, _ => _.ClientRemote_CannotWaterLastHarvest(protoItem));
-                    throw new Exception("No need to apply - last harvest");
-                }
+                throw new Exception("No need to apply - last harvest/already watered/rotten");
             }
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_CannotWaterLastHarvest(IProtoItemToolWateringCan protoItem)
+        private void ClientRemote_CannotWanterAlreadyWatered(IProtoItem protoItem)
+        {
+            NotificationSystem.ClientShowNotification(
+                NotificationCannotWater_Title,
+                NotificationAlreadyWatered,
+                NotificationColor.Bad,
+                protoItem.Icon);
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
+        private void ClientRemote_CannotWaterLastHarvestOrRotten(IProtoItem protoItem)
         {
             NotificationSystem.ClientShowNotification(
                 NotificationCannotWater_Title,

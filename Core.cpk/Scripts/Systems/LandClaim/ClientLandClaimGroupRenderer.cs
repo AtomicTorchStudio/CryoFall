@@ -171,10 +171,11 @@
             {
                 var publicState = LandClaimArea.GetPublicState(area);
                 var position = publicState.LandClaimCenterTilePosition;
-                int size = publicState.LandClaimSize;
+                var protoObjectLandClaim = publicState.ProtoObjectLandClaim;
+                int size = protoObjectLandClaim.LandClaimSize;
                 if (this.isGraceAreaRenderer)
                 {
-                    size += 2 * publicState.LandClaimGraceAreaPaddingSizeOneDirection;
+                    size += 2 * protoObjectLandClaim.LandClaimGraceAreaPaddingSizeOneDirection;
                 }
 
                 position = new Vector2Ushort((ushort)Math.Max(0, position.X - size / 2),
@@ -204,7 +205,7 @@
                     if (this.isGraceAreaRenderer)
                     {
                         var publicState = LandClaimArea.GetPublicState(area);
-                        areaBounds = areaBounds.Inflate(publicState.LandClaimGraceAreaPaddingSizeOneDirection);
+                        areaBounds = areaBounds.Inflate(publicState.ProtoObjectLandClaim.LandClaimGraceAreaPaddingSizeOneDirection);
                     }
 
                     var areaBoundsRight = (ushort)areaBounds.Right;

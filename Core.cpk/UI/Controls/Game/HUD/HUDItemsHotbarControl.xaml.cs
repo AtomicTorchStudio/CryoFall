@@ -2,7 +2,6 @@
 {
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -35,8 +34,8 @@
                     Api.Client.UI.GetApplicationResource<ControlTemplate>(
                         "ItemSlotDelimiterAltVerticalControlTemplate");
 
-                this.controller =
-                    new GenericItemsContainerController<HotbarItemSlotControl>(this.stackPanelSlotsChildren);
+                this.controller = new GenericItemsContainerController<HotbarItemSlotControl>(
+                    this.stackPanelSlotsChildren);
                 this.controller.SlotControlAdded += this.ControllerSlotControlAddedHandler;
                 this.controller.SlotControlRemoved += this.ControllerSlotControlRemovedHandler;
             }

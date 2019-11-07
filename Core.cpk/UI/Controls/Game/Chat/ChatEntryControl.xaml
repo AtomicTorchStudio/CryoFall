@@ -28,13 +28,11 @@
                     <VisualState x:Name="Hidden">
                         <Storyboard>
                             <DoubleAnimationUsingKeyFrames
-                                Storyboard.TargetProperty="(TextElement.Foreground).(Brush.Opacity)"
-                                Storyboard.TargetName="TextBlock">
+                                Storyboard.TargetProperty="Foreground.Opacity">
                                 <EasingDoubleKeyFrame Value="0" KeyTime="0" />
                             </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames
-                                Storyboard.TargetProperty="(TextElement.Background).(Brush.Opacity)"
-                                Storyboard.TargetName="TextBlock">
+                                Storyboard.TargetProperty="Background.Opacity">
                                 <EasingDoubleKeyFrame Value="0" KeyTime="0" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>

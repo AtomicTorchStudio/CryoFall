@@ -22,8 +22,14 @@ Orman (Tropikal)
 Scripts/Tiles/TileLakeShore@Name:
 Göl kıyısı
 
+Scripts/Tiles/TileLava@Name:
+Lav
+
 Scripts/Tiles/TileMeadows@Name:
 Çayırlar
+
+Scripts/Tiles/TileRoads@Name:
+Yollar
 
 Scripts/Tiles/TileRocky@Name:
 Taşlı

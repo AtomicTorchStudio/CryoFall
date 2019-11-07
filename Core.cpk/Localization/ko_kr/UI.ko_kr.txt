@@ -1,4 +1,10 @@
-﻿UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
+﻿UI/CoreStrings@Action_Build:
+건설
+
+UI/CoreStrings@Action_Repair:
+수리
+
+UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 파괴까지 남은 시간:
 
 UI/CoreStrings@Button_Accept:
@@ -47,8 +53,14 @@ UI/CoreStrings@Button_Edit:
 UI/CoreStrings@Button_Help:
 도움말
 
+UI/CoreStrings@Button_Next:
+다음
+
 UI/CoreStrings@Button_OK:
 확인
+
+UI/CoreStrings@Button_Previous:
+이전
 
 UI/CoreStrings@Button_Quit:
 종료
@@ -161,6 +173,28 @@ UI/CoreStrings@Defense_Format_Psi:
 UI/CoreStrings@Defense_Format_Radiation:
 방사능 보호: {0}
 
+UI/CoreStrings@Demo_Button_BuyGameOnSteam:
+Steam에서 CryoFall 구매하기
+
+UI/CoreStrings@Demo_CanPurchase:
+CryoFall을 구매하여 게임의 정식판을 즐기실 수 있습니다. 단 한 번의 구매로 (최근에 플레이하였다면) 기존의 캐릭터로 중단한 곳에서부터 이어서 플레이할 수 있습니다. 또한 커뮤니티와 모드 서버에서 플레이하거나, 자신의 서버를 호스트하여 플레이할 수도 있습니다.
+
+UI/CoreStrings@Demo_Expired:
+체험 시간이 종료되었습니다. 게임을 플레이해주셔서 감사합니다. 즐거운 시간이 되셨길 바랍니다!
+
+UI/CoreStrings@Demo_OnlyOfficialServers:
+`이 체험판으로는 공식 게임 서버에서 플레이할 수 있습니다.
+[br]다른 커뮤니티 또는 비공개 게임 서버나 자신의 서버를 호스트하여 플레이하려면 정식판을 구매하여 주십시오.`
+
+UI/CoreStrings@Demo_TimeRemaining:
+체험 시간 종료까지:
+
+UI/CoreStrings@Demo_Title:
+CryoFall 체험판
+
+UI/CoreStrings@Demo_Welcome:
+CryoFall의 체험판에 오신 것을 환영합니다. 체험 시간 동안 아무 제한 없이 게임을 플레이해보실 수 있습니다. (공식 게임 서버의 모든 게임 기능에 접근 가능)
+
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 점유 가능까지 남은 시간:
 
@@ -179,6 +213,9 @@ EU/s
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFall 공식 디스코드 서버 (영어)
 
+UI/CoreStrings@Extras_FeaturesTooltip:
+CryoFall의 특징 슬라이드쇼
+
 UI/CoreStrings@Extras_PatchnotesTooltip:
 모든 CryoFall 업데이트 패치노트 (영어)
 
@@ -195,7 +232,13 @@ UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
 수확 가능해질 때까지 남은 시간
 
 UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
-지금!
+수확 준비
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiled:
+부패 중
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
+부패까지 남은 시간:
 
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 물 주기
@@ -211,6 +254,9 @@ UI/CoreStrings@Gender_Female:
 
 UI/CoreStrings@Gender_Male:
 남성
+
+UI/CoreStrings@HUDButtonsBar_DismountVehicle:
+탈것에서 내리기
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 건설
@@ -455,7 +501,7 @@ UI/CoreStrings@MenuServers_ServersCount:
 서버
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
-추천 서버는 공식 서버와 비슷한 고품질의 경험을 제공한다는 평을 대개 받고 있습니다. 하지만 여전히 커뮤니티가 주관하고 있다는 점이 공시 서버와의 차이점입니다.
+추천 서버는 공식 서버와 비슷한 고품질의 경험을 제공한다는 평을 대개 받고 있습니다. 하지만 여전히 커뮤니티가 호스트하고 있다는 점이 공식 서버와의 차이점입니다.
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Title:
 추천
@@ -467,7 +513,7 @@ UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 모드
 
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
-개발자들이 주관하는 CryoFall 공식 서버 중 하나입니다.
+개발자들이 호스트하는 CryoFall 공식 서버 중 하나입니다.
 
 UI/CoreStrings@MenuServers_ServerTag_Official_Title:
 공식
@@ -487,6 +533,18 @@ PvP 서버에는 어떠한 제약도 없습니다. 이곳에서는 죽고 죽일
 
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
+
+UI/CoreStrings@ModsDisabledWindow_Description:
+`이용할 수 없는 모드 때문에 게임을 실행할 수 없어 모드를 차단했습니다.
+[br]원인은 하나 이상의 모드가 오래(현재 게임 버전과 호환되지 않음)되었거나 단순히 유효하지 않는 것입니다.
+[br]게임에서는 문제를 발생시키는 특정 모드 또는 모든 모드의 호환 여부를 판별할 수 없습니다.
+[br]이러한 모드를 계속 이용하려면 모드가 최신 버전을 사용하고 있는지 확인하십시오.
+[br]
+[br]이용할 수 없는 모드 목록:
+[br]{0}`
+
+UI/CoreStrings@ModsDisabledWindow_Title:
+CryoFall이 모드를 차단했습니다
 
 UI/CoreStrings@Network_Jitter:
 지터
@@ -790,6 +848,17 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `AtomicTorch.com 계정 등록
 [br](Steam ID용).`
 
+UI/CoreStrings@SupporterPack_Badge:
+후원자 배지
+
+UI/CoreStrings@SupporterPack_Description:
+`후원자 팩은 CryoFall의 개발자들을 후원하고 싶은 분들께 드리는 보너스 모음집입니다. 구매하신 분들께는 감사의 표시로 게임 내 채팅에 표시될 특별한 후원자 배지를 드립니다.
+[br][br]후원자 팩은 게임 내 아무 혜택을 제공하지 않으며, 완전한 선택 사항입니다. 게임에서 사용된 모든 사운드트랙, 컨셉 아트, 고해상도 게임 아트, 채팅 배지 등이 포함되어 있습니다. 앞서 해보기 기간 동안 더 많은 항목이 후원자 팩에 추가될 예정입니다
+[br][br]여러분들의 후원에 진심으로 감사드립니다!`
+
+UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
+학습 포인트: {0}
+
 UI/CoreStrings@TechGroupTooltip_Requirements:
 필요 조건
 
@@ -800,16 +869,19 @@ UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 잠금 해제된 기술
 
 UI/CoreStrings@TechNodeTooltip_Perks:
-특전
+특전:
 
 UI/CoreStrings@TechNodeTooltip_Recipes:
-제조법
+제조법:
 
 UI/CoreStrings@TechNodeTooltip_Structures:
-구조물
+구조물:
 
 UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
 기술적 전제 조건
+
+UI/CoreStrings@TechNodeTooltip_Vehicles:
+탈것:
 
 UI/CoreStrings@Technology:
 기술
@@ -906,6 +978,83 @@ UI/CoreStrings@UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAc
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
 CryoFall을 처음으로 실행하신 것 같습니다. 기존의 [url=atomictorch.com]AtomicTorch.com[/url] 계정에 연결하시겠습니까?
+
+UI/CoreStrings@UnstuckInFormat:
+끼임 탈출까지 남은 시간: {0}
+
+UI/CoreStrings@Vehicle_Ammo:
+탄약
+
+UI/CoreStrings@Vehicle_Armor:
+방어력
+
+UI/CoreStrings@Vehicle_EnergyLevel:
+에너지 레벨
+
+UI/CoreStrings@Vehicle_Enter:
+탑승
+
+UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
+방어력 {1:F0}/{2:F0} ({0}%)
+
+UI/CoreStrings@Vehicle_Hotbar_EnergyPercentFormat:
+에너지 {0}%
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_LeftArm:
+왼팔
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
+오른팔
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
+무기
+
+UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
+이 무기는 기계에 설치해야만 사용할 수 있습니다.
+
+UI/CoreStrings@Vehicle_ReactorCores:
+원자로 노심
+
+UI/CoreStrings@VehicleGarage_ButtonPutCurrentVehicle:
+현재타고 있는 탈것을 격납고에 넣기
+
+UI/CoreStrings@VehicleGarage_ButtonTakeVehicle:
+탈것 꺼내기
+
+UI/CoreStrings@VehicleGarage_TitleAccessibleVehicles:
+이용할 수 있는 탈것:
+
+UI/CoreStrings@VehicleGarage_TitleNoAccessibleVehicles:
+아직 이용할 수 있는 탈것이 없습니다.
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_Docked:
+격납 완료
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InGarage:
+격납고에 보관 중
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InUse:
+현재 사용 중
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InWorld:
+월드에 있음
+
+UI/CoreStrings@VehiclesAssemblyList_Button_Build:
+건설
+
+UI/CoreStrings@VehiclesAssemblyList_NoSchematicsKnown:
+`이 조립대를 위한 설계도를 가지고 있지 않습니다.
+[br][br][br]
+기술 메뉴에서 새로운 설계도의 잠금을 해제할 수 있습니다.`
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
+설계도
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
+잠금 해제된 설계도
+
+UI/CoreStrings@Weapon_CompatibleAmmo:
+호환되는 탄약:
 
 UI/CoreStrings@Window_Tab_Main:
 주요
@@ -1102,6 +1251,21 @@ UI/CoreStrings@WindowSkills_ProgressTowardsTheNextLevel:
 UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
 발견한 스킬
 
+UI/CoreStrings@WindowsObjectVehicle_RepairTextFormat:
+방어력의 {0}% 수리에 필요한 것:
+
+UI/CoreStrings@WindowsObjectVehicle_TabCargo_Title:
+화물
+
+UI/CoreStrings@WindowsObjectVehicle_TabConstructVehicle:
+건설
+
+UI/CoreStrings@WindowsObjectVehicle_TabGarage:
+격납고
+
+UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
+탈것
+
 UI/CoreStrings@WindowSocial_OnlineNow:
 온라인
 
@@ -1253,6 +1417,9 @@ UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
 `[b]토지 점유[/b]
 [br]당신이 접근할 수 있는 땅입니다.`
 
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_LastUsedVehicle:
+[b]마지막으로 사용한 탈것[/b]
+
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 `[b]토지 점유소[/b]
 [br]이것은 당신의 토지 점유소입니다.`
@@ -1302,7 +1469,7 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 [개발자]
 
 UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
-`{0}님과의 채팅을 닫으시겠습니까?
+`{0} 님과의 채팅을 닫으시겠습니까?
 [br]대화 기록은 저장되며, 나중에 다시 채팅할 수 있습니다.`
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
@@ -1352,7 +1519,7 @@ UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `스스로 지은 벽에 껴서 못빠져 나온 적 있으신가요?
 [br]아니면 다른 플레이어에 의해 그런 일을 당하신 적은요?
-[br]이 기능을 사용하면 캐릭터를 순간 이동시킬 수 있습니다.`
+[br]이 기능을 사용한 후 잠시 기다리면 캐릭터가 순간 이동됩니다.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 끼임 탈출
@@ -1439,7 +1606,7 @@ UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeav
 파티를 떠나시겠습니까?
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
-[b]{0}[/b]님을 파티에서 삭제하시겠습니까?
+[b]{0}[/b] 님을 파티에서 삭제하시겠습니까?
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
 생명체
@@ -1485,9 +1652,6 @@ UI/Controls/Game/Technologies/Data/ViewModelWindowTechnologies@DialogDoYouWantTo
 
 UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
 수공예
-
-UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
-수리
 
 UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
 상하기 쉬운 아이템이 ~{0} 배 더 오래 보관됩니다.
@@ -1546,6 +1710,89 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `현재 발전량 {0} EU/s.
 [br]최대 생산량 {1} EU/s.`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+CryoFall에 오신 것을 환영합니다!
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+이번 기회를 통해 여러분께서 게임에 기대하고 계신 몇 가지 기능을 소개하고자 합니다! CryoFall은 계속 개발 중에 있지만, 다음 사항들은 모두 이용하실 수 있습니다.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+농사 & 요리
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+비료와 농기구로 직접 작물을 재배해보십시오. 그리고 노동의 산물로 캐릭터에게 긍정적인 효과를 제공해 주는 다양한 요리를 만들어보십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+캐릭터 시뮬레이션 & 약물
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+일반적인 굶주림과 갈증에 대한 역학뿐만 아니라 다양한 약물 아이템으로 치료할 수 있는 수많은 상태 효과와 고통을 실험해 볼 수 있는 복합적인 캐릭터 시뮬레이션.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+공업
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+CryoFall의 세계에서 사용할 수 있는 천연 자원을 개발해보십시오. 원유를 뽑아내 정제하거나 온천에서 리튬을 추출하여 배터리와 전자 장치를 만들어 보십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+경제
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+다른 생존자들과의 거래를 원활히하기 위해 주화를 만들고 완전 자동화된 거래소를 건설하십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+인공두뇌학적 임플란트
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+다양한 생체 공학적 및 인공두뇌학적 임플란트를 캐릭터에게 설치하여 새로운 능력을 얻게나 능력치를 높여보십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+스킬
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+자신의 캐릭터를 위한 다양한 스킬을 찾고 잠금을 해제하며, 향상시켜서 효율성을 높이고 새로운 기능을 얻어보십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
+캐릭터 커스터마이즈
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+캐릭터의 외모를 커스터마이즈하고 다양한 장비와 도구로 자신을 남들과 차별화하십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+기술
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+획득한 학습 포인트를 사용해서 새로운 기술과 조리법, 건물에 대해 학습하여 가장 관심있는 분야에 집중해 게임을 원하는 대로 커스터마이즈하십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+전기
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+전력망을 고려하여 기지를 설계하십시오. 많은 발전기와 저장소, 전기 소비 장치를 지을 수 있습니다.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+Vehicles
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+Build and upgrade a variety of futuristic vehicles to explore the world faster or use them in combat.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
+환상의 생명체
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+각양각색의 환경과 수십 종의 환상의 생명체들이 살고 있는 다양한 세계를 탐험하십시오.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+마지막으로 드리는 말씀
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
+`마지막으로, CryoFall은 계속 개발 중이며, 많은 개선 및 변화가 계획되어 있다는 것을 유념해주시기 바랍니다. 하지만 CryoFall은 이미 실속 있는 게임이니 재밌게 즐겨주신다면 저희는 더할 나위 없이 기쁠 것입니다![br][br]
+저희는 Discord와 토론장에서 항상 여러분을 기다리고 있답니다. 오셔서 저희에게 인사해주세요! :)[br][br]
+불편함을 겪으셨거나 버그나 취약점을 발견하셨다면, 저희에게 말씀해주세요. 기꺼이 도와드리겠습니다!`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
+게임 시작
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
 로그인 응답을 기다리는 중.

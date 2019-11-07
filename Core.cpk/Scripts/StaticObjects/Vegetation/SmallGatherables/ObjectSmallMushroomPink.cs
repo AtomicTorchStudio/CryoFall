@@ -30,7 +30,7 @@
 
             var publicState = data.PublicState;
             var clientState = data.ClientState;
-            var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
+            var sceneObject = data.GameObject.ClientSceneObject;
 
             clientState.RendererLight = ClientLighting.CreateLightSourceSpot(
                 sceneObject,

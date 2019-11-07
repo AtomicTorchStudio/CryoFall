@@ -18,7 +18,7 @@
           <ProtoObjectRechargingStation.PrivateState,
               StaticObjectElectricityConsumerPublicState,
               StaticObjectClientState>,
-          IInteractableProtoStaticWorldObject,
+          IInteractableProtoWorldObject,
           IProtoObjectElectricityConsumerWithCustomRate
     {
         public abstract byte ContainerInputSlotsCount { get; }
@@ -48,17 +48,18 @@
             return consumptionRate;
         }
 
-        BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
+        BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
         {
-            var privateState = GetPrivateState(worldObject);
-            return this.ClientOpenUI(worldObject, privateState);
+            var staticWorldObject = (IStaticWorldObject)worldObject;
+            var privateState = GetPrivateState(staticWorldObject);
+            return this.ClientOpenUI(staticWorldObject, privateState);
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
         }
 
@@ -70,7 +71,7 @@
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
         protected virtual BaseUserControlWithWindow ClientOpenUI(

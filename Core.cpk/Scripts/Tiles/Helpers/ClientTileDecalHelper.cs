@@ -202,11 +202,13 @@
                     foreach (var staticWorldObject in tile.StaticObjects)
                     {
                         var kind = staticWorldObject.ProtoStaticWorldObject.Kind;
-                        if (kind == StaticObjectKind.Structure
-                            || kind == StaticObjectKind.Floor)
+                        switch (kind)
                         {
-                            // don't show decals under structures and floors
-                            return false;
+                            case StaticObjectKind.Structure:
+                            case StaticObjectKind.Floor:
+                            case StaticObjectKind.FloorDecal:
+                                // don't show decals under structures and floors
+                                return false;
                         }
                     }
 

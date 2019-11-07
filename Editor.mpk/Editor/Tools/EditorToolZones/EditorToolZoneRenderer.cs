@@ -13,7 +13,7 @@
 
     public class EditorToolZoneRenderer : IDisposable
     {
-        public const float ZoneOpacity = 0.25f;
+        public const float ZoneOpacity = 0.5f;
 
         private static readonly IRenderingClientService RenderingService = Api.Client.Rendering;
 
@@ -37,7 +37,9 @@
 
         public EditorToolZoneRenderer(ClientZoneProvider zoneProvider)
         {
-            this.material = RenderingMaterial.Create(new EffectResource("SolidColor"));
+            this.material = RenderingMaterial.Create(new EffectResource("LandClaimArea"));
+            this.material.EffectParameters.Set("SpriteTexture",
+                                               new TextureResource("FX/EditorZoneTile"));
 
             this.sceneObject = Api.Client.Scene.CreateSceneObject(
                 "EditorToolZones / Zone renderer - " + zoneProvider.ProtoZone.ShortId);
@@ -114,7 +116,7 @@
 
             renderer = RenderingService.CreateSpriteRenderer(
                 this.sceneObject,
-                null,
+                textureResource: null,
                 drawOrder: this.drawOrder,
                 positionOffset: position.ToVector2D());
 

@@ -15,57 +15,29 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Extensions;
+    using JetBrains.Annotations;
 
     public class ViewModelItemsContainerExchange : BaseViewModel
     {
         private readonly Action callbackTakeAllItemsSuccess;
 
+        private readonly bool enableShortcuts;
+
         private IClientItemsContainer container;
 
         private ClientInputContext inputListener;
 
+        private bool isActive;
+
         public ViewModelItemsContainerExchange(
             IItemsContainer container,
-            Action callbackTakeAllItemsSuccess,
+            [CanBeNull] Action callbackTakeAllItemsSuccess,
             bool enableShortcuts = true)
         {
             this.callbackTakeAllItemsSuccess = callbackTakeAllItemsSuccess;
             this.Container = (IClientItemsContainer)container;
 
-            if (!enableShortcuts)
-            {
-                return;
-            }
-
-            // setup shortcuts
-            var character = ClientCurrentCharacterHelper.Character;
-            ClientContainersExchangeManager.Register(
-                this,
-                this.Container,
-                allowedTargets: new[]
-                {
-                    character.SharedGetPlayerContainerInventory(),
-                    character.SharedGetPlayerContainerHotbar()
-                });
-
-            ClientContainersExchangeManager.Register(
-                this,
-                character.SharedGetPlayerContainerHotbar(),
-                allowedTargets: new[] { this.Container });
-
-            ClientContainersExchangeManager.Register(
-                this,
-                character.SharedGetPlayerContainerInventory(),
-                allowedTargets: new[] { this.Container });
-
-            // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-            this.inputListener = ClientInputContext
-                                 .Start("Container exchange")
-                                 .HandleButtonDown(GameButton.ContainerTakeAll, this.ExecuteCommandTakeAll)
-                                 .HandleButtonDown(GameButton.ContainerMoveItemsMatchDown,
-                                                   this.ExecuteCommandMatchDown)
-                                 .HandleButtonDown(GameButton.ContainerMoveItemsMatchUp,
-                                                   this.ExecuteCommandMatchUp);
+            this.enableShortcuts = enableShortcuts;
         }
 
         public BaseCommand CommandMatch => new ActionCommandWithParameter(this.ExecuteCommandMatch);
@@ -87,6 +59,55 @@
 
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
         public string ContainerTitle { get; set; } = "Container title";
+
+        public bool IsActive
+        {
+            get => this.isActive;
+            set
+            {
+                if (this.isActive == value)
+                {
+                    return;
+                }
+
+                this.isActive = value;
+                this.NotifyThisPropertyChanged();
+
+                if (!this.enableShortcuts)
+                {
+                    return;
+                }
+
+                if (this.isActive)
+                {
+                    // setup shortcuts
+                    var character = ClientCurrentCharacterHelper.Character;
+                    ClientContainersExchangeManager.Register(
+                        this,
+                        this.Container,
+                        allowedTargets: new[]
+                        {
+                            character.SharedGetPlayerContainerInventory(),
+                            character.SharedGetPlayerContainerHotbar()
+                        });
+
+                    // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                    this.inputListener = ClientInputContext
+                                         .Start("Container exchange")
+                                         .HandleButtonDown(GameButton.ContainerTakeAll, this.ExecuteCommandTakeAll)
+                                         .HandleButtonDown(GameButton.ContainerMoveItemsMatchDown,
+                                                           this.ExecuteCommandMatchDown)
+                                         .HandleButtonDown(GameButton.ContainerMoveItemsMatchUp,
+                                                           this.ExecuteCommandMatchUp);
+                }
+                else
+                {
+                    ClientContainersExchangeManager.Unregister(this);
+                    this.inputListener.Stop();
+                    this.inputListener = null;
+                }
+            }
+        }
 
         public bool IsContainerTitleVisible { get; set; } = true;
 

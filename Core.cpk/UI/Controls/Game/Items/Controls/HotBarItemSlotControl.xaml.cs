@@ -11,6 +11,12 @@
 
     public partial class HotbarItemSlotControl : BaseUserControl, IItemSlotControl
     {
+        public static readonly DependencyProperty IsShortcutAvailableProperty =
+            DependencyProperty.Register("IsShortcutAvailable",
+                                        typeof(bool),
+                                        typeof(HotbarItemSlotControl),
+                                        new PropertyMetadata(defaultValue: true));
+
         private bool isActive;
 
         private ItemSlotControl itemSlotControl;
@@ -30,6 +36,12 @@
                 this.isActive = value;
                 this.viewModel.SelectedVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
+        }
+
+        public bool IsShortcutAvailable
+        {
+            get => (bool)this.GetValue(IsShortcutAvailableProperty);
+            set => this.SetValue(IsShortcutAvailableProperty, value);
         }
 
         public void RefreshItem()

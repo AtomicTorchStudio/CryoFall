@@ -86,10 +86,9 @@
             outputItems.Add<ItemCanisterEmpty>();
         }
 
-        private static float GetLiquidCapacity(IWorldObject objectManufacturer)
+        private static double GetLiquidCapacity(IWorldObject objectManufacturer)
         {
-            return ((IProtoObjectGeneratorWithFuel)objectManufacturer.ProtoWorldObject)
-                .LiquidCapacity;
+            return ((IProtoObjectGeneratorWithFuel)objectManufacturer.ProtoWorldObject).LiquidCapacity;
         }
 
         private static ObjectGeneratorWithFuelPrivateState GetPrivateState(

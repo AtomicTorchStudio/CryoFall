@@ -17,9 +17,9 @@
 
         public override string Description => "Allows extraction of lithium salts from geothermal springs.";
 
-        public override float LiquidCapacity => 100;
+        public override double LiquidCapacity => 100;
 
-        public override float LiquidProductionAmountPerSecond => 1;
+        public override double LiquidProductionAmountPerSecond => 1;
 
         public override string Name => "Lithium salts extractor";
 
@@ -27,7 +27,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 2500;
+        public override float StructurePointsMax => 5000;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -95,10 +95,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((2.8, 2.2), (0.1, 0))
-                .AddShapeRectangle((2.8, 1.7), (0.1, 0.7), CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((2.8, 1.6), (0.1, 0.8), CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((2.8, 2.8), (0.1, 0),   CollisionGroups.ClickArea);
+                .AddShapeRectangle((3.0, 2.25), (0, 0))
+                .AddShapeRectangle((2.8, 1.7),  (0.1, 0.7), CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((2.8, 1.6),  (0.1, 0.8), CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((2.8, 2.8),  (0.1, 0),   CollisionGroups.ClickArea);
         }
     }
 }

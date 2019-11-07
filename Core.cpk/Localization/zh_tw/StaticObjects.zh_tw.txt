@@ -1,765 +1,770 @@
 ﻿Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationCannotDropItemThere:
-無法在此放下物品。
+瞭解此行星的植物群可以提高你的收穫速度和獲得更高產量的機會。
 
 Scripts/StaticObjects/ObjectGroundItemsContainer@NotificationNoFreeSpaceToDrop:
-放不下了
+覓食
 
 Scripts/StaticObjects/ObjectGroundItemsContainer@Name:
-地面物品
+更高的狩獵技術會增加你從每只獵物中獲得更多戰利品的機會。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CanBuildOnlyOn:
-你只能建造在：
+狩獵大師-第一部分
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Message_CannotBuilOn:
-你不能建造在：
+是時候再次狩獵了！還有更多的動物和怪物可供狩獵。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@Error_UnsuitableGround_Title:
-地表類型不匹配
+`"[*] 你可以在物品欄介面角色頭像右邊的設備欄裡裝備你的獵人工具。`
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildInRestrictedArea:
-無法在禁區內建造。
+[*] 每個動物和怪物都有自己的棲息區域，通常可以在對應區域找到它們。嘗試探索世界，看看棲息在其中的所有不同的生物。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnCliffOrSlope:
-不能建在懸崖或斜坡上。
+`[*] 根據特定動物或怪物的危險程度，您將獲得不同數量的狩獵經驗。"`
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFarmPlot:
-無法建立農田上。
+狩獵大師-第二部分
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCannotBuildOnFloor:
-不能在地板上建造。
+解鎖任何技能
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorCreaturesNearby:
-附近有生物。
+遊戲中的每項新技能都會在您花時間執行特定活動時解鎖。解鎖越來越多的技能是一項很好的長期發展策略，因為它們可以提高您在各自領域的熟練程度。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNoFreeSpace:
-沒有空間。
+[*] 高技能水準不僅可以提高您在該領域的熟練度，還可以提供其他方式無法獲得的特質。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorNotSolidGround:
-地基不夠牢固。
+學習技能
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorPlayerNearby:
-附近有其他玩家。
+自由建造是好事，但你也許想知道如何拆解你的建築物。要做到這一點，可以使用撬棍！只要你試圖解構的建築位於土地權利區域內即可。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorStandingInCell:
-你正站在建造位置內！
+`"[*]為完成此任務，你可以拆解一部分牆或一些同樣便宜的東西，這樣你就不會失去寶貴的資源。`
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSlope:
-無法建造 - 太靠近懸崖或斜坡。
+[*]你[b]只能[/b]拆解位於你土地權利區域[b]內[/b]的建築物。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
-無法建造 - 太靠近水。
+`[*]拆解是刪除任何不必要或過時的建築物或結構的最好方式。"`
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
-配置
+使用撬棍進行拆解
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Deconstruct:
-拆解
+開採鹽礦
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
-檢查
+某些資源，如石油和鋰，是開發先進技術的必要素材。瞭解如何獲得它們是極為重要的。
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
-收集
+`"[*] 你可以在[u]寒林[/u]中發現石油果。使用它們可以讓你獲得少量石油。`
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
-互動
+[*] 你可以在開採一般鹽礦時獲得[u]鋰鹽[/u]。
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Loot:
-搜尋
+[*] 你可以在沙漠中的[u]鹽原[/u]找到大量鹽礦。
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Open:
-打開
+`[*] 學習[u]外星科技[/u]讓你可以能以工業規模制取這些資源。"`
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PickUp:
-拾起
+高級資源的獲取
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@PryOpen:
-撬開
+工業和建築的進步需要硬科學，尤其是化學方面的基礎。
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@TogglePower:
-電力切換
+[*]化學是最重要的科學領域之一，建議大多數倖存者使用。
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
-寫
+建立化學實驗室
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
-溫泉
+醫學科學提供了各種有用的效果和可能性，而不僅僅是治癒傷害和疾病的能力。
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-溫泉（無限）
+[*]更高層次的醫療技術可以獲得更強大的治療物品和其他藥物。
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
-天然油田
+建立醫學實驗室
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-天然油田（無限）
+現在你最好完成所有T2科技，來為在特定領域進一步專業化奠定堅實的基礎。
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
-采礦炸藥
+`"[*] 早期技術（T1和T2）解鎖起來相對便宜，所以學習所有這些技術總是一個好主意。`
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombModern@Name:
-現代炸彈
+`[*] 對於先進技術（T3及以上），專門研究部分技術是個好主意。考慮哪一個對你最重要，而不是投資所有方向。"`
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombPrimitive@Name:
-原始炸彈
+掌握技術-第二部分
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombResonance@Name:
-共振炸彈
+為基地建立電網是提升效率的重要步驟。有許多高級建築需要電力才能運轉。
 
 Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
-礦點爆炸
+`"[*] 電器只有在[b]佔領區域內[/b]才能生效。在佔領區域外間建造電器是沒有任何意義的。`
 
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
-普拉格源爆炸
+[*] [b]儲電[/b]設施可以儲藏電力，以備不時之需。提高基地的電力容量是個不錯的選擇。
 
 Scripts/StaticObjects/Loot/ObjectCorpse@Name:
-屍體
+[*] 如果[u]電力不足[/u]，你的基地就會陷入[b]斷電[/b]，此時你必須手動恢復電力。
 
 Scripts/StaticObjects/Loot/ObjectLootCrateFood@Name:
-食品補給箱
+[*] 你可以通過與儲電設施互動來查看[b]電網詳情[/b]。
 
 Scripts/StaticObjects/Loot/ObjectLootCrateHightech@Name:
-高科技箱
+`[*] 數個連接的佔領區域可以共用單一電網。"`
 
 Scripts/StaticObjects/Loot/ObjectLootCrateIndustrial@Name:
-工業箱
+建立電網
 
 Scripts/StaticObjects/Loot/ObjectLootCrateMedical@Name:
-醫療箱
+還有一些難以到達的生物群落可能帶來額外的挑戰，但也提供了一些獨特的資源。
 
 Scripts/StaticObjects/Loot/ObjectLootCrateMilitary@Name:
-軍用箱
+`"[*] 荒地生態圈是許多沙漠動物的家園。`
 
 Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
-補給箱
+`[*] 在鹽灘可以獲得大量的鹽。"`
 
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
-草
+探索生態圈-第三部分
 
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-大垃圾堆
+[*] [b]火山生態圈[/b]極其危險並且需要能夠對抗[b]極端熱量[/b]的裝備才能探索。
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+探索生態圈-第四部分
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
-石頭
+遺址是尋找稀有元件和某些資源的最佳地點。如果你有所需裝備的話可以去經常探索。
 
 Scripts/StaticObjects/Loot/ObjectLootTwigs@Name:
-樹枝
+`"[*] 有不同類型的遺址：住宅（T1），工業（T2），軍事（T2）和科學（T3）。`
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageFormatLootFromAnotherPlayer:
-來自{0}的戰利品
+[*] 廢墟的難度範圍從任何人都可以探索的T1，到需要最佳裝備和藥物才能探索的T3。
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageLootFromCurrentPlayer:
-你的戰利品
+`[*] 探索遺址是獲得某些稀有物品的唯一途徑。找到它們的機會取決於遺址的難度，最有價值的物品只能在T3遺址中找到。"`
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Message:
-{0}正在查看你掉落的物品...
+探索遺址
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Title:
-你的物品正在被劫掠
+是時候狩獵了！這次來打更危險的動物。
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Message:
-{0}已拾取了你所有的掉落物品。地圖標記移除。
+[*]小心-這些動物很有攻擊性，最好在打獵時使用高級遠端武器。
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Title:
-你的物品被拿走了！
+狩獵大師-第四部分
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@Name:
-玩家戰利品
+準備進行極端狩獵！這次甚至不僅僅是動物！
 
 Scripts/StaticObjects/Loot/Base/ProtoObjectLoot@NotificationUseRightMouseButtonToPickup:
-用鼠標右鍵拿起。
+[*] 不同的[b]發電裝置[/b]，例如蒸汽發電機，太陽能發電機和汽油發電機都能產生電能。
 
 Scripts/StaticObjects/Minerals/ObjectMineralClay@Name:
-粘土
+狩獵大師-第四部分
 
 Scripts/StaticObjects/Minerals/ObjectMineralCoal@Name:
-煤
+狩獵大師-第五部分
 
 Scripts/StaticObjects/Minerals/ObjectMineralCopper@Name:
-銅礦點
+農業
 
 Scripts/StaticObjects/Minerals/ObjectMineralIron@Name:
-鐵礦點
+戰鬥
 
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumNode@Name:
-微型普拉格礦點
+雜項
 
 Scripts/StaticObjects/Minerals/ObjectMineralPragmiumSource@Name:
-普拉格礦點
+個人
 
 Scripts/StaticObjects/Minerals/ObjectMineralSalt@Name:
-鹽
+生產
 
 Scripts/StaticObjects/Minerals/ObjectMineralSaltpeter@Name:
-硝石礦點
+技術
 
 Scripts/StaticObjects/Minerals/ObjectMineralSand@Name:
-石英砂礦點
+獲得額外產出概率
 
 Scripts/StaticObjects/Minerals/ObjectMineralStone@Name:
-石頭
+更好的耕作技術可以提高您的農耕效率，植物生長速度，成熟速度，甚至可以偶爾產生額外的產量。
 
 Scripts/StaticObjects/Minerals/ObjectMineralSulfur@Name:
-硫礦點
+農業
 
 Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
-使用鎬挖掘此資源。
+[*]小心-這些野獸具有極高攻擊性和危險性。你將需要強大的遠端武器和強大的裝甲才能有機會完成狩獵。
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
-裂縫
-
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-燒焦的地面
+獲得額外產出概率
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
-比木桶更寬敞，更堅固。適用於儲存大量液體。
+狩獵
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Name:
-金屬桶
+獲取常規武器經驗使您習慣不同武器的細微差別，並使您能夠更有效地使用它們中的任何一種。
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Description:
-簡易組裝的桶，可用於儲存液體。
+常規武器
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelWood@Name:
-木桶
+更頻繁地使用能量武器可以讓您更好地瞭解它們的工作方式，從而提高整體效率。
 
 Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Description:
-巨大的蓄水池，可長期儲存大量的液體。
+能量武器
 
 Scripts/StaticObjects/Structures/Barrels/ObjectCistern@Name:
-蓄水池
+在戰鬥中使用特殊武器可以讓您更深入地瞭解它們的秘密，讓您更好地瞭解如何最大限度地發揮它們的潛力。
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@NotificationUseWeaponOrTool:
-使用武器或工具來破壞此建築。
+特殊武器
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@Description:
-沒有說明。
+重型武器的使用訓練讓你以更高的技巧操作它，提高傷害。
 
 Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
-沒有升級說明。
+重武器
 
 Scripts/StaticObjects/Structures/Beds/ObjectBed@Description:
-比鋪蓋卷好。
+植入體親和
 
 Scripts/StaticObjects/Structures/Beds/ObjectBed@Name:
-床
+在陌生的外星世界環境中生存是很困難的，但它提供了獨特的機會來學習你通常不會知道的事情。
 
 Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Description:
-將床墊放入基地作為重生點，讓您在死亡後在指定位置重生。
+學習
 
 Scripts/StaticObjects/Structures/Beds/ObjectBedroll@Name:
-鋪蓋卷
+通過改善您的最大生命值，食物，水和能量儲備來增加您活下來的機會。殺死你真是太難了！
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Message:
-`你想把它設置成當前床位嗎？
-[br]這將把它設置為你的重生點。`
+持續使用近戰武器可以使你習慣此類武器，從而增加傷害和效率。
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@DialogClaimBed_Title:
-這張床不屬於任何人
+近戰武器
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AlreadyHasOwner:
-床已經有主。
+注意最微小的細節會增加你找到額外物品的機會。
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AnotherPlayersLandClaim:
-床位於另一個玩家的占領區域。
+搜索
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageBedBelongsToCurrentPlayer:
-這張床屬於你
+訓練讓你的身體更加習慣長距離跑動。因此，您在衝刺時使用的能量更少。
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageFormatBedBelongsToAnotherPlayer:
-這張床屬於[br]{0}
+運動
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@NotificationBedClaimedSuccessfully:
-這張床現在被設置為你的重生點。
+通過不斷將您的身體暴露於植入體技術，使您和您的免疫系統更加習慣於他們的存在。
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryBuildings@Name:
-建築
+生存
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryDecorations@Name:
-裝飾
+獲得額外產量概率
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryElectricity@Name:
-電力
+挖礦時找到寶石概率
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
-食物
+更好地瞭解礦藏會增加您的挖掘速度，產量和尋找稀有資源的機會。僅在您使用鎬時適用。
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
-行業
+採掘
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
-其他
+更好的訓練和對這一專業的理解可以提高您的木材切割速度。僅在您使用斧頭時適用。
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryStorage@Name:
-存儲
+伐木
 
 Scripts/StaticObjects/Structures/ConstructionSite/ObjectConstructionSite@Name:
-工地
+更好的建築技能可以提高施工速度。適用於使用工具箱執行的所有任務（建造，修復）。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Description:
-允許制作盔甲和服裝。
+建造
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Name:
-護甲工作台
+製作越來越複雜的物品並理解它們的結構是瞭解這個世界核心驅動力的好方法。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Description:
-允許處理大多數類型的復雜化學品並基於它們制作許多物品。
+製造
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Name:
-化學實驗室
+可以修復和維護各種物品和設備。適用於在修補桌進行的工作。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Description:
-可以準備不需要煮或煎的簡單菜肴。
+維護
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectCookingTable@Name:
-烹飪桌
+你只能建造在：
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Description:
-用於生產與農業有關的各種物品，如種子袋和肥料。
+你不能建造在：
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Name:
-農業工作台
+地表類型不匹配
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Description:
-允許制作許多不同的醫療用品和物品。
+無法在禁區內建造。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Name:
-醫學實驗室
+不能建在懸崖或斜坡上。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Description:
-用於制造各種不同的武器，物資和彈藥。
+無法建立農田上。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Name:
-武器工作台
+不能在地板上建造。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Description:
-用於生產各種物品的通用工作站。還包括所有徒手制作配方。
+附近有生物。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
-工作台
+沒有空間。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-比簡單的木箱提供更多的空間，更難以破壞。
+地基不夠牢固。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
-鐵箱
+附近有其他玩家。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
-存儲商品的最佳方式之一。可以一定程度上保障物品安全，並擁有最大的空間。
+你正站在建造位置內！
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
-鋼箱
+無法建造-太靠近懸崖或斜坡。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
-超大箱子，方便安全地存放大量物品。
+不能建造-太靠近水。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
-大箱子
+配置
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-這是存放個人財產的最簡單的箱子。但是很容易被摧毀。
+拆毀
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
-木箱子
+檢查
 
 Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Description:
-想開博物館或展示你獲得的各種奇物？選這個沒錯了！
+收集
 
 Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
-陳列櫃
+互動
 
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
-重型裝甲保險箱，可以承受最強大的爆炸物。不容易制作，但它肯定可以確保貴重物品的安全。
+搜尋
 
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
-裝甲保險箱
+打開
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
-無論這個旗幟象徵著什麼 — 重點是它看起來很酷！
+撬開
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
-紅色旗幟
+電力切換
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
-這種豪華的地毯可以使任何房間感覺更暖更好。
+寫
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
-地毯
+地熱泉
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
-向你的敵人展示你的武力。擅闖者死！
+無限溫泉
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
-尖刺顱骨
+天然油田
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
-展示你的財富。 只有壕中壕的能造得出這樣的東西。
+無限油田
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Name:
-金雕像
+採礦炸藥
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Description:
-純粹為了審美目的浪費珍貴的水晶，展現了所有者的富有。
+現代炸彈
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
-普拉格雕像
+原始炸彈
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
-已經有地板裝飾。
+拾起
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
-足以對大多數入侵者的防禦。盡管如此，它面對爆炸物依然沒什麽辦法。
+共振炸彈
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
-鐵門
+礦點爆炸
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Description:
-鋼鐵畢竟還是鋼鐵。除了最強大的爆炸物外，它幾乎不會被其他任何東西損傷。
+普拉格源爆炸
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorSteel@Name:
-鋼門
+用滑鼠右鍵拿起。
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Description:
-只能稍微阻攔那些不請自來的客人。頂不了多久。
+屍體
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorWood@Name:
-木門
+食品補給箱
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Description:
-大型鋼鐵柵，可以方便地用作為你基地的主要入口。
+高科技箱
 
 Scripts/StaticObjects/Structures/Doors/ObjectGateSteel@Name:
-鋼制大門
+工業箱
 
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Description:
-可用於種植各種作物和其他植物。農田只能建在肥沃的土地上。
+軍用箱
 
 Scripts/StaticObjects/Structures/Farms/ObjectFarmPlot@Name:
-農田
+補給箱
 
 Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Description:
-可用於種植花卉，裝飾房屋或收集花卉用於其他目的。可以在任何地方建造。
+草
 
 Scripts/StaticObjects/Structures/Farms/ObjectObjectPlantPot@Name:
-花盆
+大垃圾堆
 
 Scripts/StaticObjects/Structures/Farms/Base/ProtoObjectFarmPlot@ErrorSoilNotSuitable:
-這種土壤類型不適合農耕。
+醫療箱
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Description:
-不尋常的風格選擇，但看起來不錯。
+小垃圾堆
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorBricks@Name:
-磚地板
+石頭
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Description:
-簡單實用。適用於工廠車間或軍事基地。
+樹枝
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorConcrete@Name:
-混凝土地板
+來自{0}的戰利品
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Description:
-持久又光滑。軍事基地的不二之選。
+你的戰利品
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Name:
-金屬地板
+{0}正在查看你掉落的物品...
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Description:
-給你城堡般的感覺。與石墻完美搭配。
+你的物品正在被劫掠
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Name:
-石頭地板
+{0}已拾取了你所有的掉落物品。地圖標記移除。
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Description:
-讓你的房子看起來都很舒適。與木墻相得益彰。
+你的物品被拿走了！
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Name:
-木地板
+玩家戰利品
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Description:
-使用蒸發作為主要冷卻方法的原始冷卻器。不如現代冰箱有效，但仍能保持食物新鮮更長久。
+使用鎬挖掘此資源。
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeEvaporator@Name:
-原始冰箱
+粘土
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Description:
-強大的冰箱，可以以零下的溫度儲存食物，極大的延長保鮮週期。
+煤
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeFreezer@Name:
-冷凍櫃
+銅礦點
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Description:
-儲存大量易腐敗食品的便利物件。冰箱可以大幅延長保鮮時間。
+鐵礦點
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeLarge@Name:
-大冰箱
+微型普拉格礦點
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Description:
-儲存易腐敗食品的便利物件。冰箱可以大幅延長保鮮時間。
+普拉格礦點
 
 Scripts/StaticObjects/Structures/Fridges/ObjectFridgeSmall@Name:
-小冰箱
+鹽
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Description:
-將有機物分解成甲烷氣體，用來生產出少量的電能。 不適合作為電力的主要來源。
+硝石礦點
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorBio@Name:
-生物反應器
+石英砂礦點
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Description:
-這個大型發電機使用汽油作為燃料產生電能。
+石頭
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorEngine@Name:
-汽油發電機
+硫礦點
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Description:
-基礎的太陽能發電裝置。需要獨立的太陽能電池板才能進行發電。
+裂縫
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSolar@Name:
-太陽能發電機
+無法在此放下物品。
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Description:
-使用蒸汽推動渦輪進行發電。需要花時間將水煮沸才能達到最高功率。
+放不下了
 
 Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
-蒸汽發電機
+地面物品
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
-防止其他幸存者在周圍區域建造或拆毀任何東西，使您的基地更安全。占領土地還可確保您的建築物不會隨著時間的推移而劣化。
+`"你想把它設置成當前床位嗎？`
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Name:
-占領土地（T1）
+`[br]這將把它設置為你的重生點。"`
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@DescriptionUpgrade:
-增加保護區域，最大結構值和破壞延遲。
+這張床不屬於任何人
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@Name:
-占領土地（T2）
+床已經有主。
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT3@Name:
-占領土地（T3）
+床位於另一個玩家的佔領區域。
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
-占領土地（T4）
+這張床屬於你
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT5@Name:
-佔領土地（T5）
+這張床屬於[br]{0}
 
 Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
-占領地區
+比木桶更寬敞，更堅固。適用于儲存大量液體。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorAreaIntersection:
-升級將導致與他人領土交集。
+金屬桶
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorRequirementsNotSatisfied:
-升級要求未滿足。
+簡易組裝的桶，可用於儲存液體。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNotFounder:
-你不是占領所有者。
+木桶
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNoActiveInteraction:
-請重新打開土地申請窗口，然後重試。
+巨大的蓄水池，可長期儲存大量的液體。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@DialogCannotUpgrade:
-無法升級
+蓄水池
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationDontHaveAccess:
-您無權使用此占領土地建築。
+使用武器或工具來破壞此建築。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Message:
-占領土地建築已經升級。
+沒有說明。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Title:
-成功升級
+沒有升級說明。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Description:
-電能地燈。產生極其強大的白光，即使是大房間也能輕鬆照亮。
+這張床現在被設置為你的重生點。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
-大落地燈
+比鋪蓋卷強。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Description:
-簡單的燃油落地燈。可以讓任何房間感覺更舒適，它產生的黃色發光。
+床
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
-燃油落地燈
+將床墊放入基地作為重生點，讓您在死亡後在指定位置重生。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
-較小版本的電能落地燈。雖然不大但是非常明亮。
+鋪蓋卷
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
-小落地燈
+建築
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
-作為基本光源使用，更重要的是它可以烹飪簡單的食譜，如烤肉。
+工業
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Name:
-營火
+其他
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Description:
-用於鑄造不同金屬的硬幣。也可以將硬幣冶煉回鑄錠。
+存儲
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
-鑄幣台
+工地
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
-可以使用這個櫃子生產特定種類的產品或食物，如乾蘑菇或肉類。
+允許製作護甲和服裝。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Name:
-乾燥櫃
+護甲工作臺
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Description:
-發酵桶可以生產不同的酒精飲料和混合物。
+允許處理大多數類型的複雜化學品並基於它們製作許多物品。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Name:
-發酵桶
+化學實驗室
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Description:
-可用於將礦石冶煉成金屬錠並加工一些其他原材料。
+可以準備不需要煮或煎的簡單菜肴。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
-熔爐
+烹飪桌
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Description:
-使用電力和磁感加熱來達到更高的冶煉和資源處理效率。
+用於生產與農業有關的各種物品，如種子袋和肥料。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
-電熔爐
+農業工作臺
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
-允許從地熱泉中提取鋰鹽。
+允許製作許多不同的醫療用品和物品。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
-鋰鹽提取器
+醫學實驗室
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
-高級鋰鹽提取器
+用於製造各種不同的武器，物資和彈藥。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
-可用於將任何種類的有機物質轉化為覆土，一種有機肥料。
+武器工作臺
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
-覆土箱
+用於生產各種物品的通用工作站。還包括所有徒手製作配方。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-可以在天然油田上建造，直接從地下提取原石油。
+工作臺
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
-油泵
+比簡單的木箱提供更多的空間，更難以破壞。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
-高級石油泵
+鐵箱
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
-將原石油精煉成更有用的成分，例如燃料和礦物油。
+存儲商品的最佳方式之一。可以一定程度上保障物品安全，並擁有最大的空間。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Name:
-煉油器
+鋼箱
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
-用於大多數烹飪活動;可以比篝火生產更好的飯菜。
+超大箱子，方便安全地存放大量物品。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
-竈具
+大箱子
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
-簡單的集水器設計用於收集少量水。在沙漠和多石地區不起作用...
+這是存放個人財產的最簡單的箱子。但是很容易被摧毀。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Name:
-集水器
+木箱子
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Description:
-使用電泵更快的從地下開採水資源。
+想開博物館或展示你獲得的各種奇物？選這個沒錯了！
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Name:
-水泵
+陳列櫃
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
-提供取之不盡的淡水源。現在你永遠不會因口渴而死。由於某種原因，在沙漠和其他巖石地方真的不起作用......
+重型裝甲保險箱，可以承受最強大的爆炸物。不容易製作，但它肯定可以確保貴重物品的安全。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
-井
+裝甲保險箱
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-提取器需要地熱泉。
+裝飾
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-油泵需要天然油田。
+電力
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
-這種地面類型無法挖掘地下水。
+食物
 
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
-特殊的自動醫療站，可用於安裝或移除所有類型的植入物。
+已經有地板裝飾。
 
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
-醫療站
+無論這個旗幟象徵著什麼—重點是它看起來很酷！
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
-防禦建築，啟動時能投射出高強靈能場。
+紅色旗幟
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
-靈能投射器
+這種豪華的地毯可以使任何房間感覺更暖更好。
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
-可以用於為任何可擕式電子設備充電，例如移動電源或手電筒。
+地毯
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Name:
-充電站
+向你的敵人展示你的武力。擅闖者死！
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_ComponentItemsRequried:
-需要更多元件。
+尖刺顱骨
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_Input:
-放入兩個相同物品以進行修復。
+展示你的財富。只有壕中壕才能造得出這樣的東西。
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_NoRepairNecessary:
-不需要修理.
+金雕像
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorMessage_OutputIsFull:
-現將物品從輸出欄移出。
+純粹為了審美目的浪費珍貴的水晶，展現了所有者的富有。
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@ErrorTitle:
-無法修理。
+普拉格雕像
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Description:
-此工作臺可以便利的進行物品修復工作。
+足以對大多數入侵者的防禦。儘管如此，它面對爆炸物依然沒什麼辦法。
 
 Scripts/StaticObjects/Structures/Misc/ObjectTinkerTable@Name:
-修補桌
+鐵門
 
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
-您可以使用此垃圾桶立即處理任何不需要的物品。永遠的和他們說拜拜吧！
+鋼鐵畢竟還是鋼鐵。除了最強大的爆炸物外，它幾乎不會被其他任何東西損傷。
 
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
-垃圾箱
+鋼門
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+只能稍微阻攔那些不請自來的客人。頂不了多久。
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+木門
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
-允許將電力儲存，留作它用。
+大型鋼鐵柵，可以方便地用作為你基地的主要入口。
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Name:
-蓄電設施
+鋼制大門
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorageLarge@Name:
-大型蓄電設施
+這種土壤類型不適合農耕。
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
-允許發布圖像供他人觀看。使用背面的太陽能電池板，無需外部電源。
+農田
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Name:
-電子標示
+可用於種植花卉，裝飾房屋或收集花卉用於其他目的。可以在任何地方建造。
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Description:
-更耐用的金屬電子標示。效果相同，但現在更難以破壞。
+花盆
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Name:
-鐵標示
+不尋常的風格選擇，但看起來不錯。
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Description:
-方便的木牌寫下你需要記住或讓其他人知道的東西。
+磚地板
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Name:
-木標示
+簡單實用。適用於工廠車間或軍事基地。
 
 Scripts/StaticObjects/Structures/Signs/Base/ProtoObjectSign@NotificationCannotEditSignWhenNotAreaOwner:
 `你無法編輯
@@ -767,264 +772,269 @@ Scripts/StaticObjects/Structures/Signs/Base/ProtoObjectSign@NotificationCannotEd
 其他人土地內的標示。`
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Description:
-大型自動化交易站。可以方便地與其他幸存者交易各種各樣的物品。可配置出售或購買訂單。
+這個大型發電機使用汽油作為燃料產生電能。
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Name:
-大型交易站
+汽油發電機
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Description:
-自動化交易站。可以用來方便地與其他幸存者交換物品。可配置出售或購買訂單。
+基礎的太陽能發電裝置。需要獨立的太陽能電池板才能進行發電。
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Name:
-小型交易站
+太陽能發電機
 
 Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNothingForSale:
-沒有出售物品
+混凝土地板
 
 Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNoTradingLots:
-沒有交易欄位
+持久又光滑。軍事基地的不二之選。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorCannotInteract:
-無法互動（太遠或有障礙）。
+金屬地板
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotFound:
-未找到交易欄位。
+給你城堡般的感覺。與石牆完美搭配。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotActive:
-交易欄位離線中。
+石頭地板
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorWrongMode:
-錯誤的交易模式。
+讓你的房子看起來都很舒適。與木牆相得益彰。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnPlayer:
-沒有足夠的物品可以出售。
+木地板
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnStation:
-站點沒有足夠物品出售。
+使用蒸發作為主要冷卻方法的原始冷卻器。不如現代冰箱有效，但仍能保持食物新鮮更長久。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnPlayer:
-沒有足夠的錢購買此物。
+原始冰箱
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnStation:
-站點沒有足夠的錢購買你的物品。
+強大的冰箱，可以以零下的溫度儲存食物，極大的延長保鮮週期。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnPlayerForPurchasedItem:
-沒有足夠的空間購買物品。
+冷凍櫃
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnStationForSoldItem:
-站點沒有足夠的空間來存放您想要出售的物品。
+儲存大量易腐敗食品的便利物件。冰箱可以大幅延長保鮮時間。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Available:
-可用
+大冰箱
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@OutOfStock:
-缺貨
+儲存易腐敗食品的便利物件。冰箱可以大幅延長保鮮時間。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoMoney:
-沒錢
+小冰箱
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@NoSpace:
-沒有空間
+將有機物分解成甲烷氣體，用來生產出少量的電能。不適合作為電力的主要來源。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Disabled:
-禁用
+生物反應器
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Description:
-重型堡壘牆壁。你防守基地的終極之選。
+蒸汽發電機
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Name:
-裝甲壁
+佔領地區
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
-用金屬加固的堅固磚墻。將保障您的貴重物品安全。甚至可以在一定程度上抵禦爆炸。
+升級將導致與他人領土交集。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Name:
-磚墻
+升級要求未滿足。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
-鋼筋厚混凝土墻。比任何其他防禦結構更耐用。
+你不是領地所有者。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
-水泥墻
+請重新打開土地佔領視窗，然後重試。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
-明顯優於木墻。應該能阻止大多數入侵者闖入，但對裝備精良的襲擊者沒有多大幫助。
+無法升級
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Name:
-石墻
+您無權使用此佔領土地建築。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Description:
-能保護你不受當地動物以及...當地人的低級侵害。除了最基本的武器之外，真的防不了什麽東西。
+佔領土地建築已經升級。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Name:
-木墻
+成功升級
 
 Scripts/StaticObjects/Structures/Walls/Base/ObjectWallDestroyed@Name:
-被毀壞的墻
+使用蒸汽推動渦輪進行發電。需要花時間將水煮沸才能達到最高功率。
 
 Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationPlantNotMatured:
-`植物尚未成熟。
-[br]你還不能收獲它。`
+防止其他倖存者在周圍區域建造或拆毀任何東西，使您的基地更安全。佔領土地還可確保您的建築物不會隨著時間的推移而劣化。
 
 Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationUseRightMouseButtonToInteract:
-用鼠標右鍵{0}。
+佔領土地（T1）
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushCoffee@Name:
-咖啡
+佔領土地（T2）
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushOilpod@Name:
-石油果
+佔領土地（T3）
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushPurple@Name:
-漿果樹叢（紫）
+佔領土地（T4）
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushRed@Name:
-漿果樹叢（紅）
+佔領土地（T5）
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@ErrorNoFruit:
-沒有水果！
+電能地燈。產生極其強大的白光，即使是大房間也能輕鬆照亮。
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushWaterbulb@Name:
-水莖
+大落地燈
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYellow@Name:
-漿果樹叢（黃）
+簡單的燃油落地燈。它發出的黃色光芒能讓任何房間都顯得更加舒適。
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushYucca@Name:
-絲蘭
+燃油落地燈
 
 Scripts/StaticObjects/Vegetation/Bushes/Base/ProtoObjectBush@ErrorNoBerries:
-沒有漿果！
+增加保護區域，最大結構值和破壞延遲。
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantBellPepper@Name:
-甜椒
+小落地燈
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCarrot@Name:
-胡蘿蔔
+提取器需要地熱泉。
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantChiliPepper@Name:
-辣椒
+油泵需要天然油田。
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCorn@Name:
-玉米
+這種地面類型無法挖掘地下水。
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantCucumber@Name:
-黃瓜
+作為基本光源使用，更重要的是它可以烹飪簡單的食譜，如烤肉。
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
-深藍鼠尾草
+營火
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
-鬼花
+用於鑄造不同金屬的硬幣。也可以將硬幣冶煉回鑄錠。
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-歐古因
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+鑄幣台
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+可以使用這個櫃子生產特定種類的產品或食物，如幹蘑菇或肉類。
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+乾燥櫃
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
-煙草
+發酵桶可以生產不同的酒精飲料和混合物。
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTomato@Name:
-番茄
+發酵桶
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
-小麥
+可用于將礦石冶煉成金屬錠並加工一些其他原材料。
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
-需要農田。
+較小版本的電能落地燈。雖然不大但是非常明亮。
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
-綠草藥
+熔爐
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbPurple@Name:
-紫草藥
+使用電力和磁感加熱來達到更高的冶煉和資源處理效率。
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbRed@Name:
-紅草藥
+電熔爐
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPennyBun@Name:
-牛肝菌
+允許從地熱泉中提取鋰鹽。
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPink@Name:
-粉紅蘑菇
+鋰鹽提取器
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomRust@Name:
-銹蓋菇
+高級鋰鹽提取器
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallPineapple@Name:
-鳳梨
+可用於將任何種類的有機物質轉化為覆土，一種有機肥料。
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallSugarcane@Name:
-甘蔗
+覆土箱
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallThornyShrub@Name:
-荊棘叢
+可以在天然油田上建造，直接從地下提取原油。
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBanana@Name:
-香蕉樹
+高級石油泵
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBirch@Name:
-白樺樹
+將原油精煉成更有用的成分，例如燃料和礦物油。
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeBrevifolia@Name:
-短葉雪松
+煉油器
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeCactus@Name:
-仙人掌
+用於大多數烹飪活動;可以比篝火生產更好的飯菜。
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDead@Name:
-死樹
+灶具
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy1@Name:
-死樹
+簡單的集水器設計用於收集少量水。在沙漠和多石地區不起作用...
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
-死樹
+集水器
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
-榴蓮樹
+使用電泵更快的從地下開採水資源。
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
-倒下的樹
+水泵
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeOak@Name:
-橡樹
+提供取之不盡的淡水源。現在你永遠不會因口渴而死。由於某種原因，在沙漠和其他岩石地方真的不起作用......
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
-棕櫚樹
+井
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-松樹
+特殊的自動醫療站，可用於安裝或移除所有類型的植入物。
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
-松樹
+醫療站
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePoplar@Name:
-白楊樹
+防禦建築，啟動時能投射出高強靈能場。
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeRubber@Name:
-橡膠樹
+靈能投射器
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSnagMossy@Name:
-覆苔障礙物
+可以用於為任何可擕式電子設備充電，例如移動電源或手電筒。
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStump@Name:
-樹樁
+充電站
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpMossy@Name:
-覆苔樹樁
+需要更多元件。
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeStumpWithTwig@Name:
-樹樁
+放入兩個相同物品以進行修復。
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeSwamp@Name:
-沼澤樹
+不需要修理.
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeTropical@Name:
-熱帶樹
+現將物品從輸出欄移出。
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeWillow@Name:
-柳樹
+無法修理。
 
 Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
-用斧頭來砍這棵樹。
+油泵
 

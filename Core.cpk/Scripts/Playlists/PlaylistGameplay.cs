@@ -12,11 +12,11 @@ namespace AtomicTorch.CBND.CoreMod.Playlists
         [NotLocalizable]
         public override string Name => "Gameplay playlist";
 
-        public override double PauseBetweenTracksSeconds { get; } = 4 * 60; // 4 minutes
+        public override double PauseBetweenTracksSeconds => 4 * 60; // 4 minutes
 
         protected override void PreparePlaylist(MusicTracks tracks)
         {
-            const double fadeInDuration = 5,
+            const double fadeInDuration = 7,
                          fadeOutDuration = 10,
                          volume = 0.4;
 
@@ -37,6 +37,13 @@ namespace AtomicTorch.CBND.CoreMod.Playlists
                   .Add(
                       new MusicTrack(
                           "Gameplay3",
+                          isLooped: false,
+                          fadeInDuration: fadeInDuration,
+                          fadeOutDuration: fadeOutDuration,
+                          volume: volume))
+                  .Add(
+                      new MusicTrack(
+                          "Gameplay4",
                           isLooped: false,
                           fadeInDuration: fadeInDuration,
                           fadeOutDuration: fadeOutDuration,

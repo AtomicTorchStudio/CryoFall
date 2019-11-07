@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
 
     public class ItemFlashlight : ProtoItemToolLight
     {
@@ -22,6 +23,13 @@
             fuelConfig.FuelAmountInitial = 0;
             fuelConfig.FuelUsePerSecond = 1;
             fuelConfig.FuelProtoItemsList.AddAll<IProtoItemFuelElectricity>();
+        }
+
+        protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
+        {
+            return ItemsSoundPresets.ItemGeneric.Clone()
+                                    .Replace(ItemSound.Use,          "Items/Equipment/UseLight")
+                                    .Replace(ItemSound.CannotSelect, "Items/Equipment/UseLight");
         }
     }
 }

@@ -9,7 +9,7 @@
 
     public class ItemSubmachinegun10mm : ProtoItemWeaponRanged
     {
-        public override ushort AmmoCapacity => 18;
+        public override ushort AmmoCapacity => 20;
 
         public override double AmmoReloadDuration => 2;
 

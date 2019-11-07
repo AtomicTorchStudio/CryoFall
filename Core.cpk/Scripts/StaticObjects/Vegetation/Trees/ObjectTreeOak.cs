@@ -30,7 +30,6 @@
 
             // bonus drop
             droplist.Add<ItemTwigs>(count: 1, countRandom: 2, probability: 0.25);
-            droplist.Add<ItemTreebark>(count: 1, countRandom: 2, probability: 0.25);
             droplist.Add<ItemLeaf>(count: 2, countRandom: 1, probability: 0.5);
         }
     }

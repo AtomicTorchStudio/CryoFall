@@ -4,7 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
+    using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -24,9 +25,13 @@
     {
         private const double PlayerTeleportToGraveyardDelaySeconds = 10;
 
-        private static readonly IItemsServerService ServerItemsService = Api.IsServer
-                                                                             ? Api.Server.Items
-                                                                             : null;
+        private static readonly IItemsServerService ServerItems = Api.IsServer
+                                                                      ? Api.Server.Items
+                                                                      : null;
+
+        private static readonly IWorldServerService ServerWorld = Api.IsServer
+                                                                      ? Api.Server.World
+                                                                      : null;
 
         public delegate void DelegateCharacterKilled(ICharacter attackerCharacter, ICharacter targetCharacter);
 
@@ -45,6 +50,8 @@
             {
                 return;
             }
+
+            VehicleSystem.ServerCharacterExitCurrentVehicle(character);
 
             var privateState = PlayerCharacter.GetPrivateState(character);
             CharacterDamageTrackingSystem.ServerClearStats(character);
@@ -143,21 +150,53 @@
         }
 
         public static void OnCharacterKilled(
-            ICharacter targetCharacter,
             ICharacter attackerCharacter,
-            IItem weapon,
-            IProtoItemWeapon protoWeapon)
+            ICharacter targetCharacter,
+            IProtoSkill protoSkill)
         {
-            if (attackerCharacter == null)
+            if (attackerCharacter is null
+                || targetCharacter is null)
             {
                 return;
             }
 
-            Api.Logger.Important(
-                $"Character killed: {targetCharacter} by {attackerCharacter} with {weapon?.ToString() ?? protoWeapon?.ToString()}");
-
+            Api.Logger.Info("Killed " + targetCharacter, attackerCharacter);
             Api.SafeInvoke(
                 () => CharacterKilled?.Invoke(attackerCharacter, targetCharacter));
+
+            if (attackerCharacter.IsNpc
+                || !(protoSkill is ProtoSkillWeapons protoSkillWeapon))
+            {
+                return;
+            }
+
+            // give weapon experience for kill
+            var playerCharacterSkills = attackerCharacter.SharedGetSkills();
+            protoSkillWeapon.ServerOnKill(playerCharacterSkills, killedCharacter: targetCharacter);
+
+            if (!(targetCharacter.ProtoCharacter is ProtoCharacterMob protoMob))
+            {
+                return;
+            }
+
+            // give hunting skill experience for mob kill
+            var experience = SkillHunting.ExperienceForKill;
+            experience *= protoMob.MobKillExperienceMultiplier;
+            if (experience > 0)
+            {
+                playerCharacterSkills.ServerAddSkillExperience<SkillHunting>(experience);
+            }
+        }
+
+        public static Vector2Ushort ServerGetGraveyardPosition()
+        {
+            var world = ServerWorld;
+            var worldBounds = world.WorldBounds;
+
+            // teleport to bottom right corner of the map
+            var position = new Vector2Ushort((ushort)(worldBounds.Offset.X + worldBounds.Size.X - 1),
+                                             (ushort)(worldBounds.Offset.Y + 1));
+            return position;
         }
 
         private static void DropPlayerLoot(ICharacter character)
@@ -196,7 +235,7 @@
             }
 
             // set slots count matching the total occupied slots count
-            ServerItemsService.SetSlotsCount(
+            ServerItems.SetSlotsCount(
                 lootContainer,
                 (byte)characterContainersOccupiedSlotsCount);
 
@@ -220,12 +259,12 @@
             if (lootContainer.OccupiedSlotsCount <= 0)
             {
                 // nothing dropped, destroy the just spawned loot container
-                Api.Server.World.DestroyObject((IWorldObject)lootContainer.Owner);
+                ServerWorld.DestroyObject((IWorldObject)lootContainer.Owner);
                 return;
             }
 
             // set exact slots count
-            ServerItemsService.SetSlotsCount(
+            ServerItems.SetSlotsCount(
                 lootContainer,
                 (byte)lootContainer.OccupiedSlotsCount);
 
@@ -248,7 +287,7 @@
                 if (shouldDrop
                     && !item.IsDestroyed)
                 {
-                    ServerItemsService.MoveOrSwapItem(item, toContainer, out _);
+                    ServerItems.MoveOrSwapItem(item, toContainer, out _);
                 }
             }
         }
@@ -263,8 +302,8 @@
 
             var tilePosition = position.ToVector2Ushort();
 
-            Api.Server.World.DestroyObject(deadCharacter);
-            var objectCorpse = Api.Server.World.CreateStaticWorldObject<ObjectCorpse>(tilePosition);
+            ServerWorld.DestroyObject(deadCharacter);
+            var objectCorpse = ServerWorld.CreateStaticWorldObject<ObjectCorpse>(tilePosition);
             ObjectCorpse.ServerSetupCorpse(objectCorpse,
                                            (IProtoCharacterMob)deadCharacter.ProtoCharacter,
                                            (Vector2F)(position - tilePosition.ToVector2D()),
@@ -289,15 +328,10 @@
 
             // disable the visual scope so the player cannot not see anyone and nobody could see the player
             Api.Server.Characters.SetViewScopeMode(character, isEnabled: false);
-            var world = Api.Server.World;
-            var worldBounds = world.WorldBounds;
-
-            // teleport to bottom right corner of the map
-            var position = new Vector2Ushort((ushort)(worldBounds.Offset.X + worldBounds.Size.X - 1),
-                                             (ushort)(worldBounds.Offset.Y + 1));
-            if (character.TilePosition != position)
+            var graveyardPosition = ServerGetGraveyardPosition();
+            if (character.TilePosition != graveyardPosition)
             {
-                world.SetPosition(character, (Vector2D)position);
+                ServerWorld.SetPosition(character, (Vector2D)graveyardPosition);
             }
 
             CharacterRespawnSystem.ServerRemoveInvalidStatusEffects(character);

@@ -8,16 +8,17 @@
 
     public class ItemAntiMutation : ProtoItemMedical
     {
-        public override string Description => "Protects and restores cell DNA damaged by radiation exposure and other harmful effects. Stops uncontrolled mutations in the body.";
-
-        public override string Name => "Anti-mutation medicine";
-
-        public override double MedicalToxicity => 0.2;
+        public const string NotificationMutation_Message = "No out-of-control mutation is detected in the body.";
 
         public const string NotificationMutation_Title = "No mutations";
 
-        public const string NotificationMutation_Message = "No out-of-control mutation is detected in the body.";
-        
+        public override string Description =>
+            "Protects and restores cell DNA damaged by radiation exposure and other harmful effects. Stops uncontrolled mutations in the body.";
+
+        public override double MedicalToxicity => 0.2;
+
+        public override string Name => "Anti-mutation medicine";
+
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {
             // remove mutation (100%)

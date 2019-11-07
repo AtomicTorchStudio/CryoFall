@@ -1,510 +1,545 @@
-﻿UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
-摧毀於
+﻿UI/CoreStrings@Action_Build:
+不需要修理。
+
+UI/CoreStrings@Action_Repair:
+請把載具帶到載具港來修復它。
+
+UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
+輕量版的反重力平臺。製造相對簡單，同時速度和油耗都較為合適。
 
 UI/CoreStrings@Button_Accept:
-接受
+懸浮板MK1
 
 UI/CoreStrings@Button_Add:
-添加
+重型反重力平臺。更加耐用，速度更快，但是生產價格和油耗也更高。
 
 UI/CoreStrings@Button_Apply:
-應用
+懸浮板MK2
 
 UI/CoreStrings@Button_Back:
-返回
+為戰鬥裝甲設計的介質。在不犧牲其他性能的情況下極大的提升防禦力並給予大量收納空間。
 
 UI/CoreStrings@Button_BrowseRecipes:
-瀏覽配方
+猻
 
 UI/CoreStrings@Button_Cancel:
-取消
+輕量戰鬥鎧甲。擁有較高的速度，同時也不犧牲護甲和火力。
 
 UI/CoreStrings@Button_Close:
-關
+躍行者
 
 UI/CoreStrings@Button_Configure:
-配置
+已連接
 
 UI/CoreStrings@Button_Continue:
-繼續
+未連接
 
 UI/CoreStrings@Button_Deny:
 拒絕
 
 UI/CoreStrings@Button_Drain:
-倒掉
+[開發者]
 
 UI/CoreStrings@Button_Drain_DialogConfirmation:
-`確定要倒掉內容物嗎？
-[br]你將不能夠恢復它。`
+`"確定要關閉與{0}的私人聊天?`
 
 UI/CoreStrings@Button_Drink:
-喝
+`[br]聊天的歷史將被保存，你可以稍候重新開啟。"`
 
 UI/CoreStrings@Button_Edit:
-編輯
+由於此配方涉及可降解組件，因此無法取消它。
 
 UI/CoreStrings@Button_Help:
-幫助
+無法取消此食譜
+
+UI/CoreStrings@Button_Next:
+不能直接使用此項目。
 
 UI/CoreStrings@Button_OK:
-好
+沒有可用空間來移動物品。
+
+UI/CoreStrings@Button_Previous:
+`"標記已添加到地圖中。`
 
 UI/CoreStrings@Button_Quit:
-退出
+`[br]距離物品消失還有{0}。"`
 
 UI/CoreStrings@Button_Reset:
-重置
+你的物品被丟棄了
 
 UI/CoreStrings@Button_Retry:
-重試
+`"你的一個基地正在被掠奪！`
 
 UI/CoreStrings@Button_Save:
-保存
+`[br]({0}; {1})"`
 
 UI/CoreStrings@Button_Upgrade:
-升級
+遭到攻擊！
 
 UI/CoreStrings@CharacterStatName_Food:
-食物
+`"{0} 位於{1};{2}。`
 
 UI/CoreStrings@CharacterStatName_Health:
-生命
+[br]它將可被佔領於：
 
 UI/CoreStrings@CharacterStatName_Stamina:
-精力
+[br]{3}。
 
 UI/CoreStrings@CharacterStatName_Water:
-水
+`[br]拿好武器，準備佔領！"`
 
 UI/CoreStrings@Chat_MessageMenu_Block:
-禁言
+新資源可用
 
 UI/CoreStrings@Chat_MessageMenu_CopyName:
-複製名稱
+複製座標
 
 UI/CoreStrings@Chat_MessageMenu_InviteToParty:
-邀請至隊伍
+瞬移
 
 UI/CoreStrings@Chat_MessageMenu_Mention:
-提到
+`"使用/吃目標物品。`
 
 UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
-私信
+`[br]（僅適用於可以使用/食用的物品）"`
 
 UI/CoreStrings@Chat_MessageMenu_Unblock:
-解除禁言
+Alt+左鍵按一下物品
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
-此為純裝飾建築。
+`"將所指物品堆放到地上。`
 
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerConsumer:
-此建築需要電力。
+`[br]（按住Ctrl鍵可從堆疊中放下一個物品）"`
 
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
-此建築產出電力。
+Alt+按右鍵物品
 
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
-此建築儲存電力。
+將單個物品從堆疊中移動到另一個容器裡。
 
 UI/CoreStrings@Copy:
-復制
+按Ctrl+左或向按右鍵物品
 
 UI/CoreStrings@CraftingCountSelector_Max:
-最大
+拿一個或整堆物品。
 
 UI/CoreStrings@CraftingCountSelector_Min:
-最小
+空手時左鍵按一下物品
 
 UI/CoreStrings@CraftingQueue_Title:
-制造
+`"如果槽位為空-將物品放到該處。`
 
 UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
-`[b]滑鼠左鍵點擊[/b]
-[br]使此配方移動至佇列首位。
-[br]
-[br][b]滑鼠右鍵點擊[/b]
-[br]取消此配方。`
+`[br]如果槽位非空-合併或交換物品。"`
 
 UI/CoreStrings@CraftingRecipeDetails_ButtonStartCraft:
-制造
+手持物品時左鍵按一下一個槽位
 
 UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
-`你尚未獲得此工作台的任何相關配方。
-[br][br][br]
-你可以在科技選單中解鎖它們。`
+物品欄排序（可用於任何指向的物品欄）。
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
-配方解鎖
+滑鼠中鍵（滾輪）按一下
 
 UI/CoreStrings@Defense_Format_Chemical:
-化學防護: {0}
+拿這些物品的一半。
 
 UI/CoreStrings@Defense_Format_Cold:
-寒冷防護: {0}
+空手時按右鍵物品
 
 UI/CoreStrings@Defense_Format_Electrical:
-電擊防護: {0}
+創建伍
 
 UI/CoreStrings@Defense_Format_Heat:
-熱能防護: {0}
+手持物品時按右鍵一個槽位
 
 UI/CoreStrings@Defense_Format_Impact:
-衝擊防護: {0}
+將所有指向物品類型的堆疊移動到另一個容器。
 
 UI/CoreStrings@Defense_Format_Kinetic:
-動能防護: {0}
+Shift+左鍵按一下物品
 
 UI/CoreStrings@Defense_Format_Psi:
-靈能防護: {0}
+僅將指向的物品堆移動到另一個容器。
 
 UI/CoreStrings@Defense_Format_Radiation:
-輻射防護: {0}
+Shift+按右鍵物品
+
+UI/CoreStrings@Demo_Button_BuyGameOnSteam:
+物品槽操作
+
+UI/CoreStrings@Demo_CanPurchase:
+底部
+
+UI/CoreStrings@Demo_Expired:
+面部
+
+UI/CoreStrings@Demo_OnlyOfficialServers:
+頭髮
+
+UI/CoreStrings@Demo_TimeRemaining:
+頂部
+
+UI/CoreStrings@Demo_Title:
+解除卡死！
+
+UI/CoreStrings@Demo_Welcome:
+`"你把自己圍在自己的房子內，出不去嗎？`
 
 UI/CoreStrings@DepositAvailableForClaiming_Message:
-可佔領倒計時：
+[br]或者有人惡意堵你，導致你被卡住了？
 
 UI/CoreStrings@DepositCapacityStats_Message:
-此礦藏將耗盡於：
+`[br]您可以使用此功能在一段延遲後將您的角色傳送出去。"`
 
 UI/CoreStrings@DepositCapacityStats_Title:
-礦藏儲量
+解除卡死
 
 UI/CoreStrings@EnergyUnitAbbreviation:
-能量
+你確定要離開小組嗎？
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
-EU/s
+你確定要將[b]{0}[/b]移出小組嗎？
 
 UI/CoreStrings@Extras_DiscordTooltip:
-CryoFall的官方Discord伺服器(僅限英文)
+生物
+
+UI/CoreStrings@Extras_FeaturesTooltip:
+爆破
 
 UI/CoreStrings@Extras_PatchnotesTooltip:
-所有CryoFall的更新文檔(僅限英文)
-
-UI/CoreStrings@Extras_RoadmapTooltip:
-CryoFall開發佈局(僅限英文)
-
-UI/CoreStrings@FarmPlantTooltip_NotWatered:
-未澆水
-
-UI/CoreStrings@FarmPlantTooltip_PossibleHarvestsCount:
-可能收獲
-
-UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
-收獲於
-
-UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
-現在！
-
-UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
-已澆水
-
-UI/CoreStrings@Field_Email:
-電子郵件
-
-UI/CoreStrings@Field_Password:
-密碼
-
-UI/CoreStrings@Gender_Female:
-女
-
-UI/CoreStrings@Gender_Male:
-男
-
-UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
-建築
-
-UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
-制造
-
-UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
-裝備
-
-UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
-地圖
-
-UI/CoreStrings@HUDButtonsBar_MenuTitle_Politics:
-政治
-
-UI/CoreStrings@HUDButtonsBar_MenuTitle_Quests:
-任務
-
-UI/CoreStrings@HUDButtonsBar_MenuTitle_Skills:
-技能
-
-UI/CoreStrings@HUDButtonsBar_MenuTitle_Social:
-社交
-
-UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
-科技
-
-UI/CoreStrings@HUDEnergyChargeIndicator_TotalCapacity:
-總容量
-
-UI/CoreStrings@HUDEnergyChargeIndicator_TotalCharge:
-總能量
-
-UI/CoreStrings@HUDQuestTrackingEntry_QuestTitleFormat:
-任務: {0}
-
-UI/CoreStrings@ImplantSlotOnStation_Biomaterial:
-生物材料
-
-UI/CoreStrings@ImplantSlotOnStation_Button_Uninstall:
-卸載
-
-UI/CoreStrings@ImplantSlotOnStation_ImplantInstalled:
-植入物已安裝
-
-UI/CoreStrings@ImplantSlotOnStation_InstallImplant:
-安裝植入物
-
-UI/CoreStrings@ImplantSlotOnStation_NoImplantInstalled:
-沒有安裝植入物
-
-UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
-放置植入物進行安裝
-
-UI/CoreStrings@ImplantSlotOnStation_Requirement:
-需要
-
-UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
-快捷鍵
-
-UI/CoreStrings@ItemsContainer_Button_MatchDown:
-向下匹配
-
-UI/CoreStrings@ItemsContainer_Button_MatchUp:
-向上匹配
-
-UI/CoreStrings@ItemsContainer_Button_TakeAll:
-拿去所有
-
-UI/CoreStrings@ItemsContainer_CapacityExceededTakeOnly:
-超過容量。只能取出物品。
-
-UI/CoreStrings@ItemsContainer_Title:
 物品
 
+UI/CoreStrings@Extras_RoadmapTooltip:
+其他
+
+UI/CoreStrings@FarmPlantTooltip_NotWatered:
+玩家
+
+UI/CoreStrings@FarmPlantTooltip_PossibleHarvestsCount:
+狀態效果
+
+UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
+下一等級
+
+UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
+徒手製造
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiled:
+I
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
+II
+
+UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
+III
+
+UI/CoreStrings@Field_Email:
+IV
+
+UI/CoreStrings@Field_Password:
+V
+
+UI/CoreStrings@Gender_Female:
+T{0}
+
+UI/CoreStrings@Gender_Male:
+你想研究{0}嗎？
+
+UI/CoreStrings@HUDButtonsBar_DismountVehicle:
+易腐道具儲存時限提高~{0}。
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
+您可以讓其他的倖存者進入你的佔領土地中。
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
+訪問
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
+`"廢棄建築物會在一段時間後開始腐朽`
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Map:
+[br]並最終消失，以防止地圖卡頓。
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Politics:
+[br]
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Quests:
+[br]此主權聲明建築將於[b]{0}[/b]後開始腐朽。
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Skills:
+[br]在那以後它將在[b]{1}[/b]腐朽，並開始摧毀倒計時([b]{2}[/b])。
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Social:
+[br]
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Technologies:
+[br]為了防止腐朽，只要在[b]{0}[/b]內訪問此基地即可
+
+UI/CoreStrings@HUDEnergyChargeIndicator_TotalCapacity:
+[br](任何訪問列表中的玩家都能啟動倒計時的重置)。
+
+UI/CoreStrings@HUDEnergyChargeIndicator_TotalCharge:
+[br]
+
+UI/CoreStrings@HUDQuestTrackingEntry_QuestTitleFormat:
+[br]你可以通過[b]升級[/b]主權聲明建築來延長倒計時。
+
+UI/CoreStrings@ImplantSlotOnStation_Biomaterial:
+`[br]腐朽倒計時基於領地內等級[b]最高[/b]的主權建築。"`
+
+UI/CoreStrings@ImplantSlotOnStation_Button_Uninstall:
+礦藏已經耗盡。
+
+UI/CoreStrings@ImplantSlotOnStation_ImplantInstalled:
+此礦藏是無限的。
+
+UI/CoreStrings@ImplantSlotOnStation_InstallImplant:
+沒有燃料
+
+UI/CoreStrings@ImplantSlotOnStation_NoImplantInstalled:
+無法開啟
+
+UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
+您無法安裝兩個相同類型的植入物。
+
+UI/CoreStrings@ImplantSlotOnStation_Requirement:
+已安裝
+
+UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
+生物材料不夠
+
+UI/CoreStrings@ItemsContainer_Button_MatchDown:
+永久
+
+UI/CoreStrings@ItemsContainer_Button_MatchUp:
+`"當前發電{0} EU/s，光照水準{1}%`
+
+UI/CoreStrings@ItemsContainer_Button_TakeAll:
+`[br]最高輸出{2} EU/s。"`
+
+UI/CoreStrings@ItemsContainer_CapacityExceededTakeOnly:
+`"當前發電{0} EU/s，溫度{1}°C ({2}%效率)`
+
+UI/CoreStrings@ItemsContainer_Title:
+`[br]最高輸出{3} EU/s。"`
+
 UI/CoreStrings@ItemsContainer_TitleInput:
-輸入
+`"當前發電{0} EU/s`
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
-輸出
+`[br]最高輸出{1} EU/s。"`
 
 UI/CoreStrings@LearningPoints:
-學習點數
+歡迎來到CryoFall!
 
 UI/CoreStrings@LearningPointsAbbreviation:
-LP
+我們想借此機會向你介紹一些遊戲內的功能！CryoFall仍然在開發中，但以下所有功能已經可以使用。
 
 UI/CoreStrings@LinkSteamAccountForm_Title:
-請輸入您的[url=atomictorch.com]AtomicTorch.com[/url]帳戶詳細信息以鏈接您的Steam帳戶。
+農業&烹飪
 
 UI/CoreStrings@ListFilters:
-過濾規則
+使用肥料和農具種植你自己的作物。然後再把辛勞的成果烹飪成各種美食，能夠提供不同加成。
 
 UI/CoreStrings@LoadingSplashScreen_Title:
-加載中
+角色模擬&藥物
 
 UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
-登錄
+複雜的角色模擬，不僅能體現出常見的饑餓和口渴狀態，更能測試各種異常狀態效果，而它們則可以用各種藥品治療。
 
 UI/CoreStrings@LoginAtomicTorchForm_KeepMeLoggedIn:
-保持登錄狀態
+工業
 
 UI/CoreStrings@LoginAtomicTorchForm_Title:
-使用[url =atomictorch.com/Account/Register]AtomicTorch.com[/url]帳戶登錄
+探索在CryoFall中可以利用的自然資源。開採石油，從溫泉採集鋰礦，來製造電池和電器。
 
 UI/CoreStrings@MainMenu_TabCredits:
-制作人員名單
+經濟
 
 UI/CoreStrings@MainMenu_TabCurrentGame:
-當前遊戲
+鑄造硬幣，建造全自動貿易站來與其他倖存者進行交易。
 
 UI/CoreStrings@MainMenu_TabHome:
-主頁
+植入物
 
 UI/CoreStrings@MainMenu_TabOptions:
-選項
+將植入物植入你的角色體內，獲得新的能力或者提高你的屬性。
 
 UI/CoreStrings@MainMenu_TabQuit:
-退出
+技能
 
 UI/CoreStrings@MainMenu_TabServers:
-服務器
+發現，解鎖並強化你角色的一系列技巧，幫助你提高生存效率，以及進一步發現新技能。
 
 UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
-鏈接帳戶
+角色定制
 
 UI/CoreStrings@MainMenuOverlay_Button_Logout:
-登出
+使用各種不同裝備和工具來定制你的角色，讓你顯得與眾不同。
 
 UI/CoreStrings@MainMenuOverlay_YouAreLoggedInAs:
-您的登錄用戶為
+科技
 
 UI/CoreStrings@MasterServer:
-主服務器
+獲得的學習點並使用它們來學習新科技、食譜和建築，通過根據自己的喜好加點來定制屬於你的遊戲體驗。
 
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
-斷開
+電力
 
 UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
-顯示歡迎信息
+設計基地時要考慮到電網。你可以建造數個發電機，儲存建築以及電力消耗建築。
 
 UI/CoreStrings@MenuCurrentGame_NotConnected:
-未連接。
+神奇動物
 
 UI/CoreStrings@MenuHome_Forums:
-論壇
+探索擁有各種不同自然環境的世界與這裡數十種神奇生物。
 
 UI/CoreStrings@MenuHome_News:
-新聞
+寫在最後
 
 UI/CoreStrings@MenuHome_ReadMore:
-閱讀更多...
+開始遊戲
 
 UI/CoreStrings@MenuHome_RecentServers:
-最近的服務器
+等待登錄響應。
 
 UI/CoreStrings@MenuHome_ServerHistoryEmpty:
-`服務器歷史記錄是空的。
-[br][br]您可以使用此功能快速加入
-[br]你最近玩過的服務器。`
+請輸入您的電子郵寄地址。
 
 UI/CoreStrings@MenuHome_Social:
-社交
+請輸入您的密碼。
 
 UI/CoreStrings@MenuLogin_SteamError_Message:
-請退出遊戲，重新啟動Steam客戶端並再次啟動遊戲。
+`"確定為[b]{0}[/b]嗎？你將不能改變它。`
 
 UI/CoreStrings@MenuLogin_SteamError_Title:
-Steam用戶端錯誤
+`[br]這個名字將被用於任何遊戲伺服器的遊戲內。"`
 
 UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Message:
-您想應用更改嗎？
+大寫鎖定
 
 UI/CoreStrings@MenuOptions_DialogUnappliedChanges_Title:
-您沒有應用更改
+滑鼠左鍵
 
 UI/CoreStrings@MenuQuit_QuestionAreYouSure:
-您確定要退出桌面嗎？
+滑鼠額外按鈕1
 
 UI/CoreStrings@MenuServers_AwaitingServerList:
-等待服務器列表...
+滑鼠額外按鈕2
 
 UI/CoreStrings@MenuServers_Button_AddCustomServer:
-添加自定義服務器
+滑鼠滾輪按鈕
 
 UI/CoreStrings@MenuServers_Button_ClearList:
-清晰的列表
+向下翻頁
 
 UI/CoreStrings@MenuServers_Button_EditAddress:
-編輯地址
+向上翻頁
 
 UI/CoreStrings@MenuServers_Button_JoinServer:
-加入服務器
+滑鼠右鍵
 
 UI/CoreStrings@MenuServers_Button_RefreshAll:
-全部刷新
+空白鍵
 
 UI/CoreStrings@MenuServers_Button_RefreshServer:
-刷新服務器
+是否要重置[b]{0}[/b]選項？[br]將保存預設值並應用。
 
 UI/CoreStrings@MenuServers_Button_RemoveServer:
-刪除服務器
+你無法綁定按鍵:[br][b]{0}[/b]
 
 UI/CoreStrings@MenuServers_Checkbox_ShowEmpty:
-顯示空伺服器
+`"所按按鍵已經被綁定至:`
 
 UI/CoreStrings@MenuServers_Checkbox_ShowIncompatible:
-顯示不匹配伺服器
+[br][b]{0}[/b]
 
 UI/CoreStrings@MenuServers_ClickToCopy:
-點擊進行復制！
+[br]
 
 UI/CoreStrings@MenuServers_ColumnInfo:
-服務器信息
+[br]再次按下該鍵來進行綁定
 
 UI/CoreStrings@MenuServers_ListTitleCommunity:
-社區
+`[br]或者按下其他按鍵。"`
 
 UI/CoreStrings@MenuServers_ListTitleCustom:
-自定義
+請按鍵進行綁定或按Esc鍵取消。
 
 UI/CoreStrings@MenuServers_ListTitleFavorite:
-喜愛
+您確定要從此列表中刪除伺服器嗎？
 
 UI/CoreStrings@MenuServers_ListTitleFeatured:
-頂置
+無法在編輯模式下連接到任何伺服器。
 
 UI/CoreStrings@MenuServers_ListTitleModded:
-使用Mod
+您正在編輯模式下運行遊戲。
 
 UI/CoreStrings@MenuServers_ListTitleRecent:
-最近
+請連接到較新版本的伺服器。
 
 UI/CoreStrings@MenuServers_NoServersInThisList:
-此列表中沒有服務器
+請將您的遊戲用戶端更新到最新版本。
 
 UI/CoreStrings@MenuServers_PublicGUID:
-公共GUID
+`"[br]伺服器版本{0}`
 
 UI/CoreStrings@MenuServers_ServersCount:
-服務器
+`[br]你的遊戲版本{1}"`
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
-頂置伺服器往往具有較高聲譽，能夠提供高品質的遊戲體驗，類似官方伺服器。但是這些伺服器仍然是由社區運營的。
+伺服器不匹配
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Title:
-頂置
+這個遊戲伺服器正在運行更新版本的遊戲
 
 UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
-此伺服器採用了協力廠商模組。其中可能包含與基礎遊戲完全不同的內容。請記住使用模組的伺服器也許會包含來自模組的bug。使用風險自負。
+這個遊戲伺服器正在運行較舊版本的遊戲
 
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
-MOD
+`"[b]網路連接故障[/b]`
 
 UI/CoreStrings@MenuServers_ServerTag_Official_Description:
-這是CryoFall官方伺服器開發商進行管理。
+`[br]無法連接至遊戲伺服器，這可能是由於網路狀況不佳或網路提供商路由失敗造成的。"`
 
 UI/CoreStrings@MenuServers_ServerTag_Official_Title:
-官方
+此伺服器上沒有使用mod。
 
 UI/CoreStrings@MenuServers_ServerTag_PvE_Description:
-`這是一個玩家對抗環境的伺服器。旨在提供和平的探索發展體驗。
-你不會被其他玩家傷害，但野怪和環境和正常伺服器一致。
-如果這是你第一次遊玩CryoFall，可以選擇PVE伺服器。`
+伺服器mod
 
 UI/CoreStrings@MenuServers_ServerTag_PvE_Title:
-PvE
+伺服器無法訪問。
 
 UI/CoreStrings@MenuServers_ServerTag_PvP_Description:
-`這是一個玩家對抗玩家的伺服器，專注於戰鬥，地圖控制和劫掠。
-PvP伺服器沒有任何限制—你可以在這裡可以殺和被殺。
-準備戰鬥！`
+伺服器離線
 
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
-PvP
+您確定要清除此伺服器列表嗎？
+
+UI/CoreStrings@ModsDisabledWindow_Description:
+清除伺服器列表
+
+UI/CoreStrings@ModsDisabledWindow_Title:
+請等待獲取伺服器資訊。
 
 UI/CoreStrings@Network_Jitter:
-波動
+無法連接
 
 UI/CoreStrings@Network_Jitter_SeverityRed:
-`看起來你與服務器的網絡連接正在經歷嚴重的波動。
-[br]因此，您可能會遇到角色移動問題（例如頻繁的角色瞬移），或者由於與服務器的重大差異，您的操作可能會經常丟失。`
+伺服器地址無效。請檢查。
 
 UI/CoreStrings@Network_Jitter_SeverityYellow:
-`看起來你與服務器的網絡連接正在經歷波動。
-[br]因此，您可能會遇到角色移動問題（例如偶爾的角色瞬移），或者由於與服務器的重大差異，您的操作可能會丟失。`
+您輸入的電子郵寄地址或密碼不正確。如果您確定輸入了正確的電子郵件，請重試或使用AtomicTorch.com上的重置密碼功能。
 
 UI/CoreStrings@Network_Perfect:
-`看起來你的網絡連接很好。
-[br]享受遊戲吧！`
+已輸入的電子郵件已被其他帳戶使用。請使用其他電子郵寄地址。
 
 UI/CoreStrings@Network_PingAverage:
-Ping（平均）
+`"您輸入的電子郵寄地址未啟動。`
 
 UI/CoreStrings@Network_PingAverage_SeverityRed:
 `看起來你的服務器的網絡連接正在經歷嚴重的延遲（非常高ping）。
@@ -521,125 +556,115 @@ UI/CoreStrings@Network_PingAverage_SeverityYellow:
 [br]您可能還會遇到瞬移或即時位置校正。`
 
 UI/CoreStrings@Network_PingFluctuationRange:
-Ping波動範圍
+Steam帳戶已與另一個帳戶相關聯。
 
 UI/CoreStrings@Network_PingFluctuationRange_SeverityRed:
-`看起來您與服務器的網絡連接正在經歷嚴重的延遲波動。
-[br]一些網絡數據包的接收具有異常高的隨機延遲，因此遊戲必須增加緩沖值，這實際上意味著延遲會比顯示更高。`
+該帳戶已與另一個Steam ID相關聯。請使用其他AtomicTorch.com帳戶。
 
 UI/CoreStrings@Network_PingFluctuationRange_SeverityYellow:
-`看起來您與服務器的網絡連接正在經歷嚴重的延遲波動。
-[br]一些網絡數據包的接收具有異常高的隨機延遲，因此遊戲必須增加緩沖值，這實際上意味著延遲會比顯示的更高。`
+請嘗試重新啟動Steam用戶端。
 
 UI/CoreStrings@Network_PingGame:
-Ping (遊戲)
+無法註冊
 
 UI/CoreStrings@Network_Suggestions:
-`[b]建議:[/b]
-[*] 為了獲得最佳體驗，建議您在[b]您所在地區的服務器上進行遊戲[/b]（如果有）。
-[*] 考慮[b]關閉[/b]其他應用程序（尤其是瀏覽器，BT客戶端和下載程序）。
-[*] 如果您的PC當前通過Wi-Fi或移動連接進行連接，則考慮切換到[b]網線連接[/b]（無線連接通常是導致顯著延遲波動的原因）。`
+確認郵寄地址與輸入郵寄地址不符。
 
 UI/CoreStrings@NicknameOfflinePlayer:
-離線 Zzz...
+請輸入你的郵寄地址。
 
 UI/CoreStrings@No:
-否
+請輸入您的密碼。
 
 UI/CoreStrings@Notification_ActionForbidden:
 禁止
 
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
-無法放在那裡面
+看起來您正嘗試使用Microsoft旗下伺服器中的電子郵件帳戶進行註冊。不幸的是，微軟徹底[b]阻止[/b]任何非大型提供商發送的電子郵件，我們無法向您的帳戶發送任何電子郵件。請使用任何其他電子郵件服務，例如[b]gmail.com[/b]。
 
 UI/CoreStrings@Notification_ObstaclesOnTheWay:
-遇到障礙！
+建造
 
 UI/CoreStrings@Notification_TooFar:
-太遠！
+修理
 
 UI/CoreStrings@ObjectAccessModeEditor_CurrentAccessMode:
-當前訪問模式
+摧毀於
 
 UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
-訪問模式
+接受
 
 UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Button:
-添加成员
+添加
 
 UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Dialog:
-確定要將所有小隊成員加入此列表嗎？
+應用
 
 UI/CoreStrings@ObjectOwnersList_AddPlayer:
-添加玩家
+返回
 
 UI/CoreStrings@ObjectOwnersList_Empty:
-沒有所有者
+流覽配方
 
 UI/CoreStrings@ObjectOwnersList_OnlyOwnerCanAdd:
-只有所有者才能添加和刪除訪問權限。
+取消
 
 UI/CoreStrings@ObjectOwnersList_RemoveOwner:
-移除所有者
+關
 
 UI/CoreStrings@ObjectOwnersList_Title:
-所有者
+配置
 
 UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
-求購
+繼續
 
 UI/CoreStrings@ObjectTradingStationDisplay_ModeSelling:
-出售
+拒絕
 
 UI/CoreStrings@OptionsInput_ContainerMenuCategory:
-容器選單
+倒掉
 
 UI/CoreStrings@PartyManagement_Button_CreateParty:
 創建隊伍
 
 UI/CoreStrings@PartyManagement_Button_Invite:
-邀請
+`[br]你將不能夠恢復它。"`
 
 UI/CoreStrings@PartyManagement_Button_Leave:
-離開隊伍
+喝
 
 UI/CoreStrings@PartyManagement_CurrentPartySize:
-隊伍大小
+編輯
 
 UI/CoreStrings@PartyManagement_HowToInvite:
-在下方輸入其他玩家名稱來邀請他們，或者在聊天窗口中點擊他們的玩家名字。
+幫助
 
 UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-隊伍中成員獲得的部分LP點數將在隊伍成員中共享。
+下一個
 
 UI/CoreStrings@PartyManagement_InviteMember:
-邀請成員
+好
 
 UI/CoreStrings@PartyManagement_NoParty:
-`你沒有隊伍。
-[br]
-[*]你可以通過接受邀請來加入一個隊伍。
-[*]你可以建立自己的隊伍，邀請其他玩家加入。`
+前一個
 
 UI/CoreStrings@PartyManagement_Title:
-隊伍
+退出
 
 UI/CoreStrings@Performance__VRAM_SeverityYellow:
-`你的GPU難以將所有必需的材質擬合到VRAM中，這可能導致渲染圖像的隨機斷續。
-[br]請考慮減少[b]視頻選項[/b]選單中的[b]紋理質量[/b]選項。`
+重置
 
 UI/CoreStrings@Performance_FPS_SeverityRed:
-看起來您的機器很難以足夠快的速度處理遊戲，從而導致幀速率顯著降低。
+重試
 
 UI/CoreStrings@Performance_FPS_SeverityYellow:
-看起來你的機器很難以足夠快的速度處理遊戲，導致幀速率降低。
+保存
 
 UI/CoreStrings@Performance_FramerateAverage:
-幀率（平均值）
+升級
 
 UI/CoreStrings@Performance_Perfect:
-`看起來遊戲的表現很好。
-[br]享受遊戲吧！`
+食物
 
 UI/CoreStrings@Performance_Suggestions:
 `[b]建議：[/b]
@@ -650,125 +675,124 @@ UI/CoreStrings@Performance_Suggestions:
 [*] 如果所有其他方法都失敗了 - 降低視頻選項中的圖形質量。`
 
 UI/CoreStrings@Performance_VRAM_SeverityRed:
-`“你的GPU的顯存容量不足以存儲所有必需的材質，所以它必須每幀都從內存中復制它們。因此，你可能會遇到嚴重的卡頓和降低的幀速率。
-[br]請減少[b]視頻選項[/b]選單中的[b]材質細節[/b]選項。`
+精力
 
 UI/CoreStrings@Performance_VRAMUsage:
-顯存使用
+水
 
 UI/CoreStrings@PleaseWait:
-請耐心等待...
+遮罩
 
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
-未連接至電網。
+複製名稱
 
 UI/CoreStrings@PowerGridState_ActiveFormat:
-(激活 {0})
+邀請至隊伍
 
 UI/CoreStrings@PowerGridState_Button_RestorePower:
-恢復電力
+提到
 
 UI/CoreStrings@PowerGridState_Capacity:
-容量：
+私信
 
 UI/CoreStrings@PowerGridState_Consumers:
-消耗者:
+解除遮罩
 
 UI/CoreStrings@PowerGridState_CurrentConsumption:
-當前消耗：
+此為純裝飾建築。
 
 UI/CoreStrings@PowerGridState_CurrentGeneration:
-當前產出：
+此建築需要電力。
 
 UI/CoreStrings@PowerGridState_DepletedIn:
-耗竭於：
+此建築產出電力。
 
 UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
-永不
+此建築儲存電力。
 
 UI/CoreStrings@PowerGridState_EfficiencyFormat:
-(效率 {0}%)
+複製
 
 UI/CoreStrings@PowerGridState_EnergyInformation:
-能量資訊
+最大
 
 UI/CoreStrings@PowerGridState_Generators:
-發電機:
+最小
 
 UI/CoreStrings@PowerGridState_GridSize:
-電網規模：
+製造
 
 UI/CoreStrings@PowerGridState_GridStatus:
-電網狀態：
+`"[b]滑鼠左鍵點擊[/b]`
 
 UI/CoreStrings@PowerGridState_MaxDefenseConsumption:
-最高防禦消耗：
+[br]使此配方移動至佇列首位。
 
 UI/CoreStrings@PowerGridState_MaxGeneration:
-最高產出：
+[br]
 
 UI/CoreStrings@PowerGridState_MaxTotalConsumption:
-最高總消耗：
+[br][b]滑鼠右鍵點擊[/b]
 
 UI/CoreStrings@PowerGridState_PowerGridInformation:
-電網信息
+`[br]取消此配方。"`
 
 UI/CoreStrings@PowerGridState_Status_Blackout:
-斷電
+製造
 
 UI/CoreStrings@PowerGridState_Status_Nominal:
-無異常
+`"你尚未獲得此工作臺的任何相關配方。`
 
 UI/CoreStrings@PowerGridState_Storages:
-儲量：
+[br][br][br]
 
 UI/CoreStrings@Quest_Button_ClaimReward:
-獲取
+`你可以在科技功能表解鎖它們。"`
 
 UI/CoreStrings@Quest_Label_Completed:
-已完成
+配方解鎖
 
 UI/CoreStrings@Quest_Label_New:
-新
+化學防護: {0}
 
 UI/CoreStrings@Quest_Label_Ready:
-準備
+寒冷防護: {0}
 
 UI/CoreStrings@QuestionAreYouSure:
-你確定嗎？
+電擊防護: {0}
 
 UI/CoreStrings@RebindKeyWindow_RebindingKey:
-重新綁定按鍵
+熱能防護: {0}
 
 UI/CoreStrings@RecipesBrowserRecipeDetails_Button_CancelRecipeSelection:
-取消
+衝擊防護: {0}
 
 UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
-選擇
+動能防護: {0}
 
 UI/CoreStrings@ScreenshotNotification_NotificationFormat:
-截圖完成: {0} (點擊打開)
+靈能防護: {0}
 
 UI/CoreStrings@SelectUsernameForm_Message:
-請選擇AtomicTorch.com帳戶的用戶名
+輻射防護: {0}
 
 UI/CoreStrings@ServerAddress:
-地址
+在Steam平臺購買CryoFall
 
 UI/CoreStrings@ServerPing:
-Ping
+你可以購買CryoFall並獲取完整版本的遊戲。本遊戲為一次性購買，並且購買後你將能夠繼續玩你之前的人物（如果你最近玩過的話）。你也能在社區和加裝了mod的伺服器上進行遊戲，甚至架設你自己的伺服器。
 
 UI/CoreStrings@ServerPlayersCount:
-玩家
+您的試玩時間已經耗盡。謝謝您的試玩我們的遊戲—希望您喜歡它！
 
 UI/CoreStrings@ServerWipedDate:
-最近刪檔
+在此試玩版本中您可以在任意官方伺服器進行遊戲。[br]若想在社區伺服器或私人伺服器進行遊戲，請購買完整版遊戲。
 
 UI/CoreStrings@Skill:
-技能
+試玩結束於: {0}
 
 UI/CoreStrings@StatusEffect_TitleIntensity:
-強度
+CryoFall試玩版
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Message:
 `[b]你可以：[/b]
@@ -780,316 +804,395 @@ UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Message:
 [*]只需點擊一下按鈕，即可為您和您的朋友租用CryoFall官方雲服務器。`
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Title:
-為什麽要建議鏈接到AtomicTorch帳戶？
+可佔領倒計時：
 
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_CheckboxAcceptLicenseAgreement:
-我接受[url=atomictorch.com/Pages/Terms-of-Service]服務條款[/url]，包括[url=atomictorch.com/Pages/Privacy-Policy]隱私政策[/url]
+此礦藏將耗盡於：
 
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_ConfirmEmail:
-確認郵件
+礦藏儲量
 
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
-`AtomicTorch.com已註冊
-[br](為您的SteamID)。`
-
-UI/CoreStrings@TechGroupTooltip_Requirements:
-需求
-
-UI/CoreStrings@TechGroupTooltip_TechnologiesAvailableCount:
-科技可用
-
-UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
-科技解鎖
-
-UI/CoreStrings@TechNodeTooltip_Perks:
-特質
-
-UI/CoreStrings@TechNodeTooltip_Recipes:
-配方
-
-UI/CoreStrings@TechNodeTooltip_Structures:
-建築
-
-UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
-前置科技
-
-UI/CoreStrings@Technology:
-科技
-
-UI/CoreStrings@TextBoxSearchPlaceholder:
-搜索...
-
-UI/CoreStrings@Title:
-標題
-
-UI/CoreStrings@TitleActionFailed:
-行動失敗
-
-UI/CoreStrings@TitleArea:
-區域
-
-UI/CoreStrings@TitleAttention:
-注意！
-
-UI/CoreStrings@TitleConnecting:
-連接...
-
-UI/CoreStrings@TitleDestructionTimeout:
-銷毀超時
-
-UI/CoreStrings@TitleDurability:
-耐久
-
-UI/CoreStrings@TitleEnergyCharge:
 能量
 
+UI/CoreStrings@SupporterPack_Badge:
+EU/s
+
+UI/CoreStrings@SupporterPack_Description:
+CryoFall的官方Discord伺服器(僅限英文)
+
+UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
+CryoFall功能集錦
+
+UI/CoreStrings@TechGroupTooltip_Requirements:
+所有CryoFall的更新文檔(僅限英文)
+
+UI/CoreStrings@TechGroupTooltip_TechnologiesAvailableCount:
+CryoFall開發佈局(僅限英文)
+
+UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
+未澆水
+
+UI/CoreStrings@TechNodeTooltip_Perks:
+特質:
+
+UI/CoreStrings@TechNodeTooltip_Recipes:
+配方:
+
+UI/CoreStrings@TechNodeTooltip_Structures:
+建築:
+
+UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
+正在腐敗
+
+UI/CoreStrings@TechNodeTooltip_Vehicles:
+腐敗於：
+
+UI/CoreStrings@Technology:
+已澆水
+
+UI/CoreStrings@TextBoxSearchPlaceholder:
+電子郵件
+
+UI/CoreStrings@Title:
+密碼
+
+UI/CoreStrings@TitleActionFailed:
+女
+
+UI/CoreStrings@TitleArea:
+男
+
+UI/CoreStrings@TitleAttention:
+離開載具
+
+UI/CoreStrings@TitleConnecting:
+建築
+
+UI/CoreStrings@TitleDestructionTimeout:
+製造
+
+UI/CoreStrings@TitleDurability:
+裝備
+
+UI/CoreStrings@TitleEnergyCharge:
+地圖
+
 UI/CoreStrings@TitleFreshness:
-新鮮度
+政治
 
 UI/CoreStrings@TitleFuel:
-燃料
+任務
 
 UI/CoreStrings@TitleLevel:
-等級
+技能
 
 UI/CoreStrings@TitleLiquidGasoline:
-汽油
+社交
 
 UI/CoreStrings@TitleLiquidMineralOil:
-礦物油
+科技
 
 UI/CoreStrings@TitleLiquidPetroleum:
-石油
+總容量
 
 UI/CoreStrings@TitleLiquidWater:
-水
+總能量
 
 UI/CoreStrings@TitleLoading:
-載入中...
+任務: {0}
 
 UI/CoreStrings@TitleModeAlwaysOn:
-總是開啟
+生物材料
 
 UI/CoreStrings@TitleModeAuto:
-自動
+卸載
 
 UI/CoreStrings@TitleModeOff:
-關
+植入物已安裝
 
 UI/CoreStrings@TitleModeOn:
-開
+安裝植入物
 
 UI/CoreStrings@TitleNoUpgradesAvailable:
-沒有升級可用
+沒有安裝植入物
 
 UI/CoreStrings@TitleOwner:
-所有者
+放置植入物進行安裝
 
 UI/CoreStrings@TitlePowerGrid:
-電網
+需要
 
 UI/CoreStrings@TitleSafeStorage:
-安全存儲
+快速鍵
 
 UI/CoreStrings@TitleStructurePoints:
-結構值
+向下匹配
 
 UI/CoreStrings@TradingStationResources_ThisLotIsDisabled:
-這個槽位被禁用了
+向上匹配
 
 UI/CoreStrings@TradingTooltip_CoinsPenny:
-硬幣
+拿起所有
 
 UI/CoreStrings@TradingTooltip_CoinsShiny:
-閃亮硬幣
+超過容量。只能取出物品。
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAccount:
-不創建帳戶並繼續
+物品
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
-看來你是第一次進入CryoFall。您想將遊戲鏈接到您現有的[url=atomictorch.com]AtomicTorch.com[/url]帳戶嗎？
+輸入
+
+UI/CoreStrings@UnstuckInFormat:
+輸出
+
+UI/CoreStrings@Vehicle_Ammo:
+學習點數
+
+UI/CoreStrings@Vehicle_Armor:
+LP
+
+UI/CoreStrings@Vehicle_EnergyLevel:
+請輸入您的[url=atomictorch.com]AtomicTorch.com[/url]帳戶詳細資訊以連結您的Steam帳戶。
+
+UI/CoreStrings@Vehicle_Enter:
+過濾規則
+
+UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
+載入中
+
+UI/CoreStrings@Vehicle_Hotbar_EnergyPercentFormat:
+登錄
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_LeftArm:
+保持登錄狀態
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
+使用[url =atomictorch.com/Account/Register]AtomicTorch.com[/url]帳戶登錄
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
+製作人員名單
+
+UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
+當前遊戲
+
+UI/CoreStrings@Vehicle_ReactorCores:
+主頁
+
+UI/CoreStrings@VehicleGarage_ButtonPutCurrentVehicle:
+選項
+
+UI/CoreStrings@VehicleGarage_ButtonTakeVehicle:
+退出
+
+UI/CoreStrings@VehicleGarage_TitleAccessibleVehicles:
+伺服器
+
+UI/CoreStrings@VehicleGarage_TitleNoAccessibleVehicles:
+連結帳戶
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_Docked:
+登出
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InGarage:
+您的登錄用戶為
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InUse:
+主要伺服器
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InWorld:
+斷開
+
+UI/CoreStrings@VehiclesAssemblyList_Button_Build:
+顯示歡迎資訊
+
+UI/CoreStrings@VehiclesAssemblyList_NoSchematicsKnown:
+未連接。
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
+論壇
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
+新聞
+
+UI/CoreStrings@Weapon_CompatibleAmmo:
+閱讀更多...
 
 UI/CoreStrings@Window_Tab_Main:
-主要
+最近的伺服器
 
 UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
-`請輸入服務器GUID或主機地址。
-[br][br]
-例如:
-[*]localhost
-[*]atomictorch.com:1234
-[*]FF11223344556677889900AABBCCDDEE`
+`"伺服器歷史記錄是空的。`
 
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
-隨機
+[br][br]您可以使用此功能快速加入
 
 UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
-藍圖需求
+`[br]你最近玩過的伺服器。"`
 
 UI/CoreStrings@WindowConstructionMenu_Button_Build:
-建造
+社交
 
 UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
 `重要！為了[b]建造[/b]或[b]修復[/b]任何東西，你需要有一個[b]工具箱[/b]！
 [br]將一個工具箱裝入你的工具欄，以便繼續建造。`
 
 UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
-你最近吃了富含維生素、微量元素和其他重要的營養物質的健康膳食。 你感覺好極了。
+Steam用戶端錯誤
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
-總需求
+您想應用更改嗎？
 
 UI/CoreStrings@WindowDataLog_Content:
-內容
+您沒有應用更改
 
 UI/CoreStrings@WindowDataLog_From:
-從
+您確定要退出桌面嗎？
 
 UI/CoreStrings@WindowDataLog_Location:
-地點
+等待伺服器列表...
 
 UI/CoreStrings@WindowDataLog_To:
-至
+添加自訂伺服器
 
 UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
-太陽能電池板
+清除列表
 
 UI/CoreStrings@WindowInventory_Button_Customize:
-自定義
+編輯地址
 
 UI/CoreStrings@WindowInventory_Button_Unstuck:
-解除卡死！
+加入伺服器
 
 UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
-你無法使用主權建築來儲存資源和基礎物品。
+全部刷新
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
-腐朽信息
+刷新伺服器
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
-保險箱內的物品將向此主權中的所有建築共用。
+刪除伺服器
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
-只有所有者才能升級此建築。
+顯示空伺服器
 
 UI/CoreStrings@WindowLandClaim_UpgradingRequiresLearningTech:
-升級此建築需要學習相關技術。
+顯示不匹配伺服器
 
 UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
-需要
+點擊進行複製！
 
 UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
-匹配配方
+伺服器資訊
 
 UI/CoreStrings@WindowManufacturer_Button_ApplyMatchingRecipe:
-應用匹配配方
+社區
 
 UI/CoreStrings@WindowManufacturer_CurrentRecipe:
-當前配方
+自訂
 
 UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchAnyRecipe:
-輸入項目與任何配方都不匹配！
+喜愛
 
 UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchCurrentRecipe:
-輸入項目與當前配方不匹配！
+頂置
 
 UI/CoreStrings@WindowManufacturer_ErrorNoAvailableSpaceInOutput:
-輸出目標沒有可用空間！
+使用Mod
 
 UI/CoreStrings@WindowManufacturer_ErrorNotEnoughInputItemsForCurrentRecipe:
-當前配方的輸入物品不足！
+最近
 
 UI/CoreStrings@WindowManufacturer_FuelRequired:
-需要燃料！
+此列表中沒有伺服器
 
 UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
-空
+公共GUID
 
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
-燈光模式
+伺服器
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
-劫掠期現在已開始（剩餘{0}）
+頂置伺服器往往具有較高聲譽，能夠提供高品質的遊戲體驗，類似官方伺服器。但是這些伺服器仍然是由社區運營的。
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_DescriptionFormat:
-`只能在從{0}到{1}的固定時間進行劫掠 (總時間{2})。
-[br]土地佔領區域以外的建築不受此規則保護，並可以在任何時間攻擊或破壞。`
+頂置
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_Disabled:
-此伺服器關閉了劫掠保護。
+此伺服器採用了協力廠商模組。其中可能包含與基礎遊戲完全不同的內容。請記住使用模組的伺服器也許會包含來自模組的bug。使用風險自負。
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_NextRaidWindowTimeout:
-下一次劫掠倒計時{0}。
+MOD
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
-劫掠保護
+這是CryoFall官方伺服器開發商進行管理。
 
 UI/CoreStrings@WindowPowerStorage_NotConnectedToPowerGrid:
-電容未連接至任何電網。
+官方
 
 UI/CoreStrings@WindowQuests_CompletionReward:
-完成獎勵
+`"這是一個玩家對抗環境的伺服器。旨在提供和平的探索發展體驗。`
 
 UI/CoreStrings@WindowQuests_CurrentQuests:
-目前的任務
+你不會被其他玩家傷害，但野怪和環境和正常伺服器一致。
 
 UI/CoreStrings@WindowQuests_Hints:
-提示
+`如果這是你第一次遊玩CryoFall，可以選擇PVE伺服器。"`
 
 UI/CoreStrings@WindowQuests_MessageAllAvailableQuestsCompleted:
-您已完成所有可用任務。
+PvE
 
 UI/CoreStrings@WindowQuests_MessageNoCompletedText:
-你還沒有完成任何任務。
+`"這是一個玩家對抗玩家的伺服器，專注於戰鬥，地圖控制和劫掠。`
 
 UI/CoreStrings@WindowQuests_TitleCompletedQuestsCount:
-已完成任務
+PvP伺服器沒有任何限制—你可以在這裡可以殺和被殺。
 
 UI/CoreStrings@WindowQuests_TitleUnlockedQuestsCount:
-已解鎖任務
+`準備戰鬥！"`
 
 UI/CoreStrings@WindowRechargingStation_Title:
-充電
+PvP
 
 UI/CoreStrings@WindowRespawn_Button_RespawnAtYourBed:
-在你的床上重生
+`"遊戲無法在加裝mod後正常運行，因此它們被禁用。`
 
 UI/CoreStrings@WindowRespawn_Button_RespawnInTheWorld:
-在遊戲世界中重生
+[br]這是因為其中至少一個mod已經過期（與當前版本遊戲不相容）或者失效。
 
 UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
-在床邊重生
+[br]遊戲無法確認是哪一個mod出現了問題，因此您必須通過一個一個打開mod並進行遊戲來測試。
 
 UI/CoreStrings@WindowRespawn_DamageSources:
-最近傷害來源：
+[br]如果你想要繼續使用這些mod，請確保你正在使用最新版本的mod。
 
 UI/CoreStrings@WindowRespawn_Message:
-看起來你已經被強行從這個殘酷的世界中分開了......並且丟失了所有的東西！你想復仇嗎？
+[br]
 
 UI/CoreStrings@WindowRespawn_MessageDespawned:
-你把你的角色遺忘在土地佔領區域外太久，已經被從世界移除。 你可以再次正常重生。你沒有失去了你的物品。
+[br]已禁用mod列表:
 
 UI/CoreStrings@WindowRespawn_MessagePvE:
-看來你被強制趕出了這個殘酷的世界... 你想要復仇嗎？
+`[br]{0}"`
 
 UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
-你被其他玩家殺死了。但是你仍處於新手保護狀態下，所以不會失去任何物品。但要小心，下一次也許就不會有這種好事了！
+CryoFall已禁用mods
 
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
-`你最近在床上重生過了。
-[br]請等待[b]冷卻時間[/b]倒計時。`
+波動
 
 UI/CoreStrings@WindowSignPicture_Title:
-選擇圖片
+`"看起來你與伺服器的網路連接正在經歷嚴重的波動。`
 
 UI/CoreStrings@WindowSkills_CurrentLevelFormat:
-等級 {0}
+`[br]因此，您可能會遇到角色移動問題（例如頻繁的角色瞬移），或者由於與伺服器的嚴重不同步，您的操作可能會經常丟失。"`
 
 UI/CoreStrings@WindowSkills_CurrentLevelFormat2:
-當前等級：{0}
+`"看起來你與伺服器的網路連接正在經歷波動。`
 
 UI/CoreStrings@WindowSkills_MaxLevelReached:
-達到最大等級！
+`[br]因此，您可能會遇到角色移動問題（例如偶爾的角色瞬移），或者由於與伺服器的嚴重不同步，您的操作可能會丟失。"`
 
 UI/CoreStrings@WindowSkills_NoDiscoveredSkills:
 `你還沒有發現任何技能。
@@ -1099,188 +1202,194 @@ UI/CoreStrings@WindowSkills_NoDiscoveredSkills:
 [br]嘗試新的東西，看看會發生什麽！`
 
 UI/CoreStrings@WindowSkills_ProgressTowardsTheNextLevel:
-進階至下一技能等級
+`[br]享受遊戲吧！"`
 
 UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
-發現技能
+Ping（平均）
+
+UI/CoreStrings@WindowsObjectVehicle_RepairTextFormat:
+`"看起來你的伺服器的網路連接正在經歷嚴重的延遲（非常高ping）。`
+
+UI/CoreStrings@WindowsObjectVehicle_TabCargo_Title:
+[br]因此，您在遊戲中的一些操作（需要伺服器回應才能生效）
+
+UI/CoreStrings@WindowsObjectVehicle_TabConstructVehicle:
+將需要更長的時間來執行和處理。
+
+UI/CoreStrings@WindowsObjectVehicle_TabGarage:
+[br]舉例來說，由於與伺服器的嚴重不同步，您的操作可能經常會丟失。
+
+UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
+`[br]您可能還會遇到頻繁的瞬移或即時位置校正。"`
 
 UI/CoreStrings@WindowSocial_OnlineNow:
-當前在線
+`"看起來你的伺服器的網路連接正在經歷嚴重的延遲（高ping）。`
 
 UI/CoreStrings@WindowSocial_ServerStatistics:
-服務器統計
+[br]因此，您在遊戲中的一些操作（需要伺服器回應才能生效）
 
 UI/CoreStrings@WindowSocial_TitleOnlinePlayersList:
-在線玩家
+將需要更長的時間來執行和處理。
 
 UI/CoreStrings@WindowSocial_TotalPlayers:
-總玩家數
+[br]舉例來說，由於與伺服器的嚴重不同步，您的操作可能經常會丟失。
 
 UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
-創建新的AtomicTorch帳戶
+`[br]您可能還會遇到瞬移或即時位置校正。"`
 
 UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
-鏈接到我現有的AtomicTorch帳戶
+Ping波動範圍
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-這不是必須行動 - 您可以繼續使用現有的Steam帳戶進行遊戲。但是，鏈接到AtomicTorch.com帳戶有一些額外好處。
+`"看起來您與伺服器的網路連接正在經歷嚴重的延遲波動。`
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
-這不是必須行動，只需使用您現有的Steam帳戶即可。但是，這樣做有一些額外好處。
+`[br]一些網路資料包的接收具有異常高的隨機延遲，因此遊戲必須增加緩衝值，這實際上意味著延遲會比顯示更高。"`
 
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
-您可以將您的Steam帳戶與AtomicTorch.com帳戶相關聯，也可以創建一個新帳戶。
+`"看起來您與伺服器的網路連接正在經歷嚴重的延遲波動。`
 
 UI/CoreStrings@WindowTechnologies_Info_AdditionalTechnologies:
-`這些額外的科技允許你在某些領域進一步專業化。
-[br]你無法學習所有高階科技。好好選擇自己想要的方向。`
+`[br]一些網路資料包的接收具有異常高的隨機延遲，因此遊戲必須增加緩衝值，這實際上意味著延遲會比顯示更高。"`
 
 UI/CoreStrings@WindowTechnologies_Info_PrimaryTechnologies:
-主要科技推薦所有玩家學習，以獲得技術基礎。
+Ping (遊戲)
 
 UI/CoreStrings@WindowTechnologies_TechGroupLocked:
-鎖定
+`"[b]建議:[/b]`
 
 UI/CoreStrings@WindowTechnologies_TechGroupPreview:
-預覽
+[*] 為了獲得最佳體驗，建議您在[b]您所在地區的伺服器上進行遊戲[/b]（如果有）。
 
 UI/CoreStrings@WindowTechnologies_TechGroupResearch:
-研究
+[*] 考慮[b]關閉[/b]其他應用程式（尤其是流覽器，BT用戶端和下載程式）。
 
 UI/CoreStrings@WindowTechnologies_TechGroupResearchCost:
-研究花費
+`[*] 如果您的PC當前通過Wi-Fi或移動連接進行連接，則考慮切換到[b]網線連接[/b]（無線連接通常是導致顯著延遲波動的原因）。"`
 
 UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
-解鎖
+離線Zzz...
 
 UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
-主要科技
+否
 
 UI/CoreStrings@WindowTechnologies_TitleSpecializedTechnologies:
-專業科技
+禁止
 
 UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
-`你可以通過在遊戲中進行任何有
-[br]意義的活動來獲得LP（學習點）。
-[br]LP獲得量與你的角色
-[br]技能經驗獲取成正比。`
+無法放在那裡
 
 UI/CoreStrings@WindowTinkerTable_Button_Repair:
-修理
+遇到障礙！
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
-槽位配置
+太遠！
 
 UI/CoreStrings@WindowTradingStationAdmin_LotsConfiguration:
-槽位配置
+當前訪問模式
 
 UI/CoreStrings@WindowTradingStationAdmin_RadioButton_GroupTitle:
-這個交易站將
+訪問模式
 
 UI/CoreStrings@WindowTradingStationAdmin_RadioButton_ModeBuyingItems:
-購買物品
+添加小隊成員
 
 UI/CoreStrings@WindowTradingStationAdmin_RadioButton_ModeSellingItems:
-出售物品
+確定要將所有小隊成員加入此列表嗎？
 
 UI/CoreStrings@WindowTradingStationAdmin_Stock:
-庫存
+添加玩家
 
 UI/CoreStrings@WindowTradingStationLotEditor_ListTitleAllItems:
-所有物品
+沒有所有者
 
 UI/CoreStrings@WindowTradingStationLotEditor_ListTitleExistingItems:
-現有物品
+只有所有者才能添加和刪除存取權限。
 
 UI/CoreStrings@WindowTradingStationLotEditor_Price:
-價錢
+移除所有者
 
 UI/CoreStrings@WindowTradingStationLotEditor_Quantity:
-數量
+所有者
 
 UI/CoreStrings@WindowTradingStationLotEditor_SelectedLotItem:
-選定的槽位物品
+求購
 
 UI/CoreStrings@WindowTradingStationUser_Button_Buy:
-購買
-
-UI/CoreStrings@WindowTradingStationUser_Button_Sell:
-賣
-
-UI/CoreStrings@WindowTradingStationUser_BuyingMode_Message:
-該交易平台正在購買以下物品：
-
-UI/CoreStrings@WindowTradingStationUser_BuyingMode_Title:
-收購
-
-UI/CoreStrings@WindowTradingStationUser_SellingMode_Message:
-該貿易站正在銷售以下物品：
-
-UI/CoreStrings@WindowTradingStationUser_SellingMode_Title:
 出售
 
+UI/CoreStrings@WindowTradingStationUser_Button_Sell:
+容器菜單
+
+UI/CoreStrings@WindowTradingStationUser_BuyingMode_Message:
+創建隊伍
+
+UI/CoreStrings@WindowTradingStationUser_BuyingMode_Title:
+邀請
+
+UI/CoreStrings@WindowTradingStationUser_SellingMode_Message:
+離開隊伍
+
+UI/CoreStrings@WindowTradingStationUser_SellingMode_Title:
+隊伍大小
+
 UI/CoreStrings@WindowTrashCan_Title:
-您可以在此處放置任何物品以永久消除它們。
+在下方輸入其他玩家名稱來邀請他們，或者在聊天視窗中點擊他們的玩家名字。
 
 UI/CoreStrings@WipedDate_DaysAgo_Format:
-{0}日前
+隊伍中成員獲得的部分LP點數將在隊伍成員中共用。
 
 UI/CoreStrings@WipedDate_HoursAgo_Format:
-{0}小时前
+邀請成員
 
 UI/CoreStrings@WipedDate_JustWiped:
-剛剛刪檔
+`"你沒有隊伍。`
 
 UI/CoreStrings@WipedDate_Yesterday:
-昨天
+[br]
 
 UI/CoreStrings@WorldMap_MapExplored:
-地圖已探索
+[*]你可以通過接受邀請來加入一個隊伍。
 
 UI/CoreStrings@WorldMap_PointedPosition:
-所指位置
+`[*]你可以建立自己的隊伍，邀請其他玩家加入。"`
 
 UI/CoreStrings@WorldMap_YourPosition:
-您的位置
+隊伍
 
 UI/CoreStrings@WorldMapMarkCurrentBed_Tooltip:
-`[b]床[/b]
-[br]死亡後在此地點重生。`
+`"你的GPU難以將所有必需的材質擬合到VRAM中，這可能導致渲染圖像的隨機斷續。`
 
 UI/CoreStrings@WorldMapMarkDroppedItems_Tooltip:
-`[b]掉落物品[/b]
-[br]你在此地點掉落了物品。`
+`[br]請降低[b]視頻選項[/b]功能表中的[b]紋理品質[/b]選項設置。"`
 
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
-`[b]占領土地[/b]
-[br]這片土地歸你所有。`
+看起來您的機器很難以足夠快的速度處理遊戲，從而導致畫面播放速率顯著降低。
+
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_LastUsedVehicle:
+看起來你的機器很難以足夠快的速度處理遊戲，導致畫面播放速率降低。
 
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 `[b]土地權利要求[/b]
 [br]這是你的土地權利要求。`
 
 UI/CoreStrings@WorldMapMarkRaid_Tooltip:
-`[b]基地正遭攻擊[/b]
-[br]你的基地正遭受攻擊！`
+`"看起來遊戲的表現很好。`
 
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
-`[b]溫泉[/b]
-[br]可采集鋰鹽。`
+`[br]享受遊戲吧！"`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
-`[b]天然油田[/b]
-[br]可采集原油。`
+`"[b]建議：[/b]`
 
 UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
-`[b]交易站[/b]
-[br]由另一位玩家所有的交易站。`
+[br]首先，請確保您的硬體符合最低系統要求。
 
 UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
-`[b]交易站(你)[/b]
-[br]你自己的交易站。`
+[br]然後，為了提高性能，您可以嘗試：
 
 UI/CoreStrings@Yes:
-是
+[*] 更新顯卡驅動程式。
 
 UI/LanguageFonts@FontCondensed:
 /UI/Fonts/#Source Han Sans TC
@@ -1292,414 +1401,462 @@ UI/LanguageFonts@FontPlayerDialogue:
 /UI/Fonts/#Source Han Sans TC
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
-已連接
+向所有者開放
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleNotConnected:
-未連接
+向所有者或土地所有者開放
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatCopyMessageFormat:
 從 @{0}:　{1}
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
-[開發者]
+一直關閉
 
 UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
-`確定要關閉與{0}的私人聊天?
-[br]聊天的歷史將被保存，你可以稍候重新開啟。`
+你沒有存取權限！
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
-由於此配方涉及可降解組件，因此無法取消它。
+您無法編輯所有者列表。
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
-無法取消此食譜
+您無法刪除最後一位所有者。
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
-不能直接使用此項目。
+您無法從所有者列表中刪除自己。請讓其他玩家這樣做。
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationNoFreeSpaceToMoveItem:
-沒有可用空間來移動物品。
+找不到名為[b]{0}[/b]的玩家。
 
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_MessageFormat:
-`標記已添加到地圖中。
-[br]距離物品消失還有{0}。`
+你不是所有者。
 
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
-你的物品被丟棄了
+{0}需要{1}％的已研究技術。
 
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
-`你的一個基地正在被掠奪！
-[br]({0}; {1})`
+學習點數不夠
 
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Title:
-遭到攻擊！
+科技樹被鎖定
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
-`{0} 位于 {1};{2}的。
-[br]它将提供为声称：
-[br]{3}的。
-[br]抓住你的枪支和准备捕捉它！`
+科技已經解鎖
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
-新資源可用
+需要{0}個學習點（僅{1}可用）。
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
-復制坐標
+需要解鎖科技：{0}
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuTeleport:
-瞬移
+包含所有基本建築類型的藍圖，允許玩家建立一個簡單的基地。
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
-解除卡死！
+更高級的烹飪食譜，適用於各種新食品。
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
-`你把自己圍在自己的房子內，出不去嗎？
-[br]或者有人惡意堵你，導致你被卡住了？
-[br]您可以使用此功能將您的角色傳送出去。`
+烹飪2
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
-解除卡死
+改進的保護技術提供了更好的裝甲藍圖。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltLeftClickOnItem_Description:
-`使用/吃目標物品。
-[br]（僅適用於可以使用/食用的物品）`
+建築
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltLeftClickOnItem_Title:
-Alt+左鍵按一下物品
+基礎建築
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Description:
-`將所指物品堆放到地上。
-[br]（按住Ctrl鍵可從堆疊中放下一個物品）`
+包含許多配方，以生產更好的食品。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Title:
-Alt+按右鍵物品
+烹飪
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Description:
-將單個物品從堆疊中移動到另一個容器裡面。
+基礎服裝和護甲的藍圖。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Title:
-按Ctrl+左或向右鍵單擊物品
+防禦
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Description:
-拿一個或整堆物品。
+骨甲
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Title:
-空手時左鍵單擊槽位
+編織盔甲
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Description:
-`如果槽位為空 - 將物品放到該處。
-[br]如果槽位非空 - 合並或交換物品。`
+布甲
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Title:
-手持物品時左鍵單擊一個槽位
+木制盔甲
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Description:
-物品欄排序（可用於任何指向的物品欄）。
+種子，基肥等農業用品的製備。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Title:
-鼠標中鍵（滾輪）單擊
+農業
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Description:
-拿這些物品的一半。
+農業基礎知識
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Title:
-空手時右鍵單擊槽位
+建立工業生產和製造所需的所有基本工業技術。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Description:
 如果槽位為空或包含相同的項目類型-[br]將單個物品從手中移動到目標槽位。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Title:
-手持物品時右鍵單擊一個槽位
+玻璃器皿
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Description:
-將所有指向物品類型堆疊的移動到另一個容器。
+鐵工具
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Title:
-Shift+左鍵按一下物品
+冶煉
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftRightClickOnItems_Description:
-僅將指向的物品堆移動到另一個容器。
+原始武器的藍圖。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftRightClickOnItems_Title:
-Shift+按右鍵物品
+進攻
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@TitleItemSlotActions:
-物品槽操作
+使用各種化合物，操作化學反應。
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleBottom:
-底部
+化學
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleFace:
-面部
+建造更複雜的建築，有更廣泛的應用。
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
-頭發
+建設2
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
-最佳
+石頭建築
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
-你確定要離開小組嗎？
+防守2
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemovePartyMemberConfirmationFormat:
-你確定要將[b]{0}[/b] 移出小組嗎？
+毛皮盔甲
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
-生物
+毛皮頭盔
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
-爆破
+皮革盔甲
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleItem:
-物品
+皮革頭盔
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleOther:
-其他
+縫製盔甲
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitlePlayer:
-玩家
+縫製頭盔
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
-狀態效果
+基礎電力設施。
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
-下一等級
+電力
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier1Letter:
-I
+農業2
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier2Letter:
-II
+改進的工業技術允許應用更多的工業流程。
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier3Letter:
-III
+工業2
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier4Letter:
-IV
+鋼鐵冶煉
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
-V
+鋼鐵工具
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
-T{0}
+創造各種醫療用品。
 
 UI/Controls/Game/Technologies/Data/ViewModelWindowTechnologies@DialogDoYouWantToResearch:
-你想研究{0}嗎？
+醫學
 
 UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
-徒手制造
-
-UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
-修理
+複雜的農業技術，能種植更多農作物，使用更好的肥料。
 
 UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
-易腐道具儲存時限提高~{0} 。
+更高級的武器，包括更強大的槍械和彈藥類型。
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListEmpty:
-您可以讓其他的幸存者進入你的占領土地中。
+進攻2
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
-訪問
+使用各種複雜的化合物和化學反應。
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
-`廢棄建築物會在一段時間後開始腐朽
-[br]並最終消失，以防止地圖卡頓。
-[br]
-[br]此主權聲明建築將於[b]{0}[/b]後開始腐朽。
-[br]在那以後它將在[b]{1}[/b]腐朽，並開始摧毀倒計時([b]{2}[/b])。
-[br]
-[br]為了防止腐朽，只要在[b]{0}[/b]內訪問此基地即可
-[br](任何訪問列表中的玩家都能啟動倒計時的重置)。
-[br]
-[br]你可以通過[b]升級[/b]主權聲明建築來延長倒計時。
-[br]腐朽倒計時基於領地內等級[b]最高[/b]的主權建築。`
+化學2
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
-礦藏已經耗盡。
+使用貨幣，進行商業活動。允許鑄造和回收硬幣以及建立自動化交易站。
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
-此礦藏是無限的。
+商業
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
-沒有燃料
+硬幣鑄造
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Title:
-無法開啟
+硬幣回收
 
 UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Message:
-您無法安裝兩個相同類型的植入物。
+高級建築。
 
 UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Title:
-已安裝
+建設3
 
 UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationNotEnoughBiomaterial:
-生物材料不夠
+磚建築
 
 UI/Controls/Game/WorldObjects/Plants/Data/ViewModelFarmPlantTooltip@TitlePermanent:
-永久
+更高級的烹飪食譜，美食家必備。
 
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSolar@ElectricityProductionInfoTextFormat:
-`當前發電{0} EU/s ，光照水準{1}%
-[br]最高輸出 {2} EU/s。`
+烹飪3
 
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@ElectricityProductionInfoTextFormat:
-`當前發電{0} EU/s ，溫度{1}°C ({2}% 效率)
-[br]最高輸出 {3} EU/s。`
+高級保護技術。
 
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
-`當前發電{0} EU/s 
-[br]最高輸出 {1} EU/s。`
+防守3
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+金屬盔甲
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+金屬頭盔
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+軍用裝甲
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+軍用頭盔
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+高級電力設施。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+電力2
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+先進的農業實踐和更廣泛的作物品種。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+農業3
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+先進的工業技術可實現更多更複雜的工業流程。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+工業3
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+允許製造更廣泛的高級醫療物品。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+醫學2
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+高度先進的攻擊技術，包括全自動槍械和更多樣化的彈藥類型。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+進攻3
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
+釀造酒精飲料以及類似性質的東西。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+娛樂
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+生產各種載具所需要的科技。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+載具
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+利用外星世界資源所必需的技術。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+外星科技
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+Vehicles
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+Build and upgrade a variety of futuristic vehicles to explore the world faster or use them in combat.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
+製造能夠長期儲存的罐頭食品。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+罐頭製造器
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+先進的化學過程和複雜的化學反應。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
+`最後，請記住，CryoFall仍然出於開發當中，並且還有著大量的更新和改動計畫。儘管如此，當前的遊戲內容已經十分充實，希望大家喜歡！[br][br]
+另外我們有在論壇和discord全程值班，歡迎來和我們打個招呼！[br][br]
+如果你遇到任何困難或希望報告遊戲中的錯誤或漏洞，我們願意聆聽並提供幫助！`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
+化學3
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
-等待登錄響應。
+高科技建築。
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterEmail:
-請輸入您的電子郵箱。
+建設4
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterPassword:
-請輸入您的密碼。
+混凝土建築
 
 UI/Controls/Menu/Login/Data/ViewModelSelectUsernameFormControl@Dialog_AcceptUsername:
-`確定為[b]{0}[/b]嗎？ 你將不能改變它。
-[br]這個名字將被用於任何遊戲伺服器的遊戲內。`
+鋼建築
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_CapsLock:
-大寫鎖定
+控制論和生物植入物的創建和應用。
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_LeftMouseButton:
-鼠標左鍵
+植入物
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton1:
-滑鼠額外按鈕1
+高科技保護技術。
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton2:
-滑鼠額外按鈕2
+防禦4
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseScrollButton:
-鼠標滾輪按鈕
+突擊裝甲
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_PageDown:
-向下翻頁
+突擊頭盔
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_PageUp:
-向上翻頁
+高科技電力設施。
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_RightMouseButton:
-鼠標右鍵
+電力3
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
-空白鍵
+能源武器是傳統槍械的技術飛躍。
 
 UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
 是否要重置[b]{0}[/b]選項？[br]將保存默認值並應用。
 
 UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessageCannotBindToKey:
-你無法綁定按鍵:[br][b]{0}[/b]
+高科技工業技術，實現最複雜的技術流程。
 
 UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessageFormatKeyAlreadyBound:
-`所按按鍵已經被綁定至:
-[br][b]{0}[/b]
-[br]
-[br]再次按下該鍵來進行綁定
-[br]或者按下其他按鍵。`
+工業4
 
 UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessagePressToBind:
-請按鍵進行綁定或按Esc鍵取消。
+處理貴金屬和珠寶。
 
 UI/Controls/Menu/Servers/WindowAddOrEditServer.xaml@DialogServerAddressNotValid:
-服務器地址無效。請檢查。
+多岩
 
 UI/Controls/Menu/Servers/Controllers/MultiplayerMenuServersController@DialogRemoveServerFromList:
-您確定要從此列表中刪除服務器嗎？
+首飾
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogEditorMode_Message:
-無法在編輯模式下連接到任何服務器。
+開發和應用最先進的醫療技術。
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogEditorMode_Title:
-您正在編輯模式下運行遊戲。
+醫學3
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Advice_ConnectNewServer:
-請連接到較新版本的服務器。
+高科技攻擊技術使傳統槍械發揮最大潛力。
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Advice_UpdateClient:
-請將您的遊戲客戶端更新到最新版本。
+進攻4
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_MessageFormat:
-`[br]服務器版本 {0}
-[br]你的遊戲版本 {1}`
+高級戰鬥載具
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Title:
-服務器不匹配
+載具2
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionTitle_Newer:
-這個遊戲服務器正在運行更新版本的遊戲
+荒地
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionTitle_Older:
-這個遊戲服務器正在運行較舊版本的遊戲
+海灘（寒帶）
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
-`[b]網路連接出錯[/b]
-[br]無法連接至遊戲伺服器，這可能是由於網路狀況不佳或網路提供商路由失敗造成的。`
+海灘（溫帶）
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_MessageNoMods:
-此服務器上沒有使用mod。
+粘土坑
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_Title:
-服務器mod
+森林（寒帶）
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerNotAccessibleTitle:
-服務器無法訪問。
+森林（溫帶）
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
-服務器脫機
+森林（熱帶）
 
 UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
-您確定要清除此服務器列表嗎？
+湖岸
 
 UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
-清除服務器列表
+熔岩
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
-請等待獲取服務器信息。
+草甸
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Title:
-無法連接
+道路
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_IncorrectEmailOrPassword:
-您輸入的電子郵箱或密碼不正確。如果您確定輸入了正確的電子郵件，請重試或使用AtomicTorch.com上的重置密碼功能。
+遺跡
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailAlreadyUsed:
-已輸入的電子郵件已被其他帳戶使用。請使用其他電子郵箱。
+鹽灘
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailNotActivated:
-`您輸入的電子郵箱未激活。
-[br]請打開您的電子郵件帳戶，然後單擊我們剛剛發送給您的激活鏈接。 （請注意，該電子郵件可能位於您的垃圾郵件收件箱中。）`
+沼澤
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_Title:
-無法鏈接帳戶
+火山
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageAlreadyLinkedToAnotherAtomicTorchAccount:
-Steam帳戶已與另一個帳戶相關聯。
+水（湖）
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageAlreadyLinkedToAnotherSteamId:
-該帳戶已與另一個Steam ID相關聯。請使用其他AtomicTorch.com帳戶。
+水（海）
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageRestartSteamClient:
-請嘗試重新啟動Steam客戶端。
+無法建造
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_Title:
-無法註冊
+無法修理
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorConfirmEmailDoesntMatch:
-確認Email與輸入的Email不匹配。
+請使用載具港建造此載具。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterEmail:
-請輸入您的Email。
+物品不足。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterPassword:
-請輸入您的密碼。
+遇到障礙。[br]要建造載具港需要一片沒有障礙物和玩家的空間。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
-您必須接受服務條款才能繼續。
+請與車輛進行互動進行維修。
 
 UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
 看起來您正嘗試使用Microsoft旗下服務器中的電子郵件帳戶進行註冊。不幸的是，微軟徹底[b]阻止[/b]任何非大型提供商發送的電子郵件，我們無法向您的帳戶發送任何電子郵件。請使用任何其他電子郵件服務，例如[b]gmail.com[/b]。

@@ -7,6 +7,8 @@ namespace AtomicTorch.CBND.CoreMod.Playlists
 
     public class PlaylistMainMenu : ProtoPlaylist
     {
+        public override double FadeOutDurationOnPlaylistChange => 2;
+
         [NotLocalizable]
         public override string Name => "Main menu playlist";
 

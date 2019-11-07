@@ -5,6 +5,8 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
+    using System.Windows.Media.Animation;
+    using AtomicTorch.CBND.CoreMod.UI.Helpers;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -13,14 +15,9 @@
 
     public class PanningPanel : BaseItemsControl
     {
-        public const double ZoomingFuncPower = 2;
-        // public const double ZoomAnimationDurationSeconds = 0.0667;
+        private const double MouseScrollWheelZoomSpeed = 0.0015;
 
-        public static readonly DependencyProperty CenterCommandProperty = DependencyProperty.Register(
-            nameof(CenterCommand),
-            typeof(BaseCommand),
-            typeof(PanningPanel),
-            new PropertyMetadata(default(BaseCommand)));
+        private const double ZoomAnimationDurationSeconds = 0.1;
 
         public static readonly DependencyProperty DefaultZoomProperty = DependencyProperty.Register(
             nameof(DefaultZoom),
@@ -74,13 +71,15 @@
 
         private UIElement contentItems;
 
+        private Storyboard contentScaleStoryboard;
+
         private ScaleTransform contentScaleTransform;
+
+        private Storyboard contentTranslateStoryboard;
 
         private TranslateTransform contentTranslateTransform;
 
         private Canvas contentWrapper;
-
-        private double currentZoom = 1;
 
         private bool isInitialized;
 
@@ -90,9 +89,7 @@
 
         private Panel mouseEventsRoot;
 
-        private Vector2D mouseHoldPosition;
-
-        private Panel mouseInputRoot;
+        private Vector2D? mouseHoldAbsolutePosition;
 
         private BoundsDouble offsetBounds;
 
@@ -101,8 +98,6 @@
         private double panningHeight;
 
         private double panningWidth;
-
-        private double realScale = 1;
 
         private Vector2D? requireCenterOnPoint;
 
@@ -115,44 +110,17 @@
                 new FrameworkPropertyMetadata(typeof(PanningPanel)));
         }
 
-        public PanningPanel()
-        {
-        }
+        public event Action MouseHold;
 
         public event Action<PanningPanel, MouseEventArgs> MouseLeftButtonClick;
 
-        public event Action<double> ZoomChanged;
+        public event Action<(double newZoom, bool isByPlayersInput)> ZoomChanged;
 
-        public BaseCommand CenterCommand
-        {
-            get => (BaseCommand)this.GetValue(CenterCommandProperty);
-            set => this.SetValue(CenterCommandProperty, value);
-        }
+        public Func<Vector2D?> CallbackGetSliderZoomCanvasPosition { get; set; }
 
-        public Vector2D CurrentOffset
-        {
-            get
-            {
-                if (this.contentTranslateTransform == null)
-                {
-                    return Vector2D.Zero;
-                }
+        public double CurrentAnimatedZoom => this.contentScaleTransform.ScaleX;
 
-                return (this.contentTranslateTransform.X, this.contentTranslateTransform.Y);
-            }
-            set
-            {
-                if (this.contentTranslateTransform == null)
-                {
-                    return;
-                }
-
-                this.contentTranslateTransform.X = value.X;
-                this.contentTranslateTransform.Y = value.Y;
-            }
-        }
-
-        public double CurrentZoom => this.currentZoom;
+        public double CurrentTargetZoom { get; private set; } = 1;
 
         public double DefaultZoom
         {
@@ -247,14 +215,13 @@
             }
 
             var scale = this.contentScaleTransform.ScaleX;
-            Vector2D offset = ((this.clipperSize.X - point.X * 2d * scale) / 2d,
-                               (this.clipperSize.Y - point.Y * 2d * scale) / 2d);
+            point = ((this.clipperSize.X - point.X * 2d * scale) / 2d,
+                     (this.clipperSize.Y - point.Y * 2d * scale) / 2d);
 
-            offset = this.ClampOffset(offset);
-            this.SetOffset(offset);
+            point = this.ClampOffset(point);
+            this.SetOffset(point, isInstant: true);
 
             this.requireCenterOnPoint = null;
-
             //Api.Logger.WriteDev($"Centered on point: {point} offset: {newX:F2};{newY:F2}");
         }
 
@@ -283,10 +250,17 @@
 
         public void SetZoom(double newScale)
         {
-            newScale = MathHelper.Clamp(newScale, this.MinZoom, this.MaxZoom);
-            this.realScale = Math.Pow(newScale, 1 / ZoomingFuncPower);
-            this.currentZoom = newScale;
+            this.contentScaleStoryboard?.Remove(this.content);
+            this.contentScaleStoryboard?.Stop(this.content);
+            this.contentScaleStoryboard = null;
 
+            newScale = MathHelper.Clamp(newScale, this.MinZoom, this.MaxZoom);
+            this.CurrentTargetZoom = newScale;
+
+            // clear animation from these properties
+            this.contentScaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, null);
+            this.contentScaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, null);
+            // and apply changed values
             this.contentScaleTransform.ScaleX = newScale;
             this.contentScaleTransform.ScaleY = newScale;
 
@@ -299,7 +273,7 @@
                 this.isListeningToScaleEvents = true;
             }
 
-            this.OnZoomChanged();
+            this.OnZoomChanged(isByPlayersInput: false);
         }
 
         protected override void InitControl()
@@ -312,7 +286,6 @@
             this.contentItems = layoutRoot.GetByName<Canvas>("CanvasContentItems");
 
             this.mouseEventsRoot = IsDesignTime ? layoutRoot : Api.Client.UI.LayoutRoot;
-            this.mouseInputRoot = this.contentWrapper;
 
             this.contentScaleTransform = new ScaleTransform();
             this.contentTranslateTransform = new TranslateTransform();
@@ -325,8 +298,6 @@
             this.clippingRect = new RectangleGeometry();
             this.contentWrapper.Clip = this.clippingRect;
             this.sliderScale = layoutRoot.GetByName<Slider>("SliderScale");
-
-            this.CenterCommand = new ActionCommand(this.CenterCommandAction);
         }
 
         protected override void OnLoaded()
@@ -340,7 +311,7 @@
             }
             else
             {
-                this.SetZoom(this.currentZoom);
+                this.SetZoom(this.CurrentTargetZoom);
             }
 
             if (!IsDesignTime)
@@ -390,14 +361,15 @@
         /// <summary>
         /// Zoom to screen point.
         /// </summary>
-        protected void ZoomToPoint(double newScale, Vector2D screenPoint, bool isInstant)
+        protected void ZoomToPoint(double newScale, Vector2D contentWrapperPoint, bool isInstant)
         {
-            if (!this.isLoaded)
+            if (!this.isLoaded
+                || this.CurrentTargetZoom == newScale)
             {
                 return;
             }
 
-            this.currentZoom = newScale;
+            this.CurrentTargetZoom = newScale;
 
             var oldScale = this.contentScaleTransform.ScaleX;
 
@@ -405,56 +377,53 @@
                                       this.contentTranslateTransform.Y);
 
             // fix on cursor to avoid moving while scaling
-            var delta = ((newScale - oldScale) * (currentOffset.X - screenPoint.X) / oldScale,
-                         (newScale - oldScale) * (currentOffset.Y - screenPoint.Y) / oldScale);
+            var delta = ((newScale - oldScale) * (currentOffset.X - contentWrapperPoint.X) / oldScale,
+                         (newScale - oldScale) * (currentOffset.Y - contentWrapperPoint.Y) / oldScale);
 
             this.UpdateBounds();
             var offset = currentOffset + delta;
             offset = this.ClampOffset(offset);
 
-            this.mouseHoldPosition = (
-                                         this.mouseHoldPosition.X + currentOffset.X - offset.X,
-                                         this.mouseHoldPosition.Y + currentOffset.Y - offset.Y);
+            this.mouseHoldAbsolutePosition = null;
 
-            isInstant = true;
+            this.contentScaleStoryboard?.Remove(this.content);
+            this.contentScaleStoryboard = null;
 
             if (isInstant)
             {
                 this.contentScaleTransform.ScaleX = newScale;
                 this.contentScaleTransform.ScaleY = newScale;
-
-                //Api.Logger.WriteDev(
-                //	string.Format(
-                //		"Zooming to x{0} from x{1}|y{2} ({3}|{4})",
-                //		newScale,
-                //		this.canvasContentScaleTransform.GetValue(ScaleTransform.ScaleXProperty),
-                //		this.canvasContentScaleTransform.GetValue(ScaleTransform.ScaleYProperty),
-                //		this.canvasContentScaleTransform.ScaleX,
-                //		this.canvasContentScaleTransform.ScaleY));
-
-                this.SetOffset(offset);
             }
-            //else
-            //{
-            //	this.scaleStoryboard = AnimationHelper.CreateScaleStoryboard(
-            //		this.scaleTransform,
-            //		ZoomAnimationDurationSeconds,
-            //		oldScale,
-            //		newScale);
+            else
+            {
+                // necessary in order to immediately restore last scale after just remove contentScaleStoryboard
+                this.contentScaleTransform.ScaleX = oldScale;
+                this.contentScaleTransform.ScaleY = oldScale;
 
-            //	this.translateStoryboard = AnimationHelper.CreateTransformMoveStoryboard(
-            //		this.translateTransform,
-            //		ZoomAnimationDurationSeconds,
-            //		currentX,
-            //		newX,
-            //		currentY,
-            //		newY);
+                var scaleStoryboard = AnimationHelper.CreateScaleStoryboard(
+                    this.contentScaleTransform,
+                    ZoomAnimationDurationSeconds,
+                    oldScale,
+                    newScale);
+                this.contentScaleStoryboard = scaleStoryboard;
+                this.contentScaleStoryboard.Begin(this.content, isControllable: true);
 
-            //	this.scaleStoryboard.Begin(this.canvasContent);
-            //	this.translateStoryboard.Begin(this.canvasContent);
-            //}
+                // reset field when it's ended so panning can work
+                ClientTimersSystem.AddAction(
+                    delaySeconds: ZoomAnimationDurationSeconds,
+                    action: () =>
+                            {
+                                if (ReferenceEquals(scaleStoryboard,
+                                                    this.contentScaleStoryboard))
+                                {
+                                    // assume the animation is ended
+                                    this.contentScaleStoryboard = null;
+                                }
+                            });
+            }
 
-            this.OnZoomChanged();
+            this.SetOffset(offset, isInstant: isInstant);
+            this.OnZoomChanged(isByPlayersInput: true);
         }
 
         private static void MinOrMaxZoomPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -499,41 +468,37 @@
             this.MinZoom = Math.Min(1.0 / scale, this.MaxZoom);
         }
 
+        private Vector2D CalculateOffset(Vector2D point)
+        {
+            var scale = this.contentScaleTransform.ScaleX;
+            point = ((this.clipperSize.X - point.X * 2d * scale) / 2d,
+                     (this.clipperSize.Y - point.Y * 2d * scale) / 2d);
+
+            point = this.ClampOffset(point);
+            return point;
+        }
+
         private void CanvasSizeChangedHandler(object sender, SizeChangedEventArgs arg1)
         {
             this.Refresh();
         }
 
-        private void CenterCommandAction()
-        {
-            this.SetZoom(this.DefaultZoom);
-            this.CenterCanvasContent();
-        }
-
         private Vector2D ClampOffset(Vector2D offset)
-        {
-            return (
-                       -MathHelper.Clamp(-offset.X, this.offsetBounds.MinX, this.offsetBounds.MaxX),
-                       -MathHelper.Clamp(-offset.Y, this.offsetBounds.MinY, this.offsetBounds.MaxY));
-        }
+            => (-MathHelper.Clamp(-offset.X, this.offsetBounds.MinX, this.offsetBounds.MaxX),
+                -MathHelper.Clamp(-offset.Y, this.offsetBounds.MinY, this.offsetBounds.MaxY));
 
         private void ContentWrapperMouseWheelHandler(object sender, MouseWheelEventArgs e)
         {
-            var wheelRotation = e.Delta * 0.001d;
-            this.realScale = MathHelper.Clamp(
-                this.realScale + wheelRotation,
-                this.MinZoom,
-                Math.Pow(this.MaxZoom, 1 / ZoomingFuncPower));
-
-            var newScale = ZoomingFuncPower != 1d && this.realScale > 1
-                               ? Math.Pow(this.realScale, ZoomingFuncPower)
-                               : this.realScale;
+            var wheelRotation = e.Delta * MouseScrollWheelZoomSpeed;
+            // use exponential scale https://www.gamedev.net/forums/topic/666225-equation-for-zooming/?tab=comments#comment-5213633
+            var newScale = Math.Exp(Math.Log(this.CurrentTargetZoom) + wheelRotation);
+            newScale = MathHelper.Clamp(newScale, this.MinZoom, this.MaxZoom);
 
             this.isListeningToScaleEvents = false;
             this.sliderScale.Value = newScale;
             this.isListeningToScaleEvents = true;
 
-            this.ZoomToPoint(newScale, this.GetMouseCanvasPosition(e), isInstant: false);
+            this.ZoomToPoint(newScale, this.GetMouseCanvasPosition(), isInstant: false);
             //Api.Logger.Write("Current zoom: " + currentZoom.ToString("F2"), LogSeverity.Dev);
         }
 
@@ -545,18 +510,18 @@
             }
 
             this.isMouseButtonDown = true;
-            var pos = this.GetMouseCanvasPosition(e);
-            this.mouseHoldPosition = (pos.X - this.contentTranslateTransform.X,
-                                      pos.Y - this.contentTranslateTransform.Y);
+            this.UpdateMouseHoldAbsolutePosition(this.GetMouseCanvasPosition());
 
             this.mouseEventsRoot.PreviewMouseLeftButtonUp += this.LayoutRootOnMouseLeftButtonUpHandler;
             this.mouseEventsRoot.MouseLeave += this.LayoutRootMouseLeaveHandler;
             this.mouseEventsRoot.PreviewMouseMove += this.LayoutRootMouseMoveHandler;
+
+            this.MouseHold?.Invoke();
         }
 
-        private Vector2D GetMouseCanvasPosition(MouseEventArgs e)
+        private Vector2D GetMouseCanvasPosition()
         {
-            return e.GetPosition(this.contentWrapper).ToVector2D();
+            return Mouse.GetPosition(this.contentWrapper).ToVector2D();
         }
 
         private void LayoutRootMouseLeaveHandler(object sender, MouseEventArgs arg1)
@@ -571,24 +536,23 @@
                 return;
             }
 
-            //if (this.scaleStoryboard != null
-            //    && this.scaleStoryboard.IsPlaying(this.canvasContent))
-            //{
-            //	return;
-            //}
+            var pos = this.GetMouseCanvasPosition();
+            if (!(this.contentScaleStoryboard is null))
+            {
+                // don't allow panning while zoom storyboard is playing
+                return;
+            }
 
-            var pos = this.GetMouseCanvasPosition(e);
-            var offset = pos - this.mouseHoldPosition;
+            if (!this.mouseHoldAbsolutePosition.HasValue)
+            {
+                // perhaps the value was reset during the zooming
+                this.UpdateMouseHoldAbsolutePosition(pos);
+            }
+
+            // ReSharper disable once PossibleInvalidOperationException
+            var offset = pos - this.mouseHoldAbsolutePosition.Value;
             offset = this.ClampOffset(offset);
-            this.SetOffset(offset);
-
-            //Api.Logger.WriteDev(
-            //	string.Format(
-            //		"Moving to x={0} y={1} (x={2}|y={3})",
-            //		newX,
-            //		newY,
-            //		this.canvasContentTranslateTransform.X,
-            //		this.canvasContentTranslateTransform.Y));
+            this.SetOffset(offset, isInstant: true);
         }
 
         private void LayoutRootOnMouseLeftButtonUpHandler(object sender, MouseButtonEventArgs e)
@@ -601,9 +565,9 @@
             this.ReleaseMouse();
         }
 
-        private void OnZoomChanged()
+        private void OnZoomChanged(bool isByPlayersInput)
         {
-            this.ZoomChanged?.Invoke(this.currentZoom);
+            this.ZoomChanged?.Invoke((this.CurrentTargetZoom, isByPlayersInput));
         }
 
         private void ReleaseMouse()
@@ -614,6 +578,7 @@
             }
 
             this.isMouseButtonDown = false;
+            this.mouseHoldAbsolutePosition = null;
 
             if (this.mouseEventsRoot != null)
             {
@@ -623,12 +588,30 @@
             }
         }
 
-        private void SetOffset(Vector2D offset)
+        private void SetOffset(Vector2D offset, bool isInstant)
         {
-            this.contentTranslateTransform.ClearValue(TranslateTransform.XProperty);
-            this.contentTranslateTransform.ClearValue(TranslateTransform.YProperty);
-            this.contentTranslateTransform.X = offset.X;
-            this.contentTranslateTransform.Y = offset.Y;
+            this.contentTranslateStoryboard?.Remove(this.content);
+            this.contentTranslateStoryboard = null;
+
+            if (isInstant)
+            {
+                this.contentTranslateTransform.X = offset.X;
+                this.contentTranslateTransform.BeginAnimation(TranslateTransform.XProperty, null);
+                this.contentTranslateTransform.Y = offset.Y;
+                this.contentTranslateTransform.BeginAnimation(TranslateTransform.YProperty, null);
+            }
+            else
+            {
+                this.contentTranslateStoryboard = AnimationHelper.CreateTransformMoveStoryboard(
+                    this.contentTranslateTransform,
+                    ZoomAnimationDurationSeconds,
+                    fromX: this.contentTranslateTransform.X,
+                    toX: offset.X,
+                    fromY: this.contentTranslateTransform.Y,
+                    toY: offset.Y);
+
+                this.contentTranslateStoryboard.Begin(this.content);
+            }
         }
 
         private void SliderScaleValueChangedHandler(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -638,10 +621,23 @@
                 return;
             }
 
-            this.ZoomToPoint(
-                e.NewValue,
-                (this.contentWrapper.ActualWidth / 2, this.contentWrapper.ActualHeight / 2),
-                isInstant: false);
+            Vector2D? contentWrapperPoint = null;
+            var canvasPoint = this.CallbackGetSliderZoomCanvasPosition?.Invoke();
+            if (canvasPoint.HasValue)
+            {
+                var screenPoint = this.content.PointToScreen(new Point(canvasPoint.Value.X,
+                                                                       canvasPoint.Value.Y));
+                contentWrapperPoint = this.contentWrapper.PointFromScreen(screenPoint).ToVector2D();
+            }
+
+            if (contentWrapperPoint == null)
+            {
+                // zoom to center of the screen if no custom zoom position provided
+                contentWrapperPoint = (this.contentWrapper.ActualWidth / 2,
+                                       this.contentWrapper.ActualHeight / 2);
+            }
+
+            this.ZoomToPoint(e.NewValue, contentWrapperPoint.Value, isInstant: false);
         }
 
         private void UpdateBounds()
@@ -655,8 +651,8 @@
                                 ?? new BoundsDouble(0, 0, this.panningWidth, this.panningHeight);
 
             visibleBounds = new BoundsDouble(
-                offset: visibleBounds.Offset * this.currentZoom,
-                size: visibleBounds.Size * this.currentZoom);
+                offset: visibleBounds.Offset * this.CurrentTargetZoom,
+                size: visibleBounds.Size * this.CurrentTargetZoom);
 
             // Now we have the canvas content visible bounds.
             // Please note: clipper size is the observable size of the content.
@@ -679,6 +675,12 @@
                        Math.Max(0, offsetBounds.Size.Y - padding.Y / 2)));
 
             this.offsetBounds = offsetBounds;
+        }
+
+        private void UpdateMouseHoldAbsolutePosition(Vector2D currentMouseCanvasPosition)
+        {
+            this.mouseHoldAbsolutePosition = (currentMouseCanvasPosition.X - this.contentTranslateTransform.X,
+                                              currentMouseCanvasPosition.Y - this.contentTranslateTransform.Y);
         }
 
         private void UpdatePanningSize()

@@ -24,17 +24,23 @@
           IProtoObjectExtractor
     {
         /// <summary>
-        /// Public extractors are x2 faster in PvP.
+        /// These constants are adjusting both extraction speed and fuel consumption speed.
         /// </summary>
-        public const double PublicExtractorSpeedMultiplierInPvP = 2.0;
+        public const double PveInfiniteExtractorSpeedMultiplier = 0.5;
+
+        public const double PvePlayerBuiltExtractorSpeedMultiplier = 0.25;
+
+        public const double PvpInfiniteExtractorSpeedMultiplier = 1.0;
+
+        public const double PvpPlayerBuiltExtractorSpeedMultiplier = 0.5;
 
         public override bool IsAutoSelectRecipe => true;
 
         public override bool IsFuelProduceByproducts => false;
 
-        public abstract float LiquidCapacity { get; }
+        public abstract double LiquidCapacity { get; }
 
-        public abstract float LiquidProductionAmountPerSecond { get; }
+        public abstract double LiquidProductionAmountPerSecond { get; }
 
         protected LiquidContainerConfig LiquidContainerConfig { get; private set; }
 
@@ -51,6 +57,19 @@
             }
 
             base.ServerApplyDecay(worldObject, deltaTime);
+        }
+
+        public override double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
+        {
+            var rate = base.SharedGetCurrentElectricityConsumptionRate(worldObject);
+            if (rate <= 0)
+            {
+                return 0;
+            }
+
+            var objectDeposit = this.SharedGetDepositWorldObject(worldObject.OccupiedTile);
+            rate *= SharedGetSpeedMultiplier(objectDeposit);
+            return rate;
         }
 
         public override bool SharedOnDamage(
@@ -112,12 +131,12 @@
             ClientObjectDepositTooltipHelper.Refresh(worldObjectDeposit, isObserving);
         }
 
-        protected override void ClientOnObjectDestroyed(Vector2Ushort tilePosition)
+        protected override void ClientOnObjectDestroyed(Vector2D position)
         {
-            base.ClientOnObjectDestroyed(tilePosition);
+            base.ClientOnObjectDestroyed(position);
 
             var objectDeposit = this.SharedGetDepositWorldObject(
-                Client.World.GetTile(tilePosition));
+                Client.World.GetTile(position.ToVector2Ushort()));
             // force reinitialize deposit to ensure the deposit (if it's still there as in case of infinite deposit) will be rendered
             objectDeposit?.ClientInitialize();
         }
@@ -134,7 +153,7 @@
             OnRefreshActiveState onRefresh = null)
         {
             var clientState = worldObject.GetClientState<StaticObjectClientState>();
-            var sceneObject = Client.Scene.GetSceneObject(worldObject);
+            var sceneObject = worldObject.ClientSceneObject;
 
             var overlayRenderer = Client.Rendering.CreateSpriteRenderer(
                 sceneObject,
@@ -228,12 +247,12 @@
             var privateState = data.PrivateState;
             var objectDeposit = this.SharedGetDepositWorldObject(worldObject.OccupiedTile);
 
-            var isPvEserver = PveSystem.ServerIsPvE;
             var fuelBurningState = privateState.FuelBurningState;
             if (objectDeposit == null
-                && !isPvEserver)
+                && !PveSystem.ServerIsPvE)
             {
-                // no deposit object - stop progressing
+                // no deposit object in PvP - stop extraction
+                data.PublicState.IsActive = false;
                 privateState.LiquidContainerState.Amount = 0;
                 if (fuelBurningState != null)
                 {
@@ -243,26 +262,7 @@
                 return;
             }
 
-            var deltaTime = data.DeltaTime;
-            var deltaTimeForManufacturing = deltaTime;
-            if (objectDeposit == null
-                && isPvEserver)
-            {
-                // On PvE servers extractors work on reduced speed
-                // if there is no deposit (the extractor built by player anywhere).
-                deltaTimeForManufacturing *= PveSystem.DepositExtractorWithoutDepositActionSpeedMultiplier;
-            }
-            else if (objectDeposit != null
-                     && !isPvEserver
-                     && objectDeposit.ProtoStaticWorldObject is IProtoObjectDeposit protoObjectDeposit
-                     && protoObjectDeposit.LifetimeTotalDurationSeconds <= 0)
-            {
-                // Public extractor (for infinite deposit) in PvP. Much faster extraction.
-                deltaTimeForManufacturing *= PublicExtractorSpeedMultiplierInPvP;
-            }
-
-            // apply extraction rate multiplier
-            deltaTimeForManufacturing *= StructureConstants.ManufacturingSpeedMultiplier;
+            var deltaTime = data.DeltaTime * SharedGetSpeedMultiplier(objectDeposit);
 
             var isActive = false;
             var isFull = privateState.LiquidContainerState.Amount >= this.LiquidContainerConfig.Capacity;
@@ -311,12 +311,40 @@
                 this.LiquidContainerConfig,
                 data.PrivateState.ManufacturingState,
                 this.ManufacturingConfig,
-                deltaTimeForManufacturing,
+                deltaTime,
                 // the pump produce petroleum only when active
                 isProduceLiquid: data.PublicState.IsActive,
                 forceUpdateRecipe: true);
         }
 
         protected abstract IStaticWorldObject SharedGetDepositWorldObject(Tile tile);
+
+        private static double SharedGetSpeedMultiplier(IStaticWorldObject objectDeposit)
+        {
+            return GetDepositExtractionRateMultiplier()
+                   * StructureConstants.DepositsExtractionSpeedMultiplier;
+
+            double GetDepositExtractionRateMultiplier()
+            {
+                if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                {
+                    return objectDeposit is null // is player built deposit?
+                               ? PvePlayerBuiltExtractorSpeedMultiplier
+                               : PveInfiniteExtractorSpeedMultiplier;
+                }
+
+                // extractor in PvP
+                if (objectDeposit == null)
+                {
+                    // should never happen, there is no deposit so no extraction can go on
+                    return 0;
+                }
+
+                var protoObjectDeposit = (IProtoObjectDeposit)objectDeposit.ProtoStaticWorldObject;
+                return protoObjectDeposit.LifetimeTotalDurationSeconds <= 0 // is infinite deposit?
+                           ? PvpInfiniteExtractorSpeedMultiplier
+                           : PvpPlayerBuiltExtractorSpeedMultiplier;
+            }
+        }
     }
 }

@@ -42,7 +42,7 @@
         [TempOnly]
         public ushort? ContainerOutputLastStateHash { get; set; }
 
-        public IItemsContainer[] InputContainersArray 
+        public IItemsContainer[] InputContainersArray
             => this.inputContainersArray ??= this.CreateInputContainersArray();
 
         /// <summary>

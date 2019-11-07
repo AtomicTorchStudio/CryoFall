@@ -87,8 +87,6 @@
             }
         }
 
-        public virtual string InteractionTooltipText => InteractionTooltipTexts.Interact;
-
         public abstract StaticObjectKind Kind { get; }
 
         public StaticObjectLayoutReadOnly Layout { get; private set; }
@@ -138,9 +136,9 @@
         /// For wide/high objects (and objects with large lights) it's necessary to increase their visual height so they will be
         /// included in view scope properly.
         /// </summary>
-        public virtual BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1, 
-                                                                      minY: -1, 
-                                                                      maxX: 1, 
+        public virtual BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
+                                                                      minY: -1,
+                                                                      maxX: 1,
                                                                       maxY: 1);
 
         public bool CheckTileRequirements(Vector2Ushort startTilePosition, ICharacter character, bool logErrors)
@@ -148,25 +146,11 @@
             return this.tileRequirements.Check(this, startTilePosition, character, logErrors);
         }
 
-        public virtual string ClientGetTitle(IStaticWorldObject worldObject)
-        {
-            // only structures are displaying the name tooltip
-            return null;
-        }
-
-        public void ClientObserving(IStaticWorldObject worldObject, bool isObserving)
-        {
-            this.ClientObserving(new ClientObjectData(worldObject), isObserving);
-        }
-
         /// <summary>
         /// Gets the texture used for construction place selection (blueprint). Usually the same texture is used for the object
         /// rendering as well.
         /// </summary>
         /// <param name="tile">World tile.</param>
-        /// <param name="spriteRenderer"></param>
-        /// <param name="positionOffset">Draw offset of texture (return Vector2.Zero if no offset required).</param>
-        /// <returns>Texture for blueprint.</returns>
         public virtual void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {
             blueprint.SpriteRenderer.TextureResource = this.DefaultTexture;
@@ -301,7 +285,7 @@
         protected void ClientAddAutoStructurePointsBar(ClientInitializeData data)
         {
             var worldObject = data.GameObject;
-            var sceneObject = Client.Scene.GetSceneObject(worldObject);
+            var sceneObject = worldObject.ClientSceneObject;
             sceneObject.AddComponent<ClientComponentAutoDisplayStructurePointsBar>()
                        .Setup(worldObject,
                               structurePointsMax: this.StructurePointsMax);
@@ -336,16 +320,12 @@
             }
         }
 
-        protected virtual void ClientObserving(ClientObjectData data, bool isObserving)
-        {
-        }
-
-        protected override void ClientOnObjectDestroyed(Vector2Ushort tilePosition)
+        protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             this.MaterialDestroySoundPreset.PlaySound(
                 this.ObjectSoundMaterial,
                 this,
-                worldPosition: tilePosition.ToVector2D() + this.Layout.Center,
+                worldPosition: position + this.Layout.Center,
                 volume: SoundConstants.VolumeDestroy,
                 pitch: RandomHelper.Range(0.95f, 1.05f));
         }

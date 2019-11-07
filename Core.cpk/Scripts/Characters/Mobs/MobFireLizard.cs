@@ -11,6 +11,8 @@
 
     public class MobFireLizard : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => false;
+
         public override float CharacterWorldHeight => 1.3f;
 
         public override float CharacterWorldWeaponOffsetRanged => 0.4f;
@@ -23,15 +25,15 @@
 
         public override double StatDefaultHealthMax => 300;
 
-        public override double StatMoveSpeed => 1.1;
+        public override double StatMoveSpeed => 1.65;
 
         protected override void FillDefaultEffects(Effects effects)
         {
             base.FillDefaultEffects(effects);
 
-            effects.AddValue(this, StatName.DefenseImpact, 0.4);
+            effects.AddValue(this, StatName.DefenseImpact,  0.4);
             effects.AddValue(this, StatName.DefenseKinetic, 0.2);
-            effects.AddValue(this, StatName.DefenseHeat, 0.4);
+            effects.AddValue(this, StatName.DefenseHeat,    0.4);
         }
 
         protected override void PrepareProtoCharacterMob(
@@ -60,7 +62,7 @@
             base.ServerInitializeCharacterMob(data);
             var weaponProto = GetProtoEntity<ItemWeaponLizardFangs>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)
@@ -71,11 +73,12 @@
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
                 isRetreating: currentStats.HealthCurrent < currentStats.HealthMax / 4,
+                isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 10,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 8,
-                out var movementDirection,
-                out var rotationAngleRad);
+                movementDirection: out var movementDirection,
+                rotationAngleRad: out var rotationAngleRad);
 
             this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
         }

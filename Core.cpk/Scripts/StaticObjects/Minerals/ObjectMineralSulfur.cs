@@ -19,7 +19,7 @@
 
             // droplist for stage 1
             config.Stage1
-                  .Add<ItemStone>(count: 1, countRandom: 0)
+                  .Add<ItemStone>(count: 1,              countRandom: 0)
                   .Add<ItemSulfurPowder>(count: 5,       countRandom: 0)
                   .Add<ItemSulfurPowder>(countRandom: 1, condition: conditionAdditionalYield);
 
@@ -29,7 +29,7 @@
 
             // droplist for stage 4
             config.Stage4
-                  .Add<ItemStone>(count: 2, countRandom: 0)
+                  .Add<ItemStone>(count: 2,              countRandom: 0)
                   .Add<ItemSulfurPowder>(count: 10,      countRandom: 0)
                   .Add<ItemSulfurPowder>(countRandom: 5, condition: conditionAdditionalYield)
                   .Add<ItemGoldNugget>(count: 1,         countRandom: 3, probability: 1 / 50.0);

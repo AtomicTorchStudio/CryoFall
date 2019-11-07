@@ -35,8 +35,8 @@
           <ObjectPlayerLootContainer.ObjectPlayerLootContainerPrivateState,
               ObjectPlayerLootContainer.ObjectPlayerLootContainerPublicState,
               StaticObjectClientState>,
-          IInteractableProtoStaticWorldObject,
-          IProtoStaticWorldObjectCustomInteractionCursor
+          IInteractableProtoWorldObject,
+          IProtoWorldObjectCustomInteractionCursor
     {
         public const double AutoDestroyTimeoutSeconds = 60 * 60; // 1 hour
 
@@ -93,9 +93,9 @@
                                                            ensureNoClosedDoorsOnTheWay: false);
         }
 
-        public override string ClientGetTitle(IStaticWorldObject worldObject)
+        public override string ClientGetTitle(IWorldObject worldObject)
         {
-            var ownerName = GetPublicState(worldObject).OwnerName;
+            var ownerName = GetPublicState((IStaticWorldObject)worldObject).OwnerName;
             if (ownerName == ClientCurrentCharacterHelper.Character?.Name)
             {
                 return MessageLootFromCurrentPlayer;
@@ -104,9 +104,9 @@
             return string.Format(MessageFormatLootFromAnotherPlayer, ownerName);
         }
 
-        public BaseUserControlWithWindow ClientOpenUI(IStaticWorldObject worldObject)
+        public BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {
-            var itemsContainer = GetPrivateState(worldObject).ItemsContainer;
+            var itemsContainer = GetPrivateState((IStaticWorldObject)worldObject).ItemsContainer;
             var soundOpen = Client.UI.GetApplicationResource<SoundUI>("SoundWindowContainerBagOpen");
             var soundClose = Client.UI.GetApplicationResource<SoundUI>("SoundWindowContainerBagClose");
             return WindowContainerExchange.Show(itemsContainer,
@@ -164,7 +164,7 @@
                             _ => _.ClientRemote_NotifyLootFinished(lastInteractingCharacter.Name));
         }
 
-        public void ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        public void ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
             // nothing here
         }
@@ -213,10 +213,10 @@
             return false;
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
             Logger.Important($"{who} interacting with {worldObject}");
-            var privateState = GetPrivateState(worldObject);
+            var privateState = GetPrivateState((IStaticWorldObject)worldObject);
             privateState.LastInteractingCharacter = who;
             var owner = privateState.Owner;
             if (owner == who)
@@ -232,7 +232,7 @@
             // don't use base implementation
             //base.ClientInitialize(data);
 
-            var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
+            var sceneObject = data.GameObject.ClientSceneObject;
             Client.Rendering.CreateSpriteRenderer(
                 sceneObject,
                 this.DefaultTexture,
@@ -244,10 +244,10 @@
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
-        protected override void ClientOnObjectDestroyed(Vector2Ushort tilePosition)
+        protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             // do nothing as currently it's not a damageable object
         }
@@ -543,11 +543,11 @@
         private void ClientRemote_NotifyLootFinished(string name)
         {
             NotificationSystem.ClientShowNotification(
-                NotificationCurrentPlayerItemsTaken_Title,
-                string.Format(NotificationCurrentPlayerItemsTaken_Message, name),
-                NotificationColor.Bad,
-                this.DefaultTexture,
-                autoHide: false);
+                                  NotificationCurrentPlayerItemsTaken_Title,
+                                  string.Format(NotificationCurrentPlayerItemsTaken_Message, name),
+                                  NotificationColor.Bad,
+                                  this.DefaultTexture)
+                              .HideAfterDelay(delaySeconds: 10 * 60);
         }
 
         private void ClientRemote_NotifyLootInteraction(string name)

@@ -111,7 +111,7 @@
                     item.CommandEdit = this.CommandEdit;
                 }
 
-                this.ServerAddressToServerViewModel.Add(address, item);
+                this.ServerAddressToServerViewModel.Add((address, item));
             }
 
             this.IsListAvailable = true;

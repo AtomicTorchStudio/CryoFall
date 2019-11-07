@@ -28,6 +28,12 @@ Vous avez récemment fait un repas copieux. Toutes les tâches que vous entrepre
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Nourriture copieuse
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
+Vous avez récemment mangé un repas savoureux. Cela rend la vie plus légère.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+Repas savoureux
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Vous êtes sous l'influence d'un stimulant qui augmente temporairement votre force : vous pouvez effectuer plus facilement les tâches faisant appel à la force.
 
@@ -44,7 +50,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 Un implant défectueux dans votre corps affecte votre bien-être : votre maximum de santé (PV) s'en trouve diminué.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
-Implant défectueux
+Impact d'implant défectueux
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Vous vous êtes cassé la jambe : votre capacité de déplacement s'en trouve affectée. Essayer de courir avec une jambe cassée entraînera une vive douleur. Utilisez une attelle pour soigner la fracture.

@@ -55,10 +55,13 @@
             // chance to also drop seeds
             droplist.Add(probability: 1 / 50.0,
                          nestedList: new DropItemsList(outputs: 1)
+                                     // seeds - primary
                                      .Add<ItemSeedsCarrot>(count: 1)
                                      .Add<ItemSeedsCucumber>(count: 1)
                                      .Add<ItemSeedsTomato>(count: 1)
-                                     .Add<ItemSeedsBellPepper>(count: 1));
+                                     .Add<ItemSeedsBellPepper>(count: 1)
+                                     .Add<ItemSeedsCorn>(count: 1)
+                );
         }
 
         protected override ReadOnlySoundPreset<ObjectSound> PrepareSoundPresetObject()

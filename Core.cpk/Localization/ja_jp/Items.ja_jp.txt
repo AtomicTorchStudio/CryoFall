@@ -1,17 +1,17 @@
 ﻿Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Description:
-直径10mmの弾薬は、より高い装甲の貫通能力を提供するために特別に設計されています。装甲を着た標的に対して最適ですが、生物の標的には効果が薄れます。
+より高い装甲貫通能力を持つよう特別に設計された10mm径の改造弾薬。装甲を持った標的に対して最適ですが、生物の標的には効果が薄れます。
 
 Scripts/Items/Ammo/ItemAmmo10mmArmorPiercing@Name:
 10mm徹甲弾
 
 Scripts/Items/Ammo/ItemAmmo10mmBlank@Description:
-特別な10ミリ空砲弾。軍事演習や侵入者を追い払うために使用できます。
+10mm特殊空砲弾。軍事演習や侵入者を威嚇するのに使用できます。
 
 Scripts/Items/Ammo/ItemAmmo10mmBlank@Name:
-10mm空包
+10mm空包弾
 
 Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Description:
-生物用に特別に設計改良された10mm弾。命中時に弾丸が膨張し高い抑止力とダメージを与えます。装甲標的に対しては効果はありません。
+生物用に特別に設計された10mm径の改造弾。命中時に弾丸が膨張し高い抑止力とダメージを与えます。装甲標的に対しては全く効果はありません。
 
 Scripts/Items/Ammo/ItemAmmo10mmHollowPoint@Name:
 10mmホローポイント弾
@@ -20,10 +20,10 @@ Scripts/Items/Ammo/ItemAmmo10mmStandard@Description:
 あらゆる標的に対して威力を発揮するよう設計された10mm弾。
 
 Scripts/Items/Ammo/ItemAmmo10mmStandard@Name:
-10mm標準弾薬
+10mm標準弾
 
 Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Description:
-散弾銃の拡散力と貫通力のバランスを兼ね備えた威力を提供します。しかし、推進剤として使用している黒色粉末はニトロセルロースよりも威力が弱く、弾薬の射程を制限します。
+散弾銃の拡散力と貫通力のバランスを兼ね備えています。しかし、推進剤として使用している黒色粉末はニトロセルロースよりも威力が弱く、弾薬の威力が制限されます。
 
 Scripts/Items/Ammo/ItemAmmo12gaBuckshot@Name:
 12ゲージ散弾
@@ -35,34 +35,40 @@ Scripts/Items/Ammo/ItemAmmo12gaPellets@Name:
 12ゲージ拡散弾
 
 Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Description:
-砲弾が粗い塩で満たされており、実際の戦闘ではなく、主に侵入者や泥棒を怖がらせるように設計されています。ほとんどダメージを与えません。しかし打たれた時の痛みは…想像を絶します。
+砲弾が粗い塩で満たされており、実際の戦闘ではなく、主に侵入者や泥棒への威嚇用に設計されています。ほとんどダメージを与えません。しかし打たれた時の痛みは…想像を絶します。
 
 Scripts/Items/Ammo/ItemAmmo12gaSaltCharge@Name:
 12ゲージソルト弾
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Description:
-スラグ弾は拡散弾よりはるかに高い抑止力を提供し、多種多様な標的に対して使用することができます。その高い質量のために、スラグ弾は重装甲の目標に対しても非常に効果的です。
+スラグ弾は拡散弾よりはるかに高い抑止力を提供し、多種多様な標的に対して使用することができます。その高い質量のために、スラグ弾は重装甲の標的に対しても非常に効果的です。
 
 Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
 12ゲージスラグ弾
 
 Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Description:
-防具貫通機能を備えた重装甲用の弾丸。
+装甲貫通能力を備えた対重装甲用の30口径弾。
 
 Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
 .300徹甲弾
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
-.300焼夷弾。装甲を貫通して燃やせることができます。
+30口径の焼夷弾。装甲を貫通して標的を燃やすことができます。
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 .300焼夷弾
+
+Scripts/Items/Ammo/ItemAmmo50SH@Description:
+ハイパワー大口径拳銃カートリッジ
+
+Scripts/Items/Ammo/ItemAmmo50SH@Name:
+.50 SH弾
 
 Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
 シンプルな8mmのジャケットなしの弾丸。単純な材料と製造技術を使用しているため、精度と威力はかなり低くなっています。
 
 Scripts/Items/Ammo/ItemAmmo8mmStandard@Name:
-8mm標準弾薬
+8mm標準弾
 
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
 衝撃を受けて破裂する密閉された空洞を有し、中に少量の毒が注入できるように改良された8mm弾。
@@ -91,89 +97,92 @@ Scripts/Items/Base/ItemUseCaptions@Read:
 Scripts/Items/Base/ItemUseCaptions@Use:
 使う
 
+Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
+このアイテムは乗り物に乗っている間は使用できません。
+
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 データログ（暗号化）
 
 Scripts/Items/Devices/ItemBiomaterialCollector@NotificationNoEmptyVials:
-生体材料を収集するための空き試験管がありません
+生体材料を収集するための空き瓶がありません
 
 Scripts/Items/Devices/ItemBiomaterialCollector@Description:
-動物や他の生き物から生体材料を抽出するための特別な装置。操作するには生体材料をいれる空き試験管が必要です。
+動物や他の生き物から生体材料を抽出するための特別な装置。動かすには生体材料を入れる空き瓶が必要です。
 
 Scripts/Items/Devices/ItemBiomaterialCollector@Name:
-生体材料コレクター
+生体材料収集装置
 
 Scripts/Items/Devices/ItemHuntersTools@Description:
-ハンターの便利な道具一式は、獲物の捕獲にかかる時間を短縮します。
+獲物をより早く捕獲できる便利な狩り道具一式。
 
 Scripts/Items/Devices/ItemHuntersTools@Name:
 ハンターの道具
 
 Scripts/Items/Devices/ItemPowerBankLarge@Description:
-大量の電力を保存し外出時にも使用することができる。どのような機器やエネルギー兵器でも装備されたパワーバンクから電力を引き出すことができます。
+大容量の電力を貯蔵し、移動中にも使える便利な携帯バッテリー。あらゆる装置やエネルギー兵器にも装備したバッテリーから電力を供給できます。
 
 Scripts/Items/Devices/ItemPowerBankLarge@Name:
-大型パワーバンク
+大容量補助バッテリー
 
 Scripts/Items/Devices/ItemPowerBankStandard@Description:
-電力を保存し外出時にも使用することができる。どのような機器やエネルギー兵器でも装備されたパワーバンクから電力を引き出すことができます。
+標準的な双方向補助バッテリー。電力を貯蔵して移動中でも使えます。あらゆる装置やエネルギー兵器にも装備したバッテリーから電力を供給できます。
 
 Scripts/Items/Devices/ItemPowerBankStandard@Name:
-標準パワーバンク
+標準補助バッテリー
 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Description:
 戦闘と環境防御の理想的な組み合わせを提供する高度な環境防御装甲。
 
 Scripts/Items/Equipment/ApartSuit/ItemApartSuit@Name:
-APARTスーツ
+A.P.A.R.T.スーツ
 
 Scripts/Items/Equipment/Assault/ItemAssaultHelmet@Name:
-急襲装甲ヘルメット
+アサルトアーマー・ヘルメット
 
 Scripts/Items/Equipment/Assault/ItemAssaultJacket@Description:
-様々な攻撃を妥協することなく、特に敵の火に対して驚くべき防御を提供します。
+この特殊なアサルトアーマーは、妥協することなく、敵の砲火に対して驚くべき防御力を提供します。
 
 Scripts/Items/Equipment/Assault/ItemAssaultJacket@Name:
-急襲装甲ジャケット
+アサルトアーマー・ジャケット
 
 Scripts/Items/Equipment/Assault/ItemAssaultPants@Name:
-急襲装甲パンツ
+アサルトアーマー・パンツ
 
 Scripts/Items/Equipment/Base/ClientEquipmentHeadWithLightInputToggle@NotificationNoHelmetLightEquipped:
-ヘルメットライトなし
+ヘッドライトなし
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentDevice@NotificationCannotUseDirectly_Message:
-デバイススロットに装着すると、全てのデバイスが自動的に使用されます。
+全ての装置は、デバイススロットに装備すると、自動的に使用されます。
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentDevice@NotificationCannotUseDirectly_Title:
 直接使用することはできません
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationCannotRefillWhileOn_Message:
-消してから補填してください。
+補充する前に電源を消してください。
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationCannotRefillWhileOn_Title:
-補充できません
+補充不可
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFuel_Message:
-補充する必要があります。
+補充が必要です。
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationOutOfFuel_Title:
 燃料不足
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@NotificationPressKeyToActivate:
-ヘルメットライトを有効にするには、アイテムを装備して[{0}]キーを押してください。
+ヘッドライトを有効にするには、アイテムを装備して[{0}]キーを押してください。
 
 Scripts/Items/Equipment/Base/ProtoItemEquipmentHeadWithLight@TitleButtonNotSet:
 ボタンが設定されていません
 
 Scripts/Items/Equipment/Bone/ItemBoneHelmetClosed@Name:
-クローズドボーンヘルメット
-
-Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
 骨のヘルメット
 
+Scripts/Items/Equipment/Bone/ItemBoneHelmetHorned@Name:
+角のヘルメット
+
 Scripts/Items/Equipment/Bone/ItemBoneJacket@Description:
-骨の装甲は、その価格に相応な防御を提供し、早い段階で非常に役に立つかもしれません。
+骨の防具は、その価格に相応な防御力を提供し、序盤では非常に役に立ちます。
 
 Scripts/Items/Equipment/Bone/ItemBoneJacket@Name:
 骨のジャケット
@@ -185,13 +194,13 @@ Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Description:
 最も贅沢な装いではありませんが、あなたをピンチから守ることができます。優れた環境防御を提供します。
 
 Scripts/Items/Equipment/Braided/ItemBraidedChestplate@Name:
-編組チェスト
+編組鎧
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmet@Name:
 編組ヘルメット
 
 Scripts/Items/Equipment/Braided/ItemBraidedHelmetLamp@Name:
-臨時的なランプヘルメット
+臨時ランプヘルメット
 
 Scripts/Items/Equipment/Braided/ItemBraidedPants@Name:
 編組パンツ
@@ -203,43 +212,43 @@ Scripts/Items/Equipment/Cloth/ItemClothPants@Name:
 布のパンツ
 
 Scripts/Items/Equipment/Cloth/ItemClothShirt@Description:
-実際には防御を提供していません。蚊を避けるくらいならできるかも？
+実質的な防御力はありません。蚊を避けるくらいならできるかも？
 
 Scripts/Items/Equipment/Cloth/ItemClothShirt@Name:
 布のシャツ
 
 Scripts/Items/Equipment/Fur/ItemFurCoat@Description:
-それなりの装甲。寒さをしのぐには適しています。高価でないうえに快適です！
+それなりの防具。寒さをしのぐには適しています。高価でないうえに快適です！
 
 Scripts/Items/Equipment/Fur/ItemFurCoat@Name:
 毛皮のコート
 
 Scripts/Items/Equipment/Fur/ItemFurHatCanadian@Name:
-尻尾のついた毛皮の帽子
+尻尾付きの毛皮の帽子
 
 Scripts/Items/Equipment/Fur/ItemFurHatCossak@Name:
-コサックハット
+コサック帽子
 
 Scripts/Items/Equipment/Fur/ItemFurHatUshanka@Name:
-ウシャンカハット
+ウシャンカ帽子
 
 Scripts/Items/Equipment/Fur/ItemFurPants@Name:
 毛皮のパンツ
 
 Scripts/Items/Equipment/Gold/ItemGoldChestplate@Description:
-豪華な金色の服装。真の支配者にふさわしい
+豪華な黄金の服装。真の支配者にふさわしい。
 
 Scripts/Items/Equipment/Gold/ItemGoldChestplate@Name:
-ゴールドチェスト
+黄金の鎧
 
 Scripts/Items/Equipment/Gold/ItemGoldCrown@Name:
-ゴールドクラウン
+黄金の冠
 
 Scripts/Items/Equipment/Gold/ItemGoldPants@Name:
-ゴールドパンツ
+黄金のパンツ
 
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Description:
-ほとんどの危険な環境から使用者を保護する特別に設計されたスーツ。少しでも傷がつくと気密性を失ってしまうため、戦闘での使用は避けましょう。
+危険な環境から身体を守ってくれる特別設計のスーツ。少しでも傷がつくと気密性を失ってしまうため、戦闘での使用は避けましょう。
 
 Scripts/Items/Equipment/Hazmat/ItemHazmatSuit@Name:
 防護服
@@ -248,28 +257,28 @@ Scripts/Items/Equipment/Leather/ItemLeatherHatCowboy@Name:
 カウボーイハット
 
 Scripts/Items/Equipment/Leather/ItemLeatherHatPilot@Name:
-パイロットハット
+パイロット帽
 
 Scripts/Items/Equipment/Leather/ItemLeatherHatTricorne@Name:
 パイレーツハット
 
 Scripts/Items/Equipment/Leather/ItemLeatherJacket@Description:
-革の防具は全体的に優れた防御を提供し、開拓し始めたばかりの初期段階において理想的です。
+革の防具は全体的に優れた防御力を提供し、開拓し始めたばかりの序盤ステージにおいて理想的です。
 
 Scripts/Items/Equipment/Leather/ItemLeatherJacket@Name:
-レザージャケット
+革のジャケット
 
 Scripts/Items/Equipment/Leather/ItemLeatherPants@Name:
-レザーパンツ
+革のパンツ
 
 Scripts/Items/Equipment/Metal/ItemMetalChestplate@Description:
-メタル装甲は物理的な攻撃からの防御に優れていますが、環境の危険に対してはほとんど防御力がありません。
+メタル防具は物理的な攻撃からの防御に優れていますが、環境の危険に対してはほとんど防御力がありません。
 
 Scripts/Items/Equipment/Metal/ItemMetalChestplate@Name:
-メタル製チェスト
+メタルの鎧
 
 Scripts/Items/Equipment/Metal/ItemMetalHelmetClosed@Name:
-クローズドメタルヘルメット
+密閉型メタルヘルメット
 
 Scripts/Items/Equipment/Metal/ItemMetalHelmetSkull@Name:
 メタルスカルヘルメット
@@ -281,7 +290,7 @@ Scripts/Items/Equipment/Military/ItemMilitaryHelmet@Name:
 ミリタリーヘルメット
 
 Scripts/Items/Equipment/Military/ItemMilitaryJacket@Description:
-この装甲の製造には高度な材料が使用されており、小型武器やその他の一般的な武器に対して理想的な防御力を発揮します。
+この防具の製造には高度な材料が使用されており、小型武器やその他の一般的な武器に対して理想的な防御力を発揮します。
 
 Scripts/Items/Equipment/Military/ItemMilitaryJacket@Name:
 ミリタリージャケット
@@ -290,13 +299,13 @@ Scripts/Items/Equipment/Military/ItemMilitaryPants@Name:
 ミリタリーパンツ
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Description:
-携帯用の光源を提供し、両手を自由に使うことができる便利なヘルメット。使い捨て電池が必要です。
+携帯用の照明を提供し、両手を自由に使うことができる便利なヘルメット。電池が必要です。
 
 Scripts/Items/Equipment/Misc/ItemHelmetMiner@Name:
 炭坑用ヘルメット
 
 Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Description:
-夜間にほぼ完璧な視力提供する特別な暗視ゴーグル付きの軽量ヘルメット。使い捨て電池が必要です。
+夜間にほぼ完璧な視力を提供する特別な暗視ゴーグル付きの軽量ヘルメット。電池が必要です。
 
 Scripts/Items/Equipment/Misc/ItemHelmetNightVision@Name:
 ナイトビジョン
@@ -308,13 +317,13 @@ Scripts/Items/Equipment/Misc/ItemHelmetSafety@Name:
 安全ヘルメット
 
 Scripts/Items/Equipment/Misc/ItemRespirator@Description:
-放射性粒子や有害ガスを除去することができる一般的な呼吸装置。他の防御は一切提供しません。
+放射性粒子や有害ガスを除去することができる一般的な防毒マスク。他の防御は一切提供しません。
 
 Scripts/Items/Equipment/Misc/ItemRespirator@Name:
-人工呼吸器
+防毒マスク
 
 Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Description:
-構造の基本はプラグミアムを薄い金属板に埋め込んだ実験装甲。とても軽くて丈夫。
+プラグミウム格子を構造的に薄い金属板に組み込んだ試験用防具。とても軽くて丈夫。
 
 Scripts/Items/Equipment/PragmiumArmor/ItemPragmiumArmor@Name:
 プラグアーマー
@@ -323,37 +332,37 @@ Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Description:
 あらゆる種類の損傷や環境への影響から驚くほどまともなレベルの防御を提供する厚いパッド入り生地。
 
 Scripts/Items/Equipment/Quilted/ItemQuiltedCoat@Name:
-キルティングコート
+キルトのコート
 
 Scripts/Items/Equipment/Quilted/ItemQuiltedHat@Name:
-キルティングハット
+キルトの帽子
 
 Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
-キルティングヘルメット
+キルトのヘルメット
 
 Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
-キルティングパンツ
+キルトのパンツ
 
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
-必要は発明の母！まったく快適ではありませんが、早い段階でかなりまともな防御を提供してくれます。
+必要は発明の母！まったく快適ではありませんが、初期段階でかなりまともな防御力を提供してくれます。
 
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Name:
-木製チェスト
+木の鎧
 
 Scripts/Items/Equipment/Wood/ItemWoodHelmet@Name:
-木製ヘルメット
+木のヘルメット
 
 Scripts/Items/Equipment/Wood/ItemWoodPants@Name:
-木製ズボン
+木のパンツ
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Description:
-大量の鉱物を一度に掘削するように設計された特別な爆発装置。発掘する鉱物の切れ目に設置する必要があります。
+大量の鉱物を一度に掘削するように設計された特別な爆発装置。発掘する鉱物の隣に設置する必要があります。
 
 Scripts/Items/Explosives/Bombs/ItemBombMining@Name:
 採掘爆弾
 
 Scripts/Items/Explosives/Bombs/ItemBombModern@Description:
-補強された構造を破壊するように設計された威力の高い爆弾。
+補強された構造物を破壊するように設計された威力の高い爆弾。
 
 Scripts/Items/Explosives/Bombs/ItemBombModern@Name:
 新型爆弾
@@ -365,13 +374,13 @@ Scripts/Items/Explosives/Bombs/ItemBombPrimitive@Name:
 通常爆弾
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Description:
-プラズマのユニークな特性を利用して一度に複数の壁やドアを破壊することができる爆弾。厳重に防御された基地に侵入するのを助けます。他の構造には影響しません。
+プラグミウムの特殊な特性を利用して一度に複数の壁やドアを破壊することができる爆弾。厳重に防御された基地に侵入するのに便利です。他の構造物には影響しません。
 
 Scripts/Items/Explosives/Bombs/ItemBombResonance@Name:
 共鳴爆弾
 
 Scripts/Items/Food/ItemBanana@Description:
-バナナを手に入れるのはどんな類人猿にもできますが、星を手に入れられるのは人間だけです。
+バナナを手に入れるのは猿でもできますが、星を手に入れられるのは人間だけです。
 
 Scripts/Items/Food/ItemBanana@Name:
 バナナ
@@ -392,22 +401,22 @@ Scripts/Items/Food/ItemBerriesOrange@Description:
 おいしいオレンジの果実
 
 Scripts/Items/Food/ItemBerriesOrange@Name:
-オレンジの果実
+オレンジベリー
 
 Scripts/Items/Food/ItemBerriesRed@Description:
-おいしい赤い果実
+おいしい赤い果実。
 
 Scripts/Items/Food/ItemBerriesRed@Name:
-赤い果実
+レッドベリー
 
 Scripts/Items/Food/ItemBerriesViolet@Description:
 おいしいすみれ色の果実
 
 Scripts/Items/Food/ItemBerriesViolet@Name:
-すみれ色の果実
+バイオレットベリー
 
 Scripts/Items/Food/ItemBottleWater@Description:
-水の代わりに消費できます。たくさんの他のレシピにも役立ちます。
+水分を補充したり、他のレシピにも役立ちます。
 
 Scripts/Items/Food/ItemBottleWater@Name:
 純水のボトル
@@ -419,13 +428,13 @@ Scripts/Items/Food/ItemBottleWaterSalty@Name:
 塩水のボトル
 
 Scripts/Items/Food/ItemBottleWaterStale@Description:
-湖から汲み取った古くなった水。安全のため最初に煮沸するべきです。これでピンチのとき水分補給することができます。
+湖から汲み取った汚れた水。安全のため最初に煮沸するべきです。ピンチのときに水分補給することもできます。
 
 Scripts/Items/Food/ItemBottleWaterStale@Name:
-古びた水のボトル
+汚れた水のボトル
 
 Scripts/Items/Food/ItemBread@Description:
-白パンの塊。この炭水化物をご覧ください！
+白いパンの塊。この炭水化物をご覧ください！
 
 Scripts/Items/Food/ItemBread@Name:
 パン
@@ -437,34 +446,34 @@ Scripts/Items/Food/ItemCactusDrink@Name:
 サボテンドリンク
 
 Scripts/Items/Food/ItemCactusFlesh@Description:
-ジューシーなサボテンの肉。好んで食べたいものではありませんが、空腹は紛らわせるでしょう。
+ジューシーなサボテンの果肉。好んで食べたいものではありませんが、空腹は紛らわせるでしょう。
 
 Scripts/Items/Food/ItemCactusFlesh@Name:
-サボテンの肉
+サボテンの果肉
 
 Scripts/Items/Food/ItemCannedBeans@Description:
-最高の食べ物ではありませんが、餓死することを防ぎます。
+最高の食物ではありませんが、飢えはしのげます。
 
 Scripts/Items/Food/ItemCannedBeans@Name:
 豆の缶詰
 
 Scripts/Items/Food/ItemCannedFish@Description:
-おそらくマグロ？オメガ3を補修しましょう。
+おそらくツナ？オメガ3を補充しましょう。
 
 Scripts/Items/Food/ItemCannedFish@Name:
-缶詰の魚
+魚の缶詰
 
 Scripts/Items/Food/ItemCannedMeat@Description:
 脂肪を多く含んだシチュー肉の缶詰です。長持ちします。
 
 Scripts/Items/Food/ItemCannedMeat@Name:
-缶詰肉
+肉の缶詰
 
 Scripts/Items/Food/ItemCannedMixedMeat@Description:
 何からできているかわからない肉の缶詰です。少なくともパッケージはまともに見えます。
 
 Scripts/Items/Food/ItemCannedMixedMeat@Name:
-混ぜ合わせの缶詰肉
+混合肉の缶詰
 
 Scripts/Items/Food/ItemCarbonara@Description:
 パスタ、卵、チーズ、肉がおいしい料理に！
@@ -476,13 +485,19 @@ Scripts/Items/Food/ItemCarrot@Description:
 カロチンが豊富なオレンジ色の野菜。
 
 Scripts/Items/Food/ItemCarrot@Name:
-にんじん
+ニンジン
 
 Scripts/Items/Food/ItemCarrotGrilled@Description:
 シンプルに焼いた料理。
 
 Scripts/Items/Food/ItemCarrotGrilled@Name:
 焼きニンジン
+
+Scripts/Items/Food/ItemCheese@Description:
+牛乳のタンパク質を凝固させて作る伝統的な食品。
+
+Scripts/Items/Food/ItemCheese@Name:
+チーズ
 
 Scripts/Items/Food/ItemChiliBeans@Description:
 究極の独身飯。
@@ -500,10 +515,10 @@ Scripts/Items/Food/ItemChiliPepper@Name:
 唐辛子
 
 Scripts/Items/Food/ItemCoffeeBeans@NotificationEatingCoffeeBadIdea:
-生のコーヒー豆を食べるなんて賢い思い付きではなかったかもしれません...
+生のコーヒー豆を食べるなんて賢い思い付きではなかったかもしれません…
 
 Scripts/Items/Food/ItemCoffeeBeans@Description:
-銀河で最も普及している伝統的な飲み物の1つを調製するために使用することができます。
+宇宙で最も普及している伝統的な飲み物を作るのに使います。
 
 Scripts/Items/Food/ItemCoffeeBeans@Name:
 コーヒー豆
@@ -515,13 +530,13 @@ Scripts/Items/Food/ItemCoffeeBerries@Name:
 コーヒー果実
 
 Scripts/Items/Food/ItemCoffeeCup@Description:
-ホットエスプレッソのカップ。今より多くのエネルギーで、あなたの愚かな行動を促進します。
+ホットエスプレッソコーヒー。元気をくれて、あなたが愚かな行動をするのを助けてくれます。
 
 Scripts/Items/Food/ItemCoffeeCup@Name:
-一杯のコーヒー
+コーヒー
 
 Scripts/Items/Food/ItemCorn@Description:
-歯に挟まるけどとってもおいしい穀物植物。
+歯に挟まるけどとってもおいしい穀物。
 
 Scripts/Items/Food/ItemCorn@Name:
 トウモロコシ
@@ -533,7 +548,7 @@ Scripts/Items/Food/ItemCornGrilled@Name:
 焼きトウモロコシ
 
 Scripts/Items/Food/ItemCucumber@Description:
-猫に恐怖を植え付けることが知られている水っぽい植物。
+猫に恐怖を植え付けると言われている水っぽい植物。
 
 Scripts/Items/Food/ItemCucumber@Name:
 きゅうり
@@ -544,6 +559,12 @@ Scripts/Items/Food/ItemCucumbersPickled@Description:
 Scripts/Items/Food/ItemCucumbersPickled@Name:
 きゅうりのピクルス
 
+Scripts/Items/Food/ItemDough@Description:
+様々な料理に使われます。
+
+Scripts/Items/Food/ItemDough@Name:
+パン生地
+
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 銀河中で人気のエナジー飲料。あなたに真のエナジーブーストを与えます。
 
@@ -551,19 +572,19 @@ Scripts/Items/Food/ItemDrinkEnergy@Name:
 エナジードリンク
 
 Scripts/Items/Food/ItemDrinkHerbal@Description:
-ハーブ原料から作られた人気のある飲み物。デトックスができ、健康な物だという噂があります。
+ハーブ原料から作られた人気の飲み物。健康に良く、特に体内の毒素を除去してくれます。
 
 Scripts/Items/Food/ItemDrinkHerbal@Name:
 ハーブドリンク
 
 Scripts/Items/Food/ItemDrinkSoft@Description:
-7世紀以上連続で中核部門で最も人気のある飲料であるとされたソフトドリンク
+7世紀以上連続で最も人気のある清涼飲料水。
 
 Scripts/Items/Food/ItemDrinkSoft@Name:
 ソフトドリンク
 
 Scripts/Items/Food/ItemDurian@Description:
-人々はこのトロピカルフルーツを愛するか嫌うかのどちらかです。独特の風味と匂いがすることを否定できません。
+このトロピカルフルーツが好きか嫌いかは大きく二分されますが、独特の風味と香りがすることは誰も否定できません。
 
 Scripts/Items/Food/ItemDurian@Name:
 ドリアン
@@ -581,7 +602,7 @@ Scripts/Items/Food/ItemEggsFried@Name:
 卵焼き
 
 Scripts/Items/Food/ItemEggsRaw@Description:
-揚げ物も煮物もおいしい。生で食べてはいけませんよ、食中毒につながる恐れがありますので。
+煮ても焼いてもおいしい。生で食べてはいけませんよ、食中毒にかかる恐れがありますので。
 
 Scripts/Items/Food/ItemEggsRaw@Name:
 動物の卵
@@ -590,13 +611,13 @@ Scripts/Items/Food/ItemInsectMeatFried@Description:
 調理してしまえば気持ち悪さは減るかもしれませんが…食べるなら心して食べるように。
 
 Scripts/Items/Food/ItemInsectMeatFried@Name:
-虫の揚げ物
+虫の唐揚げ
 
 Scripts/Items/Food/ItemInsectMeatRaw@Description:
 気持ち悪い虫の肉。調理をすれば気持ち悪さが減るかもしれません。
 
 Scripts/Items/Food/ItemInsectMeatRaw@Name:
-生の虫の肉
+虫の生肉
 
 Scripts/Items/Food/ItemJamBerries@Description:
 果実から作られたおいしいジャム。
@@ -605,64 +626,82 @@ Scripts/Items/Food/ItemJamBerries@Name:
 ベリージャム
 
 Scripts/Items/Food/ItemLiquor@Description:
-美しいルビー色の果実酒。アルコール度数が高いにもかかわらず簡単に飲めます。
+美しいルビー色の果実酒。アルコール度数が高いにもかかわらず飲みやすいです。
 
 Scripts/Items/Food/ItemLiquor@Name:
-蒸留酒
+リキュール
 
 Scripts/Items/Food/ItemMeatCharred@Description:
-肉を直火で調理しました。肉を準備する最善の方法ではありませんが、少なくとも生より良いのです。
+直火で調理した肉。肉を料理する最善の方法ではありませんが、少なくとも生で食べるよりは良いです。
 
 Scripts/Items/Food/ItemMeatCharred@Name:
 焦げた肉
 
 Scripts/Items/Food/ItemMeatJerky@Description:
-肉を乾燥するとジャーキーになります。おいしいけど、のどが渇きます。保存が効き、時間が経っても台無しになりません。
+肉を乾燥するとジャーキーになります。おいしいですが、のどが渇きます。保存が効き、時間が経っても台無しになりません。
 
 Scripts/Items/Food/ItemMeatJerky@Name:
 ジャーキー
 
 Scripts/Items/Food/ItemMeatRaw@Description:
-生肉。さまざまな方法で調理できます。生で食べるのはあまり良い考えではないでしょうね...
+生肉。さまざまな方法で調理できます。生で食べるのはあまり良い考えではないでしょうね…
 
 Scripts/Items/Food/ItemMeatRaw@Name:
 生肉
 
 Scripts/Items/Food/ItemMeatRoasted@Description:
-焼き肉にパセリを添えました。パセリはどこから来たのか？不思議ですね！
+焼肉にパセリを添えました。パセリはどこから来たのかな？不思議ですね！
 
 Scripts/Items/Food/ItemMeatRoasted@Name:
-焼き肉
+焼肉
+
+Scripts/Items/Food/ItemMilk@Description:
+栄養豊富な牛乳。そのまま飲んだり、料理に使用することができます。
+
+Scripts/Items/Food/ItemMilk@Name:
+牛乳
+
+Scripts/Items/Food/ItemMilkmelon@Description:
+実際の牛乳と似た成分のとろりとした白い液体を作り出す特殊遺伝子組み換え植物。
+
+Scripts/Items/Food/ItemMilkmelon@Name:
+ミルクメロン
+
+Scripts/Items/Food/ItemMRE@Description:
+自然や軍事作戦で生き残るために必要な高カロリー料理と水分が含まれた食糧。
+
+Scripts/Items/Food/ItemMRE@Name:
+軍用食
 
 Scripts/Items/Food/ItemMREImprovised@Description:
-この食事は主な防腐剤としていくつかの単純な成分と塩を使って調製されます。時間が経っても台無しになりません。
+この食べ物はいくつかの簡単な材料で調理し、主な保存料として塩を使っています。時間が経っても腐りません。
 
 Scripts/Items/Food/ItemMREImprovised@Name:
 簡易保存食
 
 Scripts/Items/Food/ItemMushroomPennyBun@Description:
-食用キノコ。生で食べることができますが、煮込んだりシチューに入れたりするとおいしい。
+食用キノコ。生で食べることができますが、焼いたりシチューに入れたりするとさらにおいしいです。
 
 Scripts/Items/Food/ItemMushroomPennyBun@Name:
 ポルチーニ
 
 Scripts/Items/Food/ItemMushroomPink@Description:
-猛毒キノコ。毒性が強くて、夜に光ります。
+猛毒キノコ。毒性が強く、夜に発光します。
 
 Scripts/Items/Food/ItemMushroomPink@Name:
-桃色キノコ
+ピンクキノコ
 
 Scripts/Items/Food/ItemMushroomRust@Description:
-これらのキノコは、その濃い色のため錆びキノコと呼ばれています。調理すればかなり美味しいですが、生で食べると有毒です。
+このキノコは、その濃い色のため錆びキノコと呼ばれています。調理すればかなり美味しいですが、生で食べると有毒です。
 
 Scripts/Items/Food/ItemMushroomRust@Name:
 錆びキノコ
 
-Scripts/Items/Food/ItemOgurin@Description:
-奇妙な見た目のオグリンの実…味がしない。きゅうりから遺伝子が組み換えられた。
+Scripts/Items/Food/ItemOnigiri@Description:
+移動中に食べるのに便利です。簡単で量もあります。香辛料で長期保管が可能です。
 
-Scripts/Items/Food/ItemOgurin@Name:
-オグリンの実
+Scripts/Items/Food/ItemOnigiri@Name:
+おにぎり
 
 Scripts/Items/Food/ItemPieBerry@Description:
 ジューシーなベリーパイ。おばあちゃんが作ったみたい。
@@ -671,10 +710,16 @@ Scripts/Items/Food/ItemPieBerry@Name:
 ベリーパイ
 
 Scripts/Items/Food/ItemPineapple@Description:
-甘くて酸っぱいトロピカルフルーツ。生のまま食べたり、様々な料理にすることができます。ピザにするとうまいと誰もが言います。
+甘くて酸っぱいトロピカルフルーツ。生のまま食べたり、様々な料理に使えます。ある人はピザにもよく合うと言います。
 
 Scripts/Items/Food/ItemPineapple@Name:
 パイナップル
+
+Scripts/Items/Food/ItemRiceCooked@Description:
+そのまま食べてもいいし、料理の材料に使ってもいいです。
+
+Scripts/Items/Food/ItemRiceCooked@Name:
+ご飯
 
 Scripts/Items/Food/ItemRoastedMushrooms@Description:
 おいしく焼けたキノコ。
@@ -695,7 +740,7 @@ Scripts/Items/Food/ItemSaladVegetable@Name:
 野菜サラダ
 
 Scripts/Items/Food/ItemSandwich@Description:
-やわらかいパン、ジューシーな肉、野菜が一緒の超定番！
+やわらかいパン、ジューシーな肉、野菜が一体となった超定番！
 
 Scripts/Items/Food/ItemSandwich@Name:
 サンドイッチ
@@ -707,13 +752,13 @@ Scripts/Items/Food/ItemStew@Name:
 肉とキノコのシチュー
 
 Scripts/Items/Food/ItemSugar@Description:
-白くて甘い。さまざまな食品に使用できます。生で食べることもできますが、別に良い考えではありません。
+白くて甘い。さまざまな食品に使用できます。そのまま食べることもできますが、あまり良い考えではありません。
 
 Scripts/Items/Food/ItemSugar@Name:
 砂糖
 
 Scripts/Items/Food/ItemTequila@Description:
-砂漠で見つかった植物から蒸留された美しい酒。
+砂漠で見つかった植物から蒸留した美しいお酒。
 
 Scripts/Items/Food/ItemTequila@Name:
 テキーラ
@@ -731,13 +776,13 @@ Scripts/Items/Food/ItemTomato@Name:
 トマト
 
 Scripts/Items/Food/ItemVodka@Description:
-神々の燃えるような液体。飲みすぎの結果は明らかです。あなたをぐったりさせることでしょう。放射線・・・？防げるわけない！
+神々の燃えるような液体。飲みすぎの結果は明らかです。あなたをぐったりさせることでしょう。放射能…？防げるわけない！
 
 Scripts/Items/Food/ItemVodka@Name:
 ウォッカ
 
 Scripts/Items/Food/ItemWaterbulb@Description:
-水球植物の果実。純粋な飲料水が含まれています。
+水球植物の果実。きれいな飲料水が含まれています。
 
 Scripts/Items/Food/ItemWaterbulb@Name:
 水球の実
@@ -758,13 +803,13 @@ Scripts/Items/Food/ItemYuccaCharred@Description:
 あなたが飢えて死にそうなとき助けてくれるでしょう。
 
 Scripts/Items/Food/ItemYuccaCharred@Name:
-焼きユッカ
+ユッカの炙り焼き
 
 Scripts/Items/Food/ItemYuccaFried@Description:
-上品なユッカの実。最高級の料理ではありませんが、とても美味しくて貴重な栄養素が含まれています。
+上品に調理されたユッカの実。最高級の料理ではありませんが、とても美味しく貴重な栄養素が含まれています。
 
 Scripts/Items/Food/ItemYuccaFried@Name:
-揚げユッカ
+ユッカの揚げ物
 
 Scripts/Items/Generic/ItemAcidNitric@Description:
 硝酸のボトル
@@ -773,13 +818,13 @@ Scripts/Items/Generic/ItemAcidNitric@Name:
 硝酸
 
 Scripts/Items/Generic/ItemAcidSulfuric@Description:
-硫酸の瓶
+硫酸のボトル
 
 Scripts/Items/Generic/ItemAcidSulfuric@Name:
 硫酸
 
 Scripts/Items/Generic/ItemAnimalFat@Description:
-動物から抽出した脂肪。料理や産業で役に立つかもしれません。
+動物から抽出した脂肪。料理や工業で役に立つかもしれません。
 
 Scripts/Items/Generic/ItemAnimalFat@Name:
 動物性脂肪
@@ -797,31 +842,31 @@ Scripts/Items/Generic/ItemAsh@Name:
 灰
 
 Scripts/Items/Generic/ItemBallisticPlate@Description:
-通常の武器と異国の武器のほとんどを阻止するように設計された、重くて貫通できない複合プレート。
+従来の武器や新型武器をほぼ防げるように設計された、重くて貫通できない複合プレート。
 
 Scripts/Items/Generic/ItemBallisticPlate@Name:
-弾道プレート
+防弾プレート
 
 Scripts/Items/Generic/ItemBatteryDisposable@Description:
-シンプルな使い捨て電池。蓄える電力は多くありませんが、安くて簡単に製造できます。電子機器やパワーバンクの充電に使用できます。
+シンプルな乾電池。蓄える電力は多くありませんが、安くて簡単に製造できます。電気装置や補助バッテリーの充電に使用できます。
 
 Scripts/Items/Generic/ItemBatteryDisposable@Name:
-使い捨て電池
+乾電池
 
 Scripts/Items/Generic/ItemBatteryHeavyDuty@Description:
-頑丈な使い捨て電池。小型バッテリーよりもはるかに多くの電荷を保持し、パワーバンクや電子機器を素早く充電するために使用できます。
+大容量の乾電池。小型電池よりもはるかに多くの電力を保持し、補助バッテリーや電気装置を素早く充電するために使用できます。
 
 Scripts/Items/Generic/ItemBatteryHeavyDuty@Name:
-大型バッテリー
+大容量電池
 
 Scripts/Items/Generic/ItemBlackpowder@Description:
-通常の火薬、ブラックパウダーとも呼ばれます。簡単な食材から簡単に製造できます。
+通常の火薬、ブラックパウダーとも呼ばれます。簡単な材料で簡単に製造できます。
 
 Scripts/Items/Generic/ItemBlackpowder@Name:
-黒い粉
+黒色火薬
 
 Scripts/Items/Generic/ItemBones@Description:
-動物の骨
+動物の骨。
 
 Scripts/Items/Generic/ItemBones@Name:
 骨
@@ -830,16 +875,16 @@ Scripts/Items/Generic/ItemBottleEmpty@Description:
 ただの空き瓶です。水を貯めるのにも使えます。
 
 Scripts/Items/Generic/ItemBottleEmpty@Name:
-空の瓶
+空のボトル
 
 Scripts/Items/Generic/ItemBricks@Description:
-建物や壁を建築するための建築材料。
+建物や壁を建築するための建築資材。
 
 Scripts/Items/Generic/ItemBricks@Name:
 レンガ
 
 Scripts/Items/Generic/ItemCampFuel@Description:
-キャンプ燃料（ランプオイルとも呼ばれる）は、オイルを燃やすさまざまな光源を補充するために使用できます。
+キャンプ燃料（ランプオイルとも呼ばれる）は、オイルを燃やすさまざまな照明の燃料として使われます。
 
 Scripts/Items/Generic/ItemCampFuel@Name:
 キャンプ燃料
@@ -851,31 +896,31 @@ Scripts/Items/Generic/ItemCanEmpty@Name:
 空き缶
 
 Scripts/Items/Generic/ItemCanisterEmpty@Description:
-空の金属製キャニスター。揮発性の液体を保管するために使用することができます。
+空の金属製容器。揮発性の液体を保管するのに使われます。
 
 Scripts/Items/Generic/ItemCanisterEmpty@Name:
-空のキャニスター
+空の容器
 
 Scripts/Items/Generic/ItemCanisterGasoline@Description:
-ガソリン燃料のキャニスター
+ガソリンが入った容器。
 
 Scripts/Items/Generic/ItemCanisterGasoline@Name:
-ガソリンキャニスター
+ガソリン容器
 
 Scripts/Items/Generic/ItemCanisterMineralOil@Description:
-鉱油キャニスター
+鉱油が入った容器。
 
 Scripts/Items/Generic/ItemCanisterMineralOil@Name:
-鉱油キャニスター
+鉱油容器
 
 Scripts/Items/Generic/ItemCanisterPetroleum@Description:
-原油キャニスター。油は他の成分に精製することができます。
+原油が入った容器。油は他の成分に精製することができます。
 
 Scripts/Items/Generic/ItemCanisterPetroleum@Name:
-石油キャニスター
+原油容器
 
 Scripts/Items/Generic/ItemCement@Description:
-ドライセメント混合物は、結合剤として利用できます。
+ドライセメント混合物は、結合剤として建築用途に利用できます。
 
 Scripts/Items/Generic/ItemCement@Name:
 ドライセメントミックス
@@ -899,58 +944,58 @@ Scripts/Items/Generic/ItemCoal@Name:
 石炭
 
 Scripts/Items/Generic/ItemCoinPenny@Description:
-低額のコイン。トレーディングマシンで安価なアイテムを購入するために使用されたり、他の生存者と直接取引される可能性があります。
+低額のコイン。トレーディングマシンで安価なアイテムを購入するために使用したり、他の生存者と直接取引する時に使います。
 
 Scripts/Items/Generic/ItemCoinPenny@Name:
-ペニーコイン
+銅貨
 
 Scripts/Items/Generic/ItemCoinShiny@Description:
-高額のコイン。トレーディングマシンでアイテムを購入するために使用されるか、他の生存者と直接取引される可能性があります。
+高額のコイン。トレーディングマシンでアイテムを購入するために使用したり、他の生存者と直接取引する時に使います。
 
 Scripts/Items/Generic/ItemCoinShiny@Name:
-ピカピカのコイン
+金貨
 
 Scripts/Items/Generic/ItemComponentsElectronic@Description:
-いろいろな電子機器の作成に必要な電子部品。廃棄された科学の前哨基地で簡単に収集できます。
+いろいろな電気装置の製造に必要な電子部品。廃棄された科学基地で簡単に見つけられます。
 
 Scripts/Items/Generic/ItemComponentsElectronic@Name:
 電子部品
 
 Scripts/Items/Generic/ItemComponentsHighTech@Description:
-最も複雑なデバイスを作成するための高度なハイテクコンポーネント。
+最も複雑な装置を製造するための高度なハイテクコンポーネント。
 
 Scripts/Items/Generic/ItemComponentsHighTech@Name:
 ハイテク部品
 
 Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Description:
-産業に役立つ様々な化学物質
+工業に役立つ様々な化学物質。
 
 Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Name:
 工業用化学品
 
 Scripts/Items/Generic/ItemComponentsMechanical@Description:
-さまざまな複雑なメカニズムを組み立てるために必要なさまざまな機械部品。
+複雑な機械装置を組み立てるために必要なさまざまな機械部品。
 
 Scripts/Items/Generic/ItemComponentsMechanical@Name:
 機械部品
 
 Scripts/Items/Generic/ItemComponentsOptical@Description:
-さまざまな産業用および軍事用の高度な光学部品。
+広範囲な工業および軍事用の高度な光学部品。
 
 Scripts/Items/Generic/ItemComponentsOptical@Name:
 光学部品
 
 Scripts/Items/Generic/ItemComponentsPharmaceutical@Description:
-医薬品は様々な薬の製造に使用できます。
+様々な薬の製造に使用できる医薬品。
 
 Scripts/Items/Generic/ItemComponentsPharmaceutical@Name:
-医薬品化学物質
+医薬用化学品
 
 Scripts/Items/Generic/ItemComponentsWeapon@Description:
 より高度な銃器を組み立てるために必要な様々な武器部品
 
 Scripts/Items/Generic/ItemComponentsWeapon@Name:
-武器コンポーネント
+武器部品
 
 Scripts/Items/Generic/ItemDuctTape@Description:
 特別に強力な粘着力のあるテープ
@@ -959,59 +1004,53 @@ Scripts/Items/Generic/ItemDuctTape@Name:
 ダクトテープ
 
 Scripts/Items/Generic/ItemExplosives@Description:
-爆発装置を作成するのに使用する起爆性材料。
+爆発装置の製作に使用する起爆性材料。
 
 Scripts/Items/Generic/ItemExplosives@Name:
 爆薬
 
 Scripts/Items/Generic/ItemFertilizer@ShortDescriptionText:
-`成長速度を{0}％向上させます
-[br]生産高を増やす`
+`成長速度{0}％向上
+[br]収穫量増加`
 
 Scripts/Items/Generic/ItemFertilizer@Description:
-植物の成長速度を大幅に向上させ、単一の植物から収穫される量を増やします。
+植物の成長速度を大幅に向上させ、一つの植物からの収穫量を増やします。
 
 Scripts/Items/Generic/ItemFertilizer@Name:
 肥料
 
 Scripts/Items/Generic/ItemFibers@Description:
-天然または合成繊維ロープや糸を作るのに便利です。草や他の植物を集めることによって得ることができます。
+天然または合成繊維。ロープや糸を作るのに便利です。草や他の植物を採取することによって得ることができます。
 
 Scripts/Items/Generic/ItemFibers@Name:
 繊維
 
 Scripts/Items/Generic/ItemFirelog@Description:
-燃料にするためにおがくずなどから製造された人工丸太。自然の丸太より何倍も長く燃えます。
+特殊な方法で製造された人工丸太。自然の丸太より何倍も長く燃えます。
 
 Scripts/Items/Generic/ItemFirelog@Name:
 薪
 
 Scripts/Items/Generic/ItemFlowerBlueSage@Description:
-見て美しいし、特定の薬に役立つことがあります。
+美しい見た目で、特定の薬を作るのに役立ちます。
 
 Scripts/Items/Generic/ItemFlowerBlueSage@Name:
 ブルーセージ
 
 Scripts/Items/Generic/ItemFlowerOni@Description:
-レッドオニフラワー。赤い鬼にちなんで名付けられました。
+アカオニフラワー。赤鬼にちなんで名付けられました。
 
 Scripts/Items/Generic/ItemFlowerOni@Name:
 オニフラワー
 
 Scripts/Items/Generic/ItemFluxPowder@Description:
-フラックスパウダーは、高品質の金属を製造するための冶金学において有用です。
+フラックス粉末は、高品質の金属を製造するための冶金学において有用です。
 
 Scripts/Items/Generic/ItemFluxPowder@Name:
-フラックスパウダー
-
-Scripts/Items/Generic/ItemFoodRotten@Description:
-完全に台無しにされた食べ物
-
-Scripts/Items/Generic/ItemFoodRotten@Name:
-腐った食べ物
+フラックス粉末
 
 Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
-高性能小火器用に設計された、特別に配合および成形されたニトロセルロース顆粒。
+高性能小火器用に特別に配合されたニトロセルロース顆粒。
 
 Scripts/Items/Generic/ItemFormulatedGunpowder@Name:
 配合火薬
@@ -1023,43 +1062,43 @@ Scripts/Items/Generic/ItemFur@Name:
 毛皮
 
 Scripts/Items/Generic/ItemGemDiamond@Description:
-光沢のあるホワイトダイヤモンド！
+白く輝くダイヤモンド！
 
 Scripts/Items/Generic/ItemGemDiamond@Name:
 ダイヤモンド
 
 Scripts/Items/Generic/ItemGemEmerald@Description:
-光沢のあるグリーンエメラルド！
+緑色に輝くエメラルド！
 
 Scripts/Items/Generic/ItemGemEmerald@Name:
 エメラルド
 
 Scripts/Items/Generic/ItemGemRuby@Description:
-光沢のある赤いルビー！
+真っ赤に輝くルビー！
 
 Scripts/Items/Generic/ItemGemRuby@Name:
 ルビー
 
 Scripts/Items/Generic/ItemGemSapphire@Description:
-光沢のある青いサファイア！
+青く輝くサファイア！
 
 Scripts/Items/Generic/ItemGemSapphire@Name:
 サファイア
 
 Scripts/Items/Generic/ItemGemTopaz@Description:
-光沢のある黄色のトパーズ！
+黄金色に輝くトパーズ！
 
 Scripts/Items/Generic/ItemGemTopaz@Name:
 トパーズ
 
 Scripts/Items/Generic/ItemGemTourmaline @Description:
-光沢のある紫色のトルマリン！
+紫色に輝くトルマリン！
 
 Scripts/Items/Generic/ItemGemTourmaline @Name:
 トルマリン
 
 Scripts/Items/Generic/ItemGlassRaw@Description:
-ガラスチップを使用して、ボトルなどの他の多くのガラスアイテムを作成できます。
+ガラスチップは、ボトルなど多くのガラスアイテムの材料として利用できます。
 
 Scripts/Items/Generic/ItemGlassRaw@Name:
 ガラスチップ
@@ -1071,82 +1110,88 @@ Scripts/Items/Generic/ItemGlue@Name:
 接着剤
 
 Scripts/Items/Generic/ItemGoldNugget@Description:
-未精製金の小さなナゲット。
+未精製の小さな金塊。
 
 Scripts/Items/Generic/ItemGoldNugget@Name:
-金ナゲット
+金塊
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Description:
-土壌を補うために使用できる特別な高吸湿性顆粒。これらの顆粒は空気から水分を引き寄せ、植物に水を与える必要性を排除します。
+土壌に水分を補うために使う特殊な高吸湿性顆粒。この顆粒は空気から水分を摂取するため、植物に水を与える必要がなくなります。
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Name:
 吸湿性顆粒
 
+Scripts/Items/Generic/ItemImpulseEngine@Description:
+様々な機械装置に活用できる高出力インパルスエンジン。
+
+Scripts/Items/Generic/ItemImpulseEngine@Name:
+インパルスエンジン
+
 Scripts/Items/Generic/ItemIngotCopper@Description:
-純銅インゴット銅は産業からエレクトロニクスまで幅広い用途があります。
+純銅の塊。銅は工業からエレクトロニクスまで幅広い用途があります。
 
 Scripts/Items/Generic/ItemIngotCopper@Name:
-銅インゴット
+銅のインゴット
 
 Scripts/Items/Generic/ItemIngotGold@Description:
-上質な金の小さなインゴット。
+純金の小さな金塊。
 
 Scripts/Items/Generic/ItemIngotGold@Name:
-金塊
+金のインゴット
 
 Scripts/Items/Generic/ItemIngotIron@Description:
-比較的炭素含有量が少ない鉄インゴット。
+比較的炭素含有量が少ない鉄の塊。
 
 Scripts/Items/Generic/ItemIngotIron@Name:
-鉄インゴット
+鉄のインゴット
 
 Scripts/Items/Generic/ItemIngotLithium@Description:
-純リチウム金属通常は真空密封容器に保管するか、油で覆います。
+純リチウム金属。通常は真空密封容器に入れるか、油で覆って保管します。
 
 Scripts/Items/Generic/ItemIngotLithium@Name:
 リチウムインゴット
 
 Scripts/Items/Generic/ItemIngotSteel@Description:
-高炭素含有量の工業用グレードの鋼。
+炭素含有量の高い工業用の鋼。
 
 Scripts/Items/Generic/ItemIngotSteel@Name:
 スチールインゴット
 
 Scripts/Items/Generic/ItemLeaf@Description:
-葉...おそらく木から。
+葉っぱ…おそらく木の葉でしょう。
 
 Scripts/Items/Generic/ItemLeaf@Name:
 葉
 
 Scripts/Items/Generic/ItemLeather@Description:
-動物革の防具の作成に役立つかもしれません。
+動物の革。革防具の製作に役立ちます。
 
 Scripts/Items/Generic/ItemLeather@Name:
 レザー
 
 Scripts/Items/Generic/ItemLogs@Description:
-建築材料として最適です。バーベキューにも最適です。
+建築資材として最適です。バーベキューにも最適です。
 
 Scripts/Items/Generic/ItemLogs@Name:
-木の丸太
+丸太
 
 Scripts/Items/Generic/ItemMulch@ShortDescriptionText:
 成長速度を{0}％向上させます
 
 Scripts/Items/Generic/ItemMulch@Description:
-マルチカバーは分解された有機物質などでできています。天然有機肥料として最適です。
+マルチは分解された有機物でできています。天然有機肥料として最適です。
 
 Scripts/Items/Generic/ItemMulch@Name:
-マルチカバー
+マルチ
 
 Scripts/Items/Generic/ItemNitrocellulosePowder@Description:
-ニトロセルロースは無煙粉末としても知られています。全ての現代の銃器は黒い粉の代わりにそれを使います。
+ニトロセルロースは無煙火薬としても知られています。現代の銃器は全て黒色火薬の代わりにこれを使います。
 
 Scripts/Items/Generic/ItemNitrocellulosePowder@Name:
-ニトロセルロースパウダー
+ニトロセルロース火薬
 
 Scripts/Items/Generic/ItemOilpod@Description:
-特別な遺伝子組み換え植物の食べられない果実。高濃度の石油製品とその誘導体が含まれています。
+食用に適さない特殊な遺伝子組み換え植物の果実。高濃度の石油製品とその派生品が含まれています。
 
 Scripts/Items/Generic/ItemOilpod@Name:
 オイルポッドフルーツ
@@ -1155,7 +1200,7 @@ Scripts/Items/Generic/ItemOreCopper@Description:
 溶かして純銅を精製することができます。
 
 Scripts/Items/Generic/ItemOreCopper@Name:
-銅鉱
+銅鉱石
 
 Scripts/Items/Generic/ItemOreIron@Description:
 溶かして純鉄を精製することができます。
@@ -1164,25 +1209,25 @@ Scripts/Items/Generic/ItemOreIron@Name:
 鉄鉱石
 
 Scripts/Items/Generic/ItemOreLithium@Description:
-リチウム塩は地熱泉から抽出され、さらに純リチウム金属に加工することができます。
+リチウム塩は地熱泉から抽出され、純リチウム金属に加工することができます。
 
 Scripts/Items/Generic/ItemOreLithium@Name:
 リチウム塩
 
 Scripts/Items/Generic/ItemOrePragmium@Description:
-大人気の鉱物。一般的な鉱物にはないユニークな性質を持っています。プラグミアムはハイテク機器を作る素材や電源としても使用できます。
+大人気の鉱物。一般的な鉱物にはないユニークな性質を持っています。プラグミウムはハイテク機器を作る素材や電源としても使用できます。
 
 Scripts/Items/Generic/ItemOrePragmium@Name:
-プラグミアム鉱石
+プラグミウム
 
 Scripts/Items/Generic/ItemPaper@Description:
-神は様々なものに利用でき、木から簡単に作ることができます。
+紙は様々なものに利用でき、木から簡単に作ることができます。
 
 Scripts/Items/Generic/ItemPaper@Name:
 紙
 
 Scripts/Items/Generic/ItemPasta@Description:
-おいしい料理の基本！
+おいしい料理の定番！
 
 Scripts/Items/Generic/ItemPasta@Name:
 生パスタ
@@ -1194,34 +1239,58 @@ Scripts/Items/Generic/ItemPlanks@Name:
 木の板
 
 Scripts/Items/Generic/ItemPlastic@Description:
-生のプラスチック産業で役立ちます。
+生のプラスチック。工業で役立ちます。
 
 Scripts/Items/Generic/ItemPlastic@Name:
 プラスチック
 
 Scripts/Items/Generic/ItemPotassiumNitrate@Description:
-硝酸カリウムは硝石としても知られています。火薬を作るために、他の様々なレシピで使われます。
+硝酸カリウムは硝石としても知られています。火薬を作ったり、他の様々なレシピで使われます。
 
 Scripts/Items/Generic/ItemPotassiumNitrate@Name:
 硝酸カリウム
 
 Scripts/Items/Generic/ItemPowerCell@Description:
-エネルギーを貯蔵するためにさまざまな電子機器で使用される小型のユニバーサルパワーセル。単独では使用できません。
+エネルギーを貯蔵するためにさまざまな電気装置で使用される小型の汎用パワーセル。単独では使用できません。
 
 Scripts/Items/Generic/ItemPowerCell@Name:
 パワーセル
 
 Scripts/Items/Generic/ItemPreservative@Description:
-食品の保存料。パック入りの食料に利用すると、より長く保存することができます。
+食品の保存料。包装した食料に追加でき、より長く保存できるようになります。
 
 Scripts/Items/Generic/ItemPreservative@Name:
-保存料
+防腐剤
+
+Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
+フラグミウムのような反応性エネルギー搬送物質を補充可能な空のリアクターコア。
+
+Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
+空のリアクターコア
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Description:
+フラグミウムが詰まったリアクターコア。携帯可能で、比較的安定した電源が長く持続します。
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Name:
+プラグミウム・リアクターコア
+
+Scripts/Items/Generic/ItemRice@Description:
+収穫した米粒。植えたり、様々な料理の材料として使えます。
+
+Scripts/Items/Generic/ItemRice@Name:
+米
 
 Scripts/Items/Generic/ItemRope@Description:
 普通のロープ。いろいろな使い方ができます。余分なロープは燃やすこともできます。
 
 Scripts/Items/Generic/ItemRope@Name:
 ロープ
+
+Scripts/Items/Generic/ItemRot@Description:
+食物やその他の有機物が完全に腐ってどろどろになったもの。
+
+Scripts/Items/Generic/ItemRot@Name:
+腐敗物
 
 Scripts/Items/Generic/ItemRubberRaw@Description:
 ゴムの木から抽出した、ラテックス樹脂としても知られる天然ゴム。化学的に加硫ゴムに変えることができます。
@@ -1230,19 +1299,19 @@ Scripts/Items/Generic/ItemRubberRaw@Name:
 天然ゴム
 
 Scripts/Items/Generic/ItemRubberVulcanized@Description:
-加硫ゴム絶縁体として、またはさまざまな防水材料の製造に最適です。
+加硫ゴム。絶縁体として、またはさまざまな防水資材の製造に最適です。
 
 Scripts/Items/Generic/ItemRubberVulcanized@Name:
 ゴム
 
 Scripts/Items/Generic/ItemSalt@Description:
-通常の食卓塩...食品の調製に使用できます。化学者にとってNaClとしても知られています。幅広い用途があります。
+通常の食卓塩…食品の調理に使用できます。化学者にはNaClとしても知られています。幅広い用途があります。
 
 Scripts/Items/Generic/ItemSalt@Name:
 塩
 
 Scripts/Items/Generic/ItemSand@Description:
-砂はガラスを作るためや建築材料として使用することができます。
+砂はガラスを作るためや建築資材として使用することができます。
 
 Scripts/Items/Generic/ItemSand@Name:
 砂
@@ -1254,13 +1323,13 @@ Scripts/Items/Generic/ItemSlime@Name:
 スライム
 
 Scripts/Items/Generic/ItemSolarPanel@Description:
-製造するには高価ですが、メンテナンス不要で驚くほど長い期間の電力を供給することができます。
+製造するのは高価ですが、メンテナンス不要でとても長い期間電力を供給することができます。
 
 Scripts/Items/Generic/ItemSolarPanel@Name:
 ソーラーパネル
 
 Scripts/Items/Generic/ItemSolarPanelBroken@Description:
-壊れたパネルを再利用して新しいソーラーパネルを作ることができます。
+壊れたパネルをリサイクルして新しいソーラーパネルを作ることができます。
 
 Scripts/Items/Generic/ItemSolarPanelBroken@Name:
 壊れたソーラーパネル
@@ -1271,17 +1340,35 @@ Scripts/Items/Generic/ItemSolvent@Description:
 Scripts/Items/Generic/ItemSolvent@Name:
 溶媒
 
+Scripts/Items/Generic/ItemSpices@Description:
+料理に使われる様々な香辛料。
+
+Scripts/Items/Generic/ItemSpices@Name:
+香辛料
+
+Scripts/Items/Generic/ItemSpicesRaw@Description:
+生の香辛料。使用する前に必ず乾燥および加工処理しなければなりません。
+
+Scripts/Items/Generic/ItemSpicesRaw@Name:
+生の香辛料
+
 Scripts/Items/Generic/ItemStone@Description:
-石...丸くて重い。建設に便利です。地面に落ちているか、採掘で大量に手に入ります。
+石…丸くて重い。建築に便利です。地面に落ちているか、採掘で大量に手に入ります。
 
 Scripts/Items/Generic/ItemStone@Name:
 石
+
+Scripts/Items/Generic/ItemStructuralPlating@Description:
+保護外殻としても、付属機材を取り付けるための耐荷重構造物としても使用できる装甲板。
+
+Scripts/Items/Generic/ItemStructuralPlating@Name:
+板状構造物
 
 Scripts/Items/Generic/ItemSulfurPowder@Description:
 粉末状の純粋な硫黄。
 
 Scripts/Items/Generic/ItemSulfurPowder@Name:
-硫黄パウダー
+硫黄粉末
 
 Scripts/Items/Generic/ItemTarpaulin@Description:
 厚い織物と外側のゴム層を組み合わせた複合材料
@@ -1290,7 +1377,7 @@ Scripts/Items/Generic/ItemTarpaulin@Name:
 撥水布
 
 Scripts/Items/Generic/ItemThread@Description:
-糸は、衣服を作るために、または他の様々な方法で使うことができます。
+糸は、衣服を作ったり、様々な用途に利用できます。
 
 Scripts/Items/Generic/ItemThread@Name:
 糸
@@ -1314,25 +1401,25 @@ Scripts/Items/Generic/ItemTobaccoRaw@Name:
 タバコ（生）
 
 Scripts/Items/Generic/ItemToxin@Description:
-化学毒素毒素を持った弾薬を作るために使われたり、医学で使われたりします。
+化学毒性物質。毒素を持った弾薬を作るために使われたり、薬を作るのに使われたりします。
 
 Scripts/Items/Generic/ItemToxin@Name:
 毒素
 
-Scripts/Items/Generic/ItemTreebark@Description:
-いくつかの木からはがした樹皮です。燃やすか他の目的に使用することができます。
-
-Scripts/Items/Generic/ItemTreebark@Name:
-樹皮
-
 Scripts/Items/Generic/ItemTwigs@Description:
-地面に落ちていたり、木から集めたり。簡単な道具を作成したり、火を燃やすのに役立ちます。
+地面に落ちていたり、木から集めたり。簡単な道具を製作したり、火を燃やすのに役立ちます。
 
 Scripts/Items/Generic/ItemTwigs@Name:
 小枝
 
+Scripts/Items/Generic/ItemUniversalActuator@Description:
+磁力で動く非常に柔軟で強力な駆動装置。
+
+Scripts/Items/Generic/ItemUniversalActuator@Name:
+汎用駆動装置
+
 Scripts/Items/Generic/ItemVialBiomaterial@Description:
-生体材料瓶。特にインプラントの取り付けと取り外しのための手術を行うために、サイバネティックスと医学で使用されます。
+生体材料が入った瓶。人工生体と医療、特にインプラントの取り付けと取り外しの手術を行うために使用されます。
 
 Scripts/Items/Generic/ItemVialBiomaterial@Name:
 生体材料瓶
@@ -1344,100 +1431,103 @@ Scripts/Items/Generic/ItemVialEmpty@Name:
 空の生体材料瓶
 
 Scripts/Items/Generic/ItemWheatFlour@Description:
-さまざまなパンやペストリーのレシピを焼くのに使用できます。
+さまざまなパンや菓子を焼くのに利用します。
 
 Scripts/Items/Generic/ItemWheatFlour@Name:
 小麦粉
 
 Scripts/Items/Generic/ItemWheatGrains@Description:
-麦畑から収穫された穀物。小麦粉に加工するか、または植える準備をすることができます。
+麦畑から収穫された穀物。小麦粉に加工するか、または植えることができます。
 
 Scripts/Items/Generic/ItemWheatGrains@Name:
 小麦
 
 Scripts/Items/Generic/ItemWire@Description:
-絶縁ワイヤのスプール
+絶縁ワイヤーのスプール。
 
 Scripts/Items/Generic/ItemWire@Name:
-ワイヤ
+ワイヤー
 
 Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoPowerBanksEquipped:
-パワーバンクがありません
+補助バッテリーがありません
 
 Scripts/Items/Generic/Base/ProtoItemBatteryDisposable@NotificationNoRechargingRequired:
 充電する必要はありません
 
 Scripts/Items/Generic/Base/ProtoItemFertilizer@CannotApplyErrorTitle:
-ここでは追肥できません
+ここでは肥料を蒔けません
 
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationFertilizerAlreadyApplied:
-肥料はすでに散布されています
+肥料はすでに蒔かれています
 
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
-植物は収穫の準備ができています。肥料を加えても意味がありません。
+作物は収穫の準備ができています。肥料を蒔く必要はありません。
 
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
-すでに水をやりました
-
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
-植物は収穫の準備ができています。じょうろは使用できません。
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CanApplyOnlyOnPlants:
+植物にのみ使用できます。
 
 Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 ここでは使用できません
 
+Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
+生体工学技術でつくられた人工肝。血液ろ過機能が向上しており、薬物乱用の副作用を完全になくすことができます。
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
+人工肝
+
 Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
-HDRサポートを備えた特別な高感光性網膜層。夜間にほぼ完璧な視力を与えます。
+HDRを備えた超高感光性網膜層。夜間でもほぼ完璧な視力を与えます。
 
 Scripts/Items/Implants/ItemImplantArtificialRetina@Name:
 人工網膜インプラント
 
 Scripts/Items/Implants/ItemImplantArtificialStomach@Description:
-より強い胃壁、より強力な酸、最も有害な物質を分解または中和する酵素を配合することによって胃を改善します。これを使えば、腐った食べ物を食べたり、汚れた水を飲んでも心配いりません。
+より強い胃壁、より強力な酸、最も有害な物質を分解または中和する酵素を配合することによって胃を改善します。これを使えば、腐った食物を食べたり、汚れた水を飲んでも心配いりません。
 
 Scripts/Items/Implants/ItemImplantArtificialStomach@Name:
 人工胃インプラント
 
 Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Description:
-細胞内のATPから直接エネルギーを抽出し、飢餓の増加を犠牲にして電気エネルギーに変換するために代謝を使用します。効果を得るためには、パワーバンクデバイスを装備している必要があります。
+自然の代謝機能を利用して細胞内のATPから直接エネルギーを抽出し、空腹度を増加させる代わりに電気エネルギーを生成するインプラント。効果を得るためには、補助バッテリーを装備する必要があります。
 
 Scripts/Items/Implants/ItemImplantATPEnergyExtractor@Name:
 ATPエネルギー抽出インプラント
 
 Scripts/Items/Implants/ItemImplantBroken@Description:
-体内に壊れたインプラントの残りの部分があります。それはあなたには何の役にも立ちません、できるだけ早くそれを取り除くべきです。
+体内に壊れたインプラントの欠片があります。それはあなたには何の役にも立ちません、できるだけ早くそれを取り除くべきです。
 
 Scripts/Items/Implants/ItemImplantBroken@Name:
 壊れたインプラント
 
 Scripts/Items/Implants/ItemImplantHealingGland@Description:
-追加の幹細胞を生産し、血液の化学組成を調節することで自然な再生を運がします。
+追加の幹細胞を生産し、血液の化学組成を調節することによって自然な再生能力を向上させます。
 
 Scripts/Items/Implants/ItemImplantHealingGland@Name:
-ヒーリンググランドインプラント
+治療腺インプラント
 
 Scripts/Items/Implants/ItemImplantMetabolismModulator@Description:
-代謝効率を向上させ、体内のカロリーや液体の消費量を減らします。
+代謝効率を向上させ、体内のカロリーや水分の消費量を減らします。
 
 Scripts/Items/Implants/ItemImplantMetabolismModulator@Name:
-代謝調節剤インプラント
+代謝調節インプラント
 
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
-特殊なナノファイバー材料は、下の表皮層に組み込むことができ、大きな防御機能を提供します。
+特殊なナノファイバー素材を皮下組織に組み込むことによって、優れた保護機能を提供します。
 
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 ナノファイバー皮膚インプラント
 
-Scripts/Items/Medical/ItemAntiMutation@Description:
-放射線やその他の危害によってダメージを受けた細胞のDNAを保護および修復します。体内の突然変異を食い止めます。
-
-Scripts/Items/Medical/ItemAntiMutation@Name:
-抗突然変異薬
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
-突然変異なし
-
 Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
 体内で突然変異は検出されませんでした。
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+変異なし
+
+Scripts/Items/Medical/ItemAntiMutation@Description:
+放射能やその他の危害によってダメージを受けた細胞のDNAを保護および修復します。体内の突然変異を食い止めます。
+
+Scripts/Items/Medical/ItemAntiMutation@Name:
+抗変異薬
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 吐き気はありません。今薬を使っても意味がありません。
@@ -1452,43 +1542,43 @@ Scripts/Items/Medical/ItemAntiNausea@Name:
 吐き気止め
 
 Scripts/Items/Medical/ItemAntiRadiation@NotificationNoRadiationPoisoning_Message:
-放射線中毒はありません。今薬を使っても意味がありません。
+放射能中毒はありません。今薬を使っても意味がありません。
 
 Scripts/Items/Medical/ItemAntiRadiation@NotificationNoRadiationPoisoning_Title:
-放射線中毒なし
+放射能中毒なし
 
 Scripts/Items/Medical/ItemAntiRadiation@Description:
-緊急放射線被曝治療は、体内に蓄積した放射線の影響を直ちに軽減することができます。
+この放射能被曝応急治療剤は、体内に蓄積した放射能の影響を直ちに軽減することができます。
 
 Scripts/Items/Medical/ItemAntiRadiation@Name:
-耐放射線
+耐放射能薬
 
 Scripts/Items/Medical/ItemAntiRadiationPreExposure@Description:
-放射線を浴びる前の治療を行うことで、体内の放射性核種の蓄積を防ぎ、電離放射線の影響を軽減します。
+放射能を浴びる前に摂取することで、体内の放射性核種の蓄積を防ぎ、電離放射能の影響を軽減します。
 
 Scripts/Items/Medical/ItemAntiRadiationPreExposure@Name:
-放射線防護補助
+放射能予防薬
 
 Scripts/Items/Medical/ItemAntiToxin@NotificationNoToxins_Message:
-体に毒素を持っていません。今薬を使っても意味がありません。
+体内に毒素はありません。今薬を使っても意味がありません。
 
 Scripts/Items/Medical/ItemAntiToxin@NotificationNoToxins_Title:
 毒素無し
 
 Scripts/Items/Medical/ItemAntiToxin@Description:
-緊急毒素暴露治療は、体内に蓄積した毒素の影響を直ちに軽減することができます。
+この抗毒応急治療薬は、体内に蓄積した毒素の影響を直ちに軽減することができます。
 
 Scripts/Items/Medical/ItemAntiToxin@Name:
-抗毒素
+抗毒薬
 
 Scripts/Items/Medical/ItemAntiToxinPreExposure@Description:
-毒素を取り込む前の治療をすることで、体内での毒素の吸収を防ぐことができるだけでなく、免疫システムを強化して血流に入る毒素の影響を軽減することができます。
+この予防薬を摂取することにより、体内への毒素の吸収を防ぐだけでなく、免疫システムを強化して血流に入る毒素の影響を軽減することができます。
 
 Scripts/Items/Medical/ItemAntiToxinPreExposure@Name:
-毒素予防
+毒素予防薬
 
 Scripts/Items/Medical/ItemBandage@Description:
-包帯は出血を止めて創傷の治癒を助けるのに役立ちます。
+包帯は出血を止め、傷の治療に役立ちます。
 
 Scripts/Items/Medical/ItemBandage@Name:
 包帯
@@ -1500,7 +1590,7 @@ Scripts/Items/Medical/ItemCigarCheap@Name:
 安い葉巻
 
 Scripts/Items/Medical/ItemCigarNormal@Description:
-フルボディ風味のまともな葉巻。興奮剤。
+香りの良い普通の葉巻。興奮剤。
 
 Scripts/Items/Medical/ItemCigarNormal@Name:
 葉巻
@@ -1509,19 +1599,19 @@ Scripts/Items/Medical/ItemCigarPremium@Description:
 絶妙な香りと風味を持つ上質な葉巻。興奮剤。
 
 Scripts/Items/Medical/ItemCigarPremium@Name:
-高価な葉巻
+高級葉巻
 
 Scripts/Items/Medical/ItemEnergyTablets@Description:
-急速に疲れを回復するシンプルな薬
+疲れを素早く回復できるシンプルな薬
 
 Scripts/Items/Medical/ItemEnergyTablets@Name:
 エナジータブレット
 
 Scripts/Items/Medical/ItemHeatPreExposure@Description:
-耐熱ゲルは直接の熱伝達を防ぎ、輻射熱を反射するため、短時間で高温領域に入ることができます。
+耐熱ジェルは直接の熱伝達を防ぎ、輻射熱を反射するため、短時間であれば高温エリアに入ることができます。
 
 Scripts/Items/Medical/ItemHeatPreExposure@Name:
-耐熱ゲル
+耐熱ジェル
 
 Scripts/Items/Medical/ItemHemostatic@NotificationNoBleeding_Message:
 出血していません。止血剤を使用しても意味がありません。
@@ -1530,28 +1620,28 @@ Scripts/Items/Medical/ItemHemostatic@NotificationNoBleeding_Title:
 出血なし
 
 Scripts/Items/Medical/ItemHemostatic@Description:
-止血剤を使用すると、出血を完全に止めることができ、その効果が持続している間は出血をさらに減らすことができます。
+止血剤を使用すると、出血を完全に止めることができ、その効果が持続している間は新たな出血を減らすことができます。
 
 Scripts/Items/Medical/ItemHemostatic@Name:
-止血
+止血剤
 
 Scripts/Items/Medical/ItemHerbGreen@Description:
-ユニークな癒しと抗菌性を持つ薬草。そのまま使用できますが、適切に準備されるとはるかに強力になります。
+独特な治癒力と抗菌性を持つ薬草。そのまま使用できますが、薬にして適切に摂取すればはるかに強力になります。
 
 Scripts/Items/Medical/ItemHerbGreen@Name:
 グリーンハーブ
 
 Scripts/Items/Medical/ItemHerbPurple@Description:
-体が毒素や他の不自然な物質を取り除くのを助ける薬草。そのまま使用できますが、適切に準備されるとより強力になります。
+毒素や不純物を除去し身体を健康にする薬草。そのまま使用できますが、薬にして適切に摂取すればより強力になります。
 
 Scripts/Items/Medical/ItemHerbPurple@Name:
-紫色のハーブ
+パープルハーブ
 
 Scripts/Items/Medical/ItemHerbRed@Description:
 強い刺激効果を持つ薬草。毒素が含まれているので、生では服用できません。
 
 Scripts/Items/Medical/ItemHerbRed@Name:
-赤いハーブ
+レッドハーブ
 
 Scripts/Items/Medical/ItemMedkit@Description:
 オールインワン医療キット。徐々に健康を回復し、吐き気と出血を治し、骨折を治療できる添え木まで含まれています。
@@ -1566,7 +1656,7 @@ Scripts/Items/Medical/ItemNeuralEnhancer@NotificationNeuralEnhancer_Title:
 神経増強剤
 
 Scripts/Items/Medical/ItemNeuralEnhancer@Description:
-使い捨て神経増強剤は、事前にプログラムされたナノマシンを含みます。人工的に脳内の神経結合を拡大し、思考の複雑さを増します。使用時に即座に学習ポイントを与えます。
+この使い捨ての神経増強剤は、事前にプログラムされたナノマシンが組み込まれており、人工的に脳内の神経結合を拡大し、思考の複雑さを増します。使用時に即座に学習ポイントを獲得します。
 
 Scripts/Items/Medical/ItemNeuralEnhancer@Name:
 神経増強剤
@@ -1584,13 +1674,13 @@ Scripts/Items/Medical/ItemPeredozin@NotificationNoMedicineOveruse_Title:
 薬の乱用なし
 
 Scripts/Items/Medical/ItemPeredozin@NotificationRemovePants_Message:
-強力下剤です！すぐズボンを脱いで！
+強力な下剤です！すぐズボンを脱いで！
 
 Scripts/Items/Medical/ItemPeredozin@NotificationRemovePants_Title:
 パンツが邪魔です！
 
 Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Message:
-すでにペレドジンを使用しているため、次は合わないと感じるでしょう...
+すでにペレドジンを使用したため、もう一度使うのは良くないと思いますが…
 
 Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Title:
 多すぎる！
@@ -1602,16 +1692,16 @@ Scripts/Items/Medical/ItemPeredozin@Name:
 ペレドジン
 
 Scripts/Items/Medical/ItemPsiPreExposure@Description:
-psi磁場による神経障害を軽減するのに役立つ特別な神経調節化学物質。
+サイオニック磁場による神経障害を軽減するのに役立つ特別な神経調節化学物質。
 
 Scripts/Items/Medical/ItemPsiPreExposure@Name:
-PSIブロッカー
+サイオニックブロッカー
 
 Scripts/Items/Medical/ItemRemedyHerbal@Description:
-自家製のハーブ療法。健康を回復し、吐き気を治療できます。おそらく副作用はありません。
+自家製のハーブ薬。健康を回復し、吐き気を治療できます。おそらく副作用はありません。
 
 Scripts/Items/Medical/ItemRemedyHerbal@Name:
-薬草剤
+ハーブ薬
 
 Scripts/Items/Medical/ItemSplint@NotificationNoBrokenBones_Message:
 骨折はありません。添え木を使う意味はありません。
@@ -1626,22 +1716,22 @@ Scripts/Items/Medical/ItemSplint@Name:
 添え木
 
 Scripts/Items/Medical/ItemStimpack@Description:
-スティムパックは、大量な健康度をほぼ瞬時に回復させることができます。特に戦闘では役に立ちますが、深刻な合併症を引き起こす可能性があるため、使いすぎないように注意してください。
+スティムパックは、体力をほぼ瞬時に回復させることができます。特に戦闘で役に立ちますが、深刻な合併症を引き起こす可能性があるため、使いすぎないように注意してください。
 
 Scripts/Items/Medical/ItemStimpack@Name:
 スティムパック
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Description:
-強度を高める薬はあなたを一時的に強くし、肉体労働のパフォーマンスを向上させます。
+筋肉増強剤を使用すると一時的に力が強くなり、肉体労働の効率を向上させます。
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Name:
-強度ブースト（大）
+筋肉増強剤（大）
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
-強度を高める薬はあなたを一時的に強くし、肉体労働のパフォーマンスを向上させます。
+筋肉増強剤を使用すると一時的に力が強くなり、肉体労働の効率を向上させます。
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
-強度向上（小）
+筋肉増強剤（小）
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 木の苗木。植えて新しい木を育てることができます。
@@ -1650,13 +1740,13 @@ Scripts/Items/Seeds/ItemSaplingBirch@Name:
 白樺の苗木
 
 Scripts/Items/Seeds/ItemSaplingOak@Name:
-オークの木の苗木
+樫の木の苗木
 
 Scripts/Items/Seeds/ItemSaplingPine@Name:
 松の木の苗木
 
 Scripts/Items/Seeds/ItemSaplingPineBoreal@Name:
-寒帯の松の木の苗木
+カラマツの苗木
 
 Scripts/Items/Seeds/ItemSaplingPoplar@Name:
 ポプラの苗木
@@ -1665,7 +1755,7 @@ Scripts/Items/Seeds/ItemSaplingRubbertree@Name:
 ゴムの木の苗木
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
-種の入った小さな袋。土壌に植えることができます。
+種の入った小さな袋。土に植えることができます。
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
 ピーマンの種
@@ -1688,8 +1778,14 @@ Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 オニフラワーの種
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Name:
-オグリンの種
+Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
+ミルクメロンの種
+
+Scripts/Items/Seeds/ItemSeedsRice@Name:
+米の種
+
+Scripts/Items/Seeds/ItemSeedsSpices@Name:
+香辛料の種
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 タバコの種
@@ -1701,13 +1797,13 @@ Scripts/Items/Seeds/ItemSeedsWheat@Name:
 小麦の種
 
 Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorSoilNotSuitable:
-この木の種類は土壌では成長できません。
+この種類の木はこの土壌では成長しません。
 
 Scripts/Items/Seeds/Base/ProtoItemSapling@ErrorTooCloseToOtherTrees:
-苗木を植えるためには、木の間に1タイル分のスペースがなければなりません。
+苗木を植えるためには、木と木の間に1タイル分のスペースがなければなりません。
 
 Scripts/Items/Seeds/Base/ProtoItemSeed@DescriptionAcceptedPlacementLocation:
-いずれかが必要
+必要な物
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 鉄の斧は木を伐るのに最適です。石造りの斧より速く、より耐久性があります。
@@ -1722,7 +1818,7 @@ Scripts/Items/Tools/Axes/ItemAxeSteel@Name:
 銅の斧
 
 Scripts/Items/Tools/Axes/ItemAxeStone@Description:
-石斧は木を伐るのに使用することができます。
+石の斧は木を伐るのに使用できます。
 
 Scripts/Items/Tools/Axes/ItemAxeStone@Name:
 石の斧
@@ -1734,13 +1830,13 @@ Scripts/Items/Tools/Crowbars/ItemCrowbar@Name:
 バール
 
 Scripts/Items/Tools/Lights/ItemFlashlight@Description:
-強力な懐中電灯に勝るものはありません。このタイプの懐中電灯は、使い捨て電池を使用し、3,000ルーメン以上の強い光を放つことができます。
+強力な懐中電灯に勝るものはありません。この懐中電灯は、電池を使用し、3,000ルーメン以上の明るい光を放つことができます。
 
 Scripts/Items/Tools/Lights/ItemFlashlight@Name:
 懐中電灯
 
 Scripts/Items/Tools/Lights/ItemOilLamp@Description:
-便利な携帯用光源！キャンプの燃料ですぐに補充できます。
+便利な携帯用照明です。キャンプ燃料ですぐに補充できます。
 
 Scripts/Items/Tools/Lights/ItemOilLamp@Name:
 石油ランプ
@@ -1749,55 +1845,55 @@ Scripts/Items/Tools/Lights/ItemTorch@NotificationBurnedOut:
 松明が燃え尽きました。
 
 Scripts/Items/Tools/Lights/ItemTorch@Description:
-夜の間、あなたの正気を保つために予備があることを確認してください。
+松明は夜の闇からあなたを守ってくれます。もしもの事態に備え、予備があるか確認しましょう。
 
 Scripts/Items/Tools/Lights/ItemTorch@Name:
 松明
 
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationCannotRefillWhileOn_Message:
-消してから補充してください。
+電源を切ってから補充してください。
 
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationCannotRefillWhileOn_Title:
-補充できません
+補充不可
 
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message:
-補充する必要があります。
+補充が必要
 
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 燃料切れ
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
-鉄のつるはしは、鉱床を採掘するために使用することができます。石のつるはしよりも速くて丈夫。
+鉄のつるはしは、鉱物を採掘するために使用することができます。石のつるはしよりも速くて丈夫です。
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Name:
 鉄のつるはし
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeSteel@Description:
-鋼のつるはしは、鉱床を採掘するために使用することができます。鉄のつるはしよりも速くて丈夫です。
+鋼のつるはしは、鉱物を採掘するために使用することができます。鉄のつるはしよりも速くて丈夫です。
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeSteel@Name:
 鋼のつるはし
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Description:
-石のつるはしは、鉱物鉱床を採掘するために使用することができます。
+石のつるはしは、鉱物を採掘するために使用することができます。
 
 Scripts/Items/Tools/Pickaxes/ItemPickaxeStone@Name:
 石のつるはし
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Description:
-ツールボックスは持ち物を修理したり建築する際に不可欠です。選択および装備されていることを確認しましょう。
+工具箱は持ち物を修理したり建築する際に不可欠です。選択および装備されていることを確認しましょう。
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT1@Name:
-シンプルなツールボックス
+シンプルな工具箱
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT2@Name:
-鉄のツールボックス
+鉄の工具箱
 
 Scripts/Items/Tools/Toolboxes/ItemToolboxT3@Name:
-鋼のツールボックス
+鋼の工具箱
 
 Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Description:
-古典的な設計の銅のじょうろ。水を貯めることができます。
+古典的なデザインの銅のじょうろ。より多くの水を貯めることができます。
 
 Scripts/Items/Tools/WateringCans/ItemWateringCanCopper@Name:
 銅のじょうろ
@@ -1809,85 +1905,91 @@ Scripts/Items/Tools/WateringCans/ItemWateringCanPlastic@Name:
 プラスチックのじょうろ
 
 Scripts/Items/Tools/WateringCans/ItemWateringCanSteel@Description:
-ステンレス鋼の薄く機械加工されたシートから作られていて、とても軽い。たくさんの水を貯めることができます。
+薄いステンレス鋼板で作られていて、とても軽い。たくさんの水を貯めることができます。
 
 Scripts/Items/Tools/WateringCans/ItemWateringCanSteel@Name:
 鋼のじょうろ
 
 Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Description:
-一般的なじょうろ。かなり粗雑に作られているので、あまり水を汲めません。
+一般的なじょうろ。かなり粗雑に作られているので、あまり水を貯められません。
 
 Scripts/Items/Tools/WateringCans/ItemWateringCanWood@Name:
 木のじょうろ
 
 Scripts/Items/Weapons/Melee/ItemKnifeIron@Description:
-ミリタリーナイフ。ピッグスティッカーと呼ばれる長い鋭いナイフ。
+ミリタリーナイフ。ピッグスティッカーと呼ばれる長く鋭いナイフ。
 
 Scripts/Items/Weapons/Melee/ItemKnifeIron@Name:
 鉄のナイフ
 
 Scripts/Items/Weapons/Melee/ItemKnifeStone@Description:
-拳よりはいいが、それほどではない。初期のナイフ。
+基本的なナイフ。拳よりはいいが、切れ味はそれほど良くない。
 
 Scripts/Items/Weapons/Melee/ItemKnifeStone@Name:
 石のナイフ
 
 Scripts/Items/Weapons/Melee/ItemMaceCopper@Description:
-銅で補強された衝撃面を備えた槌矛。
+打撃面が銅で補強された木のメイス。
 
 Scripts/Items/Weapons/Melee/ItemMaceCopper@Name:
-銅の槌矛
+銅のメイス
 
 Scripts/Items/Weapons/Melee/ItemMaceIron@Description:
-銅の槌矛より重くより致命的な対抗物
+銅のメイスより重く、威力のある武器。
 
 Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
-鉄の槌矛
+鉄のメイス
+
+Scripts/Items/Weapons/Melee/ItemMachete@Description:
+どっしりとした鋼鉄のマチェテ。頭を切り飛ばすのにもってこいです。
+
+Scripts/Items/Weapons/Melee/ItemMachete@Name:
+マチェテ
 
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 武器なし
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserBlue@Name:
-レーザーレピア（青）
+レーザーレイピア（青）
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserGreen@Name:
-レーザーレピア（緑）
+レーザーレイピア（緑）
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserPurple@Name:
-レーザーレピア（紫）
+レーザーレイピア（紫）
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserRed@Name:
-レーザーレピア（赤）
+レーザーレイピア（赤）
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserWhite@Name:
-レーザーレピア（白）
+レーザーレイピア（白）
 
 Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
-レーザーレピア（黄色）
+レーザーレイピア（黄）
 
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 信じられないほど強力な短距離武器。作動するのにエネルギーが必要です。
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
-原始的なピストル。弾薬に紙薬莢を使用しています。2つのチャージャーを備え、すぐに発砲することができます。
+原始的なピストル。弾薬に紙薬莢を使用しています。一度に2発装填され、すぐに発砲することができます。
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 フリントロックピストル
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
-10mm弾用に開発された拳銃
+10mm弾用に開発された拳銃。
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Name:
 拳銃
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Description:
-レーザーピストルは、主に赤外線スペクトルの高エネルギー光の強いパルスを放射し、それが標的を燃焼させます。
+レーザーピストルは、主に赤外線スペクトルの高エネルギーの光を放射し、標的を燃やします。
 
 Scripts/Items/Weapons/Ranged/ItemLaserPistol@Name:
 レーザーピストル
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Description:
-レーザーライフルは、標的を燃やす、主に赤外スペクトルの高エネルギーの光を素早く放出します。より高いエネルギー消費で、レーザーピストルよりもはるかに高い発砲率を提供します。
+レーザーライフルは、主に赤外線スペクトルの高エネルギーの光を素早く放射し、標的を燃やします。レーザーピストルよりも多くエネルギーを消費し、はるかに高い発射速度を誇ります。
 
 Scripts/Items/Weapons/Ranged/ItemLaserRifle@Name:
 レーザーライフル
@@ -1899,62 +2001,86 @@ Scripts/Items/Weapons/Ranged/ItemLuger@Name:
 ルガー
 
 Scripts/Items/Weapons/Ranged/ItemMachinegun300@Description:
-高出力の300弾丸用に開発された重機関銃
+ハイパワーの30口径弾用に開発された重機関銃。
 
 Scripts/Items/Weapons/Ranged/ItemMachinegun300@Name:
 重機関銃
 
 Scripts/Items/Weapons/Ranged/ItemMachinePistol@Description:
-8mm弾丸用に開発された軽量マシンピストル
+8mm弾用に開発された軽量マシンピストル。
 
 Scripts/Items/Weapons/Ranged/ItemMachinePistol@Name:
 マシンピストル
 
 Scripts/Items/Weapons/Ranged/ItemMusket@Description:
-オールドスクールスタイルのマスケット銃。紙薬莢を使用しています。フリントロックピストルと比較してより良い射程とダメージを提供します。
+伝統的スタイルのマスケット銃。紙薬莢を使用します。フリントロックピストルと比較して、より優れた射程とダメージを誇ります。
 
 Scripts/Items/Weapons/Ranged/ItemMusket@Name:
 マスケット
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Description:
-プラズマピストルは衝突時に標的を燃やす集中プラズマパケットを形成して投射し大きなダメージを与えます。エネルギーの消耗が激しい。
+プラズマピストルは、衝突時に標的を燃やす集中型プラズマパケットを形成して投射し、大きなダメージを与えます。多くの電力を消耗します。
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaPistol@Name:
 プラズマピストル
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Description:
-プラズマライフルは、衝突時に標的を激しく燃やす大きな集中型プラズマパケットを形成して投射し大きなダメージを与えます。エネルギーの消耗が激しい。
+プラズマライフルは、衝突時に標的を激しく燃やす大きな集中型プラズマパケットを形成して投射し、とても大きなダメージを与えます。非常に多くの電力を消耗します。
 
 Scripts/Items/Weapons/Ranged/ItemPlasmaRifle@Name:
 プラズマライフル
 
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
-弾薬を保持している回転シリンダー付きのシンプルな連射ハンドガン。
+弾薬が入る回転シリンダー付きのシンプルな連射拳銃。
 
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 リボルバー
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
-ハイパワーの300弾丸用に開発されたヘビーアンチマテリアルライフル。
+ハイパワーの30口径弾用に開発された対重装甲用ライフル。
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 ヘビーライフル
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
-古い旧式の散弾銃。12gaの弾薬を使用します。
+旧式のショットガン。12ゲージの弾薬を使用します。
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Name:
 ダブルバレルショットガン
 
 Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
-弾薬容量の大きい軍用ショットガン。12gaの弾薬を使用します。
+装弾数の多い軍用ショットガン。12ゲージの弾薬を使用します。
 
 Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
 ミリタリーショットガン
 
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
+非常に大きな銃口エネルギーを持つ半自動拳銃。
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
+ステッペンホーク
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
+ステッペンホーク拳銃のゴールド限定版
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
+ステッペンホーク・ゴールド
+
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
-10mmの弾丸のために開発された小型機関銃
+10mm弾用に開発された小型機関銃。
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
-小型機関銃
+サブマシンガン
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
+メカアーマーに搭載されたハードポイント用に設計された重機関砲。 大口径および対物弾薬を使用します。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
+重機関砲
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
+メカアーマーに搭載されたハードポイント用に設計された軽機関砲。 小口径弾薬を使用します。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
+軽機関砲
 

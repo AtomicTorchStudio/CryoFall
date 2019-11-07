@@ -11,6 +11,8 @@
 
     public class MobBear : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => false;
+
         public override float CharacterWorldHeight => 1.3f;
 
         public override float CharacterWorldWeaponOffsetRanged => 0.45f;
@@ -23,7 +25,7 @@
 
         public override double StatDefaultHealthMax => 200;
 
-        public override double StatMoveSpeed => 1;
+        public override double StatMoveSpeed => 1.5;
 
         protected override void FillDefaultEffects(Effects effects)
         {
@@ -61,7 +63,7 @@
 
             var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalStrong>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)
@@ -71,6 +73,7 @@
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
                 isRetreating: false,
+                isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 0,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 6,

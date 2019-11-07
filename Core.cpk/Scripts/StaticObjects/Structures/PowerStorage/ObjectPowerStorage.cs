@@ -11,7 +11,7 @@
         public override string Description =>
             "Allows one to store electrical energy produced by generators on the base for later use.";
 
-        public override double ElectricityCapacity => 4000;
+        public override double ElectricityCapacity => 10000;
 
         public override string Name => "Power storage";
 
@@ -19,7 +19,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 1500;
+        public override float StructurePointsMax => 2000;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

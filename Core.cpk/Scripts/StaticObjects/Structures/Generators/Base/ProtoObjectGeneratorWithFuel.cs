@@ -28,9 +28,9 @@
 
         public override bool IsFuelProduceByproducts => false;
 
-        public abstract float LiquidCapacity { get; }
+        public abstract double LiquidCapacity { get; }
 
-        public abstract float LiquidConsumptionAmountPerSecond { get; }
+        public abstract double LiquidConsumptionAmountPerSecond { get; }
 
         public abstract LiquidType LiquidType { get; }
 

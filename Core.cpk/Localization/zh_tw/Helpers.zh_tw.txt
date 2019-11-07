@@ -1,85 +1,75 @@
 ﻿Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixDays:
-日
+用桶裡的原油裝滿容器
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixHours:
-時
+用桶裡的水裝滿容器
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
-分
+燃燒木材的副產品
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
-秒
+燃燒木板的副產品
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
-`網絡版本不匹配。
-[br]可能原因為您與服務器使用了不同的mod。`
+燃燒樹枝的副產品
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@MasterServerDisallowed:
-主服務器拒絕連接。請稍候重試或重啟遊戲。
+燒水(浪費)
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ReasonUnknown:
-未知錯誤。請重試。
+回收硬幣
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerFull:
-當前服務器已滿。請等服務器有空位時再嘗試加入。
+回收閃亮硬幣
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerUnreachable:
-遊戲服務器當前不可用。可能原因：服務器重啟，服務器關閉，防火墻設置和網絡問題等。請在幾分鐘後重試。
+向蒸汽鍋爐里加水
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ShutdownScheduled:
-遊戲服務器正在重啟或即將關閉。
+將罐子中的汽油倒入發電機
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleConnectionRejectedByServer:
-連接被拒
+從鋰礦萃取器中獲得鋰鹽
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleDefault:
-無法連接至遊戲服務器
+用油泵中的原油裝滿容器
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@AccountBlocked:
-您的賬號已被封禁。
+將容器中的原油加進精煉器
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@DefaultTitle:
-登陸失敗
+用精煉器中的汽油裝滿容器
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Message:
-`一封含有激活鏈接的郵件已被發送至您的郵箱。
-[br]請打開該郵件並點擊激活鏈接，然後返回遊戲並繼續。`
+用精煉器中的礦石油裝滿容器
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Title:
-您的新賬戶需要激活！
+燒水
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@GameNotOwned:
-賬戶未擁有遊戲。
+用井水裝滿瓶子
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@IncorrectEmailOrPassword:
-郵箱或密碼錯誤。
+日
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UnknownError:
-未知錯誤。請重試。
+小時
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Message:
-`提供的用戶詳情已經被另一個不同的Steam帳號關聯。
-[br] 你無法將此AtomicTorch.com帳號與當前Steam帳號關聯。`
+分
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Title:
-無法鏈接帳號
+秒
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameInvalid_Title:
-用戶名不可用
+`"網路版本不匹配。`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameRequirements:
-`用戶名規則:
-[*] 必須為[b]3[/b]至[b]24[/b]個字元
-[*] [b]可以[/b]包含字母，數位，底線以及連字號
-[*] [b]不可以[/b]包含空格或其他字元
-[*] 必須以[b]字母[/b]開頭
-[*] 必須以[b]字母[/b]或[b]數字[/b]結尾
-[*] [b]不可以[/b]連續使用多個[b]-[/b]或[b]_[/b]`
+`[br]可能原因為您與伺服器使用了不同的mod。"`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Message:
-`所選用戶名已被其他玩家使用。
-[br]請使用其他用戶名。`
+主要伺服器拒絕連接。請稍候重試或重啟遊戲。
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameUsed_Title:
-用戶名已被使用
+未知錯誤。請重試。
 

@@ -31,6 +31,22 @@
 
         public override bool IsBlocksMovement => true;
 
+        public override void SharedUpdate(double deltaTime)
+        {
+            base.SharedUpdate(deltaTime);
+
+            ((IProtoItemExplosive)this.ItemExplosive.ProtoItem)
+                .SharedValidatePlacement(this.Character,
+                                         this.TargetPosition,
+                                         logErrors: true,
+                                         canPlace: out var canPlace,
+                                         isTooFar: out var isTooFar);
+            if (!canPlace || isTooFar)
+            {
+                this.AbortAction();
+            }
+        }
+
         protected override void OnCompletedOrCancelled()
         {
             base.OnCompletedOrCancelled();

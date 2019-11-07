@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeHygroscopicGranules>();
 
-            config.SetRequiredNode<TechNodeWateringCanPlastic>();
+            config.SetRequiredNode<TechNodeTobacco>();
         }
     }
 }

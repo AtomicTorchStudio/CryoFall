@@ -33,7 +33,7 @@
             damageValue = 6;
             armorPiercingCoef = 0;
             finalDamageMultiplier = 2;
-            rangeMax = 6;
+            rangeMax = 7;
 
             damageDistribution.Set(DamageType.Impact, 1.0);
         }

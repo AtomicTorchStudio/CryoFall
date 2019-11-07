@@ -72,11 +72,14 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0} a rejoint la partie
 
-Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-Souhaitez-vous vraiment {0} {1} ?
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
+Voulez-vous vraiment bloquer {0} ?
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 Vous pourrez débloquer ce joueur plus tard via le menu social.
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
+Voulez-vous vraiment débloquer {0} ?
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 Global
@@ -214,7 +217,7 @@ Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
 {0} a quitté le groupe sur décision de {1}
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
-{0} ne fait plus partie du groupe
+{0} ne fait plus partie du groupe.
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
 Aucune invitation trouvée ou invitation expirée.
@@ -302,9 +305,13 @@ Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhite
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
 `Bienvenue sur le serveur officiel de CryoFall ! 
 [br] 
-[br] [b]Important :[/b] Ce serveur est de type JcE (Joueur contre l'Environnement). Sur ce serveur, les joueurs ne peuvent pas s'attaquer les uns les autres, que ce soit de manière directe ou indirecte. L'exploration paisible est favorisée. Vous ne pouvez pas tuer, détruire, voler ou d'une quelconque façon attaquer d'autres joueurs. En dehors de cela, ce serveur vous propose l'expérience complète de CryoFall, avec ses créatures dangereuses, ses technologies à découvrir et son monde à explorer. À vous de voir où vous mènera votre voyage ! 
+[br]
+[b]Important :[/b]
+[br]
+Ce serveur est de type JcE (Joueur contre l'Environnement). Sur ce serveur, les joueurs ne peuvent pas s'attaquer les uns les autres, que ce soit de manière directe ou indirecte. L'exploration paisible est favorisée. Vous ne pouvez pas tuer, détruire, voler ou d'une quelconque façon attaquer d'autres joueurs. En dehors de cela, ce serveur vous propose l'expérience complète de CryoFall, avec ses créatures dangereuses, ses technologies à découvrir et son monde à explorer. À vous de voir où vous mènera votre voyage ! 
 [br] 
-[br] Si vous êtes tenté par une expérience plus intense et sans aucune restriction, envisagez plutôt de rejoindre un serveur JcJ. 
+[br]
+Si vous êtes tenté par une expérience plus intense et sans aucune restriction, envisagez plutôt de rejoindre un serveur JcJ. 
 [br] 
 [br] 
 [b]Règles du serveur :[/b] 
@@ -313,12 +320,15 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [*]N'essayez pas de contourner ou d'abuser des restrictions JcE. 
 [*]N'exploitez pas les règles ou les mécaniques du jeu afin de nuire ou de gêner d'autres joueurs. 
 [br] 
-[br] Bonne chance ! :)`
+[br]
+Bonne chance ! :)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
 `Bienvenue sur le serveur officiel de CryoFall ! 
 [br] 
-[br] [b]Important :[/b] 
+[br]
+[b]Important :[/b] 
+[br]
 Ce serveur est de type JcJ (Joueur contre Joueur). Soyez bien conscient que sur les serveurs JcJ, vous serez confrontés à des joueurs agressifs. Vous êtes censé vous battre et vous défendre par vous-même. Vous devrez apprendre à vous protéger, et faire preuve d'une vigilance de tous les instants. Vous pourrez également envisager de vous associer à d'autres joueurs afin d'augmenter vos chances de survie. 
 [br] 
 [br] Si vous êtes tenté par une expérience plus paisible, surtout si vous jouez pour la première fois, envisagez plutôt de rejoindre un serveur JcE. 
@@ -328,7 +338,8 @@ Ce serveur est de type JcJ (Joueur contre Joueur). Soyez bien conscient que sur 
 [*]Pliez-vous aux requêtes des modérateurs du serveur. 
 [*]Ne polluez pas le chat avec des messages superflus, et restez modérés dans l'usage de la grossièreté... 
 [br] 
-[br] Bonne chance ! :)`
+[br]
+Bonne chance ! :)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
 Bienvenue sur {0}
@@ -374,6 +385,30 @@ Achat impossible
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
 Vente impossible
+
+Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
+Bloqué. La baie de montage doit être dégagée de tout obstacle et de toute personne pour placer un véhicule.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
+Impossible d'accueillir le véhicule
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
+Your vehicle is in the garage. You can take it from any Vehicle Assembly Bay.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
+Some of your vehicles are in the garage. You can take them from any Vehicle Assembly Bay.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
+Vehicles in garage
+
+Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
+À court d'énergie.
+
+Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
+Impossible d'utiliser {0}
+
+Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
+Plante déjà arrosée.
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
 La plante est prête pour la récolte. Inutile de l'arroser maintenant.

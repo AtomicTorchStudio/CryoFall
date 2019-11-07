@@ -44,10 +44,10 @@
             }
 
             var address = serverInfo.Address;
-            if (string.IsNullOrEmpty(address.HostAddress))
+            if (address == default)
             {
                 // should be impossible
-                throw new Exception("Bad server name");
+                throw new Exception("Bad server address");
             }
 
             if (serverInfo.IsInaccessible)
@@ -113,6 +113,23 @@
                 DialogWindow.ShowDialog(
                     DialogIncompatibleServer_Title,
                     message,
+                    closeByEscapeKey: true,
+                    zIndexOffset: 100000);
+                return;
+            }
+
+            if (Api.Client.MasterServer.IsDemoVersion
+                && !serverInfo.IsOfficial
+                && !serverInfo.IsFeatured)
+            {
+                DialogWindow.ShowDialog(
+                    CoreStrings.Demo_Title,
+                    CoreStrings.Demo_OnlyOfficialServers,
+                    okText: CoreStrings.Demo_Button_BuyGameOnSteam,
+                    okAction: () => Api.Client.SteamApi.OpenBuyGamePage(),
+                    cancelText: CoreStrings.Button_Cancel,
+                    cancelAction: () => { },
+                    focusOnCancelButton: true,
                     closeByEscapeKey: true,
                     zIndexOffset: 100000);
                 return;

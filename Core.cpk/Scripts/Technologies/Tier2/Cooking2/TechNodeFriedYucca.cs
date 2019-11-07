@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeYuccaFried>();
 
-            config.SetRequiredNode<TechNodeInsectMeatFried>();
+            config.SetRequiredNode<TechNodeRiceCooked>();
         }
     }
 }

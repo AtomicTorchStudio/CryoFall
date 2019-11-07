@@ -26,11 +26,12 @@
 
         public override string Description => GetProtoEntity<ObjectOilPump>().Description;
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 4; // do not change, see electricity math model
+        // do not change, see electricity math model
+        public override double ElectricityConsumptionPerSecondWhenActive => 4;
 
-        public override float LiquidCapacity => 100;
+        public override double LiquidCapacity => 100;
 
-        public override float LiquidProductionAmountPerSecond => 0.4f;
+        public override double LiquidProductionAmountPerSecond => 0.4;
 
         public override string Name => "Advanced oil pump";
 
@@ -38,7 +39,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 5000;
+        public override float StructurePointsMax => 10000;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -104,10 +105,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((2.8, 2.2), (0.1, 0))
+                .AddShapeRectangle((3.0, 2.2), (0, 0))
                 .AddShapeRectangle((2.8, 1.7), (0.1, 0.7), CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((2.8, 1.6), (0.1, 0.8), CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((2.8, 2.8), (0.1, 0), CollisionGroups.ClickArea);
+                .AddShapeRectangle((2.8, 2.8), (0.1, 0),   CollisionGroups.ClickArea);
         }
     }
 }

@@ -26,11 +26,11 @@
 
             if (isAutoClose)
             {
-                Api.Client.Scene
-                   .GetSceneObject((IWorldObject)itemsContainer.Owner)
-                   .AddComponent<ClientComponentAutoCloseWindow>()
-                   .Setup(instance,
-                          closeCheckFunc: () => itemsContainer.OccupiedSlotsCount == 0);
+                ((IWorldObject)itemsContainer.Owner)
+                    .ClientSceneObject
+                    .AddComponent<ClientComponentAutoCloseWindow>()
+                    .Setup(instance,
+                           closeCheckFunc: () => itemsContainer.OccupiedSlotsCount == 0);
             }
 
             return instance;

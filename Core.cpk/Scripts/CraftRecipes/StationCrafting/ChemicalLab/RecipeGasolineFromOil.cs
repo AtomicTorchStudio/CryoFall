@@ -20,11 +20,11 @@
 
             duration = CraftingDuration.Long;
 
-            inputItems.Add<ItemCanisterMineralOil>(count: 5);
+            inputItems.Add<ItemCanisterMineralOil>(count: 10);
             inputItems.Add<ItemIngotGold>(count: 5);
             inputItems.Add<ItemBottleWater>(count: 20);
 
-            outputItems.Add<ItemCanisterGasoline>(count: 5);
+            outputItems.Add<ItemCanisterGasoline>(count: 10);
             outputItems.Add<ItemIngotGold>(count: 5);
             outputItems.Add<ItemBottleEmpty>(count: 20);
 

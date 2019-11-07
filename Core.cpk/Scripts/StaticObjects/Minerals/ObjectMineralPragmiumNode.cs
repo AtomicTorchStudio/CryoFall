@@ -17,12 +17,6 @@
         : ProtoObjectMineral
             <ObjectMineralPragmiumNode.PrivateState, StaticObjectPublicState, DefaultMineralClientState>
     {
-        // has light source
-        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
-                                                                       minY: -1,
-                                                                       maxX: 1,
-                                                                       maxY: 2);
-
         // The Node destruction will be postponed on this duration
         // if it cannot be destroy because there are characters observing it.
         private static readonly double DestructionTimeoutPostponeSeconds
@@ -30,9 +24,8 @@
 
         // The Node will destroy after this duration if there is no Pragmium Source nearby
         // and there are no characters observing it.
-        // Please note: the value is carefully selected to match with SpawnPragmiumWasteland respawn rate.
         private static readonly double DestructionTimeoutSeconds
-            = TimeSpan.FromMinutes(29).TotalSeconds;
+            = TimeSpan.FromMinutes(30).TotalSeconds;
 
         private TextureResource[] textures;
 
@@ -46,6 +39,12 @@
         public override double ServerUpdateIntervalSeconds => 60;
 
         public override float StructurePointsMax => 1000;
+
+        // has light source
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
+                                                                       minY: -1,
+                                                                       maxX: 1,
+                                                                       maxY: 2);
 
         protected override ITextureResource ClientGetTextureResource(
             IStaticWorldObject gameObject,
@@ -90,22 +89,18 @@
         {
             config.Stage4.Add<ItemOrePragmium>(count: 2);
         }
-
-        protected override void ServerInitialize(ServerInitializeData data)
-        {
-            base.ServerInitialize(data);
-
-            if (data.IsFirstTimeInit)
-            {
-                ServerRestartDestroyTimer(data.PrivateState);
-            }
-        }
-
+        
         protected override void ServerUpdate(ServerUpdateData data)
         {
             base.ServerUpdate(data);
 
             var privateState = data.PrivateState;
+            if (privateState.DestroyAtTime <= 0)
+            {
+                // this instance is not despawning on its own
+                return;
+            }
+
             var timeNow = Server.Game.FrameTime;
 
             // Destroy Pragmium node if the timeout is exceeded
@@ -145,7 +140,7 @@
             // no ranged hitbox
         }
 
-        private static void ServerRestartDestroyTimer(PrivateState privateState)
+        public static void ServerRestartDestroyTimer(PrivateState privateState)
         {
             privateState.DestroyAtTime = Server.Game.FrameTime + DestructionTimeoutSeconds;
         }

@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CraftRecipes
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.CoreMod.Systems;
@@ -20,11 +19,11 @@
             duration = CraftingDuration.Long;
 
             inputItems.Add<ItemGlassRaw>(count: 100);
-            inputItems.Add<ItemPlastic>(count: 50);
             inputItems.Add<ItemWire>(count: 50);
-            inputItems.Add<ItemComponentsOptical>(count: 50);
-            inputItems.Add<ItemComponentsElectronic>(count: 40);
-            inputItems.Add<ItemOrePragmium>(count: 10);
+            inputItems.Add<ItemComponentsElectronic>(count: 20);
+            inputItems.Add<ItemOrePragmium>(count: 20);
+            inputItems.Add<ItemComponentsOptical>(count: 10);
+            inputItems.Add<ItemPlastic>(count: 10);
             inputItems.Add<ItemPowerCell>(count: 5);
 
             outputItems.Add<ItemSolarPanel>(count: 1);

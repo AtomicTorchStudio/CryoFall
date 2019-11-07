@@ -2,8 +2,8 @@
 {
     public interface IProtoObjectWell : IProtoObjectManufacturer
     {
-        float WaterCapacity { get; }
+        double WaterCapacity { get; }
 
-        float WaterProductionAmountPerSecond { get; }
+        double WaterProductionAmountPerSecond { get; }
     }
 }

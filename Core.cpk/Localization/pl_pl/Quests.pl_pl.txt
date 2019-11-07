@@ -316,10 +316,9 @@ Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
 Ciężkie walki powodują utratę zdrowia. W takich sytuacjach musisz stosować leki uzdrawiające i leczące dolegliwości. Samo używanie zielonych ziół nie wystarczy.
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
-`[*] W CryoFall istnieje wiele różnych rodzajów leków. Niektóre przywracają zdrowie, a inne leczą określone dolegliwości lub dają inne korzyści.
-[*] Tworzenie zaawansowanych leków wymaga poznania określonych przepisów i technologii.
-[*] Lekarstwo ziołowe znajduje się w sekcji gotowania.
-[*] Korę drzew można zbierać podczas wycinania niektórych rodzajów drzew.`
+`[*] W CryoFall występuje wiele typów lekarstw; niektóre przywracają zdrowie, inne leczą określone stany, a jeszcze inne zapewniają określone korzyści.
+[*] Wytwarzanie zaawansowanych lekarstw wymaga poznania odpowiednich przepisów i technologii.
+[*] Lekarstwa ziołowe znajdują się w kategorii kulinarnej.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
 Zbierz zioła i przygotuj lek
@@ -352,7 +351,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Czas lepiej się zabezpieczyć.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*] Możesz odblokować wszystkie odpowiednie technologie w grupie technologicznej „Atak i obrona”.
+`[*] Możesz odblokować wszystkie odpowiednie technologie w grupie technologicznej „Obrona”.
 [*] Pancerz drewniany nie jest idealny, ale jest tani i z pewnością lepiej chroni niż pancerz płócienny.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
@@ -381,9 +380,9 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Rozbijanie czaszek buławą jest OK, ale czasami warto dysponować bronią dystansową, zwłaszcza gdy mierzysz się z trudniejszymi przeciwnikami.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*] Możesz odblokować wszystkie odpowiednie technologie w grupie technologicznej „Atak i obrona”.
+`[*] Możesz odblokować wszystkie odpowiednie technologie w grupie technologicznej „Atak”.
 [*] Aby wyprodukować ładunki papierowe, najpierw musisz wyprodukować [b]proch strzelniczy[/b] i [b]papier[/b].
-[*] Istnieją [b]różne typy obrażeń[/b] a różne pancerze chronią inaczej w przypadku odmiennych typów obrażeń. Te informacje są dostępne na ekranie ekwipunku.`
+[*] Istnieją [b]różne typy obrażeń[/b], a różne pancerze chronią inaczej w przypadku odmiennych typów obrażeń. Te informacje są dostępne na ekranie ekwipunku.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
 Wytwórz broń dystansową
@@ -435,7 +434,8 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 Więcej polowania! Masz jeszcze wiele zwierząt i potworów do odkrycia.
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*] Każde zwierzę i potwór występuje na określonym obszarze. Eksploruj świat i poznawaj różne zamieszkujące go stworzenia.
+`[*] Wyposażenie myśliwego możesz wstawić do „gniazd urządzeń” (po prawej stronie portretu postaci w menu ekwipunku).
+[*] Każde zwierzę i potwór występują na określonym obszarze. Eksploruj świat i poznawaj różne zamieszkujące go stworzenia.
 [*] W zależności od tego jak niebezpieczne jest dane zwierzę lub potwór, za jego zabicie otrzymasz różne ilości doświadczenia łowieckiego.`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
@@ -464,6 +464,9 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Wyburz łomem
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Wydobywaj minerały solne
+
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
 Niektóre zasoby takie jak ropa naftowa i lit są niezbędne do wytwarzania zaawansowanych technologii. Należy poznać metody pozyskiwania tych zasobów.
 
@@ -475,9 +478,6 @@ Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
 Pozyskiwanie zasobów – zaawansowane
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Wydobywaj minerały solne
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Rozwijanie zdolności przemysłowych i budowlanych wymaga podstawowych umiejętności w naukach ścisłych, zwłaszcza chemicznych.

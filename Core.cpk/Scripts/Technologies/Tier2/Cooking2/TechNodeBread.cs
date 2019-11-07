@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeBread>();
 
-            config.SetRequiredNode<TechNodeWheatFlour>();
+            config.SetRequiredNode<TechNodeDough>();
         }
     }
 }

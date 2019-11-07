@@ -3,6 +3,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
@@ -10,6 +11,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectDeposit
         <TPrivateState,
@@ -35,7 +37,7 @@
         /// </summary>
         public abstract double LifetimeTotalDurationSeconds { get; }
 
-        public sealed override double ObstacleBlockDamageCoef => 0f;
+        public sealed override double ObstacleBlockDamageCoef => 0;
 
         public sealed override double ServerUpdateIntervalSeconds => this.ServerDecayIntervalSeconds;
 
@@ -82,7 +84,7 @@
             // only damage from explosives is accepted
             obstacleBlockDamageCoef = 0;
             damageApplied = 0; // no damage
-            return false; // no hit
+            return false;      // no hit
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -145,6 +147,15 @@
             tileRequirements.Add(ConstructionTileRequirements.ValidatorNotRestrictedAreaEvenForServer);
         }
 
+        /// <summary>
+        /// When the deposit is depleted, create a special object in its place.
+        /// </summary>
+        protected virtual void ServerCreateDepletedObject(Vector2Ushort tilePosition)
+        {
+            // we're using the same "charred ground" object as in case of deposit explosion
+            Server.World.CreateStaticWorldObject<ObjectCharredGround3Deposit>(tilePosition);
+        }
+
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
@@ -161,6 +172,7 @@
 
         protected virtual void ServerOnDecayCompleted(IStaticWorldObject worldObject)
         {
+            this.ServerCreateDepletedObject(worldObject.TilePosition);
             this.ServerOnStaticObjectZeroStructurePoints(null, null, worldObject);
         }
 

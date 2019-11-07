@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.Physics;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public abstract class SkeletonHuman : ProtoCharacterSkeleton
@@ -14,7 +15,7 @@
 
         public const double RangedHitboxOffset = 0;
 
-        public override double DefaultMoveSpeed => 1.5;
+        public override double DefaultMoveSpeed => 2.25;
 
         public override bool HasMoveStartAnimations => true;
 
@@ -31,6 +32,30 @@
         public override double WorldScale => 0.15;
 
         protected override string SoundsFolderPath => "Skeletons/Human";
+
+        public override void ClientResetItemInHand(IComponentSkeleton skeletonRenderer)
+        {
+            skeletonRenderer.SetAttachmentSprite(this.SlotNameItemInHand,
+                                                 attachmentName: "WeaponMelee",
+                                                 textureResource: null);
+            skeletonRenderer.SetAttachmentSprite(this.SlotNameItemInHand,
+                                                 attachmentName: "WeaponRifle",
+                                                 textureResource: null);
+            skeletonRenderer.SetAttachment(this.SlotNameItemInHand, attachmentName: null);
+        }
+
+        public override void ClientSetupItemInHand(
+            IComponentSkeleton skeletonRenderer,
+            string attachmentName,
+            TextureResource textureResource)
+        {
+            skeletonRenderer.SetAttachmentSprite(this.SlotNameItemInHand, attachmentName, textureResource);
+            skeletonRenderer.SetAttachment(this.SlotNameItemInHand, attachmentName);
+
+            // set left hand to use special sprite (representing holding of the item in hand)
+            skeletonRenderer.SetAttachment("HandLeft",          "HandLeft2");
+            skeletonRenderer.SetAttachment("HandLeftEquipment", "HandLeft2Equipment");
+        }
 
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
@@ -66,7 +91,50 @@
         {
             base.OnSkeletonCreated(skeleton);
 
-            skeleton.SetMixDuration("Torch", 0.3f);
+            skeleton.RemoveAttachmentAnimationsForSlot("Weapon");
+
+            skeleton.SetDefaultMixDuration(0.3f);
+
+            skeleton.SetMixDuration("Torch",  0.25f);
+            skeleton.SetMixDuration("Torch2", 0.15f);
+
+            // setup attack animations
+            {
+                var mixIn = 0.033333f;
+                var mixInStatic = 0.15f;
+                var mixOut = 0.15f;
+                skeleton.SetMixDuration(null, "AttackMeleeHorizontal",        mixIn,       mixOut);
+                skeleton.SetMixDuration(null, "AttackMeleeHorizontal_Static", mixInStatic, mixOut);
+                skeleton.SetMixDuration(null, "AttackMeleeVertical",          mixIn,       mixOut);
+                skeleton.SetMixDuration(null, "AttackMeleeVertical_Static",   mixInStatic, mixOut);
+            }
+
+            // disable mix for these movement animations
+            DisableMoveMix("RunUp");
+            DisableMoveMix("RunDown");
+            DisableMoveMix("RunSide");
+            DisableMoveMix("RunSideBackward");
+
+            var verticalSpeedMultiplier = 1.1f;
+            skeleton.SetAnimationDefaultSpeed("RunUp",        verticalSpeedMultiplier);
+            skeleton.SetAnimationDefaultSpeed("RunUpStart",   verticalSpeedMultiplier);
+            skeleton.SetAnimationDefaultSpeed("RunDown",      verticalSpeedMultiplier);
+            skeleton.SetAnimationDefaultSpeed("RunDownStart", verticalSpeedMultiplier);
+
+            void DisableMoveMix(string primaryName)
+            {
+                var startName = primaryName + "Start";
+                var startAbortName = startName + "Abort";
+                var minMix = 0.05f;
+                skeleton.SetMixDuration(startName,      minMix);
+                skeleton.SetMixDuration(startAbortName, minMix);
+                skeleton.SetMixDuration("Idle",         startName,      minMix);
+                skeleton.SetMixDuration(startName,      primaryName,    minMix);
+                skeleton.SetMixDuration(startName,      startAbortName, minMix);
+                skeleton.SetMixDuration(startAbortName, "Idle",         minMix);
+
+                skeleton.SetAnimationDefaultSpeed(startAbortName, 1.3f);
+            }
         }
     }
 }

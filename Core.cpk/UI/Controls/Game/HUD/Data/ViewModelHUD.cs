@@ -1,6 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data
 {
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map;
@@ -10,6 +12,9 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skills;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
+    using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelHUD : BaseViewModel
     {
@@ -32,7 +37,23 @@
             this.MenuPolitics = Menu.Register<WindowPolitics>();
             this.MenuTechTree = Menu.Register<WindowTechnologies>();
             this.MenuQuests = Menu.Register<WindowQuests>();
+
+            ClientCurrentCharacterHelper.PublicState
+                                        .ClientSubscribe(_ => _.CurrentVehicle,
+                                                         _ => this.RefreshVehicleUI(),
+                                                         this);
+
+            this.RefreshVehicleUI();
         }
+
+        public BaseCommand CommandQuitVehicle
+            => new ActionCommand(ExecuteCommandQuitVehicle);
+
+        public bool IsConstructionMenuAvailable { get; private set; }
+
+        public bool IsPlayersHotbarVisible { get; private set; }
+
+        public bool IsQuitVehicleButtonVisible { get; private set; }
 
         public Menu MenuConstruction { get; }
 
@@ -67,6 +88,30 @@
             this.MenuPolitics.Dispose();
             this.MenuTechTree.Dispose();
             this.MenuQuests.Dispose();
+        }
+
+        private static void ExecuteCommandQuitVehicle()
+        {
+            VehicleSystem.ClientOnVehicleEnterOrExitRequest();
+        }
+
+        private void RefreshVehicleUI()
+        {
+            var currentVehicle = ClientCurrentCharacterHelper.PublicState.CurrentVehicle;
+            if (!(currentVehicle is null)
+                && !currentVehicle.IsInitialized)
+            {
+                // not yet ready - refresh after delay
+                ClientTimersSystem.AddAction(delaySeconds: 0.1,
+                                             this.RefreshVehicleUI);
+                currentVehicle = null;
+            }
+
+            this.IsQuitVehicleButtonVisible = !(currentVehicle is null);
+            this.IsConstructionMenuAvailable = currentVehicle is null;
+            this.IsPlayersHotbarVisible = currentVehicle is null
+                                          || ((IProtoVehicle)currentVehicle.ProtoGameObject)
+                                          .IsPlayersHotbarAndEquipmentItemsAllowed;
         }
     }
 }

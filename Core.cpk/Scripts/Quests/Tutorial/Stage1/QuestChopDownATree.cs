@@ -4,7 +4,8 @@
 
     public class QuestChopDownATree : ProtoQuest
     {
-        public override string Description => "It is time to get some wood! Find a tree and use your axe to chop it down.";
+        public override string Description =>
+            "It is time to get some wood! Find a tree and use your axe to chop it down.";
 
         public override string Hints =>
             @"[*] You need to place the axe into your [b]hotbar[/b]. Open the inventory and drag the axe you crafted into any hotbar slot below, then close your inventory.

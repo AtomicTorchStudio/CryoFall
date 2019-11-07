@@ -9,6 +9,12 @@
 
     public class HyperlinkControl : BaseContentControl
     {
+        public static readonly DependencyProperty CommandProperty =
+            DependencyProperty.Register(nameof(Command),
+                                        typeof(BaseCommand),
+                                        typeof(HyperlinkControl),
+                                        new PropertyMetadata(default(BaseCommand)));
+
         public static readonly DependencyProperty ForegroundMouseOverProperty =
             DependencyProperty.Register(
                 nameof(ForegroundMouseOver),
@@ -30,6 +36,12 @@
             DefaultStyleKeyProperty.OverrideMetadata(
                 typeof(HyperlinkControl),
                 new FrameworkPropertyMetadata(typeof(HyperlinkControl)));
+        }
+
+        public BaseCommand Command
+        {
+            get => (BaseCommand)this.GetValue(CommandProperty);
+            set => this.SetValue(CommandProperty, value);
         }
 
         public Brush ForegroundMouseOver
@@ -68,7 +80,21 @@
         private void MouseLeftButtonUpHandler(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-            Api.Client.Core.OpenWebPage(this.Url);
+
+            if (!string.IsNullOrWhiteSpace(this.Url))
+            {
+                Api.Client.Core.OpenWebPage(this.Url);
+                return;
+            }
+
+            var command = this.Command;
+            if (command != null)
+            {
+                command.Execute(null);
+                return;
+            }
+
+            Api.Logger.Error("No action assigned for " + this);
         }
     }
 }

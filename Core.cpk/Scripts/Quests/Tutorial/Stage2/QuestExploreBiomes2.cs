@@ -21,7 +21,8 @@
             requirements
                 .Add(RequirementVisitTile.Require<TileForestBoreal>())
                 .Add(RequirementVisitTile.Require<TileRocky>())
-                .Add(RequirementVisitTile.Require<TileClay>());
+                .Add(RequirementVisitTile.Require<TileClay>())
+                .Add(RequirementVisitTile.Require<TileRoads>());
 
             prerequisites
                 .Add<QuestUseCrowbarAndDeconstructBuilding>();

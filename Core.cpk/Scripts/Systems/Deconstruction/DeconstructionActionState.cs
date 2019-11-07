@@ -101,7 +101,7 @@
         public override void SharedUpdate(double deltaTime)
         {
             if ((this.ItemCrowbarTool != null
-                 && this.ItemCrowbarTool != this.CharacterPublicState.SelectedHotbarItem)
+                 && this.ItemCrowbarTool != this.CharacterPublicState.SelectedItem)
                 || !this.CheckIsAllowed())
             {
                 // selected hotbar item changed or the action is not allowed anymore

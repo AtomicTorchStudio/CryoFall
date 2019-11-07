@@ -67,9 +67,15 @@
             this.ShortId = name.Substring("Mob".Length);
         }
 
+        public abstract bool AiIsRunAwayFromHeavyVehicles { get; }
+
         public IReadOnlyDropItemsList LootDroplist { get; private set; }
 
         public abstract double MobKillExperienceMultiplier { get; }
+
+        public override double PhysicsBodyAccelerationCoef => 5;
+
+        public override double PhysicsBodyFriction => 10;
 
         public override double ServerUpdateIntervalSeconds => 0.1;
 
@@ -170,7 +176,7 @@
                 data.GameObject,
                 data.ClientState,
                 data.PublicState,
-                data.PublicState.SelectedHotbarItem);
+                data.PublicState.SelectedItem);
         }
 
         protected sealed override void PrepareProtoCharacter()
@@ -224,12 +230,25 @@
                 ClampDirection(movementDirection.X),
                 ClampDirection(movementDirection.Y)).Normalized;
 
-            var moveSpeed = character.SharedGetFinalStatValue(StatName.MoveSpeed);
-            moveSpeed *= ProtoTile.SharedGetTileMoveSpeedMultiplier(character.Tile);
-            Server.Characters.SetMoveSpeed(character, moveSpeed);
+            double moveSpeed;
+            if (movementDirection.X != 0
+                && movementDirection.Y != 0)
+            {
+                moveSpeed = character.SharedGetFinalStatValue(StatName.MoveSpeed);
+                moveSpeed *= ProtoTile.SharedGetTileMoveSpeedMultiplier(character.Tile);
+            }
+            else
+            {
+                moveSpeed = 0;
+            }
 
-            var moveVelocity = movementDirectionNormalized * moveSpeed;
-            Server.Characters.SetVelocity(character, moveVelocity);
+            Server.World.SetDynamicObjectMoveSpeed(character, moveSpeed);
+
+            var moveAcceleration = movementDirectionNormalized * this.PhysicsBodyAccelerationCoef * moveSpeed;
+
+            Server.World.SetDynamicObjectPhysicsMovement(character,
+                                                         moveAcceleration,
+                                                         targetVelocity: moveSpeed);
 
             var statePublic = GetPublicState(character);
             statePublic.AppliedInput.Set(
@@ -290,9 +309,11 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
+            data.GameObject.PhysicsBody.Friction = this.PhysicsBodyFriction;
+
             if (GetPublicState(data.GameObject).IsDead)
             {
-                // do not create any physics for dead character
+                // do not create any physic shapes for dead character
                 return;
             }
 

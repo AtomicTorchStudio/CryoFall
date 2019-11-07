@@ -9,7 +9,7 @@
 
     public class ItemMachinegun300 : ProtoItemWeaponRanged
     {
-        public override ushort AmmoCapacity => 24;
+        public override ushort AmmoCapacity => 18;
 
         public override double AmmoReloadDuration => 3;
 

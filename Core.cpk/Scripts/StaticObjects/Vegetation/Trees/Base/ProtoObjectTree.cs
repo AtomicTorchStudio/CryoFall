@@ -80,12 +80,12 @@
             }
         }
 
-        protected override void ClientOnObjectDestroyed(Vector2Ushort tilePosition)
+        protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             // play custom sound
             var emitter = Client.Audio.PlayOneShot(
                 MaterialDestroySoundPresets.TreeDestroy.GetSound(repetitionProtectionKey: this),
-                worldPosition: tilePosition.ToVector2D() + this.Layout.Center,
+                worldPosition: position + this.Layout.Center,
                 volume: SoundConstants.VolumeDestroy,
                 pitch: RandomHelper.Range(0.95f, 1.05f));
 

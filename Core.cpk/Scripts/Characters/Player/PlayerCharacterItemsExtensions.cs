@@ -7,6 +7,11 @@
     {
         public static void ClientInvalidateSkeletonRenderer(this ICharacter character)
         {
+            if (!character.IsInitialized)
+            {
+                return;
+            }
+
             var clientState = character.GetClientState<BaseCharacterClientState>();
             clientState.LastEquipmentContainerHash = null;
         }
@@ -64,7 +69,7 @@
         /// </summary>
         public static IItem SharedGetPlayerSelectedHotbarItem(this ICharacter character)
         {
-            return GetPublicState(character).SelectedHotbarItem;
+            return GetPublicState(character).SelectedItem;
         }
 
         /// <summary>

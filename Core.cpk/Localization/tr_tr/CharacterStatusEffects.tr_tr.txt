@@ -28,6 +28,12 @@ Yakın zamanda doyurucu bir yemek yedin. Yaptığın her iş artık daha kolay h
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Doyurucu yemek
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
+Son zamanlarda leziz bir yemek yedin. Bu hayatını daha hoş kılıyor.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+Leziz yemek
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Seni geçici olarak daha güçlü kılan bir uyarıcının etkisi altındasın. Güç gerektiren görevleri daha kolay bir şekilde gerçekleştirebilirsin.
 
@@ -44,7 +50,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 Vücudundaki kırık bir implant sağlığını önemli bir şekilde etkiliyor. Bunun dolayı maksimum sağlığın (HP) azaldı.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
-Kırık implant
+Kırık implant hastalığı
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Bacağın kırık ve hareket kabiliyetini etkiliyor. Kırık bir bacakla koşmaya çalışmak ciddi bir ağrıya neden olur. Kırığı iyileştirmek için atel kullan.

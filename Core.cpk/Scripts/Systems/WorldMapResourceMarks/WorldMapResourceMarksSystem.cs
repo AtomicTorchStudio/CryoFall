@@ -34,14 +34,6 @@
                                          serverSpawnTime));
         }
 
-        public static Vector2Ushort SharedGetObjectCenterPosition(IStaticWorldObject staticWorldObject)
-        {
-            var position = staticWorldObject.TilePosition;
-            var layoutCenter = staticWorldObject.ProtoStaticWorldObject.Layout.Center.ToVector2Ushort();
-            return new Vector2Ushort((ushort)(position.X + layoutCenter.X),
-                                     (ushort)(position.Y + layoutCenter.Y));
-        }
-
         public static void ServerRemoveMark(IStaticWorldObject staticWorldObject)
         {
             Api.ValidateIsServer();
@@ -110,6 +102,14 @@
             {
                 yield return entry;
             }
+        }
+
+        public static Vector2Ushort SharedGetObjectCenterPosition(IStaticWorldObject staticWorldObject)
+        {
+            var position = staticWorldObject.TilePosition;
+            var layoutCenter = staticWorldObject.ProtoStaticWorldObject.Layout.Center.ToVector2Ushort();
+            return new Vector2Ushort((ushort)(position.X + layoutCenter.X),
+                                     (ushort)(position.Y + layoutCenter.Y));
         }
 
         public static bool SharedIsContainsMark(in WorldMapResourceMark mark)

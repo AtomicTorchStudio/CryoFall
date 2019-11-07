@@ -50,7 +50,7 @@
         {
             overrideDamageDescription = new DamageDescription(
                 damageValue: 50,
-                armorPiercingCoef: 0.5,
+                armorPiercingCoef: 0.7,
                 finalDamageMultiplier: 1.2,
                 rangeMax: 1.2,
                 damageDistribution: new DamageDistribution(DamageType.Heat, 1));

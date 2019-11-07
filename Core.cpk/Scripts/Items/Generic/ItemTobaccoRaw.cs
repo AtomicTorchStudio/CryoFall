@@ -1,8 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Generic
 {
-    public class ItemTobaccoRaw : ProtoItemGeneric, IProtoItemOrganic
+    using System;
+
+    public class ItemTobaccoRaw : ProtoItemWithFreshness, IProtoItemOrganic
     {
         public override string Description => "Raw tobacco leaves and pods. Can be dried and made into cigars.";
+
+        public override TimeSpan FreshnessDuration => ExpirationDuration.LongLasting;
+
+        public override ushort MaxItemsPerStack => ItemStackSize.Medium;
 
         public override string Name => "Raw tobacco";
 

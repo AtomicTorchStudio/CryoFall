@@ -11,7 +11,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -45,7 +44,8 @@
                 new ClientWorldMapDroppedItemsVisualizer(controller),
                 new ClientWorldMapTradingTerminalsVisualizer(controller),
                 new ClientWorldMapResourcesVisualizer(controller),
-                new ClientWorldMapPartyMembersVisualizer(controller)
+                new ClientWorldMapPartyMembersVisualizer(controller),
+                new ClientWorldMapLastVehicleVisualizer(controller)
             };
         }
 
@@ -86,7 +86,6 @@
         protected override void WindowOpening()
         {
             this.controlWorldMap.WorldMapController.IsActive = true;
-            this.controlWorldMap.CenterMapOnPlayerCharacter();
             this.controlWorldMap.WorldMapController.MapClickCallback = this.MapClickHandler;
             this.controlWorldMap.MouseRightButtonUp += this.ControlWorldMapMouseRightButtonUpHandler;
 

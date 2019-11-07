@@ -52,14 +52,14 @@
             var amount = state.Amount;
             if (isProduceLiquid)
             {
-                amount += config.AmountAutoIncreasePerSecond * (float)deltaTime;
+                amount += config.AmountAutoIncreasePerSecond * deltaTime;
             }
 
             wasUsed = false;
 
             if (isUseRequested)
             {
-                var amountToDeduce = config.AmountAutoDecreasePerSecondWhenUse * (float)deltaTime;
+                var amountToDeduce = config.AmountAutoDecreasePerSecondWhenUse * deltaTime;
                 if (amount >= amountToDeduce)
                 {
                     amount -= amountToDeduce;

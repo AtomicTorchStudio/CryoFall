@@ -19,7 +19,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Tech
         public string Execute([CurrentCharacterIfNull] ICharacter player = null)
         {
             var technologies = player.SharedGetTechnologies();
-            foreach (var group in Api.FindProtoEntities<TechGroup>())
+            foreach (var group in TechGroup.AvailableTechGroups)
             {
                 // add tech group
                 technologies.ServerAddGroup(group);

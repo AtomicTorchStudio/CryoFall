@@ -2,7 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
 
-    public interface IProtoObjectTradingStation : IProtoObjectWithOwnersList
+    public interface IProtoObjectTradingStation : IProtoObjectStructure, IProtoObjectWithOwnersList
     {
         byte LotsCount { get; }
 

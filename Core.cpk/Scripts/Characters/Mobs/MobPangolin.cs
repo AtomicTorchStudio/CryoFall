@@ -11,6 +11,8 @@
 
     public class MobPangolin : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => true;
+
         public override float CharacterWorldHeight => 0.75f;
 
         public override double MobKillExperienceMultiplier => 0.1;
@@ -21,7 +23,7 @@
 
         public override double StatDefaultHealthMax => 70;
 
-        public override double StatMoveSpeed => 1;
+        public override double StatMoveSpeed => 1.5;
 
         protected override void FillDefaultEffects(Effects effects)
         {
@@ -59,7 +61,7 @@
 
             var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalMedium>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)

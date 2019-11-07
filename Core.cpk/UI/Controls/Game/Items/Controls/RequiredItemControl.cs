@@ -105,7 +105,7 @@
 
         protected override void OnUnloaded()
         {
-            DestroyTooltip();
+            this.DestroyTooltip();
             this.layoutRoot = null;
         }
 

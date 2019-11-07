@@ -11,20 +11,21 @@
     {
         AppliedCharacterInput AppliedInput { get; }
 
-        IProtoItemWeapon CurrentItemWeaponProto { get; }
+        IProtoItemWeapon SelectedItemWeaponProto { get; }
+
+        NetworkSyncList<IProtoStatusEffect> CurrentPublicStatusEffects { get; }
 
         CharacterCurrentStats CurrentStats { get; set; }
 
         bool IsDead { get; set; }
 
-        NetworkSyncList<IProtoStatusEffect> CurrentPublicStatusEffects { get; }
+        // Item selected in the hotbar or vehicle.
+        IItem SelectedItem { get; }
 
-        IItem SelectedHotbarItem { get; }
+        void ServerEnsureEverythingCreated();
 
-        void EnsureEverythingCreated();
+        void SharedSetCurrentWeaponProtoOnly(IProtoItemWeapon weaponProto);
 
-        void SetCurrentWeaponProtoOnly(IProtoItemWeapon weaponProto);
-
-        void SetSelectedHotbarItem(IItem item);
+        void SharedSetSelectedItem(IItem item);
     }
 }

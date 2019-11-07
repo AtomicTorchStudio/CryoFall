@@ -1,7 +1,7 @@
-﻿using AtomicTorch.CBND.CoreMod.Stats;
-
-namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
+﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
 {
+    using AtomicTorch.CBND.CoreMod.Stats;
+
     public class StatusEffectProtectionHeat : ProtoStatusEffect
     {
         public override string Description =>
@@ -17,8 +17,6 @@ namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
         protected override void PrepareEffects(Effects effects)
         {
             effects.AddPercent(this, StatName.HeatEffectMultiplier, -50);
-
-            effects.AddPercent(this, StatName.HeatIncreaseRateMultiplier, -25);
         }
     }
 }

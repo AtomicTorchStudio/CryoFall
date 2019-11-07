@@ -4,6 +4,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 {
     using System;
     using System.Threading.Tasks;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
@@ -129,7 +130,9 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
                 // It could be teleported anywhere.
             }
 
-            ServerWorldService.SetPosition(player, toPosition);
+            var objectToTeleport = player.SharedGetCurrentVehicle()
+                                   ?? player;
+            ServerWorldService.SetPosition(objectToTeleport, toPosition);
         }
 
         [RemoteAuthorizeServerOperator]

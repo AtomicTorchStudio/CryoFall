@@ -19,8 +19,7 @@
 
             duration = CraftingDuration.Medium;
 
-            inputItems.Add<ItemIngotSteel>(count: 15);
-            inputItems.Add<ItemFluxPowder>(count: 10);
+            inputItems.Add<ItemIngotSteel>(count: 10);
 
             outputItems.Add<ItemWateringCanSteel>(count: 1);
         }

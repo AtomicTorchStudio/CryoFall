@@ -18,7 +18,7 @@
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
-        public override float StructurePointsMax => 300;
+        public override float StructurePointsMax => 1200;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
@@ -47,14 +47,14 @@
         {
             category = GetCategory<StructureCategoryIndustry>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemPlanks>(count: 5);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 2);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 3);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

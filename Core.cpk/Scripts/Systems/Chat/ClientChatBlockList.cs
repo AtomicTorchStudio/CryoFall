@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
-    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using static GameApi.Scripting.Api;
@@ -13,11 +11,14 @@
     /// </summary>
     public static class ClientChatBlockList
     {
-        // {0} is "block" or "unblock" and {1} is player name
-        public const string DialogBlockOrUnblockPlayer = "Are you sure you want to {0} {1}?";
+        // {0} is the player name to block
+        public const string DialogBlockPlayer_Format = "Are you sure you want to block {0}?";
 
         public const string DialogBlockPlayer_HowToUnblockLater =
             "You can unblock this player later using the social menu.";
+
+        // {0} is the player name to unblock
+        public const string DialogUnblockPlayer_Format = "Are you sure you want to unblock {0}?";
 
         private static HashSet<string> clientListBlocked;
 
@@ -55,12 +56,9 @@
         {
             if (askConfirmation)
             {
-                var actionText = block
-                                     ? CoreStrings.Chat_MessageMenu_Block
-                                     : CoreStrings.Chat_MessageMenu_Unblock;
-
-                var message = string.Format(DialogBlockOrUnblockPlayer,
-                                            actionText.ToLower(CultureInfo.CurrentUICulture),
+                var message = string.Format(block
+                                                ? DialogBlockPlayer_Format
+                                                : DialogUnblockPlayer_Format,
                                             characterName);
                 if (block)
                 {
@@ -71,7 +69,7 @@
                 DialogWindow.ShowDialog(
                     title: null,
                     message,
-                    okText: actionText,
+                    okText: message,
                     okAction: () => SetBlockStatus(characterName,
                                                    block: block,
                                                    askConfirmation: false),

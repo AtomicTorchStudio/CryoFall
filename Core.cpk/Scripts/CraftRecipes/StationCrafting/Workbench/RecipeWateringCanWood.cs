@@ -19,7 +19,7 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemPlanks>(count: 25);
+            inputItems.Add<ItemPlanks>(count: 20);
             inputItems.Add<ItemRope>(count: 3);
             inputItems.Add<ItemFibers>(count: 10);
 

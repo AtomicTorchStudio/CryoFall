@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -61,6 +62,11 @@
         {
             get
             {
+                if (!this.Group.IsAvailable)
+                {
+                    return false;
+                }
+
                 switch (this.AvailableIn)
                 {
                     case FeatureAvailability.None:
@@ -334,6 +340,13 @@
                 where TStructure : class, IProtoObjectStructure, new()
             {
                 this.Add(new TechNodeEffectStructureUnlock(GetProtoEntity<TStructure>()));
+                return this;
+            }
+
+            public Effects AddVehicle<TVehicle>()
+                where TVehicle : class, IProtoVehicle, new()
+            {
+                this.Add(new TechNodeEffectVehicleUnlock(GetProtoEntity<TVehicle>()));
                 return this;
             }
         }

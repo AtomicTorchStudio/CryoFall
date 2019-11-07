@@ -39,9 +39,9 @@
 
         public override bool IsFuelProduceByproducts => false;
 
-        public abstract float WaterCapacity { get; }
+        public abstract double WaterCapacity { get; }
 
-        public abstract float WaterProductionAmountPerSecond { get; }
+        public abstract double WaterProductionAmountPerSecond { get; }
 
         protected LiquidContainerConfig LiquidContainerConfig { get; private set; }
 
@@ -171,7 +171,7 @@
 
             // calculate how many points the water of bottle restores per unit of water
             var protoBottleWater = GetProtoEntity<ItemBottleWater>();
-            var waterPointsRestorePerUnit = protoBottleWater.WaterRestore / (float)protoBottleWater.Capacity;
+            var waterPointsRestorePerUnit = protoBottleWater.WaterRestore / (double)protoBottleWater.Capacity;
 
             // calculate amount to drink to completely restore the water level of the character
             var amountToDrink = (characterStats.WaterMax - characterStats.WaterCurrent) / waterPointsRestorePerUnit;
@@ -198,7 +198,7 @@
 
             // add water points to the character stats
             var addedWaterPoints = waterPointsRestorePerUnit * amountToDrink;
-            characterStats.ServerSetWaterCurrent(characterStats.WaterCurrent + addedWaterPoints);
+            characterStats.ServerSetWaterCurrent((float)(characterStats.WaterCurrent + addedWaterPoints));
 
             Logger.Important($"{character} drank water from {objectWell}");
 

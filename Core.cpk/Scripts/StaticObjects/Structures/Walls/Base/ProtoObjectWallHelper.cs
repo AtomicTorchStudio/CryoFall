@@ -267,6 +267,7 @@
                         return true;
                     }
                 }
+
                 // Disabled - no need for this as we cover that empty space with the hitboxes
                 // and the space is too small to pass through so absence of a physical collider is fine.
                 //else if (Api.IsServer)

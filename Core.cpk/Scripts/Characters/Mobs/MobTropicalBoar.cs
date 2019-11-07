@@ -11,6 +11,8 @@
 
     public class MobTropicalBoar : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => true;
+
         public override float CharacterWorldHeight => 0.8f;
 
         public override float CharacterWorldWeaponOffsetRanged => 0.35f;
@@ -23,7 +25,7 @@
 
         public override double StatDefaultHealthMax => 50;
 
-        public override double StatMoveSpeed => 1;
+        public override double StatMoveSpeed => 1.5;
 
         protected override void FillDefaultEffects(Effects effects)
         {
@@ -64,7 +66,7 @@
 
             var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalWeak>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)
@@ -75,11 +77,12 @@
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
                 isRetreating: currentStats.HealthCurrent < currentStats.HealthMax / 4,
+                isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 7,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 3.5,
-                out var movementDirection,
-                out var rotationAngleRad);
+                movementDirection: out var movementDirection,
+                rotationAngleRad: out var rotationAngleRad);
 
             this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
         }

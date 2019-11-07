@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemCanEmpty>(count: 1);
             inputItems.Add<ItemPreservative>(count: 1);
-            inputItems.Add<ItemMeatRaw>(count: 1);
+            inputItems.Add<ItemMeatRaw>(count: 2);
             inputItems.Add<ItemAnimalFat>(count: 1);
 
             outputItems.Add<ItemCannedMeat>();

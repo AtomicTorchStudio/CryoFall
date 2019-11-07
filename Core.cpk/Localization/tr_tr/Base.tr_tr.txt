@@ -1,7 +1,4 @@
-﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
-Sersemlemişken etkileşime girilemez.
-
-Scripts/Base/Stats/StatName@HealthMax:
+﻿Scripts/Base/Stats/StatName@HealthMax:
 Maksimum sağlık
 
 Scripts/Base/Stats/StatName@StaminaMax:
@@ -122,7 +119,7 @@ Scripts/Base/Stats/StatName@CraftingSpeed:
 Üretim hızı
 
 Scripts/Base/Stats/StatName@ItemExplosivePlantingTimeMultiplier:
-Patlayıcı yerleştirme hızı
+Patlayıcı yerleştirme süresi
 
 Scripts/Base/Stats/StatName@HuntingLootingSpeed:
 Yağma hızı
@@ -184,9 +181,15 @@ Bir şey yiyemez veya içemez
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Eğitim puanları kazancı
 
+Scripts/Base/Stats/StatName@SkillsExperienceGainMultiplier:
+Yetenek deneyim kazanımı
+
 Scripts/Base/Stats/StatName@TinkerTableBonus:
 Tamir masası verimliliği
 
 Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
 Zanaatkârlık sırası boyutu
+
+Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
+İlaç zehirlenmesi
 

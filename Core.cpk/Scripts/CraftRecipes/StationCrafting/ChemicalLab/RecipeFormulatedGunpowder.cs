@@ -16,7 +16,7 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemNitrocellulosePowder>(count: 10);
             inputItems.Add<ItemSolvent>(count: 5);

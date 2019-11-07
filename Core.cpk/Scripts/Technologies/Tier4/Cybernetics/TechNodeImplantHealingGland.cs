@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeImplantHealingGland>();
 
-            config.SetRequiredNode<TechNodeImplantArtificialStomach>();
+            config.SetRequiredNode<TechNodeImplantMetabolismModulator>();
         }
     }
 }

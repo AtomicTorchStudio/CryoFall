@@ -1,109 +1,111 @@
 ﻿Scripts/ClientComponents/Input/GameButton@CancelOrClose:
-取消或關閉
+你正處在輻射保護的影響下。所有輻射暴露效果對你都將減弱。
 
 Scripts/ClientComponents/Input/GameButton@MoveUp:
-向上移動
+輻射保護
 
 Scripts/ClientComponents/Input/GameButton@MoveLeft:
-向左移動
+你正處在毒素保護的影響下。所有毒素暴露效果對你都將減弱。
 
 Scripts/ClientComponents/Input/GameButton@MoveDown:
-向下移動
+毒素保護
 
 Scripts/ClientComponents/Input/GameButton@MoveRight:
-向右移動
+取消或關閉
 
 Scripts/ClientComponents/Input/GameButton@RunTemporary:
-跑步(按住)
+向上移動
 
 Scripts/ClientComponents/Input/GameButton@RunToggle:
-跑步(切換)
+向左移動
 
 Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
-動作 - 使用物品
+向下移動
 
 Scripts/ClientComponents/Input/GameButton@ActionInteract:
-動作 - 互動
+向右移動
+
+Scripts/ClientComponents/Input/GameButton@VehicleEnterExit:
+跑步(按住)
 
 Scripts/ClientComponents/Input/GameButton@ItemReload:
-裝填物品
+跑步(切換)
 
 Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
-切換物品模式/切換彈藥
+動作-使用物品
 
 Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
-頭盔燈光切換
+動作-互動
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot1:
-欄位 1
+進入/離開載具
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot2:
-欄位 2
+裝填物品
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot3:
-欄位 3
+切換物品模式/切換彈藥
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot4:
-欄位 4
+頭盔燈光切換
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot5:
-欄位 5
+欄位1
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot6:
-欄位 6
+欄位2
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot7:
-欄位 7
+欄位3
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot8:
-欄位 8
+欄位4
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot9:
-欄位 9
+欄位5
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot10:
-欄位 10
+欄位6
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomIn:
-攝像機縮進
+欄位7
 
 Scripts/ClientComponents/Input/GameButton@CameraZoomOut:
-攝像機拉遠
+欄位8
 
 Scripts/ClientComponents/Input/GameButton@OpenChat:
-聊天
+欄位9
 
 Scripts/ClientComponents/Input/GameButton@ToggleDeveloperConsole:
-開發者控制台
+欄位10
 
 Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
-Debug工具
+攝像機縮進
 
 Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
-切換全熒幕
+攝像機拉遠
 
 Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
-熒幕截圖
+聊天
 
 Scripts/ClientComponents/Input/GameButton@ContainerSort:
-容器排序
+開發者控制台
 
 Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
-拿起所有
+Debug工具
 
 Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
-向下匹配
+切換全屏
 
 Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
-向上匹配
+螢幕截圖
 
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
-顯示土地所有者與生命條
+容器排序
 
 Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
-`維修和建築行動受到限制。
-[br]襲擊防護結束於： {0}。`
+拾取所有
 
 Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
-此基地正遭受襲擊。
+向下匹配
 

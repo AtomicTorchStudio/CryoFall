@@ -31,8 +31,6 @@
 
         private CraftingQueueItem craftingQueueItem;
 
-        private Storyboard storyboardFadeOut;
-
         private Storyboard storyboardHide;
 
         private Storyboard storyboardShow;
@@ -64,7 +62,7 @@
             }
 
             this.storyboardShow.Stop();
-            this.storyboardFadeOut.Begin();
+            this.storyboardHide.Begin();
         }
 
         public void Setup(CraftingQueue craftingQueue, CraftingQueueItem craftingQueueItem)
@@ -79,14 +77,12 @@
             this.border = this.GetByName<Border>("Border");
             this.storyboardShow = this.GetResource<Storyboard>("StoryboardShow");
             this.storyboardHide = this.GetResource<Storyboard>("StoryboardHide");
-            this.storyboardFadeOut = this.GetResource<Storyboard>("StoryboardFadeOut");
         }
 
         protected override void OnLoaded()
         {
             this.RequiredHeight = (float)this.ActualHeight;
 
-            this.storyboardFadeOut.Completed += this.StoryboardFadeOutCompletedHandler;
             this.storyboardHide.Completed += this.StoryboardHideCompletedHandler;
             this.MouseLeftButtonUp += this.MouseLeftButtonUpHandler;
             this.MouseRightButtonUp += this.MouseRightButtonUpHandler;
@@ -98,7 +94,6 @@
 
         protected override void OnUnloaded()
         {
-            this.storyboardFadeOut.Completed -= this.StoryboardFadeOutCompletedHandler;
             this.storyboardHide.Completed -= this.StoryboardHideCompletedHandler;
             this.MouseLeftButtonUp -= this.MouseLeftButtonUpHandler;
             this.MouseRightButtonUp -= this.MouseRightButtonUpHandler;
@@ -153,11 +148,6 @@
         private void RemoveControl()
         {
             ((Panel)this.Parent).Children.Remove(this);
-        }
-
-        private void StoryboardFadeOutCompletedHandler(object sender, EventArgs e)
-        {
-            this.storyboardHide.Begin();
         }
 
         private void StoryboardHideCompletedHandler(object sender, EventArgs e)

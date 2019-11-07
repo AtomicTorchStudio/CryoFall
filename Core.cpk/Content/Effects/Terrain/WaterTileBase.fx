@@ -9,15 +9,16 @@ Texture2D WaterTexture : register(t2);
 float Time;
 
 // Water parameters
-const float3 WaterColor = float3(0, 0.35, 0.65); // Please note: this parameter is set from ProtoTileWater
-const float UnderWaterTextureScale = 1 / 8.0;
-const float WaterAmplitude = 0.075; // Please note: this parameter is set from ProtoTileWater
-const float WaterDefractionSpeed = 0.1;
-const float WaterDefractionFrequency = 8.0;
+float3 WaterColor = float3(0, 0.35, 0.65);
+float WaterColorMix = 0.75;
+float WaterSpeed = 2.5;
+float WaterOpacity = 0.85;
+float WaterAmplitude = 0.075;
+float WaterDiffractionSpeed = 0.1;
+float WaterDiffractionFrequency = 8.0;
 
-const float WaterSpeed = 2.5;
-const float WaterColorMix = 0.75;
-const float WaterOpacity = 0.85; // Please note: this parameter is set from ProtoTileWater
+const float UnderWaterTextureScale = 1 / 8.0;
+
 const float WaterTextureScale = 1 / 8.0;
 
 // Mask parameters (shore line)
@@ -99,7 +100,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 {
     // calculate UV coordinates for the water bottom sprite
     float2 uvWorld = MainCameraCalculateWorldUV(input.Position.xy);
-    float2 uvWorldOffset = ShiftUV(uvWorld, WaterAmplitude, WaterDefractionSpeed, WaterDefractionFrequency);
+    float2 uvWorldOffset = ShiftUV(uvWorld, WaterAmplitude, WaterDiffractionSpeed, WaterDiffractionFrequency);
     float2 uvSprite = uvWorld + uvWorldOffset;
     float4 color = UnderWaterTexture.Sample(UnderWaterTextureSampler, float2(uvSprite.x * UnderWaterTextureScale, uvSprite.y * UnderWaterTextureScale));
     

@@ -6,9 +6,9 @@
 
     public class StatusEffectToxins : ProtoStatusEffect
     {
-        public const double DamagePerSecondBase = 0.25;
+        public const double DamagePerSecondBase = 0.2;
 
-        public const double DamagePerSecondByIntensity = 0.75;
+        public const double DamagePerSecondByIntensity = 0.3;
 
         public override string Description =>
             "You have been exposed to dangerous toxins. Use anti-toxin medicine to prevent further health loss.";
@@ -39,10 +39,9 @@
 
         protected override void ServerUpdate(StatusEffectData data)
         {
-            var damage = (DamagePerSecondBase + DamagePerSecondByIntensity * data.Intensity)
-                         * data.DeltaTime;
+            var damage = (DamagePerSecondBase + DamagePerSecondByIntensity * data.Intensity) * data.DeltaTime;
 
-            data.CharacterCurrentStats.ServerReduceHealth(damage, this);
+            data.CharacterCurrentStats.ServerReduceHealth(damage, data.StatusEffect);
         }
     }
 }

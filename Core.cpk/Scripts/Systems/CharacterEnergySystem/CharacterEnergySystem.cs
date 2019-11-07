@@ -42,11 +42,23 @@
         public static void ClientShowNotificationNotEnoughEnergyCharge(IProtoItem itemProto)
         {
             var playNotificationSound = true;
-            if (itemProto is IProtoItemWeapon protoItemWeapon)
+          
+            if (itemProto is IProtoItemWeapon protoItemWeapon
+                && protoItemWeapon.SoundPresetWeapon.HasSound(WeaponSound.Empty))
             {
-                playNotificationSound = false;
                 protoItemWeapon.SoundPresetWeapon.PlaySound(WeaponSound.Empty,
                                                             volume: SoundConstants.VolumeWeapon);
+                playNotificationSound = false;
+            }
+
+            if (playNotificationSound)
+            {
+                var itemSoundPreset = itemProto.SharedGetItemSoundPreset();
+                if (itemSoundPreset.HasSound(ItemSound.CannotSelect))
+                {
+                    itemSoundPreset.PlaySound(ItemSound.CannotSelect);
+                    playNotificationSound = false;
+                }
             }
 
             var hasPowerBanks = ClientCalculateTotalEnergyCapacity() > 0;
@@ -255,7 +267,7 @@
                 if (hasStopCondition
                     && result >= stopIfEnergyExceeds)
                 {
-                    return result;
+                    break;
                 }
             }
 

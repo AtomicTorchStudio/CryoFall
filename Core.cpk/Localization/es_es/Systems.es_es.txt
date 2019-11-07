@@ -72,11 +72,14 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0} se ha unido a la partida
 
-Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-¿Seguro que quieres {0} {1}?
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
+¿Seguro que quieres bloquear a {0}?
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 Podrás desbloquear a este jugador más tarde a través del menú social.
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
+¿Seguro que quieres desbloquear a {0}?
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 General
@@ -214,7 +217,7 @@ Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
 {1} ha expulsado a {0} del grupo
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
-{0} te ha expulsado del grupo
+{0} te ha expulsado del grupo.
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
 No se ha encontrado ninguna invitación o esta ya ha caducado.
@@ -304,6 +307,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Importante:[/b]
+[br]
 Este es un servidor JcE (jugador contra entorno). En este servidor los jugadores no podrán atacarse unos a otros, ya sea de forma directa o indirecta. Este servidor está dedicado a una exploración pacífica del juego, sin enfrentamientos hostiles entre jugadores. No se puede matar, destruir, robar o atacar en modo alguno a otros jugadores. Más allá de eso, este servidor te ofrece una experiencia completa de CryoFall, con sus criaturas peligrosas, sus tecnologías por desbloquear y su mundo por explorar. ¡A ver adónde te lleva este viaje!
 [br]
 [br]
@@ -325,6 +329,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Importante:[/b]
+[br]
 Este es un servidor JcJ todos contra todos. Recuerda que en los servidores centrados en el JcJ te encontrarás con otros jugadores que te atacarán. La idea es que luches y te defiendas. Tendrás que buscar la forma de protegerte adecuadamente y no podrás bajar la guardia en ningún momento. También podrás unir fuerzas con otros supervivientes para aumentar tus posibilidades de éxito.
 [br]
 [br]
@@ -383,6 +388,30 @@ No se puede comprar
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
 No se puede vender
+
+Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
+Bloqueada. Para colocar un vehículo, es preciso que la plataforma de montaje no tenga ni obstáculos ni gente encima.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
+No se puede coger el vehículo
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
+El vehículo está en el garaje. Puedes cogerlo en cualquier plataforma de montaje de vehículos.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
+Algunos de tus vehículos están en el garaje. Puedes cogerlos en cualquier plataforma de montaje de vehículos.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
+Vehículos en el garaje
+
+Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
+Energía agotada.
+
+Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
+No se puede usar {0}
+
+Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
+Ya se ha regado
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
 La planta está lista para ser cosechada. No tiene sentido que la riegues.

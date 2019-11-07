@@ -3,10 +3,12 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public static class ServerCharacterAiHelper
@@ -76,6 +78,7 @@
         public static void ProcessAggressiveAi(
             ICharacter characterNpc,
             bool isRetreating,
+            bool isRetreatingForHeavyVehicles,
             double distanceRetreat,
             double distanceEnemyTooClose,
             double distanceEnemyTooFar,
@@ -84,12 +87,25 @@
         {
             var characterNpcPrivateState = characterNpc.GetPrivateState<CharacterMobPrivateState>();
             var enemyCharacter = GetClosestPlayer(characterNpc);
-
             CalculateDistanceAndDirectionToEnemy(characterNpc,
                                                  enemyCharacter,
                                                  out var distanceToEnemy,
                                                  out var directionToEnemyPosition,
                                                  out var directionToEnemyHitbox);
+            if (isRetreatingForHeavyVehicles
+                && !(enemyCharacter is null)
+                && !enemyCharacter.IsNpc)
+            {
+                // determine if the enemy player riding a heavy vehicle
+                var protoVehicle = PlayerCharacter.GetPublicState(enemyCharacter).CurrentVehicle?.ProtoGameObject
+                                       as IProtoVehicle;
+                if (protoVehicle?.IsHeavyVehicle ?? false)
+                {
+                    // retreat from heavy vehicle
+                    distanceRetreat = Math.Max(7, distanceRetreat);
+                    isRetreating = true;
+                }
+            }
 
             if (enemyCharacter == characterNpcPrivateState.CurrentAgroCharacter)
             {
@@ -100,7 +116,15 @@
 
             if (isRetreating)
             {
-                directionToEnemyHitbox *= -1;
+                if ((double.IsNaN(distanceToEnemy)
+                     || distanceToEnemy > characterNpcPrivateState.AttackRange)
+                    && characterNpcPrivateState.WeaponState.CooldownSecondsRemains <= 0)
+                {
+                    // look away when retreating
+                    // and the enemy is not within the attack range
+                    // and not attacked recently (so the attack cooldown (and so the animation) is finished)
+                    directionToEnemyHitbox *= -1;
+                }
 
                 if (distanceToEnemy <= distanceRetreat)
                 {
@@ -126,10 +150,16 @@
                                            .RotationAngleRad;
             LookOnEnemy(directionToEnemyHitbox, ref rotationAngleRad);
 
-            var isFiring = !isRetreating
-                           && !double.IsNaN(distanceToEnemy)
-                           && distanceToEnemy <= characterNpcPrivateState.AttackRange;
-            characterNpcPrivateState.WeaponState.SharedSetInputIsFiring(isFiring);
+            var isAttacking = !double.IsNaN(distanceToEnemy)
+                              && distanceToEnemy <= characterNpcPrivateState.AttackRange;
+
+            if (isRetreating && isAttacking)
+            {
+                // don't attack every time when retreating
+                isAttacking = RandomHelper.Next(0, 6) == 0;
+            }
+
+            characterNpcPrivateState.WeaponState.SharedSetInputIsFiring(isAttacking);
         }
 
         public static void ProcessRetreatingAi(
@@ -195,9 +225,10 @@
 
                 var testWorldObject = testPhysicsBody.AssociatedWorldObject;
                 if (testWorldObject == npc
-                    || testWorldObject == player)
+                    || testWorldObject == player
+                    || testWorldObject.ProtoGameObject is IProtoVehicle)
                 {
-                    // not an obstacle - it's one of the characters
+                    // not an obstacle - it's one of the characters or vehicle
                     continue;
                 }
 
@@ -225,7 +256,6 @@
             var deltaPos = enemyCharacter.Position - characterNpc.Position;
             distanceToEnemy = deltaPos.Length;
             directionToEnemyPosition = (Vector2F)deltaPos;
-
 
             directionToEnemyHitbox = new Vector2F(directionToEnemyPosition.X,
                                                   directionToEnemyPosition.Y

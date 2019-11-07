@@ -22,8 +22,14 @@ Las (tropikalny)
 Scripts/Tiles/TileLakeShore@Name:
 Wybrzeże jeziora
 
+Scripts/Tiles/TileLava@Name:
+Lawa
+
 Scripts/Tiles/TileMeadows@Name:
 Łąki
+
+Scripts/Tiles/TileRoads@Name:
+Drogi
 
 Scripts/Tiles/TileRocky@Name:
 Skały

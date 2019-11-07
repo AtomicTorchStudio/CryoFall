@@ -35,7 +35,8 @@
             = new Interval<double>(0.5, 1.0);
 
         private static readonly Interval<double> ZoomDefaultBoundsLog
-            = new Interval<double>(Math.Log(ZoomDefaultBounds.Min), Math.Log(ZoomDefaultBounds.Max));
+            = new Interval<double>(Math.Log(ZoomDefaultBounds.Min),
+                                   Math.Log(ZoomDefaultBounds.Max));
 
         private static readonly double ZoomDefaultValueLog
             = (ZoomDefaultBoundsLog.Max + ZoomDefaultBoundsLog.Min) / 2;
@@ -93,7 +94,7 @@
             }
         }
 
-        public static bool IsProcessingMouseWheel { get; set; }
+        public static bool IsUsingMouseWheelInputToZoom { get; set; }
 
         public Interval<double> ZoomBounds
         {
@@ -157,7 +158,7 @@
                 ClientInputContext.Start(nameof(ClientComponentWorldCameraZoomManager))
                                   .HandleAll(() =>
                                              {
-                                                 if (IsProcessingMouseWheel
+                                                 if (IsUsingMouseWheelInputToZoom
                                                      && WindowsManager.OpenedWindowsCount == 0)
                                                  {
                                                      this.ApplyZoomDelta(Input.MouseScrollDeltaValue);

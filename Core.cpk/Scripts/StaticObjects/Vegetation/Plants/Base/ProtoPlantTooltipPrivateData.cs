@@ -11,7 +11,7 @@
 
         public readonly byte ProducedHarvestsCount;
 
-        public readonly double ServerTimeNextHarvest;
+        public readonly double ServerTimeNextHarvestOrSpoil;
 
         public readonly double ServerTimeWateringEnds;
 
@@ -21,7 +21,7 @@
 
         public ProtoPlantTooltipPrivateData(
             PlantPrivateState privateState,
-            double serverTimeNextHarvest,
+            double serverTimeNextHarvestOrSpoil,
             float speedMultiplier)
         {
             this.ProducedHarvestsCount = privateState.ProducedHarvestsCount;
@@ -29,7 +29,7 @@
             this.ServerTimeWateringEnds = privateState.ServerTimeWateringEnds;
             this.LastWateringDuration = privateState.LastWateringDuration;
             this.SkillGrowthSpeedMultiplier = (float)privateState.SkillGrowthSpeedMultiplier;
-            this.ServerTimeNextHarvest = serverTimeNextHarvest;
+            this.ServerTimeNextHarvestOrSpoil = serverTimeNextHarvestOrSpoil;
             this.SpeedMultiplier = speedMultiplier;
         }
     }

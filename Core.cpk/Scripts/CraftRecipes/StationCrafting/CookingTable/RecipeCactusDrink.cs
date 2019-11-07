@@ -18,7 +18,7 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemCactusFlesh>(count: 10);
+            inputItems.Add<ItemCactusFlesh>(count: 5);
 
             outputItems.Add<ItemCactusDrink>(count: 1);
         }

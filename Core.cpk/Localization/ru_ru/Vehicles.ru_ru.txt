@@ -1,0 +1,51 @@
+﻿Scripts/Vehicles/VehicleHoverboardMk1@Description:
+Легкий вариант гравитационной платформы. Отличается относительно невысокой стоимостью производства, великолепной скоростью и экономичным потреблением топлива.
+
+Scripts/Vehicles/VehicleHoverboardMk1@Name:
+Ховерборд Мк1
+
+Scripts/Vehicles/VehicleHoverboardMk2@Description:
+Тяжелый вариант гравитационной платформы. Отличается долговечностью, высокой скоростью и маневренностью за счет повышенной стоимости производства и высокого потребления топлива.
+
+Scripts/Vehicles/VehicleHoverboardMk2@Name:
+Ховерборд Мк2
+
+Scripts/Vehicles/VehicleMechManul@Description:
+Средний вариант механизированной боевой брони. Обладает значительными оборонительными возможностями и грузоподъемностью без ущерба для других функций.
+
+Scripts/Vehicles/VehicleMechManul@Name:
+Манул
+
+Scripts/Vehicles/VehicleMechSkipper@Description:
+Легкий вариант механизированной боевой брони. Обладает относительно высокой скоростью, дополненной хорошей защитой и огневой мощью.
+
+Scripts/Vehicles/VehicleMechSkipper@Name:
+Рысь
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotBuildVehicleTitle:
+Не удается построить
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotRepairVehicleTitle:
+Не удается починить
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NotInteractingWithVehicleBay:
+Используйте платформу для сборки, чтобы собрать это транспортное средство.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@RequiredItemsMissing:
+Не хватает предметов.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NeedsFreeSpace:
+Не удается.[br]Прежде чем собрать чертеж, нужно освободить платформу от предметов и людей.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@NotInteractingWithVehicle:
+Взаимодействуйте с транспортом, чтобы починить его.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RequiredItemsMissing:
+Не хватает предметов.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
+Ремонт не требуется.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
+Поместите транспорт на платформу для сборки, чтобы починить его.
+

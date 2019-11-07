@@ -79,7 +79,10 @@
 
             this.HistoryServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(serversProvider.History, this.serverViewModelsProvider),
+                    new MultiplayerMenuServersController(serversProvider.History, this.serverViewModelsProvider)
+                    {
+                        SortType = ServersListSortType.None
+                    },
                     this.OnSelectedServerChanged);
 
             this.allServersLists = new[]

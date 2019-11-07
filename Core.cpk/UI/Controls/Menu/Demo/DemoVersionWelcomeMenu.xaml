@@ -1,0 +1,155 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Demo.DemoVersionWelcomeMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Demo.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelDemoVersionWelcomeMenu, IsDesignTimeCreatable=True}"
+    Focusable="True"
+    Background="Black"
+    Panel.ZIndex="9000">
+
+    <ContentControl Background="{StaticResource MainMenuBackgroundTiledBrush}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="1"
+                       Grid.Column="1"
+                       Source="/UI/Images/Logo/logo_cryofall_256_flat.png"
+                       Stretch="Uniform"
+                       SnapsToDevicePixels="False"
+                       Width="420" />
+
+                <Border Grid.Row="2"
+                        Grid.Column="1"
+                        CornerRadius="3"
+                        Background="#55000000"
+                        BorderBrush="{StaticResource BrushColorAlt5}"
+                        BorderThickness="1"
+                        Padding="15"
+                        Margin="0,30,0,0"
+                        HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Text="{x:Static loc:CoreStrings.Demo_Title}"
+                                   Foreground="{StaticResource BrushColor6}"
+                                   FontWeight="Bold"
+                                   FontSize="19"
+                                   LineHeight="19"
+                                   LineStackingStrategy="BlockLineHeight"
+                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   HorizontalAlignment="Center" />
+
+                        <core:FormattedTextBlock Grid.Row="1"
+                                                 Content="{x:Static loc:CoreStrings.Demo_Welcome}"
+                                                 Visibility="{Binding IsExpired, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                                 Foreground="{StaticResource BrushColorLabelForeground}"
+                                                 FontWeight="Normal"
+                                                 FontSize="13.5"
+                                                 LineHeight="15"
+                                                 LineStackingStrategy="BlockLineHeight"
+                                                 FontFamily="{StaticResource CondensedFontFamily}"
+                                                 TextWrapping="Wrap"
+                                                 TextTrimming="None"
+                                                 TextAlignment="Left"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="0,5,0,0"
+                                                 Width="400" />
+
+                        <core:FormattedTextBlock Grid.Row="1"
+                                                 Content="{x:Static loc:CoreStrings.Demo_Expired}"
+                                                 Visibility="{Binding IsExpired, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                 Foreground="{StaticResource BrushColorLabelForeground}"
+                                                 FontWeight="Normal"
+                                                 FontSize="13.5"
+                                                 LineHeight="15"
+                                                 LineStackingStrategy="BlockLineHeight"
+                                                 FontFamily="{StaticResource CondensedFontFamily}"
+                                                 TextWrapping="Wrap"
+                                                 TextTrimming="None"
+                                                 TextAlignment="Left"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="0,5,0,0"
+                                                 Width="400" />
+
+                        <core:FormattedTextBlock Grid.Row="2"
+                                                 Content="{x:Static loc:CoreStrings.Demo_CanPurchase}"
+                                                 Foreground="{StaticResource BrushColorLabelForeground}"
+                                                 FontWeight="Normal"
+                                                 FontSize="13.5"
+                                                 LineHeight="15"
+                                                 LineStackingStrategy="BlockLineHeight"
+                                                 FontFamily="{StaticResource CondensedFontFamily}"
+                                                 TextWrapping="Wrap"
+                                                 TextTrimming="None"
+                                                 TextAlignment="Left"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="0,10,0,0"
+                                                 Width="400" />
+                    </Grid>
+                </Border>
+
+                <Grid Grid.Row="3"
+                      Grid.Column="1"
+                      HorizontalAlignment="Center"
+                      Margin="30,30,30,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            Content="{x:Static loc:CoreStrings.Button_Continue}"
+                            Command="{Binding CommandContinue}"
+                            Visibility="{Binding IsExpired, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                            Focusable="False"
+                            Padding="7,9"  />
+
+                    <Button Grid.Column="1"
+                            Content="{x:Static loc:CoreStrings.Demo_Button_BuyGameOnSteam}"
+                            Command="{Binding CommandBuy}"
+                            Focusable="False"
+                            Padding="7,9"
+                            Margin="15,0" />
+
+                    <Button Grid.Column="2"
+                            Content="{x:Static loc:CoreStrings.Button_Quit}"
+                            Command="{Binding CommandQuit}"
+                            Focusable="False"
+                            Padding="7,9" />
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </ContentControl>
+
+</base:BaseUserControl>

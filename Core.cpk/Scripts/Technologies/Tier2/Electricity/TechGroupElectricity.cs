@@ -7,9 +7,9 @@
     {
         public override string Description => "Basic electrical infrastructure.";
 
-        public override string Name => "Electricity";
-
         public override bool IsPrimary => true;
+
+        public override string Name => "Electricity";
 
         public override TechTier Tier => TechTier.Tier2;
 

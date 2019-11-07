@@ -55,7 +55,7 @@
 
         private PlayerCharacterPublicState publicState;
 
-        public static bool IsProcessingMouseWheel { get; set; }
+        public static bool IsUsingMouseWheelInputToScrollHotbar { get; set; }
 
         protected bool InputIsUsingItem
         {
@@ -110,7 +110,7 @@
                 ClientInputContext.Start(nameof(ClientComponentWorldCameraZoomManager))
                                   .HandleAll(() =>
                                              {
-                                                 if (!IsProcessingMouseWheel
+                                                 if (!IsUsingMouseWheelInputToScrollHotbar
                                                      || WindowsManager.OpenedWindowsCount > 0)
                                                  {
                                                      return;

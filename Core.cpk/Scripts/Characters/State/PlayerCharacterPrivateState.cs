@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Quests;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
+    using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -77,6 +78,9 @@
         public double? LastDeathTime { get; set; }
 
         [SyncToClient]
+        public LastDismountedVehicleMapMark LastDismountedVehicleMapMark { get; set; }
+
+        [SyncToClient]
         [TempOnly]
         public NetworkSyncList<ILogicObject> OwnedLandClaimAreas { get; set; }
 
@@ -89,6 +93,9 @@
         [TempOnly]
         public byte ServerLastAckClientInputId { get; set; }
 
+        [TempOnly]
+        public double ServerLastActiveTime { get; set; }
+
         /// <summary>
         /// Used on PvE servers to despawn players who stay in offline for too long.
         /// </summary>
@@ -99,6 +106,11 @@
 
         [SyncToClient]
         public PlayerCharacterTechnologies Technologies { get; private set; }
+
+        // Store previously enabled selected hotbar slot Id in order to restore it when dismounting the vehicle.
+        [TempOnly]
+        [SyncToClient(isSendChanges: false)]
+        public byte? PreviouslySelectedHotbarSlotId { get; set; }
 
         public void ServerInitState(ICharacter character)
         {

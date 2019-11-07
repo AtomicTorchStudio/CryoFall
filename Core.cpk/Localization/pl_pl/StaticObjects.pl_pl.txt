@@ -86,13 +86,13 @@ Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
 Źródło geotermalne
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-Źródło geotermalne (nieskończone)
+Niekończące się źródło geotermalne
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Źródło ropy
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-Źródło ropy (nieskończone)
+Niekończące się źródło ropy
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Ładunek górniczy
@@ -138,6 +138,9 @@ Trawa
 
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
 Duża sterta śmieci
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+Mała sterta śmieci
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Kamień
@@ -207,9 +210,6 @@ Użyj kilofu do wydobycia tego zasobu.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Szczelina
-
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-Zwęglony grunt
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Większa i bardziej wytrzymała niż beczka drewniana. Służy do przechowywania dużych ilości płynów.
@@ -734,6 +734,12 @@ Pozwala TRWALE pozbyć się niechcianych przedmiotów!
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 Kosz na śmieci
 
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+Zautomatyzowana platforma do produkcji pojazdów. Na podstawie danego schematu pozwala wyprodukować dowolny pojazd.
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+Fabryka samochodów
+
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Pozwala na magazynowanie energii elektrycznej wytwarzanej przez generatory.
 
@@ -916,8 +922,14 @@ Niebieska szałwia
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Kwiat Oni
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-Ogurin
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+Mlelon
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+Ryż
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+Przyprawy
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 Tytoń
@@ -992,7 +1004,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
 Palma
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Sosna
+Świerk
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
 Sosna

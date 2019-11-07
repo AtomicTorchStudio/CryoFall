@@ -7,7 +7,7 @@
 
     public class SkeletonBurrower : ProtoCharacterSkeletonAnimal
     {
-        public override double DefaultMoveSpeed => 0.9;
+        public override double DefaultMoveSpeed => 1.35;
 
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("Burrower/Back");

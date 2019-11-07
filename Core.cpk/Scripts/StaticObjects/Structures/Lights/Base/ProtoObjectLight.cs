@@ -32,7 +32,7 @@
               TPublicState,
               TClientState>,
           IProtoObjectLight,
-          IInteractableProtoStaticWorldObject
+          IInteractableProtoWorldObject
         where TPrivateState : ObjectLightPrivateState, new()
         where TPublicState : ObjectLightPublicState, new()
         where TClientState : ObjectLightClientState, new()
@@ -54,6 +54,8 @@
 
         public double FuelUsePerSecond { get; private set; }
 
+        public override bool HasIncreasedScopeSize => true;
+
         public override string InteractionTooltipText => InteractionTooltipTexts.Configure;
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
@@ -63,8 +65,6 @@
         public abstract double LightSize { get; }
 
         public virtual Vector2D LightWorldOffset => (0.5, 0.5);
-
-        public override bool HasIncreasedScopeSize => true;
 
         protected virtual Vector2D LightWorldSpritePivotPoint => (0.5, 0.5);
 
@@ -99,16 +99,16 @@
             return false;
         }
 
-        BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
+        BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
         {
-            return this.ClientOpenUI(new ClientObjectData(worldObject));
+            return this.ClientOpenUI(new ClientObjectData((IStaticWorldObject)worldObject));
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
         }
 
@@ -129,7 +129,7 @@
             var worldObject = data.GameObject;
             var publicState = data.PublicState;
 
-            data.ClientState.RendererLight = this.ClientCreateLightSource(Client.Scene.GetSceneObject(worldObject));
+            data.ClientState.RendererLight = this.ClientCreateLightSource(worldObject.ClientSceneObject);
 
             // subscribe to active state changes
             publicState.ClientSubscribe(
@@ -142,7 +142,7 @@
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
         protected virtual void ClientIsActiveChanged(ClientInitializeData data)

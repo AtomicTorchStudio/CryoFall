@@ -4,7 +4,7 @@
     {
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            AddRectangleWithHitboxes(data, size: (1, 1));
+            AddRectangleWithHitboxes(data, size: (1, 1.1));
         }
     }
 }

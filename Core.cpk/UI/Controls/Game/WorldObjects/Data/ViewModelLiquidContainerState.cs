@@ -30,9 +30,9 @@
             this.RefreshAmount();
         }
 
-        public float Amount { get; set; }
+        public double Amount { get; set; }
 
-        public float Capacity { get; }
+        public double Capacity { get; }
 
         public Color LiquidColor
         {

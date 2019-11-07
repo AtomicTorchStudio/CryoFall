@@ -22,8 +22,14 @@ Scripts/Tiles/TileForestTropical@Name:
 Scripts/Tiles/TileLakeShore@Name:
 湖岸
 
+Scripts/Tiles/TileLava@Name:
+熔岩
+
 Scripts/Tiles/TileMeadows@Name:
 草甸
+
+Scripts/Tiles/TileRoads@Name:
+道路
 
 Scripts/Tiles/TileRocky@Name:
 多岩

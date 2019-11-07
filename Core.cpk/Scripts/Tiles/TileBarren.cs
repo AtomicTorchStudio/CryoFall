@@ -42,14 +42,14 @@
             settings.AddGroundTexture(
                 new ProtoTileGroundTexture(
                     texture: GroundTexture2,
-                    blendMaskTexture: BlendMaskTextureGeneric2Smooth,
+                    blendMaskTexture: BlendMaskTextureSprayStraightSmooth,
                     noiseSelector: null));
 
             // ground with cracks
             settings.AddGroundTexture(
                 new ProtoTileGroundTexture(
                     texture: GroundTexture1,
-                    blendMaskTexture: BlendMaskTextureGeneric2Smooth,
+                    blendMaskTexture: BlendMaskTextureSprayStraightSmooth,
                     noiseSelector: new NoiseSelector(from: 0.4,
                                                      to: 0.7,
                                                      noise: new PerlinNoise(seed: 90230104,
@@ -61,7 +61,7 @@
             settings.AddGroundTexture(
                 new ProtoTileGroundTexture(
                     texture: GroundTextureAtlas3,
-                    blendMaskTexture: BlendMaskTextureGeneric2Smooth,
+                    blendMaskTexture: BlendMaskTextureSprayStraightSmooth,
                     noiseSelector: new NoiseSelector(from: 0.4,
                                                      to: 0.7,
                                                      noise: new PerlinNoise(seed: 345734573,

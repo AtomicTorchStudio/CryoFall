@@ -1,38 +1,44 @@
 ﻿Scripts/Tiles/TileBarren@Name:
-不毛
+不毛地
 
 Scripts/Tiles/TileBeachBoreal@Name:
-浜辺（北方）
+海岸（亜寒帯）
 
 Scripts/Tiles/TileBeachTemperate@Name:
-浜辺（温帯）
+海岸（温帯）
 
 Scripts/Tiles/TileClay@Name:
 粘土採取場
 
 Scripts/Tiles/TileForestBoreal@Name:
-森（北方）
+森（亜寒帯）
 
 Scripts/Tiles/TileForestTemperate@Name:
 森（温帯）
 
 Scripts/Tiles/TileForestTropical@Name:
-森（トロピカル）
+森（熱帯）
 
 Scripts/Tiles/TileLakeShore@Name:
 湖岸
 
+Scripts/Tiles/TileLava@Name:
+溶岩
+
 Scripts/Tiles/TileMeadows@Name:
 牧草地
 
+Scripts/Tiles/TileRoads@Name:
+道路
+
 Scripts/Tiles/TileRocky@Name:
-山脈
+岩石地帯
 
 Scripts/Tiles/TileRuins@Name:
 遺跡
 
 Scripts/Tiles/TileSaltFlats@Name:
-塩類湖底
+塩原
 
 Scripts/Tiles/TileSwamp@Name:
 沼地

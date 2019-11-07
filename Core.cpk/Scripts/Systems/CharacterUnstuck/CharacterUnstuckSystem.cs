@@ -9,8 +9,10 @@
     using AtomicTorch.CBND.CoreMod.Systems.CharacterRespawn;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -197,7 +199,6 @@
                            .UnstuckExecutionTime = 0;
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
         private void ClientRemote_UnstuckAlreadyQueued()
         {
             NotificationSystem.ClientShowNotification(
@@ -205,7 +206,6 @@
                 NotificationAlreadyRequestedUnstuck_Message);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
         private void ClientRemote_UnstuckFailedCharacterMoved()
         {
             NotificationSystem.ClientShowNotification(
@@ -214,7 +214,6 @@
                 NotificationColor.Bad);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
         private void ClientRemote_UnstuckFailedDead()
         {
             NotificationSystem.ClientShowNotification(
@@ -223,7 +222,13 @@
                 NotificationColor.Bad);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
+        private void ClientRemote_UnstuckImpossible()
+        {
+            NotificationSystem.ClientShowNotification(
+                NotificationUnstuckImpossible_Title,
+                color: NotificationColor.Bad);
+        }
+
         private void ClientRemote_UnstuckSuccessful()
         {
             NotificationSystem.ClientShowNotification(
@@ -247,6 +252,18 @@
                 // character is dead
                 this.CallClient(character, _ => _.ClientRemote_UnstuckFailedDead());
                 return;
+            }
+
+            var vehicle = character.SharedGetCurrentVehicle();
+            if (vehicle != null)
+            {
+                VehicleSystem.ServerForceExitVehicle(vehicle);
+                if (vehicle.GetPublicState<VehiclePublicState>().PilotCharacter != null)
+                {
+                    // cannot quit vehicle here, cannot unstuck
+                    this.CallClient(character, _ => _.ClientRemote_UnstuckImpossible());
+                    return;
+                }
             }
 
             var delay = LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(character.TilePosition,
@@ -287,6 +304,13 @@
                         // character moved
                         ServerNotifyUnstuckCancelledCharacterMoved(character);
                         return true; // remove this request
+                    }
+
+                    if (character.SharedGetCurrentVehicle() != null)
+                    {
+                        // character entered vehicle
+                        ServerNotifyUnstuckCancelledCharacterMoved(character);
+                        return true;
                     }
 
                     if (!SharedValidateCanUnstuck(character))

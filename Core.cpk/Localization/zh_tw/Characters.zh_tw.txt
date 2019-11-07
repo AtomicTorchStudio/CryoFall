@@ -1,72 +1,72 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
-熊
+[br]{0}
 
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
-黑甲蟲
+[br][br]需先下載這些mod才能進入遊戲。
 
 Scripts/Characters/Mobs/MobBurrower@Name:
-鑽地蟲
+`[br]你可以在官方論壇找到mod：http://forums.atomictorch.com/index.php?board=24.0"`
 
 Scripts/Characters/Mobs/MobChicken@Name:
-雞
+無法連接-缺少mod
 
 Scripts/Characters/Mobs/MobCloakedLizard@Name:
-斗篷蜥蜴
+熊
 
 Scripts/Characters/Mobs/MobCrab@Name:
-螃蟹
+黑甲蟲
 
 Scripts/Characters/Mobs/MobCrawler@Name:
-爬蟲
+鑽地蟲
 
 Scripts/Characters/Mobs/MobFireLizard@Name:
-火蜥蜴
+雞
 
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
-蜜獾
+斗篷蜥蜴
 
 Scripts/Characters/Mobs/MobHyena@Name:
-土狼
+螃蟹
 
 Scripts/Characters/Mobs/MobPangolin@Name:
-穿山甲
+爬蟲
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
-普拉格甲蟲
+火蜥蜴
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
-蝸牛
+蜜獾
 
 Scripts/Characters/Mobs/MobScorpion@Name:
-蠍子
+土狼
 
 Scripts/Characters/Mobs/MobSnakeBlue@Name:
-藍蛇
+穿山甲
 
 Scripts/Characters/Mobs/MobSnakeBrown@Name:
-棕蛇
+普拉格甲蟲
 
 Scripts/Characters/Mobs/MobSnakeGreen@Name:
-綠蛇
+蝸牛
 
 Scripts/Characters/Mobs/MobStarfish@Name:
-海星
+蠍子
 
 Scripts/Characters/Mobs/MobTropicalBoar@Name:
-熱帶野豬
+藍蛇
 
 Scripts/Characters/Mobs/MobTurtle@Name:
-烏龜
+棕蛇
 
 Scripts/Characters/Mobs/MobWildBoar@Name:
-野豬
+綠蛇
 
 Scripts/Characters/Mobs/MobWolf@Name:
-狼
+海星
 
 Scripts/Characters/Player/PlayerCharacter@Name:
-玩家人物
+熱帶野豬
 
 Scripts/Characters/Player/PlayerCharacterSpectator@Name:
-玩家人物出於觀察者模式
+烏龜
 

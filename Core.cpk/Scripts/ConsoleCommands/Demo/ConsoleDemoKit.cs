@@ -183,7 +183,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemSeedsCucumber>();
                     CreateItem<ItemSeedsFlowerBlueSage>();
                     CreateItem<ItemSeedsFlowerOni>();
-                    CreateItem<ItemSeedsOgurin>();
+                    CreateItem<ItemSeedsMilkmelon>();
                     CreateItem<ItemSeedsTobacco>();
                     CreateItem<ItemSeedsTomato>();
                     CreateItem<ItemSeedsWheat>();

@@ -1,6 +1,6 @@
 ﻿Scripts/Perks/PerkClaimDeposits@Name:
-占領石油和鋰礦
+使用.300彈藥的重型機槍。
 
 Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
-最大占領數量: {0}
+重機槍
 

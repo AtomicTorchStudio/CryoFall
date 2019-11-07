@@ -1,5 +1,5 @@
 ﻿Scripts/ClientOptions/Audio/AudioOptionMuteAudioWhenUnfocused@Name:
-バックグランド時ミュート
+バックグラウンド時ミュート
 
 Scripts/ClientOptions/Audio/AudioOptionsCategory@Name:
 オーディオ
@@ -8,13 +8,13 @@ Scripts/ClientOptions/Audio/AudioOptionVolumeAmbient@Name:
 環境音量
 
 Scripts/ClientOptions/Audio/AudioOptionVolumeMaster@Name:
-マスターボリューム
+マスター音量
 
 Scripts/ClientOptions/Audio/AudioOptionVolumeMusic@Name:
 音楽の音量
 
 Scripts/ClientOptions/Audio/AudioOptionVolumeSounds@Name:
-音効の音量
+効果音の音量
 
 Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCategory:
 全般
@@ -23,7 +23,7 @@ Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 操作
 
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
-有効にする
+とにかく有効化
 
 Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
 `開発者モードを有効にしようとしています。
@@ -37,16 +37,16 @@ Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 開発者モード
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
-表示オブジェクト[br]インタラクションツールチップ
+オブジェクト操作[br]ツールチップ表示
 
 Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
-オブジェクトの名称ヒントを表示
+オブジェクト名[br]ツールチップ表示
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 カメラズーム
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
-ホットバーアイテム選択
+スロットアイテム選択
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 スクロールホイール使用
@@ -79,10 +79,10 @@ Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
 アンビエントオクルージョン
 
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
-None:
+なし
 
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx2:
-MSAAx2:
+MSAAx2
 
 Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx4:
 MSAA x4
@@ -135,10 +135,10 @@ Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Message:
 [br]ゲームを手動で再起動してください。`
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Title:
-再起動が必要です
+再起動が必要
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Button:
-継続
+続ける
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_MessageFormat:
 `推奨モードより高いスプライト解像度を選択しようとしています。
@@ -146,10 +146,10 @@ Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Mes
 [*]推奨モード：[b]{0}[/b]
 [*]選択モード：[b]{1}[/b]
 [br]
-[br]選択したモードでは、多くのVRAMが必要になります。画像構造とフレームレートが低くなる可能性があります。`
+[br]選択したモードでは、多くのVRAMが必要になります。このままですと画面が崩れたりフレームレートが低くなる恐れがあります。`
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:
-高すぎる設定が検知されています
+設定が高すぎます
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Ultra:
 ウルトラ4K

@@ -1,7 +1,4 @@
-﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
-Oszołomiona postać nie może nic robić.
-
-Scripts/Base/Stats/StatName@HealthMax:
+﻿Scripts/Base/Stats/StatName@HealthMax:
 Maks. zdrowie
 
 Scripts/Base/Stats/StatName@StaminaMax:
@@ -184,9 +181,15 @@ Nie możesz jeść ani pić
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Przyrost punktów technologii
 
+Scripts/Base/Stats/StatName@SkillsExperienceGainMultiplier:
+Zyskiwane doświadczenie w umiejętnościach
+
 Scripts/Base/Stats/StatName@TinkerTableBonus:
 Skuteczność stołu majsterkowicza
 
 Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
 Gniazda w kolejce wytwarzania
+
+Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
+Toksyczność leku
 

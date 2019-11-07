@@ -41,7 +41,10 @@
                 <Style TargetType="TextBlock">
                     <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
                     <Setter Property="FontSize" Value="10" />
+                    <Setter Property="LineHeight" Value="11.5" />
+                    <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
                     <Setter Property="TextWrapping" Value="Wrap" />
+                    <Setter Property="TextAlignment" Value="Center" />
                 </Style>
             </StackPanel.Resources>
             <!-- Text: This deposit will be depleted in: -->

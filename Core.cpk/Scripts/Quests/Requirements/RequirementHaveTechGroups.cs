@@ -50,7 +50,7 @@
             ushort count,
             string description = null)
         {
-            var techGroups = Api.FindProtoEntities<TechGroup>()
+            var techGroups = TechGroup.AvailableTechGroups
                                 .Where(g => g.Tier == tier)
                                 .ToList();
 

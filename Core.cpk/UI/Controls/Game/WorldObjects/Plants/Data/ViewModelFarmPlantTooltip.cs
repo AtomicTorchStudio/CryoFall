@@ -12,7 +12,6 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Helpers;
 
     public class ViewModelFarmPlantTooltip : BaseViewModel
     {
@@ -30,7 +29,7 @@
 
         private bool isDataReceivedFromServer;
 
-        private double nextHarvestTime;
+        private double nextHarvestOrSpoilTime;
 
         private double totalHarvestDuration;
 
@@ -48,12 +47,21 @@
 
             publicState.ClientSubscribe(
                 _ => _.HasHarvest,
-                _ => this.RefreshDataFromServer(),
+                _ =>
+                {
+                    this.NotifyPropertyChanged(nameof(this.HasHarvest));
+                    this.RefreshDataFromServer();
+                },
                 this);
 
             publicState.ClientSubscribe(
                 _ => _.IsFertilized,
                 _ => this.RefreshDataFromServer(),
+                this);
+
+            publicState.ClientSubscribe(
+                _ => _.IsSpoiled,
+                _ => this.NotifyPropertyChanged(nameof(this.IsSpoiled)),
                 this);
 
             publicState.ClientSubscribe(
@@ -89,6 +97,8 @@
 
         public byte HarvestsCountMax { get; }
 
+        public bool HasHarvest => this.publicState.HasHarvest;
+
         public Brush IconFertilizer =>
             this.appliedFertilizedProto != null
                 ? Api.Client.UI.GetTextureBrush(this.appliedFertilizedProto.Icon)
@@ -99,7 +109,15 @@
         public Brush IconSkillFarming
             => Api.Client.UI.GetTextureBrush(Api.GetProtoEntity<SkillFarming>().Icon);
 
+        public bool IsSpoiled => this.publicState.IsSpoiled;
+
+        public bool IsSpoiling { get; private set; }
+
         public string SkillGrowthSpeedBonusText { get; private set; }
+
+        public float SpoiledInTimePercent { get; private set; } = 50;
+
+        public string SpoiledInTimeText { get; private set; } = "...";
 
         public string Title => this.protoPlant.Name;
 
@@ -138,7 +156,7 @@
             }
 
             this.HarvestsCount = data.ProducedHarvestsCount;
-            this.nextHarvestTime = data.ServerTimeNextHarvest;
+            this.nextHarvestOrSpoilTime = data.ServerTimeNextHarvestOrSpoil;
             this.totalHarvestDuration = this.protoPlant.ClientCalculateHarvestTotalDuration(
                                             onlyForHarvestStage: this.HarvestsCount > 0)
                                         / data.SpeedMultiplier;
@@ -182,17 +200,44 @@
 
         private void UpdateDisplayedTimeNoTimer()
         {
+            if (this.publicState.HasHarvest)
+            {
+                this.HarvestInTimePercent = 100;
+                this.HarvestInTimeText = null; // not used
+            }
+            else
             {
                 // update harvest time
                 var fraction = ServerTimersSystem.SharedGetTimeRemainingFraction(
-                    this.nextHarvestTime, 
-                    this.totalHarvestDuration, 
+                    this.nextHarvestOrSpoilTime,
+                    this.totalHarvestDuration,
                     out var timeRemainingSeconds);
 
-                this.HarvestInTimeText = timeRemainingSeconds > 0
-                                             ? ClientTimeFormatHelper.FormatTimeDuration(timeRemainingSeconds)
-                                             : CoreStrings.FarmPlantTooltip_TitleHarvestInCountdown_Ready;
+                this.HarvestInTimeText = ClientTimeFormatHelper.FormatTimeDuration(Math.Max(0, timeRemainingSeconds));
                 this.HarvestInTimePercent = (float)(100 * fraction);
+            }
+
+            if (this.publicState.IsSpoiled)
+            {
+                this.SpoiledInTimePercent = 100;
+                this.SpoiledInTimeText = null; // not used
+                this.IsSpoiling = true;
+            }
+            else if (this.publicState.HasHarvest)
+            {
+                // update rotten time
+                var fraction = ServerTimersSystem.SharedGetTimeRemainingFraction(
+                    this.nextHarvestOrSpoilTime,
+                    this.protoPlant.TimeToHarvestSpoilTotalSeconds,
+                    out var timeRemainingSeconds);
+
+                this.SpoiledInTimeText = ClientTimeFormatHelper.FormatTimeDuration(Math.Max(0, timeRemainingSeconds));
+                this.SpoiledInTimePercent = (float)(100 * fraction);
+                this.IsSpoiling = true;
+            }
+            else
+            {
+                this.IsSpoiling = false;
             }
 
             if (this.VisibilityWatered == Visibility.Visible)
@@ -202,8 +247,8 @@
                 if (totalDuration < double.MaxValue)
                 {
                     var fraction = ServerTimersSystem.SharedGetTimeRemainingFraction(
-                        this.wateringEndsTime, 
-                        totalDuration, 
+                        this.wateringEndsTime,
+                        totalDuration,
                         out var timeRemainingSeconds);
                     this.WateringEndsTimeText = ClientTimeFormatHelper.FormatTimeDuration(timeRemainingSeconds);
                     this.WateringEndsTimePercent = (float)(100 * fraction);

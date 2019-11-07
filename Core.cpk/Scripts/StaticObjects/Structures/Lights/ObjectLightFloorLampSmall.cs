@@ -13,7 +13,7 @@
         public override string Description =>
             "Smaller version of the electric floor lamp. Quite bright for its size.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 0.75;
+        public override double ElectricityConsumptionPerSecondWhenActive => 0.25;
 
         public override Color LightColor => LightColors.ElectricCold;
 
@@ -25,7 +25,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 500;
+        public override float StructurePointsMax => 1200;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -42,17 +42,17 @@
         {
             category = GetCategory<StructureCategoryElectricity>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
+            build.AddStageRequiredItem<ItemGlassRaw>(count: 5);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
-            build.AddStageRequiredItem<ItemGlassRaw>(count: 4);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
+            repair.AddStageRequiredItem<ItemGlassRaw>(count: 5);
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
             repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
-            repair.AddStageRequiredItem<ItemGlassRaw>(count: 4);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

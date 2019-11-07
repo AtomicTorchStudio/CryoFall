@@ -10,14 +10,14 @@
     {
         public static IWorldObject CurrentlyInteractingWith;
 
-        public static IStaticWorldObject ClientFindWorldObjectAtCurrentMousePosition()
+        public static IWorldObject ClientFindWorldObjectAtCurrentMousePosition()
         {
             var currentCharacter = Api.Client.Characters.CurrentPlayerCharacter;
-            return ClientComponentObjectInteractionHelper.FindStaticObjectAtCurrentMousePosition(
+            return ClientComponentObjectInteractionHelper.FindObjectAtCurrentMousePosition(
                        currentCharacter,
                        CollisionGroups.ClickArea)
                    // second try to find by default collider
-                   ?? ClientComponentObjectInteractionHelper.FindStaticObjectAtCurrentMousePosition(
+                   ?? ClientComponentObjectInteractionHelper.FindObjectAtCurrentMousePosition(
                        currentCharacter,
                        CollisionGroups.Default)
                    // try to find object in the pointed tile

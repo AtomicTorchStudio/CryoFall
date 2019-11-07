@@ -86,13 +86,13 @@ Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
 Thermalquelle
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-Thermalquelle (unendlich)
+Unendliche Thermalquelle
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Ölquelle
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-Ölquelle (unendlich)
+Unendliche Ölquelle
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Minenladung
@@ -138,6 +138,9 @@ Gras
 
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
 Großer Müllhaufen
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+Kleiner Müllhaufen
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Stein
@@ -207,9 +210,6 @@ Benutze eine Spitzhacke, um diese Ressource abzubauen.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Kluft
-
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-Verkohlter Boden
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Größer und robuster als Holzfässer. Zur Aufbewahrung großer Mengen von Flüssigkeiten geeignet.
@@ -734,6 +734,12 @@ Du kannst diesen Mülleimer dazu verwenden, unerwünschte Gegenstände loszuwerd
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 Mülleimer
 
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+Automatisierte Plattform zur Montage von Fahrzeugen. Kann zur Fertigung jedes Fahrzeugs verwendet werden, für das ein Bauplan vorhanden ist.
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+Fahrzeugmontagebucht
+
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Ermöglicht das Speichern von Strom aus Generatoren für den späteren Gebrauch innerhalb der Basis.
 
@@ -917,8 +923,14 @@ Blauer Salbei
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Oniblume
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-Ogurin
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+Milchmelone
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+Reis
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+Gewürze
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 Tabak
@@ -993,7 +1005,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
 Palme
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Kiefer
+Fichte
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
 Kiefer

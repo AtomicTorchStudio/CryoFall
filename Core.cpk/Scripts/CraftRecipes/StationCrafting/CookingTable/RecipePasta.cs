@@ -19,12 +19,10 @@
 
             craftDuration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemWheatFlour>(count: 2);
+            inputItems.Add<ItemDough>(count: 2);
             inputItems.Add<ItemSalt>(count: 1);
-            inputItems.Add<ItemBottleWater>(count: 1);
 
             outputItems.Add<ItemPasta>(count: 1);
-            outputItems.Add<ItemBottleEmpty>(count: 1);
         }
     }
 }

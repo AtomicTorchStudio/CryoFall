@@ -94,7 +94,7 @@
                         <StackPanel Orientation="Vertical">
                             <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}" />
                             <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}"
-                                 Margin="0,1" />
+                                     Margin="0,1" />
                             <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}" />
                         </StackPanel>
                     </ContentControl>

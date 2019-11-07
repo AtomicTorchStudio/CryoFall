@@ -4,16 +4,15 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Language;
-    using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ClientLanguagesManager
     {
         private static ProtoLanguageDefinition currentLanguageDefinition;
 
-        private static IReadOnlyDictionary<string, ProtoLanguageDefinition> languageDefinitions;
-
         private static bool isInitialized;
+
+        private static IReadOnlyDictionary<string, ProtoLanguageDefinition> languageDefinitions;
 
         static ClientLanguagesManager()
         {

@@ -1,7 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
@@ -12,9 +10,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Resources;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.ServicesServer;
 
     public abstract class ProtoObjectGatherableVegetation
         <TPrivateState,

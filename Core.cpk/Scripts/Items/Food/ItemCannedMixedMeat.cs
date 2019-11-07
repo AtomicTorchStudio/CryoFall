@@ -6,7 +6,7 @@
     {
         public override string Description => "Canned meat of dubious origin. At least the packaging looks decent.";
 
-        public override float FoodRestore => 12;
+        public override float FoodRestore => 25;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
 

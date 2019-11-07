@@ -26,7 +26,7 @@
 
             this.AtlasTextureVertical = new TextureAtlasResource(
                 texturePath + "Vertical",
-                columns: 7,
+                columns: 8,
                 rows: 1,
                 isTransparent: true);
         }
@@ -35,6 +35,8 @@
             "Large steel gate that could be conveniently used as the main entrance to your base.";
 
         public override int DoorSizeTiles => 2;
+
+        public override bool IsHeavyVehicleCanPass => true;
 
         public override string Name => "Steel gate";
 

@@ -21,14 +21,8 @@
         {
             Hide();
 
-            var staticWorldObject = worldObject as IStaticWorldObject;
-            var protoStaticWorldObject = staticWorldObject?.ProtoStaticWorldObject;
-
-            var positionOffset = protoStaticWorldObject != null
-                                     ? protoStaticWorldObject.SharedGetObjectCenterWorldOffset(staticWorldObject)
-                                     : (0, 0);
-
-            positionOffset += (0, 1.18);
+            var positionOffset = worldObject.ProtoWorldObject.SharedGetObjectCenterWorldOffset(worldObject)
+                                 + (0, 1.18);
 
             lastControl = new WorldObjectTitleTooltip();
             lastControl.Setup(message);

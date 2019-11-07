@@ -28,7 +28,7 @@
         {
             obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
             damageApplied = 0; // no damage
-            return true; // hit
+            return true;       // hit
         }
 
         protected override void ClientInitialize(ClientInitializeData data)

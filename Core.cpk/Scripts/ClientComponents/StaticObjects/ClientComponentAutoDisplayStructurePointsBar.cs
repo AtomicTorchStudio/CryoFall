@@ -17,9 +17,9 @@
 
     public class ClientComponentAutoDisplayStructurePointsBar : ClientComponent
     {
-        private const double MaxDistance = 5.5;
+        public const double MaxDistance = 5.5;
 
-        private const int SecondsToDisplayHealthbarAfterDamage = 30;
+        public const int SecondsToDisplayHealthbarAfterDamage = 30;
 
         private static readonly ICoreClientService Core = Client.Core;
 
@@ -31,7 +31,7 @@
 
         private double damageThresholdFraction;
 
-        private StaticObjectStructurePointsData data;
+        private ObjectStructurePointsData data;
 
         private bool isDamaged;
 
@@ -43,19 +43,23 @@
 
         private StructurePointsBarControl structurePointsBarControl;
 
+        public bool IsDisplayedOnlyOnMouseOver { get; set; }
+
         private float StructurePointsCurrent => this.data.State.StructurePointsCurrent;
 
         public void Setup(
-            IStaticWorldObject staticWorldObject,
-            float structurePointsMax)
+            IWorldObject worldObject,
+            float structurePointsMax,
+            double? customDamageThresholdFraction = null)
         {
             this.Unsubscribe();
-            this.data = new StaticObjectStructurePointsData(staticWorldObject,
-                                                            structurePointsMax);
+            this.data = new ObjectStructurePointsData(worldObject,
+                                                      structurePointsMax);
 
-            this.damageThresholdFraction = staticWorldObject.ProtoStaticWorldObject is IProtoObjectStructure
-                                               ? 0.98
-                                               : 1;
+            this.damageThresholdFraction = customDamageThresholdFraction
+                                           ?? (worldObject.ProtoGameObject is IProtoObjectStructure
+                                                   ? 0.98
+                                                   : 1);
 
             this.Subscribe();
             this.Refresh();
@@ -99,16 +103,17 @@
                 return true;
             }
 
-            if (ClientComponentObjectInteractionHelper.CurrentMouseOverObject
-                == this.data.StaticWorldObject)
+            if (ClientComponentObjectInteractionHelper.MouseOverObject
+                == this.data.WorldObject)
             {
                 return true;
             }
 
-            if (this.isDamagedBelowThreshold)
+            if (this.isDamagedBelowThreshold
+                && !this.IsDisplayedOnlyOnMouseOver)
             {
                 var playerPosition = ClientCurrentCharacterHelper.Character?.TilePosition ?? Vector2Ushort.Zero;
-                var tilePosition = this.data.StaticWorldObject.TilePosition;
+                var tilePosition = this.data.WorldObject.TilePosition;
                 return tilePosition.TileSqrDistanceTo(playerPosition)
                        <= MaxDistance * MaxDistance;
             }
@@ -123,7 +128,7 @@
                 return;
             }
 
-            var protoStaticWorldObject = this.data.ProtoStaticWorldObject;
+            var protoStaticWorldObject = this.data.ProtoWorldObject;
             if (protoStaticWorldObject == null)
             {
                 this.RemoveAttachedControl();
@@ -168,14 +173,14 @@
                 return;
             }
 
-            var protoStaticWorldObject = this.data.ProtoStaticWorldObject;
+            var protoWorldObject = this.data.ProtoWorldObject;
             var structurePointsCurrent = this.data.State.StructurePointsCurrent;
 
             this.structurePointsBarControl = ControlsCache<StructurePointsBarControl>.Instance.Pop();
             this.structurePointsBarControl.Setup(this.data,
                                                  this.lastStructurePoints ?? structurePointsCurrent);
 
-            var offset = protoStaticWorldObject.SharedGetObjectCenterWorldOffset(
+            var offset = protoWorldObject.SharedGetObjectCenterWorldOffset(
                 this.SceneObject.AttachedWorldObject);
 
             this.componentAttachedUIElement = Api.Client.UI.AttachControl(

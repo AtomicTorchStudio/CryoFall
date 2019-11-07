@@ -84,6 +84,16 @@
             this.storyboardFadeOut.Begin();
         }
 
+        public void HideAfterDelay(double delaySeconds)
+        {
+            this.IsAutoHide = false;
+
+            // hide the notification control after delay
+            ClientTimersSystem.AddAction(
+                delaySeconds,
+                () => this.Hide(quick: false));
+        }
+
         public bool IsSame(HUDNotificationControl other)
         {
             return this.viewModel.IsSame(other.viewModel);
@@ -99,7 +109,7 @@
 
         public void SetupAutoHideChecker(Func<bool> checker)
         {
-            Api.Client.Scene.CreateSceneObject("Notification auto-hide checker")
+            Api.Client.Scene.CreateSceneObject("Notification auto hide checker")
                .AddComponent<ClientComponentNotificationAutoHideChecker>()
                .Setup(this, checker);
         }

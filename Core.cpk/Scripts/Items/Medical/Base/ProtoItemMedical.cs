@@ -1,11 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Medical
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral;
-    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -20,12 +20,12 @@
         <TPrivateState,
          TPublicState,
          TClientState>
-        : ProtoItemGeneric
+        : ProtoItemWithFreshness
           <TPrivateState,
               TPublicState,
               TClientState>,
           IProtoItemMedical
-        where TPrivateState : BasePrivateState, new()
+        where TPrivateState : BasePrivateState, IItemWithFreshnessPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -34,7 +34,11 @@
             this.Icon = new TextureResource("Items/Medical/" + this.GetType().Name);
         }
 
+        public override bool CanBeSelectedInVehicle => true;
+
         public virtual float FoodRestore => 0;
+
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
         public virtual float HealthRestore => 0;
 
@@ -61,6 +65,16 @@
             }
 
             return false;
+        }
+
+        protected virtual void PrepareProtoItemMedical()
+        {
+        }
+
+        protected sealed override void PrepareProtoItemWithFreshness()
+        {
+            base.PrepareProtoItemWithFreshness();
+            this.PrepareProtoItemMedical();
         }
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
@@ -135,7 +149,7 @@
     /// </summary>
     public abstract class ProtoItemMedical
         : ProtoItemMedical
-            <EmptyPrivateState,
+            <ItemWithFreshnessPrivateState,
                 EmptyPublicState,
                 EmptyClientState>
     {

@@ -25,7 +25,7 @@
         <TextBlock Text="{Binding ContainerTitle}"
                    Visibility="{Binding IsContainerTitleVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                    HorizontalAlignment="Center"
-                   Foreground="White"
+                   Foreground="{StaticResource BrushColor6}"
                    FontWeight="Bold"
                    FontSize="10"
                    Margin="0,0,0,5" />

@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -39,8 +40,7 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        // TODO: consider removing this
-        public const string Notification_CannotInteractWhileDazed = "Cannot interact while dazed.";
+        public virtual string InteractionTooltipText => InteractionTooltipTexts.Interact;
 
         public bool IsInteractableObject { get; private set; }
 
@@ -112,6 +112,12 @@
                                               sendDebugEvents);
         }
 
+        public virtual string ClientGetTitle(IWorldObject worldObject)
+        {
+            // only certain objects like structures are displaying the name tooltip
+            return null;
+        }
+
         public void ClientInteractFinish(TWorldObject worldObject)
         {
             ValidateIsClient();
@@ -180,6 +186,11 @@
             }
 
             this.ClientInteractStart(gameObject);
+        }
+
+        public void ClientObserving(IWorldObject worldObject, bool isObserving)
+        {
+            this.ClientObserving(new ClientObjectData((TWorldObject)worldObject), isObserving);
         }
 
         public virtual void ClientOnServerPhysicsUpdate(
@@ -330,7 +341,7 @@
                     objectsInCharacterInteractionArea?.Any(t => t.PhysicsBody.AssociatedWorldObject == worldObject)
                     ?? false;
             }
-            else
+            else if (worldObject.ProtoWorldObject is IProtoStaticWorldObject protoStaticWorldObject)
             {
                 // the world object doesn't have physics shapes
                 // check this object tile by tile
@@ -341,7 +352,7 @@
                     s => s.CollisionGroup
                          == CollisionGroups.CharacterInteractionArea);
                 isInsideInteractionArea = false;
-                foreach (var tileOffset in ((IProtoStaticWorldObject)worldObject.ProtoWorldObject).Layout.TileOffsets)
+                foreach (var tileOffset in protoStaticWorldObject.Layout.TileOffsets)
                 {
                     var penetration = character.PhysicsBody.PhysicsSpace.TestShapeCollidesWithShape(
                         sourceShape: characterInteractionAreaShape,
@@ -363,6 +374,10 @@
                     isInsideInteractionArea = true;
                     break;
                 }
+            }
+            else
+            {
+                isInsideInteractionArea = false;
             }
 
             if (!isInsideInteractionArea)
@@ -442,7 +457,11 @@
         {
         }
 
-        protected abstract void ClientOnObjectDestroyed(Vector2Ushort tilePosition);
+        protected virtual void ClientObserving(ClientObjectData data, bool isObserving)
+        {
+        }
+
+        protected abstract void ClientOnObjectDestroyed(Vector2D position);
 
         protected sealed override void PrepareProto()
         {
@@ -469,9 +488,13 @@
             using var scopedBy = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetScopedByPlayers(targetObject, scopedBy);
 
+            var position = targetObject is IDynamicWorldObject dynamicWorldObject
+                               ? dynamicWorldObject.Position
+                               : targetObject.TilePosition.ToVector2D();
+
             this.CallClient(
                 scopedBy,
-                _ => _.ClientRemote_OnObjectDestroyed(targetObject.TilePosition));
+                _ => _.ClientRemote_OnObjectDestroyed(position));
         }
 
         protected abstract void SharedCreatePhysics(CreatePhysicsData data);
@@ -535,9 +558,9 @@
                         continue;
                     }
 
-                    if (testWorldObject is ICharacter)
+                    if (testWorldObject is IDynamicWorldObject)
                     {
-                        // characters are not assumed as an obstacle
+                        // dynamic world objects are not assumed as an obstacle
                         continue;
                     }
 
@@ -562,9 +585,9 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableUnordered)]
-        private void ClientRemote_OnObjectDestroyed(Vector2Ushort tilePosition)
+        private void ClientRemote_OnObjectDestroyed(Vector2D position)
         {
-            this.ClientOnObjectDestroyed(tilePosition);
+            this.ClientOnObjectDestroyed(position);
         }
 
         /// <summary>

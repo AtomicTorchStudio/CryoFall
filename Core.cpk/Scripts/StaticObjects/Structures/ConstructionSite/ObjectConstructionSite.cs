@@ -15,7 +15,7 @@
         protected override bool IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(
             ConstructionSitePublicState publicState)
         {
-            return ClientComponentObjectInteractionHelper.CurrentMouseOverObject == publicState.GameObject;
+            return ClientComponentObjectInteractionHelper.MouseOverObject == publicState.GameObject;
         }
 
         protected override void PrepareConstructionConfig(

@@ -6,6 +6,7 @@
     {
         // since there is nothing new to write the text and hints will be the same
         public override string Description => GetProtoEntity<QuestMasterHunter4>().Description;
+
         public override string Hints => GetProtoEntity<QuestMasterHunter4>().Hints;
 
         public override string Name => "Master hunter—part five";

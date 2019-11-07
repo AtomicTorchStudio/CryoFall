@@ -13,7 +13,7 @@
         public override string Description =>
             "Electric floor lamp. Produces extremely powerful white light that can easily illuminate even a large room.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 1;
+        public override double ElectricityConsumptionPerSecondWhenActive => 0.25;
 
         public override Color LightColor => LightColors.ElectricCold;
 
@@ -25,7 +25,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 800;
+        public override float StructurePointsMax => 1200;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -44,15 +44,15 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
-            build.AddStageRequiredItem<ItemGlassRaw>(count: 4);
+            build.AddStageRequiredItem<ItemGlassRaw>(count: 5);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
+            repair.AddStageRequiredItem<ItemGlassRaw>(count: 3);
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
             repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
-            repair.AddStageRequiredItem<ItemGlassRaw>(count: 2);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)
@@ -64,9 +64,9 @@
         {
             data.PhysicsBody
                 .AddShapeCircle(radius: 0.25, center: (0.5, 0.45))
-                .AddShapeRectangle(size: (0.45, 0.4),  offset: (0.275, 0.75), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.4, 0.2),  offset: (0.3, 0.95), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (0.5, 1.25), offset: (0.25, 0.3),  group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.45, 0.4), offset: (0.275, 0.75), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.4, 0.2),  offset: (0.3, 0.95),   group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.5, 1.25), offset: (0.25, 0.3),   group: CollisionGroups.ClickArea);
         }
     }
 }

@@ -128,6 +128,12 @@
 
                 <!-- Gasoline input/output slots -->
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <!-- Text: Empty -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               HorizontalAlignment="Center"
+                               Margin="0,-13,0,0" />
+
                     <StackPanel Orientation="Horizontal">
                         <controls:ItemsContainerControl
                             Container="{Binding ViewModelManufacturingStateProcessedGasoline.ContainerInput}"
@@ -159,6 +165,12 @@
                 <StackPanel Orientation="Vertical"
                             VerticalAlignment="Center"
                             Margin="20,0,0,0">
+                    <!-- Text: Empty -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.WindowManufacturer_TitleOutputEmpty}"
+                               Style="{StaticResource TextBlockStyleCraftingCaption}"
+                               HorizontalAlignment="Center"
+                               Margin="0,-13,0,0" />
+
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center">
                         <controls:ItemsContainerControl
@@ -175,7 +187,7 @@
 
                     <Control Template="{StaticResource ControlTemplateArrow}"
                              Margin="3" />
-
+                    
                     <!-- Text: Mineral oil -->
                     <TextBlock Text="{x:Static loc:CoreStrings.TitleLiquidMineralOil}"
                                Style="{StaticResource TextBlockStyleCraftingCaption}"

@@ -1,12 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Tiles
 {
-    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Noise;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class TileMeadows : ProtoTile, IProtoTileFarmAllowed, IProtoTileWellAllowed
     {
@@ -55,65 +53,65 @@
 
             // add plants decals
             settings.AddDecalDoubleWithOffset(ProtoTileDecal.CollectTextures("Terrain/Meadows/MeadowPlants*"),
-                size: (2, 2),
-                drawOrder: DrawOrder.GroundDecalsUnder,
-                noiseSelector: new CombinedNoiseSelector(
-                    // pattern like ways
-                    new NoiseSelector(
-                        from: 0.5,
-                        to: 0.65,
-                        noise: new PerlinNoise(seed: 123729123,
-                                               scale: 5,
-                                               octaves: 3,
-                                               persistance: 0.6,
-                                               lacunarity: 1.7)),
-                    // pattern like ways
-                    new NoiseSelector(
-                        from: 0.55,
-                        to: 0.65,
-                        noise: new PerlinNoise(seed: 742572457,
-                                               scale: 8,
-                                               octaves: 3,
-                                               persistance: 0.6,
-                                               lacunarity: 1.7)),
-                    // random pattern
-                    new NoiseSelector(
-                        from: 0.9,
-                        to: 1,
-                        noise: new WhiteNoise(seed: 1238127464))));
+                                              size: (2, 2),
+                                              drawOrder: DrawOrder.GroundDecalsUnder,
+                                              noiseSelector: new CombinedNoiseSelector(
+                                                  // pattern like ways
+                                                  new NoiseSelector(
+                                                      from: 0.5,
+                                                      to: 0.65,
+                                                      noise: new PerlinNoise(seed: 123729123,
+                                                                             scale: 5,
+                                                                             octaves: 3,
+                                                                             persistance: 0.6,
+                                                                             lacunarity: 1.7)),
+                                                  // pattern like ways
+                                                  new NoiseSelector(
+                                                      from: 0.55,
+                                                      to: 0.65,
+                                                      noise: new PerlinNoise(seed: 742572457,
+                                                                             scale: 8,
+                                                                             octaves: 3,
+                                                                             persistance: 0.6,
+                                                                             lacunarity: 1.7)),
+                                                  // random pattern
+                                                  new NoiseSelector(
+                                                      from: 0.9,
+                                                      to: 1,
+                                                      noise: new WhiteNoise(seed: 1238127464))));
 
             // add chamomile decals
             settings.AddDecalDoubleWithOffset(ProtoTileDecal.CollectTextures("Terrain/Meadows/Chamomile*"),
-                size: (2, 2),
-                noiseSelector: new NoiseSelector(
-                    from: 0.85,
-                    to: 1,
-                    noise: new PerlinNoise(seed: 829895415,
-                                           scale: 6,
-                                           octaves: 4,
-                                           persistance: 0.3,
-                                           lacunarity: 1.2)));
+                                              size: (2, 2),
+                                              noiseSelector: new NoiseSelector(
+                                                  from: 0.85,
+                                                  to: 1,
+                                                  noise: new PerlinNoise(seed: 829895415,
+                                                                         scale: 6,
+                                                                         octaves: 4,
+                                                                         persistance: 0.3,
+                                                                         lacunarity: 1.2)));
 
             // add flowers decals
             settings.AddDecalDoubleWithOffset(ProtoTileDecal.CollectTextures("Terrain/Meadows/YellowFlowers*"),
-                size: (2, 2),
-                noiseSelector: new CombinedNoiseSelector(
-                    new NoiseSelector(
-                        from: 0.63,
-                        to: 0.65,
-                        noise: new PerlinNoise(seed: 457218345,
-                                               scale: 5,
-                                               octaves: 3,
-                                               persistance: 0.6,
-                                               lacunarity: 1.7)),
-                    new NoiseSelector(
-                        from: 0.63,
-                        to: 0.65,
-                        noise: new PerlinNoise(seed: 243492398,
-                                               scale: 8,
-                                               octaves: 3,
-                                               persistance: 0.6,
-                                               lacunarity: 1.7))));
+                                              size: (2, 2),
+                                              noiseSelector: new CombinedNoiseSelector(
+                                                  new NoiseSelector(
+                                                      from: 0.63,
+                                                      to: 0.65,
+                                                      noise: new PerlinNoise(seed: 457218345,
+                                                                             scale: 5,
+                                                                             octaves: 3,
+                                                                             persistance: 0.6,
+                                                                             lacunarity: 1.7)),
+                                                  new NoiseSelector(
+                                                      from: 0.63,
+                                                      to: 0.65,
+                                                      noise: new PerlinNoise(seed: 243492398,
+                                                                             scale: 8,
+                                                                             octaves: 3,
+                                                                             persistance: 0.6,
+                                                                             lacunarity: 1.7))));
         }
     }
 }

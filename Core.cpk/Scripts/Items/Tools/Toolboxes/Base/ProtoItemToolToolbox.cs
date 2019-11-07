@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items.Seeds;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -47,10 +49,11 @@
         public virtual void ClientSetupSkeleton(
             IItem item,
             ICharacter character,
+            ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
             List<IClientComponent> skeletonComponents)
         {
-            ClientSkeletonItemInHandHelper.Setup(
+            protoCharacterSkeleton.ClientSetupItemInHand(
                 skeletonRenderer,
                 "WeaponMelee",
                 this.CharacterTextureResource);

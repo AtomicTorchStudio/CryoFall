@@ -53,7 +53,7 @@
         {
             obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
             damageApplied = 0; // no damage
-            return true; // hit
+            return true;       // hit
         }
 
         protected static void AddFullHeightWallHitboxes(

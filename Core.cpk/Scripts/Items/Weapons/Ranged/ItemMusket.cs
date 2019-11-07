@@ -8,7 +8,7 @@
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
     /// <summary>
-    /// Musket has higher range and slightly higher damage compared to flintlock pistol, but holds only one charge.
+    /// Musket has higher range and damage compared to flintlock pistol, but holds only one charge.
     /// </summary>
     public class ItemMusket : ProtoItemWeaponRanged
     {
@@ -31,7 +31,7 @@
 
         public override string Name => "Musket";
 
-        public override double RangeMultipier => 1.3;
+        public override double RangeMultipier => 1.1;
 
         public override double SpecialEffectProbability => 0.3;
 

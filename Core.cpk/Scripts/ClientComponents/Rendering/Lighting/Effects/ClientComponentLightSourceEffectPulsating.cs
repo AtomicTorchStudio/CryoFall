@@ -52,7 +52,8 @@
                 size.Y * (fromPercents / 100.0),
                 size.Y * (toPercents / 100.0));
 
-            this.value = (this.lightSource.RenderingSize.X - this.sizeRangeX.Min) / (this.sizeRangeX.Max - this.sizeRangeX.Min);
+            this.value = (this.lightSource.RenderingSize.X - this.sizeRangeX.Min)
+                         / (this.sizeRangeX.Max - this.sizeRangeX.Min);
             this.isIncreasingValue = true;
             this.Apply(deltaTime: 0);
         }

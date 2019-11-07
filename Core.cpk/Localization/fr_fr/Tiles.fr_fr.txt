@@ -22,8 +22,14 @@ Forêt (tropicale)
 Scripts/Tiles/TileLakeShore@Name:
 Rivage de lac
 
+Scripts/Tiles/TileLava@Name:
+Lave
+
 Scripts/Tiles/TileMeadows@Name:
 Prairie
+
+Scripts/Tiles/TileRoads@Name:
+Routes
 
 Scripts/Tiles/TileRocky@Name:
 Rocheux

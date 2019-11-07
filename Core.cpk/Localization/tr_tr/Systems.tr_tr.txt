@@ -72,11 +72,14 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0} oyuna katıldı.
 
-Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-{0} {1} istediğinden emin misin?
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
+{0} karakterini engellemek istediğinden emin misin?
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 Sosyal menüyü kullanarak daha sonra bu kişinin engelini kaldırabilirsin.
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
+{0} karakterinin engelini kaldırmak istediğinden emin misin?
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 Genel
@@ -215,7 +218,7 @@ Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
 {0}, {1} tarafından takımdan atıldı
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
-{0} seni takımdan attı
+{0} seni takımdan attı.
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
 Davet bulunamadı veya davetin süresi geçti.
@@ -305,6 +308,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Önemli:[/b]
+[br]
 Bu bir PvE (player versus environment) sunucusudur. Bu sunucuda oyuncular doğrudan veya dolaylı yoldan birbirlerine saldıramaz. Bu sunucu düşman oyuncuların saldırması olmaksızın huzurlu bir şekilde keşif için açılmıştır. Öldüremezsiniz, yok edemezsiniz, çalamazsınız veya başka şekilde oyunculara saldıramazsınız. Bunun dışında sunucu, tehlikeli yaratıkları, açılacak teknolojileri ve keşfedilecek dünyasıyla size tam bir CyroFall tecrübesi sunuyor. Bu maceranın seni nereye götüreceğini gör. 
 [br]
 [br]
@@ -326,6 +330,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Önemli:[/b]
+[br]
 Bu herkese açık bir PvP sunucusudur. Lütfen PvP merkezli sunucularda diğer oyuncuların saldırganlıklarına uğrayacağınızı unutmayın. Sizden savaşmanız ve kendinizi savunmanız bekleniyor. Kendinizi düzgün bir şekilde korumanız ve her zaman dikkatli olmanız gerekecek. Şansınızı arttırmak için diğer hayatta kalanlarla el ele vermeyi de düşünebilirsiniz.
 [br]
 [br]
@@ -384,6 +389,30 @@ Satın alınamaz
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
 Satılamaz
+
+Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
+Kapalı. Birleştirme sahasına bir araç yerleştirebilmek için sahanın engellerden ve insanlardan arındırılması gerekir.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
+Araç alamaz
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
+Your vehicle is in the garage. You can take it from any Vehicle Assembly Bay.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
+Some of your vehicles are in the garage. You can take them from any Vehicle Assembly Bay.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
+Vehicles in garage
+
+Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
+Enerji tükendi.
+
+Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
+{0} kullanılamaz
+
+Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
+Zaten sulandı
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
 Bitki, toplanmaya hazır. Artık sulamanın bir anlamı yok.

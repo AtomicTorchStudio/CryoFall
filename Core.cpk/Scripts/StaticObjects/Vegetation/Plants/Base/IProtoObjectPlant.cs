@@ -11,6 +11,10 @@
 
         byte NumberOfHarvests { get; }
 
+        double TimeToGiveHarvestTotalSeconds { get; }
+
+        double TimeToHarvestSpoilTotalSeconds { get; }
+
         double ClientCalculateHarvestTotalDuration(bool onlyForHarvestStage);
 
         Task<ProtoPlantTooltipPrivateData> ClientGetTooltipData(IStaticWorldObject plant);

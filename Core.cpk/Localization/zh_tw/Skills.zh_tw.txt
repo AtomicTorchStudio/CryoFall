@@ -1,138 +1,138 @@
 ﻿Scripts/Skills/Categories/SkillCategoryAgriculture@Name:
-農業
+`"[*] 遊戲中有許多不同類型的藥物。有些可以恢復健康，有些可以治療特定的疾病或提供其他好處。`
 
 Scripts/Skills/Categories/SkillCategoryCombat@Name:
-戰鬥
+[*]製作先進的藥物需要學習特定的配方和技術。
 
 Scripts/Skills/Categories/SkillCategoryMisc@Name:
-雜項
+`[*]草藥湯可以在烹飪類別中找到。"`
 
 Scripts/Skills/Categories/SkillCategoryPersonal@Name:
-個人
+收集草藥並製藥
 
 Scripts/Skills/Categories/SkillCategoryProduction@Name:
-生產
+更高層次的技術需要掌握早期技術才能學習。
 
 Scripts/Skills/Categories/SkillCategoryTechnical@Name:
-技術
+[*]您可以解鎖更高層次的技術組，以獲得更複雜的科技，配方和建築。
 
 Scripts/Skills/Skills/Agriculture/SkillFarming@Flags.AdditionalYield:
-獲得額外產出概率
+掌握技術-第一部分
 
 Scripts/Skills/Skills/Agriculture/SkillFarming@Description:
-更好的耕作技術可以提高您的農耕效率，植物生長速度，成熟速度，甚至可以偶爾產生額外的產量。
+殺死任何生物
 
 Scripts/Skills/Skills/Agriculture/SkillFarming@Name:
-農業
+搜索任何生物
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
-獲得額外產出概率
+刀具是用於對抗危險較小的野獸的早期武器。在能製造更好的武器之前，帶把刀是個不錯的選擇。
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
-了解此行星的植物群可以提高你的收獲速度和獲得更高產量的機會。
+[*] 遊戲中的每個武器都有一些[b]特殊屬性[/b]。例如，刀具有更高的機會導致出血，而鈍器可能會使骨頭斷裂或使敵人暈眩。
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Name:
-覓食
+製作一把刀並殺死任何生物
 
 Scripts/Skills/Skills/Agriculture/SkillHunting@Description:
-更高的狩獵技術會增加你從每只動物中獲得更多戰利品的機會。
+是時候獲得更好的防護了。
 
 Scripts/Skills/Skills/Agriculture/SkillHunting@Name:
-狩獵
+`"[*]您可以解鎖”防禦“技術組中的所有相關技術。`
 
 Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Description:
-獲取常規武器經驗使您習慣不同武器的細微差別，並使您能夠更有效地使用它們中的任何一種。
+`[*]木制裝甲可能不是最好的選擇，但它的製作成本仍然低廉，當然也比布甲更好。"`
 
 Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Name:
-常規武器
+製作並裝備更好的裝甲
 
 Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Description:
-更頻繁地使用能量武器可以讓您更好地了解它們的工作方式，從而提高整體效率。
+一絲不掛的到處跑基本等於自殺。即使是基本盔甲也有可能讓你保住性命。研究，製作和裝備基本布甲。
 
 Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Name:
-能量武器
+`"[*] 布甲可能無法提供高防禦力，但它的製作成本低廉，肯定比什麼都不穿好。`
 
 Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Description:
-在戰鬥中使用特殊武器可以讓您更深入地了解它們的秘密，讓您更好地了解如何最大限度地發揮它們的潛力。
+`[*] 遊戲中存在[b]不同的傷害類型[/b]，不同的裝甲提供不同的抗性。您可以在物品欄中看到此資訊。"`
 
 Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Name:
-特殊武器
+製作並裝備布甲
 
 Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Description:
-重型武器的使用訓練讓你以更高的技巧操作它，提高傷害。
+現在你可以進行冶金來升級你的工具。鐵制工具不僅更加耐久，也比原始石質工具更加有效。
 
 Scripts/Skills/Skills/Combat/SkillWeaponsHeavy@Name:
-重武器
+[*]始終嘗試升級到更好的工具，因為它能為你帶來顯著的生產力提升。
 
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Description:
-持續使用近戰武器可以使你習慣此類武器，從而增加傷害和效率。
+製造更好的工具
 
 Scripts/Skills/Skills/Combat/SkillWeaponsMelee@Name:
-近戰武器
+用釘頭錘砸碎敵人的腦袋很好，但遠距離攻擊也是個不錯的選擇。特別是在你面對更強大對手的時候。
 
 Scripts/Skills/Skills/Misc/SkillSearching@Description:
-注意最微小的細節會增加你找到額外物品的機會。
+`"[*] 您可以解鎖”進攻“技術組中的所有相關技術。`
 
 Scripts/Skills/Skills/Misc/SkillSearching@Name:
-搜索
+[*] 要製作紙包彈，您還必須先製作[b]火藥[/b]和[b]紙[/b]。
 
 Scripts/Skills/Skills/Personal/SkillAthletics@Description:
-訓練讓你的身體更加習慣長距離跑動。因此，您在沖刺時使用的能量更少。
+`[*] 遊戲中存在[b]不同的傷害類型[/b]，不同的裝甲提供不同的抗性。您可以在物品欄中看到此資訊。"`
 
 Scripts/Skills/Skills/Personal/SkillAthletics@Name:
-運動
+製造遠端武器
 
 Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Description:
-通過不斷將您的身體暴露於植入體技術，使您和您的免疫系統更加習慣於他們的存在。
+每個不同的生態圈都有其獨特的植物群和動物群，以及特殊屬性。熟悉每個基生態圈以最大限度地利用它們。
 
 Scripts/Skills/Skills/Personal/SkillCyberneticAffinity@Name:
-植入體親和
+`"[*]草甸有大量的灌木，草藥和其他有用的植物。`
 
 Scripts/Skills/Skills/Personal/SkillLearning@Description:
-在陌生的外星世界環境中生存是很困難的，但它提供了獨特的機會來學習你通常不會知道的事情。
+`[*]你可以在岸邊找到許多水生動物。"`
 
 Scripts/Skills/Skills/Personal/SkillLearning@Name:
-學習
+探索生態圈-第一部分
 
 Scripts/Skills/Skills/Personal/SkillSurvival@Description:
-通過改善您的最大生命值，食物，水和能量儲備來增加您活下來的機會。殺死你真是太難了！
+不同的生態圈擁有不同的資源，可以在那裡找到棲息在該地區的動物。盡可能多地探索你的基地周圍，看看有什麼可用資源。
 
 Scripts/Skills/Skills/Personal/SkillSurvival@Name:
-生存
+`"[*]岩石山脈生態圈可以尋找許多礦藏。`
 
 Scripts/Skills/Skills/Production/SkillMining@Flags.AdditionalYield:
-獲得額外產量概率
+[*]粘土坑是大量建築用粘土的主要來源。
 
 Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
-挖礦時找到寶石概率
+`[*]寒林可以在大陸北部找到。"`
 
 Scripts/Skills/Skills/Production/SkillMining@Description:
-更好地了解礦藏會增加您的挖掘速度，產量和尋找稀有資源的機會。僅在您使用鎬時適用。
+探索生態圈-第二部分
 
 Scripts/Skills/Skills/Production/SkillMining@Name:
-采掘
+綠草藥不是最好的醫療物品，但緊急關頭下可以使用它來回復少量生命。
 
 Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-更好的訓練和對這一職業的理解可以提高您的木材切割速度。僅在您使用斧頭時適用。
+`"[*] 綠草藥是所有類型藥物中最基本的，而且相對容易獲得。`
 
 Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
-伐木
+[*] 你通常可以在森林裡的草地上發現大量的草本植物和其他小植物。
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Description:
-更好的建築技能可以提高施工速度。適用於使用工具箱執行的所有任務（建造，修復）。
+`[*] 如果你發現箱子裡塞了太多綠草藥，可以考慮用它們製作藥品。"`
 
 Scripts/Skills/Skills/Technical/SkillBuilding@Name:
-建造
+找到並使用綠草藥
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Description:
-制作越來越復雜的物品並理解它們的結構是了解技術是這個世界的核心驅動力的好方法。
+是時候去打獵了！對於初學者來說，避免更危險的動物可能會更好，還有很多東西可供狩獵。
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
-制造
+`"[*] 每只動物能提供不同的戰利品。你的狩獵技能在這方面也起著重要作用。`
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
-可以修復和維護各種物品和設備。 適用於在修補桌進行的工作。
+[*] 狩獵是獲得更多經驗和學習要點的好方法。
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Name:
-維護
+`[*] 請不要在現實生活中這樣做:("`
 

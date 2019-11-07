@@ -7,6 +7,8 @@
 
     public class SkeletonCloakedLizard : ProtoCharacterSkeletonAnimal
     {
+        public override double DefaultMoveSpeed => 1.5;
+
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("CloakedLizard/Back");
 

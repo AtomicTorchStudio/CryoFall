@@ -26,6 +26,13 @@
 
         public override double ServerUpdateIntervalSeconds => double.MaxValue; // never
 
+        public static void ServerOnBaseBroken(ILogicObject areasGroup, List<ILogicObject> newGroups)
+        {
+            var fromPowerGrid = GetPrivateState(areasGroup).PowerGrid;
+            var toPowerGrids = newGroups.Select(g => GetPrivateState(g).PowerGrid).ToList();
+            PowerGrid.ServerOnPowerGridBroken(fromPowerGrid, toPowerGrids);
+        }
+
         public static void ServerOnBaseMerged(ILogicObject areasGroupFrom, ILogicObject areasGroupTo)
         {
             var fromState = GetPrivateState(areasGroupFrom);
@@ -116,13 +123,6 @@
                 slotsCount: safeStorageCapacity);
 
             data.PrivateState.ItemsContainer = itemsContainer;
-        }
-
-        public static void ServerOnBaseBroken(ILogicObject areasGroup, List<ILogicObject> newGroups)
-        {
-            var fromPowerGrid = GetPrivateState(areasGroup).PowerGrid;
-            var toPowerGrids = newGroups.Select(g => GetPrivateState(g).PowerGrid).ToList();
-            PowerGrid.ServerOnPowerGridBroken(fromPowerGrid, toPowerGrids);
         }
     }
 }

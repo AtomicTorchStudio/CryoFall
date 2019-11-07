@@ -10,7 +10,7 @@
     d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <WrapPanel x:Name="WrapPanelItemsSlots"
-                   HorizontalAlignment="Left" 
+                   HorizontalAlignment="Left"
                    VerticalAlignment="Top" />
     </ScrollViewer>
 </base:BaseUserControl>

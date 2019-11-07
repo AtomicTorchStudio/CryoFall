@@ -6,12 +6,12 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    public class ClientInteractionUISystem
+    public static class ClientInteractionUISystem
     {
-        private static readonly Dictionary<IStaticWorldObject, Token> RegisteredWindows
-            = new Dictionary<IStaticWorldObject, Token>();
+        private static readonly Dictionary<IWorldObject, Token> RegisteredWindows
+            = new Dictionary<IWorldObject, Token>();
 
-        public static void OnServerForceFinishInteraction(IStaticWorldObject worldObject)
+        public static void OnServerForceFinishInteraction(IWorldObject worldObject)
         {
             if (!RegisteredWindows.TryGetValue(worldObject, out var token))
             {
@@ -30,7 +30,7 @@
         }
 
         public static void Register(
-            IStaticWorldObject worldObject,
+            IWorldObject worldObject,
             BaseUserControlWithWindow menu,
             Action onMenuClosedByClient)
         {
@@ -48,7 +48,7 @@
             RegisteredWindows[worldObject] = new Token(menu, handler);
         }
 
-        private static bool Unregister(IStaticWorldObject worldObject)
+        private static bool Unregister(IWorldObject worldObject)
         {
             if (!RegisteredWindows.TryGetValue(worldObject, out var token))
             {

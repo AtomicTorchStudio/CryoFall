@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Helpers.Client.Server
 {
-    using System;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.ServicesClient;
 

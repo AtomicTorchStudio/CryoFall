@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ItemContainers
 {
-    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Fridges;
     using AtomicTorch.CBND.GameApi.Data.Items;
 

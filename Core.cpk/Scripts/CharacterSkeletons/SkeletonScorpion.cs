@@ -7,7 +7,7 @@
 
     public class SkeletonScorpion : ProtoCharacterSkeletonAnimal
     {
-        public override double DefaultMoveSpeed => 1.5;
+        public override double DefaultMoveSpeed => 2.25;
 
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("Scorpion/Back");
@@ -38,6 +38,12 @@
                 .AddShapeCircle(radius: 0.7,
                                 center: (0, 0.15),
                                 group: CollisionGroups.HitboxRanged);
+        }
+
+        public override void OnSkeletonCreated(IComponentSkeleton skeleton)
+        {
+            base.OnSkeletonCreated(skeleton);
+            skeleton.DrawOrderOffsetY = -0.3;
         }
     }
 }

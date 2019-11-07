@@ -45,19 +45,17 @@
 
         public virtual float CharacterWorldWeaponOffsetRanged => this.CharacterWorldHeight * 0.4f;
 
-        /// <summary>
-        /// Update every frame.
-        /// </summary>
-        public override double ClientUpdateIntervalSeconds => 0;
+        public override double ClientUpdateIntervalSeconds => 0; // every frame
 
         public virtual double ObstacleBlockDamageCoef => 1;
 
+        public abstract double PhysicsBodyAccelerationCoef { get; }
+
+        public abstract double PhysicsBodyFriction { get; }
+
         public IReadOnlyStatsDictionary ProtoCharacterDefaultEffects { get; private set; }
 
-        /// <summary>
-        /// Update every frame.
-        /// </summary>
-        public override double ServerUpdateIntervalSeconds => 0;
+        public override double ServerUpdateIntervalSeconds => 0; // every frame
 
         public virtual double StatDefaultHealthMax => 100;
 
@@ -127,6 +125,14 @@
             skeleton = protoSkeleton ?? throw new NullReferenceException("No proto skeleton provided for " + character);
         }
 
+        public virtual Vector2D SharedGetWeaponFireWorldPosition(ICharacter character, bool isMeleeWeapon)
+        {
+            return character.Position
+                   + (0, isMeleeWeapon
+                             ? character.ProtoCharacter.CharacterWorldWeaponOffsetMelee
+                             : character.ProtoCharacter.CharacterWorldWeaponOffsetRanged);
+        }
+
         public virtual bool SharedOnDamage(
             WeaponFinalCache weaponCache,
             IWorldObject targetObject,
@@ -135,26 +141,26 @@
             out double damageApplied)
         {
             var targetCharacter = (ICharacter)targetObject;
-            var isHit = WeaponDamageSystem.SharedOnDamageToCharacter(
+            WeaponDamageSystem.SharedTryDamageCharacter(
                 targetCharacter,
                 weaponCache,
                 damagePreMultiplier,
+                out var isHit,
                 out damageApplied);
 
-            if (isHit)
-            {
-                obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
-                if (IsClient)
-                {
-                    this.PlaySound(CharacterSound.DamageTaken, targetCharacter);
-                }
-            }
-            else
+            if (!isHit)
             {
                 obstacleBlockDamageCoef = 0;
+                return false;
             }
 
-            return isHit;
+            obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
+            if (IsClient)
+            {
+                this.PlaySound(CharacterSound.DamageTaken, targetCharacter);
+            }
+
+            return true;
         }
 
         public abstract void SharedRefreshFinalCacheIfNecessary(ICharacter character);
@@ -194,12 +200,6 @@
                                         },
                                         clientState);
 
-            // create shadow renderer
-            this.SharedGetSkeletonProto(character, out var skeleton, out var scaleMultiplier);
-            clientState.RendererShadow = ((ProtoCharacterSkeleton)skeleton)
-                .ClientCreateShadowRenderer(character,
-                                            scaleMultiplier);
-
             // create loop sound emitters
             clientState.SoundEmitterLoopCharacter = Client.Audio.CreateSoundEmitter(
                 character,
@@ -212,7 +212,7 @@
                 isLooped: true);
         }
 
-        protected sealed override void ClientOnObjectDestroyed(Vector2Ushort tilePosition)
+        protected sealed override void ClientOnObjectDestroyed(Vector2D position)
         {
             // we don't use this - we play CharacterSound.Death instead
         }
@@ -278,7 +278,7 @@
             var publicState = data.PublicState;
             var privateState = data.PrivateState;
             privateState.EnsureEverythingCreated();
-            publicState.EnsureEverythingCreated();
+            publicState.ServerEnsureEverythingCreated();
 
             publicState.IsDead = publicState.CurrentStats.HealthCurrent <= 0;
             ServerCharacterDeathMechanic.OnCharacterInitialize(data.GameObject);

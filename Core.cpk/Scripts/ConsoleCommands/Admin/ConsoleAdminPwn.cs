@@ -55,9 +55,10 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
             CreateItem(player, GetProtoEntity<ItemAmmo10mmHollowPoint>());
             CreateItem(player, GetProtoEntity<ItemBatteryDisposable>(), 10);
             CreateItem(player, GetProtoEntity<ItemRapierLaserBlue>());
-            CreateItem(player, GetProtoEntity<ItemBombModern>(), 10);
-            CreateItem(player, GetProtoEntity<ItemPlanks>(), 200);
+            CreateItem(player, GetProtoEntity<ItemBombModern>(),       10);
+            CreateItem(player, GetProtoEntity<ItemPlanks>(),           200);
             CreateItem(player, GetProtoEntity<ItemCanisterGasoline>(), 100);
+            CreateItem(player, GetProtoEntity<ItemReactorCorePragmium>(), 1);
 
             // Equipment items
             Server.Items.CreateItem<ItemClothShirt>(container: containerEquipment, slotId: (byte?)EquipmentType.Chest);

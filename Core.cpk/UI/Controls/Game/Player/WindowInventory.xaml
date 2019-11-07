@@ -247,22 +247,30 @@
 
                 <!-- defense bars -->
                 <core:ValueBarControl Grid.Column="1" Grid.Row="0" Style="{StaticResource DefenseStatBarStyle}"
-                                      Value="{Binding Impact}" TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Impact}" />
+                                      Value="{Binding Impact}"
+                                      TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Impact}" />
                 <core:ValueBarControl Grid.Column="1" Grid.Row="1" Style="{StaticResource DefenseStatBarStyle}"
-                                      Value="{Binding Kinetic}" TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Kinetic}" />
+                                      Value="{Binding Kinetic}"
+                                      TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Kinetic}" />
 
                 <core:ValueBarControl Grid.Column="1" Grid.Row="3" Style="{StaticResource DefenseStatBarStyle}"
-                                      Value="{Binding Heat}" TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Heat}" />
+                                      Value="{Binding Heat}"
+                                      TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Heat}" />
                 <core:ValueBarControl Grid.Column="1" Grid.Row="4" Style="{StaticResource DefenseStatBarStyle}"
-                                      Value="{Binding Cold}" TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Cold}" />
+                                      Value="{Binding Cold}"
+                                      TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Cold}" />
                 <core:ValueBarControl Grid.Column="1" Grid.Row="5" Style="{StaticResource DefenseStatBarStyle}"
-                                      Value="{Binding Chemical}" TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Chemical}" />
+                                      Value="{Binding Chemical}"
+                                      TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Chemical}" />
                 <core:ValueBarControl Grid.Column="1" Grid.Row="6" Style="{StaticResource DefenseStatBarStyle}"
-                                      Value="{Binding Electrical}" TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Electrical}" />
+                                      Value="{Binding Electrical}"
+                                      TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Electrical}" />
                 <core:ValueBarControl Grid.Column="1" Grid.Row="7" Style="{StaticResource DefenseStatBarStyle}"
-                                      Value="{Binding Radiation}" TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Radiation}" />
+                                      Value="{Binding Radiation}"
+                                      TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Radiation}" />
                 <core:ValueBarControl Grid.Column="1" Grid.Row="8" Style="{StaticResource DefenseStatBarStyle}"
-                                      Value="{Binding Psi}" TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Psi}" />
+                                      Value="{Binding Psi}"
+                                      TooltipFormat="{x:Static loc:CoreStrings.Defense_Format_Psi}" />
             </Grid>
 
             <Control Grid.RowSpan="2" Grid.ColumnSpan="2" Template="{StaticResource PlayerMenuContainerWithLines}" />

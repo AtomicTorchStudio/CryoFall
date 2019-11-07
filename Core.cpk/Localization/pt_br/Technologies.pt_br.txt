@@ -247,6 +247,12 @@ Preparo de bebidas alcoólicas e outras coisas dessa natureza.
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 Lazer
 
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+Tecnologias necessárias para produzir uma gama de veículos diferentes.
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+Veículos
+
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 Tecnologias necessárias para a exploração de recursos em mundos alienígenas.
 
@@ -330,4 +336,10 @@ Tecnologias ofensivas de alta tecnologia, permitindo que as armas de fogo conven
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Ataque 4
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+Veículos avançados de combate e transporte.
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+Veículos 2
 

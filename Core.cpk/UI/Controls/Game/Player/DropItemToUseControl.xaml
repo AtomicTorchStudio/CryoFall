@@ -24,7 +24,8 @@
         <Border x:Name="Border"
                 Padding="2"
                 CornerRadius="3"
-                BorderThickness="1">
+                BorderThickness="1"
+                HorizontalAlignment="Center">
             <Border.Background>
                 <SolidColorBrush Color="{StaticResource ColorAlt1}" Opacity="0.6" />
             </Border.Background>

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -81,6 +82,15 @@
         {
             return ServerOperatorSystem.SharedIsOperator(character)
                    || character == null && Api.IsServer;
+        }
+
+        public static void ServerOnConsoleCommandResult(
+            ICharacter byCharacter,
+            BaseConsoleCommand command,
+            string result)
+        {
+            Instance.CallClient(byCharacter,
+                                _ => _.ClientRemote_ConsoleCommandResult(command.Name, result));
         }
 
         public static IReadOnlyList<string> ServerSuggestAutocomplete(
@@ -269,7 +279,6 @@
                         return;
                     }
 
-                    Logger.Important("Console command sent to server for execution...");
                     // execute command on Server-side
                     Instance.CallServer(_ => _.ServerRemote_ExecuteCommand(text));
                     return;
@@ -355,6 +364,17 @@
             }
 
             return suggestions ?? EmptySuggestionsArray;
+        }
+
+        private void ClientRemote_ConsoleCommandResult(string commandName, string result)
+        {
+            Logger.Important($"Server console command result:{Environment.NewLine}{result}");
+
+            NotificationSystem.ClientShowNotification(
+                "Command executed: " + commandName,
+                result.Replace("\n", "[br]"),
+                NotificationColor.Neutral,
+                writeToLog: false);
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, maxCallsPerSecond: 30)]

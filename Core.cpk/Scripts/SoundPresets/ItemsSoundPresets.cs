@@ -84,7 +84,8 @@
                              .Replace(Broken,   "Weapons/MeleeEnergy/LaserRapier/Broken")
                              .Replace(Select,   "Weapons/MeleeEnergy/LaserRapier/Select")
                              .Replace(Deselect, "Weapons/MeleeEnergy/LaserRapier/Deselect")
-                             .Replace(Idle,     "Weapons/MeleeEnergy/LaserRapier/Idle");
+                             .Replace(Idle,     "Weapons/MeleeEnergy/LaserRapier/Idle")
+                             .Add(CannotSelect, "Items/Equipment/UseLight");
 
         public static readonly ReadOnlySoundPreset<ItemSound> ItemWeaponRanged
             = ItemGeneric.Clone()

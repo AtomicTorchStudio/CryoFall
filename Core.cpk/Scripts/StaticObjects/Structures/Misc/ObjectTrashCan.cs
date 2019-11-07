@@ -21,7 +21,7 @@
           <ObjectTrashCan.PrivateState,
               StaticObjectPublicState,
               StaticObjectClientState>,
-          IInteractableProtoStaticWorldObject
+          IInteractableProtoWorldObject
     {
         public override string Description =>
             "You can use this trash can to immediately dispose of any unwanted items. Permanently!";
@@ -36,7 +36,7 @@
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
-        public override float StructurePointsMax => 250;
+        public override float StructurePointsMax => 500;
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
         {
@@ -67,23 +67,24 @@
             return false;
         }
 
-        BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
+        BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
         {
-            var privateState = GetPrivateState(worldObject);
-            return this.ClientOpenUI(worldObject, privateState);
+            var staticWorldObject = (IStaticWorldObject)worldObject;
+            var privateState = GetPrivateState(staticWorldObject);
+            return this.ClientOpenUI(staticWorldObject, privateState);
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
         }
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
         protected virtual BaseUserControlWithWindow ClientOpenUI(

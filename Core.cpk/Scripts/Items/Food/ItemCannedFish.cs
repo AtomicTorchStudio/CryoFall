@@ -6,7 +6,7 @@
     {
         public override string Description => "Probably tuna? Get your omega-3 fix.";
 
-        public override float FoodRestore => 10;
+        public override float FoodRestore => 25;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
 

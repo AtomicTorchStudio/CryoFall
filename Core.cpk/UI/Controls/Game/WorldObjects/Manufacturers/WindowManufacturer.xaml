@@ -269,7 +269,7 @@
                     HorizontalAlignment="Stretch"
                     Margin="10,10,0,0" />
 
-                <worldObjects:RecipesBrowserRecipeDetails
+                <worldObjects:RecipesBrowserRecipeDetailsControl
                     Grid.Column="1"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"

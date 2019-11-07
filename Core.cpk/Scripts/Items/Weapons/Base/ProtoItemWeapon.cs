@@ -6,6 +6,7 @@
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
@@ -134,10 +135,11 @@
         public virtual void ClientSetupSkeleton(
             IItem item,
             ICharacter character,
+            ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
             List<IClientComponent> skeletonComponents)
         {
-            ClientSkeletonItemInHandHelper.Setup(
+            protoCharacterSkeleton.ClientSetupItemInHand(
                 skeletonRenderer,
                 this.WeaponAttachmentName,
                 this.cachedWeaponTextureResource);

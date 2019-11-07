@@ -1,7 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Technologies.Tier2.Defense2
 {
-    using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Defense;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
 
     public class TechGroupDefense2 : TechGroup
     {

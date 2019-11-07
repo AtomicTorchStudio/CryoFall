@@ -20,7 +20,7 @@
 
         public override double RespawnCooldownDurationSeconds => 2 * 60;
 
-        public override float StructurePointsMax => 500;
+        public override float StructurePointsMax => 1200;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

@@ -24,7 +24,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 150;
+        public override float StructurePointsMax => 500;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

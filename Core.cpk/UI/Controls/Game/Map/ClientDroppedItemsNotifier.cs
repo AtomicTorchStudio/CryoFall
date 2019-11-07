@@ -104,7 +104,8 @@
                 message: GetNotificationText(droppedLootInfo),
                 color: NotificationColor.Bad,
                 icon: icon,
-                autoHide: false);
+                autoHide: false,
+                playSound: false);
 
             UpdateNotification(droppedLootInfo, notification);
             Notifications[droppedLootInfo] = notification;

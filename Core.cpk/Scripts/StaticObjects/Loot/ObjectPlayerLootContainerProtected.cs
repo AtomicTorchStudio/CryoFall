@@ -9,9 +9,9 @@
 
     public class ObjectPlayerLootContainerProtected : ObjectPlayerLootContainer
     {
-        public override string ClientGetTitle(IStaticWorldObject worldObject)
+        public override string ClientGetTitle(IWorldObject worldObject)
         {
-            var ownerName = GetPublicState(worldObject).OwnerName;
+            var ownerName = GetPublicState((IStaticWorldObject)worldObject).OwnerName;
             if (ownerName == ClientCurrentCharacterHelper.Character?.Name)
             {
                 return MessageLootFromCurrentPlayer;

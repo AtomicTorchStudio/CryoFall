@@ -1,7 +1,4 @@
-﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
-无法在晕眩时互动。
-
-Scripts/Base/Stats/StatName@HealthMax:
+﻿Scripts/Base/Stats/StatName@HealthMax:
 最大生命值
 
 Scripts/Base/Stats/StatName@StaminaMax:
@@ -184,9 +181,15 @@ Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 获得学习点数
 
+Scripts/Base/Stats/StatName@SkillsExperienceGainMultiplier:
+技能经验获取
+
 Scripts/Base/Stats/StatName@TinkerTableBonus:
 修补桌效率
 
 Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
 制造列表
+
+Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
+药物毒性
 

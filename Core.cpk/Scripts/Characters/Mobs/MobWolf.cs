@@ -10,6 +10,8 @@
 
     public class MobWolf : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => true;
+
         public override float CharacterWorldHeight => 1.1f;
 
         public override float CharacterWorldWeaponOffsetRanged => 0.4f;
@@ -22,7 +24,7 @@
 
         public override double StatDefaultHealthMax => 80;
 
-        public override double StatMoveSpeed => 1;
+        public override double StatMoveSpeed => 1.5;
 
         protected override void FillDefaultEffects(Effects effects)
         {
@@ -58,7 +60,7 @@
 
             var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalMedium>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)
@@ -69,11 +71,12 @@
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
                 isRetreating: currentStats.HealthCurrent < currentStats.HealthMax / 3,
+                isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 7,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 5,
-                out var movementDirection,
-                out var rotationAngleRad);
+                movementDirection: out var movementDirection,
+                rotationAngleRad: out var rotationAngleRad);
 
             this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
         }

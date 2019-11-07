@@ -11,6 +11,8 @@
 
     public class MobWildBoar : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => true;
+
         public override float CharacterWorldHeight => 1f;
 
         public override double MobKillExperienceMultiplier => 1.0;
@@ -21,7 +23,7 @@
 
         public override double StatDefaultHealthMax => 80;
 
-        public override double StatMoveSpeed => 1.1;
+        public override double StatMoveSpeed => 1.65;
 
         protected override void FillDefaultEffects(Effects effects)
         {
@@ -62,7 +64,7 @@
 
             var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalMedium>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)
@@ -72,11 +74,12 @@
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
                 isRetreating: false,
+                isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 0,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 5,
-                out var movementDirection,
-                out var rotationAngleRad);
+                movementDirection: out var movementDirection,
+                rotationAngleRad: out var rotationAngleRad);
 
             this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
         }

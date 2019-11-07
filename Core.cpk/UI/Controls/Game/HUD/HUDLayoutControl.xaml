@@ -15,6 +15,8 @@
     xmlns:questTracking="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Quests.QuestTracking"
     xmlns:newbieProtection="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.NewbieProtection"
     xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics"
+    xmlns:demoVersion="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.DemoVersion"
+    xmlns:vehicle="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle"
     mc:Ignorable="d"
     d:DesignWidth="1280" d:DesignHeight="800"
     d:DataContext="{d:DesignInstance data1:ViewModelHUD, IsDesignTimeCreatable=True}"
@@ -36,8 +38,9 @@
                           Fill="{StaticResource WidgetBackgroundImageTexture}" />
                     <Path Style="{StaticResource HUDWidgetStatsPathStyle}">
                         <Path.Fill>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.75">
-                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" Offset="0" />
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" 
+                                              Offset="0" />
                                 <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
                                               Offset="0.07" />
                                 <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}"
@@ -46,7 +49,8 @@
                                               Offset="0.74" />
                                 <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
                                               Offset="0.93" />
-                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" Offset="1" />
+                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" 
+                                              Offset="1" />
                             </LinearGradientBrush>
                         </Path.Fill>
                     </Path>
@@ -182,21 +186,26 @@
         </core:Scalebox>
 
         <core:Scalebox Grid.Row="2" Grid.Column="1" Scale="1">
-            <StackPanel Orientation="Horizontal"
-                        Margin="0,0,0,12.5"
-                        VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                <!-- Hotbar items control -->
-                <hud:HUDItemsHotbarControl />
+            <Grid x:Name="GridHotbar"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Center"
+                  Margin="0,0,0,12.5">
+                <!-- Hotbar -->
+                <StackPanel Orientation="Horizontal"
+                            Visibility="{Binding IsPlayersHotbarVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <hud:HUDItemsHotbarControl />
 
-                <Canvas HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal"
-                                Canvas.Left="6"
-                                Height="54">
-                        <!-- Hotbar extra widgets -->
-                        <hud:HUDEnergyChargeIndicator />
-                    </StackPanel>
-                </Canvas>
-            </StackPanel>
+                    <!-- Hotbar extra widgets -->
+                    <Canvas HorizontalAlignment="Right"
+                            VerticalAlignment="Top">
+                        <StackPanel Orientation="Horizontal"
+                                    Height="54">
+                            <hud:HUDEnergyChargeIndicator Margin="6,0,0,0" />
+                            <vehicle:HUDVehicleEnergyIndicator Margin="6,0,0,0" />
+                        </StackPanel>
+                    </Canvas>
+                </StackPanel>
+            </Grid>
         </core:Scalebox>
 
         <core:Scalebox Grid.Row="1" Grid.Column="0" Scale="0.75">
@@ -208,11 +217,12 @@
             </Border>
         </core:Scalebox>
 
-        <core:Scalebox Grid.Column="2" Scale="1">
+        <core:Scalebox Grid.Row="0" Grid.Column="2" Scale="1">
             <Border VerticalAlignment="Top" HorizontalAlignment="Right"
                     Margin="0,5,5,0"
                     Width="230">
                 <StackPanel Orientation="Vertical">
+                    <demoVersion:HUDDemoVersionInfo />
                     <newbieProtection:HUDNewbieProtectionInfo />
                     <politics:HUDDuelModeControl />
                     <questTracking:HUDQuestTrackingPanelControl />

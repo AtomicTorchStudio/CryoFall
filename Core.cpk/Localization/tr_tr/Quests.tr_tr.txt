@@ -316,10 +316,9 @@ Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
 Zorlu muharebeler sonucunda sağlığını kaybedersin. Bunun çözümü sağlığını kazanmanı sağlayacak ve seni ızdıraplarından kurtaracak olan farklı ilaçlar üretmektir. Sadece yeşil otları kullanmak bir yere kadar.
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
-`[*] CyroFall'da birçok farklı ilaç türü var. Bazıları sağlığı yenilerken diğerleri de belli bir hastalığı iyileştirebilir veya başka yararları olabilir.
+`[*] CyroFall'da birçok farklı ilaç türü bulunur. Bazıları sağlığı yenilerken diğerleri de belli bir hastalığı iyileştirebilir veya başka yararları olabilir.
 [*] Üst düzey ilaç türlerini üretmek için belirli tarif ve teknolojiler gerekir.
-[*] Bitkisel tedavi, pişirme kategorisinde bulunabilir.
-[*] Ağaç kabukları, belirli ağaçları keserken toplanabilir.`
+[*] Bitkisel tedavi, pişirme kategorisinde bulunabilir.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
 Bitki topla ve ilaç yap
@@ -352,7 +351,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Daha iyi koruma sağlama vakti geldi.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*] "Saldırı & Savunma" teknoloji grubunda ilgili bütün teknolojileri açabilirsin.
+`[*] "Savunma" teknoloji grubunda ilgili bütün teknolojileri açabilirsin.
 [*] Ahşap zırh en iyi seçenek olmayabilir ama üretmesi ucuzdur ve kesinlikle kumaş zırhtan çok daha iyidir.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
@@ -381,7 +380,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Bir gürz ile kafatası parçalamak güzeldir ama bazen menzilli bir şey istersin. Özellikle daha ciddi düşmanlara karşı olduğunda.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*] "Saldırı & Savunma" teknoloji grubunda ilgili bütün teknolojileri açabilirsin.
+`[*] "Saldırı" teknoloji grubunda ilgili bütün teknolojileri açabilirsin.
 [*] Kâğıt kovan üretmen için öncelikle [b]barut[/b] ve [b]kâğıt[/b] üretmen gerekir.
 [*] [b]Farkı zarar tipleri[/b] vardır ve farklı zırhlar, her biri için farklı koruma değerleri sunar. Bu bilgiyi, envanter ekranında görebilirsin.`
 
@@ -435,7 +434,8 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 Avlanma zamanı! Hâlâ bulunacak bir sürü hayvan ve yaratık var.
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*] Her hayvan ve yaratığın normalde bulunabilecekleri kendi alanları vardır. Dünyayı keşfedip içinde bulunan farklı yaratıkları görmeye çalış.
+`[*] Avcılık aletlerini "aygıtlar yuvası" kısmından kuşanabilirsin. (envanter menüsündeki karakter portresinin sağında)
+[*] Her hayvan ve yaratığın normalde bulunabilecekleri kendi alanları vardır. Dünyayı keşfedip içinde bulunan farklı yaratıkları görmeye çalış.
 [*] Bir hayvan veya yaratığın ne kadar tehlikeli olduğuna bağlı olarak farklı miktarlarda avlanma tecrübesi edineceksin.`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
@@ -464,6 +464,9 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Yıkım için levye kullan
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Tuz minerali kaz
+
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
 Gaz yağı ve lityum gibi bazı kaynaklar ileri seviye teknoloji için şarttır. Onları elde etmeyi öğrenmek çok önemlidir.
 
@@ -475,9 +478,6 @@ Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
 Gelişmiş kaynak edinme
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Tuz minerali kaz
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Sanayi ve inşaatta ilerlemek için başta kimya olmak üzere pozitif bilimlerde temel bilgi gerekir.

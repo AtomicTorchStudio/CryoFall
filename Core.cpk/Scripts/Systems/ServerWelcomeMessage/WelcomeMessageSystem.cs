@@ -23,6 +23,7 @@
               [br]
               [br]
               [b]Important:[/b]
+              [br]
               This is a PvE (player versus environment) server. On this server, players cannot attack each other either directly or indirectly. This server is dedicated to peaceful exploration of the game without hostile player engagement. You cannot kill, destroy, steal or otherwise attack other players. Aside from that, the server offers you a complete CryoFall experience with its dangerous creatures, technologies to unlock and world to explore. See where this journey will take you.
               [br]
               [br]
@@ -44,6 +45,7 @@
               [br]
               [br]
               [b]Important:[/b]
+              [br]
               This is a free-for-all PvP server. Please remember that on PvP-centered servers, you will encounter aggression from other players. You are expected to fight and defend yourself. You will have to properly protect yourself and exercise vigilance at all times. You might also consider joining forces with other survivors to increase your chances.
               [br]
               [br]

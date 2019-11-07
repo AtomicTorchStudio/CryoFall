@@ -201,7 +201,7 @@
                 var groupRenderer = pair.Value;
                 groupRenderer.IsDisplayOverlays = this.isDisplayOverlays;
                 groupRenderer.IsVisible = IsWithinVisibilityBounds(areasGroupBounds: groupRenderer.Bounds,
-                                                                         cameraBounds);
+                                                                   cameraBounds);
             }
 
             static RectangleInt GetCameraBounds()

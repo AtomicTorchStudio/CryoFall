@@ -19,12 +19,6 @@
 
         public override string Name => "Nausea";
 
-        protected override void PrepareEffects(Effects effects)
-        {
-            // add info to tooltip
-            effects.AddValue(this, StatName.VanityCantEatOrDrink, 1);
-        }
-
         /// <summary>
         /// Shared method for checking (and notifying) whether the character is nauseous.
         /// </summary>
@@ -59,6 +53,12 @@
         protected override void ClientUpdate(StatusEffectData data)
         {
             ClientComponentStatusEffectNauseaManager.Refresh();
+        }
+
+        protected override void PrepareEffects(Effects effects)
+        {
+            // add info to tooltip
+            effects.AddValue(this, StatName.VanityCantEatOrDrink, 1);
         }
     }
 }

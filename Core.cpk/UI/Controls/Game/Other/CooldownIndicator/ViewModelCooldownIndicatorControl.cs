@@ -30,20 +30,7 @@
 
         public string TestText => "Test";
 
-        public Visibility Visibility
-        {
-            get => this.visibility;
-            set
-            {
-                if (value == this.visibility)
-                {
-                    return;
-                }
-
-                this.visibility = value;
-                this.NotifyThisPropertyChanged();
-            }
-        }
+        public bool IsVisible { get; set; }
 
         public void TurnOff()
         {
@@ -61,7 +48,7 @@
                 this.componentCooldownIndicatorUpdater = null;
             }
 
-            this.Visibility = Visibility.Hidden;
+            this.IsVisible = false;
         }
 
         public void TurnOn(double lengthSeconds)
@@ -86,7 +73,7 @@
             if (!this.isTurnedOn)
             {
                 this.isTurnedOn = true;
-                this.Visibility = Visibility.Visible;
+                this.IsVisible = true;
 
                 this.componentCooldownIndicatorUpdater = Client.Scene.CreateSceneObject("Cooldown scene object")
                                                                .AddComponent<ClientComponentCooldownIndicator>();

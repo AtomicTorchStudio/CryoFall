@@ -1,19 +1,14 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
-    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
-    using AtomicTorch.CBND.CoreMod.Systems.FoodSpoilageSystem;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
+    using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -28,12 +23,12 @@
         <TPrivateState,
          TPublicState,
          TClientState>
-        : ProtoItemGeneric
+        : ProtoItemWithFreshness
           <TPrivateState,
               TPublicState,
               TClientState>,
           IProtoItemFood
-        where TPrivateState : BasePrivateState, IFoodPrivateState, new()
+        where TPrivateState : BasePrivateState, IItemWithFreshnessPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
@@ -42,11 +37,9 @@
             this.Icon = new TextureResource("Items/Food/" + this.GetType().Name);
         }
 
+        public override bool CanBeSelectedInVehicle => true;
+
         public virtual float FoodRestore => 0;
-
-        public abstract TimeSpan FreshnessDuration { get; }
-
-        public uint FreshnessMaxValue { get; private set; }
 
         public virtual float HealthRestore => 0;
 
@@ -61,29 +54,9 @@
 
         public abstract ushort OrganicValue { get; }
 
-        public sealed override double ServerUpdateIntervalSeconds => 60;
-
         public virtual float StaminaRestore => 0;
 
         public virtual float WaterRestore => 0;
-
-        public void ClientCreateItemSlotOverlayControls(IItem item, List<Control> controls)
-        {
-            if (this.FreshnessMaxValue > 0)
-            {
-                controls.Add(ItemSlotFreshnessOverlayControl.Create(item));
-            }
-        }
-
-        public override void ClientTooltipCreateControls(IItem item, List<Control> controls)
-        {
-            if (this.FreshnessMaxValue > 0)
-            {
-                controls.Add(ItemTooltipInfoFreshnessControl.Create(item));
-            }
-
-            base.ClientTooltipCreateControls(item, controls);
-        }
 
         protected override bool ClientItemUseFinish(ClientItemData data)
         {
@@ -94,7 +67,7 @@
                     new ItemEatData(item,
                                     character,
                                     stats,
-                                    FoodSpoilageSystem.SharedGetFreshnessEnum(item))))
+                                    ItemFreshnessSystem.SharedGetFreshnessEnum(item))))
             {
                 return false;
             }
@@ -103,15 +76,14 @@
             return true;
         }
 
-        protected sealed override void PrepareProtoItem()
-        {
-            base.PrepareProtoItem();
-            this.FreshnessMaxValue = FoodSpoilageSystem.SharedCalculateFreshnessMaxValue(this);
-            this.PrepareProtoItemFood();
-        }
-
         protected virtual void PrepareProtoItemFood()
         {
+        }
+
+        protected sealed override void PrepareProtoItemWithFreshness()
+        {
+            base.PrepareProtoItemWithFreshness();
+            this.PrepareProtoItemFood();
         }
 
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
@@ -122,13 +94,13 @@
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
-            FoodSpoilageSystem.ServerInitializeItem(data.PrivateState, data.IsFirstTimeInit);
+            ItemFreshnessSystem.ServerInitializeItem(data.PrivateState, data.IsFirstTimeInit);
         }
 
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         protected virtual void ServerOnEat(ItemEatData data)
         {
-            var freshnessCoef = FoodSpoilageSystem.SharedGetFreshnessPositiveEffectsCoef(data.Freshness);
+            var freshnessCoef = ItemFreshnessSystem.SharedGetFreshnessPositiveEffectsCoef(data.Freshness);
 
             data.CurrentStats.SharedSetStaminaCurrent(data.CurrentStats.StaminaCurrent
                                                       + ApplyFreshness(this.StaminaRestore));
@@ -143,7 +115,7 @@
                                                     + ApplyFreshness(this.WaterRestore));
 
             // Please note: if player has an artificial stomach than the food freshness cannot be red.
-            if (data.Freshness == FoodFreshness.Red)
+            if (data.Freshness == ItemFreshness.Red)
             {
                 // 20% chance to get food poisoning
                 if (RandomHelper.RollWithProbability(0.2))
@@ -192,7 +164,7 @@
 
         protected override void ServerUpdate(ServerUpdateData data)
         {
-            FoodSpoilageSystem.ServerUpdateFoodFreshness(data.GameObject, data.DeltaTime);
+            ItemFreshnessSystem.ServerUpdateFreshness(data.GameObject, data.DeltaTime);
         }
 
         protected virtual bool SharedCanEat(ItemEatData data)
@@ -209,13 +181,13 @@
 
             var stats = PlayerCharacter.GetPublicState(character).CurrentStatsExtended;
 
-            var freshness = FoodSpoilageSystem.SharedGetFreshnessEnum(item);
+            var freshness = ItemFreshnessSystem.SharedGetFreshnessEnum(item);
 
             // check that the player has perk to eat a spoiled food
-            if (freshness == FoodFreshness.Red
+            if (freshness == ItemFreshness.Red
                 && character.SharedHasPerk(StatName.PerkEatSpoiledFood))
             {
-                freshness = FoodFreshness.Yellow;
+                freshness = ItemFreshness.Yellow;
             }
 
             var itemEatData = new ItemEatData(item, character, stats, freshness);
@@ -239,7 +211,7 @@
                 IItem item,
                 ICharacter character,
                 PlayerCharacterCurrentStats currentStats,
-                FoodFreshness freshness)
+                ItemFreshness freshness)
             {
                 this.Item = item;
                 this.Character = character;
@@ -251,7 +223,7 @@
 
             public PlayerCharacterCurrentStats CurrentStats { get; }
 
-            public FoodFreshness Freshness { get; }
+            public ItemFreshness Freshness { get; }
 
             public IItem Item { get; }
         }
@@ -262,7 +234,7 @@
     /// </summary>
     public abstract class ProtoItemFood
         : ProtoItemFood
-            <ItemFoodPrivateState,
+            <ItemWithFreshnessPrivateState,
                 EmptyPublicState,
                 EmptyClientState>
     {
