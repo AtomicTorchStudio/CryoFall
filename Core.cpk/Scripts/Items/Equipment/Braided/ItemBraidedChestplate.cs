@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment.Braided
 {
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
+
     public class ItemBraidedChestplate : ProtoItemEquipmentChest
     {
         public override string Description =>
@@ -8,6 +10,8 @@
         public override uint DurabilityMax => 500;
 
         public override string Name => "Braided chestplate";
+
+        public override ObjectMaterial Material => ObjectMaterial.SoftTissues;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

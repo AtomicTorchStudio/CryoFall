@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.SoundPresets
 {
-    public enum ObjectSoundMaterial
+    public enum ObjectMaterial
     {
         /// <summary>
         /// Humans, animals, any "meat" in general, etc.

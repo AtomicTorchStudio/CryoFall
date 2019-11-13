@@ -47,11 +47,11 @@
         /// <summary>
         /// Gets sound material of object (used for damage/hit sounds).
         /// </summary>
-        public abstract ObjectSoundMaterial ObjectSoundMaterial { get; }
+        public abstract ObjectMaterial ObjectMaterial { get; }
 
         public ReadOnlySoundPreset<ObjectSound> SoundPresetObject { get; private set; }
 
-        protected virtual ReadOnlySoundPreset<ObjectSoundMaterial> MaterialDestroySoundPreset
+        protected virtual ReadOnlySoundPreset<ObjectMaterial> MaterialDestroySoundPreset
             => MaterialDestroySoundPresets.Default;
 
         public static void ClientOnCannotInteract(

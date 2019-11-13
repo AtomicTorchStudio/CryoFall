@@ -21,7 +21,7 @@
 
         public override string Name => "Scorpion";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.HardTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.HardTissues;
 
         public double PsiIntensity => 0.5;
 

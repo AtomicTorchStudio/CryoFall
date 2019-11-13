@@ -8,8 +8,13 @@
 
     public class ObjectCharredGround3Deposit : ProtoObjectCharredGround
     {
+        // we want to ensure the spawn conditions will use this as a restriction
+        public override bool IsIgnoredBySpawnScripts => false;
+
         [NotLocalizable]
         public override string Name => "Charred ground (Deposit)";
+
+        public override double ObjectDespawnDurationSeconds => 32 * 60 * 60; // 32 hours
 
         protected override void CreateLayout(StaticObjectLayout layout)
         {

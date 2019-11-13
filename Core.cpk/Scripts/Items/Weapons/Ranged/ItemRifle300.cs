@@ -15,13 +15,15 @@
 
         public override double CharacterAnimationAimingRecoilDuration => 0.5;
 
+        public override double CharacterAnimationAimingRecoilPower => 1.3;
+
         public override double DamageMultiplier => 1.25; // higher damage
 
         public override string Description => "Heavy anti-material rifle developed for high-power .300 rounds.";
 
         public override uint DurabilityMax => 360;
 
-        public override double FireInterval => 0.6; // slow firing rate
+        public override double FireInterval => 0.9; // slow firing rate
 
         public override string Name => "Heavy rifle";
 
@@ -30,6 +32,11 @@
         public override double SpecialEffectProbability => 0.2;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.HeavySniper;
+        }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {

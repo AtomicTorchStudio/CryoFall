@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
@@ -17,9 +18,11 @@
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Extensions;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class VehicleGarageSystem : ProtoSystem<VehicleGarageSystem>
     {
@@ -35,6 +38,12 @@
 
         private const double ThresholdNoPilotSeconds = 5 * 60;
 
+        public static readonly SoundResource SoundResourcePutVehicle
+            = new SoundResource("Objects/Structures/ObjectVehicleAssemblyBay/PutVehicle");
+
+        public static readonly SoundResource SoundResourceTakeVehicle
+            = new SoundResource("Objects/Structures/ObjectVehicleAssemblyBay/TakeVehicle");
+
         public override string Name => "Vehicle garage system";
 
         public static Task<IReadOnlyList<GarageVehicleEntry>> ClientGetVehiclesListAsync()
@@ -42,7 +51,7 @@
             return Instance.CallServer(_ => _.ServerRemote_GetVehiclesList());
         }
 
-        public static void ClientPutCurrentVehicle()
+        public static async void ClientPutCurrentVehicle()
         {
             if (!PveSystem.ClientIsPve(logErrorIfDataIsNotYetAvailable: true))
             {
@@ -50,15 +59,32 @@
                 return;
             }
 
-            Instance.CallServer(_ => _.ServerRemote_PutCurrentVehicle());
+            var vehicleAssemblyBay = InteractionCheckerSystem.SharedGetCurrentInteraction(
+                ClientCurrentCharacterHelper.Character);
+            var isSuccess = await Instance.CallServer(_ => _.ServerRemote_PutCurrentVehicle());
+            if (isSuccess)
+            {
+                Client.Audio.PlayOneShot(SoundResourcePutVehicle, vehicleAssemblyBay);
+            }
         }
 
         public static async void ClientTakeVehicle(uint vehicleGameObjectId)
         {
+            var vehicleAssemblyBay = InteractionCheckerSystem.SharedGetCurrentInteraction(
+                ClientCurrentCharacterHelper.Character);
+
             var result = await Instance.CallServer(_ => _.ServerRemote_TakeVehicle(vehicleGameObjectId));
             if (result == TakeVehicleResult.Success)
             {
+                Client.Audio.PlayOneShot(SoundResourceTakeVehicle, vehicleAssemblyBay);
                 WindowObjectVehicleAssemblyBay.CloseActiveMenu();
+                return;
+            }
+
+            if (result == TakeVehicleResult.BaseUnderRaidblock)
+            {
+                LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(
+                    ClientCurrentCharacterHelper.Character);
                 return;
             }
 
@@ -94,7 +120,11 @@
                 return;
             }
 
-            VehicleSystem.ServerForceExitVehicle(vehicle);
+            var vehicleCurrentPilot = vehicle.GetPublicState<VehiclePublicState>().PilotCharacter;
+            if (vehicleCurrentPilot != null)
+            {
+                VehicleSystem.ServerCharacterExitCurrentVehicle(vehicleCurrentPilot, force: true);
+            }
 
             vehiclePrivateState.IsInGarage = true;
 
@@ -224,7 +254,7 @@
             NotificationSystem.ClientShowNotification(protoVehicle.Name,
                                                       Notification_VehicleInGarage_Description,
                                                       icon: protoVehicle.Icon)
-                              .HideAfterDelay(delaySeconds: 120);
+                              .HideAfterDelay(delaySeconds: 60);
         }
 
         // displayed when player logging into the game and has multiple vehicles in garage
@@ -233,7 +263,7 @@
             NotificationSystem.ClientShowNotification(Notification_VehiclesInGarage_Title,
                                                       Notification_VehiclesInGarage_Description,
                                                       icon: Api.GetProtoEntity<TechGroupVehicles>().Icon)
-                              .HideAfterDelay(delaySeconds: 120);
+                              .HideAfterDelay(delaySeconds: 60);
         }
 
         private void ServerRemote_CheckHasVehiclesInGarage()
@@ -272,7 +302,17 @@
             return ServerGetCharacterVehicles(character, onlyVehiclesInGarage);
         }
 
-        private void ServerRemote_PutCurrentVehicle()
+        private void ServerRemote_OnVehiclePutToGarageByOtherPlayer(Vector2D position)
+        {
+            Client.Audio.PlayOneShot(SoundResourcePutVehicle, position);
+        }
+
+        private void ServerRemote_OnVehicleTakenFromGarageByOtherPlayer(Vector2D position)
+        {
+            Client.Audio.PlayOneShot(SoundResourceTakeVehicle, position);
+        }
+
+        private bool ServerRemote_PutCurrentVehicle()
         {
             if (!PveSystem.ServerIsPvE)
             {
@@ -291,13 +331,30 @@
                 vehicleAssemblyBay: (IStaticWorldObject)currentInteractionObject,
                 tempVehiclesList);
 
+            var isPutAtLeastOne = false;
             foreach (var vehicle in tempVehiclesList)
             {
                 if (ServerCanCharacterPutVehicleIntoGarage(vehicle, byCharacter: character))
                 {
                     ServerPutIntoGarage(vehicle);
+                    isPutAtLeastOne = true;
                 }
             }
+
+            if (isPutAtLeastOne)
+            {
+                // notify other players in scope
+                var soundPosition = currentInteractionObject.TilePosition.ToVector2D()
+                                    + protoVehicleAssemblyBay.PlatformCenterWorldOffset;
+                using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
+                Server.World.GetScopedByPlayers(currentInteractionObject, tempPlayers);
+                tempPlayers.Remove(character);
+
+                Instance.CallClient(tempPlayers,
+                                    _ => _.ServerRemote_OnVehiclePutToGarageByOtherPlayer(soundPosition));
+            }
+
+            return isPutAtLeastOne;
         }
 
         private TakeVehicleResult ServerRemote_TakeVehicle(uint vehicleGameObjectId)
@@ -310,6 +367,7 @@
                 return TakeVehicleResult.Unknown;
             }
 
+            var vehicleAssemblyBay = (IStaticWorldObject)currentInteractionObject;
             var vehicle = Server.World.GetGameObjectById<IDynamicWorldObject>(GameObjectType.DynamicObject,
                                                                               vehicleGameObjectId);
             if (vehicle == null)
@@ -351,8 +409,14 @@
                     return TakeVehicleResult.Unknown;
             }
 
+            if (IsServer
+                && LandClaimSystem.SharedIsUnderRaidBlock(character, vehicleAssemblyBay))
+            {
+                return TakeVehicleResult.BaseUnderRaidblock;
+            }
+
             if (protoVehicleAssemblyBay.SharedIsBaySpaceBlocked(
-                vehicleAssemblyBay: (IStaticWorldObject)currentInteractionObject))
+                vehicleAssemblyBay: vehicleAssemblyBay))
             {
                 return TakeVehicleResult.SpaceBlocked;
             }
@@ -372,6 +436,17 @@
 
             vehicle.ProtoWorldObject.SharedCreatePhysics(vehicle);
             Logger.Important("Vehicle taken out of the garage: " + vehicle, character);
+
+            // notify other players in scope
+            var soundPosition = currentInteractionObject.TilePosition.ToVector2D()
+                                + protoVehicleAssemblyBay.PlatformCenterWorldOffset;
+            using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(currentInteractionObject, tempPlayers);
+            tempPlayers.Remove(character);
+
+            Instance.CallClient(tempPlayers,
+                                _ => _.ServerRemote_OnVehicleTakenFromGarageByOtherPlayer(soundPosition));
+
             return TakeVehicleResult.Success;
         }
 

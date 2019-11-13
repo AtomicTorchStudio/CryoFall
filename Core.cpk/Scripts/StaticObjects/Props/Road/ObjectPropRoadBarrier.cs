@@ -8,7 +8,7 @@
 
     public class ObjectPropRoadBarrier : ProtoObjectProp
     {
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {

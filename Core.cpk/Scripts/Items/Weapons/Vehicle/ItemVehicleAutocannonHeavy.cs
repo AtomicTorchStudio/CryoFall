@@ -61,6 +61,13 @@
             return false;
         }
 
+        protected override WeaponFirePatternPreset PrepareFirePatternPreset()
+        {
+            return new WeaponFirePatternPreset(
+                initialSequence: new[] { 0.0, 1.0, -1.0 },
+                cycledSequence: new[] { 2.0, 3.5, 3.0, 0.5, 4.0, -2.0, -3.5, -3.0, -0.5, -4.0 });
+        }
+
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.ModernSubmachinegun)

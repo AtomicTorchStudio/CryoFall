@@ -15,6 +15,11 @@
 
         public override double FireInterval => 1.5;
 
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.NoWeapon;
+        }
+
         protected override void PrepareProtoWeapon(
             out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos,
             ref DamageDescription overrideDamageDescription)
@@ -34,9 +39,9 @@
                 damageDistribution: damageDistribution);
         }
 
-        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()
         {
-            return MaterialHitsSoundPresets.MeleeSoftTissuesOnly;
+            return MaterialHitsSoundPresets.MeleeNoWeapon;
         }
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)

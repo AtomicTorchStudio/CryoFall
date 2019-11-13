@@ -3422,11 +3422,6 @@
             Please note - this method is not available during Bootstrapper execution.
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.IWorldClientService.GetStaticWorldObjectsOfProto``1">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesServer.CreateItemResult">
             <summary>
             Item creation API call result.
@@ -3797,11 +3792,6 @@
             <param name="character">Owner of the view.</param>
             <param name="result">Temporary list of static world objects to store the result.</param>
             <param name="sortByDistance">If true, the result will be sorted by distance.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsOfProto``1">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsOfProtoInBounds``1(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
             <summary>

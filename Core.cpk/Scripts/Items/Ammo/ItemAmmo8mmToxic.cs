@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
@@ -31,6 +32,11 @@
 
             damageDistribution.Set(DamageType.Kinetic,  0.4);
             damageDistribution.Set(DamageType.Chemical, 0.6);
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.Firearm;
         }
     }
 }

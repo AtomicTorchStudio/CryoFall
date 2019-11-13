@@ -67,9 +67,11 @@
 
         public ITextureResource Icon => null;
 
-        public string InteractionTooltipText => InteractionTooltipTexts.PickUp;
+        public override string InteractionTooltipText => InteractionTooltipTexts.PickUp;
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
+
+        public bool IsIgnoredBySpawnScripts => false;
 
         // this is a "natural object" to allow decals to show under it
         public StaticObjectKind Kind => StaticObjectKind.NaturalObject;
@@ -78,7 +80,7 @@
 
         public override string Name => "Ground items";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SolidGround;
 
         public override double ServerUpdateIntervalSeconds => 0.333;
 
@@ -441,14 +443,9 @@
             return this.TileRequirements.Check(this, startTilePosition, null, logErrors);
         }
 
-        public string ClientGetTitle(IWorldObject worldObject)
+        public override string ClientGetTitle(IWorldObject worldObject)
         {
             return null;
-        }
-
-        public void ClientObserving(IWorldObject worldObject, bool isObserving)
-        {
-            // nothing
         }
 
         public BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)

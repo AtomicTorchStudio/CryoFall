@@ -45,9 +45,9 @@
             var componentAnimator = renderer.SceneObject.AddComponent<ClientComponentSpriteSheetAnimator>();
             componentAnimator.Setup(renderer,
                                     frames,
+                                    isLooped: false,
                                     frameDurationSeconds: animationDuration / frames.Length);
-
-            componentAnimator.IsLooped = false;
+            
             componentAnimator.Destroy(1.5 * animationDuration);
         }
 

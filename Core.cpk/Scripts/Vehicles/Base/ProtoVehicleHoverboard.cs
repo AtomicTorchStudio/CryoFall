@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Invisible;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
-    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -30,7 +29,7 @@
     {
         public override byte CargoItemsSlotsCount => 0;
 
-        public virtual double EngineSoundVolume => 0.0667;
+        public abstract double EngineSoundVolume { get; }
 
         public override bool IsHealthbarDisplayedWhenPiloted => false;
 
@@ -50,6 +49,12 @@
 
         public override double MaxDistanceToInteract => 0.5;
 
+        public override SoundResource SoundResourceVehicleDismount { get; }
+            = new SoundResource("Objects/Vehicles/Hoverboard/Dismount");
+
+        public override SoundResource SoundResourceVehicleMount { get; }
+            = new SoundResource("Objects/Vehicles/Hoverboard/Mount");
+
         public override double StatMoveSpeedRunMultiplier => 1.0; // no run mode
 
         public abstract TextureResource TextureResourceHoverboard { get; }
@@ -64,11 +69,10 @@
             ICharacter pilotCharacter,
             double damageApplied)
         {
-            if (damageApplied > 0
-                && weaponCache.ProtoWeapon is IProtoItemWeaponMelee)
+            if (damageApplied > 0)
             {
-                // drop from hoverboard on melee damage
-                VehicleSystem.ServerForceExitVehicle(vehicle);
+                // drop from hoverboard on any damage
+                VehicleSystem.ServerCharacterExitCurrentVehicle(pilotCharacter, force: true);
             }
         }
 
@@ -78,7 +82,7 @@
             if (characterPilot is null
                 || !characterPilot.IsInitialized
                 || characterPilot.IsNpc
-                || (IsClient 
+                || (IsClient
                     && !characterPilot.IsCurrentClientCharacter))
             {
                 return 1;

@@ -212,8 +212,9 @@
                                                                 characterFinalStatsCache,
                                                                 weapon: null,
                                                                 protoWeapon: null,
-                                                                protoObjectExplosive: protoObjectExplosive,
-                                                                damageDescription: damageDescriptionCharacters);
+                                                                protoAmmo: null,
+                                                                damageDescription: damageDescriptionCharacters,
+                                                                protoObjectExplosive: protoObjectExplosive);
 
                     // execute explosion
                     executeExplosionCallback(

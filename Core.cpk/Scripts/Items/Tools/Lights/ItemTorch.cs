@@ -85,6 +85,7 @@
             fireAnimator.Setup(
                 fireRenderer,
                 ClientComponentSpriteSheetAnimator.CreateAnimationFrames(TextureAtlasFire),
+                isLooped: true,
                 frameDurationSeconds: 1 / 15.0,
                 randomizeInitialFrame: true);
 

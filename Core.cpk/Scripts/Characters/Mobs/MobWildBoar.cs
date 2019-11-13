@@ -19,7 +19,7 @@
 
         public override string Name => "Wild boar";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
         public override double StatDefaultHealthMax => 80;
 

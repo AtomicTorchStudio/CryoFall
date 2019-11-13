@@ -34,7 +34,7 @@
 
         public override string Name => "Large power storage";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
@@ -89,6 +89,7 @@
                 componentAnimator.Setup(overlaySpriteRenderer,
                                         ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
                                             this.textureAtlasActive),
+                                        isLooped: true,
                                         frameDurationSeconds: 5 / 60.0,
                                         initialFrameOffset: frameOffset);
             }

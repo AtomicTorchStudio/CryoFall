@@ -46,6 +46,12 @@
 
         int RepairStagesCount { get; }
 
+        SoundResource SoundResourceLightsToggle { get; }
+
+        SoundResource SoundResourceVehicleDismount { get; }
+
+        SoundResource SoundResourceVehicleMount { get; }
+
         void ClientRequestBuild();
 
         void ClientRequestRepair();

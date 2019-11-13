@@ -8,9 +8,11 @@
 
     public class ViewModelWindowGeneratorSteam : ViewModelWindowGeneratorWithFuel
     {
+#pragma warning disable 108,114
         public const string ElectricityProductionInfoTextFormat =
             @"Current generation {0} EU/s at {1}°C ({2}% efficiency).
               [br]Maximum output {3} EU/s.";
+#pragma warning restore 108,114
 
         private readonly ObjectGeneratorSteam.PrivateState privateState;
 

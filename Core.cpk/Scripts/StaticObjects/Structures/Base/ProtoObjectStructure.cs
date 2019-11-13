@@ -481,14 +481,14 @@
             if (isByCurrentCharacter)
             {
                 MaterialHitsSoundPresets.Melee.PlaySound(
-                    this.ObjectSoundMaterial,
+                    this.ObjectMaterial,
                     volume: SoundConstants.VolumeHit,
                     pitch: pitch);
             }
             else
             {
                 MaterialHitsSoundPresets.Melee.PlaySound(
-                    this.ObjectSoundMaterial,
+                    this.ObjectMaterial,
                     worldPosition: worldPosition,
                     volume: SoundConstants.VolumeHit,
                     pitch: pitch);

@@ -34,7 +34,7 @@
 
         public override string Name => "Small pragmium node";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ServerUpdateIntervalSeconds => 60;
 

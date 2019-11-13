@@ -28,7 +28,7 @@
         {
             // play default destroy sound
             this.MaterialDestroySoundPreset.PlaySound(
-                this.ObjectSoundMaterial,
+                this.ObjectMaterial,
                 this,
                 worldPosition: position + this.Layout.Center,
                 volume: SoundConstants.VolumeDestroy,

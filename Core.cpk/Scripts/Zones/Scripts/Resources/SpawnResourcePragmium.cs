@@ -30,9 +30,9 @@
                          intervalFrom: TimeSpan.FromHours(3),
                          intervalTo: TimeSpan.FromHours(4)));
 
-            var presetPragmiumSource = spawnList.CreatePreset(interval: 130, padding: 2)
+            var presetPragmiumSource = spawnList.CreatePreset(interval: 130, padding: 2, useSectorDensity: false)
                                                 .Add<ObjectMineralPragmiumSource>()
-                                                .SetCustomPaddingWithSelf(60);
+                                                .SetCustomPaddingWithSelf(79);
 
             // don't spawn close to oil seeps
             var restrictionPresetDepositOilSeep = spawnList.CreateRestrictedPreset()

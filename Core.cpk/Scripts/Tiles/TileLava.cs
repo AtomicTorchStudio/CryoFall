@@ -2,6 +2,7 @@
 {
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -9,6 +10,8 @@
     public class TileLava : ProtoTileWater
     {
         public override byte BlendOrder => byte.MaxValue;
+
+        public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Mud;
 
         public override string Name => "Lava";
 

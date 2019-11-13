@@ -2,8 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
@@ -106,6 +108,27 @@
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
             return (0, this.CharacterWorldHeight / 2.0);
+        }
+
+        public ObjectMaterial SharedGetObjectMaterialForCharacter(ICharacter character)
+        {
+            if (character.IsNpc)
+            {
+                return this.ObjectMaterial;
+            }
+
+            var equipment = character.SharedGetPlayerContainerEquipment();
+
+            // find chest of full body armor and return its sound material
+            foreach (var item in equipment.Items)
+            {
+                if (item.ProtoGameObject is IProtoItemEquipmentChest protoChest)
+                {
+                    return protoChest.Material;
+                }
+            }
+
+            return this.ObjectMaterial;
         }
 
         public double SharedGetRotationAngleRad(ICharacter character)

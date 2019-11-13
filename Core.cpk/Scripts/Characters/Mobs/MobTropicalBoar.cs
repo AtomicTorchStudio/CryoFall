@@ -21,7 +21,7 @@
 
         public override string Name => "Tropical boar";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
         public override double StatDefaultHealthMax => 50;
 

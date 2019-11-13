@@ -15,7 +15,7 @@
 
         public override string Name => "Farm plot";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SolidGround;
 
         public override float StructurePointsMax => 400;
 

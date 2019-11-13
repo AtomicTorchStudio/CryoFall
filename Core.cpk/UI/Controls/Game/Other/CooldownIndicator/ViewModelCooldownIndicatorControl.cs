@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.CooldownIndicator
 {
-    using System.Windows;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.ClockProgressIndicator;
 
     public class ViewModelCooldownIndicatorControl : ViewModelClockProgressIndicator
@@ -13,24 +12,15 @@
 
         private double totalDurationSeconds;
 
-        private Visibility visibility
-#if GAME
-			= Visibility.Hidden;
-#else
-            // in design-time - visible by default
-            = Visibility.Visible;
-
-#endif
-
         public ViewModelCooldownIndicatorControl() : base(
             isReversed: true,
             isAutoDisposeFields: true)
         {
         }
 
-        public string TestText => "Test";
-
         public bool IsVisible { get; set; }
+
+        public string TestText => "Test";
 
         public void TurnOff()
         {

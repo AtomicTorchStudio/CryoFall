@@ -97,15 +97,15 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     }
 
                     var distanceToDamagedObject = offsetIndex;
-                    var damageMultiplier =
-                        callbackCalculateDamageCoefByDistanceForStaticObjects(distanceToDamagedObject);
-                    damageMultiplier = MathHelper.Clamp(damageMultiplier, 0, 1);
+                    var damagePreMultiplier = callbackCalculateDamageCoefByDistanceForStaticObjects(
+                        distanceToDamagedObject);
+                    damagePreMultiplier = MathHelper.Clamp(damagePreMultiplier, 0, 1);
 
                     var damageableProto = (IDamageableProtoWorldObject)damagedObject.ProtoGameObject;
                     damageableProto.SharedOnDamage(
                         weaponFinalCache,
                         damagedObject,
-                        damageMultiplier,
+                        damagePreMultiplier,
                         out _,
                         out _);
                 }
@@ -224,14 +224,14 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
                 var distanceToDamagedObject = ServerCalculateDistanceToDamagedObject(positionEpicenter,
                                                                                      damagedObject);
-                var damageMultiplier = callbackCalculateDamageCoefByDistance(distanceToDamagedObject);
-                damageMultiplier = MathHelper.Clamp(damageMultiplier, 0, 1);
+                var damagePreMultiplier = callbackCalculateDamageCoefByDistance(distanceToDamagedObject);
+                damagePreMultiplier = MathHelper.Clamp(damagePreMultiplier, 0, 1);
 
                 var damageableProto = (IDamageableProtoWorldObject)damagedObject.ProtoGameObject;
                 damageableProto.SharedOnDamage(
                     weaponFinalCache,
                     damagedObject,
-                    damageMultiplier,
+                    damagePreMultiplier,
                     out _,
                     out _);
             }

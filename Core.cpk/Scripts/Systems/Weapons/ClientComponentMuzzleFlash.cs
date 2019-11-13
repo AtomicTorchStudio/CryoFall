@@ -223,6 +223,7 @@
                 ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
                     muzzleFlashTextureAtlas,
                     onlySpecificRow: atlasRow),
+                isLooped: false,
                 animationFrameDurationSeconds,
                 isManualUpdate: true);
         }

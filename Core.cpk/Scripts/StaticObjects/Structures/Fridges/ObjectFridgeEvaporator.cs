@@ -20,7 +20,7 @@
 
         public override string Name => "Primitive fridge";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 1;
 

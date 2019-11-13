@@ -21,9 +21,9 @@
             return ((IProtoItemWithSoundPreset)protoItem).SoundPresetItem;
         }
 
-        public static ObjectSoundMaterial SharedGetObjectSoundMaterial(this IProtoWorldObject protoWorldObject)
+        public static ObjectMaterial SharedGetObjectMaterial(this IProtoWorldObject protoWorldObject)
         {
-            return ((IProtoWorldObjectWithSoundPresets)protoWorldObject).ObjectSoundMaterial;
+            return ((IProtoWorldObjectWithSoundPresets)protoWorldObject).ObjectMaterial;
         }
 
         public static ReadOnlySoundPreset<ObjectSound> SharedGetObjectSoundPreset(

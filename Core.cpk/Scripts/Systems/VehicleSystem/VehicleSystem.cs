@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.VehicleSystem
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -14,8 +13,10 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -23,6 +24,12 @@
     public class VehicleSystem : ProtoSystem<VehicleSystem>
     {
         public const string Notification_CannotUseVehicle_TitleFormat = "Cannot use {0}";
+
+        public static readonly SoundResource SoundResourceVehicleBuilt
+            = new SoundResource("Objects/Structures/ObjectVehicleAssemblyBay/VehicleBuilt");
+
+        public static readonly SoundResource SoundResourceVehicleRepair
+            = new SoundResource("Objects/Structures/ObjectVehicleAssemblyBay/VehicleRepair");
 
         private static readonly Dictionary<ICharacter, IDynamicWorldObject> ServerVehicleQuitRequests
             = IsServer ? new Dictionary<ICharacter, IDynamicWorldObject>() : null;
@@ -34,7 +41,7 @@
             Instance.ClientOnVehicleEnterExitButtonPress();
         }
 
-        public static void ServerCharacterExitCurrentVehicle(ICharacter character)
+        public static void ServerCharacterExitCurrentVehicle(ICharacter character, bool force)
         {
             if (character.IsNpc)
             {
@@ -47,44 +54,13 @@
                 return;
             }
 
+            if (force)
+            {
+                ServerCharacterExitVehicleNow(character, vehicle);
+                return;
+            }
+
             ServerCharacterExitVehicle(character, vehicle);
-        }
-
-        public static void ServerCharacterExitVehicle(ICharacter character, IDynamicWorldObject vehicle)
-        {
-            var characterPublicState = PlayerCharacter.GetPublicState(character);
-            if (characterPublicState.CurrentVehicle != vehicle)
-            {
-                return;
-            }
-
-            var vehiclePublicState = vehicle.GetPublicState<VehiclePublicState>();
-            if (vehiclePublicState.IsDismountRequested)
-            {
-                // quit is already requested
-                return;
-            }
-
-            if (vehicle.PhysicsBody.Velocity.LengthSquared > 0)
-            {
-                // cannot quit now, check later
-                ServerVehicleQuitRequests[character] = vehicle;
-                vehiclePublicState.IsDismountRequested = true;
-                return;
-            }
-
-            ServerQuitVehicleNow(character, vehicle);
-        }
-
-        public static void ServerForceExitVehicle(IDynamicWorldObject vehicle)
-        {
-            var vehiclePublicState = vehicle?.GetPublicState<VehiclePublicState>();
-            if (vehiclePublicState?.PilotCharacter is null)
-            {
-                return;
-            }
-
-            ServerQuitVehicleNow(vehiclePublicState.PilotCharacter, vehicle);
         }
 
         public static void ServerOnVehicleDestroyed(IDynamicWorldObject vehicle)
@@ -152,17 +128,33 @@
             }
         }
 
-        private static void ServerProcessVehicleQuitRequests()
+        private static void ServerCharacterExitVehicle(ICharacter character, IDynamicWorldObject vehicle)
         {
-            ServerVehicleQuitRequests.ProcessAndRemoveByValue(
-                removeCondition: v => v.IsDestroyed
-                                      || v.PhysicsBody is null
-                                      || v.PhysicsBody.Velocity.LengthSquared == 0,
-                removeCallback: p => ServerQuitVehicleNow(character: p.Key,
-                                                          vehicle: p.Value));
+            var characterPublicState = PlayerCharacter.GetPublicState(character);
+            if (characterPublicState.CurrentVehicle != vehicle)
+            {
+                return;
+            }
+
+            var vehiclePublicState = vehicle.GetPublicState<VehiclePublicState>();
+            if (vehiclePublicState.IsDismountRequested)
+            {
+                // quit is already requested
+                return;
+            }
+
+            if (vehicle.PhysicsBody.Velocity.LengthSquared > 0)
+            {
+                // cannot quit now, check later
+                ServerVehicleQuitRequests[character] = vehicle;
+                vehiclePublicState.IsDismountRequested = true;
+                return;
+            }
+
+            ServerCharacterExitVehicleNow(character, vehicle);
         }
 
-        private static void ServerQuitVehicleNow(ICharacter character, IDynamicWorldObject vehicle)
+        private static void ServerCharacterExitVehicleNow(ICharacter character, IDynamicWorldObject vehicle)
         {
             if (ServerVehicleQuitRequests.TryGetValue(character, out var requestedVehicleToQuit))
             {
@@ -207,9 +199,30 @@
             }
 
             PlayerCharacter.SharedForceRefreshCurrentItem(character);
+
+            // notify player and other players in scope
+            var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
+            using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(vehicle, tempPlayers);
+            tempPlayers.Remove(character);
+
+            Instance.CallClient(character,
+                                _ => _.ClientRemote_OnVehicleExitByCurrentPlayer(protoVehicle));
+            Instance.CallClient(tempPlayers,
+                                _ => _.ClientRemote_OnVehicleExitByOtherPlayer(vehicle.Position, protoVehicle));
         }
 
-        private void ClientOnVehicleEnterExitButtonPress()
+        private static void ServerProcessVehicleQuitRequests()
+        {
+            ServerVehicleQuitRequests.ProcessAndRemoveByValue(
+                removeCondition: v => v.IsDestroyed
+                                      || v.PhysicsBody is null
+                                      || v.PhysicsBody.Velocity.LengthSquared == 0,
+                removeCallback: p => ServerCharacterExitVehicleNow(character: p.Key,
+                                                                   vehicle: p.Value));
+        }
+
+        private async void ClientOnVehicleEnterExitButtonPress()
         {
             var character = ClientCurrentCharacterHelper.Character;
             if (character is null)
@@ -221,8 +234,8 @@
             if (vehicle != null)
             {
                 // already inside a vehicle
-                vehicle.GetPublicState<VehiclePublicState>()
-                       .IsDismountRequested = true;
+                var vehiclePublicState = vehicle.GetPublicState<VehiclePublicState>();
+                vehiclePublicState.IsDismountRequested = true;
                 this.CallServer(_ => _.ServerRemote_ExitVehicle(vehicle));
                 return;
             }
@@ -271,6 +284,36 @@
             this.CallServer(_ => _.ServerRemote_EnterVehicle(vehicle));
         }
 
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, groupName: "CurrentPlayerEnterExitVehicle")]
+        private void ClientRemote_OnVehicleEnterByCurrentPlayer(Vector2D position, IProtoVehicle protoVehicle)
+        {
+            Api.Client.Audio.PlayOneShot(
+                protoVehicle.SoundResourceVehicleMount);
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
+        private void ClientRemote_OnVehicleEnterByOtherPlayer(Vector2D position, IProtoVehicle protoVehicle)
+        {
+            Api.Client.Audio.PlayOneShot(
+                protoVehicle.SoundResourceVehicleMount,
+                position + protoVehicle.SharedGetObjectCenterWorldOffset(null));
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, groupName: "CurrentPlayerEnterExitVehicle")]
+        private void ClientRemote_OnVehicleExitByCurrentPlayer(IProtoVehicle protoVehicle)
+        {
+            Api.Client.Audio.PlayOneShot(
+                protoVehicle.SoundResourceVehicleDismount);
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
+        private void ClientRemote_OnVehicleExitByOtherPlayer(Vector2D position, IProtoVehicle protoVehicle)
+        {
+            Api.Client.Audio.PlayOneShot(
+                protoVehicle.SoundResourceVehicleDismount,
+                position + protoVehicle.SharedGetObjectCenterWorldOffset(null));
+        }
+
         private void ServerRemote_EnterVehicle(IDynamicWorldObject vehicle)
         {
             var character = ServerRemoteContext.Character;
@@ -304,8 +347,8 @@
 
             // allow to use vehicle even if there is only min energy - to consume it and release reactor cores
             if (!VehicleEnergySystem.SharedHasEnergyCharge(vehicle, 1))
-                                                           //Math.Min(protoVehicle.EnergyUsePerSecondIdle,
-                                                           //         protoVehicle.EnergyUsePerSecondMoving)))
+                //Math.Min(protoVehicle.EnergyUsePerSecondIdle,
+                //         protoVehicle.EnergyUsePerSecondMoving)))
             {
                 Logger.Info("Not enough energy in vehicle to enter it: " + vehicle, character);
 
@@ -340,6 +383,16 @@
             protoVehicle.ServerOnCharacterEnterVehicle(vehicle, character);
 
             PlayerCharacter.SharedForceRefreshCurrentItem(character);
+
+            // notify player and other players in scope
+            using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(vehicle, tempPlayers);
+            tempPlayers.Remove(character);
+
+            Instance.CallClient(character,
+                                _ => _.ClientRemote_OnVehicleEnterByCurrentPlayer(vehicle.Position, protoVehicle));
+            Instance.CallClient(tempPlayers,
+                                _ => _.ClientRemote_OnVehicleEnterByOtherPlayer(vehicle.Position, protoVehicle));
         }
 
         private void ServerRemote_ExitVehicle(IDynamicWorldObject gameObjectVehicle)

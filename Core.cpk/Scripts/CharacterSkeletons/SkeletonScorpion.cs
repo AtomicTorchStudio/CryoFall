@@ -32,10 +32,10 @@
                                 center: (0 - 0.125, 0.1))
                 .AddShapeCircle(radius: 0.35,
                                 center: (0 + 0.125, 0.1))
-                .AddShapeCircle(radius: 0.7,
+                .AddShapeCircle(radius: 0.4,
                                 center: (0, 0.15),
                                 group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.7,
+                .AddShapeCircle(radius: 0.4,
                                 center: (0, 0.15),
                                 group: CollisionGroups.HitboxRanged);
         }

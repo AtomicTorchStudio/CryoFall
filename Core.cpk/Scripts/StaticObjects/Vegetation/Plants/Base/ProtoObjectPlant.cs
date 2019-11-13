@@ -6,11 +6,13 @@
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
@@ -333,7 +335,17 @@
             this.TimeToHarvestSpoilTotalSeconds = this.TimeToHarvestSpoil.TotalSeconds;
             this.stageTimeToMatureTotalSeconds = this.TimeToMature.TotalSeconds
                                                  / this.GrowthStageIndexSpoilingProcess;
+
+            var spoiledGatherDroplist = new DropItemsList();
+            this.PrepareSpoiledGatheringDroplist(spoiledGatherDroplist);
+            this.SpoiledGatherDroplist = spoiledGatherDroplist.AsReadOnly();
+
             this.PrepareProtoPlant();
+        }
+
+        protected virtual void PrepareSpoiledGatheringDroplist(DropItemsList spoiledGatherDroplist)
+        {
+            spoiledGatherDroplist.Add<ItemFibers>(count: 5);
         }
 
         protected virtual void PrepareProtoPlant()
@@ -420,12 +432,35 @@
             }
         }
 
+        public IReadOnlyDropItemsList SpoiledGatherDroplist { get; private set; }
+
         protected override bool ServerTryGatherByCharacter(ICharacter who, IStaticWorldObject vegetationObject)
         {
-            if (!GetPublicState(vegetationObject).IsSpoiled
-                && !base.ServerTryGatherByCharacter(who, vegetationObject))
+            var publicState = GetPublicState(vegetationObject);
+            if (!publicState.IsSpoiled)
             {
-                return false;
+                if (!base.ServerTryGatherByCharacter(who, vegetationObject))
+                {
+                    return false;
+                }
+            }
+            else // spoiled plant
+            {
+                var result = this.SpoiledGatherDroplist.TryDropToCharacterOrGround(who,
+                                                                            who.TilePosition,
+                                                                            new DropItemContext(who, vegetationObject),
+                                                                            out var groundItemsContainer);
+                if (result.TotalCreatedCount == 0)
+                {
+                    result.Rollback();
+                    return false;
+                }
+
+                Logger.Info(vegetationObject + " was gathered when spoiled", who);
+                NotificationSystem.ServerSendItemsNotification(
+                    who,
+                    result,
+                    exceptItemsContainer: groundItemsContainer);
             }
 
             // reset grown harvest state

@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment.PragmiumArmor
 {
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
+
     public class ItemPragmiumArmor : ProtoItemEquipmentFullBody
     {
         public override string Description =>
@@ -12,6 +14,8 @@
         public override bool IsHeadVisible => false;
 
         public override string Name => "Pragmium armor";
+
+        public override ObjectMaterial Material => ObjectMaterial.HardTissues;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

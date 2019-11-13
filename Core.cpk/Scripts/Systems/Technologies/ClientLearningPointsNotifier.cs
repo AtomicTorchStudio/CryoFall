@@ -53,15 +53,12 @@
                 CoreStrings.Technology,
                 string.Format(NotificationSpendLearningPointsReminder, points),
                 icon: NotificationIcon,
-                onClick: Menu.Open<WindowTechnologies>,
-                autoHide: false);
+                onClick: Menu.Open<WindowTechnologies>);
+            notification.HideAfterDelay(60);
 
             notification.SetupAutoHideChecker(
                 // hide when menu is opened
                 Menu.IsOpened<WindowTechnologies>);
-
-            ClientTimersSystem.AddAction(delaySeconds: 60,
-                                         () => notification.Hide(quick: false));
         }
 
         private void CurrentTechnologiesChangedHandler()

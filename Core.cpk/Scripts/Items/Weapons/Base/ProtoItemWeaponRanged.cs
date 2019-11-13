@@ -5,11 +5,11 @@
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
-    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -46,6 +46,8 @@
         public override double FireAnimationDuration => 0;
 
         public override double FireInterval => 0.5;
+
+        public override double FirePatternCooldownDuration => this.FireInterval + 0.4;
 
         public override ITextureResource Icon => new TextureResource("Items/Weapons/Ranged/" + this.GetType().Name);
 
@@ -89,7 +91,7 @@
             out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos,
             ref DamageDescription overrideDamageDescription);
 
-        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()
         {
             return MaterialHitsSoundPresets.Ranged;
         }
@@ -108,7 +110,7 @@
             ICharacter character,
             IItem weaponItem,
             IProtoItemWeapon protoWeapon,
-            List<WeaponHitData> hitObjects)
+            IReadOnlyList<IWorldObject> hitObjects)
         {
             // decrease durability on every shot
             ItemDurabilitySystem.ServerModifyDurability(

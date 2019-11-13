@@ -12,7 +12,7 @@
 
         public override string Name => "Floor rug";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Vegetation;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Vegetation;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 

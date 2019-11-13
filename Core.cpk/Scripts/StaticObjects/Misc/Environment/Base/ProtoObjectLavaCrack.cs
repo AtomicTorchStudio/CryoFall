@@ -30,7 +30,7 @@
 
         public override string Name => "Fissure";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {

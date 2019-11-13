@@ -257,7 +257,8 @@
             var vehicle = character.SharedGetCurrentVehicle();
             if (vehicle != null)
             {
-                VehicleSystem.ServerForceExitVehicle(vehicle);
+                VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
+
                 if (vehicle.GetPublicState<VehiclePublicState>().PilotCharacter != null)
                 {
                     // cannot quit vehicle here, cannot unstuck

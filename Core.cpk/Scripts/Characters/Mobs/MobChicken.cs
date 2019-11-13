@@ -17,7 +17,7 @@
 
         public override string Name => "Chicken";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
         public override double ServerUpdateIntervalSeconds => 0.5;
 

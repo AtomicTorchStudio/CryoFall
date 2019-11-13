@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
@@ -13,6 +14,10 @@
         public override bool IsSuppressWeaponSpecialEffect => true;
 
         public override string Name => "12-gauge salt charge";
+
+        public override WeaponFireScatterPreset? OverrideFireScatterPreset { get; }
+            = new WeaponFireScatterPreset(
+                new[] { -3.0, -1.5, 0.0, 1.5, 3.0 });
 
         public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
         {
@@ -36,6 +41,11 @@
             rangeMax = 7;
 
             damageDistribution.Set(DamageType.Impact, 1.0);
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.Pellets;
         }
     }
 }

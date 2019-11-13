@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
+
     public class ItemClothShirt : ProtoItemEquipmentChest
     {
         public override string Description =>
@@ -8,6 +10,8 @@
         public override uint DurabilityMax => 300;
 
         public override string Name => "Cloth shirt";
+
+        public override ObjectMaterial Material => ObjectMaterial.SoftTissues;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

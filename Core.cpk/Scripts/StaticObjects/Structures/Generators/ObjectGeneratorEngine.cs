@@ -32,7 +32,7 @@
 
         public override string Name => "Engine generator";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 

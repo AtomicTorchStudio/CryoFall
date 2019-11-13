@@ -15,6 +15,8 @@
 
         Error_Docked,
 
-        Error_InUse
+        Error_InUse,
+
+        BaseUnderRaidblock
     }
 }

@@ -33,13 +33,23 @@
         {
             physicsBody
                 .AddShapeRectangle(size: (0.7, 0.3),
-                                   offset: (-0.35, -0.15))
-                .AddShapeCircle(radius: 0.5,
-                                center: (0, 0.35),
-                                group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.5,
-                                center: (0, 0.35),
-                                group: CollisionGroups.HitboxRanged);
+                                   offset: (-0.35, -0.15));
+
+            // melee hitbox
+            var meleeHitboxHeight = 0.7;
+            var meleeHitboxOffset = 0.25;
+            physicsBody.AddShapeRectangle(
+                size: (0.7, meleeHitboxHeight),
+                offset: (-0.35, meleeHitboxOffset),
+                group: CollisionGroups.HitboxMelee);
+
+            // ranged hitbox
+            var rangedHitboxHeight = 1.1;
+            var rangedHitboxOffset = 0;
+            physicsBody.AddShapeRectangle(
+                size: (0.6, rangedHitboxHeight),
+                offset: (-0.3, rangedHitboxOffset),
+                group: CollisionGroups.HitboxRanged);
         }
     }
 }

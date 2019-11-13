@@ -14,7 +14,7 @@
 
         public override string Name => "Chemical laboratory";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 

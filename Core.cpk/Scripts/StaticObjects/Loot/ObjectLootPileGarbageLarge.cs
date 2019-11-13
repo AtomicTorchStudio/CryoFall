@@ -18,7 +18,7 @@
 
         public override string Name => "Large garbage pile";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 

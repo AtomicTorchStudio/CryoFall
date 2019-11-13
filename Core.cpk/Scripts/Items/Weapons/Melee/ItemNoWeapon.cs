@@ -44,6 +44,11 @@
             // do nothing
         }
 
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.NoWeapon;
+        }
+
         protected override void PrepareProtoItem()
         {
             base.PrepareProtoItem();
@@ -65,9 +70,9 @@
                 damageDistribution: new DamageDistribution(DamageType.Impact, proportion: 1));
         }
 
-        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()
         {
-            return MaterialHitsSoundPresets.MeleeSoftTissuesOnly;
+            return MaterialHitsSoundPresets.MeleeNoWeapon;
         }
     }
 }

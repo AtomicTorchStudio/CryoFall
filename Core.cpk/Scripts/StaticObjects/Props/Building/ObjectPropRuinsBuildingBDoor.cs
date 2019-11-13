@@ -5,8 +5,8 @@
 
     public class ObjectPropRuinsBuildingBDoor : ProtoObjectProp
     {
-        public override ObjectSoundMaterial ObjectSoundMaterial
-            => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial
+            => ObjectMaterial.Metal;
 
         protected override void CreateLayout(StaticObjectLayout layout)
         {

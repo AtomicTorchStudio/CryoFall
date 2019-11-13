@@ -60,7 +60,7 @@
         public void ServerRemote_SwitchToEditorMode()
         {
             var character = ServerRemoteContext.Character;
-            VehicleSystem.ServerCharacterExitCurrentVehicle(character);
+            VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
             // the order of calls is important here
             Server.Characters.SetSpectatorMode(character, isSpectator: true, reinitilize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacterEditorMode>());

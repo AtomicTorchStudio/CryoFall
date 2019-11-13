@@ -45,7 +45,7 @@
 
         public override StaticObjectKind Kind => StaticObjectKind.NaturalObject;
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Vegetation;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Vegetation;
 
         public override double ServerUpdateIntervalSeconds => 30.0;
 

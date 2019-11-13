@@ -19,7 +19,7 @@
 
         public override string Name => "Plant pot";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override Vector2D PlacedPlantPositionOffset { get; } = (0, 0.15);
 

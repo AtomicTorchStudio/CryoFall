@@ -20,7 +20,7 @@
 
         public override string Name => "Pragmium beetle";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Glass;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Glass;
 
         public override double StatDefaultHealthMax => 120;
 

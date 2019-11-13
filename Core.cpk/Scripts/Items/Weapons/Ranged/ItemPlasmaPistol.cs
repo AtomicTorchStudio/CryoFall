@@ -23,6 +23,17 @@
 
         public override double SpecialEffectProbability => 0.25;
 
+        protected override WeaponFireScatterPreset PrepareFireScatterPreset()
+        {
+            return new WeaponFireScatterPreset(
+                new[] { -1.2, -0.4, 0.4, 1.2 });
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.Plasma;
+        }
+
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.EnergyPlasmaWeapon)
@@ -47,7 +58,7 @@
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)
         {
-            ServerWeaponSpecialEffectsHelper.OnLaserHit(damagedCharacter, damage);
+            ServerWeaponSpecialEffectsHelper.OnPlasmaHit(damagedCharacter, damage);
         }
     }
 }

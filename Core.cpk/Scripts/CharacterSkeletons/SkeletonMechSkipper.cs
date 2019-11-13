@@ -1,10 +1,17 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterSkeletons
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons.Mech;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class SkeletonMechSkipper : ProtoCharacterSkeleton
@@ -16,6 +23,29 @@
         public const double RangedHitboxHeight = 1.4;
 
         public const double RangedHitboxOffset = 0;
+
+        // cache singleton instance for human footsteps sound
+        public static readonly Lazy<ReadOnlySoundPreset<GroundSoundMaterial>> MechFootstepsSoundPreset
+            = new Lazy<ReadOnlySoundPreset<GroundSoundMaterial>>(
+                () =>
+                {
+                    const string localSoundsFolderPath = "Skeletons/Mech/Footsteps/";
+
+                    var preset = new SoundPreset<GroundSoundMaterial>();
+                    foreach (var enumValue in EnumExtensions.GetValues<GroundSoundMaterial>())
+                    {
+                        // use solid sound for every ground type
+                        var soundFileName = GroundSoundMaterial.Solid;
+                        preset.Add(enumValue, localSoundsFolderPath + soundFileName);
+                    }
+
+                    var readOnlySoundPreset = preset.ToReadOnly();
+                    //this.VerifySoundPreset(readOnlySoundPreset);
+                    return readOnlySoundPreset;
+                });
+
+        private static readonly SoundResource SoundResourceMovement
+            = new SoundResource("Objects/Vehicles/Mech/Movement");
 
         public override double DefaultMoveSpeed => 1.5;
 
@@ -41,9 +71,18 @@
 
         public override string SlotNameItemInHand => "TurretLeft";
 
+        public override SoundResource SoundResourceAimingProcess { get; }
+            = new SoundResource("Objects/Vehicles/Mech/Aiming");
+
         public override double SpeedMultiplier => 1;
 
         public override double WorldScale => 0.15;
+
+        protected override RangeDouble FootstepsPitchVariationRange { get; }
+            = new RangeDouble(0.98, 1.02);
+
+        protected override RangeDouble FootstepsVolumeVariationRange { get; }
+            = new RangeDouble(0.95, 1);
 
         // TODO: use proper sounds folder
         //protected override string SoundsFolderPath => "Skeletons/Mech";
@@ -75,20 +114,29 @@
 
             // melee hitbox
             physicsBody.AddShapeRectangle(
-                size: (0.6, MeleeHitboxHeight),
-                offset: (-0.3, MeleeHitboxOffset),
+                size: (0.8, MeleeHitboxHeight),
+                offset: (-0.4, MeleeHitboxOffset),
                 group: CollisionGroups.HitboxMelee);
 
             // ranged hitbox
             physicsBody.AddShapeRectangle(
-                size: (0.5, RangedHitboxHeight),
-                offset: (-0.25, RangedHitboxOffset),
+                size: (0.8, RangedHitboxHeight),
+                offset: (-0.4, RangedHitboxOffset),
                 group: CollisionGroups.HitboxRanged);
         }
 
         public override void OnSkeletonCreated(IComponentSkeleton skeleton)
         {
             base.OnSkeletonCreated(skeleton);
+
+            if (skeleton.SceneObject.AttachedWorldObject is ICharacter characterPilot)
+            {
+                skeleton.SceneObject
+                        .AddComponent<ComponentSkeletonMechAimingSoundManager>()
+                        .Setup(skeleton, characterPilot);
+            }
+
+            //skeleton.AnimationEvent += SkeletonOnAnimationEventFootstepMovement;
 
             // little offset to ensure mech can properly behind a grass
             // cannot make it further without making it to z-fight with a player character
@@ -122,6 +170,44 @@
 
                 skeleton.SetAnimationDefaultSpeed(startAbortName, 1.3f);
             }
+        }
+
+        protected override ReadOnlySoundPreset<GroundSoundMaterial> PrepareSoundPresetFootsteps()
+        {
+            return MechFootstepsSoundPreset.Value;
+        }
+
+        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
+        private static void SkeletonOnAnimationEventFootstepMovement(
+            ICharacter character,
+            IComponentSkeleton skeleton,
+            SkeletonEventData e)
+        {
+            if (e.EventName != "MovementStart")
+            {
+                return;
+            }
+
+            var protoCharacter = character.ProtoCharacter;
+            var protoSkeleton = (SkeletonMechSkipper)protoCharacter.ClientGetCurrentProtoSkeleton(character);
+            var vehicle = character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle;
+
+            // use some pitch variation
+            var pitch = 1.0; //RandomHelper.Range(protoSkeleton.FootstepsPitchVariationRange.From,
+            //             protoSkeleton.FootstepsPitchVariationRange.To);
+
+            var volume = protoSkeleton.VolumeFootsteps;
+            //// apply some volume variation
+            //volume *= RandomHelper.Range(protoSkeleton.FootstepsVolumeVariationRange.From,
+            //                             protoSkeleton.FootstepsVolumeVariationRange.To);
+            //// apply constant volume multiplier
+            //volume *= SoundConstants.VolumeFootstepsMultiplier;
+
+            Client.Audio.PlayOneShot(
+                SoundResourceMovement,
+                vehicle,
+                volume: (float)volume,
+                pitch: (float)pitch);
         }
     }
 }

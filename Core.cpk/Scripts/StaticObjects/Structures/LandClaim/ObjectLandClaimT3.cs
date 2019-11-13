@@ -24,7 +24,7 @@
 
         public override string Name => "Land claim (Tier 3)";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 

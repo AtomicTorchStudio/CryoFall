@@ -43,7 +43,7 @@
             {
                 CharacterEnergySystem.ClientShowNotificationNotEnoughEnergyCharge(this);
                 // stop using weapon item!
-                weaponState.ActiveProtoWeapon.ClientItemUseFinish(weaponState.ActiveItemWeapon);
+                weaponState.ProtoWeapon.ClientItemUseFinish(weaponState.ItemWeapon);
             }
 
             return false;
@@ -54,7 +54,7 @@
         {
             if (IsClient)
             {
-                // on client we cannot deduct energy
+                // on client we cannot consume energy
                 return true;
             }
 

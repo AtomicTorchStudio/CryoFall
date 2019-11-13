@@ -17,7 +17,7 @@
 
         public override string Name => "Pragmium statue";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 

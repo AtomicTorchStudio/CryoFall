@@ -28,7 +28,7 @@
                 }
 
                 currentCursorId = value;
-                Client.Rendering.CurrentCursor = GetCursorResource(value);
+                //Client.Rendering.CurrentCursor = GetCursorResource(value);
                 //Logger.WriteDev("Cursor changed to: " + value);
             }
         }
@@ -40,7 +40,15 @@
             if (IsClient)
             {
                 Client.Rendering.CurrentCursor = GetCursorResource(CursorId.Default);
+                ClientUpdateHelper.UpdateCallback += ClientUpdate;
             }
+        }
+
+        private static void ClientUpdate()
+        {
+            ClientCursorWeaponSystem.Update();
+            Client.Rendering.CurrentCursor = ClientCursorWeaponSystem.CurrentCursorResource
+                                             ?? GetCursorResource(CurrentCursorId);
         }
 
         private static CursorResource GetCursorResource(CursorId cursorId)

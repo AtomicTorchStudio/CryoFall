@@ -151,6 +151,7 @@
                 ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
                     textureAtlasResource,
                     autoInverse: autoInverseAnimation),
+                isLooped: true,
                 frameDurationSeconds: frameDurationSeconds,
                 randomizeInitialFrame: randomizeInitialFrame);
 

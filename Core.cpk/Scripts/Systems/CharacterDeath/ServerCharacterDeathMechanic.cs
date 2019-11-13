@@ -51,7 +51,7 @@
                 return;
             }
 
-            VehicleSystem.ServerCharacterExitCurrentVehicle(character);
+            VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
 
             var privateState = PlayerCharacter.GetPrivateState(character);
             CharacterDamageTrackingSystem.ServerClearStats(character);
@@ -325,6 +325,8 @@
                 // player has been respawned
                 return;
             }
+
+            VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
 
             // disable the visual scope so the player cannot not see anyone and nobody could see the player
             Api.Server.Characters.SetViewScopeMode(character, isEnabled: false);

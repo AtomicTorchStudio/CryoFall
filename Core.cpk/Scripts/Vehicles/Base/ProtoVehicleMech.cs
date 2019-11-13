@@ -35,6 +35,15 @@
 
         public override float ObjectSoundRadius => 2;
 
+        public override SoundResource SoundResourceLightsToggle { get; }
+            = new SoundResource("Objects/Vehicles/Mech/ToggleLight");
+
+        public override SoundResource SoundResourceVehicleDismount { get; }
+            = new SoundResource("Objects/Vehicles/Mech/Dismount");
+
+        public override SoundResource SoundResourceVehicleMount { get; }
+            = new SoundResource("Objects/Vehicles/Mech/Mount");
+
         public override BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {
             var privateState = GetPrivateState((IDynamicWorldObject)worldObject);

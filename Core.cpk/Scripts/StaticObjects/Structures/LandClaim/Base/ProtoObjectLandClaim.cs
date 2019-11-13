@@ -437,7 +437,7 @@
                 && result != ObjectLandClaimCanUpgradeCheckResult.Success)
             {
                 Logger.Warning(
-                    $"Can\'t upgrade: {worldObjectLandClaim} to {protoUpgradedLandClaim}: error code - {result}",
+                    $"Can't upgrade: {worldObjectLandClaim} to {protoUpgradedLandClaim}: error code - {result}",
                     character);
             }
 

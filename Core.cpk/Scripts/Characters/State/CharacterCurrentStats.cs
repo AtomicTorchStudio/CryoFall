@@ -239,7 +239,7 @@
                 case ICharacter character:
                     protoSkill = !character.IsNpc
                                      ? character.GetPrivateState<PlayerCharacterPrivateState>().WeaponState
-                                                .ActiveProtoWeapon?.WeaponSkillProto
+                                                .ProtoWeapon?.WeaponSkillProto
                                      : null;
                     return character;
 

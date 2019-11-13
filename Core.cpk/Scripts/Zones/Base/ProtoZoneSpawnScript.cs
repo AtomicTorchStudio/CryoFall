@@ -668,10 +668,10 @@
                     var protoStaticWorldObject = staticObject.ProtoStaticWorldObject;
                     if (!(protoStaticWorldObject is ObjectGroundItemsContainer))
                     {
-                        if (protoStaticWorldObject.Kind == StaticObjectKind.FloorDecal)
+                        if (protoStaticWorldObject.IsIgnoredBySpawnScripts)
                         {
-                            // we don't consider padding to decal objects
-                            // (though they still might affect spawn during tile check)
+                            // we don't consider padding to certain objects such as ground decals
+                            // (though they still might affect spawn during the tiles check)
                             continue;
                         }
 
@@ -820,8 +820,7 @@
                             var currentCount = spawnedObjectsCount.Find(preset);
                             //if (isInitialSpawn)
                             //{
-                            var countToSpawn =
-                                Math.Max(0, desiredCount - currentCount);
+                            var countToSpawn = Math.Max(0, desiredCount - currentCount);
                             //}
 
                             // TODO: refactor this to be actually useful with local density
@@ -834,6 +833,11 @@
                             //    countToSpawn = (int)Math.Ceiling
                             //        (desiredCount * fractionRange.GetByFraction(1 - fractionSpawned));
                             //}
+
+                            if (preset.SpawnLimitPerIteration.HasValue)
+                            {
+                                countToSpawn = Math.Min(countToSpawn, preset.SpawnLimitPerIteration.Value);
+                            }
 
                             // we're not using this feature
                             NoiseSelector tileRandomSelector = null;

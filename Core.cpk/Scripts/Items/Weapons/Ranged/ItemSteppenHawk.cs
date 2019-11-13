@@ -33,6 +33,13 @@
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();
 
+        protected override WeaponFirePatternPreset PrepareFirePatternPreset()
+        {
+            return new WeaponFirePatternPreset(
+                initialSequence: new[] { 0.0, -1.0, 1.0 },
+                cycledSequence: new[] { -1.5, 1.5, -1.5, 0.0, 1.5 });
+        }
+
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.ModernRifle)

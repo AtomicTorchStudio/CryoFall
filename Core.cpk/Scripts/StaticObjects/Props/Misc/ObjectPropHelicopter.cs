@@ -8,8 +8,8 @@
     {
         public override bool CanFlipSprite => false;
 
-        public override ObjectSoundMaterial ObjectSoundMaterial
-            => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial
+            => ObjectMaterial.Metal;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

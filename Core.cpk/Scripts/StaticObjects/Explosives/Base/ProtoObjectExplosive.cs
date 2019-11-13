@@ -41,7 +41,7 @@
 
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public sealed override double ObstacleBlockDamageCoef => 0;
 

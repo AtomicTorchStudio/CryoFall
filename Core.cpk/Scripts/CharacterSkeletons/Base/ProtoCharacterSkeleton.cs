@@ -64,9 +64,17 @@
 
         public ReadOnlySoundPreset<WeaponSound> SoundPresetWeapon { get; private set; }
 
+        public virtual SoundResource SoundResourceAimingProcess { get; }
+
         public virtual double SpeedMultiplier => 1;
 
         public virtual double WorldScale => 1;
+
+        protected virtual RangeDouble FootstepsPitchVariationRange { get; }
+            = new RangeDouble(0.95, 1.05);
+
+        protected virtual RangeDouble FootstepsVolumeVariationRange { get; }
+            = new RangeDouble(0.85, 1.0);
 
         protected abstract string SoundsFolderPath { get; }
 
@@ -171,7 +179,6 @@
             return (soundPresetCharacter, soundPresetMovement);
         }
 
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         public virtual void OnSkeletonCreated(IComponentSkeleton skeleton)
         {
             skeleton.AnimationEvent += SkeletonOnAnimationEventFootstep;
@@ -260,7 +267,8 @@
 
             ReadOnlySoundPreset<GroundSoundMaterial> soundPresetMovement = null;
             var protoCharacter = character.ProtoCharacter;
-            if (protoCharacter is PlayerCharacter)
+            if (protoCharacter is PlayerCharacter
+                && PlayerCharacter.GetPublicState(character).CurrentVehicle is null)
             {
                 // try get movement sound preset override
                 foreach (var item in character.SharedGetPlayerContainerEquipment().Items)
@@ -281,11 +289,13 @@
             }
 
             // use some pitch variation
-            var pitch = RandomHelper.Range(0.95f, 1.05f);
+            var pitch = RandomHelper.Range(protoSkeleton.FootstepsPitchVariationRange.From,
+                                           protoSkeleton.FootstepsPitchVariationRange.To);
 
             var volume = protoSkeleton.VolumeFootsteps;
             // apply some volume variation
-            volume *= RandomHelper.Range(0.85f, 1.0f);
+            volume *= RandomHelper.Range(protoSkeleton.FootstepsVolumeVariationRange.From,
+                                         protoSkeleton.FootstepsVolumeVariationRange.To);
             // apply constant volume multiplier
             volume *= SoundConstants.VolumeFootstepsMultiplier;
 
@@ -293,7 +303,7 @@
                 groundSoundMaterial,
                 character,
                 volume: (float)volume,
-                pitch: pitch);
+                pitch: (float)pitch);
         }
 
         private ReadOnlySoundPreset<CharacterSound> PrepareSoundPresetCharacter()

@@ -19,6 +19,8 @@
         NeedsFreeSpace = 4,
 
         // re-use description string from SetPowerModeResult
-        NotEnoughPower = 5
+        NotEnoughPower = 5,
+
+        BaseUnderRaidblock = 6
     }
 }

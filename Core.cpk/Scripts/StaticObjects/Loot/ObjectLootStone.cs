@@ -9,7 +9,7 @@
     {
         public override string Name => "Stone";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

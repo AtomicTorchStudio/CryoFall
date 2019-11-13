@@ -13,7 +13,7 @@
 
         public override string Name => "Wood floor";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override float StructurePointsMax => 250;
 

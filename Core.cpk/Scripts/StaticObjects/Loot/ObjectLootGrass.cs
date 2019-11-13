@@ -21,7 +21,7 @@
 
         public override string Name => "Grass";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Vegetation;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Vegetation;
 
         protected override bool CanFlipSprite => false; // it's grass - flip is done by shader
 

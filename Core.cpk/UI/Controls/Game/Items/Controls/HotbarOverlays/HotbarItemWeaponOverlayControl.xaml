@@ -39,20 +39,19 @@
                     <TextBlock Grid.Column="0"
                                Text="{Binding AmmoCountCurrent}"
                                HorizontalAlignment="Right"
-                               Visibility="{Binding ElementName=ReloadCooldownControl, Path=ViewModel.IsVisible, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}" />
+                               Visibility="{Binding IsReloading, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}" />
                     <TextBlock Grid.Column="0"
                                Text="--"
                                HorizontalAlignment="Right"
-                               Visibility="{Binding ElementName=ReloadCooldownControl, Path=ViewModel.IsVisible, Converter={StaticResource BoolToHiddenVisibilityConverter}}" />
+                               Visibility="{Binding IsReloading, Converter={StaticResource BoolToHiddenVisibilityConverter}}" />
                     <TextBlock Grid.Column="1" Text="/" />
                     <TextBlock Grid.Column="2" Text="{Binding AmmoCountMax}" HorizontalAlignment="Left" />
                 </Grid>
 
-                <cooldownIndicator:CooldownIndicatorControl x:Name="ReloadCooldownControl"
-                                                            SetTotalDuration="{Binding ReloadDurationSeconds}" />
+                <cooldownIndicator:CooldownIndicatorControl SetTotalDuration="{Binding ReloadDurationSeconds}" />
             </Grid>
         </controls:HotbarItemSlotExtensionControl>
-        
+
         <Grid Margin="1"
               IsHitTestVisible="False">
             <cooldownIndicator:CooldownIndicatorControl x:Name="WeaponSwitchCooldown"

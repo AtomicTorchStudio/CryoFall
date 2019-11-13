@@ -154,7 +154,7 @@
 
                 // valid tile found - respawn here
                 // ensure the character has quit the current vehicle
-                VehicleSystem.ServerCharacterExitCurrentVehicle(character);
+                VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
                 if (PlayerCharacter.GetPublicState(character).CurrentVehicle != null)
                 {
                     Logger.Important($"{character} cannot be teleported to bed as it cannot exit the current vehicle");

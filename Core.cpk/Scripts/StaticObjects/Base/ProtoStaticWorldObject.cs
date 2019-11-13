@@ -87,6 +87,8 @@
             }
         }
 
+        public virtual bool IsIgnoredBySpawnScripts => this.Kind == StaticObjectKind.FloorDecal;
+
         public abstract StaticObjectKind Kind { get; }
 
         public StaticObjectLayoutReadOnly Layout { get; private set; }
@@ -323,7 +325,7 @@
         protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             this.MaterialDestroySoundPreset.PlaySound(
-                this.ObjectSoundMaterial,
+                this.ObjectMaterial,
                 this,
                 worldPosition: position + this.Layout.Center,
                 volume: SoundConstants.VolumeDestroy,

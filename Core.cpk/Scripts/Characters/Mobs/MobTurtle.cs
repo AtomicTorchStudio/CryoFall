@@ -18,7 +18,7 @@
 
         public override string Name => "Turtle";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.HardTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.HardTissues;
 
         public override double ServerUpdateIntervalSeconds => 0.5;
 

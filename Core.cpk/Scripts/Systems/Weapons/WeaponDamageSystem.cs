@@ -174,7 +174,7 @@
         public static void SharedTryDamageCharacter(
             ICharacter targetCharacter,
             WeaponFinalCache weaponCache,
-            double damageMultiplier,
+            double damagePreMultiplier,
             out bool isHit,
             out double damageApplied)
         {
@@ -202,7 +202,7 @@
                 weaponCache,
                 targetCharacter,
                 targetFinalStatsCache,
-                damageMultiplier,
+                damagePreMultiplier,
                 clampDefenseTo1: true);
             if (totalDamage <= 0)
             {

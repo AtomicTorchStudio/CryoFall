@@ -92,7 +92,7 @@
                     continue;
                 }
 
-                VehicleSystem.ServerCharacterExitVehicle(character, vehicle);
+                VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: false);
                 Instance.CallClient(character,
                                     _ => _.ClientRemote_OnNotEnoughEnergy(protoVehicle));
             }

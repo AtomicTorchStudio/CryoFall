@@ -43,10 +43,10 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        public const double DurabilityFractionReduceOnDeath = 0.1;
-
         public const string NotificationItemCannotBeUsedInVehicle =
             "This item cannot be used while you're riding a vehicle.";
+
+        private const double DurabilityFractionReduceOnDeath = 0.1;
 
         /// <summary>
         /// This flag will be true only in case the method <see cref="ClientItemUseStart" /> or <see cref="ClientItemUseFinish" />
@@ -209,6 +209,7 @@
             if (this is IProtoItemWeapon protoItemWeapon
                 && protoItemWeapon.CompatibleAmmoProtos.Count > 0)
             {
+                controls.Add(ItemTooltipCurrentAmmoControl.Create(item));
                 controls.Add(ItemTooltipCompatibleAmmoControl.Create(protoItemWeapon));
             }
         }
@@ -280,7 +281,7 @@
                 return true;
             }
 
-            if (IsClient 
+            if (IsClient
                 && !isAlreadySelected
                 && protoVehicle.IsPlayersHotbarAndEquipmentItemsAllowed)
             {

@@ -36,7 +36,7 @@
 
         public override string Name => "Psionic projector";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
@@ -80,6 +80,7 @@
                                     ClientComponentSpriteSheetAnimator.CreateAnimationFrames(this.textureAtlasActive)
                                                                       .Skip(1)
                                                                       .ToArray(),
+                                    isLooped: true,
                                     frameDurationSeconds: 6 / 60.0,
                                     randomizeInitialFrame: true);
 

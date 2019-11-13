@@ -13,7 +13,7 @@
     {
         public override string Name => "Cactus";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.HardTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.HardTissues;
 
         protected override TimeSpan TimeToMature => TimeSpan.FromHours(3);
 

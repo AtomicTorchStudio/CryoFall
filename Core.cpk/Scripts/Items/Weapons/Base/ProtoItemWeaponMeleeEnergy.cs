@@ -68,23 +68,22 @@
         }
 
         public override void ServerOnDamageApplied(
-            IItem weapon,
-            ICharacter byCharacter,
+            WeaponFinalCache weaponCache,
             IWorldObject damagedObject,
             double damage)
         {
-            base.ServerOnDamageApplied(weapon, byCharacter, damagedObject, damage);
+            base.ServerOnDamageApplied(weaponCache, damagedObject, damage);
 
             if (IsClient)
             {
-                // on client we cannot deduct energy
+                // on client we cannot consume energy
                 return;
             }
 
-            // deduct energy on hit
-            var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(
-                byCharacter,
-                this.EnergyUsePerHit);
+            // consume energy on hit
+            var byCharacter = weaponCache.Character;
+            var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(byCharacter,
+                                                                                        this.EnergyUsePerHit);
             CharacterEnergySystem.ServerDeductEnergyCharge(byCharacter, requiredEnergyAmount);
         }
 
@@ -102,7 +101,7 @@
             if (IsClient && weaponState.SharedGetInputIsFiring())
             {
                 CharacterEnergySystem.ClientShowNotificationNotEnoughEnergyCharge(this);
-                weaponState.ActiveProtoWeapon.ClientItemUseFinish(weaponState.ActiveItemWeapon);
+                weaponState.ProtoWeapon.ClientItemUseFinish(weaponState.ItemWeapon);
                 ClientHotbarSelectedItemManager.SelectedSlotId = null;
             }
 
@@ -139,11 +138,11 @@
         {
             if (IsClient)
             {
-                // on client we cannot deduct energy
+                // on client we cannot consume energy
                 return true;
             }
 
-            // deduct energy on fire
+            // consume energy on fire
             var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(
                 character,
                 this.EnergyUsePerShot);

@@ -14,7 +14,7 @@
 
         public override string Name => "Weapon workbench";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 

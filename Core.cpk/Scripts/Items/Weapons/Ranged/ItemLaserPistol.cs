@@ -27,6 +27,18 @@
 
         public override double SpecialEffectProbability => 0.25;
 
+        protected override WeaponFirePatternPreset PrepareFirePatternPreset()
+        {
+            return new WeaponFirePatternPreset(
+                initialSequence: new[] { 0.0, 0.5, -0.5 },
+                cycledSequence: new[] { 0.0, 0.5, -0.5, 0.5, -0.5 });
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.Laser;
+        }
+
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.EnergyLaserWeapon)

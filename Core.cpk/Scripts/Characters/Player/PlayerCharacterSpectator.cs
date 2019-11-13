@@ -51,7 +51,7 @@
                 return;
             }
 
-            VehicleSystem.ServerCharacterExitCurrentVehicle(character);
+            VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
             // the order of calls is important here
             Server.Characters.SetSpectatorMode(character, isSpectator: false, reinitilize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacterSpectator>());

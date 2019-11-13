@@ -39,7 +39,7 @@
         public override string Name => "Corpse";
 
         // not played anyway
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
         public override double ObstacleBlockDamageCoef => 0;
 

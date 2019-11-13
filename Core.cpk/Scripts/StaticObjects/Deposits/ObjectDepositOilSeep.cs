@@ -15,14 +15,14 @@
 
         public override double ClientUpdateIntervalSeconds => 0.5;
 
-        public override double DecaySpeedMultiplierWhenExtractingActive => 5;
+        public override double DecaySpeedMultiplierWhenExtractingActive => 1;
 
         public override double LifetimeTotalDurationSeconds { get; }
-            = TimeSpan.FromDays(12).TotalSeconds;
+            = TimeSpan.FromDays(4).TotalSeconds;
 
         public override string Name => "Oil seep";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SolidGround;
 
         public override float StructurePointsMax => 10000;
 

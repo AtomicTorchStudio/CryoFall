@@ -23,7 +23,7 @@
         // despawn after 32 hours by default
         public virtual double ObjectDespawnDurationSeconds { get; } = 32 * 60 * 60;
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 0;
 

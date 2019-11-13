@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment.Assault
 {
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
+
     public class ItemAssaultJacket : ProtoItemEquipmentChest
     {
         public override string Description =>
@@ -8,6 +10,8 @@
         public override uint DurabilityMax => 1200;
 
         public override string Name => "Assault armor jacket";
+
+        public override ObjectMaterial Material => ObjectMaterial.HardTissues;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

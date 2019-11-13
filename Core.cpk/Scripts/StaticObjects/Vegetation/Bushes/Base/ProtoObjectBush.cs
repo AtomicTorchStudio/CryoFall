@@ -28,7 +28,7 @@
 
         public override bool IsAutoDestroyOnGather => false;
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Vegetation;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Vegetation;
 
         public override double ObstacleBlockDamageCoef => 0.25;
 

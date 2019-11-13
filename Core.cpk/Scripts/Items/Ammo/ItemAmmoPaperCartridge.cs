@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Ammo
 {
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
     public class ItemAmmoPaperCartridge : ProtoItemAmmo, IAmmoPaperCartrige
@@ -23,6 +24,11 @@
 
             damageDistribution.Set(DamageType.Kinetic, 0.7);
             damageDistribution.Set(DamageType.Impact,  0.3);
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.Blackpowder;
         }
     }
 }

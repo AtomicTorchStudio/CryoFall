@@ -23,7 +23,7 @@
 
         public override string Name => "Lithium salts extractor";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 

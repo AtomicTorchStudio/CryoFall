@@ -14,7 +14,7 @@
 
         public override string Name => "Bedroll";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SolidGround;
 
         public override double ObstacleBlockDamageCoef => 0.3;
 

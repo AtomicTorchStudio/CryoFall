@@ -1,6 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.SoundPresets
 {
-    using static ObjectSoundMaterial;
+    using static ObjectMaterial;
 
     public static class MaterialHitsSoundPresets
     {
@@ -8,8 +8,8 @@
             = (min: SoundConstants.AudioListenerMinDistanceObjectHit,
                max: SoundConstants.AudioListenerMaxDistanceObjectHit);
 
-        public static readonly ReadOnlySoundPreset<ObjectSoundMaterial> Melee
-            = new SoundPreset<ObjectSoundMaterial>(HitSoundDistancePreset)
+        public static readonly ReadOnlySoundPreset<ObjectMaterial> Melee
+            = new SoundPreset<ObjectMaterial>(HitSoundDistancePreset)
               .Add(SoftTissues, "Hit/Melee/SoftTissues")
               .Add(HardTissues, "Hit/Melee/HardTissues")
               .Add(SolidGround, "Hit/Melee/SolidGround")
@@ -19,8 +19,8 @@
               .Add(Metal,       "Hit/Melee/Metal")
               .Add(Glass,       "Hit/Melee/Glass");
 
-        public static readonly ReadOnlySoundPreset<ObjectSoundMaterial> MeleeEnergy
-            = new SoundPreset<ObjectSoundMaterial>(HitSoundDistancePreset)
+        public static readonly ReadOnlySoundPreset<ObjectMaterial> MeleeEnergy
+            = new SoundPreset<ObjectMaterial>(HitSoundDistancePreset)
               .Add(SoftTissues, "Hit/Melee/Energy")
               .Add(HardTissues, "Hit/Melee/Energy")
               .Add(SolidGround, "Hit/Melee/Energy")
@@ -31,19 +31,19 @@
               .Add(Glass,       "Hit/Melee/Energy");
 
         // used for fists and some animals
-        public static readonly ReadOnlySoundPreset<ObjectSoundMaterial> MeleeSoftTissuesOnly
-            = new SoundPreset<ObjectSoundMaterial>(HitSoundDistancePreset)
+        public static readonly ReadOnlySoundPreset<ObjectMaterial> MeleeNoWeapon
+            = new SoundPreset<ObjectMaterial>(HitSoundDistancePreset)
               .Add(SoftTissues, "Hit/Melee/SoftTissues")
-              .Add(HardTissues, "Hit/Melee/SoftTissues")
-              .Add(SolidGround, "Hit/Melee/SoftTissues")
-              .Add(Vegetation,  "Hit/Melee/SoftTissues")
-              .Add(Wood,        "Hit/Melee/SoftTissues")
-              .Add(Stone,       "Hit/Melee/SoftTissues")
-              .Add(Metal,       "Hit/Melee/SoftTissues")
-              .Add(Glass,       "Hit/Melee/SoftTissues");
+              .Add(HardTissues, "Hit/Melee/HardTissues")
+              .Add(SolidGround, "Hit/Melee/SolidGround")
+              .Add(Vegetation,  "Hit/Melee/Vegetation")
+              .Add(Wood,        "Hit/Melee/Wood")
+              .Add(Stone,       "Hit/Melee/HardTissues")
+              .Add(Metal,       "Hit/Melee/HardTissues")
+              .Add(Glass,       "Hit/Melee/HardTissues");
 
-        public static readonly ReadOnlySoundPreset<ObjectSoundMaterial> Ranged
-            = new SoundPreset<ObjectSoundMaterial>(HitSoundDistancePreset)
+        public static readonly ReadOnlySoundPreset<ObjectMaterial> Ranged
+            = new SoundPreset<ObjectMaterial>(HitSoundDistancePreset)
               .Add(SoftTissues, "Hit/Ranged/SoftTissues")
               .Add(HardTissues, "Hit/Ranged/HardTissues")
               .Add(SolidGround, "Hit/Ranged/SolidGround")
@@ -56,7 +56,7 @@
         /// <summary>
         /// TODO: currently there are no separate sounds for ranged energy weapons, but later we need to add them
         /// </summary>
-        public static readonly ReadOnlySoundPreset<ObjectSoundMaterial> RangedEnergy
+        public static readonly ReadOnlySoundPreset<ObjectMaterial> RangedEnergy
             = MeleeEnergy;
     }
 }

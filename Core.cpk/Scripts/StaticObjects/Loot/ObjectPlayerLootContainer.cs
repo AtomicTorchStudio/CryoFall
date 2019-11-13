@@ -72,7 +72,7 @@
 
         public override string Name => "Player loot items";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SolidGround;
 
         public override double ObstacleBlockDamageCoef => 0; // not used
 
@@ -553,11 +553,11 @@
         private void ClientRemote_NotifyLootInteraction(string name)
         {
             NotificationSystem.ClientShowNotification(
-                NotificationCurrentPlayerItemsBeingLooted_Title,
-                string.Format(NotificationCurrentPlayerItemsBeingLooted_Message, name),
-                NotificationColor.Bad,
-                this.DefaultTexture,
-                autoHide: false);
+                                  NotificationCurrentPlayerItemsBeingLooted_Title,
+                                  string.Format(NotificationCurrentPlayerItemsBeingLooted_Message, name),
+                                  NotificationColor.Bad,
+                                  this.DefaultTexture)
+                              .HideAfterDelay(10 * 60);
         }
 
         public class ObjectPlayerLootContainerPrivateState : StructurePrivateState

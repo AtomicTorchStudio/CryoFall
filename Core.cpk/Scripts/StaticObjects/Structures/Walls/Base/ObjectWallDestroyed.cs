@@ -31,7 +31,7 @@
         public override string Name => "Destroyed wall";
 
         // not used
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 0;
 

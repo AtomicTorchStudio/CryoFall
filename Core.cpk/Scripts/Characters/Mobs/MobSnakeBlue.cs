@@ -16,7 +16,7 @@
 
         public override string Name => "Blue snake";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
         public override double StatDefaultHealthMax => 80;
 

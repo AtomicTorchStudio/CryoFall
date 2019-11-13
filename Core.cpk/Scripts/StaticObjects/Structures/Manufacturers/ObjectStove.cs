@@ -36,7 +36,7 @@
 
         public override string Name => "Cooking stove";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 

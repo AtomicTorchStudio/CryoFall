@@ -70,7 +70,7 @@
 
         public override string Name => "Player character";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
         public override double PhysicsBodyAccelerationCoef => 10;
 
@@ -488,7 +488,7 @@
 
             if (publicState.IsDead)
             {
-                VehicleSystem.ServerCharacterExitCurrentVehicle(character);
+                VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
 
                 // dead - stops processing character
                 var world = Server.World;

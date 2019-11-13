@@ -117,9 +117,22 @@
             }
         }
 
+        public static void OnPlasmaHit(ICharacter damagedCharacter, double damage)
+        {
+            // usually plasma firing in 4 projects each dealing 1/4th of damage
+            if (damage < MinDamageForSpecialEffect / 4.0)
+            {
+                return;
+            }
+
+            // TODO: currently there are no reasonable effects to add to energy weapons, consider adding something later, maybe more damage to armor or something else
+            damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 0.1);
+        }
+
         public static void OnShotgunHit(ICharacter damagedCharacter, double damage)
         {
-            if (damage < MinDamageForSpecialEffect)
+            // usually shotguns are firing in 6 projects each dealing 1/6th of damage
+            if (damage < MinDamageForSpecialEffect / 6.0)
             {
                 return;
             }

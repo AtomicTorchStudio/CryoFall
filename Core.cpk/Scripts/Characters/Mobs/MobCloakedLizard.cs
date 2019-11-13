@@ -21,7 +21,7 @@
 
         public override string Name => "Cloaked lizard";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.HardTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.HardTissues;
 
         public override double StatDefaultHealthMax => 250;
 

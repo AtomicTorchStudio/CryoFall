@@ -18,6 +18,8 @@
 
         public override ushort EnergyUsePerSecondMoving => 120;
 
+        public override double EngineSoundVolume => 0.3;
+
         public override Color LightColor => LightColors.Flashlight.WithAlpha(0x88);
 
         public override Size2F LightLogicalSize => 10;
@@ -45,7 +47,7 @@
         public override double VehicleWorldHeight => 0.5;
 
         protected override SoundResource EngineSoundResource { get; }
-            = new SoundResource("Objects/Vehicles/Hoverboard/Process1");
+            = new SoundResource("Objects/Vehicles/Hoverboard/Process2");
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {

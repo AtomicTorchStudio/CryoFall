@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "R9ZR5KUUa+cUTrQRnNiF+yvjZ38", "spine": "3.7.94", "width": 91.97, "height": 135.16 },
+"skeleton": { "hash": "zL7o5NCeG2pbSwUyzb4Do7vN2Mo", "spine": "3.7.94", "width": 91.97, "height": 135.16 },
 "bones": [
 	{ "name": "root", "rotation": 0.05, "scaleX": 0.068, "scaleY": 0.068 },
 	{ "name": "Pelvis", "parent": "root", "length": 145.08, "rotation": 94.16, "x": -42.54, "y": 311.43 },
@@ -1241,8 +1241,8 @@
 			}
 		},
 		"events": [
-			{ "time": 0.1333, "name": "Footstep" },
-			{ "time": 0.4333, "name": "Footstep" }
+			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
 	"RunDownStart": {
@@ -1491,7 +1491,10 @@
 					{ "time": 0.3333, "x": -71, "y": 37.08 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.3, "name": "Footstep" }
+		]
 	},
 	"RunDownStartAbort": {
 		"bones": {
@@ -1743,7 +1746,10 @@
 					{ "time": 0.3333, "x": -3.5, "y": 49.74 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.3, "name": "Footstep" }
+		]
 	},
 	"RunSide": {
 		"bones": {
@@ -1954,29 +1960,11 @@
 					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
 					{ "time": 0.6667, "x": 1, "y": 1 }
 				]
-			},
-			"ShoulderLeft": {
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.6667, "x": 1, "y": 1 }
-				]
-			},
-			"UpperArmLeft": {
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.6667, "x": 1, "y": 1 }
-				]
-			},
-			"LowerArmLeft": {
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.6667, "x": 1, "y": 1 }
-				]
 			}
 		},
 		"events": [
-			{ "time": 0.1667, "name": "Footstep" },
-			{ "time": 0.4667, "name": "Footstep" }
+			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
 	"RunSideBackward": {
@@ -2065,18 +2053,6 @@
 					{ "time": 0.5, "x": 7.21, "y": -0.34 },
 					{ "time": 0.6667, "x": 0, "y": 0 }
 				],
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.6667, "x": 1, "y": 1 }
-				]
-			},
-			"ShoulderRight": {
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.6667, "x": 1, "y": 1 }
-				]
-			},
-			"ShoulderLeft": {
 				"scale": [
 					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
 					{ "time": 0.6667, "x": 1, "y": 1 }
@@ -2199,30 +2175,6 @@
 					{ "time": 0.6667, "x": 1, "y": 1 }
 				]
 			},
-			"UpperArmLeft": {
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.6667, "x": 1, "y": 1 }
-				]
-			},
-			"LowerArmLeft": {
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.6667, "x": 1, "y": 1 }
-				]
-			},
-			"UpperArmRight": {
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.6667, "x": 1, "y": 1 }
-				]
-			},
-			"LowerArmRight": {
-				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.6667, "x": 1, "y": 1 }
-				]
-			},
 			"root": {
 				"scale": [
 					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
@@ -2231,8 +2183,8 @@
 			}
 		},
 		"events": [
-			{ "time": 0.1333, "name": "Footstep" },
-			{ "time": 0.4667, "name": "Footstep" }
+			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
 	"RunSideBackwardStart": {
@@ -2312,8 +2264,7 @@
 					{ "time": 0, "x": 0, "y": 0 }
 				],
 				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.3333, "x": 1, "y": 1 }
+					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
 			"ShoulderLeft": {
@@ -2324,8 +2275,7 @@
 					{ "time": 0, "x": 0, "y": 0 }
 				],
 				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.3333, "x": 1, "y": 1 }
+					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
 			"FootRight": {
@@ -2440,8 +2390,7 @@
 					{ "time": 0, "x": 0, "y": 0 }
 				],
 				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.3333, "x": 1, "y": 1 }
+					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
 			"LowerArmLeft": {
@@ -2452,8 +2401,7 @@
 					{ "time": 0, "x": 0, "y": 0 }
 				],
 				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.3333, "x": 1, "y": 1 }
+					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
 			"UpperArmRight": {
@@ -2464,8 +2412,7 @@
 					{ "time": 0, "x": 0, "y": 0 }
 				],
 				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.3333, "x": 1, "y": 1 }
+					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
 			"LowerArmRight": {
@@ -2476,16 +2423,13 @@
 					{ "time": 0, "x": 0, "y": 0 }
 				],
 				"scale": [
-					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.3333, "x": 1, "y": 1 }
-				]
-			},
-			"root": {
-				"scale": [
-					{ "time": 0.3333, "x": 1, "y": 1 }
+					{ "time": 0, "x": 1, "y": 1 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.3, "name": "Footstep" }
+		]
 	},
 	"RunSideBackwardStartAbort": {
 		"bones": {
@@ -2717,7 +2661,10 @@
 					{ "time": 0, "x": 1, "y": 1 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.3, "name": "Footstep" }
+		]
 	},
 	"RunSideStart": {
 		"bones": {
@@ -2939,7 +2886,10 @@
 					{ "time": 0, "x": 1, "y": 1 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.3, "name": "Footstep" }
+		]
 	},
 	"RunSideStartAbort": {
 		"bones": {
@@ -3138,7 +3088,10 @@
 					{ "time": 0.3333, "x": 1, "y": 1 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.3, "name": "Footstep" }
+		]
 	},
 	"RunUp": {
 		"bones": {
@@ -3456,8 +3409,8 @@
 			}
 		},
 		"events": [
-			{ "time": 0.1333, "name": "Footstep" },
-			{ "time": 0.4333, "name": "Footstep" }
+			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
 	"RunUpStart": {
@@ -3709,7 +3662,10 @@
 					{ "time": 0.3333, "x": 1, "y": 1 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.3, "name": "Footstep" }
+		]
 	},
 	"RunUpStartAbort": {
 		"bones": {
@@ -3961,7 +3917,10 @@
 					{ "time": 0.3333, "x": -3.5, "y": 49.74 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.3, "name": "Footstep" }
+		]
 	},
 	"WeaponAiming": {
 		"bones": {

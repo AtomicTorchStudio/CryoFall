@@ -68,6 +68,8 @@
             }
         }
 
+        public bool IsReloading { get; private set; }
+
         public IItem Item
         {
             get => this.item;
@@ -144,7 +146,7 @@
 
         private void ActiveWeaponChangedHandler()
         {
-            if (this.item != this.weaponState.ActiveItemWeapon)
+            if (this.item != this.weaponState.ItemWeapon)
             {
                 // stop any countdown animation
                 this.WeaponSwitchDurationSeconds = 0;
@@ -195,6 +197,9 @@
                 this.ReloadDurationSeconds = 0;
                 this.ReloadDurationSeconds = reloadingState.SecondsToReloadRemains;
             }
+
+            this.IsReloading = reloadingState != null
+                               && reloadingState.Item == this.item;
 
             this.UpdateCurrentProtoItem();
         }

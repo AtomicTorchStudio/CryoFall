@@ -18,6 +18,8 @@
 
         public override ushort EnergyUsePerSecondMoving => 100;
 
+        public override double EngineSoundVolume => 0.4;
+
         public override Color LightColor => LightColors.Flashlight.WithAlpha(0x88);
 
         public override Size2F LightLogicalSize => 10;

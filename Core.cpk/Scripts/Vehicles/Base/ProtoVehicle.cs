@@ -142,7 +142,7 @@
 
         public abstract double MaxDistanceToInteract { get; }
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public abstract double PhysicsBodyAccelerationCoef { get; }
 
@@ -159,7 +159,12 @@
         public override string ShortId { get; }
 
         public virtual SoundResource SoundResourceLightsToggle { get; }
-            = new SoundResource("Items/Equipment/UseNightVision.ogg"); // TODO: use different sound
+
+        public virtual float SoundResourceLightsToggleVolume => 0.5f;
+
+        public abstract SoundResource SoundResourceVehicleDismount { get; }
+
+        public abstract SoundResource SoundResourceVehicleMount { get; }
 
         public abstract double StatMoveSpeed { get; }
 
@@ -237,6 +242,7 @@
             }
 
             WindowObjectVehicleAssemblyBay.CloseActiveMenu();
+            Client.Audio.PlayOneShot(VehicleSystem.SoundResourceVehicleBuilt);
         }
 
         public async void ClientRequestRepair()
@@ -252,7 +258,10 @@
             if (result != VehicleCanRepairCheckResult.Success)
             {
                 this.ClientShowNotificationCannotRepair(result);
+                return;
             }
+
+            Client.Audio.PlayOneShot(VehicleSystem.SoundResourceVehicleRepair);
         }
 
         public virtual void ClientSetupSkeleton(
@@ -289,7 +298,9 @@
                     if (currentPilot != null
                         && !currentPilot.IsCurrentClientCharacter)
                     {
-                        Api.Client.Audio.PlayOneShot(this.SoundResourceLightsToggle, vehicle);
+                        Api.Client.Audio.PlayOneShot(this.SoundResourceLightsToggle,
+                                                     vehicle,
+                                                     volume: this.SoundResourceLightsToggleVolume);
                     }
                 },
                 subscriptionOwner: GetClientState(vehicle));
@@ -346,7 +357,9 @@
             Logger.Info($"Player switching vehicle light mode: {vehicle}, isActive={setIsActive}");
             this.CallServer(_ => _.ServerRemote_SetCurrentVehicleLightsMode(setIsActive));
 
-            Api.Client.Audio.PlayOneShot(this.SoundResourceLightsToggle, vehicle);
+            Api.Client.Audio.PlayOneShot(this.SoundResourceLightsToggle,
+                                         vehicle,
+                                         volume: this.SoundResourceLightsToggleVolume);
         }
 
         public void PrepareProtoSetLinkWithTechNode(TechNode techNode)
@@ -589,6 +602,11 @@
             return null;
         }
 
+        public virtual double SharedGetMoveSpeedMultiplier(IDynamicWorldObject vehicle, ICharacter characterPilot)
+        {
+            return 1.0;
+        }
+
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
             return (0, this.VehicleWorldHeight / 2.2);
@@ -668,10 +686,17 @@
         public VehicleCanBuildCheckResult SharedPlayerCanBuild(ICharacter character)
         {
             var currentInteractionObject = InteractionCheckerSystem.SharedGetCurrentInteraction(character);
-            if (!(currentInteractionObject?.ProtoWorldObject is IProtoVehicleAssemblyBay
+            var protoWorldObject = currentInteractionObject?.ProtoWorldObject;
+            if (!(protoWorldObject is IProtoVehicleAssemblyBay
                       protoVehicleAssemblyBay))
             {
                 return VehicleCanBuildCheckResult.NotInteractingWithVehicleBay;
+            }
+
+            if (IsServer
+                && LandClaimSystem.SharedIsUnderRaidBlock(character, (IStaticWorldObject)currentInteractionObject))
+            {
+                return VehicleCanBuildCheckResult.BaseUnderRaidblock;
             }
 
             if (!this.SharedIsTechUnlocked(character))
@@ -721,6 +746,12 @@
             if (vehicleAssemblyBay is null)
             {
                 return VehicleCanRepairCheckResult.VehicleIsNotInsideVehicleAssemblyBay;
+            }
+
+            if (IsServer
+                && LandClaimSystem.SharedIsUnderRaidBlock(character, vehicleAssemblyBay))
+            {
+                return VehicleCanRepairCheckResult.BaseUnderRaidblock;
             }
 
             // tech is not required to repair the vehicle
@@ -796,11 +827,17 @@
                 this.SharedSetupCurrentPlayerUI(vehicle);
             }
 
-            // subscribe on pilot change
+            // subscribe on pilot change (works for other players only as for current player it will immediately call initialize method due to entering/leaving the private scope of the vehicle)
             publicState.ClientSubscribe(
                 _ => _.PilotCharacter,
-                _ =>
+                newPilot =>
                 {
+                    Api.Client.Audio.PlayOneShot(
+                        newPilot is null
+                            ? this.SoundResourceVehicleDismount
+                            : this.SoundResourceVehicleMount,
+                        vehicle.Position + this.SharedGetObjectCenterWorldOffset(vehicle));
+
                     // force re-initialize the vehicle
                     vehicle.ClientInitialize();
                 },
@@ -1080,7 +1117,7 @@
                     {
                         // offline player is removed from the vehicle as it was too long in offline
                         // (required to ensure players will not use all energy in vehicle due to idle consumption)
-                        VehicleSystem.ServerCharacterExitVehicle(pilotCharacter, vehicle: data.GameObject);
+                        VehicleSystem.ServerCharacterExitCurrentVehicle(pilotCharacter, force: true);
                     }
                 }
             }
@@ -1117,11 +1154,6 @@
                 // apply non-default scale
                 data.PhysicsBody.ApplyShapesScale(scale);
             }
-        }
-
-        public virtual double SharedGetMoveSpeedMultiplier(IDynamicWorldObject vehicle, ICharacter characterPilot)
-        {
-            return 1.0;
         }
 
         protected abstract void SharedGetSkeletonProto(
@@ -1183,6 +1215,11 @@
                     message = PowerGridSystem.SetPowerModeResult.NotEnoughPower.GetDescription();
                     break;
 
+                case VehicleCanBuildCheckResult.BaseUnderRaidblock:
+                    LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(
+                        ClientCurrentCharacterHelper.Character);
+                    return;
+
                 default:
                     message = checkResult.GetDescription();
                     break;
@@ -1206,6 +1243,11 @@
                 case VehicleCanRepairCheckResult.NotEnoughPower:
                     message = PowerGridSystem.SetPowerModeResult.NotEnoughPower.GetDescription();
                     break;
+
+                case VehicleCanRepairCheckResult.BaseUnderRaidblock:
+                    LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(
+                        ClientCurrentCharacterHelper.Character);
+                    return;
 
                 default:
                     message = checkResult.GetDescription();
@@ -1266,7 +1308,29 @@
             this.ServerOnBuilt(vehicle, character);
 
             Logger.Important("Built a vehicle: " + vehicle, character);
+
+            // notify other players in scope
+            var soundPosition = vehicleAssemblyBay.TilePosition.ToVector2D()
+                                + ((IProtoVehicleAssemblyBay)vehicleAssemblyBay.ProtoGameObject)
+                                .PlatformCenterWorldOffset;
+            using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(vehicle, tempPlayers);
+            tempPlayers.Remove(character);
+
+            this.CallClient(tempPlayers,
+                            _ => _.ServerRemote_OnVehicleBuiltByOtherPlayer(soundPosition));
+
             return VehicleCanBuildCheckResult.Success;
+        }
+
+        private void ServerRemote_OnVehicleBuiltByOtherPlayer(Vector2D position)
+        {
+            Client.Audio.PlayOneShot(VehicleSystem.SoundResourceVehicleBuilt, position);
+        }
+
+        private void ServerRemote_OnVehicleRepairByOtherPlayer(Vector2D position)
+        {
+            Client.Audio.PlayOneShot(VehicleSystem.SoundResourceVehicleRepair, position);
         }
 
         private VehicleCanRepairCheckResult ServerRemote_RepairVehicle()
@@ -1297,6 +1361,18 @@
             this.ServerOnRepair(vehicle, character);
 
             Logger.Important("Repaired a vehicle: " + vehicle, character);
+
+            // notify other players in scope
+            var soundPosition = vehicleAssemblyBay.TilePosition.ToVector2D()
+                                + ((IProtoVehicleAssemblyBay)vehicleAssemblyBay.ProtoGameObject)
+                                .PlatformCenterWorldOffset;
+            using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(vehicle, tempPlayers);
+            tempPlayers.Remove(character);
+
+            this.CallClient(tempPlayers,
+                            _ => _.ServerRemote_OnVehicleRepairByOtherPlayer(soundPosition));
+
             return VehicleCanRepairCheckResult.Success;
         }
 

@@ -124,7 +124,7 @@
 
         public override string Name => "Pragmium source";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public double PsiIntensity => 0.1;
 

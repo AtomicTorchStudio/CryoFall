@@ -99,6 +99,8 @@
 
         public bool PresetUseSectorDensity { get; }
 
+        public ushort? SpawnLimitPerIteration { get; set; }
+
         //public bool UseSectorDensity { get; }
 
         /// <summary>

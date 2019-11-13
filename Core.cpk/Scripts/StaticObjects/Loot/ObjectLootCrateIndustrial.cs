@@ -17,7 +17,7 @@
     {
         public override string Name => "Industrial crate";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 

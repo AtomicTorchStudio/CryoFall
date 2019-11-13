@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Stats;
@@ -33,12 +34,14 @@
             FinalStatsCache characterFinalStatsCache,
             [CanBeNull] IItem weapon,
             [CanBeNull] IProtoItemWeapon protoWeapon,
+            [CanBeNull] IProtoItemAmmo protoAmmo,
             DamageDescription damageDescription,
             IProtoObjectExplosive protoObjectExplosive = null)
         {
             this.Character = character;
             this.Weapon = weapon;
             this.ProtoWeapon = (IProtoItemWeapon)weapon?.ProtoItem ?? protoWeapon;
+            this.ProtoAmmo = protoAmmo;
             this.ProtoObjectExplosive = protoObjectExplosive;
 
             if (damageDescription == null)
@@ -86,7 +89,8 @@
             this.DamageValue = damageDescription.DamageValue * (protoWeapon?.DamageMultiplier ?? 1.0)
                                + characterFinalStatsCache[StatName.DamageAdd];
 
-            if (protoWeapon?.WeaponSkillProto != null)
+            var weaponSkillProto = protoWeapon?.WeaponSkillProto;
+            if (weaponSkillProto != null)
             {
                 var statName = protoWeapon.WeaponSkillProto.StatNameDamageBonusMultiplier;
                 this.DamageValue *= characterFinalStatsCache.GetMultiplier(statName);
@@ -104,9 +108,35 @@
 
             this.FinalDamageMultiplier = damageDescription.FinalDamageMultiplier
                                          + characterFinalStatsCache[StatName.AttackFinalDamageMultiplier];
+
+            var probability = protoWeapon?.SpecialEffectProbability ?? 0;
+            if (weaponSkillProto != null)
+            {
+                var statNameSpecialEffectChance = weaponSkillProto.StatNameSpecialEffectChanceMultiplier;
+                probability *= characterFinalStatsCache.GetMultiplier(statNameSpecialEffectChance);
+                this.SpecialEffectProbability = probability;
+            }
+
+            this.FireScatterPreset = protoAmmo?.OverrideFireScatterPreset 
+                                   ?? protoWeapon?.FireScatterPreset
+                                   ?? default;
+            var shotsPerFire = this.FireScatterPreset.ProjectileAngleOffets.Length;
+            if (shotsPerFire > 1)
+            {
+                // decrease final damage and special effect multiplier on the number of shots per fire
+                var coef = 1.0 / shotsPerFire;
+                this.FinalDamageMultiplier *= coef;
+                this.SpecialEffectProbability *= coef;
+            }
         }
 
         public ICharacter Character { get; }
+
+        public WeaponFireScatterPreset FireScatterPreset { get; }
+
+        public double SpecialEffectProbability { get; }
+
+        public IProtoItemAmmo ProtoAmmo { get; }
 
         private StatName GetProportionStatName(DamageType damageType)
         {

@@ -11,7 +11,7 @@
             = ExplosionPreset.CreatePreset(
                 protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround1>(),
                 serverDamageApplyDelay: 0.8 * 0.25,
-                soundSetPath: "Explosions/ExplosionLarge",
+                soundSetPath: "Explosions/ExplosionPragmium",
                 spriteAnimationDuration: 0.9,
                 spriteSetPath: "FX/Explosions/ExplosionLarge3",
                 spriteAtlasColumns: 8,
@@ -81,7 +81,7 @@
             = ExplosionPreset.CreatePreset(
                 protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround2Pragmium>(),
                 serverDamageApplyDelay: 0.8 * 0.25,
-                soundSetPath: "Explosions/ExplosionLarge",
+                soundSetPath: "Explosions/ExplosionPragmium",
                 spriteAnimationDuration: 1,
                 spriteSetPath: "FX/Explosions/ExplosionLarge3",
                 spriteAtlasColumns: 8,

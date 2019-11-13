@@ -33,7 +33,7 @@
 
         public override string Name => "Pragmium source explosion";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
         {

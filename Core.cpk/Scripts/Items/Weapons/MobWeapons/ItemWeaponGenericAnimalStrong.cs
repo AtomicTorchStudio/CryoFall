@@ -30,9 +30,9 @@
                 damageDistribution: new DamageDistribution(DamageType.Impact, 1));
         }
 
-        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()
         {
-            return MaterialHitsSoundPresets.MeleeSoftTissuesOnly;
+            return MaterialHitsSoundPresets.MeleeNoWeapon;
         }
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)
