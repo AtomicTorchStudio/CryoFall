@@ -1470,7 +1470,7 @@ Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Application impossible ici
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
-Un foie artificiel bio-génétiquement créé. Améliore le filtrage du sang, permettant d'ignorer les effets négatifs de l'utilisation intensive de certains médicaments.
+Un foie artificiel bio-génétiquement créé. Améliore le filtrage du sang, permettant d'ignorer certains effets négatifs de l'utilisation intensive de médicaments.
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
 Foie artificiel

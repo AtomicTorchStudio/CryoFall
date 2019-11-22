@@ -147,48 +147,68 @@
 
                 ClientTryRequestWorldResourcesAsync();
 
-                async void ClientTryRequestWorldResourcesAsync()
+                void ClientTryRequestWorldResourcesAsync()
                 {
                     if (Api.Client.Characters.CurrentPlayerCharacter == null)
                     {
                         return;
                     }
 
-                    Logger.Important("World map resource marks requested from server");
-
-                    var managerInstance = await Instance.CallServer(_ => _.ServerRemote_AcquireManagerInstance());
-                    var marksList = WorldMapResourceMarksManager.GetPublicState(managerInstance)
-                                                                .Marks;
-                    Logger.Important($"World map resource marks received from server: {marksList.Count} marks total");
-
-                    //ClientWorldMapResourceMarksManager.SetAreas(list);
-                    if (sharedResourceMarksList != null)
-                    {
-                        var onRemoved = ClientMarkRemoved;
-                        if (onRemoved != null)
+                    // researched technologies might be still not received so let's wait a bit
+                    ClientTimersSystem.AddAction(
+                        delaySeconds: 3,
+                        async () =>
                         {
-                            foreach (var mark in sharedResourceMarksList)
+                            if (Api.Client.Characters.CurrentPlayerCharacter == null)
                             {
-                                onRemoved.Invoke(mark);
+                                return;
                             }
-                        }
 
-                        sharedResourceMarksList.ClientElementInserted -= this.ClientMarksListElementInsertedHandler;
-                        sharedResourceMarksList.ClientElementRemoved -= this.ClientMarksListElementRemovedHandler;
-                    }
+                            Logger.Important("World map resource marks requested from server");
 
-                    sharedResourceMarksList = marksList;
-                    sharedResourceMarksList.ClientElementInserted += this.ClientMarksListElementInsertedHandler;
-                    sharedResourceMarksList.ClientElementRemoved += this.ClientMarksListElementRemovedHandler;
+                            var managerInstance =
+                                await Instance.CallServer(
+                                    _ => _.ServerRemote_AcquireManagerInstance());
 
-                    var onAdded = ClientMarkAdded;
-                    if (onAdded != null)
-                    {
-                        foreach (var mark in sharedResourceMarksList)
-                        {
-                            onAdded.Invoke(mark);
-                        }
-                    }
+                            var marksList = WorldMapResourceMarksManager
+                                            .GetPublicState(managerInstance)
+                                            .Marks;
+                            Logger.Important(
+                                $"World map resource marks received from server: {marksList.Count} marks total");
+
+                            if (sharedResourceMarksList != null)
+                            {
+                                var onRemoved = ClientMarkRemoved;
+                                if (onRemoved != null)
+                                {
+                                    foreach (var mark in
+                                        sharedResourceMarksList)
+                                    {
+                                        onRemoved.Invoke(mark);
+                                    }
+                                }
+
+                                sharedResourceMarksList.ClientElementInserted
+                                    -= this
+                                        .ClientMarksListElementInsertedHandler;
+                                sharedResourceMarksList.ClientElementRemoved
+                                    -= this
+                                        .ClientMarksListElementRemovedHandler;
+                            }
+
+                            sharedResourceMarksList = marksList;
+                            sharedResourceMarksList.ClientElementInserted += this.ClientMarksListElementInsertedHandler;
+                            sharedResourceMarksList.ClientElementRemoved += this.ClientMarksListElementRemovedHandler;
+
+                            var onAdded = ClientMarkAdded;
+                            if (onAdded != null)
+                            {
+                                foreach (var mark in sharedResourceMarksList)
+                                {
+                                    onAdded.Invoke(mark);
+                                }
+                            }
+                        });
                 }
             }
 

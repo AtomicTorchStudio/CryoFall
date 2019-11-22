@@ -93,6 +93,11 @@
         {
             base.ServerUpdate(data);
 
+            if (!data.Character.ServerIsOnline)
+            {
+                return;
+            }
+
             // calculate based damage for a given delta time
             var damage = DamagePerSecondByIntensity * Math.Pow(data.Intensity, 1.5) * data.DeltaTime;
 

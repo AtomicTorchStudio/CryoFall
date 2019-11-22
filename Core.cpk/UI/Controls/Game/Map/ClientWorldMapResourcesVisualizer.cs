@@ -27,6 +27,9 @@
         public const string Notification_NewResourceAvailable_Title =
             "New resource available";
 
+        private readonly List<(WorldMapResourceMark mark, HUDNotificationControl notification)> notifications
+            = new List<(WorldMapResourceMark mark, HUDNotificationControl notification)>();
+
         private readonly List<(WorldMapResourceMark mark, FrameworkElement mapControl)> visualizedMarks
             = new List<(WorldMapResourceMark, FrameworkElement)>();
 
@@ -94,37 +97,10 @@
                                  ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
         }
 
-        private static void UpdateNotification(WorldMapResourceMark mark, HUDNotificationControl notification)
+        private void AddNotification(in WorldMapResourceMark mark, HUDNotificationControl notification)
         {
-            if (notification.IsHiding)
-            {
-                return;
-            }
-
-            if (!WorldMapResourceMarksSystem.SharedIsContainsMark(mark))
-            {
-                notification.Hide(quick: true);
-                return;
-            }
-
-            var protoResource = mark.ProtoWorldObject;
-            var timeRemains = (int)WorldMapResourceMarksSystem
-                .SharedCalculateTimeToClaimLimitRemovalSeconds(mark.ServerSpawnTime);
-            if (timeRemains <= 0)
-            {
-                notification.Hide(quick: false);
-                return;
-            }
-
-            notification.SetMessage(
-                GetUpdatedRecentResourceNotificationText(protoResource,
-                                                         mark.Position,
-                                                         timeRemains));
-
-            // schedule recursive update in a second
-            ClientTimersSystem.AddAction(
-                delaySeconds: 1,
-                () => UpdateNotification(mark, notification));
+            this.RemoveNotification(mark, quick: true);
+            this.notifications.Add((mark, notification));
         }
 
         private void MarkAddedHandler(WorldMapResourceMark mark)
@@ -179,7 +155,8 @@
                 icon: protoResource.Icon,
                 autoHide: false);
 
-            UpdateNotification(mark, notification);
+            this.AddNotification(mark, notification);
+            this.UpdateNotification(mark, notification);
         }
 
         private void MarkRemovedHandler(WorldMapResourceMark mark)
@@ -194,7 +171,56 @@
 
                 this.visualizedMarks.RemoveAt(index);
                 this.worldMapController.RemoveControl(entry.mapControl);
+                this.RemoveNotification(mark, quick: true);
             }
+        }
+
+        private void RemoveNotification(in WorldMapResourceMark mark, bool quick)
+        {
+            for (var index = 0; index < this.notifications.Count; index++)
+            {
+                var pair = this.notifications[index];
+                if (!pair.mark.Equals(mark))
+                {
+                    continue;
+                }
+
+                pair.notification.Hide(quick);
+                this.notifications.RemoveAt(index--);
+            }
+        }
+
+        private void UpdateNotification(WorldMapResourceMark mark, HUDNotificationControl notification)
+        {
+            if (notification.IsHiding)
+            {
+                return;
+            }
+
+            if (!WorldMapResourceMarksSystem.SharedIsContainsMark(mark))
+            {
+                this.RemoveNotification(mark, quick: true);
+                return;
+            }
+
+            var protoResource = mark.ProtoWorldObject;
+            var timeRemains = (int)WorldMapResourceMarksSystem
+                .SharedCalculateTimeToClaimLimitRemovalSeconds(mark.ServerSpawnTime);
+            if (timeRemains <= 0)
+            {
+                this.RemoveNotification(mark, quick: false);
+                return;
+            }
+
+            notification.SetMessage(
+                GetUpdatedRecentResourceNotificationText(protoResource,
+                                                         mark.Position,
+                                                         timeRemains));
+
+            // schedule recursive update in a second
+            ClientTimersSystem.AddAction(
+                delaySeconds: 1,
+                () => this.UpdateNotification(mark, notification));
         }
     }
 }

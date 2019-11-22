@@ -33,7 +33,7 @@
         {
             return new WeaponFirePatternPreset(
                 initialSequence: new[] { 0.0, 1.0 },
-                cycledSequence: new[] { 5.5, -4.5, 6.0, -6.0 });
+                cycledSequence: new[] { 4.5, -3.5, 5.0, -5.0 });
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)

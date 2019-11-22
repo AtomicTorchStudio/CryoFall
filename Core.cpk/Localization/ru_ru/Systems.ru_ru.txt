@@ -79,7 +79,7 @@ Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 Вы можете разблокировать этого игрока позже, через меню общения.
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
-Снять блокировку с игрока {0}?
+Разблокировать игрока {0}?
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 Общий

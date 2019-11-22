@@ -716,7 +716,7 @@ Scripts/Items/Food/ItemPineapple@Name:
 Ананас
 
 Scripts/Items/Food/ItemRiceCooked@Description:
-Можно есть только его, а можно готовить его в составе других, более сложных блюд.
+Можно есть в чистом виде или готовить его в составе других, более сложных блюд.
 
 Scripts/Items/Food/ItemRiceCooked@Name:
 Вареный рис
@@ -1470,7 +1470,7 @@ Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Невозможно применить здесь
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
-Искусственная биоинженерная печень. Позволяет улучшить фильтрацию крови, полностью снимая эффект передозировки лекарствами.
+Имплант биоинженерной печени. Улучшает циркуляцию крови, уменьшая негативные последствия чрезмерного употребления лекарств.
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
 Искусственная печень

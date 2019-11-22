@@ -29,6 +29,8 @@
 
         public override string Name => "Steppen Hawk";
 
+        public override double ReadyDelayDuration => 0.6;
+
         public override double SpecialEffectProbability => 0.20;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();

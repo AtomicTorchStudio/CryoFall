@@ -43,6 +43,11 @@
         /// </summary>
         protected abstract double TimeToReachFullIntensitySeconds { get; }
 
+        protected override IEnumerable<ICharacter> ServerAutoAddGetCharacterCandidates()
+        {
+            return Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true);
+        }
+
         protected virtual double ServerCalculateEnvironmentalIntensityAroundCharacter(ICharacter character)
         {
             Server.World.GetWorldObjectsInView(character, TempResult, sortByDistance: false);

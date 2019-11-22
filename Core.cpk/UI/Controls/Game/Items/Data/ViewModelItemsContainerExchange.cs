@@ -209,9 +209,11 @@
 
         protected override void DisposeViewModel()
         {
-            base.DisposeViewModel();
+            this.IsActive = false;
             this.inputListener?.Stop();
             this.inputListener = null;
+
+            base.DisposeViewModel();
         }
 
         private void ExecuteCommandMatch(object direction)

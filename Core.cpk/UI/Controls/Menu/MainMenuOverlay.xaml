@@ -71,7 +71,7 @@
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
-                                        <Image Source="/UI/Images/Logo/logo_cryofall_128_flat.png"
+                                        <Image Source="/UI/Images/Logo/logo_cryofall_128.png"
                                                Grid.Column="0"
                                                Margin="10,5,40,5"
                                                Stretch="Uniform"

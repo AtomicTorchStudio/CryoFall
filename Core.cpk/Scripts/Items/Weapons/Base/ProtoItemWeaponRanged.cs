@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons
 {
     using System.Collections.Generic;
-    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
@@ -11,8 +10,6 @@
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
-    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public abstract class ProtoItemWeaponRanged
         <TPrivateState,
@@ -57,17 +54,12 @@
             => (SoundConstants.AudioListenerMinDistanceRangedShot,
                 SoundConstants.AudioListenerMaxDistanceRangedShot);
 
-        public override void ClientSetupSkeleton(
-            IItem item,
-            ICharacter character,
-            ProtoCharacterSkeleton protoCharacterSkeleton,
-            IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+        protected override void ClientPreloadTextures()
         {
+            base.ClientPreloadTextures();
+
             // preload the muzzle flash sprite sheet
             Client.Rendering.PreloadTextureAsync(this.MuzzleFlashDescription.TextureAtlas);
-
-            base.ClientSetupSkeleton(item, character, protoCharacterSkeleton, skeletonRenderer, skeletonComponents);
         }
 
         protected abstract void PrepareMuzzleFlashDescription(MuzzleFlashDescription description);

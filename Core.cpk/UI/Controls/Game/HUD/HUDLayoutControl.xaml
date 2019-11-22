@@ -17,6 +17,7 @@
     xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics"
     xmlns:demoVersion="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.DemoVersion"
     xmlns:vehicle="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle"
+    xmlns:learningPointsNotifications="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.LearningPointsNotifications"
     mc:Ignorable="d"
     d:DesignWidth="1280" d:DesignHeight="800"
     d:DataContext="{d:DesignInstance data1:ViewModelHUD, IsDesignTimeCreatable=True}"
@@ -39,7 +40,7 @@
                     <Path Style="{StaticResource HUDWidgetStatsPathStyle}">
                         <Path.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" 
+                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
                                               Offset="0" />
                                 <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
                                               Offset="0.07" />
@@ -49,7 +50,7 @@
                                               Offset="0.74" />
                                 <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
                                               Offset="0.93" />
-                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" 
+                                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}"
                                               Offset="1" />
                             </LinearGradientBrush>
                         </Path.Fill>
@@ -144,7 +145,14 @@
             <Border VerticalAlignment="Bottom"
                     HorizontalAlignment="Right"
                     Margin="5,5,5,77">
-                <itemsNotifications:HUDItemsNotificationsPanelControl />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <itemsNotifications:HUDItemsNotificationsPanelControl />
+                    <learningPointsNotifications:HUDLearningPointsNotificationsPanelControl Grid.Row="1" />
+                </Grid>
             </Border>
         </core:Scalebox>
 

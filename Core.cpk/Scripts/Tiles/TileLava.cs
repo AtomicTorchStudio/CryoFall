@@ -66,7 +66,8 @@
             settings.AmbientSoundProvider = new TileAmbientSoundProvider(
                 new AmbientSoundPreset(new SoundResource("Ambient/Lava"),
                                        suppressionCoef: 1,
-                                       isSupressingMusic: true));
+                                       isSupressingMusic: true,
+                                       isUsingAmbientVolume: false));
         }
     }
 }

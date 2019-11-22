@@ -1470,7 +1470,7 @@ Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 无法在此使用
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
-人工改造肝脏。 能够提供强效血液过滤，完全抵消了药物滥用的影响。
+人造生物工程肝脏。可促进血液循环，避免某些药物用量过多的副作用。
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
 人工肝脏

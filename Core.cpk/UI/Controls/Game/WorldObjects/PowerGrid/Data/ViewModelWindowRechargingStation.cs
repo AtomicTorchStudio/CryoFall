@@ -17,6 +17,8 @@
                     IsContainerTitleVisible = false,
                     IsManagementButtonsVisible = false
                 };
+
+            ViewModelItemsContainerExchange.IsActive = true;
         }
 
         public ProtoObjectRechargingStation.PrivateState PrivateState { get; }

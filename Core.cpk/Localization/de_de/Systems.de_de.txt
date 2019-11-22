@@ -73,13 +73,13 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0} ist dem Spiel beigetreten
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
-Bist du sicher, dass du {0} blocken möchtest?
+Möchtest du {0} wirklich blocken?
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 Du kannst diesen Spieler später im Social-Menü entblocken.
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
-Bist du sicher, dass du {0} entblocken möchtest?
+Möchtest du {0} wirklich entblocken?
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 Global

@@ -5,6 +5,9 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectLootPileGarbageSmall : ProtoObjectLootContainer
     {
@@ -23,6 +26,15 @@
         public override float StructurePointsMax => 1000;
 
         protected override bool CanFlipSprite => true;
+
+        public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
+            => (0.5, 0.3);
+
+        protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
+        {
+            base.ClientSetupRenderer(renderer);
+            renderer.DrawOrderOffsetY = 0.5;
+        }
 
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {

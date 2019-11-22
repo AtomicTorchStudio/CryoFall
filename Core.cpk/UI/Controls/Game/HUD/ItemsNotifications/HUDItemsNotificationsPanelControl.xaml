@@ -5,13 +5,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
-    xmlns:itemsNotifications="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.ItemsNotifications"
+    xmlns:notifications="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.ItemsNotifications"
     mc:Ignorable="d">
     <StackPanel x:Name="StackPanel" Orientation="Vertical">
-        <itemsNotifications:HUDItemNotificationControl />
-        <itemsNotifications:HUDItemNotificationControl />
-        <itemsNotifications:HUDItemNotificationControl />
-        <itemsNotifications:HUDItemNotificationControl />
-        <itemsNotifications:HUDItemNotificationControl />
+        <notifications:HUDItemNotificationControl />
+        <notifications:HUDItemNotificationControl />
+        <notifications:HUDItemNotificationControl />
+        <notifications:HUDItemNotificationControl />
+        <notifications:HUDItemNotificationControl />
     </StackPanel>
 </base:BaseUserControl>

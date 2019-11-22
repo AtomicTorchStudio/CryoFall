@@ -6,11 +6,13 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Invisible;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -160,6 +162,22 @@
                 this.EngineSoundResource,
                 this.EngineSoundVolume);
             this.ClientSetupEngineAudio(vehicle, componentHoverboardSoundEmitter);
+        }
+
+        protected override void PrepareProtoVehicleDestroyedExplosionPreset(
+            out double damageRadius,
+            out ExplosionPreset explosionPreset,
+            out DamageDescription damageDescriptionCharacters)
+        {
+            damageRadius = 5;
+            explosionPreset = ExplosionPresets.Large;
+
+            damageDescriptionCharacters = new DamageDescription(
+                damageValue: 75,
+                armorPiercingCoef: 0,
+                finalDamageMultiplier: 1,
+                rangeMax: damageRadius,
+                damageDistribution: new DamageDistribution(DamageType.Kinetic, 1));
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

@@ -1470,7 +1470,7 @@ Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Hier nicht verwendbar
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
-Künstliche biotechnologische Leber. Ermöglicht eine verbesserte Filterung des Bluts und verhindert so negative Effekte einer Medikamentenüberdosierung.
+Künstliche biotechnologische Leber. Ermöglicht eine verbesserte Filterung des Bluts, sodass einige Effekte von Medikamentenüberdosierung negiert werden.
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
 Künstliche Leber

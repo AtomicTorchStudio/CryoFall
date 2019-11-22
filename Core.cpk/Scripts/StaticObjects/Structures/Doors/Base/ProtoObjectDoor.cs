@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Walls;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -111,12 +112,12 @@
 
         public bool IsClosedAccessModeAvailable => true;
 
+        public virtual bool IsHeavyVehicleCanPass => false;
+
         /// <summary>
         /// If set to null the door orientation is selected automatically.
         /// </summary>
         public virtual bool? IsHorizontalDoorOnly => null;
-
-        public virtual bool IsHeavyVehicleCanPass => false;
 
         public override double ServerUpdateIntervalSeconds => 0.2; // 5 times per second
 
@@ -204,17 +205,17 @@
             return this.ClientOpenUI(new ClientObjectData((IStaticWorldObject)worldObject));
         }
 
+        ObjectDoorPrivateState IProtoObjectDoor.GetPrivateState(IStaticWorldObject door)
+        {
+            return GetPrivateState(door);
+        }
+
         void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
         void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
-        }
-
-        ObjectDoorPrivateState IProtoObjectDoor.GetPrivateState(IStaticWorldObject door)
-        {
-            return GetPrivateState(door);
         }
 
         protected static async Task<ITextureResource> ClientComposeHorizontalDoor(
@@ -731,10 +732,23 @@
 
             foreach (var result in testResult)
             {
-                if (result.PhysicsBody.AssociatedWorldObject is ICharacter)
+                var protoObject = result.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject;
+                if (protoObject is IProtoCharacter
+                    || protoObject is IProtoVehicle)
                 {
-                    // door should be kept opened as there is a character
+                    // door should be kept opened as there is a character or vehicle
                     // which will stuck if the door is closed
+                    return false;
+                }
+            }
+
+            foreach (var occupiedTile in worldObject.OccupiedTiles)
+            foreach (var staticObject in occupiedTile.StaticObjects)
+            {
+                if (staticObject.ProtoGameObject is ObjectPlayerLootContainer)
+                {
+                    // don't close, there is a player loot container in the door
+                    // (it dropped from the player who died here)
                     return false;
                 }
             }

@@ -47,5 +47,5 @@ Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
 Não é necessário reparar.
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
-Traga o veículo para o compartimento de montagem do veículo para repará-lo.
+Traga o veículo para o compartimento de montagem de veículo para repará-lo.
 

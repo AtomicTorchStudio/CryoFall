@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "ixgfpGjzAL+CXAhw1Jl87OVC+Ts", "spine": "3.7.94", "width": 97.9, "height": 137.8 },
+"skeleton": { "hash": "KkQppfeNerXRqr9YRr/mc5wTfhE", "spine": "3.7.94", "width": 97.9, "height": 137.8 },
 "bones": [
 	{ "name": "root", "rotation": 0.05, "scaleX": 0.068, "scaleY": 0.068 },
 	{ "name": "Pelvis", "parent": "root", "length": 145.08, "rotation": 94.16, "x": -42.54, "y": 311.43 },
@@ -2012,7 +2012,9 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.3333, "name": "MovementStart" },
 			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
@@ -2267,6 +2269,7 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" }
 		]
 	},
@@ -2794,7 +2797,9 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.3333, "name": "MovementStart" },
 			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
@@ -3050,7 +3055,9 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.3333, "name": "MovementStart" },
 			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
@@ -3303,6 +3310,7 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" }
 		]
 	},
@@ -3760,6 +3768,7 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" }
 		]
 	},
@@ -4342,7 +4351,9 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" },
+			{ "time": 0.3333, "name": "MovementStart" },
 			{ "time": 0.6333, "name": "Footstep" }
 		]
 	},
@@ -4599,6 +4610,7 @@
 			}
 		},
 		"events": [
+			{ "time": 0, "name": "MovementStart" },
 			{ "time": 0.3, "name": "Footstep" }
 		]
 	},

@@ -1,177 +1,189 @@
 ﻿Scripts/ClientOptions/Audio/AudioOptionMuteAudioWhenUnfocused@Name:
-向上匹配
-
-Scripts/ClientOptions/Audio/AudioOptionsCategory@Name:
-顯示土地所有者與生命條
-
-Scripts/ClientOptions/Audio/AudioOptionVolumeAmbient@Name:
-`"維修和建築行動受到限制。`
-
-Scripts/ClientOptions/Audio/AudioOptionVolumeMaster@Name:
-`[br]襲擊防護結束於：{0}。"`
-
-Scripts/ClientOptions/Audio/AudioOptionVolumeMusic@Name:
-此基地正遭受襲擊。
-
-Scripts/ClientOptions/Audio/AudioOptionVolumeSounds@Name:
 切屏後靜音
 
-Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCategory:
+Scripts/ClientOptions/Audio/AudioOptionsCategory@Name:
 聲音
 
-Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
+Scripts/ClientOptions/Audio/AudioOptionVolumeAmbient@Name:
 環境音量
 
-Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
+Scripts/ClientOptions/Audio/AudioOptionVolumeMaster@Name:
 主音量
 
-Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
+Scripts/ClientOptions/Audio/AudioOptionVolumeMusic@Name:
 音樂音量
 
-Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
+Scripts/ClientOptions/Audio/AudioOptionVolumeSounds@Name:
 聲音音量
 
-Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@TitleGeneralControlsCategory:
 通用
 
-Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
+Scripts/ClientOptions/Controls/ControlsOptionsCategory@Name:
 操控
 
-Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Button:
 開啟
 
-Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
-`"注意！你即將啟用開發者模式。`
-
-Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Dialog_Text:
+`注意！你即將啟用開發者模式。
 [br][br]
-
-Scripts/ClientOptions/General/GeneralOptionsCategory@Name:
 使用部分開發者模式功能可能導致遊戲不穩定。
-
-Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Png:
 [br][br]
-
-Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Jpeg95:
 不建議一般玩家啟用此功能。
+[br]`
 
-Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Name:
-`[br]"`
-
-Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Actual:
+Scripts/ClientOptions/General/GeneralOptionDeveloperMode@Name:
 開發者模式
 
-Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Closest:
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectInteractionTooltip@Name:
 顯示物品互動提示
 
-Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
+Scripts/ClientOptions/General/GeneralOptionDisplayObjectNameTooltip@Name:
 顯示物品名稱提示
 
-Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 攝像機縮放
 
-Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
 工具列物品選擇
 
-Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
+Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 使用滾輪
 
-Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx2:
+Scripts/ClientOptions/General/GeneralOptionsCategory@Name:
 通用
 
-Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx4:
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Png:
 PNG(無損)
 
-Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx8:
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Jpeg95:
 JPEG
 
-Scripts/ClientOptions/Video/VideoOptionAntiAliasing@Name:
+Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Name:
 截屏格式
 
-Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.VSync:
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Actual:
 適應(使用當前解析度)
 
-Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.DisplayRefreshRate:
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Closest:
 接近(使用最接近的標準解析度)
 
-Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.Off:
+Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 截屏解析度
 
-Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@Name:
+Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI縮放
 
-Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Normal:
+Scripts/ClientOptions/Video/VideoOptionAmbientOcclusion@Name:
 環境光散射
 
-Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale15:
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.None:
 無
 
-Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale2:
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx2:
 MSAA x2
 
-Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx4:
 MSAA x4
 
-Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@AntiAliasingMode.MSAAx8:
 MSAA x8
 
-Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
+Scripts/ClientOptions/Video/VideoOptionAntiAliasing@Name:
 抗鋸齒
 
-Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Windowed:
-垂直同步(推薦)
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.VSync:
+垂直同步 (推薦)
 
-Scripts/ClientOptions/Video/VideoOptionScreenMode@Name:
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.DisplayRefreshRate:
 匹配螢幕刷新率
 
-Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Message:
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.Off:
 無限制(高性能佔用)
 
-Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Title:
+Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@Name:
 FPS限制
 
-Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Button:
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Normal:
 原生（最好品質）
 
-Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_MessageFormat:
-縮減x 1.5 (運行速度快)
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale15:
+縮減 x 1.5 (運行速度快)
 
-Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:
-縮減x 2 (運行速度最快)
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale2:
+縮減 x 2 (運行速度最快)
 
-Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Ultra:
+Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
 渲染解析度
 
-Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.High:
+Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
 視頻
 
-Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Low:
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
 全屏
 
-Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Name:
+Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Windowed:
 窗口化
 
-Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.High:
+Scripts/ClientOptions/Video/VideoOptionScreenMode@Name:
 螢幕模式
 
-Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Medium:
-`"圖元解析度已被改變。`
-
-Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Low:
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Message:
+`圖元解析度已被改變。
 [br]遊戲需要重啟才能應用改動。
+[br]請手動重啟遊戲。`
 
-Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.None:
-`[br]請手動重啟遊戲。"`
-
-Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Name:
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Title:
 需要重啟
 
-Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.PPAA:
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Button:
 繼續
 
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_MessageFormat:
+`您正試圖選擇高於推薦值的圖元解析度模式。
+[br]
+[*] 推薦模式: [b]{0}[/b]
+[*] 已選模式: [b]{1}[/b]
+[br]
+[br]已選模式所需顯存高於您的機器配置。這將會導致圖像顯示不穩定和低幀數。`
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_Title:
+檢測到設置過高
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Ultra:
+超4K
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.High:
+高
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Low:
+低(模糊，不精確)
+
+Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Name:
+圖元解析度[br] (需要重啟)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.High:
+高(推薦)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Medium:
+中
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.Low:
+低
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.None:
+無(不推薦)
+
+Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Name:
+地形細節
+
+Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.PPAA:
+強制PPAA (低)
+
 Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@UIAntiAliasingMode.MSAA:
-`"您正試圖選擇高於推薦值的圖元解析度模式。`
+自動MSAA (最佳)
 
 Scripts/ClientOptions/Video/VideoOptionUIAntiAliasing@Name:
-[br]
+UI抗鋸齒
 

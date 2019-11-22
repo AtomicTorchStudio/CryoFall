@@ -49,6 +49,10 @@
 
         private ICharacter pilotCharacter;
 
+        private RendererSavedProperties? pilotShadowRendererOriginalProperties;
+
+        private RendererSavedProperties? pilotSkeletonOriginalProperties;
+
         private IComponentSpriteRenderer spriteRendererHoverboard;
 
         private IComponentSpriteRenderer spriteRendererLight;
@@ -145,16 +149,30 @@
             }
 
             var pilotClientState = this.pilotCharacter.GetClientState<BaseCharacterClientState>();
-            var skeletonPilot = pilotClientState.SkeletonRenderer;
-            if (skeletonPilot is null)
+            var pilotSkeleton = pilotClientState.SkeletonRenderer;
+            if (pilotSkeleton is null)
             {
                 return;
             }
 
-            skeletonPilot.PositionOffset = (0, offsetY);
-            skeletonPilot.DrawOrderOffsetY = BaseDrawOrderOffsetY - offsetY - 0.05;
+            if (!this.pilotSkeletonOriginalProperties.HasValue)
+            {
+                this.pilotSkeletonOriginalProperties = new RendererSavedProperties(pilotSkeleton.DrawOrder,
+                                                                                   pilotSkeleton.PositionOffset,
+                                                                                   pilotSkeleton.DrawOrderOffsetY);
+            }
+
+            pilotSkeleton.PositionOffset = (0, offsetY);
+            pilotSkeleton.DrawOrderOffsetY = BaseDrawOrderOffsetY - offsetY - 0.05;
 
             var pilotShadow = pilotClientState.RendererShadow;
+            if (!this.pilotShadowRendererOriginalProperties.HasValue)
+            {
+                this.pilotShadowRendererOriginalProperties = new RendererSavedProperties(pilotShadow.DrawOrder,
+                                                                                         pilotShadow.PositionOffset,
+                                                                                         pilotShadow.DrawOrderOffsetY);
+            }
+
             pilotShadow.DrawOrder = DrawOrder.Default;
             pilotShadow.PositionOffset = (0, offsetY);
             pilotShadow.DrawOrderOffsetY = BaseDrawOrderOffsetY - offsetY - 0.04;
@@ -171,6 +189,10 @@
         {
             this.vehicle = vehicle;
             this.lightSourceActiveEngine = lightSourceActiveEngine;
+
+            this.pilotSkeletonOriginalProperties = null;
+            this.pilotShadowRendererOriginalProperties = null;
+
             this.spriteRendererLight = Client.Rendering.CreateSpriteRenderer(
                 this.SceneObject,
                 textureResourceLight,
@@ -197,6 +219,11 @@
             this.RefreshCurrentPilotCharacter(vehiclePublicState.PilotCharacter);
         }
 
+        protected override void OnDisable()
+        {
+            this.RestoreOriginalPilotProperties();
+        }
+
         // calculate approximated velocity by using the position difference
         private Vector2D CalculateVelocity(double deltaTime)
         {
@@ -219,8 +246,71 @@
 
         private void RefreshCurrentPilotCharacter(ICharacter newPilotCharacter)
         {
+            if (this.pilotCharacter == newPilotCharacter)
+            {
+                return;
+            }
+
+            this.RestoreOriginalPilotProperties();
             this.pilotCharacter = newPilotCharacter;
             this.startTime = Client.Core.ClientRealTime;
+
+            this.pilotSkeletonOriginalProperties = null;
+            this.pilotShadowRendererOriginalProperties = null;
+        }
+
+        private void RestoreOriginalPilotProperties()
+        {
+            if (this.pilotCharacter is null
+                || !this.pilotCharacter.IsInitialized)
+            {
+                return;
+            }
+
+            var pilotClientState = this.pilotCharacter.GetClientState<BaseCharacterClientState>();
+            var pilotSkeleton = pilotClientState.SkeletonRenderer;
+            if (pilotSkeleton is null)
+            {
+                return;
+            }
+
+            this.pilotSkeletonOriginalProperties?.ApplyTo(pilotSkeleton);
+
+            var pilotShadow = pilotClientState.RendererShadow;
+            this.pilotShadowRendererOriginalProperties?.ApplyTo(pilotShadow);
+        }
+
+        private readonly struct RendererSavedProperties
+        {
+            private readonly DrawOrder drawOrder;
+
+            private readonly double drawOrderOffsetY;
+
+            private readonly Vector2D positionOffset;
+
+            public RendererSavedProperties(
+                DrawOrder drawOrder,
+                Vector2D positionOffset,
+                double drawOrderOffsetY)
+            {
+                this.drawOrder = drawOrder;
+                this.positionOffset = positionOffset;
+                this.drawOrderOffsetY = drawOrderOffsetY;
+            }
+
+            public void ApplyTo(IComponentSpriteRenderer component)
+            {
+                component.DrawOrder = this.drawOrder;
+                component.DrawOrderOffsetY = this.drawOrderOffsetY;
+                component.PositionOffset = this.positionOffset;
+            }
+
+            public void ApplyTo(IComponentSkeleton component)
+            {
+                component.DrawOrder = this.drawOrder;
+                component.DrawOrderOffsetY = this.drawOrderOffsetY;
+                component.PositionOffset = this.positionOffset;
+            }
         }
     }
 }

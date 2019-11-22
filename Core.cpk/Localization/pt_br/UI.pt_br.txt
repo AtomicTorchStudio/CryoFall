@@ -1771,10 +1771,10 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricit
 Projete sua base levando em conta a rede elétrica. Você pode construir uma série de geradores, estruturas de armazenamento e aparelhos consumidores de eletricidade.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-Vehicles
+Veículos
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-Build and upgrade a variety of futuristic vehicles to explore the world faster or use them in combat.
+Construa e melhore uma série de veículos futuristas para explorar o mundo mais rápido ou usá-los em combate.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Criaturas fantásticas

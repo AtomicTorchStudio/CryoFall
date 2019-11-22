@@ -125,7 +125,8 @@
                 if (!this.emitters.TryGetValue(ambientSoundPreset, out var existingEmitter))
                 {
                     existingEmitter = this.SceneObject.AddComponent<ComponentAmbientSoundEmitter>();
-                    existingEmitter.Setup(ambientSoundPreset.SoundResource);
+                    existingEmitter.Setup(ambientSoundPreset.SoundResource, 
+                                          ambientSoundPreset.IsUsingAmbientVolume);
                     this.emitters[ambientSoundPreset] = existingEmitter;
                 }
 

@@ -82,18 +82,10 @@
                     <Rectangle x:Name="Logo1"
                                SnapsToDevicePixels="False" Width="256" Height="256">
                         <Rectangle.Fill>
-                            <ImageBrush ImageSource="/UI/Images/Logo/icon_512_flat.png" Stretch="Uniform" />
+                            <ImageBrush ImageSource="/UI/Images/Logo/icon_512.png" Stretch="Uniform" />
                         </Rectangle.Fill>
                     </Rectangle>
-
-                    <!--<Rectangle x:Name="Logo2"
-                               SnapsToDevicePixels="False"
-                               Width="250" Height="47">
-                        <Rectangle.Fill>
-                            <ImageBrush ImageSource="/UI/Images/Logo/cryofall_256_flat.png" Stretch="Uniform" />
-                        </Rectangle.Fill>
-                    </Rectangle>-->
-
+                    
                     <!-- Text: LOADING -->
                     <TextBlock x:Name="TextBlockLoadingPhrase"
                                Text="{x:Static loc:CoreStrings.LoadingSplashScreen_Title}"

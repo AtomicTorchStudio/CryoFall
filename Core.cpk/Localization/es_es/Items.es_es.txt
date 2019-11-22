@@ -1470,7 +1470,7 @@ Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 No se puede usar en este lugar
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
-Hígado artificial creado mediante bioingeniería. Mejora el filtrado de la sangre y anula completamente los efectos de abusar de los medicamentos.
+Hígado artificial creado mediante bioingeniería. Permite un mejor filtrado de la sangre y elimina los efectos de abusar de los medicamentos.
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
 Hígado artificial

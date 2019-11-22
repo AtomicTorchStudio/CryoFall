@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons
 {
-    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Resources;
 
     public class WeaponFireTracePreset
@@ -8,6 +7,8 @@
         public readonly IReadOnlyWeaponHitSparksPreset HitSparksPreset;
 
         public readonly double TraceEndFadeOutExponent;
+
+        public readonly double TraceMinDistance;
 
         public readonly double TraceSpeed;
 
@@ -19,6 +20,8 @@
 
         public readonly double TraceWorldLength;
 
+        public readonly bool UseScreenBlending;
+
         public WeaponFireTracePreset(
             string traceTexturePath,
             IReadOnlyWeaponHitSparksPreset hitSparksPreset,
@@ -26,7 +29,8 @@
             ushort traceSpriteWidthPixels,
             int traceStartOffsetPixels,
             double traceStartScaleSpeedExponent = 1.0,
-            double traceEndFadeOutExponent = 1.0)
+            double traceEndFadeOutExponent = 1.0,
+            bool useScreenBlending = false)
         {
             this.TraceTexture = new TextureResource(traceTexturePath, isTransparent: true);
             this.TraceSpeed = traceSpeed;
@@ -36,12 +40,11 @@
             this.TraceEndFadeOutExponent = traceEndFadeOutExponent;
 
             this.TraceWorldLength = traceSpriteWidthPixels / 256.0;
-            this.TraceStartWorldOffset = -traceStartOffsetPixels / 256.0;
-        }
+            this.TraceStartWorldOffset = traceStartOffsetPixels / 256.0;
 
-        public WeaponHitSparksPreset.HitSparksEntry GetHitSparksEntry(ObjectMaterial material)
-        {
-            return this.HitSparksPreset.GetForMaterial(material);
+            this.TraceMinDistance = this.TraceWorldLength * 0.5;
+
+            this.UseScreenBlending = useScreenBlending;
         }
     }
 }

@@ -225,7 +225,10 @@
 
         <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3"
                         Style="{StaticResource MainMenuWidgetStyle}" Padding="0">
-            <Image Source="/UI/Images/Backgrounds/MainMenuArt.jpg" Stretch="UniformToFill" />
+            <ContentControl ClipToBounds="True">
+                <Image Source="/UI/Images/Backgrounds/MainMenuArt.jpg" Stretch="UniformToFill"
+                       Margin="-20,0,0,0" />
+            </ContentControl>
         </ContentControl>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3"

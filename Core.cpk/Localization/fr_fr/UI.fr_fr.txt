@@ -1763,10 +1763,10 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricit
 Concevez votre base en tenant compte de votre réseau électrique. Vous devrez construire des générateurs et des unités de stockage en fonction de votre consommation électrique.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-Vehicles
+Véhicules
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-Build and upgrade a variety of futuristic vehicles to explore the world faster or use them in combat.
+Construisez et améliorez un ensemble de véhicules futuristes pour explorer l'univers plus rapidement ou pour utiliser en combat.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Créatures fantastiques

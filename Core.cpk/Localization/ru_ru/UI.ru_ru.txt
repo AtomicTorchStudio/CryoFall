@@ -180,7 +180,7 @@ UI/CoreStrings@Demo_CanPurchase:
 Купите CryoFall, чтобы получить полную версию игры. Это единовременная покупка, которая даст вам возможность продолжить играть с того же места своим текущим персонажем (если вы играли недавно). Вы также сможете играть на серверах сообщества и серверах с модами или создать собственный сервер.
 
 UI/CoreStrings@Demo_Expired:
-Срок действия демоверсии вышел. Спасибо за игру. Надеемся, что вам понравилось!
+Срок действия демоверсии истек. Спасибо за игру. Надеемся, что вам понравилось!
 
 UI/CoreStrings@Demo_OnlyOfficialServers:
 `В этой демоверсии вы можете играть на официальных серверах игры.
@@ -450,7 +450,7 @@ UI/CoreStrings@MenuServers_Button_EditAddress:
 Изменить адрес
 
 UI/CoreStrings@MenuServers_Button_JoinServer:
-Подключиться к серверу
+Подключиться
 
 UI/CoreStrings@MenuServers_Button_RefreshAll:
 Обновить все
@@ -1714,7 +1714,7 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Ti
 Добро пожаловать в CryoFall!
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-Мы хотели бы познакомить вас с некоторыми особенностями нашей игры! CryoFall все еще находится в стадии активной разработки, но все из перечисленного далее уже доступно.
+Мы хотели бы познакомить вас с некоторыми особенностями нашей игры! CryoFall находится в стадии активной разработки, но все из перечисленного далее уже доступно.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
 Фермерство и готовка

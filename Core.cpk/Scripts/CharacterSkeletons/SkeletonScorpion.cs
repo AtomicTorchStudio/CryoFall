@@ -32,10 +32,10 @@
                                 center: (0 - 0.125, 0.1))
                 .AddShapeCircle(radius: 0.35,
                                 center: (0 + 0.125, 0.1))
-                .AddShapeCircle(radius: 0.4,
+                .AddShapeCircle(radius: 0.5,
                                 center: (0, 0.15),
                                 group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.4,
+                .AddShapeCircle(radius: 0.45, // carefully selected to ensure no damage through a wall below
                                 center: (0, 0.15),
                                 group: CollisionGroups.HitboxRanged);
         }
@@ -43,7 +43,7 @@
         public override void OnSkeletonCreated(IComponentSkeleton skeleton)
         {
             base.OnSkeletonCreated(skeleton);
-            skeleton.DrawOrderOffsetY = -0.3;
+            skeleton.DrawOrderOffsetY = -0.2;
         }
     }
 }

@@ -12,16 +12,20 @@
         public AmbientSoundPreset(
             SoundResource soundResource,
             double suppressionCoef = 0,
-            bool isSupressingMusic = false)
+            bool isSupressingMusic = false,
+            bool isUsingAmbientVolume = true)
         {
             this.SoundResource = soundResource;
             Api.Assert(suppressionCoef >= 0 && suppressionCoef <= 1,
                        nameof(suppressionCoef) + " must be in [0;1] range");
             this.SuppressionCoef = suppressionCoef;
             this.IsSupressingMusic = isSupressingMusic;
+            this.IsUsingAmbientVolume = isUsingAmbientVolume;
         }
 
         public bool IsSupressingMusic { get; }
+
+        public bool IsUsingAmbientVolume { get; }
 
         public SoundResource SoundResource { get; }
 

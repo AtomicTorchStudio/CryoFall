@@ -1,54 +1,54 @@
 ﻿Scripts/Tiles/TileBarren@Name:
-[*]不要在聊天欄刷屏或發送不雅內容。
+荒地
 
 Scripts/Tiles/TileBeachBoreal@Name:
-[br]
+海灘（寒帶）
 
 Scripts/Tiles/TileBeachTemperate@Name:
-[br]
+海灘（溫帶）
 
 Scripts/Tiles/TileClay@Name:
-`祝大家遊戲愉快! :)"`
+粘土坑
 
 Scripts/Tiles/TileForestBoreal@Name:
-歡迎來到{0}
+森林（寒帶）
 
 Scripts/Tiles/TileForestTemperate@Name:
-`"伺服器將於{0}後關閉。`
+森林（溫帶）
 
 Scripts/Tiles/TileForestTropical@Name:
-[br]
+森林（熱帶）
 
 Scripts/Tiles/TileLakeShore@Name:
-[br]原因：
+湖岸
 
 Scripts/Tiles/TileLava@Name:
-[br]{1}
+熔岩
 
 Scripts/Tiles/TileMeadows@Name:
-[br]
+草甸
 
 Scripts/Tiles/TileRoads@Name:
-`[br]請找一個安全點下線，否則你會在超時時自動斷開連接。"`
+道路
 
 Scripts/Tiles/TileRocky@Name:
-關閉
+多岩
 
 Scripts/Tiles/TileRuins@Name:
-發現了{0}技能。
+遺跡
 
 Scripts/Tiles/TileSaltFlats@Name:
-{0}級別{1}。
+鹽灘
 
 Scripts/Tiles/TileSwamp@Name:
-`"你積累了超過{0}個學習點（LP）。你應該考慮將它們投入到解鎖新技術中。`
+沼澤
 
 Scripts/Tiles/TileVolcanic@Name:
-`[br]（點擊打開技術菜單）"`
+火山
 
 Scripts/Tiles/TileWaterLake@Name:
-無法解鎖技術
+水（湖）
 
 Scripts/Tiles/TileWaterSea@Name:
-已購買
+水（海）
 

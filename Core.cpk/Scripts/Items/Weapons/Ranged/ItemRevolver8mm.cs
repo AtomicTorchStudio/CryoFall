@@ -31,6 +31,8 @@
 
         public override string Name => "Revolver";
 
+        public override double ReadyDelayDuration => 0.6;
+
         public override double SpecialEffectProbability => 0.25;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();

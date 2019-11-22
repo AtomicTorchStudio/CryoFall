@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterIdleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -168,6 +169,11 @@
                 || owner.SharedGetPlayerContainerEquipment() != item.Container)
             {
                 // player offline or not an equipped item
+                return;
+            }
+
+            if (CharacterIdleSystem.ServerIsIdlePlayer(owner))
+            {
                 return;
             }
 

@@ -54,6 +54,28 @@
                 screenShakesWorldDistanceMin: 0.2,
                 screenShakesWorldDistanceMax: 0.25);
 
+        public static readonly ExplosionPreset VeryLarge
+            = ExplosionPreset.CreatePreset(
+                protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround1>(),
+                serverDamageApplyDelay: 0.8 * 0.25,
+                soundSetPath: "Explosions/ExplosionLarge",
+                spriteAnimationDuration: 0.8,
+                spriteSetPath: "FX/Explosions/ExplosionLarge",
+                spriteAtlasColumns: 8,
+                spriteAtlasRows: 3,
+                spriteWorldSize: new Size2F(2.5, 2.5),
+                blastwaveDelay: 0.1,
+                blastwaveAnimationDuration: 0.6,
+                blastWaveColor: Color.FromRgb(0xFF, 0xBB, 0x33),
+                blastwaveWorldSizeFrom: 0.25 * new Size2F(3, 2),
+                blastwaveWorldSizeTo: 1 * new Size2F(3,      2),
+                lightDuration: 1,
+                lightWorldSize: 35,
+                lightColor: Color.FromRgb(0xFF, 0xCC, 0x66),
+                screenShakesDuration: 0.3,
+                screenShakesWorldDistanceMin: 0.2,
+                screenShakesWorldDistanceMax: 0.25);
+
         public static readonly ExplosionPreset SpecialDepositExplosion
             = ExplosionPreset.CreatePreset(
                 protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround3Deposit>(),

@@ -186,9 +186,9 @@
                 characterPrivateState.LastDismountedVehicleMapMark = new LastDismountedVehicleMapMark(vehicle);
             }
 
-            // rebuild physics
             character.ProtoWorldObject.SharedCreatePhysics(character);
 
+            var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
             if (!vehicle.IsDestroyed)
             {
                 vehicle.ProtoWorldObject.SharedCreatePhysics(vehicle);
@@ -196,22 +196,24 @@
                 Server.World.SetDynamicObjectPhysicsMovement(vehicle, Vector2D.Zero, targetVelocity: 0);
                 Server.World.SetDynamicObjectMoveSpeed(vehicle, 0);
                 Server.World.StopPhysicsBody(vehicle.PhysicsBody);
+                protoVehicle.ServerOnCharacterExitVehicle(vehicle, character);
             }
 
             PlayerCharacter.SharedForceRefreshCurrentItem(character);
 
             // notify player and other players in scope
-            var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
             using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetScopedByPlayers(vehicle, tempPlayers);
             tempPlayers.Remove(character);
 
             Instance.CallClient(character,
-                                _ => _.ClientRemote_OnVehicleExitByCurrentPlayer(protoVehicle));
+                                _ => _.ClientRemote_OnVehicleExitByCurrentPlayer(vehicle, protoVehicle));
             Instance.CallClient(tempPlayers,
-                                _ => _.ClientRemote_OnVehicleExitByOtherPlayer(vehicle.Position, protoVehicle));
+                                _ => _.ClientRemote_OnVehicleExitByOtherPlayer(vehicle,
+                                                                               vehicle.Position,
+                                                                               protoVehicle));
         }
-
+       
         private static void ServerProcessVehicleQuitRequests()
         {
             ServerVehicleQuitRequests.ProcessAndRemoveByValue(
@@ -285,7 +287,7 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, groupName: "CurrentPlayerEnterExitVehicle")]
-        private void ClientRemote_OnVehicleEnterByCurrentPlayer(Vector2D position, IProtoVehicle protoVehicle)
+        private void ClientRemote_OnVehicleEnterByCurrentPlayer(IProtoVehicle protoVehicle)
         {
             Api.Client.Audio.PlayOneShot(
                 protoVehicle.SoundResourceVehicleMount);
@@ -300,18 +302,41 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced, groupName: "CurrentPlayerEnterExitVehicle")]
-        private void ClientRemote_OnVehicleExitByCurrentPlayer(IProtoVehicle protoVehicle)
+        private void ClientRemote_OnVehicleExitByCurrentPlayer(IDynamicWorldObject vehicle, IProtoVehicle protoVehicle)
         {
             Api.Client.Audio.PlayOneShot(
                 protoVehicle.SoundResourceVehicleDismount);
+
+            ClientTimersSystem.AddAction(
+                delaySeconds: 0,
+                () =>
+                {
+                    if (vehicle?.IsInitialized ?? false)
+                    {
+                        protoVehicle.ClientOnVehicleDismounted(vehicle);
+                    }
+                });
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_OnVehicleExitByOtherPlayer(Vector2D position, IProtoVehicle protoVehicle)
+        private void ClientRemote_OnVehicleExitByOtherPlayer(
+            IDynamicWorldObject vehicle,
+            Vector2D position,
+            IProtoVehicle protoVehicle)
         {
             Api.Client.Audio.PlayOneShot(
                 protoVehicle.SoundResourceVehicleDismount,
                 position + protoVehicle.SharedGetObjectCenterWorldOffset(null));
+
+            ClientTimersSystem.AddAction(
+                delaySeconds: 0,
+                () =>
+                {
+                    if (vehicle?.IsInitialized ?? false)
+                    {
+                        protoVehicle.ClientOnVehicleDismounted(vehicle);
+                    }
+                });
         }
 
         private void ServerRemote_EnterVehicle(IDynamicWorldObject vehicle)
@@ -390,7 +415,7 @@
             tempPlayers.Remove(character);
 
             Instance.CallClient(character,
-                                _ => _.ClientRemote_OnVehicleEnterByCurrentPlayer(vehicle.Position, protoVehicle));
+                                _ => _.ClientRemote_OnVehicleEnterByCurrentPlayer(protoVehicle));
             Instance.CallClient(tempPlayers,
                                 _ => _.ClientRemote_OnVehicleEnterByOtherPlayer(vehicle.Position, protoVehicle));
         }

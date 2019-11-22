@@ -396,13 +396,13 @@ Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeV
 Nie można odebrać pojazdu
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
-Your vehicle is in the garage. You can take it from any Vehicle Assembly Bay.
+Pojazd znajduje się w garażu. Możesz go pobrać z Fabryki samochodów.
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
-Some of your vehicles are in the garage. You can take them from any Vehicle Assembly Bay.
+Niektóre pojazdy znajdują się w garażu. Możesz je pobrać z Fabryki samochodów.
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
-Vehicles in garage
+Pojazdy w garażu
 
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 Brakuje energii.

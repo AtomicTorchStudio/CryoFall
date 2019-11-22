@@ -24,6 +24,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
@@ -179,6 +180,10 @@
 
         protected ExplosionPreset DestroyedExplosionPreset { get; private set; }
 
+        protected virtual byte DestroyedExplosionRadius => 30;
+
+        protected IReadOnlyList<Vector2D> DismountPoints { get; private set; }
+
         protected virtual IProtoItemsContainer FuelItemsContainerType
             => Api.GetProtoEntity<ItemsContainerReactorCorePragmium>();
 
@@ -218,6 +223,10 @@
             }
 
             ClientCurrentCharacterLagPredictionManager.UpdatePosition(forceReset, (IDynamicWorldObject)worldObject);
+        }
+
+        public virtual void ClientOnVehicleDismounted(IDynamicWorldObject vehicle)
+        {
         }
 
         public virtual BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
@@ -307,6 +316,11 @@
 
             void RefreshLights()
             {
+                if (!skeletonRenderer.IsEnabled)
+                {
+                    return;
+                }
+
                 var isLightsEnabled = publicState.IsLightsEnabled;
                 componentLightSource.IsEnabled = componentLightInSkeleton.IsEnabled = isLightsEnabled;
                 skeletonRenderer.SetAttachment("Lights",
@@ -392,6 +406,40 @@
             if (this.HasVehicleLights)
             {
                 GetPublicState(vehicle).IsLightsEnabled = true;
+            }
+        }
+
+        public virtual void ServerOnCharacterExitVehicle(IDynamicWorldObject vehicle, ICharacter character)
+        {
+            if (this.HasVehicleLights)
+            {
+                GetPublicState(vehicle).IsLightsEnabled = false;
+            }
+
+            if (this.DismountPoints.Count == 0)
+            {
+                return;
+            }
+
+            // try to find a free dismount location to exit the player character
+            var physicsSpace = Server.World.GetPhysicsSpace();
+            var collisionGroup = CollisionGroups.Default;
+            var vehiclePosition = vehicle.Position;
+            const double radius = SkeletonHuman.LegsColliderRadius;
+            var testRectangleOffset = (-radius, -radius / 2);
+            foreach (var offset in this.DismountPoints)
+            {
+                var dismountPosition = vehiclePosition + offset;
+
+                var testResults = physicsSpace.TestRectangle(dismountPosition + testRectangleOffset,
+                                                             size: (2 * radius, radius),
+                                                             collisionGroup: collisionGroup);
+                if (testResults.Count == 0)
+                {
+                    // empty location found
+                    Server.World.SetPosition(character, dismountPosition);
+                    return;
+                }
             }
         }
 
@@ -614,12 +662,12 @@
 
         public void SharedGetSkeletonProto(
             IDynamicWorldObject gameObject,
-            out IProtoCharacterSkeleton skeleton,
+            out IProtoCharacterSkeleton protoSkeleton,
             out double scale)
         {
             scale = 1;
-            this.SharedGetSkeletonProto(gameObject, out var protoSkeleton, ref scale);
-            skeleton = protoSkeleton;
+            this.SharedGetSkeletonProto(gameObject, out var result, ref scale);
+            protoSkeleton = result;
         }
 
         public override bool SharedIsInsideCharacterInteractionArea(
@@ -800,6 +848,12 @@
 
         protected sealed override void ClientInitialize(ClientInitializeData data)
         {
+            // preload all the explosion spritesheets
+            foreach (var textureAtlasResource in this.DestroyedExplosionPreset.SpriteAtlasResources)
+            {
+                Client.Rendering.PreloadTextureAsync(textureAtlasResource);
+            }
+
             var vehicle = data.GameObject;
             var publicState = data.PublicState;
             var clientState = data.ClientState;
@@ -827,17 +881,14 @@
                 this.SharedSetupCurrentPlayerUI(vehicle);
             }
 
-            // subscribe on pilot change (works for other players only as for current player it will immediately call initialize method due to entering/leaving the private scope of the vehicle)
+            //// subscribe on pilot change
+            //// (it works for other players only
+            //// as for current player it will immediately call
+            //// initialize method due to entering/leaving the private scope of the vehicle)
             publicState.ClientSubscribe(
                 _ => _.PilotCharacter,
                 newPilot =>
                 {
-                    Api.Client.Audio.PlayOneShot(
-                        newPilot is null
-                            ? this.SoundResourceVehicleDismount
-                            : this.SoundResourceVehicleMount,
-                        vehicle.Position + this.SharedGetObjectCenterWorldOffset(vehicle));
-
                     // force re-initialize the vehicle
                     vehicle.ClientInitialize();
                 },
@@ -904,7 +955,6 @@
                 worldScale: scaleMultiplier
                             * ((ProtoCharacterSkeleton)protoSkeleton).WorldScale,
                 speedMultiplier: protoSkeleton.SpeedMultiplier);
-            skeletonRenderer.SetAnimationFrame(0, "Offline", timePositionFraction: 1);
 
             protoSkeleton.OnSkeletonCreated(skeletonRenderer);
 
@@ -921,6 +971,10 @@
                                      skeletonComponents: new List<IClientComponent>());
         }
 
+        protected virtual void PrepareDismountPoints(List<Vector2D> dismountPoints)
+        {
+        }
+
         protected sealed override void PrepareProtoDynamicWorldObject()
         {
             base.PrepareProtoDynamicWorldObject();
@@ -934,6 +988,10 @@
             this.BuildRequiredItems = requiredItemsBuild.AsReadOnly();
             this.RepairStageRequiredItems = repairStageRequiredItems.AsReadOnly();
             this.RepairStagesCount = repairStagesCount;
+
+            var dismountPoints = new List<Vector2D>();
+            this.PrepareDismountPoints(dismountPoints);
+            this.DismountPoints = dismountPoints;
 
             var lightConfig = new ItemLightConfig();
             this.PrepareProtoVehicleLightConfig(lightConfig);
@@ -958,21 +1016,10 @@
             InputItems repairStageRequiredItems,
             out int repairStagesCount);
 
-        protected virtual void PrepareProtoVehicleDestroyedExplosionPreset(
+        protected abstract void PrepareProtoVehicleDestroyedExplosionPreset(
             out double damageRadius,
             out ExplosionPreset explosionPreset,
-            out DamageDescription damageDescriptionCharacters)
-        {
-            damageRadius = 5;
-            explosionPreset = ExplosionPresets.Large;
-
-            damageDescriptionCharacters = new DamageDescription(
-                damageValue: 75,
-                armorPiercingCoef: 0,
-                finalDamageMultiplier: 1,
-                rangeMax: damageRadius,
-                damageDistribution: new DamageDistribution(DamageType.Kinetic, 1));
-        }
+            out DamageDescription damageDescriptionCharacters);
 
         protected virtual void PrepareProtoVehicleLightConfig(ItemLightConfig lightConfig)
         {
@@ -1064,8 +1111,13 @@
             var vehicle = (IDynamicWorldObject)targetObject;
 
             using var scopedBy = Api.Shared.GetTempList<ICharacter>();
-            Server.World.GetScopedByPlayers(targetObject, scopedBy);
-            this.CallClient(scopedBy, _ => _.ClientRemote_VehicleExploded(vehicle.Position));
+            Server.World.GetCharactersInRadius(vehicle.TilePosition,
+                                               scopedBy,
+                                               radius: this.DestroyedExplosionRadius,
+                                               onlyPlayers: true);
+
+            this.CallClient(scopedBy,
+                            _ => _.ClientRemote_VehicleExploded(vehicle.Position));
 
             ExplosionHelper.ServerExplode(
                 character:

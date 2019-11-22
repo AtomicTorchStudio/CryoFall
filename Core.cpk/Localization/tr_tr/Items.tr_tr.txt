@@ -1470,7 +1470,7 @@ Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Buraya uygulanamaz
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
-Biyomühendislikle yapay olarak yapılmış karaciğer. Kan süzümünü geliştirir, aşırı ilaç kullanım etkilerini sıfırlar.
+Biyomühendislik ürünü yapay karaciğer. Kan süzmesini geliştirir, bazı ilaç fazla kullanım etkilerini sıfırlar.
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
 Yapay karaciğer

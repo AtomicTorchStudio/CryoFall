@@ -118,7 +118,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemPlasmaPistol>();
                     CreateItem<ItemPlasmaRifle>();
                     CreateItem<ItemPowerBankLarge>();
-                    CreateItem<ItemBatteryDisposable>();
+                    CreateItem<ItemBatteryDisposable>(amount: 100);
                     return "Added energy weapons and related items.";
 
                 case KitCategory.wMelee:

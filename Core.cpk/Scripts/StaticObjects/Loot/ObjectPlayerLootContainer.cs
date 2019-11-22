@@ -5,6 +5,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
@@ -261,8 +262,22 @@
         {
             tileRequirements
                 .Clear()
-                .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
-                .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyStatic)
+                // skip this check as it's usually fine to drop the loot if player could stand there
+                //.Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
+                // validate no static physics objects there except destroyed walls and opened doors
+                .Add(new ConstructionTileRequirements.Validator(
+                         ConstructionTileRequirements.ErrorNoFreeSpace,
+                         c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
+                                  c.Tile,
+                                  t => t.PhysicsBody.IsStatic
+                                       // allow destroyed walls physics in the tile
+                                       && !(t.PhysicsBody.AssociatedWorldObject
+                                             ?.ProtoWorldObject is ObjectWallDestroyed)
+                                       // allow opened doors in the tile
+                                       && !(t.PhysicsBody.AssociatedWorldObject
+                                             ?.ProtoWorldObject is ProtoObjectDoor
+                                            && t.PhysicsBody.AssociatedWorldObject
+                                                .GetPublicState<ObjectDoorPublicState>().IsOpened))))
                 // ensure no other loot containers
                 .Add(new ConstructionTileRequirements.Validator(
                          // ReSharper disable once CanExtractXamlLocalizableStringCSharp
@@ -410,7 +425,11 @@
             bool ensureNoWallsOnTheWay,
             bool ensureNoClosedDoorsOnTheWay)
         {
-            var startTile = character.Tile;
+            var characterPosition = character.Position;
+            var startTilePosition = new Vector2Ushort(
+                (ushort)characterPosition.X,
+                (ushort)(characterPosition.Y - SkeletonHuman.LegsColliderRadius));
+            var startTile = Server.World.GetTile(startTilePosition);
 
             var checkQueue = new List<Tile>();
             checkQueue.Add(startTile);

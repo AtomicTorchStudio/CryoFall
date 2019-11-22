@@ -146,6 +146,8 @@
             IComponentSkeleton skeletonRenderer,
             List<IClientComponent> skeletonComponents)
         {
+            this.ClientPreloadTextures();
+
             protoCharacterSkeleton.ClientSetupItemInHand(
                 skeletonRenderer,
                 this.WeaponAttachmentName,
@@ -375,6 +377,32 @@
         protected override void ClientItemUseStart(ClientItemData data)
         {
             WeaponSystem.ClientChangeWeaponFiringMode(isFiring: true);
+        }
+
+        protected virtual void ClientPreloadTextures()
+        {
+            PreloadTextures(this.FireTracePreset);
+
+            foreach (var protoAmmo in this.CompatibleAmmoProtos)
+            {
+                PreloadTextures(protoAmmo.FireTracePreset);
+            }
+
+            void PreloadTextures(WeaponFireTracePreset tracePreset)
+            {
+                if (tracePreset is null)
+                {
+                    return;
+                }
+
+                var traceTexture = tracePreset.TraceTexture;
+                if (traceTexture != null)
+                {
+                    Client.Rendering.PreloadTextureAsync(traceTexture);
+                }
+
+                tracePreset.HitSparksPreset.PreloadTextures();
+            }
         }
 
         protected virtual WeaponFirePatternPreset PrepareFirePatternPreset()

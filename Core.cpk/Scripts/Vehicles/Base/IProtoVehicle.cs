@@ -52,6 +52,8 @@
 
         SoundResource SoundResourceVehicleMount { get; }
 
+        void ClientOnVehicleDismounted(IDynamicWorldObject vehicle);
+
         void ClientRequestBuild();
 
         void ClientRequestRepair();
@@ -71,6 +73,8 @@
         void ServerOnBuilt(IDynamicWorldObject worldObject, ICharacter byCharacter);
 
         void ServerOnCharacterEnterVehicle(IDynamicWorldObject vehicle, ICharacter character);
+
+        void ServerOnCharacterExitVehicle(IDynamicWorldObject vehicle, ICharacter character);
 
         void ServerOnPilotDamage(
             WeaponFinalCache weaponCache,
@@ -92,7 +96,7 @@
 
         void SharedGetSkeletonProto(
             IDynamicWorldObject gameObject,
-            out IProtoCharacterSkeleton skeleton,
+            out IProtoCharacterSkeleton protoSkeleton,
             out double scale);
 
         bool SharedIsTechUnlocked(ICharacter character, bool allowIfAdmin = true);

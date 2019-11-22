@@ -80,11 +80,11 @@
         public SuperObservableCollection<RssFeedEntry> NewsItemsList { get; }
             = new SuperObservableCollection<RssFeedEntry>();
 
-        public string UpdateReleaseDateText => new DateTime(2019, 11, 1)
+        public string UpdateReleaseDateText => new DateTime(2019, month: 11, day: 25)
                                                .ToString("MMMM yyyy", CultureInfo.CurrentUICulture)
                                                .ToUpperInvariant();
 
-        public string UpdateTitle => "A24—Experimental version";
+        public string UpdateTitle => "A24—Mechanized Update";
 
         protected override void DisposeViewModel()
         {

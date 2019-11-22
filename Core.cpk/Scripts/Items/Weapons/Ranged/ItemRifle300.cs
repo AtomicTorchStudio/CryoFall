@@ -23,7 +23,7 @@
 
         public override uint DurabilityMax => 360;
 
-        public override double FireInterval => 0.9; // slow firing rate
+        public override double FireInterval => 0.7; // slower firing rate
 
         public override string Name => "Heavy rifle";
 

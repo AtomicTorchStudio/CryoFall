@@ -5,10 +5,13 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers.Vehicles;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
@@ -43,6 +46,21 @@
 
         public override SoundResource SoundResourceVehicleMount { get; }
             = new SoundResource("Objects/Vehicles/Mech/Mount");
+
+        public override void ClientOnVehicleDismounted(IDynamicWorldObject vehicle)
+        {
+            base.ClientOnVehicleDismounted(vehicle);
+
+            var skeletonRenderer = GetClientState(vehicle).SkeletonRenderer;
+            if (skeletonRenderer is null)
+            {
+                return;
+            }
+
+            // switch animation to idle and then to offline to ensure both are played
+            skeletonRenderer.SetAnimationFrame(0, "Idle", timePositionFraction: 0);
+            skeletonRenderer.SetAnimation(0, "Offline", isLooped: false);
+        }
 
         public override BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {
@@ -120,6 +138,8 @@
             SetupItem(publicState.ProtoItemLeftTurretSlot);
             SetupItem(publicState.ProtoItemRightTurretSlot);
 
+            skeletonRenderer.SetAnimationFrame(0, "Offline", timePositionFraction: 1);
+
             void SetupItem(IProtoItem protoItem)
             {
                 if (protoItem is IProtoItemWithCharacterAppearance protoItemWithCharacterAppearance)
@@ -132,6 +152,22 @@
                         skeletonComponents: new List<IClientComponent>());
                 }
             }
+        }
+
+        protected override void PrepareProtoVehicleDestroyedExplosionPreset(
+            out double damageRadius,
+            out ExplosionPreset explosionPreset,
+            out DamageDescription damageDescriptionCharacters)
+        {
+            damageRadius = 6;
+            explosionPreset = ExplosionPresets.VeryLarge;
+
+            damageDescriptionCharacters = new DamageDescription(
+                damageValue: 100,
+                armorPiercingCoef: 0,
+                finalDamageMultiplier: 1,
+                rangeMax: damageRadius,
+                damageDistribution: new DamageDistribution(DamageType.Kinetic, 1));
         }
 
         protected override void ServerInitializeVehicle(ServerInitializeData data)

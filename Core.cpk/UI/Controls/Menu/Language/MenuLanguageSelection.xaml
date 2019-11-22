@@ -113,7 +113,7 @@
             </Grid.RowDefinitions>
 
             <Image Grid.Row="0"
-                   Source="/UI/Images/Logo/logo_cryofall_256_flat.png"
+                   Source="/UI/Images/Logo/logo_cryofall_256.png"
                    Stretch="Uniform"
                    SnapsToDevicePixels="False"
                    Width="488" />

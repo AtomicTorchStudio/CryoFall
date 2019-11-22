@@ -19,9 +19,6 @@
         // currently not used, same consumption speed
         private const double FoodDecreaseMultiplierWhenStaminaNotFull = 1.0;
 
-        // If a player is idle for over this threshold, the food and water decrease will be suspended.
-        public const double ThresholdIdleSeconds = 5 * 60; // 5 minutes
-
         // Food/water update time interval.
         private const double TimeIntervalSeconds = 10.0;
 
@@ -118,8 +115,7 @@
                     continue;
                 }
 
-                var privateState = PlayerCharacter.GetPrivateState(character);
-                if (serverTime - privateState.ServerLastActiveTime > ThresholdIdleSeconds)
+                if (CharacterIdleSystem.CharacterIdleSystem.ServerIsIdlePlayer(character, serverTime))
                 {
                     // idle character
                     continue;

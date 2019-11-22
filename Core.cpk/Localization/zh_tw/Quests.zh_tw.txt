@@ -1,495 +1,571 @@
 ﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
-使用8mm彈藥的輕型衝鋒手槍
-
-Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-衝鋒手槍
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-老式火槍。使用紙包彈。相比燧發手槍距離和傷害都更高。
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
-火槍
-
-Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
-電漿手槍能夠射出電漿團並灼燒目標造成大量傷害。高能量消耗。
-
-Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
-電漿手槍
-
-Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
-電漿步槍能夠射出電漿團並灼燒目標造成大量傷害。超高能量消耗。
-
-Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
-電漿步槍
-
-Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-簡單的連發手槍，擁有轉輪結構承載多發彈藥。
-
-Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-左輪手槍
-
-Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-使用.300彈藥的重型反器材步槍。
-
-Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-重型步槍
-
-Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-老式霰彈槍。使用12號彈藥。
-
-Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
-雙管霰彈槍
-
-Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
-擁有大彈容的軍用霰彈槍。使用12號彈藥。
-
-Scripts/Quests/Requirements/RequirementRun@DescriptionText:
-軍用霰彈槍
-
-Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
-半自動手槍，出膛動能極高。
-
-Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
-霍金沙鷹
-
-Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
-金色限量版霍金沙鷹
-
-Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
-金色霍金沙鷹
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
-使用10mm彈藥的衝鋒槍。
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
-衝鋒槍
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
-為戰鬥裝甲設計的手持重型自動加農炮。使用大口徑反器材彈藥。
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
-重型自動加農炮
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-為戰鬥裝甲設計的手持輕型自動加農炮。使用小口徑彈藥。
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
-輕型自動加農炮
-
-Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Description:
-佔領石油和鋰礦
-
-Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Hints:
-最大佔領數量: {0}
-
-Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Name:
 建築: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@TaskEatAnyFood:
+Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
 完成科技組: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Description:
-位於{0}
+Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
+位於 {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
+Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
 製作
 
-Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
+Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
 摧毀: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
+Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
 採集: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
+Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
 收集: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
+Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
 裝備: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
+Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
 學習技能: {0}至{1}級
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
+Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
 學習技能: {0}至{1}級
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
+Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
 解鎖科技組: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Description:
-解鎖{0}科技組: {1}
+Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
+解鎖 {0} 科技組: {1}
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Hints:
-學習科技: {0} (位於{1}組)
+Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
+學習科技: {0} (位於 {1} 組)
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Name:
+Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
 殺死: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Description:
+Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
 製造: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Hints:
+Scripts/Quests/Requirements/RequirementRun@DescriptionText:
 衝刺10米
 
-Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Name:
+Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
 整理物品欄道具
 
-Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Description:
+Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
 使用: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
+Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
 訪問: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
+Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
 訪問: {0}
 
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 你可以通過設置鋪蓋卷來選擇重生位置。
 
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
-`"[*] 鋪蓋卷位於建築菜單的“其他”類型下。`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
+`[*] 鋪蓋卷位於建築菜單的“其他”類型下。
 [*] 你最好將鋪蓋卷放在家中或者基地裡。
+[*] 最好將第一個鋪蓋卷放置在遠離其他玩家的位置。不過也不必擔心，你可以在之後更改鋪蓋卷位置。`
 
-Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
-`[*] 最好將第一個鋪蓋卷放置在遠離其他玩家的位置。不過也不必擔心，你可以在之後更改鋪蓋卷位置。"`
-
-Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Description:
+Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
 建造一個鋪蓋卷
 
-Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
 現在有了工具箱，你可以建造那些在科技功能表裡解鎖的不同建築了。從營火開始吧，你能用它來烹飪食物。
 
-Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
-`"[*] 你可以按下""Tab""鍵來快速訪問[b]建築功能表[/b]（預設按鍵）。`
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
+`[*] 你可以按下"Tab"鍵來快速訪問[b]建築功能表[/b]（預設按鍵）。
 [*] 建築功能表擁有[b]複數頁[/b]以及不同的[b]建築類型[/b]，將隨研究不斷解鎖。
+[*] 你可以用工具箱來[b]建造[/b]和[b]維修[/b]建築。`
 
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
-`[*] 你可以用工具箱來[b]建造[/b]和[b]維修[/b]建築。"`
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
+Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
 建造營火
 
-Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Description:
 現在去弄點木頭！找到一棵樹，然後用斧頭把它砍了。
 
-Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Description:
-`"[*] 你需要將斧頭放進[b]工具列[/b]。打開物品欄並將斧頭拖拽進工具列，然後關閉物品欄。`
-
-Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Hints:
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Hints:
+`[*] 你需要將斧頭放進[b]工具列[/b]。打開物品欄並將斧頭拖拽進工具列，然後關閉物品欄。
 [*] 現在你可以通過按下對應按鍵[b]選擇[/b]工具列物品，或通過滑鼠點擊選擇。
+[*] 預設情況下[b]滑鼠左鍵[/b]將使用你握持的物品，按下[b]滑鼠右鍵[/b]來與環境物品互動。`
 
-Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Name:
-`[*] 預設情況下[b]滑鼠左鍵[/b]將使用你握持的物品，按下[b]滑鼠右鍵[/b]來與環境物品互動。"`
-
-Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Description:
+Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Name:
 砍倒一棵樹
 
-Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Hints:
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@TaskEatAnyFood:
 吃任何食物
 
-Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Name:
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Description:
 現在營火搭起來了，你能用它來煮一些基礎的食物。如果你有蘑菇或者肉，就能煮了吃，這樣會更有營養更加安全。
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@TaskPlantAnySeeds:
-`"[*] 你能通過點擊營火中的""查看配方""來查看所有的食物配方。`
-
-Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
+`[*] 你能通過點擊營火中的"查看配方"來查看所有的食物配方。
 [*] 要煮某一種食物，你需要[b]選擇該配方[/b]。
-
-Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
 [*] 營火需要[b]燃料[/b]才能運行。在燃料欄中放入[b]木材或炭[/b]。
-
-Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
 [*] 你可以在[b]科技功能表[/b]裡解鎖[b]更多配方[/b]。
+[*] 你可以將[b]物品欄[/b]中的任意物品直接使用或放入 [b]工具列[/b]進行快速訪問。`
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Description:
-`[*] 你可以將[b]物品欄[/b]中的任意物品直接使用或放入[b]工具列[/b]進行快速訪問。"`
-
-Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
+Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
 烹飪任何食物
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
 現在你有了資源，可以開始製造了。首先製造一條繩子。然後再製作一把斧頭。
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
 [*] 你可以用預設按鍵C打開製造功能表，用預設按鍵E打開物品欄。
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Hints:
+Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 製造一把斧頭
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Name:
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
 通過採礦可以獲得遊戲內最珍貴的資源。你需要製造鎬才能採礦。
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Description:
-`"[*] 使用徒手製作功能表(""C"")並製造一把鎬。`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
+`[*] 使用徒手製作功能表("C")並製造一把鎬。
+[*] 如果你的繩子不夠，也可以製造一些。`
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Hints:
-`[*] 如果你的繩子不夠，也可以製造一些。"`
-
-Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Name:
+Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 製造一把鎬
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Description:
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Description:
 要建造建築的話你需要工具箱。工具箱是主要的建築工具。
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Hints:
-`"[*] 使用徒手製造功能表製作一個工具箱。`
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Hints:
+`[*] 使用徒手製造功能表製作一個工具箱。
+[*] 你可能需要先製作一些繩子。`
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Name:
-`[*] 你可能需要先製作一些繩子。"`
-
-Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseMulch:
+Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Name:
 製作一個工具箱
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseWateringCan:
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Description:
 許多人都會犯在夜晚摸黑行動的錯誤。你可以便捷的使用火把或提燈來提供光源。
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Description:
-`"[*] 通過將火把放進你的[b]工具列[/b]來快速使用它。`
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Hints:
+`[*] 通過將火把放進你的[b]工具列[/b]來快速使用它。
+[*] 隨後你可以解鎖其他類型的光源，有固定的也有可攜帶的。`
 
-Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Hints:
-`[*] 隨後你可以解鎖其他類型的光源，有固定的也有可攜帶的。"`
-
-Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Name:
+Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Name:
 製造並使用一支火把
 
-Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Description:
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Description:
 你需要收集一些資源來製造基礎工具。
 
-Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Hints:
-`"[*] 你可以從地上[b]拾取物品[/b]，例如[u]石頭[/u]，[u]樹枝[/u]和[u]草[/u]。`
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
+`[*] 你可以從地上[b]拾取物品[/b]，例如[u]石頭[/u]，[u]樹枝[/u] 和[u]草[/u]。
+[*] 通過[b]右鍵點擊[/b]地上的物品來將其拾取到物品欄中。`
 
-Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Name:
-`[*] 通過[b]右鍵點擊[/b]地上的物品來將其拾取到物品欄中。"`
-
-Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
+Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 收集資源
 
-Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
 `要建造更多建築，你需要在科技功能表中解鎖"基礎建築"。`
 
-Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
-`"[*] 你可以通過按下""G""鍵來快速訪問科技菜單。`
-
-Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Description:
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
+`[*] 你可以通過按下"G"鍵來快速訪問科技菜單。
 [*] 解鎖科技節點需要花費[b]LP[/b] (學習點數)。
+[*] 學習點數可以從所有的有意義活動中獲得，與你的技能經驗獲取掛鉤。`
 
-Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Hints:
-`[*] 學習點數可以從所有的有意義活動中獲得，與你的技能經驗獲取掛鉤。"`
-
-Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
+Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
 學習基礎建築科技
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
 挖掘石頭
 
-Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCreature:
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Description:
 讓我們把鎬派上用場。採取一些礦物，看看你能獲得什麼。你還可以從大型岩石上挖掘到石頭。
 
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
+`[*] 和其他可用工具一樣，你需要將你的鎬放進[b]工具列[/b]。
+[*] [b]山體[/b]富含礦物節點。你可以通過查詢你的地圖("M")來找到好的採礦點。
+[*] 不同的礦物挖掘時間不同，並且給予的資源類型也不同。
+[*] 獲取[b]大量石頭[/b]的最好方式是從大型岩石上進行[b]挖掘[/b] 。
+[*] 如果你的採礦技能夠高，可以在部分礦物中挖到諸如寶石和黃金這樣的罕見掉落。`
+
+Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
+挖掘任何礦物
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
+在開始享受遊戲之前，你還有幾件事要學，例如整理物品欄和衝刺！
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
+`[*] 要整理物品欄，先將物品欄打開，然後按下[u]滑鼠中鍵[/u]或者[u]Z鍵[/u]。你可以通過此方式整理[b]任何[/b]物品欄介面(例如箱子)。
+[*] 衝刺只需在移動時按下[u]Shift鍵[/u]即可進行。衝刺能讓你快速逃離危險的捕食者。`
+
+Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
+進行基礎行動
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
+收集水莖果
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Description:
+是時候學習如何獲得水源了。當此星球進行地球化改造時，最先人工改造的植物之一就是水莖果叢。它們能提供易獲取的清水。
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Hints:
+`[*] 水莖幾乎能在所有生態環境中生長，但主要出現在[b]氣候溫和的草甸區域[/b]。
+[*] 和其他的食物和植物一樣，它們會很快腐敗，所以使用方法是渴的時候摘來吃，而不是儲存。`
+
+Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Name:
+獲得水源
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Description:
+工作臺是你在遊戲中主要的製作器械。在建造新基地時製作台處於高優先順序。
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Hints:
+[*] 在科技功能表中你能看到每一個配方的內容。此資訊顯示在了配方名字下方。
+
+Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Name:
+解鎖並建造一個工作臺
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@TaskPlantAnySeeds:
+種下任意種子
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
+農業是可持續的食物來源，並且能給你帶來大量收穫。準備下地幹活吧！
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
+`[*] 最好將你的農場建在圍牆[b]內部[/b]，不然其他倖存者可能會來偷你的菜哦。
+[*] 不同的植物擁有不同的屬性，例如成熟週期，收割次數等等。
+[*] 你可以在未來研究肥料等科技來進一步提升農業效率。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
+建造農場
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Description:
+遊戲剛開始的時候用用火把還行，但隨著時間推移會需要更大更好的光源。是時候打造一個提燈和地燈了！
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
+`[*] 比起火把，提燈提供[b]更廣闊的光照範圍[/b]以及更穩定的亮度。
+[*] 提燈和地燈都使用營地燃料進行照明，並且可以[b]多次重新加油[/b]，而火把是一次性的。
+[*] 營地燃料有兩種製作方法，一種是從動物脂肪中提煉，一種是從石油中提煉。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
+光源
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
+`學會如何保護你的基地是非常重要的！如果沒有正確的方法，很容易就會被其他狡猾的倖存者襲擊劫掠。
+[br]
+[br]最重要的一點是正確的使用佔領土地功能來保護你的基地。安放基地之前請先放下佔領土地建築。
+[br]
+[br]在放好了佔領土地建築後，你可以開始在其周圍建造圍牆。最好將佔領土地建築放在圍牆[b][u]以內[/u][/b]，否則很容易就會被人[b]破壞[/b]。
+[br]
+[br]佔領土地區域可以被擴張來佔領更大面積的土地，你也可以加厚城牆來確保你的安全。通常來說兩層圍牆就足以勸退大多數來犯者，除非你的基地富可敵國招賊惦記。
+[br]
+[br]你的基地最好有兩個以上的門，當然越多越好。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Hints:
+`[*] 通過與佔領土地建築互動來打開佔領土地菜單。你可以在其中看到詳細資訊，也可以選擇升級。
+[*] 在佔領土地外的建築會在一兩天內快速的朽壞。最好把建築放置在你的佔領土地內。
+[*] 你可以使用撬棍來快速的拆毀你佔領土地內的建築。
+[*] 你不需要將所有的建造台等建築放在你的基地裡，因為沒有東西可偷其他玩家通常不會理這些建築。把不必要的建築放出基地可以騰出空間放置更重要的建築，例如箱子和熔爐。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Name:
+建造永久基地
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Description:
+要是不能把收集到的資源儲藏起來，收集它們還有什麼意義呢？還好，我們有解決方案。
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Hints:
+`[*] 冰箱能夠延長食物腐壞的時間。冰箱品質越高，保存效果越好。
+[*] 食物腐敗時間取決於食物本身。肉類壞的很快，而罐頭可以長期儲存。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Name:
+建造一個簡易冰箱
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Description:
+你需要解鎖並建造一個熔爐才能熔煉銅和其他金屬。金屬是遊戲中工業的基石。
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Hints:
+`[*] 在科技界面中，你可以看到每一個配方需要的工作臺。此資訊顯示在配方名字下方。
+[*] 你需要在銅礦節點進行挖掘來獲得足夠的銅礦進行熔煉。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Name:
+建造熔爐並熔煉銅礦
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseMulch:
+使用覆土
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseWateringCan:
+使用灑水壺
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Description:
+你可以通過經常澆水和使用肥料來提升農作物的生長速度。
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Hints:
+`[*] 經常為植物澆水是提升作物生長速度的最好辦法。這只會消耗水。
+[*] 你可以通過在井或者蓄水處來裝滿你的灑水壺。工具列中選中灑水壺時左鍵點擊水源即可裝水。
+[*] 要製作覆土，只要將任何有機物(植物，腐爛食物等)扔到地上然後等它們分解就行。
+[*] 覆土是一種簡易的天然肥料。你可以用它來提升作物生長速度。`
+
+Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Name:
+農業效率
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Description:
+為了生活下去，你需要獲取大量的水源。不僅用來喝，更要用來滿足工業農業需要。
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Hints:
+`[*] 你可以在任何[b]沙灘或海岸[/b]上獲得幾乎無限量的[b]沙子[/b]。
+[*] 你可以在燒木頭（尤其是樹枝）後獲得大量[b]灰[/b]。
+[*] 水在大量的製作配方中都會使用，所以最好儲存大量的水。
+[*] 相比于使用集水器，你可以煮開湖水來將其淨化，然後儲存以備未來使用。
+[*] 井比集水器更加有效。
+[*] 你可以通過煮開海水來獲取鹽。`
+
+Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Name:
+獲取更好的水源
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
+激烈的戰鬥將導致你損失生命值。你可以通過製作並服用藥物來回復生命值，治療創傷。單純使用綠草藥不是長遠之計。
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
+`[*] 遊戲中有許多不同類型的藥物。有些可以恢復健康，有些可以治療特定的疾病或提供其他好處。
+[*]製作先進的藥物需要學習特定的配方和技術。
+[*]草藥湯可以在烹飪類別中找到。`
+
+Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
+收集草藥並製藥
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Description:
+更高層次的技術需要掌握早期技術才能學習。
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Hints:
+[*]您可以解鎖更高層次的技術組，以獲得更複雜的科技，配方和建築。
+
+Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
+掌握技術 - 第一部分
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
+殺死任何生物
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCreature:
+搜索任何生物
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Description:
-`"[*] 和其他可用工具一樣，你需要將你的鎬放進[b]工具列[/b]。`
+刀具是用於對抗危險較小的野獸的早期武器。在能製造更好的武器之前，帶把刀是個不錯的選擇。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 [*] 遊戲中的每個武器都有一些[b]特殊屬性[/b]。例如，刀具有更高的機會導致出血，而鈍器可能會使骨頭斷裂或使敵人暈眩。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
-[*] 不同的礦物挖掘時間不同，並且給予的資源類型也不同。
+製作一把刀並殺死任何生物
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
-[*] 獲取[b]大量石頭[/b]的最好方式是從大型岩石上進行[b]挖掘[/b]。
+是時候獲得更好的防護了。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*] 如果你的採礦技能夠高，可以在部分礦物中挖到諸如寶石和黃金這樣的罕見掉落。"`
+`[*]您可以解鎖”防禦“技術組中的所有相關技術。
+[*]木制裝甲可能不是最好的選擇，但它的製作成本仍然低廉，當然也比布甲更好。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
-挖掘任何礦物
+製作並裝備更好的裝甲
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Description:
-在開始享受遊戲之前，你還有幾件事要學，例如整理物品欄和衝刺！
+一絲不掛的到處跑基本等於自殺。即使是基本盔甲也有可能讓你保住性命。研究，製作和裝備基本布甲。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
-`"[*] 要整理物品欄，先將物品欄打開，然後按下[u]滑鼠中鍵[/u]或者[u]Z鍵[/u]。你可以通過此方式整理[b]任何[/b]物品欄介面(例如箱子)。`
+`[*] 布甲可能無法提供高防禦力，但它的製作成本低廉，肯定比什麼都不穿好。
+[*] 遊戲中存在[b]不同的傷害類型[/b]，不同的裝甲提供不同的抗性。您可以在物品欄中看到此資訊。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
-`[*] 衝刺只需在移動時按下[u]Shift鍵[/u]即可進行。衝刺能讓你快速逃離危險的捕食者。"`
+製作並裝備布甲
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Description:
-進行基礎行動
+現在你可以進行冶金來升級你的工具。鐵制工具不僅更加耐久，也比原始石質工具更加有效。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
-收集水莖果
+[*]始終嘗試升級到更好的工具，因為它能為你帶來顯著的生產力提升。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
-是時候學習如何獲得水源了。當此星球進行地球化改造時，最先人工改造的植物之一就是水莖果叢。它們能提供易獲取的清水。
+製造更好的工具
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
-`"[*] 水莖幾乎能在所有生態環境中生長，但主要出現在[b]氣候溫和的草甸區域[/b]。`
+用釘頭錘砸碎敵人的腦袋很好，但遠距離攻擊也是個不錯的選擇。特別是在你面對更強大對手的時候。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*] 和其他的食物和植物一樣，它們會很快腐敗，所以使用方法是渴的時候摘來吃，而不是儲存。"`
+`[*] 您可以解鎖”進攻“技術組中的所有相關技術。
+[*] 要製作紙包彈，您還必須先製作[b]火藥[/b]和[b]紙[/b]。
+[*] 遊戲中存在[b]不同的傷害類型[/b]，不同的裝甲提供不同的抗性。您可以在物品欄中看到此資訊。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
-獲得水源
+製造遠端武器
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
-工作臺是你在遊戲中主要的製作器械。在建造新基地時製作台處於高優先順序。
+每個不同的生態圈都有其獨特的植物群和動物群，以及特殊屬性。熟悉每個基生態圈以最大限度地利用它們。
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Hints:
-[*] 在科技功能表中你能看到每一個配方的內容。此資訊顯示在了配方名字下方。
+`[*]草甸有大量的灌木，草藥和其他有用的植物。
+[*]你可以在岸邊找到許多水生動物。`
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Name:
-解鎖並建造一個工作臺
+探索生態圈 - 第一部分
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Description:
-種下任意種子
+不同的生態圈擁有不同的資源，可以在那裡找到棲息在該地區的動物。盡可能多地探索你的基地周圍，看看有什麼可用資源。
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Hints:
-農業是可持續的食物來源，並且能給你帶來大量收穫。準備下地幹活吧！
+`[*]岩石山脈生態圈可以尋找許多礦藏。
+[*]粘土坑是大量建築用粘土的主要來源。
+[*]寒林可以在大陸北部找到。`
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Name:
-`"[*] 最好將你的農場建在圍牆[b]內部[/b]，不然其他倖存者可能會來偷你的菜哦。`
+探索生態圈 - 第二部分
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
-[*] 不同的植物擁有不同的屬性，例如成熟週期，收割次數等等。
+綠草藥不是最好的醫療物品，但緊急關頭下可以使用它來回復少量生命。
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
-`[*] 你可以在未來研究肥料等科技來進一步提升農業效率。"`
+`[*] 綠草藥是所有類型藥物中最基本的，而且相對容易獲得。
+[*] 你通常可以在森林裡的草地上發現大量的草本植物和其他小植物。
+[*] 如果你發現箱子裡塞了太多綠草藥，可以考慮用它們製作藥品。`
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
-建造農場
+找到並使用綠草藥
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
-遊戲剛開始的時候用用火把還行，但隨著時間推移會需要更大更好的光源。是時候打造一個提燈和地燈了！
+是時候去打獵了！對於初學者來說，避免更危險的動物可能會更好，還有很多東西可供狩獵。
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Hints:
-`"[*] 比起火把，提燈提供[b]更廣闊的光照範圍[/b]以及更穩定的亮度。`
+`[*] 每只動物能提供不同的戰利品。你的狩獵技能在這方面也起著重要作用。
+[*] 狩獵是獲得更多經驗和學習要點的好方法。
+[*] 請不要在現實生活中這樣做:(`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Name:
-[*] 提燈和地燈都使用營地燃料進行照明，並且可以[b]多次重新加油[/b]，而火把是一次性的。
+狩獵大師 - 第一部分
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
-`[*] 營地燃料有兩種製作方法，一種是從動物脂肪中提煉，一種是從石油中提煉。"`
+是時候再次狩獵了！還有更多的動物和怪物可供狩獵。
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-光源
+`[*] 你可以在物品欄介面角色頭像右邊的設備欄裡裝備你的獵人工具。
+[*] 每個動物和怪物都有自己的棲息區域，通常可以在對應區域找到它們。嘗試探索世界，看看棲息在其中的所有不同的生物。
+[*] 根據特定動物或怪物的危險程度，您將獲得不同數量的狩獵經驗。`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
-`"學會如何保護你的基地是非常重要的！如果沒有正確的方法，很容易就會被其他狡猾的倖存者襲擊劫掠。`
+狩獵大師 - 第二部分
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
-[br]
+解鎖任何技能
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Description:
-[br]最重要的一點是正確的使用佔領土地功能來保護你的基地。安放基地之前請先放下佔領土地建築。
+遊戲中的每項新技能都會在您花時間執行特定活動時解鎖。解鎖越來越多的技能是一項很好的長期發展策略，因為它們可以提高您在各自領域的熟練程度。
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
-[br]
+[*] 高技能水準不僅可以提高您在該領域的熟練度，還可以提供其他方式無法獲得的特質。
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
-[br]在放好了佔領土地建築後，你可以開始在其周圍建造圍牆。最好將佔領土地建築放在圍牆[b][u]以內[/u][/b]，否則很容易就會被人[b]破壞[/b]。
+學習技能
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
-[br]
+自由建造是好事，但你也許想知道如何拆解你的建築物。 要做到這一點，可以使用撬棍！ 只要你試圖解構的建築位於土地權利區域內即可。
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
-[br]佔領土地區域可以被擴張來佔領更大面積的土地，你也可以加厚城牆來確保你的安全。通常來說兩層圍牆就足以勸退大多數來犯者，除非你的基地富可敵國招賊惦記。
+`[*]為完成此任務，你可以拆解一部分牆或一些同樣便宜的東西，這樣你就不會失去寶貴的資源。
+[*]你[b]只能[/b]拆解位於你土地權利區域[b]內[/b]的建築物。
+[*]拆解是刪除任何不必要或過時的建築物或結構的最好方式。`
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
-[br]
+使用撬棍進行拆解
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-`[br]你的基地最好有兩個以上的門，當然越多越好。"`
+開採鹽礦
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-`"[*] 通過與佔領土地建築互動來打開佔領土地菜單。你可以在其中看到詳細資訊，也可以選擇升級。`
+某些資源，如石油和鋰，是開發先進技術的必要素材。瞭解如何獲得它們是極為重要的。
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-[*] 在佔領土地外的建築會在一兩天內快速的朽壞。最好把建築放置在你的佔領土地內。
+`[*] 你可以在[u]寒林[/u]中發現石油果。使用它們可以讓你獲得少量石油。
+[*] 你可以在開採一般鹽礦時獲得[u]鋰鹽[/u]。
+[*] 你可以在沙漠中的[u]鹽原[/u]找到大量鹽礦。
+[*] 學習[u]外星科技[/u]讓你可以能以工業規模制取這些資源。`
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
-[*] 你可以使用撬棍來快速的拆毀你佔領土地內的建築。
+高級資源的獲取
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
-`[*] 你不需要將所有的建造台等建築放在你的基地裡，因為沒有東西可偷其他玩家通常不會理這些建築。把不必要的建築放出基地可以騰出空間放置更重要的建築，例如箱子和熔爐。"`
+工業和建築的進步需要硬科學，尤其是化學方面的基礎。
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Hints:
-建造永久基地
+[*]化學是最重要的科學領域之一，建議大多數倖存者使用。
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Name:
-要是不能把收集到的資源儲藏起來，收集它們還有什麼意義呢？還好，我們有解決方案。
+建立化學實驗室
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Description:
-`"[*] 冰箱能夠延長食物腐壞的時間。冰箱品質越高，保存效果越好。`
+醫學科學提供了各種有用的效果和可能性，而不僅僅是治癒傷害和疾病的能力。
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Hints:
-`[*] 食物腐敗時間取決於食物本身。肉類壞的很快，而罐頭可以長期儲存。"`
+[*]更高層次的醫療技術可以獲得更強大的治療物品和其他藥物。
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Name:
-建造一個簡易冰箱
+建立醫學實驗室
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Description:
-你需要解鎖並建造一個熔爐才能熔煉銅和其他金屬。金屬是遊戲中工業的基石。
+現在你最好完成所有T2科技，來為在特定領域進一步專業化奠定堅實的基礎。
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
-`"[*] 在科技界面中，你可以看到每一個配方需要的工作臺。此資訊顯示在配方名字下方。`
+`[*] 早期技術（T1和T2）解鎖起來相對便宜，所以學習所有這些技術總是一個好主意。
+[*] 對於先進技術（T3及以上），專門研究部分技術是個好主意。考慮哪一個對你最重要，而不是投資所有方向。`
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
-`[*] 你需要在銅礦節點進行挖掘來獲得足夠的銅礦進行熔煉。"`
+掌握技術 - 第二部分
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
-建造熔爐並熔煉銅礦
+為基地建立電網是提升效率的重要步驟。 有許多高級建築需要電力才能運轉。
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-使用覆土
+`[*] 電器只有在[b]佔領區域內[/b]才能生效。在佔領區域外間建造電器是沒有任何意義的。
+[*] [b]儲電[/b]設施可以儲藏電力，以備不時之需。提高基地的電力容量是個不錯的選擇。
+[*] 不同的[b]發電裝置[/b]，例如蒸汽發電機，太陽能發電機和汽油發電機都能產生電能。
+[*] 如果[u]電力不足[/u]，你的基地就會陷入[b]斷電[/b]，此時你必須手動恢復電力。
+[*] 你可以通過與儲電設施互動來查看[b]電網詳情[/b]。
+[*] 數個連接的佔領區域可以共用單一電網。`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
-使用灑水壺
+建立電網
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
-你可以通過經常澆水和使用肥料來提升農作物的生長速度。
+還有一些難以到達的生物群落可能帶來額外的挑戰，但也提供了一些獨特的資源。
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
-`"[*] 經常為植物澆水是提升作物生長速度的最好辦法。這只會消耗水。`
+`[*] 荒地生態圈是許多沙漠動物的家園。
+[*] 在鹽灘可以獲得大量的鹽。`
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
-[*] 你可以通過在井或者蓄水處來裝滿你的灑水壺。工具列中選中灑水壺時左鍵點擊水源即可裝水。
+探索生態圈 - 第三部分
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
-[*] 要製作覆土，只要將任何有機物(植物，腐爛食物等)扔到地上然後等它們分解就行。
+[*] [b]火山生態圈[/b] 極其危險並且需要能夠對抗[b]極端熱量[/b]的裝備才能探索。
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
-`[*] 覆土是一種簡易的天然肥料。你可以用它來提升作物生長速度。"`
+探索生態圈 - 第四部分
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
-農業效率
+遺址是尋找稀有元件和某些資源的最佳地點。如果你有所需裝備的話可以去經常探索。
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
-為了生活下去，你需要獲取大量的水源。不僅用來喝，更要用來滿足工業農業需要。
+`[*] 有不同類型的遺址：住宅（T1），工業（T2），軍事（T2）和科學（T3）。
+[*] 廢墟的難度範圍從任何人都可以探索的T1，到需要最佳裝備和藥物才能探索的T3。
+[*] 探索遺址是獲得某些稀有物品的唯一途徑。找到它們的機會取決於遺址的難度，最有價值的物品只能在T3遺址中找到。`
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
-`"[*] 你可以在任何[b]沙灘或海岸[/b]上獲得幾乎無限量的[b]沙子[/b]。`
+探索遺址
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
-[*] 你可以在燒木頭（尤其是樹枝）後獲得大量[b]灰[/b]。
+是時候狩獵了！這次來打更危險的動物。
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Hints:
-[*] 水在大量的製作配方中都會使用，所以最好儲存大量的水。
+[*]小心 - 這些動物很有攻擊性，最好在打獵時使用高級遠端武器。
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Name:
-[*] 相比于使用集水器，你可以煮開湖水來將其淨化，然後儲存以備未來使用。
+狩獵大師 - 第四部分
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Description:
-[*] 井比集水器更加有效。
+準備進行極端狩獵！這次甚至不僅僅是動物！
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
-`[*] 你可以通過煮開海水來獲取鹽。"`
+[*]小心 - 這些野獸具有極高攻擊性和危險性。你將需要強大的遠端武器和強大的裝甲才能有機會完成狩獵。
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
-獲取更好的水源
+狩獵大師 - 第四部分
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
-激烈的戰鬥將導致你損失生命值。你可以通過製作並服用藥物來回復生命值，治療創傷。單純使用綠草藥不是長遠之計。
+狩獵大師 - 第五部分
 

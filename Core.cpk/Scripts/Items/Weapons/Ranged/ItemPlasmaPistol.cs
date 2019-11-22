@@ -21,12 +21,14 @@
 
         public override string Name => "Plasma pistol";
 
+        public override double ReadyDelayDuration => 0.6;
+
         public override double SpecialEffectProbability => 0.25;
 
         protected override WeaponFireScatterPreset PrepareFireScatterPreset()
         {
             return new WeaponFireScatterPreset(
-                new[] { -1.2, -0.4, 0.4, 1.2 });
+                new[] { -1.5, -0.5, 0.5, 1.5 });
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()

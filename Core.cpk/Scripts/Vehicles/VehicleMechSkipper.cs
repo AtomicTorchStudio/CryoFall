@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Vehicles
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.ItemContainers.Vehicles;
@@ -9,10 +10,11 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class VehicleMechSkipper : ProtoVehicleMech
     {
-        public override byte CargoItemsSlotsCount => 16;
+        public override byte CargoItemsSlotsCount => 24;
 
         public override string Description =>
             "Light design for mechanized battle armor. Boasts relatively high speed while not lacking in armor or firepower.";
@@ -53,6 +55,18 @@
                 electrical: 0.40,
                 radiation: 0.0,
                 psi: 0.0);
+        }
+
+        protected override void PrepareDismountPoints(List<Vector2D> dismountPoints)
+        {
+            dismountPoints.Add((0, -0.36));     // down
+            dismountPoints.Add((-0.45, -0.36)); // down-left
+            dismountPoints.Add((0.45, -0.36));  // down-right
+            dismountPoints.Add((0, 0.36));      // up
+            dismountPoints.Add((-0.7, 0));      // left
+            dismountPoints.Add((0.7, 0));       // right
+            dismountPoints.Add((-0.45, 0.36));  // up-left
+            dismountPoints.Add((0.45, 0.36));   // up-right
         }
 
         protected override void PrepareProtoVehicle(

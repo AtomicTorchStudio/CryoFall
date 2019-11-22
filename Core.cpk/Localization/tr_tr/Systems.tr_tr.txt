@@ -397,13 +397,13 @@ Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeV
 Araç alamaz
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
-Your vehicle is in the garage. You can take it from any Vehicle Assembly Bay.
+Aracın garajda. Onu Araç Birleştirme Sahalarından birinden alabilirsin.
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
-Some of your vehicles are in the garage. You can take them from any Vehicle Assembly Bay.
+Bazı araçların garajda. Onları Araç Birleştirme Sahalarından birinden alabilirsin.
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
-Vehicles in garage
+Garajdaki araçlar
 
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 Enerji tükendi.

@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
@@ -189,14 +188,14 @@
 
                         if (newAnimationStarterName != currentAnimationName)
                         {
-                            //Api.Logger.Dev("Adding starter animation: "
-                            //               + newAnimationStarterName
-                            //               + " (current animation is "
-                            //               + currentAnimationName
-                            //               + ")");
-
                             if (currentAnimationName == "Idle")
                             {
+                                //Api.Logger.Dev("Adding starter animation: "
+                                //               + newAnimationStarterName
+                                //               + " (current animation is "
+                                //               + currentAnimationName
+                                //               + ")");
+
                                 skeletonRenderer.SetAnimation(
                                     trackIndex: AnimationTrackIndexes.Primary,
                                     animationName: newAnimationStarterName,
@@ -204,10 +203,14 @@
                             }
                             else
                             {
-                                skeletonRenderer.AddAnimation(
-                                    trackIndex: AnimationTrackIndexes.Primary,
-                                    animationName: newAnimationStarterName,
-                                    isLooped: false);
+                                //Api.Logger.Dev("No starter animation will be added. Current animation: "
+                                //               + currentAnimationName
+                                //               + " starter name: "
+                                //               + newAnimationStarterName);
+                                //skeletonRenderer.AddAnimation(
+                                //    trackIndex: AnimationTrackIndexes.Primary,
+                                //    animationName: newAnimationStarterName,
+                                //    isLooped: false);
                             }
                         }
                         else

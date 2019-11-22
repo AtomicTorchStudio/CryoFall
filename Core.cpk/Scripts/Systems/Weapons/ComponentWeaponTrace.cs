@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Rendering;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ComponentWeaponTrace : ClientComponent
@@ -65,10 +66,20 @@
             var deltaPos = endPosition - worldPositionSource;
             var fireDistance = deltaPos.Length;
             fireDistance = Math.Max(0, fireDistance);
-            if (fireDistance <= weaponTracePreset.TraceWorldLength)
+
+            // extend fire distance by start offset (yes, we're using `-` here as TraceStartWorldOffset expected to be negative)
+            fireDistance -= weaponTracePreset.TraceStartWorldOffset;
+            if (fireDistance <= weaponTracePreset.TraceMinDistance)
             {
                 return;
             }
+
+            var angleRad = -Math.Atan2(deltaPos.Y, deltaPos.X);
+            var normalizedRay = new Vector2D(Math.Cos(-angleRad),
+                                             Math.Sin(-angleRad));
+
+            // offset start position of the ray
+            worldPositionSource += normalizedRay * weaponTracePreset.TraceStartWorldOffset;
 
             // actual trace life duration is larger when has a hit
             // (to provide a contact fade-out animation for the sprite length)
@@ -89,16 +100,11 @@
                 // yes, it's actually making the weapon trace to draw in the light layer!
                 drawOrder: DrawOrder.Light);
 
-            var angleRad = -Math.Atan2(deltaPos.Y, deltaPos.X);
             componentSpriteRender.RotationAngleRad = (float)angleRad;
-
-            var normalizedRay = new Vector2D(Math.Cos(-angleRad),
-                                             Math.Sin(-angleRad));
-
-            // offset start position of the ray
-            worldPositionSource += normalizedRay * weaponTracePreset.TraceStartWorldOffset;
-            fireDistance -= weaponTracePreset.TraceStartWorldOffset; // extend fire distance accordingly
-
+            componentSpriteRender.BlendMode = weaponTracePreset.UseScreenBlending 
+                                                  ? BlendMode.Screen
+                                                  : BlendMode.AlphaBlendPremultiplied;
+            
             sceneObject.AddComponent<ComponentWeaponTrace>()
                        .Setup(weaponTracePreset,
                               componentSpriteRender,

@@ -1774,10 +1774,10 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricit
 Üssünü, elektrik şebekesi planıyla tasarla. Birçok jeneratör, depo ve elektrik tüketici inşa edebilirsin.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-Vehicles
+Araçlar
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-Build and upgrade a variety of futuristic vehicles to explore the world faster or use them in combat.
+Dünyayı daha hızlı keşfetmek ve onları savaşta kullanmak için çeşitli fütüristik araçlar yap ve geliştir.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Fantastik yaratıklar

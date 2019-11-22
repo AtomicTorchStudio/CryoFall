@@ -242,7 +242,7 @@
                     // re-select current item
                     SharedForceRefreshCurrentItem(ClientCurrentCharacterHelper.Character);
                     // reset rendering
-                    ResetRendering(resetSkeleton: true);
+                    ResetRendering(resetSkeleton: false);
                 },
                 clientState);
 

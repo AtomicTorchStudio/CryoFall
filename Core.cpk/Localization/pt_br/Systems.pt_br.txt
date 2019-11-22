@@ -395,13 +395,13 @@ Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeV
 Não é possível pegar o veículo
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
-Your vehicle is in the garage. You can take it from any Vehicle Assembly Bay.
+Seu veículo está na garagem. Você pode levá-lo de qualquer compartimento de montagem de veículo.
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
-Some of your vehicles are in the garage. You can take them from any Vehicle Assembly Bay.
+Alguns dos seus veículos estão na garagem. Você pode acessá-los de qualquer compartimento de montagem de veículos.
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
-Vehicles in garage
+Veículos na garagem
 
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
 Energia esgotada.

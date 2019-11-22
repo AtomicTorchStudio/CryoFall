@@ -1,51 +1,51 @@
 ﻿Scripts/Vehicles/VehicleHoverboardMk1@Description:
-已經澆水過了
+輕量版的反重力平臺。製造相對簡單，同時速度和油耗都較為合適。
 
 Scripts/Vehicles/VehicleHoverboardMk1@Name:
-該植物已可收穫。現在沒必要再澆水了。
+懸浮板MK1
 
 Scripts/Vehicles/VehicleHoverboardMk2@Description:
-只有農場植物才能澆水。
+重型反重力平臺。更加耐用，速度更快，但是生產價格和油耗也更高。
 
 Scripts/Vehicles/VehicleHoverboardMk2@Name:
-無法澆水
+懸浮板MK2
 
 Scripts/Vehicles/VehicleMechManul@Description:
-要進行填充，指向一個井或在您物品欄中的水瓶。
+為戰鬥裝甲設計的介質。在不犧牲其他性能的情況下極大的提升防禦力並給予大量收納空間。
 
 Scripts/Vehicles/VehicleMechManul@Name:
-無法填充
+猻
 
 Scripts/Vehicles/VehicleMechSkipper@Description:
-無法為武器裝彈。
+輕量戰鬥鎧甲。擁有較高的速度，同時也不犧牲護甲和火力。
 
 Scripts/Vehicles/VehicleMechSkipper@Name:
-沒有彈藥
+躍行者
 
 Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotBuildVehicleTitle:
-還需要{0}硬幣。
+無法建造
 
 Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotRepairVehicleTitle:
-還需要{0}閃亮硬幣。
+無法修理
 
 Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NotInteractingWithVehicleBay:
-已出售
+請使用載具港建造此載具。
 
 Scripts/Vehicles/Base/VehicleCanBuildCheckResult@RequiredItemsMissing:
-無法購買
+物品不足。
 
 Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NeedsFreeSpace:
-無法出售
+遇到障礙。[br]要建造載具港需要一片沒有障礙物和玩家的空間。
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@NotInteractingWithVehicle:
-遇到障礙。要建造載具港需要一片沒有障礙物和玩家的空間。
+請與車輛進行互動進行維修。
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RequiredItemsMissing:
-無法獲取載具
+物品不足。
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
-能量耗盡。
+不需要修理。
 
 Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
-無法使用{0}
+請把載具帶到載具港來修復它。
 

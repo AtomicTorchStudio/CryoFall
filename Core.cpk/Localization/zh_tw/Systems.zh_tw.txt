@@ -1,68 +1,70 @@
 ﻿Scripts/Systems/BottleRefillSystem/BottleRefillSystem@NotificationStandNearWaterToRefill:
-此工作臺可以便利的進行物品修復工作。
+站在水或井邊附近裝滿瓶子。
 
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
-修補桌
+沒有裝備移動電源。
 
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NotEnoughCharge:
-您可以使用此垃圾桶立即處理任何不需要的物品。永遠的和他們說拜拜吧！
+移動電源沒有足夠的電量。
 
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
-垃圾箱
+無法使用{0}
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
-自動車輛組裝平臺。可以被用於生產各種載具。
+`你可以在{0}秒內在床上重生。
+[br]或者你可以現在在遊戲世界重生。`
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Title:
-載具組裝平臺
+床重生冷卻時間
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Inaccessible:
-允許將電力儲存，留作它用。
+床周圍受到阻隔（沒有足夠空間）。
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_NoBed:
-蓄電設施
+你的床沒有了。
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnAtBed_Title:
-大型蓄電設施
+不能在床上重生
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Message:
-`"你無法編輯`
+缺乏重生地點。
 
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogCannotRespawnNearBed_Title:
-[br]
+不能在床邊重生
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Message:
-`其他人土地內的標示。"`
+請等待您的請求處理完畢。
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyRequestedUnstuck_Title:
-允許發佈圖像供他人觀看。使用背面的太陽能電池板，無需外部電源。
+你已經要求解除卡死
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Message:
-電子指示牌
+計時器被啟動時，不應移動角色。 解除卡死請求已被取消。
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Title:
-更耐用的金屬版指示牌。效果相同，但現在更難以破壞。
+解除卡死取消了
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Dead:
-鐵質指示牌
+你的角色死了。
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckImpossible_Title:
-方便的木牌寫下你需要記住或讓其他人知道的東西。
+不可解除卡死
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_MessageFormat:
-木質指示牌
+`請等待{0}
+[br]不要移動，否則你的解除卡死請求將被取消。`
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckRequested_Title:
-沒有可出售的物品
+解除卡死已申請
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Message:
-沒有交易欄位元
+你自由了！
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
-無法互動（太遠或有障礙）。
+解除卡死成功
 
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
-錯誤的交易模式。
+您被伺服器管理員禁止參與聊天。您的禁令在：{0}過期
 
 Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 {0}　離開了遊戲
@@ -71,227 +73,234 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0}　加入了遊戲
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
-沒有足夠的錢購買此物。
+您確定要拉黑{0}嗎？
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
-網站沒有足夠的錢購買你的物品。
+您可以稍後使用社交功能表解除遮罩此玩家。
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
-沒有足夠的空間購買物品。
+您確定要解除{0}的黑名單嗎？
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
-未找到交易欄位元。
+全域
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
-交易欄位元離線中。
+本地
 
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
-網站沒有足夠的空間來存放您想要出售的物品。
+無法在此處建造
 
 Scripts/Systems/Construction/ConstructionSystem@NotificationCannotPlace:
-可用
+無法放置
 
 Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Message:
-缺貨
+需要更多物品。
 
 Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Title:
-沒錢
+無法建造
 
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
-沒有空間
+製造清單已滿
 
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
-禁用
+無法添加新的配方
 
 Scripts/Systems/Deconstruction/DeconstructionSystem@NotificationCannotDeconstruct_Title:
-大型自動化交易站。可以方便地與其他倖存者交易各種各樣的物品。可配置出售或購買訂單。
+無法拆除
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_MessageFormat:
-大型交易站
+你的{0}已經破損並且永遠消失了。
 
 Scripts/Systems/ItemDurability/ItemDurabilitySystem@NotificationItemBroke_Title:
-自動化交易站。可以用來方便地與其他倖存者交換物品。可配置出售或購買訂單。
+物品損壞
 
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_MessageFormat:
 `你需要燃料才能進行加油：
 [br] {0}。`
 
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNeedFuel_Title:
-被毀壞的牆
+不能補充
 
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNoNeedToRefill:
-重型堡壘牆壁。你防守基地的終極之選。
+無需重新填充
 
 Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
-裝甲壁
+此物品不可再填充。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
-用金屬加固的堅固磚牆。將保障您的貴重物品安全。甚至可以在一定程度上抵禦爆炸。
+過於接近他人土地
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
-磚牆
+該區域已被另一個玩家佔領，或者它太接近別人的土地。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
-鋼筋厚混凝土牆。比任何其他防禦結構更耐用。
+資源點才剛剛出現，不能佔領。 暫時限制其周圍建築。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
-水泥牆
+與另一個玩家佔領的區域相交
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-明顯優於木牆。應該能阻止大多數入侵者闖入，但對裝備精良的襲擊者沒有多大幫助。
+`你用完了你的佔領土地限額。
+[br]你可以通過研究新技術來增加這個額度。`
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
-石牆
+你需要研究外星科技（T3）才能佔領原油/鋰礦，或在其附近放置佔領建築。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
-能保護你不受當地動物以及...當地人的低級侵害。除了最基本的武器之外，真的防不了什麼東西。
+`襲擊正在進行中。
+[br]你的基地受到攻擊時，你無法建造新的建築物。`
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RequiresOwnedArea:
-木牆
+你只能在自己的佔領區內建造這個建築。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorNotLandOwner_Message:
-`"植物尚未成熟。`
+你並非此佔領區所有人。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorRaidBlockActionRestricted_Message:
-`[br]你還不能收穫它。"`
+基地正遭受襲擊。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Button_CancelNewbieProtection:
-用滑鼠右鍵{0}。
+取消新手保護
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Dialog_CancelNewbieProtection:
-沒有漿果！
+確定要取消新手保護嗎？你無法再次將其開啟。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionDescription:
-咖啡
+你正處於新手保護狀態下。你被其他角色殺死時不會掉落物品。另外，你死亡後掉落的物品無法被其他角色拾取。請跟隨任務，製造必須的工具和武器，儘快建造起一個小型基地！
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@NewbieProtectionExpireInFormat:
-石油果
+新手保護結束于: {0}
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotDamageOtherPlayersOrLootBags:
-漿果樹叢（紫）
+處於新手保護狀態下時無法攻擊其他玩家或是拾取他們的物品。但是你可以在任意時刻從政治功能表關閉新手保護狀態。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_CannotPerformActionWhileUnderProtection:
-漿果樹叢（紅）
+你無法在新手保護狀態下進行此行動。但是你可以在任意時刻從政治功能表關閉新手保護狀態。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_LootBagUnderProtection:
-沒有水果！
+此包裹處於新手保護狀態下，只有其所有者可以拾取。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Notification_ProtectionExpired:
-水莖
+新手保護狀態已結束。你現在可以自由進行PVP活動，但請注意，角色死亡時將掉落身上所有的物品。
 
 Scripts/Systems/NewbieProtection/NewbieProtectionSystem@Title_NewbieProtection:
-漿果樹叢（黃）
+新手保護
 
 Scripts/Systems/Notifications/NotificationSystem@NotificationNoFreeSpace:
-絲蘭
+物品欄沒有可用空間
 
 Scripts/Systems/Notifications/NotificationSystem@NotificationSomeItemsDropped:
-需要農田。
+有些物品掉到了地上！
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageFormat:
-甜椒
+[b]{0}[/b]邀請你加入他們的隊伍。
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
-胡蘿蔔
+請注意，如果你接受此邀請，將[b]離開[/b]當前隊伍。
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationSentMessageFormat:
-辣椒
+組隊邀請已發送至 [b]{0}[/b] 。
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
-玉米
+隊伍邀請
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerAcceptedInviteFormat:
-黃瓜
+{0}通過{1}的邀請加入了隊伍
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerInvitedFormat:
-深藍鼠尾草
+{0}邀請了{1}加入隊伍
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerLeftPartyFormat:
-鬼花
+{0}離開了隊伍
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
-奶瓜
+{0}被{1}踢出了隊伍
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
 {0}已將你踢出了隊伍。
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
-香料
+未找到邀請或邀請已過期。
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorPartyFull:
-煙草
+隊伍已滿。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeNotFound:
-番茄
+被邀請人未找到。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorPartyFull:
-小麥
+隊伍已滿。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySamePartyMember:
-綠草藥
+被邀請人已經處在你的隊伍中。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
-紫草藥
+你被管理員遮罩，無法進行邀請。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
-紅草藥
+被邀請玩家處於離線狀態。只有線上玩家可以被邀請進入小隊。
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
-牛肝菌
+無法互動 - 太遠或建築不可用。
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NoPowerGridExist:
-粉蘑菇
+沒有電網。
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.NotEnoughPower:
-鏽蓋菇
+電網中電力不足。
 
 Scripts/Systems/PvE/PveSystem@DuelMode_Button_Disable:
-鳳梨
+禁止決鬥模式
 
 Scripts/Systems/PvE/PveSystem@DuelMode_Button_Enable:
-甘蔗
+啟用決鬥模式
 
 Scripts/Systems/PvE/PveSystem@DuelMode_Description:
-荊棘叢
+`你可以啟用決鬥模式，以便與其他玩家進行戰鬥。
+[br]你死亡後不會失去物品。
+[br]雙方玩家必須都啟用決鬥模式。`
 
 Scripts/Systems/PvE/PveSystem@DuelMode_Title:
-用斧頭來砍這棵樹。
+決鬥模式
 
 Scripts/Systems/PvE/PveSystem@Notification_CannotDamagePlayers_Message:
-香蕉樹
+你不能在PVE伺服器中損害其他玩家或建築。
 
 Scripts/Systems/PvE/PveSystem@Notification_OtherPlayerDontHaveDuelMode_Message:
-白樺樹
+雙方玩家必須都啟用決鬥模式。
 
 Scripts/Systems/PvE/PveSystem@Notification_StuffBelongsToAnotherPlayer_Message:
-短葉雪松
+這屬於另一個玩家。
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Message:
-仙人掌
+只能在襲擊時間段內破壞任何土地所有範圍內的建築。
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_CannotDamageUnderRaidingProtection_Title:
 無傷害
 
 Scripts/Systems/RaidingProtection/RaidingProtectionSystem@Notification_RaidingWindowNowClosed_Message:
-死樹
+`襲擊時段現已結束。
+[br]正在進行的襲擊可以繼續進行。`
 
 Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
-死樹
+尚無成熟作物
 
 Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-榴槤樹
+伺服器：世界備份將於{0}秒後開始。
 
 Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-倒下的樹
+伺服器：世界備份完成！
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
-橡樹
+您已被此伺服器管理員禁止使用此伺服器
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinKicked:
-棕櫚樹
+`你被此伺服器暫時踢出。有關任何其他細節，請諮詢伺服器管理員。
+[br][br]您可以在{0}後重新加入該伺服器。`
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhitelist:
-雲杉
+`此伺服器的管理員已將其設置為僅限邀請進入。
+[br]請查看伺服器說明以瞭解其他詳細資訊。`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
 `歡迎來到CryoFall官方伺服器！
@@ -316,10 +325,27 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 祝大家遊戲愉快! :)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvP:
-白楊樹
+`歡迎來到CryoFall官方伺服器！
+[br]
+[br]
+[b]重要:[/b]
+[br]
+這是一個PVP伺服器。請記住在PVP伺服器上，你將遭遇來自其他玩家的敵對行為。你要努力作戰，保護自己。你需要做好準備，時刻警惕。你也可以與其他玩家合作來提高自己的生存機會。
+[br]
+[br]
+如果你希望獲得更加平和的探索體驗，尤其如果這是你第一次進行遊戲，請考慮加入PVE伺服器。
+[br]
+[br]
+[b]伺服器規則:[/b]
+[*]尊重其他玩家。我們不會容忍任何的濫用以及歧視行為。
+[*]遵從伺服器管理員的安排。
+[*]不要在聊天欄刷屏或發送不雅內容。
+[br]
+[br]
+祝大家遊戲愉快! :)`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@WelcomeToServerTitleFormat:
-橡膠樹
+歡迎來到{0}
 
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_MessageFormat:
 `服務器將於{0}後關閉。
@@ -330,110 +356,111 @@ Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShut
 [br]請找一個安全點下線，否則你會在超時時自動斷開連接。`
 
 Scripts/Systems/ShutdownNotification/ShutdownNotificationSystem@NotificationShutdown_Title:
-樹樁
+關閉
 
 Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillDiscovered:
-覆苔樹樁
+發現了{0}技能。
 
 Scripts/Systems/Skills/ClientComponentSkillsWatcher@NotificationSkillReachedLevel:
-樹樁
+{0}級別{1}。
 
 Scripts/Systems/Technologies/ClientLearningPointsNotifier@NotificationSpendLearningPointsReminder:
-沼澤樹
+`你積累了超過{0}個學習點（LP）。你應該考慮將它們投入到解鎖新技術中。
+[br]（點擊打開技術菜單）`
 
 Scripts/Systems/Technologies/TechnologiesSystem@NotificationCannotUnlockTech:
-熱帶樹
+無法解鎖技術
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotificationBoughtTitle:
-柳樹
+已購買
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMorePennyCoins:
-站在水或井邊附近裝滿瓶子。
+還需要{0}硬幣。
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotificationNeedMoreShinyCoins:
-沒有裝備移動電源。
+還需要{0}閃亮硬幣。
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotificationSoldTitle:
-移動電源沒有足夠的電量。
+已出售
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotBuy_Title:
-無法使用{0}
+無法購買
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
-`"你可以在{0}秒內在床上重生。`
+無法出售
 
 Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
-`[br]或者你可以現在在遊戲世界重生。"`
+遇到障礙。要建造載具港需要一片沒有障礙物和玩家的空間。
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
-床重生冷卻時間
+無法獲取載具
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
-Your vehicle is in the garage. You can take it from any Vehicle Assembly Bay.
+你的車輛正停在車庫中。你可以從任何車輛組裝廠將其取出。
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
-Some of your vehicles are in the garage. You can take them from any Vehicle Assembly Bay.
+你的車輛正停在車庫中。你可以從任何車輛組裝廠將其取出。
 
 Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
-Vehicles in garage
+載具在車庫
 
 Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
-床周圍受到阻隔（沒有足夠空間）。
+能量耗盡。
 
 Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
-你的床沒有了。
+無法使用{0}
 
 Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
-不能在床上重生
+已經澆水過了
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-缺乏重生地點。
+該植物已可收穫。現在沒必要再澆水了。
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
-不能在床邊重生
+只有農場植物才能澆水。
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_Title:
-請等待您的請求處理完畢。
+無法澆水
 
 Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Message:
-你已經要求解除卡死
+要進行填充，指向一個井或在您物品欄中的水瓶。
 
 Scripts/Systems/WateringCanRefill/WateringCanRefillSystem@NotificationCannotRefill_Title:
-計時器被啟動時，不應移動角色。解除卡死請求已被取消。
+無法填充
 
 Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Message:
-解除卡死取消了
+無法為武器裝彈。
 
 Scripts/Systems/Weapons/WeaponAmmoSystem@NotificationNoAmmo_Title:
-你的角色死了。
+沒有彈藥
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwners:
-不可解除卡死
+向所有者開放
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToObjectOwnersOrAreaOwners:
-`"請等待{0}`
+向所有者或土地所有者開放
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@OpensToEveryone:
-`[br]不要移動，否則你的解除卡死請求將被取消。"`
+向所有人開放
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
-解除卡死已申請
+一直關閉
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
-你自由了！
+你沒有存取權限！
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
-解除卡死成功
+您無法編輯所有者列表。
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveLastOwner:
-全域
+您無法刪除最後一位所有者。
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotRemoveSelf:
-本地
+您無法從所有者列表中刪除自己。請讓其他玩家這樣做。
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageFormatPlayerNotFound:
 找不到名為[b]{0}[/b]的玩家。
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageNotOwner:
-{0}離開了遊戲
+你不是所有者。
 

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using static GameApi.Scripting.Api;
@@ -69,7 +70,7 @@
                 DialogWindow.ShowDialog(
                     title: null,
                     message,
-                    okText: message,
+                    okText: CoreStrings.Yes,
                     okAction: () => SetBlockStatus(characterName,
                                                    block: block,
                                                    askConfirmation: false),

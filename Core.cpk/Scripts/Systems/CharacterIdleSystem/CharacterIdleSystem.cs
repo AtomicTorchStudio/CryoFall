@@ -4,12 +4,29 @@
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class CharacterIdleSystem : ProtoSystem<CharacterIdleSystem>
     {
+        // If a player is idle for over this threshold,
+        // the food and water decrease will be suspended,
+        // and implants will stop decaying.
+        public const double ThresholdIdleSeconds = 5 * 60; // 5 minutes
+
         private const double TimeIntervalSeconds = 1.0;
 
         public override string Name => "Character idle system";
+
+        public static bool ServerIsIdlePlayer(ICharacter character, double currentServerTime)
+        {
+            var privateState = PlayerCharacter.GetPrivateState(character);
+            return currentServerTime - privateState.ServerLastActiveTime > ThresholdIdleSeconds;
+        }
+
+        public static bool ServerIsIdlePlayer(ICharacter character)
+        {
+            return ServerIsIdlePlayer(character, Server.Game.FrameTime);
+        }
 
         protected override void PrepareSystem()
         {

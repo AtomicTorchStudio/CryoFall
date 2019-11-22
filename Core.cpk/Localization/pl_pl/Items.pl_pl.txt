@@ -671,7 +671,7 @@ Scripts/Items/Food/ItemMRE@Description:
 Prefabrykowany posiłek zawierający kilka wysokokalorycznych dań i płyny pozwalające przeżyć w dziczy lub podczas operacji wojskowych.
 
 Scripts/Items/Food/ItemMRE@Name:
-MRE
+Racja żywnościowa
 
 Scripts/Items/Food/ItemMREImprovised@Description:
 Posiłek przygotowany z kilku prostych składników i konserwowany solą. Można przechowywać się przez długi czas.
@@ -1470,7 +1470,7 @@ Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Nie można użyć tutaj
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
-Sztucznie wyhodowana wątroba, która zapewnia lepszą filtrację krwi i całkowicie neguje skutki nadużywania leków.
+Sztuczna bioniczna wątroba. Zapewnia lepsze filtrowanie krwi i przeciwdziała efektom przedawkowania niektórych leków.
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
 Sztuczna wątroba
@@ -2055,7 +2055,7 @@ Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
 Strzelba wojskowa
 
 Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
-Półautomatyczny pistolet dający wielkiego kopa.
+Pistolet półautomatyczny; ma wielkiego kopa.
 
 Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
 Steppen Hawk

@@ -54,13 +54,13 @@ UI/CoreStrings@Button_Help:
 Pomoc
 
 UI/CoreStrings@Button_Next:
-Następny
+Dalej
 
 UI/CoreStrings@Button_OK:
 OK
 
 UI/CoreStrings@Button_Previous:
-Poprzedni
+Wstecz
 
 UI/CoreStrings@Button_Quit:
 Wyjdź
@@ -1056,7 +1056,7 @@ UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
 Schematy odblokowane
 
 UI/CoreStrings@Weapon_CompatibleAmmo:
-Pasująca amunicja:
+Amunicja:
 
 UI/CoreStrings@Window_Tab_Main:
 Główna
@@ -1775,10 +1775,10 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricit
 Zaprojektuj swoją bazę zasilaną energią elektryczną – wybuduj generatory, akumulatory i struktury napędzane prądem.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-Vehicles
+Pojazdy
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-Build and upgrade a variety of futuristic vehicles to explore the world faster or use them in combat.
+Twórz i modyfikuj różnorodne futurystyczne pojazdy. Pozwalają one szybciej eksplorować świat i są użyteczne w walce.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Fantastyczne stworzenia
@@ -1787,10 +1787,10 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_
 Odkrywaj zróżnicowany świat pełen różnych ekosystemów i dziesiątek fantastycznych stworzeń.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
-Ostatnie słowo
+Na koniec
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
-No i na koniec nie zapominajcie, że gra CryoFall jest nadal tworzone i planujemy wiele ulepszeń i zmian. Niemniej już teraz to kawał solidnej gry, która da Wam mnóstwo zabawy![br][br] Zawsze jesteśmy dostępni na Discordzie i naszych forach, więc wpadnijcie się przywitać! :)[br][br] W razie problemów lub jeśli będziecie chcieli zgłosić problem lub błąd, z przyjemnością Wam pomożemy!
+Nie zapominajcie, że gra CryoFall jest nadal tworzona i planujemy wiele ulepszeń i zmian. Niemniej już teraz to kawał solidnej gry, która da Wam mnóstwo zabawy![br][br] Zawsze jesteśmy dostępni na Discordzie i naszych forach, więc wpadnijcie się przywitać! :)[br][br] W razie problemów lub jeśli będziecie chcieli zgłosić problem lub błąd, z przyjemnością Wam pomożemy!
 
 UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
 Rozpocznij grę

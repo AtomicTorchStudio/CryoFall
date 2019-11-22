@@ -15,6 +15,8 @@
 
         public const double RangedHitboxOffset = 0;
 
+        public const double LegsColliderRadius = 0.2;
+
         public override double DefaultMoveSpeed => 2.25;
 
         public override bool HasMoveStartAnimations => true;
@@ -59,9 +61,7 @@
 
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
-            // human legs collider
-            var radius = 0.2;
-
+            const double radius = LegsColliderRadius;
             physicsBody.AddShapeCircle(
                 radius / 2,
                 center: (-radius / 2, 0));

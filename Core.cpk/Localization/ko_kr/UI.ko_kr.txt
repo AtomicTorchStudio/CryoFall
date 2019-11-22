@@ -1772,10 +1772,10 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricit
 전력망을 고려하여 기지를 설계하십시오. 많은 발전기와 저장소, 전기 소비 장치를 지을 수 있습니다.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
-Vehicles
+탈것
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
-Build and upgrade a variety of futuristic vehicles to explore the world faster or use them in combat.
+다양한 미래형 탈것을 제작 및 업그레이드하여 세계를 보다 빠르게 탐험하거나 전투에 이용할 수 있습니다.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 환상의 생명체

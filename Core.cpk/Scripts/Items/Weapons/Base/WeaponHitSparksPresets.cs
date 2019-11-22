@@ -42,6 +42,15 @@
                                             rows: 1,
                                             isTransparent: true));
 
+        public static readonly IReadOnlyWeaponHitSparksPreset Laser
+            = new WeaponHitSparksPreset()
+                .SetDefault(new TextureAtlasResource("FX/HitSparks/HitSparksLaser",
+                                                     columns: 4,
+                                                     rows: 1,
+                                                     isTransparent: true),
+                            lightColor: LightColors.WeaponFireMuzzleFlashLaser.WithAlpha(0x99),
+                            useScreenBlending: true);
+
         public static readonly IReadOnlyWeaponHitSparksPreset NoWeapon
             = new WeaponHitSparksPreset()
               .SetDefault(
@@ -70,20 +79,13 @@
                                             rows: 1,
                                             isTransparent: true));
 
-        public static readonly IReadOnlyWeaponHitSparksPreset Laser
-            = new WeaponHitSparksPreset()
-                .SetDefault(new TextureAtlasResource("FX/HitSparks/HitSparksLaser",
-                                                     columns: 4,
-                                                     rows: 1,
-                                                     isTransparent: true),
-                            lightColor: LightColors.WeaponFireMuzzleFlashLaser.WithAlpha(0x99));
-
         public static readonly IReadOnlyWeaponHitSparksPreset Plasma
             = new WeaponHitSparksPreset()
                 .SetDefault(new TextureAtlasResource("FX/HitSparks/HitSparksPlasma",
                                                      columns: 4,
                                                      rows: 1,
                                                      isTransparent: true),
-                            lightColor: LightColors.WeaponFireMuzzleFlashPlasma.WithAlpha(0x99));
+                            lightColor: LightColors.WeaponFireMuzzleFlashPlasma.WithAlpha(0x99),
+                            useScreenBlending: true);
     }
 }

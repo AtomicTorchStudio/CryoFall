@@ -1715,7 +1715,7 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Ti
 Willkommen bei CryoFall!
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
-Wir möchten diese Gelegenheit nutzen, um einige der Funktionen dieses Spiels vorzustellen! CryFall befindet sich noch immer in stetiger Entwicklung, jedoch sind alle der folgenden Features bereits vorhanden.
+Wir möchten diese Gelegenheit nutzen, um einige der Funktionen dieses Spiels vorzustellen! CryoFall befindet sich noch immer in stetiger Entwicklung, jedoch sind alle der folgenden Features bereits vorhanden.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
 Landwirtschaft & Kochen

@@ -3,7 +3,9 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterIdleSystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using static Stats.StatName;
 
     public class SkillSurvival : ProtoSkill
@@ -80,8 +82,7 @@
                     continue;
                 }
 
-                var privateState = PlayerCharacter.GetPrivateState(character);
-                if (serverTime - privateState.ServerLastActiveTime > CharacterHungerThirstSystem.ThresholdIdleSeconds)
+                if (CharacterIdleSystem.ServerIsIdlePlayer(character, serverTime))
                 {
                     // idle character
                     continue;

@@ -3,7 +3,6 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Media;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons.Mech;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -98,7 +97,7 @@
         public override void CreatePhysics(IPhysicsBody physicsBody)
         {
             // mech legs collider
-            var radius = 0.5;
+            const double radius = 0.5;
 
             physicsBody.AddShapeCircle(
                 radius / 2,
@@ -136,7 +135,7 @@
                         .Setup(skeleton, characterPilot);
             }
 
-            //skeleton.AnimationEvent += SkeletonOnAnimationEventFootstepMovement;
+            skeleton.AnimationEvent += SkeletonOnAnimationEventFootstepMovement;
 
             // little offset to ensure mech can properly behind a grass
             // cannot make it further without making it to z-fight with a player character
@@ -188,26 +187,11 @@
                 return;
             }
 
-            var protoCharacter = character.ProtoCharacter;
-            var protoSkeleton = (SkeletonMechSkipper)protoCharacter.ClientGetCurrentProtoSkeleton(character);
-            var vehicle = character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle;
-
-            // use some pitch variation
-            var pitch = 1.0; //RandomHelper.Range(protoSkeleton.FootstepsPitchVariationRange.From,
-            //             protoSkeleton.FootstepsPitchVariationRange.To);
-
-            var volume = protoSkeleton.VolumeFootsteps;
-            //// apply some volume variation
-            //volume *= RandomHelper.Range(protoSkeleton.FootstepsVolumeVariationRange.From,
-            //                             protoSkeleton.FootstepsVolumeVariationRange.To);
-            //// apply constant volume multiplier
-            //volume *= SoundConstants.VolumeFootstepsMultiplier;
-
             Client.Audio.PlayOneShot(
                 SoundResourceMovement,
-                vehicle,
-                volume: (float)volume,
-                pitch: (float)pitch);
+                character,
+                volume: 0.25f, // no variation of pitch and volume
+                pitch: 1.0f);
         }
     }
 }

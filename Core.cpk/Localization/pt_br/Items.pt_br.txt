@@ -1470,7 +1470,7 @@ Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Não é possível aplicar aqui
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
-Fígado artificial produto da bioengenharia. Permite melhorar a filtração do sangue e nega completamente os efeitos do uso excessivo de remédios.
+Fígado artificial criado através da bioengenharia. Permite melhorar a filtração do sangue, negando alguns efeitos do uso excessivo de remédios.
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
 Fígado artificial

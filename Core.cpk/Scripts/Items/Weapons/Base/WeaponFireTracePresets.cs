@@ -8,7 +8,7 @@
                 hitSparksPreset: WeaponHitSparksPresets.Firearm,
                 traceSpeed: 17,
                 traceSpriteWidthPixels: 363,
-                traceStartOffsetPixels: -120);
+                traceStartOffsetPixels: -10);
 
         public static readonly WeaponFireTracePreset Firearm
             = new WeaponFireTracePreset(
@@ -16,7 +16,7 @@
                 hitSparksPreset: WeaponHitSparksPresets.Firearm,
                 traceSpeed: 20,
                 traceSpriteWidthPixels: 363,
-                traceStartOffsetPixels: -120);
+                traceStartOffsetPixels: -10);
 
         public static readonly WeaponFireTracePreset Heavy
             = new WeaponFireTracePreset(
@@ -24,7 +24,7 @@
                 hitSparksPreset: WeaponHitSparksPresets.Firearm,
                 traceSpeed: 20,
                 traceSpriteWidthPixels: 363,
-                traceStartOffsetPixels: -120);
+                traceStartOffsetPixels: -10);
 
         public static readonly WeaponFireTracePreset HeavySniper
             = new WeaponFireTracePreset(
@@ -32,7 +32,7 @@
                 hitSparksPreset: WeaponHitSparksPresets.Firearm,
                 traceSpeed: 30,
                 traceSpriteWidthPixels: 363,
-                traceStartOffsetPixels: -120);
+                traceStartOffsetPixels: -10);
 
         public static readonly WeaponFireTracePreset Laser
             = new WeaponFireTracePreset(
@@ -40,7 +40,9 @@
                 hitSparksPreset: WeaponHitSparksPresets.Laser,
                 traceSpeed: 22,
                 traceSpriteWidthPixels: 363,
-                traceStartOffsetPixels: -120);
+                traceStartScaleSpeedExponent: 0.5,
+                traceStartOffsetPixels: -10,
+                useScreenBlending: true);
 
         public static readonly WeaponFireTracePreset MeleeWeapon
             = new WeaponFireTracePreset(
@@ -64,14 +66,16 @@
                 hitSparksPreset: WeaponHitSparksPresets.Firearm,
                 traceSpeed: 17,
                 traceSpriteWidthPixels: 363,
-                traceStartOffsetPixels: -120);
+                traceStartOffsetPixels: -10);
 
         public static readonly WeaponFireTracePreset Plasma
             = new WeaponFireTracePreset(
                 traceTexturePath: "FX/WeaponTraces/TracePlasma",
                 hitSparksPreset: WeaponHitSparksPresets.Plasma,
-                traceSpeed: 17,
-                traceSpriteWidthPixels: 363,
-                traceStartOffsetPixels: -120);
+                traceSpeed: 20,
+                traceSpriteWidthPixels: 235,
+                traceStartScaleSpeedExponent: 0.5,
+                traceStartOffsetPixels: -10,
+                useScreenBlending: true);
     }
 }

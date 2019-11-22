@@ -17,6 +17,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Rendering;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -148,7 +149,7 @@
                         if (hitWorldObject != null
                             && weaponTracePreset != null)
                         {
-                            AddHitSparks(weaponTracePreset,
+                            AddHitSparks(weaponTracePreset.HitSparksPreset,
                                          hitData,
                                          hitWorldObject,
                                          protoWorldObject,
@@ -416,7 +417,7 @@
         }
 
         private static void AddHitSparks(
-            WeaponFireTracePreset weaponTracePreset,
+            IReadOnlyWeaponHitSparksPreset hitSparksPreset,
             WeaponHitData hitData,
             IWorldObject worldObject,
             IProtoWorldObject protoWorldObject,
@@ -449,6 +450,7 @@
                 hitPoint += randomOffset;
             }
 
+            var sparksEntry = hitSparksPreset.GetForMaterial(objectMaterial);
             var componentSpriteRender = Api.Client.Rendering.CreateSpriteRenderer(
                 sceneObject,
                 positionOffset: hitPoint,
@@ -459,6 +461,11 @@
             componentSpriteRender.DrawOrderOffsetY = -hitPoint.Y;
             componentSpriteRender.Scale = (float)Math.Pow(1.0 / projectilesCount, 0.35);
 
+            if (sparksEntry.UseScreenBlending)
+            {
+                componentSpriteRender.BlendMode = BlendMode.Screen;
+            }
+
             if (!isRangedWeapon)
             {
                 componentSpriteRender.RotationAngleRad = (float)(RandomHelper.NextDouble() * 2 * Math.PI);
@@ -466,7 +473,7 @@
 
             const double animationFrameDuration = 1 / 30.0;
             var componentAnimator = sceneObject.AddComponent<ClientComponentSpriteSheetAnimator>();
-            var hitSparksEntry = weaponTracePreset.GetHitSparksEntry(objectMaterial);
+            var hitSparksEntry = sparksEntry;
             componentAnimator.Setup(
                 componentSpriteRender,
                 hitSparksEntry.SpriteSheetAnimationFrames,
@@ -477,6 +484,7 @@
             var totalDurationWithLight = 0.15 + totalAnimationDuration;
             if (hitSparksEntry.LightColor.HasValue)
             {
+                // create light spot (even for melee weapons)
                 var lightSource = ClientLighting.CreateLightSourceSpot(
                     sceneObject,
                     color: hitSparksEntry.LightColor.Value,

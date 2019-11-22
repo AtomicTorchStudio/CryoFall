@@ -1470,7 +1470,7 @@ Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 ここでは使用できません
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
-生体工学技術でつくられた人工肝。血液ろ過機能が向上しており、薬物乱用の副作用を完全になくすことができます。
+人工肝臓。血液濾過を改善し、薬物乱用による悪影響を打ち消すことができます。
 
 Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
 人工肝

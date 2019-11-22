@@ -1,204 +1,204 @@
 ﻿Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Description:
-野豬
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
-狼
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Description:
-玩家人物
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Name:
-玩家人物處於觀察者模式
-
-Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
 你使用了刺激劑，精力恢復速度大幅上升。
 
-Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectEnergyRush@Name:
 能量奔湧
 
-Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Description:
 你使用了強力的治療藥劑，生命恢復速度加快。
 
-Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Name:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingFast@Name:
 快速治療
 
-Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Description:
 你使用了藥劑，生命值將緩慢恢復。
 
-Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealingSlow@Name:
 治療
 
-Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
-你最近吃了富含維生素、微量元素和其他重要的營養物質的健康膳食。你感覺好極了。
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Description:
+你最近吃了富含維生素、微量元素和其他重要的營養物質的健康膳食。 你感覺好極了。
 
-Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHealthyFood@Name:
 健康食物
 
-Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
 你剛剛飽餐一度，感覺很棒。接下來做的工作都會容易一些。
 
-Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 溫馨食物
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
 你剛剛飽餐一頓，感覺很棒。你感覺生活充滿了光彩。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Name:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
 可口食物
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 你正處於刺激劑的影響下，短時間內獲得強化。你可以更加輕易地完成需要力量的工作。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
+Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 力量提升
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 你正在出血，如果不進行治療將持續流失生命。微弱出血將會自愈，但是嚴重的傷害可能需要繃帶和止血藥劑。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Name:
 出血
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 你體內破損的植入物正在極大的影響你的健康。你的最大生命值下降了。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
 破損植入物副作用
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 你的腿骨折了，行動能力受到影響。拖著斷腿跑步將帶來劇痛。使用夾板治療骨折。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 斷腿
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttackWhileDazed:
 無法在暈眩時進行攻擊。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 你暈眩了！請等待其恢復。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
 暈眩
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
 你正在暴露於一個附近的高熱源，立即離開該地區以防止進一步損害。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Name:
 熱
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Description:
 你要餓死了！
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectHunger@Name:
 饑餓
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Description:
 糟糕，你暴露在了極端輻射劑量下，你體內的細胞開始變異！請回避輻射區域。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectMutation@Name:
 變異
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMessage:
 無法進食或飲水。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Description:
 你感覺不太好...你在感到噁心時無法進食或飲水。請花時間休息或者服用抗嘔藥物。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Name:
 噁心
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Description:
 你正感到劇痛，這將減少你的精力恢復速度並阻止生命恢復。尋找止疼片或者硬抗。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
 劇痛
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Description:
 你正處於一個強大靈能場的影響下，讓你逐漸失去理智。離開受影響區域或服用抗靈能藥劑來防止進一步損害。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
 靈能影響
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
 你正在遭受輻射中毒，這將緩慢地殺死你。尋找抗輻射藥劑來減輕此影響。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Name:
 輻射中毒
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Description:
 你為你的骨折進行了夾板治療，正在緩慢恢復。你無法在此期間跑步。好好休息吧。
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Name:
 腿部固定
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Description:
 你正處於嚴重脫水狀態！
 
-Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectThirst@Name:
 口渴
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Description:
 你接觸了危險的毒素。使用抗毒藥物來防止進一步生命值損失。
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectToxins@Name:
 中毒
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
-你覺得自己有力未逮。進行工作更加困難了。花點時間休息一下，以避免造成進一步損害。
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Description:
+你覺得自己有力未逮。 進行工作更加困難了。花點時間休息一下，以避免造成進一步損害。
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Description:
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectWeakened@Name:
 虛弱
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Name:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Description:
 你的裝備耐久度低，可能即將出現損壞。
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
 裝備破損
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
 你像一條魚一樣猛喝。想吐也是理所當然的……
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Description:
 你喝了酒...
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Name:
 醉酒
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Description:
 你磕了藥。你感覺十分歡愉...
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectHigh@Name:
 嗨
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Name:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@NotificationMessage:
 你過量使用了醫療道具，現在受到了生命值損傷。
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Description:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Description:
 你在短期內使用了過量藥劑。慢點來，否則你將受到生命值懲罰。最好不要忽視此警告。
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Name:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectMedicineOveruse@Name:
 藥物濫用
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Description:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Description:
 你當前正處在止血藥的效果下，所有出血傷口的流血程度將會減弱。
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Name:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionBleeding@Name:
 阻止出血
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Description:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Description:
 你身上覆蓋著阻熱凝膠，極大的降低了你從環境中受到的熱能傷害。
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Name:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionHeat@Name:
 熱能防護
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Description:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Description:
 你正處在強效止痛藥的影響下。無論是好是壞，你現在都感覺不到疼痛了。
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Name:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPain@Name:
 疼痛防護
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Description:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Description:
 你正處在靈能保護的影響下。所有靈能暴露效果對你都將減弱。
 
-Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Name:
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionPsi@Name:
 靈能保護
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Description:
+你正處在輻射保護的影響下。所有輻射暴露效果對你都將減弱。
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionRadiation@Name:
+輻射保護
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Description:
+你正處在毒素保護的影響下。所有毒素暴露效果對你都將減弱。
+
+Scripts/CharacterStatusEffects/Neutral/StatusEffectProtectionToxins@Name:
+毒素保護
 
