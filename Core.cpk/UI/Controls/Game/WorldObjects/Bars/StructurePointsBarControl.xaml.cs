@@ -8,28 +8,28 @@
     {
         private float initialStructurePoints;
 
-        private StaticObjectStructurePointsData staticObjectStructurePointsData;
+        private ObjectStructurePointsData objectStructurePointsData;
 
         private ViewModelStructurePointsBarControl viewModel;
 
         public void ResetControlForCache()
         {
-            this.viewModel.StaticObjectStructurePointsData
-                = this.staticObjectStructurePointsData
+            this.viewModel.ObjectStructurePointsData
+                = this.objectStructurePointsData
                       = default;
         }
 
         public void Setup(
-            StaticObjectStructurePointsData data,
+            ObjectStructurePointsData data,
             float initialStructurePoints)
         {
             this.initialStructurePoints = initialStructurePoints;
-            if (this.staticObjectStructurePointsData.Equals(data))
+            if (this.objectStructurePointsData.Equals(data))
             {
                 return;
             }
 
-            this.staticObjectStructurePointsData = data;
+            this.objectStructurePointsData = data;
             if (this.viewModel != null)
             {
                 this.RefreshViewModelData();
@@ -45,7 +45,7 @@
 
         private void RefreshViewModelData()
         {
-            this.viewModel.StaticObjectStructurePointsData = this.staticObjectStructurePointsData;
+            this.viewModel.ObjectStructurePointsData = this.objectStructurePointsData;
             this.viewModel.SetInitialStructurePoints(this.initialStructurePoints);
         }
     }

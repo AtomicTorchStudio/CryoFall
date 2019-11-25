@@ -26,7 +26,7 @@
 
             this.AtlasTextureVertical = new TextureAtlasResource(
                 texturePath + "Vertical",
-                columns: 7,
+                columns: 8,
                 rows: 1,
                 isTransparent: true);
         }
@@ -36,9 +36,11 @@
 
         public override int DoorSizeTiles => 2;
 
+        public override bool IsHeavyVehicleCanPass => true;
+
         public override string Name => "Steel gate";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 

@@ -1,4 +1,10 @@
-﻿UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
+﻿UI/CoreStrings@Action_Build:
+Construir
+
+UI/CoreStrings@Action_Repair:
+Reparar
+
+UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Destruído(a) em
 
 UI/CoreStrings@Button_Accept:
@@ -47,8 +53,14 @@ Editar
 UI/CoreStrings@Button_Help:
 Ajuda
 
+UI/CoreStrings@Button_Next:
+Seguinte
+
 UI/CoreStrings@Button_OK:
 OK
+
+UI/CoreStrings@Button_Previous:
+Anterior
 
 UI/CoreStrings@Button_Quit:
 Sair
@@ -161,6 +173,28 @@ Proteção psíquica: {0}
 UI/CoreStrings@Defense_Format_Radiation:
 Proteção contra radiação: {0}
 
+UI/CoreStrings@Demo_Button_BuyGameOnSteam:
+Comprar CryoFall no Steam
+
+UI/CoreStrings@Demo_CanPurchase:
+Compre CryoFall para receber a versão completa do jogo. A compra é única, e você poderá continuar jogando de onde parou com seu personagem existente (se jogou recentemente). Também será possível jogar na comunidade e servidores com mod, ou mesmo hospedar seu próprio servidor.
+
+UI/CoreStrings@Demo_Expired:
+O tempo da sua demonstração acabou. Obrigado por testar o jogo. Tomara que você tenha gostado!
+
+UI/CoreStrings@Demo_OnlyOfficialServers:
+`Com esta versão de demonstração, você pode jogar em qualquer um dos servidores oficiais do jogo.
+[br]Compre a versão completa para jogar em qualquer outra comunidade ou servidor de jogos particulares ou hospedar seus próprios servidores.`
+
+UI/CoreStrings@Demo_TimeRemaining:
+A versão de demonstração acaba em:
+
+UI/CoreStrings@Demo_Title:
+Versão de demonstração de CryoFall
+
+UI/CoreStrings@Demo_Welcome:
+Bem-vindo à versão de demonstração de CryoFall. Você pode jogar o jogo sem restrições (acesso completo a todos os recursos do jogo em servidores de jogos oficiais) pela duração desta demonstração.
+
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 Disponível para posse em:
 
@@ -179,6 +213,9 @@ UE/s
 UI/CoreStrings@Extras_DiscordTooltip:
 Servidor oficial Discord de CryoFall (apenas em inglês)
 
+UI/CoreStrings@Extras_FeaturesTooltip:
+Apresentação das características de CryoFall
+
 UI/CoreStrings@Extras_PatchnotesTooltip:
 Todas as notas de atualização de CryoFall (apenas em inglês)
 
@@ -195,7 +232,13 @@ UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
 Colher em
 
 UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
-já!
+Pronto para a colheita
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiled:
+Podre
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
+Apodrecerá em
 
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 Regada durante
@@ -211,6 +254,9 @@ Mulher
 
 UI/CoreStrings@Gender_Male:
 Homem
+
+UI/CoreStrings@HUDButtonsBar_DismountVehicle:
+Desmontar veículo
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 Construção
@@ -487,6 +533,18 @@ Os servidores JvJ são irrestritos; neles, você pode matar e morrer.
 
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 JvJ
+
+UI/CoreStrings@ModsDisabledWindow_Description:
+`O jogo foi incapaz de rodar com os mods, então eles foram desativados.
+[br]Isto é devido a pelo menos um dos mods estar desatualizado (incompatível com a versão atual do jogo) ou simplesmente inválido.
+[br]O jogo não consegue determinar se é um mod particular causando algum problema ou se todos são incompatíveis. Tente verificar ativando os mods um a um.
+[br]Se quiser continuar usando esses mods, confira se está usando as respectivas últimas versões.
+[br]
+[br]Lista de mods desabilitados
+[br]{0}`
+
+UI/CoreStrings@ModsDisabledWindow_Title:
+CryoFall desativou os mods
 
 UI/CoreStrings@Network_Jitter:
 Instabilidade
@@ -790,6 +848,17 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `Criação da conta AtomicTorch.com
 [br](para seu Steam ID).`
 
+UI/CoreStrings@SupporterPack_Badge:
+Insígnia de apoiador
+
+UI/CoreStrings@SupporterPack_Description:
+`O Supporter Pack é uma coleção de itens bônus quem deseja dar um passo além e apoiar os desenvolvedores de CryoFall. Para demonstrar nossa gratidão, o jogo exibirá uma insígnia de apoiador especial no bate-papo do jogo.
+[br][br]O pacote não fornece nenhuma vantagem no jogo, é completamente optativo. Ele inclui a trilha sonora completa do jogo, arte conceitual, arte do jogo em alta resolução, insígnia do bate-papo, etc. Serão adicionados mais itens ao Supporter Pack durante o período de Acesso Antecipado.
+[br][br]Nosso obrigado sincero pelo seu apoio!`
+
+UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
+Pontos de aprendizagem: {0}
+
 UI/CoreStrings@TechGroupTooltip_Requirements:
 Requisitos
 
@@ -800,16 +869,19 @@ UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 Tecnologias desbloqueadas
 
 UI/CoreStrings@TechNodeTooltip_Perks:
-Vantagens
+Vantagens:
 
 UI/CoreStrings@TechNodeTooltip_Recipes:
-Receitas
+Receitas:
 
 UI/CoreStrings@TechNodeTooltip_Structures:
-Estruturas
+Estruturas:
 
 UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
 Pré-requisito tecnológico
+
+UI/CoreStrings@TechNodeTooltip_Vehicles:
+Veículos:
 
 UI/CoreStrings@Technology:
 Tecnologia
@@ -906,6 +978,83 @@ Continuar sem criar uma conta
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
 Parece que você está iniciando o CryoFall pela primeira vez. Gostaria de vinculá-lo a uma conta [url=atomictorch.com]AtomicTorch.com[/url] existente?
+
+UI/CoreStrings@UnstuckInFormat:
+Desobstrução em: {0}
+
+UI/CoreStrings@Vehicle_Ammo:
+Munição
+
+UI/CoreStrings@Vehicle_Armor:
+Armadura
+
+UI/CoreStrings@Vehicle_EnergyLevel:
+Nível de energia
+
+UI/CoreStrings@Vehicle_Enter:
+Aceitar
+
+UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
+Armadura {1:F0}/{2:F0} ({0}%)
+
+UI/CoreStrings@Vehicle_Hotbar_EnergyPercentFormat:
+Energia {0}%
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_LeftArm:
+Braço esquerdo
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
+Braço direito
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
+Arma
+
+UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
+Esta arma só pode ser usada quando instalada em um mecha.
+
+UI/CoreStrings@Vehicle_ReactorCores:
+Núcleos de reator
+
+UI/CoreStrings@VehicleGarage_ButtonPutCurrentVehicle:
+Deixar o veículo atual na garagem
+
+UI/CoreStrings@VehicleGarage_ButtonTakeVehicle:
+Pegar veículo
+
+UI/CoreStrings@VehicleGarage_TitleAccessibleVehicles:
+Você tem acesso aos seguintes veículos:
+
+UI/CoreStrings@VehicleGarage_TitleNoAccessibleVehicles:
+Você ainda não tem acesso a nenhum veículo.
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_Docked:
+Atracado
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InGarage:
+Na garagem
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InUse:
+Em uso
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InWorld:
+No mundo
+
+UI/CoreStrings@VehiclesAssemblyList_Button_Build:
+Construir
+
+UI/CoreStrings@VehiclesAssemblyList_NoSchematicsKnown:
+`Você não tem nenhum projeto para este compartimento de montagem.
+[br][br][br]
+Desbloqueie novos projetos no menu de tecnologias.`
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
+Projetos
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
+Projetos desbloqueados
+
+UI/CoreStrings@Weapon_CompatibleAmmo:
+Munição compatível:
 
 UI/CoreStrings@Window_Tab_Main:
 Principal
@@ -1101,6 +1250,21 @@ Progresso até o próximo nível de habilidade
 UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
 Habilidades descobertas
 
+UI/CoreStrings@WindowsObjectVehicle_RepairTextFormat:
+Para reparar {0}% de armadura, você precisa:
+
+UI/CoreStrings@WindowsObjectVehicle_TabCargo_Title:
+Carga
+
+UI/CoreStrings@WindowsObjectVehicle_TabConstructVehicle:
+Construção
+
+UI/CoreStrings@WindowsObjectVehicle_TabGarage:
+Garagem
+
+UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
+Veículo
+
 UI/CoreStrings@WindowSocial_OnlineNow:
 Online
 
@@ -1229,7 +1393,7 @@ UI/CoreStrings@WipedDate_JustWiped:
 Recém-zerado
 
 UI/CoreStrings@WipedDate_Yesterday:
-{0} horas atrás
+Ontem
 
 UI/CoreStrings@WorldMap_MapExplored:
 Mapa explorado
@@ -1251,6 +1415,9 @@ UI/CoreStrings@WorldMapMarkDroppedItems_Tooltip:
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
 `[b]Posse de terra[/b]
 [br]Você tem acesso a este terreno.`
+
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_LastUsedVehicle:
+[b]Último veículo usado[/b]
 
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 `[b]Posse de terra[/b]
@@ -1485,9 +1652,6 @@ Quer pesquisar {0}?
 UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
 Artesanato
 
-UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
-Reparar
-
 UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
 Itens perecíveis ficam conservados ~{0} vezes mais.
 
@@ -1545,6 +1709,89 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `Geração atual de {0} UE/s.
 [br]Produção máxima de {1} UE/s.`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+Bem-vindo(a) a CryoFall!
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+Gostaríamos de aproveitar esta oportunidade para apresentar algumas das funcionalidades que você pode esperar no jogo! CryoFall ainda está em desenvolvimento ativo, mas todas as seguintes funcionalidades já estão disponíveis.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+Agricultura e culinária
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+Cultive suas próprias plantações, usando fertilizantes e ferramentas agrícolas. Em seguida, use os frutos do seu trabalho para cozinhar alimentos diferentes, que podem fornecer benefícios ativos para seu personagem.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+Remédio e simulação de personagem
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+Simulação complexa na qual o personagem não apenas sofre a mecânica habitual de fome e sede, mas também uma infinidade de doenças e efeitos de condição, os quais podem ser tratados usando uma variedade de itens médicos.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+Indústria
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+Explore os recursos naturais disponíveis no mundo do CryoFall. Bombeie e refine petróleo bruto ou extraia lítio de fontes geotérmicas para fazer baterias e eletrônicos.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+Economia
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+Cunhe moedas e construa pontos comerciais totalmente automatizados para facilitar o comércio com outros sobreviventes.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+Implantes cibernéticos
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+Instale uma gama de diferentes implantes biônicos e cibernéticos no seu personagem para receber novas habilidades ou aumentar seus atributos.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+Habilidades
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+Descubra, desbloqueie e melhore uma série de habilidades para seu personagem, ajudando você a aumentar a eficiência e ganhar novas habilidades.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
+Personalização de personagem
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+Personalize a aparência do seu personagem e use uma pluralidade de diferentes equipamentos e ferramentas para se diferenciar.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+Tecnologia
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+Ganhe pontos de aprendizagem e use-os para aprender novas tecnologias, receitas e construções, personalizando o jogo ao seu gosto, concentrando-se nas áreas que mais lhe interessam.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+Eletricidade
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+Projete sua base levando em conta a rede elétrica. Você pode construir uma série de geradores, estruturas de armazenamento e aparelhos consumidores de eletricidade.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+Veículos
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+Construa e melhore uma série de veículos futuristas para explorar o mundo mais rápido ou usá-los em combate.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
+Criaturas fantásticas
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+Explore um mundo diversificado com uma infinidade de biomas diferentes e dezenas de criaturas fantásticas.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+Últimas considerações
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
+`E, por fim, tenha em mente que CryoFall ainda é um trabalho em andamento, de modo que planejamos muitas melhorias e mudanças. No entanto, já é um jogo estável. Nossa equipe espera que você curta a fundo o jogo![br][br]
+Além disso, estamos sempre disponíveis no Discord e nos nossos fóruns. Apareça para nos dar um oi! :)[br][br]
+Se tiver alguma dificuldade ou gostaria de relatar um bug ou truque, fique à vontade para nos contar, será um prazer ajudar!`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
+Começar
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
 Aguardando resposta de login.

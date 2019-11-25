@@ -11,7 +11,7 @@ int SpriteTextureArraySlice;
 sampler SpriteTextureSampler;
 
 float Power = 0.15;
-float Speed = 0.5 * 0.667;
+float Speed = 0.333;
 float PivotY = 0.2;
 int PhaseOffset = 0;
 int Flip = 0;

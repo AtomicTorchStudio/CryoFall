@@ -21,7 +21,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <controls:RequiredItemsPanelControl Grid.Row="0" MaxWidth="340"
+        <controls:RequiredItemsPanelControl Grid.Row="0"
+                                            MaxWidth="340"
                                             Items="{Binding InputItems}"
                                             CountMultiplier="{Binding CountToCraft}"
                                             MinSlotsCount="8"
@@ -38,9 +39,13 @@
                 <crafting:CraftingCountSelectorControl DataContext="{Binding}" />
             </Viewbox>
 
-            <Control Grid.Column="1" Template="{StaticResource ControlTemplateArrow}" Width="20" Height="20" />
+            <Control Grid.Column="1"
+                     Template="{StaticResource ControlTemplateArrow}"
+                     Width="20"
+                     Height="20" />
 
-            <Viewbox Grid.Column="2" Stretch="Uniform">
+            <Viewbox Grid.Column="2"
+                     Stretch="Uniform">
                 <Button Command="{Binding CommandCraft}"
                         Padding="0"
                         Focusable="False"

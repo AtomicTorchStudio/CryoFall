@@ -16,15 +16,27 @@
         public override string Description =>
             "Laser rifle emits quick pulses of high-energy light, mostly in infrared spectrum, that burns the target. Offers much higher firing rate than laser pistol at a cost of higher energy consumption.";
 
-        public override uint DurabilityMax => 1200;
+        public override uint DurabilityMax => 1600;
 
         public override double EnergyUsePerShot => 20;
 
-        public override double FireInterval => 0.15;
+        public override double FireInterval => 0.15; // about 6.67 shots per second
 
         public override string Name => "Laser rifle";
 
         public override double SpecialEffectProbability => 0.25;
+
+        protected override WeaponFirePatternPreset PrepareFirePatternPreset()
+        {
+            return new WeaponFirePatternPreset(
+                initialSequence: new[] { 0.0, 0.5, -0.5 },
+                cycledSequence: new[] { 1.5, 2.0, 1.0, 0.0, -1.5, -2.0, -1.0, 0.0 });
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.Laser;
+        }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
@@ -36,9 +48,9 @@
             ref DamageDescription damageDescription)
         {
             damageDescription = new DamageDescription(
-                damageValue: 7,
+                damageValue: 9,
                 armorPiercingCoef: 0.6,
-                finalDamageMultiplier: 1,
+                finalDamageMultiplier: 1.1,
                 rangeMax: 10,
                 damageDistribution: new DamageDistribution(DamageType.Heat, 1));
         }

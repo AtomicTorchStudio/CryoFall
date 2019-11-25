@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Core
 {
     using System.Windows;
+    using System.Windows.Media;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class WidgetPanel : BaseUserControl
@@ -17,6 +18,12 @@
                                         typeof(WidgetPanel),
                                         new PropertyMetadata(Visibility.Visible));
 
+        public static readonly DependencyProperty WidgetBackgroundProperty =
+            DependencyProperty.Register("WidgetBackground",
+                                        typeof(Brush),
+                                        typeof(WidgetPanel),
+                                        new PropertyMetadata(default(Brush)));
+
         public WidgetPanel()
         {
         }
@@ -31,6 +38,12 @@
         {
             get => (Visibility)this.GetValue(VisibilityBackgroundImageProperty);
             set => this.SetValue(VisibilityBackgroundImageProperty, value);
+        }
+
+        public Brush WidgetBackground
+        {
+            get => (Brush)this.GetValue(WidgetBackgroundProperty);
+            set => this.SetValue(WidgetBackgroundProperty, value);
         }
 
         protected override void InitControl()

@@ -175,7 +175,7 @@
     <SolidColorBrush x:Key="BrushColorAltLabelForeground" Color="{StaticResource ColorAltLabelForeground}" />
 
     <SolidColorBrush x:Key="LabelActionControlColor" Color="#DDFFBC0A" />
-    <SolidColorBrush x:Key="LabelActionControlBackround" Color="#30FFBC0A" />
+    <SolidColorBrush x:Key="LabelActionControlBackground" Color="#30FFBC0A" />
 
     <SolidColorBrush x:Key="DisabledBackground" Color="Black" Opacity="0.35" />
 
@@ -213,6 +213,7 @@
     <SolidColorBrush x:Key="ButtonSmallBackgroundFocusedHighlight" Color="{StaticResource Color5}" Opacity="0.4" />
     <SolidColorBrush x:Key="ButtonSmallBackgroundPressedHighlight" Color="{StaticResource Color5}" Opacity="0.6" />
 
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#D4000000" />
     <SolidColorBrush x:Key="WindowForeground" Color="White" />
     <SolidColorBrush x:Key="WindowTitleForeground" Color="{StaticResource Color6}" />
 
@@ -231,21 +232,25 @@
         <GradientStop Color="{StaticResource Color6}" Offset="0.7" />
     </LinearGradientBrush>
 
-    <Color x:Key="WidgetBackgroundGradientColorOpaque">#FF005C7F</Color>
+    <Color x:Key="WidgetBackgroundGradientColorOpaque">#A0005C7F</Color>
     <Color x:Key="WidgetBackgroundGradientColorNonOpaque">#00005C7F</Color>
 
-    <LinearGradientBrush x:Key="WidgetBackgroundGradientHorizontal" EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.75">
+    <LinearGradientBrush x:Key="WidgetBackgroundGradientHorizontal" EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1">
         <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" Offset="0" />
         <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}" Offset="1" />
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="WidgetBackgroundGradientVertical" EndPoint="1,0.5" StartPoint="0,0.5" Opacity="0.75">
+    <LinearGradientBrush x:Key="WidgetBackgroundGradientVertical" EndPoint="1,0.5" StartPoint="0,0.5" Opacity="1">
         <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" Offset="0" />
         <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}" Offset="1" />
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="WidgetBorderBrush" Color="{StaticResource WidgetBorderColor}" />
-    <SolidColorBrush x:Key="WidgetBackgroundBrush" Color="#D4000000" />
+    <SolidColorBrush x:Key="WidgetBackgroundBrush" Color="#B4000000" />
+
+    <Style TargetType="{x:Type core:WidgetPanel}">
+        <Setter Property="WidgetBackground" Value="{StaticResource WidgetBackgroundBrush}" />
+    </Style>
 
     <Style x:Key="WidgetBackgroundBorder" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource WidgetBackgroundBrush}" />
@@ -891,7 +896,7 @@
     <CubicEase x:Key="WindowCloseEasingFunction" EasingMode="EaseOut" />
 
     <Style TargetType="{x:Type core:GameWindow}">
-        <Setter Property="Background" Value="{StaticResource WidgetBackgroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}" />
         <!--<Setter Property="BorderBrush" Value="{StaticResource WidgetBorderBrush}" />-->
         <Setter Property="Foreground" Value="{StaticResource WindowForeground}" />
         <Setter Property="SoundOpening" Value="{StaticResource SoundWindowOpening}" />
@@ -985,6 +990,7 @@
 
                         <Grid x:Name="LayoutRoot" Background="Transparent">
                             <core:WidgetPanel InnerGlowSize="10"
+                                              WidgetBackground="{TemplateBinding Background}"
                                               VisibilityBackgroundImage="Collapsed" />
 
                             <Border BorderThickness="{TemplateBinding BorderThickness}">
@@ -1119,8 +1125,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Border Margin="1,0" Background="Transparent">
-                        <Path Data="M0,3 L3,0 L6,3 z" Fill="{TemplateBinding Foreground}" Stretch="Fill"
-                              IsHitTestVisible="False" />
+                        <Path Data="M0,3 L3,0 L6,3 z"
+                              Fill="{TemplateBinding Foreground}"
+                              Stretch="Fill" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -2372,9 +2379,6 @@
                     <Grid x:Name="LayoutRoot" Background="{TemplateBinding Background}">
                         <Canvas x:Name="CanvasContentWrapper" Background="Transparent">
                             <Canvas x:Name="CanvasContent" RenderTransformOrigin="0.5,0.5">
-                                <!--<Rectangle Width="{TemplateBinding PanningWidth}"
-                                           Height="{TemplateBinding PanningHeight}"
-                                           IsHitTestVisible="False" />-->
                                 <Canvas x:Name="CanvasContentItems" Background="Transparent" IsItemsHost="True" />
                             </Canvas>
                         </Canvas>
@@ -2399,6 +2403,8 @@
     <Style x:Key="TextBlockStyleCraftingCaption" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="FontSize" Value="10" />
+        <Setter Property="LineHeight" Value="11.5" />
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Margin" Value="0,5,0,0" />
         <Setter Property="Foreground" Value="White" />
@@ -3049,5 +3055,11 @@
     <Geometry x:Key="IconGeometryPathPowerOn">M 1295,1865 C 965,1561 694,1307 692,1302 c -1,-5 61,-38 139,-73 275,-123 344,-155 344,-161 0,-2 -139,-215 -310,-473 C 520,74 530,90 551,106 c 8,6 311,240 674,519 363,279 664,511 668,515 5,4 -102,74 -237,155 -135,81 -246,152 -246,158 0,6 101,207 224,446 258,504 267,521 264,521 -2,0 -273,-250 -603,-555 z</Geometry>
     <Geometry x:Key="IconGeometryPathPowerOff">m 677,1379 c -9,-5 -24,-23 -32,-39 -14,-27 -14,-33 0,-59 8,-17 20,-33 26,-36 6,-4 -42,-61 -115,-135 C 455,1007 423,968 397,913 367,849 365,838 365,735 365,635 368,620 392,570 L 420,515 280,375 140,235 l 58,-58 57,-57 140,140 139,139 30,-19 c 58,-35 143,-53 232,-48 126,7 187,41 343,194 l 126,122 24,-19 c 33,-27 73,-24 105,7 53,53 54,51 -312,417 -349,349 -356,354 -405,326 z m 1536,929 -122,-121 -63,29 c -57,26 -74,29 -168,29 -153,0 -201,-24 -369,-190 -114,-112 -130,-124 -142,-109 -46,56 -139,18 -139,-56 0,-13 26,-49 67,-91 l 67,-70 -147,-147 c -125,-126 -147,-152 -147,-178 0,-38 38,-76 76,-76 21,0 58,31 175,148 l 149,149 97,-98 98,-97 -149,-149 c -163,-163 -172,-180 -123,-228 48,-49 65,-39 228,123 l 148,148 70,-67 c 77,-75 102,-82 147,-44 34,30 37,79 6,110 l -22,21 125,127 c 165,168 190,216 190,369 0,95 -3,111 -29,168 l -29,63 121,122 122,122 -58,58 -57,57 z</Geometry>
     <Geometry x:Key="IconGeometryPathPowerOutage">m 1156.0137,739.35496 c -35,-53 -63,-99 -61,-101 5,-4 195,141 196,150 0,3 -16,15 -35,27 l -35,20 z m 158,1168.00004 c -46,-42 -83,-80 -83,-83 0,-3 109,-54 243,-113 133,-59 244,-109 246,-111 2,-2 -71,-117 -163,-256 l -166,-253 43,-22 c 23,-12 66,-31 95,-43 l 52,-20 231,177 230,177 -313,313 c -172,172 -317,313 -323,313 -5,-1 -47,-36 -92,-79 z m 538,494 c -110,-102 -201,-189 -201,-193 0,-4 145,-152 323,-330 l 323,-323 72,56 c 40,31 72,59 72,63 0,4 -105,69 -233,145 -127,76 -238,141 -246,146 -11,7 15,65 123,274 75,146 136,270 136,275 0,5 -26,21 -57,35 -110,49 -87,60 -312,-148 z m -251,476 c -157,-35 -260,-79 -390,-166 -105,-69 -231.00001,-193 -299.00001,-294 -63,-92 -128,-236 -158,-348 -24,-88 -27,-116 -27,-273 0,-159 2,-184 27,-275 84,-313 305.00001,-581.00004 592.00001,-720.00004 157,-75 297,-107 480,-107 301,0 549,101 767,310.00004 177,170 294,395 328,631 19,126 8,323 -25,441 -107,390 -405,685 -802,792 -114,30 -374,35 -493,9 z m 439,-252 c 256,-65 478,-258 579,-502 83,-198 83,-456 2,-651 -35,-83 -90,-176 -105,-176 -5,0 -278,268 -605,595 -565,565 -593,595 -575,610 43,32 173,94 241,114 145,44 314,48 463,10 z m -293,-917 598,-594 -24,-19 c -47,-37 -205,-109.00004 -285,-130.00004 -113,-30 -308,-30 -420,0 -265,71.00004 -481,258.00004 -583,504.00004 -83.00001,198 -83.00001,455 -1,652 33,80 97,188 109,183 4,-2 277,-270 606,-596 z m 624,1172 c -57,-53 -60,-59 -44,-71 10,-7 23,-13 30,-13 12,0 88,130 80,137 -2,2 -32,-22 -66,-53 z</Geometry>
+
+    <Geometry x:Key="IconGeometryMouseInput">m 119.86329,-28.019292 -23.570998,0.488 c -49.964,4.668 -96.16000034,32.0520003 -96.16000034,80.327 V 188.30571 c 0,59.862 48.69800034,108.562 108.56399834,108.562 59.863,0 108.566,-48.7 108.566,-108.562 V 52.784708 c 0.003,-52.70299966 -49.032,-78.227 -97.399,-80.804 z m -99.291998,80.804 c 0,-35.833 38.898,-56.5809997 79.186,-60.0269997 V 117.73971 c -36.751,-1.85 -66.589,-10.222 -79.186,-14.309 z M 196.82829,188.29571 c 0,48.604 -39.537,88.133 -88.129,88.133 -48.589998,0 -88.127998,-39.529 -88.127998,-88.133 v -63.381 c 18.249,5.516 52.6,13.882 93.201998,13.882 26.003,0 54.556,-3.479 83.056,-13.286 v 62.785 z m 0,-84.521 c -25.844,9.883 -52.237,13.746 -76.635,14.271 V -7.5442917 c 39.407,2.363 76.635,21.2639997 76.635,60.3369997 z</Geometry>
+    <Geometry x:Key="IconGeometryMouseInputLeftButton">M 31.269883,93.104623 C 50.511411,100.7182 70.161692,103.69417 88.32662,104.09861 V 7.347515 C 58.987098,9.1679055 31.269883,23.728716 31.269883,53.829485 Z</Geometry>
+    <Geometry x:Key="IconGeometryMouseInputRightButton">M 187.28084,93.104623 C 168.0393,100.7182 148.38901,103.69417 130.22407,104.09861 V 7.347515 c 29.33954,1.8203905 57.05677,16.381201 57.05677,46.48197 z</Geometry>
+
+    <Geometry x:Key="IconGeometrySupporterBadge">M 0.03515625 1096.3125 L 0.03515625 1102.7754 L 9.7617188 1102.7754 L 9.7617188 1096.3125 L 0.03515625 1096.3125 z M 12.910156 1096.3125 L 12.910156 1102.7754 L 22.638672 1102.7754 L 22.638672 1096.3125 L 12.910156 1096.3125 z M 11.337891 1100.9316 C 10.546722 1100.9316 8.4779593 1107.5604 7.8378906 1108.0254 C 7.1978223 1108.4905 0.25229687 1108.4096 0.0078125 1109.1621 C -0.23667187 1109.9145 5.4293456 1113.9331 5.6738281 1114.6855 C 5.9183122 1115.438 3.6958692 1122.0174 4.3359375 1122.4824 C 4.9760062 1122.9475 10.546722 1118.8008 11.337891 1118.8008 C 12.129059 1118.8008 17.701729 1122.9475 18.341797 1122.4824 C 18.981866 1122.0174 16.75942 1115.438 17.003906 1114.6855 C 17.248391 1113.9331 22.914404 1109.9145 22.669922 1109.1621 C 22.425437 1108.4096 15.479912 1108.4905 14.839844 1108.0254 C 14.199775 1107.5604 12.129059 1100.9316 11.337891 1100.9316 z </Geometry>
 
 </ResourceDictionary>

@@ -7,6 +7,8 @@
 
     public class QuestAdvancedResourcesAcquisition : ProtoQuest
     {
+        public const string TaskMineSalt = "Mine salt mineral";
+
         public override string Description =>
             "Certain resources such as petroleum oil and lithium are necessary for advanced technology. It is critically important to learn how to acquire them.";
 
@@ -17,8 +19,6 @@
               [*] Learning [u]Xenogeology[/u] offers industrial-scale methods of acquiring these resources.";
 
         public override string Name => "Advanced resources acquisition";
-
-        public const string TaskMineSalt = "Mine salt mineral";
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 

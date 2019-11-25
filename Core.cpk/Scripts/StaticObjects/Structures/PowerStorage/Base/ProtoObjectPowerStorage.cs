@@ -24,24 +24,24 @@
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
 
-        public BaseUserControlWithWindow ClientOpenUI(IStaticWorldObject worldObject)
+        public BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {
-            var privateState = GetPrivateState(worldObject);
+            var privateState = GetPrivateState((IStaticWorldObject)worldObject);
             return WindowPowerStorage.Open(
                 new ViewModelWindowPowerStorage(privateState));
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
         }
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
     }
 

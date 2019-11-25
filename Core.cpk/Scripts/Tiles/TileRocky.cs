@@ -34,7 +34,7 @@
         {
             settings.AmbientSoundProvider = new TileAmbientSoundProvider(
                 new AmbientSoundPreset(new SoundResource("Ambient/Rocky"),
-                                       suppression: 1));
+                                       suppressionCoef: 1));
 
             // rock plates
             settings.AddGroundTexture(

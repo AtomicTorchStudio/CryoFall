@@ -28,6 +28,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 溫馨食物
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
+你剛剛飽餐一頓，感覺很棒。你感覺生活充滿了光彩。
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+可口食物
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 你正處於刺激劑的影響下，短時間內獲得強化。你可以更加輕易地完成需要力量的工作。
 
@@ -44,7 +50,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 你體內破損的植入物正在極大的影響你的健康。你的最大生命值下降了。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
-破損植入物
+破損植入物副作用
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 你的腿骨折了，行動能力受到影響。拖著斷腿跑步將帶來劇痛。使用夾板治療骨折。
@@ -56,13 +62,13 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@NotificationCannotAttac
 無法在暈眩時進行攻擊。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
-你暈眩了！請等待恢復。
+你暈眩了！請等待其恢復。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
 暈眩
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
-你正在暴露於一個附近的高熱地區，立即離開該地區以防止進一步損害。
+你正在暴露於一個附近的高熱源，立即離開該地區以防止進一步損害。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Name:
 熱
@@ -83,13 +89,13 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@NotificationNauseousMe
 無法進食或飲水。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Description:
-你感覺不太好...你在感到惡心時無法進食或飲水。請花時間休息或者服用抗嘔藥物。
+你感覺不太好...你在感到噁心時無法進食或飲水。請花時間休息或者服用抗嘔藥物。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectNausea@Name:
-惡心
+噁心
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Description:
-你感受到到劇烈的疼痛，這將減少你的精力恢復速度並阻止生命恢復。尋找止疼片或者忍住。
+你正感到劇痛，這將減少你的精力恢復速度並阻止生命恢復。尋找止疼片或者硬抗。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectPain@Name:
 劇痛
@@ -101,13 +107,13 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectPsi@Name:
 靈能影響
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Description:
-你正在遭受輻射中毒，這將緩慢的殺死你。尋找抗輻射藥劑來減輕此影響。
+你正在遭受輻射中毒，這將緩慢地殺死你。尋找抗輻射藥劑來減輕此影響。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectRadiationPoisoning@Name:
 輻射中毒
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Description:
-為你的骨折進行了夾板治療，正在緩慢恢復。你無法在此期間跑步。好好休息吧。
+你為你的骨折進行了夾板治療，正在緩慢恢復。你無法在此期間跑步。好好休息吧。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectSplintedLeg@Name:
 腿部固定
@@ -137,7 +143,7 @@ Scripts/CharacterStatusEffects/Neutral/StatusEffectBrokenEquipment@Name:
 裝備破損
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@NotificationMessage:
-你像一條魚一樣猛喝。難怪現在這個德行...
+你像一條魚一樣猛喝。想吐也是理所當然的……
 
 Scripts/CharacterStatusEffects/Neutral/StatusEffectDrunk@Description:
 你喝了酒...

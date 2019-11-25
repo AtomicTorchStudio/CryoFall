@@ -68,6 +68,8 @@
             }
         }
 
+        public bool IsReloading { get; private set; }
+
         public IItem Item
         {
             get => this.item;
@@ -142,6 +144,20 @@
             base.DisposeViewModel();
         }
 
+        private void ActiveWeaponChangedHandler()
+        {
+            if (this.item != this.weaponState.ItemWeapon)
+            {
+                // stop any countdown animation
+                this.WeaponSwitchDurationSeconds = 0;
+                return;
+            }
+
+            // assign twice in order to reset the animated countdown
+            this.WeaponSwitchDurationSeconds = 0;
+            this.WeaponSwitchDurationSeconds = this.weaponState.CooldownSecondsRemains;
+        }
+
         private void AmmoCountChanged(ushort ammoCount)
         {
             this.AmmoCountCurrent = ammoCount;
@@ -182,21 +198,10 @@
                 this.ReloadDurationSeconds = reloadingState.SecondsToReloadRemains;
             }
 
+            this.IsReloading = reloadingState != null
+                               && reloadingState.Item == this.item;
+
             this.UpdateCurrentProtoItem();
-        }
-
-        private void ActiveWeaponChangedHandler()
-        {
-            if (this.item != this.weaponState.ActiveItemWeapon)
-            {
-                // stop any countdown animation
-                this.WeaponSwitchDurationSeconds = 0;
-                return;
-            }
-
-            // assign twice in order to reset the animated countdown
-            this.WeaponSwitchDurationSeconds = 0;
-            this.WeaponSwitchDurationSeconds = this.weaponState.CooldownSecondsRemains;
         }
 
         private void WeaponReloadingStateChangedHandler()

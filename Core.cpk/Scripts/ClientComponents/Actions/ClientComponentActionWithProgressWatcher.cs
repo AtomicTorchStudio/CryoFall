@@ -18,8 +18,8 @@
 
         private PlayerCharacterPrivateState privateState;
 
-        public static IStaticWorldObject CurrentInteractionOverWorldObject =>
-            instance?.privateState.CurrentActionState?.TargetWorldObject as IStaticWorldObject;
+        public static IWorldObject CurrentInteractionOverWorldObject =>
+            instance?.privateState.CurrentActionState?.TargetWorldObject;
 
         public void Setup(PlayerCharacterPrivateState setPrivateState)
         {

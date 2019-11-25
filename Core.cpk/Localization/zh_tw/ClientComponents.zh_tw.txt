@@ -25,6 +25,9 @@ Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
 Scripts/ClientComponents/Input/GameButton@ActionInteract:
 動作 - 互動
 
+Scripts/ClientComponents/Input/GameButton@VehicleEnterExit:
+進入/離開載具
+
 Scripts/ClientComponents/Input/GameButton@ItemReload:
 裝填物品
 
@@ -80,16 +83,16 @@ Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
 Debug工具
 
 Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
-切換全熒幕
+切換全屏
 
 Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
-熒幕截圖
+螢幕截圖
 
 Scripts/ClientComponents/Input/GameButton@ContainerSort:
 容器排序
 
 Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
-拿起所有
+拾取所有
 
 Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
 向下匹配

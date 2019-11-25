@@ -4,14 +4,12 @@
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
-    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
-    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public abstract class ProtoItemWeaponRanged
         <TPrivateState,
@@ -26,6 +24,8 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
+        public override bool CanBeSelectedInVehicle => true;
+
         public override string CharacterAnimationAimingName => "WeaponRifleAiming";
 
         public virtual double CharacterAnimationAimingRecoilDuration => 0.3;
@@ -44,24 +44,22 @@
 
         public override double FireInterval => 0.5;
 
-        public override (float min, float max) SoundPresetWeaponDistance 
-            => (SoundConstants.AudioListenerMinDistanceRangedShot, 
-                SoundConstants.AudioListenerMaxDistanceRangedShot);
+        public override double FirePatternCooldownDuration => this.FireInterval + 0.4;
 
         public override ITextureResource Icon => new TextureResource("Items/Weapons/Ranged/" + this.GetType().Name);
 
         public IMuzzleFlashDescriptionReadOnly MuzzleFlashDescription { get; private set; }
 
-        public override void ClientSetupSkeleton(
-            IItem item,
-            ICharacter character,
-            IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+        public override (float min, float max) SoundPresetWeaponDistance
+            => (SoundConstants.AudioListenerMinDistanceRangedShot,
+                SoundConstants.AudioListenerMaxDistanceRangedShot);
+
+        protected override void ClientPreloadTextures()
         {
+            base.ClientPreloadTextures();
+
             // preload the muzzle flash sprite sheet
             Client.Rendering.PreloadTextureAsync(this.MuzzleFlashDescription.TextureAtlas);
-
-            base.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
         }
 
         protected abstract void PrepareMuzzleFlashDescription(MuzzleFlashDescription description);
@@ -85,7 +83,7 @@
             out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos,
             ref DamageDescription overrideDamageDescription);
 
-        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()
         {
             return MaterialHitsSoundPresets.Ranged;
         }
@@ -104,7 +102,7 @@
             ICharacter character,
             IItem weaponItem,
             IProtoItemWeapon protoWeapon,
-            List<WeaponHitData> hitObjects)
+            IReadOnlyList<IWorldObject> hitObjects)
         {
             // decrease durability on every shot
             ItemDurabilitySystem.ServerModifyDurability(

@@ -64,7 +64,7 @@
 
                 return false;
             }
-            
+
             // does the player have anal blockage?
             if (character.SharedHasStatusEffect<StatusEffectAnalBlockage>())
             {

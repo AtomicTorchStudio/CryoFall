@@ -8,17 +8,19 @@
 
     public class MobSnakeBlue : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => true;
+
         public override float CharacterWorldHeight => 0.8f;
 
         public override double MobKillExperienceMultiplier => 1.0;
 
         public override string Name => "Blue snake";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
         public override double StatDefaultHealthMax => 80;
 
-        public override double StatMoveSpeed => 1.1;
+        public override double StatMoveSpeed => 1.65;
 
         protected override void PrepareProtoCharacterMob(
             out ProtoCharacterSkeleton skeleton,
@@ -38,7 +40,7 @@
 
             var weaponProto = GetProtoEntity<ItemWeaponSnakeBiteStrong>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)
@@ -49,11 +51,12 @@
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
                 isRetreating: currentStats.HealthCurrent < currentStats.HealthMax / 3,
+                isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 7,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 5,
-                out var movementDirection,
-                out var rotationAngleRad);
+                movementDirection: out var movementDirection,
+                rotationAngleRad: out var rotationAngleRad);
 
             this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
         }

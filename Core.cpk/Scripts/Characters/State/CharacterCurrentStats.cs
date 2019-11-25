@@ -2,6 +2,7 @@
 {
     using System.Diagnostics.CodeAnalysis;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
+    using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterInvincibility;
@@ -50,6 +51,11 @@
                 return;
             }
 
+            if (this.HealthCurrent <= 0)
+            {
+                return;
+            }
+
             if (damageSource != null)
             {
                 // it's important to register the damage source before the damage is applied
@@ -60,7 +66,7 @@
             }
 
             var newHealth = this.HealthCurrent - damage;
-            if (newHealth <= 0 
+            if (newHealth <= 0
                 && ((ICharacter)this.GameObject).IsNpc
                 && damageSource is IProtoStatusEffect)
             {
@@ -81,6 +87,11 @@
                 return;
             }
 
+            if (this.HealthCurrent <= 0)
+            {
+                return;
+            }
+
             if (damageSource != null)
             {
                 // it's important to register the damage source before the damage is applied
@@ -91,7 +102,33 @@
             }
 
             var newHealth = this.HealthCurrent - damage;
+
+            if (newHealth <= 0
+                && ((ICharacter)this.GameObject).IsNpc
+                && damageSource?.ProtoGameObject is IProtoStatusEffect)
+            {
+                var attackerCharacter = GetAttackerCharacter(damageSource, out _);
+                if (attackerCharacter is null
+                    || attackerCharacter.IsNpc)
+                {
+                    // Don't allow killing mob by a status effect which is NOT added by a player character.
+                    // This is a workaround to kill quests which cannot be finished
+                    // when creature is killed by a status effect.
+                    // TODO: Should be removed when we enable the damage tracking for mobs damage.
+                    newHealth = float.Epsilon;
+                }
+            }
+
             this.ServerSetHealthCurrent((float)newHealth);
+
+            if (newHealth <= 0)
+            {
+                var attackerCharacter = GetAttackerCharacter(damageSource, out var weaponSkill);
+                ServerCharacterDeathMechanic.OnCharacterKilled(
+                    attackerCharacter,
+                    targetCharacter: (ICharacter)this.GameObject,
+                    weaponSkill);
+            }
         }
 
         public virtual void ServerSetCurrentValuesToMaxValues()
@@ -193,6 +230,28 @@
         {
             var character = (ICharacter)this.GameObject;
             character.ProtoCharacter.SharedRefreshFinalCacheIfNecessary(character);
+        }
+
+        private static ICharacter GetAttackerCharacter(IGameObjectWithProto damageSource, out IProtoSkill protoSkill)
+        {
+            switch (damageSource)
+            {
+                case ICharacter character:
+                    protoSkill = !character.IsNpc
+                                     ? character.GetPrivateState<PlayerCharacterPrivateState>().WeaponState
+                                                .ProtoWeapon?.WeaponSkillProto
+                                     : null;
+                    return character;
+
+                case { } when damageSource.ProtoGameObject is IProtoStatusEffect:
+                    var statusEffectPublicState = damageSource.GetPublicState<StatusEffectPublicState>();
+                    protoSkill = statusEffectPublicState.ServerStatusEffectWasAddedByCharacterWeaponSkill;
+                    return statusEffectPublicState.ServerStatusEffectWasAddedByCharacter;
+
+                default:
+                    protoSkill = null;
+                    return null;
+            }
         }
     }
 }

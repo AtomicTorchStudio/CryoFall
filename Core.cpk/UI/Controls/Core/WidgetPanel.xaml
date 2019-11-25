@@ -9,6 +9,7 @@
                       d:DesignHeight="300" d:DesignWidth="300">
     <Grid DataContext="{Binding ElementName=UserControl}">
         <Border Style="{StaticResource WidgetBackgroundBorder}"
+                Background="{Binding WidgetBackground, ElementName=UserControl}"
                 Margin="1" />
 
         <Border CornerRadius="3"

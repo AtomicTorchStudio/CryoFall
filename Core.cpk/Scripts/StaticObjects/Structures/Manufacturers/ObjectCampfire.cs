@@ -48,7 +48,7 @@
 
         public override string Name => "Campfire";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 0;
 
@@ -66,7 +66,7 @@
 
             // setup light source
             var lightSource = ClientLighting.CreateLightSourceSpot(
-                Client.Scene.GetSceneObject(worldObject),
+                worldObject.ClientSceneObject,
                 color: LightColors.WoodFiring,
                 size: 11,
                 spritePivotPoint: (0.5, 0.5),

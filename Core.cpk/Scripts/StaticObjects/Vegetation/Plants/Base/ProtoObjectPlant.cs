@@ -6,11 +6,13 @@
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
@@ -44,10 +46,7 @@
 
         private double stageTimeToMatureTotalSeconds;
 
-        public ITextureResource IconFullGrown
-            => this.DefaultTexture is ITextureAtlasResource atlas
-                   ? atlas.Chunk(this.GrowthStagesCount, 0)
-                   : this.DefaultTexture;
+        public ITextureResource IconFullGrown => this.Icon;
 
         public override bool IsAutoDestroyOnGather => false;
 
@@ -57,20 +56,53 @@
 
         public double TimeToGiveHarvestTotalSeconds { get; private set; }
 
+        public double TimeToHarvestSpoilTotalSeconds { get; private set; }
+
+        protected byte GrowthStageIndexHarvestProductionProcess => (byte)(this.GrowthStagesCount - 2);
+
+        protected byte GrowthStageIndexSpoilingProcess => (byte)(this.GrowthStagesCount - 1);
+
         protected abstract TimeSpan TimeToGiveHarvest { get; }
+
+        protected virtual TimeSpan TimeToHarvestSpoil { get; } = TimeSpan.FromHours(32);
+
+        public override float CalculateShadowScale(VegetationClientState clientState)
+        {
+            // no shadows for plants (all shadows are pre-drawn)
+            return 0;
+        }
 
         public double ClientCalculateHarvestTotalDuration(bool onlyForHarvestStage)
         {
             var result = this.TimeToGiveHarvestTotalSeconds;
             if (!onlyForHarvestStage)
             {
-                result += this.stageTimeToMatureTotalSeconds * (this.GrowthStagesCount - 1);
+                // add all growth stages duration (stages prior to giving the harvest)
+                result += this.stageTimeToMatureTotalSeconds * this.GrowthStageIndexHarvestProductionProcess;
             }
 
             return result;
         }
 
-        public override string ClientGetTitle(IStaticWorldObject worldObject)
+        public override byte ClientGetTextureAtlasColumn(
+            IStaticWorldObject worldObject,
+            VegetationPublicState statePublic)
+        {
+            var plantPublicState = (TPublicState)statePublic;
+            if (plantPublicState.IsSpoiled)
+            {
+                return (byte)(this.GrowthStageIndexSpoilingProcess + 1);
+            }
+
+            if (plantPublicState.HasHarvest)
+            {
+                return (byte)(this.GrowthStageIndexHarvestProductionProcess + 1);
+            }
+
+            return base.ClientGetTextureAtlasColumn(worldObject, statePublic);
+        }
+
+        public override string ClientGetTitle(IWorldObject worldObject)
         {
             // title is already included into the plant tooltip
             return null;
@@ -186,6 +218,11 @@
             }
         }
 
+        public override void ServerSetFullGrown(IStaticWorldObject worldObject)
+        {
+            this.ServerSetGrowthStage(worldObject, this.GrowthStageIndexSpoilingProcess);
+        }
+
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
         {
             return PveSystem.SharedValidateInteractionIsNotForbidden(character, worldObject, writeToLog)
@@ -195,7 +232,9 @@
 
         public override bool SharedIsCanGather(IStaticWorldObject staticWorldObject)
         {
-            return GetPublicState(staticWorldObject).HasHarvest;
+            var publicState = GetPublicState(staticWorldObject);
+            return publicState.HasHarvest
+                   || publicState.IsSpoiled;
         }
 
         protected static IProtoObjectFarm CommonGetFarmObjectProto(Tile tile)
@@ -203,6 +242,11 @@
             var farmObject = tile.StaticObjects.FirstOrDefault(
                 _ => _.ProtoStaticWorldObject is IProtoObjectFarm);
             return (IProtoObjectFarm)farmObject?.ProtoStaticWorldObject;
+        }
+
+        protected override byte CalculateGrowthStagesCount()
+        {
+            return (byte)((this.DefaultTexture as ITextureAtlasResource)?.AtlasSize.ColumnsCount - 1 ?? 0);
         }
 
         protected override void ClientAddShadowRenderer(ClientInitializeData data)
@@ -216,6 +260,13 @@
             }
 
             base.ClientAddShadowRenderer(data);
+        }
+
+        protected override ITextureResource ClientCreateIcon()
+        {
+            return this.DefaultTexture is ITextureAtlasResource atlas
+                       ? atlas.Chunk(this.GrowthStageIndexSpoilingProcess, 0)
+                       : this.DefaultTexture;
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -273,7 +324,7 @@
                 isFocusable: false);
         }
 
-        protected override void PrepareDroplistOnDestroy(DropItemsList droplist)
+        protected sealed override void PrepareDroplistOnDestroy(DropItemsList droplist)
         {
             // empty destroy droplist by default
         }
@@ -281,8 +332,20 @@
         protected sealed override void PrepareProtoGatherableVegetation()
         {
             this.TimeToGiveHarvestTotalSeconds = this.TimeToGiveHarvest.TotalSeconds;
-            this.stageTimeToMatureTotalSeconds = this.TimeToMature.TotalSeconds / (this.GrowthStagesCount - 1);
+            this.TimeToHarvestSpoilTotalSeconds = this.TimeToHarvestSpoil.TotalSeconds;
+            this.stageTimeToMatureTotalSeconds = this.TimeToMature.TotalSeconds
+                                                 / this.GrowthStageIndexSpoilingProcess;
+
+            var spoiledGatherDroplist = new DropItemsList();
+            this.PrepareSpoiledGatheringDroplist(spoiledGatherDroplist);
+            this.SpoiledGatherDroplist = spoiledGatherDroplist.AsReadOnly();
+
             this.PrepareProtoPlant();
+        }
+
+        protected virtual void PrepareSpoiledGatheringDroplist(DropItemsList spoiledGatherDroplist)
+        {
+            spoiledGatherDroplist.Add<ItemFibers>(count: 5);
         }
 
         protected virtual void PrepareProtoPlant()
@@ -312,49 +375,20 @@
             TPublicState publicState)
         {
             var speedMultiplier = ServerCalculateGrowthSpeedMultiplier(privateState, publicState);
-            double durationSeconds;
-
-            if (growthStage < this.GrowthStagesCount - 1)
+            if (growthStage < this.GrowthStageIndexHarvestProductionProcess)
             {
-                // not grown - use growth duration
-                durationSeconds = this.stageTimeToMatureTotalSeconds;
-            }
-            else
-            {
-                // next stage is last - it will produce harvest
-                // use duration for harvest producing
-                durationSeconds = this.TimeToGiveHarvestTotalSeconds;
+                // not full grown yet
+                return this.stageTimeToMatureTotalSeconds / speedMultiplier;
             }
 
-            return durationSeconds / speedMultiplier;
-        }
-
-        protected void ServerClearHarvestState(IStaticWorldObject worldObject, ICharacter gatheredByCharacter)
-        {
-            var publicState = GetPublicState(worldObject);
-            var privateState = GetPrivateState(worldObject);
-
-            if (!publicState.HasHarvest)
+            if (growthStage == this.GrowthStageIndexHarvestProductionProcess)
             {
-                return;
+                // next stage is harvest production
+                return this.TimeToGiveHarvestTotalSeconds / speedMultiplier;
             }
 
-            publicState.HasHarvest = false;
-            if (this.NumberOfHarvests > 0
-                && privateState.ProducedHarvestsCount >= this.NumberOfHarvests)
-            {
-                Logger.Important("Harvests limit exceeded: " + worldObject);
-                Server.World.DestroyObject(worldObject);
-                return;
-            }
-
-            // set previous growth stage (on achieving last growth stage it will produce the harvest)
-            if (gatheredByCharacter != null)
-            {
-                this.ServerSetBonusForCharacter(worldObject, gatheredByCharacter, applyNow: false);
-            }
-
-            this.ServerSetGrowthStage(worldObject, (byte)(this.GrowthStagesCount - 1));
+            // next stage is spoiling
+            return this.TimeToHarvestSpoilTotalSeconds; // please note the speed multiplier is not applied
         }
 
         protected override void ServerInitialize(ServerInitializeData data)
@@ -374,27 +408,59 @@
             TPrivateState privateState,
             TPublicState publicState)
         {
-            if (publicState.GrowthStage < this.GrowthStagesCount)
+            // store current growth duration
+            privateState.ServerTimeLastDurationSeconds =
+                (float)(privateState.ServerTimeNextGrowthStage - Server.Game.FrameTime);
+
+            if (publicState.GrowthStage < this.GrowthStageIndexSpoilingProcess)
             {
-                // store current growth duration
-                privateState.ServerTimeLastDurationSeconds =
-                    (float)(privateState.ServerTimeNextGrowthStage - Server.Game.FrameTime);
                 return;
             }
 
-            // last growth stage - produce harvest
-            publicState.HasHarvest = true;
-            if (this.NumberOfHarvests > 0)
+            if (publicState.GrowthStage == this.GrowthStageIndexSpoilingProcess)
             {
-                privateState.ProducedHarvestsCount++;
+                // produce harvest
+                publicState.HasHarvest = true;
+                if (this.NumberOfHarvests > 0)
+                {
+                    privateState.ProducedHarvestsCount++;
+                }
+            }
+            else
+            {
+                publicState.IsSpoiled = true;
             }
         }
 
+        public IReadOnlyDropItemsList SpoiledGatherDroplist { get; private set; }
+
         protected override bool ServerTryGatherByCharacter(ICharacter who, IStaticWorldObject vegetationObject)
         {
-            if (!base.ServerTryGatherByCharacter(who, vegetationObject))
+            var publicState = GetPublicState(vegetationObject);
+            if (!publicState.IsSpoiled)
             {
-                return false;
+                if (!base.ServerTryGatherByCharacter(who, vegetationObject))
+                {
+                    return false;
+                }
+            }
+            else // spoiled plant
+            {
+                var result = this.SpoiledGatherDroplist.TryDropToCharacterOrGround(who,
+                                                                            who.TilePosition,
+                                                                            new DropItemContext(who, vegetationObject),
+                                                                            out var groundItemsContainer);
+                if (result.TotalCreatedCount == 0)
+                {
+                    result.Rollback();
+                    return false;
+                }
+
+                Logger.Info(vegetationObject + " was gathered when spoiled", who);
+                NotificationSystem.ServerSendItemsNotification(
+                    who,
+                    result,
+                    exceptItemsContainer: groundItemsContainer);
             }
 
             // reset grown harvest state
@@ -506,7 +572,7 @@
             TPublicState publicState)
         {
             var currentGrowthStage = publicState.GrowthStage;
-            if (currentGrowthStage >= this.GrowthStagesCount)
+            if (currentGrowthStage >= this.GrowthStageIndexSpoilingProcess)
             {
                 // full grown
                 return 0;
@@ -517,13 +583,47 @@
 
             // add durations of all the next growth stages
             var growthStage = (byte)(currentGrowthStage + 1);
-            while (growthStage < this.GrowthStagesCount)
+            while (growthStage < this.GrowthStageIndexSpoilingProcess)
             {
                 result += this.ServerCalculateGrowthStageDuration(growthStage, privateState, publicState);
                 growthStage++;
             }
 
             return result;
+        }
+
+        private void ServerClearHarvestState(IStaticWorldObject worldObject, ICharacter gatheredByCharacter)
+        {
+            var publicState = GetPublicState(worldObject);
+            var privateState = GetPrivateState(worldObject);
+
+            if (publicState.IsSpoiled)
+            {
+                Server.World.DestroyObject(worldObject);
+                return;
+            }
+
+            if (!publicState.HasHarvest)
+            {
+                return;
+            }
+
+            publicState.HasHarvest = false;
+
+            if (this.NumberOfHarvests > 0
+                && privateState.ProducedHarvestsCount >= this.NumberOfHarvests)
+            {
+                Server.World.DestroyObject(worldObject);
+                return;
+            }
+
+            // set previous growth stage (on achieving last growth stage it will produce the harvest)
+            if (gatheredByCharacter != null)
+            {
+                this.ServerSetBonusForCharacter(worldObject, gatheredByCharacter, applyNow: false);
+            }
+
+            this.ServerSetGrowthStage(worldObject, this.GrowthStageIndexHarvestProductionProcess);
         }
 
         private ProtoPlantTooltipPrivateData ServerRemote_GetTooltipData(IStaticWorldObject worldObjectPlant)
@@ -540,11 +640,31 @@
             }
 
             var privateState = GetPrivateState(worldObjectPlant);
-            var speedMultiplier = ServerCalculateGrowthSpeedMultiplier(privateState, GetPublicState(worldObjectPlant));
-            var serverTimeNextHarvest = this.ServerCalculateTotalGrowthTimeToNextHarvest(
-                privateState,
-                GetPublicState(worldObjectPlant));
-            return new ProtoPlantTooltipPrivateData(privateState, serverTimeNextHarvest, (float)speedMultiplier);
+            var publicState = GetPublicState(worldObjectPlant);
+            var speedMultiplier = ServerCalculateGrowthSpeedMultiplier(privateState, publicState);
+
+            double serverTimeNextHarvestOrSpoil;
+            if (publicState.IsSpoiled)
+            {
+                // already rot
+                serverTimeNextHarvestOrSpoil = 0;
+            }
+            else if (publicState.HasHarvest)
+            {
+                // time to rot
+                serverTimeNextHarvestOrSpoil = privateState.ServerTimeNextGrowthStage;
+            }
+            else
+            {
+                // time to give harvest
+                serverTimeNextHarvestOrSpoil = this.ServerCalculateTotalGrowthTimeToNextHarvest(
+                    privateState,
+                    publicState);
+            }
+
+            return new ProtoPlantTooltipPrivateData(privateState,
+                                                    serverTimeNextHarvestOrSpoil,
+                                                    (float)speedMultiplier);
         }
     }
 

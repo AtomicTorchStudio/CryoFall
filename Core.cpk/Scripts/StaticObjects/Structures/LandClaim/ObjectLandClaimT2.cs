@@ -21,9 +21,11 @@
 
         public override ushort LandClaimSize => 18;
 
+        public override byte LandClaimTier => 2;
+
         public override string Name => "Land claim (Tier 2)";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 

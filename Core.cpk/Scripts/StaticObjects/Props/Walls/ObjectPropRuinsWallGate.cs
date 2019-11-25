@@ -7,8 +7,8 @@
     {
         public override bool CanFlipSprite => true;
 
-        public override ObjectSoundMaterial ObjectSoundMaterial
-            => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial
+            => ObjectMaterial.Metal;
 
         protected override void CreateLayout(StaticObjectLayout layout)
         {
@@ -18,7 +18,7 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (2, 0.5), offset: (0, 0));
+                .AddShapeRectangle(size: (2, 0.9));
             AddHalfHeightWallHitboxes(data, width: 2);
         }
     }

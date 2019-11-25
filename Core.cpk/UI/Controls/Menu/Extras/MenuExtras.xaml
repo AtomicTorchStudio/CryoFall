@@ -72,7 +72,7 @@
                         Orientation="Vertical"
                         TextOptions.TextHintingMode="Animated">
                 <Image x:Name="GameLogo"
-                       Source="/UI/Images/Logo/logo_cryofall_128_flat.png"
+                       Source="/UI/Images/Logo/logo_cryofall_128.png"
                        Stretch="Uniform"
                        SnapsToDevicePixels="False"
                        HorizontalAlignment="Center"
@@ -204,10 +204,10 @@
 
                 <TextBlock Style="{StaticResource Title}">Polish translation, proofread and LQA</TextBlock>
                 <TextBlock Style="{StaticResource Name}">Michał Tosza</TextBlock>
-                
+
                 <TextBlock Style="{StaticResource Title}">Turkish translation, proofread and LQA</TextBlock>
                 <TextBlock Style="{StaticResource Name}">AiBell Localization</TextBlock>
-                
+
 
                 <TextBlock Style="{StaticResource Section}">Special thanks</TextBlock>
                 <TextBlock Style="{StaticResource Name}"
@@ -220,7 +220,8 @@
                     <LineBreak />Adrian, Robin and Mathias of toneworx GmbH
                     <LineBreak />Bartłomiej Terech aka Cosiek,
                     <LineBreak /><Run FontFamily="{StaticResource AsianFontFamily}">サーバー団地</Run>
-                    <LineBreak />Avakyn, Deathmall, RewinKant
+                    <LineBreak />Avakyn, Deathmall, RewinKant,
+                    <LineBreak />Rekenbeker
                 </TextBlock>
 
 

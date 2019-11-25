@@ -22,7 +22,8 @@
             </DoubleAnimationUsingKeyFrames>
 
             <DoubleAnimation Storyboard.TargetProperty="Height"
-                             From="0" To="{Binding RequiredHeight}"
+                             From="0" 
+                             To="{Binding RequiredHeight}"
                              Duration="0:0:0.175" />
         </Storyboard>
 
@@ -37,6 +38,7 @@
         <!-- ReSharper disable once Xaml.RedundantResource -->
         <Storyboard x:Key="StoryboardHide" TargetName="OuterBorder">
             <DoubleAnimation Storyboard.TargetProperty="Height"
+                             From="{Binding RequiredHeight}"
                              To="0"
                              Duration="0:0:0.175" />
         </Storyboard>

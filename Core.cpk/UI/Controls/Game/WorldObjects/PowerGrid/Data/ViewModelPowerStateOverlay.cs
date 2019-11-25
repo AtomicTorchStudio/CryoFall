@@ -101,7 +101,7 @@
 
         private void Update()
         {
-            if (ClientComponentObjectInteractionHelper.CurrentMouseOverObject
+            if (ClientComponentObjectInteractionHelper.MouseOverObject
                 == (this.consumerPublicState?.GameObject ?? this.producerPublicState?.GameObject))
             {
                 // mouse over - always display the power consumer status icon

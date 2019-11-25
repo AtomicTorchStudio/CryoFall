@@ -11,6 +11,8 @@
 
     public class MobCloakedLizard : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => false;
+
         public override float CharacterWorldHeight => 1.3f;
 
         public override float CharacterWorldWeaponOffsetRanged => 0.4f;
@@ -19,11 +21,11 @@
 
         public override string Name => "Cloaked lizard";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.HardTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.HardTissues;
 
         public override double StatDefaultHealthMax => 250;
 
-        public override double StatMoveSpeed => 0.95;
+        public override double StatMoveSpeed => 1.425;
 
         protected override void FillDefaultEffects(Effects effects)
         {
@@ -58,7 +60,7 @@
             base.ServerInitializeCharacterMob(data);
             var weaponProto = GetProtoEntity<ItemWeaponLizardFangs>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)
@@ -69,11 +71,12 @@
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
                 isRetreating: currentStats.HealthCurrent < currentStats.HealthMax / 4,
+                isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 10,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 8,
-                out var movementDirection,
-                out var rotationAngleRad);
+                movementDirection: out var movementDirection,
+                rotationAngleRad: out var rotationAngleRad);
 
             this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
         }

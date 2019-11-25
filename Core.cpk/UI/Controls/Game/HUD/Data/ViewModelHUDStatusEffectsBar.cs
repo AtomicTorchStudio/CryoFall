@@ -9,13 +9,13 @@
 
     public class ViewModelHUDStatusEffectsBar : BaseViewModel
     {
-        private readonly NetworkSyncListObservableWrapperWithConverter<ILogicObject, ViewModelStatusEffect>
+        private NetworkSyncListObservableWrapperWithConverter<ILogicObject, ViewModelStatusEffect>
             currentStatusEffectsWrapper;
 
         public ViewModelHUDStatusEffectsBar(NetworkSyncList<ILogicObject> statusEffects)
         {
-            this.currentStatusEffectsWrapper =
-                statusEffects.ToObservableCollectionWithWrapper(s => new ViewModelStatusEffect(s));
+            this.currentStatusEffectsWrapper = statusEffects.ToObservableCollectionWithWrapper(
+                s => new ViewModelStatusEffect(s));
         }
 
         public ObservableCollection<ViewModelStatusEffect> CurrentStatusEffects
@@ -38,6 +38,7 @@
         protected override void DisposeViewModel()
         {
             this.currentStatusEffectsWrapper.Dispose();
+            this.currentStatusEffectsWrapper = null;
             base.DisposeViewModel();
         }
     }

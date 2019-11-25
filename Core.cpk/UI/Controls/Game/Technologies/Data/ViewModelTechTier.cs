@@ -6,7 +6,6 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ViewModelTechTier : BaseViewModel
     {
@@ -26,23 +25,13 @@
         {
             this.Tier = tier;
 
-            var allGroups = Api.FindProtoEntities<TechGroup>()
-                               .Where(g => g.Tier == tier)
-                               .OrderBy(g => g.Order)
-                               .ThenBy(g => g.ShortId)
-                               .Select(g => new ViewModelTechGroup(g))
-                               .ToList();
-
-            this.GroupsPrimary = allGroups.Where(g => g.TechGroup.IsPrimary)
-                                          .ToList();
-
-            this.GroupsSecondary = allGroups.Where(g => !g.TechGroup.IsPrimary)
-                                            .ToList();
+            TechGroup.AvailableTechGroupsChanged += this.AvailableTechGroupsChangedHandler;
+            this.Initialize();
         }
 
-        public List<ViewModelTechGroup> GroupsPrimary { get; }
+        public List<ViewModelTechGroup> GroupsPrimary { get; private set; }
 
-        public List<ViewModelTechGroup> GroupsSecondary { get; }
+        public List<ViewModelTechGroup> GroupsSecondary { get; private set; }
 
         public bool IsSelected { get; set; }
 
@@ -72,5 +61,32 @@
         }
 
         public string Title => string.Format(TierTitleFormat, this.TierLetter);
+
+        protected override void DisposeViewModel()
+        {
+            base.DisposeViewModel();
+            TechGroup.AvailableTechGroupsChanged -= this.AvailableTechGroupsChangedHandler;
+        }
+
+        private void AvailableTechGroupsChangedHandler()
+        {
+            this.Initialize();
+        }
+
+        private void Initialize()
+        {
+            var allGroups = TechGroup.AvailableTechGroups
+                                     .Where(g => g.Tier == this.Tier)
+                                     .OrderBy(g => g.Order)
+                                     .ThenBy(g => g.ShortId)
+                                     .Select(g => new ViewModelTechGroup(g))
+                                     .ToList();
+
+            this.GroupsPrimary = allGroups.Where(g => g.TechGroup.IsPrimary)
+                                          .ToList();
+
+            this.GroupsSecondary = allGroups.Where(g => !g.TechGroup.IsPrimary)
+                                            .ToList();
+        }
     }
 }

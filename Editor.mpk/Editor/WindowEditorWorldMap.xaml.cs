@@ -41,8 +41,7 @@
             this.resourcesVisualizer = new ClientWorldMapResourcesVisualizer(controller);
 
             controller.IsActive = true;
-            this.controlWorldMap.CenterMapOnPlayerCharacter();
-
+            
             base.WindowOpening();
         }
 

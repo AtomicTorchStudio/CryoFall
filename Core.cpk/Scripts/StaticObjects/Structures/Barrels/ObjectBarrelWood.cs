@@ -12,11 +12,11 @@
 
         public override string Name => "Wooden barrel";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 1000;
+        public override float StructurePointsMax => 2000;
 
         protected override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,

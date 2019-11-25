@@ -31,7 +31,7 @@
 
         public override string Name => "Display case";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Glass;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Glass;
 
         public override double ObstacleBlockDamageCoef => 1;
 

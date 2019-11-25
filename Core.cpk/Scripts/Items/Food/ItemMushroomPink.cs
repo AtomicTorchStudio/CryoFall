@@ -29,7 +29,7 @@
                 character.ServerAddStatusEffect<StatusEffectNausea>(intensity: 1.0);
             }
 
-            // 1 intensity == 5 minutes (basically 100% death)
+            // 1 intensity == 5 minutes (basically 100% death unless treated or healed)
             character.ServerAddStatusEffect<StatusEffectToxins>(intensity: 1.0);
 
             base.ServerOnEat(data);

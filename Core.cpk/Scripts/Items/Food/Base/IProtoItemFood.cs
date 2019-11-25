@@ -1,15 +1,13 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
-    using System;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
 
-    public interface IProtoItemFood : IProtoItemOrganic, IProtoItemWithSlotOverlay, IProtoItemUsableFromContainer
+    public interface IProtoItemFood
+        : IProtoItemOrganic,
+          IProtoItemUsableFromContainer,
+          IProtoItemWithFreshness
     {
         float FoodRestore { get; }
-
-        TimeSpan FreshnessDuration { get; }
-
-        uint FreshnessMaxValue { get; }
 
         float HealthRestore { get; }
 

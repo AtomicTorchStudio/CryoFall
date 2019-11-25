@@ -14,13 +14,13 @@
 
         public override string Name => "Bedroll";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SolidGround;
 
         public override double ObstacleBlockDamageCoef => 0.3;
 
         public override double RespawnCooldownDurationSeconds => 4 * 60;
 
-        public override float StructurePointsMax => 200;
+        public override float StructurePointsMax => 500;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -46,12 +46,12 @@
             build.StagesCount = 1;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemTwigs>(count: 20);
-            build.AddStageRequiredItem<ItemFibers>(count: 50);
+            build.AddStageRequiredItem<ItemFibers>(count: 20);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
             repair.AddStageRequiredItem<ItemTwigs>(count: 2);
-            repair.AddStageRequiredItem<ItemFibers>(count: 5);
+            repair.AddStageRequiredItem<ItemFibers>(count: 2);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

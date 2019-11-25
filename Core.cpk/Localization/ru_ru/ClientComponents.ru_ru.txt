@@ -27,6 +27,9 @@ Scripts/ClientComponents/Input/GameButton@ActionInteract:
 `Действие:
 [br]взаимодействовать`
 
+Scripts/ClientComponents/Input/GameButton@VehicleEnterExit:
+Использовать/Покинуть транспорт
+
 Scripts/ClientComponents/Input/GameButton@ItemReload:
 Перезарядка
 

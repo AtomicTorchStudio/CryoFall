@@ -43,7 +43,7 @@
             var damage = (DamagePerSecondBase + DamagePerSecondByIntensity * data.Intensity)
                          * data.DeltaTime;
 
-            data.CharacterCurrentStats.ServerReduceHealth(damage, this);
+            data.CharacterCurrentStats.ServerReduceHealth(damage, data.StatusEffect);
         }
     }
 }

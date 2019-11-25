@@ -18,7 +18,7 @@
 
         public override string Name => "Small trading station";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
@@ -73,7 +73,7 @@
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
             build.AddStageRequiredItem<ItemGlassRaw>(count: 10);
-            build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
+            build.AddStageRequiredItem<ItemComponentsElectronic>(count: 3);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

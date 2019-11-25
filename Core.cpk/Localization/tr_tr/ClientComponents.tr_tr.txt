@@ -25,6 +25,9 @@ Eylem—eşya kullan
 Scripts/ClientComponents/Input/GameButton@ActionInteract:
 Eylem—etkileşime geç
 
+Scripts/ClientComponents/Input/GameButton@VehicleEnterExit:
+Araca Bin/İn
+
 Scripts/ClientComponents/Input/GameButton@ItemReload:
 Eşyayı yeniden doldur
 

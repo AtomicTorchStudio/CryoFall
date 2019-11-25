@@ -48,31 +48,11 @@
             if (IsClient)
             {
                 PartySystem.ClientCurrentInvitationsFromCharacters.CollectionChanged
-                    += this.InvitationsCollectionChangedHandler;
+                    += InvitationsCollectionChangedHandler;
             }
         }
 
-        private static void ShowInvitationDialog(string inviterName)
-        {
-            var text = string.Format(InvitationMessageFormat, inviterName);
-            if (PartySystem.ClientGetCurrentPartyMembers().Count > 1)
-            {
-                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-                text += "[br]" + InvitationMessageYouWillLeaveYourParty;
-            }
-
-            DialogWindow.ShowDialog(
-                title: PartyInvitationTitle,
-                text: text,
-                okText: CoreStrings.Button_Accept,
-                okAction: () => PartySystem.ClientInvitationAccept(inviterName),
-                cancelText: CoreStrings.Button_Deny,
-                cancelAction: () => PartySystem.ClientInvitationDecline(inviterName),
-                focusOnCancelButton: true,
-                closeByEscapeKey: false);
-        }
-
-        private void InvitationsCollectionChangedHandler(object sender, NotifyCollectionChangedEventArgs e)
+        private static void InvitationsCollectionChangedHandler(object sender, NotifyCollectionChangedEventArgs e)
         {
             string inviterName;
 
@@ -144,6 +124,26 @@
                     name,
                     new WeakReference<HUDNotificationControl>(control));
             }
+        }
+
+        private static void ShowInvitationDialog(string inviterName)
+        {
+            var text = string.Format(InvitationMessageFormat, inviterName);
+            if (PartySystem.ClientGetCurrentPartyMembers().Count > 1)
+            {
+                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                text += "[br]" + InvitationMessageYouWillLeaveYourParty;
+            }
+
+            DialogWindow.ShowDialog(
+                title: PartyInvitationTitle,
+                text: text,
+                okText: CoreStrings.Button_Accept,
+                okAction: () => PartySystem.ClientInvitationAccept(inviterName),
+                cancelText: CoreStrings.Button_Deny,
+                cancelAction: () => PartySystem.ClientInvitationDecline(inviterName),
+                focusOnCancelButton: true,
+                closeByEscapeKey: false);
         }
     }
 }

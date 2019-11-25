@@ -4,10 +4,14 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -39,7 +43,10 @@
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
-        public const double DurabilityFractionReduceOnDeath = 0.1;
+        public const string NotificationItemCannotBeUsedInVehicle =
+            "This item cannot be used while you're riding a vehicle.";
+
+        private const double DurabilityFractionReduceOnDeath = 0.1;
 
         /// <summary>
         /// This flag will be true only in case the method <see cref="ClientItemUseStart" /> or <see cref="ClientItemUseFinish" />
@@ -58,6 +65,8 @@
 
             this.ShortId = name.Substring("Item".Length);
         }
+
+        public virtual bool CanBeSelectedInVehicle => false;
 
         /// <summary>
         /// Every frame.
@@ -196,6 +205,13 @@
             {
                 controls.Add(ItemTooltipInfoDurabilityControl.Create(item));
             }
+
+            if (this is IProtoItemWeapon protoItemWeapon
+                && protoItemWeapon.CompatibleAmmoProtos.Count > 0)
+            {
+                controls.Add(ItemTooltipCurrentAmmoControl.Create(item));
+                controls.Add(ItemTooltipCompatibleAmmoControl.Create(protoItemWeapon));
+            }
         }
 
         public virtual void ServerOnCharacterDeath(IItem item, bool isEquipped, out bool shouldDrop)
@@ -250,9 +266,32 @@
             }
         }
 
-        public virtual bool SharedCanSelect(IItem item, ICharacter character)
+        public virtual bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected)
         {
-            return true;
+            var vehicle = PlayerCharacter.GetPublicState(character).CurrentVehicle;
+            if (vehicle is null)
+            {
+                return true;
+            }
+
+            var protoVehicle = ((IProtoVehicle)vehicle.ProtoGameObject);
+            if (this.CanBeSelectedInVehicle
+                && protoVehicle.IsPlayersHotbarAndEquipmentItemsAllowed)
+            {
+                return true;
+            }
+
+            if (IsClient
+                && !isAlreadySelected
+                && protoVehicle.IsPlayersHotbarAndEquipmentItemsAllowed)
+            {
+                NotificationSystem.ClientShowNotification(this.Name,
+                                                          NotificationItemCannotBeUsedInVehicle,
+                                                          NotificationColor.Neutral,
+                                                          item.ProtoItem.Icon);
+            }
+
+            return false;
         }
 
         protected virtual void ClientItemHotbarSelectionChanged(ClientHotbarItemData data)

@@ -65,8 +65,9 @@
             }
         }
 
-        public static void ServerResetDecayTimer(StructurePrivateState privateState, 
-                                                 double decayDelaySeconds)
+        public static void ServerResetDecayTimer(
+            StructurePrivateState privateState,
+            double decayDelaySeconds)
         {
             privateState.ServerDecayStartTime = ServerGame.FrameTime + decayDelaySeconds;
         }

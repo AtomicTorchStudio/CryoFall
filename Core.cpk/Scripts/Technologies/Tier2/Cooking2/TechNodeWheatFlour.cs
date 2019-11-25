@@ -8,6 +8,8 @@
         {
             config.Effects
                   .AddRecipe<RecipeWheatFlour>();
+
+            config.SetRequiredNode<TechNodeInsectMeatFried>();
         }
     }
 }

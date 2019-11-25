@@ -49,6 +49,11 @@
 
         public void ServerAddGroup(TechGroup techGroup)
         {
+            if (!techGroup.IsAvailable)
+            {
+                return;
+            }
+
             if (this.Groups.Contains(techGroup))
             {
                 return;

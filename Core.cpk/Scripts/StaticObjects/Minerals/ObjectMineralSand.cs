@@ -15,7 +15,7 @@
 
         public override string Name => "Quartz sand deposit";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SolidGround;
 
         public override float StructurePointsMax => 250;
 

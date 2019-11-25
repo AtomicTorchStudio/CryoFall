@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeImplantArtificialRetina>();
 
-            config.SetRequiredNode<TechNodeImplantNanoFiberSkin>();
+            config.SetRequiredNode<TechNodeImplantArtificialStomach>();
         }
     }
 }

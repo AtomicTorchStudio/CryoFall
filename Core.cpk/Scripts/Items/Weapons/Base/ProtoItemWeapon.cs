@@ -6,8 +6,8 @@
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -65,7 +65,7 @@
 
         public abstract string CharacterAnimationAimingName { get; }
 
-        public IReadOnlyCollection<IProtoItemAmmo> CompatibleAmmoProtos { get; private set; }
+        public IReadOnlyList<IProtoItemAmmo> CompatibleAmmoProtos { get; private set; }
 
         public virtual double DamageApplyDelay => 0;
 
@@ -78,6 +78,14 @@
         public abstract double FireAnimationDuration { get; }
 
         public abstract double FireInterval { get; }
+
+        public virtual double FirePatternCooldownDuration => 0;
+
+        public WeaponFirePatternPreset FirePatternPreset { get; private set; }
+
+        public WeaponFireScatterPreset FireScatterPreset { get; private set; }
+
+        public WeaponFireTracePreset FireTracePreset { get; private set; }
 
         public override double GroundIconScale => 1.5;
 
@@ -97,7 +105,7 @@
         public virtual double ReadyDelayDuration => 1;
 
         /// <inheritdoc />
-        public ReadOnlySoundPreset<ObjectSoundMaterial> SoundPresetHit { get; private set; }
+        public ReadOnlySoundPreset<ObjectMaterial> SoundPresetHit { get; private set; }
 
         public ReadOnlySoundPreset<WeaponSound> SoundPresetWeapon { get; private set; }
 
@@ -134,10 +142,13 @@
         public virtual void ClientSetupSkeleton(
             IItem item,
             ICharacter character,
+            ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
             List<IClientComponent> skeletonComponents)
         {
-            ClientSkeletonItemInHandHelper.Setup(
+            this.ClientPreloadTextures();
+
+            protoCharacterSkeleton.ClientSetupItemInHand(
                 skeletonRenderer,
                 this.WeaponAttachmentName,
                 this.cachedWeaponTextureResource);
@@ -150,8 +161,7 @@
         }
 
         public virtual void ServerOnDamageApplied(
-            IItem weapon,
-            ICharacter byCharacter,
+            WeaponFinalCache weaponCache,
             IWorldObject damagedObject,
             double damage)
         {
@@ -166,12 +176,12 @@
                 return;
             }
 
-            var protoItemAmmo = weapon != null
-                                    ? GetPrivateState(weapon).CurrentProtoItemAmmo
+            var protoItemAmmo = weaponCache.Weapon != null
+                                    ? GetPrivateState(weaponCache.Weapon).CurrentProtoItemAmmo
                                     : null;
 
             protoItemAmmo?.ServerOnCharacterHit(damagedCharacter, damage);
-            this.ServerTryToApplySpecialEffect(weapon, byCharacter, damage, damagedCharacter);
+            this.ServerTryToApplySpecialEffect(weaponCache, damage, damagedCharacter);
         }
 
         public virtual void ServerOnItemBrokeAndDestroyed(IItem item, IItemsContainer container, byte slotId)
@@ -221,7 +231,7 @@
             ICharacter character,
             IItem weaponItem,
             IProtoItemWeapon protoWeapon,
-            List<WeaponHitData> hitObjects)
+            IReadOnlyList<IWorldObject> hitObjects)
         {
             if (weaponItem != null)
             {
@@ -261,12 +271,12 @@
         {
             if (this.AmmoCapacity == 0)
             {
-                // not uses ammo
+                // weapon doesn't use ammo
                 return true;
             }
 
             // weapon uses ammo
-            var itemWeapon = weaponState.ActiveItemWeapon;
+            var itemWeapon = weaponState.ItemWeapon;
             if (itemWeapon == null)
             {
                 return false;
@@ -311,7 +321,7 @@
                 return true;
             }
 
-            var privateState = GetPrivateState(weaponState.ActiveItemWeapon);
+            var privateState = GetPrivateState(weaponState.ItemWeapon);
             if (privateState.AmmoCount < this.AmmoConsumptionPerShot)
             {
                 // not enough ammo
@@ -369,6 +379,47 @@
             WeaponSystem.ClientChangeWeaponFiringMode(isFiring: true);
         }
 
+        protected virtual void ClientPreloadTextures()
+        {
+            PreloadTextures(this.FireTracePreset);
+
+            foreach (var protoAmmo in this.CompatibleAmmoProtos)
+            {
+                PreloadTextures(protoAmmo.FireTracePreset);
+            }
+
+            void PreloadTextures(WeaponFireTracePreset tracePreset)
+            {
+                if (tracePreset is null)
+                {
+                    return;
+                }
+
+                var traceTexture = tracePreset.TraceTexture;
+                if (traceTexture != null)
+                {
+                    Client.Rendering.PreloadTextureAsync(traceTexture);
+                }
+
+                tracePreset.HitSparksPreset.PreloadTextures();
+            }
+        }
+
+        protected virtual WeaponFirePatternPreset PrepareFirePatternPreset()
+        {
+            return default;
+        }
+
+        protected virtual WeaponFireScatterPreset PrepareFireScatterPreset()
+        {
+            return default;
+        }
+
+        protected virtual WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return default;
+        }
+
         protected override void PrepareProtoItem()
         {
             base.PrepareProtoItem();
@@ -387,16 +438,26 @@
                 ref overrideDamageDescription);
             this.SoundPresetWeapon = this.PrepareSoundPresetWeapon();
             this.SoundPresetHit = this.PrepareSoundPresetHit();
+            this.FirePatternPreset = this.PrepareFirePatternPreset();
+            this.FireScatterPreset = this.PrepareFireScatterPreset();
+            this.FireTracePreset = this.PrepareFireTracePreset();
 
-            this.CompatibleAmmoProtos =
-                (compatibleAmmoProtos?.Distinct() ?? Enumerable.Empty<IProtoItemAmmo>())
-                .ToList();
+            this.CompatibleAmmoProtos = compatibleAmmoProtos?.Distinct().ToArray()
+                                        ?? Array.Empty<IProtoItemAmmo>();
 
             if (this.CompatibleAmmoProtos.Count == 0
                 && overrideDamageDescription == null)
             {
                 throw new Exception(
-                    $"The weapon {this} doesn't have compatible ammo and overrideDamageDescription is null.");
+                    $"The weapon {this} doesn't have ammo and overrideDamageDescription is null.");
+            }
+
+            if (this.AmmoCapacity > 0
+                && this.CompatibleAmmoProtos.Count == 0
+                && this.FireTracePreset.TraceTexture is null)
+            {
+                throw new Exception(
+                    $"The weapon {this} doesn't have ammo and FireTracePreset is not assigned. Please override: {nameof(this.PrepareFireTracePreset)}().");
             }
 
             this.OverrideDamageDescription = overrideDamageDescription;
@@ -441,7 +502,7 @@
             out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos,
             ref DamageDescription overrideDamageDescription);
 
-        protected abstract ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit();
+        protected abstract ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit();
 
         protected abstract ReadOnlySoundPreset<WeaponSound> PrepareSoundPresetWeapon();
 
@@ -455,25 +516,19 @@
             ICharacter character,
             IItem weaponItem,
             IProtoItemWeapon protoWeapon,
-            List<WeaponHitData> hitObjects);
+            IReadOnlyList<IWorldObject> hitObjects);
 
         protected virtual void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)
         {
         }
 
         private void ServerTryToApplySpecialEffect(
-            IItem weapon,
-            ICharacter byCharacter,
+            WeaponFinalCache weaponCache,
             double damage,
             ICharacter damagedCharacter)
         {
-            IProtoItemAmmo protoItemAmmo;
-            var probability = this.SpecialEffectProbability;
-            if (this.WeaponSkillProto != null)
-            {
-                var statNameSpecialEffectChance = this.WeaponSkillProto.StatNameSpecialEffectChanceMultiplier;
-                probability *= byCharacter.SharedGetFinalStatMultiplier(statNameSpecialEffectChance);
-            }
+            var weapon = weaponCache.Weapon;
+            var probability = weaponCache.SpecialEffectProbability;
 
             //Logger.WriteDev($"Special effect probability: {specialEffectProbability} {this}");
 
@@ -483,8 +538,7 @@
                 // the special effect has been rolled - try to apply it
                 if (weapon != null)
                 {
-                    protoItemAmmo = GetPrivateState(weapon).CurrentProtoItemAmmo;
-
+                    var protoItemAmmo = GetPrivateState(weapon).CurrentProtoItemAmmo;
                     if (protoItemAmmo == null
                         || !protoItemAmmo.IsSuppressWeaponSpecialEffect)
                     {

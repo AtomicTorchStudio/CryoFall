@@ -60,7 +60,7 @@
             IReadOnlyList<IItem> bottleItemsToConsume;
 
             // try to find a well object
-            var worldObject = ClientComponentObjectInteractionHelper.CurrentMouseOverObject;
+            var worldObject = ClientComponentObjectInteractionHelper.MouseOverObject;
             if (worldObject != null
                 && !(worldObject.ProtoWorldObject is ProtoObjectWell))
             {

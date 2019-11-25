@@ -41,14 +41,10 @@
             }
         }
 
-        public ViewModelConstructionRepairRequirementsTooltip()
-        {
-        }
-
         public override IReadOnlyList<ProtoItemWithCount> StageRequiredItems
             => this.protoStructure.ConfigRepair.StageRequiredItems;
 
-        public override string Title => "Repair";
+        public override string ActionTitle => CoreStrings.Action_Repair;
 
         private void UpdateStageCountRemains()
         {

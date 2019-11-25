@@ -5,6 +5,8 @@
 
     public interface IProtoOption
     {
+        ProtoOptionsCategory Category { get; }
+
         string Id { get; }
 
         bool IsHidden { get; }
@@ -16,8 +18,6 @@
         IProtoOption OrderAfterOption { get; }
 
         string ShortId { get; }
-
-        ProtoOptionsCategory Category { get; }
 
         void Apply();
 

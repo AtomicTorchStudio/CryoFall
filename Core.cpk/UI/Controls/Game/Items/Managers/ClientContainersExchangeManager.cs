@@ -81,7 +81,7 @@
             //                  Environment.NewLine,
             //                  allowedTargets?.Select(t => t.Id).GetJoinedString()));
 
-            if (!ContainersOpenedBy.TryGetValue(key, out List<WrappedContainer> list))
+            if (!ContainersOpenedBy.TryGetValue(key, out var list))
             {
                 list = new List<WrappedContainer>();
                 ContainersOpenedBy.Add(key, list);
@@ -94,7 +94,7 @@
                 wrappedContainer = new WrappedContainer(clientItemsContainer);
                 list.Add(wrappedContainer);
 
-                if (!ActiveContainersReferencesCount.TryGetValue(clientItemsContainer, out int referencesCount))
+                if (!ActiveContainersReferencesCount.TryGetValue(clientItemsContainer, out var referencesCount))
                 {
                     referencesCount = 1;
                     ActiveContainersList.Add(clientItemsContainer);
@@ -102,6 +102,12 @@
                 else
                 {
                     referencesCount++;
+                    // Ensure the order is modified - same as if the container was added for the first time.
+                    // Otherwise order of container operations (such as Shift+Click to move item)
+                    // might be incorrect in some cases
+                    // (such as when inventory opened while crafting menu was opened).
+                    ActiveContainersList.Remove(clientItemsContainer);
+                    ActiveContainersList.Add(clientItemsContainer);
                 }
 
                 ActiveContainersReferencesCount[clientItemsContainer] = referencesCount;

@@ -14,11 +14,11 @@
 
         public override string Name => "Workbench";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
-        public override float StructurePointsMax => 200;
+        public override float StructurePointsMax => 1200;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -40,19 +40,19 @@
         {
             category = GetCategory<StructureCategoryIndustry>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemPlanks>(count: 5);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 2);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((1.9, 0.8), offset: (0.05, 0))
+                .AddShapeRectangle((1.9, 0.88), offset: (0.05, 0))
                 .AddShapeRectangle((2, 1),     offset: (0, 0),      group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((1.6, 0.2), offset: (0.2, 0.85), group: CollisionGroups.HitboxRanged)
                 .AddShapeRectangle((2, 1.2),   offset: (0, 0),      group: CollisionGroups.ClickArea);

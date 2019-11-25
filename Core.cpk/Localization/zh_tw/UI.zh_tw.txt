@@ -1,4 +1,10 @@
-﻿UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
+﻿UI/CoreStrings@Action_Build:
+建造
+
+UI/CoreStrings@Action_Repair:
+修理
+
+UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 摧毀於
 
 UI/CoreStrings@Button_Accept:
@@ -14,7 +20,7 @@ UI/CoreStrings@Button_Back:
 返回
 
 UI/CoreStrings@Button_BrowseRecipes:
-瀏覽配方
+流覽配方
 
 UI/CoreStrings@Button_Cancel:
 取消
@@ -47,8 +53,14 @@ UI/CoreStrings@Button_Edit:
 UI/CoreStrings@Button_Help:
 幫助
 
+UI/CoreStrings@Button_Next:
+下一個
+
 UI/CoreStrings@Button_OK:
 好
+
+UI/CoreStrings@Button_Previous:
+前一個
 
 UI/CoreStrings@Button_Quit:
 退出
@@ -78,7 +90,7 @@ UI/CoreStrings@CharacterStatName_Water:
 水
 
 UI/CoreStrings@Chat_MessageMenu_Block:
-禁言
+遮罩
 
 UI/CoreStrings@Chat_MessageMenu_CopyName:
 複製名稱
@@ -93,7 +105,7 @@ UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 私信
 
 UI/CoreStrings@Chat_MessageMenu_Unblock:
-解除禁言
+解除遮罩
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 此為純裝飾建築。
@@ -108,7 +120,7 @@ UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
 此建築儲存電力。
 
 UI/CoreStrings@Copy:
-復制
+複製
 
 UI/CoreStrings@CraftingCountSelector_Max:
 最大
@@ -117,7 +129,7 @@ UI/CoreStrings@CraftingCountSelector_Min:
 最小
 
 UI/CoreStrings@CraftingQueue_Title:
-制造
+製造
 
 UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
 `[b]滑鼠左鍵點擊[/b]
@@ -127,12 +139,12 @@ UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
 [br]取消此配方。`
 
 UI/CoreStrings@CraftingRecipeDetails_ButtonStartCraft:
-制造
+製造
 
 UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
-`你尚未獲得此工作台的任何相關配方。
+`你尚未獲得此工作臺的任何相關配方。
 [br][br][br]
-你可以在科技選單中解鎖它們。`
+你可以在科技功能表解鎖它們。`
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 配方解鎖
@@ -161,6 +173,27 @@ UI/CoreStrings@Defense_Format_Psi:
 UI/CoreStrings@Defense_Format_Radiation:
 輻射防護: {0}
 
+UI/CoreStrings@Demo_Button_BuyGameOnSteam:
+在Steam平臺購買CryoFall
+
+UI/CoreStrings@Demo_CanPurchase:
+你可以購買CryoFall並獲取完整版本的遊戲。 本遊戲為一次性購買，並且購買後你將能夠繼續玩你之前的人物（如果你最近玩過的話）。你也能在社區和加裝了mod的伺服器上進行遊戲，甚至架設你自己的伺服器。
+
+UI/CoreStrings@Demo_Expired:
+您的試玩時間已經耗盡。 謝謝您的試玩我們的遊戲—希望您喜歡它！
+
+UI/CoreStrings@Demo_OnlyOfficialServers:
+在此試玩版本中您可以在任意官方伺服器進行遊戲。[br]若想在社區伺服器或私人伺服器進行遊戲，請購買完整版遊戲。
+
+UI/CoreStrings@Demo_TimeRemaining:
+試玩結束於: {0}
+
+UI/CoreStrings@Demo_Title:
+CryoFall試玩版
+
+UI/CoreStrings@Demo_Welcome:
+歡迎來到CryoFall試玩版。在本試玩版中您可以享受遊戲的完整內容。在試玩期間您擁有對所有官方伺服器的完整存取權限。
+
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 可佔領倒計時：
 
@@ -179,6 +212,9 @@ EU/s
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFall的官方Discord伺服器(僅限英文)
 
+UI/CoreStrings@Extras_FeaturesTooltip:
+CryoFall功能集錦
+
 UI/CoreStrings@Extras_PatchnotesTooltip:
 所有CryoFall的更新文檔(僅限英文)
 
@@ -189,13 +225,19 @@ UI/CoreStrings@FarmPlantTooltip_NotWatered:
 未澆水
 
 UI/CoreStrings@FarmPlantTooltip_PossibleHarvestsCount:
-可能收獲
+可能收穫
 
 UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
-收獲於
+收穫於
 
 UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
-現在！
+可供收穫
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiled:
+正在腐敗
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
+腐敗於：
 
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 已澆水
@@ -212,11 +254,14 @@ UI/CoreStrings@Gender_Female:
 UI/CoreStrings@Gender_Male:
 男
 
+UI/CoreStrings@HUDButtonsBar_DismountVehicle:
+離開載具
+
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 建築
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
-制造
+製造
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 裝備
@@ -270,7 +315,7 @@ UI/CoreStrings@ImplantSlotOnStation_Requirement:
 需要
 
 UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
-快捷鍵
+快速鍵
 
 UI/CoreStrings@ItemsContainer_Button_MatchDown:
 向下匹配
@@ -279,7 +324,7 @@ UI/CoreStrings@ItemsContainer_Button_MatchUp:
 向上匹配
 
 UI/CoreStrings@ItemsContainer_Button_TakeAll:
-拿去所有
+拿起所有
 
 UI/CoreStrings@ItemsContainer_CapacityExceededTakeOnly:
 超過容量。只能取出物品。
@@ -300,13 +345,13 @@ UI/CoreStrings@LearningPointsAbbreviation:
 LP
 
 UI/CoreStrings@LinkSteamAccountForm_Title:
-請輸入您的[url=atomictorch.com]AtomicTorch.com[/url]帳戶詳細信息以鏈接您的Steam帳戶。
+請輸入您的[url=atomictorch.com]AtomicTorch.com[/url]帳戶詳細資訊以連結您的Steam帳戶。
 
 UI/CoreStrings@ListFilters:
 過濾規則
 
 UI/CoreStrings@LoadingSplashScreen_Title:
-加載中
+載入中
 
 UI/CoreStrings@LoginAtomicTorchForm_Button_Login:
 登錄
@@ -318,7 +363,7 @@ UI/CoreStrings@LoginAtomicTorchForm_Title:
 使用[url =atomictorch.com/Account/Register]AtomicTorch.com[/url]帳戶登錄
 
 UI/CoreStrings@MainMenu_TabCredits:
-制作人員名單
+製作人員名單
 
 UI/CoreStrings@MainMenu_TabCurrentGame:
 當前遊戲
@@ -333,10 +378,10 @@ UI/CoreStrings@MainMenu_TabQuit:
 退出
 
 UI/CoreStrings@MainMenu_TabServers:
-服務器
+伺服器
 
 UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
-鏈接帳戶
+連結帳戶
 
 UI/CoreStrings@MainMenuOverlay_Button_Logout:
 登出
@@ -345,13 +390,13 @@ UI/CoreStrings@MainMenuOverlay_YouAreLoggedInAs:
 您的登錄用戶為
 
 UI/CoreStrings@MasterServer:
-主服務器
+主要伺服器
 
 UI/CoreStrings@MenuCurrentGame_Button_Disconnect:
 斷開
 
 UI/CoreStrings@MenuCurrentGame_Button_ShowWelcomeMessage:
-顯示歡迎信息
+顯示歡迎資訊
 
 UI/CoreStrings@MenuCurrentGame_NotConnected:
 未連接。
@@ -366,18 +411,18 @@ UI/CoreStrings@MenuHome_ReadMore:
 閱讀更多...
 
 UI/CoreStrings@MenuHome_RecentServers:
-最近的服務器
+最近的伺服器
 
 UI/CoreStrings@MenuHome_ServerHistoryEmpty:
-`服務器歷史記錄是空的。
+`伺服器歷史記錄是空的。
 [br][br]您可以使用此功能快速加入
-[br]你最近玩過的服務器。`
+[br]你最近玩過的伺服器。`
 
 UI/CoreStrings@MenuHome_Social:
 社交
 
 UI/CoreStrings@MenuLogin_SteamError_Message:
-請退出遊戲，重新啟動Steam客戶端並再次啟動遊戲。
+請退出遊戲，重新啟動Steam用戶端並再次啟動遊戲。
 
 UI/CoreStrings@MenuLogin_SteamError_Title:
 Steam用戶端錯誤
@@ -392,28 +437,28 @@ UI/CoreStrings@MenuQuit_QuestionAreYouSure:
 您確定要退出桌面嗎？
 
 UI/CoreStrings@MenuServers_AwaitingServerList:
-等待服務器列表...
+等待伺服器列表...
 
 UI/CoreStrings@MenuServers_Button_AddCustomServer:
-添加自定義服務器
+添加自訂伺服器
 
 UI/CoreStrings@MenuServers_Button_ClearList:
-清晰的列表
+清除列表
 
 UI/CoreStrings@MenuServers_Button_EditAddress:
 編輯地址
 
 UI/CoreStrings@MenuServers_Button_JoinServer:
-加入服務器
+加入伺服器
 
 UI/CoreStrings@MenuServers_Button_RefreshAll:
 全部刷新
 
 UI/CoreStrings@MenuServers_Button_RefreshServer:
-刷新服務器
+刷新伺服器
 
 UI/CoreStrings@MenuServers_Button_RemoveServer:
-刪除服務器
+刪除伺服器
 
 UI/CoreStrings@MenuServers_Checkbox_ShowEmpty:
 顯示空伺服器
@@ -422,16 +467,16 @@ UI/CoreStrings@MenuServers_Checkbox_ShowIncompatible:
 顯示不匹配伺服器
 
 UI/CoreStrings@MenuServers_ClickToCopy:
-點擊進行復制！
+點擊進行複製！
 
 UI/CoreStrings@MenuServers_ColumnInfo:
-服務器信息
+伺服器資訊
 
 UI/CoreStrings@MenuServers_ListTitleCommunity:
 社區
 
 UI/CoreStrings@MenuServers_ListTitleCustom:
-自定義
+自訂
 
 UI/CoreStrings@MenuServers_ListTitleFavorite:
 喜愛
@@ -446,13 +491,13 @@ UI/CoreStrings@MenuServers_ListTitleRecent:
 最近
 
 UI/CoreStrings@MenuServers_NoServersInThisList:
-此列表中沒有服務器
+此列表中沒有伺服器
 
 UI/CoreStrings@MenuServers_PublicGUID:
 公共GUID
 
 UI/CoreStrings@MenuServers_ServersCount:
-服務器
+伺服器
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
 頂置伺服器往往具有較高聲譽，能夠提供高品質的遊戲體驗，類似官方伺服器。但是這些伺服器仍然是由社區運營的。
@@ -488,19 +533,31 @@ PvP伺服器沒有任何限制—你可以在這裡可以殺和被殺。
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
 
+UI/CoreStrings@ModsDisabledWindow_Description:
+`遊戲無法在加裝mod後正常運行，因此它們被禁用。
+[br]這是因為其中至少一個mod已經過期（與當前版本遊戲不相容）或者失效。
+[br]遊戲無法確認是哪一個mod出現了問題，因此您必須通過一個一個打開mod並進行遊戲來測試。
+[br]如果你想要繼續使用這些mod，請確保你正在使用最新版本的mod。
+[br]
+[br]已禁用mod列表:
+[br]{0}`
+
+UI/CoreStrings@ModsDisabledWindow_Title:
+CryoFall已禁用mods
+
 UI/CoreStrings@Network_Jitter:
 波動
 
 UI/CoreStrings@Network_Jitter_SeverityRed:
-`看起來你與服務器的網絡連接正在經歷嚴重的波動。
-[br]因此，您可能會遇到角色移動問題（例如頻繁的角色瞬移），或者由於與服務器的重大差異，您的操作可能會經常丟失。`
+`看起來你與伺服器的網路連接正在經歷嚴重的波動。
+[br]因此，您可能會遇到角色移動問題（例如頻繁的角色瞬移），或者由於與伺服器的嚴重不同步，您的操作可能會經常丟失。`
 
 UI/CoreStrings@Network_Jitter_SeverityYellow:
-`看起來你與服務器的網絡連接正在經歷波動。
-[br]因此，您可能會遇到角色移動問題（例如偶爾的角色瞬移），或者由於與服務器的重大差異，您的操作可能會丟失。`
+`看起來你與伺服器的網路連接正在經歷波動。
+[br]因此，您可能會遇到角色移動問題（例如偶爾的角色瞬移），或者由於與伺服器的嚴重不同步，您的操作可能會丟失。`
 
 UI/CoreStrings@Network_Perfect:
-`看起來你的網絡連接很好。
+`看起來你的網路連接很好。
 [br]享受遊戲吧！`
 
 UI/CoreStrings@Network_PingAverage:
@@ -524,20 +581,20 @@ UI/CoreStrings@Network_PingFluctuationRange:
 Ping波動範圍
 
 UI/CoreStrings@Network_PingFluctuationRange_SeverityRed:
-`看起來您與服務器的網絡連接正在經歷嚴重的延遲波動。
-[br]一些網絡數據包的接收具有異常高的隨機延遲，因此遊戲必須增加緩沖值，這實際上意味著延遲會比顯示更高。`
+`看起來您與伺服器的網路連接正在經歷嚴重的延遲波動。
+[br]一些網路資料包的接收具有異常高的隨機延遲，因此遊戲必須增加緩衝值，這實際上意味著延遲會比顯示更高。`
 
 UI/CoreStrings@Network_PingFluctuationRange_SeverityYellow:
-`看起來您與服務器的網絡連接正在經歷嚴重的延遲波動。
-[br]一些網絡數據包的接收具有異常高的隨機延遲，因此遊戲必須增加緩沖值，這實際上意味著延遲會比顯示的更高。`
+`看起來您與伺服器的網路連接正在經歷嚴重的延遲波動。
+[br]一些網路資料包的接收具有異常高的隨機延遲，因此遊戲必須增加緩衝值，這實際上意味著延遲會比顯示更高。`
 
 UI/CoreStrings@Network_PingGame:
 Ping (遊戲)
 
 UI/CoreStrings@Network_Suggestions:
 `[b]建議:[/b]
-[*] 為了獲得最佳體驗，建議您在[b]您所在地區的服務器上進行遊戲[/b]（如果有）。
-[*] 考慮[b]關閉[/b]其他應用程序（尤其是瀏覽器，BT客戶端和下載程序）。
+[*] 為了獲得最佳體驗，建議您在[b]您所在地區的伺服器上進行遊戲[/b]（如果有）。
+[*] 考慮[b]關閉[/b]其他應用程式（尤其是流覽器，BT用戶端和下載程式）。
 [*] 如果您的PC當前通過Wi-Fi或移動連接進行連接，則考慮切換到[b]網線連接[/b]（無線連接通常是導致顯著延遲波動的原因）。`
 
 UI/CoreStrings@NicknameOfflinePlayer:
@@ -550,7 +607,7 @@ UI/CoreStrings@Notification_ActionForbidden:
 禁止
 
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
-無法放在那裡面
+無法放在那裡
 
 UI/CoreStrings@Notification_ObstaclesOnTheWay:
 遇到障礙！
@@ -565,7 +622,7 @@ UI/CoreStrings@ObjectAccessModeEditor_TitleAccessModeSelection:
 訪問模式
 
 UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Button:
-添加成员
+添加小隊成員
 
 UI/CoreStrings@ObjectOwnersList_AddPartyMembers_Dialog:
 確定要將所有小隊成員加入此列表嗎？
@@ -577,7 +634,7 @@ UI/CoreStrings@ObjectOwnersList_Empty:
 沒有所有者
 
 UI/CoreStrings@ObjectOwnersList_OnlyOwnerCanAdd:
-只有所有者才能添加和刪除訪問權限。
+只有所有者才能添加和刪除存取權限。
 
 UI/CoreStrings@ObjectOwnersList_RemoveOwner:
 移除所有者
@@ -592,7 +649,7 @@ UI/CoreStrings@ObjectTradingStationDisplay_ModeSelling:
 出售
 
 UI/CoreStrings@OptionsInput_ContainerMenuCategory:
-容器選單
+容器菜單
 
 UI/CoreStrings@PartyManagement_Button_CreateParty:
 創建隊伍
@@ -607,10 +664,10 @@ UI/CoreStrings@PartyManagement_CurrentPartySize:
 隊伍大小
 
 UI/CoreStrings@PartyManagement_HowToInvite:
-在下方輸入其他玩家名稱來邀請他們，或者在聊天窗口中點擊他們的玩家名字。
+在下方輸入其他玩家名稱來邀請他們，或者在聊天視窗中點擊他們的玩家名字。
 
 UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-隊伍中成員獲得的部分LP點數將在隊伍成員中共享。
+隊伍中成員獲得的部分LP點數將在隊伍成員中共用。
 
 UI/CoreStrings@PartyManagement_InviteMember:
 邀請成員
@@ -626,13 +683,13 @@ UI/CoreStrings@PartyManagement_Title:
 
 UI/CoreStrings@Performance__VRAM_SeverityYellow:
 `你的GPU難以將所有必需的材質擬合到VRAM中，這可能導致渲染圖像的隨機斷續。
-[br]請考慮減少[b]視頻選項[/b]選單中的[b]紋理質量[/b]選項。`
+[br]請降低[b]視頻選項[/b]功能表中的[b]紋理品質[/b]選項設置。`
 
 UI/CoreStrings@Performance_FPS_SeverityRed:
-看起來您的機器很難以足夠快的速度處理遊戲，從而導致幀速率顯著降低。
+看起來您的機器很難以足夠快的速度處理遊戲，從而導致畫面播放速率顯著降低。
 
 UI/CoreStrings@Performance_FPS_SeverityYellow:
-看起來你的機器很難以足夠快的速度處理遊戲，導致幀速率降低。
+看起來你的機器很難以足夠快的速度處理遊戲，導致畫面播放速率降低。
 
 UI/CoreStrings@Performance_FramerateAverage:
 幀率（平均值）
@@ -650,8 +707,8 @@ UI/CoreStrings@Performance_Suggestions:
 [*] 如果所有其他方法都失敗了 - 降低視頻選項中的圖形質量。`
 
 UI/CoreStrings@Performance_VRAM_SeverityRed:
-`“你的GPU的顯存容量不足以存儲所有必需的材質，所以它必須每幀都從內存中復制它們。因此，你可能會遇到嚴重的卡頓和降低的幀速率。
-[br]請減少[b]視頻選項[/b]選單中的[b]材質細節[/b]選項。`
+`“你的GPU的顯存容量不足以存儲所有必需的材質，所以它必須每幀都從記憶體中複製它們。因此，你可能會遇到嚴重的卡頓和降低的畫面播放速率。
+[br]請減少[b]視頻選項[/b]功能表中的[b]材質細節[/b]選項。`
 
 UI/CoreStrings@Performance_VRAMUsage:
 顯存使用
@@ -663,7 +720,7 @@ UI/CoreStrings@PowerGrid_NotConnectedMessage:
 未連接至電網。
 
 UI/CoreStrings@PowerGridState_ActiveFormat:
-(激活 {0})
+(啟動 {0})
 
 UI/CoreStrings@PowerGridState_Button_RestorePower:
 恢復電力
@@ -762,7 +819,7 @@ UI/CoreStrings@ServerPlayersCount:
 玩家
 
 UI/CoreStrings@ServerWipedDate:
-最近刪檔
+刪檔
 
 UI/CoreStrings@Skill:
 技能
@@ -780,7 +837,7 @@ UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Message:
 [*]只需點擊一下按鈕，即可為您和您的朋友租用CryoFall官方雲服務器。`
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Title:
-為什麽要建議鏈接到AtomicTorch帳戶？
+為什麼要建議連結到AtomicTorch帳戶？
 
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_CheckboxAcceptLicenseAgreement:
 我接受[url=atomictorch.com/Pages/Terms-of-Service]服務條款[/url]，包括[url=atomictorch.com/Pages/Privacy-Policy]隱私政策[/url]
@@ -792,6 +849,17 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `AtomicTorch.com已註冊
 [br](為您的SteamID)。`
 
+UI/CoreStrings@SupporterPack_Badge:
+支援徽章
+
+UI/CoreStrings@SupporterPack_Description:
+`支援包裹是給予那些特別支持了CryoFall的玩家們的一系列獎勵物品。作為感謝，遊戲將在聊天區域內為這些玩家加入支援徽章。
+[br][br]支援包裹不提供任何遊戲內優勢並且是可選的。其中包括了遊戲的完整原聲，概念設計圖，高清原畫以及聊天徽章等內容。在搶先體驗階段將會有更多內容加入。
+[br][br]我們發自內心的感謝大家的幫助！`
+
+UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
+學習點數: {0}
+
 UI/CoreStrings@TechGroupTooltip_Requirements:
 需求
 
@@ -802,16 +870,19 @@ UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 科技解鎖
 
 UI/CoreStrings@TechNodeTooltip_Perks:
-特質
+特質:
 
 UI/CoreStrings@TechNodeTooltip_Recipes:
-配方
+配方:
 
 UI/CoreStrings@TechNodeTooltip_Structures:
-建築
+建築:
 
 UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
 前置科技
+
+UI/CoreStrings@TechNodeTooltip_Vehicles:
+載具:
 
 UI/CoreStrings@Technology:
 科技
@@ -907,13 +978,90 @@ UI/CoreStrings@UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAc
 不創建帳戶並繼續
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
-看來你是第一次進入CryoFall。您想將遊戲鏈接到您現有的[url=atomictorch.com]AtomicTorch.com[/url]帳戶嗎？
+看來你是第一次進入CryoFall。您想將遊戲連結到您現有的[url=atomictorch.com]AtomicTorch.com[/url]帳戶嗎？
+
+UI/CoreStrings@UnstuckInFormat:
+解除卡死於: {0}
+
+UI/CoreStrings@Vehicle_Ammo:
+彈藥
+
+UI/CoreStrings@Vehicle_Armor:
+護甲
+
+UI/CoreStrings@Vehicle_EnergyLevel:
+能量等級
+
+UI/CoreStrings@Vehicle_Enter:
+進入
+
+UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
+護甲{1:F0}/{2:F0} ({0}%)
+
+UI/CoreStrings@Vehicle_Hotbar_EnergyPercentFormat:
+能量 {0}%
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_LeftArm:
+左手
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
+右手
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
+武器
+
+UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
+此武器只有在裝備在機甲上後才能使用。
+
+UI/CoreStrings@Vehicle_ReactorCores:
+反應堆核心
+
+UI/CoreStrings@VehicleGarage_ButtonPutCurrentVehicle:
+將當前載具放入車庫
+
+UI/CoreStrings@VehicleGarage_ButtonTakeVehicle:
+獲取載具
+
+UI/CoreStrings@VehicleGarage_TitleAccessibleVehicles:
+你可以使用以下載具：
+
+UI/CoreStrings@VehicleGarage_TitleNoAccessibleVehicles:
+你目前還沒有載具。
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_Docked:
+已停泊
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InGarage:
+車庫中
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InUse:
+當前使用中
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InWorld:
+在遊戲世界中
+
+UI/CoreStrings@VehiclesAssemblyList_Button_Build:
+建造
+
+UI/CoreStrings@VehiclesAssemblyList_NoSchematicsKnown:
+`你尚未獲得此建造港的任何相關配方。
+[br][br][br]
+你可以在科技功能表解鎖它們。`
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
+藍圖
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
+藍圖解鎖
+
+UI/CoreStrings@Weapon_CompatibleAmmo:
+相容彈藥：
 
 UI/CoreStrings@Window_Tab_Main:
 主要
 
 UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
-`請輸入服務器GUID或主機地址。
+`請輸入伺服器GUID或主機位址。
 [br][br]
 例如:
 [*]localhost
@@ -934,7 +1082,7 @@ UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
 [br]將一個工具箱裝入你的工具欄，以便繼續建造。`
 
 UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
-你最近吃了富含維生素、微量元素和其他重要的營養物質的健康膳食。 你感覺好極了。
+安放藍圖
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 總需求
@@ -955,7 +1103,7 @@ UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
 太陽能電池板
 
 UI/CoreStrings@WindowInventory_Button_Customize:
-自定義
+自訂
 
 UI/CoreStrings@WindowInventory_Button_Unstuck:
 解除卡死！
@@ -979,7 +1127,7 @@ UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
 需要
 
 UI/CoreStrings@WindowManufacturer_BestMatchingRecipe:
-匹配配方
+最優匹配配方
 
 UI/CoreStrings@WindowManufacturer_Button_ApplyMatchingRecipe:
 應用匹配配方
@@ -988,7 +1136,7 @@ UI/CoreStrings@WindowManufacturer_CurrentRecipe:
 當前配方
 
 UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchAnyRecipe:
-輸入項目與任何配方都不匹配！
+輸入專案與任何配方都不匹配！
 
 UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchCurrentRecipe:
 輸入項目與當前配方不匹配！
@@ -1064,7 +1212,7 @@ UI/CoreStrings@WindowRespawn_DamageSources:
 最近傷害來源：
 
 UI/CoreStrings@WindowRespawn_Message:
-看起來你已經被強行從這個殘酷的世界中分開了......並且丟失了所有的東西！你想復仇嗎？
+你似乎已經被強行從這個殘酷的世界之中分離……並且丟失了所有的東西！你想復仇嗎？
 
 UI/CoreStrings@WindowRespawn_MessageDespawned:
 你把你的角色遺忘在土地佔領區域外太久，已經被從世界移除。 你可以再次正常重生。你沒有失去了你的物品。
@@ -1104,14 +1252,29 @@ UI/CoreStrings@WindowSkills_ProgressTowardsTheNextLevel:
 UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
 發現技能
 
+UI/CoreStrings@WindowsObjectVehicle_RepairTextFormat:
+修復{0}%盔甲，你需要：
+
+UI/CoreStrings@WindowsObjectVehicle_TabCargo_Title:
+貨物
+
+UI/CoreStrings@WindowsObjectVehicle_TabConstructVehicle:
+建築
+
+UI/CoreStrings@WindowsObjectVehicle_TabGarage:
+車庫
+
+UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
+載具
+
 UI/CoreStrings@WindowSocial_OnlineNow:
-當前在線
+當前線上
 
 UI/CoreStrings@WindowSocial_ServerStatistics:
-服務器統計
+伺服器統計
 
 UI/CoreStrings@WindowSocial_TitleOnlinePlayersList:
-在線玩家
+線上玩家
 
 UI/CoreStrings@WindowSocial_TotalPlayers:
 總玩家數
@@ -1120,10 +1283,10 @@ UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 創建新的AtomicTorch帳戶
 
 UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
-鏈接到我現有的AtomicTorch帳戶
+連結到我現有的AtomicTorch帳戶
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-這不是必須行動 - 您可以繼續使用現有的Steam帳戶進行遊戲。但是，鏈接到AtomicTorch.com帳戶有一些額外好處。
+這不是必須行動 - 您可以繼續使用現有的Steam帳戶進行遊戲。但是，連結到AtomicTorch.com帳戶有一些額外好處。
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
 這不是必須行動，只需使用您現有的Steam帳戶即可。但是，這樣做有一些額外好處。
@@ -1169,10 +1332,10 @@ UI/CoreStrings@WindowTinkerTable_Button_Repair:
 修理
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
-槽位配置
+槽位元配置
 
 UI/CoreStrings@WindowTradingStationAdmin_LotsConfiguration:
-槽位配置
+槽位元配置
 
 UI/CoreStrings@WindowTradingStationAdmin_RadioButton_GroupTitle:
 這個交易站將
@@ -1208,7 +1371,7 @@ UI/CoreStrings@WindowTradingStationUser_Button_Sell:
 賣
 
 UI/CoreStrings@WindowTradingStationUser_BuyingMode_Message:
-該交易平台正在購買以下物品：
+該交易平臺正在購買以下物品：
 
 UI/CoreStrings@WindowTradingStationUser_BuyingMode_Title:
 收購
@@ -1226,7 +1389,7 @@ UI/CoreStrings@WipedDate_DaysAgo_Format:
 {0}日前
 
 UI/CoreStrings@WipedDate_HoursAgo_Format:
-{0}小时前
+{0}小時前
 
 UI/CoreStrings@WipedDate_JustWiped:
 剛剛刪檔
@@ -1252,8 +1415,11 @@ UI/CoreStrings@WorldMapMarkDroppedItems_Tooltip:
 [br]你在此地點掉落了物品。`
 
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
-`[b]占領土地[/b]
+`[b]佔領土地[/b]
 [br]這片土地歸你所有。`
+
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_LastUsedVehicle:
+[b]最後使用的車輛[/b]
 
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 `[b]土地權利要求[/b]
@@ -1264,16 +1430,16 @@ UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 [br]你的基地正遭受攻擊！`
 
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
-`[b]溫泉[/b]
-[br]可采集鋰鹽。`
+`[b]地熱泉[/b]
+[br]可採集鋰鹽。`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]天然油田[/b]
-[br]可采集原油。`
+[br]可採集原油。`
 
 UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
 `[b]交易站[/b]
-[br]由另一位玩家所有的交易站。`
+[br]由另一位元玩家所有的交易站。`
 
 UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
 `[b]交易站(你)[/b]
@@ -1334,16 +1500,16 @@ UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnd
 遭到攻擊！
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
-`{0} 位于 {1};{2}的。
-[br]它将提供为声称：
-[br]{3}的。
-[br]抓住你的枪支和准备捕捉它！`
+`{0} 位於 {1};{2}。
+[br]它將可被佔領於：
+[br]{3}。
+[br]拿好武器，準備佔領！`
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
 新資源可用
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
-復制坐標
+複製座標
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuTeleport:
 瞬移
@@ -1354,7 +1520,7 @@ UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `你把自己圍在自己的房子內，出不去嗎？
 [br]或者有人惡意堵你，導致你被卡住了？
-[br]您可以使用此功能將您的角色傳送出去。`
+[br]您可以使用此功能在一段延遲後將您的角色傳送出去。`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 解除卡死
@@ -1374,44 +1540,44 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Title:
 Alt+按右鍵物品
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Description:
-將單個物品從堆疊中移動到另一個容器裡面。
+將單個物品從堆疊中移動到另一個容器裡。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Title:
-按Ctrl+左或向右鍵單擊物品
+按Ctrl+左或向按右鍵物品
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Description:
 拿一個或整堆物品。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Title:
-空手時左鍵單擊槽位
+空手時左鍵按一下物品
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Description:
 `如果槽位為空 - 將物品放到該處。
-[br]如果槽位非空 - 合並或交換物品。`
+[br]如果槽位非空 - 合併或交換物品。`
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Title:
-手持物品時左鍵單擊一個槽位
+手持物品時左鍵按一下一個槽位
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Description:
 物品欄排序（可用於任何指向的物品欄）。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Title:
-鼠標中鍵（滾輪）單擊
+滑鼠中鍵（滾輪）按一下
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Description:
 拿這些物品的一半。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Title:
-空手時右鍵單擊槽位
+空手時按右鍵物品
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Description:
 如果槽位為空或包含相同的項目類型-[br]將單個物品從手中移動到目標槽位。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Title:
-手持物品時右鍵單擊一個槽位
+手持物品時按右鍵一個槽位
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Description:
-將所有指向物品類型堆疊的移動到另一個容器。
+將所有指向物品類型的堆疊移動到另一個容器。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Title:
 Shift+左鍵按一下物品
@@ -1432,10 +1598,10 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleFace:
 面部
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
-頭發
+頭髮
 
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
-最佳
+頂部
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 你確定要離開小組嗎？
@@ -1486,16 +1652,13 @@ UI/Controls/Game/Technologies/Data/ViewModelWindowTechnologies@DialogDoYouWantTo
 你想研究{0}嗎？
 
 UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
-徒手制造
-
-UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
-修理
+徒手製造
 
 UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
 易腐道具儲存時限提高~{0} 。
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListEmpty:
-您可以讓其他的幸存者進入你的占領土地中。
+您可以讓其他的倖存者進入你的佔領土地中。
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
 訪問
@@ -1549,11 +1712,94 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@El
 `當前發電{0} EU/s 
 [br]最高輸出 {1} EU/s。`
 
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+歡迎來到CryoFall!
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+我們想借此機會向你介紹一些遊戲內的功能！ CryoFall仍然在開發中，但以下所有功能已經可以使用。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+農業&烹飪
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+使用肥料和農具種植你自己的作物。然後再把辛勞的成果烹飪成各種美食，能夠提供不同加成。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+角色模擬&藥物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+複雜的角色模擬，不僅能體現出常見的饑餓和口渴狀態，更能測試各種異常狀態效果，而它們則可以用各種藥品治療。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+工業
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+探索在CryoFall中可以利用的自然資源。開採石油，從溫泉採集鋰礦，來製造電池和電器。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+經濟
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+鑄造硬幣，建造全自動貿易站來與其他倖存者進行交易。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+植入物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+將植入物植入你的角色體內，獲得新的能力或者提高你的屬性。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+技能
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+發現，解鎖並強化你角色的一系列技巧，幫助你提高生存效率，以及進一步發現新技能。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
+角色定制
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+使用各種不同裝備和工具來定制你的角色，讓你顯得與眾不同。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+科技
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+獲得的學習點並使用它們來學習新科技、食譜和建築，通過根據自己的喜好加點來定制屬於你的遊戲體驗。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+電力
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+設計基地時要考慮到電網。你可以建造數個發電機，儲存建築以及電力消耗建築。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+載具
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+建立和升級的各種未來車輛，以更快的探索這個世界或在戰鬥中使用它們。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
+神奇動物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+探索擁有各種不同自然環境的世界與這裡數十種神奇生物。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+寫在最後
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
+`最後，請記住，《末日覺醒》仍然出於開發當中，並且還有著大量的更新和改動計畫。 儘管如此，當前的遊戲內容已經十分充實，希望大家喜歡！[br][br]
+另外我們有在論壇和discord全程值班，歡迎來和我們打個招呼！ :)[br][br]
+如果你遇到任何困難或希望報告遊戲中的錯誤或漏洞，我們願意聆聽並提供幫助！`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
+開始遊戲
+
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
 等待登錄響應。
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterEmail:
-請輸入您的電子郵箱。
+請輸入您的電子郵寄地址。
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterPassword:
 請輸入您的密碼。
@@ -1566,7 +1812,7 @@ UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_CapsLock:
 大寫鎖定
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_LeftMouseButton:
-鼠標左鍵
+滑鼠左鍵
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton1:
 滑鼠額外按鈕1
@@ -1575,7 +1821,7 @@ UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseExtraButton2:
 滑鼠額外按鈕2
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_MouseScrollButton:
-鼠標滾輪按鈕
+滑鼠滾輪按鈕
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_PageDown:
 向下翻頁
@@ -1584,7 +1830,7 @@ UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_PageUp:
 向上翻頁
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_RightMouseButton:
-鼠標右鍵
+滑鼠右鍵
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
 空白鍵
@@ -1606,76 +1852,76 @@ UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessagePressToBind:
 請按鍵進行綁定或按Esc鍵取消。
 
 UI/Controls/Menu/Servers/WindowAddOrEditServer.xaml@DialogServerAddressNotValid:
-服務器地址無效。請檢查。
+伺服器地址無效。請檢查。
 
 UI/Controls/Menu/Servers/Controllers/MultiplayerMenuServersController@DialogRemoveServerFromList:
-您確定要從此列表中刪除服務器嗎？
+您確定要從此列表中刪除伺服器嗎？
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogEditorMode_Message:
-無法在編輯模式下連接到任何服務器。
+無法在編輯模式下連接到任何伺服器。
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogEditorMode_Title:
 您正在編輯模式下運行遊戲。
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Advice_ConnectNewServer:
-請連接到較新版本的服務器。
+請連接到較新版本的伺服器。
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Advice_UpdateClient:
-請將您的遊戲客戶端更新到最新版本。
+請將您的遊戲用戶端更新到最新版本。
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_MessageFormat:
-`[br]服務器版本 {0}
+`[br]伺服器版本 {0}
 [br]你的遊戲版本 {1}`
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Title:
-服務器不匹配
+伺服器不匹配
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionTitle_Newer:
-這個遊戲服務器正在運行更新版本的遊戲
+這個遊戲伺服器正在運行更新版本的遊戲
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionTitle_Older:
-這個遊戲服務器正在運行較舊版本的遊戲
+這個遊戲伺服器正在運行較舊版本的遊戲
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
-`[b]網路連接出錯[/b]
+`[b]網路連接故障[/b]
 [br]無法連接至遊戲伺服器，這可能是由於網路狀況不佳或網路提供商路由失敗造成的。`
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_MessageNoMods:
-此服務器上沒有使用mod。
+此伺服器上沒有使用mod。
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_Title:
-服務器mod
+伺服器mod
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerNotAccessibleTitle:
-服務器無法訪問。
+伺服器無法訪問。
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
-服務器脫機
+伺服器離線
 
 UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
-您確定要清除此服務器列表嗎？
+您確定要清除此伺服器列表嗎？
 
 UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
-清除服務器列表
+清除伺服器列表
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
-請等待獲取服務器信息。
+請等待獲取伺服器資訊。
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Title:
 無法連接
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_IncorrectEmailOrPassword:
-您輸入的電子郵箱或密碼不正確。如果您確定輸入了正確的電子郵件，請重試或使用AtomicTorch.com上的重置密碼功能。
+您輸入的電子郵寄地址或密碼不正確。如果您確定輸入了正確的電子郵件，請重試或使用AtomicTorch.com上的重置密碼功能。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailAlreadyUsed:
-已輸入的電子郵件已被其他帳戶使用。請使用其他電子郵箱。
+已輸入的電子郵件已被其他帳戶使用。請使用其他電子郵寄地址。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailNotActivated:
-`您輸入的電子郵箱未激活。
-[br]請打開您的電子郵件帳戶，然後單擊我們剛剛發送給您的激活鏈接。 （請注意，該電子郵件可能位於您的垃圾郵件收件箱中。）`
+`您輸入的電子郵寄地址未啟動。
+[br]請打開您的電子郵件帳戶，然後按一下我們剛剛發送給您的啟動連結。 （請注意，該電子郵件可能位於您的垃圾郵件收件箱中。）`
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_Title:
-無法鏈接帳戶
+無法連結帳戶
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageAlreadyLinkedToAnotherAtomicTorchAccount:
 Steam帳戶已與另一個帳戶相關聯。
@@ -1684,22 +1930,22 @@ UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_
 該帳戶已與另一個Steam ID相關聯。請使用其他AtomicTorch.com帳戶。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_MessageRestartSteamClient:
-請嘗試重新啟動Steam客戶端。
+請嘗試重新啟動Steam用戶端。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_Title:
 無法註冊
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorConfirmEmailDoesntMatch:
-確認Email與輸入的Email不匹配。
+確認郵寄地址與輸入郵寄地址不符。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterEmail:
-請輸入您的Email。
+請輸入你的郵寄地址。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterPassword:
 請輸入您的密碼。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
-您必須接受服務條款才能繼續。
+你必須接受服務條款才能繼續。
 
 UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
 看起來您正嘗試使用Microsoft旗下服務器中的電子郵件帳戶進行註冊。不幸的是，微軟徹底[b]阻止[/b]任何非大型提供商發送的電子郵件，我們無法向您的帳戶發送任何電子郵件。請使用任何其他電子郵件服務，例如[b]gmail.com[/b]。

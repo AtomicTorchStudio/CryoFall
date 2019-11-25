@@ -28,6 +28,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 푸짐한 음식
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
+최근에 맛있는 식사를 했습니다. 삶이 더욱 만족스러운 느낌입니다.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+맛있는 음식
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 자극제의 영향으로, 일정 시간 동안 더 강해집니다. 힘이 필요한 작업을 보다 쉽게 수행할 수 있습니다.
 
@@ -44,7 +50,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 몸에 심어진 망가진 임플란트가 건강에 상당한 영향을 미칩니다. 결과적으로 최대 체력 (HP)가 줄어듭니다.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
-망가진 임플란트
+부서진 임플란트 질환
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 다리가 부러져, 이동력에 영향을 미칩니다. 다리가 부러진 채로 달리게 되면 심각한 통증이 수반됩니다. 부목을 사용하여 골절을 치료하십시오.

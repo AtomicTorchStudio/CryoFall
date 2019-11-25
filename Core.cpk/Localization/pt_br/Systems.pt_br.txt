@@ -72,11 +72,14 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0} entrou no jogo
 
-Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-Quer mesmo {0} {1}?
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
+Quer mesmo bloquear {0}?
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 Você pode desbloquear este jogador mais tarde usando o menu social.
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
+Quer mesmo desbloquear {0}?
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 Global
@@ -214,7 +217,7 @@ Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
 {0} foi removido(a) do grupo por {1}
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
-{0} excluiu você do grupo
+{0} excluiu você do grupo.
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
 Não encontramos nenhum convite ou o convite expirou.
@@ -304,6 +307,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Importante:[/b]
+[br]
 Este é um servidor JvA (jogador versus ambiente). Neste servidor, os jogadores não podem atacar uns aos outros direta ou indiretamente. Esse servidor é dedicado à exploração pacífica do jogo, sem engajamento hostil entre jogadores. Você não pode matar, destruir, roubar ou atacar os outros jogadores. Excluindo-se isso, o servidor oferece a você a experiência completa de CryoFall e suas criaturas perigosas, tecnologias desbloqueáveis e mundo explorável. Veja aonde essa jornada te levará.
 [br]
 [br]
@@ -325,6 +329,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Importante:[/b]
+[br]
 Este é um servidor JvJ gratuito para todos. Lembre-se que nos servidores JvJ você se deparará com agressão de outros jogadores. Será necessário proteger-se direito e manter-se vigilante o tempo todo. Talvez seja interessante pensar em se aliar a outros sobreviventes para aumentar suas chances.
 [br]
 [br]
@@ -382,6 +387,30 @@ Não é possível comprar
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
 Não é possível vender
+
+Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
+Bloqueado. Para se colocar um veículo, é preciso limpar os obstáculos e pessoas do compartimento de montagem.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
+Não é possível pegar o veículo
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
+Seu veículo está na garagem. Você pode levá-lo de qualquer compartimento de montagem de veículo.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
+Alguns dos seus veículos estão na garagem. Você pode acessá-los de qualquer compartimento de montagem de veículos.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
+Veículos na garagem
+
+Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
+Energia esgotada.
+
+Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
+Não é possível usar {0}
+
+Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
+Você já regou
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
 A planta já está pronta para ser colhida. Não precisa regar agora.

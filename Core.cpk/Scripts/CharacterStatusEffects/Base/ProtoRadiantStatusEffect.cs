@@ -13,6 +13,11 @@
     /// </summary>
     public abstract class ProtoRadiantStatusEffect : ProtoStatusEffect
     {
+        /// <summary>
+        /// How much a 100% armor would protect you from environmental effect.
+        /// </summary>
+        protected const double DefensePotentialMultiplier = 0.75;
+
         private static readonly List<IWorldObject> TempResult
             = new List<IWorldObject>(capacity: 512);
 
@@ -38,6 +43,11 @@
         /// </summary>
         protected abstract double TimeToReachFullIntensitySeconds { get; }
 
+        protected override IEnumerable<ICharacter> ServerAutoAddGetCharacterCandidates()
+        {
+            return Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true);
+        }
+
         protected virtual double ServerCalculateEnvironmentalIntensityAroundCharacter(ICharacter character)
         {
             Server.World.GetWorldObjectsInView(character, TempResult, sortByDistance: false);
@@ -54,20 +64,12 @@
                 }
             }
 
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (result == 0)
-            {
-                return result;
-            }
-
-            // Armor blocks maximum level of effect.
-            // E.g. 75% armor means that effect intensity cannot reach higher than 25%.
-            var defense = character.SharedGetFinalStatValue(this.DefenseStatName);
-            defense = MathHelper.Clamp(defense, 0, 1);
-            result = Math.Min(result, 1 - defense);
-
             return result;
         }
+
+        protected abstract double ServerCalculateObjectEnvironmentalIntensity(
+            ICharacter character,
+            IWorldObject worldObject);
 
         // this method is called only for player characters and adding effect if it's absent
         protected override void ServerOnAutoAdd(ICharacter character)
@@ -94,16 +96,20 @@
             this.ServerUpdateRadiantStatusEffectIntensity(data.Character, data.DeltaTime);
         }
 
-        protected abstract double ServerCalculateObjectEnvironmentalIntensity(
-            ICharacter character,
-            IWorldObject worldObject);
-
         private void ServerUpdateRadiantStatusEffectIntensity(ICharacter character, double deltaTime)
         {
-            // doesn't apply to mobs
             var environmentalIntensity = character.IsNpc
-                                             ? 0
+                                             ? 0 // environmental intensity doesn't apply to NPCs
                                              : this.ServerCalculateEnvironmentalIntensityAroundCharacter(character);
+
+            if (environmentalIntensity > 0)
+            {
+                // Armor/defense proportionally reduces the maximum environmental intensity.
+                // i.e. 100% defense results in 75% reduced environmental intensity
+                var defense = character.SharedGetFinalStatValue(this.DefenseStatName);
+                defense = MathHelper.Clamp(defense, 0, 1);
+                environmentalIntensity *= 1 - DefensePotentialMultiplier * defense;
+            }
 
             var currentIntensity = character.SharedGetStatusEffectIntensity(this);
 
@@ -112,15 +118,13 @@
             {
                 // need to add the intensity
                 var speed = 1.0 / (environmentalIntensity * this.TimeToReachFullIntensitySeconds);
-                delta = Math.Min(delta,
-                                 speed * deltaTime);
+                delta = Math.Min(delta, speed * deltaTime);
             }
             else if (delta < 0)
             {
                 // need to reduce the intensity
                 var speed = 1.0 / ((environmentalIntensity - 1) * this.TimeToCoolDownToZeroSeconds);
-                delta = Math.Max(delta,
-                                 speed * deltaTime);
+                delta = Math.Max(delta, speed * deltaTime);
             }
             else
             {

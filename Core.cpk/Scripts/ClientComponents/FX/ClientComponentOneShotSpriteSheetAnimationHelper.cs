@@ -26,7 +26,8 @@
             componentAnimator.Setup(
                 spriteRenderer,
                 framesTextureResources,
-                frameDurationSeconds: totalDuration / framesTextureResources.Length);
+                frameDurationSeconds: totalDuration / framesTextureResources.Length,
+                isLooped: false);
 
             spriteRenderer.Destroy(totalDuration);
             componentAnimator.Destroy(totalDuration);

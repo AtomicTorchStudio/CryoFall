@@ -74,7 +74,7 @@
             this.skeletonRenderer.SetAnimationFrame(
                 trackIndex: AnimationTrackIndexes.ItemAimingRecoil,
                 animationName: this.weaponProto.CharacterAnimationAimingRecoilName,
-                timePositionPercents: characterClientState.LastAimCoef);
+                timePositionFraction: characterClientState.LastAimCoef);
 
             // calculate animation progress (from 0 to 1, 1 means full recoil animation will be rendered)
             var alpha = (this.duration - this.time) / this.duration;

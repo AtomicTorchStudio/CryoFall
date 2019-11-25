@@ -1,7 +1,4 @@
-﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
-No se puede interactuar estando aturdido.
-
-Scripts/Base/Stats/StatName@HealthMax:
+﻿Scripts/Base/Stats/StatName@HealthMax:
 Salud máxima
 
 Scripts/Base/Stats/StatName@StaminaMax:
@@ -184,9 +181,15 @@ No puedes ni comer ni beber
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Puntos de aprendizaje obtenidos
 
+Scripts/Base/Stats/StatName@SkillsExperienceGainMultiplier:
+Obtención de experiencia de habilidades
+
 Scripts/Base/Stats/StatName@TinkerTableBonus:
 Efectividad de la mesa de manitas
 
 Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
 Ranuras de la cola de fabricación
+
+Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
+Toxicidad de la medicina
 

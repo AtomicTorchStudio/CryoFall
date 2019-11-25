@@ -57,6 +57,7 @@
             }
 
             ServerSetCurrentBed(structure, byCharacter);
+            this.CallClient(byCharacter, _ => _.ClientRemote_OnBedBuilt());
         }
 
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
@@ -133,10 +134,7 @@
             var errorMessage = await this.CallServer(_ => _.ServerRemote_MakeCurrentBed(bedObject));
             if (errorMessage == null)
             {
-                NotificationSystem.ClientShowNotification(
-                    NotificationBedClaimedSuccessfully,
-                    color: NotificationColor.Good,
-                    icon: this.Icon);
+                this.ClientShowNotificationBedClaimed();
                 return;
             }
 
@@ -145,6 +143,19 @@
                 errorMessage,
                 NotificationColor.Bad,
                 this.Icon);
+        }
+
+        private void ClientRemote_OnBedBuilt()
+        {
+            this.ClientShowNotificationBedClaimed();
+        }
+
+        private void ClientShowNotificationBedClaimed()
+        {
+            NotificationSystem.ClientShowNotification(
+                NotificationBedClaimedSuccessfully,
+                color: NotificationColor.Good,
+                icon: this.Icon);
         }
 
         private (bool isSuccess, string ownerName) ServerRemote_GetBedOwnerName(IStaticWorldObject bedObject)

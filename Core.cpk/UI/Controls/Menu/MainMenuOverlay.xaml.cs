@@ -17,8 +17,6 @@
 
         private static ClientInputContext openedMainMenuInputContext;
 
-        private ViewModelMainMenuOverlay viewModel;
-
         public static event Action IsHiddenChanged;
 
         public static MainMenuOverlay Instance
@@ -50,7 +48,7 @@
                 {
                     // will hide - ensure the active tab allows to be hidden
                     // (options tab might not allow that if there are unapplied changes)
-                    if (!instance.viewModel.CheckCanHide(() => IsHidden = true))
+                    if (!instance.Options.CheckCanHide(() => IsHidden = true))
                     {
                         return;
                     }
@@ -85,8 +83,9 @@
 
         public static bool IsOptionsMenuSelected
             => !IsHidden
-               && (instance?.viewModel?.IsOptionsMenuSelected
-                   ?? false);
+               && ViewModelMainMenuOverlay.Instance.IsOptionsMenuSelected;
+
+        public MenuOptions Options { get; private set; }
 
         public static void DestroyIfPresent()
         {
@@ -127,14 +126,15 @@
             }
 
             var connectionState = Api.Client.CurrentGame.ConnectionState;
-            instance.viewModel.IsCurrentGameTabSelected = connectionState == ConnectionState.Connecting
-                                                          || connectionState == ConnectionState.Connected;
+            ViewModelMainMenuOverlay.Instance.IsCurrentGameTabSelected
+                = connectionState == ConnectionState.Connecting
+                  || connectionState == ConnectionState.Connected;
         }
 
         protected override void InitControl()
         {
-            var menuOptions = this.GetByName<MenuOptions>("MenuOptions");
-            this.DataContext = this.viewModel = new ViewModelMainMenuOverlay(menuOptions);
+            this.Options = this.GetByName<MenuOptions>("MenuOptions");
+            this.DataContext = ViewModelMainMenuOverlay.Instance;
         }
 
         private static void OnBecomeHidden()

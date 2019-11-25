@@ -29,8 +29,6 @@
             this.protoGenerator = (ProtoObjectGeneratorSolar)objectGenerator.ProtoGameObject;
             this.publicState = publicState;
 
-            var character = ClientCurrentCharacterHelper.Character;
-
             this.ViewModelItemsContainerExchange = new ViewModelItemsContainerExchange(
                     publicState.PanelsContainer,
                     callbackTakeAllItemsSuccess: null)

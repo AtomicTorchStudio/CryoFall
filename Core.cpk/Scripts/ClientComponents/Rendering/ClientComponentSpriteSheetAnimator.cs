@@ -26,7 +26,7 @@
 
         public int FramesCount => this.framesTextureResources.Length;
 
-        public bool IsLooped { get; set; } = true;
+        public bool IsLooped { get; set; }
 
         public bool IsManualUpdate { get; set; }
 
@@ -133,6 +133,7 @@
         public void Setup(
             IComponentSpriteRenderer spriteRenderer,
             ITextureResource[] framesTextureResources,
+            bool isLooped,
             double frameDurationSeconds,
             bool isManualUpdate = false,
             int? initialFrameOffset = 0,
@@ -149,6 +150,7 @@
             this.frameDurationSeconds = frameDurationSeconds;
             this.totalDurationSeconds = frameDurationSeconds * framesTextureResources.Length;
             this.IsManualUpdate = isManualUpdate;
+            this.IsLooped = isLooped;
 
             if (!initialFrameOffset.HasValue
                 && randomizeInitialFrame)

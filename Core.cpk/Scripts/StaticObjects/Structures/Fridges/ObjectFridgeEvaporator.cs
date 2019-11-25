@@ -20,11 +20,11 @@
 
         public override string Name => "Primitive fridge";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 150;
+        public override float StructurePointsMax => 500;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

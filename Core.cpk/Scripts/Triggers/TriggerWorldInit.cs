@@ -10,8 +10,16 @@
 
         public void OnWorldInit()
         {
-            if (Api.Shared.IsDebug)
+            if (!Api.Server.Database.TryGet("Core", "IsWorldSpawned", out bool isWorldSpawned)
+                || !isWorldSpawned)
             {
+                Api.Server.Database.Set("Core", "IsWorldSpawned", true);
+            }
+
+            if (isWorldSpawned
+                && Api.Shared.IsDebug)
+            {
+                // in debug mode, don't invoke world init trigger as the world is already spawned with objects
                 return;
             }
 

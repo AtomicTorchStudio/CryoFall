@@ -44,15 +44,16 @@
             var stats = publicState.CurrentStatsExtended;
 
             // restore stamina slower when no food or water
-            var staminaRestoreMultiplier = stats.FoodCurrent == 0f || stats.WaterCurrent == 0f
-                                               ? 0.33f
-                                               : 1f;
+            var staminaRestoreMultiplier = stats.FoodCurrent <= 0 || stats.WaterCurrent <= 0
+                                               ? 0.33
+                                               : 1;
 
             var finalStatsCache = privateState.FinalStatsCache;
             var statStaminaRegeneration = finalStatsCache[StatName.StaminaRegenerationPerSecond];
 
             // update character stats
-            if (publicState.AppliedInput.MoveModes != CharacterMoveModes.None)
+            if (publicState.AppliedInput.MoveModes != CharacterMoveModes.None
+                && publicState.CurrentVehicle is null)
             {
                 if ((publicState.AppliedInput.MoveModes & CharacterMoveModes.ModifierRun) != 0)
                 {
@@ -84,7 +85,7 @@
             }
             else
             {
-                // character is staying - restore stamina
+                // character is staying or in a vehicle - restore stamina
                 var staminaRestore = statStaminaRegeneration * staminaRestoreMultiplier * deltaTime;
                 stats.SharedSetStaminaCurrent((float)(stats.StaminaCurrent + staminaRestore), notifyClient: false);
             }

@@ -2,16 +2,16 @@
 {
     public class LiquidContainerConfig
     {
-        public readonly float AmountAutoDecreasePerSecondWhenUse;
+        public readonly double AmountAutoDecreasePerSecondWhenUse;
 
-        public readonly float AmountAutoIncreasePerSecond;
+        public readonly double AmountAutoIncreasePerSecond;
 
-        public readonly float Capacity;
+        public readonly double Capacity;
 
         public LiquidContainerConfig(
-            float capacity,
-            float amountAutoIncreasePerSecond,
-            float amountAutoDecreasePerSecondWhenUse)
+            double capacity,
+            double amountAutoIncreasePerSecond,
+            double amountAutoDecreasePerSecondWhenUse)
         {
             this.AmountAutoIncreasePerSecond = amountAutoIncreasePerSecond;
             this.AmountAutoDecreasePerSecondWhenUse = amountAutoDecreasePerSecondWhenUse;

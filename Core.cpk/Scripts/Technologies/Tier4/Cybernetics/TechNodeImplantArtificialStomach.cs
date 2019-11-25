@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeImplantArtificialStomach>();
 
-            config.SetRequiredNode<TechNodeImplantNanoFiberSkin>();
+            config.SetRequiredNode<TechNodeImplantMetabolismModulator>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿// ReSharper disable CanExtractXamlLocalizableStringCSharp
+
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 {
     using AtomicTorch.CBND.CoreMod.Characters.Player;

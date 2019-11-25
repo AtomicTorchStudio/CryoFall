@@ -3,8 +3,11 @@
     using System;
     using System.Globalization;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
     using System.Windows.Documents;
     using System.Windows.Media;
+    using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
@@ -23,6 +26,10 @@
 
         private static readonly string ShortTimePattern
             = CultureInfo.InstalledUICulture.DateTimeFormat.ShortTimePattern;
+
+        // vector image for supporter badge
+        private static readonly Geometry SupporterBadgeGeometry
+            = Api.Client.UI.GetApplicationResource<Geometry>("IconGeometrySupporterBadge");
 
         private static Brush brushFromCurrentPlayer;
 
@@ -176,6 +183,43 @@
             ClientChatBlockList.CharacterBlockStatusChanged -= this.CharacterBlockStatusChangedHandler;
         }
 
+        private static void AddSupporterBadge(InlineCollection inlines)
+        {
+            // hidden textblock is acting as a source of the foreground brush for the icon
+            var hiddenTextBlock = new TextBlock() { Visibility = Visibility.Hidden };
+
+            var iconPath = new Path
+            {
+                Width = 12,
+                Height = 12,
+                Data = SupporterBadgeGeometry,
+                Stretch = Stretch.Uniform
+            };
+            iconPath.SetBinding(Shape.FillProperty,
+                                 // bind to the foreground of the hidden textblock
+                                 new Binding("Foreground") { Source = hiddenTextBlock });
+
+            var grid = new Grid()
+            {
+                Background = Brushes.Transparent,
+                Margin = new Thickness(1, 0, 0, -4),
+            };
+
+            grid.Children.Add(hiddenTextBlock);
+            grid.Children.Add(iconPath);
+            inlines.Add(new InlineUIContainer(grid));
+
+            ToolTipServiceExtend.SetToolTip(grid,
+                                            new FormattedTextBlock()
+                                            {
+                                                Content = "[b]"
+                                                          + CoreStrings.SupporterPack_Badge
+                                                          + "[/b][br]"
+                                                          + CoreStrings.SupporterPack_Description,
+                                                MaxWidth = 300
+                                            });
+        }
+
         private void CharacterBlockStatusChangedHandler((string name, bool isBlocked) obj)
         {
             this.NotifyPropertyChanged(nameof(this.VisibilityCanBlock));
@@ -229,6 +273,19 @@
 
         private void UpdateText(InlineCollection inlines)
         {
+            var name = this.chatEntry.From;
+            var isFromCurrentPlayer = Api.Client.Characters.CurrentPlayerCharacter.Name?.Equals(name)
+                                      ?? false;
+
+            var isPartyMember = !isFromCurrentPlayer
+                                && PartySystem.ClientIsPartyMember(name);
+
+            this.Foreground = isFromCurrentPlayer
+                                  ? brushFromCurrentPlayer
+                                  : isPartyMember
+                                      ? brushFromPartyMember
+                                      : brushFromOtherPlayer;
+
             // convert timestamp of the chat entry to the local DateTime
             var date = TimeZone.CurrentTimeZone.ToLocalTime(this.chatEntry.UtcDate);
             inlines.Add(new Run(date.ToString(ShortTimePattern)
@@ -236,7 +293,12 @@
                                 + NoBreakSpace)
                             { FontWeight = FontWeights.Light });
 
-            var name = this.chatEntry.From;
+            if (!this.chatEntry.IsService
+                && this.chatEntry.HasSupporterPack)
+            {
+                AddSupporterBadge(inlines);
+            }
+
             var isServiceMessage = this.chatEntry.IsService;
 
             if (!isServiceMessage)
@@ -258,18 +320,6 @@
             {
                 inlines.Add(new Run(":" + NoBreakSpace + this.chatEntry.Message));
             }
-
-            var isFromCurrentPlayer = Api.Client.Characters.CurrentPlayerCharacter.Name?.Equals(name)
-                                      ?? false;
-
-            var isPartyMember = !isFromCurrentPlayer
-                                && PartySystem.ClientIsPartyMember(name);
-
-            this.Foreground = isFromCurrentPlayer
-                                  ? brushFromCurrentPlayer
-                                  : isPartyMember
-                                      ? brushFromPartyMember
-                                      : brushFromOtherPlayer;
         }
     }
 }

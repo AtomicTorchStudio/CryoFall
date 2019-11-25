@@ -37,7 +37,7 @@
               TPublicState,
               TClientState>,
           IProtoObjectLandClaim,
-          IInteractableProtoStaticWorldObject
+          IInteractableProtoWorldObject
         where TPrivateState : ObjectLandClaimPrivateState, new()
         where TPublicState : ObjectLandClaimPublicState, new()
         where TClientState : StaticObjectClientState, new()
@@ -93,6 +93,8 @@
 
         public abstract TimeSpan DestructionTimeout { get; }
 
+        public override bool HasIncreasedScopeSize => true;
+
         public override string InteractionTooltipText => InteractionTooltipTexts.Configure;
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
@@ -104,17 +106,17 @@
 
         public abstract ushort LandClaimSize { get; }
 
+        public abstract byte LandClaimTier { get; }
+
         public ushort LandClaimWithGraceAreaSize
             => (ushort)(this.LandClaimSize
                         + 2 * this.LandClaimGraceAreaPaddingSizeOneDirection);
 
-        public override bool HasIncreasedScopeSize => true;
-
         public virtual ITextureResource TextureResourceObjectBroken { get; protected set; }
 
-        public BaseUserControlWithWindow ClientOpenUI(IStaticWorldObject worldObject)
+        public BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {
-            return this.ClientOpenUI(new ClientObjectData(worldObject));
+            return this.ClientOpenUI(new ClientObjectData((IStaticWorldObject)worldObject));
         }
 
         public override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
@@ -435,16 +437,16 @@
                 && result != ObjectLandClaimCanUpgradeCheckResult.Success)
             {
                 Logger.Warning(
-                    $"Can\'t upgrade: {worldObjectLandClaim} to {protoUpgradedLandClaim}: error code - {result}",
+                    $"Can't upgrade: {worldObjectLandClaim} to {protoUpgradedLandClaim}: error code - {result}",
                     character);
             }
 
             return result;
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
-            var area = LandClaimSystem.ServerGetLandClaimArea(worldObject);
+            var area = LandClaimSystem.ServerGetLandClaimArea((IStaticWorldObject)worldObject);
             if (area == null)
             {
                 // area could be null in the Editor for the land claim without owners
@@ -461,9 +463,9 @@
             Server.World.EnterPrivateScope(who, areasGroup);
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
-            var area = LandClaimSystem.ServerGetLandClaimArea(worldObject);
+            var area = LandClaimSystem.ServerGetLandClaimArea((IStaticWorldObject)worldObject);
             if (area == null)
             {
                 // area could be null in the Editor for the land claim without owners
@@ -491,7 +493,7 @@
             var clientState = data.ClientState;
 
             data.ClientState.RendererLight = this.ClientCreateLightSource(
-                Client.Scene.GetSceneObject(worldObject));
+                worldObject.ClientSceneObject);
 
             // subscribe to destruction timer
             publicState.ClientSubscribe(
@@ -511,7 +513,7 @@
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
         protected override void ClientObserving(ClientObjectData data, bool isObserving)

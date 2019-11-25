@@ -388,7 +388,7 @@
                             Content="{x:Static loc:CoreStrings.Button_Back}"
                             Command="{Binding CommandCloseDetails}"
                             Margin="5" />
-            
+
                     <!-- Research cost text -->
                     <Border
                         Grid.Column="1"

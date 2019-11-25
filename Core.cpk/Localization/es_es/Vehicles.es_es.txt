@@ -1,0 +1,51 @@
+﻿Scripts/Vehicles/VehicleHoverboardMk1@Description:
+Variante ligera de un diseño de plataforma gravitatoria. Relativamente barata de fabricar, con muy poco consumo y una gran velocidad.
+
+Scripts/Vehicles/VehicleHoverboardMk1@Name:
+Aerodeslizador v1
+
+Scripts/Vehicles/VehicleHoverboardMk2@Description:
+Variante pesada de un diseño de plataforma gravitatoria. Es más resistente y ofrece un mayor velocidad y manejo, aunque a costa de que consume más combustible y es más cara de fabricar.
+
+Scripts/Vehicles/VehicleHoverboardMk2@Name:
+Aerodeslizador v2
+
+Scripts/Vehicles/VehicleMechManul@Description:
+Diseño medio de armadura de combate mecanizada. Potencia sustancialmente las capacidades defensivas y la capacidad de transporte masivo, pero sin necesidad de sacrificar otros aspectos.
+
+Scripts/Vehicles/VehicleMechManul@Name:
+Manul
+
+Scripts/Vehicles/VehicleMechSkipper@Description:
+Diseño ligero de armadura de combate mecanizada. Ofrece una velocidad relativamente alta, pero sin sacrificar blindaje o potencia de fuego.
+
+Scripts/Vehicles/VehicleMechSkipper@Name:
+Skipper
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotBuildVehicleTitle:
+No se puede construir
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotRepairVehicleTitle:
+No se puede reparar
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NotInteractingWithVehicleBay:
+Usa una plataforma de montaje de vehículos para construir este vehículo.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@RequiredItemsMissing:
+No hay suficientes objetos.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NeedsFreeSpace:
+Bloqueada.[br]Para fabricar un plano, es preciso que la plataforma de montaje no tenga ni obstáculos ni gente encima.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@NotInteractingWithVehicle:
+Interactúa con un vehículo para repararlo.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RequiredItemsMissing:
+No hay suficientes objetos.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
+No se necesitan reparaciones.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
+Lleva el vehículo a la plataforma de montaje de vehículos para repararlo.
+

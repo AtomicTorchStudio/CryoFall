@@ -12,7 +12,7 @@
         // no decay
         public override double LifetimeTotalDurationSeconds => 0;
 
-        public override string Name => "Infine oil seep";
+        public override string Name => "Infinite oil seep";
 
         public override float StructurePointsMax => 9001; // it's non-damageable anyway
 
@@ -30,7 +30,7 @@
         {
             obstacleBlockDamageCoef = 0;
             damageApplied = 0; // no damage
-            return false; // no hit
+            return false;      // no hit
         }
     }
 }

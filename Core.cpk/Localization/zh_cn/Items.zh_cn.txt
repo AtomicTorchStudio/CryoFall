@@ -58,6 +58,12 @@ Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 .300燃烧弹药
 
+Scripts/Items/Ammo/ItemAmmo50SH@Description:
+高能大口径手枪弹药。
+
+Scripts/Items/Ammo/ItemAmmo50SH@Name:
+.50SH弹药
+
 Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
 简易的8mm非被甲弹药。材料和制作工艺都较为粗糙，因此精确度和威力都不行。
 
@@ -90,6 +96,9 @@ Scripts/Items/Base/ItemUseCaptions@Read:
 
 Scripts/Items/Base/ItemUseCaptions@Use:
 使用
+
+Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
+驾驶载具时无法使用此物品。
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 数据记录(加密)
@@ -484,6 +493,12 @@ Scripts/Items/Food/ItemCarrotGrilled@Description:
 Scripts/Items/Food/ItemCarrotGrilled@Name:
 烤萝卜
 
+Scripts/Items/Food/ItemCheese@Description:
+通过凝结奶中蛋白制成的传统食物。
+
+Scripts/Items/Food/ItemCheese@Name:
+奶酪
+
 Scripts/Items/Food/ItemChiliBeans@Description:
 究极单身贵族美食。
 
@@ -543,6 +558,12 @@ Scripts/Items/Food/ItemCucumbersPickled@Description:
 
 Scripts/Items/Food/ItemCucumbersPickled@Name:
 腌黄瓜
+
+Scripts/Items/Food/ItemDough@Description:
+可以用于各种食谱当中。
+
+Scripts/Items/Food/ItemDough@Name:
+面团
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 能量饮料在整个宇宙都很受欢迎。让你能量充沛。
@@ -634,6 +655,24 @@ Scripts/Items/Food/ItemMeatRoasted@Description:
 Scripts/Items/Food/ItemMeatRoasted@Name:
 烤肉
 
+Scripts/Items/Food/ItemMilk@Description:
+营养丰富的牛奶。 可以直接喝或用于烹饪。
+
+Scripts/Items/Food/ItemMilk@Name:
+牛奶
+
+Scripts/Items/Food/ItemMilkmelon@Description:
+特殊的基因改造植物，能够产出浓稠的乳白色液体，成分也和真的牛奶类似。
+
+Scripts/Items/Food/ItemMilkmelon@Name:
+奶瓜
+
+Scripts/Items/Food/ItemMRE@Description:
+工业制备的餐点，包含了若干高热量食物和必要饮水，能够在军事行动里为荒野中的人员提供营养。
+
+Scripts/Items/Food/ItemMRE@Name:
+军粮
+
 Scripts/Items/Food/ItemMREImprovised@Description:
 使用几种简单材料制成，加入了盐作为防腐剂。可以长时间保存。
 
@@ -658,11 +697,11 @@ Scripts/Items/Food/ItemMushroomRust@Description:
 Scripts/Items/Food/ItemMushroomRust@Name:
 锈盖菇
 
-Scripts/Items/Food/ItemOgurin@Description:
-欧古因果，长得很奇怪，吃起来也没什么味道。由黄瓜基因改造而成。
+Scripts/Items/Food/ItemOnigiri@Description:
+便携食品。很简单，吃起来也很饱腹。其中加入的香料能让其保鲜时间更长。
 
-Scripts/Items/Food/ItemOgurin@Name:
-欧古因果
+Scripts/Items/Food/ItemOnigiri@Name:
+饭团
 
 Scripts/Items/Food/ItemPieBerry@Description:
 美味多汁的浆果派。就像奶奶以前做的那样。
@@ -675,6 +714,12 @@ Scripts/Items/Food/ItemPineapple@Description:
 
 Scripts/Items/Food/ItemPineapple@Name:
 菠萝
+
+Scripts/Items/Food/ItemRiceCooked@Description:
+可以直接吃，也可以进一步加工成更加复杂的餐点。
+
+Scripts/Items/Food/ItemRiceCooked@Name:
+米饭
 
 Scripts/Items/Food/ItemRoastedMushrooms@Description:
 美味的烤蘑菇。
@@ -1004,12 +1049,6 @@ Scripts/Items/Generic/ItemFluxPowder@Description:
 Scripts/Items/Generic/ItemFluxPowder@Name:
 熔剂
 
-Scripts/Items/Generic/ItemFoodRotten@Description:
-完全腐败的食物。
-
-Scripts/Items/Generic/ItemFoodRotten@Name:
-腐败食物
-
 Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 为高性能枪械设计的硝化纤维火药。
 
@@ -1081,6 +1120,12 @@ Scripts/Items/Generic/ItemHygroscopicGranules@Description:
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Name:
 吸湿颗粒
+
+Scripts/Items/Generic/ItemImpulseEngine@Description:
+高能脉冲引擎，可以用于各种机械之上。
+
+Scripts/Items/Generic/ItemImpulseEngine@Name:
+脉冲引擎
 
 Scripts/Items/Generic/ItemIngotCopper@Description:
 纯铜铸块。铜是一种应用性广泛的金属，从工业到电器都有用途。
@@ -1217,11 +1262,35 @@ Scripts/Items/Generic/ItemPreservative@Description:
 Scripts/Items/Generic/ItemPreservative@Name:
 防腐剂
 
+Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
+空反应堆核心，可以用可反应能量载体物质补充，比如普拉格。
+
+Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
+空反应堆核心
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Description:
+装满了普拉格的反应堆核心。是一种相对稳定，便携耐用的能量源。
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Name:
+普拉格反应堆核心
+
+Scripts/Items/Generic/ItemRice@Description:
+收获的谷物。 可以继续种植或煮成各种餐点。
+
+Scripts/Items/Generic/ItemRice@Name:
+米
+
 Scripts/Items/Generic/ItemRope@Description:
 普通的绳子。用途多多。你要拿来烧也行。
 
 Scripts/Items/Generic/ItemRope@Name:
 绳子
+
+Scripts/Items/Generic/ItemRot@Description:
+完全腐败的食物或有机质。
+
+Scripts/Items/Generic/ItemRot@Name:
+腐败物
 
 Scripts/Items/Generic/ItemRubberRaw@Description:
 天然橡胶，也被称为淋树脂，从橡胶树中采取。可以经由化工手段制成硫化橡胶。
@@ -1271,11 +1340,29 @@ Scripts/Items/Generic/ItemSolvent@Description:
 Scripts/Items/Generic/ItemSolvent@Name:
 溶剂
 
+Scripts/Items/Generic/ItemSpices@Description:
+各种不同的香料，可用于烹饪。
+
+Scripts/Items/Generic/ItemSpices@Name:
+香料
+
+Scripts/Items/Generic/ItemSpicesRaw@Description:
+新鲜香料。在使用之前必须进行干燥和加工。
+
+Scripts/Items/Generic/ItemSpicesRaw@Name:
+生香料
+
 Scripts/Items/Generic/ItemStone@Description:
 又圆又重的石头。可以在建筑中使用。地上随处可见，也可以在采矿时大量获得。
 
 Scripts/Items/Generic/ItemStone@Name:
 石头
+
+Scripts/Items/Generic/ItemStructuralPlating@Description:
+既能用作保护性外壳又能增加结构强度的装甲板。
+
+Scripts/Items/Generic/ItemStructuralPlating@Name:
+结构覆板
 
 Scripts/Items/Generic/ItemSulfurPowder@Description:
 粉末状纯硫磺。
@@ -1299,19 +1386,19 @@ Scripts/Items/Generic/ItemTobaccoAged@Description:
 陈化烟叶。可以制成非常好的雪茄。
 
 Scripts/Items/Generic/ItemTobaccoAged@Name:
-烟叶 (陈化)
+陈年烟草
 
 Scripts/Items/Generic/ItemTobaccoDried@Description:
 陈化烟叶。可以被制成便宜雪茄，或者进一步陈置来提升其质量。
 
 Scripts/Items/Generic/ItemTobaccoDried@Name:
-烟叶(干制)
+干烟草
 
 Scripts/Items/Generic/ItemTobaccoRaw@Description:
 新鲜的烟叶。可以晒干然后用来做雪茄。
 
 Scripts/Items/Generic/ItemTobaccoRaw@Name:
-烟叶(生)
+烟草
 
 Scripts/Items/Generic/ItemToxin@Description:
 化学毒素。可以用来制作毒弹药或制药。
@@ -1319,17 +1406,17 @@ Scripts/Items/Generic/ItemToxin@Description:
 Scripts/Items/Generic/ItemToxin@Name:
 毒素
 
-Scripts/Items/Generic/ItemTreebark@Description:
-树皮。可以用来烧或者其他用途。
-
-Scripts/Items/Generic/ItemTreebark@Name:
-树皮
-
 Scripts/Items/Generic/ItemTwigs@Description:
 一堆捡来的树枝。可以用来制作简单的工具，或者拿来烧。
 
 Scripts/Items/Generic/ItemTwigs@Name:
 树枝
+
+Scripts/Items/Generic/ItemUniversalActuator@Description:
+灵活而强劲的促动器，使用磁力进行活动。
+
+Scripts/Items/Generic/ItemUniversalActuator@Name:
+通用促动器
 
 Scripts/Items/Generic/ItemVialBiomaterial@Description:
 装满的生物材料试管。可以在医学或生化改造中使用，尤其是用在植入时使用。
@@ -1376,14 +1463,17 @@ Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationFertilizerAlreadyAppl
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
 植物已经可以采摘。无需施肥。
 
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
-已经浇水过了
-
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
-植物已经可以采摘。无需浇水。
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CanApplyOnlyOnPlants:
+只能对植物使用。
 
 Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 无法在此使用
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
+人造生物工程肝脏。可促进血液循环，避免某些药物用量过多的副作用。
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
+人工肝脏
 
 Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
 拥有HDR支持的特殊超感光视网膜薄层，能够给与完美的夜视能力。
@@ -1427,17 +1517,17 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 纳米纤维皮肤
 
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+身体中检测到异常突变
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+无变异
+
 Scripts/Items/Medical/ItemAntiMutation@Description:
 保护和恢复因通过辐射暴露及其他有害影响造成的细胞中的DNA损坏。 停止身体的不受控制突变。
 
 Scripts/Items/Medical/ItemAntiMutation@Name:
 抗变异药剂
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
-无变异
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
-身体中检测到异常突变
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 你没有恶心症状。没有必要使用此药物。
@@ -1635,13 +1725,13 @@ Scripts/Items/Medical/ItemStrengthBoostBig@Description:
 提升力量的药剂，让你能在短时间内力量变强，提高物理活动效能。
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Name:
-力量药剂(大)
+大型力量增强
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 提升力量的药剂，让你能在短时间内力量变强，提高物理活动效能。
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
-力量药剂(小)
+小型力量增强
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 树苗。可以种下并长出新树。
@@ -1688,8 +1778,14 @@ Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 鬼花种子
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Name:
-欧古因果种子
+Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
+奶瓜种子
+
+Scripts/Items/Seeds/ItemSeedsRice@Name:
+大米种子
+
+Scripts/Items/Seeds/ItemSeedsSpices@Name:
+香料种子
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 烟叶种子
@@ -1844,6 +1940,12 @@ Scripts/Items/Weapons/Melee/ItemMaceIron@Description:
 Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
 铁锤
 
+Scripts/Items/Weapons/Melee/ItemMachete@Description:
+重型钢铁砍刀，适合拿来砍脑袋。
+
+Scripts/Items/Weapons/Melee/ItemMachete@Name:
+砍刀
+
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 无武器
 
@@ -1952,9 +2054,33 @@ Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
 Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
 军用霰弹枪
 
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
+半自动手枪，出膛动能极高。
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
+霍金沙鹰
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
+金色限量版霍金沙鹰
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
+金色霍金沙鹰
+
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 使用10mm弹药的冲锋枪。
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 冲锋枪
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
+为战斗装甲设计的手持重型自动加农炮。使用大口径反器材弹药。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
+重型自动加农炮
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
+为战斗装甲设计的手持轻型自动加农炮。使用小口径弹药。
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
+轻型自动加农炮
 

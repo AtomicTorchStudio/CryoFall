@@ -72,11 +72,14 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0}　님이 게임에 들어왔습니다
 
-Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-{1}님을 {0}하시겠습니까?
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
+{0} 님을 차단하시겠습니까?
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 이 플레이어는 나중에 소셜 메뉴에서 차단을 해제할 수 있습니다.
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
+{0} 님의 차단을 해제하시겠습니까?
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 글로벌
@@ -190,31 +193,31 @@ Scripts/Systems/Notifications/NotificationSystem@NotificationSomeItemsDropped:
 몇 가지 아이템이 땅에 떨어져 있습니다!
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageFormat:
-[b]{0}[/b]님이 파티에 초대했습니다.
+[b]{0}[/b] 님이 파티에 초대했습니다.
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationMessageYouWillLeaveYourParty:
 주의: 이 초대를 수락하면, 현재의 파티에서 [b]떠나게[/b] 됩니다.
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@InvitationSentMessageFormat:
-[b]{0}[/b]님께 파티 초대장을 보냈습니다.
+[b]{0}[/b] 님께 파티 초대장을 보냈습니다.
 
 Scripts/Systems/Party/ClientPartyInvitationNotificationSystem@PartyInvitationTitle:
 파티 초대
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerAcceptedInviteFormat:
-{0}님이 {1}님의 초대로 파티에 참가하였습니다
+{0} 님이 {1} 님의 초대로 파티에 참가하였습니다
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerInvitedFormat:
-{0}님이  {1}님을 파티에 초대했습니다
+{0} 님이 {1} 님을 파티에 초대했습니다
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerLeftPartyFormat:
-{0}님이 파티를 떠났습니다
+{0} 님이 파티를 떠났습니다
 
 Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
-{1}님이 {0}님을 파티에서 추방했습니다
+{1} 님이 {0} 님을 파티에서 추방했습니다
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
-{0}님이 당신을 파티에서 추방했습니다
+{0}님이 당신을 파티에서 추방했습니다.
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
 초대를 찾을 수 없거나 초대가 만료되었습니다.
@@ -304,6 +307,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]중요:[/b]
+[br]
 본 서버는 PvE (플레이어 대 환경) 서버입니다. 이곳에서는 플레이어들이 서로를 공격할 수 없습니다. 적대적인 플레이어와의 교전이 없는 평화적인 탐험이 중심이 된 서버입니다. 당신은 다른 플레이어들을 죽이거나 파괴하거나 약탈하거나 그 밖의 다른 방법으로 공격할 수 없습니다. 이 외에도 이 서버에서는 위험한 생명체들과 잠금 해제할 수 있는 기술들, 탐험할 수 있는 세계가 포함된 완전한 CryoFall 경험을 제공하고 있습니다. 당신의 여정은 과연 어디까지 이어질 수 있을까요?
 [br]
 [br]
@@ -325,6 +329,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]중요:[/b]
+[br]
 본 서버는 무한 경쟁이 이루어지는 PvP 서버입니다. PvP 중심 서버에서는 다른 플레이어들의 공격과 마주하게 된다는 점을 명심하십시오. 스스로 방어하며 싸우게 될 것입니다. 항상 경계하며, 자기 자신을 제대로 보호해야 합니다. 물론, 자신의 생존 확률을 높이기 위해 다른 생존자들과 힘을 합치는 것도 고려해볼 수 있습니다.
 [br]
 [br]
@@ -383,6 +388,30 @@ Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotBuy_Titl
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
 판매 불가
+
+Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
+차단되었습니다. 탈것을 놓으려면 조립대에 장애물이나 사람이 없어야 합니다.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
+탈것을 탈 수 없습니다
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
+당신의 탈것은 격납고 안에 있습니다. 아무 탈것 조립대에서나 탈것을 꺼내올 수 있습니다.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
+격납고에 탈것 몇 대가 있습니다. 아무 탈것 조립대에서나 탈것을 꺼내올 수 있습니다.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
+격납고 내에 탈것 있음
+
+Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
+에너지가 고갈되었습니다.
+
+Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
+{0} 사용 불가
+
+Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
+이미 물을 줬습니다
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
 농작물을 수확할 준비가 되었습니다. 이제 물을 더 줄 필요가 없습니다.

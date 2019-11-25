@@ -9,14 +9,14 @@
     {
         public override string Name => "Twigs";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
             renderer.SpritePivotPoint = (0.5, 0.5);
             renderer.PositionOffset = (0.5, 0.5);
-            //renderer.DrawOrderOffsetY += 0.5;
+            renderer.DrawOrder = DrawOrder.Shadow - 1;
         }
 
         protected override void PrepareLootDroplist(DropItemsList droplist)

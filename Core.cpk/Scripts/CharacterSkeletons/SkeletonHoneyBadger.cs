@@ -7,6 +7,8 @@
 
     public class SkeletonHoneyBadger : ProtoCharacterSkeletonAnimal
     {
+        public override double DefaultMoveSpeed => 1.5;
+
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("HoneyBadger/Back");
 

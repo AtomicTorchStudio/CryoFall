@@ -14,11 +14,11 @@
 
         public override string Name => "Red banner";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 200;
+        public override float StructurePointsMax => 500;
 
         public override BoundsInt ViewBoundsExpansion => new BoundsInt(0, 0, 0, maxY: 2);
 

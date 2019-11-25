@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
 {
+    using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -23,6 +25,13 @@
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
         {
+            // modify intencity change based on artificial liver or any other thing that modifies it
+            intensityToAdd *= data.Character.SharedGetFinalStatMultiplier(StatName.MedicineToxicityMultiplier);
+            if (intensityToAdd <= 0)
+            {
+                return;
+            }
+
             if (data.Intensity > 0.5)
             {
                 // need to apply damage to health as the medicine overuse is severe
@@ -31,7 +40,7 @@
 
                 // reduce character health
                 var stats = data.CharacterCurrentStats;
-                stats.ServerReduceHealth(damage, this);
+                stats.ServerReduceHealth(damage, data.StatusEffect);
 
                 // notify the character why the health was reduced
                 this.CallClient(data.Character,

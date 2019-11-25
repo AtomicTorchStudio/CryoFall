@@ -13,7 +13,7 @@
 
         public override float FoodRestore => 5; // Yes, alcohol has calories
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.LongLasting;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
         public override string ItemUseCaption => ItemUseCaptions.Drink;
 

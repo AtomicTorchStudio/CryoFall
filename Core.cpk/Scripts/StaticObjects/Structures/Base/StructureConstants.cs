@@ -36,6 +36,8 @@
         public static readonly bool IsStructuresDecayEnabled;
 
         public static readonly double ManufacturingSpeedMultiplier;
+        
+        public static readonly double DepositsExtractionSpeedMultiplier;
 
         public static readonly double StructuresAbandonedDecayDelaySeconds;
 
@@ -77,7 +79,13 @@
             ManufacturingSpeedMultiplier = ServerRates.Get(
                 "ManufacturingSpeedMultiplier",
                 defaultValue: 1.0,
-                @"Manufacturing rate for all manufacturers (such as furnaces, oil/Li extractors, oil refineries, wells, mulchboxes, etc.)");
+                @"Manufacturing rate for all manufacturers (such as furnaces, oil refineries, wells, mulchboxes, etc.)");
+            
+            DepositsExtractionSpeedMultiplier = ServerRates.Get(
+                "DepositsExtractionSpeedMultiplier",
+                defaultValue: 1.0,
+                @"Deposits extraction rate for oil/Li extractors.
+                  Please note: it also changes the power/fuel consumption of the deposit extractors.");
         }
 
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]

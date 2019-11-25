@@ -17,7 +17,7 @@ Scripts/ClientComponents/Input/GameButton@RunTemporary:
 走る（押しっぱなし）
 
 Scripts/ClientComponents/Input/GameButton@RunToggle:
-実行（切り替え）
+走る（切替）
 
 Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
 アクション - アイテム使用
@@ -25,15 +25,18 @@ Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
 Scripts/ClientComponents/Input/GameButton@ActionInteract:
 アクション - 操作
 
+Scripts/ClientComponents/Input/GameButton@VehicleEnterExit:
+乗り物に乗る/降りる
+
 Scripts/ClientComponents/Input/GameButton@ItemReload:
 アイテムをリロード
 
 Scripts/ClientComponents/Input/GameButton@ItemSwitchMode:
-`アイテムモードの切り替え
-[br]/弾薬の切り替え`
+`アイテムモードの切替
+[br]/弾薬の切替`
 
 Scripts/ClientComponents/Input/GameButton@HeadEquipmentLightToggle:
-ヘルメットライト切り替え
+ヘッドライト切替
 
 Scripts/ClientComponents/Input/GameButton@HotbarSelectSlot1:
 スロット＃1
@@ -81,30 +84,30 @@ Scripts/ClientComponents/Input/GameButton@ToggleDebugToolsOverlay:
 デバッグツール
 
 Scripts/ClientComponents/Input/GameButton@ToggleFullscreen:
-フルスクリーン切り替え
+フルスクリーン切替
 
 Scripts/ClientComponents/Input/GameButton@CaptureScreenshot:
 スクリーンショット
 
 Scripts/ClientComponents/Input/GameButton@ContainerSort:
-所持品を検索
+所持品をソート
 
 Scripts/ClientComponents/Input/GameButton@ContainerTakeAll:
 全てのアイテムを取る
 
 Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchDown:
-下にマッチする
+マッチアイテムを下に
 
 Scripts/ClientComponents/Input/GameButton@ContainerMoveItemsMatchUp:
-上にマッチする
+マッチアイテムを上に
 
 Scripts/ClientComponents/Input/GameButton@DisplayLandClaim:
-土地の所有者と健康度ゲージを表示
+土地の所有者と体力ゲージを表示
 
 Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Message_Format:
-`修復および建築アクションは制限されています。
-[br]奇襲ブロックが失効するまであと: {0}`
+`修理および建築アクションは制限されています。
+[br]襲撃保護機能が失効するまであと：{0}`
 
 Scripts/ClientComponents/Misc/ClientRaidblockWatcher@Notification_Title:
-この基地は奇襲ブロック中です
+この拠点は襲撃保護中です
 

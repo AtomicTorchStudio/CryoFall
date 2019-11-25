@@ -9,12 +9,11 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Helpers;
 
-    public class ViewModelCraftingMenuRecipeDetails : BaseViewModel
+    public class ViewModelCraftingMenuRecipeDetails : BaseViewModel, IViewModelWithRecipe
     {
         private static readonly IReadOnlyList<ProtoItemWithCount> EmptyItemsList
             = new List<ProtoItemWithCount>(0).AsReadOnly();

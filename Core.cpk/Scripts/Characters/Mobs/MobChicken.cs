@@ -9,19 +9,21 @@
 
     public class MobChicken : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => true;
+
         public override float CharacterWorldHeight => 0.6f;
 
         public override double MobKillExperienceMultiplier => 0.1;
 
         public override string Name => "Chicken";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
         public override double ServerUpdateIntervalSeconds => 0.5;
 
         public override double StatDefaultHealthMax => 40;
 
-        public override double StatMoveSpeed => 1.15;
+        public override double StatMoveSpeed => 1.725;
 
         protected override void PrepareProtoCharacterMob(
             out ProtoCharacterSkeleton skeleton,
@@ -47,7 +49,7 @@
             base.ServerInitializeCharacterMob(data);
             var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalWeak>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)

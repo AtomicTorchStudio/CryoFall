@@ -86,13 +86,13 @@ Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
 Fuente geotérmica
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-Fuente geotérmica (infinita)
+Fuente geotérmica infinita
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Filtración de petróleo
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-Filtración de petróleo (infinita)
+Filtración de petróleo infinita
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Carga de minería
@@ -138,6 +138,9 @@ Hierba
 
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
 Gran montón de basura
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+Montón de basura pequeño
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Piedra
@@ -207,9 +210,6 @@ Usa un pico para extraer este recurso.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Fisura
-
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-Terreno quemado
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Más resistente y con más espacio que los barriles de madera. Es útil para almacenar grandes cantidades de líquido.
@@ -734,6 +734,12 @@ Puedes usar este cubo de la basura para deshacerte al momento de los objetos que
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 Cubo de la basura
 
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+Plataforma automatizada para montaje de vehículos. Se puede usar para fabricar cualquier vehículo, siempre y cuando se tenga el plano correspondiente.
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+Plataforma de montaje de vehículos
+
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Permite almacenar, para usarla posteriormente, la energía eléctrica que producen los generadores de la base.
 
@@ -917,8 +923,14 @@ Salvia azul
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Oniflor
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-Ogurín
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+Lechemelón
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+Arroz
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+Especias
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 Tabaco
@@ -993,7 +1005,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
 Palmera
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Pino
+Abeto
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
 Pino

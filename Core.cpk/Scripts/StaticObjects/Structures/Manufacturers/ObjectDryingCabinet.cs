@@ -22,11 +22,11 @@
 
         public override string Name => "Drying cabinet";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 200;
+        public override float StructurePointsMax => 1200;
 
         protected override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,
@@ -37,23 +37,23 @@
         {
             category = GetCategory<StructureCategoryFood>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemPlanks>(count: 10);
-            build.AddStageRequiredItem<ItemStone>(count: 5);
+            build.AddStageRequiredItem<ItemRope>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 5);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 3);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (1, 0.5),   offset: (0, 0))
-                .AddShapeRectangle(size: (0.9, 1.2), offset: (0.05, 0), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.8, 0.25), offset: (0.1, 0.85),  group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (0.9, 1.5), offset: (0.05, 0), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (1, 0.5),    offset: (0, 0))
+                .AddShapeRectangle(size: (0.9, 1.2),  offset: (0.05, 0),   group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.8, 0.25), offset: (0.1, 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.9, 1.5),  offset: (0.05, 0),   group: CollisionGroups.ClickArea);
         }
     }
 }

@@ -1,14 +1,15 @@
-﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data
+﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map
 {
     using System;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
+    using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -208,7 +209,7 @@
                                   localPosition.Y),
                     NotificationColor.Bad,
                     autoHide: false,
-                    icon: Api.GetProtoEntity<ObjectCharredGround>().Icon);
+                    icon: Api.GetProtoEntity<ItemBombModern>().Icon);
 
                 // start refresh timer
                 ClientTimersSystem.AddAction(delaySeconds: 1,

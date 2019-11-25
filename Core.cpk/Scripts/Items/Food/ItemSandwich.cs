@@ -23,7 +23,7 @@
 
         protected override void ServerOnEat(ItemEatData data)
         {
-            data.Character.ServerAddStatusEffect<StatusEffectHeartyFood>(intensity: 0.2);
+            data.Character.ServerAddStatusEffect<StatusEffectSavoryFood>(intensity: 0.2);
 
             base.ServerOnEat(data);
         }

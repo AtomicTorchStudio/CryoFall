@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
@@ -97,7 +98,7 @@
         public override string ShortId { get; }
 
         public virtual float StructurePointsMaxForConstructionSite
-            => this.StructurePointsMax / 4;
+            => this.StructurePointsMax / 25;
 
         public sealed override void ClientDeinitialize(IStaticWorldObject gameObject)
         {
@@ -118,7 +119,7 @@
             this.ClientDeinitializeStructure(gameObject);
         }
 
-        public override string ClientGetTitle(IStaticWorldObject worldObject)
+        public override string ClientGetTitle(IWorldObject worldObject)
         {
             return this.Name;
         }
@@ -328,7 +329,7 @@
 
         protected virtual bool IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(TPublicState publicState)
         {
-            return ClientComponentObjectInteractionHelper.CurrentMouseOverObject == publicState.GameObject
+            return ClientComponentObjectInteractionHelper.MouseOverObject == publicState.GameObject
                    && this.ConfigRepair.IsAllowed
                    && publicState.StructurePointsCurrent < this.StructurePointsMax
                    && ClientHotbarSelectedItemManager.SelectedItem?.ProtoItem is IProtoItemToolToolbox;
@@ -459,6 +460,14 @@
                 return 0;
             }
 
+            if (IsServer
+                && !(this is ProtoObjectConstructionSite))
+            {
+                damagePreMultiplier = LandClaimSystem.ServerAdjustDamageToUnclaimedBuilding(weaponCache,
+                                                                                            targetObject,
+                                                                                            damagePreMultiplier);
+            }
+
             return base.SharedCalculateDamageByWeapon(weaponCache,
                                                       damagePreMultiplier,
                                                       targetObject,
@@ -472,14 +481,14 @@
             if (isByCurrentCharacter)
             {
                 MaterialHitsSoundPresets.Melee.PlaySound(
-                    this.ObjectSoundMaterial,
+                    this.ObjectMaterial,
                     volume: SoundConstants.VolumeHit,
                     pitch: pitch);
             }
             else
             {
                 MaterialHitsSoundPresets.Melee.PlaySound(
-                    this.ObjectSoundMaterial,
+                    this.ObjectMaterial,
                     worldPosition: worldPosition,
                     volume: SoundConstants.VolumeHit,
                     pitch: pitch);

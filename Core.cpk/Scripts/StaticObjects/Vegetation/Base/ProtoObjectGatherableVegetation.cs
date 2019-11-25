@@ -1,7 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
@@ -12,9 +10,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Resources;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
-    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.ServicesServer;
 
     public abstract class ProtoObjectGatherableVegetation
         <TPrivateState,
@@ -165,20 +161,20 @@
                                                                         who.TilePosition,
                                                                         new DropItemContext(who, vegetationObject),
                                                                         out var groundItemsContainer);
-            if (result.TotalCreatedCount > 0)
+            if (result.TotalCreatedCount == 0)
             {
-                // even if at least one item is gathered it should pass
-                // otherwise we will have an issue with berries and other stuff which cannot be rollback easily
-                Logger.Info(vegetationObject + " was gathered", who);
-                NotificationSystem.ServerSendItemsNotification(
-                    who,
-                    result,
-                    exceptItemsContainer: groundItemsContainer);
-                return true;
+                result.Rollback();
+                return false;
             }
 
-            result.Rollback();
-            return false;
+            // even if at least one item is gathered it should pass
+            // otherwise we will have an issue with berries and other stuff which cannot be rollback easily
+            Logger.Info(vegetationObject + " was gathered", who);
+            NotificationSystem.ServerSendItemsNotification(
+                who,
+                result,
+                exceptItemsContainer: groundItemsContainer);
+            return true;
         }
 
         protected override double SharedCalculateDamageByWeapon(

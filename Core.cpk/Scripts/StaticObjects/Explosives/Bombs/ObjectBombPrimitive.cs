@@ -21,10 +21,11 @@
             base.ClientInitialize(data);
 
             // add sprite sheet animation
-            var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
+            var sceneObject = data.GameObject.ClientSceneObject;
             sceneObject.AddComponent<ClientComponentSpriteSheetAnimator>()
                        .Setup(data.ClientState.Renderer,
                               ClientComponentSpriteSheetAnimator.CreateAnimationFrames(this.atlasTexture),
+                              isLooped: true,
                               frameDurationSeconds: 3 / 60.0);
 
             // add light source at the firing fuse

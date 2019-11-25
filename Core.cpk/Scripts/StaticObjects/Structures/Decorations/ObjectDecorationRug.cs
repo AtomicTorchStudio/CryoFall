@@ -12,11 +12,11 @@
 
         public override string Name => "Floor rug";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Vegetation;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Vegetation;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 200;
+        public override float StructurePointsMax => 500;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

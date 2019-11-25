@@ -3,10 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -109,7 +111,7 @@
                 throw new Exception($"Not an {typeof(IProtoObjectTradingStation).FullName}: {tradingStation}");
             }
 
-            TradingStationsMapMarksSystem.ServerAddMark(tradingStation);
+            TradingStationsMapMarksSystem.ServerTryAddMark(tradingStation);
 
             var privateState = GetPrivateState(tradingStation);
             var publicState = GetPublicState(tradingStation);
@@ -151,12 +153,14 @@
                 }
             }
 
-            ServerRefreshTradingStationLots(privateState, publicState);
+            ServerRefreshTradingStationLots(tradingStation, 
+                                            privateState, 
+                                            publicState);
         }
 
         public static void ServerOnDestroy(IStaticWorldObject tradingStation)
         {
-            TradingStationsMapMarksSystem.ServerRemoveMark(tradingStation);
+            TradingStationsMapMarksSystem.ServerTryRemoveMark(tradingStation);
         }
 
         public static void ServerUpdate(IStaticWorldObject tradingStation)
@@ -168,7 +172,9 @@
             }
 
             var publicState = GetPublicState(tradingStation);
-            ServerRefreshTradingStationLots(privateState, publicState);
+            ServerRefreshTradingStationLots(tradingStation,
+                                            privateState, 
+                                            publicState);
         }
 
         private static void ClientShowErrorNotification(
@@ -355,6 +361,7 @@
         }
 
         private static void ServerRefreshTradingStationLots(
+            IStaticWorldObject tradingStation,
             ObjectTradingStationPrivateState privateState,
             ObjectTradingStationPublicState publicState)
         {
@@ -452,6 +459,8 @@
                                     ? TradingStationLotState.OutOfStock
                                     : TradingStationLotState.NoMoney;
             }
+
+            TradingStationsMapMarksSystem.ServerRefreshMark(tradingStation);
         }
 
         private static bool SharedTryFindItemsOfType(
@@ -558,7 +567,9 @@
             lot.State = TradingStationLotState.Available;
 
             Logger.Important($"Successfully modified trading lot #{lotIndex} on {tradingStation}", character);
-            ServerRefreshTradingStationLots(GetPrivateState(tradingStation), publicState);
+            ServerRefreshTradingStationLots(tradingStation, 
+                                            GetPrivateState(tradingStation), 
+                                            publicState);
         }
 
         private void ServerRemote_StationSetMode(IStaticWorldObject tradingStation, TradingStationMode mode)
@@ -574,7 +585,9 @@
             }
 
             Logger.Important($"{tradingStation} mode switched to {mode}");
-            ServerRefreshTradingStationLots(GetPrivateState(tradingStation), publicState);
+            ServerRefreshTradingStationLots(tradingStation, 
+                                            GetPrivateState(tradingStation), 
+                                            publicState);
         }
 
         private bool SharedValidateCanTrade(

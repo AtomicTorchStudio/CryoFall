@@ -29,11 +29,11 @@
 
         public override string Name => "Coin mint";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 5000;
+        public override float StructurePointsMax => 10000;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -43,7 +43,7 @@
 
             // setup light source
             var lightSource = ClientLighting.CreateLightSourceSpot(
-                Client.Scene.GetSceneObject(worldObject),
+                worldObject.ClientSceneObject,
                 color: LightColors.WoodFiring,
                 size: 1,
                 spritePivotPoint: (0.5, 0.5),
@@ -82,9 +82,9 @@
         {
             category = GetCategory<StructureCategoryIndustry>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemBricks>(count: 10);
+            build.AddStageRequiredItem<ItemBricks>(count: 20);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 4);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 4);
 

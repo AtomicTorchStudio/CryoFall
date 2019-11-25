@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.DataStructures;
@@ -25,12 +24,6 @@
                 typeName,
                 isMale: true,
                 requireEquipmentTextures: requireEquipmentTextures);
-
-            if (!SkeletonHumanFemale.IsFemaleSkeletonEnabled)
-            {
-                slotAttachmentsFemale = slotAttachmentsMale;
-                return;
-            }
 
             slotAttachmentsFemale = CollectSlotAttachments(
                 sources,

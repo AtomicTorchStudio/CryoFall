@@ -1,7 +1,4 @@
-﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
-기절 상태일 때는 상호 작용할 수 없습니다.
-
-Scripts/Base/Stats/StatName@HealthMax:
+﻿Scripts/Base/Stats/StatName@HealthMax:
 최대 체력
 
 Scripts/Base/Stats/StatName@StaminaMax:
@@ -184,9 +181,15 @@ Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 학습 포인트 획득
 
+Scripts/Base/Stats/StatName@SkillsExperienceGainMultiplier:
+스킬 경험치 획득
+
 Scripts/Base/Stats/StatName@TinkerTableBonus:
 수리공 탁자 효율성
 
 Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
 제작 대기 슬롯
+
+Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
+약물 독성
 

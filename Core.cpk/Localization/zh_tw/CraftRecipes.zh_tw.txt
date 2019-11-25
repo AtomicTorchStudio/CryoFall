@@ -2,28 +2,28 @@
 打碎瓶子
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
-用汽油裝滿瓶子
+用汽油裝滿桶
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:
-用礦物油裝滿瓶子
+用礦物油裝滿桶
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddPetroleum@Name:
-用原油裝滿瓶子
+用原油裝滿桶
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddWater@Name:
-用水裝滿瓶子
+用水裝滿桶
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveGasoline@Name:
-用桶裡面的汽油裝滿容器
+用桶裡的汽油裝滿容器
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveMineralOil@Name:
-用桶裡面的礦物油裝滿容器
+用桶裡的礦物油裝滿容器
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemovePetroleum@Name:
-用桶裡面的原油裝滿容器
+用桶裡的原油裝滿容器
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveWater@Name:
-用桶裡面的水裝滿容器
+用桶裡的水裝滿容器
 
 Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromLogs@Name:
 燃燒木材的副產品
@@ -32,7 +32,7 @@ Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromPlanks@Name:
 燃燒木板的副產品
 
 Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
-燃燒數值的副產品
+燃燒樹枝的副產品
 
 Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
 燒水(浪費)
@@ -53,16 +53,16 @@ Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor
 從鋰礦萃取器中獲得鋰鹽
 
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
-使用油泵中的原油裝滿容器
+用油泵中的原油裝滿容器
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
 將容器中的原油加進精煉器
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryGasolineCanister@Name:
-使用精煉器中的汽油裝滿容器
+用精煉器中的汽油裝滿容器
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanister@Name:
-使用精煉器中的礦石油裝滿容器
+用精煉器中的礦石油裝滿容器
 
 Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 燒水

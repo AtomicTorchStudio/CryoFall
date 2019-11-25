@@ -13,9 +13,9 @@
 
         public override double AmmoReloadDuration => 2;
 
-        public override double CharacterAnimationAimingRecoilDuration => 0.3;
+        public override double CharacterAnimationAimingRecoilDuration => 0.45;
 
-        public override double CharacterAnimationAimingRecoilPower => 0.7;
+        public override double CharacterAnimationAimingRecoilPower => 1.15;
 
         public override string Description => "Military shotgun with large ammo capacity. Uses 12ga ammunition.";
 
@@ -28,6 +28,13 @@
         public override double SpecialEffectProbability => 0.3;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();
+
+        protected override WeaponFirePatternPreset PrepareFirePatternPreset()
+        {
+            return new WeaponFirePatternPreset(
+                initialSequence: new[] { 0.0, 1.0 },
+                cycledSequence: new[] { 4.5, -3.5, 5.0, -5.0 });
+        }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {

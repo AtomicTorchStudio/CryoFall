@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 {
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
@@ -136,35 +137,44 @@
             this.lightSource.Opacity = (this.lightDuration - this.time) / this.lightDuration;
 
             // calculate sprite position offset
-            const string boneName = "Weapon";
-            var weaponSlotScreenOffset = this.skeletonRenderer.GetSlotScreenOffset(attachmentName: boneName);
+
+            var protoSkeleton = this.character.GetClientState<BaseCharacterClientState>().CurrentProtoSkeleton;
+            var slotName = protoSkeleton.SlotNameItemInHand;
+            var weaponSlotScreenOffset = this.skeletonRenderer.GetSlotScreenOffset(attachmentName: slotName);
 
             var muzzleFlashTextureOffset = this.description.TextureScreenOffset;
-            var boneWorldPosition = this.skeletonRenderer.TransformBonePosition(
-                boneName,
+            var boneWorldPosition = this.skeletonRenderer.TransformSlotPosition(
+                slotName,
                 weaponSlotScreenOffset + (Vector2F)muzzleFlashTextureOffset,
                 out var worldRotationAngleRad);
 
-            var textureDrawPosition = boneWorldPosition - this.character.Position;
+            var worldDrawPosition = boneWorldPosition - this.character.Position;
 
             this.spriteRendererFlash.PositionOffset
                 = this.spriteRendererSmoke.PositionOffset
-                      = textureDrawPosition;
+                      = worldDrawPosition;
 
             this.spriteRendererFlash.RotationAngleRad
                 = this.spriteRendererSmoke.RotationAngleRad
                       = worldRotationAngleRad;
 
+            // to ensure muzzle flash rendering right over skeleton renderer we apply this draw offset
+            // TODO: consider rendering of muzzle flash right inside the skeleton renderer for proper Z-index
+            // (as muzzle flash need sometimes to be rendered behind the skeleton)
+            this.spriteRendererFlash.DrawOrderOffsetY
+                = this.spriteRendererSmoke.DrawOrderOffsetY
+                      = -worldDrawPosition.Y + this.skeletonRenderer.DrawOrderOffsetY;
+
             var lightTextureOffset = this.description.LightScreenOffsetRelativeToTexture;
-            boneWorldPosition = this.skeletonRenderer.TransformBonePosition(
-                boneName,
+            boneWorldPosition = this.skeletonRenderer.TransformSlotPosition(
+                slotName,
                 weaponSlotScreenOffset
                 + ((float)(muzzleFlashTextureOffset.X + lightTextureOffset.X),
                    (float)(muzzleFlashTextureOffset.Y + lightTextureOffset.Y)),
                 out _);
 
-            var lightDrawPosition = boneWorldPosition - this.character.Position;
-            this.lightSource.PositionOffset = lightDrawPosition;
+            var lightWorldDrawPosition = boneWorldPosition - this.character.Position;
+            this.lightSource.PositionOffset = lightWorldDrawPosition;
 
             this.componentAnimatorFlash.ForceUpdate(deltaTime);
             this.componentAnimatorSmoke.ForceUpdate(deltaTime);
@@ -206,10 +216,6 @@
                 spritePivotPoint: (0, 0.5),
                 scale: (float)this.description.TextureScale);
 
-            // to ensure muzzleflash rendering over skeleton renderer we do this offset
-            // TODO: find a better way of prioritizing rendering of muzzle flash over skeleton renderer
-            spriteRenderer.DrawOrderOffsetY = -0.2;
-
             // create animator for sprite renderer
             componentAnimatorFlash = this.SceneObject.AddComponent<ClientComponentSpriteSheetAnimator>();
             componentAnimatorFlash.Setup(
@@ -217,6 +223,7 @@
                 ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
                     muzzleFlashTextureAtlas,
                     onlySpecificRow: atlasRow),
+                isLooped: false,
                 animationFrameDurationSeconds,
                 isManualUpdate: true);
         }

@@ -247,6 +247,12 @@ Le brassage de boissons alcoolisées, et autres choses de même nature.
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 Loisirs
 
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+Technologies nécessaires à la construction d'un certain nombre de véhicules.
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+Véhicules
+
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 Les technologies nécessaires à l'exploitation des ressources de mondes extra-terrestres.
 
@@ -330,4 +336,10 @@ Des technologies offensives high-tech, qui poussent les armes à feu conventionn
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Attaque 4
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+Véhicules de combat et de transport évolués.
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+Véhicules 2
 

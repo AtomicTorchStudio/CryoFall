@@ -23,6 +23,8 @@
 
         public override bool RequireEquipmentTextures => true;
 
+        public abstract ObjectMaterial Material { get; }
+
         /// <inheritdoc />
         public ReadOnlySoundPreset<CharacterSound> SoundPresetMovementOverride { get; private set; }
 

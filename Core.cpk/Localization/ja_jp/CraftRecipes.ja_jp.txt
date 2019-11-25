@@ -2,71 +2,71 @@
 ボトルを壊す
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
-樽をガソリン燃料で満たす
+樽にガソリンを充填
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:
-樽を鉱油で満たす
+樽に鉱油を充填
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddPetroleum@Name:
-樽を原油で満たす
+樽に原油を充填
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddWater@Name:
-樽を水で満たす
+樽に水を充填
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveGasoline@Name:
-樽の中のガソリン燃料を使って容器を満たす
+樽の中のガソリンを容器に充填
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveMineralOil@Name:
-樽の中の鉱油を使って容器を満たす
+樽の中の鉱油を容器に充填
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemovePetroleum@Name:
-樽の中の原油を使って容器を満たす
+樽の中の原油を容器に充填
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelRemoveWater@Name:
-樽の中の水を使ってボトルを満たす
+樽の中の水をボトルに充填
 
 Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromLogs@Name:
-丸太：燃焼副産物
+丸太燃焼副産物
 
 Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromPlanks@Name:
-材木：燃焼副産物
+木板燃焼副産物
 
 Scripts/CraftRecipes/Manufacturing/Byproducts/RecipeByproductFromTwigs@Name:
-小枝：燃焼副産物
+小枝燃焼副産物
 
 Scripts/CraftRecipes/Manufacturing/Campfire/RecipeBoilWaterWasteful@Name:
 熱湯（無駄）
 
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinPennyRecycle@Name:
-コインをリサイクル
+銅貨をリサイクル
 
 Scripts/CraftRecipes/Manufacturing/CoinMint/RecipeCoinShinyRecycle@Name:
-ピカピカのコインをリサイクル
+金貨をリサイクル
 
 Scripts/CraftRecipes/Manufacturing/GeneratorBurner/RecipeGeneratorSteamEmptyBottleFromFullBottle@Name:
-蒸気発電機を水で満たす
+蒸気発電機に水を充填
 
 Scripts/CraftRecipes/Manufacturing/GeneratorEngine/RecipeGeneratorEngineEmptyCanisterFromGasolineCanister@Name:
-ガソリンを缶からエンジン発電機に充填する
+容器のガソリンをエンジン発電機に充填
 
 Scripts/CraftRecipes/Manufacturing/LithiumOilExtractor/RecipeLithiumOreExtractor@Name:
-リチウム鉱石抽出器からのリチウム
+リチウム鉱石から抽出したリチウム塩
 
 Scripts/CraftRecipes/Manufacturing/OilPump/RecipeOilPumpPetroleumCanister@Name:
-オイルポンプの中の原油を使って容器を満たす
+オイルポンプの原油を容器に充填
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryEmptyCanisterFromPetroleumCanister@Name:
-容器の中の原油を製油所に充填する
+容器の原油を精油機に充填
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryGasolineCanister@Name:
-製油所のガソリン燃料を容器に充填する
+精油機のガソリンを容器に充填
 
 Scripts/CraftRecipes/Manufacturing/OilRefinery/RecipeOilRefineryMineralOilCanister@Name:
-製油所の鉱油を容器に充填する
+精油機の鉱油を容器に充填
 
 Scripts/CraftRecipes/Manufacturing/Oven/RecipeBoilWater@Name:
 熱湯
 
 Scripts/CraftRecipes/Manufacturing/Well/RecipeWellBottleWithWater@Name:
-井戸の水をボトルに充填する
+井戸の水をボトルに充填
 

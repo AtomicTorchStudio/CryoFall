@@ -5,6 +5,8 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Props.Road;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Triggers;
@@ -31,13 +33,18 @@
             var restrictionPresetPragmium = spawnList.CreateRestrictedPreset()
                                                      .Add<ObjectMineralPragmiumSource>();
 
+            var restrictionCharredGroundDeposit = spawnList.CreateRestrictedPreset()
+                                                           .Add<ObjectCharredGround3Deposit>();
+
             var restrictionInfiniteOilSeep = spawnList.CreateRestrictedPreset()
                                                       .Add<ObjectDepositOilSeepInfinite>();
 
-            var presetOilSeep = spawnList.CreatePreset(interval: 160, padding: 1);
+            var presetOilSeep = spawnList.CreatePreset(interval: 130, padding: 1, useSectorDensity: false);
+            presetOilSeep.SpawnLimitPerIteration = 1;
             presetOilSeep.AddExact<ObjectDepositOilSeep>()
-                         .SetCustomPaddingWithSelf(75)
-                         .SetCustomPaddingWith(restrictionInfiniteOilSeep, 75)
+                         .SetCustomPaddingWithSelf(79)
+                         .SetCustomPaddingWith(restrictionInfiniteOilSeep,      79)
+                         .SetCustomPaddingWith(restrictionCharredGroundDeposit, 79)
                          // ensure no spawn near Pragmium
                          .SetCustomPaddingWith(restrictionPresetPragmium,
                                                SpawnResourcePragmium.PaddingPragmiumWithOilDeposit)
@@ -49,6 +56,12 @@
                                                                  new Vector2D(position.X + 1.5,
                                                                               position.Y + 1.5),
                                                                  radius: 7));
+
+            // don't spawn close to roads
+            var restrictionPresetRoads = spawnList.CreateRestrictedPreset()
+                                                  .Add<ObjectPropRoadHorizontal>()
+                                                  .Add<ObjectPropRoadVertical>();
+            presetOilSeep.SetCustomPaddingWith(restrictionPresetRoads, 20);
 
             // special restriction preset for player land claims
             var restrictionPresetLandclaim = spawnList.CreateRestrictedPreset()

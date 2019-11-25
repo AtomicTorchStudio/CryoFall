@@ -1,9 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.GameApi.Resources;
-    using System;
 
     public class ObjectTreeWillow : ProtoObjectTree
     {
@@ -22,11 +22,12 @@
         protected override void PrepareDroplistOnDestroy(DropItemsList droplist)
         {
             // primary drop
-            droplist.Add<ItemLogs>(count: 4);
+            droplist
+                .Add<ItemLogs>(count: 4);
 
             // bonus drop
-            droplist.Add<ItemTreebark>(count: 1, countRandom: 1, probability: 0.25);
-            droplist.Add<ItemLeaf>(count: 2, countRandom: 1, probability: 0.25);
+            droplist
+                .Add<ItemLeaf>(count: 2, countRandom: 1, probability: 0.25);
         }
     }
 }

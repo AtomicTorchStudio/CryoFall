@@ -18,7 +18,7 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemSand>(count: 5);
+            inputItems.Add<ItemSand>(count: 2);
             inputItems.Add<ItemPotassiumNitrate>(count: 1);
 
             outputItems.Add<ItemFluxPowder>(count: 1);

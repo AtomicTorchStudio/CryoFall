@@ -3,12 +3,14 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.Resources;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -19,6 +21,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -42,6 +45,8 @@
 
         public virtual bool IsAutoDestroyWhenLooted { get; } = true;
 
+        public virtual bool IsAutoTakeAll => false;
+
         public byte ItemsSlotsCount => this.MaxItemsSlotsCount;
 
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
@@ -50,10 +55,12 @@
 
         public virtual byte MaxItemsSlotsCount => 16;
 
+        protected virtual bool CanFlipSprite => false;
+
         protected virtual IProtoItemsContainer ItemsContainerType
             => Api.GetProtoEntity<ItemsContainerOutput>();
 
-        public override string ClientGetTitle(IStaticWorldObject worldObject)
+        public override string ClientGetTitle(IWorldObject worldObject)
         {
             // this is not a player-built structure so let's hide the name
             return null;
@@ -75,10 +82,28 @@
 
             // spawn items accordingly to the droplist
             privateState.IsDropListSpawned = true;
-
             var lootDroplist = this.ServerGetLootDroplist(worldObject);
             var dropItemContext = new DropItemContext(character, worldObject);
+
             CreateItemResult dropItemResult;
+            if (this.IsAutoTakeAll)
+            {
+                // try to simply pickup the content
+                dropItemResult =
+                    lootDroplist.TryDropToCharacter(character, dropItemContext, sendNoFreeSpaceNotification: false);
+                if (dropItemResult.IsEverythingCreated
+                    && dropItemResult.TotalCreatedCount > 0)
+                {
+                    NotificationSystem.ServerSendItemsNotification(character, dropItemResult);
+                    // destroy object after success pickup
+                    Server.World.DestroyObject(worldObject);
+                    return true;
+                }
+
+                dropItemResult.Rollback();
+            }
+
+            // create a container and drop items there
             var attemptRemains = 100;
             var itemsContainer = privateState.ItemsContainer;
             do
@@ -147,6 +172,18 @@
         public bool SharedIsCanGather(IStaticWorldObject staticWorldObject)
         {
             return true;
+        }
+
+        protected override void ClientInitialize(ClientInitializeData data)
+        {
+            base.ClientInitialize(data);
+
+            // flip renderer with some deterministic randomization
+            if (this.CanFlipSprite
+                && PositionalRandom.Get(data.GameObject.TilePosition, 0, 2, seed: 9125835) == 0)
+            {
+                data.ClientState.Renderer.DrawMode = DrawMode.FlipHorizontally;
+            }
         }
 
         protected override void ClientInteractFinish(ClientObjectData data)

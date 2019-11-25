@@ -33,8 +33,8 @@
     public sealed class ObjectGroundItemsContainer
         : ProtoWorldObject<IStaticWorldObject, ObjectGroundItemsContainer.PrivateState,
               ObjectGroundItemsContainer.PublicState, EmptyClientState>,
-          IProtoStaticWorldObjectCustomInteractionCursor,
-          IInteractableProtoStaticWorldObject
+          IProtoWorldObjectCustomInteractionCursor,
+          IInteractableProtoWorldObject
     {
         public const string NotificationCannotDropItemThere = "Cannot drop item there.";
 
@@ -67,9 +67,11 @@
 
         public ITextureResource Icon => null;
 
-        public string InteractionTooltipText => InteractionTooltipTexts.PickUp;
+        public override string InteractionTooltipText => InteractionTooltipTexts.PickUp;
 
         public bool IsAutoEnterPrivateScopeOnInteraction => true;
+
+        public bool IsIgnoredBySpawnScripts => false;
 
         // this is a "natural object" to allow decals to show under it
         public StaticObjectKind Kind => StaticObjectKind.NaturalObject;
@@ -78,7 +80,7 @@
 
         public override string Name => "Ground items";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SolidGround;
 
         public override double ServerUpdateIntervalSeconds => 0.333;
 
@@ -86,12 +88,12 @@
 
         public float StructurePointsMax => 100;
 
-        public BoundsInt ViewBounds { get; } = StaticObjectLayout.DefaultOneTileLayout.Bounds;
-
         public IConstructionTileRequirementsReadOnly TileRequirements { get; }
             = new ConstructionTileRequirements()
               .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
               .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyStatic);
+
+        public BoundsInt ViewBounds { get; } = StaticObjectLayout.DefaultOneTileLayout.Bounds;
 
         public static async void ClientTryDropItemOnGround(
             IItem itemToDrop,
@@ -441,19 +443,14 @@
             return this.TileRequirements.Check(this, startTilePosition, null, logErrors);
         }
 
-        public string ClientGetTitle(IStaticWorldObject worldObject)
+        public override string ClientGetTitle(IWorldObject worldObject)
         {
             return null;
         }
 
-        public void ClientObserving(IStaticWorldObject worldObject, bool isObserving)
+        public BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {
-            // nothing
-        }
-
-        public BaseUserControlWithWindow ClientOpenUI(IStaticWorldObject worldObject)
-        {
-            var itemsContainer = GetPublicState(worldObject).ItemsContainer;
+            var itemsContainer = GetPublicState((IStaticWorldObject)worldObject).ItemsContainer;
             var soundOpen = Client.UI.GetApplicationResource<SoundUI>("SoundWindowContainerBagOpen");
             var soundClose = Client.UI.GetApplicationResource<SoundUI>("SoundWindowContainerBagClose");
             return WindowContainerExchange.Show(itemsContainer,
@@ -576,14 +573,15 @@
             return (0.5, 0.15);
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
             // actually, we don't need client-server interaction for this container 
             // as client is aware about the items container
-            GetPrivateState(worldObject).ServerLastInteractCharacter = who;
+            var privateState = GetPrivateState((IStaticWorldObject)worldObject);
+            privateState.ServerLastInteractCharacter = who;
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
             // actually, we don't need client-server interaction for this container 
             // as client is aware about the items container
@@ -594,7 +592,7 @@
             // don't use base implementation
             //base.ClientInitialize(data);
 
-            var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
+            var sceneObject = data.GameObject.ClientSceneObject;
             sceneObject.AddComponent<ComponentObjectGroundItemsContainerRenderer>()
                        .Setup(data.PublicState.ItemsContainer);
         }
@@ -638,7 +636,7 @@
             }
         }
 
-        protected override void ClientOnObjectDestroyed(Vector2Ushort tilePosition)
+        protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             // do nothing as currently it's not a damageable object
         }
@@ -733,7 +731,7 @@
         {
             // actually, we don't need client-server interaction for this container 
             // as client is aware about the items container
-            InteractableStaticWorldObjectHelper.ClientStartInteract(objectGroundContainer);
+            InteractableWorldObjectHelper.ClientStartInteract(objectGroundContainer);
         }
 
         private static bool SharedIsWithinInteractionDistance(

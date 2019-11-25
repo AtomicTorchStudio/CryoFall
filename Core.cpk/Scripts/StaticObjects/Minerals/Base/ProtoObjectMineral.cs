@@ -99,9 +99,9 @@
             data.ClientState.Renderer = spriteRenderer;
             this.ClientSetupRenderer(spriteRenderer);
 
-            Client.Scene.GetSceneObject(gameObject)
-                  .AddComponent<ClientComponentObjectMineralStageWatcher>()
-                  .Setup(gameObject, data.PublicState, this.ClientOnRockDestroyStageChanged);
+            gameObject.ClientSceneObject
+                      .AddComponent<ClientComponentObjectMineralStageWatcher>()
+                      .Setup(gameObject, data.PublicState, this.ClientOnRockDestroyStageChanged);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)

@@ -30,13 +30,13 @@
         public override string Description =>
             "Defensive structure that projects psionic field of high intensity while active.";
 
-        public double ElectricityConsumptionPerSecondWhenActive => 2;
+        public double ElectricityConsumptionPerSecondWhenActive => 1;
 
         public override string InteractionTooltipText => InteractionTooltipTexts.TogglePower;
 
         public override string Name => "Psionic projector";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
@@ -62,7 +62,7 @@
             var worldObject = data.GameObject;
             var publicState = data.PublicState;
             var renderer = data.ClientState.Renderer;
-            var sceneObject = Client.Scene.GetSceneObject(worldObject);
+            var sceneObject = worldObject.ClientSceneObject;
 
             PowerGridSystem.ClientInitializeConsumerOrProducer(worldObject);
             var soundEmitter = Client.Audio.CreateSoundEmitter(
@@ -80,6 +80,7 @@
                                     ClientComponentSpriteSheetAnimator.CreateAnimationFrames(this.textureAtlasActive)
                                                                       .Skip(1)
                                                                       .ToArray(),
+                                    isLooped: true,
                                     frameDurationSeconds: 6 / 60.0,
                                     randomizeInitialFrame: true);
 

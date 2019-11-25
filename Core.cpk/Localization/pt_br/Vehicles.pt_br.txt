@@ -1,0 +1,51 @@
+﻿Scripts/Vehicles/VehicleHoverboardMk1@Description:
+Versão luminosa do projeto da plataforma de gravidade. De fabricação relativamente barata, oferece grande velocidade e economia de combustível.
+
+Scripts/Vehicles/VehicleHoverboardMk1@Name:
+Prancha Voadora Mk1
+
+Scripts/Vehicles/VehicleHoverboardMk2@Description:
+Variante pesada do projeto da plataforma de gravidade. Mais durável, oferece maior velocidade e manobrabilidade à custa de maiores despesas de fabricação e consumo de combustível.
+
+Scripts/Vehicles/VehicleHoverboardMk2@Name:
+Prancha Voadora Mk2
+
+Scripts/Vehicles/VehicleMechManul@Description:
+Design médio para armadura de batalha mecanizada. Possui capacidades defensivas substanciais e grande capacidade de transporte de carga sem sacrificar outros aspectos.
+
+Scripts/Vehicles/VehicleMechManul@Name:
+Manul
+
+Scripts/Vehicles/VehicleMechSkipper@Description:
+Projeto de luz para armadura de batalha mecanizada. Apresenta velocidade relativamente alta, sem sacrificar armadura nem poder de fogo.
+
+Scripts/Vehicles/VehicleMechSkipper@Name:
+Skipper
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotBuildVehicleTitle:
+Não é possível construir
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotRepairVehicleTitle:
+Não é possível reparar
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NotInteractingWithVehicleBay:
+Para construir este veículo, use um compartimento de veículo.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@RequiredItemsMissing:
+Itens insuficientes.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NeedsFreeSpace:
+Bloqueado.[br]Para se construir um projeto, é preciso limpar os obstáculos e pessoas do compartimento de montagem.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@NotInteractingWithVehicle:
+Interaja com o veículo para repará-lo.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RequiredItemsMissing:
+Itens insuficientes.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
+Não é necessário reparar.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
+Traga o veículo para o compartimento de montagem de veículo para repará-lo.
+

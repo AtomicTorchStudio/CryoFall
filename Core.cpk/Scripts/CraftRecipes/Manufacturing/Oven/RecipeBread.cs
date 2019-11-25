@@ -2,7 +2,6 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Items.Food;
-    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
@@ -19,11 +18,9 @@
 
             duration = CraftingDuration.Medium;
 
-            inputItems.Add<ItemWheatFlour>(count: 3);
-            inputItems.Add<ItemBottleWater>(count: 1);
+            inputItems.Add<ItemDough>(count: 3);
 
             outputItems.Add<ItemBread>(count: 1);
-            outputItems.Add<ItemBottleEmpty>(count: 1);
         }
     }
 }

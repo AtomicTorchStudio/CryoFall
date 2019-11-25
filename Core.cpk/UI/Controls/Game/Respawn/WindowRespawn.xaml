@@ -20,7 +20,9 @@
     <Grid HorizontalAlignment="Center"
           VerticalAlignment="Center"
           Width="348">
-        <core:WidgetPanel InnerGlowSize="10" VisibilityBackgroundImage="Collapsed" />
+        <core:WidgetPanel InnerGlowSize="10" 
+                          VisibilityBackgroundImage="Collapsed" 
+                          WidgetBackground="{StaticResource WindowBackgroundBrush}" />
 
         <StackPanel Orientation="Vertical"
                     Margin="15,15">

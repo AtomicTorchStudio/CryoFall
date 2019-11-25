@@ -47,6 +47,11 @@
 
         private void CharacterKilledHandler(ICharacter attackerCharacter, ICharacter targetCharacter)
         {
+            if (attackerCharacter.IsNpc)
+            {
+                return;
+            }
+
             var context = this.GetActiveContext(attackerCharacter, out var state);
             if (context == null)
             {

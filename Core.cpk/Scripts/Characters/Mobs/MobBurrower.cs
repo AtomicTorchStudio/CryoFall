@@ -11,26 +11,28 @@
 
     public class MobBurrower : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => true;
+
         public override float CharacterWorldHeight => 1f;
 
         public override double MobKillExperienceMultiplier => 1.5;
 
         public override string Name => "Burrower";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
         public override double StatDefaultHealthMax => 150;
 
-        public override double StatMoveSpeed => 1.2;
+        public override double StatMoveSpeed => 1.8;
 
         protected override void FillDefaultEffects(Effects effects)
         {
             base.FillDefaultEffects(effects);
 
-            effects.AddValue(this, StatName.DefenseImpact, 0.4);
-            effects.AddValue(this, StatName.DefenseKinetic, 0.4);
-            effects.AddValue(this, StatName.DefenseChemical, 0.4);
-            effects.AddValue(this, StatName.DefenseCold, 0.2);
+            effects.AddValue(this, StatName.DefenseImpact,     0.4);
+            effects.AddValue(this, StatName.DefenseKinetic,    0.4);
+            effects.AddValue(this, StatName.DefenseChemical,   0.4);
+            effects.AddValue(this, StatName.DefenseCold,       0.2);
             effects.AddValue(this, StatName.DefenseElectrical, 0.2);
         }
 
@@ -61,7 +63,7 @@
 
             var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalStrong>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)
@@ -72,11 +74,12 @@
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
                 isRetreating: false,
+                isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 7,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 6,
-                out var movementDirection,
-                out var rotationAngleRad);
+                movementDirection: out var movementDirection,
+                rotationAngleRad: out var rotationAngleRad);
 
             this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
         }

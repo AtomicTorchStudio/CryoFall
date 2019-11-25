@@ -25,6 +25,9 @@ Acción: Usar objeto
 Scripts/ClientComponents/Input/GameButton@ActionInteract:
 Acción: Interactuar
 
+Scripts/ClientComponents/Input/GameButton@VehicleEnterExit:
+Entrar/Salir de vehículos
+
 Scripts/ClientComponents/Input/GameButton@ItemReload:
 Recargar objeto
 

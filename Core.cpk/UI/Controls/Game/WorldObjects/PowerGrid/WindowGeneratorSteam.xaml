@@ -110,12 +110,14 @@
                         Container="{Binding ViewModelFuelBurningState.ContainerFuel}"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        DesignTimeSlotsCount="1" />
+                        DesignTimeSlotsCount="4"
+                        MaxWidth="120" />
                     <core:ValueBarControl
                         Value="{Binding ViewModelFuelBurningState.FuelUsageCurrentValue}"
                         MaxValue="{Binding ViewModelFuelBurningState.FuelUsageMaxValue}"
                         Foreground="{StaticResource BrushFuel}"
-                        Style="{StaticResource ItemSlotCraftingProgressHorizontalBar}" />
+                        Style="{StaticResource ItemSlotCraftingProgressHorizontalBar}"
+                        Width="104" />
 
                     <Canvas
                         DataContext="{Binding ViewModelBurningFuel}"
@@ -123,8 +125,8 @@
                         <fuelBurningIndicator:FuelBurningIndicator
                             FuelIcon="{Binding FuelIcon}"
                             FuelColor="{Binding FuelColor}"
-                            Canvas.Left="25"
-                            Canvas.Top="27" />
+                            Canvas.Left="52"
+                            Canvas.Top="22" />
                     </Canvas>
                 </StackPanel>
 

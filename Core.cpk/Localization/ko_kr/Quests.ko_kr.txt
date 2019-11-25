@@ -313,13 +313,12 @@ Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Name:
 더 좋은 물 공급 방법 배우기
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
-격렬한 전투를 거치면, 체력이 닳게 됩니다. 다양한 약품을 만들어 체력을 회복하고 모든 고통에서 벗어날 수 있습니다. 그저 초록색 약초를 사용하는 것만으로는 충분하지 않습니다.
+격렬한 전투를 거치면, 체력이 닳게 됩니다. 다양한 약물을 만들어 체력을 회복하고 모든 고통에서 벗어날 수 있습니다. 그저 초록색 약초를 사용하는 것만으로는 충분하지 않습니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
-`[*] CryoFall에는 다양한 약품이 있습니다. 체력을 회복시키는 약, 특정 질병을 치료하는 약 등 종류가 매우 다양합니다.
-[*] 고급 약품을 만들기 위해서는 해당 제조법과 기술을 배워야 합니다.
-[*] 약초 치료는 요리 카테고리에서 찾을 수 있습니다.
-[*] 나무 껍질은 특정한 유형의 나무들을 벌목할 때 수집할 수 있습니다.`
+`[*] CryoFall에는 다양한 약물이 있습니다. 체력을 회복시키는 약, 특정 질병을 치료하는 약 등 종류가 매우 다양합니다.
+[*] 고급 약물을 만들기 위해서는 해당 제조법과 기술을 배워야 합니다.
+[*] 약초 치료는 요리 카테고리에서 찾을 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
 허브를 모으고 약 만들기
@@ -352,7 +351,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 더 나은 방어 수단에 대해 알아볼 시간입니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*] "공격 & 방어" 기술 그룹에서 모든 관련 기술들의 잠금을 해제할 수 있습니다.
+`[*] "방어" 기술 그룹에서 모든 관련 기술들의 잠금을 해제할 수 있습니다.
 [*] 나무 방어구가 가장 좋은 선택은 아닐지 몰라도, 저렴하며, 분명한 건, 천 방어구보다 훨씬 낫다는 겁니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
@@ -381,9 +380,9 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 두개골을 메이스로 부숴버리는 것도 나쁘진 않지만, 때로는 좀 더 멀리서 공격해야 할 때도 있습니다. 특히 더 무시무시한 적들을 상대할 때는 말이죠.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*] "공격 & 방어" 기술 그룹에서 모든 관련 기술들의 잠금을 해제할 수 있습니다.
+`[*] "공격" 기술 그룹에서 모든 관련 기술들의 잠금을 해제할 수 있습니다.
 [*] 페이퍼 카트리지를 만들려면, 우선 [b]화약[/b]과 [b]종이[/b]를 만들어야 합니다.
-[*] [b]다양한 대미지 유형[/b]이 있으며, 또한, 방어구마다 다른 방어 특성을 가지고 있습니다. 이 정보는 인벤토리 화면에서 확인할 수 있습니다.`
+[*] [b]다양한 대미지 유형[/b]이 있으며, 또한 방어구마다 다른 방어 특성을 가지고 있습니다. 이 정보는 인벤토리 화면에서 확인할 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
 원거리 무기 만들기
@@ -410,12 +409,12 @@ Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Name:
 환경 탐험-제2부
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
-더 좋은 약품 아이템은 무수히 많지만, 위급 상황일 때는 초록색 허브로도 체력을 약간 회복할 수 있다는 것을 잊으면 안 됩니다.
+더 좋은 약물 아이템은 무수히 많지만, 위급 상황일 때는 초록색 허브로도 체력을 약간 회복할 수 있다는 것을 잊으면 안 됩니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
-`[*] 초록색 약초는 모든 약품 중에서도 가장 기본적인 것이며, 상대적으로 손쉽게 얻을 수 있습니다..
+`[*] 초록색 약초는 모든 약물 중에서도 가장 기본적인 것이며, 상대적으로 손쉽게 얻을 수 있습니다..
 [*] 허브와 그 밖의 작은 식물들은 숲의 초원에서 매우 많이 자라고 있습니다.
-[*] 초록색 허브가 상자를 어지럽힐 만큼 너무 많다면, 그대로 사용해도 되지만, 그렇지 않다면 약품 아이템으로 만들어 사용하는 것이 훨씬 현명한 방법입니다.`
+[*] 초록색 허브가 상자를 어지럽힐 만큼 너무 많다면, 그대로 사용해도 되지만, 그렇지 않다면 약물 아이템으로 만들어 사용하는 것이 훨씬 현명한 방법입니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 초록색 허브를 찾아 사용하세요
@@ -435,7 +434,8 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 아직 사냥할 시간이 남았습니다! 찾아야 할 동물과 몬스터들이 더 있습니다.
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*] 동물과 몬스터들은 일반적으로 발견되는 지역이 각기 다릅니다. 세계를 탐험하여 그들이 살고 있는 여러 지역들을 알아보세요.
+`[*] 사냥 도구는 (인벤토리 메뉴의 캐릭터 초상화 오른쪽에 있는) "장치 슬롯"에 장착할 수 있습니다.
+[*] 동물과 몬스터들은 일반적으로 발견되는 지역이 각기 다릅니다. 세계를 탐험하여 그들이 살고 있는 여러 지역들을 알아보세요.
 [*] 동물이나 몬스터의 위험도에 따라 사냥으로 얻을 수 있는 경험치가 다릅니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
@@ -464,6 +464,9 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 쇠지렛대를 사용하여 해체하기
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+소금 광물 채굴하기
+
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
 원유와 리튬 같은 특정 자원은 첨단 기술에 필요합니다. 따라서 해당 자원을 얻는 방법을 배우는 것은 매우 중요합니다.
 
@@ -475,9 +478,6 @@ Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
 고급 자원 획득
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-소금 광물 채굴하기
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 공업 건설 분야를 발전시키려면 어려운 과학, 특히 화학의 기반을 잘 닦아야 합니다.
@@ -492,7 +492,7 @@ Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Description:
 의학은 부상과 질병을 치료하는 데 도움을 줄 뿐만 아니라, 많은 유용한 효과와 기회를 제공해 줍니다.
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Hints:
-[*] 높은 단계의 의료 기술은 치유 더 강력한 치유 아이템과 다른 약품에 접근할 수 있도록 해줍니다.
+[*] 높은 단계의 의료 기술은 치유 더 강력한 치유 아이템과 다른 약물에 접근할 수 있도록 해줍니다.
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Name:
 의료 연구실 짓기
@@ -542,7 +542,7 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 `[*] 유적의 종류: 거주 (T1), 공업 (T2), 군사 (T2), 과학 (T3).
-[*] 누구나 탐험할 수 있는 T1부터 CryoFall에서 최고의 장비와 약품이 필요한 T3까지로 유적의 난이도가 나누어져 있습니다..
+[*] 누구나 탐험할 수 있는 T1부터 CryoFall에서 최고의 장비와 약물이 필요한 T3까지로 유적의 난이도가 나누어져 있습니다..
 [*] 어떤 특정 희귀 아이템들은 유적 탐험을 통해서만 얻을 수 있습니다. 유적의 난이도에 올라갈 수록 아이템 드랍률이 증가하며, 가장 가치가 높은 아이템들은 오직 T3 유적에서만 찾을 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:

@@ -29,13 +29,13 @@ Scripts/Skills/Skills/Agriculture/SkillForaging@Flags.AdditionalYield:
 獲得額外產出概率
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Description:
-了解此行星的植物群可以提高你的收獲速度和獲得更高產量的機會。
+瞭解此行星的植物群可以提高你的收穫速度和獲得更高產量的機會。
 
 Scripts/Skills/Skills/Agriculture/SkillForaging@Name:
 覓食
 
 Scripts/Skills/Skills/Agriculture/SkillHunting@Description:
-更高的狩獵技術會增加你從每只動物中獲得更多戰利品的機會。
+更高的狩獵技術會增加你從每只獵物中獲得更多戰利品的機會。
 
 Scripts/Skills/Skills/Agriculture/SkillHunting@Name:
 狩獵
@@ -47,13 +47,13 @@ Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Name:
 常規武器
 
 Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Description:
-更頻繁地使用能量武器可以讓您更好地了解它們的工作方式，從而提高整體效率。
+更頻繁地使用能量武器可以讓您更好地瞭解它們的工作方式，從而提高整體效率。
 
 Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Name:
 能量武器
 
 Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Description:
-在戰鬥中使用特殊武器可以讓您更深入地了解它們的秘密，讓您更好地了解如何最大限度地發揮它們的潛力。
+在戰鬥中使用特殊武器可以讓您更深入地瞭解它們的秘密，讓您更好地瞭解如何最大限度地發揮它們的潛力。
 
 Scripts/Skills/Skills/Combat/SkillWeaponsExotic@Name:
 特殊武器
@@ -77,7 +77,7 @@ Scripts/Skills/Skills/Misc/SkillSearching@Name:
 搜索
 
 Scripts/Skills/Skills/Personal/SkillAthletics@Description:
-訓練讓你的身體更加習慣長距離跑動。因此，您在沖刺時使用的能量更少。
+訓練讓你的身體更加習慣長距離跑動。因此，您在衝刺時使用的能量更少。
 
 Scripts/Skills/Skills/Personal/SkillAthletics@Name:
 運動
@@ -107,13 +107,13 @@ Scripts/Skills/Skills/Production/SkillMining@Flags.FindGemstones:
 挖礦時找到寶石概率
 
 Scripts/Skills/Skills/Production/SkillMining@Description:
-更好地了解礦藏會增加您的挖掘速度，產量和尋找稀有資源的機會。僅在您使用鎬時適用。
+更好地瞭解礦藏會增加您的挖掘速度，產量和尋找稀有資源的機會。僅在您使用鎬時適用。
 
 Scripts/Skills/Skills/Production/SkillMining@Name:
-采掘
+採掘
 
 Scripts/Skills/Skills/Production/SkillWoodcutting@Description:
-更好的訓練和對這一職業的理解可以提高您的木材切割速度。僅在您使用斧頭時適用。
+更好的訓練和對這一專業的理解可以提高您的木材切割速度。僅在您使用斧頭時適用。
 
 Scripts/Skills/Skills/Production/SkillWoodcutting@Name:
 伐木
@@ -125,10 +125,10 @@ Scripts/Skills/Skills/Technical/SkillBuilding@Name:
 建造
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Description:
-制作越來越復雜的物品並理解它們的結構是了解技術是這個世界的核心驅動力的好方法。
+製作越來越複雜的物品並理解它們的結構是瞭解這個世界核心驅動力的好方法。
 
 Scripts/Skills/Skills/Technical/SkillCrafting@Name:
-制造
+製造
 
 Scripts/Skills/Skills/Technical/SkillMaintenance@Description:
 可以修復和維護各種物品和設備。 適用於在修補桌進行的工作。

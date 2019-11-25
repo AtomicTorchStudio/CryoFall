@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
+
     public class ItemGoldChestplate : ProtoItemEquipmentChest
     {
         public override string Description => "Luxurious golden attire. Befitting of true rulers.";
@@ -7,6 +9,8 @@
         public override uint DurabilityMax => 800;
 
         public override string Name => "Gold chestplate";
+
+        public override ObjectMaterial Material => ObjectMaterial.Metal;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using AtomicTorch.CBND.GameApi.Data;
 
     [DebuggerNonUserCode]
     [DebuggerStepThrough]
@@ -23,31 +22,31 @@
         /// objects.
         /// </param>
         /// <param name="padding">Defines the minimal distance to any other objects.</param>
-        /// <param name="iterationLimitMinFraction">
-        /// Defines how many % (minimum) of the potential population could be spawned per spawn iteration depending on how
-        /// populated the world is by this spawn preset. If the world is 100% populated a min value will be used and if it's 0%
-        /// populated a max value will be used, otherwise proportional value will be used.
-        /// Value must be in range from 0 to 1.0.
-        /// Please note: this is used only after the initial spawn.
-        /// The initial spawn is performed on the world initialization with spawning as much as possible.
-        /// </param>
-        /// <param name="iterationLimitMaxFraction">
-        /// <see cref="iterationLimitMinFraction" />
-        /// </param>
+        ///// <param name="iterationLimitMinFraction">
+        ///// Defines how many % (minimum) of the potential population could be spawned per spawn iteration depending on how
+        ///// populated the world is by this spawn preset. If the world is 100% populated a min value will be used and if it's 0%
+        ///// populated a max value will be used, otherwise proportional value will be used.
+        ///// Value must be in range from 0 to 1.0.
+        ///// Please note: this is used only after the initial spawn.
+        ///// The initial spawn is performed on the world initialization with spawning as much as possible.
+        ///// </param>
+        ///// <param name="iterationLimitMaxFraction">
+        ///// <see cref="iterationLimitMinFraction" />
+        ///// </param>
         /// <returns>Object spawn preset instance (chainable).</returns>
         public ObjectSpawnPreset CreatePreset(
             double interval,
             double padding,
-            double iterationLimitMinFraction = 0,
-            double iterationLimitMaxFraction = 0.05,
+            //double iterationLimitMinFraction = 0,
+            //double iterationLimitMaxFraction = 0.05,
             bool useSectorDensity = true,
             int paddingToLandClaimAreas = 0)
         {
             var preset = new ObjectSpawnPreset(
                 interval,
                 padding,
-                iterationLimitMinFraction,
-                iterationLimitMaxFraction,
+                iterationLimitMinFraction: 0,
+                iterationLimitMaxFraction: 0.05,
                 isRestrictionPreset: false,
                 useSectorDensity: useSectorDensity,
                 paddingToLandClaimAreas);

@@ -2,10 +2,10 @@
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.GameApi.Data.Items;
-    using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public class ClientSeedPlacerHelper : ClientComponent
+    public static class ClientSeedPlacerHelper
     {
         public const double MaxSeedPlacementDistance = 2.5; // allow to place in the same or neighbor tiles
 
@@ -40,8 +40,8 @@
             // seed is selected - create blueprint component
             if (blueprintComponent == null)
             {
-                blueprintComponent = Client.Scene.CreateSceneObject("Seed placer helper")
-                                           .AddComponent<ClientComponentObjectPlacementHelper>();
+                blueprintComponent = Api.Client.Scene.CreateSceneObject("Seed placer helper")
+                                        .AddComponent<ClientComponentObjectPlacementHelper>();
             }
 
             blueprintComponent.Setup(
@@ -67,7 +67,7 @@
         {
             currentSelectedProtoSeed.SharedIsValidPlacementPosition(
                 tilePosition,
-                Client.Characters.CurrentPlayerCharacter,
+                Api.Client.Characters.CurrentPlayerCharacter,
                 logErrors: logErrors,
                 canPlace: out canPlace,
                 isTooFar: out isTooFar);

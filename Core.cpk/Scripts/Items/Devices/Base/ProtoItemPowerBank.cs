@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterEnergySystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
@@ -37,7 +36,7 @@
         {
             // try to redistribute remaining energy to other energy bank devices
             var energyRemains = GetPrivateState(gameObject).EnergyCharge;
-            CharacterEnergySystem.ServerAddEnergyCharge(gameObject.Container, 
+            CharacterEnergySystem.ServerAddEnergyCharge(gameObject.Container,
                                                         energyRemains);
         }
 

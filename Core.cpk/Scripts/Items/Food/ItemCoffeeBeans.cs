@@ -16,7 +16,7 @@
         public override string Description =>
             "Can be used to prepare one of the most widespread, traditional drinks in the galaxy.";
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.LongLasting;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
 
         public override string Name => "Coffee beans";
 

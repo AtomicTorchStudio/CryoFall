@@ -4,6 +4,8 @@
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Props.Road;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Triggers;
@@ -30,10 +32,15 @@
             var restrictionInfiniteGeothermalSpring = spawnList.CreateRestrictedPreset()
                                                                .Add<ObjectDepositGeothermalSpringInfinite>();
 
-            var presetGeothermalSpring = spawnList.CreatePreset(interval: 220, padding: 1);
+            var restrictionCharredGroundDeposit = spawnList.CreateRestrictedPreset()
+                                                           .Add<ObjectCharredGround3Deposit>();
+
+            var presetGeothermalSpring = spawnList.CreatePreset(interval: 175, padding: 1, useSectorDensity: false);
+            presetGeothermalSpring.SpawnLimitPerIteration = 1;
             presetGeothermalSpring.AddExact<ObjectDepositGeothermalSpring>()
-                                  .SetCustomPaddingWithSelf(75)
-                                  .SetCustomPaddingWith(restrictionInfiniteGeothermalSpring, 75)
+                                  .SetCustomPaddingWithSelf(79)
+                                  .SetCustomPaddingWith(restrictionInfiniteGeothermalSpring, 79)
+                                  .SetCustomPaddingWith(restrictionCharredGroundDeposit,     79)
                                   // ensure no spawn near cliffs
                                   .SetCustomCanSpawnCheckCallback(
                                       (physicsSpace, position)
@@ -42,6 +49,12 @@
                                                                           new Vector2D(position.X + 1.5,
                                                                                        position.Y + 1.5),
                                                                           radius: 7));
+
+            // don't spawn close to roads
+            var restrictionPresetRoads = spawnList.CreateRestrictedPreset()
+                                                  .Add<ObjectPropRoadHorizontal>()
+                                                  .Add<ObjectPropRoadVertical>();
+            presetGeothermalSpring.SetCustomPaddingWith(restrictionPresetRoads, 20);
 
             // special restriction preset for player land claims
             var restrictionPresetLandclaim = spawnList.CreateRestrictedPreset()

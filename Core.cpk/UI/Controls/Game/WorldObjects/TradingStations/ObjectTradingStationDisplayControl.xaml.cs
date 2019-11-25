@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
+    using AtomicTorch.CBND.CoreMod.Systems.TradingStations;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.TradingStations.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
@@ -15,9 +15,17 @@
                                         typeof(ObjectTradingStationDisplayControl),
                                         new PropertyMetadata(default(bool)));
 
+        public static readonly DependencyProperty RowsNumberProperty =
+            DependencyProperty.Register("RowsNumber",
+                                        typeof(int),
+                                        typeof(ObjectTradingStationDisplayControl),
+                                        new PropertyMetadata(defaultValue: 2));
+
         private ItemsControl itemsControl;
 
-        private List<ViewModelTradingStationLot> viewModels;
+        private IReadOnlyCollection<TradingStationsMapMarksSystem.TradingStationLotInfo> tradingLots;
+
+        private List<ViewModelTradingStationLotInfo> viewModels;
 
         public bool IsBuyMode
         {
@@ -25,7 +33,26 @@
             set => this.SetValue(IsBuyModeProperty, value);
         }
 
-        public ObjectTradingStationPublicState StationPublicState { get; set; }
+        public int RowsNumber
+        {
+            get => (int)this.GetValue(RowsNumberProperty);
+            set => this.SetValue(RowsNumberProperty, value);
+        }
+
+        public IReadOnlyCollection<TradingStationsMapMarksSystem.TradingStationLotInfo> TradingLots
+        {
+            get => this.tradingLots;
+            set
+            {
+                if (this.tradingLots == value)
+                {
+                    return;
+                }
+
+                this.tradingLots = value;
+                this.Refresh();
+            }
+        }
 
         protected override void InitControl()
         {
@@ -34,22 +61,21 @@
 
         protected override void OnLoaded()
         {
-            base.OnLoaded();
-            this.viewModels = new List<ViewModelTradingStationLot>();
-            var items = this.itemsControl.Items;
-
-            this.IsBuyMode = this.StationPublicState.Mode == TradingStationMode.StationBuying;
-            foreach (var lot in this.StationPublicState.Lots)
-            {
-                var viewModel = new ViewModelTradingStationLot(lot);
-                this.viewModels.Add(viewModel);
-                items.Add(viewModel);
-            }
+            this.Refresh();
         }
 
         protected override void OnUnloaded()
         {
-            base.OnUnloaded();
+            this.DestroyViewModels();
+        }
+
+        private void DestroyViewModels()
+        {
+            if (this.viewModels is null)
+            {
+                return;
+            }
+
             this.itemsControl.Items.Clear();
 
             foreach (var viewModel in this.viewModels)
@@ -58,6 +84,27 @@
             }
 
             this.viewModels = null;
+        }
+
+        private void Refresh()
+        {
+            this.DestroyViewModels();
+
+            if (!this.isLoaded
+                || this.TradingLots is null)
+            {
+                return;
+            }
+
+            this.viewModels = new List<ViewModelTradingStationLotInfo>();
+            var items = this.itemsControl.Items;
+
+            foreach (var lot in this.TradingLots)
+            {
+                var viewModel = new ViewModelTradingStationLotInfo(lot);
+                this.viewModels.Add(viewModel);
+                items.Add(viewModel);
+            }
         }
     }
 };

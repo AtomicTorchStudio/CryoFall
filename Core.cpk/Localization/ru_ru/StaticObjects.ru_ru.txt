@@ -86,13 +86,13 @@ Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
 Геотермальный источник
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-Геотермальный источник (бесконечный)
+Бесконечный геотермальный источник
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Месторождение нефти
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-Месторождение нефти (бесконечное)
+Бесконечное месторождение нефти
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Шахтерская взрывчатка
@@ -138,6 +138,9 @@ Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
 Большая куча мусора
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+Небольшая куча мусора
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Камень
@@ -207,9 +210,6 @@ Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Трещина
-
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-Обугленная земля
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Более вместительная и крепкая, чем деревянная бочка. Используется для хранения большого объема жидкости.
@@ -633,7 +633,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Экстрактор лития
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
-Продвинутый экстрактор лития
+Электрический экстрактор лития
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Позволяет превратить любую органическую материю в перегной. Источник органических удобрений.
@@ -648,7 +648,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Нефтекачалка
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
-Продвинутая нефтекачалка
+Электрическая нефтекачалка
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
 Перерабатывает сырую нефть в более полезные компоненты, например топливо и минеральное масло.
@@ -733,6 +733,12 @@ Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
 
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 Мусорный бак
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+Автоматизированная платформа для сборки транспортных средств. Может использоваться для сборки любого транспортного средства при наличии нужного чертежа.
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+Платформа для сборки транспорта
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Позволяет накапливать электроэнергию, производимую генераторами на базе.
@@ -917,8 +923,14 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Красноцвет
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-Огурин
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+Молодыня
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+Рис
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+Специи
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 Табак

@@ -1,0 +1,133 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.FeaturesSlideshow.FeaturesSlideshow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.FeaturesSlideshow.Data"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelFeaturesSlideshow, IsDesignTimeCreatable=True}"
+    Focusable="True"
+    Background="Black"
+    Panel.ZIndex="9000">
+
+    <ContentControl Background="{StaticResource MainMenuBackgroundTiledBrush}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="0"
+                        Grid.Column="1"
+                        CornerRadius="3"
+                        Background="#55000000"
+                        BorderBrush="{StaticResource BrushColorAlt5}"
+                        BorderThickness="1"
+                        Padding="15">
+                    <Grid DataContext="{Binding CurrentEntry}"
+                          Width="{Binding Width, ElementName=ImageRectangle}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Text="{Binding Title}"
+                                   Foreground="{StaticResource BrushColor6}"
+                                   FontWeight="Bold"
+                                   FontSize="19"
+                                   LineHeight="19"
+                                   LineStackingStrategy="BlockLineHeight"
+                                   FontFamily="{StaticResource CondensedFontFamily}"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   HorizontalAlignment="Center" />
+
+                        <core:FormattedTextBlock Grid.Row="1"
+                                                 Content="{Binding Description}"
+                                                 Foreground="{StaticResource BrushColorLabelForeground}"
+                                                 FontWeight="Bold"
+                                                 FontSize="14.5"
+                                                 LineHeight="15.5"
+                                                 LineStackingStrategy="BlockLineHeight"
+                                                 FontFamily="{StaticResource CondensedFontFamily}"
+                                                 TextWrapping="Wrap"
+                                                 TextTrimming="None"
+                                                 TextAlignment="Left"
+                                                 HorizontalAlignment="Center"
+                                                 Margin="0,10,0,0" />
+
+                        <Rectangle Grid.Row="2"
+                                   Fill="{Binding Image}"
+                                   x:Name="ImageRectangle"
+                                   UseLayoutRounding="True"
+                                   Width="604.73958333"
+                                   Height="355.72916666"
+                                   Margin="0,15,0,0" />
+                    </Grid>
+                </Border>
+
+                <Grid Grid.Row="1"
+                      Grid.Column="1"
+                      HorizontalAlignment="Stretch"
+                      Margin="30,30,30,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            Content="{x:Static loc:CoreStrings.Button_Previous}"
+                            Command="{Binding CommandPrevious}"
+                            IsEnabled="{Binding IsButtonPreviousEnabled}"
+                            Visibility="{Binding IsButtonPreviousVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                            MinWidth="140"
+                            Focusable="False"
+                            Padding="7,9" />
+
+                    <Button Grid.Column="2"
+                            Content="{Binding ButtonNextText}"
+                            Command="{Binding CommandNext}"
+                            IsEnabled="{Binding IsButtonNextEnabled}"
+                            MinWidth="140"
+                            Focusable="False"
+                            Padding="7,9" />
+                </Grid>
+
+                <Button Grid.Row="0"
+                        Grid.Column="2"
+                        Command="{Binding CommandClose}"
+                        Visibility="{Binding IsCloseButtonVisible, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
+                        Focusable="False"
+                        MinWidth="0"
+                        MinHeight="0"
+                        Padding="7"
+                        FontSize="12"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Margin="15,3,0,0">
+                    <Control Style="{StaticResource CrossControlStyle}" />
+                </Button>
+            </Grid>
+
+
+        </Grid>
+    </ContentControl>
+
+</base:BaseUserControl>

@@ -247,6 +247,12 @@ Produkcja napojów alkoholowych i podobnych.
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 Rekreacja
 
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+Technologie niezbędne do produkcji różnych pojazdów.
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+Pojazdy
+
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 Technologie niezbędne do korzystania z zasobów obcego świata.
 
@@ -330,4 +336,10 @@ Nowoczesne technologie ofensywne pozwalające korzystać z maksymalnego potencja
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Atak 4
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+Zaawansowane pojazdy bojowe i transportowe.
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+Pojazdy 2
 

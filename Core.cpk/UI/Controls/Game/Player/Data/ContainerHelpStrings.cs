@@ -9,7 +9,7 @@
             @"Use/eat the pointed item.
               [br](only for items that can be used/eaten)";
 
-        public const string AltLeftClickOnItem_Title = 
+        public const string AltLeftClickOnItem_Title =
             "Alt + Left click on an item";
 
         public const string AltRightClickOnItem_Description =
@@ -41,19 +41,19 @@
         public const string MiddleClick_Description =
             "Sort inventory (can be used on any pointed items grid).";
 
-        public const string MiddleClick_Title = 
+        public const string MiddleClick_Title =
             "Middle (scroll wheel) click";
 
         public const string RightClickEmptyHand_Description =
             "Take half of those items.";
 
-        public const string RightClickEmptyHand_Title = 
+        public const string RightClickEmptyHand_Title =
             "Right click with empty hand on items";
 
         public const string RightClickFullHand_Description =
             "If slot is empty or contains the same item type—[br]move a single item from hand to slot.";
 
-        public const string RightClickFullHand_Title = 
+        public const string RightClickFullHand_Title =
             "Right click with a full hand on a slot";
 
         public const string ShiftLeftClickOnItems_Description =
@@ -65,10 +65,10 @@
         public const string ShiftRightClickOnItems_Description =
             "Move only the pointed items stack to another container.";
 
-        public const string ShiftRightClickOnItems_Title = 
+        public const string ShiftRightClickOnItems_Title =
             "Shift + Right click on items";
 
-        public const string TitleItemSlotActions = 
+        public const string TitleItemSlotActions =
             "Item slot actions";
     }
 }

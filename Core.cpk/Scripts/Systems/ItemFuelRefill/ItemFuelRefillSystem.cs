@@ -356,7 +356,7 @@
 
             protoItemFuelRefillable.ClientOnRefilled(
                 item,
-                isCurrentHotbarItem: item == ClientCurrentCharacterHelper.PublicState.SelectedHotbarItem);
+                isCurrentHotbarItem: item == ClientCurrentCharacterHelper.PublicState.SelectedItem);
         }
     }
 }

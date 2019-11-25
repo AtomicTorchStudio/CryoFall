@@ -6,7 +6,7 @@
     // TODO: actually this is a pretty annoying hack and we would like to avoid this completely
     public interface IProtoWorldObjectWithSoundPresets : IProtoWorldObject
     {
-        ObjectSoundMaterial ObjectSoundMaterial { get; }
+        ObjectMaterial ObjectMaterial { get; }
 
         ReadOnlySoundPreset<ObjectSound> SoundPresetObject { get; }
     }

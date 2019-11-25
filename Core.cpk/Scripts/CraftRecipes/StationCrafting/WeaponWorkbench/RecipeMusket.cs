@@ -19,8 +19,8 @@
 
             duration = CraftingDuration.Long;
 
-            inputItems.Add<ItemIngotIron>(count: 20);
-            inputItems.Add<ItemPlanks>(count: 70);
+            inputItems.Add<ItemIngotIron>(count: 15);
+            inputItems.Add<ItemPlanks>(count: 50);
 
             outputItems.Add<ItemMusket>();
         }

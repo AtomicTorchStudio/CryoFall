@@ -1,0 +1,51 @@
+﻿Scripts/Vehicles/VehicleHoverboardMk1@Description:
+Une plate-forme gravitationnelle légère. Assez facile à construire, tout en offrant une bonne vitesse et une faible consommation d'énergie.
+
+Scripts/Vehicles/VehicleHoverboardMk1@Name:
+Hoverboard Mk1
+
+Scripts/Vehicles/VehicleHoverboardMk2@Description:
+La variante lourde de la plate-forme gravitationnelle. Plus résistante, plus rapide et plus maniable, elle est aussi plus chère à construire et plus gourmande en énergie.
+
+Scripts/Vehicles/VehicleHoverboardMk2@Name:
+Hoverboard Mk2
+
+Scripts/Vehicles/VehicleMechManul@Description:
+Armure de combat mécanisée intermédiaire. Offre des mesures de défense substantielles et peut transporter une cargaison importante, sans sacrifier le reste de ses performances.
+
+Scripts/Vehicles/VehicleMechManul@Name:
+Manul
+
+Scripts/Vehicles/VehicleMechSkipper@Description:
+Armure de combat mécanisée légère. Assez rapide, elle offre un blindage et une puissance de feu acceptable.
+
+Scripts/Vehicles/VehicleMechSkipper@Name:
+Skipper
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotBuildVehicleTitle:
+Impossible de construire
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotRepairVehicleTitle:
+Impossible de réparer
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NotInteractingWithVehicleBay:
+Veuillez utiliser un atelier de montage pour construire ce véhicule.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@RequiredItemsMissing:
+Objets manquants.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NeedsFreeSpace:
+Bloqué.[br]La baie de montage doit être dégagée de tout obstacle et de toute personne pour construire un schéma.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@NotInteractingWithVehicle:
+Veuillez interagir avec le véhicule pour le réparer.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RequiredItemsMissing:
+Objets manquants.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
+Réparation non nécessaire.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
+Veuillez apporter le véhicule à l'atelier de montage de véhicules pour le réparer.
+

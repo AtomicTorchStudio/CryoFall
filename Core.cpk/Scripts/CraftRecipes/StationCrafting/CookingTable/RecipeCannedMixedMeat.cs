@@ -21,9 +21,9 @@
 
             inputItems.Add<ItemCanEmpty>(count: 1);
             inputItems.Add<ItemPreservative>(count: 1);
-            inputItems.Add<ItemInsectMeatRaw>(count: 1);
-            inputItems.Add<ItemBones>(count: 1);
-            inputItems.Add<ItemSlime>(count: 1);
+            inputItems.Add<ItemInsectMeatRaw>(count: 4);
+            inputItems.Add<ItemBones>(count: 2);
+            inputItems.Add<ItemSlime>(count: 2);
 
             outputItems.Add<ItemCannedMixedMeat>();
         }

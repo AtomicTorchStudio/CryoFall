@@ -58,6 +58,12 @@ Ciężka amunicja zapalająca .300 mogąca przebić pancerz i zapalić cel.
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 Amunicja zapalająca .300
 
+Scripts/Items/Ammo/ItemAmmo50SH@Description:
+Potężna, wielkokalibrowa amunicja pistoletowa.
+
+Scripts/Items/Ammo/ItemAmmo50SH@Name:
+Amunicja .50 SH
+
 Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
 Bezpłaszczowa amunicja 8 mm. Prosta w produkcji, niezbyt celna i o małej mocy.
 
@@ -90,6 +96,9 @@ Czytaj
 
 Scripts/Items/Base/ItemUseCaptions@Use:
 Użyj
+
+Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
+Tego przedmiotu nie można używać podczas jazdy pojazdem.
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Dziennik danych (zaszyfrowany)
@@ -484,6 +493,12 @@ Proste, ale pożywne danie.
 Scripts/Items/Food/ItemCarrotGrilled@Name:
 Grillowana marchewka
 
+Scripts/Items/Food/ItemCheese@Description:
+Tradycyjny produkt mleczny powstały na skutek koagulacji białka mleka.
+
+Scripts/Items/Food/ItemCheese@Name:
+Ser
+
 Scripts/Items/Food/ItemChiliBeans@Description:
 Ulubione danie każdego kawalera.
 
@@ -543,6 +558,12 @@ Słodkie i chrupiące ogóreczki.
 
 Scripts/Items/Food/ItemCucumbersPickled@Name:
 Ogórki marynowane
+
+Scripts/Items/Food/ItemDough@Description:
+Można używać w wielu przepisach.
+
+Scripts/Items/Food/ItemDough@Name:
+Ciasto
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Napój energetyczny popularny w całej galaktyce. Daje zdrowego kopa.
@@ -634,6 +655,24 @@ Pieczone mięso z pietruszką. Skąd pietruszka? To tajemnica!
 Scripts/Items/Food/ItemMeatRoasted@Name:
 Pieczone mięso
 
+Scripts/Items/Food/ItemMilk@Description:
+Odżywcze mleko. Można spożywać nieprzetworzone lub jako składnik przepisów.
+
+Scripts/Items/Food/ItemMilk@Name:
+Mleko
+
+Scripts/Items/Food/ItemMilkmelon@Description:
+Specjalnie zmodyfikowana genetycznie roślina produkująca gęstą, mleczną ciecz o składzie zbliżonym do prawdziwego mleka.
+
+Scripts/Items/Food/ItemMilkmelon@Name:
+Mlelon
+
+Scripts/Items/Food/ItemMRE@Description:
+Prefabrykowany posiłek zawierający kilka wysokokalorycznych dań i płyny pozwalające przeżyć w dziczy lub podczas operacji wojskowych.
+
+Scripts/Items/Food/ItemMRE@Name:
+Racja żywnościowa
+
 Scripts/Items/Food/ItemMREImprovised@Description:
 Posiłek przygotowany z kilku prostych składników i konserwowany solą. Można przechowywać się przez długi czas.
 
@@ -658,11 +697,11 @@ Grzyby te nazywane są rdzewiejcami ze względu na ich kolor. Są dość smaczne
 Scripts/Items/Food/ItemMushroomRust@Name:
 Rdzewiejec
 
-Scripts/Items/Food/ItemOgurin@Description:
-Dziwny owoc ogurin. Jest to zupełnie pozbawiony smaku genetyczny kuzyn ogórka.
+Scripts/Items/Food/ItemOnigiri@Description:
+Kulki ryżowe – smaczne na wynos. Pikantny, prosty i sycący posiłek, który nie psuje się szybko.
 
-Scripts/Items/Food/ItemOgurin@Name:
-Owoc ogurin
+Scripts/Items/Food/ItemOnigiri@Name:
+Onigiri
 
 Scripts/Items/Food/ItemPieBerry@Description:
 Smakowite ciasto jagodowe. Takie jak u babci.
@@ -675,6 +714,12 @@ Słodki i gorzkawy owoc tropikalny. Można spożywać na surowo lub jako dodatek
 
 Scripts/Items/Food/ItemPineapple@Name:
 Ananas
+
+Scripts/Items/Food/ItemRiceCooked@Description:
+Można jeść w takiej formie jak widać albo dodać do innych przepisów.
+
+Scripts/Items/Food/ItemRiceCooked@Name:
+Gotowany ryż
 
 Scripts/Items/Food/ItemRoastedMushrooms@Description:
 Pyszne smażone grzyby.
@@ -1004,12 +1049,6 @@ Topnik w metalurgii pozwala uzyskiwać wysokojakościowy metal.
 Scripts/Items/Generic/ItemFluxPowder@Name:
 Topnik
 
-Scripts/Items/Generic/ItemFoodRotten@Description:
-Zepsute pożywienie.
-
-Scripts/Items/Generic/ItemFoodRotten@Name:
-Zgniłe jedzenie
-
 Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 Zmodyfikowany proch w postaci granulek nitrocelulozowych stosowany w amunicji przeznaczonej do broni palnej o wysokich parametrach użytkowych.
 
@@ -1081,6 +1120,12 @@ Higroskopijne granulki stosowane do użyźniania gleby rolnej. Pobierają one wi
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Name:
 Granulki higroskopijne
+
+Scripts/Items/Generic/ItemImpulseEngine@Description:
+Wydajny silnik impulsowy stosowany w wielu różnych mechanizmach.
+
+Scripts/Items/Generic/ItemImpulseEngine@Name:
+Silnik impulsowy
 
 Scripts/Items/Generic/ItemIngotCopper@Description:
 Sztaba czystej miedzi. Miedź ma szeroki zakres zastosowań: od przemysłu aż po elektronikę.
@@ -1217,11 +1262,35 @@ Konserwanty spożywcze. Można dodać do pakowanej żywności, wydłużając jej
 Scripts/Items/Generic/ItemPreservative@Name:
 Konserwanty
 
+Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
+Pusty rdzeń reaktora, który można ponownie napełnić reaktywnym nośnikiem energii, np. pragmium.
+
+Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
+Pusty rdzeń reaktora
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Description:
+Rdzeń reaktora wypełniony pragmium. Względnie stabilne, przenośne i trwałe źródło zasilania.
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Name:
+Rdzeń reaktora z pragmium
+
+Scripts/Items/Generic/ItemRice@Description:
+Ziarna ryżu, które można ugotować lub zasadzić.
+
+Scripts/Items/Generic/ItemRice@Name:
+Ryż
+
 Scripts/Items/Generic/ItemRope@Description:
 Zwykła lina. Ma wiele zastosowań. Jej nadmiar można spalić.
 
 Scripts/Items/Generic/ItemRope@Name:
 Lina
+
+Scripts/Items/Generic/ItemRot@Description:
+Żywność lub inne substancje organiczne całkowicie zgniły i zamieniły się w to obrzydlistwo.
+
+Scripts/Items/Generic/ItemRot@Name:
+Pleśń
 
 Scripts/Items/Generic/ItemRubberRaw@Description:
 Kauczuk naturalny nazywany również żywicą lateksową. Uzyskiwany jest z drzew kauczukowych, a po obróbce chemicznej można z niego uzyskać gumę wulkanizowaną.
@@ -1271,11 +1340,29 @@ Wyjątkowy kosmiczny rozpuszczalnik, łączący właściwości rozpuszczalników
 Scripts/Items/Generic/ItemSolvent@Name:
 Rozpuszczalnik
 
+Scripts/Items/Generic/ItemSpices@Description:
+Różne przyprawy kulinarne.
+
+Scripts/Items/Generic/ItemSpices@Name:
+Przyprawy
+
+Scripts/Items/Generic/ItemSpicesRaw@Description:
+Zebrane zioła, które trzeba wysuszyć przed użyciem.
+
+Scripts/Items/Generic/ItemSpicesRaw@Name:
+Świeże zioła
+
 Scripts/Items/Generic/ItemStone@Description:
 Kamień... Okrągły i ciężki. Przydatny w budownictwie. Najczęściej leży na ziemi. Można też wydobywać w większych ilościach.
 
 Scripts/Items/Generic/ItemStone@Name:
 Kamień
+
+Scripts/Items/Generic/ItemStructuralPlating@Description:
+Płyty pancerza, które mogą być stosowane jako osłona zewnętrzna lub jako stelaż do montażu dodatkowego osprzętu.
+
+Scripts/Items/Generic/ItemStructuralPlating@Name:
+Płyty strukturalne
 
 Scripts/Items/Generic/ItemSulfurPowder@Description:
 Czysta sproszkowana siarka.
@@ -1299,19 +1386,19 @@ Scripts/Items/Generic/ItemTobaccoAged@Description:
 Sezonowane liście tytoniu. Można z nich kręcić dobre cygara.
 
 Scripts/Items/Generic/ItemTobaccoAged@Name:
-Tytoń (sezonowany)
+Sezonowany tytoń
 
 Scripts/Items/Generic/ItemTobaccoDried@Description:
 Suszone liście tytoniu. Można z nich kręcić tanie cygara lub sezonować i kręcić dobre cygara.
 
 Scripts/Items/Generic/ItemTobaccoDried@Name:
-Tytoń (suszony)
+Suszony tytoń
 
 Scripts/Items/Generic/ItemTobaccoRaw@Description:
 Surowe liście i owoce tytoniu, które można suszyć i wyrabiać z nich cygara.
 
 Scripts/Items/Generic/ItemTobaccoRaw@Name:
-Tytoń (surowy)
+Świeży tytoń
 
 Scripts/Items/Generic/ItemToxin@Description:
 Toksyna chemiczna. Może być wykorzystywana do produkcji amunicji z toksyną lub wykorzystywana w medycynie.
@@ -1319,17 +1406,17 @@ Toksyna chemiczna. Może być wykorzystywana do produkcji amunicji z toksyną lu
 Scripts/Items/Generic/ItemToxin@Name:
 Toksyna
 
-Scripts/Items/Generic/ItemTreebark@Description:
-Kora drzewna to paliwo opałowe. Można ją też stosować do innych celów.
-
-Scripts/Items/Generic/ItemTreebark@Name:
-Kora
-
 Scripts/Items/Generic/ItemTwigs@Description:
 Gałęzie zebrane z ziemi lub zerwane z drzewa. Pozwalają tworzyć proste narzędzia lub służą jako paliwo opałowe.
 
 Scripts/Items/Generic/ItemTwigs@Name:
 Gałęzie
+
+Scripts/Items/Generic/ItemUniversalActuator@Description:
+Mocny siłownik do szerokich zastosowań napędzany siłą magnetyczną.
+
+Scripts/Items/Generic/ItemUniversalActuator@Name:
+Siłownik uniwersalny
 
 Scripts/Items/Generic/ItemVialBiomaterial@Description:
 Pełna fiolka z biomateriałem stosowanym w cybernetyce i medycynie, w szczególności podczas instalowania i usuwania implantów.
@@ -1376,14 +1463,17 @@ Użyto już nawozu
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
 Roślinę można już zbierać. Nie ma sensu nawozić.
 
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
-Już podlane
-
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
-Roślinę można już zbierać. Nie ma sensu podlewać.
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CanApplyOnlyOnPlants:
+Do stosowania tylko w przypadku roślin.
 
 Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Nie można użyć tutaj
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
+Sztuczna bioniczna wątroba. Zapewnia lepsze filtrowanie krwi i przeciwdziała efektom przedawkowania niektórych leków.
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
+Sztuczna wątroba
 
 Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
 Specjalna fotoczuła warstwa siatkówki z obsługą HDR, która zapewnia prawie doskonałe widzenie w nocy.
@@ -1427,17 +1517,17 @@ Ten specjalny materiał z nanowłóknami zapewniający wysokie właściwości oc
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Implant skórny – nanowłókna
 
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+W organizmie nie wykryto niekontrolowanych mutacji.
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Brak mutacji
+
 Scripts/Items/Medical/ItemAntiMutation@Description:
 Chroni i odbudowuje DNA komórek uszkodzonych przez działanie promieniowania i innych szkodliwych wpływów. Zatrzymuje niekontrolowane mutacje w organizmie.
 
 Scripts/Items/Medical/ItemAntiMutation@Name:
 Lek przeciw mutacjom
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
-Brak mutacji
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
-W organizmie nie wykryto niekontrolowanych mutacji.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 Nie masz mdłości. Nie ma sensu używać tego leku.
@@ -1635,13 +1725,13 @@ Scripts/Items/Medical/ItemStrengthBoostBig@Description:
 Środek czasowo zwiększający siłę. Ułatwia wykonywanie wymagających zadań fizycznych.
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Name:
-Wzmacniacz siły (duży)
+Duży wzmacniacz siły
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 Środek czasowo zwiększający siłę. Ułatwia wykonywanie wymagających zadań fizycznych.
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
-Wzmacniacz siły (mały)
+Mały wzmacniacz siły
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Sadzonka, z której można wyhodować nowe drzewo.
@@ -1688,8 +1778,14 @@ Nasiona szałwii niebieskiej
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Nasiona kwiatu Oni
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Name:
-Nasiona ogurin
+Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
+Nasiona mlelona
+
+Scripts/Items/Seeds/ItemSeedsRice@Name:
+Nasiona ryżu
+
+Scripts/Items/Seeds/ItemSeedsSpices@Name:
+Nasiona przypraw
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Nasiona tytoniu
@@ -1844,6 +1940,12 @@ Cięższa i bardziej mordercza kuzynka buławy.
 Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
 Żelazna buława
 
+Scripts/Items/Weapons/Melee/ItemMachete@Description:
+Ciężka, stalowa maczeta doskonała do dekapitacji.
+
+Scripts/Items/Weapons/Melee/ItemMachete@Name:
+Maczeta
+
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 Brak broni
 
@@ -1952,9 +2054,33 @@ Strzelba wojskowa o dużym magazynku. Przystosowana do amunicji o kalibrze 12.
 Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
 Strzelba wojskowa
 
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
+Pistolet półautomatyczny; ma wielkiego kopa.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
+Steppen Hawk
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
+Edycja limitowana Steppena Hawka.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
+Złoty Steppen Hawk
+
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 Pistolet maszynowy przystosowany do amunicji 10 mm.
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Pistolet maszynowy
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
+Ciężkie działko automatyczne przeznaczone do montażu na bojowych pancerzach wspomaganych. Wykorzystuje wielkokalibrową amunicję przeciwpancerną.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
+Ciężkie działko automatyczne
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
+Lekkie działko automatyczne przeznaczone do montażu na bojowych pancerzach wspomaganych. Wykorzystuje małokalibrową amunicję przeciwpancerną.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
+Lekkie działko automatyczne
 

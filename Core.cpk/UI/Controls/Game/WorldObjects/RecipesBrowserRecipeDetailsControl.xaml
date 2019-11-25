@@ -1,0 +1,98 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.RecipesBrowserRecipeDetailsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:controls="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data"
+    mc:Ignorable="d"
+    d:DesignWidth="224"
+    d:DataContext="{d:DesignInstance data:ViewModelRecipesBrowserRecipeDetails, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Resources>
+            <Style x:Key="ButtonStyle" TargetType="Button"
+                   BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="Focusable" Value="False" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="MinHeight" Value="0" />
+                <Setter Property="Padding" Value="7,2,7,3" />
+            </Style>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <controls:RequiredItemsPanelControl Grid.Row="0" MaxWidth="340"
+                                            Items="{Binding InputItems}"
+                                            CountMultiplier="{Binding CountToCraft}"
+                                            MinSlotsCount="8"
+                                            IsChecksItemAvailability="False"
+                                            FontSize="13" />
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- Button Cancel/Back -->
+            <Button Content="{x:Static loc:CoreStrings.RecipesBrowserRecipeDetails_Button_CancelRecipeSelection}"
+                    Command="{Binding CommandCancel}"
+                    Visibility="{Binding VisibilityCommandCancel}"
+                    HorizontalAlignment="Left"
+                    IsEnabled="{Binding IsCanCraft}"
+                    Style="{StaticResource ButtonStyle}" />
+
+            <!-- Recipe duration -->
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                <Viewbox Width="50">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../../../Images/Icons/Clock.png"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,1,0"
+                                   Width="22"
+                                   Height="22" />
+                            <TextBlock Text="{Binding ViewModelRecipe.DurationText}"
+                                       FontSize="15"
+                                       VerticalAlignment="Center"
+                                       Foreground="{StaticResource BrushColor7}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Viewbox>
+
+                <!-- Arrow -->
+                <Control Template="{StaticResource ControlTemplateArrow}" Width="20" Height="20"
+                         Margin="5,0,0,0" />
+            </StackPanel>
+
+            <!-- Button Select -->
+            <Button Grid.Column="2"
+                    Content="{x:Static loc:CoreStrings.RecipesBrowserRecipeDetails_Button_SelectRecipe}"
+                    Command="{Binding CommandSelect}"
+                    Visibility="{Binding VisibilityCommandSelect}"
+                    HorizontalAlignment="Right"
+                    IsEnabled="{Binding IsCanCraft}"
+                    Style="{StaticResource ButtonStyle}" />
+        </Grid>
+
+        <controls:RequiredItemsPanelControl Grid.Row="2" MaxWidth="340"
+                                            Items="{Binding OutputItems}"
+                                            CountMultiplier="{Binding CountToCraft}"
+                                            MinSlotsCount="8"
+                                            IsChecksItemAvailability="False"
+                                            FontSize="13" />
+
+
+    </Grid>
+</base:BaseUserControl>

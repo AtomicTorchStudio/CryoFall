@@ -18,6 +18,9 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Text="{Binding SearchText, ElementName=UserControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 AcceptsTab="False"
+                 KeyboardNavigation.TabNavigation="None"
+                 KeyboardNavigation.DirectionalNavigation="None"
                  FontWeight="Bold"
                  FontSize="12"
                  BorderThickness="0"

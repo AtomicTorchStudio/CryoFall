@@ -63,7 +63,8 @@
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemGeneric.Clone()
-                                    .Replace(ItemSound.Use, "Items/Equipment/UseLight");
+                                    .Replace(ItemSound.Use,          "Items/Equipment/UseLight")
+                                    .Replace(ItemSound.CannotSelect, "Items/Equipment/UseLight");
         }
     }
 }

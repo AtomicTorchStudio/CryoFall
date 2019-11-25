@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 1);
 
-            outputItems.Add<ItemGlue>(count: 2);
+            outputItems.Add<ItemGlue>(count: 3);
 
             this.Icon = ClientItemIconHelper.CreateComposedIcon(
                 name: this.Id + "Icon",

@@ -17,7 +17,7 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemFibers>(count: 10);
             inputItems.Add<ItemAcidNitric>(count: 1);

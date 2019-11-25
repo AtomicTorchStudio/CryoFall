@@ -1,17 +1,23 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.CooldownIndicator
 {
     using System.Windows;
-    using System.Windows.Controls;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public partial class CooldownIndicatorControl : BaseUserControl
     {
-        public static readonly DependencyProperty SetTotalDurationProperty = DependencyProperty.Register(
-            nameof(SetTotalDuration),
-            typeof(double),
-            typeof(CooldownIndicatorControl),
-            new PropertyMetadata(0d, SetTotalDurationPropertyValueChanged));
+        public static readonly DependencyProperty SetTotalDurationProperty
+            = DependencyProperty.Register(
+                nameof(SetTotalDuration),
+                typeof(double),
+                typeof(CooldownIndicatorControl),
+                new PropertyMetadata(0, SetTotalDurationPropertyValueChanged));
+
+        public static readonly DependencyProperty ViewModelProperty
+            = DependencyProperty.Register(nameof(ViewModel),
+                                          typeof(ViewModelCooldownIndicatorControl),
+                                          typeof(CooldownIndicatorControl),
+                                          new PropertyMetadata(default(ViewModelCooldownIndicatorControl)));
 
         private ViewModelCooldownIndicatorControl viewModel;
 
@@ -19,6 +25,12 @@
         {
             get => (double)this.GetValue(SetTotalDurationProperty);
             set => this.SetValue(SetTotalDurationProperty, value);
+        }
+
+        public ViewModelCooldownIndicatorControl ViewModel
+        {
+            get => (ViewModelCooldownIndicatorControl)this.GetValue(ViewModelProperty);
+            set => this.SetValue(ViewModelProperty, value);
         }
 
         public void TurnOn(double cooldownDurationSeconds)
@@ -35,8 +47,7 @@
 
         protected override void OnLoaded()
         {
-            var layoutRoot = this.GetByName<Border>("LayoutRoot");
-            layoutRoot.DataContext = this.viewModel = new ViewModelCooldownIndicatorControl();
+            this.ViewModel = this.viewModel = new ViewModelCooldownIndicatorControl();
 
             this.UpdateSize();
             this.SizeChanged += this.SizeChangedHandler;

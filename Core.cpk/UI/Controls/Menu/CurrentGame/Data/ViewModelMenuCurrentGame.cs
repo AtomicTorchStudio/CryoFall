@@ -11,7 +11,6 @@
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ViewModelMenuCurrentGame : BaseViewModel
     {
@@ -55,6 +54,9 @@
         }
 
         public bool CanEditWelcomeMessage => ServerOperatorSystem.ClientIsOperator();
+
+        public BaseCommand CommandCopyPublicGuidToClipboard
+            => new ActionCommand(() => Client.Core.CopyToClipboard(this.ServerAddress.PublicGuid.ToString()));
 
         public BaseCommand CommandDisconnect
             => new ActionCommand(this.ExecuteCommandDisconnect);
@@ -148,9 +150,6 @@
 
         public string WipedDateText
             => ViewModelServerInfo.FormatWipedDate(this.wipedDate);
-
-        public BaseCommand CommandCopyPublicGuidToClipboard
-            => new ActionCommand(() => Client.Core.CopyToClipboard(this.ServerAddress.PublicGuid.ToString()));
 
         public async void ReloadIcon()
         {

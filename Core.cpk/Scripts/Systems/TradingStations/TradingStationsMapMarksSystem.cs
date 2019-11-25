@@ -2,11 +2,12 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Bootstrappers;
+    using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
-    using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi;
+    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -20,14 +21,30 @@
                   ? new SuperObservableCollection<TradingStationMark>()
                   : null;
 
-        private static readonly List<IStaticWorldObject> ServerTradingStationsList
+        private static readonly HashSet<IStaticWorldObject> ServerActiveTradingStations
             = IsServer
-                  ? new List<IStaticWorldObject>()
+                  ? new HashSet<IStaticWorldObject>()
                   : null;
 
         public override string Name => "Trading stations map marks system";
 
-        public static void ServerAddMark(IStaticWorldObject tradingStation)
+        public static Task<TradingStationInfo> ClientRequestTradingStationInfo(uint tradingStationId)
+        {
+            return Instance.CallServer(_ => _.ServerRemote_GetTradingStationInfo(tradingStationId));
+        }
+
+        public static void ServerRefreshMark(IStaticWorldObject tradingStation)
+        {
+            if (ServerIsTradingStationHasActiveLots(tradingStation))
+            {
+                ServerTryAddMark(tradingStation);
+                return;
+            }
+
+            ServerTryRemoveMark(tradingStation);
+        }
+
+        public static void ServerTryAddMark(IStaticWorldObject tradingStation)
         {
             var owners = WorldObjectOwnersSystem.SharedGetOwners(tradingStation);
             if (owners.Count == 0)
@@ -37,7 +54,16 @@
                 return;
             }
 
-            ServerTradingStationsList.Add(tradingStation);
+            if (!ServerIsTradingStationHasActiveLots(tradingStation))
+            {
+                return;
+            }
+
+            if (!ServerActiveTradingStations.Add(tradingStation))
+            {
+                // already added
+                return;
+            }
 
             var allOnlinePlayers = Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true);
             foreach (var onlinePlayer in allOnlinePlayers)
@@ -51,9 +77,9 @@
             }
         }
 
-        public static void ServerRemoveMark(IStaticWorldObject tradingStation)
+        public static void ServerTryRemoveMark(IStaticWorldObject tradingStation)
         {
-            if (!ServerTradingStationsList.Remove(tradingStation))
+            if (!ServerActiveTradingStations.Remove(tradingStation))
             {
                 // don't have a mark for this trading station
                 return;
@@ -68,6 +94,20 @@
         {
             base.PrepareSystem();
             WorldObjectOwnersSystem.ServerOwnersChanged += this.WorldObjectOwnersSystemOwnersChangedHandler;
+        }
+
+        private static bool ServerIsTradingStationHasActiveLots(IStaticWorldObject tradingStation)
+        {
+            var publicState = tradingStation.GetPublicState<ObjectTradingStationPublicState>();
+            foreach (var lot in publicState.Lots)
+            {
+                if (lot.State == TradingStationLotState.Available)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableOrdered, groupName: nameof(TradingStationsMapMarksSystem))]
@@ -92,15 +132,41 @@
             }
         }
 
+        private TradingStationInfo ServerRemote_GetTradingStationInfo(uint tradingStationId)
+        {
+            foreach (var tradingStation in ServerActiveTradingStations)
+            {
+                if (tradingStation.Id != tradingStationId)
+                {
+                    continue;
+                }
+
+                var publicState = tradingStation.GetPublicState<ObjectTradingStationPublicState>();
+                var activeLots = new List<TradingStationLotInfo>(publicState.Lots.Count);
+                foreach (var lot in publicState.Lots)
+                {
+                    if (lot.State == TradingStationLotState.Available)
+                    {
+                        activeLots.Add(new TradingStationLotInfo(lot));
+                    }
+                }
+
+                return new TradingStationInfo(isBuying: publicState.Mode == TradingStationMode.StationBuying,
+                                              activeLots);
+            }
+
+            return default;
+        }
+
         [RemoteCallSettings(DeliveryMode.ReliableOrdered, groupName: nameof(TradingStationsMapMarksSystem))]
         private void ServerRemote_RequestMarks()
         {
             var character = ServerRemoteContext.Character;
 
-            var result = new List<TradingStationMark>(capacity: ServerTradingStationsList.Count);
+            var result = new List<TradingStationMark>(capacity: ServerActiveTradingStations.Count);
 
             // add to the character private scope all owned areas
-            foreach (var tradingStation in ServerTradingStationsList)
+            foreach (var tradingStation in ServerActiveTradingStations)
             {
                 var isOwner = WorldObjectOwnersSystem.SharedIsOwner(character, tradingStation);
                 result.Add(new TradingStationMark(tradingStation.Id,
@@ -111,17 +177,57 @@
             this.CallClient(character, _ => _.ClientRemote_MarksRequestResult(result));
         }
 
-        private void WorldObjectOwnersSystemOwnersChangedHandler(IStaticWorldObject worldObject)
+        private void WorldObjectOwnersSystemOwnersChangedHandler(IWorldObject worldObject)
         {
-            if (!(worldObject.ProtoStaticWorldObject is IProtoObjectTradingStation))
+            if (!(worldObject.ProtoGameObject is IProtoObjectTradingStation))
             {
                 // not a trading station
                 return;
             }
 
             // refresh the mark for all players - remove and add the mark
-            ServerRemoveMark(worldObject);
-            ServerAddMark(worldObject);
+            ServerTryRemoveMark((IStaticWorldObject)worldObject);
+            ServerTryAddMark((IStaticWorldObject)worldObject);
+        }
+
+        [NotPersistent]
+        public readonly struct TradingStationInfo : IRemoteCallParameter
+        {
+            public readonly IReadOnlyList<TradingStationLotInfo> ActiveLots;
+
+            public readonly bool IsBuying;
+
+            public TradingStationInfo(bool isBuying, IReadOnlyList<TradingStationLotInfo> activeLots)
+            {
+                this.IsBuying = isBuying;
+                this.ActiveLots = activeLots;
+            }
+        }
+
+        [NotPersistent]
+        public readonly struct TradingStationLotInfo : IRemoteCallParameter
+        {
+            public TradingStationLotInfo(TradingStationLot lot)
+            {
+                this.ProtoItem = lot.ProtoItem;
+                this.State = lot.State;
+                this.LotQuantity = lot.LotQuantity;
+                this.CountAvailable = lot.CountAvailable;
+                this.PriceCoinShiny = lot.PriceCoinShiny;
+                this.PriceCoinPenny = lot.PriceCoinPenny;
+            }
+
+            public uint CountAvailable { get; }
+
+            public ushort LotQuantity { get; }
+
+            public ushort PriceCoinPenny { get; }
+
+            public ushort PriceCoinShiny { get; }
+
+            public IProtoItem ProtoItem { get; }
+
+            public TradingStationLotState State { get; }
         }
 
         public struct TradingStationMark : IRemoteCallParameter

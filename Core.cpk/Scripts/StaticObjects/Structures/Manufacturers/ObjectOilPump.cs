@@ -28,17 +28,17 @@
         public override string Description =>
             "Can be built over an oil seep to extract raw petroleum oil directly from the ground.";
 
-        public override float LiquidCapacity => 100;
+        public override double LiquidCapacity => 100;
 
-        public override float LiquidProductionAmountPerSecond => 0.1f;
+        public override double LiquidProductionAmountPerSecond => 0.1;
 
         public override string Name => "Oil pump";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 2500;
+        public override float StructurePointsMax => 5000;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -120,7 +120,7 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((2.8, 2.2), (0.1, 0))
+                .AddShapeRectangle((3.0, 2.2), (0, 0))
                 .AddShapeRectangle((2.8, 1.7), (0.1, 0.7), CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((2.8, 1.6), (0.1, 0.8), CollisionGroups.HitboxRanged)
                 .AddShapeRectangle((2.8, 2.8), (0.1, 0),   CollisionGroups.ClickArea);

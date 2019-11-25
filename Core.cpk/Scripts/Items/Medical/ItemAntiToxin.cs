@@ -23,7 +23,7 @@
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {
             // remove toxins
-            character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(intensityToRemove: 0.3);
+            character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(intensityToRemove: 0.4);
 
             base.ServerOnUse(character, currentStats);
         }

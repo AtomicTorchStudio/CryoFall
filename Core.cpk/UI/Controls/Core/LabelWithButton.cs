@@ -47,8 +47,7 @@
         {
             var control = (LabelWithButton)dependencyObject;
             var value = dependencyPropertyChangedEventArgs.NewValue;
-            var buttonReference = value as IButtonReference;
-            if (buttonReference == null)
+            if (!(value is IButtonReference buttonReference))
             {
                 Api.Logger.Error(
                     $"You need to provide a valid ButtonReference for {nameof(LabelWithButton)} control."

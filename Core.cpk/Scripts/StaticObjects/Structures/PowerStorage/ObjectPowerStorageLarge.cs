@@ -30,15 +30,15 @@
 
         public override string Description => GetProtoEntity<ObjectPowerStorage>().Description;
 
-        public override double ElectricityCapacity => 12000;
+        public override double ElectricityCapacity => 30000;
 
         public override string Name => "Large power storage";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 2500;
+        public override float StructurePointsMax => 3500;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -84,11 +84,12 @@
                                                          + data.ClientState.Renderer.DrawOrderOffsetY;
 
                 // add sprite sheet animation for fan sprite
-                var sceneObject = Client.Scene.GetSceneObject(worldObject);
+                var sceneObject = worldObject.ClientSceneObject;
                 componentAnimator = sceneObject.AddComponent<ClientComponentSpriteSheetAnimator>();
                 componentAnimator.Setup(overlaySpriteRenderer,
                                         ClientComponentSpriteSheetAnimator.CreateAnimationFrames(
                                             this.textureAtlasActive),
+                                        isLooped: true,
                                         frameDurationSeconds: 5 / 60.0,
                                         initialFrameOffset: frameOffset);
             }

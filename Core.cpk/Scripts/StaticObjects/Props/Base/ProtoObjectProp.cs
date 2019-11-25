@@ -33,8 +33,8 @@
 
         public sealed override string Name => this.ShortId;
 
-        public override ObjectSoundMaterial ObjectSoundMaterial
-            => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial
+            => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 1;
 
@@ -53,7 +53,7 @@
         {
             obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
             damageApplied = 0; // no damage
-            return true; // hit
+            return true;       // hit
         }
 
         protected static void AddFullHeightWallHitboxes(

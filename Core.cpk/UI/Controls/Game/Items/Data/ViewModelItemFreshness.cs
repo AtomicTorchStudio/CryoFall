@@ -2,8 +2,8 @@
 {
     using System;
     using System.Windows.Media;
-    using AtomicTorch.CBND.CoreMod.Items.Food;
-    using AtomicTorch.CBND.CoreMod.Systems.FoodSpoilageSystem;
+    using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -16,9 +16,9 @@
 
         private static readonly Brush BrushYellow = new SolidColorBrush(Color.FromArgb(0xAA, 0xE0, 0xE0, 0x10));
 
-        private IFoodPrivateState foodPrivateState;
-
         private IItem item;
+
+        private IItemWithFreshnessPrivateState itemPrivateState;
 
         public Brush Brush { get; private set; }
 
@@ -47,7 +47,7 @@
                     return;
                 }
 
-                this.FreshnessMax = ((IProtoItemFood)this.item.ProtoItem).FreshnessMaxValue;
+                this.FreshnessMax = ((IProtoItemWithFreshness)this.item.ProtoItem).FreshnessMaxValue;
 
                 if (!this.item.ClientHasPrivateState)
                 {
@@ -56,8 +56,8 @@
                     return;
                 }
 
-                this.foodPrivateState = this.item.GetPrivateState<IFoodPrivateState>();
-                this.foodPrivateState.ClientSubscribe(_ => _.FreshnessCurrent,
+                this.itemPrivateState = this.item.GetPrivateState<IItemWithFreshnessPrivateState>();
+                this.itemPrivateState.ClientSubscribe(_ => _.FreshnessCurrent,
                                                       _ => this.Refresh(),
                                                       this);
 
@@ -65,17 +65,17 @@
             }
         }
 
-        private static Brush GetBrush(FoodFreshness freshness)
+        private static Brush GetBrush(ItemFreshness freshness)
         {
             switch (freshness)
             {
-                case FoodFreshness.Green:
+                case ItemFreshness.Green:
                     return BrushGreen;
 
-                case FoodFreshness.Yellow:
+                case ItemFreshness.Yellow:
                     return BrushYellow;
 
-                case FoodFreshness.Red:
+                case ItemFreshness.Red:
                     return BrushRed;
 
                 default:
@@ -85,8 +85,8 @@
 
         private void Refresh()
         {
-            this.FreshnessCurrent = this.foodPrivateState.FreshnessCurrent;
-            this.Brush = GetBrush(FoodSpoilageSystem.SharedGetFreshnessEnum(this.item));
+            this.FreshnessCurrent = this.itemPrivateState.FreshnessCurrent;
+            this.Brush = GetBrush(ItemFreshnessSystem.SharedGetFreshnessEnum(this.item));
         }
     }
 }

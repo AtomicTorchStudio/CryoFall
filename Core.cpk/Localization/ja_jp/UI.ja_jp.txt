@@ -1,14 +1,20 @@
-﻿UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
-破壊された
+﻿UI/CoreStrings@Action_Build:
+建設
+
+UI/CoreStrings@Action_Repair:
+修理
+
+UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
+解体までの時間：
 
 UI/CoreStrings@Button_Accept:
-受け入れる
+受諾
 
 UI/CoreStrings@Button_Add:
-追加する
+追加
 
 UI/CoreStrings@Button_Apply:
-適用する
+適用
 
 UI/CoreStrings@Button_Back:
 戻る
@@ -32,11 +38,11 @@ UI/CoreStrings@Button_Deny:
 拒否
 
 UI/CoreStrings@Button_Drain:
-排水する
+排水
 
 UI/CoreStrings@Button_Drain_DialogConfirmation:
 `中身を排水しますか？
-[br]戻すことはできません。`
+[br]元に戻すことはできません。`
 
 UI/CoreStrings@Button_Drink:
 飲む
@@ -47,14 +53,20 @@ UI/CoreStrings@Button_Edit:
 UI/CoreStrings@Button_Help:
 ﾍﾙﾌﾟ
 
+UI/CoreStrings@Button_Next:
+次へ
+
 UI/CoreStrings@Button_OK:
 OK
+
+UI/CoreStrings@Button_Previous:
+戻る
 
 UI/CoreStrings@Button_Quit:
 終了
 
 UI/CoreStrings@Button_Reset:
-リセット
+初期化
 
 UI/CoreStrings@Button_Retry:
 リトライ
@@ -66,16 +78,16 @@ UI/CoreStrings@Button_Upgrade:
 アップグレード
 
 UI/CoreStrings@CharacterStatName_Food:
-食料
+満腹度
 
 UI/CoreStrings@CharacterStatName_Health:
-健康
+体力
 
 UI/CoreStrings@CharacterStatName_Stamina:
 スタミナ
 
 UI/CoreStrings@CharacterStatName_Water:
-水
+水分
 
 UI/CoreStrings@Chat_MessageMenu_Block:
 ブロック
@@ -96,16 +108,16 @@ UI/CoreStrings@Chat_MessageMenu_Unblock:
 アンロック
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
-この建物は装飾品です。
+この建物は装飾用です。
 
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerConsumer:
 この建物を操作するには電気が必要です。
 
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerProducer:
-この建物は電気を生成します。
+この建物は電気を生産します。
 
 UI/CoreStrings@ConstructionMetaInfo_ElectricityPowerStorage:
-この建物は電気を保存します。
+この建物は電気を貯蔵します。
 
 UI/CoreStrings@Copy:
 コピー
@@ -117,7 +129,7 @@ UI/CoreStrings@CraftingCountSelector_Min:
 最小
 
 UI/CoreStrings@CraftingQueue_Title:
-作成
+製作中
 
 UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
 `[b]左クリック[/b]
@@ -127,10 +139,10 @@ UI/CoreStrings@CraftingQueueItemControl_ShortcutsDescription:
 [br]このレシピをキャンセルする`
 
 UI/CoreStrings@CraftingRecipeDetails_ButtonStartCraft:
-作成
+製作
 
 UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
-`このクラフトステーションのレシピを知りません。
+`この作業設備のレシピを一つも知りません。
 [br][br][br]
 技術メニューでより多くのレシピをアンロックできます。`
 
@@ -138,37 +150,59 @@ UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 アンロックされたレシピ
 
 UI/CoreStrings@Defense_Format_Chemical:
-化学防護:{0}
+耐化学保護：{0}
 
 UI/CoreStrings@Defense_Format_Cold:
-耐寒防御:{0}
+耐寒保護：{0}
 
 UI/CoreStrings@Defense_Format_Electrical:
-感電防御:{0}
+耐電保護：{0}
 
 UI/CoreStrings@Defense_Format_Heat:
-耐熱防御:{0}
+耐熱保護：{0}
 
 UI/CoreStrings@Defense_Format_Impact:
-近接防御:{0}
+耐衝撃保護：{0}
 
 UI/CoreStrings@Defense_Format_Kinetic:
-物理防御:{0}
+耐キネティック保護：{0}
 
 UI/CoreStrings@Defense_Format_Psi:
-PSI防御:{0}
+耐サイオニック保護：{0}
 
 UI/CoreStrings@Defense_Format_Radiation:
-放射線防護:{0}
+耐放射能保護：{0}
+
+UI/CoreStrings@Demo_Button_BuyGameOnSteam:
+SteamでCryoFallを購入
+
+UI/CoreStrings@Demo_CanPurchase:
+CryoFallを購入すると、ゲームの完全版をお楽しみいただけます。1回限りの購入で、既存のキャラクター(最近プレイしたら)で打ち切ったところから続けてプレイできます。またコミュニティやMODサーバーでプレイしたり、自分のサーバーをホストしてプレイすることもできます。
+
+UI/CoreStrings@Demo_Expired:
+体験版の期限が終了しました。ゲームをプレイしていただきありがとうございました。楽しんでいただけたら幸いです！
+
+UI/CoreStrings@Demo_OnlyOfficialServers:
+`この体験版では公式ゲームサーバーでプレイできます。
+[br]他のコミュニティまたは非公開ゲームサーバーや自分のサーバーをホストしてプレイするには、正式版を購入してください。`
+
+UI/CoreStrings@Demo_TimeRemaining:
+体験版の有効期限：
+
+UI/CoreStrings@Demo_Title:
+CryoFall体験版
+
+UI/CoreStrings@Demo_Welcome:
+CryoFallの体験版へようこそ。 体験版の期間中、制限なくゲームを楽しむことができます。 (公式ゲームサーバーのすべてのゲーム機能にアクセス可能)
 
 UI/CoreStrings@DepositAvailableForClaiming_Message:
-占領できるまで：
+所有可能まで：
 
 UI/CoreStrings@DepositCapacityStats_Message:
 資源が枯渇するまで：
 
 UI/CoreStrings@DepositCapacityStats_Title:
-資源容量
+埋蔵量
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 EU
@@ -177,7 +211,10 @@ UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 EU/s
 
 UI/CoreStrings@Extras_DiscordTooltip:
-CryoFallの公式ディスコードサーバー(英語のみ)
+CryoFallの公式Discordサーバー(英語のみ)
+
+UI/CoreStrings@Extras_FeaturesTooltip:
+CryoFallの特徴のスライドショー
 
 UI/CoreStrings@Extras_PatchnotesTooltip:
 CryoFallの更新パッチノート (英語のみ)
@@ -189,16 +226,22 @@ UI/CoreStrings@FarmPlantTooltip_NotWatered:
 水やりされていません
 
 UI/CoreStrings@FarmPlantTooltip_PossibleHarvestsCount:
-収穫が可能
+収穫可能
 
 UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
-収穫時間
+収穫可能まで
 
 UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
 今！
 
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiled:
+腐敗中
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
+腐敗まで
+
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
-に水をやる
+水やりまで
 
 UI/CoreStrings@Field_Email:
 Eメール
@@ -212,11 +255,14 @@ UI/CoreStrings@Gender_Female:
 UI/CoreStrings@Gender_Male:
 男性
 
+UI/CoreStrings@HUDButtonsBar_DismountVehicle:
+乗り物から降りる
+
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 建設
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Crafting:
-作成
+製作
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Equipment:
 所持品
@@ -243,28 +289,28 @@ UI/CoreStrings@HUDEnergyChargeIndicator_TotalCapacity:
 総容量
 
 UI/CoreStrings@HUDEnergyChargeIndicator_TotalCharge:
-総充電
+総充電量
 
 UI/CoreStrings@HUDQuestTrackingEntry_QuestTitleFormat:
-クエスト:{0}
+クエスト：{0}
 
 UI/CoreStrings@ImplantSlotOnStation_Biomaterial:
 生体材料
 
 UI/CoreStrings@ImplantSlotOnStation_Button_Uninstall:
-アンインストール
+取り外し
 
 UI/CoreStrings@ImplantSlotOnStation_ImplantInstalled:
-インストール済みのインプラント
+取付済みインプラント
 
 UI/CoreStrings@ImplantSlotOnStation_InstallImplant:
-インプラントをインストールします
+インプラント取り付け
 
 UI/CoreStrings@ImplantSlotOnStation_NoImplantInstalled:
-インプラントがインストールされていません
+取り付けたインプラントなし
 
 UI/CoreStrings@ImplantSlotOnStation_PlaceAnImplantToInstall:
-インストールするインプラントを配置する
+取り付けるインプラントを配置してください
 
 UI/CoreStrings@ImplantSlotOnStation_Requirement:
 必要
@@ -273,25 +319,25 @@ UI/CoreStrings@ItemsContainer_Button_DisplayShortcuts:
 ショートカット
 
 UI/CoreStrings@ItemsContainer_Button_MatchDown:
-マッチダウン
+マッチアイテムを下に
 
 UI/CoreStrings@ItemsContainer_Button_MatchUp:
-マッチアップ
+マッチアイテムを上に
 
 UI/CoreStrings@ItemsContainer_Button_TakeAll:
 すべて取る
 
 UI/CoreStrings@ItemsContainer_CapacityExceededTakeOnly:
-容量を超えています。すべてのアイテムがテイクアウトのみです。
+容量を超過しました。すべてのアイテムは持ち出しのみです。
 
 UI/CoreStrings@ItemsContainer_Title:
 アイテム
 
 UI/CoreStrings@ItemsContainer_TitleInput:
-投入
+入力
 
 UI/CoreStrings@ItemsContainer_TitleOutput:
-生成
+出力
 
 UI/CoreStrings@LearningPoints:
 学習ポイント
@@ -363,15 +409,15 @@ UI/CoreStrings@MenuHome_News:
 ニュース
 
 UI/CoreStrings@MenuHome_ReadMore:
-続きを読む...
+続きを読む…
 
 UI/CoreStrings@MenuHome_RecentServers:
 最近のサーバー
 
 UI/CoreStrings@MenuHome_ServerHistoryEmpty:
 `サーバー履歴は空です。
-[br][br]セクションを使って最近プレイしたサーバーを
-[br]すぐに追加できます。`
+[br][br]このセクションを使って最近プレイした
+[br]サーバーをすぐに追加できます。`
 
 UI/CoreStrings@MenuHome_Social:
 ソーシャル
@@ -392,13 +438,13 @@ UI/CoreStrings@MenuQuit_QuestionAreYouSure:
 終了してデスクトップに戻ってよろしいですか？
 
 UI/CoreStrings@MenuServers_AwaitingServerList:
-サーバーリストロード中…
+サーバーリスト読み込み中…
 
 UI/CoreStrings@MenuServers_Button_AddCustomServer:
 サーバーを追加
 
 UI/CoreStrings@MenuServers_Button_ClearList:
-リストの更新
+リストの消去
 
 UI/CoreStrings@MenuServers_Button_EditAddress:
 アドレスを編集
@@ -416,10 +462,10 @@ UI/CoreStrings@MenuServers_Button_RemoveServer:
 サーバーを削除
 
 UI/CoreStrings@MenuServers_Checkbox_ShowEmpty:
-空のサーバーを表示する
+空のサーバーを表示
 
 UI/CoreStrings@MenuServers_Checkbox_ShowIncompatible:
-互換性のないものを表示する
+互換性のないものを表示
 
 UI/CoreStrings@MenuServers_ClickToCopy:
 クリックしてコピー！
@@ -437,7 +483,7 @@ UI/CoreStrings@MenuServers_ListTitleFavorite:
 お気に入り
 
 UI/CoreStrings@MenuServers_ListTitleFeatured:
-フィーチャー
+オススメ
 
 UI/CoreStrings@MenuServers_ListTitleModded:
 MOD
@@ -455,13 +501,13 @@ UI/CoreStrings@MenuServers_ServersCount:
 サーバー
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Description:
-フィーチャーされたサーバーは、公式サーバと同様に高品質な経験を提供する事で評価を獲得します。しかし、これらのサーバはコミュニティによってホストされています。
+オススメのサーバーは、公式サーバと同様に高品質な経験を提供するという評価を得ています。しかし、これらのサーバはコミュニティによってホストされています。
 
 UI/CoreStrings@MenuServers_ServerTag_Featured_Title:
-フィーチャー
+オススメ
 
 UI/CoreStrings@MenuServers_ServerTag_Modded_Description:
-このサーバーは有志制作のMODが加えています。オリジナル版のゲームと大きく違く感じる可能性があります。また、MODが導入されたサーバーはバグが潜んでいる可能性があります。ご使用は、自己責任となりますのでご注意下さい。
+このサーバーは有志制作のMODが含まれています。オリジナル版のゲームと大きく異なる可能性があります。また、MODが導入されたサーバーはバグが潜んでいる可能性があります。ご利用は自己責任となりますのでご注意下さい。
 
 UI/CoreStrings@MenuServers_ServerTag_Modded_Title:
 MOD
@@ -474,61 +520,71 @@ UI/CoreStrings@MenuServers_ServerTag_Official_Title:
 
 UI/CoreStrings@MenuServers_ServerTag_PvE_Description:
 `平和な探検と開拓向けに設計された「プレイヤー対環境」サーバーです。
-他のプレイヤーによる侵害から保護されているが、野生生物や環境による危険からは保護されていません！
+他のプレイヤーからは保護されますが、野生生物や環境による危険からは保護されません！
 初回プレイの場合は、このPvEサーバーがおすすめです。`
 
 UI/CoreStrings@MenuServers_ServerTag_PvE_Title:
 PvE
 
 UI/CoreStrings@MenuServers_ServerTag_PvP_Description:
-`戦闘や土地争いにフォーカスした「プレイヤー対プレイヤー」サーバーです。
+`戦闘や領土争いにフォーカスした「プレイヤー対プレイヤー」サーバーです。
 PvPサーバーには制限はなく、殺したり殺されたりします。
-戦闘の準備を！`
+戦いに備えよ！`
 
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
 
+UI/CoreStrings@ModsDisabledWindow_Description:
+`利用できないMODのためゲームが実行できずMODを無効化しました。
+[br]原因は、一つ以上のMODが古い(現在のゲームバージョンと互換性がない)か、または単に利用できないためです。
+[br]特定のMODが原因で問題が発生しているのか、またはすべてのMODに互換性がないのかは特定できません。これをチェックするには、MODを1つずつ有効にしてください。
+[br]これらのMODを引き続き利用するには、最新バージョンかどうか確認してください。
+[br]
+[br]無効化されたMOD一覧：
+[br]{0}`
+
+UI/CoreStrings@ModsDisabledWindow_Title:
+CryoFallがMODを無効化しました。
+
 UI/CoreStrings@Network_Jitter:
-ジッタ
+ジッター
 
 UI/CoreStrings@Network_Jitter_SeverityRed:
 `サーバーへのインターネット接続に深刻な問題が発生しているようです。
-[br]結果として、キャラクターの移動の問題（頻繁なラバーバンディングなど）が発生する可能性があります。あるいは、サーバーとの大幅な食い違いが原因でヒットが頻繁に見逃される可能性があります。`
+[br]結果として、キャラクターの移動の問題（頻繁なラバーバンディングなど）が発生する恐れがあります。あるいは、サーバーとの大幅なラグが原因でアクションが頻繁に見逃される恐れがあります。`
 
 UI/CoreStrings@Network_Jitter_SeverityYellow:
 `サーバーへのインターネット接続にかなりのジッタが発生しているようです。
-[br]結果として、わずかな動きの問題（時々のラバーバンディングなど）を経験するかもしれません、あるいはヒットは時々サーバとのかなりの食い違いのために失敗するかもしれません。`
+[br]結果として、わずかな移動の問題（ラバーバンディングなど）が発生する恐れがあります。あるいは、サーバーとの大幅なラグが原因でアクションがたまに見逃される恐れがあります。`
 
 UI/CoreStrings@Network_Perfect:
 `ネットワーク接続は問題ないようです。
-[br]ゲームを楽しんでください。`
+[br]ゲームを楽しんでください！`
 
 UI/CoreStrings@Network_PingAverage:
 ping（平均）
 
 UI/CoreStrings@Network_PingAverage_SeverityRed:
-`サーバーへのインターネット接続に深刻な待ち時間（非常に大きなping）が発生しているようです。
-[br]結果として、ゲーム内での行動のいくつか（これを有効にするにはサーバーの応答が必要です）
-実行と処理にはもっと時間がかかります。
-[br]例えば、ヒットはサーバとのかなりの食い違いのためにしばしば失敗するかもしれません。
-[br]頻繁なラバーバンディングや瞬間的な位置補正も発生する可能性があります。`
+`サーバーへのインターネット接続に深刻なラグ（非常に高いping）が発生しているようです。
+[br]結果として、ゲーム内での行動（サーバーの応答が必要なもの）の実行や処理に非常に時間がかかる恐れがあります。
+[br]例えば、サーバーとのかなりのラグのために攻撃がたびたび失敗するかもしれません。
+[br]また、頻繁なラバーバンディングや瞬間的な位置補正も発生する可能性があります。`
 
 UI/CoreStrings@Network_PingAverage_SeverityYellow:
-`サーバーへのインターネット接続にかなりの待ち時間（大きなping）が発生しているようです。
-[br]結果として、ゲーム内での行動のいくつか（これを有効にするにはサーバーの応答が必要です）
-実行と処理に時間がかかります。
-[br]例えば、サーバーとのかなりの食い違いが原因でヒットが見逃されることがあります。
-[br]ゴム結束や瞬間的な位置補正も発生する可能性があります。`
+`サーバーへのインターネット接続にかなりのラグ（高いping）が発生しているようです。
+[br]結果として、ゲーム内での行動（サーバーの応答が必要なもの）の実行や処理に時間がかかるでしょう。
+[br]例えば、サーバーとのかなりのラグのために攻撃がたまに失敗するかもしれません。
+[br]また、ラバーバンディングや瞬間的な位置補正も発生する可能性があります。`
 
 UI/CoreStrings@Network_PingFluctuationRange:
 ping変動幅
 
 UI/CoreStrings@Network_PingFluctuationRange_SeverityRed:
-`サーバーへのインターネット接続に深刻な待ち時間の変動があるようです。
+`サーバーへのインターネット接続に深刻なレイテンシの変動があるようです。
 [br]ネットワークパケットの中には異常に高いランダムラグを伴って受信されるものがあるため、ゲームはバッファリング値を増やす必要があります。実質的に高いレイテンシ（高いping）で遊ぶことを意味します。`
 
 UI/CoreStrings@Network_PingFluctuationRange_SeverityYellow:
-`サーバーへのインターネット接続で大幅な遅延変動が発生しているようです。
+`サーバーへのインターネット接続で大幅なレイテンシの変動があるようです。
 [br]ネットワークパケットの中には異常に高いランダムラグを伴って受信されるものがあるため、ゲームはバッファリング値を増やす必要があります。実質的に高いレイテンシ（高いping）で遊ぶことを意味します。`
 
 UI/CoreStrings@Network_PingGame:
@@ -536,9 +592,9 @@ ping（ゲーム）
 
 UI/CoreStrings@Network_Suggestions:
 `[b]推奨事項：[/b]
-[*] 最高のエクスペリエンスのために、サーバーを[b]あなたの地域[/b]でプレイすることを推奨します (提供範囲内の場合)。
-[*] その他のアプリケーションを[b]閉じる[/b]ことを検討してください（特にWebブラウザやクライアント、ダウンローダーなど）。
-[*] お使いのPCが現在WI-Fiやモバイル接続で接続されている場合は、[b]有線接続[/b]に切り替えることも検討してください（無線接続は遅延の原因となる場合があります）`
+[*] 最高のエクスペリエンスのために、[b]あなたの地域[/b]のサーバーでプレイすることを推奨します (可能であれば)。
+[*] その他のアプリケーションを[b]閉じる[/b]ことを検討してください（特にWebブラウザやTorrentクライアント、ダウンローダーなど）。
+[*] お使いのPCが現在Wi-Fiやモバイル接続で接続されている場合は、[b]有線接続[/b]に切り替えることも検討してください（無線接続は遅延の原因となる場合があります）。`
 
 UI/CoreStrings@NicknameOfflinePlayer:
 オフライン Zzz...
@@ -577,7 +633,7 @@ UI/CoreStrings@ObjectOwnersList_Empty:
 所有者なし
 
 UI/CoreStrings@ObjectOwnersList_OnlyOwnerCanAdd:
-所有者だけがアクセスを追加および削除できます。
+所有者だけがアクセス権を追加および削除できます。
 
 UI/CoreStrings@ObjectOwnersList_RemoveOwner:
 所有者を削除
@@ -589,10 +645,10 @@ UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
 購入
 
 UI/CoreStrings@ObjectTradingStationDisplay_ModeSelling:
-売り出し中
+販売中
 
 UI/CoreStrings@OptionsInput_ContainerMenuCategory:
-コンテナメニュー
+収納メニュー
 
 UI/CoreStrings@PartyManagement_Button_CreateParty:
 パーティーを作成
@@ -601,90 +657,90 @@ UI/CoreStrings@PartyManagement_Button_Invite:
 招待する
 
 UI/CoreStrings@PartyManagement_Button_Leave:
-パーティーを離れる
+パーティーを去る
 
 UI/CoreStrings@PartyManagement_CurrentPartySize:
 パーティーサイズ
 
 UI/CoreStrings@PartyManagement_HowToInvite:
-プレイヤー名を下に入力して招待するか、チャット内のプレイヤー名を右クリックしてください。
+下にプレイヤー名を入力して招待するか、チャット内のプレイヤー名を右クリックしてください。
 
 UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-パーティーのメンバーによって獲得された学習ポイントの一部は、メンバー間で平等に共有されます。
+パーティーメンバーによって獲得された学習ポイントの一部は、メンバー間で平等に共有されます。
 
 UI/CoreStrings@PartyManagement_InviteMember:
 メンバーを招待
 
 UI/CoreStrings@PartyManagement_NoParty:
-`まだパーティーはありません。
+`まだパーティーに加入していません。
 [br]
-[*]招待状を受け取り承認することでパーティーに参加できます。
-[*]自分のパーティーを作って他のプレイヤーを招待することができます。`
+[*] 招待状を受け取り承認することでパーティーに参加できます。
+[*] 自分のパーティーを作って他のプレイヤーを招待することができます。`
 
 UI/CoreStrings@PartyManagement_Title:
 パーティー
 
 UI/CoreStrings@Performance__VRAM_SeverityYellow:
-`お使いのGPUは必要なテクスチャをすべてVRAMにフィットさせることが難しいようです。レンダリングイメージの読み込みが遅くなる場合があります。
-[br][b]ビデオオプション[/b]メニューで[b]テクスチャ品質[/b]オプションを下げることを検討してください。`
+`お使いのGPUは必要なテクスチャをすべてVRAMに読み込むのが困難で、レンダリングイメージのスタッタリングが発生する恐れがあります。
+[br][b]ビデオ設定[/b]メニューで[b]テクスチャ品質[/b]設定を下げることを検討してください。`
 
 UI/CoreStrings@Performance_FPS_SeverityRed:
-マシンが十分に速くゲームを処理するのに苦労しているようです。フレームレートが著しく低くなる場合があります。
+お使いのマシンがゲームを快適に実行するのに苦労しているようです。フレームレートが著しく低下する恐れがあります。
 
 UI/CoreStrings@Performance_FPS_SeverityYellow:
-マシンが十分に速くゲームを処理するのに苦労しているようです。フレームレートが低くなる場合があります。
+お使いのマシンがゲームを快適に実行するのに苦労しているようです。フレームレートが低下する恐れがあります。
 
 UI/CoreStrings@Performance_FramerateAverage:
 フレームレート（平均）
 
 UI/CoreStrings@Performance_Perfect:
 `ゲームのパフォーマンスは問題ないようです。
-[br]ゲームを楽しんでください。`
+[br]ゲームを楽しんでください！`
 
 UI/CoreStrings@Performance_Suggestions:
 `[b]推奨事項：[/b]
 [br]まず最初に、ハードウェアが最小システム要件を満たしていることを確認してください。
 [br]パフォーマンスを向上させるために以下をお試しください：
-[*]ビデオカードドライバを更新する。
-[*]ゲームの実行中に他のアプリケーションを閉じる（特にWebブラウザ、最小化しても膨大な量のシステム材料を消費するため）。
-[*]それ以外の全てが失敗すると、ビデオオプションのグラフィック品質が低下します。`
+[*] ビデオカードドライバを更新する。
+[*] ゲームの実行中に他のアプリケーションを閉じる（特にWebブラウザ、最小化しても膨大な量のシステムリソースを消費するため）。
+[*] それでも改善しない場合は、ビデオ設定のグラフィック品質を落としてください。`
 
 UI/CoreStrings@Performance_VRAM_SeverityRed:
-`お使いのGPUのVRAM容量は必要なテクスチャの全てを保存するのには十分ではありません。フレームごとにRAMからコピーする必要があり、結果として著しい遅延やフレームレートの減少を引き起こす可能性があります。
-[br][b]ビデオオプション[/b]メニューで[b]テクスチャ品質[/b]オプションを下げてください。`
+`お使いのGPUのVRAMは必要な全てのテクスチャを保存するのには容量不足のため、フレームごとにRAMからテクスチャをコピーする必要があり、結果として著しい遅延やフレームレートの減少を引き起こす恐れがあります。
+[br][b]ビデオ設定[/b]メニューで[b]テクスチャ品質[/b]を下げてください。`
 
 UI/CoreStrings@Performance_VRAMUsage:
-VRAMの使用
+VRAM使用量
 
 UI/CoreStrings@PleaseWait:
-お待ちください...
+お待ちください…
 
 UI/CoreStrings@PowerGrid_NotConnectedMessage:
-配電網に接続されていません
+送電網に接続されていません。
 
 UI/CoreStrings@PowerGridState_ActiveFormat:
-(アクティブ {0})
+(稼働中 {0})
 
 UI/CoreStrings@PowerGridState_Button_RestorePower:
-パワーをリストア
+電力を復旧
 
 UI/CoreStrings@PowerGridState_Capacity:
 容量：
 
 UI/CoreStrings@PowerGridState_Consumers:
-消耗者：
+消費設備数：
 
 UI/CoreStrings@PowerGridState_CurrentConsumption:
-現在の消費：
+現在の消費量：
 
 UI/CoreStrings@PowerGridState_CurrentGeneration:
-現在の生成：
+現在の発電量：
 
 UI/CoreStrings@PowerGridState_DepletedIn:
 枯渇するまで：
 
 UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
-永遠に枯れない
+永久
 
 UI/CoreStrings@PowerGridState_EfficiencyFormat:
 (効率性 {0}%)
@@ -696,22 +752,22 @@ UI/CoreStrings@PowerGridState_Generators:
 発電機：
 
 UI/CoreStrings@PowerGridState_GridSize:
-配電網規模：
+送電網規模：
 
 UI/CoreStrings@PowerGridState_GridStatus:
-配電網状態：
+送電網状態：
 
 UI/CoreStrings@PowerGridState_MaxDefenseConsumption:
-最大防御消費：
+最大防御消費量：
 
 UI/CoreStrings@PowerGridState_MaxGeneration:
-最大生成：
+最大発電量：
 
 UI/CoreStrings@PowerGridState_MaxTotalConsumption:
-最大消費合計：
+最大合計消費量：
 
 UI/CoreStrings@PowerGridState_PowerGridInformation:
-配電網情報
+送電網情報
 
 UI/CoreStrings@PowerGridState_Status_Blackout:
 停電
@@ -720,13 +776,13 @@ UI/CoreStrings@PowerGridState_Status_Nominal:
 異常なし
 
 UI/CoreStrings@PowerGridState_Storages:
-貯蔵：
+貯蔵量：
 
 UI/CoreStrings@Quest_Button_ClaimReward:
 獲得
 
 UI/CoreStrings@Quest_Label_Completed:
-達成済み
+完了
 
 UI/CoreStrings@Quest_Label_New:
 新規
@@ -747,7 +803,7 @@ UI/CoreStrings@RecipesBrowserRecipeDetails_Button_SelectRecipe:
 選択
 
 UI/CoreStrings@ScreenshotNotification_NotificationFormat:
-スクリーンショットの準備ができました:{0}（クリックして開きます）
+スクリーンショット準備完了：{0}（クリックして開く）
 
 UI/CoreStrings@SelectUsernameForm_Message:
 AtomicTorch.comアカウントのユーザー名を選択してください
@@ -772,12 +828,12 @@ UI/CoreStrings@StatusEffect_TitleIntensity:
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Message:
 `[b]できること：[/b]
-[*] CryoFallのSteamフリーコピーをダウンロードして実行。同じキャラクターとサーバーでゲームに完全にアクセスることができます。
+[*] CryoFallの非Steam版をダウンロードして実行し、同じキャラクターとサーバーにアクセスすることができます。
 [*] AtomicTorchのメーリングリストにアクセスして今後の更新、新バージョンリリース情報、その他の最新情報に関する通知を受けることができます。
-[*] AtomicTorchユーザーのみ利用できるプライベート投票に参加でいます。
+[*] AtomicTorchユーザーのみ利用できるプライベート投票に参加できます。
 [br]
 [br][b]近日公開予定：[/b]
-[*]あなたと友人のためにボタンをクリックするだけでCryoFallの公式クラウドサーバーを借りることができます。`
+[*] あなたと友人のためにボタンをクリックするだけでCryoFallの公式クラウドサーバーを借りることができます。`
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Title:
 AtomicTorchアカウントへのリンクが推奨されるのはなぜですか？
@@ -792,6 +848,17 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `AtomicTorch.comのアカウント登録
 [br]（SteamID用）`
 
+UI/CoreStrings@SupporterPack_Badge:
+サポーターバッジ
+
+UI/CoreStrings@SupporterPack_Description:
+`サポーターパックはCryoFallの開発者を支援していただいた方へのボーナスコレクションです。ご購入いただいた方には感謝の気持ちとして、ゲーム内のチャットに表示される特別なスポンサーバッジを差し上げます。
+[br][br]サポーターパックはゲームには何の利点も提供せず、純粋にオプションです。ゲームで使用された全てのサウンドトラック、コンセプトアート、高解像度ゲームアート、チャットバッジなどが含まれています。アーリーアクセス期間中、より多くの項目がサポーターパックに追加される予定です。
+[br][br]皆様のご支援に心より感謝いたします!`
+
+UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
+学習ポイント：{0}
+
 UI/CoreStrings@TechGroupTooltip_Requirements:
 必要条件
 
@@ -802,22 +869,25 @@ UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 アンロック済みの技術
 
 UI/CoreStrings@TechNodeTooltip_Perks:
-特典
+特典：
 
 UI/CoreStrings@TechNodeTooltip_Recipes:
-レシピ
+レシピ：
 
 UI/CoreStrings@TechNodeTooltip_Structures:
-構造
+建築物
 
 UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
 技術的な前提条件
+
+UI/CoreStrings@TechNodeTooltip_Vehicles:
+乗り物：
 
 UI/CoreStrings@Technology:
 技術
 
 UI/CoreStrings@TextBoxSearchPlaceholder:
-検索...
+検索…
 
 UI/CoreStrings@Title:
 タイトル
@@ -832,16 +902,16 @@ UI/CoreStrings@TitleAttention:
 注意！
 
 UI/CoreStrings@TitleConnecting:
-接続中
+接続中…
 
 UI/CoreStrings@TitleDestructionTimeout:
-破棄タイムアウト
+破壊タイムアウト
 
 UI/CoreStrings@TitleDurability:
 耐久性
 
 UI/CoreStrings@TitleEnergyCharge:
-電荷
+充電
 
 UI/CoreStrings@TitleFreshness:
 鮮度
@@ -865,7 +935,7 @@ UI/CoreStrings@TitleLiquidWater:
 水
 
 UI/CoreStrings@TitleLoading:
-読み込み中...
+読み込み中…
 
 UI/CoreStrings@TitleModeAlwaysOn:
 常にオン
@@ -886,28 +956,105 @@ UI/CoreStrings@TitleOwner:
 所有者
 
 UI/CoreStrings@TitlePowerGrid:
-配電網
+送電網
 
 UI/CoreStrings@TitleSafeStorage:
-安全な倉庫
+収納
 
 UI/CoreStrings@TitleStructurePoints:
-構造点
+建物耐久度
 
 UI/CoreStrings@TradingStationResources_ThisLotIsDisabled:
-このロットは何も売られていません
+このロットは無効化されました
 
 UI/CoreStrings@TradingTooltip_CoinsPenny:
-ペニーコイン
+銅貨
 
 UI/CoreStrings@TradingTooltip_CoinsShiny:
-ピカピカのコイン
+金貨
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAccount:
 アカウントを作成せずに続行する
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
 初めてCryoFallを起動しているようです。既存の[url=atomictorch.com]AtomicTorch.com[/url]アカウントにリンクしますか？
+
+UI/CoreStrings@UnstuckInFormat:
+アンスタックまで：{0}
+
+UI/CoreStrings@Vehicle_Ammo:
+弾薬
+
+UI/CoreStrings@Vehicle_Armor:
+防御力
+
+UI/CoreStrings@Vehicle_EnergyLevel:
+エネルギーレベル
+
+UI/CoreStrings@Vehicle_Enter:
+乗る
+
+UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
+防御力 {1:F0}/{2:F0} ({0}%)
+
+UI/CoreStrings@Vehicle_Hotbar_EnergyPercentFormat:
+エネルギー {0}%
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_LeftArm:
+左腕
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
+右腕
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
+武器
+
+UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
+この武器は機械に取り付けた場合にのみ使用できます。
+
+UI/CoreStrings@Vehicle_ReactorCores:
+リアクターコア
+
+UI/CoreStrings@VehicleGarage_ButtonPutCurrentVehicle:
+今乗っている乗り物をガレージに入れる
+
+UI/CoreStrings@VehicleGarage_ButtonTakeVehicle:
+乗り物に乗る
+
+UI/CoreStrings@VehicleGarage_TitleAccessibleVehicles:
+利用できる乗り物：
+
+UI/CoreStrings@VehicleGarage_TitleNoAccessibleVehicles:
+まだ利用できる乗り物がありません。
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_Docked:
+格納中
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InGarage:
+ガレージ内
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InUse:
+使用中
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InWorld:
+世界内
+
+UI/CoreStrings@VehiclesAssemblyList_Button_Build:
+製造
+
+UI/CoreStrings@VehiclesAssemblyList_NoSchematicsKnown:
+`この組立台のための設計図を持っていません。
+[br][br][br]
+技術メニューから新しい設計図をアンロックできます。`
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
+設計図
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
+アンロックした設計図
+
+UI/CoreStrings@Weapon_CompatibleAmmo:
+互換性のある弾薬：
 
 UI/CoreStrings@Window_Tab_Main:
 メイン
@@ -924,14 +1071,14 @@ UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 ランダム
 
 UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
-設計図が必要です
+設計図が必要
 
 UI/CoreStrings@WindowConstructionMenu_Button_Build:
-作成
+建設
 
 UI/CoreStrings@WindowConstructionMenu_MessageToolboxRequired:
-`重要！[b]構築[/b]または[b]修復[/b]するには、[b]ツールボックス[/b]が必要です。
-[br]ホットバーにツールボックスを装備すれば建築できるようになります。`
+`重要！[b]建築[/b]または[b]修理[/b]するには、[b]工具箱[/b]が必要です！
+[br]アイテムスロットに工具箱を装備すれば建築できるようになります。`
 
 UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
 設計図を置く
@@ -940,16 +1087,16 @@ UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 必要な材料
 
 UI/CoreStrings@WindowDataLog_Content:
-コンテンツ
+内容
 
 UI/CoreStrings@WindowDataLog_From:
-から
+送信
 
 UI/CoreStrings@WindowDataLog_Location:
-ロケーション
+位置
 
 UI/CoreStrings@WindowDataLog_To:
-に
+受信
 
 UI/CoreStrings@WindowGeneratorSolar_SolarPanelsTitle:
 ソーラーパネル
@@ -964,16 +1111,16 @@ UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
 所有地を使って資源や基本アイテムを保存することはできません。
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
-腐敗情報
+劣化情報
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
-安全な倉庫はこの基地上にあるすべての所有建造物でシェアされています。
+収納箱のアイテムはこの拠点にあるすべての所有地標でシェアされています。
 
 UI/CoreStrings@WindowLandClaim_UpgradingOnlyOwnerCanDo:
-所有者だけが建物をアップグレードできます。
+所有者だけがこの構造物をアップグレードできます。
 
 UI/CoreStrings@WindowLandClaim_UpgradingRequiresLearningTech:
-建物をアップグレードするには関連技術の習得が必要です。
+この構造物をアップグレードするには関連技術の習得が必要です。
 
 UI/CoreStrings@WindowLandClaim_UpgradingTitleRequiredItems:
 必須
@@ -994,10 +1141,10 @@ UI/CoreStrings@WindowManufacturer_ErrorInputItemsDontMatchCurrentRecipe:
 投入されたアイテムは現在のレシピと一致しません。
 
 UI/CoreStrings@WindowManufacturer_ErrorNoAvailableSpaceInOutput:
-出力に使用可能なスペースがありません。
+生成に必要なスペースがありません。
 
 UI/CoreStrings@WindowManufacturer_ErrorNotEnoughInputItemsForCurrentRecipe:
-現在のレシピに必要なアイテム数が不足しています
+現在のレシピに必要なアイテムが不足しています
 
 UI/CoreStrings@WindowManufacturer_FuelRequired:
 燃料が必要です！
@@ -1006,26 +1153,26 @@ UI/CoreStrings@WindowManufacturer_TitleOutputEmpty:
 空
 
 UI/CoreStrings@WindowObjectLight_TitleLightMode:
-ライトモード
+照明モード
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_CurrentRaidWindow:
-奇襲ウィンドウが開かれています (あと{0})。
+襲撃ウィンドウがオープンしました (残り {0})。
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_DescriptionFormat:
-`{0}から{1}までの奇襲ウィンドウが開いている間のみ所有地に奇襲をかけることができます(合計{2})。
-[br]所有地の外にある建物はシステムによって守られていないため、破壊される可能性があります。`
+`{0}から{1}までの襲撃ウィンドウがオープンの間のみ所有地に襲撃をかけることができます(合計{2})。
+[br]所有地の外にある建物はシステムによって保護されないため、いつでも攻撃や破壊される恐れがあります。`
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_Disabled:
-このサーバーはオフラインです。奇襲防御が無効化されています。
+このサーバーは「奇襲保護」をオフにしています。
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_NextRaidWindowTimeout:
-次の奇襲ウィドウまで： {0}
+次の襲撃ウィドウまで：{0}
 
 UI/CoreStrings@WindowPolitics_RaidingRestriction_Title:
-奇襲保護
+襲撃保護
 
 UI/CoreStrings@WindowPowerStorage_NotConnectedToPowerGrid:
-この電源倉庫はどの配電網にも接続していません。
+この電力貯蔵庫はどの送電網にも接続されていません。
 
 UI/CoreStrings@WindowQuests_CompletionReward:
 達成報酬
@@ -1037,19 +1184,19 @@ UI/CoreStrings@WindowQuests_Hints:
 ヒント
 
 UI/CoreStrings@WindowQuests_MessageAllAvailableQuestsCompleted:
-挑戦できるクエストを全てクリアしました。
+与えられたクエストを全て完了しました。
 
 UI/CoreStrings@WindowQuests_MessageNoCompletedText:
-達成されたクエストがありません。
+まだ完了したクエストがありません。
 
 UI/CoreStrings@WindowQuests_TitleCompletedQuestsCount:
-達成済みのクエスト
+完了済みのクエスト
 
 UI/CoreStrings@WindowQuests_TitleUnlockedQuestsCount:
 アンロック済みのクエスト
 
 UI/CoreStrings@WindowRechargingStation_Title:
-充電
+再充電
 
 UI/CoreStrings@WindowRespawn_Button_RespawnAtYourBed:
 ベッドで復活
@@ -1061,19 +1208,19 @@ UI/CoreStrings@WindowRespawn_Button_RespawnNearYourBed:
 ベッドの付近で復活
 
 UI/CoreStrings@WindowRespawn_DamageSources:
-最近の被害資料：
+最近のダメージ要因：
 
 UI/CoreStrings@WindowRespawn_Message:
-残酷な世界から強制的に排除されてしまったようです…そして所持品を全てを失いました！復讐しますか？
+この残酷な世界から強制的に排除されてしまったようです…そして所持品を全てを失ってしまいました！復讐しますか？
 
 UI/CoreStrings@WindowRespawn_MessageDespawned:
-所有地の外にキャラクターを放置しすぎたため、世界から排除されました。復活させることで通常通り戻すことができます。アイテムは失われていません。
+所有地の外にキャラクターを放置しすぎたため、世界から排除されました。通常通り復活させることができます。アイテムは失われません。
 
 UI/CoreStrings@WindowRespawn_MessagePvE:
-残酷な世界から強制的に排除されてしまったようです…復讐しますか？
+この残酷な世界から強制的に排除されてしまったようです…復讐しますか？
 
 UI/CoreStrings@WindowRespawn_MessageWithNewbieProtection:
-他のプレイヤーに殺されてしまったようです。しかし幸運なことに、まだ新人保護が有効なためアイテムを失わずに済みました。次は気をつけてください！
+他のプレイヤーに殺されてしまったようです。しかし幸運なことに、まだ初心者保護が有効なためアイテムを失わずに済みました。次は気をつけてください！
 
 UI/CoreStrings@WindowRespawn_TooltipCooldownExplanation:
 `最近ベッドで復活しました。
@@ -1086,7 +1233,7 @@ UI/CoreStrings@WindowSkills_CurrentLevelFormat:
 レベル{0}
 
 UI/CoreStrings@WindowSkills_CurrentLevelFormat2:
-最近のレベル： {0}
+現在のレベル：{0}
 
 UI/CoreStrings@WindowSkills_MaxLevelReached:
 最大レベルに達しました！
@@ -1094,15 +1241,30 @@ UI/CoreStrings@WindowSkills_MaxLevelReached:
 UI/CoreStrings@WindowSkills_NoDiscoveredSkills:
 `まだスキルを発見していません。
 [br][br]
-蓄積するとスキルは自動的にアンロックされます
-[br]特定の活動からの十分な経験。
-[br]何か新しいことを試して、何が起こるのか見てください！`
+特定の活動の経験値が貯まると
+[br]スキルは自動的にアンロックされます。
+[br]何か新しいことを試して、何が起こるのか確認してください！`
 
 UI/CoreStrings@WindowSkills_ProgressTowardsTheNextLevel:
-次のレベルのスキルへの進捗
+次のレベルへの進捗度
 
 UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
-スキル発見
+発見したスキル
+
+UI/CoreStrings@WindowsObjectVehicle_RepairTextFormat:
+防御力の{0}%修理に必要なもの：
+
+UI/CoreStrings@WindowsObjectVehicle_TabCargo_Title:
+貨物
+
+UI/CoreStrings@WindowsObjectVehicle_TabConstructVehicle:
+製造
+
+UI/CoreStrings@WindowsObjectVehicle_TabGarage:
+ガレージ
+
+UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
+乗り物
 
 UI/CoreStrings@WindowSocial_OnlineNow:
 現在のオンライン人数
@@ -1120,20 +1282,20 @@ UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 新しいAtomicTorchアカウントを作成する
 
 UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
-私の既存のAtomicTorchアカウントへのリンク
+既存のAtomicTorchアカウントへのリンク
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-それをする必要はありません、あなたがプレイするために単に既存のSteamアカウントを使い続けることができます。ただし、AtomicTorch.comアカウントにリンクすることには一定の利点があります。
+必ずしもリンクする必要はありません。既存のSteamアカウントを使ってゲームを続けることができます。ただ、AtomicTorch.comアカウントにリンクすることにはいくつかの利点があります。
 
 UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
-絶対にそれをする必要はなく、単にプレイするために既存のSteamアカウントを使うことができます。ただし、そうすることには一定の利点があります。
+必ずしもリンクする必要はなく、既存のSteamアカウントを使ってプレイできます。ただ、そうすることにはいくつかの利点があります。
 
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 SteamアカウントをAtomicTorch.comアカウントにリンクさせるか、または新しいアカウントを作成することができます。
 
 UI/CoreStrings@WindowTechnologies_Info_AdditionalTechnologies:
-`追加の技術によって、異なる分野に特化できるようになります：
-[br]より高度なTierではすべてを学べるわけではありません。賢い選択をしましょう。`
+`これらの追加された技術によって、異なる分野にさらに特化できるようになります。
+[br]より高レベルではすべての技術を学べるわけではありません。賢い選択をしましょう。`
 
 UI/CoreStrings@WindowTechnologies_Info_PrimaryTechnologies:
 主要技術は、CryoFallの基本的な技術を獲得するためにすべてのプレイヤーに推奨しています。
@@ -1154,19 +1316,19 @@ UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 アンロック
 
 UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
-主要な技術
+主要技術
 
 UI/CoreStrings@WindowTechnologies_TitleSpecializedTechnologies:
 専門技術
 
 UI/CoreStrings@WindowTechnologies_TooltipExplanationHowToGainLearningPoints:
-`LP (学習ポイント)は以下をすることで獲得できます：
-[br]ゲーム内で有益なアクティビティをする。
-[br]LPの獲得は、キャラクターのスキル経験に
-[br]比例しています。`
+`LP（学習ポイント）はゲーム内で有益な
+[br]活動をすることで獲得できます。
+[br]LPの獲得量は、キャラクターの
+[br]スキル経験値に比例しています。`
 
 UI/CoreStrings@WindowTinkerTable_Button_Repair:
-修復
+修理
 
 UI/CoreStrings@WindowTradingStationAdmin_LotConfig:
 ロット設定
@@ -1175,13 +1337,13 @@ UI/CoreStrings@WindowTradingStationAdmin_LotsConfiguration:
 ロット設定
 
 UI/CoreStrings@WindowTradingStationAdmin_RadioButton_GroupTitle:
-取引ステーションは
+取引ステーションで
 
 UI/CoreStrings@WindowTradingStationAdmin_RadioButton_ModeBuyingItems:
-アイテムを購入する
+アイテムを購入
 
 UI/CoreStrings@WindowTradingStationAdmin_RadioButton_ModeSellingItems:
-アイテムを販売する
+アイテムを売却
 
 UI/CoreStrings@WindowTradingStationAdmin_Stock:
 在庫
@@ -1190,13 +1352,13 @@ UI/CoreStrings@WindowTradingStationLotEditor_ListTitleAllItems:
 全てのアイテム
 
 UI/CoreStrings@WindowTradingStationLotEditor_ListTitleExistingItems:
-既存のアイテム
+保有アイテム
 
 UI/CoreStrings@WindowTradingStationLotEditor_Price:
 価格
 
 UI/CoreStrings@WindowTradingStationLotEditor_Quantity:
-量
+数量
 
 UI/CoreStrings@WindowTradingStationLotEditor_SelectedLotItem:
 選択したロットアイテム
@@ -1205,22 +1367,22 @@ UI/CoreStrings@WindowTradingStationUser_Button_Buy:
 購入
 
 UI/CoreStrings@WindowTradingStationUser_Button_Sell:
-売る
+売却
 
 UI/CoreStrings@WindowTradingStationUser_BuyingMode_Message:
 取引ステーションは次のアイテムを買い取りしています：
 
 UI/CoreStrings@WindowTradingStationUser_BuyingMode_Title:
-買い取り
+買取中
 
 UI/CoreStrings@WindowTradingStationUser_SellingMode_Message:
 取引ステーションは次のアイテムを販売しています。
 
 UI/CoreStrings@WindowTradingStationUser_SellingMode_Title:
-売り出し中
+販売中
 
 UI/CoreStrings@WindowTrashCan_Title:
-ここに任意のアイテムを配置すると永久に削除することができます。
+ここに任意のアイテムを配置すると永久に消去することができます。
 
 UI/CoreStrings@WipedDate_DaysAgo_Format:
 {0}日前
@@ -1229,7 +1391,7 @@ UI/CoreStrings@WipedDate_HoursAgo_Format:
 {0}時間前
 
 UI/CoreStrings@WipedDate_JustWiped:
-ワイプされました
+たった今ワイプ済み
 
 UI/CoreStrings@WipedDate_Yesterday:
 昨日
@@ -1245,7 +1407,7 @@ UI/CoreStrings@WorldMap_YourPosition:
 
 UI/CoreStrings@WorldMapMarkCurrentBed_Tooltip:
 `[b]ベッド[/b]
-[br]死後、この場所で復活することができます。`
+[br]死後、この場所で復活できます。`
 
 UI/CoreStrings@WorldMapMarkDroppedItems_Tooltip:
 `[b]落としたアイテム[/b]
@@ -1255,28 +1417,31 @@ UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
 `[b]所有地[/b]
 [br]あなたがアクセスできる土地です。`
 
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_LastUsedVehicle:
+[b]最後に乗った乗り物[/b]
+
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 `[b]所有地[/b]
 [br]あなたの所有地です。`
 
 UI/CoreStrings@WorldMapMarkRaid_Tooltip:
-`[b]基地が襲撃されている[/b]
-[br]基地は攻撃を受けています！`
+`[b]拠点が襲撃されている[/b]
+[br]拠点は攻撃を受けています！`
 
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
 `[b]地熱泉[/b]
-[br]リチウム資源`
+[br]リチウム埋蔵地`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
-`[b]油脈[/b]
-[br]生の石油オイルの油脈`
+`[b]油田[/b]
+[br]原油の埋蔵地`
 
 UI/CoreStrings@WorldMapMarkTradingTerminal_OtherPlayer_Tooltip:
 `[b]取引ステーション[/b]
 [br]他のプレイヤーがこの取引ステーションを所有しています。`
 
 UI/CoreStrings@WorldMapMarkTradingTerminal_Own_Tooltip:
-`[b]取引ステーション（あなたの所有）[/b]
+`[b]取引ステーション（所有）[/b]
 [br]あなたがこの取引ステーションを所有しています。`
 
 UI/CoreStrings@Yes:
@@ -1296,10 +1461,10 @@ UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 接続済み
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleNotConnected:
-接続が切断されました。
+未接続
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatCopyMessageFormat:
-@{0}から: {1}
+@{0}から：{1}
 
 UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 [開発者]
@@ -1309,34 +1474,34 @@ UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 [br]チャット履歴が保存され後で再度開くことができます。`
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
-レシピには分解性の成分が含まれているため、キャンセルすることはできません。
+レシピには分解可能な要素が含まれているため、キャンセルすることはできません。
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Title:
-レシピをキャンセルすることはできません
+レシピをキャンセル不可
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationCannotUseItemDirectly:
 アイテムを直接使用することはできません。
 
 UI/Controls/Game/Items/Managers/ClientItemManagementCases@NotificationNoFreeSpaceToMoveItem:
-アイテムを移動するための空き容量がありません。
+アイテムを移すためのスペースがありません。
 
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_MessageFormat:
-`地図にマーカーが追加
-[br]アイテム喪失までの時間 {0}`
+`地図にマーカーが追加されました。
+[br]{0}後にアイテムは消失します。`
 
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
-アイテムが落ちた
+アイテムが落ちました
 
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
-`基地の一つが奇襲攻撃を受けています！
+`拠点の一つが襲撃を受けています！
 [br]({0};{1})`
 
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_Title:
-奇襲！
+襲撃！
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_MessageFormat:
-`{0}は {1};{2}にあります
-[br]{3}後で所有者を変えられます
+`{0}が{1};{2}にあります。
+[br]{3}後に所有可能になります。
 [br]銃を持って占領の準備をしましょう！`
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
@@ -1349,41 +1514,42 @@ UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuTeleport:
 テレポート
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
-私をアンスタックする！
+抜け出せない！
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
-`家の中に閉じこもり、外に出られないのですか？
-[br]今、あなたは立ち往生していますか？
-[br]この機能を使ってキャラクターをテレポートすることができます。`
+`家の中に閉じこめられ、外に出られないのですか？
+[br]あるいは、他の誰かに嵌められましたか？
+[br]この機能を使ってキャラクターをテレポートすることができます。
+[br]しばらくの間待機してください（5分間）。`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 アンスタック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltLeftClickOnItem_Description:
-`先のとがった物を使う/食べる。
-[br]（使用・食べられるもののみ）`
+`指定したアイテムを使う/食べる。
+[br]（使用したり食べられるもののみ）`
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltLeftClickOnItem_Title:
 アイテムの上でAlt+左クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Description:
-`先のとがったアイテムスタックを地面に落とします。
-[br]（スタックから一つのアイテムだけを落とすにはCtrlも押します）`
+`指定したアイテムの束を地面に落とします。
+[br]（束から一つのアイテムだけを落とすにはCtrlも押します）`
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@AltRightClickOnItem_Title:
 アイテムの上でAlt+右クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Description:
-指示されたスタックから単一のアイテムを別のコンテナーに移動します。
+指定した束から一つのアイテムだけを別の箱に移動します。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@CtrlLeftOrRightClick_Title:
 アイテムの上でCtrl+左または右クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Description:
-そのアイテムを持つ。
+そのアイテムを取ります。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickEmptyHand_Title:
-空の手でアイテムを左クリック
+手が空の状態でアイテムを左クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Description:
 `スロットが空の場合は、そこにアイテムを入れます。
@@ -1393,31 +1559,31 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Title:
 アイテムを持ってスロットを左クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Description:
-在庫を並べ替える（任意のポイントアイテムグリッドで使用できます）。
+インベントリを並べ替えます（任意のアイテムグリッドで使用できます）。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Title:
 中（スクロールホイール）クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Description:
-アイテムの半分を取る。
+アイテムの半分を取ります。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickEmptyHand_Title:
-空の手でアイテムを右クリック
+手が空の状態でアイテムを右クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Description:
-スロットが空の場合や同じアイテムタイプが含まれている場合ー[br]単一のアイテムを手からスロットに移動します。
+スロットが空の場合や同じ種類のアイテムが含まれている場合ー[br]一つのアイテムを手からスロットに移動します。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@RightClickFullHand_Title:
 アイテムを持ってスロットを右クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Description:
-指定したスタックアイテムを全て別のコンテナーに移動します。
+指定した種類のアイテムの束を全て別の箱に移します。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftLeftClickOnItems_Title:
 アイテムの上でShift+左クリック
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftRightClickOnItems_Description:
-指示されたアイテムスタックだけを別のコンテナーに移動します。
+指定したアイテムの束だけを別の箱に移します。
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@ShiftRightClickOnItems_Title:
 アイテムの上でShift+右クリック
@@ -1444,7 +1610,7 @@ UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageRemo
 本当に[b]{0}[/b]をパーティーから外しますか？
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleCreature:
-生き物
+生物
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleExplosion:
 爆発
@@ -1459,7 +1625,7 @@ UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitlePlayer:
 プレイヤー
 
 UI/Controls/Game/Respawn/Data/ViewModelDamageSource@TitleStatusEffect:
-状態エフェクト
+ステータス効果
 
 UI/Controls/Game/Skills/Data/ViewModelSkillEffectCombinedStats@NextLevelPrefix:
 次のレベル
@@ -1480,41 +1646,38 @@ UI/Controls/Game/Technologies/Data/ViewModelTechTier@Tier5Letter:
 V
 
 UI/Controls/Game/Technologies/Data/ViewModelTechTier@TierTitleFormat:
-Tier{0}
+レベル{0}
 
 UI/Controls/Game/Technologies/Data/ViewModelWindowTechnologies@DialogDoYouWantToResearch:
-{0}を研究したいですか？
+{0}を研究しますか？
 
 UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
-手作り
-
-UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
-修復
+手工芸
 
 UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
-腐りやすいアイテムの保存期限を{0}倍に増える
+腐りやすいアイテムの保存期限が{0}倍に増えます。
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListEmpty:
-他の生存者にあなたの所有地へのアクセスを提供することができます。
+他の生存者にあなたの所有地へのアクセス権を提供することができます。
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
-アクセス
+アクセス権
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
-`捨てられた建物はしばらく経つと腐敗が始まり、
+`捨てられた建物はしばらく経つと劣化が始まり、
 [br]地図が見づらくならないよう次第に消えていきます。
 [br]
-[br]この所有物が腐敗し始めるまで：[b]{0}[/b]。
-[br]Aその後、[b]{1}[/b]で腐敗し解体タイマーが始まります([b]{2}[/b])。
+[br]この所有物は[b]{0}[/b]後に劣化が始まります。
+[br]その後、[b]{1}[/b]かけて劣化していき、解体タイマーが始まります([b]{2}[/b])。
 [br]
-[br]腐敗を避けるためには、最低[b]{0}[/b]回に1度は基地を訪れてください。
-[br](アクセスリストに載っているプレイヤーが訪問すれば腐敗タイマーはリセットされます)。
+[br]劣化を避けるためには、最低[b]{0}[/b]に1度は拠点を訪れてください。
+[br](アクセスリストに載っているプレイヤーが訪問すれば劣化タイマーはリセットされます)。
 [br]
-[br]所有地をより上のTierに [b]アップグレード[/b]することで腐敗のスピードをお染めることができます。
-[br]すべての基地の腐敗スピードはTierが[b]最も高い[/b]所有物に基づいています。`
+[br]所有地をより上のレベルに [b]アップグレード[/b]することで、劣化時間を延長することができます。
+[br]すべての拠点の劣化時間はレベルが[b]最も高い[/b]所有物に基づいています。`
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
-資源がなくなりました。
+資源が枯渇しました。
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
 資源は無限です。
@@ -1529,25 +1692,108 @@ UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation
 同じ種類のインプラントを2つ取り付けることはできません。
 
 UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationAlreadyInstalled_Title:
-インストール済み
+取付済み
 
 UI/Controls/Game/WorldObjects/MedicalStations/Data/ViewModelImplantSlotOnStation@NotificationNotEnoughBiomaterial:
-十分な生体材料がありません
+生体材料が不足しています
 
 UI/Controls/Game/WorldObjects/Plants/Data/ViewModelFarmPlantTooltip@TitlePermanent:
-永遠
+永久
 
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSolar@ElectricityProductionInfoTextFormat:
-`現在の生成 {0} EU/s {1}% ライトレベル
-[br]最大出力 {2} EU/s`
+`現在の発電量：{1}% の太陽光で {0} EU/s。
+[br]最大出力：{2} EU/s。`
 
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@ElectricityProductionInfoTextFormat:
-`現在の生成 {0} EU/s {1}°C ({2}% 効率的)
-[br]最大出力 {3} EU/s`
+`現在の発電量：{1}℃ で {0} EU/s（{2}% 効率)。
+[br]最大出力：{3} EU/s。`
 
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
-`現在の生成 {0} EU/s
-[br]最大出力 {1} EU/s`
+`現在の発電量：{0} EU/s。
+[br]最大出力：{1} EU/s。`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+CryoFallへようこそ！
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+この機会を通じて、ゲーム内でお楽しみいただけるいくつかの機能をご紹介します。CryoFallはまだ開発中ですが、次の項目はすべてご利用いただけます。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+農業・料理
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+肥料や農具を使って自分の作物を栽培してみましょう。そして、労働の成果を使ってキャラクターに恩恵をもたらす様々な料理を作ってみてください。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+キャラクターシミュレーション・医療
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+一般的な飢えと喉の渇きのメカニズムだけでなく、様々な医薬品を使って対処できる数多くの状態効果と苦痛を実現した複合的なキャラクターシミュレーション。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+工業
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+CryoFallの世界で利用可能な天然資源を活用しましょう。原油を汲み出して精製するか、地熱泉からリチウムを抽出して電池や電子機器を作ります。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+経済
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+他の生存者との取引を円滑にするために硬貨を鋳造し、完全自動化された取引ステーションを建設してください。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+人工生体インプラント
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+キャラクターに様々な生体および人工インプラントを組み込み、新しい能力を得たり、能力値を高めることができます。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+スキル
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+自分のキャラクターに合った様々なスキルを発見し、ロックを解除し、改善することで効率を高め、新しい能力を獲得できます。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
+キャラクター・カスタマイズ
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+キャラクターの外観をカスタマイズし、様々な装備と道具で自分を他人と差別化しましょう。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+技術
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+獲得した学習ポイントを使って新しい技術や調理法、建築物について学習し、最も興味のある分野に焦点を当てることで、ゲームをお好みのものにカスタマイズできます。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+電気
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+電力網を念頭に置いて拠点を設計してください。 多くの発電機と収納箱、電子機器を建てることができます。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+乗り物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+色々な未来型の乗り物を作り、アップグレードして、世界をより早く探検したり、戦闘で使ってみましょう。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
+変わった生き物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+様々な環境と数十種の変わった生き物が住む多様な世界を探検しましょう。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+最後に
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
+`最後に、CryoFallはまだ開発中で、多くの改善や変更が計画されていることに留意してください。とはいえ、既にしっかり遊べるゲームですので、十分に楽しんでください！[br][br]
+ディスコードやフォーラムから連絡可能ですので、いつでも覗いてみてください！:)[br]
+何か問題があったり、バグや不正利用を報告したい場合は喜んで解決のお手伝いをします。`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
+ゲームを始める
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
 ログイン応答を待っています。
@@ -1559,8 +1805,8 @@ UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorEnterPassw
 パスワードを入力してください。
 
 UI/Controls/Menu/Login/Data/ViewModelSelectUsernameFormControl@Dialog_AcceptUsername:
-`[b]{0}[/b]でよろしですか？後で変更することはできません。
-[br]この名前はどのゲームサーバーをプレイするときにも利用されます。`
+`[b]{0}[/b] でよろしですか？後で変更することはできません。
+[br]この名前はどのゲームサーバーをプレイするときにも使われます。`
 
 UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_CapsLock:
 キャップスロック
@@ -1590,26 +1836,26 @@ UI/Controls/Menu/Options/Data/InputKeyNameHelper@Title_SpaceBar:
 スペースキー
 
 UI/Controls/Menu/Options/Data/ViewModelMenuOptions@DialogResetOptions:
-[b]{0}[/b]オプションをリセットしますか？[br]デフォルト値が適用され保存されます。
+[b]{0}[/b] オプションを初期化しますか？[br]デフォルト値が適用され保存されます。
 
 UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessageCannotBindToKey:
 このキーにバインドすることはできません：[br][b]{0}[/b]
 
 UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessageFormatKeyAlreadyBound:
-`押されたキーはすでにボタンにバインドされています:
+`押されたキーはすでにボタンにバインドされています：
 [br][b]{0}[/b]
 [br]
-[br]もう一度キーを押すとキーが再バインドされます
+[br]もう一度キーを押すとキーが再バインドされます。
 [br]または他のキーを押してください。`
 
 UI/Controls/Menu/Options/Data/ViewModelRebindKeyWindow@MessagePressToBind:
-バインドするにはキーを押すか、キャンセルするにはEscapeを押してください。
+キーを押してバインドするか、Escキーを押してキャンセルしてください。
 
 UI/Controls/Menu/Servers/WindowAddOrEditServer.xaml@DialogServerAddressNotValid:
 サーバーアドレスが無効です。確認してください。
 
 UI/Controls/Menu/Servers/Controllers/MultiplayerMenuServersController@DialogRemoveServerFromList:
-リストからサーバーを削除してよろしいですか？
+このリストからサーバーを削除してよろしいですか？
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogEditorMode_Message:
 エディタモードではどのサーバーにも接続できません。
@@ -1624,8 +1870,8 @@ UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Advice_U
 ゲームクライアントを最新版にアップデートしてください。
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_MessageFormat:
-`[br]サーバーバージョン{0}
-[br]ゲームバージョン{1}`
+`[br]サーバーバージョン：{0}
+[br]ゲームバージョン：{1}`
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_Title:
 互換性のないサーバー
@@ -1637,10 +1883,11 @@ UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogIncompatibleServer_VersionT
 ゲームサーバーは古いバージョンのゲームを実行しています。
 
 UI/Controls/Menu/Servers/Data/JoinServerHelper@DialogServerInaccessible:
-サーバーにアクセスできません。
+`[b]インターネット接続の問題[/b]
+[br]ネットワーク接続が不安定、またはインターネットサービスプロバイダーのルーティング失敗により、ゲームサーバーにアクセスできません。`
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_MessageNoMods:
-サーバーではMODは使用されていません。
+サーバーで使用されているMODはありません。
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@DialogServerMods_Title:
 サーバーMOD
@@ -1649,10 +1896,10 @@ UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerNotAccessibleTi
 サーバーにアクセスできません。
 
 UI/Controls/Menu/Servers/Data/ServerViewModelsProvider@InfoServerOfflineTitle:
-サーバーがオフラインです
+サーバーオフライン
 
 UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Message:
-サーバーリストを削除してよろしいですか？
+サーバーリストを消去してよろしいですか？
 
 UI/Controls/Menu/Servers/Data/ViewModelMenuServers@DialogClearServerList_Title:
 サーバーリストを消去する
@@ -1661,17 +1908,17 @@ UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Message:
 サーバ情報が取得されるまでお待ちください。
 
 UI/Controls/Menu/Servers/Data/ViewModelServerInfo@DialogCannotConnect_Title:
-接続できません
+接続不可
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_IncorrectEmailOrPassword:
-入力したメールアドレスまたはパスワードが正しくありません。正しいメールアドレスを入力したことを確認したら、もう一度やり直すかAtomicTorch.comのパスワードのリセット機能を使用してください。
+入力したメールアドレスまたはパスワードが正しくありません。正しいメールアドレスを入力したことを確認したら、もう一度やり直すかAtomicTorch.comでパスワードのリセット機能を利用してください。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailAlreadyUsed:
 入力された電子メールは既に別のアカウントで使用されています。別のメールアドレスを使用してください。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_MessageEmailNotActivated:
 `入力したメールアドレスは有効になっていません。
-[br]Eメールアカウントを開き、私たちがあなたに送ったアクティベーションリンクをクリックしてください。（Eメールが迷惑メール受信箱にあるかもしれないことに注意してください）。`
+[br]Eメールアカウントを開き、私たちがあなたに送ったアクティベーションリンクをクリックしてください。（迷惑メール受信箱にあるかもしれません）。`
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotLinkAccount_Title:
 アカウントをリンクできません
@@ -1689,7 +1936,7 @@ UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@DialogCannotRegister_
 登録できません
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorConfirmEmailDoesntMatch:
-Eメールが入力したEメールと一致しないことを確認してください。
+メールアドレスが入力したメールアドレスと一致しません。
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterEmail:
 メールアドレスを入力してください。
@@ -1701,5 +1948,5 @@ UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsO
 続行するには利用規約に同意する必要があります。
 
 UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
-マイクロソフトが所有するサーバーから電子メールアカウントを使用して登録しようとしているようです。 残念なことに、マイクロソフトは大手プロバイダーからのものではない電子メールを完全に遮断し [b]あなたのアカウントへの電子メールの送信を事実上妨げています。[/b]  [b]gmail.com[/b]など、他の電子メールサービスを使用してください。
+マイクロソフトが所有するサーバーの電子メールアカウントを使用して登録しようとしているようです。 残念なことに、マイクロソフトは大手プロバイダーからのものではない電子メールを完全に[b]遮断し[/b]、あなたのアカウントへの電子メールの送信を事実上妨げています。  [b]gmail.com[/b]など、他の電子メールサービスを利用してください。
 

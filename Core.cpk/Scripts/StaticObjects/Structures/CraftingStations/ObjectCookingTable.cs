@@ -14,11 +14,11 @@
 
         public override string Name => "Cooking table";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 300;
+        public override float StructurePointsMax => 1200;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -40,9 +40,9 @@
         {
             category = GetCategory<StructureCategoryFood>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 4);
+            build.AddStageRequiredItem<ItemPlanks>(count: 5);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

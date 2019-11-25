@@ -1,0 +1,51 @@
+﻿Scripts/Vehicles/VehicleHoverboardMk1@Description:
+Leichte Variante des Gravi-Plattform-Designs. Relativ günstig in der Herstellung bei guter Geschwindigkeit und annehmbarem Kraftstoffverbrauch.
+
+Scripts/Vehicles/VehicleHoverboardMk1@Name:
+Hoverboard MK1
+
+Scripts/Vehicles/VehicleHoverboardMk2@Description:
+Schwere Variante des Gravi-Plattform-Designs. Langlebiger mit besserer Geschwindigkeit und Wendigkeit bei erhöhten Herstellungskosten und hohem Kraftstoffverbrauch.
+
+Scripts/Vehicles/VehicleHoverboardMk2@Name:
+Hoverboard MK2
+
+Scripts/Vehicles/VehicleMechManul@Description:
+Mittleres Design einer mechanisierten Kampfrüstung. Besticht durch eine hohe Verteidigungs- und Frachtkapazität, ohne dabei auf anderen Arealen Abstriche machen zu müssen.
+
+Scripts/Vehicles/VehicleMechManul@Name:
+Manul
+
+Scripts/Vehicles/VehicleMechSkipper@Description:
+Leichtes Design einer mechanisierten Kampfrüstung. Besticht durch relativ hohe Geschwindigkeit, ohne dabei auf Panzerung und Feuerkraft zu verzichten.
+
+Scripts/Vehicles/VehicleMechSkipper@Name:
+Skipper
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotBuildVehicleTitle:
+Kein Bau möglich
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotRepairVehicleTitle:
+Keine Reparatur möglich
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NotInteractingWithVehicleBay:
+Bitte benutze eine Fahrzeugbucht, um dieses Fahrzeug zu bauen.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@RequiredItemsMissing:
+Nicht genug Gegenstände.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NeedsFreeSpace:
+Blockiert.[br]Zum Konstruieren eines Bauplans muss die Montagebucht frei von Personen und Hindernissen sein.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@NotInteractingWithVehicle:
+Bitte interagiere mit deinem Fahrzeug, um es zu reparieren.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RequiredItemsMissing:
+Nicht genug Gegenstände.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
+Keine Reparatur erforderlich.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
+Bitte bring dein Fahrzeug zu einer Montagebucht, um es zu reparieren.
+

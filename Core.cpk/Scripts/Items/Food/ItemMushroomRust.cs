@@ -30,7 +30,7 @@
                 character.ServerAddStatusEffect<StatusEffectNausea>(intensity: 0.5); // half duration
             }
 
-            character.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.15); // short intoxication
+            character.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.2); // short intoxication
 
             base.ServerOnEat(data);
         }

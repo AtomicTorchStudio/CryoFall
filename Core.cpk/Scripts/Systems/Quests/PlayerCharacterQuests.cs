@@ -159,8 +159,9 @@
             questEntry.ServerSetCompleted();
 
             var rewardLearningPoints = quest.RewardLearningPoints;
-            rewardLearningPoints = (ushort)Math.Round(rewardLearningPoints * TechConstants.ServerLearningPointsGainMultiplier,
-                                                      MidpointRounding.AwayFromZero);
+            rewardLearningPoints = (ushort)Math.Round(
+                rewardLearningPoints * TechConstants.ServerLearningPointsGainMultiplier,
+                MidpointRounding.AwayFromZero);
             this.Character.SharedGetTechnologies()
                 .ServerAddLearningPoints(rewardLearningPoints);
 

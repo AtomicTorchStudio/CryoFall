@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
@@ -10,21 +11,27 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using static GameApi.Data.State.SyncToClientReceivers;
 
     public class PlayerCharacterPublicState
         : BasePublicState, ICharacterPublicStateWithEquipment
     {
+        static PlayerCharacterPublicState()
+        {
+            if (Api.IsServer)
+            {
+                Api.Server.Characters.PlayerOnlineStateChanged += ServerPlayerCharacterOnlineStateChanged;
+            }
+        }
+
         [SyncToClient(receivers: ScopePlayers)]
         [TempOnly]
         public AppliedCharacterInput AppliedInput { get; private set; }
 
         [SyncToClient]
         public IItemsContainer ContainerEquipment { get; private set; }
-
-        [SyncToClient(receivers: ScopePlayers)]
-        public IProtoItemWeapon CurrentItemWeaponProto { get; private set; }
 
         [SyncToClient(receivers: ScopePlayers)]
         [TempOnly]
@@ -43,6 +50,9 @@
 
         [SyncToClient]
         public PlayerCharacterCurrentStats CurrentStatsExtended { get; set; }
+
+        [SyncToClient]
+        public IDynamicWorldObject CurrentVehicle { get; private set; }
 
         [SyncToClient]
         public CharacterHumanFaceStyle FaceStyle { get; set; }
@@ -66,7 +76,11 @@
 
         [SyncToClient(receivers: ScopePlayers)]
         [TempOnly]
-        public IItem SelectedHotbarItem { get; private set; }
+        public IItem SelectedItem { get; private set; }
+
+        [SyncToClient(receivers: ScopePlayers)]
+        [TempOnly]
+        public IProtoItemWeapon SelectedItemWeaponProto { get; private set; }
 
         /// <summary>
         /// When player is requesting unstuck, the special timer will be displayed over the players' character.
@@ -76,7 +90,7 @@
         [TempOnly]
         public double UnstuckExecutionTime { get; set; }
 
-        public void EnsureEverythingCreated()
+        public void ServerEnsureEverythingCreated()
         {
             this.AppliedInput = new AppliedCharacterInput();
             this.CurrentPublicStatusEffects = new NetworkSyncList<IProtoStatusEffect>();
@@ -102,16 +116,49 @@
             }
         }
 
-        public void SetCurrentWeaponProtoOnly(IProtoItemWeapon weaponProto)
+        public void ServerSetCurrentVehicle(IDynamicWorldObject vehicle)
         {
-            this.SelectedHotbarItem = null;
-            this.CurrentItemWeaponProto = weaponProto;
+            var character = (ICharacter)this.GameObject;
+            if (this.CurrentVehicle != null)
+            {
+                Api.Server.World.ExitPrivateScope(character, this.CurrentVehicle);
+            }
+
+            this.CurrentVehicle = vehicle;
+            if (vehicle is null)
+            {
+                return;
+            }
+
+            Api.Server.World.EnterPrivateScope(character, this.CurrentVehicle);
         }
 
-        public void SetSelectedHotbarItem(IItem item)
+        public void SharedSetCurrentWeaponProtoOnly(IProtoItemWeapon weaponProto)
         {
-            this.SelectedHotbarItem = item;
-            this.CurrentItemWeaponProto = item?.ProtoItem as IProtoItemWeapon;
+            this.SelectedItem = null;
+            this.SelectedItemWeaponProto = weaponProto;
+        }
+
+        public void SharedSetSelectedItem(IItem item)
+        {
+            this.SelectedItem = item;
+            this.SelectedItemWeaponProto = item?.ProtoItem as IProtoItemWeapon;
+        }
+
+        private static void ServerPlayerCharacterOnlineStateChanged(ICharacter playerCharacter, bool isOnline)
+        {
+            if (!isOnline)
+            {
+                return;
+            }
+
+            var currentVehicle = PlayerCharacter.GetPublicState(playerCharacter).CurrentVehicle;
+            if (currentVehicle is null)
+            {
+                return;
+            }
+
+            Api.Server.World.EnterPrivateScope(playerCharacter, currentVehicle);
         }
     }
 }

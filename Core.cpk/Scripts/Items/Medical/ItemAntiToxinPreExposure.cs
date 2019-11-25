@@ -18,7 +18,7 @@
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {
             // remove toxins
-            character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(intensityToRemove: 0.1);
+            character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(intensityToRemove: 0.1); // removes a little bit as a bonus
 
             //add toxin protection
             character.ServerAddStatusEffect<StatusEffectProtectionToxins>(intensity: 0.5); // 5 minutes

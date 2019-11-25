@@ -6,28 +6,24 @@
 
     public class ViewModelStructurePointsBarControl : BaseViewModel
     {
-        private StaticObjectStructurePointsData staticObjectStructurePointsData;
+        private ObjectStructurePointsData objectStructurePointsData;
 
-        // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-        public ViewModelHUDStatBar StatBar { get; }
-            = new ViewModelHUDStatBar("Structure");
-
-        public StaticObjectStructurePointsData StaticObjectStructurePointsData
+        public ObjectStructurePointsData ObjectStructurePointsData
         {
-            get => this.staticObjectStructurePointsData;
+            get => this.objectStructurePointsData;
             set
             {
-                if (this.staticObjectStructurePointsData.Equals(value))
+                if (this.objectStructurePointsData.Equals(value))
                 {
                     return;
                 }
 
-                if (this.staticObjectStructurePointsData.State != null)
+                if (this.objectStructurePointsData.State != null)
                 {
                     this.ReleaseSubscriptions();
                 }
 
-                this.staticObjectStructurePointsData = value;
+                this.objectStructurePointsData = value;
 
                 if (value.State == null)
                 {
@@ -47,6 +43,10 @@
             }
         }
 
+        // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+        public ViewModelHUDStatBar StatBar { get; }
+            = new ViewModelHUDStatBar("Structure");
+
         /// <summary>
         /// This method is required to set the initial value from which the value bar control will interpolate to current value.
         /// </summary>
@@ -60,17 +60,17 @@
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
-            this.StaticObjectStructurePointsData = default;
+            this.ObjectStructurePointsData = default;
         }
 
         private void RefreshBar()
         {
-            if (this.staticObjectStructurePointsData.State == null)
+            if (this.objectStructurePointsData.State == null)
             {
                 return;
             }
 
-            this.StatBar.ValueCurrent = this.staticObjectStructurePointsData.State.StructurePointsCurrent;
+            this.StatBar.ValueCurrent = this.objectStructurePointsData.State.StructurePointsCurrent;
         }
 
         private void StructurePointsCurrentUpdated()

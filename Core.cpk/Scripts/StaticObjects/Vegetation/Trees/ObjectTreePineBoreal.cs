@@ -54,14 +54,16 @@
         protected override void PrepareDroplistOnDestroy(DropItemsList droplist)
         {
             // primary drop
-            droplist.Add<ItemLogs>(count: 4);
+            droplist
+                .Add<ItemLogs>(count: 4);
 
             // saplings
-            droplist.Add<ItemSaplingPineBoreal>(count: 1, probability: 0.15);
+            droplist
+                .Add<ItemSaplingPineBoreal>(count: 1, probability: 0.15);
 
             // bonus drop
-            droplist.Add<ItemTwigs>(count: 1, countRandom: 2, probability: 0.25);
-            droplist.Add<ItemTreebark>(count: 1, countRandom: 1, probability: 0.25);
+            droplist
+                .Add<ItemTwigs>(count: 1, countRandom: 2, probability: 0.25);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
@@ -69,7 +71,7 @@
             data.PhysicsBody
                 .AddShapeCircle(radius: 0.25, center: (0.5, 0.47))
                 .AddShapeRectangle(size: (0.75, 1),   offset: (0.125, 0.22), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.3, 0.35), offset: (0.35, 1.0),    group: CollisionGroups.HitboxRanged);
+                .AddShapeRectangle(size: (0.3, 0.35), offset: (0.35, 1.0),   group: CollisionGroups.HitboxRanged);
         }
     }
 }

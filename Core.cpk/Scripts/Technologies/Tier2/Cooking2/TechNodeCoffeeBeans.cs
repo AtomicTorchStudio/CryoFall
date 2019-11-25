@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeCoffeeBeans>();
 
-            config.SetRequiredNode<TechNodeBread>();
+            config.SetRequiredNode<TechNodeJam>();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Skills
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -64,7 +65,9 @@
 
             var oldLevel = skillLevelData.Level;
 
-            var newExp = experience + skillLevelData.Experience;
+            var experienceToAdd = experience;
+            experienceToAdd *= this.Character.SharedGetFinalStatMultiplier(StatName.SkillsExperienceGainMultiplier);
+            var newExp = experienceToAdd + skillLevelData.Experience;
             skillLevelData.Experience = newExp;
 
             if (newExp >= skillLevelData.ExperienceForNextLevel)

@@ -1,8 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode
 {
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.GameApi.Data.World;
 
-    public interface IProtoObjectWithAccessMode : IProtoObjectStructure
+    public interface IProtoObjectWithAccessMode : IProtoWorldObject
     {
         bool IsClosedAccessModeAvailable { get; }
     }

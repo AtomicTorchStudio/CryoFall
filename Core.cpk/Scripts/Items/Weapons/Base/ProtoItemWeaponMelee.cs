@@ -2,17 +2,16 @@
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
-    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -77,7 +76,12 @@
             return GetMeleeCharacterAnimationNameFire(character);
         }
 
-        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.MeleeWeapon;
+        }
+
+        protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()
         {
             return MaterialHitsSoundPresets.Melee;
         }
@@ -96,7 +100,7 @@
             ICharacter character,
             IItem weaponItem,
             IProtoItemWeapon protoWeapon,
-            List<WeaponHitData> hitObjects)
+            IReadOnlyList<IWorldObject> hitObjects)
         {
             if (hitObjects.Count == 0)
             {
@@ -105,9 +109,9 @@
             }
 
             var decrease = this.DurabilityDecreasePerAction;
-            foreach (var hit in hitObjects)
+            foreach (var hitObject in hitObjects)
             {
-                var protoObject = hit.WorldObject.ProtoWorldObject;
+                var protoObject = hitObject.ProtoWorldObject;
                 if (protoObject is IProtoObjectWall
                     || protoObject is IProtoObjectDoor
                     || protoObject is IProtoObjectTradingStation)

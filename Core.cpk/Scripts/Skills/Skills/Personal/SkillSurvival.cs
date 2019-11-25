@@ -1,9 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Skills
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Systems;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterIdleSystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using static Stats.StatName;
 
     public class SkillSurvival : ProtoSkill
@@ -63,6 +65,8 @@
             const double experienceToAdd = ExperienceAddWhenOnlinePerSecond
                                            * TimerIntervalSeconds;
 
+            var serverTime = Server.Game.FrameTime;
+
             foreach (var character in Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true))
             {
                 if (character.ProtoCharacter.GetType() != typeof(PlayerCharacter))
@@ -71,10 +75,16 @@
                     continue;
                 }
 
-                var publicState = character.GetPublicState<ICharacterPublicState>();
+                var publicState = PlayerCharacter.GetPublicState(character);
                 if (publicState.IsDead)
                 {
                     // dead characters are not processed
+                    continue;
+                }
+
+                if (CharacterIdleSystem.ServerIsIdlePlayer(character, serverTime))
+                {
+                    // idle character
                     continue;
                 }
 

@@ -38,7 +38,7 @@
 
         public const ushort SteamTemperatureMin = 25;
 
-        public override byte ContainerFuelSlotsCount => 1;
+        public override byte ContainerFuelSlotsCount => 4;
 
         public override byte ContainerInputSlotsCount => 1;
 
@@ -47,19 +47,19 @@
         public override string Description =>
             "This generator uses hot steam to drive a turbine and produce electricity. Takes time to boil water until it reaches its maximum output.";
 
-        public override float LiquidCapacity => 100;
+        public override double LiquidCapacity => 100;
 
-        public override float LiquidConsumptionAmountPerSecond => 0.1f;
+        public override double LiquidConsumptionAmountPerSecond => 0.025;
 
         public override LiquidType LiquidType => LiquidType.Water;
 
         public override string Name => "Steam generator";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 1200;
+        public override float StructurePointsMax => 2500;
 
         public static double SharedGetElectricityProductionRate(
             IStaticWorldObject worldObject,
@@ -88,7 +88,7 @@
             var publicState = GetPublicState(worldObject);
             var privateState = GetPrivateState(worldObject);
 
-            maxProduction = 10;
+            maxProduction = 12;
             var rate = SharedGetElectricityProductionRate(worldObject, out _);
             currentProduction = maxProduction * rate;
         }
@@ -98,7 +98,7 @@
             base.ClientInitialize(data);
 
             var publicState = data.PublicState;
-            var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
+            var sceneObject = data.GameObject.ClientSceneObject;
 
             var soundEmitter = this.ClientCreateActiveStateSoundEmitterComponent(data.GameObject);
             soundEmitter.Volume = 0.35f;

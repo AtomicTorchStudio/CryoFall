@@ -40,7 +40,7 @@
             }
 
             this.ProtectionTimeRemainingText = ClientTimeFormatHelper.FormatTimeDuration(this.timeRemaining);
-            ClientTimersSystem.AddAction(1, this.UpdateText);
+            ClientTimersSystem.AddAction(0.333, this.UpdateText);
         }
 
         private void UpdateTimerOnly()

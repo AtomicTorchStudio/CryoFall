@@ -28,6 +28,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 温馨食物
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
+你刚刚饱餐一顿，感觉很棒。你感觉生活充满了光彩。
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+可口食物
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 你正处于刺激剂的影响下，短时间内获得强化。你可以更加轻易地完成需要力量的工作。
 
@@ -44,7 +50,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 你体内破损的植入物正在极大的影响你的健康。你的最大生命值下降了。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
-破损植入物
+破损植入物副作用
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 你的腿骨折了，行动能力受到影响。拖着断腿跑步将带来剧痛。使用夹板治疗骨折。

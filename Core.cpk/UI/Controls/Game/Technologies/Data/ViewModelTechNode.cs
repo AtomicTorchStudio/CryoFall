@@ -34,6 +34,8 @@
 
         private IReadOnlyList<ViewModelTechNodeEffectStructureUnlock> listEffectsStructures;
 
+        private IReadOnlyList<ViewModelTechNodeEffectVehicleUnlock> listEffectsVehicles;
+
         private ViewModelTechNode parentNode;
 
         private Vector2D position;
@@ -116,6 +118,12 @@
                    ??= this.CollectEffectsOfType
                        <TechNodeEffectStructureUnlock,
                            ViewModelTechNodeEffectStructureUnlock>();
+
+        public IReadOnlyList<ViewModelTechNodeEffectVehicleUnlock> EffectsVehicles
+            => this.listEffectsVehicles
+                   ??= this.CollectEffectsOfType
+                       <TechNodeEffectVehicleUnlock,
+                           ViewModelTechNodeEffectVehicleUnlock>();
 
         public int HierarchyLevel { get; }
 

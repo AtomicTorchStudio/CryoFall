@@ -8,14 +8,14 @@
     {
         public override string Name => "Construction site";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
         protected override bool IsConstructionOrRepairRequirementsTooltipShouldBeDisplayed(
             ConstructionSitePublicState publicState)
         {
-            return ClientComponentObjectInteractionHelper.CurrentMouseOverObject == publicState.GameObject;
+            return ClientComponentObjectInteractionHelper.MouseOverObject == publicState.GameObject;
         }
 
         protected override void PrepareConstructionConfig(

@@ -9,7 +9,7 @@
 
     public class ItemSubmachinegun10mm : ProtoItemWeaponRanged
     {
-        public override ushort AmmoCapacity => 18;
+        public override ushort AmmoCapacity => 20;
 
         public override double AmmoReloadDuration => 2;
 
@@ -33,6 +33,13 @@
         public override double SpecialEffectProbability => 0.1;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();
+
+        protected override WeaponFirePatternPreset PrepareFirePatternPreset()
+        {
+            return new WeaponFirePatternPreset(
+                initialSequence: new[] { 0.0, 1.0, -2.0 },
+                cycledSequence: new[] { 1.5, 3.0, 2.5, 0.0, 3.5, -1.5, -3.0, -2.5, 0.0, -3.5 });
+        }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {

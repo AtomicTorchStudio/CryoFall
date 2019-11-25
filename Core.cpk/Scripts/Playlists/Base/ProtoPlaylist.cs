@@ -11,11 +11,27 @@
     /// </summary>
     public abstract class ProtoPlaylist : ProtoEntity
     {
+        public virtual double FadeOutDurationOnPlaylistChange => 3;
+
         public virtual PlayListMode Mode => PlayListMode.Sequential;
 
-        public virtual double PauseBetweenTracksSeconds { get; } = 0;
+        public virtual double PauseBetweenTracksSeconds => 0;
 
         public IReadOnlyList<MusicTrack> Tracks { get; private set; }
+
+        public int FindTrackIndex(MusicTrack track)
+        {
+            for (var index = 0; index < this.Tracks.Count; index++)
+            {
+                var entry = this.Tracks[index];
+                if (ReferenceEquals(entry, track))
+                {
+                    return index;
+                }
+            }
+
+            return -1;
+        }
 
         protected abstract void PreparePlaylist(MusicTracks tracks);
 

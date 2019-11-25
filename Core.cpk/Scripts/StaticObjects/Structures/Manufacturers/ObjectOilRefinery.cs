@@ -33,21 +33,25 @@
 
         public override double ElectricityConsumptionPerSecondWhenActive => 2;
 
-        public override float LiquidCapacityGasoline => 100;
+        public override double LiquidCapacityGasoline => 100;
 
-        public override float LiquidCapacityMineralOil => 100;
+        public override double LiquidCapacityMineralOil => 100;
 
-        public override float LiquidCapacityRawPetroleum => 100;
+        public override double LiquidCapacityRawPetroleum => 100;
 
-        public override float LiquidGasolineProductionPerSecond => 0.2f;
+        // A little larger number is used for liquids production speed
+        // to fix an issue with the floating point precision
+        // (e.g. a case when 0.0001 liquid level shortage prevents from collecting a full canister).
+        // With the adjusted number we have a barely noticeable profit which resolves the issue.
+        public override double LiquidGasolineProductionPerSecond => 0.2002; 
 
-        public override float LiquidMineralOilProductionPerSecond => 0.2f;
+        public override double LiquidMineralOilProductionPerSecond => 0.2002;
 
-        public override float LiquidRawPetroleumConsumptionPerSecond => 0.2f;
+        public override double LiquidRawPetroleumConsumptionPerSecond => 0.2;
 
         public override string Name => "Oil refinery";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
@@ -60,7 +64,7 @@
 
             // setup light source
             var lightSource = ClientLighting.CreateLightSourceSpot(
-                Client.Scene.GetSceneObject(worldObject),
+                worldObject.ClientSceneObject,
                 color: Color.FromArgb(0x99, 0xFF, 0xFF, 0xFF),
                 size: 1,
                 spritePivotPoint: (0.5, 0.5),

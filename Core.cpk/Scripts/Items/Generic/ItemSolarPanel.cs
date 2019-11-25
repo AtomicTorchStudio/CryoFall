@@ -9,8 +9,8 @@
 
         public override ushort DurabilityDecreasePerMinuteWhenInstalled => 1;
 
-        // It's enough for 3 real time days, however only half the time it's decreased
-        // as solar power is not generated during the nights (and reduced during morning/evening).
+        // It's enough for 3 real time days, however it's decreased only half the time since
+        // the solar power is not generated at nights (and reduced during morning/evening).
         // So effectively it's about 5 real time days.
         public override uint DurabilityMax => 3 * 24 * 60;
 

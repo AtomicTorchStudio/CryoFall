@@ -6,10 +6,11 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Special.Base;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.SoundCue;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
@@ -37,6 +38,13 @@
             ExplosionPreset explosionPreset,
             float volume = 1.0f)
         {
+            // add sound cues
+            for (var i = 0; i < 17; i++)
+            {
+                ClientTimersSystem.AddAction(delaySeconds: i * 0.1,
+                                             () => ClientSoundCueManager.OnSoundEvent(position));
+            }
+
             // add screen shakes
             ClientComponentCameraScreenShakes.AddRandomShakes(
                 duration: explosionPreset.ScreenShakesDuration,
@@ -167,26 +175,27 @@
                 delaySeconds: explosionPreset.SpriteAnimationDuration * 0.5,
                 () =>
                 {
-                    var tilePosition = (Vector2Ushort)epicenterPosition;
+                    var tilePosition =
+                        (Vector2Ushort)(epicenterPosition - explosionPreset.ProtoObjectCharredGround.Layout.Center);
 
                     // remove existing charred ground objects at the same tile
                     foreach (var staticWorldObject in Shared.WrapInTempList(
                         Server.World.GetTile(tilePosition).StaticObjects))
                     {
-                        if (staticWorldObject.ProtoStaticWorldObject is ObjectCharredGround)
+                        if (staticWorldObject.ProtoStaticWorldObject is ProtoObjectCharredGround)
                         {
                             Server.World.DestroyObject(staticWorldObject);
                         }
                     }
 
                     // spawn charred ground
-                    var objectCharredGround = Server.World
-                                                    .CreateStaticWorldObject<ObjectCharredGround>(tilePosition);
+                    var objectCharredGround =
+                        Server.World.CreateStaticWorldObject(explosionPreset.ProtoObjectCharredGround, tilePosition);
                     var objectCharredGroundOffset = epicenterPosition - tilePosition.ToVector2D();
                     if (objectCharredGroundOffset != Vector2D.Zero)
                     {
-                        ObjectCharredGround.ServerSetWorldOffset(objectCharredGround,
-                                                                 (Vector2F)objectCharredGroundOffset);
+                        ProtoObjectCharredGround.ServerSetWorldOffset(objectCharredGround,
+                                                                      (Vector2F)objectCharredGroundOffset);
                     }
                 });
 
@@ -203,8 +212,9 @@
                                                                 characterFinalStatsCache,
                                                                 weapon: null,
                                                                 protoWeapon: null,
-                                                                protoObjectExplosive: protoObjectExplosive,
-                                                                damageDescription: damageDescriptionCharacters);
+                                                                protoAmmo: null,
+                                                                damageDescription: damageDescriptionCharacters,
+                                                                protoObjectExplosive: protoObjectExplosive);
 
                     // execute explosion
                     executeExplosionCallback(

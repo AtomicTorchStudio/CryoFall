@@ -3,10 +3,10 @@
 [br]請確認您已連接至互聯網並且防火墻與運營商未阻止您的訪問。`
 
 Scripts/Bootstrappers/BootstrapperClientCore@DialogCannotConnectToTheMasterServer_Title:
-無法連接至主服務器。
+無法連接至主要伺服器。
 
 Scripts/Bootstrappers/BootstrapperClientCore@DialogModsMissing_MessageFormat:
-`此遊戲服務器需要以下mod：
+`此遊戲伺服器需要以下mod：
 [br]{0}
 [br][br]需先下載這些mod才能進入遊戲。
 [br]你可以在官方論壇找到mod：http://forums.atomictorch.com/index.php?board=24.0`

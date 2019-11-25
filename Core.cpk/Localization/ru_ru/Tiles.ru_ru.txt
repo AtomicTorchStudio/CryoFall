@@ -22,8 +22,14 @@ Scripts/Tiles/TileForestTropical@Name:
 Scripts/Tiles/TileLakeShore@Name:
 Берег озера
 
+Scripts/Tiles/TileLava@Name:
+Лава
+
 Scripts/Tiles/TileMeadows@Name:
 Луга
+
+Scripts/Tiles/TileRoads@Name:
+Дороги
 
 Scripts/Tiles/TileRocky@Name:
 Скалы

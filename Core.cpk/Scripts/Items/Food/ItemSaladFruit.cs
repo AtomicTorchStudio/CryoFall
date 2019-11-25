@@ -1,16 +1,16 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Buffs;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using System;
 
     public class ItemSaladFruit : ProtoItemFood, IProtoItemOrganic
     {
         public override string Description =>
             "Mixed fruit salad. Sweet, healthy and filling!";
 
-        public override float FoodRestore => 18;
+        public override float FoodRestore => 20;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 

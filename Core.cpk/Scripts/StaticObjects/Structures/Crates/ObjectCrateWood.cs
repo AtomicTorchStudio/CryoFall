@@ -16,11 +16,11 @@
 
         public override string Name => "Wooden crate";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
-        public override float StructurePointsMax => 4000;
+        public override float StructurePointsMax => 2000;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -38,7 +38,7 @@
         {
             category = GetCategory<StructureCategoryStorage>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemPlanks>(count: 5);
 

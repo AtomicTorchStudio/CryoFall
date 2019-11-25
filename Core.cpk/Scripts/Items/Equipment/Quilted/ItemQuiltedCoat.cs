@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment.Quilted
 {
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
+
     public class ItemQuiltedCoat : ProtoItemEquipmentChest
     {
         public override string Description =>
@@ -8,6 +10,8 @@
         public override uint DurabilityMax => 800;
 
         public override string Name => "Quilted coat";
+
+        public override ObjectMaterial Material => ObjectMaterial.SoftTissues;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

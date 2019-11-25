@@ -13,16 +13,16 @@
     {
         private readonly IObjectWithAccessModePrivateState privateState;
 
-        private readonly IStaticWorldObject worldObject;
+        private readonly IWorldObject worldObject;
 
         private WorldObjectAccessMode selectedAccessMode;
 
-        public ViewModelWorldObjectAccessModeEditor(IStaticWorldObject worldObject, bool canSetAccessMode)
+        public ViewModelWorldObjectAccessModeEditor(IWorldObject worldObject, bool canSetAccessMode)
         {
             this.worldObject = worldObject;
             this.CanSetAccessMode = canSetAccessMode;
 
-            if (!(worldObject.ProtoStaticWorldObject is IProtoObjectWithAccessMode protoObjectWithAccessMode))
+            if (!(worldObject.ProtoGameObject is IProtoObjectWithAccessMode protoObjectWithAccessMode))
             {
                 throw new Exception("This world object doesn't have an access mode");
             }

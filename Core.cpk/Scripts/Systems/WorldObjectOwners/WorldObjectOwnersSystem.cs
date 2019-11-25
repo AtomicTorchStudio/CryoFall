@@ -33,20 +33,20 @@
         public const string DialogCannotSetOwners_MessageNotOwner
             = "You're not the owner.";
 
-        public static event Action<IStaticWorldObject> ServerOwnersChanged;
+        public static event Action<IWorldObject> ServerOwnersChanged;
 
         public override string Name => "World object owners system";
 
-        public static void ClientOnCannotInteractNotOwner(IStaticWorldObject worldObject)
+        public static void ClientOnCannotInteractNotOwner(IWorldObject worldObject)
         {
             CannotInteractMessageDisplay.ClientOnCannotInteract(worldObject,
                                                                 DialogCannotSetOwners_MessageNotOwner,
                                                                 isOutOfRange: false);
         }
 
-        public static async void ClientSetOwners(IStaticWorldObject door, List<string> newOwners)
+        public static async void ClientSetOwners(IWorldObject worldObject, List<string> newOwners)
         {
-            var errorMessage = await Instance.CallServer(_ => _.ServerRemote_SetOwners(door, newOwners));
+            var errorMessage = await Instance.CallServer(_ => _.ServerRemote_SetOwners(worldObject, newOwners));
             if (errorMessage != null)
             {
                 NotificationSystem.ClientShowNotification(
@@ -56,7 +56,7 @@
             }
         }
 
-        public static void ServerInitialize(IStaticWorldObject worldObject)
+        public static void ServerInitialize(IWorldObject worldObject)
         {
             var privateState = GetPrivateState(worldObject);
             if (privateState.Owners == null)
@@ -65,7 +65,7 @@
             }
         }
 
-        public static void ServerNotifyNotOwner(ICharacter character, IStaticWorldObject worldObject)
+        public static void ServerNotifyNotOwner(ICharacter character, IWorldObject worldObject)
         {
             Logger.Warning(
                 $"Character cannot interact with {worldObject} - not the owner.",
@@ -76,26 +76,26 @@
                 _ => _.ClientRemote_OnCannotInteractNotOwner(worldObject));
         }
 
-        public static void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter)
+        public static void ServerOnBuilt(IWorldObject structure, ICharacter byCharacter)
         {
-            var protoObject = (IProtoObjectWithOwnersList)structure.ProtoStaticWorldObject;
+            var protoObject = (IProtoObjectWithOwnersList)structure.ProtoGameObject;
             if (!protoObject.HasOwnersList)
             {
                 return;
             }
 
-            // add the player character to the door owners list
+            // add the player character to the owners list
             GetPrivateState(structure).Owners.Add(byCharacter.Name);
             ServerInvokeOwnersChangedEvent(structure);
         }
 
         public static string ServerSetOwners(
-            IStaticWorldObject worldObject,
+            IWorldObject worldObject,
             List<string> newOwners,
             NetworkSyncList<string> currentOwners,
             ICharacter byOwner)
         {
-            var protoObject = (IProtoObjectWithOwnersList)worldObject.ProtoStaticWorldObject;
+            var protoObject = (IProtoObjectWithOwnersList)worldObject.ProtoGameObject;
             if (!protoObject.HasOwnersList)
             {
                 throw new Exception("This object doesn't support owners list: " + worldObject);
@@ -114,7 +114,7 @@
                 return DialogCannotSetOwners_MessageNotOwner;
             }
 
-            if (!((IProtoObjectWithOwnersList)worldObject.ProtoStaticWorldObject)
+            if (!((IProtoObjectWithOwnersList)worldObject.ProtoGameObject)
                     .SharedCanEditOwners(worldObject, byOwner))
             {
                 return DialogCannotSetOwners_MessageCannotEdit;
@@ -174,7 +174,7 @@
                     continue;
                 }
 
-                InteractableStaticWorldObjectHelper.ServerTryAbortInteraction(removedPlayer, worldObject);
+                InteractableWorldObjectHelper.ServerTryAbortInteraction(removedPlayer, worldObject);
             }
 
             ServerInvokeOwnersChangedEvent(worldObject);
@@ -183,7 +183,7 @@
 
         public static bool SharedCanInteract(
             ICharacter character,
-            IStaticWorldObject worldObject,
+            IWorldObject worldObject,
             bool writeToLog)
         {
             if (IsClient)
@@ -198,7 +198,7 @@
                 return true;
             }
 
-            // not the door owner
+            // not an owner
             if (writeToLog)
             {
                 ServerNotifyNotOwner(character, worldObject);
@@ -207,12 +207,12 @@
             return false;
         }
 
-        public static IReadOnlyList<string> SharedGetOwners(IStaticWorldObject worldObject)
+        public static IReadOnlyList<string> SharedGetOwners(IWorldObject worldObject)
         {
             return GetPrivateState(worldObject).Owners;
         }
 
-        public static bool SharedIsOwner(ICharacter who, IStaticWorldObject worldObject)
+        public static bool SharedIsOwner(ICharacter who, IWorldObject worldObject)
         {
             return SharedGetOwners(worldObject)
                 .Contains(who.Name);
@@ -226,12 +226,12 @@
             }
         }
 
-        private static IObjectWithOwnersPrivateState GetPrivateState(IStaticWorldObject structure)
+        private static IObjectWithOwnersPrivateState GetPrivateState(IWorldObject structure)
         {
             return structure.GetPrivateState<IObjectWithOwnersPrivateState>();
         }
 
-        private static void ServerInvokeOwnersChangedEvent(IStaticWorldObject worldObject)
+        private static void ServerInvokeOwnersChangedEvent(IWorldObject worldObject)
         {
             try
             {
@@ -245,7 +245,7 @@
 
         private static void ServerPlayerNameChangedHandler(string oldName, string newName)
         {
-            var worldObjectsWithOwnerLists = Server.World.GetStaticWorldObjectsOfProto<IProtoObjectWithOwnersList>();
+            var worldObjectsWithOwnerLists = Server.World.GetWorldObjectsOfProto<IProtoObjectWithOwnersList>();
             foreach (var worldObject in worldObjectsWithOwnerLists)
             {
                 var owners = GetPrivateState(worldObject).Owners;
@@ -272,12 +272,12 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_OnCannotInteractNotOwner(IStaticWorldObject worldObject)
+        private void ClientRemote_OnCannotInteractNotOwner(IWorldObject worldObject)
         {
             ClientOnCannotInteractNotOwner(worldObject);
         }
 
-        private string ServerRemote_SetOwners(IStaticWorldObject worldObject, List<string> newOwners)
+        private string ServerRemote_SetOwners(IWorldObject worldObject, List<string> newOwners)
         {
             var owner = ServerRemoteContext.Character;
             var currentOwners = GetPrivateState(worldObject).Owners;

@@ -23,7 +23,7 @@
           <TPrivateState,
               TPublicState,
               TClientState>,
-          IInteractableProtoStaticWorldObject,
+          IInteractableProtoWorldObject,
           IProtoObjectWithOwnersList,
           IProtoObjectWithAccessMode,
           IProtoObjectCrate
@@ -78,7 +78,7 @@
             }
         }
 
-        public bool SharedCanEditOwners(IStaticWorldObject worldObject, ICharacter byOwner)
+        public bool SharedCanEditOwners(IWorldObject worldObject, ICharacter byOwner)
         {
             return this.HasOwnersList;
         }
@@ -90,23 +90,24 @@
                        || WorldObjectAccessModeSystem.SharedHasAccess(character, worldObject, writeToLog));
         }
 
-        BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
+        BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
         {
-            var privateState = GetPrivateState(worldObject);
-            return this.ClientOpenUI(worldObject, privateState);
+            var staticWorldObject = (IStaticWorldObject)worldObject;
+            var privateState = GetPrivateState(staticWorldObject);
+            return this.ClientOpenUI(staticWorldObject, privateState);
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
         }
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
         protected virtual BaseUserControlWithWindow ClientOpenUI(
@@ -149,26 +150,6 @@
                 slotsCount: this.ItemsSlotsCount);
 
             privateState.ItemsContainer = itemsContainer;
-        }
-
-        protected override double SharedCalculateDamageByWeapon(
-            WeaponFinalCache weaponCache,
-            double damagePreMultiplier,
-            IStaticWorldObject targetObject,
-            out double obstacleBlockDamageCoef)
-        {
-            if (IsServer)
-            {
-                damagePreMultiplier = LandClaimSystem.ServerAdjustDamageToUnprotectedStrongBuilding(weaponCache,
-                                                                                                    targetObject,
-                                                                                                    damagePreMultiplier);
-            }
-
-            var damage = base.SharedCalculateDamageByWeapon(weaponCache,
-                                                            damagePreMultiplier,
-                                                            targetObject,
-                                                            out obstacleBlockDamageCoef);
-            return damage;
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

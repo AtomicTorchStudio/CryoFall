@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
-    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ItemOilLamp : ProtoItemToolLight
     {
@@ -17,16 +16,16 @@
 
         protected override BaseClientComponentLightSource ClientCreateLightSource(
             IItem item,
-            ICharacter character,
-            IClientSceneObject sceneObject)
+            ICharacter character)
         {
-            var lightSource = base.ClientCreateLightSource(item, character, sceneObject);
+            var lightSource = base.ClientCreateLightSource(item, character);
 
             // add light flickering
-            sceneObject.AddComponent<ClientComponentLightSourceEffectFlickering>()
-                       .Setup(lightSource,
-                              flickeringPercents: 5,
-                              flickeringChangePercentsPerSecond: 33);
+            character.ClientSceneObject
+                     .AddComponent<ClientComponentLightSourceEffectFlickering>()
+                     .Setup(lightSource,
+                            flickeringPercents: 5,
+                            flickeringChangePercentsPerSecond: 33);
 
             return lightSource;
         }

@@ -227,6 +227,7 @@
         [Description("Bleeding")]
         BleedingIncreaseRateMultiplier,
 
+        [Obsolete("Currently not used, but could be implemented if needed. Localization is already there.")]
         [Description("Heat increase rate")]
         HeatIncreaseRateMultiplier,
 
@@ -236,6 +237,9 @@
         [Description("Pain")]
         PainIncreaseRateMultiplier,
 
+        /// <summary>
+        /// Please note: this is damage received by psi status effect, not a damage modifier for psi damage dealt.
+        /// </summary>
         [Description("Psi damage")]
         PsiEffectMultiplier,
 
@@ -264,10 +268,16 @@
         [Description("Learning points gain")]
         LearningsPointsGainMultiplier,
 
+        [Description("Skills experience gain")]
+        SkillsExperienceGainMultiplier,
+
         [Description("Tinker table effectiveness")]
         TinkerTableBonus,
 
         [Description("Crafting queue slots")]
-        CraftingQueueMaxSlotsCount
+        CraftingQueueMaxSlotsCount,
+
+        [Description("Medicine toxicity")]
+        MedicineToxicityMultiplier
     }
 }

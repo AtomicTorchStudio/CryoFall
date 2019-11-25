@@ -87,11 +87,13 @@
 
             var seconds = time.TotalSeconds % 60.0;
             sb.Append(hasPreviousValue
-                          ? ((int)seconds).ToString("D2") // display seconds as number with leading zero: 01, 02, ... 58, 59
+                          ? ((int)seconds)
+                          .ToString("D2") // display seconds as number with leading zero: 01, 02, ... 58, 59
                           : (roundSeconds
                                  ? seconds.ToString("F0") // format without any decimal digits (after the comma)
-                                 : seconds.ToString("0.##") // format with up to two decimal digits (after the comma): 0, 0.1, 0.25
-                                ))
+                                 : seconds.ToString(
+                                     "0.##") // format with up to two decimal digits (after the comma): 0, 0.1, 0.25
+                            ))
               .Append(SuffixSeconds);
 
             return sb.ToString();

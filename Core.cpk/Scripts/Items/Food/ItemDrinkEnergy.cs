@@ -10,6 +10,8 @@
         public override string Description =>
             "Energy drink popular throughout the galaxy. Gives you serious energy boost.";
 
+        public override float FoodRestore => 3;
+
         public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
 
         public override string ItemUseCaption => ItemUseCaptions.Drink;
@@ -17,8 +19,6 @@
         public override string Name => "Energy drink";
 
         public override ushort OrganicValue => 0;
-
-        public override float FoodRestore => 3;
 
         public override float StaminaRestore => 100;
 

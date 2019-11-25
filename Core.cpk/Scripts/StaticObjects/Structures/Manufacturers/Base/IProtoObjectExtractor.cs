@@ -2,8 +2,8 @@
 {
     public interface IProtoObjectExtractor : IProtoObjectManufacturer
     {
-        float LiquidCapacity { get; }
+        double LiquidCapacity { get; }
 
-        float LiquidProductionAmountPerSecond { get; }
+        double LiquidProductionAmountPerSecond { get; }
     }
 }

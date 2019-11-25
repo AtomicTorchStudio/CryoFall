@@ -5,8 +5,8 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (0.85, 0.5), offset: (0, 0));
-            AddFullHeightWallHitboxes(data);
+                .AddShapeRectangle(size: (0.85, 0.5));
+            AddFullHeightWallHitboxes(data, width: 0.85);
         }
     }
 }

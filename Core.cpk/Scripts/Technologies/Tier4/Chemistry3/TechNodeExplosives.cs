@@ -4,6 +4,8 @@
 
     public class TechNodeExplosives : TechNode<TechGroupChemistry3>
     {
+        public override FeatureAvailability AvailableIn => FeatureAvailability.OnlyPvP;
+
         protected override void PrepareTechNode(Config config)
         {
             config.Effects

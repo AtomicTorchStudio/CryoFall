@@ -72,11 +72,14 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0} dołącza do gry
 
-Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-Czy na pewno {0} gracza {1}?
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
+Czy na pewno zablokować: {0}?
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 Możesz odblokować tego gracza później, korzystając z menu społecznościowego.
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
+Czy na pewno odblokować: {0}?
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 Globalny
@@ -214,7 +217,7 @@ Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
 {0} – usunięto z grupy przez {1}
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
-{0} usuwa cię z grupy
+{0} usuwa cię z grupy.
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
 Nie znaleziono zaproszenia lub zaproszenie wygasło.
@@ -304,6 +307,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Ważne:[/b]
+[br]
 To jest serwer PvE (gracz kontra środowisko gry). Na tym serwerze gracze w żaden sposób nie mogą atakować siebie wzajemnie. Działania na tym serwerze skupiają się na spokojnej eksploracji. Nie możesz zabijać, niszczyć ani okradać innych graczy. Ponadto serwer oferuje wszystkie funkcje gry CryoFall: niebezpieczne stwory, technologie do odblokowania i świat do eksplorowania. Wybierz się na wyprawę.
 [br]
 [br]
@@ -325,7 +329,8 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Ważne:[/b]
-To jest darmowy server PvP. Pamiętaj, że na serwerach PvP można spotkać się z agresywnymi zachowaniami innych graczy. Musisz walczyć, bronić się i zawsze uważać na siebie. Możesz również połączyć siły z innymi ocalałymi i wspólnie próbować przetrwać.
+[br]
+To jest dostępny dla wszystkich serwer PvP bez ograniczeń. Pamiętaj, że na serwerach PvP można spotkać się z agresywnymi zachowaniami innych graczy. Musisz walczyć, bronić się i zawsze uważać na siebie. Możesz również połączyć siły z innymi ocalałymi i wspólnie próbować przetrwać.
 [br]
 [br]
 Jeśli wolisz spokojniejszą grę, zwłaszcza jeśli grasz pierwszy raz, dołącz raczej do serwera PvE.
@@ -383,6 +388,30 @@ Nie można kupić
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
 Nie można sprzedać
+
+Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
+Zablokowano. Aby wstawić pojazd, w fabryce nie mogą znajdować się przedmioty ani ludzie.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
+Nie można odebrać pojazdu
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
+Pojazd znajduje się w garażu. Możesz go pobrać z Fabryki samochodów.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
+Niektóre pojazdy znajdują się w garażu. Możesz je pobrać z Fabryki samochodów.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
+Pojazdy w garażu
+
+Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
+Brakuje energii.
+
+Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
+Nie można użyć: {0}
+
+Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
+Już podlane
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
 Roślina jest gotowa do zbioru. Nie ma sensu jej podlewać.

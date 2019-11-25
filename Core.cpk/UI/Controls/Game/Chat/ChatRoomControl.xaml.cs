@@ -6,6 +6,7 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.Helpers;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -469,15 +470,15 @@
                 return;
             }
 
-            var username = Api.Client.Characters.CurrentPlayerCharacter.Name;
             Api.Client.Audio
                .PlayOneShot(SoundResourceMessageSend,
                             volume: SoundConstants.VolumeUIChat);
 
-            this.AddChatEntry(new ChatEntry(username,
+            this.AddChatEntry(new ChatEntry(ClientCurrentCharacterHelper.Character.Name,
                                             message,
                                             isService: false,
-                                            DateTime.Now));
+                                            DateTime.Now,
+                                            hasSupporterPack: Api.Client.MasterServer.IsSupporterPackOwner));
 
             ChatSystem.ClientSendMessageToRoom(this.ViewModelChatRoom.ChatRoom, message);
         }

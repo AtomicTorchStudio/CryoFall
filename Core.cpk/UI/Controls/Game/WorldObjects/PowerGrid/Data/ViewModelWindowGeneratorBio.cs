@@ -41,16 +41,6 @@
                     character.SharedGetPlayerContainerHotbar()
                 });
 
-            ClientContainersExchangeManager.Register(
-                this,
-                character.SharedGetPlayerContainerHotbar(),
-                allowedTargets: new[] { this.InputItemsContainer });
-
-            ClientContainersExchangeManager.Register(
-                this,
-                character.SharedGetPlayerContainerInventory(),
-                allowedTargets: new[] { this.InputItemsContainer });
-
             this.Refresh();
         }
 

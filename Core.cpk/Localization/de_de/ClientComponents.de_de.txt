@@ -25,6 +25,9 @@ Handlung – Objekt benutzen
 Scripts/ClientComponents/Input/GameButton@ActionInteract:
 Handlung – Interagieren
 
+Scripts/ClientComponents/Input/GameButton@VehicleEnterExit:
+Fahrzeug ein-/aussteigen
+
 Scripts/ClientComponents/Input/GameButton@ItemReload:
 Nachladen
 

@@ -19,15 +19,15 @@
 
         public override string Name => "Bioreactor";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override ushort OrganicCapacity => 300;
+        public override ushort OrganicCapacity => 250;
 
-        public override float OrganicDecreasePerSecondWhenActive => 0.25f;
+        public override double OrganicDecreasePerSecondWhenActive => 0.125;
 
-        public override float StructurePointsMax => 1200;
+        public override float StructurePointsMax => 3000;
 
         public override void SharedGetElectricityProduction(
             IStaticWorldObject worldObject,

@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
@@ -14,7 +15,7 @@
 
         public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
         {
-            damagedCharacter.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.025); // 15 sec of toxins
+            damagedCharacter.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.05); // 15 seconds
         }
 
         protected override void PrepareDamageDescription(
@@ -31,6 +32,11 @@
 
             damageDistribution.Set(DamageType.Kinetic,  0.4);
             damageDistribution.Set(DamageType.Chemical, 0.6);
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.Firearm;
         }
     }
 }

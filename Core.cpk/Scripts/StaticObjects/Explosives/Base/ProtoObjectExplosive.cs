@@ -33,17 +33,17 @@
 
         public virtual TimeSpan ExplosionDelay { get; } = TimeSpan.FromSeconds(5);
 
+        public override bool HasIncreasedScopeSize => true;
+
         public abstract bool IsActivatesRaidModeForLandClaim { get; }
 
         public virtual bool IsDamageThroughObstacles => false;
 
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
-        public sealed override double ObstacleBlockDamageCoef => 0f;
-
-        public override bool HasIncreasedScopeSize => true;
+        public sealed override double ObstacleBlockDamageCoef => 0;
 
         public sealed override double ServerUpdateIntervalSeconds => 0; // every frame
 
@@ -103,7 +103,7 @@
 
             obstacleBlockDamageCoef = 0;
             damageApplied = 0; // no damage
-            return false; // no hit
+            return false;      // no hit
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -112,11 +112,11 @@
 
             var worldObject = data.GameObject;
 
-            Client.Scene.GetSceneObject(worldObject)
-                  .AddComponent<ClientComponentBombCountdown>()
-                  .Setup(secondsRemains: this.ExplosionDelay.TotalSeconds,
-                         positionOffset: this.SharedGetObjectCenterWorldOffset(worldObject)
-                                         + (0, 0.55));
+            worldObject.ClientSceneObject
+                       .AddComponent<ClientComponentBombCountdown>()
+                       .Setup(secondsRemains: this.ExplosionDelay.TotalSeconds,
+                              positionOffset: this.SharedGetObjectCenterWorldOffset(worldObject)
+                                              + (0, 0.55));
 
             // preload all the explosion spritesheets
             foreach (var textureAtlasResource in this.ExplosionPreset.SpriteAtlasResources)
@@ -135,12 +135,11 @@
             Client.Rendering.PreloadEffectAsync(ExplosionHelper.EffectResourceAdditiveColorEffect);
         }
 
-        protected override void ClientOnObjectDestroyed(Vector2Ushort tilePosition)
+        protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             //base.ClientOnObjectDestroyed(tilePosition);
-            Logger.Important(this + " exploded at " + tilePosition);
-            var epicenterPosition = tilePosition.ToVector2D() + this.Layout.Center;
-            ExplosionHelper.ClientExplode(epicenterPosition,
+            Logger.Important(this + " exploded at " + position);
+            ExplosionHelper.ClientExplode(position: position + this.Layout.Center,
                                           this.ExplosionPreset,
                                           this.VolumeExplosion);
         }

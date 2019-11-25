@@ -58,6 +58,12 @@ Schwere .300 Brandmunition, die durch Rüstung dringen und ein Ziel entzünden k
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 .300 Brandmunition
 
+Scripts/Items/Ammo/ItemAmmo50SH@Description:
+Leistungsstarke und großkalibrige Patrone für Handfeuerwaffen.
+
+Scripts/Items/Ammo/ItemAmmo50SH@Name:
+.50 SH Munition
+
 Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
 Einfache, nicht-ummantelte 8mm-Patronen. Mit einfachsten Mitteln und Methoden hergestellt, was sich negativ auf Präzision und Durchschlagskraft auswirkt.
 
@@ -90,6 +96,9 @@ Lesen
 
 Scripts/Items/Base/ItemUseCaptions@Use:
 Benutzen
+
+Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
+Dieser Gegenstand kann nicht aus einem Fahrzeug heraus benutzt werden.
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Daten-Log (verschlüsselt)
@@ -484,6 +493,12 @@ Einfache, aber würzige Mahlzeit.
 Scripts/Items/Food/ItemCarrotGrilled@Name:
 Gegrillte Karotten
 
+Scripts/Items/Food/ItemCheese@Description:
+Aus geronnenem Milcheiweiß hergestelltes Lebensmittel.
+
+Scripts/Items/Food/ItemCheese@Name:
+Käse
+
 Scripts/Items/Food/ItemChiliBeans@Description:
 Das einzig wahre Junggesellenessen.
 
@@ -543,6 +558,12 @@ Knackige, süße Gürkchen.
 
 Scripts/Items/Food/ItemCucumbersPickled@Name:
 Gewürzgurken
+
+Scripts/Items/Food/ItemDough@Description:
+Kann zur Zubereitung einer Vielzahl von Rezepten genutzt werden.
+
+Scripts/Items/Food/ItemDough@Name:
+Teig
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Ein in der gesamten Galaxis weitverbreiteter Energydrink. Verleiht dir einen wahren Energieschub.
@@ -634,6 +655,24 @@ Gebratenes Fleisch garniert mit etwas Petersilie. Wo kommt die Petersilie her? D
 Scripts/Items/Food/ItemMeatRoasted@Name:
 Gebratenes Fleisch
 
+Scripts/Items/Food/ItemMilk@Description:
+Nährstoffreiche Milch. Kann zum Kochen oder sofort verwendet werden.
+
+Scripts/Items/Food/ItemMilk@Name:
+Milch
+
+Scripts/Items/Food/ItemMilkmelon@Description:
+Speziell gentechnisch veränderte Pflanze, die eine dicke, milchige Flüssigkeit produziert, die echter Milch in ihrer Zusammensetzung ähnelt.
+
+Scripts/Items/Food/ItemMilkmelon@Name:
+Milchmelone
+
+Scripts/Items/Food/ItemMRE@Description:
+Industriell gefertigte Mahlzeit zum Überleben in der Wildnis oder während Militäreinsätzen, die mehrere kalorienreiche Gerichte mitsamt der nötigen Flüssigkeitsmenge enthält.
+
+Scripts/Items/Food/ItemMRE@Name:
+MRE
+
 Scripts/Items/Food/ItemMREImprovised@Description:
 Diese Mahlzeit wurde mithilfe einiger einfacher Zutaten und Salz als wichtigstem Konservierungsmittel zubereitet. Hält sich lang, ohne zu verderben.
 
@@ -658,11 +697,11 @@ Diese Pilze sind wegen ihrer kräftigen Farbe als Rostpilze bekannt. Gekocht sch
 Scripts/Items/Food/ItemMushroomRust@Name:
 Rostpilze
 
-Scripts/Items/Food/ItemOgurin@Description:
-Seltsam aussehende Ogurinfrüchte ... recht fad im Geschmack. Aus gentechnisch veränderten Gurken gezüchtet.
+Scripts/Items/Food/ItemOnigiri@Description:
+Auch als Reisbälle bekannt. Können bequem unterwegs verzehrt werden. Einfach und sättigend. Gewürze verlängern die Haltbarkeit.
 
-Scripts/Items/Food/ItemOgurin@Name:
-Ogurinfrucht
+Scripts/Items/Food/ItemOnigiri@Name:
+Onigiri
 
 Scripts/Items/Food/ItemPieBerry@Description:
 Ein saftiger Beerenkuchen. Genau wie deine Oma ihn immer gebacken hat.
@@ -675,6 +714,12 @@ Eine süßsaure Tropenfrucht, die roh verzehrt oder als Zutat in diversen Gerich
 
 Scripts/Items/Food/ItemPineapple@Name:
 Ananas
+
+Scripts/Items/Food/ItemRiceCooked@Description:
+Zum sofortigen Verzehr oder als Teil einer komplexeren Mahlzeit.
+
+Scripts/Items/Food/ItemRiceCooked@Name:
+Gekochter Reis
 
 Scripts/Items/Food/ItemRoastedMushrooms@Description:
 Leckere, gebratene Pilze.
@@ -1004,12 +1049,6 @@ Flussmittel findet in der Metallurgie zur Herstellung hochwertiger Metalle Verwe
 Scripts/Items/Generic/ItemFluxPowder@Name:
 Flussmittel
 
-Scripts/Items/Generic/ItemFoodRotten@Description:
-Dieses Lebensmittel ist gänzlich verdorben.
-
-Scripts/Items/Generic/ItemFoodRotten@Name:
-Verdorbenes Essen
-
 Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 Speziell angemischtes Cellulosenitratgranulat für Hochleistungsfeuerwaffen.
 
@@ -1081,6 +1120,12 @@ Spezielles, stark feuchtigkeitsbindendes Granulat, das als Bodenzusatz dienen ka
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Name:
 Feuchtigkeitsbindendes Granulat
+
+Scripts/Items/Generic/ItemImpulseEngine@Description:
+Leistungsstarker Impulsmotor, der in einer Vielzahl von Mechanismen Verwendung findet.
+
+Scripts/Items/Generic/ItemImpulseEngine@Name:
+Impulsmotor
 
 Scripts/Items/Generic/ItemIngotCopper@Description:
 Barren aus reinem Kupfer. Kupfer besitzt eine Vielzahl von Anwendungsgebieten, von der Industrie bis hin zur Elektronik.
@@ -1217,11 +1262,35 @@ Nahrungskonservierungsmittel. Kann verpackten Lebenmitteln hinzugefügt werden, 
 Scripts/Items/Generic/ItemPreservative@Name:
 Konservierungsmittel
 
+Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
+Leerer Reaktorkern, der mit einer reaktiven Energieträgersubstanz wie Pragmium aufgefüllt werden kann.
+
+Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
+Leerer Reaktorkern
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Description:
+Ein mit Pragmium befüllter Reaktorkern. Relativ stabile, tragbare und langlebige Stromquelle.
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Name:
+Pragmium-Reaktorkern
+
+Scripts/Items/Generic/ItemRice@Description:
+Geerntete Reiskörner. Können gepflanzt oder in einer Vielzahl von Gerichten verwendet werden.
+
+Scripts/Items/Generic/ItemRice@Name:
+Reis
+
 Scripts/Items/Generic/ItemRope@Description:
 Ein herkömmliches Seil. Vielseitig einsetzbar. Überschüssiges Seil kann verbrannt werden.
 
 Scripts/Items/Generic/ItemRope@Name:
 Seil
+
+Scripts/Items/Generic/ItemRot@Description:
+Lebensmittel oder organisches Material, das vollständig verdorben und so zu diesem verfaulten Brei geworden ist.
+
+Scripts/Items/Generic/ItemRot@Name:
+Fäule
 
 Scripts/Items/Generic/ItemRubberRaw@Description:
 Naturkautschuk, auch als Latexharz bekannt. Aus Gummibäumen gewonnen. Kann durch chemische Prozesse in vulkanisiertes Gummi umgewandelt werden.
@@ -1271,11 +1340,29 @@ Speziell entwickeltes Lösungsmittel des Weltraumzeitalters, das die Eigenschaft
 Scripts/Items/Generic/ItemSolvent@Name:
 Lösungsmittel
 
+Scripts/Items/Generic/ItemSpices@Description:
+Eine Auswahl an verschiedenen Gewürzen, die zum Kochen verwendet werden können.
+
+Scripts/Items/Generic/ItemSpices@Name:
+Gewürze
+
+Scripts/Items/Generic/ItemSpicesRaw@Description:
+Frisch geerntete Gewürze, die vor ihrem Gebrauch getrocknet und verarbeitet werden müssen.
+
+Scripts/Items/Generic/ItemSpicesRaw@Name:
+Rohgewürze
+
 Scripts/Items/Generic/ItemStone@Description:
 Stein ... rund und schwer. Nützlich als Baumaterial. Liegt oft einfach auf dem Boden herum oder kann in größeren Mengen abgebaut werden.
 
 Scripts/Items/Generic/ItemStone@Name:
 Stein
+
+Scripts/Items/Generic/ItemStructuralPlating@Description:
+Rüstungsplatten, die für eine schützende Außenhülle sowie als tragende Struktur zum Montieren zusätzlicher Hardware verwendet werden können.
+
+Scripts/Items/Generic/ItemStructuralPlating@Name:
+Strukturpanzerung
 
 Scripts/Items/Generic/ItemSulfurPowder@Description:
 Reiner Schwefel in Pulverform.
@@ -1299,19 +1386,19 @@ Scripts/Items/Generic/ItemTobaccoAged@Description:
 Gereifte Tabakblätter. Können zu erlesenen Zigarren gerollt werden.
 
 Scripts/Items/Generic/ItemTobaccoAged@Name:
-Tabak (gereift)
+Gereifter Tabak
 
 Scripts/Items/Generic/ItemTobaccoDried@Description:
 Getrocknete Tabakblätter. Können zu billigen Zigarren verarbeitet werden, oder weiter reifen und zur Herstellung erlesener Zigarren dienen.
 
 Scripts/Items/Generic/ItemTobaccoDried@Name:
-Tabak (getrocknet)
+Getrockneter Tabak
 
 Scripts/Items/Generic/ItemTobaccoRaw@Description:
 Rohtabakblätter und -hülsen. Können getrocknet und zu Zigarren verarbeitet werden.
 
 Scripts/Items/Generic/ItemTobaccoRaw@Name:
-Tabak (roh)
+Rohtabak
 
 Scripts/Items/Generic/ItemToxin@Description:
 Chemisches Gift. Könnte zur Herstellung von gifthaltiger Munition oder Medizin verwendet werden.
@@ -1319,17 +1406,17 @@ Chemisches Gift. Könnte zur Herstellung von gifthaltiger Munition oder Medizin 
 Scripts/Items/Generic/ItemToxin@Name:
 Gift
 
-Scripts/Items/Generic/ItemTreebark@Description:
-Die Rinde einiger Bäume. Kann verbrannt oder für andere Zwecke genutzt werden.
-
-Scripts/Items/Generic/ItemTreebark@Name:
-Baumrinde
-
 Scripts/Items/Generic/ItemTwigs@Description:
 Nur ein paar vom Boden auf- oder von Bäumen abgesammelte Zweige. Könnten bei der Herstellung einfacher Werkzeuge nützlich sein oder als Brennholz dienen.
 
 Scripts/Items/Generic/ItemTwigs@Name:
 Zweige
+
+Scripts/Items/Generic/ItemUniversalActuator@Description:
+Hochflexibler und extrem leistungsfähiger Servomotor, der Magnetkraft zur Fortbewegung benutzt.
+
+Scripts/Items/Generic/ItemUniversalActuator@Name:
+Universeller Servomotor
 
 Scripts/Items/Generic/ItemVialBiomaterial@Description:
 Volle Biomaterialphiole. Wird in der Kybernetik und der Medizin benutzt, insbesondere um Operationen zur Installation und zum Entfernen von Implantaten durchzuführen.
@@ -1376,14 +1463,17 @@ Bereits gedüngt
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
 Die Pflanze ist reif für die Ernte. Kein Dünger nötig.
 
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
-Bereits gewässert
-
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
-Die Pflanze ist reif für die Ernte. Kein Wasser nötig.
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CanApplyOnlyOnPlants:
+Kann nur auf Pflanzen angewendet werden.
 
 Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Hier nicht verwendbar
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
+Künstliche biotechnologische Leber. Ermöglicht eine verbesserte Filterung des Bluts, sodass einige Effekte von Medikamentenüberdosierung negiert werden.
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
+Künstliche Leber
 
 Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
 Spezielle, hochgradig lichtempfindliche Netzhautschicht mit HDR-Unterstützung, die fast perfekte Nachtsicht gewährt.
@@ -1427,17 +1517,17 @@ Dieses spezielle Nanofasermaterial kann in die untere Hautschicht implantiert we
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Nanofaser-Hautimplantat
 
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+Keine unkontrollierten Mutationen im Körper vorhanden.
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Keine Mutationen
+
 Scripts/Items/Medical/ItemAntiMutation@Description:
 Schützt und regeneriert zelluläre DNA, die durch Strahlenbelastung oder andere gesundheitsgefährdende Einflüsse beschädigt wurde. Stoppt unkontrollierte Mutationen des Körpers.
 
 Scripts/Items/Medical/ItemAntiMutation@Name:
 Medizinischer Schutz gegen Mutationen
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
-Keine Mutationen
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
-Keine unkontrollierten Mutationen im Körper vorhanden.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 Dir ist nicht übel. Es hat keinen Zweck, diese Medizin jetzt einzunehmen.
@@ -1635,13 +1725,13 @@ Scripts/Items/Medical/ItemStrengthBoostBig@Description:
 Kraftsteigernde Medizin macht dich vorübergehend stärker und erhöht so deine Leistung während körperlicher Anstrengung.
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Name:
-Stärkeschub (groß)
+Großer Stärke-Boost
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 Kraftsteigernde Medizin macht dich vorübergehend stärker und erhöht so deine Leistung während körperlicher Anstrengung.
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
-Stärkeschub (klein)
+Kleiner Stärke-Boost
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Setzling eines Baums. Kann gepflanzt werden, um einen neuen Baum heranwachsen zu lassen.
@@ -1688,8 +1778,14 @@ Samen des Blauen Salbeis
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Oniblumensamen
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Name:
-Ogurinsamen
+Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
+Milchmelonensamen
+
+Scripts/Items/Seeds/ItemSeedsRice@Name:
+Reissamen
+
+Scripts/Items/Seeds/ItemSeedsSpices@Name:
+Gewürzsamen
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Tabaksamen
@@ -1844,6 +1940,12 @@ Schweres und tödlicheres Gegenstück zum Kupferstreitkolben.
 Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
 Eisenstreitkolben
 
+Scripts/Items/Weapons/Melee/ItemMachete@Description:
+Schwere Machete aus Stahl. Ideal zum Abhacken von Köpfen.
+
+Scripts/Items/Weapons/Melee/ItemMachete@Name:
+Machete
+
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 Keine Waffe
 
@@ -1952,9 +2054,33 @@ Militärische Schrotflinte mit großer Munitionskapazität. Benutzt Kaliber 12-M
 Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
 Militärische Schrotflinte
 
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
+Halbautomatische Handfeuerwaffe mit extremer Geschossenergie.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
+Steppenhabicht
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
+Limitierte goldene Variante der Steppenhabicht-Handfeuerwaffe.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
+Steppenhabicht Gold
+
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 Maschinenpistole entwickelt für 10mm-Munition.
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Maschinenpistole
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
+Schwere Autokanone entwickelt für montierte Außenlaststationen auf mechanisierter Kampfrüstung. Vewendet großkalibrige Anti-Material-Munition.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
+Schwere Autokanone
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
+Leichte Autokanone entwickelt für montierte Außenlaststationen auf mechanisierter Kampfrüstung. Vewendet kleinkalibrige Munition.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
+Leichte Autokanone
 

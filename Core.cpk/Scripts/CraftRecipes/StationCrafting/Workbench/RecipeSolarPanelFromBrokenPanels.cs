@@ -1,11 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CraftRecipes
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
-    using System;
 
     public class RecipeSolarPanelFromBrokenPanels : Recipe.RecipeForStationCrafting
     {
@@ -21,8 +21,6 @@
 
             inputItems.Add<ItemSolarPanelBroken>(count: 4);
             inputItems.Add<ItemComponentsOptical>(count: 10);
-            inputItems.Add<ItemComponentsElectronic>(count: 10);
-            inputItems.Add<ItemOrePragmium>(count: 10);
 
             outputItems.Add<ItemSolarPanel>(count: 1);
 

@@ -33,7 +33,7 @@
 
     public class PowerGridSystem : ProtoSystem<PowerGridSystem>
     {
-        public const double BaseCapacity = 5000.0;
+        public const double BaseCapacity = 10000.0;
 
         // If the charge drops below 90% in the power grid, the required power producers (generators) will be automatically activated (to ensure the power generation surplus).
         public const double PowerProductionChargeThreshold = 0.9;
@@ -41,7 +41,7 @@
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;
 
-        private enum SetPowerModeResult : byte
+        public enum SetPowerModeResult : byte
         {
             Success = 0,
 
@@ -125,6 +125,42 @@
             Canvas.SetLeft(powerSwitchControl, 10);
 
             grid.Children.Add(canvas);
+        }
+
+        public static bool ServerBaseHasCharge(
+            [CanBeNull] ILogicObject areasGroup,
+            double amount)
+        {
+            if (areasGroup is null)
+            {
+                return false;
+            }
+
+            var grid = SharedGetPowerGrid(areasGroup);
+            var gridPublicState = PowerGrid.GetPublicState(grid);
+            return gridPublicState.ElectricityAmount >= amount;
+        }
+
+        public static void ServerDeductBaseCharge(
+            ILogicObject areasGroup,
+            double amountToDeduct)
+        {
+            if (areasGroup is null)
+            {
+                throw new ArgumentNullException(nameof(areasGroup), "Areas group is not found");
+            }
+
+            var grid = SharedGetPowerGrid(areasGroup);
+            var gridPublicState = PowerGrid.GetPublicState(grid);
+            var newAmount = gridPublicState.ElectricityAmount - amountToDeduct;
+            if (newAmount < 0)
+            {
+                newAmount = 0;
+            }
+
+            gridPublicState.ElectricityAmount = newAmount;
+            Logger.Important(
+                $"Electricity deducted from power grid: {grid} - {amountToDeduct:F0}. Total amount now: {newAmount:F0}");
         }
 
         /// <summary>
@@ -394,11 +430,11 @@
             ServerStructuresManager.StructureDestroyed += ServerStructureDestroyedHandler;
             LandClaimSystem.ServerAreasGroupCreated += ServerLandClaimsGroupCreatedHandler;
             LandClaimSystem.ServerAreasGroupDestroyed += ServerLandClaimsGroupDestroyedHandler;
-            LandClaimSystem.ServerAreaGroupChanged += ServerLandClaimsGroupChangedHandler;
+            LandClaimSystem.ServerAreasGroupChanged += ServerLandClaimsGroupChangedHandler;
 
             if (IsClient)
             {
-                InteractableStaticWorldObjectHelper.ClientMenuCreated += ClientMenuCreatedHandler;
+                InteractableWorldObjectHelper.ClientMenuCreated += ClientMenuCreatedHandler;
                 return;
             }
 
@@ -435,9 +471,12 @@
                 => ElectricityProductionOrderAttribute.GetDependencies(e, allProtoGenerators);
         }
 
-        private static void ClientMenuCreatedHandler(IStaticWorldObject worldObject, BaseUserControlWithWindow menu)
+        private static void ClientMenuCreatedHandler(IWorldObject worldObject, BaseUserControlWithWindow menu)
         {
-            ClientTryInjectPowerSwitchUI(worldObject, menu);
+            if (worldObject is IStaticWorldObject staticWorldObject)
+            {
+                ClientTryInjectPowerSwitchUI(staticWorldObject, menu);
+            }
         }
 
         /// <summary>
@@ -493,8 +532,7 @@
             {
                 if (areasGroup != null)
                 {
-                    var grid = LandClaimAreasGroup.GetPrivateState(areasGroup).PowerGrid;
-                    ServerRebuildPowerGrid(grid);
+                    ServerRebuildPowerGrid(SharedGetPowerGrid(areasGroup));
                 }
             }
         }
@@ -510,8 +548,7 @@
 
         private static void ServerLandClaimsGroupDestroyedHandler(ILogicObject areasGroup)
         {
-            var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
-            var grid = areasGroupPrivateState.PowerGrid;
+            var grid = SharedGetPowerGrid(areasGroup);
             // don't reset it in state as it will be used during the electricity amount merge
             //areasGroupPrivateState.PowerGrid = null;
 
@@ -817,7 +854,7 @@
 
         private static ILogicObject SharedGetPowerGrid(IStaticWorldObject structure)
         {
-            var areasGroup = LandClaimSystem.ServerFindLandClaimAreasGroup(structure.OccupiedTile.Position);
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(structure.OccupiedTile.Position);
             if (areasGroup == null)
             {
                 return null;
@@ -825,6 +862,11 @@
 
             var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
             return areasGroupPrivateState.PowerGrid;
+        }
+
+        private static ILogicObject SharedGetPowerGrid(ILogicObject areasGroup)
+        {
+            return LandClaimAreasGroup.GetPrivateState(areasGroup).PowerGrid;
         }
 
         private SetPowerModeResult ServerRemote_RestorePower(ILogicObject powerGrid)
@@ -914,8 +956,8 @@
 
             public int Compare(IStaticWorldObject x, IStaticWorldObject y)
             {
-                var protoA = ((IProtoObjectElectricityProducer)x.ProtoStaticWorldObject);
-                var protoB = ((IProtoObjectElectricityProducer)y.ProtoStaticWorldObject);
+                var protoA = (IProtoObjectElectricityProducer)x.ProtoStaticWorldObject;
+                var protoB = (IProtoObjectElectricityProducer)y.ProtoStaticWorldObject;
                 return protoA.GenerationOrder
                              .CompareTo(protoB.GenerationOrder);
             }

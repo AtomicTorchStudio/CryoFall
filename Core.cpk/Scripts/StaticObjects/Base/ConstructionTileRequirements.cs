@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -73,8 +74,27 @@
         /// Checks if there is no dynamic objects in the tile.
         /// </summary>
         public static readonly Validator ValidatorNoPhysicsBodyDynamic
-            = new Validator(ErrorNoFreeSpace,
-                            c => !TileHasAnyPhysicsObjectsWhere(c.Tile, t => !t.PhysicsBody.IsStatic));
+            = new Validator(
+                ErrorNoFreeSpace,
+                c =>
+                {
+                    return !TileHasAnyPhysicsObjectsWhere(c.Tile,
+                                                          CheckIsNotStaticBody,
+                                                          CollisionGroups.Default)
+                           && !TileHasAnyPhysicsObjectsWhere(c.Tile,
+                                                             CheckIsNotStaticBodyAndNoDefaultCollider,
+                                                             CollisionGroups.HitboxRanged)
+                           && !TileHasAnyPhysicsObjectsWhere(c.Tile,
+                                                             CheckIsNotStaticBodyAndNoDefaultCollider,
+                                                             CollisionGroups.HitboxMelee);
+
+                    static bool CheckIsNotStaticBody(TestResult t)
+                        => !t.PhysicsBody.IsStatic;
+
+                    static bool CheckIsNotStaticBodyAndNoDefaultCollider(TestResult t)
+                        => !t.PhysicsBody.IsStatic
+                           && !t.PhysicsBody.HasAnyShapeCollidingWithGroup(CollisionGroups.Default);
+                });
 
         /// <summary>
         /// Checks if there is any NPC nearby (circle physics check with radius defined by the constant RequirementNoNpcsRadius).
@@ -284,24 +304,32 @@
 
         public delegate bool DelegateCheck(Context context);
 
-        public static bool TileHasAnyPhysicsObjectsWhere(Tile tile, Func<TestResult, bool> check)
+        public static bool TileHasAnyPhysicsObjectsWhere(
+            Tile tile,
+            Func<TestResult, bool> check,
+            CollisionGroup collisionGroup = null)
         {
             var physicsSpace = WorldService.GetPhysicsSpace();
-            using var tempList = physicsSpace.TestRectangle(
-                // include some padding, otherwise the check will include border-objects
-                position: tile.Position.ToVector2D() + (0.01, 0.01),
-                size: (0.98, 0.98),
-                collisionGroup: DefaultCollisionGroup,
-                sendDebugEvent: false);
-            foreach (var entry in tempList)
-            {
-                if (check(entry))
-                {
-                    return true;
-                }
-            }
+            return Test(collisionGroup ?? DefaultCollisionGroup);
 
-            return false;
+            bool Test(CollisionGroup checkCollisionGroup)
+            {
+                using var tempList = physicsSpace.TestRectangle(
+                    // include some padding, otherwise the check will include border-objects
+                    position: tile.Position.ToVector2D() + (0.01, 0.01),
+                    size: (0.98, 0.98),
+                    collisionGroup: checkCollisionGroup,
+                    sendDebugEvent: false);
+                foreach (var entry in tempList)
+                {
+                    if (check(entry))
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
         }
 
         public ConstructionTileRequirements Add(string errorMessage, DelegateCheck checkFunc)

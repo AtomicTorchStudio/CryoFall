@@ -2,10 +2,10 @@
 站在水或井邊附近裝滿瓶子。
 
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NoPowerBanksEquipped:
-沒有裝備行動電源。
+沒有裝備移動電源。
 
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_NotEnoughCharge:
-行動電源沒有足夠的電量。
+移動電源沒有足夠的電量。
 
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 無法使用{0}
@@ -39,7 +39,7 @@ Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationAlreadyReque
 你已經要求解除卡死
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Message:
-計時器處於活動狀態時，不應移動角色。 解除卡死請求已被取消。
+計時器被啟動時，不應移動角色。 解除卡死請求已被取消。
 
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckCancelled_Title:
 解除卡死取消了
@@ -64,7 +64,7 @@ Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSucce
 解除卡死成功
 
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
-您被服務器管理員禁止參與聊天。您的禁令在：{0}過期
+您被伺服器管理員禁止參與聊天。您的禁令在：{0}過期
 
 Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 {0}　離開了遊戲
@@ -72,14 +72,17 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0}　加入了遊戲
 
-Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-您確定要{0} {1}嗎？
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
+您確定要拉黑{0}嗎？
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
-您可以稍後使用社交選單解除屏蔽此玩家。
+您可以稍後使用社交功能表解除遮罩此玩家。
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
+您確定要解除{0}的黑名單嗎？
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
-全局
+全域
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 本地
@@ -97,7 +100,7 @@ Scripts/Systems/Construction/ConstructionSystem@NotificationNotEnoughItems_Title
 無法建造
 
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Message:
-制造列表已滿
+製造清單已滿
 
 Scripts/Systems/Crafting/CraftingSystem@NotificationCraftingQueueFull_Title:
 無法添加新的配方
@@ -128,16 +131,16 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooCl
 過於接近他人土地
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
-該區域已被另一個玩家占領，或者它太接近別人的土地。
+該區域已被另一個玩家佔領，或者它太接近別人的土地。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 資源點才剛剛出現，不能佔領。 暫時限制其周圍建築。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
-與另一個玩家土地區域相交
+與另一個玩家佔領的區域相交
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitExceeded:
-`你用完了你的占領土地限額。
+`你用完了你的佔領土地限額。
 [br]你可以通過研究新技術來增加這個額度。`
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
@@ -214,7 +217,7 @@ Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
 {0}被{1}踢出了隊伍
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
-{0}已將你踢出了隊伍
+{0}已將你踢出了隊伍。
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
 未找到邀請或邀請已過期。
@@ -232,7 +235,7 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeAlreadySame
 被邀請人已經處在你的隊伍中。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
-你被管理員禁言，無法進行邀請。
+你被管理員遮罩，無法進行邀請。
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 被邀請玩家處於離線狀態。只有線上玩家可以被邀請進入小隊。
@@ -283,27 +286,28 @@ Scripts/Systems/Resources/GatheringSystem@NotificationNothingToHarvestYet:
 尚無成熟作物
 
 Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupAnnouncement:
-服務器：世界備份將於{0}秒後開始。
+伺服器：世界備份將於{0}秒後開始。
 
 Scripts/Systems/ServerAutosave/ServerAutosaveSystem@NotificationWorldBackupComplete:
-服務器：世界備份完成！
+伺服器：世界備份完成！
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinBanned:
-您已被此服務器管理員禁止使用此服務器
+您已被此伺服器管理員禁止使用此伺服器
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinKicked:
-`你被此服務器暫時踢出。有關任何其他細節，請咨詢服務器運營商。
-[br][br]您可以在{0}後重新加入該服務器。`
+`你被此伺服器暫時踢出。有關任何其他細節，請諮詢伺服器管理員。
+[br][br]您可以在{0}後重新加入該伺服器。`
 
 Scripts/Systems/ServerPlayerAccess/ServerPlayerAccessSystem@CannotJoinNotInWhitelist:
-`此服務器的運營商已將其設置為僅限邀請進入。
-[br]請查看服務器說明以了解其他詳細信息。`
+`此伺服器的管理員已將其設置為僅限邀請進入。
+[br]請查看伺服器說明以瞭解其他詳細資訊。`
 
 Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeMessagePvE:
 `歡迎來到CryoFall官方伺服器！
 [br]
 [br]
 [b]重要:[/b]
+[br]
 這是一個PVE伺服器。在本伺服器上玩家不能以任何方式傷害其他玩家。此伺服器致力於玩家的和平探索，對抗自然環境。玩家無法殺死其他玩家，摧毀其建築或盜取物品。除此之外，此伺服器和正常的遊戲體驗一致，有著危險的怪物，可解鎖的科技和奇幻的世界。去冒險吧。
 [br]
 [br]
@@ -325,6 +329,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]重要:[/b]
+[br]
 這是一個PVP伺服器。請記住在PVP伺服器上，你將遭遇來自其他玩家的敵對行為。你要努力作戰，保護自己。你需要做好準備，時刻警惕。你也可以與其他玩家合作來提高自己的生存機會。
 [br]
 [br]
@@ -384,8 +389,32 @@ Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotBuy_Titl
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
 無法出售
 
+Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
+遇到障礙。要建造載具港需要一片沒有障礙物和玩家的空間。
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
+無法獲取載具
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
+你的車輛正停在車庫中。你可以從任何車輛組裝廠將其取出。
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
+你的車輛正停在車庫中。你可以從任何車輛組裝廠將其取出。
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
+載具在車庫
+
+Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
+能量耗盡。
+
+Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
+無法使用{0}
+
+Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
+已經澆水過了
+
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
-該植物已可收獲。現在沒必要再澆水了。
+該植物已可收穫。現在沒必要再澆水了。
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageOnlyFarmPlants:
 只有農場植物才能澆水。
@@ -418,7 +447,7 @@ Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
 一直關閉
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
-你沒有訪問權限！
+你沒有存取權限！
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
 您無法編輯所有者列表。

@@ -18,13 +18,13 @@
 
         public override string Name => "Solar generator";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
         public override byte PanelSlotsCount => 4;
 
-        public override float StructurePointsMax => 800;
+        public override float StructurePointsMax => 2000;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
             => (1, 1.65);
@@ -33,10 +33,10 @@
         {
             base.ClientInitialize(data);
 
-            Client.Scene.GetSceneObject(data.GameObject)
-                  .AddComponent<ComponentGeneratorSolarPanelsRenderer>()
-                  .Setup(data.PublicState.PanelsContainer,
-                         baseDrawOrderOffsetY: DrawOrderOffsetY);
+            data.GameObject.ClientSceneObject
+                .AddComponent<ComponentGeneratorSolarPanelsRenderer>()
+                .Setup(data.PublicState.PanelsContainer,
+                       baseDrawOrderOffsetY: DrawOrderOffsetY);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)

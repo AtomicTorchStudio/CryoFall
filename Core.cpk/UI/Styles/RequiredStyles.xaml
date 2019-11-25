@@ -170,7 +170,7 @@
                                 MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                                 Margin="0,0,3,0"
                                 Padding="3,0,3,0"
-                                Background="{DynamicResource LabelActionControlBackround}"
+                                Background="{DynamicResource LabelActionControlBackground}"
                                 BorderBrush="{DynamicResource LabelActionControlColor}"
                                 BorderThickness="1"
                                 CornerRadius="3">

@@ -86,7 +86,7 @@
             outputItems.Add<ItemCanisterEmpty>();
         }
 
-        private static float GetLiquidCapacity(IWorldObject objectManufacturer)
+        private static double GetLiquidCapacity(IWorldObject objectManufacturer)
         {
             return ((ProtoObjectOilRefinery)objectManufacturer.ProtoWorldObject).LiquidCapacityRawPetroleum;
         }

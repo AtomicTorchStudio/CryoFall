@@ -247,6 +247,12 @@ Das Brauen von alkoholischen Getränken und ähnlichen Dingen.
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 Entspannung
 
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+Notwendige Technologien zur Produktion einer Vielzahl von verschiedenen Fahrzeugen.
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+Fahrzeuge
+
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 Notwendige Technologien zur Ressourcenausbeutung fremder Welten.
 
@@ -330,4 +336,10 @@ Offensive High-Tech-Technologien, die das Maximalpotenzial konventioneller Feuer
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Angriff 4
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+Fortgeschrittene Kampf- und Transportfahrzeuge.
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+Fahrzeuge 2
 

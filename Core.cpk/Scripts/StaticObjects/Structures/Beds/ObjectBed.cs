@@ -14,13 +14,13 @@
 
         public override string Name => "Bed";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
         public override double RespawnCooldownDurationSeconds => 2 * 60;
 
-        public override float StructurePointsMax => 500;
+        public override float StructurePointsMax => 1200;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

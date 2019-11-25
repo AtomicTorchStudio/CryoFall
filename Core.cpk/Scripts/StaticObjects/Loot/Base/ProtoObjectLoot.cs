@@ -29,7 +29,7 @@
               TPublicState,
               TClientState>,
           IProtoObjectLoot,
-          IProtoStaticWorldObjectCustomInteractionCursor
+          IProtoWorldObjectCustomInteractionCursor
         where TPrivateState : BasePrivateState, new()
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()

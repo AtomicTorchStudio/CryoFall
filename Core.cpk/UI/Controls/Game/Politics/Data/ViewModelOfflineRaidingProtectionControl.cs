@@ -22,10 +22,10 @@
             this.UpdateNextRaidingInfo();
         }
 
+        public string CurrentOrNextRaidingTimeInfo { get; private set; }
+
         public bool IsRaidingProtectionEnabled
             => RaidingProtectionSystem.ClientIsRaidingWindowEnabled;
-
-        public string CurrentOrNextRaidingTimeInfo { get; private set; }
 
         public string RaidingProtectionDescription
         {
@@ -46,7 +46,7 @@
                 toDate = TimeZone.CurrentTimeZone.ToLocalTime(toDate);
 
                 var inTotal = timeInterval.DurationHours.ToString("0.##") + ClientTimeFormatHelper.SuffixHours;
-                
+
                 return string.Format(
                     CoreStrings.WindowPolitics_RaidingRestriction_DescriptionFormat,
                     fromDate.ToString(ShortTimePattern).Replace(" ", "\u00A0"),
@@ -59,6 +59,24 @@
             => PveSystem.ClientIsPve(logErrorIfDataIsNotYetAvailable: false)
                    ? Visibility.Collapsed
                    : Visibility.Visible;
+
+        public void UpdateNextRaidingInfo()
+        {
+            if (this.IsDisposed)
+            {
+                return;
+            }
+
+            if (Menu.IsOpened<WindowPolitics>())
+            {
+                this.CurrentOrNextRaidingTimeInfo = GetNextRaidingTime();
+            }
+
+            // schedule next update
+            ClientTimersSystem.AddAction(
+                delaySeconds: 1,
+                this.UpdateNextRaidingInfo);
+        }
 
         protected override void DisposeViewModel()
         {
@@ -95,24 +113,6 @@
             this.NotifyPropertyChanged(nameof(this.CurrentOrNextRaidingTimeInfo));
             this.NotifyPropertyChanged(nameof(this.RaidingProtectionDescription));
             this.NotifyPropertyChanged(nameof(this.Visibility));
-        }
-
-        public void UpdateNextRaidingInfo()
-        {
-            if (this.IsDisposed)
-            {
-                return;
-            }
-
-            if (Menu.IsOpened<WindowPolitics>())
-            {
-                this.CurrentOrNextRaidingTimeInfo = GetNextRaidingTime();
-            }
-
-            // schedule next update
-            ClientTimersSystem.AddAction(
-                delaySeconds: 1,
-                this.UpdateNextRaidingInfo);
         }
     }
 }

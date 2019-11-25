@@ -39,7 +39,7 @@
         public static void ClientTryStartAction()
         {
             var worldObject = ClientWorldObjectInteractHelper.ClientFindWorldObjectAtCurrentMousePosition();
-            if (!(worldObject?.ProtoStaticWorldObject is IProtoObjectStructure))
+            if (!(worldObject?.ProtoGameObject is IProtoObjectStructure))
             {
                 return;
             }
@@ -166,7 +166,7 @@
                 return;
             }
 
-            var selectedHotbarItem = characterPublicState.SelectedHotbarItem;
+            var selectedHotbarItem = characterPublicState.SelectedItem;
             if (!(selectedHotbarItem?.ProtoGameObject is IProtoItemToolCrowbar))
             {
                 selectedHotbarItem = null;

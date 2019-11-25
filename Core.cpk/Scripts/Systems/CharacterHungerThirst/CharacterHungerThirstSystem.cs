@@ -4,29 +4,74 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using static Stats.StatName;
 
+    /// <summary>
+    /// This system will decrease food/water bars for online active players.
+    /// If player is online but idle for over ThresholdIdleSeconds, food/water decrease will be suspended.
+    /// </summary>
     public class CharacterHungerThirstSystem : ProtoSystem<CharacterHungerThirstSystem>
     {
-        // Passive mode food decrease - consume 100 food points in 1.2 hour(s).
-        private const double FoodDecrease = 100.0 / (60.0 * 60.0 * 1.2);
+        public const bool IsEnabledInEditor = false;
 
-        // Active mode food decrease multiplier - change consumption speed when energy is not full.
-        private const double FoodDecreaseMultiplierWhenEnergyNotFull = 1.0;
-
-        // Regeneration mode food decrease multiplier - change consumption speed when health is not full.
-        private const double FoodDecreaseMultiplierWhenHealthNotFull = 1.0;
+        // Active mode food decrease multiplier - change consumption speed when stamina is not full.
+        // currently not used, same consumption speed
+        private const double FoodDecreaseMultiplierWhenStaminaNotFull = 1.0;
 
         // Food/water update time interval.
         private const double TimeIntervalSeconds = 10.0;
 
-        // Passive mode water decrease - consume 100 water points in 1.0 hour(s).
-        private const double WaterDecrease = 100.0 / (60.0 * 60.0 * 1.0);
+        // Active mode water decrease multiplier - change consumption speed when stamina is not full.
+        private const double WaterDecreaseMultiplierWhenStaminaNotFull = 2.0;
 
-        // Active mode water decrease multiplier - change consumption speed when energy is not full.
-        private const double WaterDecreaseMultiplierWhenEnergyNotFull = 2.0;
+        // Passive mode food decrease (set in static constructor).
+        private static readonly double FoodDecreasePerSecond;
 
-        public override string Name => "Food and thirst system";
+        // Passive mode water decrease (set in static constructor).
+        private static readonly double WaterDecreasePerSecond;
+
+        static CharacterHungerThirstSystem()
+        {
+            if (IsClient)
+            {
+                // only server will update food and water values
+                return;
+            }
+
+            var foodDecreaseSpeedMultiplier = ServerRates.Get(
+                "PlayerFoodDecreaseSpeedMultiplier",
+                defaultValue: 1.0,
+                @"Food consumption speed multiplier for hunger mechanic. 
+                  By default the game will consume 100 food points in 1.2 hours,
+                  you can make it faster or slower, or disable altogether.");
+
+            var waterDecreaseSpeedMultiplier = ServerRates.Get(
+                "PlayerWaterDecreaseSpeedMultiplier",
+                defaultValue: 1.0,
+                @"Water consumption speed multiplier for thirst mechanic.
+                  By default the game will consume 100 water points in 1 hour,
+                  you can make it faster or slower, or disable altogether.
+                  Please note the game will consume water twice as fast if player's stamina is regenerating.");
+
+            if (foodDecreaseSpeedMultiplier < 0)
+            {
+                foodDecreaseSpeedMultiplier = 0;
+            }
+
+            if (waterDecreaseSpeedMultiplier < 0)
+            {
+                waterDecreaseSpeedMultiplier = 0;
+            }
+
+            FoodDecreasePerSecond = 100.0 / (60.0 * 60.0 * 1.2);  // consume 100 food points in 1.2 hour(s).
+            FoodDecreasePerSecond *= foodDecreaseSpeedMultiplier; // apply the multiplier
+
+            WaterDecreasePerSecond = 100.0 / (60.0 * 60.0 * 1.0);   // consume 100 water points in 1.0 hour(s)
+            WaterDecreasePerSecond *= waterDecreaseSpeedMultiplier; // apply the multiplier
+        }
+
+        public override string Name => "Hunger and thirst system";
 
         protected override void PrepareSystem()
         {
@@ -36,16 +81,25 @@
                 return;
             }
 
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // ReSharper disable once RedundantLogicalConditionalExpressionOperand
+            if (Api.IsEditor
+                && !IsEnabledInEditor)
+            {
+                return;
+            }
+
             // configure time interval trigger
             TriggerTimeInterval.ServerConfigureAndRegister(
                 interval: TimeSpan.FromSeconds(TimeIntervalSeconds),
-                callback: this.ServerTimerTickCallback,
+                callback: ServerTimerTickCallback,
                 name: "System." + this.ShortId);
         }
 
-        private void ServerTimerTickCallback()
+        private static void ServerTimerTickCallback()
         {
             // update water and food for all online player characters
+            var serverTime = Server.Game.FrameTime;
             foreach (var character in Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true))
             {
                 if (character.ProtoCharacter.GetType() != typeof(PlayerCharacter))
@@ -61,35 +115,35 @@
                     continue;
                 }
 
+                if (CharacterIdleSystem.CharacterIdleSystem.ServerIsIdlePlayer(character, serverTime))
+                {
+                    // idle character
+                    continue;
+                }
+
                 var stats = publicState.CurrentStatsExtended;
 
-                // please note: multipliers are summed before use (with decreasing each multiplier on 1.0 as it's initial value)
+                // please note: multipliers are summed before use (with decreasing each multiplier on 1.0 as it's the initial value)
                 var waterDecreaseMultiplier = 1.0;
                 var foodDecreaseMultiplier = 1.0;
 
                 if (stats.StaminaCurrent < stats.StaminaMax)
                 {
-                    // consume more water and food when energy is not full (goes to energy regeneration)
-                    waterDecreaseMultiplier += WaterDecreaseMultiplierWhenEnergyNotFull - 1.0;
-                    foodDecreaseMultiplier += FoodDecreaseMultiplierWhenEnergyNotFull - 1.0;
-                }
-
-                var currentHealth = stats.HealthCurrent;
-                if (currentHealth < stats.HealthMax)
-                {
-                    // consume more food when health is not full (goes to health regeneration)
-                    foodDecreaseMultiplier += FoodDecreaseMultiplierWhenHealthNotFull - 1.0;
+                    // consume more water and food when stamina is not full (goes to stamina regeneration)
+                    waterDecreaseMultiplier += WaterDecreaseMultiplierWhenStaminaNotFull - 1.0;
+                    foodDecreaseMultiplier += FoodDecreaseMultiplierWhenStaminaNotFull - 1.0;
                 }
 
                 // apply stat effects
                 waterDecreaseMultiplier *= character.SharedGetFinalStatMultiplier(WaterConsumptionSpeedMultiplier);
                 foodDecreaseMultiplier *= character.SharedGetFinalStatMultiplier(FoodConsumptionSpeedMultiplier);
 
-                var water = stats.WaterCurrent - WaterDecrease * waterDecreaseMultiplier * TimeIntervalSeconds;
-                var food = stats.FoodCurrent - FoodDecrease * foodDecreaseMultiplier * TimeIntervalSeconds;
+                // calculate decrease values
+                var waterDecrease = WaterDecreasePerSecond * TimeIntervalSeconds * waterDecreaseMultiplier;
+                var foodDecrease = FoodDecreasePerSecond * TimeIntervalSeconds * foodDecreaseMultiplier;
 
-                stats.ServerSetWaterCurrent((float)water);
-                stats.ServerSetFoodCurrent((float)food);
+                stats.ServerSetWaterCurrent((float)(stats.WaterCurrent - waterDecrease));
+                stats.ServerSetFoodCurrent((float)(stats.FoodCurrent - foodDecrease));
             }
         }
     }

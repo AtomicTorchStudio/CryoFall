@@ -1,7 +1,4 @@
-﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
-Нельзя взаимодействовать при оглушении.
-
-Scripts/Base/Stats/StatName@HealthMax:
+﻿Scripts/Base/Stats/StatName@HealthMax:
 Макс. здоровье
 
 Scripts/Base/Stats/StatName@StaminaMax:
@@ -184,9 +181,15 @@ Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Получение очков технологий
 
+Scripts/Base/Stats/StatName@SkillsExperienceGainMultiplier:
+Набор опыта за навыки
+
 Scripts/Base/Stats/StatName@TinkerTableBonus:
 Эффективность стола мастера
 
 Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
 Ячейки очереди крафтинга
+
+Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
+Токсичность лекарств
 

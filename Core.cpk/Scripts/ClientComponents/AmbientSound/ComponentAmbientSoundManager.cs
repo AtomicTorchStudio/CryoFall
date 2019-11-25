@@ -32,6 +32,22 @@
         {
         }
 
+        public static ComponentAmbientSoundManager Instance { get; private set; }
+
+        public bool IsMusicSuppressedByAmbient()
+        {
+            foreach (var pair in this.dictionarySoundsByDistanceSqr)
+            {
+                if (pair.Key.IsSupressingMusic
+                    && pair.Value < 2 * 2) // close to music-suppressed ambient sound
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public override void LateUpdate(double deltaTime)
         {
             base.LateUpdate(deltaTime);
@@ -109,7 +125,8 @@
                 if (!this.emitters.TryGetValue(ambientSoundPreset, out var existingEmitter))
                 {
                     existingEmitter = this.SceneObject.AddComponent<ComponentAmbientSoundEmitter>();
-                    existingEmitter.Setup(ambientSoundPreset.SoundResource);
+                    existingEmitter.Setup(ambientSoundPreset.SoundResource, 
+                                          ambientSoundPreset.IsUsingAmbientVolume);
                     this.emitters[ambientSoundPreset] = existingEmitter;
                 }
 
@@ -120,13 +137,17 @@
                 var volume = distanceCoef * (1 - suppression);
                 existingEmitter.SetTargetVolume(volume);
 
-                suppression = Math.Max(suppression, distanceCoef * ambientSoundPreset.Suppression);
+                suppression = Math.Max(suppression, distanceCoef * ambientSoundPreset.SuppressionCoef);
             }
         }
 
         protected override void OnDisable()
         {
-            base.OnDisable();
+            if (Instance == this)
+            {
+                Instance = null;
+            }
+
             this.dictionarySoundsByDistanceSqr.Clear();
 
             foreach (var emitter in this.emitters.Values)
@@ -139,8 +160,8 @@
 
         protected override void OnEnable()
         {
-            base.OnEnable();
             this.character = Client.Characters.CurrentPlayerCharacter;
+            Instance = this;
         }
 
         private struct AmbientSoundPresetByDistance : IComparable<AmbientSoundPresetByDistance>, IComparable

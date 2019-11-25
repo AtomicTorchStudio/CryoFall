@@ -131,11 +131,13 @@
             [NotNull] BaseChatRoom chatRoom,
             string message)
         {
-            chatRoom.ClientOnMessageReceived(new ChatEntry(
-                                                 ClientCurrentCharacterHelper.Character.Name,
-                                                 message,
-                                                 isService: false,
-                                                 DateTime.Now));
+            chatRoom.ClientOnMessageReceived(
+                new ChatEntry(
+                    ClientCurrentCharacterHelper.Character.Name,
+                    message,
+                    isService: false,
+                    DateTime.Now,
+                    hasSupporterPack: Api.Client.MasterServer.IsSupporterPackOwner));
 
             var chatRoomHolder = (ILogicObject)chatRoom.GameObject;
             Instance.CallServer(_ => _.ServerRemote_ClientSendMessage(chatRoomHolder, message));
@@ -184,7 +186,8 @@
             var chatEntry = new ChatEntry(from: null,
                                           message,
                                           isService: true,
-                                          DateTime.Now);
+                                          DateTime.Now,
+                                          hasSupporterPack: false);
 
             Instance.ServerSendMessage(chatRoomHolderObject: chatRoomHolder,
                                        chatEntry,
@@ -263,7 +266,8 @@
             var chatEntry = new ChatEntry(name,
                                           message,
                                           isService: true,
-                                          DateTime.Now);
+                                          DateTime.Now,
+                                          hasSupporterPack: false);
 
             // No player joined/left notification in global chat
             // when there are over 10 online players on the server
@@ -386,7 +390,8 @@
                                                      ClientTimeFormatHelper.FormatTimeDuration(
                                                          secondsRemains)),
                               isService: true,
-                              DateTime.Now));
+                              DateTime.Now,
+                              hasSupporterPack: false));
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableOrdered)]
@@ -473,7 +478,8 @@
             var chatEntry = new ChatEntry(characterName,
                                           message,
                                           isService: false,
-                                          DateTime.Now);
+                                          DateTime.Now,
+                                          hasSupporterPack: Server.Characters.IsSupporterPackOwner(character));
 
             chatRoom.ServerAddMessageToLog(chatEntry);
 

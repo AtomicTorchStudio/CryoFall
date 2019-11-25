@@ -195,8 +195,6 @@
             }
         }
 
-        // This is a special network-only class to transfer any info regarding the party member.
-        // The party member name is determined by the index in the array of the entries of this data type.
         public readonly struct NetworkPartyMemberData : IRemoteCallParameter
         {
             public readonly Vector2Ushort Position;

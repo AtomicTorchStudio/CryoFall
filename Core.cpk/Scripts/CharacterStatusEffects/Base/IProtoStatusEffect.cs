@@ -9,6 +9,8 @@
     {
         string Description { get; }
 
+        ITextureResource Icon { get; }
+
         bool IsIntensityPercentVisible { get; }
 
         bool IsRemovedOnRespawn { get; }
@@ -18,8 +20,6 @@
         IReadOnlyStatsDictionary ProtoEffects { get; }
 
         double VisibilityIntensityThreshold { get; }
-
-        ITextureResource Icon { get; }
 
         void ServerAddIntensity(ILogicObject statusEffect, double intensityToAdd);
 

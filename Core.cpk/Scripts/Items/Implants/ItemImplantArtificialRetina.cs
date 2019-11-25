@@ -32,7 +32,7 @@
             }
 
             // setup artificial retina effect for current character
-            var sceneObject = Client.Scene.GetSceneObject(character);
+            var sceneObject = character.ClientSceneObject;
             var componentNightVisionEffect = sceneObject.AddComponent<ClientComponentArtificialRetinaEffect>();
             skeletonComponents.Add(componentNightVisionEffect);
         }

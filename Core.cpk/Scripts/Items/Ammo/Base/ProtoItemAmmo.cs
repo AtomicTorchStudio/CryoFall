@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Ammo
 {
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
@@ -25,6 +26,8 @@
 
         public DamageDescription DamageDescription { get; private set; }
 
+        public WeaponFireTracePreset FireTracePreset { get; private set; }
+
         public sealed override ITextureResource Icon { get; }
 
         public virtual bool IsSuppressWeaponSpecialEffect => false;
@@ -33,6 +36,8 @@
         /// Gets the item stack size.
         /// </summary>
         public override ushort MaxItemsPerStack => ItemStackSize.Medium;
+
+        public virtual WeaponFireScatterPreset? OverrideFireScatterPreset { get; }
 
         public virtual void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
         {
@@ -45,10 +50,14 @@
             out double rangeMax,
             DamageDistribution damageDistribution);
 
+        protected abstract WeaponFireTracePreset PrepareFireTracePreset();
+
         protected override void PrepareProtoItem()
         {
             base.PrepareProtoItem();
             var damageDistribution = new DamageDistribution();
+
+            this.FireTracePreset = this.PrepareFireTracePreset();
 
             this.PrepareDamageDescription(
                 out var damageValue,

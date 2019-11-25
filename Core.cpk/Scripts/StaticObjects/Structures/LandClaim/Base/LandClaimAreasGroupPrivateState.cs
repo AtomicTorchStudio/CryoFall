@@ -10,9 +10,9 @@
         [SyncToClient]
         public IItemsContainer ItemsContainer { get; set; }
 
-        public List<ILogicObject> ServerLandClaimsAreas { get; set; }
-
         [SyncToClient]
         public ILogicObject PowerGrid { get; set; }
+
+        public List<ILogicObject> ServerLandClaimsAreas { get; set; }
     }
 }

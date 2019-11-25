@@ -40,7 +40,7 @@
         {
             return new TextureAtlasResource(
                 base.PrepareDefaultTexture(thisType),
-                columns: 4,
+                columns: 5,
                 rows: 1);
         }
 

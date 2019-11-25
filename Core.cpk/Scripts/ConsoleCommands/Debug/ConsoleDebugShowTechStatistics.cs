@@ -19,7 +19,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
 
         public string Execute()
         {
-            var listGroups = Api.FindProtoEntities<TechGroup>();
+            var listGroups = TechGroup.AvailableTechGroups;
             var groupsByTier = listGroups.GroupBy(g => g.Tier);
 
             // calculating values

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Ammo
 {
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
     public class ItemAmmo8mmStandard : ProtoItemAmmo, IAmmoCaliber8mm
@@ -22,6 +23,11 @@
             rangeMax = 9;
 
             damageDistribution.Set(DamageType.Kinetic, 1);
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.Firearm;
         }
     }
 }

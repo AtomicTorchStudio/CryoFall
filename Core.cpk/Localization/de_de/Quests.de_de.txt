@@ -316,10 +316,9 @@ Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
 Harte Kämpfe werden zum Verlust deiner Gesundheit führen. Dem kannst du abhelfen, indem du Medizin herstellst, die deine Gesundheit regeneriert und jegliche Gebrechen heilt. Grünes Heilkraut allein wird dir nicht ewig helfen.
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
-`[*] In CryoFall gibt es viele verschiedene Arten von Medikamenten. Einige regenerieren die Gesundheit, während andere bestimmte Gebrechen heilen oder weitere Vorteile mit sich bringen.
+`[*] In CryoFall gibt es viele verschiedene Arten von Medikamenten. Einige von ihnen regenerieren die Gesundheit, während andere bestimmte Gebrechen heilen oder weitere Vorteile mit sich bringen.
 [*] Die Herstellung fortschrittlicher Medizin erfordert das Lernen spezieller Rezepturen und Technologien.
-[*] Pflanzliche Heilmittel sind in der Kategorie Kochen zu finden.
-[*] Baumrinde kann beim Fällen bestimmter Baumarten gesammelt werden.`
+[*] Pflanzliche Heilmittel sind in der Kategorie Kochen zu finden.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
 Sammle Heilkräuter und stelle Medizin her
@@ -352,7 +351,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Nun ist es an der Zeit, sich besser zu schützen.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*] Du kannst alle relevanten Technologien in der "Angriff & Verteidigung" Technologiegruppe freischalten.
+`[*] Du kannst alle relevanten Technologien in der Technologiegruppe "Verteidigung" freischalten.
 [*] Holzrüstung mag vielleicht nicht die beste Option sein, aber sie lässt sich günstig herstellen und ist wesentlich besser als Rüstung aus Stoff.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
@@ -381,7 +380,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Schädel mit einer Keule einzuschlagen ist ja ganz okay, aber manchmal braucht es etwas mit genügend Reichweite – besonders dann, wenn du dich mit ernsthafteren Gegnern messen willst.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*] Du kannst alle relevanten Technologien in der "Angriff & Verteidigung" Technologiegruppe freischalten.
+`[*] Du kannst alle relevanten Technologien in der Technologiegruppe "Angriff" freischalten.
 [*] Um Papiermunition anzufertigen, musst du zunächst [b]Schießpulver[/b] und [b]Papier[/b] herstellen.
 [*] Es gibt [b]unterschiedliche Schadenstypen[/b] und verschiedene Rüstungen bieten unterschiedliche Arten von Schutz. Diesbezügliche Informationen findest du in deinem Inventar.`
 
@@ -435,7 +434,8 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 Zeit für noch eine Jagd! Dort draußen lassen sich noch mehr Tiere und Monster finden.
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*] Jedes Tier und Monster ist einem eigenen Gebiet zugehörig, in dem es für gewöhnlich gefunden werden kann. Erkunde die Welt um dich herum und finde heraus, welche verschiedenen Lebewesen sie bewohnen.
+`[*] Du kannst deine Jagdwerkzeuge im Geräte-Slot (rechts neben deinem Charakterportrait im Inventar-Menü) ausrüsten.
+[*] Jedes Tier und Monster ist einem eigenen Gebiet zugehörig, in dem es für gewöhnlich gefunden werden kann. Erkunde die Welt um dich herum und finde heraus, welche verschiedenen Kreaturen sie bewohnen.
 [*] Auf der Jagd gesammelte Erfahrung richtet sich nach der Gefährlichkeit des jeweiligen Tiers.`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
@@ -464,6 +464,9 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Brechstange zum Abreißen benutzen
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Baue Salz ab
+
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
 Bestimmte Ressourcen wie Erdöl und Lithium werden für erweiterte Technologien verwendet. Es ist von enormer Wichtigkeit zu lernen, wie diese sich gewinnen lassen.
 
@@ -475,9 +478,6 @@ Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
 Erweitere Ressourcenbeschaffung
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Baue Salz ab
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Fortschritte in der Industrie und Konstruktion erfordern wissenschaftliche Grundlagen, insbesondere der Chemie.

@@ -13,15 +13,14 @@
 
     public class ViewModelMainMenuOverlay : BaseViewModel
     {
-        private readonly MenuOptions menuOptions;
+        private static ViewModelMainMenuOverlay instance;
 
         private bool isCurrentGameTabEnabled;
 
         private TabItem selectedTab;
 
-        public ViewModelMainMenuOverlay(MenuOptions menuOptions)
+        private ViewModelMainMenuOverlay()
         {
-            this.menuOptions = menuOptions;
             if (IsDesignTime)
             {
                 // ReSharper disable once CanExtractXamlLocalizableStringCSharp
@@ -38,30 +37,38 @@
 
             if (Client.SteamApi.IsSteamClient)
             {
-                Client.SteamApi.IsLinkedAccountPropertyChanged += this.SteamApi_IsLinkedAccountPropertyChanged;
+                Client.SteamApi.IsLinkedAccountPropertyChanged += this.SteamApiIsLinkedAccountPropertyChangedHandler;
             }
+
+            Client.MasterServer.DemoVersionInfoChanged += this.MasterServerDemoVersionInfoChangedHandler;
         }
 
         public Visibility CommandLinkSteamAccountVisibility
-            => Api.Client.SteamApi.IsSteamClient
-               && !Api.Client.SteamApi.IsLinkedAccount
+            => Client.SteamApi.IsSteamClient
+               && !Client.SteamApi.IsLinkedAccount
+               && !Client.MasterServer.IsDemoVersion
                    ? Visibility.Visible
                    : Visibility.Collapsed;
 
-        public BaseCommand CommandLogout => new ActionCommand(this.ExecuteCommandLogout);
+        public BaseCommand CommandLogout
+            => new ActionCommand(() => Client.MasterServer.LogoutPlayer());
 
         public Visibility CommandLogoutVisibility =>
             // in Steam version we must hide the logout button (as single Steam account can have only a single AtomicTorch.com account)
-            Api.Client.SteamApi.IsSteamClient
+            Client.SteamApi.IsSteamClient
                 ? Visibility.Collapsed
                 : Visibility.Visible;
 
         public ICommand CommandOpenDaedalicPrivacyPolicy
-            => new ActionCommand(
-                () => Api.Client.Core.OpenWebPage(@"http://privacypolicy.daedalic.com"));
+            => new ActionCommand(() => Client.Core.OpenWebPage(@"http://privacypolicy.daedalic.com"));
 
         public BaseCommand CommandOpenLinkSteamAccountWindow
-            => new ActionCommand(this.ExecuteCommandOpenLinkSteamAccountWindow);
+            => new ActionCommand(
+                () =>
+                {
+                    var window = new WindowSteamAccountLinking();
+                    Client.UI.LayoutRootChildren.Add(window);
+                });
 
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
         public string GameVersion { get; } = "v" + Api.Shared.GameVersionNumberWithBuildNumber;
@@ -71,16 +78,17 @@
             get => this.isCurrentGameTabEnabled;
             set
             {
-                this.SetProperty(ref this.isCurrentGameTabEnabled, value);
-                this.IsCurrentGameTabVisible = value // && !Api.IsEditor
-                                                   ? Visibility.Visible
-                                                   : Visibility.Collapsed;
+                if (this.isCurrentGameTabEnabled == value)
+                {
+                    return;
+                }
+
+                this.isCurrentGameTabEnabled = value;
+                this.NotifyThisPropertyChanged();
             }
         }
 
         public bool IsCurrentGameTabSelected { get; set; }
-
-        public Visibility IsCurrentGameTabVisible { get; private set; }
 
         public bool IsExtrasMenuSelected { get; set; }
 
@@ -100,25 +108,28 @@
                     return;
                 }
 
-                //Logger.WriteDev("Switching to tab: " + value);
-
-                if (this.selectedTab?.Content == this.menuOptions)
+                var options = MainMenuOverlay.Instance.Options;
+                if (options != null)
                 {
-                    // switching away from menu options
-                    if (!this.menuOptions.CheckCanHide(
-                            () => this.SelectedTab = value))
+                    if (ReferenceEquals(this.selectedTab?.Content, options))
                     {
-                        // don't allow switching tab now
-                        this.NotifyThisPropertyChanged();
-                        return;
+                        // switching away from menu options
+                        if (!options.CheckCanHide(
+                                () => this.SelectedTab = value))
+                        {
+                            // don't allow switching tab now
+                            this.NotifyThisPropertyChanged();
+                            return;
+                        }
                     }
                 }
 
                 this.selectedTab = value;
-
-                if (this.selectedTab?.Content == this.menuOptions)
+                
+                if (options != null 
+                    && ReferenceEquals(this.selectedTab?.Content, options))
                 {
-                    this.menuOptions.SelectFirstTab();
+                    options.SelectFirstTab();
                 }
 
                 this.NotifyThisPropertyChanged();
@@ -127,20 +138,12 @@
 
         public string Username { get; private set; }
 
-        public bool CheckCanHide(Action callbackOnHide)
-        {
-            return this.menuOptions.CheckCanHide(callbackOnHide);
-        }
+        public static ViewModelMainMenuOverlay Instance 
+            => instance ??= new ViewModelMainMenuOverlay();
 
-        private void ExecuteCommandLogout()
+        private void MasterServerDemoVersionInfoChangedHandler()
         {
-            Client.MasterServer.LogoutPlayer();
-        }
-
-        private void ExecuteCommandOpenLinkSteamAccountWindow()
-        {
-            var window = new WindowSteamAccountLinking();
-            Client.UI.LayoutRootChildren.Add(window);
+            this.NotifyPropertyChanged(nameof(this.CommandLinkSteamAccountVisibility));
         }
 
         private void RefreshOverlay()
@@ -162,7 +165,7 @@
             this.Username = Client.MasterServer.CurrentPlayerUsername;
         }
 
-        private void SteamApi_IsLinkedAccountPropertyChanged()
+        private void SteamApiIsLinkedAccountPropertyChangedHandler()
         {
             this.NotifyPropertyChanged(nameof(this.CommandLinkSteamAccountVisibility));
         }

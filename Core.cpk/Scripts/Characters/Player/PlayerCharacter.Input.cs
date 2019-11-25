@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Tiles;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -16,6 +17,11 @@
     // partial class containing only input methods
     public partial class PlayerCharacter
     {
+        public static void SharedForceRefreshCurrentItem(ICharacter character)
+        {
+            SharedForceRefreshCurrentItem(character, GetPrivateState(character));
+        }
+
         /// <summary>
         /// Checks if current hotbar item is different
         /// </summary>
@@ -23,31 +29,76 @@
             ICharacter character,
             PlayerCharacterPrivateState privateState)
         {
-            if ((IsServer || character.IsCurrentClientCharacter)
-                && privateState.ContainerHotbar.StateHash
-                != privateState.ContainerHotbarLastStateHash)
+            if (IsClient
+                && !character.IsCurrentClientCharacter)
+            {
+                // don't refresh hotbar items for other characters on client
+                return;
+            }
+
+            var itemsContainer = TryGetVehicleHotbarContainer(character, out _, out _, out _)
+                                 ?? privateState.ContainerHotbar;
+
+            if (itemsContainer.StateHash != privateState.ContainerHotbarLastStateHash)
             {
                 // need to refresh the selected hotbar item
-                SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId);
+                SharedForceRefreshCurrentItem(character, privateState);
             }
         }
 
         public static void SharedSelectHotbarSlotId(ICharacter character, byte? slotId)
         {
-            var privateState = GetPrivateState(character);
             var publicState = GetPublicState(character);
-            var containerHotbar = privateState.ContainerHotbar;
+            var privateState = GetPrivateState(character);
+            var itemsContainer = privateState.ContainerHotbar;
 
-            privateState.ContainerHotbarLastStateHash = containerHotbar.StateHash;
+            var isVehicleDecidesSelectedItem = false;
+
+            var vehicleItemsContainer = TryGetVehicleHotbarContainer(character,
+                                                                     out var vehicleSelectedItem,
+                                                                     out var hasVehicle,
+                                                                     out var isAwaitingVehicleInitialization);
+
+            if (isAwaitingVehicleInitialization)
+            {
+                privateState.ContainerHotbarLastStateHash = null;
+                return;
+            }
+
+            if (vehicleItemsContainer != null)
+            {
+                slotId = null;
+                itemsContainer = vehicleItemsContainer;
+                isVehicleDecidesSelectedItem = true;
+            }
+
+            if (privateState.SelectedHotbarSlotId != null)
+            {
+                privateState.PreviouslySelectedHotbarSlotId = privateState.SelectedHotbarSlotId;
+            }
+
+            if (privateState.PreviouslySelectedHotbarSlotId != null
+                && slotId == null)
+            {
+                slotId = privateState.PreviouslySelectedHotbarSlotId;
+            }
+
             privateState.SelectedHotbarSlotId = slotId;
+            privateState.ContainerHotbarLastStateHash = itemsContainer.StateHash;
 
             IItem item;
-            if (slotId.HasValue)
+            if (isVehicleDecidesSelectedItem)
             {
-                item = containerHotbar.GetItemAtSlot(slotId.Value);
+                item = vehicleSelectedItem;
+            }
+            else if (slotId.HasValue)
+            {
+                item = itemsContainer.GetItemAtSlot(slotId.Value);
 
                 if (item != null
-                    && !item.ProtoItem.SharedCanSelect(item, character))
+                    && !item.ProtoItem.SharedCanSelect(item,
+                                                       character,
+                                                       isAlreadySelected: publicState.SelectedItem == item))
                 {
                     item = null;
                     privateState.SelectedHotbarSlotId = slotId = null;
@@ -58,9 +109,9 @@
                 item = null;
             }
 
-            if (publicState.SelectedHotbarItem != item)
+            if (publicState.SelectedItem != item)
             {
-                publicState.SetSelectedHotbarItem(item);
+                publicState.SharedSetSelectedItem(item);
                 //Logger.Info($"Selected hotbar item: slotId={slotId} item: {item?.ToString() ?? "<none>"}", character);
             }
             //else
@@ -70,15 +121,17 @@
             //}
 
             // update selected weapon
-            if (publicState.SelectedHotbarItem == null)
+            if (publicState.SelectedItem is null)
             {
-                publicState.SetCurrentWeaponProtoOnly(ItemNoWeapon.Instance);
+                publicState.SharedSetCurrentWeaponProtoOnly(hasVehicle
+                                                                ? null
+                                                                : ItemNoWeapon.Instance);
             }
 
             var isSelectedItemWeapon = item?.ProtoItem is IProtoItemWeapon;
             privateState.WeaponState.SharedSetWeaponItem(
                 item: isSelectedItemWeapon ? item : null,
-                protoItem: publicState.CurrentItemWeaponProto);
+                protoItem: publicState.SelectedItemWeaponProto);
         }
 
         public void ClientSelectHotbarSlot(byte? slotId)
@@ -96,7 +149,7 @@
         public void ClientSetInput(CharacterInputUpdate data)
         {
             var character = Client.Characters.CurrentPlayerCharacter;
-            if (!this.SharedApplyInputUpdate(data, character))
+            if (!SharedApplyInputUpdate(data, character))
             {
                 // input not changed
                 return;
@@ -123,7 +176,24 @@
 
             //Logger.WriteDev("Server received new input: " + inputId + ": " + data);
             privateState.ServerLastAckClientInputId = inputId;
-            this.SharedApplyInputUpdate(data, character);
+            SharedApplyInputUpdate(data, character);
+        }
+
+        protected static bool SharedApplyInputUpdate(CharacterInputUpdate data, ICharacter character)
+        {
+            var privateState = GetPrivateState(character);
+            var input = privateState.Input;
+            input.MoveModes = data.MoveModes;
+            input.RotationAngleRad = data.RotationAngleRad;
+            if (input.Equals(privateState.Input))
+            {
+                // input not changed
+                return false;
+            }
+
+            // input changed
+            privateState.Input = input;
+            return true;
         }
 
         protected void SharedApplyInput(
@@ -135,6 +205,22 @@
             if (characterIsOffline)
             {
                 privateState.Input = default;
+            }
+
+            var vehicle = publicState.CurrentVehicle;
+            if (!(vehicle is null))
+            {
+                if (!vehicle.IsInitialized)
+                {
+                    return;
+                }
+
+                var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
+                protoVehicle.SharedApplyInput(vehicle,
+                                              character,
+                                              privateState,
+                                              publicState);
+                return;
             }
 
             // please note - input is a structure so actually we're implicitly copying it here
@@ -165,6 +251,7 @@
             }
 
             double moveSpeed;
+
             if (characterIsOffline
                 || (privateState.CurrentActionState?.IsBlocksMovement ?? false))
             {
@@ -233,37 +320,73 @@
                 directionX = 1;
             }
 
+            if (directionX == 0
+                && directionY == 0)
+            {
+                moveSpeed = 0;
+            }
+
             Vector2D directionVector = (directionX, directionY);
-            var moveVelocity = directionVector.Normalized * moveSpeed;
+            var moveAcceleration = directionVector.Normalized * this.PhysicsBodyAccelerationCoef * moveSpeed;
+            var friction = this.PhysicsBodyFriction;
 
             if (IsServer)
             {
-                Server.Characters.SetVelocity(character, moveVelocity);
+                Server.World.SetDynamicObjectPhysicsMovement(character,
+                                                             moveAcceleration,
+                                                             targetVelocity: moveSpeed);
+                character.PhysicsBody.Friction = friction;
             }
             else // if client
             {
                 if (ClientCurrentCharacterLagPredictionManager.IsLagPredictionEnabled)
                 {
-                    Client.Characters.SetVelocity(character, moveVelocity);
+                    Client.World.SetDynamicObjectPhysicsMovement(character,
+                                                                 moveAcceleration,
+                                                                 targetVelocity: moveSpeed);
+                    character.PhysicsBody.Friction = friction;
                 }
             }
         }
 
-        protected bool SharedApplyInputUpdate(CharacterInputUpdate data, ICharacter character)
+        private static void SharedForceRefreshCurrentItem(
+            ICharacter character,
+            PlayerCharacterPrivateState privateState)
         {
-            var privateState = GetPrivateState(character);
-            var input = privateState.Input;
-            input.MoveModes = data.MoveModes;
-            input.RotationAngleRad = data.RotationAngleRad;
-            if (input.Equals(privateState.Input))
+            SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId);
+        }
+
+        private static IItemsContainer TryGetVehicleHotbarContainer(
+            ICharacter character,
+            out IItem vehicleSelectedItem,
+            out bool hasVehicle,
+            out bool isAwaitingVehicleInitialization)
+        {
+            var publicState = GetPublicState(character);
+            var vehicle = publicState.CurrentVehicle;
+            hasVehicle = vehicle != null;
+
+            if (!hasVehicle
+                || !vehicle.IsInitialized)
             {
-                // input not changed
-                return false;
+                vehicleSelectedItem = null;
+                isAwaitingVehicleInitialization = hasVehicle
+                                                  && !vehicle.IsInitialized;
+                return null;
             }
 
-            // input changed
-            privateState.Input = input;
-            return true;
+            isAwaitingVehicleInitialization = false;
+            var vehicleProto = (IProtoVehicle)vehicle.ProtoGameObject;
+            if (vehicleProto.IsPlayersHotbarAndEquipmentItemsAllowed)
+            {
+                vehicleSelectedItem = null;
+                return null;
+            }
+
+            // select item from a vehicle
+            var itemsContainer = vehicleProto.SharedGetHotbarItemsContainer(vehicle);
+            vehicleSelectedItem = itemsContainer.GetItemAtSlot(0);
+            return itemsContainer;
         }
 
         [RemoteCallSettings(DeliveryMode.UnreliableSequenced, maxCallsPerSecond: 60, avoidBuffer: true)]

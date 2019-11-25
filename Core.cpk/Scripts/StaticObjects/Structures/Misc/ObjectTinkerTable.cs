@@ -31,7 +31,7 @@
           <ObjectTinkerTable.PrivateState,
               StaticObjectPublicState,
               StaticObjectClientState>,
-          IInteractableProtoStaticWorldObject
+          IInteractableProtoWorldObject
     {
         public const string ErrorMessage_ComponentItemsRequried = "Need more components.";
 
@@ -58,11 +58,11 @@
 
         public override string Name => "Tinker table";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 500;
+        public override float StructurePointsMax => 1200;
 
         public static void ClientRepair(IStaticWorldObject tinkerTableObject)
         {
@@ -161,22 +161,22 @@
             return (1, 0.65);
         }
 
-        BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
+        BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
         {
-            return this.ClientOpenUI(new ClientObjectData(worldObject));
+            return this.ClientOpenUI(new ClientObjectData((IStaticWorldObject)worldObject));
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
         }
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
         protected BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
@@ -200,14 +200,14 @@
         {
             category = GetCategory<StructureCategoryOther>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemPlanks>(count: 10);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 5);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 4);
         }
 
         protected override void PrepareProtoStaticWorldObject()
@@ -241,10 +241,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((1.9, 0.8), offset: (0.05, 0))
-                .AddShapeRectangle((2, 1),     offset: (0, 0),   group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1.9, 0.8),  offset: (0.05, 0))
+                .AddShapeRectangle((2, 1),      offset: (0, 0),     group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((1.6, 0.25), offset: (0.2, 0.9), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((2, 1.2),   offset: (0, 0),   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((2, 1.2),    offset: (0, 0),     group: CollisionGroups.ClickArea);
         }
 
         private static IReadOnlyList<ProtoItemWithCount> SharedSetupRequriedRepairComponents()

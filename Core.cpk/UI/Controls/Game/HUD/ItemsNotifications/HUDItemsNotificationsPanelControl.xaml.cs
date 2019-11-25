@@ -15,10 +15,6 @@
 
         private UIElementCollection stackPanelChildren;
 
-        public HUDItemsNotificationsPanelControl()
-        {
-        }
-
         public static void Show(IProtoItem protoItem, int deltaCount)
         {
             instance.ShowInternal(protoItem, deltaCount);

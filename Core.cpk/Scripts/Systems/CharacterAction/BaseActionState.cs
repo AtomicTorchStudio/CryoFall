@@ -134,7 +134,8 @@
                 if (Api.IsClient)
                 {
                     ClientTimersSystem.AddAction(
-                        delaySeconds: 0, // invoke on the next frame because current action completion is not yet processed
+                        delaySeconds:
+                        0, // invoke on the next frame because current action completion is not yet processed
                         () => ClientComponentObjectInteractionHelper.OnInteractionFinished(this.TargetWorldObject));
                 }
             }

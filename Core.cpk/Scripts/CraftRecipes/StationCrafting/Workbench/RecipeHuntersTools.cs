@@ -3,7 +3,6 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Items.Devices;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
@@ -20,8 +19,8 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemIngotIron>(count: 10);
-            inputItems.Add<ItemLeather>(count: 10);
+            inputItems.Add<ItemIngotIron>(count: 5);
+            inputItems.Add<ItemLeather>(count: 5);
 
             outputItems.Add<ItemHuntersTools>();
         }

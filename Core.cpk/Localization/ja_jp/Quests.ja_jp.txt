@@ -1,14 +1,14 @@
 ﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
-建築：{0}
+建設：{0}
 
 Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-完成した技術グループ：{0}
+習得：{0}（技術群）
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
 {0}
 
 Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
-作成
+製作
 
 Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
 破壊：{0}
@@ -23,31 +23,31 @@ Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
 装備：{0}
 
 Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-スキルを学ぶ：{0}からレベル{1}
+スキル習得：{0}をレベル{1}まで
 
 Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-スキルを学ぶ：{0}からレベル{1}
+スキル習得：{0}をレベル{1}まで
 
 Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-技術グループのロックを解除します：{0}
+技術群のロック解除：{0}
 
 Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-{0}技術グループのロックを解除します：{1}
+{0}技術群のロック解除：{1}
 
 Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-技術を学ぶ：{0}（{1}類）
+技術習得：{0}（{1}技術群）
 
 Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
-殺す：{0}
+殺害：{0}
 
 Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
-製造：{0}
+生産：{0}
 
 Scripts/Quests/Requirements/RequirementRun@DescriptionText:
 10メートルダッシュする
 
 Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
-アイテムを並べ替える
+インベントリのアイテムを並べ替える
 
 Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
 使用：{0}
@@ -59,136 +59,136 @@ Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
 訪問：{0}
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
-寝袋を置くことで復活ポイントを指定することができます。 次回キャラクターが再出現すると、そこに現れます。
+寝袋を設置することで復活ポイントを指定することができます。 次回キャラクターが復活するとき、ここに現れます。
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
-`[*] 寝袋は建設メニューの「その他」カテゴリの下にあります。
-[*]最善の道は、寝袋を家や拠点に置いて、「家で復活する」ことができるようなります。
-[*]最初の寝袋を置くにふさわしい場所を見つけましょう。 他のプレイヤーから離れた場所で、後で自分の拠点として使える場所で設置しましょう。 後で移動したくなっても、大丈夫です。`
+`[*] 寝袋は建築メニューの「その他」カテゴリの中にあります。
+[*] 「自分の家」で復活できるよう寝袋を家や拠点内に設置するのが最善です。
+[*] 最初の寝袋は他のプレイヤーから離れた静かな場所、後に自分の拠点として使える場所にに設置しましょう。後で移動したくなっても、大丈夫です。`
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Name:
-寝袋を作る
+寝袋を設置
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Description:
-ツールボックスが完成したので、技術メニューでアンロックしたさまざまな建築物を作ることができます。 キャンプファイヤーから始めましょう。食べ物を調理するのに使うことができます。
+工具箱が完成したので、技術メニューでアンロックしたさまざまな建築物を作ることができます。 食物を調理するのに使うキャンプファイヤーから始めましょう。
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Hints:
-`[*]コントロールを変更していなければ、"Tab"を押して[b]建築メニュー[/b]に素早くアクセスできます。
-[*]より多くの建築をアンロックすると、建築メニューは異なる[b]建築タイプ[/b]で[b]数ページ[/b]にもなります。
-[*]ツールボックスは建築物を作成するためだけでなく、それらを修復するためにも使用できます。`
+`[*] 操作方法を変更していなければ、"Tab"を押して[b]建築メニュー[/b]に素早くアクセスできます。
+[*] より多くの建築物をアンロックすると、さまざまな[b]建物類[/b]を[b]複数ページ[/b]にわたって確認することができます。
+[*] 工具箱は建物を[b]建築[/b]するためだけでなく、それらを修理するためにも使用できます。`
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildACampfire@Name:
-キャンプファイヤーを造る
+キャンプファイヤーを設置
 
 Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Description:
-木材を手に入れる時が来た！ 樹を見つけ、斧を使って伐採しましょう。
+さあ木を切ってみましょう！木を見つけ、斧を使って伐採しましょう。
 
 Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Hints:
-`[*]斧を[b]ホットバーの中に置く必要があります[/b]。インベントリを開き、あなたが作った斧を下のホットバースロットにドラッグしてから、インベントリを閉じます。
-[*]対応する番号ボタンを押すか、マウスでクリックすることで[b]選択[/b]することができます（インベントリが閉じているとき）。
-[*]デフォルトでは、[b]左マウスボタン[/b]は手にしているアイテムを使用し、[b]右マウスボタン[/b]はアクションを起こします。`
+`[*] 斧を[b]アイテムスロット[/b]の中に置く必要があります。インベントリを開き、あなたが作った斧を下のアイテムスロットスロットにドラッグしてから、インベントリを閉じます。
+[*] 対応する数字キーを押すか、マウスでクリックすることで[b]選択[/b]することができます。（インベントリが閉じているとき）
+[*] デフォルトでは、[b]左マウスボタン[/b]は手にしているアイテムを使用し、[b]右マウスボタン[/b]は対象物にアクションを起こします。`
 
 Scripts/Quests/Tutorial/Stage1/QuestChopDownATree@Name:
 木を切り倒す
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@TaskEatAnyFood:
-任意の食物を食べる
+食物を食べる
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Description:
-キャンプファイヤーを作ったので、それを使って基本的な食べ物を作ることができます。きのこや肉を持っているなら、調理をして、より栄養価が高く安全な食べ物を作りましょう。
+キャンプファイヤーを作ったので、それを使って基本的な食物を作ることができます。きのこや肉を持っているなら、調理をして、より栄養価が高く安全な食物を作りましょう。
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Hints:
-`[*]「レシピを閲覧」を押すと、キャンプファイヤーで作成できる[b]全てのレシピ[/b]を見ることができます。
-[*]何かを調理するためには、[b]適切なレシピを選びましょう[/b]。
-[*]キャンプファイヤーを燃やすには[b]燃料[/b]を必要とします。[b]木材または木炭[/b]を燃料スロットに入れます。
-[*][b]技術メニュー[/b]で[b]新しいレシピ[/b]を学ぶことができます。
-[*][b]インベントリから[/b]直接、または[b]ホットバー[/b]に置いてゲーム内で使用することで、アイテム（食物を含む）を使用できます。`
+`[*] 「レシピを閲覧」を押すと、キャンプファイヤーで作れる[b]全てのレシピ[/b]を見ることができます。
+[*] 何かを調理するためには、[b]適切なレシピを選びましょう[/b]。
+[*] キャンプファイヤーを燃やすには[b]燃料[/b]を必要とします。[b]木材または木炭[/b]を燃料スロットに入れます。
+[*] [b]技術メニュー[/b]で[b]新しいレシピ[/b]を学ぶことができます。
+[*] 全てのアイテム（食物を含む）は[b]インベントリから[/b]直接、または[b]アイテムスロット[/b]に置いて使用できます。`
 
 Scripts/Quests/Tutorial/Stage1/QuestCookAnyFood@Name:
-任意の食物を調理する
+食物を調理する
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Description:
-材料がいくらかあるので、制作を始めましょう。まず、ロープを作り、次に斧を作ります。
+材料がいくらかあるので、製作を始めましょう。まず、ロープを作り、次に斧を作ります。
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Hints:
-`[*]キー設定を変更していないのであれば、" C "で作成メニューを開き、" E "でインベントリを開くことができます。`
+`[*] キー設定を変更していないのであれば、"C"で製作メニューを開き、"E"でインベントリを開くことができます。`
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAnAxe@Name:
 斧を作る
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Description:
-さまざまな鉱物を採掘し、CryoFallの貴重な資源を入手できます。鉱石を採掘できるようにつるはしを作る必要があります。
+さまざまな鉱物を採掘し、CryoFallの貴重な資源を入手できます。鉱物を採掘できるようにつるはしを作る必要があります。
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Hints:
-`[*]制作メニュー（デフォルトは" C "）を使ってつるはしを作りましょう。
-[*]ロープがなければ、ロープを作る必要があるかもしれません。`
+`[*] 製作メニュー（デフォルトは"C"）でつるはしを作りましょう。
+[*] ロープがなければ、まずロープを作る必要があります。`
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAPickaxe@Name:
 つるはしを作る
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Description:
-家のような建造物を建築するためには、ツールボックスが必要です。ツールボックスは、CryoFallの主要な建築ツールとして機能します。
+家のような建築物を建築するためには、工具箱が必要です。工具箱は、CryoFallの主要な建築ツールとして機能します。
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Hints:
-`[*]制作メニューを使ってツールボックスを作りましょう。
-[*]ロープがなければ、ロープを作る必要があるかもしれません。`
+`[*] 製作メニューを使って工具箱を作りましょう。
+[*] ロープがなければ、まずロープを作る必要があります。`
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftAToolbox@Name:
-ツールボックスを作成する
+工具箱を製作する
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Description:
-人は夜の闇の中では、歩き進むことができません。便利な松明やランタンを使って、先を明るく照らしましょう。
+人は夜の闇の中では、歩き進むことができません。便利な松明やランタンを使って、行く先を明るく照らしましょう。
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Hints:
-`[*]松明を使うには、それを[b]ホットバー[/b]に置いて、他のアイテムと同じようにアクティブにしてください。
-[*]ほかにも携帯タイプと固定タイプなど、のちにアンロックできる光源がたくさんあります。`
+`[*] 松明を使うには、他のアイテムと同様に[b]アイテムスロット[/b]に置いてください。
+[*] ほかにも携帯タイプや固定タイプなど、のちにアンロックできる照明がたくさんあります。`
 
 Scripts/Quests/Tutorial/Stage1/QuestCraftATorch@Name:
 松明の製作と使用
 
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Description:
-基本的なツールを作成するためにいくつかの材料を集める必要があります。
+基本的な道具を製作するためにいくつかの材料を集める必要があります。
 
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
-`[*][u]小石[/u]、[u]小枝[/u]、[u]繊維[/u]のような、アイテムを地面から拾うことができます。
-[*]地上のアイテムを[b]右クリック[/b]することで、拾うことができます。`
+`[*] [u]小石[/u]、[u]小枝[/u]、[u]草[/u]等のアイテムは地面から拾うことができます。
+[*] 地上のアイテムを[b]右クリック[/b]することで、拾うことができます。`
 
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 材料を集める
 
 Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
-`より多くの建築物を造るためには、技術メニューの"基本建造物 "のロックを解除する必要があります。`
+より多くの建築物を造るためには、技術メニューの「基本建築」のロックを解除する必要があります。
 
 Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
-`[*]設定を変更していなければ、" G "を押すことで技術メニューに素早くアクセスできます。
-[*]技術ノードのロックを解除するには、[b] LP [/b]（学習ポイント）が必要です。
-[*]学習ポイントは意味のある活動から得られ、スキル経験値が増えると共に増えていきます。`
+`[*] 操作方法を変更していなければ、"G"を押すことで技術メニューに素早くアクセスできます。
+[*] 各技術のロックを解除するには、[b]LP[/b]（学習ポイント）が必要です。
+[*] 学習ポイントは様々な活動から得られ、スキル経験値が増えると共に獲得量が増えていきます。`
 
 Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
 基本的な建築技術を学ぶ
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
-採掘する
+石を採掘する
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Description:
-つるはしを使いましょう。いくつかの鉱物を採掘し、何が採れたかを見てください。大きな岩から石を採掘する必要もあります。
+つるはしを使いましょう。いくつかの鉱物を採掘し、何が採れたかを確認してみましょう。大きな岩から石を採掘する必要もあります。
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
-`[*]他の使用可能なツールと同様に、つるはしを[b]ホットバー[/b]に入れる必要があります。
-[*]鉱物を見つけるのに最適な場所は[b]山の中[/b]です。地図（デフォルトでは "M"）を使って良い場所を見つけましょう。
-[*]鉱物の種類により、採掘にかかる時間が異なります。もちろん、採れる資源も異なります。
-[*]大量の石が欲しいなら、大きな岩を採掘することです。
-[*]採掘スキルが十分に高い場合、鉱物によっては、宝石や金などの希少資源が採れることがあります。`
+`[*] 他の道具と同様に、つるはしを[b]アイテムスロット[/b]に入れる必要があります。
+[*] 鉱物を見つけるのに最適な場所は[b]山[/b]です。地図（デフォルトでは "M"）を使って良い場所を見つけましょう。
+[*] 鉱物の種類により、採掘にかかる時間が異なります。もちろん、採れる資源も異なります。
+[*] 大量の石が欲しいなら、大きな岩を採掘することです。
+[*] 採掘スキルが十分に高い場合、鉱物によっては、宝石や金などの希少資源が採れることがあります。`
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
-鉱物を採掘する
+任意の鉱物を採掘する
 
 Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
-CryoFallを完全に楽しむには、インベントリの並び替え方法やキャラクターを走らせる方法など、知っておくべきことがいくつかあります！
+CryoFallをもっと楽しむには、インベントリの並び替え方法やキャラクターを走らせる方法など、知っておくべきことがいくつかあります！
 
 Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
-`[*]インベントリを整理するには、インベントリグリッドの上にカーソルを置きながら[u]マウスの中央ボタン[/u]または[u]Zキー[/u]を押します（コントロール設定を変更していない場合）。 そのように[b]任意の[/b]インベントリグリッド（箱など）を整理することができます。
-[*]スプリント（走る）には、[u]Shiftキー[/u]を押しながら移動すればいいです。試しに数メートル走ってみてください。スプリントは危険な捕食者から逃れるのに役立ちます。`
+`[*] インベントリをソートするには、インベントリグリッドの上にカーソルを置きながら[u]マウスの中ボタン[/u]または[u]Zキー[/u]を押します（操作設定を変更していない場合）。同様に[b]任意の[/b]インベントリグリッド（箱など）をソートできます。
+[*] スプリント（走る）には、[u]Shiftキー[/u]を押しながら移動します。試しに数メートル走ってみてください。スプリントは危険な捕食者から逃れるのに役立ちます。`
 
 Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
 基本的なアクションを実行する
@@ -197,23 +197,23 @@ Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFr
 水球の実を集める
 
 Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Description:
-基本となる水源を確保する方法を学ぶ時が来ました。惑星が生成されたとき、栽培されるべき最初の植物の1つは、清潔で採取しやすい水源となる水球の実でした。
+基本となる水源を確保する方法を学びましょう。この惑星を開発した後、最初に栽培した植物が清潔で採取しやすい水源となる水球植物でした。
 
 Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Hints:
-`[*]水球の実はほとんど全てのバイオームで成長しますが、[b]温帯バイオームの牧草地[/b]で成長しやすいことが知られています。
-[*]一般的な植物や食物と同様に、水球の実はすぐに腐敗するので、保存をせず、水が必要なときに摘み取ってください。`
+`[*] 水球植物はほとんど全ての環境で成長しますが、[b]温帯の牧草地[/b]で成長しやすいことが知られています。
+[*] 一般的な植物や食料と同様に、水球の実はすぐに腐るので、保存をせず、水が必要なときに摘み取ってください。`
 
 Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@Name:
 基本的な水源を確保する
 
 Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Description:
-CryoFallの大多数のレシピを作るには、作業台が主要な設備として機能します。新たな拠点を建設するための優先事項となるでしょう。
+CryoFallの大多数のレシピを作るには、作業台が主要な設備として機能します。新たな拠点を建設する際の最優先事項となるでしょう。
 
 Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Hints:
-[*]技術メニューでは、各レシピがどこで作られているかを見ることができます。情報はレシピの名前の下に表示されます。
+[*] 技術メニューでは、各レシピがどこで作られているかを見ることができます。情報はレシピの名前の下に表示されます。
 
 Scripts/Quests/Tutorial/Stage1/QuestUnlockAndBuildWorkbench@Name:
-作業台のロックを解除する
+作業台のロックを解除して設置する
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@TaskPlantAnySeeds:
 種を植える
@@ -222,66 +222,66 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 農業は、持続的に十分な量の食料を得るために良い方法です。手を土で汚す時が来ました！
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
-`[*]他の生存者が作物を略奪するかもしれないので、農場は防御壁の[b]内側に[/b]構築することをお勧めします。
-[*]植物が成熟するまでの所要時間、収穫数、その他の特性はさまざまです。
-[*]後で農場の効率を改善するために、より良い肥料や他のものを研究することができます。`
+`[*] 他の生存者が作物を略奪するかもしれないので、農場は防御壁の[b]内側に[/b]設置することをお勧めします。
+[*] 植物が成熟するまでの所要時間、収穫数、その他の特性はさまざまです。
+[*] 後に農場の効率を改善するために、より良い肥料や他のものを研究することができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
-農場を建てる
+農場を設置する
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Description:
-始めたばかりのときからお世話になっているたいまつも良いですが、より使いやすいもの（明るいもの）にアップグレードしたいと思います。ランタンとフロアランプを作る時が来ました！
+始めたばかりのときからお世話になっている松明も良いですが、より使いやすいもの（明るいもの）にアップグレードしたいと思います。ランタンとフロアランプを作る時が来ました！
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Hints:
-`[*]ランタンは、松明よりもはるかに[b]広い範囲[/b]を照らし、より安定した光を提供します。
-[*]ランタンもフロアランプもキャンプの燃料を使って光を作り出しています。燃え尽きるだけの松明とは異なり、[b]何度も補充できます[/b]。
-[*]キャンプ用燃料（ランプオイルとも呼ばれる）を作る方法は2つあります。動物性脂肪と石油製品のどちらからです。`
+`[*] ランタンは、松明よりもはるかに[b]広い範囲[/b]を照らし、より安定した光を提供します。
+[*] ランタンもフロアランプもキャンプの燃料を使って光を作り出しています。燃え尽きるだけの松明とは異なり、[b]何度も補充できます[/b]。
+[*] キャンプ用燃料（ランプオイルとも呼ばれる）を作る方法は2つあります。動物性脂肪と石油製品のどちらかからです。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildALampCraftCampfuel@Name:
-光源
+照明
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Description:
-`基地を守る方法を理解することは非常に重要です！怠ると、卑怯な生存者に襲われやすくなります。
+`拠点を守る方法をしっかりと理解しましょう！さもないと、卑怯な生存者に簡単に襲われてしまいます。
 [br]
-[br]最も重要な点は、所有地を正しく使い、拠点をしっかり防御することです。 壁やドア、他の構造物を置く前に、所有地の基盤を作るべきです。
+[br]最も重要な点は、所有地標を正しく使い、拠点をしっかり防御することです。 壁やドア、他の建築物を建てる前に、まず所有地標を設置するべきです。
 [br]
-[br]所有地を良い場所に置いたら、周りに壁を建設し始めることができます。所有地の防御区域の [b][u]内側に[/u][/b]壁を配置することが重要です。そうでなければ、他の生存者が、数秒で壁を破壊してしまうでしょう。
+[br]所有地標を適切な場所に設置したら、周りに壁を建設し始めることができます。所有地の保護区域の [b][u]内側に[/u][/b]壁を配置することが重要です。そうしないと、他の生存者が数秒で壁を破壊してしまうでしょう。
 [br]
-[br]所有地の範囲は拡張することもできます。また、確実に防御されるように、追加のレイヤーで壁を厚くすることもできます。特別な価値のある何かを持っていない限り、一般的に2重の防御をしておけば、ほとんどの攻撃者から拠点を守るのには十分です。
+[br]所有地の範囲は拡張することもできます。また、確実に防御できるように、追加の壁を設置することもできます。特別な価値のある何かを持っていない限り、一般的に二重の防御をしておけば、ほとんどの攻撃者から拠点を守るのには十分です。
 [br]
-[br]少なくとも基地に入るための２箇所の入り口をお勧めしますが、もっと多くあっても良いと思います。`
+[br]基地の入口は少なくとも2箇所設置しましょう。もっと多くあっても良いと思います。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Hints:
-`[*]所有地メニューにアクセスして、所有地の構造を開きます。詳細な情報を見たり、より高いものにアップグレードすることができます。
-[*]所有地の外にある建造物は1日か2日で急速に崩壊します。所有地の内側だけに建てるようにしてください。
-[*]所有地の中にある限り、（建設Tier 1）バールを使うことによってどんな建物も素早く便利に分解することができます。
-[*]自分の拠点内に全ての制作場所や他の建造物を置く必要はありません。盗むものは何もないので、他のプレイヤーに襲われることはないでしょう。制作場所などを外に置くことで、より重要な建造物のために所有地内のスペースを利用することができます。`
+`[*] 所有地標にアクセスして、所有地メニューを開きます。詳細な情報を見たり、より上のレベルにアップグレードすることができます。
+[*] 所有地の外にある建築物は1日か2日で急速に劣化します。所有地の内側だけに建てるようにしてください。
+[*] 所有地の中にある限り、バール（レベル1建築）を使うことによってどんな建物も素早く便利に解体することができます。
+[*] 自分の拠点内に全ての作業設備や他の建築物を置く必要はありません。一般的に他のプレイヤーは盗めるものがない所には何もしません。作業設備などを外に置くことで、収納箱や溶鉱炉等のより重要な建築物のために所有地内のスペースを利用することができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAPermanentBase@Name:
 拠点を建設する
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Description:
-すべての食料を集めても保存できなければ意味がありません。 ありがたいことに、保存を効かせる解決策があります。
+食料を集めても保存できなければ意味がありません。 ありがたいことに、解決策があります。
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Hints:
-`[*]冷蔵庫に入れておけば、食べ物が台無しになるまでの時間を伸ばせます。冷蔵庫が良いほど、効果は大きくなります。
-[*]食べ物が腐敗するのにかかる時間は、食べ物の種類によっても異なります。肉は非常に早く腐敗しますが、缶詰食品は何年も安全でしょう。`
+`[*]冷蔵庫に入れておけば、食料が腐るまでの時間を伸ばせます。冷蔵庫が良くなるほど、保存時間も延びます。
+[*]食料が腐るのにかかる時間は、食料の種類によっても異なります。肉は非常に早く腐りますが、缶詰食品は何年も安全でしょう。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildEvaporativeFridge@Name:
 簡単な冷蔵庫を作る
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Description:
-銅などの金属を溶かすためには、ロックを解除して炉を建設する必要があります。金属はCryoFallの全ての工業プロセスのための主要な資源基礎として役立ちます。
+銅などの金属を製錬するには、ロックを解除して溶鉱炉を建設する必要があります。金属はCryoFallの全ての工業プロセスのための重要な資源及び基盤として役立ちます。
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Hints:
 `[*]技術メニューでは、各レシピがどこで作られているかを見ることができます。情報はレシピの名前の下に表示されます。
-[*]製錬に必要な鉱石を得るためには、銅鉱石ノードを採掘する必要があります。`
+[*]製錬に必要な鉱石を得るためには、銅鉱石を採掘する必要があります。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildFurnaceAndSmeltCopper@Name:
-炉を作り銅を製錬する
+溶鉱炉を作り銅を製錬する
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseMulch:
-マルチカバーを使う
+マルチを使う
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@TaskUseWateringCan:
 じょうろを使う
@@ -290,48 +290,48 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Description
 定期的に水をやり、肥料を使うと、植物の成長速度を向上させることができます。
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Hints:
-`[*]定期的に植物に水をやることは、成長を早めるための最良の方法です。水以外の資源も必要ありません。
-[*]集水器や井戸で、じょうろを補充できます。ホットバーでじょうろを選択して左クリックするだけです。
-[*]マルチカバーを作成するには、単に有機物（植物、腐った食べ物など）を落としてそれらが分解するのを待ちます。
-[*]マルチカバーは入手が容易な天然の肥料です。植物の成長を早めるために使うことができます。`
+`[*] 定期的に植物に水をやることは、成長を早めるための最良の方法です。水以外の資源も必要ありません。
+[*] 集水器や井戸から、じょうろに水を補充できます。アイテムスロットでじょうろを選択して左クリックするだけです。
+[*] マルチを作成するには、単に有機物（植物、腐った食物など）を落としてそれらが分解するのを待ちます。
+[*] マルチは入手が容易な天然の肥料です。植物の成長を早めるために使うことができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildMulchboxAndCraftWateringCan@Name:
-農業効率
+農作業の効率化
 
 Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Description:
-生き残るためには大量の水を獲得する必要があります。飲むだけでなく、工業用にも。
+生き残るためには大量の水を必要とします。飲むだけでなく、工業用にも。
 
 Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Hints:
-`[*]簡単に、事実上無制限の[b]砂[/b]をあらゆる[b]砂浜または海岸[/b]で見つけることができます。
-[*]木、特に小枝を燃やした後に[b]灰[/b]を見つけることができます。
-[*]水はさまざまな作り方のレシピで使われているので、いつでも必要なときに使えるよう、適切な量を保存してください。
-[*]集水器を使うのではなく、湖の水を蒸留し、飲用や工芸品に使えるようにすることもできます。
-[*]井戸は簡単な集水器よりはるかに効果的です。
-[*]塩辛い海水を沸騰させて、塩を抽出することができます。`
+`[*] [b]砂[/b]はあらゆる[b]砂浜または海岸[/b]に事実上無限にあります。
+[*] [b]灰[/b]は木、特に小枝を燃やした後にできます。
+[*] 水はさまざまなレシピで使われるので、いつでも必要なときに使えるよう、十分な量を確保しておきましょう。
+[*] 集水器を使うのではなく、湖の水を蒸留し、飲用や工芸品に使えるようにすることもできます。
+[*] 井戸は簡単な集水器よりはるかに効果的です。
+[*] 塩辛い海水を沸騰させて、塩を抽出することができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestClaySandGlassBottlesWaterCollector@Name:
 より良い水源を確保する
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
-激しい戦闘は健康を失うことになります。薬を作り、健康度の回復やケガの治療などに使いましょう。グリーンハーブを使うだけでは、長く続けません。
+激しい戦闘は体力を失うことになります。薬を作り、体力の回復やケガの治療などに使いましょう。グリーンハーブを使うだけでは、長続きしません。
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
 `[*] CryoFallには色々な種類の薬があります。健康を回復する薬もあれば、特定の病気を治療したり他のメリットをを獲得できたりする薬もあります。
 [*] 上級の薬をつくるには、特定のレシピと技術を習得する必要があります。
-[*] 漢方薬は料理のカテゴリーで見つけることができます。
-[*] 特定の種類の木を伐採するときに樹皮を集めることができます。`
+[*] ハーブ薬は料理のカテゴリーで見つけることができます。
+[*] 特定の種類の木を伐採すると樹皮を集めることができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
 ハーブを集めて薬を作る
 
 Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Description:
-より高度な技術を習得するには初期の技術が必要です。
+初期の技術に熟達すると、より高度な技術を学べるようになります。
 
 Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Hints:
-[*]より高いレベルの技術グループのロックを解除すると、より複雑な技術、レシピ、構造にアクセスできます。
+[*] より高レベルの技術グループのロックを解除すると、より複雑な技術、レシピ、建築物にアクセスできます。
 
 Scripts/Quests/Tutorial/Stage2/QuestCompleteTier1Technologies@Name:
-技術習得1
+技術習得－パート1
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskKillAnyCreature:
 任意の生き物を殺す
@@ -340,106 +340,106 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@TaskLootAnyCre
 任意の生き物を略奪する
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Description:
-ナイフは弱い敵に対して使用する初期の武器です。もっといいものを作れる前に持っておくのは良いことです。
+ナイフは弱い敵に対して使用する初期の武器です。もっといい武器を作れるまでは常に持っておくほうがいいです。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
-[*] CryoFallの各武器はいくつかの[b]特別なプロパティ[/b]を持っています。例えば、ナイフは出血を起こす確率が高く、鈍器は骨を壊したり敵を麻痺させたりします。
+[*] CryoFallの各武器はそれぞれの[b]特性[/b]を持っています。例えば、ナイフは出血を起こす確率が高く、鈍器は骨を壊したり敵を麻痺させたりします。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 ナイフを作り、生き物を殺す
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
-もっと良い防具が必要な時が来ました。
+もっと良い防御手段について学びましょう。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*]"攻撃&防御"技術グループ内の全ての関連技術のロックを解除することができます。
-[*]木製のアーマーは最良の選択肢ではないかもしれませんが、それでもコストが安く、布の防具よりもはるかに優れています。`
+`[*] 「攻撃と防御」技術グループ内の全ての関連技術のロックを解除することができます。
+[*] 木の防具は最良の選択肢ではないかもしれませんが、それでもコストが安く、布の防具よりもはるかに優れています。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
 より良い防具を製作し装備する
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Description:
-何の装備もなく走り回ると、確実に即死するでしょう。基本的な防具を持っていることは常に良い考えです。基礎防具を研究、製作、装備しましょう。
+何の装備もなく走り回ると、確実に即死するでしょう。たとえ基本的な防具でもあると大違いです。まずは布の防具を研究、製作、装備しましょう。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Hints:
-`[*]布の装甲は防御力は低いかもしれませんが、コストは安く、何もないよりははるかにましです。
-[*][b]ダメージの種類はそれぞれ異なり[/b]、異なる防御力を発揮します。インベントリ画面で情報を見ることができます。`
+`[*] 布の防具は防御力は低いかもしれませんが、コストは安く、何もないよりかははるかにましです。
+[*] [b]ダメージの種類はそれぞれ異なり[/b]、異なる防御力を発揮します。インベントリ画面で情報を見ることができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipClothArmor@Name:
-布の装甲の製作と装備
+布の防具の製作と装備
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Description:
-冶金術を使えるようなりました。道具をアップグレードできます。鉄の道具は耐性が高まるだけでなく、原始的な石の道具よりもさらに効果的になります。
+冶金術を使えるようなりました。道具をアップグレードできます。鉄の道具は原始的な石の道具よりも耐性が高いだけでなく、さらに効果的です。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
-[*]利用できるようになったら、常によい道具へアップグレードするようにしましょう。アップグレードすることで生産性ブーストを得ることができます。
+[*] アップグレードを利用できるようになったら、常によい道具へアップグレードするようにしましょう。アップグレードすることで生産性を高めることができます。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
-より良い道具を制作
+より良い道具を製作する
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
-槌矛で頭蓋骨を粉砕するとスッキリします。でも時には、範囲の広いものが欲しくなります。特に深刻な敵対者と対戦するときなどにね。
+メイスで頭蓋骨を粉砕するとスッキリします。でも時には、遠くから攻撃できる武器も必要です。特に強い敵と対戦するときなどにね。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*]"攻撃&防御"技術グループ内の全ての関連技術のロックを解除することができます。
-[*]紙の薬莢を作るには、まず[b]火薬[/b]と[b]紙[/b]を作る必要があります。
-[*][b]ダメージの種類はそれぞれ異なり[/b]、異なる防御力を発揮します。インベントリ画面で情報を見ることができます。`
+`[*] 「攻撃と防御」技術グループ内の全ての関連技術のロックを解除することができます。
+[*] 紙の薬莢を作るには、まず[b]火薬[/b]と[b]紙[/b]を作る必要があります。
+[*] [b]ダメージの種類はそれぞれ異なり[/b]、異なる防御力を発揮します。インベントリ画面で情報を見ることができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
 遠距離武器を製作する
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
-バイオームは、その他のプロパティに加えて関連する動植物の特性を持っています。それぞれの基本的なバイオームをよく理解して、最大限に活用することをお勧めします。
+全ての環境には、それぞれ異なる特性を持った動植物が生殖しています。それぞれの基本的な生態環境をよく理解して、最大限に活用することをお勧めします。
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Hints:
-`[*]牧草地にはたくさんの茂み、ハーブ、牧草用の有用な植物があります。
-[*]岸の近くにたくさんの水生動物を見つけることができます。`
+`[*] 牧草地にはたくさんの茂み、ハーブ、牧草用の有用な植物があります。
+[*] 水岸の近くではたくさんの水生動物を見つけることができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Name:
-バイオームの探索1
+生態環境の探索－パート1
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Description:
-バイオームが異なれば、そこに見つかる材料やその地域に住む動物も異なります。利用可能なものを確認するために、できるだけ基地周辺を探索することをお勧めします。
+環境が異なれば、そこで見つかる材料やその地域に棲む動物も異なります。できるだけ拠点周辺を探索して、何があるのか確認することをお勧めします。
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Hints:
-`[*]ロッキー山脈のバイオームは、多くの鉱床を見つけることができるでしょう。
-[*]粘土採取場は建設用の大量のクレイの主な供給源です。
-[*]大陸北部に森林（寒帯）があります。`
+`[*] 岩石山地では、多くの鉱床を見つけることができるでしょう。
+[*] 粘土採取場は建築用の粘土を大量に得られます。
+[*] 大陸の北部に亜寒帯の森があります。`
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes2@Name:
-バイオームの探索2
+生態環境の探索－パート2
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Description:
-入手可能な医療品は他にもたくさんありますが、緊急措置として、グリーンハーブを使って健康状態を回復するのもよいでしょう。
+入手可能な医薬品は他にもたくさんありますが、緊急措置として、グリーンハーブを使って体力を回復するのもよいでしょう。
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
-`[*]グリーンハーブはあらゆる種類の薬の中で1番基本的なもので、入手も比較的簡単です。
-[*]森の牧草地では、ハーブや他の小さな植物が群生しているのを見つけることができます。
-[*]グリーンハーブをたくさん持っているのなら、そのまま使うこともできますが、適切な医療品を作るほうが賢明です。`
+`[*] グリーンハーブはあらゆる薬の中で最も基本的なもので、入手も比較的簡単です。
+[*] 森の牧草地では、ハーブや他の小さな植物が群生しているのを見つけることができます。
+[*] グリーンハーブをたくさん持っているのなら、そのまま使うこともできますが、適切な薬品を作るほうが賢明です。`
 
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 グリーンハーブを見つけて使う
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
-狩りに行く時間です！初心者にとっては、危険な動物は避けた方がいいかもしれませんが、他にも色々狩りできる獲物がいます。
+狩りに行く時間です！初心者にとっては、危険な動物は避けた方がいいかもしれませんが、他にもいろいろな選択肢があります。
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Hints:
-`[*]動物を狩るといろいろな戦利品が手に入ります。狩猟スキルも重要な役割を果たしています。
-[*]狩猟は多くの経験値と学習ポイントを得るための素晴らしい方法です。
-[*]ただし、実生活ではこれをしないでください。`
+`[*] 動物を狩るといろいろな戦利品が手に入ります。狩猟スキルも重要な役割を果たしています。
+[*] 狩猟は多くの経験値と学習ポイントを得るためのとても良い方法です。
+[*] ただし、実生活ではこれをしないでください。`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Name:
-ハンター達人1
+狩りの達人－パート1
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 もう少し狩りをしてみましょう！動物やモンスターはまだたくさんいます。
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*]動物やモンスターは、それぞれに生息するエリアがあります。世界を探索し、たくさんのいろいろな生き物を見てみてください。
-[*]動物やモンスターの危険度に応じて、狩猟経験値の量が変わります。`
+`[*] 動物やモンスターは、それぞれに生息するエリアがあります。世界を探索し、そこに棲むいろいろな生き物を見つけましょう。
+[*] 動物やモンスターの危険度に応じて、狩猟経験値の量が変わります。`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
-ハンター達人2
+狩りの達人－パート2
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
 スキルのロックを解除する
@@ -448,124 +448,124 @@ Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Description:
 CryoFallの新しいスキルは、与えられた分野で特定の活動を行うとアンロックされます。スキルを高めることは、それぞれの分野での能力を向上させるので良い長期戦略となります。
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Hints:
-[*]スキルレベルが高いと、その分野での一般的な習熟度が向上するだけでなく、それ以外の方法ではアクセスできない特別な特典も提供されます。
+[*] スキルレベルが高いと、その分野での全般的な習熟度が向上するだけでなく、それ以外の方法では得られない特典も提供されます。
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@Name:
 いくつかのスキルを学ぶ
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Description:
-何でも建築できるようになるのは良い事ですが、解体する方法も学びたくなるでしょう。解体のためにはバールを使用します！解体したい建物が所有地内にありさえすればＯＫです。
+何でも建築できるようになるのは良い事ですが、解体する方法も学びたくなるでしょう。解体のためにはバールを使用します。解体したい建物が所有地内にありさえすればＯＫです。
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
-`[*]このクエストのために貴重な資源を失わなくて済むよう、壁の一部や何か安い物を解体しましょう。
-[*]解体できる建築物は、自分の所有地の[b]中[/b]にある建物[b]だけ[/b]です。
-[*]解体は、不要な建物や構造を取り除く最適な方法です。`
+`[*] このクエストのために貴重な資源を失わなくて済むよう、壁の一部などの安い物を解体しましょう。
+[*] 解体できる建築物は、自分の所有地の[b]中[/b]にある建物[b]だけ[/b]です。
+[*] 解体は、不要な建築物を取り除く最適な方法です。`
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 バールを使って解体する
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+塩鉱物を採掘する
+
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
-石油やリチウムなど特定の資源は、高度な技術のために必要です。それらの獲得方法を学ぶことは非常に重要になります。
+石油やリチウムなど特定の資源は、高度な技術のために必要です。従って、これらの獲得方法を学ぶことは非常に重要になります。
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
-`[*][u]亜寒帯林[/u]のどこにでも生息している油分の多い果物を利用して、少量の石油を獲得することができます。
-[*][u]リチウム塩[/u]は一般的な鉱泉を採掘することで見つけられます。
-[*]砂漠の[u]塩類湖底[/u]でも塩やミネラルを見つけることができます。
-[*][u]異種地質学[/u]を学ぶことで産業規模の方法でこれらの資源を獲得することができます。`
+`[*] [u]亜寒帯の森[/u]に生えているオイルポッドフルーツを利用して、少量の石油を獲得することができます。
+[*] [u]リチウム塩[/u]は一般的な塩鉱物を採掘することで入手できます。
+[*] 砂漠にある[u]塩原[/u]でも塩やミネラルを見つけることができます。
+[*] [u]異世界地質学[/u]を学ぶと、産業規模で大量に資源を獲得できるようになります。`
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
 より高度な資源の獲得
 
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-塩ミネラルを採掘する
-
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
-産業と建設の進歩は、高度な科学、特に化学の基礎を必要とします。
+工業と建築分野を発展させるには、高度な科学、特に化学の基礎を必要とします。
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Hints:
-[*]化学は科学の最も重要な分野の1つであり、ほとんどの生存者に推奨されています。
+[*] 化学は科学の最も重要な分野の一つであり、ほとんどの生存者に推奨されています。
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Name:
 化学実験室を建てる
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Description:
-医学は、けがや病気を癒すだけでなく、さまざまな効果や可能性を得ることができるようになります。
+医学は、けがや病気を治すだけでなく、さまざまな効果や可能性を得ることができるようになります。
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Hints:
-[*]上位の医療技術を習得すると、より強力な治癒アイテムや他の薬が手に入ります。
+[*] 上位の医療技術を習得すると、より強力な治癒アイテムや他の薬が手に入ります。
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildMedicalLab@Name:
-医療ラボを建てる
+医療研究室を建てる
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Description:
-特定の分野において、さらに専門化を目指すため、全てのTier 2テクノロジーを完成させることで、強固な基盤を得るでしょう。
+そろそろ全てのレベル2技術を習得して、特定の分野でさらに専門化を目指すための強固な基盤を固めると良いでしょう。
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Hints:
-`[*]初期の技術（Tier 1と2）は比較的安価にアンロックすることができるので、すべて習得すると良いでしょう。
-[*]高度な技術（Tier 3以上）の場合は、ごく一部に特化することをお勧めします。どれを学ぶのか、あなたにとって最も重要なものをえらんでください。`
+`[*] 初期の技術（レベル1と2）は比較的安価にアンロックすることができるので、すべて習得すると良いでしょう。
+[*] 高度な技術（レベル3以上）の場合は、ごく一部に特化することをお勧めします。どれを学ぶのか、あなたにとって最も重要なものをえらんでください。`
 
 Scripts/Quests/Tutorial/Stage3/QuestCompleteTier2Technologies@Name:
-技術習得2
+技術習得－パート2
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Description:
-基地に送電網を設置することは効果を上げる上で重要なステップです。操縦に電気を必要とする上級な建築物がたくさんあります。
+基地に送電網を巡らせることは効率を上げる上で重要なステップです。動作するのに電気を必要とする高レベルの建築物がたくさんあります。
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Hints:
-`[*]電気デバイスは自分の所有地の[b]中[/b]にある場合のみ、利用できます。所有地の外に電気デバイスを作っても意味がありません。
-[*]電力は[b]電力倉庫[/b]に貯めて必要な時に使うことができます。基地内の全体的なエネルギー量を向上させると良いでしょう。
-[*]水蒸気やソーラー、エンジンなど様々なタイプの[b]ジェネレータ[/b]を使って電力を生み出すことができます。
-[*]十分な電力を[u]蓄えていない[/u]場合は、基地が[b]停電[/b]モードに入り電力を手動で貯めなくてはならなくなります。
-[*]電力倉庫や所有地内で[b]詳細情報[/b]を見ることができます。
-[*]接続された複数の所有地は、[b]1つの送電網[/b]として作用します。`
+`[*] 電気装置は自分の所有地の[b]中[/b]にある場合のみ利用できます。所有地の外に電気装置を作っても意味がありません。
+[*] 電気エネルギーは[b]電力貯蔵庫[/b]に貯めて必要な時に使うことができます。拠点内の総エネルギー容量を向上させると良いでしょう。
+[*] 水蒸気やソーラー、エンジンなど様々なタイプの[b]発電機[/b]を使って電力を生産することができます。
+[*] 十分な電力を[u]蓄えていない[/u]場合は、拠点が[b]停電[/b]モードに入り、電気を手動で復旧しなければなりません。
+[*] 電力貯蔵庫や所有地標で[b]送電詳細情報[/b]を見ることができます。
+[*] 連結した複数の所有地は、[b]1つの送電網[/b]と見なされます。`
 
 Scripts/Quests/Tutorial/Stage3/QuestEstablishPowerGrid@Name:
 送電網を設置する
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Description:
-たどり着くことが難しいけれど、ユニークな資源を獲得できるバイオームもあります。
+たどり着くことが難しいけれど、ユニークな資源を獲得できる場所もあります。
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Hints:
-`[*]不毛のバイオームは、砂漠の動物の本拠地です。
-[*]塩湖は大量の塩を含んでいる場合があります。`
+`[*] 不毛の地には、多くの砂漠の動物がいます。
+[*] 塩原には大量の塩が存在します。`
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes3@Name:
-バイオームの探索3
+生態環境の探索－パート3
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Hints:
-[*] [b]火山バイオーム[/b]は非常に危険で、訪れるには極度の[b]熱[/b]から身を守る必要があります。
+[*] [b]火山[/b]は非常に危険で、訪れるには極度の[b]熱[/b]から身を守る必要があります。
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreBiomes4@Name:
-バイオームの探索4
+生態環境の探索－パート4
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Description:
-古い遺跡は珍しい構成要素と特定の資源を見つけるのに最も良い場所です。あなたが十分な装備を持っているならば、探検してみると良いでしょう。
+古い遺跡は珍しいアイテムや特定の資源を見つけるのに最も良い場所です。あなたが十分な装備を持っているならば、探検してみると良いでしょう。
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
-`[*]廃墟には、住居用（T1）、工業用（T2）、軍用（T2）、科学用（T3）の種類があります。
-[*]廃墟の難易度は、誰でも探検できるT1から、CryoFallで最高の装備と薬を必要とするT3まであります。
-[*]遺跡を探索することは、特定のレアアイテムを入手する唯一の方法です。それらを見つけるチャンスは、遺跡の難易度によります。最も貴重なアイテムは、T3遺跡でのみ見つけることができます。`
+`[*] 遺跡には、住居用（T1）、工業用（T2）、軍用（T2）、科学用（T3）の種類があります。
+[*] 遺跡の難易度は、誰でも探検できるT1から、CryoFallで最高の装備と薬を必要とするT3まであります。
+[*] 遺跡を探索することは、特定のレアアイテムを入手する唯一の方法です。それらを見つけるチャンスは、遺跡の難易度によります。最も貴重なアイテムは、T3遺跡でのみ見つけることができます。`
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 古い遺跡を探索する
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
-もっともっと狩りをしましょう！今回はもっと危険な動物たちです。
+もっともっと狩りをしましょう！今回はもっと危険な動物を狙ってみましょう。
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Hints:
-[*]注意してください。これらの動物は攻撃的です。狩るときにはかなりの長距離武器を使うのが最善です。
+[*] 注意してください！これらの動物は攻撃的です。狩るときには遠距離武器を使うのが最善です。
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Name:
-ハンター達人3
+狩りの達人－パート3
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Description:
-もっともっともっと狩りをしましょう！今回は動物だけではありません！
+さらに究極の狩りをしましょう！今回は動物だけではありません！
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Hints:
-[*]注意してください。これらの獣は非常に攻撃的で危険です。チャンスを得るために強力な遠隔武器と相当な防具を必要とするでしょう。
+[*] 注意してください！これらの獣は非常に攻撃的で危険です。狩りを成功させるには強力な遠距離武器と相当な防具を必要とするでしょう。
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter4@Name:
-ハンター達人4
+狩りの達人－パート4
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter5@Name:
-ハンター達人5
+狩りの達人－パート5
 

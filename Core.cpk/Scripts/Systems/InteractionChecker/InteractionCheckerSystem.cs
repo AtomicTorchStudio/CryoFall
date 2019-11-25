@@ -211,7 +211,7 @@
                                      {
                                          CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(pair.Character);
                                      }
-                                     
+
                                      // remove if cannot interact
                                      return !SharedIsValidInteraction(pair);
                                  },

@@ -129,7 +129,7 @@
             {
                 // full day raiding - disable raiding protection
                 newWindowUTC = new TimeInterval(fromHour: newWindowUTC.FromHour,
-                                             toHour: newWindowUTC.FromHour + 24);
+                                                toHour: newWindowUTC.FromHour + 24);
             }
 
             if (ServerRaidingWindowUTC.Equals(newWindowUTC))
@@ -146,7 +146,7 @@
             var allCharacters = Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true,
                                                                                exceptSpectators: false);
 
-            Instance.CallClient(allCharacters, 
+            Instance.CallClient(allCharacters,
                                 _ => _.ClientRemote_RaidingWindowInfo(ServerRaidingWindowUTC));
         }
 

@@ -23,7 +23,7 @@
         /// for advancing this skill as more complex items typically require more time to craft,
         /// although it is not necessarily have to be 100% representative of their difficulty.
         /// </summary>
-        public const double ExperienceForCraftingPerSecond = 5.0;
+        public const double ExperienceForCraftingPerSecond = 2.0;
 
         public override string Description =>
             "Crafting more and more complex items and understanding their structure is a good way to learn what makes the technology of this world tick.";

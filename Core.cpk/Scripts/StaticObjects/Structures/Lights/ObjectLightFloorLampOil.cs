@@ -21,11 +21,11 @@
 
         public override string Name => "Oil-fired floor lamp";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 300;
+        public override float StructurePointsMax => 1000;
 
         protected override BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject)
         {
@@ -55,15 +55,15 @@
         {
             category = GetCategory<StructureCategoryOther>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
+            build.AddStageRequiredItem<ItemGlassRaw>(count: 5);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
-            build.AddStageRequiredItem<ItemGlassRaw>(count: 3);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
+            repair.AddStageRequiredItem<ItemGlassRaw>(count: 2);
             repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
-            repair.AddStageRequiredItem<ItemGlassRaw>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)
@@ -89,7 +89,7 @@
                 .AddShapeCircle(radius: 0.25, center: (0.5, 0.45))
                 .AddShapeRectangle(size: (0.35, 0.4), offset: (0.325, 0.75), group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(size: (0.3, 0.2),  offset: (0.35, 0.95),  group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (0.5, 1.25), offset: (0.25, 0.3),  group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.5, 1.25), offset: (0.25, 0.3),   group: CollisionGroups.ClickArea);
         }
     }
 }

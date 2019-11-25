@@ -122,7 +122,8 @@
             ITextureResource icon = null,
             Action onClick = null,
             bool autoHide = true,
-            bool playSound = true)
+            bool playSound = true,
+            bool writeToLog = true)
         {
             Api.ValidateIsClient();
             var (brushBackground, brushBorder) = GetBrush(color);
@@ -137,7 +138,8 @@
                 icon,
                 onClick,
                 autoHide,
-                soundToPlay);
+                soundToPlay,
+                writeToLog);
         }
 
         public static void ClientShowNotificationNoSpaceInInventory()

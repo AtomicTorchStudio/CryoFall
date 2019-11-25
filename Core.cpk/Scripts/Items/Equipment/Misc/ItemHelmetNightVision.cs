@@ -37,7 +37,7 @@
             }
 
             // setup night vision effect for current character
-            var sceneObject = Client.Scene.GetSceneObject(character);
+            var sceneObject = character.ClientSceneObject;
             var componentNightVisionEffect = sceneObject.AddComponent<ClientComponentNightVisionEffect>();
             skeletonComponents.Add(componentNightVisionEffect);
 

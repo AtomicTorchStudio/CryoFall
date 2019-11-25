@@ -13,16 +13,18 @@
 
         public ProtoItemWithCount this[int index] => this.items[index];
 
-        public void Add<TProtoItem>(ushort count = 1)
+        public InputItems Add<TProtoItem>(ushort count = 1)
             where TProtoItem : class, IProtoItem, new()
         {
             var protoItem = Api.GetProtoEntity<TProtoItem>();
             this.Add(protoItem, count);
+            return this;
         }
 
-        public void Add(IProtoItem protoItem, ushort count = 1)
+        public InputItems Add(IProtoItem protoItem, ushort count = 1)
         {
             this.items.Add(new ProtoItemWithCount(protoItem, count));
+            return this;
         }
 
         public void ApplyRates(byte multiplier)

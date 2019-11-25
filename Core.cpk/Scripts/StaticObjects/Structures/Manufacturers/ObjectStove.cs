@@ -36,11 +36,11 @@
 
         public override string Name => "Cooking stove";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 400;
+        public override float StructurePointsMax => 1200;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -48,7 +48,7 @@
 
             // setup light source
             var lightSource = ClientLighting.CreateLightSourceSpot(
-                Client.Scene.GetSceneObject(data.GameObject),
+                data.GameObject.ClientSceneObject,
                 color: LightColors.WoodFiring,
                 size: 1.25f,
                 spritePivotPoint: (0.5, 0.5),

@@ -84,7 +84,7 @@
                 return false;
             }
 
-            if (checkRaidblock 
+            if (checkRaidblock
                 && LandClaimSystem.SharedIsUnderRaidBlock(character, worldObject))
             {
                 // the building is in an area under the raid
@@ -99,18 +99,18 @@
             return true;
         }
 
-        public static IStaticWorldObject ClientFindWorldObjectAtCurrentMousePosition()
+        public static IWorldObject ClientFindWorldObjectAtCurrentMousePosition()
         {
             var currentCharacter = Api.Client.Characters.CurrentPlayerCharacter;
             var objects = ClientComponentObjectInteractionHelper
                           // find by click area
-                          .FindStaticObjectsAtCurrentMousePosition(
+                          .FindObjectsAtCurrentMousePosition(
                               currentCharacter,
                               CollisionGroups.ClickArea)
                           // find by default collider
                           .Concat(
                               ClientComponentObjectInteractionHelper
-                                  .FindStaticObjectsAtCurrentMousePosition(
+                                  .FindObjectsAtCurrentMousePosition(
                                       currentCharacter,
                                       CollisionGroups.Default))
                           //find object in the pointed tile
@@ -121,12 +121,13 @@
             // find first damaged or incomplete structure there
             foreach (var worldObject in objects)
             {
-                if (!(worldObject.ProtoStaticWorldObject is IProtoObjectStructure protoObjectStructure))
+                if (!(worldObject.ProtoGameObject is IProtoObjectStructure protoObjectStructure))
                 {
                     continue;
                 }
 
-                var maxStructurePointsMax = protoObjectStructure.SharedGetStructurePointsMax(worldObject);
+                var maxStructurePointsMax =
+                    protoObjectStructure.SharedGetStructurePointsMax((IStaticWorldObject)worldObject);
                 var structurePointsCurrent =
                     worldObject.GetPublicState<StaticObjectPublicState>().StructurePointsCurrent;
                 if (structurePointsCurrent < maxStructurePointsMax)
@@ -155,7 +156,7 @@
         public static void ClientTryStartAction()
         {
             var worldObject = ClientFindWorldObjectAtCurrentMousePosition();
-            if (!(worldObject?.ProtoStaticWorldObject is IProtoObjectStructure))
+            if (!(worldObject?.ProtoGameObject is IProtoObjectStructure))
             {
                 return;
             }
@@ -346,7 +347,7 @@
                 return;
             }
 
-            var selectedHotbarItem = characterPublicState.SelectedHotbarItem;
+            var selectedHotbarItem = characterPublicState.SelectedItem;
             if (!(selectedHotbarItem?.ProtoGameObject is IProtoItemToolToolbox))
             {
                 // no tool is selected

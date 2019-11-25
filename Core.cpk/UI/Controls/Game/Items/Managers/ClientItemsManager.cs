@@ -143,7 +143,7 @@
                                  .GetStaticObjects(tilePosition);
             if (tileObjects.Count > 0
                 && !tileObjects.Any(o => o.ProtoStaticWorldObject is ObjectGroundItemsContainer)
-                && tileObjects.Any(o => o.ProtoStaticWorldObject is IInteractableProtoStaticWorldObject))
+                && tileObjects.Any(o => o.ProtoStaticWorldObject is IInteractableProtoWorldObject))
             {
                 // A tile with an interactive world object found.
                 // Don't try to place item there and allow interaction with it.

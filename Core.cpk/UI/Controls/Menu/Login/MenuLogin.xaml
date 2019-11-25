@@ -11,12 +11,12 @@
     xmlns:steam="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam"
     mc:Ignorable="d"
     d:DesignHeight="768" d:DesignWidth="1024"
-    Background="Black"
-    Panel.ZIndex="9001"
-    Focusable="True"
     d:DataContext="{d:DesignInstance data:ViewModelMenuLogin, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:language="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Language">
+    xmlns:language="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Language"
+    Focusable="True"
+    Background="Black"
+    Panel.ZIndex="9001">
 
     <ContentControl Background="{StaticResource MainMenuBackgroundTiledBrush}"
                     HorizontalAlignment="Stretch"
@@ -38,7 +38,7 @@
                     </Grid.RowDefinitions>
 
                     <Image Grid.Row="0"
-                           Source="/UI/Images/Logo/logo_cryofall_256_flat.png"
+                           Source="/UI/Images/Logo/logo_cryofall_256.png"
                            Stretch="Uniform"
                            SnapsToDevicePixels="False"
                            Width="650" />

@@ -46,7 +46,7 @@ Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.CameraZoom:
 攝像機縮放
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Mode.HotbarItemSelection:
-工具欄物品選擇
+工具列物品選擇
 
 Scripts/ClientOptions/General/GeneralOptionMouseScrollWheelMode@Name:
 使用滾輪
@@ -61,16 +61,16 @@ Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Format.Jpeg95:
 JPEG
 
 Scripts/ClientOptions/General/GeneralOptionScreenshotFormat@Name:
-截屏幕格式
+截屏格式
 
 Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Actual:
-適應(使用當前分辨率)
+適應(使用當前解析度)
 
 Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Closest:
-接近(使用最接近的標準分辨率)
+接近(使用最接近的標準解析度)
 
 Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
-截屏分辨率
+截屏解析度
 
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI縮放
@@ -97,41 +97,41 @@ Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.VSync:
 垂直同步 (推薦)
 
 Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.DisplayRefreshRate:
-熒幕刷新率
+匹配螢幕刷新率
 
 Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@LimitMode.Off:
-無限制(高性能占用)
+無限制(高性能佔用)
 
 Scripts/ClientOptions/Video/VideoOptionFrameRateLimit@Name:
 FPS限制
 
 Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Normal:
-原生（最高質量）
+原生（最好品質）
 
 Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale15:
-縮放x1.5(運行速度快)
+縮減 x 1.5 (運行速度快)
 
 Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Mode.Downscale2:
-縮放x2 (運行速度最快)
+縮減 x 2 (運行速度最快)
 
 Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
-渲染分辨率
+渲染解析度
 
 Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
 視頻
 
 Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
-全熒幕
+全屏
 
 Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Windowed:
 窗口化
 
 Scripts/ClientOptions/Video/VideoOptionScreenMode@Name:
-熒幕模式
+螢幕模式
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Message:
-`像素分辨率已被改變。
-[br]遊戲需要重啟才能改動應用。
+`圖元解析度已被改變。
+[br]遊戲需要重啟才能應用改動。
 [br]請手動重啟遊戲。`
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogRestart_Title:
@@ -141,7 +141,7 @@ Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_But
 繼續
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@DialogTooHighSetting_MessageFormat:
-`您正試圖選擇高於推薦值的像素分辨率模式。
+`您正試圖選擇高於推薦值的圖元解析度模式。
 [br]
 [*] 推薦模式: [b]{0}[/b]
 [*] 已選模式: [b]{1}[/b]
@@ -161,7 +161,7 @@ Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Mode.Low:
 低(模糊，不精確)
 
 Scripts/ClientOptions/Video/VideoOptionSpriteResolution@Name:
-像素分辨率(需要重啟)
+圖元解析度[br] (需要重啟)
 
 Scripts/ClientOptions/Video/VideoOptionTerrainDetails@Mode.High:
 高(推薦)

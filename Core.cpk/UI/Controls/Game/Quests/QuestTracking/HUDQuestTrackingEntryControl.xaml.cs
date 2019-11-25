@@ -74,10 +74,10 @@
 
             this.storyboardFadeOut.Completed += this.StoryboardFadeOutCompletedHandler;
             this.storyboardHide.Completed += this.StoryboardHideCompletedHandler;
-            this.root.MouseLeftButtonDown += this.RootMouseButtonHandler;
-            this.root.MouseRightButtonDown += this.RootMouseButtonHandler;
-            this.root.MouseEnter += this.RootMouseEnterHandler;
-            this.root.MouseLeave += this.RootMouseLeaveHandler;
+            this.root.MouseLeftButtonDown += RootMouseButtonHandler;
+            this.root.MouseRightButtonDown += RootMouseButtonHandler;
+            this.root.MouseEnter += RootMouseEnterHandler;
+            this.root.MouseLeave += RootMouseLeaveHandler;
 
             this.storyboardShow.Begin();
         }
@@ -90,34 +90,34 @@
 
             this.storyboardFadeOut.Completed -= this.StoryboardFadeOutCompletedHandler;
             this.storyboardHide.Completed -= this.StoryboardHideCompletedHandler;
-            this.root.MouseLeftButtonDown -= this.RootMouseButtonHandler;
-            this.root.MouseRightButtonDown -= this.RootMouseButtonHandler;
-            this.root.MouseEnter -= this.RootMouseEnterHandler;
-            this.root.MouseLeave -= this.RootMouseLeaveHandler;
+            this.root.MouseLeftButtonDown -= RootMouseButtonHandler;
+            this.root.MouseRightButtonDown -= RootMouseButtonHandler;
+            this.root.MouseEnter -= RootMouseEnterHandler;
+            this.root.MouseLeave -= RootMouseLeaveHandler;
 
             // to ensure that the control has a hiding flag (used for ClientComponentNotificationAutoHideChecker)
             this.IsHiding = true;
         }
 
-        private void RemoveControl()
-        {
-            ((Panel)this.Parent).Children.Remove(this);
-        }
-
-        private void RootMouseButtonHandler(object sender, MouseButtonEventArgs e)
+        private static void RootMouseButtonHandler(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
             Menu.Open<WindowQuests>();
         }
 
-        private void RootMouseEnterHandler(object sender, MouseEventArgs e)
+        private static void RootMouseEnterHandler(object sender, MouseEventArgs e)
         {
             ClientCursorSystem.CurrentCursorId = CursorId.InteractionPossible;
         }
 
-        private void RootMouseLeaveHandler(object sender, MouseEventArgs e)
+        private static void RootMouseLeaveHandler(object sender, MouseEventArgs e)
         {
             ClientCursorSystem.CurrentCursorId = CursorId.Default;
+        }
+
+        private void RemoveControl()
+        {
+            ((Panel)this.Parent).Children.Remove(this);
         }
 
         private void StoryboardFadeOutCompletedHandler(object sender, EventArgs e)

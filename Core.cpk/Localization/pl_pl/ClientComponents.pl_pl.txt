@@ -25,6 +25,9 @@ Działanie – użyj przedmiotu
 Scripts/ClientComponents/Input/GameButton@ActionInteract:
 Działanie – interakcja
 
+Scripts/ClientComponents/Input/GameButton@VehicleEnterExit:
+Pojazd – wej./wyj.
+
 Scripts/ClientComponents/Input/GameButton@ItemReload:
 Przeładowanie
 

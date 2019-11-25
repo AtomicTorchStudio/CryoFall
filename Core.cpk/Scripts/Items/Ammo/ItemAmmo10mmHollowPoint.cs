@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Ammo
 {
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
     public class ItemAmmo10mmHollowPoint : ProtoItemAmmo, IAmmoCaliber10mm
@@ -23,6 +24,11 @@
 
             damageDistribution.Set(DamageType.Kinetic, 0.9);
             damageDistribution.Set(DamageType.Impact,  0.1);
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.Firearm;
         }
     }
 }

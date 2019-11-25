@@ -4,7 +4,7 @@
 
     public class ItemCrowbar : ProtoItemToolCrowbar
     {
-        public override double DeconstructionSpeedMultiplier => 1.5f;
+        public override double DeconstructionSpeedMultiplier => 1.5;
 
         public override string Description =>
             "Useful for quickly deconstructing buildings inside of your land claim area.";

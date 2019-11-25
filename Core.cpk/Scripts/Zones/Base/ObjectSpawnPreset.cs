@@ -90,6 +90,7 @@
 
         public bool IsContainsOnlyStaticObjects { get; private set; }
 
+        [Obsolete("It's not used anymore")]
         public RangeDouble IterationLimitFractionRange { get; }
 
         public double Padding { get; }
@@ -97,6 +98,8 @@
         public int PaddingToLandClaimAreas { get; }
 
         public bool PresetUseSectorDensity { get; }
+
+        public ushort? SpawnLimitPerIteration { get; set; }
 
         //public bool UseSectorDensity { get; }
 

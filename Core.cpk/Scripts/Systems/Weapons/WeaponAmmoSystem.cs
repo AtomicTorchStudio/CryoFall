@@ -3,12 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -47,15 +49,15 @@
             var character = Api.Client.Characters.CurrentPlayerCharacter;
             var currentWeaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
 
-            var itemWeapon = currentWeaponState.ActiveItemWeapon;
+            var itemWeapon = currentWeaponState.ItemWeapon;
             if (itemWeapon == null)
             {
                 // no active weapon to reload
                 return;
             }
 
-            var itemWeaponProto = (IProtoItemWeapon)itemWeapon.ProtoItem;
-            if (itemWeaponProto.AmmoCapacity == 0)
+            var protoWeapon = (IProtoItemWeapon)itemWeapon.ProtoItem;
+            if (protoWeapon.AmmoCapacity == 0)
             {
                 // the item is non-reloadable
                 return;
@@ -63,8 +65,8 @@
 
             var itemPrivateState = itemWeapon.GetPrivateState<WeaponPrivateState>();
             var ammoCountNeed = isSwitchAmmoType
-                                    ? itemWeaponProto.AmmoCapacity
-                                    : (ushort)Math.Max(0, itemWeaponProto.AmmoCapacity - itemPrivateState.AmmoCount);
+                                    ? protoWeapon.AmmoCapacity
+                                    : (ushort)Math.Max(0, protoWeapon.AmmoCapacity - itemPrivateState.AmmoCount);
 
             if (ammoCountNeed == 0)
             {
@@ -72,24 +74,24 @@
                 return;
             }
 
-            var compatibleAmmoGroups = SharedGetCompatibleAmmoGroups(character, itemWeaponProto);
+            var compatibleAmmoGroups = SharedGetCompatibleAmmoGroups(character, protoWeapon);
             if (compatibleAmmoGroups.Count == 0
                 && !isSwitchAmmoType)
             {
-                itemWeaponProto.SoundPresetWeapon.PlaySound(WeaponSound.Empty,
-                                                            character,
-                                                            volume: SoundConstants.VolumeWeapon);
+                protoWeapon.SoundPresetWeapon.PlaySound(WeaponSound.Empty,
+                                                        character,
+                                                        volume: SoundConstants.VolumeWeapon);
                 NotificationSystem.ClientShowNotification(
                     NotificationNoAmmo_Title,
                     NotificationNoAmmo_Message,
                     NotificationColor.Bad,
-                    itemWeaponProto.Icon,
+                    protoWeapon.Icon,
                     playSound: false);
 
                 if (currentWeaponState.SharedGetInputIsFiring())
                 {
                     // stop using weapon item!
-                    currentWeaponState.ActiveProtoWeapon.ClientItemUseFinish(itemWeapon);
+                    currentWeaponState.ProtoWeapon.ClientItemUseFinish(itemWeapon);
                 }
 
                 return;
@@ -104,17 +106,20 @@
                 var currentProtoItemAmmo = itemPrivateState.CurrentProtoItemAmmo;
                 if (currentProtoItemAmmo == null)
                 {
-                    // no ammo selected in weapon - select first
-                    selectedProtoItemAmmo = compatibleAmmoGroups.FirstOrDefault()?.Key;
+                    // no ammo selected in weapon
+                    selectedProtoItemAmmo = SharedFindNextAmmoGroup(protoWeapon.CompatibleAmmoProtos,
+                                                                    compatibleAmmoGroups,
+                                                                    currentProtoItemAmmo: null)?.Key;
                 }
                 else // if weapon already has ammo
                 {
                     if (isSwitchAmmoType)
                     {
-                        selectedProtoItemAmmo = SharedFindNextAmmoGroup(compatibleAmmoGroups,
+                        selectedProtoItemAmmo = SharedFindNextAmmoGroup(protoWeapon.CompatibleAmmoProtos,
+                                                                        compatibleAmmoGroups,
                                                                         currentProtoItemAmmo)?.Key;
                         if (selectedProtoItemAmmo == currentProtoItemAmmo
-                            && itemPrivateState.AmmoCount >= itemWeaponProto.AmmoCapacity)
+                            && itemPrivateState.AmmoCount >= protoWeapon.AmmoCapacity)
                         {
                             // this ammo type is already loaded and it's fully reloaded
                             Logger.Info("No need to reload the weapon " + itemWeapon, character);
@@ -138,7 +143,9 @@
                         if (!isFound)
                         {
                             // no group selected - select first
-                            selectedProtoItemAmmo = compatibleAmmoGroups.FirstOrDefault()?.Key;
+                            selectedProtoItemAmmo = SharedFindNextAmmoGroup(protoWeapon.CompatibleAmmoProtos,
+                                                                            compatibleAmmoGroups,
+                                                                            currentProtoItemAmmo: null)?.Key;
                         }
                     }
                 }
@@ -153,7 +160,8 @@
 
                 // already reloading - try select another ammo type (alternate between them)
                 var currentReloadingProtoItemAmmo = currentReloadingState.ProtoItemAmmo;
-                selectedProtoItemAmmo = SharedFindNextAmmoGroup(compatibleAmmoGroups,
+                selectedProtoItemAmmo = SharedFindNextAmmoGroup(protoWeapon.CompatibleAmmoProtos,
+                                                                compatibleAmmoGroups,
                                                                 currentReloadingProtoItemAmmo)?.Key;
 
                 if (selectedProtoItemAmmo == currentReloadingProtoItemAmmo)
@@ -183,13 +191,13 @@
             var weaponReloadingState = new WeaponReloadingState(
                 character,
                 itemWeapon,
-                itemWeaponProto,
+                protoWeapon,
                 selectedProtoItemAmmo);
             currentWeaponState.WeaponReloadingState = weaponReloadingState;
 
-            itemWeaponProto.SoundPresetWeapon.PlaySound(WeaponSound.Reload,
-                                                        character,
-                                                        SoundConstants.VolumeWeapon);
+            protoWeapon.SoundPresetWeapon.PlaySound(WeaponSound.Reload,
+                                                    character,
+                                                    SoundConstants.VolumeWeapon);
             Logger.Info(
                 $"Weapon reloading started for {itemWeapon} reload duration: {weaponReloadingState.SecondsToReloadRemains:F2}s",
                 character);
@@ -209,7 +217,7 @@
         {
             var currentWeaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
 
-            var item = currentWeaponState.ActiveItemWeapon;
+            var item = currentWeaponState.ItemWeapon;
             if (item == null)
             {
                 // no active weapon to reload
@@ -337,56 +345,114 @@
             SharedProcessWeaponReload(character, weaponState);
 
             weaponState.ShotsDone = 0;
+            weaponState.FirePatternCooldownSecondsRemains = 0;
             weaponState.ServerLastClientReportedShotsDoneCount = null;
         }
 
         private static IGrouping<IProtoItemAmmo, IItem> SharedFindNextAmmoGroup(
-            List<IGrouping<IProtoItemAmmo, IItem>> compatibleAmmoGroups,
-            IProtoItem currentProtoItemAmmo)
+            IReadOnlyList<IProtoItemAmmo> protoWeaponCompatibleAmmoProtos,
+            List<IGrouping<IProtoItemAmmo, IItem>> existingCompatibleAmmoGroups,
+            IProtoItemAmmo currentProtoItemAmmo)
         {
-            var foundProtoItemIndex = -1;
-            for (var index = 0; index < compatibleAmmoGroups.Count; index++)
+            var ammoIndex = -1;
+            for (var index = 0; index < protoWeaponCompatibleAmmoProtos.Count; index++)
             {
-                var compatibleAmmoItem = compatibleAmmoGroups[index];
-                if (compatibleAmmoItem.Key == currentProtoItemAmmo)
+                var compatibleAmmoItem = protoWeaponCompatibleAmmoProtos[index];
+                if (compatibleAmmoItem == currentProtoItemAmmo)
                 {
                     // found current proto item, select next item prototype
-                    foundProtoItemIndex = index;
+                    ammoIndex = index;
                     break;
                 }
             }
 
-            if (foundProtoItemIndex < 0)
+            if (ammoIndex < 0)
             {
-                // current proto item ammo is not found
-                return compatibleAmmoGroups.FirstOrDefault();
+                ammoIndex = -1;
             }
 
-            // select next proto ammo group
-            if (foundProtoItemIndex + 1 < compatibleAmmoGroups.Count)
+            // try to find next available ammo
+            do
             {
-                return compatibleAmmoGroups[foundProtoItemIndex + 1];
-            }
+                ammoIndex++;
+                if (ammoIndex >= protoWeaponCompatibleAmmoProtos.Count)
+                {
+                    // unload weapon
+                    return null;
+                }
 
-            return null;
+                var requiredAmmoType = protoWeaponCompatibleAmmoProtos[ammoIndex];
+
+                foreach (var availableAmmo in existingCompatibleAmmoGroups)
+                {
+                    if (availableAmmo.Key == requiredAmmoType)
+                    {
+                        // found required ammo
+                        return availableAmmo;
+                    }
+                }
+            }
+            while (true);
         }
 
         /// <summary>
         /// Returns compatible with weapon ammo group by ammo type.
+        /// Please note that it works only for player characters.
         /// </summary>
         private static List<IGrouping<IProtoItemAmmo, IItem>> SharedGetCompatibleAmmoGroups(
             ICharacter character,
             IProtoItemWeapon protoWeapon)
         {
             var compatibleAmmoProtos = protoWeapon.CompatibleAmmoProtos;
-            var containerInventory = character.SharedGetPlayerContainerInventory();
-            var containerHotbar = character.SharedGetPlayerContainerHotbar();
 
-            var allItems = containerInventory.Items.Concat(containerHotbar.Items);
+            IEnumerable<IItem> allItems = null;
+            var currentVehicle = character.SharedGetCurrentVehicle();
+            if (currentVehicle != null
+                && !((IProtoVehicle)currentVehicle.ProtoGameObject).IsPlayersHotbarAndEquipmentItemsAllowed)
+            {
+                // select items from the vehicle equipment container
+                allItems = currentVehicle.GetPrivateState<VehicleMechPrivateState>()
+                                         .EquipmentItemsContainer.Items;
+            }
+
+            if (allItems == null)
+            {
+                // select items from player's inventory
+                var containerInventory = character.SharedGetPlayerContainerInventory();
+                var containerHotbar = character.SharedGetPlayerContainerHotbar();
+                allItems = containerInventory.Items.Concat(containerHotbar.Items);
+            }
+
             return allItems
                    .Where(i => compatibleAmmoProtos.Contains(i.ProtoGameObject))
                    .GroupBy(a => (IProtoItemAmmo)a.ProtoItem)
                    .ToList();
+        }
+
+        private static IEnumerable<IItemsContainer> SharedGetTargetContainersForAmmoUnloading(ICharacter character)
+        {
+            IEnumerable<IItemsContainer> targetContainers = Array.Empty<IItemsContainer>();
+            var currentVehicle = character.SharedGetCurrentVehicle();
+            if (currentVehicle == null
+                || ((IProtoVehicle)currentVehicle.ProtoGameObject).IsPlayersHotbarAndEquipmentItemsAllowed)
+            {
+                // no vehicle — use only character's containers
+                return character.ProtoCharacter.SharedEnumerateAllContainers(
+                    character,
+                    includeEquipmentContainer: false);
+            }
+
+            // select items from the vehicle equipment container
+            targetContainers = targetContainers.Append(currentVehicle
+                                                       .GetPrivateState<VehicleMechPrivateState>()
+                                                       .EquipmentItemsContainer);
+
+            // append character's containers
+            targetContainers = targetContainers.Concat(
+                character.ProtoCharacter.SharedEnumerateAllContainers(
+                    character,
+                    includeEquipmentContainer: false));
+            return targetContainers;
         }
 
         /// <summary>
@@ -416,9 +482,10 @@
                     // unload current ammo
                     if (IsServer)
                     {
+                        var targetContainers = SharedGetTargetContainersForAmmoUnloading(character);
                         var result = Server.Items.CreateItem(
-                            toCharacter: character,
                             protoItem: currentProtoItemAmmo,
+                            new AggregatedItemsContainers(targetContainers),
                             count: (ushort)weaponAmmoCount);
 
                         if (!result.IsEverythingCreated)
@@ -549,14 +616,6 @@
                         weaponAmmoCount += itemAmmoCount;
                     }
 
-                    // check if character owns this item
-                    if (itemAmmo.Container.OwnerAsCharacter != character)
-                    {
-                        Logger.Error("The character doesn't own " + itemAmmo + " - cannot use it to reload",
-                                     character);
-                        continue;
-                    }
-
                     // reduce ammo item count
                     if (IsServer)
                     {
@@ -636,6 +695,14 @@
                                                       protoAmmo.Icon);
         }
 
+        [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 30)]
+        private void ClientRemote_OnOtherCharacterReloading(ICharacter character, IProtoItemWeapon protoWeapon)
+        {
+            protoWeapon.SoundPresetWeapon.PlaySound(WeaponSound.Reload,
+                                                    character,
+                                                    SoundConstants.VolumeWeapon);
+        }
+
         [RemoteCallSettings(DeliveryMode.ReliableUnordered, maxCallsPerSecond: 60)]
         private void ServerRemote_AbortReloading(IItem weapon)
         {
@@ -680,10 +747,10 @@
 
             var weaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
             if (weaponState == null
-                || weaponState.ActiveItemWeapon != itemWeapon)
+                || weaponState.ItemWeapon != itemWeapon)
             {
                 throw new Exception(
-                    $"Only current active weapon could be reloaded: want to reload {itemWeapon}, but current active weapon is {weaponState?.ActiveItemWeapon}");
+                    $"Only current active weapon could be reloaded: want to reload {itemWeapon}, but current active weapon is {weaponState?.ItemWeapon}");
             }
 
             var selectedProtoItemAmmo = args.ProtoItemAmmo;
@@ -722,6 +789,12 @@
                 // instant-reloading weapon
                 SharedProcessWeaponReload(character, weaponState);
             }
+
+            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(character, scopedBy);
+            scopedBy.Remove(character);
+            Instance.CallClient(scopedBy,
+                                _ => _.ClientRemote_OnOtherCharacterReloading(character, itemProto));
         }
 
         private readonly struct ItemWithCount

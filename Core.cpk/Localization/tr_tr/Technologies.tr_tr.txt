@@ -247,6 +247,12 @@ Alkollü içecekler ve o türde başka şeylerin yaratılması.
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 Yeniden yaratma
 
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+Çeşitli türde araçları üretmek için gerekli teknolojiler.
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+Araçlar
+
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 Yabancı dünyalardaki kaynakları kullanmak için gerekli teknolojiler.
 
@@ -330,4 +336,10 @@ Geleneksel silahları maksimum potansiyellerine çıkartan yüksek saldırı tek
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 Saldırı 4
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+Gelişmiş savaş araçları ve ulaşım.
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+Araçlar 2
 

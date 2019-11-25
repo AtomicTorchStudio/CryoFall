@@ -19,7 +19,7 @@
 
             duration = CraftingDuration.Medium;
 
-            inputItems.Add<ItemIngotCopper>(count: 15);
+            inputItems.Add<ItemIngotCopper>(count: 10);
 
             outputItems.Add<ItemWateringCanCopper>(count: 1);
         }

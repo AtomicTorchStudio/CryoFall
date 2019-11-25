@@ -22,8 +22,14 @@ Bosque (tropical)
 Scripts/Tiles/TileLakeShore@Name:
 Orilla de lago
 
+Scripts/Tiles/TileLava@Name:
+Lava
+
 Scripts/Tiles/TileMeadows@Name:
 Prados
+
+Scripts/Tiles/TileRoads@Name:
+Carreteras
 
 Scripts/Tiles/TileRocky@Name:
 Rocosa

@@ -7,7 +7,7 @@
 
     public class SkeletonCrab : ProtoCharacterSkeletonAnimal
     {
-        public override double DefaultMoveSpeed => 0.5;
+        public override double DefaultMoveSpeed => 0.75;
 
         public override bool HasStaticAttackAnimations => false;
 
@@ -18,7 +18,7 @@
         public override SkeletonResource SkeletonResourceFront { get; }
             = new SkeletonResource("Crab/Front");
 
-        public override double WorldScale => 0.4f;
+        public override double WorldScale => 0.4;
 
         protected override string SoundsFolderPath => "Skeletons/Crab";
 

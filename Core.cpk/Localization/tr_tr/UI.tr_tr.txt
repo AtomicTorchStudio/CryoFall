@@ -1,4 +1,10 @@
-﻿UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
+﻿UI/CoreStrings@Action_Build:
+İnşa et
+
+UI/CoreStrings@Action_Repair:
+Tamir et
+
+UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Yok edildi
 
 UI/CoreStrings@Button_Accept:
@@ -47,8 +53,14 @@ Düzenle
 UI/CoreStrings@Button_Help:
 Yardım
 
+UI/CoreStrings@Button_Next:
+Sonraki
+
 UI/CoreStrings@Button_OK:
 TAMAM
+
+UI/CoreStrings@Button_Previous:
+Önceki
 
 UI/CoreStrings@Button_Quit:
 Çık
@@ -161,6 +173,28 @@ Psi koruma: {0}
 UI/CoreStrings@Defense_Format_Radiation:
 Radyasyon koruması: {0}
 
+UI/CoreStrings@Demo_Button_BuyGameOnSteam:
+CryoFall'u Steam'den satın alın
+
+UI/CoreStrings@Demo_CanPurchase:
+Oyunun tam sürümüne ulaşmak için CryoFall'u satın alabilirsiniz. Bu tek seferlik satın alımla birlikte hâlihazırdaki karakterinizle kaldığınız yerden devam edebilirsiniz (son zamanlarda oynadıysanız). Ayrıca toplulukla birlikte modlanmış sunucularda da oynayabilir hatta kendi sunucunuza bile ev sahipliği yapabilirsiniz.
+
+UI/CoreStrings@Demo_Expired:
+Demo süreniz doldu. Oyunu denediğiniz için teşekkür ederiz. Umarız beğenmişsinizdir!
+
+UI/CoreStrings@Demo_OnlyOfficialServers:
+`Bu demo sürümüyle herhangi bir resmî oyun sunucusunda oynayabilirsiniz.
+[br]Başka topluluk veya özel oyun sunucularında oynamak ya da kendi sunucularınıza ev sahipliği yapmak için lütfen tam sürümü satın alın.`
+
+UI/CoreStrings@Demo_TimeRemaining:
+Demo sürümünün sona erme süresi:
+
+UI/CoreStrings@Demo_Title:
+CryoFall Demo Sürümü
+
+UI/CoreStrings@Demo_Welcome:
+CryoFall'un demo sürümüne hoş geldiniz. Bu demo sürümü boyunca oyunu hiçbir kısıtlama olmaksızın (resmî oyun sunucularındaki bütün oyun özelliklerine tam erişimle) oynayabilirsiniz.
+
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 Şu kadar sürede ele geçirmeye uygun olacak:
 
@@ -179,6 +213,9 @@ EB/s
 UI/CoreStrings@Extras_DiscordTooltip:
 Resmî CryoFall Discord sunucusu (Sadece İngilizce)
 
+UI/CoreStrings@Extras_FeaturesTooltip:
+CryoFall özellikleri slayt gösterisi
+
 UI/CoreStrings@Extras_PatchnotesTooltip:
 Bütün CryoFall güncelleme notları (Sadece İngilizce)
 
@@ -195,7 +232,13 @@ UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
 Toplama başlayacak
 
 UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
-şimdi!
+Hasat için hazır
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiled:
+Çürümüş
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
+Bozulmuş
 
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 Sulandı
@@ -211,6 +254,9 @@ Kadın
 
 UI/CoreStrings@Gender_Male:
 Erkek
+
+UI/CoreStrings@HUDButtonsBar_DismountVehicle:
+Araçtan in
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 İnşaat
@@ -487,6 +533,18 @@ Savaşmaya hazır olun!`
 
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
+
+UI/CoreStrings@ModsDisabledWindow_Description:
+`Bu oyunu modlarla çalıştırmak mümkün olmadığından modlar kapatıldı.
+[br]Bunun sebebi, modlardan en azından birinin eskimiş (oyunun mevcut versiyonuyla uyumsuz) veya geçersiz olması.
+[br]Oyun, soruna yol açan şeyin belli bir mod mu olduğunu yoksa hepsinin mi geçersiz olduğunu anlayamadı. Modları birer birer açarak bunu kontrol edebilirsin.
+[br]Bu modları kullanmayı sürdürmek istiyorsan lütfen en son versiyonlarına sahip olduğundan emin ol.
+[br]
+[br]Etkisiz hâle getirilen modlar listesi:
+[br]{0}`
+
+UI/CoreStrings@ModsDisabledWindow_Title:
+CryoFall, modları devre dışı bıraktı
 
 UI/CoreStrings@Network_Jitter:
 Gecikme
@@ -792,6 +850,17 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `AtomicTorch.com hesap kaydı
 [br](Steam ID'niz için)`
 
+UI/CoreStrings@SupporterPack_Badge:
+Destekçi rozeti
+
+UI/CoreStrings@SupporterPack_Description:
+`Destekçi Paketi, CryoFall geliştiricilerini desteklemek için ek bir adım atmak isteyenlere verilen ekstra eşyalar koleksiyonudur. Minnettarlığımızın bir göstergesi olarak, oyun sohbetinde, özel destekçi rozeti görünecektir.
+[br][br]Paket, oyun içinde herhangi bir avantaj sağlamaz ve tamamen opsiyoneldir. Oyunun tam müziklerini, sanat eserlerini, yüksek çözünürlüklü oyun sanat eserlerini, sohbet rozetini vs. içerir. Erken Erişim süresi boyunca ekstra Destekçi Paketi eşyaları eklenecektir.
+[br][br]Desteğiniz için yürekten teşekkür ederiz!`
+
+UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
+Eğitim puanları: {0}
+
 UI/CoreStrings@TechGroupTooltip_Requirements:
 Gereksinimler
 
@@ -802,16 +871,19 @@ UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 Açılan teknolojiler
 
 UI/CoreStrings@TechNodeTooltip_Perks:
-Özellikler
+Özellikler:
 
 UI/CoreStrings@TechNodeTooltip_Recipes:
-Tarifler
+Tarifler:
 
 UI/CoreStrings@TechNodeTooltip_Structures:
-Yapılar
+Yapılar:
 
 UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
 Teknolojik ön şartlar
+
+UI/CoreStrings@TechNodeTooltip_Vehicles:
+Araçlar:
 
 UI/CoreStrings@Technology:
 Teknoloji
@@ -908,6 +980,83 @@ Hesap oluşturmadan devam et
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
 Görünüşe göre CryoFall'ı ilk defa çalıştırıyorsunuz. Mevcut [url=atomictorch.com]AtomicTorch.com[/url] hesabınıza bağlamak ister misiniz?
+
+UI/CoreStrings@UnstuckInFormat:
+Sıkışmadan kurtulma: {0}
+
+UI/CoreStrings@Vehicle_Ammo:
+Cephane
+
+UI/CoreStrings@Vehicle_Armor:
+Zırh
+
+UI/CoreStrings@Vehicle_EnergyLevel:
+Enerji seviyesi
+
+UI/CoreStrings@Vehicle_Enter:
+Gir
+
+UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
+Zırh {1:F0}/{2:F0}({0}%)
+
+UI/CoreStrings@Vehicle_Hotbar_EnergyPercentFormat:
+Enerji %{0}
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_LeftArm:
+Sol kol
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
+Sağ kol
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
+Silah
+
+UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
+Bu silah sadece bir makine üstüne monte edilince kullanılabilir.
+
+UI/CoreStrings@Vehicle_ReactorCores:
+Reaktör çekirdekleri
+
+UI/CoreStrings@VehicleGarage_ButtonPutCurrentVehicle:
+Mevcut aracı garaja koy
+
+UI/CoreStrings@VehicleGarage_ButtonTakeVehicle:
+Araç al
+
+UI/CoreStrings@VehicleGarage_TitleAccessibleVehicles:
+Sayılı araçlara erişebilirsiniz:
+
+UI/CoreStrings@VehicleGarage_TitleNoAccessibleVehicles:
+Henüz herhangi bir araca erişiminiz yok.
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_Docked:
+Bağlı
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InGarage:
+Garajda
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InUse:
+Şu an kullanımda
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InWorld:
+Dünyada
+
+UI/CoreStrings@VehiclesAssemblyList_Button_Build:
+İnşa et
+
+UI/CoreStrings@VehiclesAssemblyList_NoSchematicsKnown:
+`Bu birleştirme sahası için herhangi bir şematiğin yok.
+[br][br][br]
+Yeni şematikleri teknolojiler menüsünden açabilirsin.`
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
+Şematikler
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
+Açılan şematikler
+
+UI/CoreStrings@Weapon_CompatibleAmmo:
+Uyumlu cephane:
 
 UI/CoreStrings@Window_Tab_Main:
 Ana
@@ -1104,6 +1253,21 @@ Yeteneğin bir sonraki seviyesine doğru ilerle
 UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
 Yetenek keşfedildi
 
+UI/CoreStrings@WindowsObjectVehicle_RepairTextFormat:
+Zırhın %{0} oranını onarmak için ihtiyacınız olan:
+
+UI/CoreStrings@WindowsObjectVehicle_TabCargo_Title:
+Yük
+
+UI/CoreStrings@WindowsObjectVehicle_TabConstructVehicle:
+İnşaat
+
+UI/CoreStrings@WindowsObjectVehicle_TabGarage:
+Garaj
+
+UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
+Araç
+
 UI/CoreStrings@WindowSocial_OnlineNow:
 Şimdi çevrimiçi
 
@@ -1255,6 +1419,9 @@ UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
 `[b]Alan tutucu[/b]
 [br]Erişimin olan alan tutucu bu.`
 
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_LastUsedVehicle:
+[b]Son kullanılan araç[/b]
+
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 `[b]Alan tutucu[/b]
 [br]Bu senin alan tutucun.`
@@ -1354,7 +1521,7 @@ Sıkışıklıktan kurtar beni!
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `Kendini evine tıkadın ve çıkamıyor musun?
 [br]Ya da biri seni rahatsız etti ve sıkıştın mı?
-[br]Bu fonksiyonu kullanıp karakterini başka bir yere ışınlayabilirsin.`
+[br]Bu fonksiyonu kullanıp bir süre sonrası kendini başka yere ışınlayabilirsin.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 Sıkışıklıktan kurtar
@@ -1488,9 +1655,6 @@ UI/Controls/Game/Technologies/Data/ViewModelWindowTechnologies@DialogDoYouWantTo
 UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
 El yapımı
 
-UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
-Tamir et
-
 UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
 Bozulabilir eşyalar ~{0} daha uzun süre dayanır.
 
@@ -1548,6 +1712,89 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `Mevcut üretim {0} EB/s.
 [br]Maksimum çıktı {1} EB/s.`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+CryoFall'a Hoş Geldiniz!
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+Bu fırsattan istifade ederek sizi, oyunda bekleyebileceğiniz bazı özelliklerle tanıştırmak istiyoruz! CryoFall hâlâ gelişim hâlindedir ama bahsedeceklerimiz şu an oynanabilir durumda.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+Tarım & yemek yapma
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+Gübre ve tarım aletleri kullanarak kendi mahsullerinizi üretin. Daha sonra uğraşınızın meyveleriyle farklı yiyecekler pişirin, bu da karakterinize aktif faydalar sağlasın.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+Karakter simülasyon & tıp
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+Sadece klasik açlık ve susuzluk mekanikleriyle değil, çeşitli ilaçlarla çözülebilecek çeşitli etki ve hastalıkların da bulunduğu kompleks karakter simülasyonu.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+Sanayi
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+CryoFall dünyasındaki doğal kaynaklardan yararlan. Petrol çıkar ve rafine et veya bataryalar ve elektronikler yapmak için jeotermal kaynaklardan lityum çıkar.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+Ekonomi
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+Para bas ve diğer hayatta kalanlarla ticaret yapabilmek için tamamen otomatik ticaret istasyonları kur.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+Sibernetik implantlar
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+Yeni yetenekler kazanmak ve özelliklerini yükseltmek için çeşitli biyonik ve sibernetik implantlar al.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+Yetenekler
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+Karakterinin çeşitli yeteneklerini keşfet, kilidini aç ve geliştir. Böylece verimliliğin artar ve yeni yetenekler kazanırsın.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
+Karakter özelleştirmesi
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+Karakterinin görünüşünü özelleştir ve çeşitli ekipmanlar ve aletler kullanarak kendini farklı kıl.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+Teknoloji
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+Eğitim puanları kazan ve onları kullanarak yeni teknolojileri, tarifleri ve yapıları öğren. Böylece oyunu, en çok ilgini çeken alana odaklayarak oynayabilirsin.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+Elektrik
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+Üssünü, elektrik şebekesi planıyla tasarla. Birçok jeneratör, depo ve elektrik tüketici inşa edebilirsin.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+Araçlar
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+Dünyayı daha hızlı keşfetmek ve onları savaşta kullanmak için çeşitli fütüristik araçlar yap ve geliştir.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
+Fantastik yaratıklar
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+Birçok farklı biyom ve fantastik yaratık bulunduran kapsamlı bir dünyayı keşfet.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+Son söz
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
+`Son olarak, lütfen CryoFall'un yapım aşamasında olan bir oyun olduğunu, daha birçok ilerlemenin ve geliştirmenin planlandığını aklınızda tutun. Yine de mevcut hâliyle gayet iyi bir oyun ve umarız bunun sonunda dek tadını çıkarırsınız![br][br]
+Discord'da ve forumlarımızda hep ulaşılabilir durumdayız. Gelin ve selam verin! :)[br][br]
+Herhangi bir zorluk yaşıyorsanız veya bir hatayı, açığı bildirmek istiyorsanız, dinlemeye ve yardım etmeye açığız!`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
+Oyunu başlat
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
 Giriş cevabı bekleniyor.

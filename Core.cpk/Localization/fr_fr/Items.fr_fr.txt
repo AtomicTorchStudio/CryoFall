@@ -58,6 +58,12 @@ Des projectiles incendiaires de calibre 7,62, capables de traverser une armure e
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 Balles incendiaires calibre 7,62
 
+Scripts/Items/Ammo/ItemAmmo50SH@Description:
+Munitions puissantes de gros calibre pour arme de poing.
+
+Scripts/Items/Ammo/ItemAmmo50SH@Name:
+Munition .50 SH
+
 Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
 Des projectiles non chemisés de 8mm, utilisant des matériaux et des techniques de fabrication simples. Leur précision et leur puissance sont assez faibles.
 
@@ -90,6 +96,9 @@ Lire
 
 Scripts/Items/Base/ItemUseCaptions@Use:
 Utiliser
+
+Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
+Cet objet ne peut pas être utilisé dans un véhicule.
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Journalisation de données (chiffré)
@@ -484,6 +493,12 @@ Un plat simple, mais sympathique.
 Scripts/Items/Food/ItemCarrotGrilled@Name:
 Carottes grillées
 
+Scripts/Items/Food/ItemCheese@Description:
+Nourriture traditionnelle obtenue suite à la coagulation des protéines du lait.
+
+Scripts/Items/Food/ItemCheese@Name:
+Fromage
+
 Scripts/Items/Food/ItemChiliBeans@Description:
 La nourriture de base des célibataires.
 
@@ -543,6 +558,12 @@ Croquant et aigre-doux, c'est pas mal du tout.
 
 Scripts/Items/Food/ItemCucumbersPickled@Name:
 Concombre mariné
+
+Scripts/Items/Food/ItemDough@Description:
+Peut être utilisée dans diverses recettes.
+
+Scripts/Items/Food/ItemDough@Name:
+Pâte à pain
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Une boisson énergétique populaire à travers toute la galaxie. Octroie un sérieux regain d'énergie.
@@ -634,6 +655,24 @@ De la viande cuite, agrémentée d'un peu de persil provenant d'on ne sait où..
 Scripts/Items/Food/ItemMeatRoasted@Name:
 Viande braisée
 
+Scripts/Items/Food/ItemMilk@Description:
+Du lait riche en éléments nutritifs. Peut être consommé tel quel ou utilisé pour cuisiner.
+
+Scripts/Items/Food/ItemMilk@Name:
+Lait
+
+Scripts/Items/Food/ItemMilkmelon@Description:
+Une plante génétiquement créée produisant un liquide laiteux épais dont la composition est très proche de celle du lait.
+
+Scripts/Items/Food/ItemMilkmelon@Name:
+Melon à lait
+
+Scripts/Items/Food/ItemMRE@Description:
+Repas préparé industriellement contenant des aliments à haute valeur calorique ainsi que de quoi s'hydrater pour survivre lors des opérations militaires.
+
+Scripts/Items/Food/ItemMRE@Name:
+Ration militaire
+
 Scripts/Items/Food/ItemMREImprovised@Description:
 Un repas complet préparé à partir d'ingrédients de base et conservé avec du sel. Peut être conservé assez longtemps sans se gâter.
 
@@ -658,11 +697,11 @@ Ce champignon tire son nom de sa couleur particulière. Il est très bon lorsqu'
 Scripts/Items/Food/ItemMushroomRust@Name:
 Rouillette
 
-Scripts/Items/Food/ItemOgurin@Description:
-Une variante OGM du concombre, à l'aspect bizarre et au goût... qui l'est encore plus.
+Scripts/Items/Food/ItemOnigiri@Description:
+Boulettes de riz pouvant être facilement consommées en déplacement. Simples et nourrissantes. Les épices leur permettent de se conserver plus longtemps.
 
-Scripts/Items/Food/ItemOgurin@Name:
-Ogurine
+Scripts/Items/Food/ItemOnigiri@Name:
+Onigri
 
 Scripts/Items/Food/ItemPieBerry@Description:
 Une juteuse tarte aux baies, comme en faisait grand-mère !
@@ -675,6 +714,12 @@ Un fruit tropical doux et acide. Peut être mangé cru ou incorporé dans divers
 
 Scripts/Items/Food/ItemPineapple@Name:
 Ananas
+
+Scripts/Items/Food/ItemRiceCooked@Description:
+Peut être mangé tel quel ou être intégré à un plat plus élaboré.
+
+Scripts/Items/Food/ItemRiceCooked@Name:
+Riz cuit
 
 Scripts/Items/Food/ItemRoastedMushrooms@Description:
 De savoureux champignons grillés.
@@ -1004,12 +1049,6 @@ Le flux en poudre est utile en métallurgie pour créer des métaux de haute qua
 Scripts/Items/Generic/ItemFluxPowder@Name:
 Flux en poudre
 
-Scripts/Items/Generic/ItemFoodRotten@Description:
-Cette nourriture est complètement fichue.
-
-Scripts/Items/Generic/ItemFoodRotten@Name:
-Nourriture avariée
-
 Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 Des granules de nitrocellulose formulés et moulés spécifiquement pour être utilisés dans les armes à feu à hautes performances.
 
@@ -1081,6 +1120,12 @@ Des granules hautement hygroscopiques utilisables en remplaçant du terreau. Ces
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Name:
 Granules hygroscopiques
+
+Scripts/Items/Generic/ItemImpulseEngine@Description:
+Un moteur puissant à impulsions pouvant être utilisé pour alimenter divers mécanismes.
+
+Scripts/Items/Generic/ItemImpulseEngine@Name:
+Moteur à impulsion
 
 Scripts/Items/Generic/ItemIngotCopper@Description:
 Un lingot de cuivre pur. Le cuivre est utilisable dans divers domaines, comme l'industrie ou l'électronique.
@@ -1217,11 +1262,35 @@ Du conservateur alimentaire. Peut-être ajouté à toute nourriture emballée po
 Scripts/Items/Generic/ItemPreservative@Name:
 Conservateur
 
+Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
+Un noyau de réacteur vide pouvant être rempli d'une substance chargée d'énergie réactive, comme le pragmium.
+
+Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
+Noyau de réacteur vide
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Description:
+Un noyau de réacteur rempli de pragmium. Une source d'énergie portable, durable et relativement stable.
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Name:
+Noyau de réacteur au pragmium
+
+Scripts/Items/Generic/ItemRice@Description:
+Des grains de riz récoltés. Peuvent être préparés pour être plantés, ou cuisinés dans la confection de nombreux plats.
+
+Scripts/Items/Generic/ItemRice@Name:
+Riz
+
 Scripts/Items/Generic/ItemRope@Description:
 De la corde normale. Peut être utilisée de différentes façons. Les morceaux superflus peuvent être brûlés.
 
 Scripts/Items/Generic/ItemRope@Name:
 Corde
+
+Scripts/Items/Generic/ItemRot@Description:
+De la nourriture ou autres matières organiques ayant pourri, ne laissant qu'une bouillie malodorante.
+
+Scripts/Items/Generic/ItemRot@Name:
+Pourriture
 
 Scripts/Items/Generic/ItemRubberRaw@Description:
 Du caoutchouc naturel, également appelé « résine de latex ». Extrait de l'hévéa. Peut être transformé chimiquement en caoutchouc vulcanisé.
@@ -1271,11 +1340,29 @@ Un solvant de l'ère spatiale spécialement formulé, qui combine les propriét�
 Scripts/Items/Generic/ItemSolvent@Name:
 Solvant
 
+Scripts/Items/Generic/ItemSpices@Description:
+Un assortiment d'épices pouvant être utilisées pour cuisiner.
+
+Scripts/Items/Generic/ItemSpices@Name:
+Épices
+
+Scripts/Items/Generic/ItemSpicesRaw@Description:
+Des épices fraîchement récoltées. Elles doivent être séchées et transformées avant de pouvoir être utilisées.
+
+Scripts/Items/Generic/ItemSpicesRaw@Name:
+Épices fraîches
+
 Scripts/Items/Generic/ItemStone@Description:
 De la pierre... Ronde et lourde. Utilisable en construction. Généralement trouvée par terre, ou bien peut être obtenue en grande quantité dans une mine.
 
 Scripts/Items/Generic/ItemStone@Name:
 Pierre
+
+Scripts/Items/Generic/ItemStructuralPlating@Description:
+Ces plaques blindées peuvent à la fois servir d'armure extérieure et d'éléments de structure permettant de monter du matériel additionnel.
+
+Scripts/Items/Generic/ItemStructuralPlating@Name:
+Plaque de structure
 
 Scripts/Items/Generic/ItemSulfurPowder@Description:
 Du soufre pur sous forme de poudre.
@@ -1299,19 +1386,19 @@ Scripts/Items/Generic/ItemTobaccoAged@Description:
 Des feuilles de tabac vieillies. Peuvent servir à fabriquer d'excellents cigares.
 
 Scripts/Items/Generic/ItemTobaccoAged@Name:
-Tabac (vieilli)
+Tabac vieilli
 
 Scripts/Items/Generic/ItemTobaccoDried@Description:
 Des feuilles de tabac séchées. Peuvent permettre de fabriquer des cigares bon marché, ou de bien meilleurs après vieillissement.
 
 Scripts/Items/Generic/ItemTobaccoDried@Name:
-Tabac (séché)
+Tabac séché
 
 Scripts/Items/Generic/ItemTobaccoRaw@Description:
 Des feuilles et des boutons de tabac. Peuvent être séchés pour permettre la fabrication de cigares.
 
 Scripts/Items/Generic/ItemTobaccoRaw@Name:
-Tabac (base)
+Tabac frais
 
 Scripts/Items/Generic/ItemToxin@Description:
 Une toxine chimique. Utilisable en médecine, ou pour fabriquer des munitions porteuses de toxines.
@@ -1319,17 +1406,17 @@ Une toxine chimique. Utilisable en médecine, ou pour fabriquer des munitions po
 Scripts/Items/Generic/ItemToxin@Name:
 Toxine
 
-Scripts/Items/Generic/ItemTreebark@Description:
-De l'écorce d'arbre. Peut être brûlée, ou utilisée pour diverses autres choses.
-
-Scripts/Items/Generic/ItemTreebark@Name:
-Écorce
-
 Scripts/Items/Generic/ItemTwigs@Description:
 Quelques brindilles ramassées par terre ou sur un arbre. Utilisables pour fabriquer des outils simples, ou pour faire du feu.
 
 Scripts/Items/Generic/ItemTwigs@Name:
 Brindilles
+
+Scripts/Items/Generic/ItemUniversalActuator@Description:
+Un actionneur très versatile et puissant utilisant la force magnétique pour ses mouvements.
+
+Scripts/Items/Generic/ItemUniversalActuator@Name:
+Actionneur universel
 
 Scripts/Items/Generic/ItemVialBiomaterial@Description:
 Un flacon de biomatériau plein. Utilisé en cybernétique et en médecine, principalement dans le cadre des opérations de pose et de retrait d'implants.
@@ -1376,14 +1463,17 @@ De l'engrais a déjà été répandu
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
 Cette plante est prête pour la récolte. Inutile d'ajouter de l'engrais.
 
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
-Déjà arrosé
-
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
-Cette plante est prête pour la récolte. Inutile de l'arroser.
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CanApplyOnlyOnPlants:
+Ne peut être utilisé que sur les plantes.
 
 Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Application impossible ici
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
+Un foie artificiel bio-génétiquement créé. Améliore le filtrage du sang, permettant d'ignorer certains effets négatifs de l'utilisation intensive de médicaments.
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
+Foie artificiel
 
 Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
 Une couche rétinienne spéciale hautement photosensible avec support du HDR, qui octroie une vision de nuit quasiment parfaite.
@@ -1427,17 +1517,17 @@ Ce matériau spécial en nanofibres peut être incorporé à la couche inférieu
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Implant de nanofibres épidermiques
 
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+Aucune mutation corporelle anarchique n'a été détectée dans votre corps.
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Pas de mutation
+
 Scripts/Items/Medical/ItemAntiMutation@Description:
 Protège et restaure l'ADN cellulaire endommagé par une exposition à des radiations. Arrête les mutations corporelles anarchiques.
 
 Scripts/Items/Medical/ItemAntiMutation@Name:
 Traitement anti-mutation
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
-Pas de mutation
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
-Aucune mutation corporelle anarchique n'a été détectée dans votre corps.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 Vous ne souffrez pas de nausée. Vous n'avez aucune raison d'utiliser ce médicament actuellement.
@@ -1635,13 +1725,13 @@ Scripts/Items/Medical/ItemStrengthBoostBig@Description:
 Un médicament qui augmente temporairement votre force, ce qui améliore vos performances lorsque vous effectuez des tâches physiques.
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Name:
-Renfort de force (grand)
+Grande amélioration de force
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 Un médicament qui augmente temporairement votre force, ce qui améliore vos performances lorsque vous effectuez des tâches physiques.
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
-Renfort de force (petit)
+Petite amélioration de force
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Une jeune pousse d'arbre. Peut être plantée pour obtenir un nouvel arbre.
@@ -1688,8 +1778,14 @@ Semences de sauge bleue
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Semences de fleur d'Oni
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Name:
-Semences d'ogurine
+Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
+Graines de melon à lait
+
+Scripts/Items/Seeds/ItemSeedsRice@Name:
+Graines de riz
+
+Scripts/Items/Seeds/ItemSeedsSpices@Name:
+Graines d'épices
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Semences de tabac
@@ -1844,6 +1940,12 @@ Une version plus lourde et plus dangereuse de la masse en cuivre.
 Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
 Masse en fer
 
+Scripts/Items/Weapons/Melee/ItemMachete@Description:
+Une lourde machette en acier. Idéale pour trancher des têtes.
+
+Scripts/Items/Weapons/Melee/ItemMachete@Name:
+Machette
+
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 Pas d'arme
 
@@ -1952,9 +2054,33 @@ Un fusil à pompe militaire, pouvant contenir un bon stock de munitions. Utilise
 Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
 Fusil à pompe militaire
 
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
+Un pistolet semi-automatique doté d'une énergie de propulsion extrême.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
+Steppen Hawk
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
+Une variante dorée du pistolet Steppen Hawk, en édition limitée !
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
+Steppen Hawk doré
+
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 Une mitraillette conçue pour être utilisée avec des munitions de 10mm.
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Mitraillette
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
+Un canon automatique lourd conçu pour les points d'attache des bras des armures de combat mécanisées. Utilise des munitions de gros calibre de type anti-matériel.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
+Canon automatique lourd
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
+Un canon automatique léger conçu pour les points d'attache des bras des armures de combat mécanisées. Utilise des munitions de petit calibre.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
+Canon automatique léger
 

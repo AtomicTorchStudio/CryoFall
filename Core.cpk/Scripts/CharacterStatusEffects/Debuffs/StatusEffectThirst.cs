@@ -70,7 +70,7 @@
 
             // reduce character health
             var stats = data.CharacterCurrentStats;
-            stats.ServerReduceHealth(DamagePerSecond * data.DeltaTime, this);
+            stats.ServerReduceHealth(DamagePerSecond * data.DeltaTime, data.StatusEffect);
         }
 
         private static bool IsLowWater(ICharacter character)

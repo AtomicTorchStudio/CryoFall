@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeChiliBeans>();
 
-            config.SetRequiredNode<TechNodeCarrotGrilled>();
+            config.SetRequiredNode<TechNodeSpices>();
         }
     }
 }

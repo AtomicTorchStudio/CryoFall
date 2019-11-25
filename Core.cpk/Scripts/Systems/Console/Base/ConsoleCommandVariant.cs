@@ -53,11 +53,10 @@
                         && !resultStr.Contains('['))
                     {
                         // send notification to this character
-                        NotificationSystem.ServerSendNotification(
+                        ConsoleCommandsSystem.ServerOnConsoleCommandResult(
                             byCharacter,
-                            "Command executed: " + this.ConsoleCommand.Name,
-                            resultStr.Replace("\n","[br]"),
-                            NotificationColor.Neutral);
+                            this.ConsoleCommand,
+                            resultStr);
                     }
                 }
             }

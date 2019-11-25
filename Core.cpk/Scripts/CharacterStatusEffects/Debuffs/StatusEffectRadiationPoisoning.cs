@@ -63,7 +63,7 @@
             // increase the damage based on radiation poisoning damage multiplier
             damage *= data.Character.SharedGetFinalStatMultiplier(StatName.RadiationPoisoningEffectMultiplier);
 
-            data.CharacterCurrentStats.ServerReduceHealth(damage, this);
+            data.CharacterCurrentStats.ServerReduceHealth(damage, data.StatusEffect);
         }
     }
 }

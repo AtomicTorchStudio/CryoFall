@@ -86,13 +86,13 @@ Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
 Fonte geotérmica
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-Fonte geotérmica (infinita)
+Fonte geotérmica infinita
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Poço de petróleo
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-Poço de petróleo (infinito)
+Poço de petróleo infinito
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Dinamite para mineração
@@ -138,6 +138,9 @@ Grama
 
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
 Grande pilha de lixo
+
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+Pequena pilha de lixo
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Pedra
@@ -207,9 +210,6 @@ Usar uma picareta para garimpar esse recurso.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Fissura
-
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-Chão carbonizado
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Mais espaçoso e resistente que os barris de madeira. Útil para armazenar grandes quantidades de líquidos.
@@ -681,7 +681,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 Poço
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-O extrator exige uma mola geotérmica.
+O extrator exige uma fonte geotérmica.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
 A bomba exige um poço de petróleo.
@@ -733,6 +733,12 @@ Você pode usar essa lixeira para descartar qualquer item indesejado na mesma ho
 
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 Lixeira
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+Plataforma automatizada para montagem de veículos. Pode ser usada para fabricar qualquer veículo, contanto que se tenha o respectivo projeto.
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+Compartimento de montagem de veículos
 
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 Permite armazenar a energia elétrica produzida pelos geradores na base para uso posterior.
@@ -916,8 +922,14 @@ Sálvia-azul
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 Oniflor
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-Ogurín
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+Leite-melão
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+Arroz
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+Especiarias
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 Tabaco
@@ -992,7 +1004,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
 Palmeira
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-Pinheiro
+Abeto
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
 Pinheiro

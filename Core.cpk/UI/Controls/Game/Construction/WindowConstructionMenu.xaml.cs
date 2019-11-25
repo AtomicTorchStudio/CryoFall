@@ -1,10 +1,12 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Construction
 {
     using System;
+    using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Construction.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using JetBrains.Annotations;
 
     public partial class WindowConstructionMenu : BaseUserControlWithWindow
@@ -73,8 +75,6 @@
 
         protected override void WindowOpening()
         {
-            base.WindowOpening();
-
             if (this.ViewModel != null)
             {
                 // re-opening before closed

@@ -8,9 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
-    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.TradingStations;
-    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
@@ -33,7 +31,7 @@
               TPublicState,
               TClientState>,
           IProtoObjectTradingStation,
-          IInteractableProtoStaticWorldObject
+          IInteractableProtoWorldObject
         where TPrivateState : ObjectTradingStationPrivateState, new()
         where TPublicState : ObjectTradingStationPublicState, new()
         where TClientState : ObjectTradingStationClientState, new()
@@ -59,9 +57,9 @@
                                                                        maxX: 3,
                                                                        maxY: 3);
 
-        public BaseUserControlWithWindow ClientOpenUI(IStaticWorldObject worldObject)
+        public BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {
-            return this.ClientOpenUI(new ClientObjectData(worldObject));
+            return this.ClientOpenUI(new ClientObjectData((IStaticWorldObject)worldObject));
         }
 
         public override void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter)
@@ -75,7 +73,7 @@
             TradingStationsSystem.ServerOnDestroy(gameObject);
         }
 
-        public bool SharedCanEditOwners(IStaticWorldObject worldObject, ICharacter byOwner)
+        public bool SharedCanEditOwners(IWorldObject worldObject, ICharacter byOwner)
         {
             return true;
         }
@@ -98,16 +96,16 @@
             return offset + (0, 0.4); // offset by Y
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
-            if (WorldObjectOwnersSystem.SharedIsOwner(who, worldObject)
+            if (WorldObjectOwnersSystem.SharedIsOwner(who, (IStaticWorldObject)worldObject)
                 || CreativeModeSystem.SharedIsInCreativeMode(who))
             {
                 Server.World.EnterPrivateScope(who, worldObject);
             }
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
         }
 
@@ -137,7 +135,7 @@
             data.ClientState.RendererTradingStationContent = rendererTradingStationContent;
 
             data.ClientState.RendererLight = this.ClientCreateLightSource(
-                Client.Scene.GetSceneObject(worldObject));
+                worldObject.ClientSceneObject);
 
             publicState.ClientSubscribe(_ => _.Mode,
                                         _ => RefreshAppearance(),
@@ -203,7 +201,7 @@
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
         protected BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)
@@ -260,26 +258,6 @@
             TradingStationsSystem.ServerUpdate(data.GameObject);
         }
 
-        protected override double SharedCalculateDamageByWeapon(
-            WeaponFinalCache weaponCache,
-            double damagePreMultiplier,
-            IStaticWorldObject targetObject,
-            out double obstacleBlockDamageCoef)
-        {
-            if (IsServer)
-            {
-                damagePreMultiplier = LandClaimSystem.ServerAdjustDamageToUnprotectedStrongBuilding(weaponCache,
-                                                                                                    targetObject,
-                                                                                                    damagePreMultiplier);
-            }
-
-            var damage = base.SharedCalculateDamageByWeapon(weaponCache,
-                                                            damagePreMultiplier,
-                                                            targetObject,
-                                                            out obstacleBlockDamageCoef);
-            return damage;
-        }
-
         // Generate texture containing text.
         // For text rendering we will use UI.
         private async Task<ITextureResource> ClientGenerateProceduralTextureForTradingStationContent(
@@ -297,7 +275,10 @@
             // create and prepare UI renderer for the sign text to render
             var control = new ObjectTradingStationDisplayControl
             {
-                StationPublicState = publicState,
+                IsBuyMode = publicState.Mode == TradingStationMode.StationBuying,
+                TradingLots = publicState.Lots
+                                         .Select(l => new TradingStationsMapMarksSystem.TradingStationLotInfo(l))
+                                         .ToArray(),
                 Width = controlWidth,
                 Height = controlHeight,
                 RenderTransformOrigin = new Point(0, 0),
@@ -344,4 +325,4 @@
                 ObjectTradingStationClientState>
     {
     }
-}   
+}

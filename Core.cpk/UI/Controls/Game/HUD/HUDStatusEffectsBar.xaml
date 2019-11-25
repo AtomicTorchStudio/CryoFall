@@ -11,7 +11,7 @@
     d:DataContext="{d:DesignInstance data:ViewModelHUDStatusEffectsBar, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
-    
+
     <ItemsControl ItemsSource="{Binding CurrentStatusEffects}"
                   HorizontalAlignment="Center">
         <ItemsControl.ItemsPanel>

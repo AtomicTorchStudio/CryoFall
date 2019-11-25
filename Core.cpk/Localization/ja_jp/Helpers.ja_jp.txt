@@ -24,7 +24,7 @@ Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerFull:
 サーバーの収容数が最大に達しているため、他のプレイヤーが退場するのを待ってから再度接続を試してください。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerUnreachable:
-ゲームサーバーが見つかりません。可能な原因：サーバーの再起動、シャットダウン、ファイアウォールの設定、ネットワークの問題など。数分後に再度接続を試してください。
+ゲームサーバーが見つかりません。原因：サーバーの再起動、シャットダウン、ファイアウォールの設定、ネットワークの問題など。数分後に再度接続を試してください。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ShutdownScheduled:
 ゲームサーバーは現在再起動かシャットダウンしています。
@@ -59,7 +59,7 @@ Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UnknownError:
 不明なエラー。再度接続を試してください。
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Message:
-`提供されたユーザー情報は既に別のSteamアカウントと関連付けられました。
+`提供されたユーザー情報は既に別のSteamアカウントと関連付けられましています。
 [br]AtomicTorch.comアカウントを現在のSteamアカウントに関連付けることはできません。`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Title:

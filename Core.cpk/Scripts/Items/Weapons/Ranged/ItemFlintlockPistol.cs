@@ -8,8 +8,8 @@
     using AtomicTorch.CBND.GameApi.Data.Weapons;
 
     /// <summary>
-    /// Flintlock pistol has two charges compared to musket. Otherwise it is inferior. But those two charges make it much more
-    /// convenient.
+    /// Flintlock pistol has two charges compared to musket. Otherwise it is inferior.
+    /// But those two charges make it much more convenient.
     /// </summary>
     public class ItemFlintlockPistol : ProtoItemWeaponRanged
     {
@@ -34,9 +34,18 @@
 
         public override string Name => "Flintlock pistol";
 
+        public override double ReadyDelayDuration => 0.6;
+
         public override double SpecialEffectProbability => 0.25;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();
+
+        protected override WeaponFirePatternPreset PrepareFirePatternPreset()
+        {
+            return new WeaponFirePatternPreset(
+                initialSequence: new[] { 0.0 },
+                cycledSequence: new[] { 3.0, -1.0 });
+        }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {

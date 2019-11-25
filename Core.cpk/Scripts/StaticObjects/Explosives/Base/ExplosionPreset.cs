@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Special.Base;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -24,6 +25,8 @@
         public readonly double LightDuration;
 
         public readonly double LightWorldSize;
+
+        public readonly ProtoObjectCharredGround ProtoObjectCharredGround;
 
         public readonly float ScreenShakesDuration;
 
@@ -48,6 +51,7 @@
         public readonly Size2F SpriteSize;
 
         public ExplosionPreset(
+            ProtoObjectCharredGround protoObjectCharredGround,
             double serverDamageApplyDelay,
             TextureAtlasResource[] spriteAtlasResources,
             ReadOnlySoundResourceSet soundSet,
@@ -90,6 +94,7 @@
             this.ScreenShakesDuration = screenShakesDuration;
             this.ScreenShakesWorldDistanceMin = screenShakesWorldDistanceMin;
             this.ScreenShakesWorldDistanceMax = screenShakesWorldDistanceMax;
+            this.ProtoObjectCharredGround = protoObjectCharredGround;
 
             if (this.SoundSet.Count == 0)
             {
@@ -99,6 +104,7 @@
 
         // helper method to create and setup the explosion preset
         public static ExplosionPreset CreatePreset(
+            ProtoObjectCharredGround protoObjectCharredGround,
             double serverDamageApplyDelay,
             string soundSetPath,
             double spriteAnimationDuration,
@@ -144,7 +150,8 @@
                                                                        isTransparent: true);
             }
 
-            return new ExplosionPreset(serverDamageApplyDelay,
+            return new ExplosionPreset(protoObjectCharredGround,
+                                       serverDamageApplyDelay,
                                        spriteAtlasResources,
                                        sounds,
                                        spriteColorAdditive,

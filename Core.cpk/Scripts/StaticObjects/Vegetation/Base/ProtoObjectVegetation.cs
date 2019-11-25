@@ -33,8 +33,6 @@
 
         private byte cachedGrowthStagesCount;
 
-        private ITextureResource cachedTextureBlueprintAndIconResource;
-
         private double cachedTimeToGrowTotalSeconds;
 
         public override double ClientUpdateIntervalSeconds => 0.1;
@@ -47,7 +45,7 @@
 
         public override StaticObjectKind Kind => StaticObjectKind.NaturalObject;
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Vegetation;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Vegetation;
 
         public override double ServerUpdateIntervalSeconds => 30.0;
 
@@ -74,7 +72,7 @@
         public override void ClientSetupBlueprint(Tile tile, IClientBlueprint blueprint)
         {
             base.ClientSetupBlueprint(tile, blueprint);
-            blueprint.SpriteRenderer.TextureResource = this.cachedTextureBlueprintAndIconResource;
+            blueprint.SpriteRenderer.TextureResource = this.Icon;
         }
 
         public virtual double GetGrowthStageDurationSeconds(byte growthStage)
@@ -86,7 +84,7 @@
         /// Set vegetation to full grown state (by default all vegetation spawned as completely grown).
         /// </summary>
         /// <param name="worldObject"></param>
-        public void ServerSetFullGrown(IStaticWorldObject worldObject)
+        public virtual void ServerSetFullGrown(IStaticWorldObject worldObject)
         {
             this.ServerSetGrowthStage(worldObject, this.GrowthStagesCount);
         }
@@ -138,7 +136,18 @@
                 scaleMultiplier: shadowScale);
         }
 
-        protected override ITextureResource ClientCreateIcon() => this.cachedTextureBlueprintAndIconResource;
+        protected override ITextureResource ClientCreateIcon()
+        {
+            if (this.DefaultTexture is ITextureAtlasResource atlas)
+            {
+                // return last chunk
+                return atlas.Chunk(
+                    (byte)(atlas.AtlasSize.ColumnsCount - 1),
+                    (byte)(atlas.AtlasSize.RowsCount - 1));
+            }
+
+            return this.DefaultTexture;
+        }
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -207,19 +216,6 @@
             Api.Assert(
                 this.cachedGrowthStagesCount <= textureColumnsCount,
                 "Texture atlas for " + this + " doesn't have enough grow stages.");
-
-            // setup icon
-            if (this.DefaultTexture is ITextureAtlasResource atlas)
-            {
-                // return last chunk
-                this.cachedTextureBlueprintAndIconResource = atlas.Chunk(
-                    (byte)(atlas.AtlasSize.ColumnsCount - 1),
-                    (byte)(atlas.AtlasSize.RowsCount - 1));
-            }
-            else
-            {
-                this.cachedTextureBlueprintAndIconResource = this.DefaultTexture;
-            }
 
             // setup growth stage duration
             this.cachedGrowthStageDurationSeconds = this.cachedGrowthStagesCount > 0

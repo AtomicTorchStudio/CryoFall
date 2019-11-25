@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -37,7 +38,7 @@
                 return;
             }
 
-            var activeWeaponProto = publicState.CurrentItemWeaponProto;
+            var activeWeaponProto = publicState.SelectedItemWeaponProto;
 
             var protoSkeleton = clientState.CurrentProtoSkeleton;
             var rendererShadow = clientState.RendererShadow;
@@ -107,9 +108,22 @@
                                                                           clientState,
                                                                           appliedInput);
 
+            var moveModes = appliedInput.MoveModes;
+            if (publicState is PlayerCharacterPublicState playerCharacterPublicState
+                && playerCharacterPublicState.CurrentVehicle is { } vehicle)
+            {
+                var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
+                protoVehicle.SharedGetSkeletonProto(vehicle, out var vehicleSkeleton, out _);
+                if (vehicleSkeleton is null)
+                {
+                    // this vehicle doesn't provide any skeleton so player is simply displayed as standing idle inside it
+                    moveModes = CharacterMoveModes.None;
+                }
+            }
+
             GetCurrentAnimationSetting(
                 protoSkeleton,
-                appliedInput.MoveModes,
+                moveModes,
                 rotationAngleRad,
                 clientState.LastViewOrientation,
                 out var newAnimationStarterName,
@@ -146,8 +160,9 @@
             }
             else
             {
-                var activeAnimationName =
-                    skeletonRenderer.GetLatestAddedAnimationName(trackIndex: AnimationTrackIndexes.Primary);
+                var activeAnimationName = skeletonRenderer.GetLatestAddedAnimationName(
+                    trackIndex: AnimationTrackIndexes.Primary);
+
                 if (newAnimationName != activeAnimationName
                     && newAnimationStarterName != activeAnimationName)
                 {
@@ -156,14 +171,56 @@
                     //	? $"Changing move animation: {activeAnimationName}->{newAnimationStarterName}->{newAnimationName}"
                     //	: $"Changing move animation: {activeAnimationName}->{newAnimationName}");
 
+                    skeletonRenderer.RemoveAnimationTrackNextEntries(
+                        trackIndex: AnimationTrackIndexes.Primary);
+
+                    var currentAnimationName = skeletonRenderer.GetCurrentAnimationName(
+                        trackIndex: AnimationTrackIndexes.Primary,
+                        getLatestAddedAnimation: false);
+
                     var hasStarterAnimation = newAnimationStarterName != null;
-                    if (hasStarterAnimation)
+                    if (newAnimationName != "Idle"
+                        && hasStarterAnimation)
                     {
                         // add starter animation
-                        skeletonRenderer.SetAnimation(
-                            trackIndex: AnimationTrackIndexes.Primary,
-                            animationName: newAnimationStarterName,
-                            isLooped: false);
+                        skeletonRenderer.SetAnimationLoopMode(AnimationTrackIndexes.Primary,
+                                                              isLooped: false);
+
+                        if (newAnimationStarterName != currentAnimationName)
+                        {
+                            if (currentAnimationName == "Idle")
+                            {
+                                //Api.Logger.Dev("Adding starter animation: "
+                                //               + newAnimationStarterName
+                                //               + " (current animation is "
+                                //               + currentAnimationName
+                                //               + ")");
+
+                                skeletonRenderer.SetAnimation(
+                                    trackIndex: AnimationTrackIndexes.Primary,
+                                    animationName: newAnimationStarterName,
+                                    isLooped: false);
+                            }
+                            else
+                            {
+                                //Api.Logger.Dev("No starter animation will be added. Current animation: "
+                                //               + currentAnimationName
+                                //               + " starter name: "
+                                //               + newAnimationStarterName);
+                                //skeletonRenderer.AddAnimation(
+                                //    trackIndex: AnimationTrackIndexes.Primary,
+                                //    animationName: newAnimationStarterName,
+                                //    isLooped: false);
+                            }
+                        }
+                        else
+                        {
+                            //Api.Logger.Dev("No need to add starter animation: "
+                            //               + newAnimationStarterName
+                            //               + " (current animation is "
+                            //               + currentAnimationName
+                            //               + ")");
+                        }
 
                         // add looped animation
                         skeletonRenderer.AddAnimation(
@@ -171,32 +228,79 @@
                             animationName: newAnimationName,
                             isLooped: true);
                     }
-                    else if (newAnimationName == "Idle"
-                             && skeletonRenderer.GetCurrentAnimationName(trackIndex: AnimationTrackIndexes.Primary)
-                                                .EndsWith("Start"))
-                    {
-                        // going into idle when playing a start animation - allow to finish it!
-                        // remove queued entries
-                        skeletonRenderer.RemoveAnimationTrackNextEntries(trackIndex: AnimationTrackIndexes.Primary);
-
-                        // add looped idle animation
-                        skeletonRenderer.AddAnimation(
-                            trackIndex: AnimationTrackIndexes.Primary,
-                            animationName: newAnimationName,
-                            isLooped: true);
-                    }
                     else
                     {
-                        // set looped animation
-                        skeletonRenderer.SetAnimation(
-                            trackIndex: AnimationTrackIndexes.Primary,
-                            animationName: newAnimationName,
-                            isLooped: true);
+                        if (currentAnimationName != null
+                            && currentAnimationName.EndsWith("Start"))
+                        {
+                            //Api.Logger.Dev("Adding new animation + Abort animation after START animation: "
+                            //               + newAnimationName
+                            //               + " (current animation is "
+                            //               + currentAnimationName
+                            //               + ")");
+
+                            // going into idle when playing a start animation - allow to finish it!
+
+                            // remove queued entries
+                            skeletonRenderer.RemoveAnimationTrackNextEntries(
+                                trackIndex: AnimationTrackIndexes.Primary);
+
+                            // add abort animation
+                            skeletonRenderer.AddAnimation(
+                                trackIndex: AnimationTrackIndexes.Primary,
+                                animationName: currentAnimationName + "Abort",
+                                isLooped: false);
+
+                            // add looped animation
+                            skeletonRenderer.AddAnimation(
+                                trackIndex: AnimationTrackIndexes.Primary,
+                                animationName: newAnimationName,
+                                isLooped: true);
+                        }
+                        else if (currentAnimationName != null
+                                 && currentAnimationName.EndsWith("Abort"))
+                        {
+                            //Api.Logger.Dev("Adding new animation after Abort animation: "
+                            //               + newAnimationName
+                            //               + " (current animation is "
+                            //               + currentAnimationName
+                            //               + ")");
+
+                            // remove queued entries
+                            skeletonRenderer.RemoveAnimationTrackNextEntries(
+                                trackIndex: AnimationTrackIndexes.Primary);
+
+                            // add end animation
+                            skeletonRenderer.AddAnimation(
+                                trackIndex: AnimationTrackIndexes.Primary,
+                                animationName: currentAnimationName + "Abort",
+                                isLooped: false);
+
+                            // add looped animation
+                            skeletonRenderer.AddAnimation(
+                                trackIndex: AnimationTrackIndexes.Primary,
+                                animationName: newAnimationName,
+                                isLooped: true);
+                        }
+                        else
+                        {
+                            //Api.Logger.Dev("Setting new animation: "
+                            //               + newAnimationName
+                            //               + " (current animation is "
+                            //               + currentAnimationName
+                            //               + ")");
+
+                            // set looped animation (reset any current animation)
+                            skeletonRenderer.SetAnimation(
+                                trackIndex: AnimationTrackIndexes.Primary,
+                                animationName: newAnimationName,
+                                isLooped: true);
+                        }
                     }
                 }
             }
 
-            if (appliedInput.MoveModes != CharacterMoveModes.None)
+            if (moveModes != CharacterMoveModes.None)
             {
                 // moving mode
                 var animationSpeedMultiplier = appliedInput.MoveSpeed
@@ -232,7 +336,7 @@
                     skeletonRenderer.SetAnimationFrame(
                         trackIndex: AnimationTrackIndexes.ItemAiming,
                         animationName: aimingAnimationName,
-                        timePositionPercents: aimCoef);
+                        timePositionFraction: aimCoef);
                 }
                 else
                 {

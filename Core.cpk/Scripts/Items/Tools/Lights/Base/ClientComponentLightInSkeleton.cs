@@ -1,24 +1,19 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Tools.Lights
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ClientComponentLightInSkeleton : ClientComponent
     {
-        private ICharacter character;
-
         private IReadOnlyItemLightConfig lightConfig;
 
         private BaseClientComponentLightSource lightSource;
 
-        private string skeletonAttachmentName;
-
-        private string skeletonBoneName;
-
         private IComponentSkeleton skeletonRenderer;
+
+        private string skeletonSlotName;
 
         public ClientComponentLightInSkeleton()
             : base(isLateUpdateEnabled: false)
@@ -28,18 +23,14 @@
         public BaseClientComponentLightSource LightSource => this.lightSource;
 
         public void Setup(
-            ICharacter character,
             IComponentSkeleton skeletonRenderer,
             IReadOnlyItemLightConfig lightConfig,
             BaseClientComponentLightSource lightSource,
-            string skeletonAttachmentName,
-            string skeletonBoneName)
+            string skeletonSlotName)
         {
-            this.skeletonAttachmentName = skeletonAttachmentName;
-            this.skeletonBoneName = skeletonBoneName;
+            this.skeletonSlotName = skeletonSlotName;
 
             this.lightConfig = lightConfig;
-            this.character = character;
             this.skeletonRenderer = skeletonRenderer;
             this.lightSource = lightSource;
 
@@ -63,15 +54,15 @@
 
             // calculate sprite position offset
             var weaponSlotScreenOffset = this.skeletonRenderer.GetSlotScreenOffset(
-                this.skeletonAttachmentName);
+                this.skeletonSlotName);
 
             var screenOffset = this.lightConfig.ScreenOffset;
-            var boneWorldPosition = this.skeletonRenderer.TransformBonePosition(
-                this.skeletonBoneName,
+            var slotWorldPosition = this.skeletonRenderer.TransformSlotPosition(
+                this.skeletonSlotName,
                 weaponSlotScreenOffset + (Vector2F)screenOffset,
                 out _);
 
-            var lightDrawPosition = boneWorldPosition - this.character.Position;
+            var lightDrawPosition = slotWorldPosition - this.SceneObject.Position + this.lightConfig.WorldOffset;
             this.lightSource.PositionOffset = lightDrawPosition;
             this.lightSource.IsEnabled = true;
         }

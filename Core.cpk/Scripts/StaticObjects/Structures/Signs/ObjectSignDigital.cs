@@ -14,11 +14,11 @@
 
         public override string Name => "Digital sign";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
-        public override float StructurePointsMax => 600;
+        public override float StructurePointsMax => 1200;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
             => (0.5, 0.725);
@@ -50,9 +50,9 @@
         {
             category = GetCategory<StructureCategoryOther>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
             build.AddStageRequiredItem<ItemPlastic>(count: 1);
 
             repair.StagesCount = 5;

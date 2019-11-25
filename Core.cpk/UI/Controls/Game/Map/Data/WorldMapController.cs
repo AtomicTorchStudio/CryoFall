@@ -9,6 +9,7 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Shapes;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -46,11 +47,17 @@
         private readonly List<Vector2Ushort> queueChunks
             = new List<Vector2Ushort>(capacity: 10000);
 
+        private readonly ViewModelControlWorldMap viewModelControlWorldMap;
+
+        private ClientInputContext clintInputContext;
+
         private ClientComponentWorldMapCurrentCharacterUpdater componentCurrentCharacterUpdater;
 
-        private bool isDisposed;
+        private bool isActive;
 
-        private bool isPlayerClickedOnTheMap;
+        private bool isAutocenterOnPlayer = true;
+
+        private bool isDisposed;
 
         private bool isVisibleMapBoundsDirty = true;
 
@@ -65,8 +72,6 @@
         private IClientSceneObject sceneObject;
 
         private double? timeForNextUpdate = 0;
-
-        private ViewModelControlWorldMap viewModelControlWorldMap;
 
         private BoundsUshort worldBounds;
 
@@ -110,18 +115,56 @@
             this.sceneObject.AddComponent<ClientComponentWorldMapCurrentCameraViewUpdated>()
                 .Setup(this, controlCurrentCameraView, WorldTileTextureSize);
 
+            panningPanel.CallbackGetSliderZoomCanvasPosition =
+                () => this.isAutocenterOnPlayer
+                          ? this.componentCurrentCharacterUpdater.CanvasPosition
+                          : (Vector2D?)null;
+
             // setup events
             WorldService.WorldChunkAddedOrUpdated += this.WorldChunkAddedOrUpdatedHandler;
             WorldService.WorldBoundsChanged += this.WorldBoundsChangedHandler;
+            panningPanel.MouseHold += this.PanningPanelMouseHoldHandler;
             panningPanel.MouseLeftButtonClick += this.PanningPanelMouseLeftButtonClickHandler;
-            panningPanel.PreviewMouseLeftButtonDown += this.PanningPanelPreviewMouseLeftButtonDownHandler;
+            panningPanel.ZoomChanged += this.PanningPanelZoomChangedHandler;
+
             ClientUpdateHelper.UpdateCallback += this.Update;
 
             // init map
             this.InitMap();
         }
 
-        public bool IsActive { get; set; }
+        public bool IsActive
+        {
+            get => this.isActive;
+            set
+            {
+                if (this.isActive == value)
+                {
+                    return;
+                }
+
+                if (this.isActive)
+                {
+                    this.clintInputContext?.Stop();
+                    this.clintInputContext = null;
+                }
+
+                this.isActive = value;
+
+                if (this.isActive)
+                {
+                    this.clintInputContext =
+                        ClientInputContext.Start(nameof(WorldMapController) + (this.IsEditorMap ? "_Editor" : "_Game"))
+                                          .HandleAll(() =>
+                                                     {
+                                                         if (Api.Client.Input.IsKeyDown(InputKey.Space))
+                                                         {
+                                                             this.CenterMapOnPlayerCharacter();
+                                                         }
+                                                     });
+                }
+            }
+        }
 
         public bool IsEditorMap { get; }
 
@@ -154,10 +197,16 @@
 
         public void CenterMapOnPlayerCharacter()
         {
-            this.isPlayerClickedOnTheMap = false;
+            this.isAutocenterOnPlayer = true;
             var canvasPosition = this.componentCurrentCharacterUpdater.CanvasPosition;
             this.lastPlayerCanvasPosition = canvasPosition;
             //Api.Logger.Write("Centering on player at canvas position: " + canvasPosition);
+
+            if (this.panningPanel.CurrentTargetZoom < 0.5)
+            {
+                this.panningPanel.SetZoom(0.5);
+            }
+
             this.panningPanel.CenterOnPoint(canvasPosition);
         }
 
@@ -169,13 +218,15 @@
             }
 
             this.isDisposed = true;
+            this.IsActive = false;
+
             this.sceneObject.Destroy();
             this.queueChunks.Clear();
             this.newChunksHashSet.Clear();
             WorldService.WorldChunkAddedOrUpdated -= this.WorldChunkAddedOrUpdatedHandler;
             WorldService.WorldBoundsChanged -= this.WorldBoundsChangedHandler;
+            this.panningPanel.MouseHold -= this.PanningPanelMouseHoldHandler;
             this.panningPanel.MouseLeftButtonClick -= this.PanningPanelMouseLeftButtonClickHandler;
-            this.panningPanel.PreviewMouseLeftButtonDown -= this.PanningPanelPreviewMouseLeftButtonDownHandler;
             ClientUpdateHelper.UpdateCallback -= this.Update;
 
             this.cancellationTokenSource.Cancel();
@@ -287,7 +338,7 @@
 
         private double CalculateExtraControlsScale()
         {
-            return 1 / this.panningPanel.CurrentZoom;
+            return 1 / this.panningPanel.CurrentAnimatedZoom;
         }
 
         private Vector2Ushort CalculateSectorPosition(in Vector2Ushort position)
@@ -330,8 +381,6 @@
             this.panningPanel.PanningWidth = this.worldBounds.Size.X * WorldTileTextureSize;
             this.panningPanel.PanningHeight = this.worldBounds.Size.Y * WorldTileTextureSize;
 
-            //Api.Logger.WriteDev($"World size: {this.worldBounds.Size}. Zoom panel panning size: {this.zoomPanel.PanningWidth};{this.zoomPanel.PanningHeight}");
-
             foreach (var sectorControl in this.canvasMapSectorControls.Values)
             {
                 this.canvasMapChildren.Remove(sectorControl.Canvas);
@@ -349,17 +398,24 @@
             //Api.Logger.WriteDev($"Map init: Editor={this.IsEditor}, total world chunks available count: {World.WorldChunksAvailable.Count}");
         }
 
-        private void PanningPanelMouseLeftButtonClickHandler(PanningPanel panel, MouseEventArgs args)
+        private void PanningPanelMouseHoldHandler()
         {
-            var canvasPosition = args.GetPosition(this.canvasMap).ToVector2D();
-            var worldPosition = this.CanvasToWorldPosition(canvasPosition);
+            this.isAutocenterOnPlayer = false;
+        }
 
+        private void PanningPanelMouseLeftButtonClickHandler(PanningPanel s, MouseEventArgs e)
+        {
+            var canvasPosition = Mouse.GetPosition(this.canvasMap).ToVector2D();
+            var worldPosition = this.CanvasToWorldPosition(canvasPosition);
             this.MapClickCallback?.Invoke(worldPosition);
         }
 
-        private void PanningPanelPreviewMouseLeftButtonDownHandler(object sender, MouseButtonEventArgs e)
+        private void PanningPanelZoomChangedHandler((double newZoom, bool isByPlayersInput) args)
         {
-            this.isPlayerClickedOnTheMap = true;
+            if (args.isByPlayersInput)
+            {
+                this.isAutocenterOnPlayer = false;
+            }
         }
 
         // Every frame the game will perform an update and determine which chunks it need to add on the map.
@@ -413,7 +469,7 @@
             void AutoCenterMapOnPlayerCharacter()
             {
                 // invoke this method only when the window is active
-                if (this.isPlayerClickedOnTheMap)
+                if (!this.isAutocenterOnPlayer)
                 {
                     return;
                 }
@@ -513,11 +569,13 @@
 
             BoundsUshort boundsVisible;
 
-            if (this.IsEditorMap)
+            if (true) //this.IsEditorMap)
             {
                 boundsVisible = this.worldBounds;
             }
-            else
+            else // TODO: temporary disabled
+                // we need a better algorithm to calculate the max "observable" world bounds with proper padding
+                // otherwise the map is moving when new world chunks are explored and bounds extended
             {
                 var allChunks = WorldService.AvailableWorldChunks.ToList();
                 if (!allChunks.Any())
@@ -561,7 +619,7 @@
 
             // apply padding
             {
-                var padding = (this.IsEditorMap ? 1.5 : 8) * ScriptingConstants.WorldChunkSize;
+                var padding = (this.IsEditorMap ? 1 : 0) * ScriptingConstants.WorldChunkSize;
                 var minX = (ushort)Math.Max(0, boundsVisible.MinX - padding);
                 var minY = (ushort)Math.Max(0, boundsVisible.MinY - padding);
                 var maxX = (ushort)Math.Min(ushort.MaxValue, boundsVisible.MaxX + padding);
@@ -581,7 +639,7 @@
                 maxX: this.WorldToCanvasPosition((boundsVisible.MaxX, 0)).X,
                 maxY: this.WorldToCanvasPosition((0, boundsVisible.MinY)).Y);
 
-            this.panningPanel.SetZoom(this.panningPanel.CurrentZoom);
+            //this.panningPanel.SetZoom(this.panningPanel.CurrentTargetZoom);
         }
 
         private void UpdateMapExplorationProgress()

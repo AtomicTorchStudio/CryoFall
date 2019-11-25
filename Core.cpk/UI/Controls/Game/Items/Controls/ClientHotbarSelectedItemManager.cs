@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public static class ClientHotbarSelectedItemManager
@@ -12,6 +13,10 @@
         private static bool isFirstTime;
 
         private static IItem selectedItem;
+
+        private static IStateSubscriptionOwner subscriptionStorage;
+
+        public static event Action<IItem> SelectedItemChanged;
 
         public static event Action<byte?> SelectedSlotIdChanged;
 
@@ -33,22 +38,23 @@
 
                 Api.GetProtoEntity<PlayerCharacter>().ClientSelectHotbarSlot(value);
                 RefreshSelectedItem();
-
-                var currentSlotId = ClientCurrentCharacterHelper.PrivateState.SelectedHotbarSlotId;
-                if (previousSlotId != currentSlotId)
-                {
-                    SelectedSlotIdChanged?.Invoke(currentSlotId);
-                }
             }
         }
 
         public static void Init()
         {
+            subscriptionStorage = new StateSubscriptionStorage();
+
             isFirstTime = true;
             var currentPlayerCharacter = ClientCurrentCharacterHelper.Character;
             var privateState = PlayerCharacter.GetPrivateState(currentPlayerCharacter);
             ContainerHotbar = (IClientItemsContainer)currentPlayerCharacter.SharedGetPlayerContainerHotbar();
             SelectedSlotId = privateState.SelectedHotbarSlotId;
+
+            privateState.ClientSubscribe(_ => _.SelectedHotbarSlotId,
+                                         _ => SelectedSlotIdChanged?.Invoke(SelectedSlotId),
+                                         subscriptionStorage);
+
             Update();
         }
 
@@ -105,6 +111,8 @@
             selectedItem?.ProtoItem.ClientItemHotbarSelectionChanged(selectedItem, isSelected: false, isByPlayer);
             selectedItem = newSelectedItem;
             selectedItem?.ProtoItem.ClientItemHotbarSelectionChanged(selectedItem, isSelected: true, isByPlayer);
+
+            SelectedItemChanged?.Invoke(selectedItem);
         }
     }
 }

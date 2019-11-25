@@ -1,7 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Login.Data
 {
     using System;
+    using System.Windows;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client.Server;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelSelectUsernameFormControl : BaseViewModel
@@ -50,6 +53,16 @@
 
         private void ExecuteCommandContinue()
         {
+            if (!Api.Client.Core.IsValidUsername(this.username))
+            {
+                DialogWindow.ShowDialog(
+                        MasterLoginFailedDialogHelper.UsernameInvalid_Title,
+                        MasterLoginFailedDialogHelper.UsernameRequirements,
+                        closeByEscapeKey: true,
+                        textAlignment: TextAlignment.Left);
+                return;
+            }
+
             DialogWindow.ShowDialog(
                 title: CoreStrings.QuestionAreYouSure,
                 string.Format(Dialog_AcceptUsername, this.username),

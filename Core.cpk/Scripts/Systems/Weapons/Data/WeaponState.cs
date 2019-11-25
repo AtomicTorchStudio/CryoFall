@@ -7,15 +7,27 @@
 
     public class WeaponState
     {
-        public IItem ActiveItemWeapon;
-
-        public IProtoItemWeapon ActiveProtoWeapon;
-
         public double CooldownSecondsRemains;
+
+        public double ReadySecondsRemains;
 
         public double DamageApplyDelaySecondsRemains;
 
+        public double FirePatternCooldownSecondsRemains;
+
+        public ushort FirePatternCurrentShotNumber;
+
+        public bool IsEventWeaponStartSent;
+
         public bool IsFiring;
+
+        public IItem ItemWeapon;
+
+        public IProtoItemWeapon ProtoWeapon;
+
+        public uint? ServerLastClientReportedShotsDoneCount;
+
+        public uint ShotsDone;
 
         public WeaponFinalCache WeaponCache;
 
@@ -26,12 +38,6 @@
         public event Action ClientActiveWeaponChanged;
 
         public event Action ClientWeaponReloadingStateChanged;
-
-        public bool IsEventWeaponStartSent { get; set; }
-
-        public uint? ServerLastClientReportedShotsDoneCount { get; set; }
-
-        public uint ShotsDone { get; set; }
 
         public WeaponReloadingState WeaponReloadingState
         {
@@ -90,15 +96,15 @@
                 item = protoItem != null ? item : null;
             }
 
-            if (this.ActiveItemWeapon == item
-                && this.ActiveProtoWeapon == protoItem)
+            if (this.ItemWeapon == item
+                && this.ProtoWeapon == protoItem)
             {
                 // no need to change
                 return;
             }
 
-            this.ActiveItemWeapon = item;
-            this.ActiveProtoWeapon = protoItem;
+            this.ItemWeapon = item;
+            this.ProtoWeapon = protoItem;
             this.WeaponCache = null;
             this.IsEventWeaponStartSent = false;
 
@@ -118,8 +124,8 @@
 
         public void SharedSetWeaponProtoOnly(IProtoItemWeapon activeProtoWeapon)
         {
-            this.ActiveItemWeapon = null;
-            this.ActiveProtoWeapon = activeProtoWeapon;
+            this.ItemWeapon = null;
+            this.ProtoWeapon = activeProtoWeapon;
             this.WeaponCache = null;
             this.IsEventWeaponStartSent = false;
 
@@ -128,8 +134,10 @@
 
         private void SharedOnWeaponChanged()
         {
-            this.CooldownSecondsRemains = Math.Max(this.CooldownSecondsRemains,
-                                                   this.ActiveProtoWeapon?.ReadyDelayDuration ?? 0);
+            this.CooldownSecondsRemains 
+                = this.ReadySecondsRemains 
+                      = Math.Max(this.CooldownSecondsRemains,
+                                                   this.ProtoWeapon?.ReadyDelayDuration ?? 0);
 
             if (Api.IsClient)
             {

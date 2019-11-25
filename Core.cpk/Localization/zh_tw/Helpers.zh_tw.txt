@@ -2,7 +2,7 @@
 日
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixHours:
-時
+小時
 
 Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixMinutes:
 分
@@ -11,45 +11,45 @@ Scripts/Helpers/Client/ClientTimeFormatHelper@SuffixSeconds:
 秒
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@IncompatibleNetworkSchemeVersionHash:
-`網絡版本不匹配。
-[br]可能原因為您與服務器使用了不同的mod。`
+`網路版本不匹配。
+[br]可能原因為您與伺服器使用了不同的mod。`
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@MasterServerDisallowed:
-主服務器拒絕連接。請稍候重試或重啟遊戲。
+主要伺服器拒絕連接。請稍候重試或重啟遊戲。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ReasonUnknown:
 未知錯誤。請重試。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerFull:
-當前服務器已滿。請等服務器有空位時再嘗試加入。
+當前伺服器已滿。請等伺服器有空位時再嘗試加入。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ServerUnreachable:
-遊戲服務器當前不可用。可能原因：服務器重啟，服務器關閉，防火墻設置和網絡問題等。請在幾分鐘後重試。
+遊戲伺服器當前不可用。可能原因：伺服器重啟，伺服器關停，防火牆設置和網路問題等。請在數分鐘後重試。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@ShutdownScheduled:
-遊戲服務器正在重啟或即將關閉。
+遊戲伺服器正在重啟或即將關閉。
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleConnectionRejectedByServer:
 連接被拒
 
 Scripts/Helpers/Client/Server/GameServerLoginFailedDialogHelper@TitleDefault:
-無法連接至遊戲服務器
+無法連接至遊戲伺服器
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@AccountBlocked:
-您的賬號已被封禁。
+您的帳號已被封禁。
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@DefaultTitle:
-登陸失敗
+登錄失敗
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Message:
-`一封含有激活鏈接的郵件已被發送至您的郵箱。
-[br]請打開該郵件並點擊激活鏈接，然後返回遊戲並繼續。`
+`一封含有啟動連結的郵件已被發送至您的郵箱。
+[br]請打開該郵件並點擊啟動連結，然後返回遊戲並繼續。`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@EmailWithTheActivation_Title:
-您的新賬戶需要激活！
+您的新帳戶需要啟動！
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@GameNotOwned:
-賬戶未擁有遊戲。
+帳戶未擁有遊戲。
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@IncorrectEmailOrPassword:
 郵箱或密碼錯誤。
@@ -62,7 +62,7 @@ Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDiffe
 [br] 你無法將此AtomicTorch.com帳號與當前Steam帳號關聯。`
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UserHasAssignedDifferentSteamId_Title:
-無法鏈接帳號
+無法連結帳號
 
 Scripts/Helpers/Client/Server/MasterLoginFailedDialogHelper@UsernameInvalid_Title:
 用戶名不可用

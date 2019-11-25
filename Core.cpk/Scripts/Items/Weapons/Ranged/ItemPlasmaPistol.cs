@@ -21,7 +21,20 @@
 
         public override string Name => "Plasma pistol";
 
+        public override double ReadyDelayDuration => 0.6;
+
         public override double SpecialEffectProbability => 0.25;
+
+        protected override WeaponFireScatterPreset PrepareFireScatterPreset()
+        {
+            return new WeaponFireScatterPreset(
+                new[] { -1.5, -0.5, 0.5, 1.5 });
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.Plasma;
+        }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
@@ -47,7 +60,7 @@
 
         protected override void ServerOnSpecialEffect(ICharacter damagedCharacter, double damage)
         {
-            ServerWeaponSpecialEffectsHelper.OnLaserHit(damagedCharacter, damage);
+            ServerWeaponSpecialEffectsHelper.OnPlasmaHit(damagedCharacter, damage);
         }
     }
 }

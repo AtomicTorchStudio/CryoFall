@@ -1,0 +1,51 @@
+﻿Scripts/Vehicles/VehicleHoverboardMk1@Description:
+반중력 발판 디자인의 경량화된 버전. 제조 비용이 비교적 저렴하며, 뛰어난 속도와 연비를 제공합니다.
+
+Scripts/Vehicles/VehicleHoverboardMk1@Name:
+호버보드 Mk1
+
+Scripts/Vehicles/VehicleHoverboardMk2@Description:
+반중력 발판 디자인의 중량화된 버전. 내구성이 증가하였으며, 증가한 제조 비용과 연료 소모량 덕분에 더 높은 속도와 기동성을 제공할 수 있게 되었습니다.
+
+Scripts/Vehicles/VehicleHoverboardMk2@Name:
+호버보드 Mk2
+
+Scripts/Vehicles/VehicleMechManul@Description:
+기계화된 전투 장갑의 중형 디자인. 상당한 방어력과 큰 화물 수송력을 자랑합니다.
+
+Scripts/Vehicles/VehicleMechManul@Name:
+마눌
+
+Scripts/Vehicles/VehicleMechSkipper@Description:
+기계화된 전투 장갑의 경량화된 디자인. 방어력이나 화력이 모자라지 않으면서도 비교적 빠른 속도를 자랑합니다.
+
+Scripts/Vehicles/VehicleMechSkipper@Name:
+스키퍼
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotBuildVehicleTitle:
+건설 불가
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotRepairVehicleTitle:
+수리 불가
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NotInteractingWithVehicleBay:
+이 탈것을 제조하려면 조립대를 이용하십시오.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@RequiredItemsMissing:
+아이템이 충분하지 않습니다.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NeedsFreeSpace:
+차단되었습니다.[br]탈것을 제조하려면 조립대에 장애물이나 사람이 없어야 합니다.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@NotInteractingWithVehicle:
+탈것을 수리하려면 탈것과 상호 작용하십시오.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RequiredItemsMissing:
+아이템이 충분하지 않습니다.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
+수리가 필요하지 않습니다.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
+탈것을 수리하려면 탈것을 차량 조립대로 가져가십시오.
+

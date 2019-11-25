@@ -50,7 +50,7 @@ Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
 木制盔甲
 
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
-種子，基肥等農業用品的制備。
+種子，基肥等農業用品的製備。
 
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Name:
 農業
@@ -59,7 +59,7 @@ Scripts/Technologies/Tier1/Farming/TechNodeFarmingBasics@Name:
 農業基礎知識
 
 Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Description:
-建立工業生產和制造所需的所有基本工業技術。
+建立工業生產和製造所需的所有基本工業技術。
 
 Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Name:
 工業
@@ -86,7 +86,7 @@ Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
 化學
 
 Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
-建造更復雜的建築，有更廣泛的應用。
+建造更複雜的建築，有更廣泛的應用。
 
 Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
 建設2
@@ -119,10 +119,10 @@ Scripts/Technologies/Tier2/Defense2/TechNodeLeatherHeadgear@Name:
 皮革頭盔
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
-縫制盔甲
+縫製盔甲
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
-縫制頭盔
+縫製頭盔
 
 Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
 基礎電力設施。
@@ -131,7 +131,7 @@ Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
 電力
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
-復雜的農業技術，能種植更多農作物，使用更好的肥料。
+複雜的農業技術，能種植更多農作物，使用更好的肥料。
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
 農業2
@@ -161,7 +161,7 @@ Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Name:
 進攻2
 
 Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
-使用各種復雜的化合物和化學反應。
+使用各種複雜的化合物和化學反應。
 
 Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
 化學2
@@ -206,7 +206,7 @@ Scripts/Technologies/Tier3/Defense3/TechNodeMetalHeadgear@Name:
 金屬頭盔
 
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
-軍裝甲
+軍用裝甲
 
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
 軍用頭盔
@@ -224,13 +224,13 @@ Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
 農業3
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
-先進的工業技術可實現更多更復雜的工業流程。
+先進的工業技術可實現更多更複雜的工業流程。
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
 工業3
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
-允許制造更廣泛的高級醫療物品。
+允許製造更廣泛的高級醫療物品。
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Name:
 醫學2
@@ -247,6 +247,12 @@ Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 娛樂
 
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+生產各種載具所需要的科技。
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+載具
+
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
 利用外星世界資源所必需的技術。
 
@@ -260,7 +266,7 @@ Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
 罐頭製造器
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
-先進的化學過程和復雜的化學反應。
+先進的化學過程和複雜的化學反應。
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
 化學3
@@ -308,7 +314,7 @@ Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
 能量武器
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
-高科技工業技術，實現最復雜的技術流程。
+高科技工業技術，實現最複雜的技術流程。
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
 工業4
@@ -330,4 +336,10 @@ Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 進攻4
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+高級戰鬥載具
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+載具2
 

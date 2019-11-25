@@ -4,7 +4,7 @@
 
     public class ItemToolboxT3 : ProtoItemToolToolbox
     {
-        public override double ConstructionSpeedMultiplier => 2.0f;
+        public override double ConstructionSpeedMultiplier => 2.0;
 
         public override string Description => GetProtoEntity<ItemToolboxT1>().Description;
 

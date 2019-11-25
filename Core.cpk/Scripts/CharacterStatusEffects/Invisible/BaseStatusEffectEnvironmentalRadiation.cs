@@ -75,9 +75,14 @@
             this.serverZone = this.ServerZoneProto;
 
             // cache the tile offsets
+            // but select only every third tile (will help to reduce the load without damaging accuracy too much)
             this.serverTileOffsetsCircle = ShapeTileOffsetsHelper
                                            .GenerateOffsetsCircle(EnvironmentalRadiationLookupAreaDiameter)
                                            .ToArray();
+
+            this.serverTileOffsetsCircle = ShapeTileOffsetsHelper.SelectOffsetsWithRate(
+                this.serverTileOffsetsCircle,
+                rate: 3);
 
             // setup timer (tick every frame)
             TriggerEveryFrame.ServerRegister(

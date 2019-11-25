@@ -33,7 +33,7 @@
 
         public override string Name => "Pragmium source explosion";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
         {
@@ -56,13 +56,13 @@
         {
             obstacleBlockDamageCoef = this.protoPragmiumSource.Value.ObstacleBlockDamageCoef;
             damageApplied = 0; // no damage
-            return true; // hit
+            return true;       // hit
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
-            var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
+            var sceneObject = data.GameObject.ClientSceneObject;
             var componentBombCountdown = sceneObject.FindComponent<ClientComponentBombCountdown>();
             componentBombCountdown.IsRendering = false;
             this.ClientAddShakes(componentBombCountdown);

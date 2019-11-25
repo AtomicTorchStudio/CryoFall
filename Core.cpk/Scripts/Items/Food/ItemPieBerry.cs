@@ -8,7 +8,7 @@
     {
         public override string Description => "Juicy-looking berry pie. Just like your grandma used to make.";
 
-        public override float FoodRestore => 25;
+        public override float FoodRestore => 35;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 

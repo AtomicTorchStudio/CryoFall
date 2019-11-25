@@ -2,10 +2,13 @@
 
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ConsolePlayerHeal : BaseConsoleCommand
@@ -31,10 +34,23 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 
             CharacterDamageTrackingSystem.ServerClearStats(player);
 
+            string vehicleHealedMessage = null;
+            var vehicle = PlayerCharacter.GetPublicState(player).CurrentVehicle;
+            if (!(vehicle is null))
+            {
+                var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
+                var vehiclePublicState = vehicle.GetPublicState<VehiclePublicState>();
+                vehiclePublicState.StructurePointsCurrent = protoVehicle.SharedGetStructurePointsMax(vehicle);
+                vehicleHealedMessage = $"Vehicle healed to {vehiclePublicState.StructurePointsCurrent} HP";
+            }
+
             return string.Format(
-                "{0} healed to {1} HP (all other stats are also restored, all debuff status effects were removed).",
+                "{0} healed to {1} HP (all other stats are also restored, all debuff status effects were removed){2}.",
                 player,
-                stats.HealthCurrent);
+                stats.HealthCurrent,
+                vehicleHealedMessage != null
+                    ? Environment.NewLine + vehicleHealedMessage
+                    : string.Empty);
         }
     }
 }

@@ -1,4 +1,5 @@
 // ReSharper disable CanExtractXamlLocalizableStringCSharp
+
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 {
     using AtomicTorch.CBND.CoreMod.Systems.Console;
@@ -26,9 +27,9 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
         private void ClientRemote_ShowNotification(string message)
         {
             NotificationSystem.ClientShowNotification(
-                title: null,
-                message: message,
-                autoHide: false);
+                                  title: null,
+                                  message: message)
+                              .HideAfterDelay(10 * 60);
         }
     }
 }

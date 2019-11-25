@@ -9,7 +9,7 @@
     {
         public override string Name => "Coal";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override float StructurePointsMax => 500;
 

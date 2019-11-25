@@ -41,8 +41,15 @@
                 return;
             }
 
-            var focusElement = frameworkElement.PredictFocus(FocusNavigationDirection.Down);
-            (focusElement as FrameworkElement)?.Focus();
+            //var focusElement = frameworkElement.PredictFocus(FocusNavigationDirection.Down);
+            //(focusElement as FrameworkElement)?.Focus();
+
+            var focusDirection = FocusNavigationDirection.Next;
+            var request = new TraversalRequest(focusDirection);
+            if (frameworkElement.MoveFocus(request))
+            {
+                args.Handled = true;
+            }
         }
 
         private static void MoveFocusOnEnterKeyChangedHandler(

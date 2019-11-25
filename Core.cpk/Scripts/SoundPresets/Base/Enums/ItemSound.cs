@@ -38,6 +38,11 @@
         Deselect,
 
         /// <summary>
+        /// Item cannot be selected.
+        /// </summary>
+        CannotSelect,
+
+        /// <summary>
         /// Item refilled/recharged.
         /// </summary>
         Refill,

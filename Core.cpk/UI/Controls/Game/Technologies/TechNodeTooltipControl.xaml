@@ -52,10 +52,10 @@
                     <Control Template="{StaticResource IconControlTemplate}" />
 
                     <StackPanel Grid.Column="1"
-                                Orientation="Vertical" 
-                                Margin="5,0,0,0" 
+                                Orientation="Vertical"
+                                Margin="5,0,0,0"
                                 VerticalAlignment="Center">
-                        <TextBlock Text="{Binding Title}" 
+                        <TextBlock Text="{Binding Title}"
                                    Style="{StaticResource RecipeNameTextStyle}" />
 
                         <StackPanel Orientation="Horizontal"
@@ -64,7 +64,7 @@
                                        Style="{StaticResource RecipeStationNameTextStyle}" />
                             <TextBlock Text="{Binding StationTitle}"
                                        Style="{StaticResource RecipeStationNameTextStyle}"
-                                       TextAlignment="Center"/>
+                                       TextAlignment="Center" />
                             <TextBlock Text=")"
                                        Style="{StaticResource RecipeStationNameTextStyle}" />
                         </StackPanel>
@@ -87,6 +87,20 @@
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type data:ViewModelTechNodeEffectPerkUnlock}">
+                <Grid Margin="0,3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Control Template="{StaticResource IconControlTemplate}" />
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding Title}"
+                               Style="{StaticResource RecipeNameTextStyle}"
+                               Margin="5,0,0,0" />
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type data:ViewModelTechNodeEffectVehicleUnlock}">
                 <Grid Margin="0,3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -130,13 +144,9 @@
         <StackPanel Orientation="Vertical"
                     Visibility="{Binding EffectsStructures, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
                     Margin="0,5,0,0">
-            <StackPanel Orientation="Horizontal">
-                <!-- Text: Structures -->
-                <TextBlock Text="{x:Static loc:CoreStrings.TechNodeTooltip_Structures}"
-                           FontWeight="Bold" />
-                <TextBlock Text=":"
-                           FontWeight="Bold" />
-            </StackPanel>
+            <!-- Text: Structures -->
+            <TextBlock Text="{x:Static loc:CoreStrings.TechNodeTooltip_Structures}"
+                       FontWeight="Bold" />
             <ItemsControl ItemsSource="{Binding EffectsStructures}"
                           Style="{StaticResource EffectsListStyle}" />
         </StackPanel>
@@ -144,13 +154,9 @@
         <StackPanel Orientation="Vertical"
                     Visibility="{Binding EffectsRecipes, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
                     Margin="0,5,0,0">
-            <StackPanel Orientation="Horizontal">
-                <!-- Text: Recipes -->
-                <TextBlock Text="{x:Static loc:CoreStrings.TechNodeTooltip_Recipes}"
-                           FontWeight="Bold" />
-                <TextBlock Text=":"
-                           FontWeight="Bold" />
-            </StackPanel>
+            <!-- Text: Recipes -->
+            <TextBlock Text="{x:Static loc:CoreStrings.TechNodeTooltip_Recipes}"
+                       FontWeight="Bold" />
             <ItemsControl ItemsSource="{Binding EffectsRecipes}"
                           Style="{StaticResource EffectsListStyle}" />
         </StackPanel>
@@ -158,14 +164,20 @@
         <StackPanel Orientation="Vertical"
                     Visibility="{Binding EffectsPerks, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
                     Margin="0,5,0,0">
-            <StackPanel Orientation="Horizontal">
-                <!-- Text: Perks -->
-                <TextBlock Text="{x:Static loc:CoreStrings.TechNodeTooltip_Perks}"
-                           FontWeight="Bold" />
-                <TextBlock Text=":"
-                           FontWeight="Bold" />
-            </StackPanel>
+            <!-- Text: Perks -->
+            <TextBlock Text="{x:Static loc:CoreStrings.TechNodeTooltip_Perks}"
+                       FontWeight="Bold" />
             <ItemsControl ItemsSource="{Binding EffectsPerks}"
+                          Style="{StaticResource EffectsListStyle}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Visibility="{Binding EffectsVehicles, Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
+                    Margin="0,5,0,0">
+            <!-- Text: Vehicles -->
+            <TextBlock Text="{x:Static loc:CoreStrings.TechNodeTooltip_Vehicles}"
+                       FontWeight="Bold" />
+            <ItemsControl ItemsSource="{Binding EffectsVehicles}"
                           Style="{StaticResource EffectsListStyle}" />
         </StackPanel>
 
@@ -188,13 +200,10 @@
                 <TextBlock Text=":"
                            FontWeight="Bold" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="7,0,0,0">
-                <!-- Text: Learning points -->
-                <TextBlock Text="{x:Static loc:CoreStrings.LearningPoints}" />
-                <TextBlock Text=": " />
-                <TextBlock Text="{Binding LearningPointsPrice}" />
-            </StackPanel>
+            <!-- Text: Learning points: X -->
+            <TextBlock
+                Text="{Binding LearningPointsPrice, StringFormat='{}{x:Static loc:CoreStrings.TechGroupTooltip_LearningPointsFormat}'}"
+                Margin="7,0,0,0" />
 
             <TextBlock Text="{Binding CannotUnlockMessage}"
                        Visibility="{Binding CannotUnlockMessage, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Reverse}"

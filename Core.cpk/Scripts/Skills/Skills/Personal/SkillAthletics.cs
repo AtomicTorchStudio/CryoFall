@@ -9,8 +9,8 @@
         public override string Description =>
             "Training makes your body more accustomed to long-distance running. As a result, you use less energy while sprinting.";
 
-        public override double ExperienceToLearningPointsConversionMultiplier =>
-            0.25; // this is 1/4 of the standard conversion, because athletics is very quick to advance
+        // LP is not provided for this skill as it's too easy to exploit
+        public override double ExperienceToLearningPointsConversionMultiplier => 0;
 
         public override bool IsSharingLearningPointsWithPartyMembers => false;
 

@@ -25,13 +25,17 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+            <Grid Grid.Row="0"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
                   Margin="10,10,10,0">
                 <crafting:DefaultCraftingControl DataContext="{Binding ViewModelCraftingMenu}"
                                                  d:DataContext="{d:DesignInstance data:ViewModelCraftingMenu, IsDesignTimeCreatable=True}" />
             </Grid>
 
-            <Control Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
+            <Control Grid.Row="0"
+                     Grid.RowSpan="2
+                     " Grid.ColumnSpan="2"
                      Template="{StaticResource PlayerMenuContainerWithLines}" />
 
         </Grid>

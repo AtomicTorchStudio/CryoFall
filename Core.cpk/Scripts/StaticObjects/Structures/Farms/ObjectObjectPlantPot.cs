@@ -19,11 +19,11 @@
 
         public override string Name => "Plant pot";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override Vector2D PlacedPlantPositionOffset { get; } = (0, 0.15);
 
-        public override float StructurePointsMax => 150;
+        public override float StructurePointsMax => 400;
 
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
         {
@@ -55,14 +55,13 @@
         {
             build.StagesCount = 1;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemStone>(count: 25);
             build.AddStageRequiredItem<ItemClay>(count: 25);
-            build.AddStageRequiredItem<ItemSand>(count: 25);
+            build.AddStageRequiredItem<ItemSand>(count: 10);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemStone>(count: 2);
             repair.AddStageRequiredItem<ItemClay>(count: 2);
+            repair.AddStageRequiredItem<ItemSand>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

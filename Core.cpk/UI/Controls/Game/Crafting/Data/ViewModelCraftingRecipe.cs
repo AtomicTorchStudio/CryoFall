@@ -10,8 +10,6 @@
 
     public class ViewModelCraftingRecipe : BaseViewModel
     {
-        public readonly Recipe Recipe;
-
         public ViewModelCraftingRecipe(Recipe recipe)
         {
             this.Recipe = recipe;
@@ -31,12 +29,14 @@
                     duration /= protoObjectManufacturer.ManufacturingSpeedMultiplier;
                 }
 
-                return ClientTimeFormatHelper.FormatTimeDuration(duration, 
+                return ClientTimeFormatHelper.FormatTimeDuration(duration,
                                                                  roundSeconds: false);
             }
         }
 
         public TextureBrush Icon => Api.Client.UI.GetTextureBrush(this.Recipe.Icon);
+
+        public Recipe Recipe { get; }
 
         public string Title => this.Recipe.Name;
 

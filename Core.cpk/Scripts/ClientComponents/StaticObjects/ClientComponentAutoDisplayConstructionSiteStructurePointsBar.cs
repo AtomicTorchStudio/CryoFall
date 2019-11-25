@@ -16,7 +16,7 @@
 
         private IComponentAttachedControl componentAttachedUIElement;
 
-        private StaticObjectStructurePointsData data;
+        private ObjectStructurePointsData data;
 
         private ConstructionSiteStructurePointsBarControl structurePointsBarControl;
 
@@ -24,8 +24,8 @@
             IStaticWorldObject staticWorldObject,
             float structurePointsMax)
         {
-            this.data = new StaticObjectStructurePointsData(staticWorldObject,
-                                                            structurePointsMax);
+            this.data = new ObjectStructurePointsData(staticWorldObject,
+                                                      structurePointsMax);
         }
 
         public override void Update(double deltaTime)
@@ -47,8 +47,8 @@
                 return true;
             }
 
-            return ClientComponentObjectInteractionHelper.CurrentMouseOverObject
-                   == this.data.StaticWorldObject;
+            return ClientComponentObjectInteractionHelper.MouseOverObject
+                   == this.data.WorldObject;
         }
 
         private void RefreshBarControl()
@@ -65,12 +65,12 @@
                 return;
             }
 
-            var protoStaticWorldObject = this.data.ProtoStaticWorldObject;
+            var protoWorldObject = this.data.ProtoWorldObject;
 
             this.structurePointsBarControl = ControlsCache<ConstructionSiteStructurePointsBarControl>.Instance.Pop();
-            this.structurePointsBarControl.StaticObjectStructurePointsData = this.data;
+            this.structurePointsBarControl.ObjectStructurePointsData = this.data;
 
-            var offset = protoStaticWorldObject.SharedGetObjectCenterWorldOffset(
+            var offset = protoWorldObject.SharedGetObjectCenterWorldOffset(
                 this.SceneObject.AttachedWorldObject);
 
             this.componentAttachedUIElement = Api.Client.UI.AttachControl(

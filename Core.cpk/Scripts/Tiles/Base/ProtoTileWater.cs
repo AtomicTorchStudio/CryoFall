@@ -50,6 +50,14 @@
 
         protected abstract Color WaterColor { get; }
 
+        protected virtual float WaterColorMix => 0.75f;
+
+        protected virtual float WaterDiffractionFrequency => 8.0f;
+
+        protected virtual float WaterDiffractionSpeed => 0.1f;
+
+        protected virtual float WaterSpeed => 2.5f;
+
         protected virtual TextureResource WaterSufraceTexture { get; }
             = new TextureResource("Terrain/Water/WaterSurface.png");
 
@@ -131,8 +139,12 @@
                                       this.WaterColor.R / (float)byte.MaxValue,
                                       this.WaterColor.G / (float)byte.MaxValue,
                                       this.WaterColor.B / (float)byte.MaxValue))
-                             .Set("ShoreMaskSpeed", this.ShoreMaskSpeed);
-            //.Set("WaterAmplitude", this.WaterAmplitude);
+                             .Set("WaterColorMix",             this.WaterColorMix)
+                             .Set("WaterAmplitude",            this.WaterAmplitude)
+                             .Set("WaterSpeed",                this.WaterSpeed)
+                             .Set("WaterDiffractionSpeed",     this.WaterDiffractionSpeed)
+                             .Set("WaterDiffractionFrequency", this.WaterDiffractionFrequency)
+                             .Set("ShoreMaskSpeed",            this.ShoreMaskSpeed);
         }
     }
 }

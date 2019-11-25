@@ -18,6 +18,7 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoCharacterSkeleton : ProtoEntity, IProtoCharacterSkeleton
     {
@@ -26,12 +27,18 @@
             this.Name = this.GetType().Name;
         }
 
-        // move speed as the default scale, in world unites (tiles) per second
-        public virtual double DefaultMoveSpeed => 1.0;
+        /// <summary>
+        /// Move speed at the default scale, in world units (tiles) per second.
+        /// </summary>
+        public abstract double DefaultMoveSpeed { get; }
 
         public abstract bool HasMoveStartAnimations { get; }
 
         public virtual bool HasStaticAttackAnimations { get; } = true;
+
+        public virtual Vector2D InventoryOffset => Vector2D.Zero;
+
+        public virtual double InventoryScale => 1;
 
         public override string Name { get; }
 
@@ -47,6 +54,8 @@
 
         public abstract SkeletonResource SkeletonResourceFront { get; }
 
+        public virtual string SlotNameItemInHand => "Weapon";
+
         public ReadOnlySoundPreset<CharacterSound> SoundPresetCharacter { get; private set; }
 
         public ReadOnlySoundPreset<GroundSoundMaterial> SoundPresetFootsteps { get; private set; }
@@ -55,9 +64,17 @@
 
         public ReadOnlySoundPreset<WeaponSound> SoundPresetWeapon { get; private set; }
 
+        public virtual SoundResource SoundResourceAimingProcess { get; }
+
         public virtual double SpeedMultiplier => 1;
 
         public virtual double WorldScale => 1;
+
+        protected virtual RangeDouble FootstepsPitchVariationRange { get; }
+            = new RangeDouble(0.95, 1.05);
+
+        protected virtual RangeDouble FootstepsVolumeVariationRange { get; }
+            = new RangeDouble(0.85, 1.0);
 
         protected abstract string SoundsFolderPath { get; }
 
@@ -82,6 +99,20 @@
             rendererShadow.DrawOrder = DrawOrder.Shadow;
             this.ClientSetupShadowRenderer(rendererShadow, scaleMultiplier);
             return rendererShadow;
+        }
+
+        public virtual void ClientResetItemInHand(IComponentSkeleton skeletonRenderer)
+        {
+            skeletonRenderer.SetAttachment(this.SlotNameItemInHand, attachmentName: null);
+        }
+
+        public virtual void ClientSetupItemInHand(
+            IComponentSkeleton skeletonRenderer,
+            string attachmentName,
+            TextureResource textureResource)
+        {
+            skeletonRenderer.SetAttachmentSprite(this.SlotNameItemInHand, attachmentName, textureResource);
+            skeletonRenderer.SetAttachment(this.SlotNameItemInHand, attachmentName);
         }
 
         public abstract void ClientSetupShadowRenderer(IComponentSpriteRenderer shadowRenderer, double scaleMultiplier);
@@ -148,7 +179,6 @@
             return (soundPresetCharacter, soundPresetMovement);
         }
 
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         public virtual void OnSkeletonCreated(IComponentSkeleton skeleton)
         {
             skeleton.AnimationEvent += SkeletonOnAnimationEventFootstep;
@@ -237,7 +267,8 @@
 
             ReadOnlySoundPreset<GroundSoundMaterial> soundPresetMovement = null;
             var protoCharacter = character.ProtoCharacter;
-            if (protoCharacter is PlayerCharacter)
+            if (protoCharacter is PlayerCharacter
+                && PlayerCharacter.GetPublicState(character).CurrentVehicle is null)
             {
                 // try get movement sound preset override
                 foreach (var item in character.SharedGetPlayerContainerEquipment().Items)
@@ -258,11 +289,13 @@
             }
 
             // use some pitch variation
-            var pitch = RandomHelper.Range(0.95f, 1.05f);
+            var pitch = RandomHelper.Range(protoSkeleton.FootstepsPitchVariationRange.From,
+                                           protoSkeleton.FootstepsPitchVariationRange.To);
 
             var volume = protoSkeleton.VolumeFootsteps;
             // apply some volume variation
-            volume *= RandomHelper.Range(0.85f, 1.0f);
+            volume *= RandomHelper.Range(protoSkeleton.FootstepsVolumeVariationRange.From,
+                                         protoSkeleton.FootstepsVolumeVariationRange.To);
             // apply constant volume multiplier
             volume *= SoundConstants.VolumeFootstepsMultiplier;
 
@@ -270,7 +303,7 @@
                 groundSoundMaterial,
                 character,
                 volume: (float)volume,
-                pitch: pitch);
+                pitch: (float)pitch);
         }
 
         private ReadOnlySoundPreset<CharacterSound> PrepareSoundPresetCharacter()

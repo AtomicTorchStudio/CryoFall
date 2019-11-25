@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
+
     public class ItemWoodChestplate : ProtoItemEquipmentChest
     {
         public override string Description =>
@@ -8,6 +10,8 @@
         public override uint DurabilityMax => 500;
 
         public override string Name => "Wooden chestplate";
+
+        public override ObjectMaterial Material => ObjectMaterial.Wood;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

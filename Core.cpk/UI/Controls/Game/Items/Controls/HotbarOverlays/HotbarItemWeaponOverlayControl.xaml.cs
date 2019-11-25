@@ -28,9 +28,9 @@
         {
             this.DataContext = this.viewModel = new ViewModelHotbarItemWeaponOverlayControl(
                                        ammoChangedCallback: this.RefreshTooltip)
-            {
-                Item = this.item
-            };
+                                   {
+                                       Item = this.item
+                                   };
 
             this.MouseEnter += this.MouseEnterOrLeaveHandler;
             this.MouseLeave += this.MouseEnterOrLeaveHandler;

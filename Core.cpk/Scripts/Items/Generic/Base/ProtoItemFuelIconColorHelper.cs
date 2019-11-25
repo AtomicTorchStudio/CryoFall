@@ -10,7 +10,7 @@
         private static readonly Color ColorElectricity
             = Api.Client.UI.GetApplicationResource<Color>("ColorElectricity");
 
-        private static readonly Color ColorFuelOil 
+        private static readonly Color ColorFuelOil
             = Api.Client.UI.GetApplicationResource<Color>("ColorFuelOil");
 
         private static readonly Color ColorFuelRefined

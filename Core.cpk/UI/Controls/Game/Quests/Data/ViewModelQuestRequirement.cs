@@ -10,6 +10,9 @@
 
     public class ViewModelQuestRequirement : BaseViewModel
     {
+        private static readonly SoundResource SoundResourceQuestRequirementSatisfied =
+            new SoundResource("UI/Quests/QuestRequirementSatisfied.ogg");
+
         private static ulong lastRequirementSatisfiedFrame;
 
         private readonly IQuestRequirement requirement;
@@ -17,8 +20,6 @@
         private readonly QuestRequirementState requirementState;
 
         private readonly QuestRequirementStateWithCount requirementStateWithCount;
-
-        private static readonly SoundResource SoundResourceQuestRequirementSatisfied = new SoundResource("UI/Quests/QuestRequirementSatisfied.ogg");
 
         public ViewModelQuestRequirement(
             IQuestRequirement requirement,

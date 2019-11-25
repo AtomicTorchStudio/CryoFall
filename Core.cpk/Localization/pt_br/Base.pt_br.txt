@@ -1,7 +1,4 @@
-﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
-Não é possível interagir estando atordoado(a).
-
-Scripts/Base/Stats/StatName@HealthMax:
+﻿Scripts/Base/Stats/StatName@HealthMax:
 Vida (máx.)
 
 Scripts/Base/Stats/StatName@StaminaMax:
@@ -184,9 +181,15 @@ Não é possível comer nem beber
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 Ganho de pontos de aprendizagem
 
+Scripts/Base/Stats/StatName@SkillsExperienceGainMultiplier:
+Ganho de experiência em habilidades
+
 Scripts/Base/Stats/StatName@TinkerTableBonus:
 Eficácia da bancada de trabalhos manuais
 
 Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
 Espaços da fila de produção
+
+Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
+Toxicidade dos remédios
 

@@ -7,7 +7,7 @@
 
     public class SkeletonBear : ProtoCharacterSkeletonAnimal
     {
-        public override double DefaultMoveSpeed => 0.8;
+        public override double DefaultMoveSpeed => 1.2;
 
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("Bear/Back");

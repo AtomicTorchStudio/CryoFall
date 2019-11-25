@@ -318,8 +318,7 @@ En los combates más duros será inevitable que pierdas salud. Podrás remediar 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
 `[*] Hay muchos tipos de medicamento diferentes en CryoFall. Algunos recuperan salud, mientras que otros te curan de dolencias específicas o te ofrecen otros beneficios.
 [*] Para preparar tipos de medicamento avanzados se necesita aprender tecnologías y recetas específicas.
-[*] Los remedios de hierbas se pueden encontrar en la categoría de cocina.
-[*] La corteza se puede conseguir al derribar determinados tipos de árbol.`
+[*] Los remedios de hierbas se pueden encontrar en la categoría de cocina.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
 Recolecta hierbas y prepara medicinas
@@ -352,7 +351,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Va siendo hora de conseguir una mejor protección.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*] Puedes desbloquear todas las tecnología relevantes en el grupo de tecnologías "Ataque y defensa".
+`[*] Puedes desbloquear todas las tecnología relevantes en el grupo de tecnologías "Defensa".
 [*] Puede que la armadura de madera no sea la mejor opción, pero es barata de fabricar y es mucho mejor que una armadura de tela.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
@@ -381,7 +380,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Aplastar cráneos con una maza está bien, pero en ocasiones agradeces tener algo de largo alcance. Sobre todo si vas a enfrentarte a adversarios más duros.
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*] Puedes desbloquear todas las tecnologías relevantes en el grupo de tecnologías de "Ataque y defensa".
+`[*] Puedes desbloquear todas las tecnologías relevantes en el grupo de tecnologías de "Ataque".
 [*] Para fabricar cartuchos de papel, tendrás que fabricar [b]pólvora[/b] y [b]papel[/b] antes de nada.
 [*] Existen [b]diferentes tipos de daño[/b] y cada uno de los diversos tipos de armadura ofrecen sus propios valores de protección. Puedes ver toda esta información en la pantalla del inventario.`
 
@@ -435,7 +434,8 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 ¡Es hora de ir de caza! Aún quedan animales y monstruos por encontrar.
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*] Cada animal y monstruo tiene un hábitat propio en el que es habitual encontrarlo. Explora el mundo y descubre todas las criaturas diferentes que lo habitan.
+`[*] Puedes equipar tus herramientas de cazador en la ranura de dispositivos (en el menú Inventario, a la derecha del retrato del personaje).
+[*] Cada animal y monstruo tiene un hábitat propio en el que es habitual encontrarlo. Explora el mundo y descubre todas las criaturas diferentes que lo habitan.
 [*] Según lo peligroso que sea un animal o un monstruo concreto, obtendrás una cantidad diferente de experiencia de caza.`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
@@ -464,6 +464,9 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Usa la palanca para desmantelar
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+Extrae sales minerales
+
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
 Las tecnologías avanzadas requieren ciertos recursos, tales como el petróleo o el litio. Por eso mismo, es de vital importancia saber la forma de conseguirlos.
 
@@ -475,9 +478,6 @@ Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
 Adquisición de recursos avanzados
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-Extrae sales minerales
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 Los avances en industria y construcción requieren unos férreos conocimientos científicos, sobre todo de química.

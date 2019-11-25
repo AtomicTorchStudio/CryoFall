@@ -26,17 +26,7 @@
             var statName = StatName.LearningsPointsGainMultiplier;
             config.AddStatEffect(
                 statName,
-                formulaPercentBonus: level => level); // each level +1% LP gain
-
-            config.AddStatEffect(
-                statName,
-                level: 1,
-                percentBonus: 5);
-
-            config.AddStatEffect(
-                statName,
-                level: 10,
-                percentBonus: 5);
+                formulaPercentBonus: level => level * 2); // each level +2% LP gain
 
             config.AddStatEffect(
                 statName,

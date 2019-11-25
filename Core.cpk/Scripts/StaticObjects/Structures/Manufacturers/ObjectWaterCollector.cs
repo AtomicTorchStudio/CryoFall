@@ -17,15 +17,15 @@
 
         public override string Name => "Water collector";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 300;
+        public override float StructurePointsMax => 500;
 
-        public override float WaterCapacity => 25;
+        public override double WaterCapacity => 25;
 
-        public override float WaterProductionAmountPerSecond => 0.05f;
+        public override double WaterProductionAmountPerSecond => 0.05;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -51,10 +51,10 @@
         {
             category = GetCategory<StructureCategoryIndustry>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemTwigs>(count: 3);
-            build.AddStageRequiredItem<ItemFibers>(count: 3);
+            build.AddStageRequiredItem<ItemTwigs>(count: 5);
+            build.AddStageRequiredItem<ItemFibers>(count: 5);
             build.AddStageRequiredItem<ItemStone>(count: 1);
 
             repair.StagesCount = 10;

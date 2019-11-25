@@ -3,7 +3,6 @@
     using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class WorldMapMarkPartyMember : BaseUserControl

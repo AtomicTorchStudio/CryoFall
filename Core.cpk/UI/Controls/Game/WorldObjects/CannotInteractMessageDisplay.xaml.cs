@@ -44,10 +44,7 @@
 
             Hide();
 
-            var staticWorldObject = worldObject as IStaticWorldObject;
-            var protoStaticWorldObject = staticWorldObject?.ProtoStaticWorldObject;
-
-            var positionOffset = protoStaticWorldObject?.SharedGetObjectCenterWorldOffset(staticWorldObject)
+            var positionOffset = worldObject.ProtoWorldObject?.SharedGetObjectCenterWorldOffset(worldObject)
                                  ?? (0, 0);
 
             positionOffset += (0, 1.025);

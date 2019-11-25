@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
 
@@ -17,12 +18,16 @@
 
         private double targetVolume;
 
+        private static readonly IAudioClientService Audio = Api.Client.Audio;
+
         public ComponentAmbientSoundEmitter()
             : base(isLateUpdateEnabled: true)
         {
         }
 
         public double CurrentInterpolatedVolume => this.currentInterpolatedVolume;
+
+        public bool IsUsingAmbientVolume { get; private set; }
 
         public override void LateUpdate(double deltaTime)
         {
@@ -37,12 +42,21 @@
 
         public void SetTargetVolume(double volume)
         {
-            volume *= AudioOptionVolumeAmbient.CurrentVolumeForAmbientSounds;
+            if (this.IsUsingAmbientVolume)
+            {
+                volume *= AudioOptionVolumeAmbient.CurrentVolumeForAmbientSounds;
+            }
+            else
+            {
+                volume *= Audio.VolumeSounds;
+            }
+
             this.targetVolume = volume;
         }
 
-        public void Setup(SoundResource soundResource)
+        public void Setup(SoundResource soundResource, bool isUsingAmbientVolume)
         {
+            this.IsUsingAmbientVolume = isUsingAmbientVolume;
             this.soundEmitter.Stop();
             this.soundEmitter.SoundResource = soundResource;
             this.soundEmitter.IsLooped = true;

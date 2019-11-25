@@ -21,7 +21,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    public class ObjectMedicalStation : ProtoObjectStructure, IInteractableProtoStaticWorldObject
+    public class ObjectMedicalStation : ProtoObjectStructure, IInteractableProtoWorldObject
     {
         private static readonly Lazy<ItemVialBiomaterial> ProtoItemBiomaterialVial
             = new Lazy<ItemVialBiomaterial>(GetProtoEntity<ItemVialBiomaterial>);
@@ -35,11 +35,11 @@
 
         public override string Name => "Medical station";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 1000;
+        public override float StructurePointsMax => 10000;
 
         public static void ClientInstall(IItem itemToInstall, byte slotId)
         {
@@ -51,22 +51,22 @@
             instance.CallServer(_ => _.ServerRemote_Uninstall(slotId));
         }
 
-        BaseUserControlWithWindow IInteractableProtoStaticWorldObject.ClientOpenUI(IStaticWorldObject worldObject)
+        BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)
         {
-            return this.ClientOpenUI(new ClientObjectData(worldObject));
+            return this.ClientOpenUI(new ClientObjectData((IStaticWorldObject)worldObject));
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
         }
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
         protected BaseUserControlWithWindow ClientOpenUI(ClientObjectData data)

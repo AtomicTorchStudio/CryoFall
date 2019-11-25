@@ -1,7 +1,7 @@
-﻿using AtomicTorch.CBND.CoreMod.Stats;
-
-namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
+﻿namespace AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Neutral
 {
+    using AtomicTorch.CBND.CoreMod.Stats;
+
     public class StatusEffectProtectionRadiation : ProtoStatusEffect
     {
         public override string Description =>

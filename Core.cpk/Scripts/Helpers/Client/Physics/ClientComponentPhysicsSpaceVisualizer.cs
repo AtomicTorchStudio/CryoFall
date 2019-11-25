@@ -11,14 +11,12 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Helpers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Helpers.Data;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
-    using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
@@ -554,7 +552,7 @@
             IClientSceneObject sceneObject;
             if (associatedWorldObject != null)
             {
-                sceneObject = SceneService.GetSceneObject(associatedWorldObject);
+                sceneObject = associatedWorldObject.ClientSceneObject;
             }
             else
             {

@@ -30,7 +30,7 @@
 
         public override string Name => "Fissure";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -51,13 +51,13 @@
             overlayRenderer.Scale = renderer.Scale;
             overlayRenderer.DrawOrder = renderer.DrawOrder + 1;
 
-            Client.Scene
-                  .GetSceneObject(data.GameObject)
-                  .AddComponent<ClientComponentSpriteSheetBlendAnimator>()
-                  .Setup(
-                      overlayRenderer,
-                      ClientComponentSpriteSheetAnimator.CreateAnimationFrames(this.textureAtlasAnimation),
-                      frameDurationSeconds: this.textureAtlasAnimationFrameDurationSeconds);
+            data.GameObject
+                .ClientSceneObject
+                .AddComponent<ClientComponentSpriteSheetBlendAnimator>()
+                .Setup(
+                    overlayRenderer,
+                    ClientComponentSpriteSheetAnimator.CreateAnimationFrames(this.textureAtlasAnimation),
+                    frameDurationSeconds: this.textureAtlasAnimationFrameDurationSeconds);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

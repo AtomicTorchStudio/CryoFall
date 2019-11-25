@@ -37,7 +37,7 @@
                     return this.rotationAngleRadUncompressed.Value * MathConstants.RadToDeg;
                 }
 
-                return this.DecompressAngle(this.RotationAngleRadCompressed);
+                return DecompressAngle(this.RotationAngleRadCompressed);
             }
         }
 
@@ -62,22 +62,22 @@
         [TempOnly]
         public byte RotationAngleRadCompressed { get; private set; }
 
-        public void Set(CharacterInput input, double moveSpeed)
-        {
-            this.MoveModes = input.MoveModes;
-            this.rotationAngleRadUncompressed = input.RotationAngleRad;
-            this.RotationAngleRadCompressed = this.CompressAngle(input.RotationAngleRad);
-            this.MoveSpeed = moveSpeed;
-        }
-
-        private byte CompressAngle(float angleRead)
+        public static byte CompressAngle(float angleRead)
         {
             return (byte)(angleRead * MathConstants.RadToDeg / 360.0 * byte.MaxValue);
         }
 
-        private float DecompressAngle(byte angleCompressed)
+        public static float DecompressAngle(byte angleCompressed)
         {
             return angleCompressed / (float)byte.MaxValue * 360;
+        }
+
+        public void Set(CharacterInput input, double moveSpeed)
+        {
+            this.MoveModes = input.MoveModes;
+            this.rotationAngleRadUncompressed = input.RotationAngleRad;
+            this.RotationAngleRadCompressed = CompressAngle(input.RotationAngleRad);
+            this.MoveSpeed = moveSpeed;
         }
     }
 }

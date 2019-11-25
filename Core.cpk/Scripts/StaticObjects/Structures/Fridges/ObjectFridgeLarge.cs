@@ -21,11 +21,11 @@
 
         public override string Name => "Large fridge";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 350;
+        public override float StructurePointsMax => 3000;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

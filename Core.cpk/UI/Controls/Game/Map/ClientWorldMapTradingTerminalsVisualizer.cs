@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Linq;
@@ -47,7 +46,7 @@
                 return;
             }
 
-            var mapControl = new WorldMapMarkTradingTerminal(mark.IsOwner);
+            var mapControl = new WorldMapMarkTradingTerminal(mark.TradingStationId, mark.IsOwner);
             var canvasPosition = this.worldMapController.WorldToCanvasPosition(mark.TilePosition.ToVector2D());
             Canvas.SetLeft(mapControl, canvasPosition.X);
             Canvas.SetTop(mapControl, canvasPosition.Y);

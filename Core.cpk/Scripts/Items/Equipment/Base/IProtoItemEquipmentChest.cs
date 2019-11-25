@@ -4,6 +4,8 @@
 
     public interface IProtoItemEquipmentChest : IProtoItemEquipment
     {
+        ObjectMaterial Material { get; }
+
         /// <summary>
         /// Sound preset for character sounds played at "chest" on various events.
         /// It's supposed to be used to play various sounds such as clanking armor in moving loop and other events.

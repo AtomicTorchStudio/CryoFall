@@ -8,7 +8,7 @@
     {
         public override string Description => "The ultimate bachelor food.";
 
-        public override float FoodRestore => 25;
+        public override float FoodRestore => 32;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 
@@ -21,6 +21,7 @@
         protected override void ServerOnEat(ItemEatData data)
         {
             data.Character.ServerAddStatusEffect<StatusEffectHeartyFood>(intensity: 0.3);
+            data.Character.ServerAddStatusEffect<StatusEffectSavoryFood>(intensity: 0.1);
 
             base.ServerOnEat(data);
         }

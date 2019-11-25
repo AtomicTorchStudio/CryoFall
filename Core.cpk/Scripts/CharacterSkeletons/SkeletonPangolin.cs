@@ -7,7 +7,7 @@
 
     public class SkeletonPangolin : ProtoCharacterSkeletonAnimal
     {
-        public override double DefaultMoveSpeed => 0.55;
+        public override double DefaultMoveSpeed => 0.825;
 
         public override float OrientationDownExtraAngle => 5;
 

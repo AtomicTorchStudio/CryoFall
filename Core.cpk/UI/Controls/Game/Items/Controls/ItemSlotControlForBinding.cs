@@ -49,10 +49,6 @@
                 new FrameworkPropertyMetadata(typeof(ItemSlotControlForBinding)));
         }
 
-        public ItemSlotControlForBinding()
-        {
-        }
-
         public IClientItemsContainer Container
         {
             get => (IClientItemsContainer)this.GetValue(ContainerProperty);
@@ -87,8 +83,18 @@
 
         protected override void OnLoaded()
         {
-            base.OnLoaded();
             this.Setup();
+        }
+
+        protected override void OnUnloaded()
+        {
+            if (this.cachedContainer is null)
+            {
+                return;
+            }
+
+            this.UnsubscribeContainerEvents();
+            this.cachedContainer = null;
         }
 
         private static void ContainerPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

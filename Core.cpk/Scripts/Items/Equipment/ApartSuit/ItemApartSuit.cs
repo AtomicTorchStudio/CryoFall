@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment.ApartSuit
 {
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
+
     public class ItemApartSuit : ProtoItemEquipmentFullBody
     {
         public override string Description =>
@@ -14,6 +16,8 @@
 
         //  please don't translate A.P.A.R.T. abbreviation
         public override string Name => "A.P.A.R.T. suit";
+
+        public override ObjectMaterial Material => ObjectMaterial.HardTissues;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

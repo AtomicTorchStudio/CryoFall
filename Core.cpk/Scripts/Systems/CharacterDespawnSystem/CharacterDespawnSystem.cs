@@ -17,7 +17,7 @@
     /// </summary>
     public class CharacterDespawnSystem : ProtoSystem<CharacterDespawnSystem>
     {
-        private const double OfflineDurationToDespawn = 4 * 60 * 60; // 4 hours
+        public const double OfflineDurationToDespawn = 4 * 60 * 60; // 4 hours
 
         public static bool ClientIsDespawned => ClientCurrentCharacterHelper.PrivateState.IsDespawned;
 

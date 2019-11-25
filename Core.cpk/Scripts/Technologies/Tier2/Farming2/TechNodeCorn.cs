@@ -8,8 +8,6 @@
         {
             config.Effects
                   .AddRecipe<RecipeSeedsCorn>();
-
-            config.SetRequiredNode<TechNodeWateringCanSteel>();
         }
     }
 }

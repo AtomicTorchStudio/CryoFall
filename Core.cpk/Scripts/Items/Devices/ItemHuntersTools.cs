@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.Resources;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -13,6 +14,16 @@
     public class ItemHuntersTools : ProtoItemEquipmentDevice
     {
         private const int DurabilityDecreasePerUse = 1;
+
+        public ItemHuntersTools()
+        {
+            ConditionHuntersToolsEquipped = context => context.HasCharacter
+                                                       && context.Character.SharedGetPlayerContainerEquipment()
+                                                                 .ContainsItemsOfType(this, requiredCount: 1);
+        }
+
+        // Currently not used. Hunter's tools simply increasing looting speed on 30% and its price is cheap now.
+        public static DropItemConditionDelegate ConditionHuntersToolsEquipped { get; private set; }
 
         public override string Description =>
             "Bundle of useful hunter's tools makes looting any creature much quicker.";

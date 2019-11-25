@@ -1,21 +1,21 @@
 ﻿Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationCannotEquip:
-装備できません
+装備不可
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationRemoveFullBody:
 まず全身の装備を外す必要があります。
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationRemoveOtherEquipment:
-まずその他の装備を外す必要があります。
+まず他の装備を外す必要があります。
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Message:
-インプラントをインストールするには医学ステーションを利用する必要があります。
+インプラントを取り付けるには医療ステーションを利用する必要があります。
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToInstallImplant_Title:
-インストールできません
+取付不可
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Message:
-インプラントを取り除くには医学ステーションを利用する必要があります。
+インプラントを取り外すには医療ステーションを利用する必要があります。
 
 Scripts/ItemContainers/Character/ItemsContainerCharacterEquipment@NotificationUseStationToRemoveImplant_Title:
-取り除けません
+取外し不可
 

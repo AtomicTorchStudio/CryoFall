@@ -169,7 +169,7 @@
 
         private string tooltipFormat;
 
-        private TextBlock tooltipTextBlock;
+        private FormattedTextBlock tooltipTextBlock;
 
         static ValueBarControl()
         {
@@ -440,7 +440,7 @@
 
         private void MouseEnterHandler(object sender, MouseEventArgs e)
         {
-            this.tooltipTextBlock = new TextBlock();
+            this.tooltipTextBlock = new FormattedTextBlock();
             this.UpdateCurrentTooltipText();
             ToolTipServiceExtend.SetToolTip(this, this.tooltipTextBlock);
         }
@@ -536,7 +536,7 @@
             else
             {
                 // update text value in format "current/max"
-                var v = (int)Math.Round(value, 
+                var v = (int)Math.Round(value,
                                         MidpointRounding.AwayFromZero);
                 if (this.lastValue == v
                     && this.lastValueMax == maxValue)
@@ -550,8 +550,10 @@
                 this.textBlockValueDisplay.Text =
                     this.labelFormat != null
                         ? string.Format(this.labelFormat, value, maxValue)
-                        : this.lastValue + "/" + (int)Math.Round(maxValue,
-                                                                 MidpointRounding.AwayFromZero);
+                        : this.lastValue
+                          + "/"
+                          + (int)Math.Round(maxValue,
+                                            MidpointRounding.AwayFromZero);
             }
         }
 
@@ -572,19 +574,19 @@
             var maxValue = this.MaxValue;
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            var valuePercents = maxValue != 0.0 
-                                    ? (int)Math.Round(100.0 * value / maxValue, 
-                                                      MidpointRounding.AwayFromZero) 
+            var valuePercents = maxValue != 0.0
+                                    ? (int)Math.Round(100.0 * value / maxValue,
+                                                      MidpointRounding.AwayFromZero)
                                     : 0;
 
             if (!string.IsNullOrEmpty(this.tooltipFormat))
             {
-                this.tooltipTextBlock.Text =
+                this.tooltipTextBlock.Content =
                     string.Format(this.tooltipFormat, valuePercents, value, maxValue);
             }
             else
             {
-                this.tooltipTextBlock.Text = valuePercents + "%";
+                this.tooltipTextBlock.Content = valuePercents + "%";
             }
         }
 

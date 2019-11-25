@@ -17,7 +17,8 @@
             IComponentSpriteRenderer renderer,
             float power,
             float pivotY,
-            bool canFlip = true)
+            bool canFlip = true,
+            float speed = 0.333f)
         {
             var worldObject = renderer.SceneObject.AttachedWorldObject;
             if (worldObject == null)
@@ -31,7 +32,7 @@
 
             var phaseOffset = (byte)PositionalRandom.Get(worldObject.TilePosition, 0, 8, seed: 614392664);
 
-            var preset = new GrassAnimationPreset(power, pivotY, phaseOffset, isRenderingFlipped);
+            var preset = new GrassAnimationPreset(power, pivotY, phaseOffset, speed, isRenderingFlipped);
             if (!Materials.TryGetValue(preset, out var material))
             {
                 // no cached material found for the required preset - create and setup new material
@@ -40,7 +41,8 @@
                         .Set("Flip",        isRenderingFlipped ? 1 : 0)
                         .Set("Power",       power)
                         .Set("PivotY",      pivotY)
-                        .Set("PhaseOffset", phaseOffset);
+                        .Set("PhaseOffset", phaseOffset)
+                        .Set("Speed",       speed);
             }
 
             renderer.RenderingMaterial = material;
@@ -57,20 +59,24 @@
 
             public readonly float Power;
 
-            public GrassAnimationPreset(float power, float pivotY, byte phaseOffset, bool isFlip)
+            public GrassAnimationPreset(float power, float pivotY, byte phaseOffset, float speed, bool isFlip)
             {
                 this.IsFlip = isFlip;
                 this.Power = power;
                 this.PivotY = pivotY;
                 this.PhaseOffset = phaseOffset;
+                this.Speed = speed;
             }
+
+            public readonly float Speed;
 
             public bool Equals(GrassAnimationPreset other)
             {
                 return this.IsFlip == other.IsFlip
                        && this.PivotY.Equals(other.PivotY)
                        && this.Power.Equals(other.Power)
-                       && this.PhaseOffset == other.PhaseOffset;
+                       && this.PhaseOffset == other.PhaseOffset
+                       && this.Speed == other.Speed;
             }
 
             public override bool Equals(object obj)
@@ -90,6 +96,7 @@
                     var hashCode = this.IsFlip.GetHashCode();
                     hashCode = (hashCode * 397) ^ this.PivotY.GetHashCode();
                     hashCode = (hashCode * 397) ^ this.Power.GetHashCode();
+                    hashCode = (hashCode * 397) ^ this.Speed.GetHashCode();
                     hashCode = (hashCode * 397) ^ this.PhaseOffset.GetHashCode();
                     return hashCode;
                 }

@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 {
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
-    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -9,19 +8,21 @@
 
     public class MobStarfish : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => true;
+
         public override float CharacterWorldHeight => 0.5f;
 
         public override double MobKillExperienceMultiplier => 0.1;
 
         public override string Name => "Starfish";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
 
         public override double ServerUpdateIntervalSeconds => 1;
 
         public override double StatDefaultHealthMax => 40;
 
-        public override double StatMoveSpeed => 0.07;
+        public override double StatMoveSpeed => 0.1;
 
         protected override void PrepareProtoCharacterMob(
             out ProtoCharacterSkeleton skeleton,

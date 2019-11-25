@@ -7,6 +7,8 @@
 
     public class SkeletonSpectator : ProtoCharacterSkeleton
     {
+        public override double DefaultMoveSpeed => 1.5;
+
         public override bool HasMoveStartAnimations => false;
 
         public override float OrientationDownExtraAngle => 0;

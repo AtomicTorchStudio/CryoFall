@@ -8,7 +8,7 @@
     {
         public override string Description => "Tasty meat stew prepared with mushrooms.";
 
-        public override float FoodRestore => 50;
+        public override float FoodRestore => 40;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 
@@ -24,7 +24,7 @@
 
         protected override void ServerOnEat(ItemEatData data)
         {
-            data.Character.ServerAddStatusEffect<StatusEffectHeartyFood>(intensity: 0.5); // 5 minutes
+            data.Character.ServerAddStatusEffect<StatusEffectHeartyFood>(intensity: 0.6);
 
             base.ServerOnEat(data);
         }

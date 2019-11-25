@@ -29,6 +29,8 @@
 
         public override bool RequireEquipmentTextures => true;
 
+        public abstract ObjectMaterial Material { get; }
+
         public ReadOnlySoundPreset<CharacterSound> SoundPresetCharacterOverride { get; private set; }
 
         public ReadOnlySoundPreset<GroundSoundMaterial> SoundPresetFootstepsOverride { get; private set; }

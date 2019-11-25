@@ -28,14 +28,22 @@
                 <Rectangle Fill="{Binding AmmoIcon}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                            Margin="0,0,0,3" d:IsHidden="True" />
 
-                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+                <Grid VerticalAlignment="Bottom"
+                      HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Text="{Binding AmmoCountCurrent}" HorizontalAlignment="Right" />
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding AmmoCountCurrent}"
+                               HorizontalAlignment="Right"
+                               Visibility="{Binding IsReloading, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}" />
+                    <TextBlock Grid.Column="0"
+                               Text="--"
+                               HorizontalAlignment="Right"
+                               Visibility="{Binding IsReloading, Converter={StaticResource BoolToHiddenVisibilityConverter}}" />
                     <TextBlock Grid.Column="1" Text="/" />
                     <TextBlock Grid.Column="2" Text="{Binding AmmoCountMax}" HorizontalAlignment="Left" />
                 </Grid>
@@ -43,9 +51,11 @@
                 <cooldownIndicator:CooldownIndicatorControl SetTotalDuration="{Binding ReloadDurationSeconds}" />
             </Grid>
         </controls:HotbarItemSlotExtensionControl>
+
         <Grid Margin="1"
               IsHitTestVisible="False">
-            <cooldownIndicator:CooldownIndicatorControl SetTotalDuration="{Binding WeaponSwitchDurationSeconds}" />
+            <cooldownIndicator:CooldownIndicatorControl x:Name="WeaponSwitchCooldown"
+                                                        SetTotalDuration="{Binding WeaponSwitchDurationSeconds}" />
         </Grid>
     </Grid>
 </base:BaseUserControl>

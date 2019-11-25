@@ -17,11 +17,11 @@
 
         public override string Name => "Recharging station";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 750;
+        public override float StructurePointsMax => 2000;
 
         protected override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,
@@ -35,8 +35,8 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemWire>(count: 5);
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

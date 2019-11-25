@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons.Melee
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -29,17 +30,23 @@
         // but it still could inherit delay from previous weapon
         public override double ReadyDelayDuration => 0;
 
-        protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsMelee>();
+        protected override ProtoSkillWeapons WeaponSkill => null;
 
         protected override TextureResource WeaponTextureResource => null;
 
         public override void ClientSetupSkeleton(
             IItem item,
             ICharacter character,
+            ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
             List<IClientComponent> skeletonComponents)
         {
             // do nothing
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.NoWeapon;
         }
 
         protected override void PrepareProtoItem()
@@ -63,9 +70,9 @@
                 damageDistribution: new DamageDistribution(DamageType.Impact, proportion: 1));
         }
 
-        protected override ReadOnlySoundPreset<ObjectSoundMaterial> PrepareSoundPresetHit()
+        protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()
         {
-            return MaterialHitsSoundPresets.MeleeSoftTissuesOnly;
+            return MaterialHitsSoundPresets.MeleeNoWeapon;
         }
     }
 }

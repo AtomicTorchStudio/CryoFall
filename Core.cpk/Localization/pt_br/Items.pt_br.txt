@@ -58,6 +58,12 @@ Cartucho de munição incendiária pesada calibre .300, capaz de perfurar a arma
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 Munição incendiária de .300 mm
 
+Scripts/Items/Ammo/ItemAmmo50SH@Description:
+Cartucho de armas de calibre grosso e alta potência.
+
+Scripts/Items/Ammo/ItemAmmo50SH@Name:
+Munição SH .50
+
 Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
 Cartucho simples de 8mm sem revestimento. Utiliza materiais e técnicas de fabricação simples, reduzindo bastante a precisão e o poder de fogo.
 
@@ -90,6 +96,9 @@ Ler
 
 Scripts/Items/Base/ItemUseCaptions@Use:
 Usar
+
+Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
+Este item não pode ser usado enquanto você estiver dirigindo um veículo.
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Registro de dados (criptografado)
@@ -484,6 +493,12 @@ Um prato simples, mas quente.
 Scripts/Items/Food/ItemCarrotGrilled@Name:
 Cenoura grelhada
 
+Scripts/Items/Food/ItemCheese@Description:
+Alimentos tradicionais à base de leite por coagulação da proteína do leite.
+
+Scripts/Items/Food/ItemCheese@Name:
+Queijo
+
 Scripts/Items/Food/ItemChiliBeans@Description:
 A comida dos solteirões.
 
@@ -543,6 +558,12 @@ Pepino em conserva doce e crocante.
 
 Scripts/Items/Food/ItemCucumbersPickled@Name:
 Pepino em conserva
+
+Scripts/Items/Food/ItemDough@Description:
+Pode ser usada na cozinha para diversas receitas.
+
+Scripts/Items/Food/ItemDough@Name:
+Massa
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Bebida energética popular na galáxia inteira. É altamente estimulante.
@@ -634,6 +655,24 @@ Carne assada com salsinha. De onde veio a salsinha? Fica aí o mistério...
 Scripts/Items/Food/ItemMeatRoasted@Name:
 Carne assada
 
+Scripts/Items/Food/ItemMilk@Description:
+Leite rico em nutrientes. Pode ser consumido tal como está ou usado na culinária.
+
+Scripts/Items/Food/ItemMilk@Name:
+Leite
+
+Scripts/Items/Food/ItemMilkmelon@Description:
+Planta especial geneticamente modificada que produz um líquido leitoso espesso, cuja composição se assemelha ao leite de verdade.
+
+Scripts/Items/Food/ItemMilkmelon@Name:
+Leite-melão
+
+Scripts/Items/Food/ItemMRE@Description:
+Refeição preparada industrialmente, contendo diversos pratos de elevado valor calórico e hidratação necessária para sobreviver na natureza selvagem ou durante operações militares.
+
+Scripts/Items/Food/ItemMRE@Name:
+Ração militar
+
 Scripts/Items/Food/ItemMREImprovised@Description:
 Carne preparada com sal e alguns ingredientes básicos que atuam como conservantes. Pode ser armazenada por muito tempo sem estragar.
 
@@ -658,11 +697,11 @@ Este cogumelo é chamado de enferrumelo por causa da cor. Ele é muito saboroso 
 Scripts/Items/Food/ItemMushroomRust@Name:
 Enferrumelo
 
-Scripts/Items/Food/ItemOgurin@Description:
-O ogurín é um fruto muito esquisito... e sem gosto. São pepinos geneticamente modificados.
+Scripts/Items/Food/ItemOnigiri@Description:
+Também conhecido como bolinho de arroz. Pode ser convenientemente consumido em qualquer lugar. Simples e proporciona saciedade. As especiarias o mantêm fresco por mais tempo.
 
-Scripts/Items/Food/ItemOgurin@Name:
-Fruto de ogurín
+Scripts/Items/Food/ItemOnigiri@Name:
+Onigiri
 
 Scripts/Items/Food/ItemPieBerry@Description:
 Uma torta de frutinhas deliciosa. Do jeitinho que a sua vó fazia.
@@ -675,6 +714,12 @@ Fruto tropical doce e ácido. Pode ser comido cru ou preparado em diversos prato
 
 Scripts/Items/Food/ItemPineapple@Name:
 Abacaxi
+
+Scripts/Items/Food/ItemRiceCooked@Description:
+Bom do jeito que está ou como parte de uma refeição mais complexa.
+
+Scripts/Items/Food/ItemRiceCooked@Name:
+Arroz cozido
 
 Scripts/Items/Food/ItemRoastedMushrooms@Description:
 Deliciosos cogumelos assados.
@@ -1004,12 +1049,6 @@ O pó de fluxo é utilizado na metalurgia para criar metais de alta qualidade.
 Scripts/Items/Generic/ItemFluxPowder@Name:
 Pó de fluxo
 
-Scripts/Items/Generic/ItemFoodRotten@Description:
-Esta comida está completamente estragada.
-
-Scripts/Items/Generic/ItemFoodRotten@Name:
-Comida estragada
-
 Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 Grânulos de nitrocelulose especialmente formuladas e moldadas para armas de fogo de alto desempenho.
 
@@ -1081,6 +1120,12 @@ Grânulos especiais altamente higroscópicos usados para complementar o solo. El
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Name:
 Grânulos higroscópicos
+
+Scripts/Items/Generic/ItemImpulseEngine@Description:
+Motor de impulso de alta potência que pode ser utilizado em uma gama de mecanismos.
+
+Scripts/Items/Generic/ItemImpulseEngine@Name:
+Motor de impulso
 
 Scripts/Items/Generic/ItemIngotCopper@Description:
 Lingotes de cobre puro. O cobre tem diversas aplicações, que vão de industriais a tecnológicas.
@@ -1217,11 +1262,35 @@ Conservante alimentar. Pode-se adicionar a alimentos embalados, permitindo que d
 Scripts/Items/Generic/ItemPreservative@Name:
 Conservante
 
+Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
+Núcleo vazio do reator que pode ser reabastecido com substância transportadora de energia reativa, como o prágmio.
+
+Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
+Núcleo de reator vazio
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Description:
+Núcleo do reator cheio de prágmio. Fonte de energia relativamente estável, portátil e duradoura.
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Name:
+Núcleo de reator de prágmio
+
+Scripts/Items/Generic/ItemRice@Description:
+Grãos de arroz colhidos. Pode ser preparado para plantio ou cozido em uma variedade de pratos.
+
+Scripts/Items/Generic/ItemRice@Name:
+Arroz
+
 Scripts/Items/Generic/ItemRope@Description:
 Uma corda normal. Pode ser usada de várias maneiras. Cordas sobressalentes podem ser queimadas.
 
 Scripts/Items/Generic/ItemRope@Name:
 Corda
+
+Scripts/Items/Generic/ItemRot@Description:
+A comida ou outra matéria orgânica estragou por completo e transformou-se nesta papa podre.
+
+Scripts/Items/Generic/ItemRot@Name:
+Comida estragada
 
 Scripts/Items/Generic/ItemRubberRaw@Description:
 Borracha natural, também conhecida como resina de látex. Extraída da seringueira. Pode ser transformada quimicamente em borracha vulcanizada.
@@ -1271,11 +1340,29 @@ Solvente criado especialmente para a era espacial que combina propriedades de so
 Scripts/Items/Generic/ItemSolvent@Name:
 Solvente
 
+Scripts/Items/Generic/ItemSpices@Description:
+Variedade de diferentes especiarias que podem ser utilizadas na culinária.
+
+Scripts/Items/Generic/ItemSpices@Name:
+Especiarias
+
+Scripts/Items/Generic/ItemSpicesRaw@Description:
+Especiarias cruas colhidas. Devem ser secas e processadas antes de utilizadas.
+
+Scripts/Items/Generic/ItemSpicesRaw@Name:
+Especiarias cruas
+
 Scripts/Items/Generic/ItemStone@Description:
 Pedra, arredondada e pesada. Útil em construções. Elas podem ser encontradas no chão ou mineradas em grandes quantidades.
 
 Scripts/Items/Generic/ItemStone@Name:
 Pedra
+
+Scripts/Items/Generic/ItemStructuralPlating@Description:
+Placas de armadura que podem ser utilizadas tanto como carapaça externa quanto como estrutura de suporte de carga para acoplar equipamento extra.
+
+Scripts/Items/Generic/ItemStructuralPlating@Name:
+Placas estruturais
 
 Scripts/Items/Generic/ItemSulfurPowder@Description:
 Enxofre puro em pó.
@@ -1299,19 +1386,19 @@ Scripts/Items/Generic/ItemTobaccoAged@Description:
 Folhas de tabaco envelhecidas. Podem ser usadas para fazer charutos de alta qualidade.
 
 Scripts/Items/Generic/ItemTobaccoAged@Name:
-Tabaco (envelhecido)
+Tabaco envelhecido
 
 Scripts/Items/Generic/ItemTobaccoDried@Description:
 Folhas de tabaco desidratadas. Podem ser usadas para fazer charutos de baixa qualidade ou envelhecidas para fazer charutos de alta qualidade.
 
 Scripts/Items/Generic/ItemTobaccoDried@Name:
-Tabaco (desidratado)
+Tabaco seco
 
 Scripts/Items/Generic/ItemTobaccoRaw@Description:
 Folhas e vagens de tabaco naturais. Podem ser desidratados para fazer charuto.
 
 Scripts/Items/Generic/ItemTobaccoRaw@Name:
-Tabaco (natural)
+Tabaco puro
 
 Scripts/Items/Generic/ItemToxin@Description:
 Toxina química. Pode ser usada para criar munição de toxina ou em remédios.
@@ -1319,17 +1406,17 @@ Toxina química. Pode ser usada para criar munição de toxina ou em remédios.
 Scripts/Items/Generic/ItemToxin@Name:
 Toxina
 
-Scripts/Items/Generic/ItemTreebark@Description:
-Cascas de algumas árvores. Podem ser queimadas ou usadas para outros fins.
-
-Scripts/Items/Generic/ItemTreebark@Name:
-Casca de árvore
-
 Scripts/Items/Generic/ItemTwigs@Description:
 Apenas alguns galhos aleatórios juntados do chão ou arrancados de uma árvore. Pode ser útil para produzir ferramentas simples ou queimar numa fogueira.
 
 Scripts/Items/Generic/ItemTwigs@Name:
 Galhos
+
+Scripts/Items/Generic/ItemUniversalActuator@Description:
+Acionador altamente flexível e extremamente potente que utiliza força magnética para se movimentar.
+
+Scripts/Items/Generic/ItemUniversalActuator@Name:
+Acionador universal
 
 Scripts/Items/Generic/ItemVialBiomaterial@Description:
 Frasco cheio de biomaterial. Usado na cibernética e na medicina, principalmente para realizar operações de instalação e remoção de implantes.
@@ -1376,14 +1463,17 @@ O fertilizante já foi aplicado
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
 A planta está pronta para ser colhida. Não precisa de fertilizante.
 
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
-Você já regou
-
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
-A planta está pronta para ser colhida. Não precisa regar.
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CanApplyOnlyOnPlants:
+Pode-se aplicar apenas em plantas.
 
 Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Não é possível aplicar aqui
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
+Fígado artificial criado através da bioengenharia. Permite melhorar a filtração do sangue, negando alguns efeitos do uso excessivo de remédios.
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
+Fígado artificial
 
 Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
 Camada de retina especial altamente fotossensível e com suporte a HDR, que garante uma visão quase perfeita no escuro.
@@ -1427,17 +1517,17 @@ Este material especial de nanofibra pode ser aplicado à camada inferior da epid
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Implante de pele de nanofibra
 
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+Não foi detectada nenhuma mutação fora de controle no organismo.
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Sem mutações
+
 Scripts/Items/Medical/ItemAntiMutation@Description:
 Protege e restaura o DNA celular que sofreu danos pela exposição à radiação e outros efeitos nocivos. Impede as mutações descontroladas no organismo.
 
 Scripts/Items/Medical/ItemAntiMutation@Name:
 Remédios antimutação
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
-Sem mutações
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
-Não foi detectada nenhuma mutação fora de controle no organismo.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 Você não tem náusea. Não precisa tomar este remédio agora.
@@ -1635,13 +1725,13 @@ Scripts/Items/Medical/ItemStrengthBoostBig@Description:
 Solução que deixa você temporariamente mais forte, melhorando seu desempenho em atividades físicas.
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Name:
-Fortalecedor (grande)
+Grande aumento de força
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 Solução que deixa você temporariamente mais forte, melhorando seu desempenho em atividades físicas.
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
-Fortalecedor (pequeno)
+Pequeno aumento de força
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Muda de uma árvore. Pode ser plantada para que cresça e se torne uma árvore.
@@ -1688,8 +1778,14 @@ Sementes de sálvia-azul
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Sementes de oniflor
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Name:
-Sementes de ogurín
+Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
+Sementes de melancia
+
+Scripts/Items/Seeds/ItemSeedsRice@Name:
+Sementes de arroz
+
+Scripts/Items/Seeds/ItemSeedsSpices@Name:
+Sementes de especiarias
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Sementes de tabaco
@@ -1844,6 +1940,12 @@ Versão mais pesada e mais letal da maça de cobre.
 Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
 Maça de ferro
 
+Scripts/Items/Weapons/Melee/ItemMachete@Description:
+Facão de aço pesado. Ideal para cortar cabeças.
+
+Scripts/Items/Weapons/Melee/ItemMachete@Name:
+Facão
+
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 Sem arma
 
@@ -1952,9 +2054,33 @@ Espingarda militar com grande capacidade de munição. Usa munição calibre 12.
 Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
 Espingarda militar
 
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
+Pistola semiautomática com grande potência de saída.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
+Steppen Hawk
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
+Edição limitada na versão dourada da pistola Steppen Hawk.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
+Steppen Hawk Dourada
+
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 Submetralhadora criada para utilizar cartuchos de 10 mm.
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Submetralhadora
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
+Canhão automático pesado desenvolvido para ser montado nos acoplamentos da armadura de combate mecanizada. Usa munição de calibre grosso e antimaterial.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
+Canhão automático pesado
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
+Canhão automático leve projetado para ser montado nos acoplamentos da armadura de combate mecanizada. Usa munição de calibre leve.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
+Canhão automático leve
 

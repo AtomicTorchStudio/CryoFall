@@ -7,9 +7,9 @@
     [NotPersistent]
     public readonly struct DamageSourceRemoteEntry : IRemoteCallParameter
     {
-        public readonly string Name;
-
         public readonly float Fraction;
+
+        public readonly string Name;
 
         public readonly IProtoEntity ProtoEntity;
 

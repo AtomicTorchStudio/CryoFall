@@ -2,18 +2,18 @@
 {
     public static class MaterialDestroySoundPresets
     {
-        public static readonly ReadOnlySoundPreset<ObjectSoundMaterial> Default
-            = new SoundPreset<ObjectSoundMaterial>(
+        public static readonly ReadOnlySoundPreset<ObjectMaterial> Default
+            = new SoundPreset<ObjectMaterial>(
                   customDistance: (min: SoundConstants.AudioListenerMinDistanceObjectDestroy,
                                    max: SoundConstants.AudioListenerMaxDistanceObjectDestroy))
-              .Add(ObjectSoundMaterial.SoftTissues, "Destroy/SoftTissues")
-              .Add(ObjectSoundMaterial.HardTissues, "Destroy/HardTissues")
-              .Add(ObjectSoundMaterial.SolidGround, "Destroy/SolidGround")
-              .Add(ObjectSoundMaterial.Vegetation,  "Destroy/Vegetation")
-              .Add(ObjectSoundMaterial.Wood,        "Destroy/Wood")
-              .Add(ObjectSoundMaterial.Stone,       "Destroy/Stone")
-              .Add(ObjectSoundMaterial.Metal,       "Destroy/Metal")
-              .Add(ObjectSoundMaterial.Glass,       "Destroy/Glass");
+              .Add(ObjectMaterial.SoftTissues, "Destroy/SoftTissues")
+              .Add(ObjectMaterial.HardTissues, "Destroy/HardTissues")
+              .Add(ObjectMaterial.SolidGround, "Destroy/SolidGround")
+              .Add(ObjectMaterial.Vegetation,  "Destroy/Vegetation")
+              .Add(ObjectMaterial.Wood,        "Destroy/Wood")
+              .Add(ObjectMaterial.Stone,       "Destroy/Stone")
+              .Add(ObjectMaterial.Metal,       "Destroy/Metal")
+              .Add(ObjectMaterial.Glass,       "Destroy/Glass");
 
         public static readonly ReadOnlySoundResourceSet TreeDestroy
             = new SoundResourceSet()

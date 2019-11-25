@@ -5,7 +5,9 @@
 
     public class ObjectDoorClientState : StaticObjectClientState
     {
-        public IComponentSpriteRenderer ExtraDoorRendererObject { get; set; }
+        public IComponentSpriteRenderer DoorBaseRenderer { get; set; }
+
+        public IComponentSpriteRenderer DoorVerticalFrontPartRenderer { get; set; }
 
         public bool IsOpened { get; set; }
 

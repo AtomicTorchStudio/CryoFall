@@ -13,7 +13,7 @@
         // Yes! Vodka is high in calories in real life, in fact 40% vodka is 75 kcal per 100 ml!
         public override float FoodRestore => 5;
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.LongLasting;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
         public override string ItemUseCaption => ItemUseCaptions.Drink;
 

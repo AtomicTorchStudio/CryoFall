@@ -21,8 +21,8 @@
 
             inputItems.Add<ItemVodka>(count: 5);
             inputItems.Add<ItemBerriesRed>(count: 5);
-            inputItems.Add<ItemSugar>(count: 5);
             inputItems.Add<ItemHerbGreen>(count: 5);
+            inputItems.Add<ItemSugar>(count: 2);
 
             outputItems.Add<ItemLiquor>(count: 5);
         }

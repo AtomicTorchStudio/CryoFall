@@ -27,7 +27,7 @@
     {
         public const string NotificationUseAxe = "Use an axe to cut this tree.";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
@@ -80,12 +80,12 @@
             }
         }
 
-        protected override void ClientOnObjectDestroyed(Vector2Ushort tilePosition)
+        protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             // play custom sound
             var emitter = Client.Audio.PlayOneShot(
                 MaterialDestroySoundPresets.TreeDestroy.GetSound(repetitionProtectionKey: this),
-                worldPosition: tilePosition.ToVector2D() + this.Layout.Center,
+                worldPosition: position + this.Layout.Center,
                 volume: SoundConstants.VolumeDestroy,
                 pitch: RandomHelper.Range(0.95f, 1.05f));
 

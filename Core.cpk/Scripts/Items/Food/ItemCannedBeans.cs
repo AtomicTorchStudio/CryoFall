@@ -6,7 +6,7 @@
     {
         public override string Description => "Not the best food around, but could keep you from succumbing to hunger.";
 
-        public override float FoodRestore => 10;
+        public override float FoodRestore => 25;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
 

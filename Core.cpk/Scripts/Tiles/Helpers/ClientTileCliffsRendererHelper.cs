@@ -245,7 +245,7 @@
             }
         }
 
-        private static TextureAtlasResource GetCliffAtlas(Tile tile) 
+        private static TextureAtlasResource GetCliffAtlas(Tile tile)
             => ((ProtoTile)tile.ProtoTile).CliffAtlas;
 
         private static bool IsHigherTile(Tile sourceTile, byte height, int offsetX, int offsetY)

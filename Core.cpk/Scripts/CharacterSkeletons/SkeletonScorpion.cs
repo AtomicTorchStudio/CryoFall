@@ -7,7 +7,7 @@
 
     public class SkeletonScorpion : ProtoCharacterSkeletonAnimal
     {
-        public override double DefaultMoveSpeed => 1.5;
+        public override double DefaultMoveSpeed => 2.25;
 
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("Scorpion/Back");
@@ -32,12 +32,18 @@
                                 center: (0 - 0.125, 0.1))
                 .AddShapeCircle(radius: 0.35,
                                 center: (0 + 0.125, 0.1))
-                .AddShapeCircle(radius: 0.7,
+                .AddShapeCircle(radius: 0.5,
                                 center: (0, 0.15),
                                 group: CollisionGroups.HitboxMelee)
-                .AddShapeCircle(radius: 0.7,
+                .AddShapeCircle(radius: 0.45, // carefully selected to ensure no damage through a wall below
                                 center: (0, 0.15),
                                 group: CollisionGroups.HitboxRanged);
+        }
+
+        public override void OnSkeletonCreated(IComponentSkeleton skeleton)
+        {
+            base.OnSkeletonCreated(skeleton);
+            skeleton.DrawOrderOffsetY = -0.2;
         }
     }
 }

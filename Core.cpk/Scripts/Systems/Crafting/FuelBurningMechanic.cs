@@ -73,7 +73,7 @@
                     throw new Exception("No byproductsCraftQueue");
                 }
 
-                CraftingMechanics.ServerUpdate(byproductsCraftQueue, 
+                CraftingMechanics.ServerUpdate(byproductsCraftQueue,
                                                deltaTime * byproductsQueueRate);
             }
         }

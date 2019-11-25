@@ -26,22 +26,22 @@
                 </DoubleAnimationUsingKeyFrames>
 
                 <DoubleAnimation Storyboard.TargetProperty="Height"
-                                 From="0" To="{Binding RequiredHeight, ElementName=UserControl}"
+                                 From="0"
+                                 To="{Binding RequiredHeight, ElementName=UserControl}"
                                  Duration="0:0:0.175" />
             </Storyboard>
 
             <!-- ReSharper disable once Xaml.RedundantResource -->
-            <Storyboard x:Key="StoryboardFadeOut" TargetName="Border">
+            <Storyboard x:Key="StoryboardHide" TargetName="Border">
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
                     <EasingDoubleKeyFrame Value="1" KeyTime="0" />
                     <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.2" />
                 </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
 
-            <!-- ReSharper disable once Xaml.RedundantResource -->
-            <Storyboard x:Key="StoryboardHide" TargetName="Border">
                 <DoubleAnimation Storyboard.TargetProperty="Height"
+                                 From="{Binding RequiredHeight, ElementName=UserControl}"
                                  To="0"
+                                 BeginTime="0:0:0.2"
                                  Duration="0:0:0.1" />
             </Storyboard>
 

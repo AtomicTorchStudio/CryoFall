@@ -4,7 +4,6 @@
 
     public class TechNodeBraidedHelmetLamp : TechNode<TechGroupDefense>
     {
-
         protected override void PrepareTechNode(Config config)
         {
             config.Effects

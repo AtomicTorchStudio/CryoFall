@@ -55,10 +55,6 @@
             droplist
                 .Add<ItemLogs>(count: 4)
                 .Add<ItemTwigs>(count: 2, countRandom: 3);
-
-            // bonus drop
-            droplist
-                .Add<ItemTreebark>(count: 1, countRandom: 1, probability: 0.5);
         }
     }
 }

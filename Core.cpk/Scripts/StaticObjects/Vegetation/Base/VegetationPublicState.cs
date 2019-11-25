@@ -7,7 +7,7 @@
         [SyncToClient]
         public byte GrowthStage { get; set; }
 
-        public bool IsFullGrown(IProtoObjectVegetation protoObjectVegetation)
+        public virtual bool IsFullGrown(IProtoObjectVegetation protoObjectVegetation)
         {
             return this.GrowthStage == protoObjectVegetation.GrowthStagesCount;
         }

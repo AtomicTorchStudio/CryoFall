@@ -57,7 +57,7 @@
                 // dead character
                 return true;
             }
-            
+
             if (!MainMenuOverlay.IsHidden)
             {
                 // main menu displayed - suppress input

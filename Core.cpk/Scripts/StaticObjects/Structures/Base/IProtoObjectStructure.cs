@@ -26,11 +26,11 @@
 
         bool IsListedInTechNodes { get; }
 
+        bool IsRepeatPlacement { get; }
+
         IReadOnlyList<TechNode> ListedInTechNodes { get; }
 
         float StructurePointsMaxForConstructionSite { get; }
-
-        bool IsRepeatPlacement { get; }
 
         /// <summary>
         /// Returns actual config - for constructed object this is repair config (because it's constructed),

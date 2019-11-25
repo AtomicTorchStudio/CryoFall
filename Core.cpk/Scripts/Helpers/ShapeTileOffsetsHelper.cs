@@ -89,5 +89,17 @@
                 yield return new Vector2Int(x + startX, y + startY);
             }
         }
+
+        public static Vector2Int[] SelectOffsetsWithRate(Vector2Int[] source, int rate)
+        {
+            var resultLength = source.Length / rate;
+            var result = new Vector2Int[resultLength];
+            for (var index = 0; index < resultLength; index++)
+            {
+                result[index] = source[index * rate];
+            }
+
+            return result;
+        }
     }
 }

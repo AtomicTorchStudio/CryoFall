@@ -47,13 +47,13 @@ Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToCliffOrSl
 無法建造 - 太靠近懸崖或斜坡。
 
 Scripts/StaticObjects/Base/ConstructionTileRequirements@ErrorTooCloseToWater:
-無法建造 - 太靠近水。
+不能建造 - 太靠近水。
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Configure:
 配置
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Deconstruct:
-拆解
+拆毀
 
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
 檢查
@@ -83,19 +83,19 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
 寫
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
-溫泉
+地熱泉
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-溫泉（無限）
+無限溫泉
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 天然油田
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-天然油田（無限）
+無限油田
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
-采礦炸藥
+採礦炸藥
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombModern@Name:
 現代炸彈
@@ -139,6 +139,9 @@ Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
 大垃圾堆
 
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+小垃圾堆
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 石頭
 
@@ -167,7 +170,7 @@ Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@Name:
 玩家戰利品
 
 Scripts/StaticObjects/Loot/Base/ProtoObjectLoot@NotificationUseRightMouseButtonToPickup:
-用鼠標右鍵拿起。
+用滑鼠右鍵拿起。
 
 Scripts/StaticObjects/Minerals/ObjectMineralClay@Name:
 粘土
@@ -208,11 +211,8 @@ Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 裂縫
 
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-燒焦的地面
-
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
-比木桶更寬敞，更堅固。適用於儲存大量液體。
+比木桶更寬敞，更堅固。適用于儲存大量液體。
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Name:
 金屬桶
@@ -239,7 +239,7 @@ Scripts/StaticObjects/Structures/Base/ProtoObjectStructure@DescriptionUpgrade:
 沒有升級說明。
 
 Scripts/StaticObjects/Structures/Beds/ObjectBed@Description:
-比鋪蓋卷好。
+比鋪蓋卷強。
 
 Scripts/StaticObjects/Structures/Beds/ObjectBed@Name:
 床
@@ -261,7 +261,7 @@ Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AlreadyH
 床已經有主。
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@ErrorClaimBed_AnotherPlayersLandClaim:
-床位於另一個玩家的占領區域。
+床位於另一個玩家的佔領區域。
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageBedBelongsToCurrentPlayer:
 這張床屬於你
@@ -285,7 +285,7 @@ Scripts/StaticObjects/Structures/Categories/StructureCategoryFood@Name:
 食物
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryIndustry@Name:
-行業
+工業
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
 其他
@@ -297,13 +297,13 @@ Scripts/StaticObjects/Structures/ConstructionSite/ObjectConstructionSite@Name:
 工地
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Description:
-允許制作盔甲和服裝。
+允許製作護甲和服裝。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectArmorerWorkbench@Name:
-護甲工作台
+護甲工作臺
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Description:
-允許處理大多數類型的復雜化學品並基於它們制作許多物品。
+允許處理大多數類型的複雜化學品並基於它們製作許多物品。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectChemicalLab@Name:
 化學實驗室
@@ -318,25 +318,25 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Descrip
 用於生產與農業有關的各種物品，如種子袋和肥料。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectFarmingWorkbench@Name:
-農業工作台
+農業工作臺
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Description:
-允許制作許多不同的醫療用品和物品。
+允許製作許多不同的醫療用品和物品。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectMedicalLab@Name:
 醫學實驗室
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Description:
-用於制造各種不同的武器，物資和彈藥。
+用於製造各種不同的武器，物資和彈藥。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWeaponWorkbench@Name:
-武器工作台
+武器工作臺
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Description:
-用於生產各種物品的通用工作站。還包括所有徒手制作配方。
+用於生產各種物品的通用工作站。還包括所有徒手製作配方。
 
 Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
-工作台
+工作臺
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
 比簡單的木箱提供更多的空間，更難以破壞。
@@ -369,7 +369,7 @@ Scripts/StaticObjects/Structures/Crates/ObjectDisplayCase@Name:
 陳列櫃
 
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
-重型裝甲保險箱，可以承受最強大的爆炸物。不容易制作，但它肯定可以確保貴重物品的安全。
+重型裝甲保險箱，可以承受最強大的爆炸物。不容易製作，但它肯定可以確保貴重物品的安全。
 
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 裝甲保險箱
@@ -393,7 +393,7 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 尖刺顱骨
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
-展示你的財富。 只有壕中壕的能造得出這樣的東西。
+展示你的財富。 只有壕中壕才能造得出這樣的東西。
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Name:
 金雕像
@@ -408,7 +408,7 @@ Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@Err
 已經有地板裝飾。
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
-足以對大多數入侵者的防禦。盡管如此，它面對爆炸物依然沒什麽辦法。
+足以對大多數入侵者的防禦。儘管如此，它面對爆炸物依然沒什麼辦法。
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
 鐵門
@@ -465,13 +465,13 @@ Scripts/StaticObjects/Structures/Floors/ObjectFloorMetal@Name:
 金屬地板
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Description:
-給你城堡般的感覺。與石墻完美搭配。
+給你城堡般的感覺。與石牆完美搭配。
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorStone@Name:
 石頭地板
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Description:
-讓你的房子看起來都很舒適。與木墻相得益彰。
+讓你的房子看起來都很舒適。與木牆相得益彰。
 
 Scripts/StaticObjects/Structures/Floors/ObjectFloorWood@Name:
 木地板
@@ -525,28 +525,28 @@ Scripts/StaticObjects/Structures/Generators/ObjectGeneratorSteam@Name:
 蒸汽發電機
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Description:
-防止其他幸存者在周圍區域建造或拆毀任何東西，使您的基地更安全。占領土地還可確保您的建築物不會隨著時間的推移而劣化。
+防止其他倖存者在周圍區域建造或拆毀任何東西，使您的基地更安全。佔領土地還可確保您的建築物不會隨著時間的推移而劣化。
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT1@Name:
-占領土地（T1）
+佔領土地（T1）
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@DescriptionUpgrade:
 增加保護區域，最大結構值和破壞延遲。
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT2@Name:
-占領土地（T2）
+佔領土地（T2）
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT3@Name:
-占領土地（T3）
+佔領土地（T3）
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT4@Name:
-占領土地（T4）
+佔領土地（T4）
 
 Scripts/StaticObjects/Structures/LandClaim/ObjectLandClaimT5@Name:
 佔領土地（T5）
 
 Scripts/StaticObjects/Structures/LandClaim/Base/LandClaimArea@Name:
-占領地區
+佔領地區
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorAreaIntersection:
 升級將導致與他人領土交集。
@@ -555,19 +555,19 @@ Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckRe
 升級要求未滿足。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNotFounder:
-你不是占領所有者。
+你不是領地所有者。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ObjectLandClaimCanUpgradeCheckResult@ErrorNoActiveInteraction:
-請重新打開土地申請窗口，然後重試。
+請重新打開土地佔領視窗，然後重試。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@DialogCannotUpgrade:
 無法升級
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationDontHaveAccess:
-您無權使用此占領土地建築。
+您無權使用此佔領土地建築。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Message:
-占領土地建築已經升級。
+佔領土地建築已經升級。
 
 Scripts/StaticObjects/Structures/LandClaim/Base/ProtoObjectLandClaim@NotificationUpgraded_Title:
 成功升級
@@ -579,7 +579,7 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampLarge@Name:
 大落地燈
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Description:
-簡單的燃油落地燈。可以讓任何房間感覺更舒適，它產生的黃色發光。
+簡單的燃油落地燈。它發出的黃色光芒能讓任何房間都顯得更加舒適。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
 燃油落地燈
@@ -603,7 +603,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectCoinMint@Name:
 鑄幣台
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Description:
-可以使用這個櫃子生產特定種類的產品或食物，如乾蘑菇或肉類。
+可以使用這個櫃子生產特定種類的產品或食物，如幹蘑菇或肉類。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectDryingCabinet@Name:
 乾燥櫃
@@ -615,7 +615,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFermentationBarrel@Name:
 發酵桶
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Description:
-可用於將礦石冶煉成金屬錠並加工一些其他原材料。
+可用于將礦石冶煉成金屬錠並加工一些其他原材料。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnace@Name:
 熔爐
@@ -642,7 +642,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 覆土箱
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-可以在天然油田上建造，直接從地下提取原石油。
+可以在天然油田上建造，直接從地下提取原油。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 油泵
@@ -651,7 +651,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
 高級石油泵
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
-將原石油精煉成更有用的成分，例如燃料和礦物油。
+將原油精煉成更有用的成分，例如燃料和礦物油。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Name:
 煉油器
@@ -660,7 +660,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
 用於大多數烹飪活動;可以比篝火生產更好的飯菜。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
-竈具
+灶具
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 簡單的集水器設計用於收集少量水。在沙漠和多石地區不起作用...
@@ -675,7 +675,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterPump@Name:
 水泵
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
-提供取之不盡的淡水源。現在你永遠不會因口渴而死。由於某種原因，在沙漠和其他巖石地方真的不起作用......
+提供取之不盡的淡水源。現在你永遠不會因口渴而死。由於某種原因，在沙漠和其他岩石地方真的不起作用......
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 井
@@ -734,6 +734,12 @@ Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 垃圾箱
 
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+自動車輛組裝平臺。可以被用於生產各種載具。
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+載具組裝平臺
+
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 允許將電力儲存，留作它用。
 
@@ -744,22 +750,22 @@ Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorageLarge@Name:
 大型蓄電設施
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Description:
-允許發布圖像供他人觀看。使用背面的太陽能電池板，無需外部電源。
+允許發佈圖像供他人觀看。使用背面的太陽能電池板，無需外部電源。
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignDigital@Name:
-電子標示
+電子指示牌
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Description:
-更耐用的金屬電子標示。效果相同，但現在更難以破壞。
+更耐用的金屬版指示牌。效果相同，但現在更難以破壞。
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignIron@Name:
-鐵標示
+鐵質指示牌
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Description:
 方便的木牌寫下你需要記住或讓其他人知道的東西。
 
 Scripts/StaticObjects/Structures/Signs/ObjectSignWood@Name:
-木標示
+木質指示牌
 
 Scripts/StaticObjects/Structures/Signs/Base/ProtoObjectSign@NotificationCannotEditSignWhenNotAreaOwner:
 `你無法編輯
@@ -767,31 +773,31 @@ Scripts/StaticObjects/Structures/Signs/Base/ProtoObjectSign@NotificationCannotEd
 其他人土地內的標示。`
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Description:
-大型自動化交易站。可以方便地與其他幸存者交易各種各樣的物品。可配置出售或購買訂單。
+大型自動化交易站。可以方便地與其他倖存者交易各種各樣的物品。可配置出售或購買訂單。
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationLarge@Name:
 大型交易站
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Description:
-自動化交易站。可以用來方便地與其他幸存者交換物品。可配置出售或購買訂單。
+自動化交易站。可以用來方便地與其他倖存者交換物品。可配置出售或購買訂單。
 
 Scripts/StaticObjects/Structures/TradingStations/ObjectTradingStationSmall@Name:
 小型交易站
 
 Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNothingForSale:
-沒有出售物品
+沒有可出售的物品
 
 Scripts/StaticObjects/Structures/TradingStations/Base/ProtoObjectTradingStation@NotificationNoTradingLots:
-沒有交易欄位
+沒有交易欄位元
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorCannotInteract:
 無法互動（太遠或有障礙）。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotFound:
-未找到交易欄位。
+未找到交易欄位元。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorLotNotActive:
-交易欄位離線中。
+交易欄位元離線中。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorWrongMode:
 錯誤的交易模式。
@@ -800,19 +806,19 @@ Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnou
 沒有足夠的物品可以出售。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughItemsOnStation:
-站點沒有足夠物品出售。
+網站沒有足夠物品出售。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnPlayer:
 沒有足夠的錢購買此物。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughMoneyOnStation:
-站點沒有足夠的錢購買你的物品。
+網站沒有足夠的錢購買你的物品。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnPlayerForPurchasedItem:
 沒有足夠的空間購買物品。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingResult@ErrorNotEnoughSpaceOnStationForSoldItem:
-站點沒有足夠的空間來存放您想要出售的物品。
+網站沒有足夠的空間來存放您想要出售的物品。
 
 Scripts/StaticObjects/Structures/TradingStations/Base/TradingStationLotState@Available:
 可用
@@ -836,38 +842,38 @@ Scripts/StaticObjects/Structures/Walls/ObjectWallArmored@Name:
 裝甲壁
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Description:
-用金屬加固的堅固磚墻。將保障您的貴重物品安全。甚至可以在一定程度上抵禦爆炸。
+用金屬加固的堅固磚牆。將保障您的貴重物品安全。甚至可以在一定程度上抵禦爆炸。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallBrick@Name:
-磚墻
+磚牆
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Description:
-鋼筋厚混凝土墻。比任何其他防禦結構更耐用。
+鋼筋厚混凝土牆。比任何其他防禦結構更耐用。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallConcrete@Name:
-水泥墻
+水泥牆
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Description:
-明顯優於木墻。應該能阻止大多數入侵者闖入，但對裝備精良的襲擊者沒有多大幫助。
+明顯優於木牆。應該能阻止大多數入侵者闖入，但對裝備精良的襲擊者沒有多大幫助。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallStone@Name:
-石墻
+石牆
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Description:
-能保護你不受當地動物以及...當地人的低級侵害。除了最基本的武器之外，真的防不了什麽東西。
+能保護你不受當地動物以及...當地人的低級侵害。除了最基本的武器之外，真的防不了什麼東西。
 
 Scripts/StaticObjects/Structures/Walls/ObjectWallWood@Name:
-木墻
+木牆
 
 Scripts/StaticObjects/Structures/Walls/Base/ObjectWallDestroyed@Name:
-被毀壞的墻
+被毀壞的牆
 
 Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationPlantNotMatured:
 `植物尚未成熟。
-[br]你還不能收獲它。`
+[br]你還不能收穫它。`
 
 Scripts/StaticObjects/Vegetation/Base/ProtoObjectGatherableVegetation@NotificationUseRightMouseButtonToInteract:
-用鼠標右鍵{0}。
+用滑鼠右鍵{0}。
 
 Scripts/StaticObjects/Vegetation/Bushes/ObjectBushCoffee@Name:
 咖啡
@@ -917,8 +923,14 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 鬼花
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-歐古因
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+奶瓜
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+米
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+香料
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 煙草
@@ -945,10 +957,10 @@ Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPennyBun@Na
 牛肝菌
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomPink@Name:
-粉紅蘑菇
+粉蘑菇
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallMushroomRust@Name:
-銹蓋菇
+鏽蓋菇
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallPineapple@Name:
 鳳梨
@@ -981,7 +993,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDeadMossy2@Name:
 死樹
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeDurian@Name:
-榴蓮樹
+榴槤樹
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreeFallen@Name:
 倒下的樹
@@ -993,7 +1005,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
 棕櫚樹
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-松樹
+雲杉
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
 松樹

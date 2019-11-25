@@ -19,9 +19,11 @@
 
         public override ushort LandClaimSize => 16;
 
+        public override byte LandClaimTier => 1;
+
         public override string Name => "Land claim (Tier 1)";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
@@ -55,7 +57,7 @@
 
             // important, due to issues with land claim area placement we had to make this 1 stage building
             build.StagesCount = 1;
-            build.StageDurationSeconds = BuildDuration.Short; // irrelevant, since it is 1 stage building
+            build.StageDurationSeconds = BuildDuration.Short;   // irrelevant, since it is 1 stage building
             build.AddStageRequiredItem<ItemPlanks>(count: 100); // price reflects the entire cost
             build.AddStageRequiredItem<ItemStone>(count: 50);
 

@@ -12,9 +12,9 @@
 
         public override string Name => "Concrete floor";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
-        public override float StructurePointsMax => 200;
+        public override float StructurePointsMax => 750;
 
         protected override void PrepareFloorConstructionConfig(
             ConstructionStageConfig build,

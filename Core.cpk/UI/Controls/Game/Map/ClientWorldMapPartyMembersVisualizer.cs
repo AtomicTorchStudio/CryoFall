@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
@@ -58,7 +57,9 @@
             this.RemoveAllMarkers();
         }
 
-        private void AddMarker(string memberName, PartyMembersVisualizationSystem.NetworkPartyMemberData partyMemberData)
+        private void AddMarker(
+            string memberName,
+            PartyMembersVisualizationSystem.NetworkPartyMemberData partyMemberData)
         {
             if (this.characterMarkers.ContainsKey(memberName))
             {

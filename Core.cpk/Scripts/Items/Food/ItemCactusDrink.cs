@@ -1,9 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Buffs;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using System;
 
     public class ItemCactusDrink : ProtoItemFood
     {

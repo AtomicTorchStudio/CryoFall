@@ -28,6 +28,12 @@ Ostatni obfity posiłek był bardzo zdrowy. Każde zadanie będzie teraz łatwie
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Zdrowa żywność
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
+Ostatni posiłek był bardzo smaczny; życie wydaje ci się lepsze.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+Smaczne jedzenie
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Jesteś pod wpływem stymulatora, który powoduje, że przez pewien czas wzrasta twoja siła. Możesz łatwiej wykonywać zadania wymagające siły.
 
@@ -44,7 +50,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 Zepsuty implant w twoim ciele negatywnie wpływa na twoje samopoczucie – maksymalny poziom zdrowia (PZ) jest obniżony.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
-Zepsuty implant
+Zepsuty implant – choroba
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Złamana nogę utrudnia poruszanie się. Próba biegania spowoduje silny ból. Użyj szyny, aby wyleczyć złamanie.

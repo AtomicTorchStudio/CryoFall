@@ -23,6 +23,14 @@
         private static readonly Lazy<List<TechNode>> LazyAllNodesWithoutFiltering
             = new Lazy<List<TechNode>>(FindProtoEntities<TechNode>);
 
+        static TechGroup()
+        {
+            if (IsClient)
+            {
+                PveSystem.ClientIsPvEChanged += SharedRebuildAllNodes;
+            }
+        }
+
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         protected TechGroup()
         {
@@ -39,9 +47,9 @@
             var iconPath = thisType.FullName
                                    // remove namespace of base class
                                    .Substring(protoTechGroup.FullName.Length - protoTechGroup.Name.Length);
-            iconPath = iconPath.Substring(0, iconPath.Length - thisType.Name.Length) + "Group";
-
-            var icon = new TextureResource("Technologies/" + iconPath.Replace('.', '/'));
+            iconPath = iconPath.Substring(0, iconPath.Length - thisType.Name.Length);
+            iconPath = iconPath.TrimEnd('.');
+            var icon = new TextureResource("Technologies/" + iconPath.Replace(".", "/"));
             if (!Api.Shared.IsFileExists(icon))
             {
                 Api.Logger.Warning("Icon not found: " + icon.FullPath + ", using default generic icon.");
@@ -52,13 +60,43 @@
             this.Icon = icon;
         }
 
+        public static event Action AvailableTechGroupsChanged;
+
         public event Action NodesChanged;
+
+        public static IReadOnlyList<TechGroup> AvailableTechGroups { get; private set; }
+
+        public virtual FeatureAvailability AvailableIn => FeatureAvailability.All;
 
         public abstract string Description { get; }
 
         public IReadOnlyTechGroupRequirements GroupRequirements { get; private set; }
 
         public ITextureResource Icon { get; }
+
+        public bool IsAvailable
+        {
+            get
+            {
+                switch (this.AvailableIn)
+                {
+                    case FeatureAvailability.None:
+                        return false;
+
+                    case FeatureAvailability.All:
+                        return true;
+
+                    case FeatureAvailability.OnlyPvP:
+                        return !PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false);
+
+                    case FeatureAvailability.OnlyPvE:
+                        return PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false);
+
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
 
         /// <summary>
         /// Determines whether this tech group belongs to
@@ -85,6 +123,13 @@
 
         public bool SharedCanUnlock(ICharacter character, bool skipLearningPointsCheck, out string error)
         {
+            if (!this.IsAvailable)
+            {
+                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+                error = "This tech group is not available in the current version of the game";
+                return false;
+            }
+
             var technologies = character.SharedGetTechnologies();
             if (technologies.SharedIsGroupUnlocked(this))
             {
@@ -94,7 +139,7 @@
 
             foreach (var requirement in this.GroupRequirements)
             {
-                if (skipLearningPointsCheck 
+                if (skipLearningPointsCheck
                     && requirement is TechGroupRequirementLearningPoints)
                 {
                     continue;
@@ -132,7 +177,7 @@
                     $"Tier out of range: {this.Tier} - max tier is {TechConstants.MaxTier}");
             }
 
-            this.SharedRebuildAllNodes();
+            SharedRebuildAllNodes();
 
             var rootNodes = new List<TechNode>();
             foreach (var protoTechNode in this.Nodes)
@@ -154,14 +199,32 @@
             }
 
             this.GroupRequirements = requirements;
-
-            if (IsClient)
-            {
-                PveSystem.ClientIsPvEChanged += this.SharedRebuildAllNodes;
-            }
         }
 
         protected abstract void PrepareTechGroup(Requirements requirements);
+
+        private static void SharedRebuildAllNodes()
+        {
+            var allTechGroups = Api.FindProtoEntities<TechGroup>();
+            foreach (var techGroup in allTechGroups)
+            {
+                techGroup.Nodes = techGroup.IsAvailable
+                                      ? (IReadOnlyList<TechNode>)LazyAllNodesWithoutFiltering
+                                                                 .Value
+                                                                 .Where(n => n.Group == techGroup
+                                                                             && n.IsAvailable)
+                                                                 .OrderBy(n => n.HierarchyLevel)
+                                                                 .ThenBy(n => n.Order)
+                                                                 .ThenBy(n => n.ShortId)
+                                                                 .ToList()
+                                      : new TechNode[0];
+
+                Api.SafeInvoke(techGroup.NodesChanged);
+            }
+
+            AvailableTechGroups = allTechGroups.Where(t => t.IsAvailable).ToList();
+            Api.SafeInvoke(AvailableTechGroupsChanged);
+        }
 
         private ushort CalculateLearningPointsPrice()
         {
@@ -176,20 +239,6 @@
             }
 
             return (ushort)price;
-        }
-
-        private void SharedRebuildAllNodes()
-        {
-            this.Nodes = LazyAllNodesWithoutFiltering
-                         .Value
-                         .Where(n => n.Group == this
-                                     && n.IsAvailable)
-                         .OrderBy(n => n.HierarchyLevel)
-                         .ThenBy(n => n.Order)
-                         .ThenBy(n => n.ShortId)
-                         .ToList();
-
-            Api.SafeInvoke(this.NodesChanged);
         }
 
         protected class Requirements : List<BaseTechGroupRequirement>, IReadOnlyTechGroupRequirements

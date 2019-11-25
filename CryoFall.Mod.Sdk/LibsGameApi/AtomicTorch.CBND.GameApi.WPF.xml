@@ -507,7 +507,7 @@
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.Data.Characters.IProtoCharacter.SharedEnumerateAllContainers(AtomicTorch.CBND.GameApi.Data.Characters.ICharacter,System.Boolean)">
             <summary>
-            Enumrate all the items containers for specified character.
+            Enumerate all the items containers for specified character.
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.IProtoTrigger">
@@ -653,7 +653,7 @@
             <param name="itemTo">Item of this prototype.</param>
             <param name="countStacked">Count subtracted from itemFrom and added to itemTo.</param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.SharedCanSelect(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Characters.ICharacter)">
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.SharedCanSelect(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Characters.ICharacter,System.Boolean)">
             <summary>
             Checks whether the item can be selected in hotbar.
             </summary>
@@ -914,11 +914,6 @@
         <member name="M:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeSnapshot.GetEnumerator">
             <summary>
             Gets node snapshots (enumerate with extraction from <see cref="F:AtomicTorch.CBND.GameApi.Data.Structures.QuadTreeSnapshot.NodeSnapshotsGroups" />).
-            </summary>
-        </member>
-        <member name="T:AtomicTorch.CBND.GameApi.Data.Projectiles.IProtoProjectile">
-            <summary>
-            Projectile type - inherits from world object type for dynamic world objects.
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.Data.ProtoEntity">
@@ -1516,9 +1511,9 @@
             Item.
             </summary>
         </member>
-        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.Projectile">
+        <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.DynamicObject">
             <summary>
-            Projectile.
+            Dynamic object (projectile, vehicle, etc).
             </summary>
         </member>
         <member name="F:AtomicTorch.CBND.GameApi.Data.GameObjectType.LogicObject">
@@ -2674,6 +2669,11 @@
             Gets or sets the draw order.
             </summary>
         </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.DrawOrderOffsetY">
+            <summary>
+            Gets or sets the draw order offset by Y axis (in world units).
+            </summary>
+        </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.PositionOffset">
             <summary>
             Gets or sets the draw world position offset.
@@ -2694,7 +2694,7 @@
             <param name="animationName">Animation name.</param>
             <param name="isLooped">Determines if the animation is looped.</param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.GetCurrentAnimationName(System.Byte)">
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.GetCurrentAnimationName(System.Byte,System.Boolean)">
             <summary>
             Gets the current animation name for track.
             </summary>
@@ -2713,6 +2713,13 @@
             Removes animation track completely.
             </summary>
             <param name="trackIndex">Track index.</param>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.RemoveAttachmentAnimationsForSlot(System.String)">
+            <summary>
+            Finds and modifies all animations which contains a timeline which is modifying the slot's current attachment.
+            For example, with this method it's possible to remove all modifications for "Weapon" slot — whi
+            </summary>
+            <param name="slotName">Slot name.</param>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.SelectCurrentSkeleton(AtomicTorch.CBND.GameApi.Resources.SkeletonResource,System.String,System.Boolean)">
             <summary>
@@ -2751,8 +2758,8 @@
             </summary>
             <param name="trackIndex">Track index.</param>
             <param name="animationName">Animation name.</param>
-            <param name="timePositionPercents">
-            Time position in percents (from 0 to 1, where 0 is beginning of animation, 1 is end
+            <param name="timePositionFraction">
+            Time position fraction (from 0 to 1, where 0 is beginning of animation, 1 is end
             of animation. 0.5 is middle of animation).
             </param>
         </member>
@@ -2760,32 +2767,16 @@
             <summary>
             Setup custom renderer for specified attachment for only specified skeleton resource.
             </summary>
-            <param name="skeletonResource"></param>
-            <param name="slotName"></param>
-            <param name="attachmentName"></param>
-            <param name="renderer"></param>
-            <param name="applyBoneRotation"></param>
-            <param name="scale"></param>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.SetAttachmentRenderer(System.String,System.String,AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSpriteRenderer,System.Boolean,System.Double)">
             <summary>
             Setup custom renderer for specified attachment for all skeleton resources.
             </summary>
-            <param name="slotName"></param>
-            <param name="attachmentName"></param>
-            <param name="renderer"></param>
-            <param name="applyBoneRotation"></param>
-            <param name="scale"></param>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.SetAttachmentSprite(AtomicTorch.CBND.GameApi.Resources.SkeletonResource,System.String,System.String,AtomicTorch.CBND.GameApi.Resources.ITextureResource,System.Double)">
             <summary>
             Setup sprite for specified attachment for only specified skeleton resource.
             </summary>
-            <param name="skeletonResource"></param>
-            <param name="slotName"></param>
-            <param name="attachmentName"></param>
-            <param name="textureResource"></param>
-            <param name="scale"></param>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.SetAttachmentSprite(System.String,System.String,AtomicTorch.CBND.GameApi.Resources.ITextureResource,System.Double)">
             <summary>
@@ -2816,12 +2807,12 @@
             Skips track mixing.
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.TransformBonePosition(System.String,System.Nullable{AtomicTorch.GameEngine.Common.Primitives.Vector2F},System.Single@)">
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.Components.IComponentSkeleton.TransformSlotPosition(System.String,System.Nullable{AtomicTorch.GameEngine.Common.Primitives.Vector2F},System.Single@)">
             <summary>
-            Calculates world position of the bone.
+            Calculates world position of the slot.
             </summary>
-            <param name="boneName">Bone name.</param>
-            <param name="screenPositionOffset">(optional) Local position offset for bone.</param>
+            <param name="slotName">Slot name.</param>
+            <param name="screenPositionOffset">(optional) Local position offset for slot.</param>
             <param name="worldRotationAngleRad">(out) Bone world rotation angle (radians).</param>
             <returns>World position of the bone with the applied offset.</returns>
         </member>
@@ -3431,11 +3422,6 @@
             Please note - this method is not available during Bootstrapper execution.
             </summary>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.IWorldClientService.GetStaticWorldObjectsOfProto``1">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
-        </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesServer.CreateItemResult">
             <summary>
             Item creation API call result.
@@ -3684,6 +3670,11 @@
             <param name="logOutOfBounds"></param>
             <returns>Tile.</returns>
         </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetWorldObjectsOfProto``1">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
+        </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService">
             <summary>
             Provides methods for accessing and manipulating world objects.
@@ -3693,6 +3684,22 @@
             <summary>
             Gets world bounds.
             </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.CreateDynamicWorldObject(AtomicTorch.CBND.GameApi.Data.World.IProtoDynamicWorldObject,AtomicTorch.GameEngine.Common.Primitives.Vector2D)">
+            <summary>
+            Creates dynamic world object of provided type at provided tile position.
+            </summary>
+            <param name="protoDynamicWorldObject">Static world object type.</param>
+            <param name="position">World position.</param>
+            <returns>Built static world object or null.</returns>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.CreateDynamicWorldObject``1(AtomicTorch.GameEngine.Common.Primitives.Vector2D)">
+            <summary>
+            Creates dynamic world object of provided type at provided tile position.
+            </summary>
+            <typeparam name="TDynamicWorldObjectType">Static world object type.</typeparam>
+            <param name="position">World position</param>
+            <returns>Built static world object or null.</returns>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.CreateStaticWorldObject(AtomicTorch.CBND.GameApi.Data.World.IProtoStaticWorldObject,AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort)">
             <summary>
@@ -3785,11 +3792,6 @@
             <param name="character">Owner of the view.</param>
             <param name="result">Temporary list of static world objects to store the result.</param>
             <param name="sortByDistance">If true, the result will be sorted by distance.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsOfProto``1">
-            <summary>
-            Please note - this method is not available during Bootstrapper execution.
-            </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsOfProtoInBounds``1(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
             <summary>

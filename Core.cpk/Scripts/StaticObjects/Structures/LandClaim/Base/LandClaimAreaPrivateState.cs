@@ -8,7 +8,7 @@
     {
         [SyncToClient]
         public string LandClaimFounder { get; set; }
-
+        
         [SyncToClient]
         public NetworkSyncList<string> LandOwners { get; set; }
 

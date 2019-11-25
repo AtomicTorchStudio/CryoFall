@@ -1,11 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.GameEngine.Common.Helpers;
-    using System;
 
     public class ItemInsectMeatFried : ProtoItemFood
     {

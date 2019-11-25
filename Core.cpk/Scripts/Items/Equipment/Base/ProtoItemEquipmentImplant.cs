@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterIdleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -39,12 +40,6 @@
 
         public virtual ushort BiomaterialAmountRequiredToUninstall => 10;
 
-        /// <summary>
-        /// Determines how much durability the implant should loss
-        /// (from 0.0 to 1.0, by default 0.02 (2% percents)).
-        /// </summary>
-        public virtual double DurabilityFractionReduceOnDeath => 0.02;
-
         public override uint DurabilityMax => 6000;
 
         public sealed override EquipmentType EquipmentType => EquipmentType.Implant;
@@ -66,6 +61,12 @@
         public sealed override double ServerUpdateIntervalSeconds => 10 * 60;
 
         protected override double DefenseMultiplier { get; } = 0;
+
+        /// <summary>
+        /// Determines how much durability the implant should loss
+        /// (from 0.0 to 1.0, by default 0.02 (2% percents)).
+        /// </summary>
+        protected virtual double DurabilityFractionReduceOnDeath => 0.02;
 
         public override void ServerOnCharacterDeath(IItem item, bool isEquipped, out bool shouldDrop)
         {
@@ -168,6 +169,11 @@
                 || owner.SharedGetPlayerContainerEquipment() != item.Container)
             {
                 // player offline or not an equipped item
+                return;
+            }
+
+            if (CharacterIdleSystem.ServerIsIdlePlayer(owner))
+            {
                 return;
             }
 

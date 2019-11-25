@@ -24,7 +24,7 @@
         public override double CharacterAnimationAimingRecoilPowerAddCoef
             => 1 / 2.5; // full recoil power will be gained on third shot
 
-        public override double DamageMultiplier => 0.7; // lower than default
+        public override double DamageMultiplier => 0.85; // slightly lower than default
 
         public override string Description => "Light machine pistol developed for 8mm rounds.";
 
@@ -37,6 +37,13 @@
         public override double SpecialEffectProbability => 0.1;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();
+
+        protected override WeaponFirePatternPreset PrepareFirePatternPreset()
+        {
+            return new WeaponFirePatternPreset(
+                initialSequence: new[] { 0.5, -3.0, 4.0 },
+                cycledSequence: new[] { 5.5, -8.5, 5.5, 4.5, -5.5, -8.5, 5.5, 4.5 });
+        }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {

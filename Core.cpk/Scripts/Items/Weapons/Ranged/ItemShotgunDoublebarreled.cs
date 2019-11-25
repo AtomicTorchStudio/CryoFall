@@ -13,6 +13,8 @@
 
         public override double AmmoReloadDuration => 2;
 
+        public override double FireInterval => 0.2; // can fire as soon as reloaded
+
         public override double CharacterAnimationAimingRecoilDuration => 0.45;
 
         public override double CharacterAnimationAimingRecoilPower => 1.3;
@@ -26,6 +28,13 @@
         public override double SpecialEffectProbability => 0.4;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();
+
+        protected override WeaponFirePatternPreset PrepareFirePatternPreset()
+        {
+            return new WeaponFirePatternPreset(
+                initialSequence: new[] { 0.0 },
+                cycledSequence: new[] { 3.0, -1.0 });
+        }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {

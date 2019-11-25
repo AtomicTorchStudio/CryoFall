@@ -83,16 +83,16 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Write:
 쓰기
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpring@Name:
-열수구
+온천
 
 Scripts/StaticObjects/Deposits/ObjectDepositGeothermalSpringInfinite@Name:
-열수구 (무한)
+무한 온천
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 유전
 
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
-유전 (무한)
+무한 유전
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 채굴용 폭약
@@ -139,6 +139,9 @@ Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
 큰 쓰레기 더미
 
+Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
+작은 쓰레기 더미
+
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 돌
 
@@ -146,19 +149,19 @@ Scripts/StaticObjects/Loot/ObjectLootTwigs@Name:
 잔가지
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageFormatLootFromAnotherPlayer:
-{0}님으로부터 약탈
+{0} 님으로부터 약탈
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@MessageLootFromCurrentPlayer:
 전리품
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Message:
-{0}님이 떨어진 아이템을 살펴 보는 중...
+{0} 님이 떨어진 아이템을 살펴 보는 중...
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsBeingLooted_Title:
 당신의 아이템이 약탈당하고 있습니다
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Message:
-{0}님이 당신의 떨어진 모든 아이템을 가져갔습니다. 지도에서 표시가 삭제되었습니다.
+{0} 님이 당신의 떨어진 모든 아이템을 가져갔습니다. 지도에서 표시가 삭제되었습니다.
 
 Scripts/StaticObjects/Loot/ObjectPlayerLootContainer@NotificationCurrentPlayerItemsTaken_Title:
 아이템을 약탈당했습니다!
@@ -207,9 +210,6 @@ Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 틈
-
-Scripts/StaticObjects/Special/ObjectCharredGround@Name:
-불 타버린 땅
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 나무통보다 용량이 더 크고 견고합니다. 다량의 액체를 저장하는 데 유용합니다.
@@ -267,7 +267,7 @@ Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageBedBelongsToCur
 당신의 잠자리
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@MessageFormatBedBelongsToAnotherPlayer:
-{0}님의[br]잠자리
+{0} 님의[br]잠자리
 
 Scripts/StaticObjects/Structures/Beds/Base/ProtoObjectBed@NotificationBedClaimedSuccessfully:
 이제 이 잠자리가 부활 지점으로 설정되었습니다.
@@ -291,7 +291,7 @@ Scripts/StaticObjects/Structures/Categories/StructureCategoryOther@Name:
 기타
 
 Scripts/StaticObjects/Structures/Categories/StructureCategoryStorage@Name:
-보관소
+저장소
 
 Scripts/StaticObjects/Structures/ConstructionSite/ObjectConstructionSite@Name:
 공사장
@@ -734,6 +734,12 @@ Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Description:
 Scripts/StaticObjects/Structures/Misc/ObjectTrashCan@Name:
 쓰레기통
 
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Description:
+탈것 조립을 위한 자동화 플랫폼. 특정 설계도에 따라 탈것을 제조하는 데 사용됩니다.
+
+Scripts/StaticObjects/Structures/Misc/ObjectVehicleAssemblyBay@Name:
+탈것 조립대
+
 Scripts/StaticObjects/Structures/PowerStorage/ObjectPowerStorage@Description:
 발전기로 생산된 전기 에너지를 나중에 사용할 수 있도록 저장할 수 있습니다.
 
@@ -916,8 +922,14 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerBlueSage@Name:
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantFlowerOni@Name:
 도깨비꽃
 
-Scripts/StaticObjects/Vegetation/Plants/ObjectPlantOgurin@Name:
-오구린
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantMilkmelon@Name:
+우유멜론
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantRice@Name:
+쌀
+
+Scripts/StaticObjects/Vegetation/Plants/ObjectPlantSpices@Name:
+향신료
 
 Scripts/StaticObjects/Vegetation/Plants/ObjectPlantTobacco@Name:
 담배
@@ -992,7 +1004,7 @@ Scripts/StaticObjects/Vegetation/Trees/ObjectTreePalm@Name:
 야자나무
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePine@Name:
-소나무
+가문비나무
 
 Scripts/StaticObjects/Vegetation/Trees/ObjectTreePineBoreal@Name:
 소나무

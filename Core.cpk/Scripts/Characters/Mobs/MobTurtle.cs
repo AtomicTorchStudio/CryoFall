@@ -10,19 +10,21 @@
 
     public class MobTurtle : ProtoCharacterMob
     {
+        public override bool AiIsRunAwayFromHeavyVehicles => true;
+
         public override float CharacterWorldHeight => 0.7f;
 
         public override double MobKillExperienceMultiplier => 0.1;
 
         public override string Name => "Turtle";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.HardTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.HardTissues;
 
         public override double ServerUpdateIntervalSeconds => 0.5;
 
         public override double StatDefaultHealthMax => 75;
 
-        public override double StatMoveSpeed => 0.2;
+        public override double StatMoveSpeed => 0.3;
 
         protected override void PrepareProtoCharacterMob(
             out ProtoCharacterSkeleton skeleton,
@@ -55,7 +57,7 @@
 
             var weaponProto = GetProtoEntity<ItemWeaponGenericAnimalWeak>();
             data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SetCurrentWeaponProtoOnly(weaponProto);
+            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)

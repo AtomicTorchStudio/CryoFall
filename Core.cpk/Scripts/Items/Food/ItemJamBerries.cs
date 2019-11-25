@@ -6,7 +6,7 @@
     {
         public override string Description => "Tasty jam made from berries.";
 
-        public override float FoodRestore => 12;
+        public override float FoodRestore => 15;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.LongLasting;
 

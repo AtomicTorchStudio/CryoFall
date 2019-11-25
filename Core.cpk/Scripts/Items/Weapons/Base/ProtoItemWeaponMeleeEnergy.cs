@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
@@ -43,24 +44,23 @@
         public override void ClientSetupSkeleton(
             IItem item,
             ICharacter character,
+            ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
             List<IClientComponent> skeletonComponents)
         {
-            base.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
+            base.ClientSetupSkeleton(item, character, protoCharacterSkeleton, skeletonRenderer, skeletonComponents);
 
             if (!this.ItemLightConfig.IsLightEnabled)
             {
                 return;
             }
 
-            var sceneObject = Client.Scene.GetSceneObject(character);
+            var sceneObject = character.ClientSceneObject;
             var componentLightSource = this.ClientCreateLightSource(item, character, sceneObject);
             var componentLightInSkeleton = sceneObject.AddComponent<ClientComponentLightInSkeleton>();
-            componentLightInSkeleton.Setup(character,
-                                           skeletonRenderer,
+            componentLightInSkeleton.Setup(skeletonRenderer,
                                            this.ItemLightConfig,
                                            componentLightSource,
-                                           "Weapon",
                                            "Weapon");
 
             skeletonComponents.Add(componentLightSource);
@@ -68,23 +68,22 @@
         }
 
         public override void ServerOnDamageApplied(
-            IItem weapon,
-            ICharacter byCharacter,
+            WeaponFinalCache weaponCache,
             IWorldObject damagedObject,
             double damage)
         {
-            base.ServerOnDamageApplied(weapon, byCharacter, damagedObject, damage);
+            base.ServerOnDamageApplied(weaponCache, damagedObject, damage);
 
             if (IsClient)
             {
-                // on client we cannot deduct energy
+                // on client we cannot consume energy
                 return;
             }
 
-            // deduct energy on hit
-            var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(
-                byCharacter,
-                this.EnergyUsePerHit);
+            // consume energy on hit
+            var byCharacter = weaponCache.Character;
+            var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(byCharacter,
+                                                                                        this.EnergyUsePerHit);
             CharacterEnergySystem.ServerDeductEnergyCharge(byCharacter, requiredEnergyAmount);
         }
 
@@ -102,15 +101,20 @@
             if (IsClient && weaponState.SharedGetInputIsFiring())
             {
                 CharacterEnergySystem.ClientShowNotificationNotEnoughEnergyCharge(this);
-                weaponState.ActiveProtoWeapon.ClientItemUseFinish(weaponState.ActiveItemWeapon);
+                weaponState.ProtoWeapon.ClientItemUseFinish(weaponState.ItemWeapon);
                 ClientHotbarSelectedItemManager.SelectedSlotId = null;
             }
 
             return false;
         }
 
-        public override bool SharedCanSelect(IItem item, ICharacter character)
+        public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected)
         {
+            if (!base.SharedCanSelect(item, character, isAlreadySelected))
+            {
+                return false;
+            }
+
             var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(
                 character,
                 this.EnergyUsePerShot + this.EnergyUsePerHit);
@@ -120,6 +124,7 @@
                 return true;
             }
 
+            // cannot select
             if (IsClient)
             {
                 CharacterEnergySystem.ClientShowNotificationNotEnoughEnergyCharge(this);
@@ -133,11 +138,11 @@
         {
             if (IsClient)
             {
-                // on client we cannot deduct energy
+                // on client we cannot consume energy
                 return true;
             }
 
-            // deduct energy on fire
+            // consume energy on fire
             var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(
                 character,
                 this.EnergyUsePerShot);

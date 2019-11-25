@@ -11,12 +11,6 @@
         {
             var texturePath = this.GenerateTexturePath();
 
-            this.AtlasTextureVertical = new TextureAtlasResource(
-                texturePath + "Vertical",
-                columns: 7,
-                rows: 1,
-                isTransparent: true);
-
             this.AtlasTextureHorizontal = new TextureAtlasResource(
                 texturePath + "Horizontal",
                 columns: 6,
@@ -26,6 +20,12 @@
             this.TextureBaseHorizontal = new TextureResource(
                 texturePath + "HorizontalBase",
                 isTransparent: true);
+
+            this.AtlasTextureVertical = new TextureAtlasResource(
+                texturePath + "Vertical",
+                columns: 8,
+                rows: 1,
+                isTransparent: true);
         }
 
         public override string Description =>
@@ -33,7 +33,7 @@
 
         public override string Name => "Steel door";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 

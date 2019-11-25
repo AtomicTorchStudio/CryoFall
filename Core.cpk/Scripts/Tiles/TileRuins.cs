@@ -30,7 +30,8 @@
         {
             settings.AmbientSoundProvider = new TileAmbientSoundProvider(
                 new AmbientSoundPreset(new SoundResource("Ambient/Ruins"),
-                                       suppression: 1));
+                                       suppressionCoef: 1,
+                                       isSupressingMusic: true));
 
             settings.AddGroundTexture(
                 new ProtoTileGroundTexture(

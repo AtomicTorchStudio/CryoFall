@@ -58,6 +58,12 @@ Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 Зажигательные патроны калибра .300
 
+Scripts/Items/Ammo/ItemAmmo50SH@Description:
+Мощные патроны для крупнокалиберного пистолета.
+
+Scripts/Items/Ammo/ItemAmmo50SH@Name:
+Патроны калибра .50
+
 Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
 Простые безоболочечные пули 8 мм. Для их производства используются базовые материалы и способ изготовления, поэтому их точность и убойная сила очень низки.
 
@@ -90,6 +96,9 @@ Scripts/Items/Base/ItemUseCaptions@Read:
 
 Scripts/Items/Base/ItemUseCaptions@Use:
 Использовать
+
+Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
+Этот предмет нельзя использовать на транспортном средстве.
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Журнал данных (зашифрованный)
@@ -484,6 +493,12 @@ Scripts/Items/Food/ItemCarrotGrilled@Description:
 Scripts/Items/Food/ItemCarrotGrilled@Name:
 Морковка-гриль
 
+Scripts/Items/Food/ItemCheese@Description:
+Традиционное блюдо, приготовленное из молока путем коагуляции молочного белка.
+
+Scripts/Items/Food/ItemCheese@Name:
+Сыр
+
 Scripts/Items/Food/ItemChiliBeans@Description:
 Типичная еда холостяка.
 
@@ -543,6 +558,12 @@ Scripts/Items/Food/ItemCucumbersPickled@Description:
 
 Scripts/Items/Food/ItemCucumbersPickled@Name:
 Маринованные огурцы
+
+Scripts/Items/Food/ItemDough@Description:
+Может использоваться в готовке по разнообразным рецептам.
+
+Scripts/Items/Food/ItemDough@Name:
+Тесто
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Энергетический напиток, популярный в этой галактике. Дает сильный прилив энергии.
@@ -634,6 +655,24 @@ Scripts/Items/Food/ItemMeatRoasted@Description:
 Scripts/Items/Food/ItemMeatRoasted@Name:
 Запеченное мясо
 
+Scripts/Items/Food/ItemMilk@Description:
+Богатое питательными веществами молоко. Можно пить его просто так или использовать в приготовлении пищи.
+
+Scripts/Items/Food/ItemMilk@Name:
+Молоко
+
+Scripts/Items/Food/ItemMilkmelon@Description:
+Особое генно-модифицированное растение, которые производит густую молочную жидкость, похожую по составу на настоящее молоко.
+
+Scripts/Items/Food/ItemMilkmelon@Name:
+Молодыня
+
+Scripts/Items/Food/ItemMRE@Description:
+Индивидуальный рацион питания промышленного производства, состоящий из нескольких калорийных блюд и питья, необходимых для выживания в пустыне или в ходе военных операций.
+
+Scripts/Items/Food/ItemMRE@Name:
+ИРП
+
 Scripts/Items/Food/ItemMREImprovised@Description:
 Мясо, приготовленное из простых ингредиентов и соли в качестве консерванта. Может храниться долгое время.
 
@@ -658,11 +697,11 @@ Scripts/Items/Food/ItemMushroomRust@Description:
 Scripts/Items/Food/ItemMushroomRust@Name:
 Ржавенка
 
-Scripts/Items/Food/ItemOgurin@Description:
-Странный фрукт огурин, почти безвкусный. Выведен из огурцов.
+Scripts/Items/Food/ItemOnigiri@Description:
+Это рисовые шарики. Их удобно есть на ходу. Простая и сытная пища. Специи помогают им храниться дольше.
 
-Scripts/Items/Food/ItemOgurin@Name:
-Огурин
+Scripts/Items/Food/ItemOnigiri@Name:
+Онигири
 
 Scripts/Items/Food/ItemPieBerry@Description:
 Аппетитный ягодный пирог. По рецепту любимой бабушки.
@@ -675,6 +714,12 @@ Scripts/Items/Food/ItemPineapple@Description:
 
 Scripts/Items/Food/ItemPineapple@Name:
 Ананас
+
+Scripts/Items/Food/ItemRiceCooked@Description:
+Можно есть в чистом виде или готовить его в составе других, более сложных блюд.
+
+Scripts/Items/Food/ItemRiceCooked@Name:
+Вареный рис
 
 Scripts/Items/Food/ItemRoastedMushrooms@Description:
 Вкусные жареные грибы.
@@ -1004,12 +1049,6 @@ Scripts/Items/Generic/ItemFluxPowder@Description:
 Scripts/Items/Generic/ItemFluxPowder@Name:
 Порошковый флюс
 
-Scripts/Items/Generic/ItemFoodRotten@Description:
-Напрочь испорченная пища.
-
-Scripts/Items/Generic/ItemFoodRotten@Name:
-Гнилая пища
-
 Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 Специально формулированные и сформированные гранулы нитроцеллюлозы, разработанные для особо мощного оружия.
 
@@ -1081,6 +1120,12 @@ Scripts/Items/Generic/ItemHygroscopicGranules@Description:
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Name:
 Гигроскопические гранулы
+
+Scripts/Items/Generic/ItemImpulseEngine@Description:
+Импульсный двигатель высокой мощности, который может использоваться в различных механизмах.
+
+Scripts/Items/Generic/ItemImpulseEngine@Name:
+Импульсный двигатель
 
 Scripts/Items/Generic/ItemIngotCopper@Description:
 Слитки чистой меди. Медь применяется в разных областях — от производства до электроники.
@@ -1217,11 +1262,35 @@ Scripts/Items/Generic/ItemPreservative@Description:
 Scripts/Items/Generic/ItemPreservative@Name:
 Консервант
 
+Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
+Пустое ядро реактора, которое можно наполнить веществом, насыщенном реактивной энергией, например прагмием.
+
+Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
+Пустое ядро реактора
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Description:
+Ядро реактора, заполненное прагмием. Относительно стабильный и портативный источник питания с длительным сроком службы.
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Name:
+Ядро реактора с прагмием
+
+Scripts/Items/Generic/ItemRice@Description:
+Собранные зерна риса. Можно сохранить для посадки или готовить разнообразные блюда.
+
+Scripts/Items/Generic/ItemRice@Name:
+Рис
+
 Scripts/Items/Generic/ItemRope@Description:
 Простая веревка. Можно использовать разными способами. Лишнюю веревку можно сжечь.
 
 Scripts/Items/Generic/ItemRope@Name:
 Веревка
+
+Scripts/Items/Generic/ItemRot@Description:
+Пища или другие органические вещества окончательно испортились и превратились в эту тухлую жижу.
+
+Scripts/Items/Generic/ItemRot@Name:
+Гниль
 
 Scripts/Items/Generic/ItemRubberRaw@Description:
 Натуральный каучук, также известный как латекс. Добывается с каучуковых деревьев. Из него можно изготовить вулканизированную резину.
@@ -1271,11 +1340,29 @@ Scripts/Items/Generic/ItemSolvent@Description:
 Scripts/Items/Generic/ItemSolvent@Name:
 Растворитель
 
+Scripts/Items/Generic/ItemSpices@Description:
+Множество различных специй, которые можно использовать при готовке.
+
+Scripts/Items/Generic/ItemSpices@Name:
+Специи
+
+Scripts/Items/Generic/ItemSpicesRaw@Description:
+Собранные сырые специи. Их нужно высушить и обработать перед использованием.
+
+Scripts/Items/Generic/ItemSpicesRaw@Name:
+Сырые специи
+
 Scripts/Items/Generic/ItemStone@Description:
 Тяжелый и круглый. Применяется в строительстве. Камни можно найти просто лежащими на земле или добыть в большом количестве, разбивая валуны.
 
 Scripts/Items/Generic/ItemStone@Name:
 Камень
+
+Scripts/Items/Generic/ItemStructuralPlating@Description:
+Броневые плиты, которые можно использовать как в качестве наружной защитной оболочки, так и в качестве несущей конструкции для дополнительного оборудования.
+
+Scripts/Items/Generic/ItemStructuralPlating@Name:
+Несущие пластины
 
 Scripts/Items/Generic/ItemSulfurPowder@Description:
 Чистая сера в виде порошка.
@@ -1299,19 +1386,19 @@ Scripts/Items/Generic/ItemTobaccoAged@Description:
 Выдержанные листья табака. Из них можно скрутить хорошие сигары.
 
 Scripts/Items/Generic/ItemTobaccoAged@Name:
-Табак (выдержанный)
+Выдержанный табак
 
 Scripts/Items/Generic/ItemTobaccoDried@Description:
 Высушенные листья табака. Из них можно скрутить дешевые сигары или дать им отлежаться и сделать хорошие сигары.
 
 Scripts/Items/Generic/ItemTobaccoDried@Name:
-Табак (высушенный)
+Высушенный табак
 
 Scripts/Items/Generic/ItemTobaccoRaw@Description:
 Свежие листья и стебли табака. Их можно высушить и скрутить в сигары.
 
 Scripts/Items/Generic/ItemTobaccoRaw@Name:
-Табак (свежий)
+Свежий табак
 
 Scripts/Items/Generic/ItemToxin@Description:
 Химический токсин. Используется для изготовления отравляющих боеприпасов и в медицине.
@@ -1319,17 +1406,17 @@ Scripts/Items/Generic/ItemToxin@Description:
 Scripts/Items/Generic/ItemToxin@Name:
 Токсин
 
-Scripts/Items/Generic/ItemTreebark@Description:
-Ее можно использовать в качестве топлива или для других нужд.
-
-Scripts/Items/Generic/ItemTreebark@Name:
-Древесная кора
-
 Scripts/Items/Generic/ItemTwigs@Description:
 Найденные на земле или сорванные с деревьев. Из них можно сделать примитивные инструменты или просто сжечь в костре.
 
 Scripts/Items/Generic/ItemTwigs@Name:
 Ветки
+
+Scripts/Items/Generic/ItemUniversalActuator@Description:
+Очень гибкий и невероятно мощный привод, который использует магнитные силы для движения.
+
+Scripts/Items/Generic/ItemUniversalActuator@Name:
+Универсальный привод
 
 Scripts/Items/Generic/ItemVialBiomaterial@Description:
 Полная пробирка с биоматериалом. Применяется в кибернетике и медицине, особенно для проведения операций по установке и удалению имплантов.
@@ -1376,14 +1463,17 @@ Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationFertilizerAlreadyAppl
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
 Растение уже дало урожай. Нет смысла его удобрять.
 
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
-Уже полито
-
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
-Растение скоро даст урожай. Не нужно его поливать.
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CanApplyOnlyOnPlants:
+Применимо только для растений.
 
 Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 Невозможно применить здесь
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
+Имплант биоинженерной печени. Улучшает циркуляцию крови, уменьшая негативные последствия чрезмерного употребления лекарств.
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
+Искусственная печень
 
 Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
 Специальный фоточувствительный слой сетчатки с высоким динамическим диапазоном, который обеспечивает отличное ночное зрение.
@@ -1427,17 +1517,17 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 Имплант нановолокон под кожей
 
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+На теле не обнаружено бесконтрольных мутаций.
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+Мутаций нет
+
 Scripts/Items/Medical/ItemAntiMutation@Description:
 Защищает и восстанавливает клетки ДНК, поврежденные радиацией и другими опасными эффектами. Останавливает неконтролируемые мутации на теле.
 
 Scripts/Items/Medical/ItemAntiMutation@Name:
 Лекарство от мутаций
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
-Мутаций нет
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
-На теле не обнаружено бесконтрольных мутаций.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 Вы не страдаете от тошноты. Нет повода принимать это лекарство.
@@ -1635,13 +1725,13 @@ Scripts/Items/Medical/ItemStrengthBoostBig@Description:
 Лекарство, увеличивающее силу, делает вас временно сильнее и позволяет легче выполнять задачи, связанные с физической силой.
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Name:
-Стимулятор силы (большой)
+Большой стимулятор силы
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 Лекарство, увеличивающее силу, делает вас временно сильнее и позволяет легче выполнять задачи, связанные с физической силой.
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
-Стимулятор силы (малый)
+Малый стимулятор силы
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 Саженец дерева. Можно посадить, чтобы вырастить новое дерево.
@@ -1688,8 +1778,14 @@ Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
 Семена красноцвета
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Name:
-Семена огурина
+Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
+Семена молодыни
+
+Scripts/Items/Seeds/ItemSeedsRice@Name:
+Семена риса
+
+Scripts/Items/Seeds/ItemSeedsSpices@Name:
+Семена специй
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
 Семена табака
@@ -1844,6 +1940,12 @@ Scripts/Items/Weapons/Melee/ItemMaceIron@Description:
 Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
 Железная булава
 
+Scripts/Items/Weapons/Melee/ItemMachete@Description:
+Мачете из тяжелой стали. Отлично подходит для отрубания голов.
+
+Scripts/Items/Weapons/Melee/ItemMachete@Name:
+Мачете
+
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 Нет оружия
 
@@ -1952,9 +2054,33 @@ Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
 Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
 Дробовик
 
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
+Полуавтоматический пистолет с высокой мощностью выстрела.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
+Степной сокол
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
+Эксклюзивная золотая версия пистолета Степной сокол.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
+Золотой Степной сокол
+
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 Пистолет-пулемет, использующий боеприпасы 10 мм.
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 Пистолет-пулемет
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
+Тяжелая автоматическая пушка, разработанная для установки на руку в механизированной боевой броне. Использует боеприпасы крупного калибра.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
+Тяжелая автоматическая пушка
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
+Легкая автоматическая пушка, разработанная для установки на руку в механизированной боевой броне. Использует боеприпасы малого калибра.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
+Легкая автоматическая пушка
 

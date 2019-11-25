@@ -14,7 +14,7 @@
             {
                 // spawn resource deposits on PvP servers
                 scripts
-                    .Add(GetScript<SpawnDepositOilSeep>().Configure(densityMultiplier: 0.5));
+                    .Add(GetScript<SpawnDepositOilSeep>().Configure(densityMultiplier: 0.7));
             }
 
             // minerals
@@ -36,7 +36,7 @@
 
             // loot
             scripts
-                .Add(GetScript<SpawnLootGeneric>()); // loot (stone, grass, twigs)
+                .Add(GetScript<SpawnLootGeneric>().Configure(densityMultiplier: 0.5)); // loot (stone, grass, twigs)
 
             // mobs
             scripts

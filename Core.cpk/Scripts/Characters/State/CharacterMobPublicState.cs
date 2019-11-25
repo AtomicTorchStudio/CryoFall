@@ -16,7 +16,11 @@
 
         [SyncToClient(receivers: ScopePlayers)]
         [TempOnly]
-        public IProtoItemWeapon CurrentItemWeaponProto { get; private set; }
+        public IProtoItemWeapon SelectedItemWeaponProto { get; private set; }
+
+        [SyncToClient(receivers: ScopePlayers)]
+        [TempOnly]
+        public NetworkSyncList<IProtoStatusEffect> CurrentPublicStatusEffects { get; private set; }
 
         [SyncToClient]
         [TempOnly]
@@ -28,13 +32,9 @@
 
         [SyncToClient(receivers: ScopePlayers)]
         [TempOnly]
-        public NetworkSyncList<IProtoStatusEffect> CurrentPublicStatusEffects { get; private set; }
+        public IItem SelectedItem { get; private set; }
 
-        [SyncToClient(receivers: ScopePlayers)]
-        [TempOnly]
-        public IItem SelectedHotbarItem { get; private set; }
-
-        public void EnsureEverythingCreated()
+        public void ServerEnsureEverythingCreated()
         {
             this.AppliedInput = new AppliedCharacterInput();
             this.CurrentPublicStatusEffects = new NetworkSyncList<IProtoStatusEffect>();
@@ -46,16 +46,16 @@
             }
         }
 
-        public void SetCurrentWeaponProtoOnly(IProtoItemWeapon weaponProto)
+        public void SharedSetCurrentWeaponProtoOnly(IProtoItemWeapon weaponProto)
         {
-            this.SelectedHotbarItem = null;
-            this.CurrentItemWeaponProto = weaponProto;
+            this.SelectedItem = null;
+            this.SelectedItemWeaponProto = weaponProto;
         }
 
-        public void SetSelectedHotbarItem(IItem item)
+        public void SharedSetSelectedItem(IItem item)
         {
-            this.SelectedHotbarItem = item;
-            this.CurrentItemWeaponProto = item?.ProtoItem as IProtoItemWeapon;
+            this.SelectedItem = item;
+            this.SelectedItemWeaponProto = item?.ProtoItem as IProtoItemWeapon;
         }
     }
 }

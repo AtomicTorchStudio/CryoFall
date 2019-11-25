@@ -100,15 +100,19 @@
         {
             this.isNeedRefreshEquipment = false;
 
-            if (this.protoCharacterSkeleton != this.clientState.CurrentProtoSkeleton)
+            this.character.ProtoCharacter.SharedGetSkeletonProto(this.character, 
+                                                                 out var currentProtoCharacterSkeleton, 
+                                                                 out _);
+
+            if (this.protoCharacterSkeleton != currentProtoCharacterSkeleton)
             {
-                if (this.clientState.CurrentProtoSkeleton == null)
+                if (currentProtoCharacterSkeleton == null)
                 {
                     return;
                 }
 
                 // proto skeleton changed - destroy current skeleton
-                this.protoCharacterSkeleton = this.clientState.CurrentProtoSkeleton;
+                this.protoCharacterSkeleton = (ProtoCharacterSkeleton)currentProtoCharacterSkeleton;
                 if (this.currentSkeleton != null)
                 {
                     this.currentSkeleton.Destroy();
@@ -122,7 +126,7 @@
                 this.currentSkeleton = ClientCharacterEquipmentHelper.CreateCharacterSkeleton(
                     this.sceneObjectSkeleton,
                     this.protoCharacterSkeleton,
-                    worldScale: 0.125 * scale,
+                    worldScale: 0.125 * scale * this.protoCharacterSkeleton.InventoryScale,
                     spriteQualityOffset: -1);
 
                 if (this.currentSkeleton == null)
@@ -131,8 +135,8 @@
                     return;
                 }
 
-                this.currentSkeleton.PositionOffset = (this.textureWidth / 2.0,
-                                                       -this.textureHeight * 0.925);
+                this.currentSkeleton.PositionOffset = (this.textureWidth / 2.0, -this.textureHeight * 0.925)
+                                                      + this.protoCharacterSkeleton.InventoryOffset;
                 this.currentSkeleton.RenderingTag = this.renderingTag;
             }
 

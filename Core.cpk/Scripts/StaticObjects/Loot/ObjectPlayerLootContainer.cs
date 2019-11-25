@@ -5,6 +5,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
@@ -35,8 +36,8 @@
           <ObjectPlayerLootContainer.ObjectPlayerLootContainerPrivateState,
               ObjectPlayerLootContainer.ObjectPlayerLootContainerPublicState,
               StaticObjectClientState>,
-          IInteractableProtoStaticWorldObject,
-          IProtoStaticWorldObjectCustomInteractionCursor
+          IInteractableProtoWorldObject,
+          IProtoWorldObjectCustomInteractionCursor
     {
         public const double AutoDestroyTimeoutSeconds = 60 * 60; // 1 hour
 
@@ -72,7 +73,7 @@
 
         public override string Name => "Player loot items";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SolidGround;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SolidGround;
 
         public override double ObstacleBlockDamageCoef => 0; // not used
 
@@ -93,9 +94,9 @@
                                                            ensureNoClosedDoorsOnTheWay: false);
         }
 
-        public override string ClientGetTitle(IStaticWorldObject worldObject)
+        public override string ClientGetTitle(IWorldObject worldObject)
         {
-            var ownerName = GetPublicState(worldObject).OwnerName;
+            var ownerName = GetPublicState((IStaticWorldObject)worldObject).OwnerName;
             if (ownerName == ClientCurrentCharacterHelper.Character?.Name)
             {
                 return MessageLootFromCurrentPlayer;
@@ -104,9 +105,9 @@
             return string.Format(MessageFormatLootFromAnotherPlayer, ownerName);
         }
 
-        public BaseUserControlWithWindow ClientOpenUI(IStaticWorldObject worldObject)
+        public BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {
-            var itemsContainer = GetPrivateState(worldObject).ItemsContainer;
+            var itemsContainer = GetPrivateState((IStaticWorldObject)worldObject).ItemsContainer;
             var soundOpen = Client.UI.GetApplicationResource<SoundUI>("SoundWindowContainerBagOpen");
             var soundClose = Client.UI.GetApplicationResource<SoundUI>("SoundWindowContainerBagClose");
             return WindowContainerExchange.Show(itemsContainer,
@@ -164,7 +165,7 @@
                             _ => _.ClientRemote_NotifyLootFinished(lastInteractingCharacter.Name));
         }
 
-        public void ServerOnMenuClosed(ICharacter who, IStaticWorldObject worldObject)
+        public void ServerOnMenuClosed(ICharacter who, IWorldObject worldObject)
         {
             // nothing here
         }
@@ -213,10 +214,10 @@
             return false;
         }
 
-        void IInteractableProtoStaticWorldObject.ServerOnClientInteract(ICharacter who, IStaticWorldObject worldObject)
+        void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
             Logger.Important($"{who} interacting with {worldObject}");
-            var privateState = GetPrivateState(worldObject);
+            var privateState = GetPrivateState((IStaticWorldObject)worldObject);
             privateState.LastInteractingCharacter = who;
             var owner = privateState.Owner;
             if (owner == who)
@@ -232,7 +233,7 @@
             // don't use base implementation
             //base.ClientInitialize(data);
 
-            var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
+            var sceneObject = data.GameObject.ClientSceneObject;
             Client.Rendering.CreateSpriteRenderer(
                 sceneObject,
                 this.DefaultTexture,
@@ -244,10 +245,10 @@
 
         protected override void ClientInteractStart(ClientObjectData data)
         {
-            InteractableStaticWorldObjectHelper.ClientStartInteract(data.GameObject);
+            InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
         }
 
-        protected override void ClientOnObjectDestroyed(Vector2Ushort tilePosition)
+        protected override void ClientOnObjectDestroyed(Vector2D position)
         {
             // do nothing as currently it's not a damageable object
         }
@@ -261,8 +262,22 @@
         {
             tileRequirements
                 .Clear()
-                .Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
-                .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyStatic)
+                // skip this check as it's usually fine to drop the loot if player could stand there
+                //.Add(ConstructionTileRequirements.ValidatorNoStaticObjectsExceptFloor)
+                // validate no static physics objects there except destroyed walls and opened doors
+                .Add(new ConstructionTileRequirements.Validator(
+                         ConstructionTileRequirements.ErrorNoFreeSpace,
+                         c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
+                                  c.Tile,
+                                  t => t.PhysicsBody.IsStatic
+                                       // allow destroyed walls physics in the tile
+                                       && !(t.PhysicsBody.AssociatedWorldObject
+                                             ?.ProtoWorldObject is ObjectWallDestroyed)
+                                       // allow opened doors in the tile
+                                       && !(t.PhysicsBody.AssociatedWorldObject
+                                             ?.ProtoWorldObject is ProtoObjectDoor
+                                            && t.PhysicsBody.AssociatedWorldObject
+                                                .GetPublicState<ObjectDoorPublicState>().IsOpened))))
                 // ensure no other loot containers
                 .Add(new ConstructionTileRequirements.Validator(
                          // ReSharper disable once CanExtractXamlLocalizableStringCSharp
@@ -410,7 +425,11 @@
             bool ensureNoWallsOnTheWay,
             bool ensureNoClosedDoorsOnTheWay)
         {
-            var startTile = character.Tile;
+            var characterPosition = character.Position;
+            var startTilePosition = new Vector2Ushort(
+                (ushort)characterPosition.X,
+                (ushort)(characterPosition.Y - SkeletonHuman.LegsColliderRadius));
+            var startTile = Server.World.GetTile(startTilePosition);
 
             var checkQueue = new List<Tile>();
             checkQueue.Add(startTile);
@@ -543,21 +562,21 @@
         private void ClientRemote_NotifyLootFinished(string name)
         {
             NotificationSystem.ClientShowNotification(
-                NotificationCurrentPlayerItemsTaken_Title,
-                string.Format(NotificationCurrentPlayerItemsTaken_Message, name),
-                NotificationColor.Bad,
-                this.DefaultTexture,
-                autoHide: false);
+                                  NotificationCurrentPlayerItemsTaken_Title,
+                                  string.Format(NotificationCurrentPlayerItemsTaken_Message, name),
+                                  NotificationColor.Bad,
+                                  this.DefaultTexture)
+                              .HideAfterDelay(delaySeconds: 10 * 60);
         }
 
         private void ClientRemote_NotifyLootInteraction(string name)
         {
             NotificationSystem.ClientShowNotification(
-                NotificationCurrentPlayerItemsBeingLooted_Title,
-                string.Format(NotificationCurrentPlayerItemsBeingLooted_Message, name),
-                NotificationColor.Bad,
-                this.DefaultTexture,
-                autoHide: false);
+                                  NotificationCurrentPlayerItemsBeingLooted_Title,
+                                  string.Format(NotificationCurrentPlayerItemsBeingLooted_Message, name),
+                                  NotificationColor.Bad,
+                                  this.DefaultTexture)
+                              .HideAfterDelay(10 * 60);
         }
 
         public class ObjectPlayerLootContainerPrivateState : StructurePrivateState

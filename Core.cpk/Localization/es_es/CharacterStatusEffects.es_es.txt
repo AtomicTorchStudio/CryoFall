@@ -28,6 +28,12 @@ Acabas de comer muy bien. Todo lo que hagas te resultará más fácil.
 Scripts/CharacterStatusEffects/Buffs/StatusEffectHeartyFood@Name:
 Comida vigorizante
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Description:
+Hace poco has disfrutado de una comida sabrosa. Eso hace que tu vida parezca mucho más satisfactoria.
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectSavoryFood@Name:
+Comida sabrosa
+
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Estás bajo los efectos de un estimulante que te vuelve temporalmente más fuerte. Te será más fácil llevar a cabo tareas que requieran fuerza.
 
@@ -44,7 +50,7 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Description:
 Añadir un implante roto a tu cuerpo afecta drásticamente a tu bienestar. Como resultado, tu salud máxima (PS) se verá reducida.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenImplant@Name:
-Implante roto
+Enfermedad por implante roto
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Te has roto una pierna, lo cual afecta a tu capacidad de movimiento. Sufrirás un dolor intenso al intentar correr con una pierna rota. Usa una tablilla para curar la fractura.

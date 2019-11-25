@@ -14,10 +14,9 @@
         public Vector2Ushort LandClaimCenterTilePosition { get; set; }
 
         [SyncToClient]
-        public ushort LandClaimGraceAreaPaddingSizeOneDirection { get; set; }
+        public byte LandClaimTier { get; set; }
 
-        [SyncToClient]
-        public ushort LandClaimSize { get; set; }
+        public IProtoObjectLandClaim ProtoObjectLandClaim => ProtoObjectLandClaimHelper.GetProtoByTier(this.LandClaimTier);
 
         public void SetupAreaProperties(LandClaimAreaPrivateState privateState)
         {
@@ -26,9 +25,7 @@
 
             var tilePosition = LandClaimSystem.SharedCalculateLandClaimObjectCenterTilePosition(structure);
             this.LandClaimCenterTilePosition = tilePosition;
-            this.LandClaimSize = protoObjectLandClaim.LandClaimSize;
-            this.LandClaimGraceAreaPaddingSizeOneDirection =
-                protoObjectLandClaim.LandClaimGraceAreaPaddingSizeOneDirection;
+            this.LandClaimTier = protoObjectLandClaim.LandClaimTier;
         }
     }
 }

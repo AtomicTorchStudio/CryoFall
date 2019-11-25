@@ -19,7 +19,7 @@
 
             duration = CraftingDuration.Medium;
 
-            inputItems.Add<ItemIngotIron>(count: 20);
+            inputItems.Add<ItemIngotIron>(count: 15);
             inputItems.Add<ItemLeather>(count: 3);
 
             outputItems.Add<ItemMaceIron>();

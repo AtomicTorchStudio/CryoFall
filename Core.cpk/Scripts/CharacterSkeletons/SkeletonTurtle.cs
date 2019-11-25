@@ -7,7 +7,7 @@
 
     public class SkeletonTurtle : ProtoCharacterSkeletonAnimal
     {
-        public override double DefaultMoveSpeed => 0.2;
+        public override double DefaultMoveSpeed => 0.3;
 
         public override float OrientationDownExtraAngle => 5;
 

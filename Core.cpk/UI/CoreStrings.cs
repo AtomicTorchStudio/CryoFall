@@ -5,6 +5,12 @@
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public static class CoreStrings
     {
+        // this tooltip is displayed when hovering over a structure to build
+        public const string Action_Build = "Build";
+
+        // this tooltip is displayed when hovering over a structure to repair
+        public const string Action_Repair = "Repair";
+
         public const string BrokenObjectLandClaimTooltip_TitleDestroyCountdown = "Destroyed in";
 
         public const string Button_Accept = "Accept";
@@ -42,7 +48,13 @@
 
         public const string Button_Help = "Help";
 
+        // button to select/display the next entry
+        public const string Button_Next = "Next";
+
         public const string Button_OK = "OK";
+
+        // button to select/display the previous entry
+        public const string Button_Previous = "Previous";
 
         public const string Button_Quit = "Quit";
 
@@ -139,6 +151,26 @@
 
         public const string Defense_Format_Radiation = "Radiation protection: {0}";
 
+        public const string Demo_Button_BuyGameOnSteam = "Buy CryoFall on Steam";
+
+        public const string Demo_CanPurchase =
+            "You can purchase CryoFall to receive the complete version of the game. It's a one-time purchase, and you will be able to continue playing where you left off with your existing character (if you have played recently). You will also be able to play on the community and modded servers, or even host your own server.";
+
+        public const string Demo_Expired =
+            "Your demo time has expired. Thanks for trying out the game—we hope you've enjoyed it!";
+
+        public const string Demo_OnlyOfficialServers =
+            @"With this demo version you can play on any of the official game servers.
+              [br]Please purchase the full version to play on any other community or private game server or host your own servers.";
+
+        public const string Demo_TimeRemaining =
+            "The demo version will expire in:";
+
+        public const string Demo_Title = "CryoFall Demo Version";
+
+        public const string Demo_Welcome =
+            "Welcome to the demo version of CryoFall. You can play the game with no restrictions (you have complete access to all game features on official game servers) for the duration of this demo version.";
+
         // This message displayed over an oil seep or any other recently spawned resource deposit.
         // It cannot be claimed instantly.
         // It's displayed like: Available for claim in: 29 minutes 59 seconds.
@@ -154,6 +186,8 @@
 
         public const string Extras_DiscordTooltip = "Official CryoFall Discord server (English only)";
 
+        public const string Extras_FeaturesTooltip = "CryoFall features slideshow";
+
         public const string Extras_PatchnotesTooltip = "All CryoFall updates patchnotes (English only)";
 
         public const string Extras_RoadmapTooltip = "CryoFall development roadmap (English only)";
@@ -164,8 +198,11 @@
 
         public const string FarmPlantTooltip_TitleHarvestInCountdown = "Harvest in";
 
-        // should be not capitalized as it's part of the message "Harvest in: now!"
-        public const string FarmPlantTooltip_TitleHarvestInCountdown_Ready = "now!";
+        public const string FarmPlantTooltip_TitleHarvestInCountdown_Ready = "Ready for harvest";
+
+        public const string FarmPlantTooltip_TitleSpoiled = "Rotten away";
+
+        public const string FarmPlantTooltip_TitleSpoiledInCountdown = "Spoiled in";
 
         public const string FarmPlantTooltip_WateredForDuration = "Watered for";
 
@@ -176,6 +213,8 @@
         public const string Gender_Female = "Female";
 
         public const string Gender_Male = "Male";
+
+        public const string HUDButtonsBar_DismountVehicle = "Dismount vehicle";
 
         public const string HUDButtonsBar_MenuTitle_Construction = "Construction";
 
@@ -378,6 +417,17 @@
 
         public const string MenuServers_ServerTag_PvP_Title = "PvP";
 
+        public const string ModsDisabledWindow_Description =
+            @"The game was unable to launch with the mods, so they were disabled.
+              [br]This is because at least one of the mods is outdated (incompatible with the current version of the game) or simply invalid.
+              [br]The game is unable to determine whether it's a particular mod causing an issue or if all of them are incompatible. You can check this by enabling the mods one by one.
+              [br]If you want to continue using these mods, please ensure you're using their latest versions.
+              [br]
+              [br]Disabled mods list:
+              [br]{0}";
+
+        public const string ModsDisabledWindow_Title = "CryoFall has disabled the mods";
+
         public const string Network_Jitter = "Jitter";
 
         public const string Network_Jitter_SeverityRed =
@@ -397,7 +447,7 @@
         public const string Network_PingAverage_SeverityRed =
             @"Looks like your Internet connection to the server is experiencing severe latency (very large ping).
               [br]As a consequence, some of your actions in the game (which require server response to take effect) will take much longer to execute and process.
-              [br]E.g. your hits might often miss due to the substantial discrepancy with the server.
+              [br]E.g., your hits might often miss due to the substantial discrepancy with the server.
               [br]You might also experience frequent rubber banding or instant position correction.";
 
         public const string Network_PingAverage_SeverityYellow =
@@ -618,19 +668,30 @@
             @"AtomicTorch.com account registration
               [br](for your Steam ID).";
 
+        public const string SupporterPack_Badge = "Supporter badge";
+
+        public const string SupporterPack_Description
+            = @"Supporter Pack is a collection of bonus goodies for those who wish to go the extra mile to support the developers of CryoFall. As a sign of appreciation, the game will display a special supporter's badge in the game chat.
+  [br][br]The pack doesn't provide any advantage in the game and is purely optional. It includes the game's complete soundtrack, concept art, high resolution game art, chat badge, etc. More items will be added to the Supporter Pack during the Early Access period.
+  [br][br]Thank you from the bottom of our hearts for your support!";
+
+        public const string TechGroupTooltip_LearningPointsFormat = "Learning points: {0}";
+
         public const string TechGroupTooltip_Requirements = "Requirements";
 
         public const string TechGroupTooltip_TechnologiesAvailableCount = "Technologies available";
 
         public const string TechGroupTooltip_TechnologiesUnlockedCount = "Technologies unlocked";
 
-        public const string TechNodeTooltip_Perks = "Perks";
+        public const string TechNodeTooltip_Perks = "Perks:";
 
-        public const string TechNodeTooltip_Recipes = "Recipes";
+        public const string TechNodeTooltip_Recipes = "Recipes:";
 
-        public const string TechNodeTooltip_Structures = "Structures";
+        public const string TechNodeTooltip_Structures = "Structures:";
 
         public const string TechNodeTooltip_TechnologicalPrerequisite = "Technological prerequisite";
+
+        public const string TechNodeTooltip_Vehicles = "Vehicles:";
 
         public const string Technology = "Technology";
 
@@ -700,6 +761,59 @@
             "It seems you are launching CryoFall for the first time. Would you like to link it to your existing [url=atomictorch.com]AtomicTorch.com[/url] account?";
 
         public const string UnstuckInFormat = "Unstuck in: {0}";
+
+        public const string Vehicle_Ammo = "Ammo";
+
+        public const string Vehicle_Armor = "Armor";
+
+        public const string Vehicle_EnergyLevel = "Energy level";
+
+        public const string Vehicle_Enter = "Enter";
+
+        public const string Vehicle_Hotbar_ArmorValueFormat = "Armor {1:F0}/{2:F0} ({0}%)";
+
+        public const string Vehicle_Hotbar_EnergyPercentFormat = "Energy {0}%";
+
+        public const string Vehicle_Mech_ItemSlot_LeftArm = "Left arm";
+
+        public const string Vehicle_Mech_ItemSlot_RightArm = "Right arm";
+
+        public const string Vehicle_Mech_ItemSlot_Weapon = "Weapon";
+
+        public const string Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech =
+            "This weapon can be used only when installed on a mech.";
+
+        public const string Vehicle_ReactorCores = "Reactor cores";
+
+        public const string VehicleGarage_ButtonPutCurrentVehicle = "Put current vehicle in garage";
+
+        public const string VehicleGarage_ButtonTakeVehicle = "Take vehicle";
+
+        public const string VehicleGarage_TitleAccessibleVehicles = "You have access to the following vehicles:";
+
+        public const string VehicleGarage_TitleNoAccessibleVehicles = "You don't have access to any vehicles yet.";
+
+        public const string VehicleGarage_VehicleStatus_Docked = "Docked";
+
+        public const string VehicleGarage_VehicleStatus_InGarage = "In garage";
+
+        public const string VehicleGarage_VehicleStatus_InUse = "Currently in use";
+
+        public const string VehicleGarage_VehicleStatus_InWorld = "In the world";
+
+        // build the selected vehicle
+        public const string VehiclesAssemblyList_Button_Build = "Build";
+
+        public const string VehiclesAssemblyList_NoSchematicsKnown =
+            @"You don't have any schematics for this assembly bay.
+              [br][br][br]
+              You can unlock new schematics in the technologies menu.";
+
+        public const string VehiclesAssemblyList_TitleSchematics = "Schematics";
+
+        public const string VehiclesAssemblyList_TitleSchematicsUnlocked = "Schematics unlocked";
+
+        public const string Weapon_CompatibleAmmo = "Compatible ammo:";
 
         public const string Window_Tab_Main = "Main";
 
@@ -859,6 +973,17 @@
 
         public const string WindowSkills_TitleSkillsDiscoveredCount = "Skills discovered";
 
+        public const string WindowsObjectVehicle_RepairTextFormat =
+            "To repair {0}% of armor you need:";
+
+        public const string WindowsObjectVehicle_TabCargo_Title = "Cargo";
+
+        public const string WindowsObjectVehicle_TabConstructVehicle = "Construction";
+
+        public const string WindowsObjectVehicle_TabGarage = "Garage";
+
+        public const string WindowsObjectVehicle_TabVehicleTitle = "Vehicle";
+
         public const string WindowSocial_OnlineNow = "Online now";
 
         public const string WindowSocial_ServerStatistics = "Server statistics";
@@ -978,6 +1103,9 @@
         public const string WorldMapMarkLandClaim_Tooltip =
             @"[b]Land claim[/b]
               [br]This is the land you have access to.";
+
+        public const string WorldMapMarkLandClaim_Tooltip_LastUsedVehicle =
+            "[b]Last used vehicle[/b]";
 
         public const string WorldMapMarkLandClaim_Tooltip_Owner =
             @"[b]Land claim[/b]

@@ -23,6 +23,8 @@
 
         private static HUDNotificationControl currentNotification;
 
+        public static bool IsNearOrInsideBaseUnderRaidblock => !(currentNotification is null);
+
         private static string GetNotificationText(double timeRemains)
         {
             if (timeRemains < 1)
@@ -37,8 +39,8 @@
         private static void Refresh()
         {
             var position = ClientCurrentCharacterHelper.Character?.TilePosition ?? Vector2Ushort.Zero;
-            var areasGroup = LandClaimSystem.ServerFindLandClaimAreasGroup(position,    addGracePadding: false)
-                             ?? LandClaimSystem.ServerFindLandClaimAreasGroup(position, addGracePadding: true);
+            var areasGroup = LandClaimSystem.SharedGetLandClaimAreasGroup(position,    addGracePadding: false)
+                             ?? LandClaimSystem.SharedGetLandClaimAreasGroup(position, addGracePadding: true);
 
             var lastRaidTime = areasGroup != null
                                    ? LandClaimAreasGroup.GetPublicState(areasGroup).LastRaidTime ?? double.MinValue
@@ -71,7 +73,8 @@
                 message: text,
                 autoHide: false,
                 // TODO: add custom icon here, currently we're using a placeholder icon
-                icon: Api.GetProtoEntity<ItemBombModern>().Icon);
+                icon: Api.GetProtoEntity<ItemBombModern>().Icon,
+                playSound: false);
         }
 
         private static void Update()

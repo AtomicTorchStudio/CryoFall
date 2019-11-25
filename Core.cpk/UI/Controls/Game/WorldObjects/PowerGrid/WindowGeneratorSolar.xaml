@@ -30,11 +30,11 @@
                        FontSize="10"
                        Margin="0,0,0,5" />
 
-            <controls:ItemsContainerControl Grid.Row="1"
-                                            Container="{Binding ViewModelItemsContainerExchange.Container}"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            DesignTimeSlotsCount="4" />
+            <controls:ItemsContainerExchangeControl
+                Grid.Row="1"
+                DataContext="{Binding ViewModelItemsContainerExchange}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
 
             <powerGrid:PowerProducerStatsControl Grid.Row="2" />
         </Grid>

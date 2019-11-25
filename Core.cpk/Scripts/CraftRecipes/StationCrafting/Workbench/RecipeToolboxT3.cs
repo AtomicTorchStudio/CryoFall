@@ -20,7 +20,7 @@
             duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemPlanks>(count: 20);
-            inputItems.Add<ItemIngotSteel>(count: 20);
+            inputItems.Add<ItemIngotSteel>(count: 12);
 
             outputItems.Add<ItemToolboxT3>();
         }

@@ -29,12 +29,12 @@
                                           .SetCustomPaddingWithSelf(15);
 
             var presetBeetle = spawnList.CreatePreset(interval: 15, padding: 0.5, useSectorDensity: false)
-                                         .Add<MobPragmiumBeetle>()
-                                         .SetCustomPaddingWithSelf(5);
+                                        .Add<MobPragmiumBeetle>()
+                                        .SetCustomPaddingWithSelf(5);
 
             // define custom spawn padding between different mobs
             presetLizard.SetCustomPaddingWith(presetScorpion, 5);
-            presetLizard.SetCustomPaddingWith(presetBeetle,  5);
+            presetLizard.SetCustomPaddingWith(presetBeetle,   5);
             presetBeetle.SetCustomPaddingWith(presetScorpion, 5);
         }
     }

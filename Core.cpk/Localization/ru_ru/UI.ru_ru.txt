@@ -1,4 +1,10 @@
-﻿UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
+﻿UI/CoreStrings@Action_Build:
+Построить
+
+UI/CoreStrings@Action_Repair:
+Починить
+
+UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 Уничтожится через
 
 UI/CoreStrings@Button_Accept:
@@ -47,8 +53,14 @@ UI/CoreStrings@Button_Edit:
 UI/CoreStrings@Button_Help:
 Помощь
 
+UI/CoreStrings@Button_Next:
+Далее
+
 UI/CoreStrings@Button_OK:
 ОК
+
+UI/CoreStrings@Button_Previous:
+Назад
 
 UI/CoreStrings@Button_Quit:
 Выход
@@ -161,6 +173,28 @@ UI/CoreStrings@Defense_Format_Psi:
 UI/CoreStrings@Defense_Format_Radiation:
 Защита от радиации: {0}
 
+UI/CoreStrings@Demo_Button_BuyGameOnSteam:
+Купить CryoFall в Steam
+
+UI/CoreStrings@Demo_CanPurchase:
+Купите CryoFall, чтобы получить полную версию игры. Это единовременная покупка, которая даст вам возможность продолжить играть с того же места своим текущим персонажем (если вы играли недавно). Вы также сможете играть на серверах сообщества и серверах с модами или создать собственный сервер.
+
+UI/CoreStrings@Demo_Expired:
+Срок действия демоверсии истек. Спасибо за игру. Надеемся, что вам понравилось!
+
+UI/CoreStrings@Demo_OnlyOfficialServers:
+`В этой демоверсии вы можете играть на официальных серверах игры.
+[br]Купите полную версию игры, чтобы получить возможность играть на серверах сообщества и частных серверах или создать свой собственный сервер.`
+
+UI/CoreStrings@Demo_TimeRemaining:
+Демоверсия истечет через:
+
+UI/CoreStrings@Demo_Title:
+Демоверсия CryoFall
+
+UI/CoreStrings@Demo_Welcome:
+Добро пожаловать в демоверсию CryoFall. Вы можете играть без ограничений (у вас есть доступ ко всем возможностям игры на официальных серверах) на время действия этой демоверсии.
+
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 Доступно для контроля через:
 
@@ -179,6 +213,9 @@ UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 UI/CoreStrings@Extras_DiscordTooltip:
 Официальный сервер Discord для CryoFall (только на английском)
 
+UI/CoreStrings@Extras_FeaturesTooltip:
+Cлайд-шоу особенностей CryoFall
+
 UI/CoreStrings@Extras_PatchnotesTooltip:
 Все обновления и исправления CryoFall (только на английском)
 
@@ -195,7 +232,13 @@ UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
 Урожай через
 
 UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
-сейчас!
+Урожай поспел
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiled:
+Сгнило
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
+Испортится через
 
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 Полито на
@@ -211,6 +254,9 @@ UI/CoreStrings@Gender_Female:
 
 UI/CoreStrings@Gender_Male:
 Мужчина
+
+UI/CoreStrings@HUDButtonsBar_DismountVehicle:
+Покинуть транспорт
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 Строительство
@@ -404,7 +450,7 @@ UI/CoreStrings@MenuServers_Button_EditAddress:
 Изменить адрес
 
 UI/CoreStrings@MenuServers_Button_JoinServer:
-Подключиться к серверу
+Подключиться
 
 UI/CoreStrings@MenuServers_Button_RefreshAll:
 Обновить все
@@ -487,6 +533,18 @@ UI/CoreStrings@MenuServers_ServerTag_PvP_Description:
 
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
+
+UI/CoreStrings@ModsDisabledWindow_Description:
+`Не удалось запустить игру с модами, поэтому они были отключены.
+[br]Причина в том, что по крайней мере один из модов устарел (несовместим с текущей версией игры) или неисправен.
+[br]Игра не может проверить, заключается ли проблема в конкретном моде или все они несовместимы. Вы можете проверить это, включая моды по одному.
+[br]Если вы хотите продолжить использовать эти моды, убедитесь, что они последней версии.
+[br]
+[br]Список отключенных модов:
+[br]{0}`
+
+UI/CoreStrings@ModsDisabledWindow_Title:
+Игра отключила моды
 
 UI/CoreStrings@Network_Jitter:
 Джиттер
@@ -790,6 +848,17 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `Регистрация учетной записи AtomicTorch.com
 [br](для вашего Steam ID).`
 
+UI/CoreStrings@SupporterPack_Badge:
+Значок фаната
+
+UI/CoreStrings@SupporterPack_Description:
+`Набор поддержки — это коллекция приятных бонусов для тех, кто хочет поддержать разработчиков CryoFall. В знак благодарности в чате игры будет отображаться особый значок фаната.
+[br][br]Набор не дает никаких преимуществ в игре и приобретается по желанию. Он включает полный саундтрек игры, концепт-арты, игровые изображения высокого разрешения, значок чата и др. Дополнительные предметы будут добавлены в Набор поддержки на этапе раннего доступа.
+[br][br]Мы искренне благодарим вас за поддержку!`
+
+UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
+Очки технологий: {0}
+
 UI/CoreStrings@TechGroupTooltip_Requirements:
 Требования
 
@@ -800,16 +869,19 @@ UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 Открыто технологий
 
 UI/CoreStrings@TechNodeTooltip_Perks:
-Бонусы
+Бонусы:
 
 UI/CoreStrings@TechNodeTooltip_Recipes:
-Рецепты
+Рецепты:
 
 UI/CoreStrings@TechNodeTooltip_Structures:
-Постройки
+Постройки:
 
 UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
 Технологическое условие
+
+UI/CoreStrings@TechNodeTooltip_Vehicles:
+Транспорт:
 
 UI/CoreStrings@Technology:
 Технология
@@ -906,6 +978,83 @@ UI/CoreStrings@UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAc
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
 Похоже, вы запустили CryoFall в первый раз. Хотите связать игру с вашей учетной записью [url=atomictorch.com]AtomicTorch.com[/url]?
+
+UI/CoreStrings@UnstuckInFormat:
+Спасение через: {0}
+
+UI/CoreStrings@Vehicle_Ammo:
+Боеприпасы
+
+UI/CoreStrings@Vehicle_Armor:
+Броня
+
+UI/CoreStrings@Vehicle_EnergyLevel:
+Уровень энергии
+
+UI/CoreStrings@Vehicle_Enter:
+Использовать
+
+UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
+Броня {1:F0}/{2:F0} ({0}%)
+
+UI/CoreStrings@Vehicle_Hotbar_EnergyPercentFormat:
+Энергия {0}%
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_LeftArm:
+Левая рука
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
+Правая рука
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
+Оружие
+
+UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
+Это оружие может использоваться только при установке на меха.
+
+UI/CoreStrings@Vehicle_ReactorCores:
+Ядра реактора
+
+UI/CoreStrings@VehicleGarage_ButtonPutCurrentVehicle:
+Поместить текущий транспорт в гараж
+
+UI/CoreStrings@VehicleGarage_ButtonTakeVehicle:
+Взять транспорт
+
+UI/CoreStrings@VehicleGarage_TitleAccessibleVehicles:
+У вас есть доступ к следующим транспортным средствам:
+
+UI/CoreStrings@VehicleGarage_TitleNoAccessibleVehicles:
+У вас пока нет доступа к транспортным средствам.
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_Docked:
+На платформе
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InGarage:
+В гараже
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InUse:
+Используется
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InWorld:
+В мире
+
+UI/CoreStrings@VehiclesAssemblyList_Button_Build:
+Собрать
+
+UI/CoreStrings@VehiclesAssemblyList_NoSchematicsKnown:
+`У вас нет чертежей для этой платформы.
+[br][br][br]
+Вы можете открыть новые чертежи в меню технологий.`
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
+Чертежи
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
+Открытые чертежи
+
+UI/CoreStrings@Weapon_CompatibleAmmo:
+Совместимые боеприпасы:
 
 UI/CoreStrings@Window_Tab_Main:
 Главное
@@ -1101,6 +1250,21 @@ UI/CoreStrings@WindowSkills_ProgressTowardsTheNextLevel:
 UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
 Открыто навыков
 
+UI/CoreStrings@WindowsObjectVehicle_RepairTextFormat:
+Для починки {0}% брони требуется:
+
+UI/CoreStrings@WindowsObjectVehicle_TabCargo_Title:
+Груз
+
+UI/CoreStrings@WindowsObjectVehicle_TabConstructVehicle:
+Сборка
+
+UI/CoreStrings@WindowsObjectVehicle_TabGarage:
+Гараж
+
+UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
+Транспорт
+
 UI/CoreStrings@WindowSocial_OnlineNow:
 Игроков онлайн
 
@@ -1252,6 +1416,9 @@ UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
 `[b]Зона контроля[/b]
 [br]Это территория, на которую у вас есть доступ.`
 
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_LastUsedVehicle:
+[b]Недавний транспорт[/b]
+
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 `[b]Зона контроля[/b]
 [br]Это ваша зона контроля.`
@@ -1349,9 +1516,9 @@ UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
 Спасите меня!
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
-`Вы застряли в доме и не можете выйти?
+`Вы замуровали себя в доме и не можете выйти?
 [br]Или кто-то жестоко подшутил над вами, и вы застряли?
-[br]Воспользуйтесь этой функцией, чтобы телепортировать своего персонажа.`
+[br]Воспользуйтесь этой функцией, чтобы телепортировать своего персонажа после небольшой задержки.`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 `Помощь от "застревания"`
@@ -1485,9 +1652,6 @@ UI/Controls/Game/Technologies/Data/ViewModelWindowTechnologies@DialogDoYouWantTo
 UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
 Изготовление вручную
 
-UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
-Починить
-
 UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
 Скоропортящиеся продукты хранятся дольше примерно в {0} раз.
 
@@ -1545,6 +1709,89 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `Выработка электроэнергии: {0} Эн./с.
 [br]Предельная мощность: {1} Эн./с.`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+Добро пожаловать в CryoFall!
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+Мы хотели бы познакомить вас с некоторыми особенностями нашей игры! CryoFall находится в стадии активной разработки, но все из перечисленного далее уже доступно.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+Фермерство и готовка
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+Выращивайте собственные культуры с помощью удобрений и инструментов. Используйте плоды своего труда для приготовления различных блюд, которые принесут вашему персонажу значительные преимущества.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+Состояние персонажа и лекарства
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+Проработанное моделирование состояния персонажа — не только обычные голод и жажда, но также множество недугов, с которыми помогут справиться разнообразные медицинские препараты.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+Производство
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+Используйте имеющиеся природные ресурсы в мире CryoFall. Качайте и перерабатывайте нефть или добывайте литий из геотермальных источников, чтобы сделать аккумуляторы и электронику.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+Экономика
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+Для развития торговли с другими игроками чеканьте монеты и стройте полностью автоматизированные торговые станции.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+Кибернетические импланты
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+Устанавливайте различные бионические и кибернетические импланты на своего персонажа, чтобы получить новые способности или повысить характеристики.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+Навыки
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+Узнавайте, открывайте и развивайте навыки своего персонажа, чтобы повысить его эффективность и получить новые способности.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
+Настройка персонажа
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+Изменяйте внешний вид своего персонажа и используйте разнообразное снаряжение и инструменты, чтобы сделать его уникальным.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+Технологии
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+Зарабатывайте очки технологий и используйте их для изучения технологий, рецептов и построек, чтобы настроить игру под себя и сконцентрироваться на тех ее областях, которые интересны именно вам.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+Электричество
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+Проектируйте базу с учетом электросетей. Вам доступно множество генераторов, накопителей и потребителей электроэнергии.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+Транспорт
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+Собирайте и совершенствуйте разнообразный футуристический транспорт, чтобы исследовать мир быстрее или использовать в битве.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
+Фантастические существа
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+Исследуйте разнообразный мир с множеством природных зон и десятками фантастических существ.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+И напоследок...
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
+`Пожалуйста, не забывайте, что CryoFall по-прежнему находится в разработке и мы планируем внести еще множество изменений и улучшений. Тем не менее, это уже полноценная игра, и мы надеемся, что она вам понравится![br][br]
+Мы всегда доступны на нашем канале Discord и на наших форумах — заходите поздороваться! :)[br][br]
+Если у вас возникнут сложности, или вы захотите сообщить об ошибке или эксплойте, мы всегда готовы выслушать и помочь!`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
+Начать игру
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
 Ожидание ответа.

@@ -2,8 +2,10 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.DataStructures;
@@ -94,15 +96,16 @@
             }
         }
 
-        public static void UpdatePosition(bool forceReset, ICharacter character)
+        public static void UpdatePosition(bool forceReset, IDynamicWorldObject dynamicWorldObject)
         {
-            if (!character.IsCurrentClientCharacter)
+            var currentPlayerCharacter = ClientCurrentCharacterHelper.Character;
+            if (currentPlayerCharacter is null)
             {
-                throw new Exception("This feature works only for current client character");
+                return;
             }
 
             var serverPosition = World.GetUninterpolatedPosition(
-                character,
+                dynamicWorldObject,
                 // we need the position at time on edge of interpolation (latest available one)
                 Game.ServerFrameTimeApproximated + Game.PhysicsInterpolationInterval,
                 out var snapshotServerTimestamp);
@@ -129,13 +132,13 @@
                 previousServerPosition = null;
                 inputHistory.Clear();
                 inputHistory.SetLastPosition(serverPosition);
-                World.SetPosition(character, serverPosition, forceReset: true);
+                World.SetPosition(dynamicWorldObject, serverPosition, forceReset: true);
                 lastIsInterpolatingIdlePosition = false;
                 return;
             }
 
             // TODO: actually we should do this every frame in client update method (but after simulation physics in client world)
-            var clientPosition = character.Position;
+            var clientPosition = dynamicWorldObject.Position;
             var predictedPosition = serverPosition
                                     + inputHistory.GetClientMovementDelta(snapshotServerTimestamp);
 
@@ -146,7 +149,7 @@
 
             var predictionErrorSqr = (clientPosition - predictedPosition).LengthSquared;
             if (predictionErrorSqr
-                < GetPredictionErrorToleranceSqr(character))
+                < GetPredictionErrorToleranceSqr(currentPlayerCharacter))
             {
                 inputHistory.RegisterClientMovement(clientPosition);
                 lastIsInterpolatingIdlePosition = false;
@@ -155,7 +158,7 @@
 
             // too big prediction error
             Vector2D correctedClientPosition;
-            var isInterpolationCorrection = character.ProtoCharacter is PlayerCharacterSpectator
+            var isInterpolationCorrection = dynamicWorldObject.ProtoWorldObject is PlayerCharacterSpectator
                                             || (predictionErrorSqr
                                                 < MaxPredictionErrorDistanceToTeleport
                                                 * MaxPredictionErrorDistanceToTeleport);
@@ -167,7 +170,7 @@
                       * MaxPredictionErrorDistanceToRayCollisionChecks;
 
                 if (isTooBigDistanceToCheckForRayCollisions
-                    && GetObstaclesOnRay(character, predictedPosition, out var tempResults))
+                    && GetObstaclesOnRay(dynamicWorldObject, predictedPosition, out var tempResults))
                 {
                     // obstacles on the ray - cannot correct by interpolation
                     tempResults.Dispose();
@@ -183,7 +186,7 @@
                                                         predictedPosition,
                                                         PositionInterpolationCorrectionLerpSpeed
                                                         * Api.Client.Core.DeltaTime);
-                lastIsInterpolatingIdlePosition = IsIdle(character);
+                lastIsInterpolatingIdlePosition = IsIdle(currentPlayerCharacter);
             }
             else
             {
@@ -195,24 +198,24 @@
                 lastIsInterpolatingIdlePosition = false;
             }
 
-            World.SetPosition(character, correctedClientPosition, forceReset: false);
-            clientPosition = character.Position;
+            World.SetPosition(dynamicWorldObject, correctedClientPosition, forceReset: false);
+            clientPosition = dynamicWorldObject.Position;
             inputHistory.SetLastPosition(clientPosition);
         }
 
         private static bool GetObstaclesOnRay(
-            ICharacter character,
+            IDynamicWorldObject worldObject,
             Vector2D predictedPosition,
             out ITempList<TestResult> tempList)
         {
-            if (character.ProtoCharacter is PlayerCharacterSpectator)
+            if (worldObject.ProtoWorldObject is PlayerCharacterSpectator)
             {
                 tempList = null;
                 return false;
             }
 
             var physicsSpace = World.GetPhysicsSpace();
-            tempList = physicsSpace.TestLine(character.Position,
+            tempList = physicsSpace.TestLine(worldObject.Position,
                                              predictedPosition,
                                              CollisionGroup.GetDefault(),
                                              sendDebugEvent: false);
@@ -222,7 +225,7 @@
             for (var index = 0; index < list.Count; index++)
             {
                 var body = list[index].PhysicsBody;
-                if (body.AssociatedWorldObject == character)
+                if (body.AssociatedWorldObject == worldObject)
                 {
                     tempList.RemoveAt(index);
                     index--;

@@ -26,7 +26,7 @@
 
         protected override WorldActionRequest ClientTryCreateRequest(ICharacter character)
         {
-            var worldObject = ClientComponentObjectInteractionHelper.CurrentMouseOverObject;
+            var worldObject = ClientComponentObjectInteractionHelper.MouseOverObject;
             if (worldObject?.ProtoWorldObject is IProtoObjectGatherable)
             {
                 return new WorldActionRequest(character, worldObject);

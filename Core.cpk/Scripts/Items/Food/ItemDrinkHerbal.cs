@@ -10,6 +10,8 @@
         public override string Description =>
             "Popular drink made from herbal ingredients. Supposedly good for your health and especially for detoxifying the body.";
 
+        public override float FoodRestore => 3;
+
         public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
 
         public override float HealthRestore => 1;
@@ -19,8 +21,6 @@
         public override string Name => "Herbal drink";
 
         public override ushort OrganicValue => 0;
-
-        public override float FoodRestore => 3;
 
         public override float StaminaRestore => 30;
 
@@ -33,7 +33,7 @@
 
         protected override void ServerOnEat(ItemEatData data)
         {
-            data.Character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(0.025); // removes 15 sec of toxins
+            data.Character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(0.05); // removes 15 sec of toxins
 
             base.ServerOnEat(data);
         }

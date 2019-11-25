@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterEnergySystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -43,7 +44,7 @@
             {
                 CharacterEnergySystem.ClientShowNotificationNotEnoughEnergyCharge(this);
                 // stop using weapon item!
-                weaponState.ActiveProtoWeapon.ClientItemUseFinish(weaponState.ActiveItemWeapon);
+                weaponState.ProtoWeapon.ClientItemUseFinish(weaponState.ItemWeapon);
             }
 
             return false;
@@ -54,7 +55,7 @@
         {
             if (IsClient)
             {
-                // on client we cannot deduct energy
+                // on client we cannot consume energy
                 return true;
             }
 
@@ -72,6 +73,11 @@
         }
 
         protected abstract void PrepareProtoWeaponRangedEnergy(ref DamageDescription damageDescription);
+
+        protected override ReadOnlySoundPreset<ObjectMaterial> PrepareSoundPresetHit()
+        {
+            return MaterialHitsSoundPresets.RangedEnergy;
+        }
     }
 
     public abstract class ProtoItemWeaponRangedEnergy

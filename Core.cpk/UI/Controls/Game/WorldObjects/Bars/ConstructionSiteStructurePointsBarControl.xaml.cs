@@ -6,33 +6,33 @@
 
     public partial class ConstructionSiteStructurePointsBarControl : BaseUserControl, ICacheableControl
     {
-        private StaticObjectStructurePointsData staticObjectStructurePointsData;
+        private ObjectStructurePointsData objectStructurePointsData;
 
         private ViewModelStructurePointsBarControl viewModel;
 
-        public StaticObjectStructurePointsData StaticObjectStructurePointsData
+        public ObjectStructurePointsData ObjectStructurePointsData
         {
-            get => this.staticObjectStructurePointsData;
+            get => this.objectStructurePointsData;
             set
             {
-                if (this.staticObjectStructurePointsData.Equals(value))
+                if (this.objectStructurePointsData.Equals(value))
                 {
                     return;
                 }
 
-                this.staticObjectStructurePointsData = value;
+                this.objectStructurePointsData = value;
 
                 if (this.viewModel != null)
                 {
-                    this.viewModel.StaticObjectStructurePointsData = this.staticObjectStructurePointsData;
+                    this.viewModel.ObjectStructurePointsData = this.objectStructurePointsData;
                 }
             }
         }
 
         public void ResetControlForCache()
         {
-            this.viewModel.StaticObjectStructurePointsData
-                = this.staticObjectStructurePointsData
+            this.viewModel.ObjectStructurePointsData
+                = this.objectStructurePointsData
                       = default;
         }
 
@@ -45,7 +45,7 @@
 
         private void RefreshViewModelData()
         {
-            this.viewModel.StaticObjectStructurePointsData = this.staticObjectStructurePointsData;
+            this.viewModel.ObjectStructurePointsData = this.objectStructurePointsData;
         }
     }
 }

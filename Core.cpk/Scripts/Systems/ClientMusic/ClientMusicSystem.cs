@@ -18,7 +18,8 @@
 
         private static readonly IComponentMusicSource ComponentMusicSource;
 
-        private static readonly ILogger Logger = Api.NullLogger; // we don't need any logging as the system works fine
+        // we don't need any logging as the system works fine, but it's easy to restore logging
+        private static readonly ILogger Logger = Api.NullLogger; // Api.Logger
 
         private static readonly List<MusicTrack> Queue = new List<MusicTrack>();
 
@@ -112,6 +113,13 @@
 
         private static void SelectNextPlaylistTrackIndex()
         {
+            if (MusicPlaylistLastStopTimeManager.TryGetLastPlayedMusicTrack(currentPlaylist, out var lastMusicTrack))
+            {
+                Logger.Important("Playlist " + currentPlaylist.ShortId + " will resume track " + lastMusicTrack);
+                currentPlaylistTrackIndex = currentPlaylist.FindTrackIndex(lastMusicTrack);
+                return;
+            }
+
             switch (currentPlaylist.Mode)
             {
                 case PlayListMode.Sequential:
@@ -238,7 +246,7 @@
 
             // play next track
             var nextTrack = Queue[0];
-            CurrentTrack = new CurrentMusicTrack(nextTrack);
+            CurrentTrack = new CurrentMusicTrack(nextTrack, CurrentPlaylist);
             Logger.Important("Playing music track now: " + nextTrack);
         }
 
@@ -259,16 +267,39 @@
         {
             public readonly MusicTrack MusicTrack;
 
+            public readonly ProtoPlaylist Playlist;
+
+            private double? startAtPosition;
+
             private double? stopAtPosition;
 
-            public CurrentMusicTrack(MusicTrack musicTrack)
+            public CurrentMusicTrack(MusicTrack musicTrack, ProtoPlaylist playlist)
             {
+                this.Playlist = playlist;
                 this.MusicTrack = musicTrack;
                 ComponentMusicSource.MusicResource = musicTrack.MusicResource;
                 ComponentMusicSource.IsLooped = musicTrack.IsLooped;
+                this.CurrentFadeInDuration = this.MusicTrack.FadeInDuration;
+                this.CurrentFadeOutDuration = this.MusicTrack.FadeOutDuration;
+
+                if (MusicTrackLastStopTimeManager.TryGetLastStopTime(musicTrack.MusicResource, out var lastStopTime))
+                {
+                    this.startAtPosition = lastStopTime;
+                    ComponentMusicSource.Seek(lastStopTime);
+                    Logger.Important($"Resume music {musicTrack.MusicResource} from {lastStopTime}");
+                }
+                else
+                {
+                    this.startAtPosition = null;
+                }
+
                 this.Update();
                 ComponentMusicSource.Play();
             }
+
+            public double CurrentFadeInDuration { get; set; }
+
+            public double CurrentFadeOutDuration { get; set; }
 
             public bool IsStopRequested => this.stopAtPosition.HasValue;
 
@@ -288,7 +319,14 @@
                     return;
                 }
 
-                this.stopAtPosition = ComponentMusicSource.Position + this.MusicTrack.FadeOutDuration;
+                if (this.Playlist != CurrentPlaylist)
+                {
+                    // playlist changed, in that case a special fade out duration applies
+                    this.CurrentFadeOutDuration = Math.Min(this.CurrentFadeOutDuration,
+                                                           this.Playlist.FadeOutDurationOnPlaylistChange);
+                }
+
+                this.stopAtPosition = ComponentMusicSource.Position + this.CurrentFadeOutDuration;
                 if (this.stopAtPosition > ComponentMusicSource.Duration)
                 {
                     // clamp to duration
@@ -309,28 +347,76 @@
                 if (this.IsStopRequested
                     && ComponentMusicSource.Position > (this.stopAtPosition ?? ComponentMusicSource.Duration))
                 {
+                    if (this.stopAtPosition.HasValue)
+                    {
+                        if (this.MusicTrack.IsLooped
+                            // If track is not looped, check whether there is enough track time remains
+                            // to continue playing the track on the resume.
+                            // Enough time: at least 10 seconds plus track fade in and out durations.
+                            || ((ComponentMusicSource.Duration - this.stopAtPosition.Value)
+                                > (10
+                                   + this.MusicTrack.FadeInDuration
+                                   + this.MusicTrack.FadeOutDuration)))
+                        {
+                            Logger.Important(
+                                $"Stop music and remember stop time {this.MusicTrack.MusicResource} at {this.stopAtPosition.Value}");
+                            MusicPlaylistLastStopTimeManager.RememberLastTrack(this.Playlist,
+                                                                               this.MusicTrack);
+                            MusicTrackLastStopTimeManager.RememberLastTrack(this.MusicTrack.MusicResource,
+                                                                            this.stopAtPosition.Value);
+                        }
+                    }
+
                     ComponentMusicSource.Stop();
+
                     return;
                 }
 
-                var position = ComponentMusicSource.Position;
+                this.ApplyFade();
+            }
+
+            private void ApplyFade()
+            {
+                if (ComponentMusicSource.State != SoundEmitterState.Playing)
+                {
+                    ComponentMusicSource.Volume = 0;
+                    return;
+                }
+
+                var positionForFader = ComponentMusicSource.Position;
+                if (this.startAtPosition.HasValue)
+                {
+                    positionForFader -= this.startAtPosition.Value;
+
+                    if (positionForFader < 0)
+                    {
+                        // it's possible as track position is not accurate
+                        // (due to FMOD rounding of milliseconds or multithreading?)
+                        positionForFader = 0;
+                    }
+                    else if (positionForFader > this.CurrentFadeInDuration)
+                    {
+                        // fade in completed
+                        this.startAtPosition = null;
+                    }
+                }
+
                 // ReSharper disable once PossibleInvalidOperationException
                 var duration = this.stopAtPosition ?? ComponentMusicSource.Duration.Value;
-                var track = this.MusicTrack;
 
                 var volume = this.MusicTrack.Volume;
 
-                if (position < track.FadeInDuration)
+                if (positionForFader < this.CurrentFadeInDuration)
                 {
                     // apply fade in
-                    volume *= position / track.FadeInDuration;
+                    volume *= positionForFader / this.CurrentFadeInDuration;
                 }
 
                 if (!ComponentMusicSource.IsLooped
-                    && position >= duration - track.FadeOutDuration)
+                    && positionForFader >= duration - this.CurrentFadeOutDuration)
                 {
                     // apply fade out
-                    volume *= (duration - position) / track.FadeOutDuration;
+                    volume *= (duration - positionForFader) / this.CurrentFadeOutDuration;
                     if (volume < 0)
                     {
                         // clamp volume to 0 (it's possible when position > duration)

@@ -1,13 +1,13 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners
 {
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
 
-    public interface IProtoObjectWithOwnersList : IProtoObjectStructure
+    public interface IProtoObjectWithOwnersList : IInteractableProtoWorldObject
     {
-        bool SharedCanEditOwners(IStaticWorldObject worldObject, ICharacter byOwner);
-
         bool HasOwnersList { get; }
+
+        bool SharedCanEditOwners(IWorldObject worldObject, ICharacter byOwner);
     }
 }

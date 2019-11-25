@@ -40,7 +40,6 @@
                 return;
             }
 
-            this.CommandBuild = new ActionCommand(this.ExecuteCommandBuild);
             this.Categories = this.GetCategories();
             // select first category by default (if it's not available, the first available category will be selected automatically)
             this.SelectedCategory = this.Categories[0];
@@ -52,7 +51,7 @@
 
         public IList<ViewModelStructureCategory> Categories { get; }
 
-        public BaseCommand CommandBuild { get; }
+        public BaseCommand CommandBuild => new ActionCommand(this.ExecuteCommandBuild);
 
         public string SearchText
         {
@@ -124,15 +123,12 @@
                 }
 
                 this.NotifyThisPropertyChanged();
-                this.UpdateStructureDetailsView();
             }
         }
 
         public ViewModelStructuresSelectList StructuresList { get; private set; }
 
         public Visibility VisibilityBuildButtons { get; set; } = Visibility.Visible;
-
-        public Visibility VisibilityDetailsView { get; private set; }
 
         public Visibility VisibilityPleaseEquipTool { get; set; } = Visibility.Visible;
 
@@ -190,17 +186,6 @@
                       .OrderBy(c => c.Order)
                       .Select(c => new ViewModelStructureCategory(c))
                       .ToList();
-        }
-
-        private void UpdateStructureDetailsView()
-        {
-            if (this.selectedStructure == null)
-            {
-                this.VisibilityDetailsView = Visibility.Collapsed;
-                return;
-            }
-
-            this.VisibilityDetailsView = Visibility.Visible;
         }
 
         private void UpdateStructuresList()

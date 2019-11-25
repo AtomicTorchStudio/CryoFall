@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectSafeArmored>();
 
-            config.SetRequiredNode<TechNodeLargeSteelCrate>();
+            config.SetRequiredNode<TechNodeMetalBarrel>();
         }
     }
 }

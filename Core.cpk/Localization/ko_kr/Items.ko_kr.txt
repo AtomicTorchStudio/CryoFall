@@ -47,7 +47,7 @@ Scripts/Items/Ammo/ItemAmmo12gaSlugs@Name:
 12 구경 슬러그
 
 Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Description:
-장갑 관통 능력이 있는 중화기 반물질 .300 탄
+장갑 관통 능력이 있는 대물 중화기 .300 탄
 
 Scripts/Items/Ammo/ItemAmmo300ArmorPiercing@Name:
 .300 장갑 관통탄
@@ -57,6 +57,12 @@ Scripts/Items/Ammo/ItemAmmo300Incendiary@Description:
 
 Scripts/Items/Ammo/ItemAmmo300Incendiary@Name:
 .300 소이탄
+
+Scripts/Items/Ammo/ItemAmmo50SH@Description:
+고성능 대구경 권총 카트리지.
+
+Scripts/Items/Ammo/ItemAmmo50SH@Name:
+.50 SH탄
 
 Scripts/Items/Ammo/ItemAmmo8mmStandard@Description:
 단순한 8mm 무탄피탄. 간단한 소재와 제작 기술을 사용하여 정확도와 화력이 상당히 낮습니다.
@@ -90,6 +96,9 @@ Scripts/Items/Base/ItemUseCaptions@Read:
 
 Scripts/Items/Base/ItemUseCaptions@Use:
 사용
+
+Scripts/Items/Base/ProtoItem@NotificationItemCannotBeUsedInVehicle:
+이 아이템은 탈것을 타고 있는 중에는 사용할 수 없습니다.
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 데이터 기록 (암호화)
@@ -484,6 +493,12 @@ Scripts/Items/Food/ItemCarrotGrilled@Description:
 Scripts/Items/Food/ItemCarrotGrilled@Name:
 당근구이
 
+Scripts/Items/Food/ItemCheese@Description:
+우유의 단백질이 응고되어 만들어진 전통 식품.
+
+Scripts/Items/Food/ItemCheese@Name:
+치즈
+
 Scripts/Items/Food/ItemChiliBeans@Description:
 궁극의 독신남 요리.
 
@@ -543,6 +558,12 @@ Scripts/Items/Food/ItemCucumbersPickled@Description:
 
 Scripts/Items/Food/ItemCucumbersPickled@Name:
 오이 피클
+
+Scripts/Items/Food/ItemDough@Description:
+다양한 요리에 사용되는 재료.
+
+Scripts/Items/Food/ItemDough@Name:
+반죽
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 은하계 전역에서 인기 있는 에너지 음료. 당신에게 엄청난 에너지를 선사합니다.
@@ -634,6 +655,24 @@ Scripts/Items/Food/ItemMeatRoasted@Description:
 Scripts/Items/Food/ItemMeatRoasted@Name:
 구운 고기
 
+Scripts/Items/Food/ItemMilk@Description:
+영양이 풍부한 우유. 그대로 마시거나 요리에 사용할 수 있습니다.
+
+Scripts/Items/Food/ItemMilk@Name:
+우유
+
+Scripts/Items/Food/ItemMilkmelon@Description:
+실제 우유와 유사한, 걸쭉한 흰 액체를 만들어내는 특수 유전자 변형 식물.
+
+Scripts/Items/Food/ItemMilkmelon@Name:
+우유멜론
+
+Scripts/Items/Food/ItemMRE@Description:
+공장에서 만들어졌으며, 황무지 또는 군사 작전 중 생존을 위해 고칼로리 요리와 음료가 포함된 식사.
+
+Scripts/Items/Food/ItemMRE@Name:
+전투 식량
+
 Scripts/Items/Food/ItemMREImprovised@Description:
 몇 가지 간단한 재료로 요리되며, 주요 방부제로 소금이 사용됩니다. 잘 상하지 않아서 오래 보관할 수 있습니다.
 
@@ -658,11 +697,11 @@ Scripts/Items/Food/ItemMushroomRust@Description:
 Scripts/Items/Food/ItemMushroomRust@Name:
 녹버섯
 
-Scripts/Items/Food/ItemOgurin@Description:
-이상하게 생긴 오구린 열매... 맛은 아주 없습니다. 오이를 유전자 조작하여 만들어졌습니다.
+Scripts/Items/Food/ItemOnigiri@Description:
+주먹밥이라고도 합니다. 이동 중에 편리하게 먹을 수 있습니다. 소박한 음식이지만 포만감을 줍니다. 양념이 오니기리를 더 오래 신선하게 해줍니다.
 
-Scripts/Items/Food/ItemOgurin@Name:
-오구린 열매
+Scripts/Items/Food/ItemOnigiri@Name:
+오니기리
 
 Scripts/Items/Food/ItemPieBerry@Description:
 군침 도는 베리 파이. 어릴 때 할머니가 만들어 준 것과 비슷합니다.
@@ -675,6 +714,12 @@ Scripts/Items/Food/ItemPineapple@Description:
 
 Scripts/Items/Food/ItemPineapple@Name:
 파인애플
+
+Scripts/Items/Food/ItemRiceCooked@Description:
+그대로 먹어도 좋고 요리 재료로 사용해도 좋습니다.
+
+Scripts/Items/Food/ItemRiceCooked@Name:
+밥
 
 Scripts/Items/Food/ItemRoastedMushrooms@Description:
 맛있게 구워진 버섯.
@@ -923,7 +968,7 @@ Scripts/Items/Generic/ItemComponentsHighTech@Name:
 첨단 부품
 
 Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Description:
-공업에 유용하게 사용되는 각종 약품.
+공업에 유용하게 사용되는 각종 화학 약품.
 
 Scripts/Items/Generic/ItemComponentsIndustrialChemicals@Name:
 공업 약품
@@ -941,7 +986,7 @@ Scripts/Items/Generic/ItemComponentsOptical@Name:
 광부품
 
 Scripts/Items/Generic/ItemComponentsPharmaceutical@Description:
-다양한 약을 제작하는 데 사용되는 제약용 화학 약품.
+다양한 약물을 제작하는 데 사용되는 제약용 화학 약품.
 
 Scripts/Items/Generic/ItemComponentsPharmaceutical@Name:
 제약용 화학 약품
@@ -1003,12 +1048,6 @@ Scripts/Items/Generic/ItemFluxPowder@Description:
 
 Scripts/Items/Generic/ItemFluxPowder@Name:
 융제 가루
-
-Scripts/Items/Generic/ItemFoodRotten@Description:
-이 음식은 완전히 상했습니다.
-
-Scripts/Items/Generic/ItemFoodRotten@Name:
-부패한 음식
 
 Scripts/Items/Generic/ItemFormulatedGunpowder@Description:
 고성능 화기용으로 고안되어 특별히 만들어진 나이트로셀룰로스 과립.
@@ -1081,6 +1120,12 @@ Scripts/Items/Generic/ItemHygroscopicGranules@Description:
 
 Scripts/Items/Generic/ItemHygroscopicGranules@Name:
 흡습성 과립
+
+Scripts/Items/Generic/ItemImpulseEngine@Description:
+다양한 기계 장치에 활용할 수 있는 고출력 임펄스 엔진.
+
+Scripts/Items/Generic/ItemImpulseEngine@Name:
+임펄스 엔진
 
 Scripts/Items/Generic/ItemIngotCopper@Description:
 순수한 구리괴. 구리는 공업에서 전자에 이르기까지 다양한 분야에서 사용되고 있습니다.
@@ -1164,7 +1209,7 @@ Scripts/Items/Generic/ItemOreIron@Name:
 철광석
 
 Scripts/Items/Generic/ItemOreLithium@Description:
-리튬 소금은 열수구에서 추출되며, 순수한 금속 리튬으로 가공됩니다.
+리튬 소금은 온천에서 추출되며, 순수한 금속 리튬으로 가공됩니다.
 
 Scripts/Items/Generic/ItemOreLithium@Name:
 리튬 소금
@@ -1217,11 +1262,35 @@ Scripts/Items/Generic/ItemPreservative@Description:
 Scripts/Items/Generic/ItemPreservative@Name:
 방부제
 
+Scripts/Items/Generic/ItemReactorCoreEmpty@Description:
+프라그뮴과 같은 반응성 에너지 운반 물질로 다시 채울 수 있는 빈 원자로 노심.
+
+Scripts/Items/Generic/ItemReactorCoreEmpty@Name:
+빈 원자로 노심
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Description:
+프라그뮴이 채워진 원자로 노심. 비교적 안정적이고 휴대 가능하며, 전원이 오래 지속됩니다.
+
+Scripts/Items/Generic/ItemReactorCorePragmium@Name:
+프라그뮴 원자로 노심
+
+Scripts/Items/Generic/ItemRice@Description:
+수확한 쌀알. 심거나 다양한 요리에 사용할 수 있습니다.
+
+Scripts/Items/Generic/ItemRice@Name:
+쌀
+
 Scripts/Items/Generic/ItemRope@Description:
 평범한 밧줄. 다양한 용도로 사용할 수 있습니다. 사용하고 남은 밧줄은 태울 수 있습니다.
 
 Scripts/Items/Generic/ItemRope@Name:
 밧줄
+
+Scripts/Items/Generic/ItemRot@Description:
+음식이나 그밖의 다른 유기물이 완전히 부패하여 만들어진 썩은 곤죽.
+
+Scripts/Items/Generic/ItemRot@Name:
+부패물
 
 Scripts/Items/Generic/ItemRubberRaw@Description:
 천연고무, 라텍스 수지라고도 합니다. 고무나무에서 추출됩니다. 화학적인 방법을 통해 가황 고무로 바꿀 수 있습니다.
@@ -1271,11 +1340,29 @@ Scripts/Items/Generic/ItemSolvent@Description:
 Scripts/Items/Generic/ItemSolvent@Name:
 용매
 
+Scripts/Items/Generic/ItemSpices@Description:
+요리에 사용되는 다양한 향신료.
+
+Scripts/Items/Generic/ItemSpices@Name:
+향신료
+
+Scripts/Items/Generic/ItemSpicesRaw@Description:
+수확하여 가공하지 않은 향신료. 사용하기 전에 반드시 건조 및 가공 처리해야 합니다.
+
+Scripts/Items/Generic/ItemSpicesRaw@Name:
+생 향신료
+
 Scripts/Items/Generic/ItemStone@Description:
 둥글고 무거운... 돌. 건설에 유용합니다. 땅에 놓여 있는 것을 주워서 얻거나 다량으로 채굴할 수 있습니다.
 
 Scripts/Items/Generic/ItemStone@Name:
 돌
+
+Scripts/Items/Generic/ItemStructuralPlating@Description:
+기재를 추가로 장착하기 위한 하중 지지 구조물이나 보호용 외부 구조물로 사용되는 장갑 철판.
+
+Scripts/Items/Generic/ItemStructuralPlating@Name:
+건축용 철판
 
 Scripts/Items/Generic/ItemSulfurPowder@Description:
 가루 형태의 순수한 황.
@@ -1299,19 +1386,19 @@ Scripts/Items/Generic/ItemTobaccoAged@Description:
 숙성된 담뱃잎. 고급 담배로 만들 수 있습니다.
 
 Scripts/Items/Generic/ItemTobaccoAged@Name:
-담배 (숙성)
+숙성 담배
 
 Scripts/Items/Generic/ItemTobaccoDried@Description:
 말린 담뱃잎. 싸구려 담배를 만들거나 더 오래 숙성하여 고급 담배로 만들 수 있습니다.
 
 Scripts/Items/Generic/ItemTobaccoDried@Name:
-담뱃잎 (건조)
+건조 담배
 
 Scripts/Items/Generic/ItemTobaccoRaw@Description:
 생 담뱃잎과 꼬투리. 말려서 담배로 만들 수 있습니다.
 
 Scripts/Items/Generic/ItemTobaccoRaw@Name:
-담배 (생)
+생 담배
 
 Scripts/Items/Generic/ItemToxin@Description:
 화학적 독성 물질. 독성 물질을 담은 탄약을 만들거나 약을 만드는 데 사용할 수 있습니다.
@@ -1319,17 +1406,17 @@ Scripts/Items/Generic/ItemToxin@Description:
 Scripts/Items/Generic/ItemToxin@Name:
 독성 물질
 
-Scripts/Items/Generic/ItemTreebark@Description:
-나무에서 얻은 나무껍질. 태우거나 다른 용도로 사용할 수 있습니다.
-
-Scripts/Items/Generic/ItemTreebark@Name:
-나무껍질
-
 Scripts/Items/Generic/ItemTwigs@Description:
 땅바닥에 떨어져 있거나 나무에서 꺾어서 모은 잔가지. 간단한 도구를 만들거나 불에 태울 수 있습니다.
 
 Scripts/Items/Generic/ItemTwigs@Name:
 잔가지
+
+Scripts/Items/Generic/ItemUniversalActuator@Description:
+자기력으로 움직이는 매우 유연하며 강력한 작동기.
+
+Scripts/Items/Generic/ItemUniversalActuator@Name:
+범용 작동기
 
 Scripts/Items/Generic/ItemVialBiomaterial@Description:
 인공두뇌학과 의학, 특히 임플란트를 설치하고 제거하는 작업을 수행하는 데 사용됩니다.
@@ -1376,14 +1463,17 @@ Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationFertilizerAlreadyAppl
 Scripts/Items/Generic/Base/ProtoItemFertilizer@NotificationPlantHarvestReady:
 농작물을 수확할 준비가 되었습니다. 비료를 더 뿌릴 필요가 없습니다.
 
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationAlreadyWatered:
-이미 물을 줬습니다
-
-Scripts/Items/Generic/Base/ProtoItemPlantWatering@NotificationPlantHarvestReady:
-농작물을 수확할 준비가 되었습니다. 물을 더 줄 필요가 없습니다.
+Scripts/Items/Generic/Base/ProtoItemPlantWatering@CanApplyOnlyOnPlants:
+식물에만 적용할 수 있습니다.
 
 Scripts/Items/Generic/Base/ProtoItemPlantWatering@CannotApplyErrorTitle:
 이곳에 적용할 수 없음
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Description:
+생체 공학 기술로 만들어진 인공 간. 향상된 혈액 여과 기능으로 약물 남용 부작용을 없애줍니다.
+
+Scripts/Items/Implants/ItemImplantArtificialLiver@Name:
+인공 간
 
 Scripts/Items/Implants/ItemImplantArtificialRetina@Description:
 밤에도 거의 완벽한 시력을 제공하는 HDR 지원 고감광 특수 망막층.
@@ -1427,17 +1517,17 @@ Scripts/Items/Implants/ItemImplantNanoFiberSkin@Description:
 Scripts/Items/Implants/ItemImplantNanoFiberSkin@Name:
 나노 섬유 피부 임플란트
 
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
+신체에서 통제할 수 없는 변이가 발견되지 않습니다.
+
+Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
+변이 없음
+
 Scripts/Items/Medical/ItemAntiMutation@Description:
 방사능 노출 및 기타 유해한 영향으로 인해 손상된 세포의 DNA를 보호하고 회복해줍니다. 신체의 통제할 수 없는 변이를 멈추게 합니다.
 
 Scripts/Items/Medical/ItemAntiMutation@Name:
 항변이약
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Title:
-변이 없음
-
-Scripts/Items/Medical/ItemAntiMutation@NotificationMutation_Message:
-신체에서 통제할 수 없는 변이가 발견되지 않습니다.
 
 Scripts/Items/Medical/ItemAntiNausea@NotificationNoNausea_Message:
 속이 메스껍지 않습니다. 지금 이 약을 사용하는 건 아무 의미가 없습니다.
@@ -1596,7 +1686,7 @@ Scripts/Items/Medical/ItemPeredozin@NotificationTooMuch_Title:
 과유불급!
 
 Scripts/Items/Medical/ItemPeredozin@Description:
-페레도진은 강한 약품 아이템을 자주 사용하였을 때 나타나는 부정적인 효과를 완화하는 데 도움을 줍니다. 직장으로 투여해야 합니다.
+페레도진은 강한 약물 아이템을 자주 사용하였을 때 나타나는 부정적인 효과를 완화하는 데 도움을 줍니다. 직장으로 투여해야 합니다.
 
 Scripts/Items/Medical/ItemPeredozin@Name:
 페레도진
@@ -1635,13 +1725,13 @@ Scripts/Items/Medical/ItemStrengthBoostBig@Description:
 근력강화제를 사용하면 일시적으로 힘이 강해져, 신체 활동의 효율이 향상됩니다.
 
 Scripts/Items/Medical/ItemStrengthBoostBig@Name:
-근력강화제 (대)
+대 근력강화제
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Description:
 근력강화제를 사용하면 일시적으로 힘이 강해져, 신체 활동의 효율이 향상됩니다.
 
 Scripts/Items/Medical/ItemStrengthBoostSmall@Name:
-근력강화제 (소)
+소 근력강화제
 
 Scripts/Items/Seeds/ItemSaplingBirch@Description:
 나무 묘목. 새 나무를 심어서 키울 수 있습니다.
@@ -1668,34 +1758,40 @@ Scripts/Items/Seeds/ItemSeedsBellPepper@Description:
 씨앗이 든 작은 봉투. 흙에 심을 수 있습니다.
 
 Scripts/Items/Seeds/ItemSeedsBellPepper@Name:
-피망씨
+피망 씨앗
 
 Scripts/Items/Seeds/ItemSeedsCarrot@Name:
-당근씨
+당근 씨앗
 
 Scripts/Items/Seeds/ItemSeedsChiliPepper@Name:
-고추씨
+고추 씨앗
 
 Scripts/Items/Seeds/ItemSeedsCorn@Name:
-옥수수씨
+옥수수 씨앗
 
 Scripts/Items/Seeds/ItemSeedsCucumber@Name:
-오이씨
+오이 씨앗
 
 Scripts/Items/Seeds/ItemSeedsFlowerBlueSage@Name:
-파란색 세이지씨
+파란색 세이지 씨앗
 
 Scripts/Items/Seeds/ItemSeedsFlowerOni@Name:
-도깨비꽃씨
+도깨비꽃 씨앗
 
-Scripts/Items/Seeds/ItemSeedsOgurin@Name:
-오구린씨
+Scripts/Items/Seeds/ItemSeedsMilkmelon@Name:
+우유멜론 씨앗
+
+Scripts/Items/Seeds/ItemSeedsRice@Name:
+볍씨
+
+Scripts/Items/Seeds/ItemSeedsSpices@Name:
+향신료 씨앗
 
 Scripts/Items/Seeds/ItemSeedsTobacco@Name:
-담배씨
+담배 씨앗
 
 Scripts/Items/Seeds/ItemSeedsTomato@Name:
-토마토씨
+토마토 씨앗
 
 Scripts/Items/Seeds/ItemSeedsWheat@Name:
 밀 씨앗
@@ -1844,6 +1940,12 @@ Scripts/Items/Weapons/Melee/ItemMaceIron@Description:
 Scripts/Items/Weapons/Melee/ItemMaceIron@Name:
 철 메이스
 
+Scripts/Items/Weapons/Melee/ItemMachete@Description:
+육중한 강철 마체테. 머리를 날려버리기에 안성맞춤입니다.
+
+Scripts/Items/Weapons/Melee/ItemMachete@Name:
+마체테
+
 Scripts/Items/Weapons/Melee/ItemNoWeapon@Name:
 무기 없음
 
@@ -1935,7 +2037,7 @@ Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 리볼버
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
-고성능 .300 탄용으로 개발된 반물질 중소총.
+고성능 .300 탄용으로 개발된 대물 중소총.
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 중소총
@@ -1952,9 +2054,33 @@ Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Description:
 Scripts/Items/Weapons/Ranged/ItemShotgunMilitary@Name:
 군용 산탄총
 
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Description:
+엄청난 총구 에너지를 가진 반자동 권총.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawk@Name:
+스테픈 호크
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Description:
+스테픈 호크 권총의 금색 한정판.
+
+Scripts/Items/Weapons/Ranged/ItemSteppenHawkGold@Name:
+스테픈 호크 골드
+
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Description:
 10mm 탄용으로 개발된 기관단총.
 
 Scripts/Items/Weapons/Ranged/ItemSubMachinegun10mm@Name:
 기관단총
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
+기계화된 전투 장갑에 손으로 고정된 주요 거점을 위해 고안된 중기관포. 대구경 및 대물 탄약을 사용합니다.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Name:
+중기관포
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Description:
+기계화된 전투 장갑에 손으로 고정된 주요 거점을 위해 고안된 경기관포. 소구경 탄약을 사용합니다.
+
+Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonLight@Name:
+경기관포
 

@@ -15,13 +15,13 @@
 
         public override string Name => "Iron crate";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
         public override double StructureExplosiveDefenseCoef => 0.25;
 
-        public override float StructurePointsMax => 7000;
+        public override float StructurePointsMax => 3500;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -39,15 +39,15 @@
         {
             category = GetCategory<StructureCategoryStorage>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
+            build.AddStageRequiredItem<ItemPlanks>(count: 4);
             build.AddStageRequiredItem<ItemIngotIron>(count: 1);
-            build.AddStageRequiredItem<ItemPlanks>(count: 2);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
             repair.AddStageRequiredItem<ItemPlanks>(count: 2);
+            repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

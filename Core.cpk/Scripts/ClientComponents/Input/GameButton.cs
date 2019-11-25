@@ -47,6 +47,10 @@
         [ButtonInfo(InputKey.MouseRightButton)]
         ActionInteract,
 
+        [Description("Enter/Exit vehicle")]
+        [ButtonInfo(InputKey.Q)]
+        VehicleEnterExit,
+
         [Description("Reload item")]
         [ButtonInfo(InputKey.R)]
         ItemReload,

@@ -72,11 +72,14 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0} присоединился к игре
 
-Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-Вы действительно хотите {0} игрока {1}?
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
+Блокировать игрока {0}?
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 Вы можете разблокировать этого игрока позже, через меню общения.
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
+Разблокировать игрока {0}?
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 Общий
@@ -214,7 +217,7 @@ Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
 {1} отстранил из группы игрока {0}
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
-{0} отстранил вас из группы
+{0} отстранил вас из группы.
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
 Нет приглашения или срок приглашения истек.
@@ -304,6 +307,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Важно:[/b]
+[br]
 Это сервер PvE (игрок против окружения). На этом сервере игроки не могут атаковать друг друга прямо или косвенно. Этот сервер предназначен для мирного исследования мира игры без противоборства с другими игроками. Нельзя убивать, уничтожать, красть или иным образом причинять вред другим игрокам. В остальном вы можете полноценно играть в CryoFall, охотясь на опасных существ, открывая новые технологии и изучая окружающий мир. Желаем вам интересного путешествия!
 [br]
 [br]
@@ -325,6 +329,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]Важно:[/b]
+[br]
 Это сервер PvP (игрок против игроков), без каких-либо ограничений. Здесь вы можете столкнуться с агрессией со стороны других игроков. Вам придется все время защищаться и быть начеку. Также вы можете объединиться с другими выжившими, чтобы повысить свои шансы на успех.
 [br]
 [br]
@@ -383,6 +388,30 @@ Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotBuy_Titl
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
 Невозможно продать
+
+Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
+Нет свободного места. Прежде чем поместить транспорт, нужно освободить платформу от предметов и людей.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
+Нельзя взять транспортное средство
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
+Ваш транспорт в гараже. Вы можете получить его на любой платформе для сборки транспорта.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
+В гараже есть транспорт. Вы можете получить его на любой платформе для сборки транспорта.
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
+Транспорт в гараже
+
+Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
+Нет энергии.
+
+Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
+Нельзя использовать {0}
+
+Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
+Уже полито
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
 Пора собирать урожай. Нет смысла поливать сейчас.

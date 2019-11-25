@@ -72,11 +72,14 @@ Scripts/Systems/Chat/ChatSystem@PlayerWentOfflineChatMessageFormat:
 Scripts/Systems/Chat/ChatSystem@PlayerWentOnlineChatMessageFormat:
 {0}　加入了游戏
 
-Scripts/Systems/Chat/ClientChatBlockList@DialogBlockOrUnblockPlayer:
-您确定要{0} {1}吗？
+Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_Format:
+您确定要拉黑{0}吗？
 
 Scripts/Systems/Chat/ClientChatBlockList@DialogBlockPlayer_HowToUnblockLater:
 您可以稍后使用社交菜单解除屏蔽此玩家。
+
+Scripts/Systems/Chat/ClientChatBlockList@DialogUnblockPlayer_Format:
+您确定要解除{0}的黑名单吗？
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 全局
@@ -214,7 +217,7 @@ Scripts/Systems/Party/PartySystem@Notification_PlayerRemovedPartyMemberFormat:
 {0}被{1}踢出了队伍
 
 Scripts/Systems/Party/PartySystem@Notification_RemovedFromTheParty:
-{0}已将你踢出了队伍
+{0}已将你踢出了队伍。
 
 Scripts/Systems/Party/PartySystem@InvitationAcceptResult.ErrorNoInvitationFoundOrExpired:
 未找到邀请或邀请已过期。
@@ -304,6 +307,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]重要:[/b]
+[br]
 这是一个PVE服务器。在本服务器上玩家不能以任何方式伤害其他玩家。此服务器致力于玩家的和平探索，对抗自然环境。玩家无法杀死其他玩家，摧毁其建筑或盗取物品。除此之外，此服务器和正常的游戏体验一致，有着危险的怪物，可解锁的科技和奇幻的世界。去冒险吧。
 [br]
 [br]
@@ -325,6 +329,7 @@ Scripts/Systems/ServerWelcomeMessage/WelcomeMessageSystem@OfficialServerWelcomeM
 [br]
 [br]
 [b]重要:[/b]
+[br]
 这是一个PVP服务器。请记住在PVP服务器上，你将遭遇来自其他玩家的敌对行为。你要努力作战，保护自己。你需要做好准备，时刻警惕。你也可以与其他玩家合作来提高自己的生存机会。
 [br]
 [br]
@@ -383,6 +388,30 @@ Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotBuy_Titl
 
 Scripts/Systems/TradingStations/TradingStationsSystem@NotiticationCannotSell_Title:
 无法出售
+
+Scripts/Systems/VehicleGarageSystem/TakeVehicleResult@SpaceBlocked:
+遇到障碍。要建造载具港需要一片没有障碍物和玩家的空间。
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_CannotTakeVehicle_Title:
+无法获取载具
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehicleInGarage_Description:
+你的车辆正停在车库中。你可以从任何车辆组装厂将其取出。
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Description:
+你的车辆正停在车库中。你可以从任何车辆组装厂将其取出。
+
+Scripts/Systems/VehicleGarageSystem/VehicleGarageSystem@Notification_VehiclesInGarage_Title:
+载具在车库
+
+Scripts/Systems/VehicleSystem/VehicleEnergyConsumptionSystem@Notification_EnergyDepleted_Message:
+能量耗尽。
+
+Scripts/Systems/VehicleSystem/VehicleSystem@Notification_CannotUseVehicle_TitleFormat:
+无法使用{0}
+
+Scripts/Systems/Watering/WateringSystem@NotificationAlreadyWatered:
+已经浇水过了
 
 Scripts/Systems/Watering/WateringSystem@NotificationCannotWater_MessageHarvestReady:
 该植物已可收获。现在没必要再浇水了。

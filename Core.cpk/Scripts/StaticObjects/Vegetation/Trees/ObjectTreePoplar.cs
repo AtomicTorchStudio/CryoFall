@@ -53,15 +53,17 @@
         protected override void PrepareDroplistOnDestroy(DropItemsList droplist)
         {
             // primary drop
-            droplist.Add<ItemLogs>(count: 5);
+            droplist
+                .Add<ItemLogs>(count: 5);
 
             // saplings
-            droplist.Add<ItemSaplingPoplar>(count: 1, probability: 0.15);
+            droplist
+                .Add<ItemSaplingPoplar>(count: 1, probability: 0.15);
 
             // bonus drop
-            droplist.Add<ItemTwigs>(count: 1, countRandom: 2, probability: 0.25);
-            droplist.Add<ItemTreebark>(count: 1, countRandom: 2, probability: 0.25);
-            droplist.Add<ItemLeaf>(count: 2, countRandom: 1, probability: 0.5);
+            droplist
+                .Add<ItemTwigs>(count: 1, countRandom: 2, probability: 0.25)
+                .Add<ItemLeaf>(count: 2,  countRandom: 1, probability: 0.5);
         }
     }
 }

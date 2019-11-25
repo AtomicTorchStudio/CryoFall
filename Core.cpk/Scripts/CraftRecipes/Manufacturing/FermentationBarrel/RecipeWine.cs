@@ -19,7 +19,7 @@
             duration = CraftingDuration.VeryLong;
 
             inputItems.Add<ItemBerriesRed>(count: 10);
-            inputItems.Add<ItemSugar>(count: 20);
+            inputItems.Add<ItemSugar>(count: 15);
 
             outputItems.Add<ItemWine>(count: 5);
         }

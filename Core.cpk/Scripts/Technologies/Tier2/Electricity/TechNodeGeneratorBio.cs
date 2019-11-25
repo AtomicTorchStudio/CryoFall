@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Technologies.Tier2.Electricity
 {
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Fridges;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators;
 
     public class TechNodeGeneratorBio : TechNode<TechGroupElectricity>
@@ -10,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectGeneratorBio>();
 
-           config.SetRequiredNode<TechNodeGeneratorSteam>();
+            config.SetRequiredNode<TechNodeGeneratorSteam>();
         }
     }
 }

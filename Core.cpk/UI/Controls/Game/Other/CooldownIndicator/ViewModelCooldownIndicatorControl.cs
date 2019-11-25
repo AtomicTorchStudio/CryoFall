@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.CooldownIndicator
 {
-    using System.Windows;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Other.ClockProgressIndicator;
 
     public class ViewModelCooldownIndicatorControl : ViewModelClockProgressIndicator
@@ -13,37 +12,15 @@
 
         private double totalDurationSeconds;
 
-        private Visibility visibility
-#if GAME
-			= Visibility.Hidden;
-#else
-            // in design-time - visible by default
-            = Visibility.Visible;
-
-#endif
-
         public ViewModelCooldownIndicatorControl() : base(
             isReversed: true,
             isAutoDisposeFields: true)
         {
         }
 
+        public bool IsVisible { get; set; }
+
         public string TestText => "Test";
-
-        public Visibility Visibility
-        {
-            get => this.visibility;
-            set
-            {
-                if (value == this.visibility)
-                {
-                    return;
-                }
-
-                this.visibility = value;
-                this.NotifyThisPropertyChanged();
-            }
-        }
 
         public void TurnOff()
         {
@@ -61,7 +38,7 @@
                 this.componentCooldownIndicatorUpdater = null;
             }
 
-            this.Visibility = Visibility.Hidden;
+            this.IsVisible = false;
         }
 
         public void TurnOn(double lengthSeconds)
@@ -86,7 +63,7 @@
             if (!this.isTurnedOn)
             {
                 this.isTurnedOn = true;
-                this.Visibility = Visibility.Visible;
+                this.IsVisible = true;
 
                 this.componentCooldownIndicatorUpdater = Client.Scene.CreateSceneObject("Cooldown scene object")
                                                                .AddComponent<ClientComponentCooldownIndicator>();

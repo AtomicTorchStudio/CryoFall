@@ -47,7 +47,7 @@
 
         public override string Name => "Screenshot resolution";
 
-        public override IProtoOption OrderAfterOption 
+        public override IProtoOption OrderAfterOption
             => GetOption<GeneralOptionScreenshotFormat>();
 
         public override Mode ValueProvider { get; set; }

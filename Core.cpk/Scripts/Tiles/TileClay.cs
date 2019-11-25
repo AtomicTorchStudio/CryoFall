@@ -9,8 +9,6 @@
 
     public class TileClay : ProtoTile
     {
-        public override bool IsRestrictingConstruction => true;
-
         private static readonly TextureResource GroundTexture1
             = new TextureResource("Terrain/Clay/TileClay1.jpg",
                                   isTransparent: false);
@@ -18,6 +16,8 @@
         public override byte BlendOrder => 9;
 
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Solid;
+
+        public override bool IsRestrictingConstruction => true;
 
         public override TileKind Kind => TileKind.Solid;
 

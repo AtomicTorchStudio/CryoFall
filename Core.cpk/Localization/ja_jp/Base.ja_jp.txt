@@ -1,47 +1,44 @@
-﻿Scripts/Base/ProtoWorldObject@Notification_CannotInteractWhileDazed:
-目が眩んでいる間は操作できません。
-
-Scripts/Base/Stats/StatName@HealthMax:
-最大健康度
+﻿Scripts/Base/Stats/StatName@HealthMax:
+最大体力
 
 Scripts/Base/Stats/StatName@StaminaMax:
 最大スタミナ
 
 Scripts/Base/Stats/StatName@FoodMax:
-空腹ゲージ
+最大満腹度
 
 Scripts/Base/Stats/StatName@WaterMax:
-水分ゲージ
+最大水分
 
 Scripts/Base/Stats/StatName@MoveSpeed:
 移動速度
 
 Scripts/Base/Stats/StatName@MoveSpeedRunMultiplier:
-ランニング速度
+スプリント速度
 
 Scripts/Base/Stats/StatName@DamageAdd:
 追加ダメージ
 
 Scripts/Base/Stats/StatName@RunningStaminaConsumptionPerSecond:
-ランニング時のスタミナ消費
+スプリント時のスタミナ消費量
 
 Scripts/Base/Stats/StatName@StaminaRegenerationPerSecond:
-スタミナ回復
+スタミナ回復量
 
 Scripts/Base/Stats/StatName@HealthRegenerationPerSecond:
-ヘルス回復
+体力回復量
 
 Scripts/Base/Stats/StatName@MiningSpeed:
-採取速度
+採掘速度
 
 Scripts/Base/Stats/StatName@WoodcuttingSpeed:
 伐採速度
 
 Scripts/Base/Stats/StatName@ForagingSpeed:
-採取速度
+採集速度
 
 Scripts/Base/Stats/StatName@BuildingSpeed:
-建造/解体速度
+建築/解体速度
 
 Scripts/Base/Stats/StatName@SearchingExtraLoot:
 追加のアイテムの入手確率
@@ -119,19 +116,19 @@ Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 リロード速度
 
 Scripts/Base/Stats/StatName@CraftingSpeed:
-制作速度
+製作速度
 
 Scripts/Base/Stats/StatName@ItemExplosivePlantingTimeMultiplier:
-爆発物の設置速度
+爆発物の設置時間
 
 Scripts/Base/Stats/StatName@HuntingLootingSpeed:
 略奪速度
 
 Scripts/Base/Stats/StatName@ImplantDegradationFromDamageMultiplier:
-ダメージによるインプラントの劣化率
+ダメージによるインプラントの劣化量
 
 Scripts/Base/Stats/StatName@ImplantDegradationSpeedMultiplier:
-インストール済みのインプラントの劣化率
+取付済みインプラントの劣化速度
 
 Scripts/Base/Stats/StatName@FoodConsumptionSpeedMultiplier:
 食物の消費速度
@@ -140,16 +137,16 @@ Scripts/Base/Stats/StatName@WaterConsumptionSpeedMultiplier:
 水の消費速度
 
 Scripts/Base/Stats/StatName@EnergyChargeRegenerationPerMinute:
-毎分のエネルギーチャージ量
+エネルギー充電量（毎分）
 
 Scripts/Base/Stats/StatName@PerkEatSpoiledFood:
 腐った食物を食べる能力
 
 Scripts/Base/Stats/StatName@RadiationPoisoningEffectMultiplier:
-放射線中毒のダメージ
+放射能中毒ダメージ
 
 Scripts/Base/Stats/StatName@RadiationPoisoningIncreaseRateMultiplier:
-放射線蓄積率
+放射能蓄積率
 
 Scripts/Base/Stats/StatName@ToxinsIncreaseRateMultiplier:
 毒素蓄積率
@@ -158,35 +155,41 @@ Scripts/Base/Stats/StatName@BleedingIncreaseRateMultiplier:
 出血
 
 Scripts/Base/Stats/StatName@HeatIncreaseRateMultiplier:
-熱量上昇率
+熱上昇率
 
 Scripts/Base/Stats/StatName@HeatEffectMultiplier:
-熱損傷
+熱ダメージ
 
 Scripts/Base/Stats/StatName@PainIncreaseRateMultiplier:
 痛み
 
 Scripts/Base/Stats/StatName@PsiEffectMultiplier:
-psiのダメージ
+サイオニックダメージ
 
 Scripts/Base/Stats/StatName@DazedIncreaseRateMultiplier:
-眩暈
+目まい
 
 Scripts/Base/Stats/StatName@LandClaimsMaxNumber:
 最大所有地数
 
 Scripts/Base/Stats/StatName@VanityContinuousDamage:
-継続的なダメージ
+持続ダメージ
 
 Scripts/Base/Stats/StatName@VanityCantEatOrDrink:
-食事と水飲みができません。
+食事と水飲みができません
 
 Scripts/Base/Stats/StatName@LearningsPointsGainMultiplier:
 学習ポイント獲得
 
+Scripts/Base/Stats/StatName@SkillsExperienceGainMultiplier:
+スキル経験値獲得
+
 Scripts/Base/Stats/StatName@TinkerTableBonus:
-職人のテーブル効果
+職人の作業台の効率
 
 Scripts/Base/Stats/StatName@CraftingQueueMaxSlotsCount:
-制作列のスロット
+製作待機スロット
+
+Scripts/Base/Stats/StatName@MedicineToxicityMultiplier:
+薬物毒性
 

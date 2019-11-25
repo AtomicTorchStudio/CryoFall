@@ -18,7 +18,7 @@
 
         public override string Name => "Large crate";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
@@ -65,9 +65,9 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle(size: (1.8, 0.475), offset: (0.1, 0.4))
-                .AddShapeRectangle(size: (2, 0.75),  offset: (0, 0.4), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (2, 0.2),   offset: (0, 1.1), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (2, 0.75),  offset: (0, 0.4), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (2, 0.75),    offset: (0, 0.4), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (2, 0.2),     offset: (0, 1.1), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (2, 0.75),    offset: (0, 0.4), group: CollisionGroups.ClickArea);
         }
     }
 }

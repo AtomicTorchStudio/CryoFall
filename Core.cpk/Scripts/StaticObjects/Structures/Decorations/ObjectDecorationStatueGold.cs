@@ -13,11 +13,11 @@
 
         public override string Name => "Golden statue";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 1000;
+        public override float StructurePointsMax => 2500;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

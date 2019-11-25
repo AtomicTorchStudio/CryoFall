@@ -39,11 +39,11 @@
 
         public override string Name => "Furnace";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 1200;
+        public override float StructurePointsMax => 2000;
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -53,7 +53,7 @@
 
             // setup light source
             var lightSource = ClientLighting.CreateLightSourceSpot(
-                Client.Scene.GetSceneObject(worldObject),
+                worldObject.ClientSceneObject,
                 color: LightColors.WoodFiring,
                 size: 3,
                 spritePivotPoint: (0.5, 0.5),
@@ -106,7 +106,7 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemStone>(count: 20);
+            build.AddStageRequiredItem<ItemStone>(count: 15);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

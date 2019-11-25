@@ -31,7 +31,7 @@
         public override string Name => "Destroyed wall";
 
         // not used
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Stone;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override double ObstacleBlockDamageCoef => 0;
 
@@ -86,7 +86,7 @@
         {
             obstacleBlockDamageCoef = 0;
             damageApplied = 0; // no damage
-            return false; // no hit
+            return false;      // no hit
         }
 
         protected override ITextureResource ClientCreateIcon()

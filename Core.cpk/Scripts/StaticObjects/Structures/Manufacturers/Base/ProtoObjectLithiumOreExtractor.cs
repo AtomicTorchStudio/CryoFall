@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public abstract class ProtoObjectLithiumOreExtractor : ProtoObjectExtractor
     {
@@ -79,6 +80,12 @@
                     this.ManufacturingConfig,
                     data.PrivateState.LiquidContainerState,
                     this.LiquidContainerConfig));
+        }
+
+        protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
+        {
+            base.ClientSetupRenderer(renderer);
+            renderer.DrawOrderOffsetY = 1.8;
         }
 
         protected override void PrepareConstructionConfig(

@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items;
-    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -38,9 +37,6 @@
         {
         }
 
-        /// <summary>
-        /// Get all enabled recipes.
-        /// </summary>
         public static IReadOnlyList<Recipe> AllRecipes
         {
             get
@@ -86,7 +82,7 @@
 
                     switch (protoItem)
                     {
-                        case IProtoItemFood food when food.FreshnessMaxValue > 0:
+                        case IProtoItemWithFreshness itemWithFreshness when itemWithFreshness.FreshnessMaxValue > 0:
                         case IProtoItemWithDurablity durability when durability.DurabilityMax > 0:
                             // not cancellable
                             return false;

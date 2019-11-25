@@ -11,7 +11,7 @@
 
         public override string Name => "Wooden wall";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
@@ -28,7 +28,7 @@
 
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 4);
+            build.AddStageRequiredItem<ItemPlanks>(count: 3);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;

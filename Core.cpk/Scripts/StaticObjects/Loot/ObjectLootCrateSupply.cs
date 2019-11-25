@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Loot
 {
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
+    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Seeds;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Axes;
@@ -17,7 +18,7 @@
     {
         public override string Name => "Supply crate";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
@@ -58,35 +59,42 @@
                                      .Add(weight: 1 / 2.0,
                                           nestedList: new DropItemsList(outputs: 1)
                                                       // equipment
-                                                      .Add<ItemClothHat>(count: 1,           weight: 1 / 1.0)
-                                                      .Add<ItemClothPants>(count: 1,         weight: 1 / 1.0)
-                                                      .Add<ItemClothShirt>(count: 1,         weight: 1 / 1.0)
-                                                      .Add<ItemLeatherJacket>(count: 1,      weight: 1 / 3.0)
-                                                      .Add<ItemLeatherPants>(count: 1,       weight: 1 / 3.0)
-                                                      .Add<ItemLeatherHatCowboy>(count: 1,   weight: 1 / 7.0)
-                                                      .Add<ItemLeatherHatPilot>(count: 1,    weight: 1 / 7.0)
-                                                      .Add<ItemLeatherHatTricorne>(count: 1, weight: 1 / 7.0)
+                                                      .Add<ItemLeatherJacket>(count: 1, weight: 1 / 3.0)
+                                                      .Add<ItemLeatherPants>(count: 1,  weight: 1 / 3.0)
+                                                      .Add(new DropItemsList(outputs: 1)
+                                                           .Add<ItemLeatherHatCowboy>(count: 1)
+                                                           .Add<ItemLeatherHatPilot>(count: 1)
+                                                           .Add<ItemLeatherHatTricorne>(count: 1),
+                                                           weight: 1 / 3.0)
                                                       // tools
                                                       .Add<ItemAxeIron>(count: 1,            weight: 1 / 5.0)
                                                       .Add<ItemPickaxeIron>(count: 1,        weight: 1 / 5.0)
                                                       .Add<ItemToolboxT2>(count: 1,          weight: 1 / 5.0)
                                                       .Add<ItemWateringCanCopper>(count: 1,  weight: 1 / 5.0)
                                                       .Add<ItemWateringCanSteel>(count: 1,   weight: 1 / 10.0)
-                                                      .Add<ItemWateringCanPlastic>(count: 1, weight: 1 / 20.0))
+                                                      .Add<ItemWateringCanPlastic>(count: 1, weight: 1 / 20.0)
+                                                      // items
+                                                      .Add<ItemMRE>(count: 1, countRandom: 2, weight: 1 / 20.0)
+                                         )
                                      .Add(weight: 1 / 1.0,
                                           nestedList: new DropItemsList(outputs: 1, outputsRandom: 1)
-                                                      // seeds
-                                                      .Add<ItemSeedsCarrot>(count: 2,         countRandom: 1)
-                                                      .Add<ItemSeedsCucumber>(count: 2,       countRandom: 1)
-                                                      .Add<ItemSeedsTomato>(count: 2,         countRandom: 1)
-                                                      .Add<ItemSeedsBellPepper>(count: 2,     countRandom: 1)
+                                                      // seeds - primary
+                                                      .Add<ItemSeedsCarrot>(count: 2,     countRandom: 1)
+                                                      .Add<ItemSeedsCucumber>(count: 2,   countRandom: 1)
+                                                      .Add<ItemSeedsTomato>(count: 2,     countRandom: 1)
+                                                      .Add<ItemSeedsBellPepper>(count: 2, countRandom: 1)
+                                                      .Add<ItemSeedsCorn>(count: 2,       countRandom: 1)
+                                                      // seeds - rare
+                                                      .Add<ItemSeedsChiliPepper>(count: 2, countRandom: 1)
+                                                      .Add<ItemSeedsMilkmelon>(count: 2,   countRandom: 1)
+                                                      .Add<ItemSeedsWheat>(count: 2,       countRandom: 1)
+                                                      .Add<ItemSeedsRice>(count: 2,        countRandom: 1)
+                                                      .Add<ItemSeedsSpices>(count: 2,      countRandom: 1)
+                                                      .Add<ItemSeedsTobacco>(count: 2,     countRandom: 1)
+                                                      // seeds - misc
                                                       .Add<ItemSeedsFlowerOni>(count: 2,      countRandom: 1)
                                                       .Add<ItemSeedsFlowerBlueSage>(count: 2, countRandom: 1)
-                                                      .Add<ItemSeedsChiliPepper>(count: 2,    countRandom: 1)
-                                                      .Add<ItemSeedsCorn>(count: 2,           countRandom: 1)
-                                                      .Add<ItemSeedsOgurin>(count: 2,         countRandom: 1)
-                                                      .Add<ItemSeedsWheat>(count: 2,          countRandom: 1)
-                                                      .Add<ItemSeedsTobacco>(count: 2,        countRandom: 1))
+                                         )
                 );
 
             // extra loot from skill

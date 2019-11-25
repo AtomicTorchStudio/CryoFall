@@ -1,56 +1,56 @@
 ﻿Scripts/Technologies/Base/Group/BaseTechGroupRequirementGroupUnlocked@DescriptionFormat:
-{1}%の研究済み技術を使って{0}が必要です。
+{0}を{1}%以上研究する必要があります。
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorNotEnoughLearningPoints:
 学習ポイントが不足しています
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorTechGroupIsLocked:
-技術ツリーはロックされています
+技術ツリーがロックされています
 
 Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 すでにアンロックされています
 
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
-学習ポイント{0}が必要です（{1}のみ利用可能）。
+{0} 学習ポイントが必要です（現在 {1} ）。
 
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
-{0}の技術が必要です
+解除が必要な技術：{0}
 
 Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Description:
-基本的な建築施設の設計図が含まれており、シンプルな基地を建設することができます。
+基本的な建築物の設計図が含まれており、シンプルな拠点を建設することができます。
 
 Scripts/Technologies/Tier1/Construction/TechGroupConstruction@Name:
-建設
+建築
 
 Scripts/Technologies/Tier1/Construction/TechNodeBasicBuilding@Name:
 基本建築
 
 Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Description:
-より良い食品の生産を可能にするためのレシピがいくつか含まれています。
+より良い食物を作れるようになるレシピがいくつか含まれています。
 
 Scripts/Technologies/Tier1/Cooking/TechGroupCooking@Name:
 料理
 
 Scripts/Technologies/Tier1/Defense/TechGroupDefense@Description:
-基本的な装飾や装甲
+基本的な衣服や防具の設計図。
 
 Scripts/Technologies/Tier1/Defense/TechGroupDefense@Name:
 防御
 
 Scripts/Technologies/Tier1/Defense/TechNodeBoneArmor@Name:
-骨の装甲
+骨の防具
 
 Scripts/Technologies/Tier1/Defense/TechNodeBraidedArmor@Name:
-編み込みの装甲
+編組の防具
 
 Scripts/Technologies/Tier1/Defense/TechNodeClothArmor@Name:
-布の装甲
+布の防具
 
 Scripts/Technologies/Tier1/Defense/TechNodeWoodArmor@Name:
-木の装甲
+木の防具
 
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Description:
-植栽用種子の準備、基本的な肥料など。
+植栽用の種子や基本的な肥料などが作れます。
 
 Scripts/Technologies/Tier1/Farming/TechGroupFarming@Name:
 農業
@@ -59,7 +59,7 @@ Scripts/Technologies/Tier1/Farming/TechNodeFarmingBasics@Name:
 農業の基本
 
 Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Description:
-効果的な生産と製造を確立するために必要な全ての基本的な産業技術。
+効果的な生産と製造を確立するために必要な全ての基本的な工業技術。
 
 Scripts/Technologies/Tier1/Industry/TechGroupIndustry@Name:
 工業
@@ -74,25 +74,25 @@ Scripts/Technologies/Tier1/Industry/TechNodeSmelting@Name:
 製錬
 
 Scripts/Technologies/Tier1/Offense/TechGroupOffense@Description:
-原始的な武器
+旧式武器の設計図。
 
 Scripts/Technologies/Tier1/Offense/TechGroupOffense@Name:
 攻撃
 
 Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Description:
-さまざまな化合物の反応を利用する。
+さまざまな化合物や化学反応を研究します。
 
 Scripts/Technologies/Tier2/Chemistry/TechGroupChemistry@Name:
 化学
 
 Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Description:
-もっと複雑な構造の建物を建築する、応用範囲がもっと広くなります。
+利用範囲の広い複雑な構造の建物の建築。
 
 Scripts/Technologies/Tier2/Construction2/TechGroupConstruction2@Name:
-建設2
+建築2
 
 Scripts/Technologies/Tier2/Construction2/TechNodeStoneConstructions@Name:
-石造りの構造
+石造建築
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
 多種多様な新しい食品を作るための高度な調理レシピ。
@@ -101,55 +101,55 @@ Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
 料理2
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
-改良された防御技術は、より効果的な装甲を提供します。
+防御技術の向上は、より優れた防具を提供してくれます。
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Name:
-防衛2
+防御2
 
 Scripts/Technologies/Tier2/Defense2/TechNodeFurArmor@Name:
-毛皮の装甲
+毛皮の防具
 
 Scripts/Technologies/Tier2/Defense2/TechNodeFurHeadgear@Name:
-毛皮のヘッドギア
+毛皮の帽子
 
 Scripts/Technologies/Tier2/Defense2/TechNodeLeatherArmor@Name:
-革の装甲
+革の防具
 
 Scripts/Technologies/Tier2/Defense2/TechNodeLeatherHeadgear@Name:
-革のヘッドギア
+革の帽子
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedArmor@Name:
-キルトの装甲
+キルトの防具
 
 Scripts/Technologies/Tier2/Defense2/TechNodeQuiltedHeadgear@Name:
-キルトのヘッドギア
+キルトの帽子
 
 Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Description:
-基本的な電気インフラ
+基本的な電気インフラ施設
 
 Scripts/Technologies/Tier2/Electricity/TechGroupElectricity@Name:
 電気
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Description:
-広範囲の作物種と、効果的な肥料を処理するための複雑な農業技術。
+様々な農作物と、効果的な肥料を生産するための複雑な農業技術。
 
 Scripts/Technologies/Tier2/Farming2/TechGroupFarming2@Name:
 農業2
 
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Description:
-改善された産業技術は、より多くの産業プロセスへ応用を可能にします。
+工業技術の向上は、より多くの工業プロセスへの応用を可能にします。
 
 Scripts/Technologies/Tier2/Industry2/TechGroupIndustry2@Name:
-産業2
+工業2
 
 Scripts/Technologies/Tier2/Industry2/TechNodeSteelSmelting@Name:
-スチール製錬
+鋼の製錬
 
 Scripts/Technologies/Tier2/Industry2/TechNodeSteelTools@Name:
-スチール工具
+鋼製の道具
 
 Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Description:
-さまざまな医療品の作成
+さまざまな医薬品の製作。
 
 Scripts/Technologies/Tier2/Medicine/TechGroupMedicine@Name:
 医学
@@ -161,52 +161,52 @@ Scripts/Technologies/Tier2/Offense2/TechGroupOffense2@Name:
 攻撃2
 
 Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Description:
-多種多様な化合物の複雑な反応を利用する。
+多種多様な化合物や複雑な化学反応を研究します。
 
 Scripts/Technologies/Tier3/Chemistry2/TechGroupChemistry2@Name:
 化学2
 
 Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Description:
-通貨の取り扱いと商取引の促進、自動トレーディングステーションの構築だけでなく、コインの鋳造やリサイクルも可能です。
+通貨の取り扱いと商取引の促進。自動トレーディングステーションの構築だけでなく、硬貨の鋳造やリサイクルも可能です。
 
 Scripts/Technologies/Tier3/Commerce/TechGroupCommerce@Name:
 経済
 
 Scripts/Technologies/Tier3/Commerce/TechNodeCoinMinting@Name:
-コインの鋳造
+硬貨の鋳造
 
 Scripts/Technologies/Tier3/Commerce/TechNodeCoinRecycling@Name:
-コインリサイクル
+硬貨リサイクル
 
 Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Description:
-高度な構造
+高度な建築物。
 
 Scripts/Technologies/Tier3/Construction3/TechGroupConstruction3@Name:
-建設3
+建築3
 
 Scripts/Technologies/Tier3/Construction3/TechNodeBrickConstructions@Name:
-レンガ造り
+レンガ建築
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
-美食家向けのより複雑な料理レシピ
+真のグルメのためのより複雑な料理レシピ
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
 料理3
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
-高度な防御技術
+高度な防御技術。
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Name:
-防衛3
+防御3
 
 Scripts/Technologies/Tier3/Defense3/TechNodeMetalArmor@Name:
-メタルアーマー
+メタルの防具
 
 Scripts/Technologies/Tier3/Defense3/TechNodeMetalHeadgear@Name:
-メタルヘッドギア
+メタルのヘッドギア
 
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryArmor@Name:
-ミリタリーアーマー
+ミリタリー防具
 
 Scripts/Technologies/Tier3/Defense3/TechNodeMilitaryHeadgear@Name:
 ミリタリーヘッドギア
@@ -215,76 +215,82 @@ Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Description:
 高度な電気インフラ
 
 Scripts/Technologies/Tier3/Electricity2/TechGroupElectricity2@Name:
-電気
+電気2
 
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Description:
-高度に効率化された農作業と、さらに広い作物品種。
+高度に効率化された農業技術と、多種多様な作物品種。
 
 Scripts/Technologies/Tier3/Farming3/TechGroupFarming3@Name:
 農業3
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Description:
-高度な産業技術により、より複雑な産業プロセスと応用が可能になります。
+高度な工業技術により、より複雑な工業プロセスへの応用を可能にします。
 
 Scripts/Technologies/Tier3/Industry3/TechGroupIndustry3@Name:
-産業3
+工業3
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Description:
-幅広い高度な医療品の製造を可能にします。
+幅広い先進医薬品の製造を可能にします。
 
 Scripts/Technologies/Tier3/Medicine2/TechGroupMedicine2@Name:
 医学2
 
 Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Description:
-全自動小銃やより多様な弾薬を含んだ、高度な攻撃技術。
+全自動銃器やより多様な弾薬を含む高度な攻撃技術。
 
 Scripts/Technologies/Tier3/Offense3/TechGroupOffense3@Name:
 攻撃3
 
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Description:
-アルコール飲料や他のものを醸造する。
+アルコール飲料等を醸造。
 
 Scripts/Technologies/Tier3/Recreation/TechGroupRecreation@Name:
 娯楽
 
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Description:
+様々な乗り物を生産するのに必要な技術。
+
+Scripts/Technologies/Tier3/Vehicles/TechGroupVehicles@Name:
+乗り物
+
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Description:
-エイリアンの惑星資源の開発に必要な技術。
+異世界の資源開発に必要な技術。
 
 Scripts/Technologies/Tier3/XenoGeology/TechGroupXenoGeology@Name:
-異種地質学
+異世界地質学
 
 Scripts/Technologies/Tier4/Canning/TechGroupCanning@Description:
-長期保存ができる缶詰の生成
+長期保存ができる缶詰の製造。
 
 Scripts/Technologies/Tier4/Canning/TechGroupCanning@Name:
 缶詰め
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Description:
-高度な化学プロセスと複雑な反応
+高度な化学プロセスと複雑な化学反応。
 
 Scripts/Technologies/Tier4/Chemistry3/TechGroupChemistry3@Name:
 化学3
 
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Description:
-高度な建築
+最先端の建築。
 
 Scripts/Technologies/Tier4/Construction4/TechGroupConstruction4@Name:
-建設4
+建築4
 
 Scripts/Technologies/Tier4/Construction4/TechNodeConcreteConstructions@Name:
-コンクリート構造
+コンクリート建築
 
 Scripts/Technologies/Tier4/Construction4/TechNodeSteelConstructions@Name:
-鉄構造
+鋼鉄建築
 
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Description:
-サイバネティックおよび生物学的インプラントの作成と応用
+人工生体および生物インプラントの製作と応用。
 
 Scripts/Technologies/Tier4/Cybernetics/TechGroupCybernetics@Name:
-サイバネティクス
+人工生体
 
 Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Description:
-ハイテク防御技術
+最先端の防御技術。
 
 Scripts/Technologies/Tier4/Defense4/TechGroupDefense4@Name:
 防衛4
@@ -296,38 +302,44 @@ Scripts/Technologies/Tier4/Defense4/TechNodeAssaultHeadgear@Name:
 アサルトヘッドギア
 
 Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Description:
-ハイテク電気インフラ
+最先端の電気インフラ。
 
 Scripts/Technologies/Tier4/Electricity3/TechGroupElectricity3@Name:
 電気3
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Description:
-エネルギー兵器は従来の銃器からの新しい技術的飛躍です。
+エネルギー武器は従来の銃器からの新しい技術的飛躍です。
 
 Scripts/Technologies/Tier4/EnergyWeapons/TechGroupEnergyWeapons@Name:
-エネルギー兵器
+エネルギー武器
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Description:
-最も複雑な技術プロセスを可能にするハイテク産業技術。
+最も複雑な技術プロセスを可能にするハイテク工業技術。
 
 Scripts/Technologies/Tier4/Industry4/TechGroupIndustry4@Name:
-産業4
+工業4
 
 Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Description:
-貴金属と宝石を扱う。
+貴金属と宝石を扱います。
 
 Scripts/Technologies/Tier4/Jewelry/TechGroupJewelry@Name:
 ジュエリー
 
 Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Description:
-最先端医療技術の開発と応用
+最先端医療技術の開発と応用。
 
 Scripts/Technologies/Tier4/Medicine3/TechGroupMedicine3@Name:
 医学3
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Description:
-従来の銃器に最大の攻撃力をもたらすハイテク攻撃技術。
+従来の銃器に最大の攻撃力をもたらす最先端攻撃技術。
 
 Scripts/Technologies/Tier4/Offense4/TechGroupOffense4@Name:
 攻撃4
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Description:
+先進の戦闘ロボットと輸送手段。
+
+Scripts/Technologies/Tier4/Vehicles2/TechGroupVehicles2@Name:
+乗り物２
 

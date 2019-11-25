@@ -68,5 +68,5 @@ Scripts/Characters/Player/PlayerCharacter@Name:
 玩家人物
 
 Scripts/Characters/Player/PlayerCharacterSpectator@Name:
-玩家人物出於觀察者模式
+玩家人物處於觀察者模式
 

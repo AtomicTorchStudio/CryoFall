@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment.Hazmat
 {
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
+
     public class ItemHazmatSuit : ProtoItemEquipmentFullBody
     {
         public override string Description =>
@@ -12,6 +14,8 @@
         public override bool IsHeadVisible => false;
 
         public override string Name => "Hazmat suit";
+
+        public override ObjectMaterial Material => ObjectMaterial.SoftTissues;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

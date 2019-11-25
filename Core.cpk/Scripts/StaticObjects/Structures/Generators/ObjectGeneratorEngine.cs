@@ -24,19 +24,19 @@
         public override string Description =>
             "This large generator uses gasoline fuel to produce electrical energy.";
 
-        public override float LiquidCapacity => 100;
+        public override double LiquidCapacity => 100;
 
-        public override float LiquidConsumptionAmountPerSecond => 0.8f; // 1 canister per 25 seconds
+        public override double LiquidConsumptionAmountPerSecond => 0.4;
 
         public override LiquidType LiquidType => LiquidType.Gasoline;
 
         public override string Name => "Engine generator";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override float StructurePointsMax => 2000;
+        public override float StructurePointsMax => 5000;
 
         public override void SharedGetElectricityProduction(
             IStaticWorldObject worldObject,
@@ -45,7 +45,7 @@
         {
             var publicState = GetPublicState(worldObject);
 
-            maxProduction = 20;
+            maxProduction = 16;
             currentProduction = publicState.IsActive
                                     ? maxProduction
                                     : 0;
@@ -56,7 +56,7 @@
             base.ClientInitialize(data);
 
             var publicState = data.PublicState;
-            var sceneObject = Client.Scene.GetSceneObject(data.GameObject);
+            var sceneObject = data.GameObject.ClientSceneObject;
 
             var soundEmitter = this.ClientCreateActiveStateSoundEmitterComponent(data.GameObject);
             soundEmitter.Volume = 0.35f;

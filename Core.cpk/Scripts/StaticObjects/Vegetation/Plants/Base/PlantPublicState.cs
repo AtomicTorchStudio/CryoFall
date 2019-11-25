@@ -12,7 +12,15 @@
         public bool IsFertilized { get; set; }
 
         [SyncToClient]
+        public bool IsSpoiled { get; set; }
+
+        [SyncToClient]
         public bool IsWatered { get; set; }
+
+        public override bool IsFullGrown(IProtoObjectVegetation protoObjectVegetation)
+        {
+            return this.GrowthStage == protoObjectVegetation.GrowthStagesCount - 1;
+        }
 
         internal void ServerForceIsFertilizedSync()
         {

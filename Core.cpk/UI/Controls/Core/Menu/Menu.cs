@@ -26,6 +26,8 @@
             Api.Logger.Info("Menu registered: " + menu.GetType().Name);
         }
 
+        public static event Action<Menu> MenuOpened;
+
         [ViewModelNotAutoDisposeField]
         public BaseCommand CommandToggle { get; }
 
@@ -197,6 +199,12 @@
         protected virtual void UpdateIsSelected()
         {
             this.IsSelected = this.menu.IsOpened;
+
+            if (this.menu.IsOpened
+                && MenuOpened != null)
+            {
+                Api.SafeInvoke(() => MenuOpened?.Invoke(this));
+            }
         }
     }
 }

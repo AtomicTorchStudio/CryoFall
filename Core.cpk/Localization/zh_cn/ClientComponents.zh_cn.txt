@@ -25,6 +25,9 @@ Scripts/ClientComponents/Input/GameButton@ActionUseCurrentItem:
 Scripts/ClientComponents/Input/GameButton@ActionInteract:
 动作 - 互动
 
+Scripts/ClientComponents/Input/GameButton@VehicleEnterExit:
+进入/离开载具
+
 Scripts/ClientComponents/Input/GameButton@ItemReload:
 装填物品
 

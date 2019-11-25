@@ -17,7 +17,7 @@
             base.ClientInitialize(data);
 
             ClientLighting.CreateLightSourceSpot(
-                Client.Scene.GetSceneObject(data.GameObject),
+                data.GameObject.ClientSceneObject,
                 color: LightColors.Lava,
                 size: (12, 10),
                 positionOffset: (1.5, 1));

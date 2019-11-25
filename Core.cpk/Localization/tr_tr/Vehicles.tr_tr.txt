@@ -1,0 +1,51 @@
+﻿Scripts/Vehicles/VehicleHoverboardMk1@Description:
+Gravi-platform tasarımının hafif varyantı. Yüksek hız ve yakıt ekonomisi sunar ve üretmesi nispeten ucuzdur.
+
+Scripts/Vehicles/VehicleHoverboardMk1@Name:
+Hoverboard Mk1
+
+Scripts/Vehicles/VehicleHoverboardMk2@Description:
+Gravi-platform tasarımının ağır varyantı. Daha sağlamdır, daha yüksek hız ve manevra kabiliyeti sağlar ama üretme kabiliyeti ve yakıt tüketimi daha fazladır.
+
+Scripts/Vehicles/VehicleHoverboardMk2@Name:
+Hoverboard Mk2
+
+Scripts/Vehicles/VehicleMechManul@Description:
+Mekanize savaş zırhı için orta tasarım. Başka bölgelerden fedakârlık etmeden ciddi savunma yetenekleri ve dev yük taşıma bölümleri ekler.
+
+Scripts/Vehicles/VehicleMechManul@Name:
+Manul
+
+Scripts/Vehicles/VehicleMechSkipper@Description:
+Mekanize savaş zırhı için hafif tasarım. Zırh veya silah gücünden fedakârlık etmeksizin hız ekler.
+
+Scripts/Vehicles/VehicleMechSkipper@Name:
+Skipper
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotBuildVehicleTitle:
+İnşa edilemiyor
+
+Scripts/Vehicles/Base/ProtoVehicle@Notification_CannotRepairVehicleTitle:
+Tamir edilemez
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NotInteractingWithVehicleBay:
+Lütfen bu aracı oluşturmak için bir araç sahası kullanın.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@RequiredItemsMissing:
+Yeterli eşya yok.
+
+Scripts/Vehicles/Base/VehicleCanBuildCheckResult@NeedsFreeSpace:
+Kapalı.[br]Bir şematik oluşturabilmek için birleştirme sahasının engellerden ve insanlardan arındırılması gerekir.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@NotInteractingWithVehicle:
+Aracı tamir etmek için onunla etkileşime geç.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RequiredItemsMissing:
+Yeterli eşya yok.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@RepairIsNotRequired:
+Tamir gerekli değil.
+
+Scripts/Vehicles/Base/VehicleCanRepairCheckResult@VehicleIsNotInsideVehicleAssemblyBay:
+Aracı tamir etmek için lütfen onu birleştirme sahasına getir.
+

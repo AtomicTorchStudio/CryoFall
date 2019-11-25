@@ -16,6 +16,8 @@
 
         public static readonly Color OilLamp = Color.FromRgb(0xFF, 0xC0, 0x60);
 
+        public static readonly Color ElectricWarm = Color.FromRgb(0xFF, 0xE0, 0x90);
+
         public static readonly Color PragmiumLuminescenceNode = Color.FromArgb(0xAA, 0x99, 0xEE, 0xFF);
 
         public static readonly Color PragmiumLuminescenceSource = Color.FromArgb(0xFF, 0x99, 0xEE, 0xFF);

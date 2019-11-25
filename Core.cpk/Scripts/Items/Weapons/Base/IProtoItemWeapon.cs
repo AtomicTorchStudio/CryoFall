@@ -31,7 +31,7 @@
 
         string CharacterAnimationAimingName { get; }
 
-        IReadOnlyCollection<IProtoItemAmmo> CompatibleAmmoProtos { get; }
+        IReadOnlyList<IProtoItemAmmo> CompatibleAmmoProtos { get; }
 
         /// <summary>
         /// Damage apply delay in seconds.
@@ -53,6 +53,17 @@
         /// </summary>
         double FireInterval { get; }
 
+        WeaponFirePatternPreset FirePatternPreset { get; }
+
+        /// <summary>
+        /// Time until current fire sequence/pattern is reset.
+        /// </summary>
+        double FirePatternCooldownDuration { get; }
+
+        WeaponFireScatterPreset FireScatterPreset { get; }
+
+        WeaponFireTracePreset FireTracePreset { get; }
+
         bool IsLoopedAttackAnimation { get; }
 
         DamageDescription OverrideDamageDescription { get; }
@@ -67,11 +78,13 @@
         /// <summary>
         /// Sound preset defining hit sounds upon various materials.
         /// </summary>
-        ReadOnlySoundPreset<ObjectSoundMaterial> SoundPresetHit { get; }
+        ReadOnlySoundPreset<ObjectMaterial> SoundPresetHit { get; }
 
         ReadOnlySoundPreset<WeaponSound> SoundPresetWeapon { get; }
 
         (float min, float max) SoundPresetWeaponDistance { get; }
+
+        double SpecialEffectProbability { get; }
 
         ProtoSkillWeapons WeaponSkillProto { get; }
 
@@ -79,15 +92,18 @@
 
         string GetCharacterAnimationNameFire(ICharacter character);
 
-        void ServerOnDamageApplied(IItem weapon, ICharacter byCharacter, IWorldObject damagedObject, double damage);
+        void ServerOnDamageApplied(
+            WeaponFinalCache weaponCache,
+            IWorldObject damagedObject,
+            double damage);
 
         void ServerOnShot(
             ICharacter character,
             IItem weaponItem,
             IProtoItemWeapon protoWeapon,
-            List<WeaponHitData> hitObjects);
+            IReadOnlyList<IWorldObject> hitObjects);
 
-        bool SharedCanFire(ICharacter character, WeaponState isFiringRequested);
+        bool SharedCanFire(ICharacter character, WeaponState weaponState);
 
         bool SharedOnFire(ICharacter character, WeaponState weaponState);
     }

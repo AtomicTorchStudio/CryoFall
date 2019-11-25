@@ -1,4 +1,10 @@
-﻿UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
+﻿UI/CoreStrings@Action_Build:
+建造
+
+UI/CoreStrings@Action_Repair:
+修理
+
+UI/CoreStrings@BrokenObjectLandClaimTooltip_TitleDestroyCountdown:
 摧毁于
 
 UI/CoreStrings@Button_Accept:
@@ -47,8 +53,14 @@ UI/CoreStrings@Button_Edit:
 UI/CoreStrings@Button_Help:
 帮助
 
+UI/CoreStrings@Button_Next:
+下一个
+
 UI/CoreStrings@Button_OK:
 好
+
+UI/CoreStrings@Button_Previous:
+前一个
 
 UI/CoreStrings@Button_Quit:
 退出
@@ -161,6 +173,27 @@ UI/CoreStrings@Defense_Format_Psi:
 UI/CoreStrings@Defense_Format_Radiation:
 辐射防护: {0}
 
+UI/CoreStrings@Demo_Button_BuyGameOnSteam:
+在Steam平台购买CryoFall
+
+UI/CoreStrings@Demo_CanPurchase:
+你可以购买CryoFall并获取完整版本的游戏。 本游戏为一次性购买，并且购买后你将能够继续玩你之前的人物（如果你最近玩过的话）。你也能在社区和加装了mod的服务器上进行游戏，甚至架设你自己的服务器。
+
+UI/CoreStrings@Demo_Expired:
+您的试玩时间已经耗尽。 谢谢您的试玩我们的游戏—希望您喜欢它！
+
+UI/CoreStrings@Demo_OnlyOfficialServers:
+在此试玩版本中您可以在任意官方服务器进行游戏。[br]若想在社区服务器或私人服务器进行游戏，请购买完整版游戏。
+
+UI/CoreStrings@Demo_TimeRemaining:
+试玩结束于: {0}
+
+UI/CoreStrings@Demo_Title:
+CryoFall试玩版
+
+UI/CoreStrings@Demo_Welcome:
+欢迎来到CryoFall试玩版。在本试玩版中您可以享受游戏的完整内容。在试玩期间您拥有对所有官方服务器的完整访问权限。
+
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 可占领倒计时：
 
@@ -179,6 +212,9 @@ EU/s
 UI/CoreStrings@Extras_DiscordTooltip:
 CryoFall的官方Discord服务器(仅限英文)
 
+UI/CoreStrings@Extras_FeaturesTooltip:
+CryoFall功能集锦
+
 UI/CoreStrings@Extras_PatchnotesTooltip:
 所有CryoFall的更新文档(仅限英文)
 
@@ -195,7 +231,13 @@ UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown:
 收获于
 
 UI/CoreStrings@FarmPlantTooltip_TitleHarvestInCountdown_Ready:
-现在！
+可供收获
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiled:
+正在腐败
+
+UI/CoreStrings@FarmPlantTooltip_TitleSpoiledInCountdown:
+腐败于：
 
 UI/CoreStrings@FarmPlantTooltip_WateredForDuration:
 已浇水
@@ -211,6 +253,9 @@ UI/CoreStrings@Gender_Female:
 
 UI/CoreStrings@Gender_Male:
 男
+
+UI/CoreStrings@HUDButtonsBar_DismountVehicle:
+离开载具
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 建筑
@@ -487,6 +532,18 @@ PvP服务器没有任何限制—你可以在这里可以杀和被杀。
 
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
+
+UI/CoreStrings@ModsDisabledWindow_Description:
+`游戏无法在加装mod后正常运行，因此它们被禁用。
+[br]这是因为其中至少一个mod已经过期（与当前版本游戏不兼容）或者失效。
+[br]游戏无法确认是哪一个mod出现了问题，因此您必须通过一个一个打开mod并进行游戏来测试。
+[br]如果你想要继续使用这些mod，请确保你正在使用最新版本的mod。
+[br]
+[br]已禁用mod列表:
+[br]{0}`
+
+UI/CoreStrings@ModsDisabledWindow_Title:
+CryoFall已禁用mods
 
 UI/CoreStrings@Network_Jitter:
 波动
@@ -792,6 +849,17 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `AtomicTorch.com已注册
 [br](为您的SteamID)。`
 
+UI/CoreStrings@SupporterPack_Badge:
+支援徽章
+
+UI/CoreStrings@SupporterPack_Description:
+`支援包裹是给予那些特别支持了CryoFall的玩家们的一系列奖励物品。作为感谢，游戏将在聊天区域内为这些玩家加入支援徽章。
+[br][br]支援包裹不提供任何游戏内优势并且是可选的。其中包括了游戏的完整原声，概念设计图，高清原画以及聊天徽章等内容。在抢先体验阶段将会有更多内容加入。
+[br][br]我们发自内心的感谢大家的帮助！`
+
+UI/CoreStrings@TechGroupTooltip_LearningPointsFormat:
+学习点数: {0}
+
 UI/CoreStrings@TechGroupTooltip_Requirements:
 需求
 
@@ -802,16 +870,19 @@ UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 科技解锁
 
 UI/CoreStrings@TechNodeTooltip_Perks:
-特质
+特质:
 
 UI/CoreStrings@TechNodeTooltip_Recipes:
-配方
+配方:
 
 UI/CoreStrings@TechNodeTooltip_Structures:
-建筑
+建筑:
 
 UI/CoreStrings@TechNodeTooltip_TechnologicalPrerequisite:
 前置科技
+
+UI/CoreStrings@TechNodeTooltip_Vehicles:
+载具:
 
 UI/CoreStrings@Technology:
 科技
@@ -908,6 +979,83 @@ UI/CoreStrings@UnregisteredSteamAccountWelcome_Button_ProceedWithoutCreatingAnAc
 
 UI/CoreStrings@UnregisteredSteamAccountWelcome_Title:
 看来你是第一次进入CryoFall。您想将游戏链接到您现有的[url=atomictorch.com]AtomicTorch.com[/url]帐户吗？
+
+UI/CoreStrings@UnstuckInFormat:
+解除卡死于: {0}
+
+UI/CoreStrings@Vehicle_Ammo:
+弹药
+
+UI/CoreStrings@Vehicle_Armor:
+护甲
+
+UI/CoreStrings@Vehicle_EnergyLevel:
+能量等级
+
+UI/CoreStrings@Vehicle_Enter:
+进入
+
+UI/CoreStrings@Vehicle_Hotbar_ArmorValueFormat:
+护甲{1:F0}/{2:F0} ({0}%)
+
+UI/CoreStrings@Vehicle_Hotbar_EnergyPercentFormat:
+能量 {0}%
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_LeftArm:
+左手
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_RightArm:
+右手
+
+UI/CoreStrings@Vehicle_Mech_ItemSlot_Weapon:
+武器
+
+UI/CoreStrings@Vehicle_Mech_NotificationWeaponNeedsInstallationOnMech:
+此武器只有在装备在机甲上后才能使用。
+
+UI/CoreStrings@Vehicle_ReactorCores:
+反应堆核心
+
+UI/CoreStrings@VehicleGarage_ButtonPutCurrentVehicle:
+将当前载具放入车库
+
+UI/CoreStrings@VehicleGarage_ButtonTakeVehicle:
+获取载具
+
+UI/CoreStrings@VehicleGarage_TitleAccessibleVehicles:
+你可以使用以下载具：
+
+UI/CoreStrings@VehicleGarage_TitleNoAccessibleVehicles:
+你目前还没有载具。
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_Docked:
+已停泊
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InGarage:
+车库中
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InUse:
+当前使用中
+
+UI/CoreStrings@VehicleGarage_VehicleStatus_InWorld:
+在游戏世界中
+
+UI/CoreStrings@VehiclesAssemblyList_Button_Build:
+建造
+
+UI/CoreStrings@VehiclesAssemblyList_NoSchematicsKnown:
+`你尚未获得此建造港的任何相关配方。
+[br][br][br]
+你可以在科技菜单解锁它们。`
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematics:
+蓝图
+
+UI/CoreStrings@VehiclesAssemblyList_TitleSchematicsUnlocked:
+蓝图解锁
+
+UI/CoreStrings@Weapon_CompatibleAmmo:
+兼容弹药：
 
 UI/CoreStrings@Window_Tab_Main:
 主要
@@ -1104,6 +1252,21 @@ UI/CoreStrings@WindowSkills_ProgressTowardsTheNextLevel:
 UI/CoreStrings@WindowSkills_TitleSkillsDiscoveredCount:
 发现技能
 
+UI/CoreStrings@WindowsObjectVehicle_RepairTextFormat:
+修复{0}%盔甲，你需要：
+
+UI/CoreStrings@WindowsObjectVehicle_TabCargo_Title:
+货物
+
+UI/CoreStrings@WindowsObjectVehicle_TabConstructVehicle:
+建筑
+
+UI/CoreStrings@WindowsObjectVehicle_TabGarage:
+车库
+
+UI/CoreStrings@WindowsObjectVehicle_TabVehicleTitle:
+载具
+
 UI/CoreStrings@WindowSocial_OnlineNow:
 当前在线
 
@@ -1255,6 +1418,9 @@ UI/CoreStrings@WorldMapMarkLandClaim_Tooltip:
 `[b]占领土地[/b]
 [br]这片土地归你所有。`
 
+UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_LastUsedVehicle:
+[b]最后使用的车辆[/b]
+
 UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 `[b]主权建筑[/b]
 [br]这是你的主权建筑。`
@@ -1354,7 +1520,7 @@ UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Button:
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Message:
 `你把自己围在自己的房子内，出不去吗？
 [br]或者有人恶意堵你，导致你被卡住了？
-[br]您可以使用此功能将您的角色传送出去。`
+[br]您可以使用此功能在一段延迟后将您的角色传送出去。`
 
 UI/Controls/Game/Player/WindowCharacterUnstuckHelper@DialogUnstuck_Title:
 解除卡死
@@ -1488,9 +1654,6 @@ UI/Controls/Game/Technologies/Data/ViewModelWindowTechnologies@DialogDoYouWantTo
 UI/Controls/Game/Technologies/Data/NodeEffects/ViewModelTechNodeEffectRecipeUnlock@TitleHandCrafting:
 徒手制造
 
-UI/Controls/Game/WorldObjects/ConstructionTooltip/Data/ViewModelConstructionRepairRequirementsTooltip@Title:
-修理
-
 UI/Controls/Game/WorldObjects/Data/ViewModelWindowFridge@PerishableItemsStorageDurationFormat:
 易腐道具储存时限提高~{0} 。
 
@@ -1548,6 +1711,89 @@ UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorSteam@Elect
 UI/Controls/Game/WorldObjects/PowerGrid/Data/ViewModelWindowGeneratorWithFuel@ElectricityProductionInfoTextFormat:
 `当前发电{0} EU/s 
 [br]最高输出 {1} EU/s。`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Title:
+欢迎来到CryoFall!
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryWelcome_Description:
+我们想借此机会向你介绍一些游戏内的功能！ CryoFall仍然在开发中，但以下所有功能已经可以使用。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Title:
+农业&烹饪
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryFarming_Description:
+使用肥料和农具种植你自己的作物。然后再把辛劳的成果烹饪成各种美食，能够提供不同加成。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Title:
+角色模拟&药物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryMedicine_Description:
+复杂的角色模拟，不仅能体现出常见的饥饿和口渴状态，更能测试各种异常状态效果，而它们则可以用各种药品治疗。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Title:
+工业
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryIndustry_Description:
+探索在CryoFall中可以利用的自然资源。开采石油，从温泉采集锂矿，来制造电池和电器。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Title:
+经济
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEconomy_Description:
+铸造硬币，建造全自动贸易站来与其他幸存者进行交易。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Title:
+植入物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryImplants_Description:
+将植入物植入你的角色体内，获得新的能力或者提高你的属性。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Title:
+技能
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntrySkills_Description:
+发现，解锁并强化你角色的一系列技巧，帮助你提高生存效率，以及进一步发现新技能。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Title:
+角色定制
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCharacters_Description:
+使用各种不同装备和工具来定制你的角色，让你显得与众不同。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Title:
+科技
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
+获得的学习点并使用它们来学习新科技、食谱和建筑，通过根据自己的喜好加点来定制属于你的游戏体验。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
+电力
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Description:
+设计基地时要考虑到电网。你可以建造数个发电机，储存建筑以及电力消耗建筑。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Title:
+载具
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
+建立和升级的各种未来车辆，以更快的探索这个世界或在战斗中使用它们。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
+神奇动物
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Description:
+探索拥有各种不同自然环境的世界与这里数十种神奇生物。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Title:
+写在最后
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryLastWord_Description:
+`最后，请记住，《末日觉醒》仍然出于开发当中，并且还有着大量的更新和改动计划。 尽管如此，当前的游戏内容已经十分充实，希望大家喜欢！[br][br]
+另外我们有在论坛和discord全程值班，欢迎来和我们打个招呼！ :)[br][br]
+如果你遇到任何困难或希望报告游戏中的错误或漏洞，我们愿意聆听并提供帮助！`
+
+UI/Controls/Menu/FeaturesSlideshow/Data/ViewModelFeaturesSlideshow@ButtonStartTheGame:
+开始游戏
 
 UI/Controls/Menu/Login/Data/ViewModelLoginAtomicTorchFormControl@ErrorAwaitingLoginResponse:
 等待登录响应。

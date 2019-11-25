@@ -14,7 +14,7 @@
 
         public override string Name => "Iron sign";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Metal;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Metal;
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
@@ -45,9 +45,9 @@
         {
             category = GetCategory<StructureCategoryOther>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            build.AddStageRequiredItem<ItemIngotIron>(count: 2);
 
             repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;

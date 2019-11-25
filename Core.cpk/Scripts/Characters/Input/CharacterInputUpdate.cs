@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    public struct CharacterInputUpdate : IRemoteCallParameter
+    public readonly struct CharacterInputUpdate : IRemoteCallParameter
     {
         public readonly CharacterMoveModes MoveModes;
 

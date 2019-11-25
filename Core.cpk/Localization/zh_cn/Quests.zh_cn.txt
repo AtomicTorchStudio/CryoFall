@@ -318,8 +318,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Description:
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Hints:
 `[*] 游戏中有许多不同类型的药物。有些可以恢复健康，有些可以治疗特定的疾病或提供其他好处。
 [*]制作先进的药物需要学习特定的配方和技术。
-[*]草药汤可以在烹饪类别中找到。
-[*]砍伐某些类型的树木时可收集树皮。`
+[*]草药汤可以在烹饪类别中找到。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCollectHerbsAndCraftMedicine@Name:
 收集草药并制药
@@ -352,7 +351,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 是时候获得更好的防护了。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Hints:
-`[*]您可以解锁”进攻&防御“技术组中的所有相关技术。
+`[*]您可以解锁”防御“技术组中的所有相关技术。
 [*]木制装甲可能不是最好的选择，但它的制作成本仍然低廉，当然也比布甲更好。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Name:
@@ -381,7 +380,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 用钉头锤砸碎敌人的脑袋很好，但远距离攻击也是个不错的选择。特别是在你面对更强大对手的时候。
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
-`[*] 您可以解锁”进攻&防御“技术组中的所有相关技术。
+`[*] 您可以解锁”进攻“技术组中的所有相关技术。
 [*] 要制作纸包弹，您还必须先制作[b]火药[/b]和[b]纸[/b]。
 [*] 游戏中存在[b]不同的伤害类型[/b]，不同的装甲提供不同的抗性。您可以在物品栏中看到此信息。`
 
@@ -435,7 +434,8 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Description:
 是时候再次狩猎了！还有更多的动物和怪物可供狩猎。
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
-`[*] 每个动物和怪物都有自己的栖息区域，通常可以在对应区域找到它们。尝试探索世界，看看栖息在其中的所有不同的生物。
+`[*] 你可以在物品栏界面角色头像右边的设备栏里装备你的猎人工具。
+[*] 每个动物和怪物都有自己的栖息区域，通常可以在对应区域找到它们。尝试探索世界，看看栖息在其中的所有不同的生物。
 [*] 根据特定动物或怪物的危险程度，您将获得不同数量的狩猎经验。`
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
@@ -464,6 +464,9 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 使用撬棍进行拆解
 
+Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
+开采盐矿
+
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Description:
 某些资源，如石油和锂，是开发先进技术的必要素材。了解如何获得它们是极为重要的。
 
@@ -475,9 +478,6 @@ Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@Name:
 高级资源的获取
-
-Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
-开采盐矿
 
 Scripts/Quests/Tutorial/Stage3/QuestBuildChemicalLab@Description:
 工业和建筑的进步需要硬科学，尤其是化学方面的基础。

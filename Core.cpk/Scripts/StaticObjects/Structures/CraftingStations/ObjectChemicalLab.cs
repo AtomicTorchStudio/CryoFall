@@ -14,11 +14,11 @@
 
         public override string Name => "Chemical laboratory";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.Wood;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
         public override double ObstacleBlockDamageCoef => 1.0;
 
-        public override float StructurePointsMax => 400;
+        public override float StructurePointsMax => 2500;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -43,15 +43,13 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemPlanks>(count: 20);
-            build.AddStageRequiredItem<ItemIngotIron>(count: 2);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            build.AddStageRequiredItem<ItemPlanks>(count: 10);
+            build.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 10);
-            repair.AddStageRequiredItem<ItemIngotIron>(count: 1);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 5);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

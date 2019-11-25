@@ -4,6 +4,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
@@ -70,6 +71,12 @@
             if (ClientCloseConstructionMenu())
             {
                 // just closed the construction menu
+                return;
+            }
+
+            if (ClientCurrentCharacterHelper.PublicState.CurrentVehicle != null)
+            {
+                Logger.Important("Construction menu is not accessible while in a vehicle");
                 return;
             }
 
@@ -418,7 +425,7 @@
                 return;
             }
 
-            var selectedHotbarItem = PlayerCharacter.GetPublicState(character).SelectedHotbarItem;
+            var selectedHotbarItem = PlayerCharacter.GetPublicState(character).SelectedItem;
             if (!(selectedHotbarItem?.ProtoItem is IProtoItemToolToolbox))
             {
                 Logger.Error(

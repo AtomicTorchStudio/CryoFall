@@ -24,9 +24,11 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.Skills;
     using AtomicTorch.CBND.CoreMod.Systems.Technologies;
+    using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Respawn;
+    using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -54,21 +56,25 @@
 
         public override float CharacterWorldHeight => 1.5f;
 
-        // This is the center of the character's ranged hitbox.
-        // It's necessary to ensure the equal distance in every way the character could shot and damage another player.
-        public override float CharacterWorldWeaponOffsetRanged { get; }
-            = (float)(SkeletonHuman.RangedHitboxOffset
-                      + SkeletonHuman.RangedHitboxHeight / 2);
-
         // This is the center of the character's melee hitbox.
         // It's necessary to ensure the equal distance in every way the character could shot and damage another player.
         public override float CharacterWorldWeaponOffsetMelee { get; }
             = (float)(SkeletonHuman.MeleeHitboxOffset
                       + SkeletonHuman.MeleeHitboxHeight / 2);
 
+        // This is the center of the character's ranged hitbox.
+        // It's necessary to ensure the equal distance in every way the character could shot and damage another player.
+        public override float CharacterWorldWeaponOffsetRanged { get; }
+            = (float)(SkeletonHuman.RangedHitboxOffset
+                      + SkeletonHuman.RangedHitboxHeight / 2);
+
         public override string Name => "Player character";
 
-        public override ObjectSoundMaterial ObjectSoundMaterial => ObjectSoundMaterial.SoftTissues;
+        public override ObjectMaterial ObjectMaterial => ObjectMaterial.SoftTissues;
+
+        public override double PhysicsBodyAccelerationCoef => 10;
+
+        public override double PhysicsBodyFriction => 30;
 
         public virtual double StatDefaultFoodMax => 100;
 
@@ -81,7 +87,7 @@
         public override double StatHealthRegenerationPerSecond
             => 2.0 / 60.0; // 2 health points per minute (1 every 30 seconds)
 
-        public override double StatMoveSpeed => 1.5;
+        public override double StatMoveSpeed => 2.25;
 
         public override double StatMoveSpeedRunMultiplier => 1.25;
 
@@ -98,7 +104,7 @@
         public static BaseClientComponentLightSource ClientCreateDefaultLightSource(ICharacter character)
         {
             return ClientLighting.CreateLightSourceSpot(
-                Client.Scene.GetSceneObject(character),
+                character.ClientSceneObject,
                 color: Colors.White.WithAlpha(0x28),
                 size: 10,
                 // the light is very faint so we're using a smaller logical size
@@ -140,7 +146,45 @@
                 return;
             }
 
-            ClientCurrentCharacterLagPredictionManager.UpdatePosition(forceReset, currentCharacter);
+            var currentVehicle = publicState.CurrentVehicle;
+            if (currentVehicle is null
+                || !currentVehicle.IsInitialized)
+            {
+                ClientCurrentCharacterLagPredictionManager.UpdatePosition(forceReset, currentCharacter);
+            }
+        }
+
+        public override bool SharedOnDamage(
+            WeaponFinalCache weaponCache,
+            IWorldObject targetObject,
+            double damagePreMultiplier,
+            out double obstacleBlockDamageCoef,
+            out double damageApplied)
+        {
+            if (!base.SharedOnDamage(weaponCache,
+                                     targetObject,
+                                     damagePreMultiplier,
+                                     out obstacleBlockDamageCoef,
+                                     out damageApplied))
+            {
+                return false;
+            }
+
+            if (IsServer)
+            {
+                var character = (ICharacter)targetObject;
+                var vehicle = GetPublicState(character).CurrentVehicle;
+                if (vehicle != null)
+                {
+                    var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
+                    protoVehicle.ServerOnPilotDamage(weaponCache,
+                                                     vehicle,
+                                                     character,
+                                                     damageApplied);
+                }
+            }
+
+            return true;
         }
 
         public override void SharedRefreshFinalCacheIfNecessary(ICharacter character)
@@ -186,6 +230,22 @@
                 _ => ResetRendering(resetSkeleton: true),
                 clientState);
 
+            // subscribe on vehicle change
+            publicState.ClientSubscribe(
+                _ => _.CurrentVehicle,
+                _ =>
+                {
+                    // reset input history for lag prediction
+                    CurrentCharacterInputHistory.Instance.Clear();
+                    // re-create physics
+                    this.SharedCreatePhysics(character);
+                    // re-select current item
+                    SharedForceRefreshCurrentItem(ClientCurrentCharacterHelper.Character);
+                    // reset rendering
+                    ResetRendering(resetSkeleton: false);
+                },
+                clientState);
+
             // subscribe on player character public action change
             publicState.ClientSubscribe(
                 _ => _.CurrentPublicActionState,
@@ -195,7 +255,7 @@
             this.ClientRefreshCurrentPublicActionState(character);
 
             publicState.ClientSubscribe(
-                _ => _.SelectedHotbarItem,
+                _ => _.SelectedItem,
                 _ =>
                 {
                     // selected different item
@@ -227,24 +287,23 @@
                                          .PlaySound(ItemSound.Deselect, character);
 
                 currentItemIdleSoundEmitter.Stop();
-                var currentItem = publicState.SelectedHotbarItem;
+                var currentItem = publicState.SelectedItem;
                 var itemSoundPreset = currentItem?
                                       .ProtoItem
                                       .SharedGetItemSoundPreset();
                 previousSelectedProtoItem = currentItem?.ProtoItem;
 
-                if (itemSoundPreset == null)
+                if (itemSoundPreset != null)
                 {
-                    return;
-                }
+                    itemSoundPreset.PlaySound(ItemSound.Select, character);
 
-                itemSoundPreset.PlaySound(ItemSound.Select, character);
-                var idleSoundResource = itemSoundPreset.GetSound(ItemSound.Idle);
-                if (idleSoundResource != null)
-                {
-                    currentItemIdleSoundEmitter.SoundResource = idleSoundResource;
-                    currentItemIdleSoundEmitter.Delay = 0.1;
-                    currentItemIdleSoundEmitter.Play();
+                    var idleSoundResource = itemSoundPreset.GetSound(ItemSound.Idle);
+                    if (idleSoundResource != null)
+                    {
+                        currentItemIdleSoundEmitter.SoundResource = idleSoundResource;
+                        currentItemIdleSoundEmitter.Delay = 0.1;
+                        currentItemIdleSoundEmitter.Play();
+                    }
                 }
             }
 
@@ -264,10 +323,10 @@
             var character = data.GameObject;
             var clientState = data.ClientState;
             var publicState = data.PublicState;
-            ClientCharacterEquipmentHelper.ClientRefreshEquipment(character, clientState, publicState);
 
             if (!character.IsCurrentClientCharacter)
             {
+                ClientCharacterEquipmentHelper.ClientRefreshEquipment(character, clientState, publicState);
                 base.ClientUpdate(data);
                 return;
             }
@@ -278,6 +337,8 @@
             {
                 SharedRefreshSelectedHotbarItem(character, privateState);
             }
+
+            ClientCharacterEquipmentHelper.ClientRefreshEquipment(character, clientState, publicState);
 
             this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
             this.SharedApplyInput(character, privateState, publicState);
@@ -330,7 +391,7 @@
                                  LandClaimSystemConstants.SharedLandClaimsNumberLimitIncrease);
             }
         }
-        
+
         protected override void ServerInitializeCharacter(ServerInitializeData data)
         {
             base.ServerInitializeCharacter(data);
@@ -427,9 +488,16 @@
 
             if (publicState.IsDead)
             {
+                VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
+
                 // dead - stops processing character
-                Server.Characters.SetMoveSpeed(character, 0);
-                Server.Characters.SetVelocity(character, Vector2D.Zero);
+                var world = Server.World;
+                world.SetDynamicObjectMoveSpeed(character, 0);
+                world.SetDynamicObjectPhysicsMovement(character,
+                                                             accelerationVector: Vector2D.Zero,
+                                                             targetVelocity: 0);
+                character.PhysicsBody.Friction = 100000;
+                world.StopPhysicsBody(character.PhysicsBody);
                 return;
             }
 
@@ -449,10 +517,27 @@
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
-            if (GetPublicState(data.GameObject).IsDead)
+            var publicState = GetPublicState(data.GameObject);
+            if (publicState.IsDead)
             {
                 // do not create any physics for dead character
                 return;
+            }
+
+            var physicsBody = data.PhysicsBody;
+            var currentVehicle = publicState.CurrentVehicle;
+            var protoVehicle = currentVehicle?.ProtoGameObject as IProtoVehicle;
+            if (protoVehicle != null)
+            {
+                protoVehicle.SharedGetSkeletonProto(currentVehicle, out var skeleton, out _);
+                if (skeleton != null)
+                {
+                    // do not create any physics for a character in vehicle (vehicle has its own physics)
+                    physicsBody.AttachedToPhysicsBody = currentVehicle.PhysicsBody;
+                    // but ensure the physics body is enabled even if it doesn't have physics shapes)
+                    physicsBody.IsEnabled = true;
+                    return;
+                }
             }
 
             base.SharedCreatePhysics(data);
@@ -473,10 +558,19 @@
                 characterInteractionRadius += 1 / 255.0;
             }
 
-            data.PhysicsBody.AddShapeCircle(
-                center: (0, 0.65),
-                radius: characterInteractionRadius,
-                group: CollisionGroups.CharacterInteractionArea);
+            if (protoVehicle is null)
+            {
+                physicsBody.AddShapeCircle(
+                    center: (0, 0.65),
+                    radius: characterInteractionRadius,
+                    group: CollisionGroups.CharacterInteractionArea);
+                physicsBody.UseInstantVelocityDirectionChange = true;
+            }
+            else // has a vehicle
+            {
+                physicsBody.RemoveShapesOfGroup(CollisionGroups.Default);
+                physicsBody.AttachedToPhysicsBody = currentVehicle.PhysicsBody;
+            }
         }
 
         protected override void SharedGetSkeletonProto(
@@ -490,7 +584,8 @@
                 return;
             }
 
-            var isMale = GetPublicState(character).IsMale;
+            var publicState = GetPublicState(character);
+            var isMale = publicState.IsMale;
             protoSkeleton = isMale
                                 ? (SkeletonHuman)SkeletonHumanMale.Value
                                 : (SkeletonHuman)SkeletonHumanFemale.Value;
@@ -504,7 +599,7 @@
 
             this.ServerRebuildFinalCacheIfNeeded(privateState, publicState);
 
-            var sceneObject = Client.Scene.GetSceneObject(character);
+            var sceneObject = character.ClientSceneObject;
             sceneObject
                 .AddComponent<ComponentPlayerInputUpdater>()
                 .Setup(character);

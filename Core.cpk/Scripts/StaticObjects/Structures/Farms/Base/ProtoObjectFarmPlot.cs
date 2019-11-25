@@ -96,33 +96,32 @@
 
             this.clientBlendHelper.Update(tile);
 
-            // TODO: restore this code when we add proper sprites for watered and fertilized plot
-            //var plant = SharedGetFarmPlantWorldObject(tile);
-            //if (plant != null)
-            //{
-            //    // Add extra sprites for watered and fertilized plants.
-            //    // Please note - the farm plot is re-initialized by plant object when its state changed.
-            //    var plantPublicState = plant.GetPublicState<PlantPublicState>();
-            //    if (plantPublicState.IsWatered)
-            //    {
-            //        Client.Rendering.CreateSpriteRenderer(
-            //            worldObject,
-            //            this.TextureFieldWatered,
-            //            positionOffset: (0.5, 0.4),
-            //            spritePivotPoint: (0.5, 0.5),
-            //            drawOrder: drawOrder + 2);
-            //    }
+            var plant = SharedGetFarmPlantWorldObject(tile);
+            if (plant != null)
+            {
+                // Add extra sprites for watered and fertilized plants.
+                // Please note - the farm plot is re-initialized by plant object when its state changed.
+                var plantPublicState = plant.GetPublicState<PlantPublicState>();
+                if (plantPublicState.IsWatered)
+                {
+                    Client.Rendering.CreateSpriteRenderer(
+                        worldObject,
+                        this.TextureFieldWatered,
+                        positionOffset: (0.5, 0.4),
+                        spritePivotPoint: (0.5, 0.5),
+                        drawOrder: drawOrder + 2);
+                }
 
-            //    if (plantPublicState.IsFertilized)
-            //    {
-            //        Client.Rendering.CreateSpriteRenderer(
-            //            worldObject,
-            //            this.TextureFieldFertilized,
-            //            positionOffset: (0.5, 0.4),
-            //            spritePivotPoint: (0.5, 0.5),
-            //            drawOrder: drawOrder + 2);
-            //    }
-            //}
+                if (plantPublicState.IsFertilized)
+                {
+                    Client.Rendering.CreateSpriteRenderer(
+                        worldObject,
+                        this.TextureFieldFertilized,
+                        positionOffset: (0.5, 0.4),
+                        spritePivotPoint: (0.5, 0.5),
+                        drawOrder: drawOrder + 2);
+                }
+            }
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)

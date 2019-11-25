@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -59,9 +60,10 @@
                    && prototype.IsInstanceOfType(SharedGetConstructionProto(staticWorldObject));
         }
 
-        public override string ClientGetTitle(IStaticWorldObject worldObject)
+        public override string ClientGetTitle(IWorldObject worldObject)
         {
-            return GetPublicState(worldObject).ConstructionProto.Name;
+            var publicState = GetPublicState((IStaticWorldObject)worldObject);
+            return publicState.ConstructionProto.Name;
         }
 
         public override IConstructionStageConfigReadOnly GetStructureActiveConfig(IStaticWorldObject staticWorldObject)
@@ -126,7 +128,7 @@
             var publicState = data.PublicState;
 
             var protoStructure = publicState.ConstructionProto;
-            var blueprint = new ClientBlueprintRenderer(Client.Scene.GetSceneObject(worldObject));
+            var blueprint = new ClientBlueprintRenderer(worldObject.ClientSceneObject);
             protoStructure.ClientSetupBlueprint(worldObject.OccupiedTile, blueprint);
             blueprint.SpriteRenderer.DrawOrder = DrawOrder.Default;
             blueprint.SpriteRenderer.RenderingMaterial = BlueprintMaterial.Value;
@@ -141,7 +143,7 @@
                     isDestroy: false);
             }
 
-            var sceneObject = Client.Scene.GetSceneObject(worldObject);
+            var sceneObject = worldObject.ClientSceneObject;
             sceneObject.AddComponent<ClientComponentAutoDisplayConstructionSiteStructurePointsBar>()
                        .Setup(worldObject,
                               structurePointsMax: this.SharedGetStructurePointsMax(worldObject));

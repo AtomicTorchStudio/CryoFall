@@ -41,8 +41,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.Template>
                         <ControlTemplate TargetType="{x:Type ItemsControl}">
-                            <ScrollViewer Style="{StaticResource VerticalWideButtonScrollViewerStyle}"
-                                          CanContentScroll="False">
+                            <ScrollViewer Style="{StaticResource VerticalWideButtonScrollViewerStyle}">
                                 <ItemsPresenter />
                             </ScrollViewer>
                         </ControlTemplate>
@@ -364,7 +363,7 @@
                                         </Canvas>
 
                                         <TextBlock Grid.Column="1"
-                                                   Text="{Binding Level, StringFormat={x:Static loc:CoreStrings.WindowSkills_CurrentLevelFormat}}"
+                                                   Text="{Binding Level, StringFormat='{}{x:Static loc:CoreStrings.WindowSkills_CurrentLevelFormat}'}"
                                                    Foreground="{StaticResource BrushColorRed6}"
                                                    Visibility="{Binding VisibilityIsNotActive}" />
 
