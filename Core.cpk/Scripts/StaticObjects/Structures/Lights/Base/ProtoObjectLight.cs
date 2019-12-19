@@ -93,7 +93,10 @@
                     $"Character cannot interact with {worldObject} - not the land owner.",
                     character);
 
-                LandClaimSystem.ServerNotifyCannotInteractNotOwner(character, worldObject);
+                if (IsServer)
+                {
+                    LandClaimSystem.ServerNotifyCannotInteractNotOwner(character, worldObject);
+                }
             }
 
             return false;

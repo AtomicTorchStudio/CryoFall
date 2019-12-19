@@ -16,23 +16,26 @@
 
     public class SpawnResourcePragmium : ProtoZoneSpawnScript
     {
-        public const int PaddingPragmiumWithOilDeposit = 75;
+        public const int PaddingPragmiumWithOilDeposit
+            = ObjectMineralPragmiumSourceExplosion.ExplosionDamageRadius + 6;
 
         // because this script called very rare we're increasing the spawn attempts count
-        protected override double MaxSpawnAttempsMultiplier => 50;
+        protected override double MaxSpawnAttempsMultiplier => 150;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
             // this resource is not spawned on the world init
             triggers
                 // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(
-                         intervalFrom: TimeSpan.FromHours(3),
-                         intervalTo: TimeSpan.FromHours(4)));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(
+                         intervalFrom: TimeSpan.FromMinutes(50),
+                         intervalTo: TimeSpan.FromMinutes(70)));
 
             var presetPragmiumSource = spawnList.CreatePreset(interval: 130, padding: 2, useSectorDensity: false)
                                                 .Add<ObjectMineralPragmiumSource>()
                                                 .SetCustomPaddingWithSelf(79);
+
+            presetPragmiumSource.SpawnLimitPerIteration = 3;
 
             // don't spawn close to oil seeps
             var restrictionPresetDepositOilSeep = spawnList.CreateRestrictedPreset()

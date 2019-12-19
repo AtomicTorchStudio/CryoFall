@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Triggers
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.GameEngine.Common.Helpers;
 
@@ -21,19 +22,36 @@
             return config;
         }
 
-        public BaseTriggerConfig Configure(TimeSpan interval)
+        public BaseTriggerConfig Configure(
+            TimeSpan interval,
+            bool adjustRateToPlayersNumber = false)
         {
             var seconds = interval.TotalSeconds;
             return new TriggerTimeIntervalConfig(trigger: this,
                                                  intervalFromSeconds: seconds,
-                                                 intervalToSeconds: seconds);
+                                                 intervalToSeconds: seconds,
+                                                 adjustRateToPlayersNumber: adjustRateToPlayersNumber);
         }
 
-        public BaseTriggerConfig Configure(TimeSpan intervalFrom, TimeSpan intervalTo)
+        public BaseTriggerConfig Configure(
+            TimeSpan intervalFrom,
+            TimeSpan intervalTo,
+            bool adjustRateToPlayersNumber = false)
         {
             return new TriggerTimeIntervalConfig(trigger: this,
                                                  intervalFromSeconds: intervalFrom.TotalSeconds,
-                                                 intervalToSeconds: intervalTo.TotalSeconds);
+                                                 intervalToSeconds: intervalTo.TotalSeconds,
+                                                 adjustRateToPlayersNumber: adjustRateToPlayersNumber);
+        }
+
+        public BaseTriggerConfig ConfigureForSpawn(TimeSpan intervalFrom, TimeSpan intervalTo)
+        {
+            return this.Configure(intervalFrom, intervalTo, adjustRateToPlayersNumber: true);
+        }
+
+        public BaseTriggerConfig ConfigureForSpawn(TimeSpan interval)
+        {
+            return this.Configure(interval, adjustRateToPlayersNumber: true);
         }
 
         public override void ServerUpdate()
@@ -49,6 +67,8 @@
 
         private class TriggerTimeIntervalConfig : BaseTriggerConfig
         {
+            private readonly bool adjustRateToPlayersNumber;
+
             private readonly double intervalFromSeconds;
 
             private readonly double intervalToSeconds;
@@ -58,7 +78,8 @@
             public TriggerTimeIntervalConfig(
                 TriggerTimeInterval trigger,
                 double intervalFromSeconds,
-                double intervalToSeconds)
+                double intervalToSeconds,
+                bool adjustRateToPlayersNumber)
                 : base(trigger)
             {
                 if (intervalToSeconds < intervalFromSeconds)
@@ -68,6 +89,7 @@
 
                 this.intervalFromSeconds = intervalFromSeconds;
                 this.intervalToSeconds = intervalToSeconds;
+                this.adjustRateToPlayersNumber = adjustRateToPlayersNumber;
 
                 // Schedule random trigger time (but not later than the "interval to" duration).
                 // This is necessary to prevent the CPU spikes and to ensure that the spawn scripts are not executed
@@ -85,10 +107,19 @@
                     return;
                 }
 
-                this.nextTriggerTime = Server.Game.FrameTime + this.intervalFromSeconds;
+                var fromSeconds = this.intervalFromSeconds;
+                var toSeconds = this.intervalToSeconds;
+
+                if (this.adjustRateToPlayersNumber)
+                {
+                    fromSeconds = ServerSpawnRateScaleHelper.AdjustDurationByRate(fromSeconds);
+                    toSeconds = ServerSpawnRateScaleHelper.AdjustDurationByRate(toSeconds);
+                }
+
+                this.nextTriggerTime = Server.Game.FrameTime + fromSeconds;
 
                 // add random interval (if necessary)
-                var deltaInterval = this.intervalToSeconds - this.intervalFromSeconds;
+                var deltaInterval = toSeconds - fromSeconds;
                 if (deltaInterval >= float.Epsilon)
                 {
                     this.nextTriggerTime += deltaInterval * RandomHelper.NextDouble();

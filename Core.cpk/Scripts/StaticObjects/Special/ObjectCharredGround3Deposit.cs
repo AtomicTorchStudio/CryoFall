@@ -14,7 +14,8 @@
         [NotLocalizable]
         public override string Name => "Charred ground (Deposit)";
 
-        public override double ObjectDespawnDurationSeconds => 32 * 60 * 60; // 32 hours
+        // 6 hours (setting it higher might lead to an issue where there is no space to spawn on a very populated server)
+        public override double ObjectDespawnDurationSeconds => 6 * 60 * 60;
 
         protected override void CreateLayout(StaticObjectLayout layout)
         {

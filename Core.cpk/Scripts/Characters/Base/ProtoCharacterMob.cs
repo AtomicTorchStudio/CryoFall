@@ -38,10 +38,10 @@
         public const double AgroStateDuration = 5 * 60; // 5 minutes
 
         // If the mob is too far away from the spawn position, it should be despawned after the delay.
-        private const int DespawnTileDistanceThreshold = 20; // 20+ tiles away
+        private const int DespawnTileDistanceThreshold = 10; // 10+ tiles away
 
-        // If the mob is too far away from the spawn position it will be despawned after this delay.
-        private const int DespawnTimeThreshold = 15 * 60; // 15 minutes
+        // If the mob is too far away from the spawn position it will be despawned after this delay (if not observed).
+        private const int DespawnTimeThreshold = 10 * 60; // 10 minutes
 
         private static readonly IWorldServerService ServerWorld = IsServer
                                                                       ? Server.World

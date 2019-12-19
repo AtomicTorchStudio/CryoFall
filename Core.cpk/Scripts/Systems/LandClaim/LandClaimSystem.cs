@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
@@ -11,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Stats;
@@ -108,7 +110,7 @@
                     var position = context.Tile.Position;
 
                     var noAreasThere = true;
-                    foreach (var area in sharedLandClaimAreas)
+                    foreach (var area in SharedGetLandClaimAreasCache().EnumerateForPosition(position))
                     {
                         var areaBoundsDirect = SharedGetLandClaimAreaBounds(area);
                         var areaBoundsWithPadding = areaBoundsDirect.Inflate(LandClaimArea.GetPublicState(area)
@@ -185,7 +187,7 @@
                     }
 
                     var position = context.Tile.Position;
-                    foreach (var area in sharedLandClaimAreas)
+                    foreach (var area in SharedGetLandClaimAreasCache().EnumerateForPosition(position))
                     {
                         var areaBounds = SharedGetLandClaimAreaBounds(area, addGracePadding: true);
                         if (!areaBounds.Contains(position))
@@ -368,8 +370,27 @@
 
                         foreach (var mark in WorldMapResourceMarksSystem.SharedEnumerateMarks())
                         {
+                            var position = mark.Position;
+                            if (position == default)
+                            {
+                                var obj = Api.IsServer
+                                              ? ServerWorld.GetGameObjectById<IStaticWorldObject>(
+                                                  GameObjectType.StaticObject,
+                                                  mark.Id)
+                                              : ClientWorld.GetGameObjectById<IStaticWorldObject>(
+                                                  GameObjectType.StaticObject,
+                                                  mark.Id);
+                                if (obj is null)
+                                {
+                                    // no object exists (in case of client - could be out of scope)
+                                    continue;
+                                }
+
+                                position = WorldMapResourceMarksSystem.SharedGetObjectCenterPosition(obj);
+                            }
+
                             var staticWorldObjectBounds = new BoundsInt(
-                                mark.Position,
+                                position,
                                 // TODO: it's a hardcoded oil/Li deposit size
                                 new Vector2Int(3, 3));
 
@@ -422,8 +443,27 @@
                             continue;
                         }
 
+                        var position = mark.Position;
+                        if (position == default)
+                        {
+                            var obj = Api.IsServer
+                                          ? ServerWorld.GetGameObjectById<IStaticWorldObject>(
+                                              GameObjectType.StaticObject,
+                                              mark.Id)
+                                          : ClientWorld.GetGameObjectById<IStaticWorldObject>(
+                                              GameObjectType.StaticObject,
+                                              mark.Id);
+                            if (obj is null)
+                            {
+                                // no object exists (in case of client - could be out of scope)
+                                continue;
+                            }
+
+                            position = WorldMapResourceMarksSystem.SharedGetObjectCenterPosition(obj);
+                        }
+
                         var bounds = new BoundsInt(
-                            mark.Position - (restrictionSize.X / 2, restrictionSize.Y / 2),
+                            position - (restrictionSize.X / 2, restrictionSize.Y / 2),
                             restrictionSize);
 
                         if (bounds.Contains(context.Tile.Position))
@@ -452,6 +492,8 @@
 
         private static readonly IWorldServerService ServerWorld
             = IsServer ? Server.World : null;
+
+        private static LandClaimAreasCache sharedLandClaimAreasCache;
 
         public delegate void DelegateServerObjectLandClaimDestroyed(
             IStaticWorldObject landClaimStructure,
@@ -522,20 +564,30 @@
             IStaticWorldObject targetObject,
             double damageMultiplier)
         {
-            var prototype = targetObject.ProtoStaticWorldObject;
-            var layoutBounds = prototype.Layout.Bounds;
-            if (SharedIsLandClaimedByAnyone(
-                new RectangleInt(offset: targetObject.TilePosition + layoutBounds.Offset,
-                                 size: layoutBounds.Size)))
+            if (SharedIsObjectInsideAnyArea(targetObject))
             {
                 // protected building
                 return damageMultiplier;
             }
 
             // unprotected building
-            damageMultiplier *= weaponCache.ProtoObjectExplosive == null
-                                    ? 50 // damage multiplier for weapon
-                                    : 8; // damage multiplier for explosive
+            if (weaponCache.ProtoObjectExplosive == null)
+            {
+                // damage multiplier for weapon
+                damageMultiplier *= 50;
+                var protoTarget = targetObject.ProtoGameObject;
+                if (protoTarget is IProtoObjectWall
+                    || protoTarget is IProtoObjectDoor)
+                {
+                    // further increase the damage to unclaimed walls and doors to prevent their abuse
+                    damageMultiplier *= 6;
+                }
+            }
+            else
+            {
+                // damage multiplier for explosive
+                damageMultiplier *= 8;
+            }
 
             return damageMultiplier;
         }
@@ -730,6 +782,7 @@
         {
             Api.Assert(area.ProtoLogicObject is LandClaimArea, "Wrong object type");
             sharedLandClaimAreas.Add(area);
+            sharedLandClaimAreasCache = null;
 
             var owners = area.GetPrivateState<LandClaimAreaPrivateState>()
                              .LandOwners;
@@ -775,6 +828,7 @@
         {
             Api.Assert(area.ProtoLogicObject is LandClaimArea, "Wrong object type");
             sharedLandClaimAreas.Remove(area);
+            sharedLandClaimAreasCache = null;
 
             var owners = area.GetPrivateState<LandClaimAreaPrivateState>()
                              .LandOwners;
@@ -840,8 +894,8 @@
             // Even though the area's group didn't change,
             // we need to notify power system so it will rebuild power grid for the area's group.
             Api.SafeInvoke(() => ServerAreasGroupChanged?.Invoke(area,
-                                                                areaPublicState.LandClaimAreasGroup,
-                                                                null));
+                                                                 areaPublicState.LandClaimAreasGroup,
+                                                                 null));
 
             return upgradedObject;
         }
@@ -928,7 +982,7 @@
 
             // let's check whether there are any areas and player own them
             var isThereAnyArea = false;
-            foreach (var area in sharedLandClaimAreas)
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(worldObjectBounds))
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area);
                 if (!areaBounds.IntersectsLoose(worldObjectBounds))
@@ -959,7 +1013,7 @@
             }
 
             // let's check whether there is a grace area of the land claim area owned by the player
-            foreach (var area in sharedLandClaimAreas)
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(worldObjectBounds))
             {
                 var areaBoundsWithPadding = SharedGetLandClaimAreaBounds(area, addGracePadding: true);
                 if (!areaBoundsWithPadding.IntersectsLoose(worldObjectBounds))
@@ -993,7 +1047,7 @@
                 landClaimCenterTilePosition,
                 newProtoObjectLandClaim.LandClaimWithGraceAreaSize);
 
-            foreach (var area in sharedLandClaimAreas)
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(newAreaBounds))
             {
                 var areaBoundsWithPadding = SharedGetLandClaimAreaBounds(area, addGracePadding: true);
                 if (!areaBoundsWithPadding.IntersectsLoose(newAreaBounds))
@@ -1027,8 +1081,7 @@
                 result.Clear();
             }
 
-            // TODO: the lookup is really slow on the populated servers. Consider Grid or QuadTree optimization to locate areas quickly.
-            foreach (var area in sharedLandClaimAreas)
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(bounds))
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area);
                 if (addGracePadding)
@@ -1044,12 +1097,26 @@
             }
         }
 
+        public static RectangleInt SharedGetLandClaimAreaBounds(
+            ILogicObject area,
+            bool addGracePadding = false)
+        {
+            var publicState = LandClaimArea.GetPublicState(area);
+            var protoObjectLandClaim = publicState.ProtoObjectLandClaim;
+            var size = protoObjectLandClaim.LandClaimSize;
+            if (addGracePadding)
+            {
+                size = (ushort)(size + 2 * protoObjectLandClaim.LandClaimGraceAreaPaddingSizeOneDirection);
+            }
+
+            return SharedCalculateLandClaimAreaBounds(publicState.LandClaimCenterTilePosition, size);
+        }
+
         public static ILogicObject SharedGetLandClaimAreasGroup(
             Vector2Ushort tilePosition,
             bool addGracePadding = false)
         {
-            // TODO: the lookup is really slow on the populated servers. Consider Grid or QuadTree optimization to locate areas quickly.
-            foreach (var area in sharedLandClaimAreas)
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForPosition(tilePosition))
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area, addGracePadding);
                 if (!areaBounds.Contains(tilePosition))
@@ -1069,8 +1136,7 @@
             RectangleInt bounds,
             bool addGracePadding = false)
         {
-            // TODO: the lookup is really slow on the populated servers. Consider Grid or QuadTree optimization to locate areas quickly.
-            foreach (var area in sharedLandClaimAreas)
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(bounds))
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area, addGracePadding);
                 if (!areaBounds.IntersectsLoose(bounds))
@@ -1084,21 +1150,6 @@
             }
 
             return null;
-        }
-
-        public static RectangleInt SharedGetLandClaimAreaBounds(
-            ILogicObject area,
-            bool addGracePadding = false)
-        {
-            var publicState = LandClaimArea.GetPublicState(area);
-            var protoObjectLandClaim = publicState.ProtoObjectLandClaim;
-            var size = protoObjectLandClaim.LandClaimSize;
-            if (addGracePadding)
-            {
-                size = (ushort)(size + 2 * protoObjectLandClaim.LandClaimGraceAreaPaddingSizeOneDirection);
-            }
-
-            return SharedCalculateLandClaimAreaBounds(publicState.LandClaimCenterTilePosition, size);
         }
 
         public static ILogicObject SharedGetLandClaimAreasGroup(ILogicObject area)
@@ -1115,11 +1166,12 @@
                    minY = ushort.MaxValue,
                    maxX = 0,
                    maxY = 0;
+
             foreach (var area in sharedLandClaimAreas)
             {
                 var areaPublicState = LandClaimArea.GetPublicState(area);
                 var otherGroup = areaPublicState.LandClaimAreasGroup;
-                if (otherGroup != group)
+                if (!ReferenceEquals(otherGroup, group))
                 {
                     continue;
                 }
@@ -1197,7 +1249,7 @@
 
         public static bool SharedIsLandClaimedByAnyone(in Vector2Ushort tilePosition)
         {
-            foreach (var area in sharedLandClaimAreas)
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForPosition(tilePosition))
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area);
                 if (areaBounds.Contains(tilePosition))
@@ -1214,7 +1266,7 @@
         /// </summary>
         public static bool SharedIsLandClaimedByAnyone(RectangleInt bounds)
         {
-            foreach (var area in sharedLandClaimAreas)
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(bounds))
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area);
                 if (areaBounds.IntersectsLoose(bounds))
@@ -1237,12 +1289,13 @@
             var startTilePosition = worldObject.TilePosition;
             var worldObjectLayoutTileOffsets = worldObject.ProtoStaticWorldObject.Layout.TileOffsets;
 
-            foreach (var area in sharedLandClaimAreas)
+            var areasCache = SharedGetLandClaimAreasCache();
+            foreach (var tileOffset in worldObjectLayoutTileOffsets)
             {
-                var areaBounds = SharedGetLandClaimAreaBounds(area);
-                foreach (var tileOffset in worldObjectLayoutTileOffsets)
+                var tilePosition = startTilePosition.AddAndClamp(tileOffset);
+                foreach (var area in areasCache.EnumerateForPosition(tilePosition))
                 {
-                    var tilePosition = startTilePosition.AddAndClamp(tileOffset);
+                    var areaBounds = SharedGetLandClaimAreaBounds(area);
                     if (!areaBounds.Contains(tilePosition))
                     {
                         // the object is not inside this area
@@ -1275,7 +1328,7 @@
             ICharacter who,
             out ILogicObject ownedArea)
         {
-            foreach (var area in sharedLandClaimAreas)
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForPosition(tilePosition))
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area);
                 if (!areaBounds.Contains(tilePosition))
@@ -1300,7 +1353,7 @@
         public static bool SharedIsPositionInsideOwnedOrFreeArea(Vector2Ushort tilePosition, ICharacter who)
         {
             var foundAnyAreas = false;
-            foreach (var area in sharedLandClaimAreas)
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForPosition(tilePosition))
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area);
                 if (!areaBounds.Contains(tilePosition))
@@ -1706,6 +1759,7 @@
 
         private static void SharedGetConnectedAreas(List<ILogicObject> result, RectangleInt bounds)
         {
+            // TODO: this enumeration might be slow
             // find areas in bounds
             foreach (var area in sharedLandClaimAreas)
             {
@@ -1738,6 +1792,21 @@
                     }
                 }
             }
+        }
+
+        private static LandClaimAreasCache SharedGetLandClaimAreasCache()
+        {
+            if (!(sharedLandClaimAreasCache is null))
+            {
+                return sharedLandClaimAreasCache;
+            }
+
+            var stopwatch = Stopwatch.StartNew();
+            sharedLandClaimAreasCache = new LandClaimAreasCache(sharedLandClaimAreas);
+            Logger.Important(
+                $"Land claim areas cache rebuilt: spent {stopwatch.Elapsed.TotalMilliseconds:0.##} ms, contains {sharedLandClaimAreas.Count} land claims");
+
+            return sharedLandClaimAreasCache;
         }
 
         private static NetworkSyncList<ILogicObject> SharedGetPlayerOwnedAreas(ICharacter player)
@@ -1946,6 +2015,7 @@
                     && obj.ProtoGameObject is LandClaimArea)
                 {
                     sharedLandClaimAreas.Add(logicObject);
+                    sharedLandClaimAreasCache = null;
                     ClientLandClaimAreaManager.AddArea(logicObject);
                 }
             }
@@ -1956,6 +2026,7 @@
                     && obj.ProtoGameObject is LandClaimArea)
                 {
                     sharedLandClaimAreas.Remove(logicObject);
+                    sharedLandClaimAreasCache = null;
                     ClientLandClaimAreaManager.RemoveArea(logicObject);
                 }
             }
@@ -1976,6 +2047,8 @@
                     sharedLandClaimAreas.Add(area);
                     ClientLandClaimAreaManager.AddArea(area);
                 }
+
+                sharedLandClaimAreasCache = null;
             }
 
             private static void ServerLoadSystem()
@@ -2001,6 +2074,8 @@
                     var areaPublicState = LandClaimArea.GetPublicState(area);
                     areaPublicState.SetupAreaProperties(areaPrivateState);
                 }
+
+                sharedLandClaimAreasCache = null;
             }
         }
     }

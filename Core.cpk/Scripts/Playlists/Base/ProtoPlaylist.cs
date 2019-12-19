@@ -11,7 +11,7 @@
     /// </summary>
     public abstract class ProtoPlaylist : ProtoEntity
     {
-        public virtual double FadeOutDurationOnPlaylistChange => 3;
+        public abstract double FadeOutDurationOnPlaylistChange { get; }
 
         public virtual PlayListMode Mode => PlayListMode.Sequential;
 

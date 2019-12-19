@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class WeaponReloadingState
     {
@@ -23,14 +24,19 @@
             this.Item = item;
             this.ProtoItemAmmo = protoItemAmmo;
 
-            this.SecondsToReloadRemains = itemProto.AmmoReloadDuration;
-
-            var statName = itemProto.WeaponSkillProto?.StatNameReloadingSpeedMultiplier;
-            if (statName.HasValue)
+            var reloadDuration = itemProto.AmmoReloadDuration;
+            if (reloadDuration > 0)
             {
-                this.SecondsToReloadRemains *= character.SharedGetFinalStatMultiplier(statName.Value);
+                var statName = itemProto.WeaponSkillProto?.StatNameReloadingSpeedMultiplier;
+                if (statName.HasValue)
+                {
+                    reloadDuration *= character.SharedGetFinalStatMultiplier(statName.Value);
+                }
+
+                reloadDuration = Api.Shared.RoundDurationByServerFrameDuration(reloadDuration);
             }
 
+            this.SecondsToReloadRemains = reloadDuration;
             //Api.Logger.WriteDev($"Weapon will be reloaded in: {this.SecondsToReloadRemains:F2} seconds");
         }
     }

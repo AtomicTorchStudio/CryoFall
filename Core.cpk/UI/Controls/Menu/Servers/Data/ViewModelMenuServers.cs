@@ -5,6 +5,7 @@
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Controllers;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -14,6 +15,8 @@
         public const string DialogClearServerList_Message = "Are you sure you want to clear this servers list?";
 
         public const string DialogClearServerList_Title = "Clear server list";
+
+        private readonly IServersProvider serversProvider = Api.Client.MasterServer.ServersProvider;
 
         private ViewModelServersList[] allServersLists;
 
@@ -41,30 +44,37 @@
 
             this.FeaturedServers =
                 new ViewModelServersList(
-                        new MultiplayerMenuServersPublicController(
+                    new MultiplayerMenuServersPublicController(
                             this.serverViewModelsProvider,
                             specialCondition: info => info.IsOfficial
-                                                      || (info.IsFeatured && !info.IsModded)),
-                        this.OnSelectedServerChanged)
-                    {
-                        IsActive = true
-                    };
+                                                      || (info.IsFeatured && !info.IsModded))
+                        {
+                            SortType = ServersListSortType.Featured
+                        },
+                    this.OnSelectedServerChanged);
+            this.FeaturedServers.IsActive = true;
 
             this.CommunityServers =
                 new ViewModelServersList(
                     new MultiplayerMenuServersPublicController(
-                        this.serverViewModelsProvider,
-                        specialCondition: info => !info.IsOfficial
-                                                  && !info.IsFeatured
-                                                  && !info.IsModded),
+                            this.serverViewModelsProvider,
+                            specialCondition: info => !info.IsOfficial
+                                                      && !info.IsFeatured
+                                                      && !info.IsModded)
+                        {
+                            SortType = ServersListSortType.OnlinePlayersCount
+                        },
                     this.OnSelectedServerChanged);
 
             this.ModdedServers =
                 new ViewModelServersList(
                     new MultiplayerMenuServersPublicController(
-                        this.serverViewModelsProvider,
-                        specialCondition: info => !info.IsOfficial
-                                                  && info.IsModded),
+                            this.serverViewModelsProvider,
+                            specialCondition: info => !info.IsOfficial
+                                                      && info.IsModded)
+                        {
+                            SortType = ServersListSortType.OnlinePlayersCount
+                        },
                     this.OnSelectedServerChanged);
 
             this.CustomServers =
@@ -74,15 +84,15 @@
 
             this.FavoriteServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(serversProvider.Favorite, this.serverViewModelsProvider),
+                    new MultiplayerMenuServersController(serversProvider.Favorite, this.serverViewModelsProvider)
+                    {
+                        SortType = ServersListSortType.OnlinePlayersCount
+                    },
                     this.OnSelectedServerChanged);
 
             this.HistoryServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(serversProvider.History, this.serverViewModelsProvider)
-                    {
-                        SortType = ServersListSortType.None
-                    },
+                    new MultiplayerMenuServersController(serversProvider.History, this.serverViewModelsProvider),
                     this.OnSelectedServerChanged);
 
             this.allServersLists = new[]
@@ -96,6 +106,9 @@
             };
 
             RequestPublicServersList();
+
+            this.serversProvider.ServerPingUpdated += this.ServerPingUpdatedHandled;
+            this.serversProvider.ServerInfoReceived += this.ServerInfoReceivedHandler;
         }
 
         public static ViewModelMenuServers Instance { get; private set; }
@@ -260,6 +273,35 @@
         private void OnSelectedServerChanged(ViewModelServerInfoListEntry viewModelServerInfoListEntry)
         {
             this.SelectedServer = viewModelServerInfoListEntry;
+        }
+
+        private void ServerInfoReceivedHandler(ServerInfo serverinfo)
+        {
+            foreach (var serversList in this.allServersLists)
+            {
+                if (serversList.IsActive
+                    && serversList.Controller.SortType == ServersListSortType.OnlinePlayersCount)
+                {
+                    serversList.SortEntries();
+                }
+            }
+        }
+
+        private void ServerPingUpdatedHandled(ServerAddress address, ushort pingMs, bool isPingMeasurementDone)
+        {
+            if (isPingMeasurementDone)
+            {
+                return;
+            }
+
+            foreach (var serversList in this.allServersLists)
+            {
+                if (serversList.IsActive
+                    && serversList.Controller.SortType == ServersListSortType.Ping)
+                {
+                    serversList.SortEntries();
+                }
+            }
         }
     }
 }

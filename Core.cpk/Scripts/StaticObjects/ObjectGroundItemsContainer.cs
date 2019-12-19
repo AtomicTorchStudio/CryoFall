@@ -82,7 +82,7 @@
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.SolidGround;
 
-        public override double ServerUpdateIntervalSeconds => 0.333;
+        public override double ServerUpdateIntervalSeconds => 0.5;
 
         public double StructureExplosiveDefenseCoef => 0;
 
@@ -180,22 +180,22 @@
                     return;
                 }
 
-                // cannot place on the ground
-                countToDrop = Math.Min(countToDrop, itemToDrop.Count);
-                instance.SoundPresetObject.PlaySound(ObjectSound.InteractFail);
-
                 // we're continue the async call - the context might have been changed
                 if (itemToDrop.IsDestroyed)
                 {
                     return;
                 }
 
-                objectGroundContainer = tile.StaticObjects.FirstOrDefault(_ => _.ProtoGameObject == instance);
-                if (objectGroundContainer == null)
+                // was unable to place the item on the ground - maybe it was already placed with an earlier call
+                if (itemToDrop.Container?.OwnerAsStaticObject?.ProtoStaticWorldObject is ObjectGroundItemsContainer)
                 {
-                    // no ground container available
+                    // it seems to be on the ground now
                     return;
                 }
+
+                // the action is definitely failed
+                instance.SoundPresetObject.PlaySound(ObjectSound.InteractFail);
+                return;
             }
 
             if (!instance.SharedCanInteract(character, objectGroundContainer, writeToLog: true))
@@ -480,7 +480,7 @@
             if (item == null)
             {
                 Logger.Error(
-                    "Cannot drop item - not found",
+                    "Cannot drop item - the item is not found",
                     character);
                 return null;
             }
@@ -488,8 +488,9 @@
             if (countToDrop > item.Count)
             {
                 Logger.Error(
-                    $"Cannot drop item: {item} - count to drop={countToDrop} is > than available item count.",
+                    $"Cannot drop item: {item} - count to drop={countToDrop} is > than available item count. Will request a container re-sync.",
                     character);
+                ServerItemsService.ServerForceContainersResync(character);
                 return null;
             }
 

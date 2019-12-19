@@ -64,6 +64,9 @@
 
         public IReadOnlyStatsDictionary ProtoEffects { get; private set; }
 
+        /// <summary>
+        /// Please note: this used only if the method ServerOnAutoAdd has an override.
+        /// </summary>
         public virtual double ServerAutoAddRepeatIntervalSeconds => 1;
 
         public override double ServerUpdateIntervalSeconds => 1;
@@ -202,7 +205,8 @@
             this.isAutoDecrease = this.IntensityAutoDecreasePerSecondValue > 0
                                   || this.IntensityAutoDecreasePerSecondFraction > 0;
 
-            if (IsServer && this.GetType().HasOverride(nameof(this.ServerOnAutoAdd), isPublic: false))
+            if (IsServer 
+                && this.GetType().HasOverride(nameof(this.ServerOnAutoAdd), isPublic: false))
             {
                 TriggerTimeInterval.ServerConfigureAndRegister(
                     interval: TimeSpan.FromSeconds(this.ServerAutoAddRepeatIntervalSeconds),

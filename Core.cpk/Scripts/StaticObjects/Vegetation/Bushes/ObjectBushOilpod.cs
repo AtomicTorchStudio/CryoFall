@@ -10,7 +10,7 @@
     {
         public override string Name => "Oilpod";
 
-        protected override TimeSpan TimeToGiveHarvest => TimeSpan.FromHours(2);
+        protected override TimeSpan TimeToGiveHarvest => TimeSpan.FromHours(1);
 
         protected override TimeSpan TimeToMature => TimeSpan.FromHours(2);
 

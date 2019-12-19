@@ -2,9 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
 
     public abstract class BaseMultiplayerMenuServersController : IDisposable
@@ -45,8 +46,8 @@
             }
         }
 
-        public ObservableCollection<ViewModelServerInfoListEntry> ServersCollection { get; }
-            = new ObservableCollection<ViewModelServerInfoListEntry>();
+        public SuperObservableCollection<ViewModelServerInfoListEntry> ServersCollection { get; }
+            = new SuperObservableCollection<ViewModelServerInfoListEntry>();
 
         public ServersListSortType SortType
         {
@@ -78,7 +79,74 @@
 
         public abstract void ReloadServersList();
 
-        protected void FillServersList()
+        public void SortEntries()
+        {
+            using var tempOrderedList = Api.Shared.WrapInTempList(this.GetOrderedList());
+            // simply reset the observable collection
+            this.ServersCollection.ClearAndAddRange(tempOrderedList);
+            return;
+
+            // not implemented by NoesisGUI
+            var currentList = this.ServersCollection;
+            var order = tempOrderedList.AsList();
+            for (var index = 0; index < order.Count; index++)
+            {
+                var currentIndex = currentList.IndexOf(order[index]);
+                if (currentIndex == index)
+                {
+                    continue;
+                }
+
+                currentList.Move(currentIndex, index);
+                Api.Logger.Dev("Moving: " + currentIndex + " -> " + index);
+            }
+        }
+
+        protected IEnumerable<ViewModelServerInfoListEntry> GetOrderedList()
+        {
+            var entries = this.ServerAddressToServerViewModel.Select(s => s.viewModel);
+            return this.sortType switch
+            {
+                ServersListSortType.None => entries, // return as is (it could be a recent/history list)
+
+                ServersListSortType.Featured => entries
+                                                // official first (yes, it should use negated bool flag)
+                                                .OrderBy(s => !s.ViewModelServerInfo.IsOfficial)
+                                                .ThenBy(s => !s.ViewModelServerInfo.IsFeatured)
+                                                .ThenBy(s => s.ViewModelServerInfo.Title),
+
+                ServersListSortType.Title => entries.Where(s => !string.IsNullOrEmpty(s.ViewModelServerInfo.Title))
+                                                    .OrderBy(s => s.ViewModelServerInfo.Title)
+                                                    .Concat(entries
+                                                            .Where(s => string.IsNullOrEmpty(
+                                                                       s.ViewModelServerInfo.Title))
+                                                            .OrderBy(p => p.ViewModelServerInfo.Address)),
+
+                ServersListSortType.Ping => entries.Where(v => v.ViewModelServerInfo.IsPingMeasurementDone)
+                                                   .OrderBy(s => s.ViewModelServerInfo.Ping)
+                                                   .ThenBy(s => s.ViewModelServerInfo.Title)
+                                                   .Concat(entries.Where(v => !v.ViewModelServerInfo
+                                                                                .IsPingMeasurementDone)
+                                                                  .OrderBy(p => p.ViewModelServerInfo.Address)),
+
+                ServersListSortType.OnlinePlayersCount => entries
+                                                          .OrderBy(s => !s.ViewModelServerInfo.IsInfoReceived)
+                                                          .ThenByDescending(
+                                                              s => s.ViewModelServerInfo.PlayersOnlineCount)
+                                                          .ThenBy(s => s.ViewModelServerInfo.Title),
+
+                _ => throw new ArgumentException("Unknown sort order: " + this.sortType)
+            };
+        }
+
+        protected void OnListChanged()
+        {
+            this.ListChanged?.Invoke();
+        }
+
+        protected abstract void PopulateServersList();
+
+        private void FillServersList()
         {
             this.IsClearingNow = true;
             this.ServersCollection.Clear();
@@ -90,66 +158,6 @@
             this.IsClearingNow = false;
             this.OnListChanged();
         }
-
-        protected IEnumerable<ViewModelServerInfoListEntry> GetOrderedList()
-        {
-            var entries = this.ServerAddressToServerViewModel.Select(s => s.viewModel);
-            if (this.sortType == ServersListSortType.None)
-            {
-                return entries;
-            }
-
-            return entries
-                   // official first (yes, it should use negated bool flag)
-                   .OrderBy(s => !s.ViewModelServerInfo.IsOfficial)
-                   .ThenBy(s => !s.ViewModelServerInfo.IsFeatured)
-                   .ThenBy(s => s.ViewModelServerInfo.Title);
-
-            // TODO: implement sort controls and use the code below
-            switch (this.sortType)
-            {
-                case ServersListSortType.None:
-                    return entries;
-
-                case ServersListSortType.Title:
-                    return
-                        entries
-                            .Where(s => !string.IsNullOrEmpty(s.ViewModelServerInfo.Title))
-                            .OrderBy(s => s.ViewModelServerInfo.Title)
-                            .Concat(
-                                entries
-                                    .Where(s => string.IsNullOrEmpty(s.ViewModelServerInfo.Title))
-                                    .OrderBy(p => p.ViewModelServerInfo.Address));
-
-                case ServersListSortType.Ping:
-                    return
-                        entries
-                            .Where(v => v.ViewModelServerInfo.IsPingMeasurementDone)
-                            .OrderBy(s => s.ViewModelServerInfo.Ping)
-                            .ThenBy(s => s.ViewModelServerInfo.Title)
-                            .Concat(
-                                entries
-                                    .Where(v => !v.ViewModelServerInfo.IsPingMeasurementDone)
-                                    .OrderBy(p => p.ViewModelServerInfo.Address));
-
-                case ServersListSortType.OnlinePlayersCount:
-                    return
-                        entries
-                            .OrderByDescending(s => s.ViewModelServerInfo.PlayersText)
-                            .ThenBy(s => s.ViewModelServerInfo.Ping)
-                            .ThenBy(s => s.ViewModelServerInfo.Title);
-
-                default:
-                    throw new ArgumentException("Unknown sort order" + this.sortType);
-            }
-        }
-
-        protected void OnListChanged()
-        {
-            this.ListChanged?.Invoke();
-        }
-
-        protected abstract void PopulateServersList();
 
         private void RemoveAllViewModels()
         {

@@ -408,7 +408,6 @@
             privateState.ServerLastAckClientInputId = 0;
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, maxCallsPerSecond: 60)]
         private void ServerRemote_SelectHotbarSlotId(byte? slotId)
         {
             SharedSelectHotbarSlotId(ServerRemoteContext.Character, slotId);

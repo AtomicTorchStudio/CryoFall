@@ -23,7 +23,9 @@
 
         private static readonly IWorldServerService ServerWorld = IsServer ? Server.World : null;
 
-        private TileLava serverProtoTileLava;
+        private ProtoTile serverProtoTileLava;
+
+        private ProtoTile serverProtoTileVolcano;
 
         private Vector2Int[] serverTileOffsetsCircle;
 
@@ -77,6 +79,7 @@
                 rate: 3);
 
             this.serverProtoTileLava = Api.GetProtoEntity<TileLava>();
+            this.serverProtoTileVolcano = Api.GetProtoEntity<TileVolcanic>();
         }
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
@@ -157,6 +160,18 @@
                 return 0;
             }
 
+            var tileVolcanoSessionIndex = this.serverProtoTileVolcano.SessionIndex;
+            var tileLavaSessionIndex = this.serverProtoTileLava.SessionIndex;
+
+            var characterCurrentTileSessionIndex = character.Tile.ProtoTileSessionIndex;
+
+            if (characterCurrentTileSessionIndex != tileVolcanoSessionIndex
+                && characterCurrentTileSessionIndex != tileLavaSessionIndex)
+            {
+                // process lava heat only for players in volcano biome
+                return 0;
+            }
+
             var characterTilePosition = character.TilePosition;
             var closestDistanceSqr = int.MaxValue;
 
@@ -165,7 +180,7 @@
                 var tilePosition = characterTilePosition.AddAndClamp(tileOffset);
                 var tile = ServerWorld.GetTile(tilePosition, logOutOfBounds: false);
                 if (!tile.IsValidTile
-                    || !ReferenceEquals(this.serverProtoTileLava, tile.ProtoTile))
+                    || tileLavaSessionIndex != tile.ProtoTileSessionIndex)
                 {
                     continue;
                 }

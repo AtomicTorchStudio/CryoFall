@@ -17,7 +17,7 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.VeryShort;
+            duration = CraftingDuration.Second;
 
             inputItems.Add<ItemSulfurPowder>(count: 5);
             inputItems.Add<ItemBottleWater>(count: 1);

@@ -1,9 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Explosives.Bombs
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectBombResonance : ProtoObjectExplosive
@@ -53,6 +55,43 @@
             data.ClientState.Renderer.DrawOrderOffsetY = 0.355;
         }
 
+        protected override void ClientOnObjectDestroyed(Vector2D position)
+        {
+            //base.ClientOnObjectDestroyed(position);
+            Logger.Important(this + " exploded at " + position);
+
+            var explosionPresetNode = ExplosionPresets.PragmiumResonanceBomb_NodeClientOnly;
+            var positionEpicenter = position + this.Layout.Center;
+            ProcessExplosionDirection(-1, 0);  // left
+            ProcessExplosionDirection(0,  1);  // top
+            ProcessExplosionDirection(1,  0);  // right
+            ProcessExplosionDirection(0,  -1); // bottom
+
+            ExplosionHelper.ClientExplode(position: position + this.Layout.Center,
+                                          this.ExplosionPreset,
+                                          this.VolumeExplosion);
+
+            void ProcessExplosionDirection(int xOffset, int yOffset)
+            {
+                foreach (var (_, offsetIndex) in
+                    WeaponExplosionSystem.SharedEnumerateExplosionBombermanDirectionTilesWithTargets(positionEpicenter: positionEpicenter,
+                                                                             damageDistanceFullDamage:
+                                                                             DamageRadiusFullDamage,
+                                                                             damageDistanceMax: DamageRadiusMax,
+                                                                             Api.Client.World,
+                                                                             xOffset,
+                                                                             yOffset))
+                {
+                    ClientTimersSystem.AddAction(
+                        delaySeconds: 0.1 * offsetIndex, // please note the offsetIndex is starting with 1
+                        () => ExplosionHelper.ClientExplode(
+                            position: positionEpicenter + (offsetIndex * xOffset, offsetIndex * yOffset),
+                            explosionPresetNode,
+                            volume: 0));
+                }
+            }
+        }
+
         protected override void PrepareDamageDescriptionCharacters(
             out double damageValue,
             out double armorPiercingCoef,
@@ -81,7 +120,7 @@
 
         protected override void PrepareProtoObjectExplosive(out ExplosionPreset explosionPresets)
         {
-            explosionPresets = ExplosionPresets.ExtraLargePragmiumResonanceBomb;
+            explosionPresets = ExplosionPresets.PragmiumResonanceBomb_Center;
         }
 
         protected override void ServerExecuteExplosion(

@@ -34,6 +34,8 @@
         /// </summary>
         public virtual double CharacterMoveSpeedMultiplier => 1.1;
 
+        public override double ClientUpdateIntervalSeconds => double.MaxValue;
+
         /// <summary>
         /// Gets sound material of ground (used for movement footsteps and similar sounds).
         /// </summary>
@@ -42,6 +44,8 @@
         public override StaticObjectKind Kind => StaticObjectKind.Floor;
 
         public sealed override double ObstacleBlockDamageCoef => 0;
+
+        public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
         public void ClientRefreshRenderer(IStaticWorldObject worldObject)
         {

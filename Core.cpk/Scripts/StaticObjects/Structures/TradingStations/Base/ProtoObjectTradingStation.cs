@@ -30,8 +30,7 @@
           <TPrivateState,
               TPublicState,
               TClientState>,
-          IProtoObjectTradingStation,
-          IInteractableProtoWorldObject
+          IProtoObjectTradingStation
         where TPrivateState : ObjectTradingStationPrivateState, new()
         where TPublicState : ObjectTradingStationPublicState, new()
         where TClientState : ObjectTradingStationClientState, new()

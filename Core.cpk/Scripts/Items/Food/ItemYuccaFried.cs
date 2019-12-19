@@ -1,8 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Food
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
-    using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Buffs;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
 
     public class ItemYuccaFried : ProtoItemFood
@@ -21,13 +19,6 @@
         protected override ReadOnlySoundPreset<ItemSound> PrepareSoundPresetItem()
         {
             return ItemsSoundPresets.ItemFoodFruit;
-        }
-
-        protected override void ServerOnEat(ItemEatData data)
-        {
-            data.Character.ServerAddStatusEffect<StatusEffectSavoryFood>(intensity: 0.1);
-
-            base.ServerOnEat(data);
         }
     }
 }

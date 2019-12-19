@@ -18,11 +18,14 @@
 
         public readonly Vector2F HitPoint;
 
+        public readonly bool IsCliffsHit;
+
         public readonly IWorldObject WorldObject;
 
         public WeaponHitData(IWorldObject worldObject, Vector2F hitPoint)
         {
             this.WorldObject = worldObject;
+            this.IsCliffsHit = false;
             this.FallbackProtoWorldObject = worldObject.ProtoWorldObject;
             this.FallbackTilePosition = worldObject.TilePosition;
             this.HitPoint = hitPoint;
@@ -41,6 +44,17 @@
             {
                 this.FallbackObjectMaterial = ObjectMaterial.HardTissues;
             }
+        }
+
+        // for cliffs hit
+        public WeaponHitData(Vector2D hitPosition)
+        {
+            this.WorldObject = null;
+            this.IsCliffsHit = true;
+            this.FallbackProtoWorldObject = null;
+            this.FallbackTilePosition = (Vector2Ushort)hitPosition;
+            this.HitPoint = (hitPosition - this.FallbackTilePosition.ToVector2D()).ToVector2F();
+            this.FallbackObjectMaterial = ObjectMaterial.Stone;
         }
     }
 }

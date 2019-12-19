@@ -6,11 +6,11 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -33,7 +33,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                        $"{nameof(damageDistanceMax)} must be >= {nameof(damageDistanceFullDamage)}");
 
             var world = Api.Server.World;
-            var damagedObjects = new HashSet<IWorldObject>();
+            var allDamagedObjects = new HashSet<IWorldObject>();
 
             ProcessExplosionDirection(-1, 0);  // left
             ProcessExplosionDirection(0,  1);  // top
@@ -51,45 +51,20 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
             void ProcessExplosionDirection(int xOffset, int yOffset)
             {
-                var fromPosition = positionEpicenter.ToVector2Ushort();
-                for (var offsetIndex = 1; offsetIndex <= damageDistanceMax; offsetIndex++)
+                foreach (var (damagedObject, offsetIndex) in
+                    SharedEnumerateExplosionBombermanDirectionTilesWithTargets(positionEpicenter,
+                                                                               damageDistanceFullDamage,
+                                                                               damageDistanceMax,
+                                                                               world,
+                                                                               xOffset,
+                                                                               yOffset))
                 {
-                    var tile = world.GetTile(fromPosition.X + offsetIndex * xOffset,
-                                             fromPosition.Y + offsetIndex * yOffset,
-                                             logOutOfBounds: false);
-
-                    if (!tile.IsValidTile
-                        || tile.IsCliff)
+                    if (damagedObject is null)
                     {
-                        return;
-                    }
-
-                    var tileStaticObjects = tile.StaticObjects;
-                    IStaticWorldObject damagedObject = null;
-                    foreach (var staticWorldObject in tileStaticObjects)
-                    {
-                        if (staticWorldObject.ProtoGameObject is IProtoObjectWall
-                            || staticWorldObject.ProtoGameObject is IProtoObjectDoor)
-                        {
-                            // damage only walls and doors
-                            damagedObject = staticWorldObject;
-                            break;
-                        }
-                    }
-
-                    if (damagedObject == null)
-                    {
-                        // no wall or door there
-                        if (offsetIndex > damageDistanceFullDamage)
-                        {
-                            // stop damage propagation
-                            return;
-                        }
-
                         continue;
                     }
 
-                    if (!damagedObjects.Add(damagedObject))
+                    if (!allDamagedObjects.Add(damagedObject))
                     {
                         // the object is already damaged
                         // (from another direction which might be theoretically possible in some future cases)
@@ -234,6 +209,55 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     damagePreMultiplier,
                     out _,
                     out _);
+            }
+        }
+
+        public static IEnumerable<(IWorldObject damagedObject, int indexOffset)>
+            SharedEnumerateExplosionBombermanDirectionTilesWithTargets(
+                Vector2D positionEpicenter,
+                int damageDistanceFullDamage,
+                int damageDistanceMax,
+                IWorldService world,
+                int xOffset,
+                int yOffset)
+        {
+            var fromPosition = positionEpicenter.ToVector2Ushort();
+            for (var offsetIndex = 1; offsetIndex <= damageDistanceMax; offsetIndex++)
+            {
+                var tile = world.GetTile(fromPosition.X + offsetIndex * xOffset,
+                                         fromPosition.Y + offsetIndex * yOffset,
+                                         logOutOfBounds: false);
+
+                if (!tile.IsValidTile
+                    || tile.IsCliff)
+                {
+                    yield break;
+                }
+
+                var tileStaticObjects = tile.StaticObjects;
+                IStaticWorldObject damagedObject = null;
+                foreach (var staticWorldObject in tileStaticObjects)
+                {
+                    if (staticWorldObject.ProtoGameObject is IProtoObjectWall
+                        || staticWorldObject.ProtoGameObject is IProtoObjectDoor)
+                    {
+                        // damage only walls and doors
+                        damagedObject = staticWorldObject;
+                        break;
+                    }
+                }
+
+                yield return (damagedObject, offsetIndex);
+
+                if (damagedObject is null)
+                {
+                    // no wall or door there
+                    if (offsetIndex > damageDistanceFullDamage)
+                    {
+                        // stop damage propagation
+                        yield break;
+                    }
+                }
             }
         }
 

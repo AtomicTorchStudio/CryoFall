@@ -4,6 +4,10 @@
 
     public abstract class ProtoObjectDecoration : ProtoObjectStructure
     {
+        public override double ClientUpdateIntervalSeconds => double.MaxValue;
+
+        public override double ServerUpdateIntervalSeconds => double.MaxValue;
+
         protected sealed override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,

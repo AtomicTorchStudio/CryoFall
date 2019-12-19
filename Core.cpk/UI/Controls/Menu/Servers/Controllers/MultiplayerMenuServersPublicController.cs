@@ -18,7 +18,6 @@
             Func<PublicServerInfo, bool> specialCondition)
             : base(serverViewModelsProvider)
         {
-            this.SortType = ServersListSortType.OnlinePlayersCount;
             this.provider = Api.Client.MasterServer.ServersProvider.Public;
             this.provider.Updated += this.PublicListUpdatedHandler;
             this.specialCondition = specialCondition;

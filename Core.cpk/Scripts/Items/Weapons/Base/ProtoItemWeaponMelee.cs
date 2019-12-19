@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using AtomicTorch.CBND.CoreMod.Skills;
@@ -8,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -35,6 +37,8 @@
         public override string CharacterAnimationAimingName => null;
 
         public override double DamageApplyDelay => 0.075;
+
+        public virtual double DurabilityDecreaseMultiplierWhenHittingBuildings => 5.0;
 
         public override double FireAnimationDuration => 0.6;
 
@@ -116,9 +120,14 @@
                     || protoObject is IProtoObjectDoor
                     || protoObject is IProtoObjectTradingStation)
                 {
-                    // hit wall, door or station
-                    decrease *= 5;
-                    break;
+                    if (LandClaimSystem.SharedIsObjectInsideAnyArea((IStaticWorldObject)hitObject))
+                    {
+                        // hit a wall, door or station inside a land claim area - take a durability penalty
+                        decrease = (ushort)Math.Min(
+                            Math.Ceiling(decrease * this.DurabilityDecreaseMultiplierWhenHittingBuildings),
+                            ushort.MaxValue);
+                        break;
+                    }
                 }
             }
 

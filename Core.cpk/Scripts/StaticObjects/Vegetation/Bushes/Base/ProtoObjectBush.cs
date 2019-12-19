@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Bushes
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
@@ -234,8 +235,9 @@
             var privateState = GetPrivateState(worldObject);
 
             publicState.HasHarvest = false;
-            privateState.ServerTimeProduceHarvest
-                = Server.Game.FrameTime + this.TimeToGiveHarvestTotalSeconds;
+            privateState.ServerTimeProduceHarvest = Server.Game.FrameTime
+                                                    + ServerSpawnRateScaleHelper.AdjustDurationByRate(
+                                                        this.TimeToGiveHarvestTotalSeconds);
         }
     }
 

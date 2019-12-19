@@ -12,7 +12,7 @@
                 // trigger on world init
                 .Add(GetTrigger<TriggerWorldInit>())
                 // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromMinutes(5)));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(5)));
 
             // grass
             spawnList.CreatePreset(interval: 7, padding: 1)

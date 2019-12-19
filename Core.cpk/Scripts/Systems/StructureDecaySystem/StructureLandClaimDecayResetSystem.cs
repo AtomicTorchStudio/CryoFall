@@ -41,9 +41,19 @@
 
         private static void ServerRefreshLandClaimAreasGroup(ILogicObject areasGroup)
         {
+            if (areasGroup.IsDestroyed)
+            {
+                return;
+            }
+
             var areas = LandClaimAreasGroup.GetPrivateState(areasGroup).ServerLandClaimsAreas;
             foreach (var area in areas)
             {
+                if (area.IsDestroyed)
+                {
+                    continue;
+                }
+
                 var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area, addGracePadding: true);
                 var owners = LandClaimArea.GetPrivateState(area).LandOwners;
 
@@ -101,11 +111,11 @@
 
             // We will time-slice this update just in case there are too many areas.
             isUpdatingNow = true;
+            TempList.AddRange(Server.World.GetGameObjectsOfProto<ILogicObject, LandClaimAreasGroup>());
+            await ServerCore.AwaitEndOfFrame;
 
             try
             {
-                TempList.AddRange(Server.World.GetGameObjectsOfProto<ILogicObject, LandClaimAreasGroup>());
-
                 foreach (var areasGroup in TempList)
                 {
                     ServerRefreshLandClaimAreasGroup(areasGroup);

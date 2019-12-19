@@ -7,14 +7,23 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     x:Name="UserControl"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="300" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    d:DesignHeight="300" d:DesignWidth="300"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core">
     <Canvas>
-        <Image Source="Images/ResourceOil.png"
-               Style="{StaticResource WorldMapMarkImageCenteredStyle}">
-            <base:ToolTipServiceExtend.ToolTip>
-                <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.WorldMapMarkResourceOil_Tooltip}" />
-            </base:ToolTipServiceExtend.ToolTip>
-        </Image>
+        <Canvas
+            Visibility="{Binding IsInfiniteSource, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+            <Image Source="Images/ResourceOil.png"
+                   Style="{StaticResource WorldMapMarkImageCenteredStyle}" />
+        </Canvas>
+
+        <Canvas
+            Visibility="{Binding IsInfiniteSource, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Image Source="Images/ResourceOilInfinite.png"
+                   Style="{StaticResource WorldMapMarkImageCenteredStyle}" />
+        </Canvas>
+
+        <base:ToolTipServiceExtend.ToolTip>
+            <core:FormattedTextBlock x:Name="TextBlockTooltip" />
+        </base:ToolTipServiceExtend.ToolTip>
     </Canvas>
 </base:BaseUserControl>

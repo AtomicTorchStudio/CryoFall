@@ -187,11 +187,15 @@
             return worldChunksAvailable.OrderBy(c => c.TileDistanceTo(playerPosition));
         }
 
-        public void AddControl(UIElement control)
+        public void AddControl(UIElement control, bool scaleWithZoom = true)
         {
             this.extraControls.Add(control);
-            var scale = this.lastExtraControlsScale;
-            control.RenderTransform = new ScaleTransform(scale, scale);
+            if (scaleWithZoom)
+            {
+                var scale = this.lastExtraControlsScale;
+                control.RenderTransform = new ScaleTransform(scale, scale);
+            }
+
             this.canvasMapChildren.Add(control);
         }
 
@@ -553,8 +557,11 @@
             this.lastExtraControlsScale = scale;
             foreach (var extraControl in this.extraControls)
             {
-                var scaleTransform = (ScaleTransform)extraControl.RenderTransform;
-                scaleTransform.ScaleX = scaleTransform.ScaleY = scale;
+                var transform = extraControl.RenderTransform;
+                if (transform is ScaleTransform scaleTransform)
+                {
+                    scaleTransform.ScaleX = scaleTransform.ScaleY = scale;
+                }
             }
         }
 

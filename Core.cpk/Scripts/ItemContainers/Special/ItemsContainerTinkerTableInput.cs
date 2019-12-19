@@ -8,6 +8,7 @@
         public override bool CanAddItem(CanAddItemContext context)
         {
             return context.Item.ProtoItem is IProtoItemWithDurablity protoItemWithDurablity
+                   && protoItemWithDurablity.DurabilityMax > 0
                    && protoItemWithDurablity.IsRepairable;
         }
     }

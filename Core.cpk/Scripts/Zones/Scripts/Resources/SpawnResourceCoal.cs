@@ -12,7 +12,7 @@
                 // trigger on world init
                 .Add(GetTrigger<TriggerWorldInit>())
                 // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromMinutes(10)));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(10)));
 
             spawnList.CreatePreset(interval: 10, padding: 3)
                      .Add<ObjectMineralCoal>();

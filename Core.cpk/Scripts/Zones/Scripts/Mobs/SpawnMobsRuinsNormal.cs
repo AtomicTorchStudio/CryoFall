@@ -12,7 +12,7 @@
         {
             triggers
                 .Add(GetTrigger<TriggerWorldInit>())
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(SpawnRuinsConstants.SpawnInterval));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(SpawnRuinsConstants.SpawnInterval));
 
             var lizard = spawnList.CreatePreset(interval: 15, padding: 0.5)
                                   .Add<MobCloakedLizard>()

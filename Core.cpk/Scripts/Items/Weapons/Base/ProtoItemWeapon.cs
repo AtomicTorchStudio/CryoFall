@@ -301,7 +301,10 @@
                 // try auto-reloading
                 if (IsClient)
                 {
-                    WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(isSwitchAmmoType: false);
+                    WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(
+                        isSwitchAmmoType: false,
+                        // no need to send to the server as it will automatically load the necessary ammo of the same type
+                        sendToServer: !weaponState.IsFiring);
                 }
                 else
                 {
@@ -346,24 +349,38 @@
 
         protected override void ClientItemHotbarSelectionChanged(ClientHotbarItemData data)
         {
-            if (data.IsSelected)
-            {
-                // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-                this.helperInputListener = ClientInputContext
-                                           .Start("Current weapon")
-                                           .HandleButtonDown(
-                                               GameButton.ItemReload,
-                                               () => WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(
-                                                   isSwitchAmmoType: false))
-                                           .HandleButtonDown(
-                                               GameButton.ItemSwitchMode,
-                                               () => WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(
-                                                   isSwitchAmmoType: true));
-            }
-            else
+            if (!data.IsSelected)
             {
                 this.helperInputListener?.Stop();
                 this.helperInputListener = null;
+                return;
+            }
+
+            // if weapon is selected
+            // setup input context and reload it if it's empty
+            // ReSharper disable once CanExtractXamlLocalizableStringCSharp
+            this.helperInputListener = ClientInputContext
+                                       .Start("Current weapon")
+                                       .HandleButtonDown(
+                                           GameButton.ItemReload,
+                                           () => WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(
+                                               isSwitchAmmoType: false))
+                                       .HandleButtonDown(
+                                           GameButton.ItemSwitchMode,
+                                           () => WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(
+                                               isSwitchAmmoType: true));
+
+            if (this.AmmoCapacity == 0)
+            {
+                // the item is non-reloadable
+                return;
+            }
+
+            var itemPrivateState = data.Item.GetPrivateState<WeaponPrivateState>();
+            if (itemPrivateState.AmmoCount / this.AmmoConsumptionPerShot < 1)
+            {
+                // the selected weapon is empty (not enough ammo even for a single shot), request reloading
+                WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(isSwitchAmmoType: false);
             }
         }
 

@@ -8,6 +8,8 @@
 
         public const double ExperienceAddWhenDeconstructionFinished = 25.0;
 
+        public const double ExperienceAddWhenRepairFinished = 15.0;
+
         public override string Description =>
             "Better building skills improve your construction speed. Applied to all tasks (building, repair) performed with a toolbox.";
 

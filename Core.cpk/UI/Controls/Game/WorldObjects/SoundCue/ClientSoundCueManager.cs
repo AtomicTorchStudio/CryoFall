@@ -6,7 +6,7 @@
 
     public static class ClientSoundCueManager
     {
-        public static void OnSoundEvent(Vector2D soundWorldPosition)
+        public static void OnSoundEvent(Vector2D soundWorldPosition, bool isPartyMember)
         {
             var viewBounds = Api.Client.Rendering.WorldCameraCurrentViewWorldBounds;
 
@@ -17,7 +17,7 @@
             }
 
             var control = ControlsCache<ControlSoundCue>.Instance.Pop();
-            control.ShowAt(soundWorldPosition, viewBounds);
+            control.ShowAt(soundWorldPosition, viewBounds, isPartyMember);
         }
     }
 }

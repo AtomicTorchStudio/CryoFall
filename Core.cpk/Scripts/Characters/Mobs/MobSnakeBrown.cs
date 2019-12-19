@@ -54,7 +54,7 @@
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
                 distanceRetreat: 7,
                 distanceEnemyTooClose: 1,
-                distanceEnemyTooFar: 5,
+                distanceEnemyTooFar: 4.5,
                 movementDirection: out var movementDirection,
                 rotationAngleRad: out var rotationAngleRad);
 

@@ -12,7 +12,7 @@
                 // trigger on world init
                 .Add(GetTrigger<TriggerWorldInit>())
                 // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromMinutes(10)));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(10)));
 
             // all trees
             spawnList.CreatePreset(interval: 3.5, padding: 1.5)

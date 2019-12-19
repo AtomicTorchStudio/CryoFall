@@ -9,6 +9,8 @@ namespace AtomicTorch.CBND.CoreMod.Playlists
     {
         public override PlayListMode Mode => PlayListMode.Random;
 
+        public override double FadeOutDurationOnPlaylistChange => 7;
+
         [NotLocalizable]
         public override string Name => "Gameplay playlist";
 

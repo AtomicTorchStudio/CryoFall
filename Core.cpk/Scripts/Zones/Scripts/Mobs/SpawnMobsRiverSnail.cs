@@ -10,7 +10,7 @@
         {
             triggers
                 .Add(GetTrigger<TriggerWorldInit>())
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromMinutes(5)));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(5)));
 
             spawnList.CreatePreset(interval: 20, padding: 0.5, useSectorDensity: false)
                      .Add<MobRiverSnail>()

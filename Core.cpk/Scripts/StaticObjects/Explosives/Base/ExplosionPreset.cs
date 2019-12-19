@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Special.Base;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ExplosionPreset
@@ -48,6 +49,8 @@
 
         public readonly Color SpriteColorMultiplicative;
 
+        public readonly DrawOrder SpriteDrawOrder;
+
         public readonly Size2F SpriteSize;
 
         public ExplosionPreset(
@@ -60,6 +63,7 @@
             double spriteBrightness,
             double spriteAnimationDuration,
             Size2F spriteSize,
+            DrawOrder spriteDrawOrder,
             double blastwaveDelay,
             double blastwaveAnimationDuration,
             Color blastWaveColor,
@@ -94,6 +98,7 @@
             this.ScreenShakesDuration = screenShakesDuration;
             this.ScreenShakesWorldDistanceMin = screenShakesWorldDistanceMin;
             this.ScreenShakesWorldDistanceMax = screenShakesWorldDistanceMax;
+            this.SpriteDrawOrder = spriteDrawOrder;
             this.ProtoObjectCharredGround = protoObjectCharredGround;
 
             if (this.SoundSet.Count == 0)
@@ -125,7 +130,8 @@
             double screenShakesWorldDistanceMax,
             Color? spriteColorAdditive = null,
             Color? spriteColorMultiplicative = null,
-            double spriteBrightness = 1)
+            double spriteBrightness = 1,
+            DrawOrder spriteDrawOrder = DrawOrder.Explosion)
         {
             var sounds = new SoundResourceSet()
                          .Add(soundSetPath)
@@ -159,6 +165,7 @@
                                        spriteBrightness,
                                        spriteAnimationDuration,
                                        spriteWorldSize * ScriptingConstants.TileSizeRealPixels,
+                                       spriteDrawOrder,
                                        blastwaveDelay,
                                        blastwaveAnimationDuration,
                                        blastWaveColor,

@@ -13,7 +13,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <system:Double x:Key="ServerIconSize">42</system:Double>
-    <GridLength x:Key="ColumnWidthServerIcon">50</GridLength>
+    <GridLength x:Key="ColumnWidthServerIcon">42</GridLength>
     <GridLength x:Key="ColumnWidthPadding">20</GridLength>
     <GridLength x:Key="ColumnWidthPing">70</GridLength>
     <GridLength x:Key="ColumnWidthPlayers">70</GridLength>
@@ -215,6 +215,8 @@
         <ContentControl>
             <Grid VerticalAlignment="Top"
                   Background="Transparent"
+                  core:SoundUI.ClickSound="{StaticResource SoundListElementClick}"
+                  core:SoundUI.EnterSound="{StaticResource SoundListElementEnter}"
                   services:DoubleClickService.CommandOnDoubleClick="{Binding ViewModelServerInfo.CommandJoinServer}"
                   services:DoubleClickService.CommandOnDoubleClickParameter="{Binding ViewModelServerInfo}">
                 <Grid.ColumnDefinitions>
@@ -319,7 +321,7 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="Padding" Value="2" />
+        <Setter Property="Padding" Value="2,1" />
         <Setter Property="Margin" Value="0,2" />
         <Setter Property="Template">
             <Setter.Value>

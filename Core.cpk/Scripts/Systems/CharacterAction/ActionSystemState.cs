@@ -19,6 +19,8 @@
             double durationSeconds)
             : base(character)
         {
+            durationSeconds = Api.Shared.RoundDurationByServerFrameDuration(durationSeconds);
+
             if (Api.IsClient)
             {
                 // Add ping to all client action durations.

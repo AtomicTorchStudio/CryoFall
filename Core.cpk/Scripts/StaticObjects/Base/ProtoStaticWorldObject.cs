@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -218,7 +219,17 @@
                 PveSystem.SharedIsAllowStructureDamage(weaponCache.Character,
                                                        targetObject,
                                                        showClientNotification: true);
+                NewbieProtectionSystem.SharedIsAllowStructureDamage(weaponCache.Character,
+                                                                    targetObject,
+                                                                    showClientNotification: true);
 
+                damageApplied = 0;
+                return true;
+            }
+
+            if (serverDamage <= 0)
+            {
+                // no damage applied
                 damageApplied = 0;
                 return true;
             }

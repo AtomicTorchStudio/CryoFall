@@ -211,10 +211,6 @@
             // repairing/building is completed
             if (Api.IsServer)
             {
-                // add building skill experience
-                this.CharacterPrivateState.Skills.ServerAddSkillExperience<SkillBuilding>(
-                    SkillBuilding.ExperienceAddWhenBuildingFinished);
-
                 newStructurePoints = this.structurePointsMax;
                 Api.Logger.Important(
                     $"Building/repairing completed: {this.WorldObject} structure points: {newStructurePoints}/{this.structurePointsMax}; by {this.Character}");
@@ -223,13 +219,23 @@
                 if (this.ObjectPublicState is ConstructionSitePublicState constructionSiteState)
                 {
                     constructionSiteState.LastBuildActionDoneByCharacter = this.Character;
+
+                    // add skill experience for building
+                    this.CharacterPrivateState.Skills.ServerAddSkillExperience<SkillBuilding>(
+                        SkillBuilding.ExperienceAddWhenBuildingFinished);
+                }
+                else
+                {
+                    // add skill experience for repair
+                    this.CharacterPrivateState.Skills.ServerAddSkillExperience<SkillBuilding>(
+                        SkillBuilding.ExperienceAddWhenRepairFinished);
                 }
             }
             else
             {
                 // play success sound
-                /*this.TargetWorldObject.ProtoWorldObject.*/
-                Api.GetProtoEntity<ObjectConstructionSite>().SharedGetObjectSoundPreset()
+                Api.GetProtoEntity<ObjectConstructionSite>()
+                   .SharedGetObjectSoundPreset()
                    .PlaySound(ObjectSound.InteractSuccess);
             }
 

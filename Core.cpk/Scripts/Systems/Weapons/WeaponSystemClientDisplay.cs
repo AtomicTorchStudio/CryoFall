@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.SoundCue;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -23,6 +24,8 @@
 
     public static class WeaponSystemClientDisplay
     {
+        private static readonly ISharedApi Shared = Api.Shared;
+
         public static void OnWeaponFinished(ICharacter character)
         {
             if (character == null
@@ -146,8 +149,7 @@
                                 pitch: pitch);
                         }
 
-                        if (hitWorldObject != null
-                            && weaponTracePreset != null)
+                        if (weaponTracePreset != null)
                         {
                             AddHitSparks(weaponTracePreset.HitSparksPreset,
                                          hitData,
@@ -209,6 +211,7 @@
 
         public static void OnWeaponShot(
             ICharacter character,
+            uint partyId,
             IProtoItemWeapon protoWeapon,
             IProtoCharacter protoCharacter,
             Vector2Ushort fallbackPosition)
@@ -222,7 +225,9 @@
             var position = character?.Position ?? fallbackPosition.ToVector2D();
             position += (0, protoCharacter.CharacterWorldWeaponOffsetRanged);
 
-            ClientSoundCueManager.OnSoundEvent(position);
+            ClientSoundCueManager.OnSoundEvent(position,
+                                               isPartyMember: partyId > 0
+                                                              && partyId == PartySystem.ClientCurrentParty?.Id);
 
             const float volume = SoundConstants.VolumeWeapon;
             var pitch = RandomHelper.Range(0.95f, 1.05f);
@@ -419,7 +424,7 @@
         private static void AddHitSparks(
             IReadOnlyWeaponHitSparksPreset hitSparksPreset,
             WeaponHitData hitData,
-            IWorldObject worldObject,
+            IWorldObject hitWorldObject,
             IProtoWorldObject protoWorldObject,
             Vector2D worldObjectPosition,
             int projectilesCount,
@@ -430,12 +435,15 @@
             sceneObject.Position = worldObjectPosition;
             var hitPoint = hitData.HitPoint.ToVector2D();
 
-            // move hitpoint a bit closer to the center of the object
-            hitPoint = WeaponSystem.SharedOffsetHitWorldPositionCloserToObjectCenter(
-                worldObject,
-                protoWorldObject,
-                hitPoint,
-                isRangedWeapon);
+            if (!hitData.IsCliffsHit)
+            {
+                // move hitpoint a bit closer to the center of the object
+                hitPoint = WeaponSystem.SharedOffsetHitWorldPositionCloserToObjectCenter(
+                    hitWorldObject,
+                    protoWorldObject,
+                    hitPoint,
+                    isRangedWeapon);
+            }
 
             if (projectilesCount == 1
                 && !isRangedWeapon)
@@ -612,6 +620,9 @@
             bool mixWithCurrent,
             bool isLooped)
         {
+            fireAnimationDuration = Shared.RoundDurationByServerFrameDuration(fireAnimationDuration);
+            fireInterval = Shared.RoundDurationByServerFrameDuration(fireInterval);
+
             var currentFireAnimation = skeletonRenderer.GetCurrentAnimationName(trackIndex);
             if (currentFireAnimation == fireAnimationName)
             {

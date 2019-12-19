@@ -188,7 +188,7 @@
                          / StructureConstants.StructuresDecayDurationSeconds;
 
             // damage is proportional to the decay system update rate
-            damage *= StructureConstants.StructureDecaySystemUpdateIntervalSeconds;
+            damage *= deltaTime;
 
             if (damage < 0.01)
             {

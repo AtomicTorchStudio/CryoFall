@@ -3078,6 +3078,11 @@
             Gets the current server frame number (currently processed by client, actual server frame number is ahead).
             </summary>
         </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.ICurrentGameService.ServerFramerate">
+            <summary>
+            Server framerate (FPS). Please note that the server has a constant framerate.
+            </summary>
+        </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.ICurrentGameService.ServerFrameTimeRounded">
             <summary>
             Gets the current server timestamp (collected frames total time) in seconds
@@ -3780,9 +3785,16 @@
             <param name="worldObject">Any world object.</param>
             <param name="result"></param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjects(System.Collections.Generic.IList{AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject})">
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjects(AtomicTorch.GameEngine.Common.DataStructures.ITempList{AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject})">
             <summary>
             Adds all the static world objects into the list.
+            Very slow and should be not used as is unless very necessary!
+            It's better to use GetStaticWorldObjectsAsync though it doesn't guarantee the correct results.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsAsync(System.Collections.Generic.List{AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject})">
+            <summary>
+            Adds all the static world objects into the list (spread across multiple frames).
             </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsInView(AtomicTorch.CBND.GameApi.Data.Characters.ICharacter,System.Collections.Generic.IList{AtomicTorch.CBND.GameApi.Data.World.IStaticWorldObject},System.Boolean)">

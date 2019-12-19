@@ -3,12 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
@@ -31,6 +30,10 @@
         public const string NotiticationCannotBuy_Title = "Cannot buy";
 
         public const string NotiticationCannotSell_Title = "Cannot sell";
+
+        // how long the items dropped on the ground from the destroyed trading station should remain there
+        private static readonly TimeSpan DestroyedTradingStationDroppedItemsDestructionTimeout
+            = TimeSpan.FromMinutes(15);
 
         private static readonly Lazy<IProtoItem> ProtoItemCoinPenny
             = new Lazy<IProtoItem>(GetProtoEntity<ItemCoinPenny>);
@@ -153,14 +156,32 @@
                 }
             }
 
-            ServerRefreshTradingStationLots(tradingStation, 
-                                            privateState, 
+            ServerRefreshTradingStationLots(tradingStation,
+                                            privateState,
                                             publicState);
         }
 
         public static void ServerOnDestroy(IStaticWorldObject tradingStation)
         {
             TradingStationsMapMarksSystem.ServerTryRemoveMark(tradingStation);
+
+            var itemsContainer = GetPrivateState(tradingStation).StockItemsContainer;
+            if (itemsContainer.OccupiedSlotsCount == 0)
+            {
+                return;
+            }
+
+            var groundContainer = ObjectGroundItemsContainer.ServerTryDropOnGroundContainerContent(
+                tradingStation.OccupiedTile,
+                itemsContainer);
+
+            if (groundContainer != null)
+            {
+                // set custom timeout for the dropped ground items container
+                ObjectGroundItemsContainer.ServerSetDestructionTimeout(
+                    (IStaticWorldObject)groundContainer.Owner,
+                    DestroyedTradingStationDroppedItemsDestructionTimeout.TotalSeconds);
+            }
         }
 
         public static void ServerUpdate(IStaticWorldObject tradingStation)
@@ -173,7 +194,7 @@
 
             var publicState = GetPublicState(tradingStation);
             ServerRefreshTradingStationLots(tradingStation,
-                                            privateState, 
+                                            privateState,
                                             publicState);
         }
 
@@ -567,8 +588,8 @@
             lot.State = TradingStationLotState.Available;
 
             Logger.Important($"Successfully modified trading lot #{lotIndex} on {tradingStation}", character);
-            ServerRefreshTradingStationLots(tradingStation, 
-                                            GetPrivateState(tradingStation), 
+            ServerRefreshTradingStationLots(tradingStation,
+                                            GetPrivateState(tradingStation),
                                             publicState);
         }
 
@@ -585,8 +606,8 @@
             }
 
             Logger.Important($"{tradingStation} mode switched to {mode}");
-            ServerRefreshTradingStationLots(tradingStation, 
-                                            GetPrivateState(tradingStation), 
+            ServerRefreshTradingStationLots(tradingStation,
+                                            GetPrivateState(tradingStation),
                                             publicState);
         }
 

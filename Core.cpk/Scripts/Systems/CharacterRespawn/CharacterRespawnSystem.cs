@@ -214,6 +214,7 @@
             var privateState = PlayerCharacter.GetPrivateState(character);
             if (privateState.IsDespawned)
             {
+                // character was despawned (PvE)
                 privateState.IsDespawned = false;
                 var publicState = PlayerCharacter.GetPublicState(character);
                 if (stats.HealthCurrent > 0)
@@ -229,13 +230,13 @@
             {
                 // if character was actually dead and not simply despawned
                 ResetStatsOnRespawn();
-            }
 
-            if (!NewbieProtectionSystem.ServerGetLatestDeathIsNewbiePvP(character))
-            {
-                // character is weakened after respawn for some time (except newbies in case of PvP death)
-                // more intensity in PvE as otherwise death is not punishing enough on PvE.
-                character.ServerAddStatusEffect<StatusEffectWeakened>(intensity: PveSystem.ServerIsPvE ? 1.0 : 0.5);
+                if (!NewbieProtectionSystem.ServerGetLatestDeathIsNewbiePvP(character))
+                {
+                    // character is weakened after respawn for some time (except newbies in case of PvP death)
+                    // more intensity in PvE as otherwise death is not punishing enough on PvE.
+                    character.ServerAddStatusEffect<StatusEffectWeakened>(intensity: PveSystem.ServerIsPvE ? 1.0 : 0.5);
+                }
             }
 
             // recreate physics (as dead character doesn't have any physics)

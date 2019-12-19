@@ -54,6 +54,8 @@
 
         public override double ServerUpdateIntervalSeconds => 5;
 
+        public IReadOnlyDropItemsList SpoiledGatherDroplist { get; private set; }
+
         public double TimeToGiveHarvestTotalSeconds { get; private set; }
 
         public double TimeToHarvestSpoilTotalSeconds { get; private set; }
@@ -285,16 +287,17 @@
                 ClientAddPlantRenderingOffsetFromFarm(tile, rendererShadow);
             }
 
-            var objectFarmPlot = SharedGetFarmPlotWorldObject(worldObject.OccupiedTile);
             // force reinitialize the farm plot to ensure it correctly uses the watered state of the plant over it
-            objectFarmPlot?.ClientInitialize();
+            SharedGetFarmPlotWorldObject(worldObject.OccupiedTile)?.ClientInitialize();
 
             publicState.ClientSubscribe(_ => _.IsWatered,
-                                        _ => objectFarmPlot?.ClientInitialize(),
+                                        _ => SharedGetFarmPlotWorldObject(worldObject.OccupiedTile)
+                                            ?.ClientInitialize(),
                                         clientState);
 
             publicState.ClientSubscribe(_ => _.IsFertilized,
-                                        _ => objectFarmPlot?.ClientInitialize(),
+                                        _ => SharedGetFarmPlotWorldObject(worldObject.OccupiedTile)
+                                            ?.ClientInitialize(),
                                         clientState);
         }
 
@@ -343,13 +346,13 @@
             this.PrepareProtoPlant();
         }
 
+        protected virtual void PrepareProtoPlant()
+        {
+        }
+
         protected virtual void PrepareSpoiledGatheringDroplist(DropItemsList spoiledGatherDroplist)
         {
             spoiledGatherDroplist.Add<ItemFibers>(count: 5);
-        }
-
-        protected virtual void PrepareProtoPlant()
-        {
         }
 
         protected override void PrepareTileRequirements(ConstructionTileRequirements tileRequirements)
@@ -432,8 +435,6 @@
             }
         }
 
-        public IReadOnlyDropItemsList SpoiledGatherDroplist { get; private set; }
-
         protected override bool ServerTryGatherByCharacter(ICharacter who, IStaticWorldObject vegetationObject)
         {
             var publicState = GetPublicState(vegetationObject);
@@ -447,9 +448,11 @@
             else // spoiled plant
             {
                 var result = this.SpoiledGatherDroplist.TryDropToCharacterOrGround(who,
-                                                                            who.TilePosition,
-                                                                            new DropItemContext(who, vegetationObject),
-                                                                            out var groundItemsContainer);
+                                                                                   who.TilePosition,
+                                                                                   new DropItemContext(
+                                                                                       who,
+                                                                                       vegetationObject),
+                                                                                   out var groundItemsContainer);
                 if (result.TotalCreatedCount == 0)
                 {
                     result.Rollback();

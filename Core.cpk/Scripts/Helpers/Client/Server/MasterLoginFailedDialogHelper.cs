@@ -118,6 +118,7 @@
 
                 case MasterClientLoginErrorCode.UnknownError:
                 default:
+                    MenuLogin.SetDisplayed(MenuLoginMode.SteamError);
                     errorMessage = UnknownError;
                     break;
             }

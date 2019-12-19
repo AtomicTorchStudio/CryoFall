@@ -5,11 +5,14 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -25,6 +28,12 @@
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
+        public const string NotificationNoDamageToDepositUnderCooldown_Description
+            = "The resource deposit has only just appeared and cannot be claimed or destroyed yet.";
+
+        public const string NotificationNoDamageToDepositUnderCooldown_TitleFormat
+            = "No damage dealt to {0}";
+
         public abstract double DecaySpeedMultiplierWhenExtractingActive { get; }
 
         public override string InteractionTooltipText => null; // non-interactive
@@ -73,12 +82,22 @@
         {
             if (weaponCache.ProtoObjectExplosive != null)
             {
-                // accept explosive damage
-                return base.SharedOnDamage(weaponCache,
-                                           targetObject,
-                                           damagePreMultiplier,
-                                           out obstacleBlockDamageCoef,
-                                           out damageApplied);
+                // allow to explode only a resource deposit which could be claimed
+                if (WorldMapResourceMarksSystem.SharedCalculateTimeRemainsToClaimCooldownSeconds(targetObject)
+                    <= 0)
+                {
+                    // accept explosive damage
+                    return base.SharedOnDamage(weaponCache,
+                                               targetObject,
+                                               damagePreMultiplier,
+                                               out obstacleBlockDamageCoef,
+                                               out damageApplied);
+                }
+
+                using var tempScopedBy = Api.Shared.GetTempList<ICharacter>();
+                Server.World.GetScopedByPlayers(targetObject, tempScopedBy);
+                this.CallClient(tempScopedBy,
+                                _ => _.ClientRemote_NoDamageToDepositUnderCooldown(weaponCache.ProtoObjectExplosive));
             }
 
             // only damage from explosives is accepted
@@ -163,7 +182,9 @@
             var privateState = data.PrivateState;
             if (data.IsFirstTimeInit)
             {
-                privateState.ServerSpawnTime = Server.Game.FrameTime;
+                privateState.ServerSpawnTime = this.LifetimeTotalDurationSeconds > 0
+                                                   ? Server.Game.FrameTime
+                                                   : 0;
             }
 
             WorldMapResourceMarksSystem.ServerAddMark(data.GameObject,
@@ -242,6 +263,15 @@
         protected override bool SharedIsAllowedObjectToInteractThrough(IWorldObject worldObject)
         {
             return true;
+        }
+
+        private void ClientRemote_NoDamageToDepositUnderCooldown(IProtoObjectExplosive protoObjectExplosive)
+        {
+            NotificationSystem.ClientShowNotification(
+                string.Format(NotificationNoDamageToDepositUnderCooldown_TitleFormat, this.Name),
+                NotificationNoDamageToDepositUnderCooldown_Description,
+                color: NotificationColor.Bad,
+                protoObjectExplosive.Icon);
         }
     }
 

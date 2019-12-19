@@ -247,6 +247,16 @@
                        : VehicleStatus.InWorld;
         }
 
+        private void ClientRemote_OnVehiclePutToGarageByOtherPlayer(Vector2D position)
+        {
+            Client.Audio.PlayOneShot(SoundResourcePutVehicle, position);
+        }
+
+        private void ClientRemote_OnVehicleTakenFromGarageByOtherPlayer(Vector2D position)
+        {
+            Client.Audio.PlayOneShot(SoundResourceTakeVehicle, position);
+        }
+
         // displayed when player logging into the game and has a single vehicle in garage
         // or when the vehicle is despawned to garage
         private void ClientRemote_VehicleInGarage(IProtoVehicle protoVehicle)
@@ -302,16 +312,6 @@
             return ServerGetCharacterVehicles(character, onlyVehiclesInGarage);
         }
 
-        private void ServerRemote_OnVehiclePutToGarageByOtherPlayer(Vector2D position)
-        {
-            Client.Audio.PlayOneShot(SoundResourcePutVehicle, position);
-        }
-
-        private void ServerRemote_OnVehicleTakenFromGarageByOtherPlayer(Vector2D position)
-        {
-            Client.Audio.PlayOneShot(SoundResourceTakeVehicle, position);
-        }
-
         private bool ServerRemote_PutCurrentVehicle()
         {
             if (!PveSystem.ServerIsPvE)
@@ -351,7 +351,7 @@
                 tempPlayers.Remove(character);
 
                 Instance.CallClient(tempPlayers,
-                                    _ => _.ServerRemote_OnVehiclePutToGarageByOtherPlayer(soundPosition));
+                                    _ => _.ClientRemote_OnVehiclePutToGarageByOtherPlayer(soundPosition));
             }
 
             return isPutAtLeastOne;
@@ -445,7 +445,7 @@
             tempPlayers.Remove(character);
 
             Instance.CallClient(tempPlayers,
-                                _ => _.ServerRemote_OnVehicleTakenFromGarageByOtherPlayer(soundPosition));
+                                _ => _.ClientRemote_OnVehicleTakenFromGarageByOtherPlayer(soundPosition));
 
             return TakeVehicleResult.Success;
         }

@@ -94,18 +94,10 @@
                 return 0;
             }
 
-            var position = WorldMapResourceMarksSystem.SharedGetObjectCenterPosition(this.worldObjectDeposit);
             var mark = WorldMapResourceMarksSystem.SharedEnumerateMarks()
-                                                  .FirstOrDefault(m => m.Position == position
-                                                                       && m.ProtoWorldObject == this.protoDeposit);
+                                                  .FirstOrDefault(m => m.Id == this.worldObjectDeposit.Id);
 
-            if (mark.Position == default)
-            {
-                return 0;
-            }
-
-            return (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(
-                mark.ServerSpawnTime);
+            return (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(mark.ServerSpawnTime);
         }
 
         private void RefreshAvailableToClaim()

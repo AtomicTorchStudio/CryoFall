@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.VehicleSystem
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Triggers;
@@ -55,20 +56,15 @@
         {
             // If update rate is 1, updating will happen for each character once a second.
             // We can set it to 2 to have updates every half second.
-            const int updateRate = 1;
-            var spread = Server.Game.FrameRate / updateRate;
-            var frameNumberInSecond = Server.Game.FrameNumber % spread;
+            // If we set it to 1/2 it will update every 2 seconds and so on.
+            const double updateRate = 1 / 10.0;
 
-            foreach (var character in Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true))
+            foreach (var character in Server.Characters.EnumerateAllPlayerCharactersWithSpread(updateRate,
+                                                                                               onlyOnline: true,
+                                                                                               exceptSpectators: false))
             {
-                if (character.Id % spread != frameNumberInSecond)
-                {
-                    // frame skip - this character will be not processed at this frame
-                    continue;
-                }
-
                 var vehicle = character.SharedGetCurrentVehicle();
-                if (vehicle == null)
+                if (vehicle is null)
                 {
                     return;
                 }
@@ -78,6 +74,8 @@
                 var consumption = isMoving
                                       ? protoVehicle.EnergyUsePerSecondMoving
                                       : protoVehicle.EnergyUsePerSecondIdle;
+
+                consumption = (ushort)Math.Floor(consumption / updateRate);
 
                 if (VehicleEnergySystem.ServerDeductEnergyCharge(vehicle, consumption))
                 {

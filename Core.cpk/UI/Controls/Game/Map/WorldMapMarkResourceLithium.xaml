@@ -10,11 +10,20 @@
     d:DesignHeight="300" d:DesignWidth="300" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core">
     <Canvas>
-        <Image Source="Images/ResourceLithium.png"
-               Style="{StaticResource WorldMapMarkImageCenteredStyle}">
-            <base:ToolTipServiceExtend.ToolTip>
-                <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.WorldMapMarkResourceLithium_Tooltip}" />
-            </base:ToolTipServiceExtend.ToolTip>
-        </Image>
+        <Canvas
+            Visibility="{Binding IsInfiniteSource, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+            <Image Source="Images/ResourceLithium.png"
+                   Style="{StaticResource WorldMapMarkImageCenteredStyle}" />
+        </Canvas>
+
+        <Canvas
+            Visibility="{Binding IsInfiniteSource, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Image Source="Images/ResourceLithiumInfinite.png"
+                   Style="{StaticResource WorldMapMarkImageCenteredStyle}" />
+        </Canvas>
+
+        <base:ToolTipServiceExtend.ToolTip>
+            <core:FormattedTextBlock x:Name="TextBlockTooltip" />
+        </base:ToolTipServiceExtend.ToolTip>
     </Canvas>
 </base:BaseUserControl>

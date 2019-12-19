@@ -21,8 +21,6 @@
         // Lookup area is a circle of the specified diameter.
         private const int EnvironmentalRadiationLookupAreaDiameter = 9;
 
-        private byte serverFrameOffset;
-
         private Vector2Int[] serverTileOffsetsCircle;
 
         private IProtoZone serverZone;
@@ -69,8 +67,6 @@
                 return;
             }
 
-            this.serverFrameOffset = (byte)this.Id.GetHashCode();
-
             // cache the server zone prototype
             this.serverZone = this.ServerZoneProto;
 
@@ -90,28 +86,19 @@
                 name: "System." + this.ShortId);
         }
 
-        protected void ServerGlobalUpdate()
+        private void ServerGlobalUpdate()
         {
             var zone = this.serverZone.ServerZoneInstance;
 
             // If update rate is 1, updating will happen for each character once a second.
             // We can set it to 2 to have updates every half second.
-            const int updateRate = 1;
-            var spread = Server.Game.FrameRate / updateRate;
-            var frameNumberInSecond = (Server.Game.FrameNumber + this.serverFrameOffset) % spread;
-
+            const double updateRate = 1;
             var totalCells = this.serverTileOffsetsCircle.Length;
-            var allPlayerCharacters = Server.Characters
-                                            .EnumerateAllPlayerCharacters(onlyOnline: false);
 
-            foreach (var character in allPlayerCharacters)
+            foreach (var character in Server.Characters
+                                            .EnumerateAllPlayerCharactersWithSpread(updateRate,
+                                                                                    onlyOnline: true))
             {
-                if (character.Id % spread != frameNumberInSecond)
-                {
-                    // frame skip - this character will be not processed at this frame
-                    continue;
-                }
-
                 if (character.GetPublicState<ICharacterPublicState>()
                              .IsDead)
                 {

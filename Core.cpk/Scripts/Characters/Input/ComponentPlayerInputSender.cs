@@ -11,8 +11,6 @@
     /// </summary>
     public class ComponentPlayerInputSender : ClientComponent
     {
-        //private const byte MaxSentCount = 40;
-
         private const double SendingIntervalSecondsFirstFiveTries = 0.025;
 
         private const double SendingIntervalSecondsNextTries = 0.050;
@@ -39,8 +37,7 @@
             }
         }
 
-        public void Send(
-            CharacterInputUpdate data)
+        public void Send(CharacterInputUpdate data)
         {
             this.lastInputId = ++this.lastInputId;
             this.lastInputData = data;
@@ -58,29 +55,18 @@
         public override void Update(double deltaTime)
         {
             // check if need to send now
-            if ( // already acknowledged
-                this.lastInputIsServerAck)
+            if (this.lastInputIsServerAck)
             {
-                //Logger.WriteDev(this - ": Already ACK");
+                // already acknowledged
                 return;
             }
 
-            //// commented out - we still need to ensure the server has received the last input
-            //if ( // exceeded max sent count
-            //    this.lastInputSentCount > MaxSentCount)
-            //{
-            //    //Logger.WriteDev(this - ": Max sent count exceeded");
-            //    return;
-            //}
-
-            if ( // it's too early - just sent another package
-                Core.ClientRealTime < this.timeToNextSending)
+            if (Core.ClientRealTime < this.timeToNextSending)
             {
-                //Logger.WriteDev(this - ": Too early");
+                // it's too early - just sent another package
                 return;
             }
 
-            //Logger.WriteDev(this - ": re-send now");
             this.SendNow();
         }
 

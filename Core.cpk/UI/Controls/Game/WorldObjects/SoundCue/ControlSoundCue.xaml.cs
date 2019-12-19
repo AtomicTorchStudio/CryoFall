@@ -17,9 +17,13 @@
                                         typeof(ControlSoundCue),
                                         new PropertyMetadata(default(double)));
 
+        private bool isPartyMember;
+
         private Panel layoutRoot;
 
-        private Storyboard storyboard;
+        private Storyboard storyboardOtherPlayer;
+
+        private Storyboard storyboardPartyMember;
 
         public double Angle
         {
@@ -31,7 +35,7 @@
         {
         }
 
-        public void ShowAt(Vector2D soundWorldPosition, in BoundsDouble viewBounds)
+        public void ShowAt(Vector2D soundWorldPosition, in BoundsDouble viewBounds, bool isPartyMember)
         {
             this.Angle = this.CalculateAngle(soundWorldPosition, viewBounds);
 
@@ -46,17 +50,23 @@
 
             Canvas.SetLeft(this.layoutRoot, screenPosition.X);
             Canvas.SetTop(this.layoutRoot, screenPosition.Y);
+
+            this.isPartyMember = isPartyMember;
         }
 
         protected override void InitControl()
         {
             this.layoutRoot = this.GetByName<Grid>("LayoutRoot");
-            this.storyboard = this.GetResource<Storyboard>("Storyboard");
+            this.storyboardOtherPlayer = this.GetResource<Storyboard>("StoryboardOtherPlayer");
+            this.storyboardPartyMember = this.GetResource<Storyboard>("StoryboardPartyMember");
         }
 
         protected override void OnLoaded()
         {
-            this.storyboard.Begin(this.layoutRoot);
+            var storyboard = this.isPartyMember
+                                 ? this.storyboardPartyMember
+                                 : this.storyboardOtherPlayer;
+            storyboard.Begin(this.layoutRoot);
 
             ClientTimersSystem.AddAction(
                 delaySeconds: 1,

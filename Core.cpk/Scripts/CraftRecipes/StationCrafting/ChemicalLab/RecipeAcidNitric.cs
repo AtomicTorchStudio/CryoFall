@@ -16,7 +16,7 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.VeryShort;
+            duration = CraftingDuration.Second;
 
             inputItems.Add<ItemAcidSulfuric>(count: 2);
             inputItems.Add<ItemPotassiumNitrate>(count: 5);

@@ -72,6 +72,8 @@
 
         private static readonly IWorldServerService ServerWorldService = IsServer ? Server.World : null;
 
+        private static readonly List<IStaticWorldObject> TempListAllStaticWorldObjects = new List<IStaticWorldObject>();
+
         // one per ProtoZoneSpawnScript instance
         private readonly HashSet<CurrentlyExecutingTaskKey> executingEntries = new HashSet<CurrentlyExecutingTaskKey>();
 
@@ -642,72 +644,69 @@
             const int defaultCounterToYieldValue = 100;
             var counterToYield = defaultCounterToYieldValue;
 
-            using (var tempList = Api.Shared.GetTempList<IStaticWorldObject>())
+            // this check has a problem - it returns only objects strictly inside the zone,
+            // but we also need to consider objects nearby the zone for restriction presets
+            //await zone.PopulateStaticObjectsInZone(tempList, callbackYieldIfOutOfTime);
+
+            TempListAllStaticWorldObjects.Clear();
+            await Api.Server.World.GetStaticWorldObjectsAsync(TempListAllStaticWorldObjects);
+            foreach (var staticObject in TempListAllStaticWorldObjects)
             {
-                // this check has a problem - it returns only objects strictly inside the zone,
-                // but we also need to consider objects nearby the zone for restriction presets
-                //await zone.PopulateStaticObjectsInZone(tempList, callbackYieldIfOutOfTime);
-
-                Api.Server.World.GetStaticWorldObjects(tempList);
-
-                foreach (var staticObject in tempList)
+                await YieldIfOutOfTime();
+                if (staticObject.IsDestroyed)
                 {
-                    await YieldIfOutOfTime();
-                    if (staticObject.IsDestroyed)
+                    continue;
+                }
+
+                var position = staticObject.TilePosition;
+                var area = GetArea(position, isMobTrackingEnumeration: false);
+                if (area is null)
+                {
+                    continue;
+                }
+
+                var protoStaticWorldObject = staticObject.ProtoStaticWorldObject;
+                if (!(protoStaticWorldObject is ObjectGroundItemsContainer))
+                {
+                    if (protoStaticWorldObject.IsIgnoredBySpawnScripts)
                     {
+                        // we don't consider padding to certain objects such as ground decals
+                        // (though they still might affect spawn during the tiles check)
                         continue;
                     }
 
-                    var position = staticObject.TilePosition;
-                    var area = GetArea(position, isMobTrackingEnumeration: false);
-                    if (area is null)
+                    // create entry for regular static object
+                    var preset = this.FindPreset(protoStaticWorldObject);
+                    if (preset != null
+                        && preset.Density > 0
+                        && !zone.IsContainsPosition(staticObject.TilePosition))
                     {
+                        // this object is a part of the preset spawn list but it's not present in the zone
+                        // don't consider this object
+                        // TODO: this might cause a problem if there is a padding to this object check
                         continue;
                     }
 
-                    var protoStaticWorldObject = staticObject.ProtoStaticWorldObject;
-                    if (!(protoStaticWorldObject is ObjectGroundItemsContainer))
+                    area.Add(preset, position);
+                    continue;
+                }
+
+                // ground container object
+                var itemsContainer = ObjectGroundItemsContainer.GetPublicState(staticObject).ItemsContainer;
+                foreach (var item in itemsContainer.Items)
+                {
+                    // create entry for each item in the ground container
+                    var preset = this.FindPreset(item.ProtoItem);
+                    if (preset != null
+                        && preset.Density > 0
+                        && !zone.IsContainsPosition(staticObject.TilePosition))
                     {
-                        if (protoStaticWorldObject.IsIgnoredBySpawnScripts)
-                        {
-                            // we don't consider padding to certain objects such as ground decals
-                            // (though they still might affect spawn during the tiles check)
-                            continue;
-                        }
-
-                        // create entry for regular static object
-                        var preset = this.FindPreset(protoStaticWorldObject);
-                        if (preset != null
-                            && preset.Density > 0
-                            && !zone.IsContainsPosition(staticObject.TilePosition))
-                        {
-                            // this object is a part of the preset spawn list but it's not present in the zone
-                            // don't consider this object
-                            // TODO: this might cause a problem if there is a padding to this object check
-                            continue;
-                        }
-
-                        area.Add(preset, position);
+                        // this object is a part of the preset spawn list but it's not present in the zone
+                        // don't consider this object
                         continue;
                     }
 
-                    // ground container object
-                    var itemsContainer = ObjectGroundItemsContainer.GetPublicState(staticObject).ItemsContainer;
-                    foreach (var item in itemsContainer.Items)
-                    {
-                        // create entry for each item in the ground container
-                        var preset = this.FindPreset(item.ProtoItem);
-                        if (preset != null
-                            && preset.Density > 0
-                            && !zone.IsContainsPosition(staticObject.TilePosition))
-                        {
-                            // this object is a part of the preset spawn list but it's not present in the zone
-                            // don't consider this object
-                            continue;
-                        }
-
-                        area.Add(preset, position);
-                    }
+                    area.Add(preset, position);
                 }
             }
 
@@ -781,6 +780,12 @@
                                        ? () => Task.CompletedTask
                                        : (Func<Task>)Core.YieldIfOutOfTime;
 
+            if (!isInitialSpawn)
+            {
+                // ensure that spawn execution is invoked in the end of frame
+                await Core.AwaitEndOfFrame;
+            }
+
             await yieldIfOutOfTime();
 
             var stopwatchTotal = Stopwatch.StartNew();
@@ -820,7 +825,8 @@
                             var currentCount = spawnedObjectsCount.Find(preset);
                             //if (isInitialSpawn)
                             //{
-                            var countToSpawn = Math.Max(0, desiredCount - currentCount);
+                            var countToSpawn =
+                                Math.Max(0, desiredCount - currentCount);
                             //}
 
                             // TODO: refactor this to be actually useful with local density
@@ -836,7 +842,9 @@
 
                             if (preset.SpawnLimitPerIteration.HasValue)
                             {
-                                countToSpawn = Math.Min(countToSpawn, preset.SpawnLimitPerIteration.Value);
+                                countToSpawn =
+                                    Math.Min(countToSpawn,
+                                             preset.SpawnLimitPerIteration.Value);
                             }
 
                             // we're not using this feature

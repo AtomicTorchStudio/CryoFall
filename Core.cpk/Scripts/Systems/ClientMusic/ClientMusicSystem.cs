@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.ClientOptions.Audio;
     using AtomicTorch.CBND.CoreMod.Playlists;
     using AtomicTorch.CBND.GameApi.Logging;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -277,10 +278,12 @@
             {
                 this.Playlist = playlist;
                 this.MusicTrack = musicTrack;
+                // ensure the track is changed
+                ComponentMusicSource.MusicResource = MusicResource.NoMusic;
                 ComponentMusicSource.MusicResource = musicTrack.MusicResource;
                 ComponentMusicSource.IsLooped = musicTrack.IsLooped;
-                this.CurrentFadeInDuration = this.MusicTrack.FadeInDuration;
-                this.CurrentFadeOutDuration = this.MusicTrack.FadeOutDuration;
+                this.CurrentFadeInDuration = musicTrack.FadeInDuration;
+                this.CurrentFadeOutDuration = musicTrack.FadeOutDuration;
 
                 if (MusicTrackLastStopTimeManager.TryGetLastStopTime(musicTrack.MusicResource, out var lastStopTime))
                 {
@@ -391,7 +394,7 @@
                     if (positionForFader < 0)
                     {
                         // it's possible as track position is not accurate
-                        // (due to FMOD rounding of milliseconds or multithreading?)
+                        // (due to FMOD rounding of milliseconds or multi-threading?)
                         positionForFader = 0;
                     }
                     else if (positionForFader > this.CurrentFadeInDuration)

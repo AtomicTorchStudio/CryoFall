@@ -19,11 +19,13 @@
     /// </summary>
     public class ObjectMineralPragmiumSourceExplosion : ProtoObjectExplosive
     {
+        public const int ExplosionDamageRadius = 13;
+
         private readonly Lazy<ObjectMineralPragmiumSource> protoPragmiumSource
             = new Lazy<ObjectMineralPragmiumSource>(
                 GetProtoEntity<ObjectMineralPragmiumSource>);
 
-        public override double DamageRadius => 13; // large annihilation radius
+        public override double DamageRadius => ExplosionDamageRadius; // large annihilation radius
 
         public override TimeSpan ExplosionDelay => TimeSpan.FromSeconds(3);
 

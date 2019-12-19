@@ -38,28 +38,35 @@
             ExplosionPreset explosionPreset,
             float volume = 1.0f)
         {
-            // add sound cues
-            for (var i = 0; i < 17; i++)
+            // add screen shakes
+            if (explosionPreset.ScreenShakesDuration > 0)
             {
-                ClientTimersSystem.AddAction(delaySeconds: i * 0.1,
-                                             () => ClientSoundCueManager.OnSoundEvent(position));
+                ClientComponentCameraScreenShakes.AddRandomShakes(
+                    duration: explosionPreset.ScreenShakesDuration,
+                    worldDistanceMin: explosionPreset.ScreenShakesWorldDistanceMin,
+                    worldDistanceMax: explosionPreset.ScreenShakesWorldDistanceMax);
             }
 
-            // add screen shakes
-            ClientComponentCameraScreenShakes.AddRandomShakes(
-                duration: explosionPreset.ScreenShakesDuration,
-                worldDistanceMin: explosionPreset.ScreenShakesWorldDistanceMin,
-                worldDistanceMax: explosionPreset.ScreenShakesWorldDistanceMax);
-
             // play sound
-            var explosionSoundEmitter = Client.Audio.PlayOneShot(explosionPreset.SoundSet.GetSound(),
-                                                                 worldPosition: position,
-                                                                 volume: volume,
-                                                                 pitch: RandomHelper.Range(0.95f, 1.05f));
+            if (volume > 0)
+            {
+                var explosionSoundEmitter = Client.Audio.PlayOneShot(explosionPreset.SoundSet.GetSound(),
+                                                                     worldPosition: position,
+                                                                     volume: volume,
+                                                                     pitch: RandomHelper.Range(0.95f, 1.05f));
 
-            // extend explosion sound distance
-            explosionSoundEmitter.CustomMinDistance = (float)explosionPreset.LightWorldSize / 3;
-            explosionSoundEmitter.CustomMaxDistance = (float)explosionPreset.LightWorldSize;
+                // extend explosion sound distance
+                explosionSoundEmitter.CustomMinDistance = (float)explosionPreset.LightWorldSize / 3;
+                explosionSoundEmitter.CustomMaxDistance = (float)explosionPreset.LightWorldSize;
+
+                // add sound cues
+                for (var i = 0; i < 17; i++)
+                {
+                    ClientTimersSystem.AddAction(delaySeconds: i * 0.1,
+                                                 () => ClientSoundCueManager.OnSoundEvent(position,
+                                                                                          isPartyMember: false));
+                }
+            }
 
             // create explosion renderer
             var explosionSpriteAnimationDuration = explosionPreset.SpriteAnimationDuration;
@@ -71,7 +78,7 @@
             var explosionSpriteRenderer = Client.Rendering.CreateSpriteRenderer(
                 explosionSceneObject,
                 TextureResource.NoTexture,
-                drawOrder: DrawOrder.Explosion,
+                drawOrder: explosionPreset.SpriteDrawOrder,
                 spritePivotPoint: (0.5, 0.5));
 
             explosionSpriteRenderer.Color = explosionPreset.SpriteColorMultiplicative;
@@ -103,16 +110,24 @@
                 explosionSpriteAnimationDuration);
 
             // add light source for the explosion
-            var explosionLight = ClientLighting.CreateLightSourceSpot(
-                explosionSceneObject,
-                explosionPreset.LightColor,
-                size: explosionPreset.LightWorldSize,
-                positionOffset: (0, 0),
-                spritePivotPoint: (0.5, 0.5));
+            if (explosionPreset.LightDuration > 0)
+            {
+                var explosionLightSceneObject = Client.Scene.CreateSceneObject("Temp explosion light",
+                                                                          position);
 
-            ClientComponentOneShotLightAnimation.Setup(
-                explosionLight,
-                explosionPreset.LightDuration);
+                explosionLightSceneObject.Destroy(delay: explosionPreset.LightDuration);
+
+                var explosionLight = ClientLighting.CreateLightSourceSpot(
+                    explosionLightSceneObject,
+                    explosionPreset.LightColor,
+                    size: explosionPreset.LightWorldSize,
+                    positionOffset: (0, 0),
+                    spritePivotPoint: (0.5, 0.5));
+
+                ClientComponentOneShotLightAnimation.Setup(
+                    explosionLight,
+                    explosionPreset.LightDuration);
+            }
 
             // add blast wave
             var blastAnimationDuration = explosionPreset.BlastwaveAnimationDuration;

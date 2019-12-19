@@ -18,6 +18,7 @@
         protected override void InitMenu()
         {
             this.DataContext = this.viewModel = new ViewModelWindowSocial();
+            this.viewModel.IsActive = true;
         }
     }
 }

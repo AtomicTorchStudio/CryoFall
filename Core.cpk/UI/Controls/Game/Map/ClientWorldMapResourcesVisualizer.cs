@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Media;
+    using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Perks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
@@ -11,9 +13,8 @@
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
-    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Primitives;
+    using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ClientWorldMapResourcesVisualizer : IWorldMapVisualizer
     {
@@ -27,10 +28,15 @@
         public const string Notification_NewResourceAvailable_Title =
             "New resource available";
 
+        private const string TooltipDepositSearchAreaFormat = "Search area — {0}";
+
         private readonly List<(WorldMapResourceMark mark, HUDNotificationControl notification)> notifications
             = new List<(WorldMapResourceMark mark, HUDNotificationControl notification)>();
 
         private readonly List<(WorldMapResourceMark mark, FrameworkElement mapControl)> visualizedMarks
+            = new List<(WorldMapResourceMark, FrameworkElement)>();
+
+        private readonly List<(WorldMapResourceMark mark, FrameworkElement mapControl)> visualizedSearchAreas
             = new List<(WorldMapResourceMark, FrameworkElement)>();
 
         private readonly WorldMapController worldMapController;
@@ -69,10 +75,12 @@
             switch (mark.ProtoWorldObject)
             {
                 case ObjectDepositOilSeep _:
-                    return new WorldMapMarkResourceOil();
+                    return new WorldMapMarkResourceOil()
+                        { IsInfiniteSource = mark.ProtoWorldObject is ObjectDepositOilSeepInfinite };
 
                 case ObjectDepositGeothermalSpring _:
-                    return new WorldMapMarkResourceLithium();
+                    return new WorldMapMarkResourceLithium()
+                        { IsInfiniteSource = mark.ProtoWorldObject is ObjectDepositGeothermalSpringInfinite };
 
                 default:
                     return null;
@@ -80,8 +88,7 @@
         }
 
         private static string GetUpdatedRecentResourceNotificationText(
-            IProtoStaticWorldObject protoResource,
-            Vector2Ushort tilePosition,
+            WorldMapResourceMark mark,
             int timeRemains)
         {
             if (timeRemains < 1)
@@ -89,7 +96,18 @@
                 timeRemains = 1;
             }
 
-            var localPosition = tilePosition - Api.Client.World.WorldBounds.Offset;
+            var protoResource = mark.ProtoWorldObject;
+            if (mark.Position == default)
+            {
+                // write biome name instead
+                return string.Format(Notification_NewResourceAvailable_MessageFormat.Replace("{1};{2}", "[br]{1}{2}"),
+                                     protoResource.Name,
+                                     mark.Biome.Name,
+                                     string.Empty,
+                                     ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
+            }
+
+            var localPosition = mark.Position - Api.Client.World.WorldBounds.Offset;
             return string.Format(Notification_NewResourceAvailable_MessageFormat,
                                  protoResource.Name,
                                  localPosition.X,
@@ -106,12 +124,11 @@
         private void MarkAddedHandler(WorldMapResourceMark mark)
         {
             var mapControl = GetMapControl(mark);
-            var protoResource = mark.ProtoWorldObject;
 
             if (mapControl == null)
             {
                 Api.Logger.Warning("Unknown world object mark: "
-                                   + protoResource
+                                   + mark.ProtoWorldObject
                                    + " - there is no UI control for this world object prototype");
                 return;
             }
@@ -122,14 +139,37 @@
             Panel.SetZIndex(mapControl, 16);
 
             this.worldMapController.AddControl(mapControl);
-
             this.visualizedMarks.Add((mark, mapControl));
+
+            if (mark.SearchAreaCirclePosition != default)
+            {
+                // add a circle for the search area
+                var circleControl = new Ellipse()
+                {
+                    Width = 2 * mark.SearchAreaCircleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
+                    Height = 2 * mark.SearchAreaCircleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
+                    Fill = new SolidColorBrush(Color.FromArgb(0x44,   0xBB, 0x66, 0x66)),
+                    Stroke = new SolidColorBrush(Color.FromArgb(0x77, 0xBB, 0x66, 0x66)),
+                    StrokeThickness = 2
+                };
+                var circleCanvasPosition = this.worldMapController.WorldToCanvasPosition(
+                    mark.SearchAreaCirclePosition.ToVector2D());
+                Canvas.SetLeft(circleControl, circleCanvasPosition.X - circleControl.Width / 2);
+                Canvas.SetTop(circleControl, circleCanvasPosition.Y - circleControl.Height / 2);
+                Panel.SetZIndex(circleControl, 1);
+                this.worldMapController.AddControl(circleControl, scaleWithZoom: false);
+                this.visualizedSearchAreas.Add((mark, circleControl));
+                ToolTipServiceExtend.SetToolTip(circleControl,
+                                                string.Format(TooltipDepositSearchAreaFormat,
+                                                              mark.ProtoWorldObject.Name));
+            }
 
             var timeRemains = (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(
                 mark.ServerSpawnTime);
-            if (timeRemains < 60)
+
+            if (timeRemains < 20)
             {
-                // less than a minute - not worth a notification
+                // less than 20 seconds remains - not worth a notification
                 return;
             }
 
@@ -149,10 +189,9 @@
             // notify player about the new resource
             var notification = NotificationSystem.ClientShowNotification(
                 title: Notification_NewResourceAvailable_Title,
-                message: GetUpdatedRecentResourceNotificationText(protoResource,
-                                                                  mark.Position,
+                message: GetUpdatedRecentResourceNotificationText(mark,
                                                                   timeRemains),
-                icon: protoResource.Icon,
+                icon: mark.ProtoWorldObject.Icon,
                 autoHide: false);
 
             this.AddNotification(mark, notification);
@@ -172,6 +211,18 @@
                 this.visualizedMarks.RemoveAt(index);
                 this.worldMapController.RemoveControl(entry.mapControl);
                 this.RemoveNotification(mark, quick: true);
+            }
+
+            for (var index = 0; index < this.visualizedSearchAreas.Count; index++)
+            {
+                var entry = this.visualizedSearchAreas[index];
+                if (!entry.mark.Equals(mark))
+                {
+                    continue;
+                }
+
+                this.visualizedSearchAreas.RemoveAt(index);
+                this.worldMapController.RemoveControl(entry.mapControl);
             }
         }
 
@@ -203,7 +254,6 @@
                 return;
             }
 
-            var protoResource = mark.ProtoWorldObject;
             var timeRemains = (int)WorldMapResourceMarksSystem
                 .SharedCalculateTimeToClaimLimitRemovalSeconds(mark.ServerSpawnTime);
             if (timeRemains <= 0)
@@ -213,8 +263,7 @@
             }
 
             notification.SetMessage(
-                GetUpdatedRecentResourceNotificationText(protoResource,
-                                                         mark.Position,
+                GetUpdatedRecentResourceNotificationText(mark,
                                                          timeRemains));
 
             // schedule recursive update in a second

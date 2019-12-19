@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -34,6 +35,7 @@
             this.InternalAddRange(newItems, clearBeforeAdd: true);
         }
 
+        [Obsolete("This method is extremely slow due to the whole collection re-initialization.")]
         public void Sort()
         {
             var items = this.Items;

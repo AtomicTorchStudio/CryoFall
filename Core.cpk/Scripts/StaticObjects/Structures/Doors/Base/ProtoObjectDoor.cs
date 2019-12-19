@@ -38,8 +38,7 @@
           <TPrivateState,
               TPublicState,
               TClientState>,
-          IProtoObjectDoor,
-          IInteractableProtoWorldObject
+          IProtoObjectDoor
         where TPrivateState : ObjectDoorPrivateState, new()
         where TPublicState : ObjectDoorPublicState, new()
         where TClientState : ObjectDoorClientState, new()
@@ -50,9 +49,15 @@
 
         private const double HorizontalDoorPhysicsHeight = 0.5;
 
-        private const double VerticalDoorPhysicsWidth = 0.4;
+        private const double VerticalDoorPhysicsWidthOpened = 0.25;
+        
+        // Workaround: using the same width as for opened door to prevent issue with the door opening-closing in cycle
+        // due to a change of direct line of sight when door width changed.
+        private const double VerticalDoorPhysicsWidthClosed = VerticalDoorPhysicsWidthOpened;
 
-        private const double VerticalDoorPhysicsWidthOffsetX = 0.5 - VerticalDoorPhysicsWidth * 0.5;
+        private const double VerticalDoorPhysicsWidthOpenedOffsetX = 0.5 - VerticalDoorPhysicsWidthOpened * 0.5;
+
+        private const double VerticalDoorPhysicsWidthClosedOffsetX = 0.5 - VerticalDoorPhysicsWidthClosed * 0.5;
 
         private readonly Lazy<ProceduralTexture> lazyHorizontalDoorBlueprintTexture;
 
@@ -552,29 +557,29 @@
             if (isOpened)
             {
                 physicsBody.AddShapeRectangle(
-                               size: (VerticalDoorPhysicsWidth, doorOpenedColliderHeight),
-                               offset: (VerticalDoorPhysicsWidthOffsetX, 0))
+                               size: (VerticalDoorPhysicsWidthOpened, doorOpenedColliderHeight),
+                               offset: (VerticalDoorPhysicsWidthOpenedOffsetX, 0))
                            .AddShapeRectangle(
-                               size: (VerticalDoorPhysicsWidth, doorOpenedColliderHeight),
-                               offset: (VerticalDoorPhysicsWidthOffsetX, doorSize - doorOpenedColliderHeight));
+                               size: (VerticalDoorPhysicsWidthOpened, doorOpenedColliderHeight),
+                               offset: (VerticalDoorPhysicsWidthOpenedOffsetX, doorSize - doorOpenedColliderHeight));
             }
             else
             {
                 physicsBody.AddShapeRectangle(
-                    size: (VerticalDoorPhysicsWidth, doorWidth: doorSize),
-                    offset: (VerticalDoorPhysicsWidthOffsetX, 0));
+                    size: (VerticalDoorPhysicsWidthClosed, doorWidth: doorSize),
+                    offset: (VerticalDoorPhysicsWidthClosedOffsetX, 0));
             }
 
             if (!isOpened)
             {
-                // add closed vertical door hitboxes
+                // add closed vertical door hitboxes (please note: we're using the collider width of the opened door)
                 physicsBody.AddShapeRectangle(
-                               size: (VerticalDoorPhysicsWidth, doorSize + 0.76),
-                               offset: (VerticalDoorPhysicsWidthOffsetX, 0),
+                               size: (VerticalDoorPhysicsWidthOpened, doorSize + 0.76),
+                               offset: (VerticalDoorPhysicsWidthOpenedOffsetX, 0),
                                group: CollisionGroups.HitboxMelee)
                            .AddShapeRectangle(
-                               size: (VerticalDoorPhysicsWidth, doorSize + 0.86),
-                               offset: (VerticalDoorPhysicsWidthOffsetX, 0),
+                               size: (VerticalDoorPhysicsWidthOpened, doorSize + 0.86),
+                               offset: (VerticalDoorPhysicsWidthOpenedOffsetX, 0),
                                group: CollisionGroups.HitboxRanged);
             }
 
@@ -725,8 +730,8 @@
             else
             {
                 testResult = physicsSpace.TestRectangle(
-                    worldObject.TilePosition.ToVector2D() + (VerticalDoorPhysicsWidthOffsetX, 0),
-                    size: (VerticalDoorPhysicsWidth, doorWidth: doorSize),
+                    worldObject.TilePosition.ToVector2D() + (VerticalDoorPhysicsWidthClosedOffsetX, 0),
+                    size: (VerticalDoorPhysicsWidthClosed, doorWidth: doorSize),
                     collisionGroup: CollisionGroups.Default);
             }
 
@@ -828,7 +833,7 @@
                                                 characterCenter,
                                                 characterPhysicsBody.PhysicsSpace,
                                                 worldObject,
-                                                sendDebugEvents: false))
+                                                sendDebugEvents: true))
                 {
                     return true;
                 }

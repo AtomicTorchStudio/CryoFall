@@ -274,7 +274,9 @@
                           : "<" + TitleButtonNotSet + ">";
 
             NotificationSystem.ClientShowNotification(
-                string.Format(NotificationPressKeyToActivate, key),
+                string.Format(NotificationPressKeyToActivate, key)
+                      .Replace("[", "") // TODO: here is a workaround to remove the false BB code (press [F] key)
+                      .Replace("]", ""),
                 icon: this.Icon);
         }
 

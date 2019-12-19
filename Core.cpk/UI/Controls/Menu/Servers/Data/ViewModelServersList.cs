@@ -5,6 +5,7 @@
     using System.Collections.ObjectModel;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Controllers;
 
     public class ViewModelServersList : BaseViewModel
@@ -41,7 +42,7 @@
         public ViewModelServersList()
         {
             // design-time constructor only
-            this.ServersList = new ObservableCollection<ViewModelServerInfoListEntry>(
+            this.ServersList = new SuperObservableCollection<ViewModelServerInfoListEntry>(
                 new List<ViewModelServerInfoListEntry>()
                 {
                     new ViewModelServerInfoListEntry(),
@@ -51,6 +52,12 @@
         }
 
 #endif
+
+        public BaseMultiplayerMenuServersController Controller
+        {
+            get => this.controller;
+            set => this.controller = value;
+        }
 
         public bool IsActive
         {
@@ -69,6 +76,11 @@
 
                 this.isActive = value;
                 this.NotifyThisPropertyChanged();
+
+                if (this.isActive)
+                {
+                    this.SortEntries();
+                }
             }
         }
 
@@ -183,6 +195,13 @@
             }
 
             this.NotifyPropertyChanged(nameof(this.SelectedServer));
+        }
+
+        public void SortEntries()
+        {
+            var selected = this.SelectedServer;
+            this.controller.SortEntries();
+            this.SelectedServer = selected;
         }
 
         protected override void DisposeViewModel()

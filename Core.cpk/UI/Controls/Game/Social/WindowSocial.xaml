@@ -85,39 +85,58 @@
                        FontWeight="Bold"
                        HorizontalAlignment="Left" />
 
-            <ScrollViewer Grid.Row="2"
-                          HorizontalScrollBarVisibility="Disabled"
-                          VerticalScrollBarVisibility="Auto"
+            <ItemsControl Grid.Row="2"
+                          ItemsSource="{Binding PlayersOnline}"
+                          ScrollViewer.CanContentScroll="True"
                           HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
                           Padding="0,3,2,0"
                           Margin="-5,0">
-                <ItemsControl ItemsSource="{Binding PlayersOnline}">
-                    <ItemsControl.Style>
-                        <Style TargetType="ItemsControl">
-                            <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
-                            <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
-                            <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" />
-                            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
-                            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
-                            <Setter Property="ScrollViewer.PanningMode" Value="VerticalOnly" />
-                        </Style>
-                    </ItemsControl.Style>
+                <ItemsControl.Style>
+                    <Style TargetType="ItemsControl">
+                        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
+                        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
+                        <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" />
+                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+                        <Setter Property="ScrollViewer.PanningMode" Value="VerticalOnly" />
+                    </Style>
+                </ItemsControl.Style>
 
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel IsItemsHost="True"
-                                       HorizontalAlignment="Stretch"
-                                       VerticalAlignment="Top" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <social:PlayerEntryControl />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid IsItemsHost="True"
+                                     Columns="3"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Top" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <social:PlayerEntryControl />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.Template>
+                    <ControlTemplate>
+                        <Border
+                            BorderThickness="{TemplateBinding Border.BorderThickness}"
+                            Padding="{TemplateBinding Control.Padding}"
+                            BorderBrush="{TemplateBinding Border.BorderBrush}"
+                            Background="{TemplateBinding Panel.Background}"
+                            SnapsToDevicePixels="True">
+                            <ScrollViewer
+                                Padding="{TemplateBinding Control.Padding}"
+                                Focusable="False"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
+                                <ItemsPresenter
+                                    SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </ItemsControl.Template>
+            </ItemsControl>
         </Grid>
     </core:GameWindow>
 </core:BaseWindowMenu>

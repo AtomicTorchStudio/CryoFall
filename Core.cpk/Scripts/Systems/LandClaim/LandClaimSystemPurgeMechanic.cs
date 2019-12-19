@@ -1,6 +1,7 @@
 namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Barrels;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
@@ -17,8 +18,13 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
     [UsedImplicitly]
     public static class LandClaimSystemPurgeMechanic
     {
-        private static void ServerPurgeBuildingsInDestroyedLandClaimArea(in RectangleInt areaBounds)
+        // Please note:
+        // usually this method finishes quickly so it's not spread across multiple frames.
+        private static void ServerPurgeBuildingsInDestroyedLandClaimArea(
+            IStaticWorldObject landClaimStructure,
+            in RectangleInt areaBounds)
         {
+            var stopwatch = Stopwatch.StartNew();
             var tempObjects = new HashSet<IStaticWorldObject>();
             var serverWorld = Api.Server.World;
             var serverItems = Api.Server.Items;
@@ -42,6 +48,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 }
             }
 
+            var purgedContainersCount = 0;
             foreach (var worldObject in tempObjects)
             {
                 switch (worldObject.ProtoStaticWorldObject)
@@ -77,10 +84,13 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                     }
                 }
 
-                // TODO: this might be a bit slow
                 bool SharedIsObjectInFreeArea()
                     => !LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject);
             }
+
+            stopwatch.Stop();
+            logger.Important(
+                $"Land claim destroyed: {landClaimStructure}. Items containers purged: {purgedContainersCount}. Time spent: {stopwatch.Elapsed.TotalMilliseconds}ms");
 
             void PurgeContainer(IItemsContainer container)
             {
@@ -96,6 +106,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 {
                     serverItems.DestroyItem(item);
                 }
+
+                purgedContainersCount++;
             }
 
             static void PurgeManufacturerContainers(ObjectManufacturerPrivateState privateState)
@@ -118,7 +130,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 IStaticWorldObject landClaimStructure,
                 RectangleInt areaBounds)
             {
-                ServerPurgeBuildingsInDestroyedLandClaimArea(areaBounds);
+                ServerPurgeBuildingsInDestroyedLandClaimArea(landClaimStructure, areaBounds);
             }
         }
     }

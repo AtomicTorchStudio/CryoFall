@@ -8,6 +8,8 @@
 
         Title = 2,
 
-        OnlinePlayersCount = 3
+        OnlinePlayersCount = 3,
+
+        Featured = 4
     }
 }

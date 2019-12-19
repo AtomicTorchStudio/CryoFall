@@ -34,14 +34,14 @@
 
             // random loot
             lootDroplist.Add(nestedList: new DropItemsList(outputs: 1)
-                                         .Add<ItemMeatRaw>(count: 1)
-                                         .Add<ItemEggsRaw>(count: 1, weight: 1 / 2.0));
+                                         .Add<ItemMeatRaw>(count: 1, weight: 1 / 2.0)
+                                         .Add<ItemEggsRaw>(count: 1));
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,
                              nestedList: new DropItemsList(outputs: 1)
-                                         .Add<ItemMeatRaw>(count: 1)
-                                         .Add<ItemEggsRaw>(count: 1, weight: 1 / 2.0));
+                                         .Add<ItemMeatRaw>(count: 1, weight: 1 / 2.0)
+                                         .Add<ItemEggsRaw>(count: 1));
         }
 
         protected override void ServerInitializeCharacterMob(ServerInitializeData data)

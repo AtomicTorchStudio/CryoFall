@@ -106,7 +106,10 @@
                 autoHide,
                 soundToPlay);
 
-            this.HideSimilarNotifications(notificationControl);
+            if (!notificationControl.IsAutoHide) // never hide similar notifications for a non-autohide notification
+            {
+                this.HideSimilarNotifications(notificationControl);
+            }
 
             this.stackPanelChildren.Add(notificationControl);
 

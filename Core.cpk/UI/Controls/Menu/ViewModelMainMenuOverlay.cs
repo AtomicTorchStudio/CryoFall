@@ -1,11 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu
 {
-    using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Options;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -42,6 +40,9 @@
 
             Client.MasterServer.DemoVersionInfoChanged += this.MasterServerDemoVersionInfoChangedHandler;
         }
+
+        public static ViewModelMainMenuOverlay Instance
+            => instance ??= new ViewModelMainMenuOverlay();
 
         public Visibility CommandLinkSteamAccountVisibility
             => Client.SteamApi.IsSteamClient
@@ -125,8 +126,8 @@
                 }
 
                 this.selectedTab = value;
-                
-                if (options != null 
+
+                if (options != null
                     && ReferenceEquals(this.selectedTab?.Content, options))
                 {
                     options.SelectFirstTab();
@@ -137,9 +138,6 @@
         }
 
         public string Username { get; private set; }
-
-        public static ViewModelMainMenuOverlay Instance 
-            => instance ??= new ViewModelMainMenuOverlay();
 
         private void MasterServerDemoVersionInfoChangedHandler()
         {

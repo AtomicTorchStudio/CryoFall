@@ -9,8 +9,6 @@
     {
         public double CooldownSecondsRemains;
 
-        public double ReadySecondsRemains;
-
         public double DamageApplyDelaySecondsRemains;
 
         public double FirePatternCooldownSecondsRemains;
@@ -24,6 +22,8 @@
         public IItem ItemWeapon;
 
         public IProtoItemWeapon ProtoWeapon;
+
+        public double ReadySecondsRemains;
 
         public uint? ServerLastClientReportedShotsDoneCount;
 
@@ -78,6 +78,8 @@
             uint? shotsDone = null)
         {
             this.inputIsFiring = inputIsFiring;
+            //Api.Logger.Dev($"Set is firing: {inputIsFiring}, ServerLastClientReportedShotsDoneCount: {shotsDone}");
+
             if (inputIsFiring
                 || Api.IsClient)
             {
@@ -134,10 +136,10 @@
 
         private void SharedOnWeaponChanged()
         {
-            this.CooldownSecondsRemains 
-                = this.ReadySecondsRemains 
-                      = Math.Max(this.CooldownSecondsRemains,
-                                                   this.ProtoWeapon?.ReadyDelayDuration ?? 0);
+            var readySecondsRemains = Math.Max(this.CooldownSecondsRemains,
+                                               this.ProtoWeapon?.ReadyDelayDuration ?? 0);
+            readySecondsRemains = Api.Shared.RoundDurationByServerFrameDuration(readySecondsRemains);
+            this.CooldownSecondsRemains = this.ReadySecondsRemains = readySecondsRemains;
 
             if (Api.IsClient)
             {

@@ -13,7 +13,7 @@
     VerticalAlignment="Stretch"
     IsHitTestVisible="False">
     <base:BaseUserControl.Resources>
-        <Storyboard x:Key="Storyboard">
+        <Storyboard x:Key="StoryboardOtherPlayer">
             <DoubleAnimationUsingKeyFrames
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
                 Storyboard.TargetName="path">
@@ -39,6 +39,34 @@
                 <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#00FFFFFF" />
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
+
+        <!-- It's the same storyboard but with a green color instead of white -->
+        <Storyboard x:Key="StoryboardPartyMember">
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                Storyboard.TargetName="path">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.5" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                Storyboard.TargetName="path">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.5" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)"
+                Storyboard.TargetName="path">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="67" />
+            </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                          Storyboard.TargetName="path">
+                <EasingColorKeyFrame KeyTime="0" Value="#0033FA33" />
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#8833FA33" />
+                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#0033FA33" />
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
     </base:BaseUserControl.Resources>
 
     <Canvas>
@@ -52,6 +80,7 @@
             <Canvas Width="50"
                     Height="50"
                     Margin="-25">
+                <!-- The while color is overwritten by the animation -->
                 <Path x:Name="path"
                       Data="m 282.591,173.85 c 0,36.114 -12,70.735 -32.923,94.987 -1.78,2.063 -4.292,3.121 -6.818,3.121 -2.083,0 -4.175,-0.718 -5.875,-2.186 -3.764,-3.247 -4.183,-8.93 -0.936,-12.693 18.146,-21.032 28.552,-51.368 28.552,-83.229 0,-33.063 -11.064,-64.141 -30.357,-85.265 -3.352,-3.67 -3.094,-9.363 0.576,-12.715 3.671,-3.353 9.365,-3.092 12.715,0.576 22.285,24.401 35.066,59.903 35.066,97.404 z M 293.735,23.823 c -3.354,-3.669 -9.044,-3.928 -12.716,-0.575 -3.67,3.352 -3.927,9.045 -0.575,12.715 31.422,34.399 49.442,84.893 49.442,138.536 0,51.678 -16.941,100.958 -46.48,135.204 -3.246,3.764 -2.827,9.447 0.938,12.693 1.7,1.467 3.792,2.185 5.874,2.185 2.526,0 5.039,-1.058 6.819,-3.122 32.315,-37.466 50.85,-91.031 50.85,-146.96 -10e-4,-58.081 -19.738,-113 -54.152,-150.676 z"
                       Fill="White"

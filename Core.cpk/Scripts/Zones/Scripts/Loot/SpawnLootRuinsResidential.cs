@@ -13,7 +13,7 @@
                 // trigger on world init
                 .Add(GetTrigger<TriggerWorldInit>())
                 // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(SpawnRuinsConstants.SpawnInterval));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(SpawnRuinsConstants.SpawnInterval));
 
             spawnList.CreatePreset(interval: 6, padding: 1)
                      .Add<ObjectLootPileGarbageLarge>(weight: 3)

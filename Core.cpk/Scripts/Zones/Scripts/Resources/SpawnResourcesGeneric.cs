@@ -12,7 +12,7 @@
                 // trigger on world init
                 .Add(GetTrigger<TriggerWorldInit>())
                 // trigger on time interval
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromMinutes(5)));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(5)));
 
             // all basic mineral node types
             // excludes things like coal, saltpeter, sulfur and other advanced minerals

@@ -102,6 +102,11 @@
             var protoItem = item.ProtoItem as IProtoItemWithDurablity
                             ?? throw new Exception(
                                 $"{item} prototype doesn't implement {typeof(IProtoItemWithDurablity)}");
+            if (protoItem.DurabilityMax <= 0)
+            {
+                // non-degradable item
+                return 1.0;
+            }
 
             var result = SharedGetDurabilityValue(item)
                          / (double)protoItem.DurabilityMax;

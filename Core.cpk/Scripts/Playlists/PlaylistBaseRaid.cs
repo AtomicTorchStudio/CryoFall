@@ -5,6 +5,8 @@
 
     public class PlaylistBaseRaid : ProtoPlaylist
     {
+        public override double FadeOutDurationOnPlaylistChange => 5;
+
         public override PlayListMode Mode => PlayListMode.Random;
 
         [NotLocalizable]
@@ -17,7 +19,7 @@
                     "BaseRaid1",
                     isLooped: true,
                     fadeInDuration: 1.5,
-                    fadeOutDuration: 3,
+                    fadeOutDuration: 5,
                     volume: 0.35));
         }
     }

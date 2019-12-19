@@ -136,7 +136,7 @@
                 .AddShapeCircle(radius: 0.3, center: (0.35, 0.45))
                 .AddShapeCircle(radius: 0.3, center: (0.65, 0.45))
                 .AddShapeCircle(radius: 0.4, center: (0.5, 0.45), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.8, 0.2), offset: (0.1, 0.85), group: CollisionGroups.HitboxRanged)
+                //.AddShapeRectangle(size: (0.8, 0.2), offset: (0.1, 0.85), group: CollisionGroups.HitboxRanged)
                 .AddShapeCircle(radius: 0.4, center: (0.5, 0.45), group: CollisionGroups.ClickArea);
         }
 

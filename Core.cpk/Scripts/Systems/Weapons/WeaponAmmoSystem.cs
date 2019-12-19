@@ -44,7 +44,7 @@
             SharedTryAbortReloading(character, weapon: weaponReloadingState.Item);
         }
 
-        public static void ClientTryReloadOrSwitchAmmoType(bool isSwitchAmmoType)
+        public static void ClientTryReloadOrSwitchAmmoType(bool isSwitchAmmoType, bool sendToServer = true)
         {
             var character = Api.Client.Characters.CurrentPlayerCharacter;
             var currentWeaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
@@ -143,6 +143,8 @@
                         if (!isFound)
                         {
                             // no group selected - select first
+                            isSwitchAmmoType = true;
+                            sendToServer = true;
                             selectedProtoItemAmmo = SharedFindNextAmmoGroup(protoWeapon.CompatibleAmmoProtos,
                                                                             compatibleAmmoGroups,
                                                                             currentProtoItemAmmo: null)?.Key;
@@ -205,12 +207,15 @@
             if (weaponReloadingState.SecondsToReloadRemains <= 0)
             {
                 // instant-reload weapon - perform local reloading
-                SharedProcessWeaponReload(character, currentWeaponState);
+                SharedProcessWeaponReload(character, currentWeaponState, out _);
             }
 
-            // perform reload on server
-            var arg = new ReloadWeaponRequest(itemWeapon, selectedProtoItemAmmo);
-            Instance.CallServer(_ => _.ServerRemote_ReloadWeapon(arg));
+            if (sendToServer || isSwitchAmmoType)
+            {
+                // perform reload on server
+                var arg = new ReloadWeaponRequest(itemWeapon, selectedProtoItemAmmo);
+                Instance.CallServer(_ => _.ServerRemote_ReloadWeapon(arg));
+            }
         }
 
         public static void ServerTryReloadSameAmmo(ICharacter character)
@@ -292,7 +297,7 @@
             if (weaponReloadingState.SecondsToReloadRemains <= 0)
             {
                 // instant-reload weapon - perform local reloading
-                SharedProcessWeaponReload(character, currentWeaponState);
+                SharedProcessWeaponReload(character, currentWeaponState, out _);
             }
         }
 
@@ -342,11 +347,45 @@
 
             // reloaded
             reloadingState.SecondsToReloadRemains = 0;
-            SharedProcessWeaponReload(character, weaponState);
+            SharedProcessWeaponReload(character, weaponState, out var isAmmoTypeChanged);
 
-            weaponState.ShotsDone = 0;
+            if (isAmmoTypeChanged
+                || IsResetsShotsDoneNumberOnReload(weaponState.ProtoWeapon))
+            {
+                weaponState.ShotsDone = 0;
+                weaponState.ServerLastClientReportedShotsDoneCount = null;
+                //Api.Logger.Dev("Reset ServerLastClientReportedShotsDoneCount. Last value: " + weaponState.ServerLastClientReportedShotsDoneCount);
+            }
+
             weaponState.FirePatternCooldownSecondsRemains = 0;
-            weaponState.ServerLastClientReportedShotsDoneCount = null;
+        }
+
+        /// <summary>
+        /// Some weapons, such as flintlock pistol or a musket/double-barreled shotgun
+        /// might have a desync issue when they're reloaded on the server
+        /// right after receiving a command to stop firing.
+        /// So the shots done on the client will be not done on the server.
+        /// To prevent this issue, this method detects such weapons and keeps the shots flow.
+        /// </summary>
+        public static bool IsResetsShotsDoneNumberOnReload(IProtoItemWeapon protoWeapon)
+        {
+            if (protoWeapon.AmmoCapacity == 0
+                || protoWeapon.AmmoConsumptionPerShot == 0)
+            {
+                return true;
+            }
+
+            var shotsPerMagazine = protoWeapon.AmmoCapacity / protoWeapon.AmmoConsumptionPerShot;
+            if (shotsPerMagazine <= 1
+                || shotsPerMagazine <= 2 && protoWeapon.FireInterval < 0.5)
+            {
+                // don't reset the shots done number for this weapon
+                //Logger.Dev("Don't reset - shotsPerMagazine: " + shotsPerMagazine + " - " + protoWeapon.ShortId);
+                return false;
+            }
+
+            //Logger.Dev("Reset - shotsPerMagazine: " + shotsPerMagazine + " - " + protoWeapon.ShortId);
+            return true;
         }
 
         private static IGrouping<IProtoItemAmmo, IItem> SharedFindNextAmmoGroup(
@@ -458,7 +497,10 @@
         /// <summary>
         /// Executed when a weapon must reload (after the reloading duration is completed).
         /// </summary>
-        private static void SharedProcessWeaponReload(ICharacter character, WeaponState weaponState)
+        private static void SharedProcessWeaponReload(
+            ICharacter character,
+            WeaponState weaponState,
+            out bool isAmmoTypeChanged)
         {
             var weaponReloadingState = weaponState.WeaponReloadingState;
 
@@ -470,6 +512,7 @@
             var itemWeaponPrivateState = itemWeapon.GetPrivateState<WeaponPrivateState>();
             var weaponAmmoCount = (int)itemWeaponPrivateState.AmmoCount;
             var weaponAmmoCapacity = itemWeaponProto.AmmoCapacity;
+            isAmmoTypeChanged = false;
 
             var selectedProtoItemAmmo = weaponReloadingState.ProtoItemAmmo;
             var currentProtoItemAmmo = itemWeaponPrivateState.CurrentProtoItemAmmo;
@@ -639,6 +682,7 @@
                 itemWeaponPrivateState.CurrentProtoItemAmmo = selectedProtoItemAmmo;
                 // reset weapon cache (it will be re-calculated on next fire processing)
                 weaponState.WeaponCache = null;
+                isAmmoTypeChanged = true;
             }
 
             if (weaponAmmoCount < 0
@@ -703,17 +747,18 @@
                                                     SoundConstants.VolumeWeapon);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableUnordered, maxCallsPerSecond: 60)]
         private void ServerRemote_AbortReloading(IItem weapon)
         {
             var character = ServerRemoteContext.Character;
             SharedTryAbortReloading(character, weapon);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, maxCallsPerSecond: 60)]
         private void ServerRemote_ReloadWeapon(ReloadWeaponRequest args)
         {
             var character = ServerRemoteContext.Character;
+            // force re-select current item
+            PlayerCharacter.SharedForceRefreshCurrentItem(character);
+
             var itemWeapon = args.Item;
             if (itemWeapon == null)
             {
@@ -787,7 +832,7 @@
             if (weaponReloadingState.SecondsToReloadRemains == 0)
             {
                 // instant-reloading weapon
-                SharedProcessWeaponReload(character, weaponState);
+                SharedProcessWeaponReload(character, weaponState, out _);
             }
 
             using var scopedBy = Api.Shared.GetTempList<ICharacter>();

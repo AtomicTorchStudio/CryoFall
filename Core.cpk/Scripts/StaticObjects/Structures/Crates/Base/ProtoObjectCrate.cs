@@ -3,9 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
-    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
-    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectAccessMode;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -23,10 +21,9 @@
           <TPrivateState,
               TPublicState,
               TClientState>,
-          IInteractableProtoWorldObject,
+          IProtoObjectCrate,
           IProtoObjectWithOwnersList,
-          IProtoObjectWithAccessMode,
-          IProtoObjectCrate
+          IProtoObjectWithAccessMode
         where TPrivateState : ObjectCratePrivateState, new()
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()

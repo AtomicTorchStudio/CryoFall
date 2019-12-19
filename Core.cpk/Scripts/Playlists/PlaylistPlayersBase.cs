@@ -5,6 +5,8 @@
 
     public class PlaylistPlayersBase : ProtoPlaylist
     {
+        public override double FadeOutDurationOnPlaylistChange => 6;
+
         public override PlayListMode Mode => PlayListMode.Random;
 
         [NotLocalizable]
@@ -18,8 +20,8 @@
                 new MusicTrack(
                     "PlayersBase1",
                     isLooped: false,
-                    fadeInDuration: 3,
-                    fadeOutDuration: 5,
+                    fadeInDuration: 6,
+                    fadeOutDuration: 6,
                     volume: 0.4));
         }
     }

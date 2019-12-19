@@ -201,6 +201,11 @@
 
             PlayerCharacter.SharedForceRefreshCurrentItem(character);
 
+            if (vehicle.IsDestroyed)
+            {
+                return;
+            }
+
             // notify player and other players in scope
             using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetScopedByPlayers(vehicle, tempPlayers);

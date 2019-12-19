@@ -17,7 +17,7 @@
     public class SpawnDepositGeothermalSpring : ProtoZoneSpawnScript
     {
         // because this script called very rare we're increasing the spawn attempts count
-        protected override double MaxSpawnAttempsMultiplier => 50;
+        protected override double MaxSpawnAttempsMultiplier => 300;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
@@ -26,8 +26,8 @@
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>()
                          .Configure(
-                             intervalFrom: TimeSpan.FromHours(1),
-                             intervalTo: TimeSpan.FromHours(2)));
+                             intervalFrom: TimeSpan.FromHours(0.5),
+                             intervalTo: TimeSpan.FromHours(1)));
 
             var restrictionInfiniteGeothermalSpring = spawnList.CreateRestrictedPreset()
                                                                .Add<ObjectDepositGeothermalSpringInfinite>();
@@ -35,12 +35,12 @@
             var restrictionCharredGroundDeposit = spawnList.CreateRestrictedPreset()
                                                            .Add<ObjectCharredGround3Deposit>();
 
-            var presetGeothermalSpring = spawnList.CreatePreset(interval: 175, padding: 1, useSectorDensity: false);
+            var presetGeothermalSpring = spawnList.CreatePreset(interval: 159, padding: 1, useSectorDensity: false);
             presetGeothermalSpring.SpawnLimitPerIteration = 1;
             presetGeothermalSpring.AddExact<ObjectDepositGeothermalSpring>()
                                   .SetCustomPaddingWithSelf(79)
-                                  .SetCustomPaddingWith(restrictionInfiniteGeothermalSpring, 79)
-                                  .SetCustomPaddingWith(restrictionCharredGroundDeposit,     79)
+                                  .SetCustomPaddingWith(restrictionInfiniteGeothermalSpring, 59)
+                                  .SetCustomPaddingWith(restrictionCharredGroundDeposit,     59)
                                   // ensure no spawn near cliffs
                                   .SetCustomCanSpawnCheckCallback(
                                       (physicsSpace, position)

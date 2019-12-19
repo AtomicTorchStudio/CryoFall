@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Stats;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
@@ -33,7 +32,10 @@
                                                            showClientNotification: false)
                     || !PveSystem.SharedIsAllowStructureDamage(weaponCache.Character,
                                                                staticWorldObject,
-                                                               showClientNotification: false)))
+                                                               showClientNotification: false)
+                    || !NewbieProtectionSystem.SharedIsAllowStructureDamage(weaponCache.Character,
+                                                                            staticWorldObject,
+                                                                            showClientNotification: false)))
             {
                 return 0;
             }

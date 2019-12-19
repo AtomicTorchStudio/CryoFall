@@ -77,7 +77,7 @@
 
         public override double ObstacleBlockDamageCoef => 0; // not used
 
-        public override double ServerUpdateIntervalSeconds => 1;
+        public override double ServerUpdateIntervalSeconds => 0.5;
 
         public override float StructurePointsMax => float.MaxValue;
 

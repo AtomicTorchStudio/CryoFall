@@ -42,9 +42,9 @@
         /// </summary>
         private class ClientComponentArtificialRetinaEffect : ClientComponent
         {
-            private const double AdditionalAmbientLight = 0.7;
+            private const double AdditionalAmbientLight = 0.8;
 
-            private const double AdditionalAmbientLightAdditiveFraction = 0.35;
+            private const double AdditionalAmbientLightAdditiveFraction = 0.1;
 
             private double lastValuePrimary;
 

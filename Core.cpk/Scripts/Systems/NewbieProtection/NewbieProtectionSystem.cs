@@ -6,13 +6,15 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -102,7 +104,7 @@
                                   icon: isLootBag
                                             ? Api.GetProtoEntity<ObjectPlayerLootContainer>().Icon
                                             : null,
-                                  onClick: Menu.Open<WindowSocial>)
+                                  onClick: Menu.Open<WindowPolitics>)
                               .HideAfterDelay(delaySeconds: 2 * 60);
         }
 
@@ -211,6 +213,59 @@
 
             Logger.Info("Newbie registered", character);
             ServerSendNewbieProtectionTimeRemaining(character);
+        }
+
+        public static bool SharedIsAllowStructureDamage(
+            ICharacter character,
+            IStaticWorldObject targetObject,
+            bool showClientNotification)
+        {
+            if (character is null)
+            {
+                return true;
+            }
+
+            if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+            {
+                // PvE system handles the damage itself
+                return true;
+            }
+
+            // it's a PvP server
+            if (!SharedIsNewbie(character))
+            {
+                // allow damage by non-newbie
+                return true;
+            }
+
+            var protoWorldObject = targetObject.ProtoWorldObject;
+            var isStructure = protoWorldObject is IProtoObjectStructure;
+            var isVegetation = protoWorldObject is IProtoObjectVegetation;
+            if (!isStructure
+                && !isVegetation)
+            {
+                // can damage such objects everywhere
+                return true;
+            }
+
+            if (!LandClaimSystem.SharedIsObjectInsideAnyArea(targetObject))
+            {
+                // always allow damage outside of land claim areas
+                return true;
+            }
+
+            if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(targetObject, character))
+            {
+                return true;
+            }
+
+            // don't allow newbie to damage as the object is inside the not-owned land claim area
+            if (IsClient && showClientNotification)
+            {
+                SharedNotifyNewbieCannotPerformAction(character, iconSource: null);
+            }
+
+            return false;
         }
 
         public static bool SharedIsNewbie(ICharacter character)
@@ -376,7 +431,7 @@
             NotificationSystem.ClientShowNotification(
                 title: Notification_CannotPerformActionWhileUnderProtection,
                 icon: icon,
-                onClick: Menu.Open<WindowSocial>);
+                onClick: Menu.Open<WindowPolitics>);
         }
 
         private static void ServerSendNewbieProtectionTimeRemaining(ICharacter character)

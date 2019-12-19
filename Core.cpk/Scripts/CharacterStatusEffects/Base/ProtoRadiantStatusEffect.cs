@@ -4,8 +4,10 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Helpers;
 
     /// <summary>
@@ -27,8 +29,6 @@
         public sealed override double IntensityAutoDecreasePerSecondValue =>
             0; // doesn't decrease via base implementation
 
-        public override double ServerAutoAddRepeatIntervalSeconds => 0.5;
-
         public override double ServerUpdateIntervalSeconds => 0.5;
 
         protected abstract StatName DefenseStatName { get; }
@@ -43,9 +43,19 @@
         /// </summary>
         protected abstract double TimeToReachFullIntensitySeconds { get; }
 
-        protected override IEnumerable<ICharacter> ServerAutoAddGetCharacterCandidates()
+        protected override void PrepareProtoStatusEffect()
         {
-            return Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true);
+            base.PrepareProtoStatusEffect();
+
+            if (Api.IsClient)
+            {
+                return;
+            }
+
+            // setup timer (tick every frame)
+            TriggerEveryFrame.ServerRegister(
+                callback: this.ServerGlobalUpdate,
+                name: "System." + this.ShortId);
         }
 
         protected virtual double ServerCalculateEnvironmentalIntensityAroundCharacter(ICharacter character)
@@ -71,28 +81,41 @@
             ICharacter character,
             IWorldObject worldObject);
 
-        // this method is called only for player characters and adding effect if it's absent
-        protected override void ServerOnAutoAdd(ICharacter character)
+        private void ServerGlobalUpdate()
         {
-            var statusEffects = character.GetPrivateState<BaseCharacterPrivateState>()
-                                         .StatusEffects;
+            // If update rate is 1, updating will happen for each character once a second.
+            // We can set it to 2 to have updates every half second.
+            const double updateRate = 1;
+            var deltaTime = 1 / updateRate;
 
-            foreach (var statusEffect in statusEffects)
+            foreach (var character in Server.Characters
+                                            .EnumerateAllPlayerCharactersWithSpread(updateRate,
+                                                                                    onlyOnline: true))
             {
-                if (statusEffect.ProtoLogicObject == this)
+                if (character.GetPublicState<ICharacterPublicState>()
+                             .IsDead)
                 {
-                    // status effect is already added
-                    return;
+                    continue;
                 }
-            }
 
-            this.ServerUpdateRadiantStatusEffectIntensity(character,
-                                                          deltaTime: this.ServerAutoAddRepeatIntervalSeconds);
+                var statusEffects = character.GetPrivateState<BaseCharacterPrivateState>()
+                                             .StatusEffects;
+
+                foreach (var statusEffect in statusEffects)
+                {
+                    if (ReferenceEquals(statusEffect.ProtoLogicObject, this))
+                    {
+                        // status effect is already added so it will be automatically updated
+                        return;
+                    }
+                }
+
+                this.ServerUpdateRadiantStatusEffectIntensity(character, deltaTime);
+            }
         }
 
         protected override void ServerUpdate(StatusEffectData data)
         {
-            base.ServerUpdate(data);
             this.ServerUpdateRadiantStatusEffectIntensity(data.Character, data.DeltaTime);
         }
 

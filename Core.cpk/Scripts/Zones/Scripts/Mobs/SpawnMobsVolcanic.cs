@@ -10,7 +10,7 @@
         {
             triggers
                 .Add(GetTrigger<TriggerWorldInit>())
-                .Add(GetTrigger<TriggerTimeInterval>().Configure(TimeSpan.FromMinutes(10)));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(10)));
 
             var crawler = spawnList.CreatePreset(interval: 12, padding: 0.5)
                                    .Add<MobCrawler>()

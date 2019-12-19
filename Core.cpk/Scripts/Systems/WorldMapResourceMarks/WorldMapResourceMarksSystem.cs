@@ -2,14 +2,17 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class WorldMapResourceMarksSystem : ProtoSystem<WorldMapResourceMarksSystem>
@@ -18,9 +21,24 @@
 
         private static NetworkSyncList<WorldMapResourceMark> sharedResourceMarksList;
 
+        static WorldMapResourceMarksSystem()
+        {
+            IsResourceDepositCoordinatesHiddenUntilCapturePossible =
+                ServerRates.Get(
+                    "IsResourceDepositCoordinatesHiddenUntilCapturePossible",
+                    defaultValue: 0,
+                    @"(for PvP servers only) Set it to 1 to hide the resource deposit (such as oil or Li)
+                       world coordinates until the capture is possible.
+                       When coordinates are hidden, players will receive only a biome name
+                       instead of the actual coordinates for the resource deposit.")
+                > 0;
+        }
+
         public static event Action<WorldMapResourceMark> ClientMarkAdded;
 
         public static event Action<WorldMapResourceMark> ClientMarkRemoved;
+
+        public static bool IsResourceDepositCoordinatesHiddenUntilCapturePossible { get; }
 
         public override string Name => "World map resource marks system";
 
@@ -28,28 +46,88 @@
         {
             Api.ValidateIsServer();
 
+            ushort searchAreaCircleRadius = 0;
+            var searchAreaCirclePosition = Vector2Ushort.Zero;
+            var timeToClaimRemains = SharedCalculateTimeToClaimLimitRemovalSeconds(serverSpawnTime);
+
+            var biome = staticWorldObject.OccupiedTile.ProtoTile;
+            var position = SharedGetObjectCenterPosition(staticWorldObject);
+
+            if (IsResourceDepositCoordinatesHiddenUntilCapturePossible
+                && timeToClaimRemains > 0)
+            {
+                searchAreaCircleRadius = 210;
+                searchAreaCirclePosition = ServerCalculateSearchAreaApproximateCircle(staticWorldObject,
+                                                                                      position,
+                                                                                      biome,
+                                                                                      searchAreaCircleRadius);
+                // hide position
+                position = Vector2Ushort.Zero;
+            }
+
             sharedResourceMarksList.Add(
-                new WorldMapResourceMark(SharedGetObjectCenterPosition(staticWorldObject),
+                new WorldMapResourceMark(staticWorldObject.Id,
+                                         position,
                                          staticWorldObject.ProtoStaticWorldObject,
-                                         serverSpawnTime));
+                                         serverSpawnTime,
+                                         biome: biome,
+                                         searchAreaCirclePosition: searchAreaCirclePosition,
+                                         searchAreaCircleRadius: searchAreaCircleRadius));
+
+            if (!IsResourceDepositCoordinatesHiddenUntilCapturePossible)
+            {
+                return;
+            }
+
+            if (timeToClaimRemains <= 0)
+            {
+                return;
+            }
+
+            ServerTimersSystem.AddAction(
+                timeToClaimRemains + 1,
+                () =>
+                {
+                    if (staticWorldObject.IsDestroyed)
+                    {
+                        return;
+                    }
+
+                    Logger.Important("It's possible to capture the resource deposit now, adding a mark on the map: "
+                                     + staticWorldObject);
+                    ServerRemoveMark(staticWorldObject);
+
+                    // add on the next frame (give to for the network replication system)
+                    ServerTimersSystem.AddAction(
+                        0.1,
+                        () =>
+                        {
+                            if (staticWorldObject.IsDestroyed)
+                            {
+                                return;
+                            }
+
+                            ServerAddMark(staticWorldObject, serverSpawnTime);
+                        });
+                });
         }
 
         public static void ServerRemoveMark(IStaticWorldObject staticWorldObject)
         {
             Api.ValidateIsServer();
-            var protoStaticWorldObject = staticWorldObject.ProtoStaticWorldObject;
-            var position = SharedGetObjectCenterPosition(staticWorldObject);
+            var id = staticWorldObject.Id;
 
             // find and remove the mark
             for (var index = 0; index < sharedResourceMarksList.Count; index++)
             {
                 var mark = sharedResourceMarksList[index];
-                if (mark.ProtoWorldObject == protoStaticWorldObject
-                    && mark.Position == position)
+                if (mark.Id != id)
                 {
-                    sharedResourceMarksList.RemoveAt(index);
-                    return;
+                    continue;
                 }
+
+                sharedResourceMarksList.RemoveAt(index);
+                return;
             }
         }
 
@@ -60,10 +138,9 @@
 
         public static int SharedCalculateTimeRemainsToClaimCooldownSeconds(IStaticWorldObject staticWorldObject)
         {
-            var position = SharedGetObjectCenterPosition(staticWorldObject);
             foreach (var mark in sharedResourceMarksList)
             {
-                if (mark.Position != position)
+                if (mark.Id != staticWorldObject.Id)
                 {
                     continue;
                 }
@@ -128,6 +205,101 @@
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Calculates the search area position and radius.
+        /// </summary>
+        private static Vector2Ushort ServerCalculateSearchAreaApproximateCircle(
+            IStaticWorldObject staticWorldObject,
+            Vector2Ushort position,
+            IProtoTile biome,
+            ushort circleRadius)
+        {
+            var serverWorld = Server.World;
+            var biomeSessionIndex = biome.SessionIndex;
+
+            var circleCenter = Vector2Ushort.Zero;
+            var stopwatch = Stopwatch.StartNew();
+            try
+            {
+                if (TryToCreateSearchArea(desiredBiomeMatchRatio: 0.75)
+                    || TryToCreateSearchArea(desiredBiomeMatchRatio: 0.5)
+                    || TryToCreateSearchArea(desiredBiomeMatchRatio: 0.25)
+                    || TryToCreateSearchArea(desiredBiomeMatchRatio: 0.1))
+                {
+                    return circleCenter;
+                }
+
+                Logger.Warning(
+                    "Unable to calculate an approximate search area for the resource deposit location, will return a random area: "
+                    + staticWorldObject);
+                return circleCenter;
+            }
+            finally
+            {
+                Logger.Important(
+                    $"Calculating a resource deposit search area took {stopwatch.ElapsedMilliseconds}ms (for {staticWorldObject} in {biome.ShortId} biome)");
+            }
+
+            bool TryToCreateSearchArea(double desiredBiomeMatchRatio)
+            {
+                for (var attempt = 0; attempt < 100; attempt++)
+                {
+                    // randomize circle offset to be somewhere within 5-100% from the actual center
+                    var offset = circleRadius * (0.05 + 0.95 * RandomHelper.NextDouble());
+
+                    var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
+                    var resultD = new Vector2D(position.X + offset * Math.Cos(angle),
+                                               position.Y + offset * Math.Sin(angle));
+
+                    circleCenter = new Vector2Ushort((ushort)MathHelper.Clamp(resultD.X, 0, ushort.MaxValue),
+                                                     (ushort)MathHelper.Clamp(resultD.Y, 0, ushort.MaxValue));
+
+                    if (IsValidCircle())
+                    {
+                        return true;
+                    }
+
+                    bool IsValidCircle()
+                    {
+                        uint totalChecks = 0,
+                             biomeMathes = 0,
+                             waterOrOutOfBounds = 0;
+                        for (var x = -circleRadius; x < circleRadius; x += 10)
+                        for (var y = -circleRadius; y < circleRadius; y += 10)
+                        {
+                            totalChecks++;
+                            var tile = serverWorld.GetTile(circleCenter.X + x,
+                                                           circleCenter.Y + y,
+                                                           logOutOfBounds: false);
+                            if (tile.IsOutOfBounds)
+                            {
+                                waterOrOutOfBounds++;
+                                biomeMathes++; // yes, consider it a biome match
+                                continue;
+                            }
+
+                            if (tile.ProtoTileSessionIndex == biomeSessionIndex)
+                            {
+                                biomeMathes++;
+                            }
+                            else if (tile.ProtoTile.Kind == TileKind.Water)
+                            {
+                                waterOrOutOfBounds++;
+                                biomeMathes++; // yes, consider it a biome match
+                            }
+                        }
+
+                        var biomeMatchRatio = biomeMathes / (double)totalChecks;
+                        var waterOrOutOfBoundsRatio = waterOrOutOfBounds / (double)totalChecks;
+                        return biomeMatchRatio >= desiredBiomeMatchRatio
+                               && waterOrOutOfBoundsRatio <= 0.3;
+                    }
+                }
+
+                return false;
+            }
         }
 
         private ILogicObject ServerRemote_AcquireManagerInstance()
@@ -257,6 +429,16 @@
                 Server.Database.Remove(key, key);
                 Server.World.DestroyObject(serverManagerInstance);
                 ServerLoadSystem();
+            }
+        }
+
+        private class Bootstrapper : BaseBootstrapper
+        {
+            public override void ServerInitialize(IServerConfiguration serverConfiguration)
+            {
+                Logger.Important("World marks system initialized. Deposit marks are "
+                                 + (IsResourceDepositCoordinatesHiddenUntilCapturePossible ? "hidden" : "displayed")
+                                 + " until it's possible to capture them.");
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.StructureDecaySystem
 {
-    using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
@@ -27,8 +26,6 @@
 
         private static readonly List<IStaticWorldObject> TempList
             = new List<IStaticWorldObject>(capacity: 100000);
-
-        private static bool isUpdatingNow;
 
         public override string Name => "Structure decay system";
 
@@ -80,22 +77,25 @@
                 return;
             }
 
+            if (!StructureConstants.IsStructuresDecayEnabled)
+            {
+                return;
+            }
+
             // configure time interval trigger
-            TriggerTimeInterval.ServerConfigureAndRegister(
-                interval: TimeSpan.FromSeconds(StructureConstants.StructureDecaySystemUpdateIntervalSeconds),
-                callback: this.ServerTimerTickCallback,
+            TriggerEveryFrame.ServerRegister(
+                callback: ServerUpdate,
                 name: "System." + this.ShortId);
         }
 
-        private static bool ServerProcessDecay(IStaticWorldObject worldObject, double serverTime)
+        private static bool ServerProcessDecay(IStaticWorldObject worldObject, double serverTime, double deltaTime)
         {
             if (worldObject.IsDestroyed)
             {
                 return false;
             }
 
-            var protoObjectStructure = worldObject.ProtoStaticWorldObject as IProtoObjectStructure;
-            if (protoObjectStructure == null)
+            if (!(worldObject.ProtoStaticWorldObject is IProtoObjectStructure protoObjectStructure))
             {
                 // not a structure
                 return false;
@@ -119,59 +119,39 @@
                 }
             }
 
-            protoObjectStructure.ServerApplyDecay(
-                worldObject,
-                deltaTime: StructureConstants.StructureDecaySystemUpdateIntervalSeconds);
-
+            protoObjectStructure.ServerApplyDecay(worldObject, deltaTime);
             return true;
         }
 
         // refresh structures decay
-        private async void ServerTimerTickCallback()
+        private static void ServerUpdate()
         {
-            if (isUpdatingNow)
-            {
-                Logger.Warning("Cannot process structure decay system tick - not finished the previous update yet");
-                return;
-            }
-
-            if (!StructureConstants.IsStructuresDecayEnabled)
-            {
-                return;
-            }
-
-            // It's prohibitively expensive to iterate over all the server world objects at a single time
-            // so we will time-slice this update by gathering all the static world objects first
-            // and then iterating over them with YieldIfOutTime().
+            const double deltaTime = StructureConstants.StructureDecaySystemUpdateIntervalSeconds;
             var serverTime = ServerGame.FrameTime;
-            isUpdatingNow = true;
 
             try
             {
-                // TODO: this call might be too expensive if there are many built structures in the world
-                TempList.AddRange(Server.World.GetStaticWorldObjectsOfProto<IProtoObjectStructure>());
+                Server.World.EnumerateStaticWorldObjectsOfProtoWithSpread<IProtoObjectStructure>(TempList, deltaTime);
                 var objectsDecayedCount = 0;
 
                 foreach (var worldObject in TempList)
                 {
-                    if (ServerProcessDecay(worldObject, serverTime))
+                    if (ServerProcessDecay(worldObject, serverTime, deltaTime))
                     {
                         objectsDecayedCount++;
-                        await ServerCore.YieldIfOutOfTime();
                     }
                 }
 
-                var timeSpent = ServerGame.FrameTime - serverTime;
-                Logger.Important(
-                    string.Format(
-                        "World decay updated. Total static world objects count: {0}. Decaying objects count: {1}. Total time spent (including time-slicing): {2:F2}s",
-                        TempList.Count,
-                        objectsDecayedCount,
-                        timeSpent));
+                //Logger.Important(
+                //    string.Format(
+                //        "{3}: finished update. Total static world objects count: {0}. Decaying objects count: {1}. Total time /spent /(including time-slicing): {2:F2}s",
+                //        tempListCount,
+                //        objectsDecayedCount,
+                //        timeSpent,
+                //        this.Name));
             }
             finally
             {
-                isUpdatingNow = false;
                 TempList.Clear();
             }
         }

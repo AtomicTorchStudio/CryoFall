@@ -7,7 +7,7 @@
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                .AddRecipe<RecipeVehicleAutocannonLight>();
+                  .AddRecipe<RecipeVehicleAutocannonLight>();
 
             config.SetRequiredNode<TechNodeUniversalActuator>();
         }
