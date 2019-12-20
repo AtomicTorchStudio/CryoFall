@@ -15,6 +15,11 @@
 
         public ushort FirePatternCurrentShotNumber;
 
+        /// <summary>
+        /// Is idle auto-reloading allowed? (idle means when client is not firing)
+        /// </summary>
+        public bool IsIdleAutoReloadingAllowed;
+
         public bool IsEventWeaponStartSent;
 
         public bool IsFiring;
@@ -109,6 +114,7 @@
             this.ProtoWeapon = protoItem;
             this.WeaponCache = null;
             this.IsEventWeaponStartSent = false;
+            this.IsIdleAutoReloadingAllowed = true;
 
             this.ShotsDone = 0;
             this.ServerLastClientReportedShotsDoneCount = 0;

@@ -44,7 +44,10 @@
             SharedTryAbortReloading(character, weapon: weaponReloadingState.Item);
         }
 
-        public static void ClientTryReloadOrSwitchAmmoType(bool isSwitchAmmoType, bool sendToServer = true)
+        public static void ClientTryReloadOrSwitchAmmoType(
+            bool isSwitchAmmoType,
+            bool sendToServer = true,
+            bool? showNotificationIfNoAmmo = null)
         {
             var character = Api.Client.Characters.CurrentPlayerCharacter;
             var currentWeaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
@@ -78,19 +81,23 @@
             if (compatibleAmmoGroups.Count == 0
                 && !isSwitchAmmoType)
             {
-                protoWeapon.SoundPresetWeapon.PlaySound(WeaponSound.Empty,
-                                                        character,
-                                                        volume: SoundConstants.VolumeWeapon);
-                NotificationSystem.ClientShowNotification(
-                    NotificationNoAmmo_Title,
-                    NotificationNoAmmo_Message,
-                    NotificationColor.Bad,
-                    protoWeapon.Icon,
-                    playSound: false);
+                if (showNotificationIfNoAmmo.HasValue && showNotificationIfNoAmmo.Value
+                    || currentWeaponState.SharedGetInputIsFiring())
+                {
+                    protoWeapon.SoundPresetWeapon.PlaySound(WeaponSound.Empty,
+                                                            character,
+                                                            volume: SoundConstants.VolumeWeapon);
+                    NotificationSystem.ClientShowNotification(
+                        NotificationNoAmmo_Title,
+                        NotificationNoAmmo_Message,
+                        NotificationColor.Bad,
+                        protoWeapon.Icon,
+                        playSound: false);
+                }
 
                 if (currentWeaponState.SharedGetInputIsFiring())
                 {
-                    // stop using weapon item!
+                    // stop firing the weapon
                     currentWeaponState.ProtoWeapon.ClientItemUseFinish(itemWeapon);
                 }
 
@@ -218,6 +225,34 @@
             }
         }
 
+        /// <summary>
+        /// Some weapons, such as flintlock pistol or a musket/double-barreled shotgun
+        /// might have a desync issue when they're reloaded on the server
+        /// right after receiving a command to stop firing.
+        /// So the shots done on the client will be not done on the server.
+        /// To prevent this issue, this method detects such weapons and keeps the shots flow.
+        /// </summary>
+        public static bool IsResetsShotsDoneNumberOnReload(IProtoItemWeapon protoWeapon)
+        {
+            if (protoWeapon.AmmoCapacity == 0
+                || protoWeapon.AmmoConsumptionPerShot == 0)
+            {
+                return true;
+            }
+
+            var shotsPerMagazine = protoWeapon.AmmoCapacity / protoWeapon.AmmoConsumptionPerShot;
+            if (shotsPerMagazine <= 1
+                || shotsPerMagazine <= 2 && protoWeapon.FireInterval < 0.5)
+            {
+                // don't reset the shots done number for this weapon
+                //Logger.Dev("Don't reset - shotsPerMagazine: " + shotsPerMagazine + " - " + protoWeapon.ShortId);
+                return false;
+            }
+
+            //Logger.Dev("Reset - shotsPerMagazine: " + shotsPerMagazine + " - " + protoWeapon.ShortId);
+            return true;
+        }
+
         public static void ServerTryReloadSameAmmo(ICharacter character)
         {
             var currentWeaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
@@ -292,7 +327,7 @@
                 itemProto,
                 selectedProtoItemAmmo);
             currentWeaponState.WeaponReloadingState = weaponReloadingState;
-            Logger.Info("Weapon started reloading without waiting for client request " + item, character);
+            //Logger.Dev("Weapon started reloading without a client request " + item, character);
 
             if (weaponReloadingState.SecondsToReloadRemains <= 0)
             {
@@ -347,45 +382,21 @@
 
             // reloaded
             reloadingState.SecondsToReloadRemains = 0;
-            SharedProcessWeaponReload(character, weaponState, out var isAmmoTypeChanged);
+            SharedProcessWeaponReload(character, 
+                                      weaponState, 
+                                      out var isAmmoTypeChanged);
 
             if (isAmmoTypeChanged
                 || IsResetsShotsDoneNumberOnReload(weaponState.ProtoWeapon))
             {
                 weaponState.ShotsDone = 0;
                 weaponState.ServerLastClientReportedShotsDoneCount = null;
-                //Api.Logger.Dev("Reset ServerLastClientReportedShotsDoneCount. Last value: " + weaponState.ServerLastClientReportedShotsDoneCount);
+                //Api.Logger.Dev("Reset ServerLastClientReportedShotsDoneCount. Last value: "
+                //               + weaponState.ServerLastClientReportedShotsDoneCount);
             }
 
             weaponState.FirePatternCooldownSecondsRemains = 0;
-        }
-
-        /// <summary>
-        /// Some weapons, such as flintlock pistol or a musket/double-barreled shotgun
-        /// might have a desync issue when they're reloaded on the server
-        /// right after receiving a command to stop firing.
-        /// So the shots done on the client will be not done on the server.
-        /// To prevent this issue, this method detects such weapons and keeps the shots flow.
-        /// </summary>
-        public static bool IsResetsShotsDoneNumberOnReload(IProtoItemWeapon protoWeapon)
-        {
-            if (protoWeapon.AmmoCapacity == 0
-                || protoWeapon.AmmoConsumptionPerShot == 0)
-            {
-                return true;
-            }
-
-            var shotsPerMagazine = protoWeapon.AmmoCapacity / protoWeapon.AmmoConsumptionPerShot;
-            if (shotsPerMagazine <= 1
-                || shotsPerMagazine <= 2 && protoWeapon.FireInterval < 0.5)
-            {
-                // don't reset the shots done number for this weapon
-                //Logger.Dev("Don't reset - shotsPerMagazine: " + shotsPerMagazine + " - " + protoWeapon.ShortId);
-                return false;
-            }
-
-            //Logger.Dev("Reset - shotsPerMagazine: " + shotsPerMagazine + " - " + protoWeapon.ShortId);
-            return true;
+            weaponState.IsIdleAutoReloadingAllowed = true;
         }
 
         private static IGrouping<IProtoItemAmmo, IItem> SharedFindNextAmmoGroup(

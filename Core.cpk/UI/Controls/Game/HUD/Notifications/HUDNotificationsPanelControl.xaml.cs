@@ -106,7 +106,7 @@
                 autoHide,
                 soundToPlay);
 
-            if (!notificationControl.IsAutoHide) // never hide similar notifications for a non-autohide notification
+            if (notificationControl.IsAutoHide)
             {
                 this.HideSimilarNotifications(notificationControl);
             }

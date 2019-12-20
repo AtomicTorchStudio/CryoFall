@@ -295,21 +295,38 @@
                 return true;
             }
 
-            // not enough ammo
-            if (weaponState.SharedGetInputIsFiring())
+            // not enough ammo - try auto-reloading of the same ammo type
+            var isInputFiring = weaponState.SharedGetInputIsFiring();
+            if (!weaponState.IsIdleAutoReloadingAllowed
+                && !isInputFiring)
             {
-                // try auto-reloading
-                if (IsClient)
-                {
-                    WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(
-                        isSwitchAmmoType: false,
-                        // no need to send to the server as it will automatically load the necessary ammo of the same type
-                        sendToServer: !weaponState.IsFiring);
-                }
-                else
-                {
-                    WeaponAmmoSystem.ServerTryReloadSameAmmo(character);
-                }
+                // do not attempt idle auto-reloading (when client is not firing)
+                return false;
+            }
+
+            if (!isInputFiring
+                && weaponPrivateState.CurrentProtoItemAmmo is null)
+            {
+                // do not attempt to idle auto-reload the ammo as no ammo type is selected for this weapon
+                return false;
+            }
+
+            if (IsClient)
+            {
+                WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(
+                    isSwitchAmmoType: false,
+                    // no need to send to the server as it will automatically load the necessary ammo of the same type
+                    sendToServer: !weaponState.IsFiring);
+            }
+            else
+            {
+                WeaponAmmoSystem.ServerTryReloadSameAmmo(character);
+            }
+
+            if (weaponState.WeaponReloadingState is null)
+            {
+                // do not attempt idle auto-reloading again
+                weaponState.IsIdleAutoReloadingAllowed = false;
             }
 
             return false;
@@ -380,7 +397,9 @@
             if (itemPrivateState.AmmoCount / this.AmmoConsumptionPerShot < 1)
             {
                 // the selected weapon is empty (not enough ammo even for a single shot), request reloading
-                WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(isSwitchAmmoType: false);
+                WeaponAmmoSystem.ClientTryReloadOrSwitchAmmoType(
+                    isSwitchAmmoType: false,
+                    showNotificationIfNoAmmo: true);
             }
         }
 

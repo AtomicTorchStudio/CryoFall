@@ -239,10 +239,7 @@
             }
 
             var protoWorldObject = targetObject.ProtoWorldObject;
-            var isStructure = protoWorldObject is IProtoObjectStructure;
-            var isVegetation = protoWorldObject is IProtoObjectVegetation;
-            if (!isStructure
-                && !isVegetation)
+            if (!(protoWorldObject is IProtoObjectStructure))
             {
                 // can damage such objects everywhere
                 return true;
@@ -412,21 +409,12 @@
 
         private static void ClientNotifyNewbieCannotPerformAction(IProtoGameObject iconSource)
         {
-            ITextureResource icon;
-            switch (iconSource)
+            var icon = iconSource switch
             {
-                case IProtoStaticWorldObject protoStaticWorld:
-                    icon = protoStaticWorld.Icon;
-                    break;
-
-                case IProtoItem protoItem:
-                    icon = protoItem.Icon;
-                    break;
-
-                default:
-                    icon = null;
-                    break;
-            }
+                IProtoStaticWorldObject protoStaticWorld => protoStaticWorld.Icon,
+                IProtoItem protoItem                     => protoItem.Icon,
+                _                                        => null
+            };
 
             NotificationSystem.ClientShowNotification(
                 title: Notification_CannotPerformActionWhileUnderProtection,
