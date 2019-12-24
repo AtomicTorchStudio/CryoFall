@@ -2,12 +2,14 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -54,19 +56,27 @@
 
         private static void ServerUpdate()
         {
-            // If update rate is 1, updating will happen for each character once a second.
-            // We can set it to 2 to have updates every half second.
-            // If we set it to 1/2 it will update every 2 seconds and so on.
-            const double updateRate = 1 / 10.0;
+            // perform update once per second per player
+            const double spreadDeltaTime = 1;
 
-            foreach (var character in Server.Characters.EnumerateAllPlayerCharactersWithSpread(updateRate,
-                                                                                               onlyOnline: true,
-                                                                                               exceptSpectators: false))
+            using var tempListPlayers = Api.Shared.GetTempList<ICharacter>();
+            PlayerCharacter.Instance
+                           .EnumerateGameObjectsWithSpread(tempListPlayers.AsList(),
+                                                           spreadDeltaTime: spreadDeltaTime,
+                                                           Server.Game.FrameNumber,
+                                                           Server.Game.FrameRate);
+
+            foreach (var character in tempListPlayers)
             {
+                if (!character.ServerIsOnline)
+                {
+                    continue;
+                }
+
                 var vehicle = character.SharedGetCurrentVehicle();
                 if (vehicle is null)
                 {
-                    return;
+                    continue;
                 }
 
                 var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
@@ -75,7 +85,7 @@
                                       ? protoVehicle.EnergyUsePerSecondMoving
                                       : protoVehicle.EnergyUsePerSecondIdle;
 
-                consumption = (ushort)Math.Floor(consumption / updateRate);
+                consumption = (ushort)Math.Floor(consumption * spreadDeltaTime);
 
                 if (VehicleEnergySystem.ServerDeductEnergyCharge(vehicle, consumption))
                 {

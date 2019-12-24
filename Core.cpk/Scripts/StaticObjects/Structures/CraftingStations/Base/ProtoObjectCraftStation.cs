@@ -16,6 +16,8 @@
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
+        public override double ServerUpdateIntervalSeconds => double.MaxValue;
+
         protected override void ClientInteractStart(ClientObjectData data)
         {
             var worldObject = data.GameObject;

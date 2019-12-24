@@ -59,6 +59,23 @@
             base.ServerApplyDecay(worldObject, deltaTime);
         }
 
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            var deposit = this.SharedGetDepositWorldObject(worldObject.OccupiedTile);
+            if (deposit is null
+                || (deposit.ProtoStaticWorldObject is IProtoObjectDeposit protoDeposit
+                    && protoDeposit.LifetimeTotalDurationSeconds > 0))
+            {
+                // check whether player can interact with this extractor (such as PvE checks for ownership, etc)
+                return base.SharedCanInteract(character, worldObject, writeToLog);
+            }
+
+            // don't perform extra checks as this is an extractor for a public (infinite) deposit
+            return this.SharedIsInsideCharacterInteractionArea(character,
+                                                               worldObject,
+                                                               writeToLog);
+        }
+
         public override double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
         {
             var rate = base.SharedGetCurrentElectricityConsumptionRate(worldObject);

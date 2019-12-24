@@ -33,7 +33,7 @@
             ICharacter character,
             PlayerCharacterPublicState publicState,
             PlayerCharacterPrivateState privateState,
-            float deltaTime)
+            double deltaTime)
         {
             if (!character.ServerIsOnline
                 || publicState.IsDead)

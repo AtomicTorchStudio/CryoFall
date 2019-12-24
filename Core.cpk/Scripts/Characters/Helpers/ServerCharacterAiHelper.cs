@@ -23,8 +23,7 @@
 
         public static ICharacter GetClosestPlayer(ICharacter characterNpc)
         {
-            var npcTile = characterNpc.Tile;
-            var tileHeight = npcTile.Height;
+            byte? tileHeight = null;
 
             try
             {
@@ -53,7 +52,13 @@
                     }
 
                     var playerCharacterTile = player.Tile;
-                    if (playerCharacterTile.Height != tileHeight)
+                    if (!tileHeight.HasValue)
+                    {
+                        var npcTile = characterNpc.Tile;
+                        tileHeight = npcTile.Height;
+                    }
+
+                    if (playerCharacterTile.Height != tileHeight.Value)
                     {
                         // attack only on the same height characters
                         // unless there is a direct line of sight between the NPC and the target

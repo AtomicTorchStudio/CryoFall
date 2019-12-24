@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -81,19 +82,28 @@
             ICharacter character,
             IWorldObject worldObject);
 
+        protected override void ServerUpdate(StatusEffectData data)
+        {
+            this.ServerUpdateRadiantStatusEffectIntensity(data.Character, data.DeltaTime);
+        }
+
         private void ServerGlobalUpdate()
         {
-            // If update rate is 1, updating will happen for each character once a second.
-            // We can set it to 2 to have updates every half second.
-            const double updateRate = 1;
-            var deltaTime = 1 / updateRate;
+            // perform update once per second per player
+            const double spreadDeltaTime = 1;
 
-            foreach (var character in Server.Characters
-                                            .EnumerateAllPlayerCharactersWithSpread(updateRate,
-                                                                                    onlyOnline: true))
+            using var tempListPlayers = Api.Shared.GetTempList<ICharacter>();
+            PlayerCharacter.Instance
+                           .EnumerateGameObjectsWithSpread(tempListPlayers.AsList(),
+                                                           spreadDeltaTime: spreadDeltaTime,
+                                                           Server.Game.FrameNumber,
+                                                           Server.Game.FrameRate);
+
+            foreach (var character in tempListPlayers)
             {
-                if (character.GetPublicState<ICharacterPublicState>()
-                             .IsDead)
+                if (!character.ServerIsOnline
+                    || character.GetPublicState<ICharacterPublicState>()
+                                .IsDead)
                 {
                     continue;
                 }
@@ -101,22 +111,26 @@
                 var statusEffects = character.GetPrivateState<BaseCharacterPrivateState>()
                                              .StatusEffects;
 
+                var isEffectAlreadyAdded = false;
                 foreach (var statusEffect in statusEffects)
                 {
-                    if (ReferenceEquals(statusEffect.ProtoLogicObject, this))
+                    if (!ReferenceEquals(statusEffect.ProtoLogicObject, this))
                     {
-                        // status effect is already added so it will be automatically updated
-                        return;
+                        continue;
                     }
+
+                    // status effect is already added so it will be automatically updated
+                    isEffectAlreadyAdded = true;
+                    break;
                 }
 
-                this.ServerUpdateRadiantStatusEffectIntensity(character, deltaTime);
-            }
-        }
+                if (isEffectAlreadyAdded)
+                {
+                    continue;
+                }
 
-        protected override void ServerUpdate(StatusEffectData data)
-        {
-            this.ServerUpdateRadiantStatusEffectIntensity(data.Character, data.DeltaTime);
+                this.ServerUpdateRadiantStatusEffectIntensity(character, spreadDeltaTime);
+            }
         }
 
         private void ServerUpdateRadiantStatusEffectIntensity(ICharacter character, double deltaTime)

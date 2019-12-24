@@ -48,11 +48,16 @@
     {
         private const double InteractionRadius = 1.5;
 
+        public static readonly Lazy<PlayerCharacter> LazyInstance
+            = new Lazy<PlayerCharacter>(Api.GetProtoEntity<PlayerCharacter>);
+
         private static readonly Lazy<SkeletonHumanFemale> SkeletonHumanFemale
             = new Lazy<SkeletonHumanFemale>(GetProtoEntity<SkeletonHumanFemale>);
 
         private static readonly Lazy<SkeletonHumanMale> SkeletonHumanMale
             = new Lazy<SkeletonHumanMale>(GetProtoEntity<SkeletonHumanMale>);
+
+        public static PlayerCharacter Instance => LazyInstance.Value;
 
         public override float CharacterWorldHeight => 1.5f;
 
@@ -362,7 +367,7 @@
             // update current action state (if any)
             privateState.CurrentActionState?.SharedUpdate(data.DeltaTime);
             // consumes/restores stamina
-            CharacterStaminaSystem.SharedUpdate(character, publicState, privateState, (float)data.DeltaTime);
+            CharacterStaminaSystem.SharedUpdate(character, publicState, privateState, data.DeltaTime);
         }
 
         protected sealed override void FillDefaultEffects(Effects effects)
@@ -494,8 +499,8 @@
                 var world = Server.World;
                 world.SetDynamicObjectMoveSpeed(character, 0);
                 world.SetDynamicObjectPhysicsMovement(character,
-                                                             accelerationVector: Vector2D.Zero,
-                                                             targetVelocity: 0);
+                                                      accelerationVector: Vector2D.Zero,
+                                                      targetVelocity: 0);
                 character.PhysicsBody.Friction = 100000;
                 world.StopPhysicsBody(character.PhysicsBody);
                 return;
@@ -512,7 +517,7 @@
             // update crafting queue
             CraftingMechanics.ServerUpdate(privateState.CraftingQueue, data.DeltaTime);
             // consumes/restores stamina
-            CharacterStaminaSystem.SharedUpdate(character, publicState, privateState, (float)data.DeltaTime);
+            CharacterStaminaSystem.SharedUpdate(character, publicState, privateState, data.DeltaTime);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

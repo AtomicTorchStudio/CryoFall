@@ -35,10 +35,8 @@
             base.ClientInitialize(data);
 
             var publicState = data.PublicState;
-            var sceneObject = data.GameObject.ClientSceneObject;
 
-            var soundEmitter =
-                this.ClientCreateActiveStateSoundEmitterComponent(data.GameObject);
+            var soundEmitter = this.ClientCreateActiveStateSoundEmitterComponent(data.GameObject);
             soundEmitter.Radius = 1f;
             soundEmitter.CustomMaxDistance = 5f;
             soundEmitter.Volume = 0.5f;

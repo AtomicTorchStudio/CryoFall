@@ -39,6 +39,9 @@
 
         public override bool IsFuelProduceByproducts => false;
 
+        // So quick update interval is necessary to quickly fill the bottles with water by ManufacturingSystem.
+        public override double ServerUpdateIntervalSeconds => 0.5;
+
         public abstract double WaterCapacity { get; }
 
         public abstract double WaterProductionAmountPerSecond { get; }

@@ -28,17 +28,18 @@
                                                 VerticalAlignment="Center"
                                                 DesignTimeSlotsCount="1" />
 
-                <core:ValueBarControl
+                <!-- The bottles are filled quickly so no need to display the progress -->
+                <!--<core:ValueBarControl
                     Value="{Binding ViewModelManufacturingState.CraftingProgressPercents}"
                     Foreground="{StaticResource LiquidBrushWater}"
                     Margin="0,0,-6,0"
-                    Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />
+                    Style="{StaticResource ItemSlotCraftingProgressVerticalBar}" />-->
 
                 <core:ValueBarControl
                     Value="{Binding ViewModelLiquidContainerState.Amount}"
                     MaxValue="{Binding ViewModelLiquidContainerState.Capacity}"
                     Foreground="{StaticResource LiquidBrushWater}"
-                    Margin="26,0,20,0"
+                    Margin="20,0"
                     Style="{StaticResource LiquidMediumValueBar}" />
 
                 <!--<TextBlock Text="Output" Style="{StaticResource TextBlockStyleCraftingCaption}" />-->

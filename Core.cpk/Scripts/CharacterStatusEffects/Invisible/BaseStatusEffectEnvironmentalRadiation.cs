@@ -2,10 +2,12 @@
 {
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Invisible.Client;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Triggers;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -89,18 +91,23 @@
         private void ServerGlobalUpdate()
         {
             var zone = this.serverZone.ServerZoneInstance;
-
-            // If update rate is 1, updating will happen for each character once a second.
-            // We can set it to 2 to have updates every half second.
-            const double updateRate = 1;
             var totalCells = this.serverTileOffsetsCircle.Length;
 
-            foreach (var character in Server.Characters
-                                            .EnumerateAllPlayerCharactersWithSpread(updateRate,
-                                                                                    onlyOnline: true))
+            // perform update once per second per player
+            const double spreadDeltaTime = 1;
+
+            using var tempListPlayers = Api.Shared.GetTempList<ICharacter>();
+            PlayerCharacter.Instance
+                           .EnumerateGameObjectsWithSpread(tempListPlayers.AsList(),
+                                                           spreadDeltaTime: spreadDeltaTime,
+                                                           Server.Game.FrameNumber,
+                                                           Server.Game.FrameRate);
+
+            foreach (var character in tempListPlayers)
             {
-                if (character.GetPublicState<ICharacterPublicState>()
-                             .IsDead)
+                if (!character.ServerIsOnline
+                    || character.GetPublicState<ICharacterPublicState>()
+                                .IsDead)
                 {
                     continue;
                 }
@@ -129,7 +136,7 @@
                 // add poisoning
                 var poisoningIntensityToAdd =
                     this.CalculatePoisoningIntensityToAdd(radiationIntensity, currentEffectIntensity)
-                    / updateRate;
+                    * spreadDeltaTime;
 
                 character.ServerAddStatusEffect<StatusEffectRadiationPoisoning>(
                     intensity: poisoningIntensityToAdd);

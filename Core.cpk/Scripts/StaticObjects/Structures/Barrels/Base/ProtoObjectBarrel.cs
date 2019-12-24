@@ -44,6 +44,8 @@
 
         public abstract ushort LiquidCapacity { get; }
 
+        public override double ServerUpdateIntervalSeconds => 0.5;
+
         public void ClientDrainBarrel(IStaticWorldObject worldObject)
         {
             if (DisallowDrainInRaidblock

@@ -44,7 +44,7 @@
             presetOilSeep.AddExact<ObjectDepositOilSeep>()
                          .SetCustomPaddingWithSelf(79)
                          .SetCustomPaddingWith(restrictionInfiniteOilSeep,      59)
-                         .SetCustomPaddingWith(restrictionCharredGroundDeposit, 59)
+                         .SetCustomPaddingWith(restrictionCharredGroundDeposit, 49)
                          // ensure no spawn near Pragmium
                          .SetCustomPaddingWith(restrictionPresetPragmium,
                                                SpawnResourcePragmium.PaddingPragmiumWithOilDeposit)

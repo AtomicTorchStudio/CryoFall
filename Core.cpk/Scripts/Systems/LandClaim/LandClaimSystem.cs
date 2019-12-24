@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Perks;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
@@ -350,6 +351,11 @@
                             return true;
                         }
 
+                        if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                        {
+                            return true;
+                        }
+
                         if (PerkClaimDeposits.Instance
                                              .SharedIsPerkUnlocked(forCharacter))
                         {
@@ -370,6 +376,12 @@
 
                         foreach (var mark in WorldMapResourceMarksSystem.SharedEnumerateMarks())
                         {
+                            if (((IProtoObjectDeposit)mark.ProtoWorldObject).LifetimeTotalDurationSeconds <= 0)
+                            {
+                                // infinite oil/Li sources are not considered
+                                continue;
+                            }
+
                             var position = mark.Position;
                             if (position == default)
                             {
@@ -432,9 +444,20 @@
                         return true;
                     }
 
+                    if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                    {
+                        return true;
+                    }
+
                     var restrictionSize = DepositResourceLandClaimRestrictionSize.Value;
                     foreach (var mark in WorldMapResourceMarksSystem.SharedEnumerateMarks())
                     {
+                        if (((IProtoObjectDeposit)mark.ProtoWorldObject).LifetimeTotalDurationSeconds <= 0)
+                        {
+                            // infinite oil/Li sources are not considered
+                            continue;
+                        }
+
                         var timeRemainsToClaimCooldown =
                             (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(
                                 mark.ServerSpawnTime);

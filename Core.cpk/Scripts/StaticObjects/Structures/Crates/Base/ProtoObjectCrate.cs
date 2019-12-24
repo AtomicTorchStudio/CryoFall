@@ -41,6 +41,8 @@
 
         public abstract byte ItemsSlotsCount { get; }
 
+        public override double ServerUpdateIntervalSeconds => double.MaxValue;
+
         public override float StructurePointsMaxForConstructionSite
             => this.StructurePointsMax / 25;
 

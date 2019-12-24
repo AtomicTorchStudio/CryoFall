@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -762,6 +763,10 @@
             return true;
         }
 
+        // ReSharper disable once StaticMemberInGenericType
+        private static readonly List<ICharacter> StaticTempCharactersNearby 
+            = new List<ICharacter>(capacity: 64);
+
         private bool ServerCheckIsDoorShouldBeOpened(
             IStaticWorldObject worldObject,
             TPrivateState privateState)
@@ -772,16 +777,15 @@
                 return false;
             }
 
-            using var charactersNearby = Api.Shared.GetTempList<ICharacter>();
-            Server.World.GetScopedByPlayers(worldObject, charactersNearby);
-            if (charactersNearby.Count == 0)
+            Server.World.GetInViewScopeByPlayers(worldObject, StaticTempCharactersNearby);
+            if (StaticTempCharactersNearby.Count == 0)
             {
                 // no characters nearby
                 return false;
             }
 
             var objectOpeningBounds = this.SharedGetDoorOpeningBounds(worldObject);
-            foreach (var character in charactersNearby)
+            foreach (var character in StaticTempCharactersNearby)
             {
                 if (!character.ServerIsOnline
                     || character.ProtoCharacter is PlayerCharacterSpectator)

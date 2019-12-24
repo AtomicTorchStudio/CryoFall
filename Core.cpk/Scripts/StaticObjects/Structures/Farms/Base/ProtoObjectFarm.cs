@@ -19,6 +19,8 @@
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
+        public override double ClientUpdateIntervalSeconds => double.MaxValue;
+
         public abstract bool IsDrawingPlantShadow { get; }
 
         public override StaticObjectKind Kind => StaticObjectKind.Floor;
@@ -26,6 +28,8 @@
         public override double ObstacleBlockDamageCoef => 0;
 
         public virtual Vector2D PlacedPlantPositionOffset { get; } = Vector2D.Zero;
+
+        public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
         public override void ServerApplyDecay(IStaticWorldObject worldObject, double deltaTime)
         {
@@ -44,6 +48,10 @@
             base.ServerApplyDecay(worldObject, deltaTime);
         }
 
+        protected sealed override void ClientUpdate(ClientUpdateData data)
+        {
+        }
+
         protected sealed override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
@@ -59,5 +67,9 @@
             ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
             ConstructionStageConfig repair);
+
+        protected sealed override void ServerUpdate(ServerUpdateData data)
+        {
+        }
     }
 }

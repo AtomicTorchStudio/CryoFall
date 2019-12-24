@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -82,11 +83,14 @@
                 return;
             }
 
+            ServerDecayingProtoStructures = Api.FindProtoEntities<IProtoObjectStructure>().ToArray();
             // configure time interval trigger
             TriggerEveryFrame.ServerRegister(
                 callback: ServerUpdate,
                 name: "System." + this.ShortId);
         }
+
+        private static IProtoObjectStructure[] ServerDecayingProtoStructures;
 
         private static bool ServerProcessDecay(IStaticWorldObject worldObject, double serverTime, double deltaTime)
         {
@@ -128,12 +132,17 @@
         {
             const double deltaTime = StructureConstants.StructureDecaySystemUpdateIntervalSeconds;
             var serverTime = ServerGame.FrameTime;
+            var frameNumber = ServerGame.FrameNumber;
+            var frameRate = ServerGame.FrameRate;
 
             try
             {
-                Server.World.EnumerateStaticWorldObjectsOfProtoWithSpread<IProtoObjectStructure>(TempList, deltaTime);
+                foreach (var protoStructure in ServerDecayingProtoStructures)
+                {
+                    protoStructure.EnumerateGameObjectsWithSpread(TempList, deltaTime, frameNumber, frameRate);
+                }
+                
                 var objectsDecayedCount = 0;
-
                 foreach (var worldObject in TempList)
                 {
                     if (ServerProcessDecay(worldObject, serverTime, deltaTime))

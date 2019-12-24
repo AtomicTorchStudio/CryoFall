@@ -97,7 +97,7 @@
         /// </summary>
         public abstract ushort MaxItemsPerStack { get; }
 
-        public override double ServerUpdateIntervalSeconds => 1;
+        public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
         public override string ShortId { get; }
 

@@ -13,6 +13,7 @@
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ClientWorldMapLandClaimsGroupVisualizer : IWorldMapVisualizer
@@ -23,6 +24,8 @@
 
         public const string NotificationBaseUnderAttack_Title = "Under attack!";
 
+        private static readonly IWorldClientService World = Api.Client.World;
+
         private readonly Dictionary<ILogicObject, Controller> groupControllers
             = new Dictionary<ILogicObject, Controller>();
 
@@ -31,12 +34,15 @@
         public ClientWorldMapLandClaimsGroupVisualizer(WorldMapController worldMapController)
         {
             this.worldMapController = worldMapController;
+            World.LogicObjectInitialized += this.LogicObjectInitializedHandler;
         }
 
         public bool IsEnabled { get; set; }
 
         public void Dispose()
         {
+            World.LogicObjectInitialized -= this.LogicObjectInitializedHandler;
+
             foreach (var controller in this.groupControllers)
             {
                 controller.Value.Dispose();
@@ -93,13 +99,19 @@
             }
         }
 
+        private void LogicObjectInitializedHandler(ILogicObject logicObject)
+        {
+            if (this.groupControllers.TryGetValue(logicObject, out var controller))
+            {
+                controller.ReInitialize();
+            }
+        }
+
         private class Controller
         {
             public readonly IList<ILogicObject> Areas = new List<ILogicObject>();
 
             private readonly ILogicObject areasGroup;
-
-            private readonly IStateSubscriptionOwner stateSubscriptionStorage;
 
             private readonly WorldMapController worldMapController;
 
@@ -109,21 +121,15 @@
 
             private HUDNotificationControl raidNotification;
 
+            private IStateSubscriptionOwner stateSubscriptionStorage;
+
             public Controller(
                 ILogicObject areasGroup,
                 WorldMapController worldMapController)
             {
                 this.areasGroup = areasGroup;
                 this.worldMapController = worldMapController;
-                this.stateSubscriptionStorage = new StateSubscriptionStorage();
-
-                var groupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
-                groupPublicState.ClientSubscribe(
-                    o => o.LastRaidTime,
-                    this.RefreshRaidedState,
-                    this.stateSubscriptionStorage);
-
-                this.RefreshRaidedState();
+                this.ReInitialize();
             }
 
             public bool IsDisposed { get; private set; }
@@ -136,8 +142,30 @@
                 }
 
                 this.IsDisposed = true;
+                this.Cleanup();
+            }
+
+            public void ReInitialize()
+            {
+                this.Cleanup();
+
+                this.stateSubscriptionStorage = new StateSubscriptionStorage();
+
+                var groupPublicState = LandClaimAreasGroup.GetPublicState(this.areasGroup);
+                groupPublicState.ClientSubscribe(
+                    o => o.LastRaidTime,
+                    this.RefreshRaidedState,
+                    this.stateSubscriptionStorage);
+
+                this.RefreshRaidedState();
+            }
+
+            private void Cleanup()
+            {
                 this.RemoveRaidNotification();
-                this.stateSubscriptionStorage.Dispose();
+
+                this.stateSubscriptionStorage?.Dispose();
+                this.stateSubscriptionStorage = null;
             }
 
             private Vector2Ushort GetAreasGroupCanvasPosition(Vector2D worldPosition)
@@ -221,11 +249,13 @@
                 this.raidNotification?.Hide(quick: true);
                 this.raidNotification = null;
 
-                if (this.markRaidControl != null)
+                if (this.markRaidControl is null)
                 {
-                    this.worldMapController.RemoveControl(this.markRaidControl);
-                    this.markRaidControl = null;
+                    return;
                 }
+
+                this.worldMapController.RemoveControl(this.markRaidControl);
+                this.markRaidControl = null;
             }
         }
     }

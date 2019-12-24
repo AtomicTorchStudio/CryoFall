@@ -328,14 +328,13 @@
 
             Vector2D directionVector = (directionX, directionY);
             var moveAcceleration = directionVector.Normalized * this.PhysicsBodyAccelerationCoef * moveSpeed;
-            var friction = this.PhysicsBodyFriction;
 
             if (IsServer)
             {
                 Server.World.SetDynamicObjectPhysicsMovement(character,
                                                              moveAcceleration,
                                                              targetVelocity: moveSpeed);
-                character.PhysicsBody.Friction = friction;
+                character.PhysicsBody.Friction = this.PhysicsBodyFriction;
             }
             else // if client
             {
@@ -344,7 +343,7 @@
                     Client.World.SetDynamicObjectPhysicsMovement(character,
                                                                  moveAcceleration,
                                                                  targetVelocity: moveSpeed);
-                    character.PhysicsBody.Friction = friction;
+                    character.PhysicsBody.Friction = this.PhysicsBodyFriction;
                 }
             }
         }

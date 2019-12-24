@@ -40,7 +40,7 @@
             presetGeothermalSpring.AddExact<ObjectDepositGeothermalSpring>()
                                   .SetCustomPaddingWithSelf(79)
                                   .SetCustomPaddingWith(restrictionInfiniteGeothermalSpring, 59)
-                                  .SetCustomPaddingWith(restrictionCharredGroundDeposit,     59)
+                                  .SetCustomPaddingWith(restrictionCharredGroundDeposit,     49)
                                   // ensure no spawn near cliffs
                                   .SetCustomCanSpawnCheckCallback(
                                       (physicsSpace, position)

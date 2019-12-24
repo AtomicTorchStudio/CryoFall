@@ -70,26 +70,23 @@
                 }
 
                 // add overlay renderers
-                using (overlayChunkPreset)
+                foreach (var preset in overlayChunkPreset)
                 {
-                    foreach (var preset in overlayChunkPreset)
+                    var overlayRenderer = Api.Client.Rendering.CreateSpriteRenderer(
+                        worldObject,
+                        textureAtlas.Chunk((byte)preset.AtlasChunkPosition.X,
+                                           (byte)preset.AtlasChunkPosition.Y));
+
+                    if (overlayRenderers == null)
                     {
-                        var overlayRenderer = Api.Client.Rendering.CreateSpriteRenderer(
-                            worldObject,
-                            textureAtlas.Chunk((byte)preset.AtlasChunkPosition.X,
-                                               (byte)preset.AtlasChunkPosition.Y));
-
-                        if (overlayRenderers == null)
-                        {
-                            overlayRenderers = new List<IComponentSpriteRenderer>();
-                            clientState.RenderersObjectOverlay = overlayRenderers;
-                        }
-
-                        overlayRenderers.Add(overlayRenderer);
-                        overlayRenderer.DrawOrderOffsetY = isDestroyedWall
-                                                               ? destroyedWallYOffset
-                                                               : preset.DrawOffsetNormal;
+                        overlayRenderers = new List<IComponentSpriteRenderer>();
+                        clientState.RenderersObjectOverlay = overlayRenderers;
                     }
+
+                    overlayRenderers.Add(overlayRenderer);
+                    overlayRenderer.DrawOrderOffsetY = isDestroyedWall
+                                                           ? destroyedWallYOffset
+                                                           : preset.DrawOffsetNormal;
                 }
             }
             finally

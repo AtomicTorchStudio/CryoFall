@@ -40,20 +40,18 @@
                     continue;
                 }
 
-                var stats = publicState.CurrentStats;
-                if (!character.IsNpc)
+                if (!character.ServerIsOnline)
                 {
-                    if (!character.ServerIsOnline)
-                    {
-                        // don't regenerate health for offline players
-                        continue;
-                    }
+                    // don't regenerate health for offline players
+                    continue;
+                }
 
-                    if (stats.StaminaCurrent <= 0)
-                    {
-                        // cannot regenerate health - no energy
-                        continue;
-                    }
+                var stats = publicState.CurrentStats;
+                if (!character.IsNpc 
+                    && stats.StaminaCurrent <= 0)
+                {
+                    // cannot regenerate health - no energy
+                    continue;
                 }
 
                 var healthRegeneration = character.SharedGetFinalStatValue(StatName.HealthRegenerationPerSecond);

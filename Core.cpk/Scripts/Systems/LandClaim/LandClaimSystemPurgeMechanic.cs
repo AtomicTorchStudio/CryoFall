@@ -110,7 +110,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 purgedContainersCount++;
             }
 
-            static void PurgeManufacturerContainers(ObjectManufacturerPrivateState privateState)
+            void PurgeManufacturerContainers(ObjectManufacturerPrivateState privateState)
             {
                 PurgeContainer(privateState.ManufacturingState?.ContainerInput);
                 PurgeContainer(privateState.ManufacturingState?.ContainerOutput);
