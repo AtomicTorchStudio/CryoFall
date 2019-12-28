@@ -55,6 +55,8 @@
 
         public virtual byte MaxItemsSlotsCount => 16;
 
+        public virtual double SearchingSkillExperienceMultiplier => 1.0;
+
         protected virtual bool CanFlipSprite => false;
 
         protected virtual IProtoItemsContainer ItemsContainerType
@@ -82,6 +84,9 @@
 
             // spawn items accordingly to the droplist
             privateState.IsDropListSpawned = true;
+            var skillExperienceToAdd = SkillSearching.ExperienceAddWhenSearching
+                                       * this.SearchingSkillExperienceMultiplier;
+
             var lootDroplist = this.ServerGetLootDroplist(worldObject);
             var dropItemContext = new DropItemContext(character, worldObject);
 
@@ -89,14 +94,15 @@
             if (this.IsAutoTakeAll)
             {
                 // try to simply pickup the content
-                dropItemResult =
-                    lootDroplist.TryDropToCharacter(character, dropItemContext, sendNoFreeSpaceNotification: false);
+                dropItemResult = lootDroplist.TryDropToCharacter(character,
+                                                                 dropItemContext,
+                                                                 sendNoFreeSpaceNotification: false);
                 if (dropItemResult.IsEverythingCreated
                     && dropItemResult.TotalCreatedCount > 0)
                 {
                     NotificationSystem.ServerSendItemsNotification(character, dropItemResult);
-                    // destroy object after success pickup
-                    Server.World.DestroyObject(worldObject);
+                    Server.World.DestroyObject(worldObject); // destroy object after success pickup
+                    character.ServerAddSkillExperience<SkillSearching>(skillExperienceToAdd);
                     return true;
                 }
 
@@ -115,9 +121,9 @@
             while (dropItemResult.TotalCreatedCount == 0
                    && --attemptRemains > 0);
 
-            Server.Items.SetSlotsCount(itemsContainer, (byte)itemsContainer.OccupiedSlotsCount);
+            Server.Items.SetSlotsCount(itemsContainer, itemsContainer.OccupiedSlotsCount);
 
-            character.ServerAddSkillExperience<SkillSearching>(SkillSearching.ExperienceAddWhenSearching);
+            character.ServerAddSkillExperience<SkillSearching>(skillExperienceToAdd);
 
             Server.World.EnterPrivateScope(character, worldObject);
 

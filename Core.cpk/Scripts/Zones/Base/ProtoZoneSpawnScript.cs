@@ -58,13 +58,6 @@
 
         private static readonly ICoreServerService Core = IsServer ? Server.Core : null;
 
-        // ensure that objects will not spawn when player is observing the area
-        private static readonly double MaxDistanceToPlayerWhenSpawning
-            = Math.Max(SpawnZoneAreaSize / 2.0, ScriptingConstants.PlayerScopeSizeHalf * 1.05);
-
-        private static readonly double MaxDistanceToPlayerWhenSpawningSqr
-            = MaxDistanceToPlayerWhenSpawning * MaxDistanceToPlayerWhenSpawning;
-
         private static readonly Random Random = Api.Random;
 
         // one for all ProtoZoneSpawnScript instances - used to chain/queue spawn tasks
@@ -419,37 +412,9 @@
             return LandClaimSystem.SharedIsLandClaimedByAnyone(bounds);
         }
 
-        private static bool ServerIsAnyPlayerNearby(Vector2Ushort spawnPosition, List<Vector2Ushort> playersPositions)
+        private static bool ServerIsAnyPlayerNearby(Vector2Ushort spawnPosition)
         {
-            foreach (var playerPosition in playersPositions)
-            {
-                if (playerPosition.TileSqrDistanceTo(spawnPosition)
-                    <= MaxDistanceToPlayerWhenSpawningSqr)
-                {
-                    // player nearby
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private static bool ServerIsAnyPlayerNearby(SpawnZoneArea area, List<Vector2Ushort> playersPositions)
-        {
-            // check 5 locations of the area - 4 corners and center
-            var start = area.StartPosition;
-            const int size = SpawnZoneAreaSize;
-            var topLeft = start;
-            var topRight = new Vector2Ushort((ushort)(start.X + size),    start.Y);
-            var bottomLeft = new Vector2Ushort(start.X,                   (ushort)(start.Y + size));
-            var bottomRight = new Vector2Ushort((ushort)(start.X + size), (ushort)(start.Y + size));
-            var center = new Vector2Ushort((ushort)(start.X + size / 2),  (ushort)(start.Y + size / 2));
-
-            return ServerIsAnyPlayerNearby(center,         playersPositions)
-                   || ServerIsAnyPlayerNearby(topLeft,     playersPositions)
-                   || ServerIsAnyPlayerNearby(topRight,    playersPositions)
-                   || ServerIsAnyPlayerNearby(bottomLeft,  playersPositions)
-                   || ServerIsAnyPlayerNearby(bottomRight, playersPositions);
+            return ServerWorldService.IsObservedByAnyPlayer(spawnPosition);
         }
 
         private static bool ServerIsCanSpawn(
@@ -867,25 +832,19 @@
                         }));
 
             var mobsTrackingManager = SpawnedMobsTrackingManagersStore.Get(this, zone);
-            using var tempPlayersPositions = Api.Shared.WrapInTempList(
-                Server.Characters.EnumerateAllPlayerCharacters(
-                          onlyOnline: true,
-                          exceptSpectators: true)
-                      .Select(p => p.TilePosition));
-            var playersPositions = tempPlayersPositions.AsList();
-
             var physicsSpace = Server.World.GetPhysicsSpace();
+            var checkPlayersNearby = !this.CanSpawnIfPlayersNearby;
 
             // stage 1: global spawn
             using var activeSpawnRequestsList = Api.Shared.WrapInTempList(
                 allSpawnRequests.Where(request => !request.UseSectorDensity
                                                   && request.CountToSpawn > 0));
+
             while (activeSpawnRequestsList.Count > 0)
             {
                 await yieldIfOutOfTime();
                 var spawnPosition = zone.GetRandomPosition(Random);
                 TrySpawn(spawnPosition,
-                         checkPlayersNearby: !this.CanSpawnIfPlayersNearby,
                          out _,
                          out _);
             }
@@ -938,12 +897,6 @@
                         continue;
                     }
 
-                    if (!this.CanSpawnIfPlayersNearby
-                        && ServerIsAnyPlayerNearby(area, playersPositions))
-                    {
-                        continue;
-                    }
-
                     // make a few attempts to spawn in this area
                     var attempts = activeSpawnRequestsList.Count * DefaultAreaSpawnAttempsCountPerPreset;
                     for (var attempt = 0; attempt < attempts; attempt++)
@@ -951,7 +904,6 @@
                         await yieldIfOutOfTime();
                         var spawnPosition = area.GetRandomPositionInside(zone, Random);
                         TrySpawn(spawnPosition,
-                                 checkPlayersNearby: false,
                                  out var spawnRequest,
                                  out var isSectorDensityExceeded);
 
@@ -1016,7 +968,6 @@
 
             void TrySpawn(
                 Vector2Ushort spawnPosition,
-                bool checkPlayersNearby,
                 out SpawnRequest spawnRequest,
                 out bool isSectorDensityExceeded)
             {
@@ -1043,7 +994,7 @@
                     out isSectorDensityExceeded))
                 {
                     if (!checkPlayersNearby
-                        || !ServerIsAnyPlayerNearby(spawnPosition, playersPositions))
+                        || !ServerIsAnyPlayerNearby(spawnPosition))
                     {
                         spawnedObject = this.ServerSpawn(trigger, zone, spawnProtoObject, spawnPosition);
                     }

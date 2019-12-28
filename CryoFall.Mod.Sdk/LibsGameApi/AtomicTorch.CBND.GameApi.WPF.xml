@@ -3764,6 +3764,15 @@
             Please note - this method is not available during Bootstrapper execution.
             </summary>
         </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetInViewScopeByPlayers(AtomicTorch.CBND.GameApi.Data.World.IWorldObject,System.Collections.Generic.List{AtomicTorch.CBND.GameApi.Data.Characters.ICharacter})">
+            <summary>
+            Gets hashset of characters observing the object directly.
+            If the world object is character, this method will exclude this character from the result.
+            This method is equivalent to <see cref="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetScopedByCharacters(AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto,System.Collections.Generic.List{AtomicTorch.CBND.GameApi.Data.Characters.ICharacter},System.Boolean)" /> with onlyPlayerCharacters==true.
+            </summary>
+            <param name="worldObject">Any world object.</param>
+            <param name="result"></param>
+        </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetScopedByCharacters(AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto,System.Collections.Generic.List{AtomicTorch.CBND.GameApi.Data.Characters.ICharacter},System.Boolean)">
             <summary>
             Gets hashset of characters observing the object (including spectator characters).
@@ -3831,15 +3840,6 @@
             <summary>
             Schedules fixing tile height - it will be called during the next <see cref="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.FixMapTilesRecentlyModified" /> call.
             </summary>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetInViewScopeByPlayers(AtomicTorch.CBND.GameApi.Data.World.IWorldObject,System.Collections.Generic.List{AtomicTorch.CBND.GameApi.Data.Characters.ICharacter})">
-            <summary>
-            Gets hashset of characters observing the object directly.
-            If the world object is character, this method will exclude this character from the result.
-            This method is equivalent to <see cref="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetScopedByCharacters(AtomicTorch.CBND.GameApi.Data.IGameObjectWithProto,System.Collections.Generic.List{AtomicTorch.CBND.GameApi.Data.Characters.ICharacter},System.Boolean)" /> with onlyPlayerCharacters==true.
-            </summary>
-            <param name="worldObject">Any world object.</param>
-            <param name="result"></param>
         </member>
     </members>
 </doc>

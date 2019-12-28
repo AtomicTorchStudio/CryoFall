@@ -23,6 +23,9 @@
 
         public override double ObstacleBlockDamageCoef => 0.5;
 
+        // It's much easier to find and search these piles so they will provide much less skill experience.
+        public override double SearchingSkillExperienceMultiplier => 0.2;
+
         public override float StructurePointsMax => 1000;
 
         protected override bool CanFlipSprite => true;
