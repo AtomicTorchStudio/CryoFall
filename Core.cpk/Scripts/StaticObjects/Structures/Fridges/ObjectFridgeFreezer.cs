@@ -65,7 +65,7 @@
                 .AddShapeRectangle(size: (0.9, 0.2),
                                    offset: (0.05, 0.85),
                                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (1, 1.45),
+                .AddShapeRectangle(size: (1, 1),
                                    offset: (0, 0),
                                    group: CollisionGroups.ClickArea);
         }
