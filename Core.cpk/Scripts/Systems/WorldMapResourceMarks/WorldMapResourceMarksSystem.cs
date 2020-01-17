@@ -17,6 +17,8 @@
 
     public class WorldMapResourceMarksSystem : ProtoSystem<WorldMapResourceMarksSystem>
     {
+        private static int? clientServerResourceSpawnClaimingCooldownDuration;
+
         private static ILogicObject serverManagerInstance;
 
         private static NetworkSyncList<WorldMapResourceMark> sharedResourceMarksList;
@@ -33,6 +35,8 @@
                        instead of the actual coordinates for the resource deposit.")
                 > 0;
         }
+
+        public static event Action ClientDepositClaimCooldownDurationReceived;
 
         public static event Action<WorldMapResourceMark> ClientMarkAdded;
 
@@ -164,7 +168,23 @@
 
             var timeSinceSpawn = serverTime - markServerSpawnTime;
 
-            var resultSeconds = StructureConstants.ResourceSpawnClaimingCooldownDuration - timeSinceSpawn;
+            int claimCooldownDuration;
+            if (Api.IsServer)
+            {
+                claimCooldownDuration = StructureConstants.DepositsSpawnClaimingCooldownDuration;
+            }
+            else
+            {
+                if (!clientServerResourceSpawnClaimingCooldownDuration.HasValue)
+                {
+                    Logger.Info("No data received yet for " + nameof(clientServerResourceSpawnClaimingCooldownDuration));
+                    return 0;
+                }
+
+                claimCooldownDuration = clientServerResourceSpawnClaimingCooldownDuration.Value;
+            }
+
+            var resultSeconds = claimCooldownDuration - timeSinceSpawn;
             return Math.Max(resultSeconds, 0);
         }
 
@@ -310,6 +330,11 @@
             return serverManagerInstance;
         }
 
+        private int ServerRemote_AcquireServerResourceSpawnClaimingCooldownDuration()
+        {
+            return StructureConstants.DepositsSpawnClaimingCooldownDuration;
+        }
+
         [PrepareOrder(afterType: typeof(BootstrapperServerCore))]
         public class BootstrapperWorldMapResourcesSystem : BaseBootstrapper
         {
@@ -319,7 +344,7 @@
 
                 ClientTryRequestWorldResourcesAsync();
 
-                void ClientTryRequestWorldResourcesAsync()
+                async void ClientTryRequestWorldResourcesAsync()
                 {
                     if (Api.Client.Characters.CurrentPlayerCharacter == null)
                     {
@@ -381,6 +406,25 @@
                                 }
                             }
                         });
+
+                    // TODO: A25 remove the try-catch block here
+                    try
+                    {
+                        clientServerResourceSpawnClaimingCooldownDuration = null;
+                        var taskGetCooldownDuration = Instance.CallServer(
+                            _ => _.ServerRemote_AcquireServerResourceSpawnClaimingCooldownDuration());
+                        await taskGetCooldownDuration;
+                        clientServerResourceSpawnClaimingCooldownDuration = taskGetCooldownDuration.Result;
+                        Logger.Important("Received deposit claiming cooldown duration: " + clientServerResourceSpawnClaimingCooldownDuration);
+                    }
+                    catch
+                    {
+                        clientServerResourceSpawnClaimingCooldownDuration = 30 * 60;
+                        Logger.Warning("Not received the deposit claiming cooldown duration, using the legacy value: "
+                                   + clientServerResourceSpawnClaimingCooldownDuration);
+                    }
+
+                    Api.SafeInvoke(ClientDepositClaimCooldownDurationReceived);
                 }
             }
 

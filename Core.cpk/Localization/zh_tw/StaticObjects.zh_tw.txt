@@ -393,7 +393,7 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 尖刺顱骨
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
-展示你的財富。 只有壕中壕才能造得出這樣的東西。
+展示你的財富。 只有真正的有錢人才能造得出這樣的東西。
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Name:
 金雕像

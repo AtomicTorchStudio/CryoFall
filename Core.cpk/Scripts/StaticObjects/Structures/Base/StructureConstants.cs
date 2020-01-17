@@ -14,11 +14,6 @@
         public const byte RepairItemsCountMultiplier = 1;
 
         /// <summary>
-        /// The resource can be claimed only if it was spawned longer than defined here.
-        /// </summary>
-        public const int ResourceSpawnClaimingCooldownDuration = 30 * 60; // 30 minutes
-
-        /// <summary>
         /// Refresh rate of the land claim objects for the decay reset check.
         /// The game server should check whether there are any land claim owners inside the land claim area
         /// and reset the decay timer if so.
@@ -33,11 +28,16 @@
         /// </summary>
         public const double StructureDecaySystemUpdateIntervalSeconds = 5 * 60; // every 5 minutes
 
+        public static readonly double DepositsExtractionSpeedMultiplier;
+
+        /// <summary>
+        /// The resource can be claimed only if it was spawned longer than defined here.
+        /// </summary>
+        public static readonly int DepositsSpawnClaimingCooldownDuration;
+
         public static readonly bool IsStructuresDecayEnabled;
 
         public static readonly double ManufacturingSpeedMultiplier;
-        
-        public static readonly double DepositsExtractionSpeedMultiplier;
 
         public static readonly double StructuresAbandonedDecayDelaySeconds;
 
@@ -80,12 +80,20 @@
                 "ManufacturingSpeedMultiplier",
                 defaultValue: 1.0,
                 @"Manufacturing rate for all manufacturers (such as furnaces, oil refineries, wells, mulchboxes, etc.)");
-            
+
             DepositsExtractionSpeedMultiplier = ServerRates.Get(
                 "DepositsExtractionSpeedMultiplier",
                 defaultValue: 1.0,
                 @"Deposits extraction rate for oil/Li extractors.
                   Please note: it also changes the power/fuel consumption of the deposit extractors.");
+
+            DepositsSpawnClaimingCooldownDuration = ServerRates.Get(
+                "DepositsSpawnClaimingCooldownDuration",
+                defaultValue: 30 * 60, // 30 minutes,
+                @"Delay in seconds before the spawned resource deposit could be claimed on a PvP server.
+                  The notification about the spawned resource is displayed with this timer.
+                  30 minutes by default (1800 seconds).
+                  If you change this to 0 there would be no resource spawn notification (only a map mark will be added).");
         }
 
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]

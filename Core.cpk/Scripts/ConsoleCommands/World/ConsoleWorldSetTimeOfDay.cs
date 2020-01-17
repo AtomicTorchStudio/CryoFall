@@ -7,7 +7,7 @@
     public class ConsoleWorldSetTimeOfDay : BaseConsoleCommand
     {
         public override string Description =>
-            "Forces specified time of day on client or server."
+            "Forces specified time of day on the server."
             + Environment.NewLine
             + "To reset please execute this command without any arguments.";
 

@@ -10,7 +10,7 @@
         {
             triggers
                 .Add(GetTrigger<TriggerWorldInit>())
-                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(30)));
+                .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             spawnList.CreatePreset(interval: 15, padding: 1)
                      .Add<ObjectLootPileGarbageSmall>()

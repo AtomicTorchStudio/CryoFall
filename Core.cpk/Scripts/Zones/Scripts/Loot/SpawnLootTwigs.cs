@@ -14,7 +14,6 @@
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(5)));
 
-            // add some pickupable objects
             spawnList.CreatePreset(interval: 20, padding: 2)
                      .Add<ObjectLootTwigs>()
                      .SetCustomPaddingWithSelf(10);

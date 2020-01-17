@@ -85,9 +85,6 @@
             out double currentProduction,
             out double maxProduction)
         {
-            var publicState = GetPublicState(worldObject);
-            var privateState = GetPrivateState(worldObject);
-
             maxProduction = 12;
             var rate = SharedGetElectricityProductionRate(worldObject, out _);
             currentProduction = maxProduction * rate;

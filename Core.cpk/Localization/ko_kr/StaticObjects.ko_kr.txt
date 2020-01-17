@@ -585,7 +585,7 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampOil@Name:
 석유 연소식 스탠드
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
-전기 스탠드의 소형판. 크기가 작아도 꽤 밝습이다.
+전기 스탠드의 소형판. 크기가 작아도 꽤 밝습니다.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 소형 스탠드

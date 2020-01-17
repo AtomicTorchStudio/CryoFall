@@ -47,6 +47,8 @@
 
             WorldMapResourceMarksSystem.ClientMarkAdded += this.MarkAddedHandler;
             WorldMapResourceMarksSystem.ClientMarkRemoved += this.MarkRemovedHandler;
+            WorldMapResourceMarksSystem.ClientDepositClaimCooldownDurationReceived +=
+                this.MarkDepositClaimCooldownDurationReceivedHandler;
 
             foreach (var mark in WorldMapResourceMarksSystem.SharedEnumerateMarks())
             {
@@ -60,6 +62,8 @@
         {
             WorldMapResourceMarksSystem.ClientMarkAdded -= this.MarkAddedHandler;
             WorldMapResourceMarksSystem.ClientMarkRemoved -= this.MarkRemovedHandler;
+            WorldMapResourceMarksSystem.ClientDepositClaimCooldownDurationReceived -=
+                this.MarkDepositClaimCooldownDurationReceivedHandler;
 
             if (this.visualizedMarks.Count > 0)
             {
@@ -121,6 +125,19 @@
             this.notifications.Add((mark, notification));
         }
 
+        private HUDNotificationControl FindNotification(in WorldMapResourceMark mark)
+        {
+            foreach (var pair in this.notifications)
+            {
+                if (pair.mark.Equals(mark))
+                {
+                    return pair.notification;
+                }
+            }
+
+            return null;
+        }
+
         private void MarkAddedHandler(WorldMapResourceMark mark)
         {
             var mapControl = GetMapControl(mark);
@@ -164,38 +181,15 @@
                                                               mark.ProtoWorldObject.Name));
             }
 
-            var timeRemains = (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(
-                mark.ServerSpawnTime);
+            this.TryCreateNotification(mark);
+        }
 
-            if (timeRemains < 20)
+        private void MarkDepositClaimCooldownDurationReceivedHandler()
+        {
+            foreach (var mark in WorldMapResourceMarksSystem.SharedEnumerateMarks())
             {
-                // less than 20 seconds remains - not worth a notification
-                return;
+                this.TryCreateNotification(mark);
             }
-
-            // resource spawned recently
-            if (Api.IsEditor)
-            {
-                return;
-            }
-
-            if (!PerkClaimDeposits.Instance
-                                  .SharedIsPerkUnlocked(Api.Client.Characters.CurrentPlayerCharacter))
-            {
-                // don't notify player as perk is not unlocked
-                return;
-            }
-
-            // notify player about the new resource
-            var notification = NotificationSystem.ClientShowNotification(
-                title: Notification_NewResourceAvailable_Title,
-                message: GetUpdatedRecentResourceNotificationText(mark,
-                                                                  timeRemains),
-                icon: mark.ProtoWorldObject.Icon,
-                autoHide: false);
-
-            this.AddNotification(mark, notification);
-            this.UpdateNotification(mark, notification);
         }
 
         private void MarkRemovedHandler(WorldMapResourceMark mark)
@@ -239,6 +233,49 @@
                 pair.notification.Hide(quick);
                 this.notifications.RemoveAt(index--);
             }
+        }
+
+        private void TryCreateNotification(WorldMapResourceMark mark)
+        {
+            var timeRemains = (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(
+                mark.ServerSpawnTime);
+
+            if (timeRemains < 20)
+            {
+                // less than 20 seconds remains - not worth a notification
+                return;
+            }
+
+            // resource spawned recently
+            if (Api.IsEditor)
+            {
+                return;
+            }
+
+            if (!PerkClaimDeposits.Instance
+                                  .SharedIsPerkUnlocked(Api.Client.Characters.CurrentPlayerCharacter))
+            {
+                // don't notify player as perk is not unlocked
+                return;
+            }
+
+            var notification = this.FindNotification(in mark);
+            if (!(notification is null))
+            {
+                // notification already exist
+                return;
+            }
+
+            // notify player about the new resource
+            notification = NotificationSystem.ClientShowNotification(
+                title: Notification_NewResourceAvailable_Title,
+                message: GetUpdatedRecentResourceNotificationText(mark,
+                                                                  timeRemains),
+                icon: mark.ProtoWorldObject.Icon,
+                autoHide: false);
+
+            this.AddNotification(mark, notification);
+            this.UpdateNotification(mark, notification);
         }
 
         private void UpdateNotification(WorldMapResourceMark mark, HUDNotificationControl notification)

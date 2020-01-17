@@ -65,15 +65,17 @@
             Api.SafeInvoke(() => CharacterGroupAddedOrRemoved?.Invoke(character, techGroup, isAdded: true));
         }
 
-        public void ServerAddLearningPoints(double points)
+        public void ServerAddLearningPoints(double points, bool allowModifyingByStats = true)
         {
             if (points <= 0)
             {
                 return;
             }
 
-            // Learning skill increases the amount of received learning points
-            points *= this.Character.SharedGetFinalStatMultiplier(StatName.LearningsPointsGainMultiplier);
+            if (allowModifyingByStats)
+            {
+                points *= this.Character.SharedGetFinalStatMultiplier(StatName.LearningsPointsGainMultiplier);
+            }
 
             var pointsToAdd = (int)points;
             var remainder = this.LearningPointsRemainderAccumulator + (points - pointsToAdd);

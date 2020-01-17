@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -21,6 +20,9 @@
                 ConstructionSitePublicState,
                 StaticObjectClientState>
     {
+        // Faster decay speed for blueprints outside the land claim areas to prevent world overcrowding with the blueprints.
+        public const double DecaySpeedMultiplier = 4;
+
         private static readonly Lazy<RenderingMaterial> BlueprintMaterial = new Lazy<RenderingMaterial>(
             () =>
             {
@@ -76,6 +78,12 @@
             return GetPublicState(staticWorldObject)
                    .ConstructionProto
                    .ConfigBuild;
+        }
+
+        public override void ServerApplyDecay(IStaticWorldObject worldObject, double deltaTime)
+        {
+            // decay with an increased speed (please note that decay applies only to the buildings outside the land claim areas)
+            base.ServerApplyDecay(worldObject, DecaySpeedMultiplier * deltaTime);
         }
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)

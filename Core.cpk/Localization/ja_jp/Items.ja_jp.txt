@@ -1815,7 +1815,7 @@ Scripts/Items/Tools/Axes/ItemAxeSteel@Description:
 鋼の斧は木を伐るのに理想的です。鉄の斧よりも速くて丈夫です。
 
 Scripts/Items/Tools/Axes/ItemAxeSteel@Name:
-銅の斧
+鋼の斧
 
 Scripts/Items/Tools/Axes/ItemAxeStone@Description:
 石の斧は木を伐るのに使用できます。

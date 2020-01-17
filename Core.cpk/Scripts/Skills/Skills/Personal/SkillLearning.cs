@@ -7,7 +7,7 @@
         /// <summary>
         /// As you earn LP you also get EXP for this skill.
         /// </summary>
-        public const double ExperienceAddedPerLPEarned = 10.0;
+        public const double ExperienceAddedPerLPEarned = 20.0;
 
         public override string Description =>
             "Surviving in the unfamiliar environment of an alien world is difficult, but it offers unique opportunities to learn things you wouldn't know otherwise.";

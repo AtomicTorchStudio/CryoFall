@@ -11,15 +11,12 @@
 
         public readonly ObjectSpawnPreset Preset;
 
-        public readonly NoiseSelector TileRandomSelector;
-
         public SpawnRequest(
             ObjectSpawnPreset preset,
             int desiredCount,
             int currentCount,
             int spawnCount,
             double density,
-            NoiseSelector tileRandomSelector,
             bool useSectorDensity)
         {
             this.Preset = preset;
@@ -27,7 +24,6 @@
             this.CurrentCount = currentCount;
             this.CountToSpawn = spawnCount;
             this.Density = density;
-            this.TileRandomSelector = tileRandomSelector;
             this.UseSectorDensity = useSectorDensity;
         }
 

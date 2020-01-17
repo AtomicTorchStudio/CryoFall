@@ -48,6 +48,23 @@
             base.ServerApplyDecay(worldObject, deltaTime);
         }
 
+        public override void ServerOnDestroy(IStaticWorldObject gameObject)
+        {
+            // destroy all the plants growing there
+            foreach (var tile in gameObject.OccupiedTiles)
+            {
+                foreach (var staticWorldObject in Api.Shared.WrapInTempList(tile.StaticObjects))
+                {
+                    if (staticWorldObject.ProtoStaticWorldObject is IProtoObjectPlant)
+                    {
+                        Server.World.DestroyObject(staticWorldObject);
+                    }
+                }
+            }
+
+            base.ServerOnDestroy(gameObject);
+        }
+
         protected sealed override void ClientUpdate(ClientUpdateData data)
         {
         }

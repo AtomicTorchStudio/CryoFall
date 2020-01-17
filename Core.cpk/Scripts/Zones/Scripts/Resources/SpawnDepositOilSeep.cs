@@ -88,5 +88,24 @@
                 noObstaclesCheckRadius: 1,
                 maxAttempts: 200);
         }
+
+        protected override int SharedCalculatePresetDesiredCount(ObjectSpawnPreset preset, int desiredCountByDensity)
+        {
+            if (Api.IsEditor)
+            {
+                return desiredCountByDensity;
+            }
+
+            var hoursSinceWorldCreation = (Api.Server.Game.FrameTime - Api.Server.Game.WorldCreationTime)
+                                          / (60 * 60);
+
+            if (hoursSinceWorldCreation >= 48)
+            {
+                return desiredCountByDensity;
+            }
+
+            // throttle spawn to ensure even distribution of spawned objects during 48 hours since the startup
+            return (int)(desiredCountByDensity * hoursSinceWorldCreation / 48);
+        }
     }
 }

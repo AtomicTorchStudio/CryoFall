@@ -1754,7 +1754,7 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology
 Technologie
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryTechnology_Description:
-Gagnez des points d'apprentissage et dépensez-les pour maîtriser de nouvelles technologies, afin d'adapter le jeu en fonciton de vos préférences en vous concentrant sur les zones qui vous intéressent le plus.
+Gagnez des points d'apprentissage et dépensez-les pour maîtriser de nouvelles technologies, afin d'adapter le jeu en fonction de vos préférences en vous concentrant sur les zones qui vous intéressent le plus.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryElectricity_Title:
 Électricité

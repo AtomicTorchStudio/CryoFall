@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ClientWorldMapPartyMembersVisualizer : IWorldMapVisualizer
@@ -27,6 +28,19 @@
 
             PartySystem.ClientCurrentPartyMemberAddedOrRemoved
                 += this.PartySystemCurrentPartyMemberAddedOrRemovedHandler;
+        }
+
+        public static Vector2Ushort ClientGraveyardPosition
+        {
+            get
+            {
+                var world = Api.Client.World;
+                var worldBounds = world.WorldBounds;
+
+                // bottom right corner of the map
+                return new Vector2Ushort((ushort)(worldBounds.Offset.X + worldBounds.Size.X - 1),
+                                         (ushort)(worldBounds.Offset.Y + 1));
+            }
         }
 
         public bool IsEnabled
@@ -141,6 +155,14 @@
 
         private void UpdatePosition(FrameworkElement mapControl, Vector2Ushort position)
         {
+            if (position == ClientGraveyardPosition)
+            {
+                // player character is dead or despawned
+                mapControl.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            mapControl.Visibility = Visibility.Visible;
             var canvasPosition = this.worldMapController.WorldToCanvasPosition(position.ToVector2D());
             Canvas.SetLeft(mapControl, canvasPosition.X);
             Canvas.SetTop(mapControl, canvasPosition.Y);

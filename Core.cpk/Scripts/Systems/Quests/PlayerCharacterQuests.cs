@@ -163,7 +163,7 @@
                 rewardLearningPoints * TechConstants.ServerLearningPointsGainMultiplier,
                 MidpointRounding.AwayFromZero);
             this.Character.SharedGetTechnologies()
-                .ServerAddLearningPoints(rewardLearningPoints);
+                .ServerAddLearningPoints(rewardLearningPoints, allowModifyingByStats: false);
 
             Api.Logger.Important(
                 $"Quest completed and reward claimed: {quest.ShortId}. Learning points added: {rewardLearningPoints}",

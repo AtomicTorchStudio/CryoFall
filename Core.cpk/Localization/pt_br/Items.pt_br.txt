@@ -1809,7 +1809,7 @@ Scripts/Items/Tools/Axes/ItemAxeIron@Description:
 O machado de ferro é ótimo para cortar árvores. É mais rápido e resistente do que o de pedra.
 
 Scripts/Items/Tools/Axes/ItemAxeIron@Name:
-Machado de pedra
+Machado de ferro
 
 Scripts/Items/Tools/Axes/ItemAxeSteel@Description:
 O machado de aço é ideal para cortar árvores. É mais rápido e mais resistente do que o de ferro.

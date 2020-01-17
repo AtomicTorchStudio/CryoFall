@@ -318,6 +318,11 @@
             return spawnedObject;
         }
 
+        protected virtual int SharedCalculatePresetDesiredCount(ObjectSpawnPreset preset, int desiredCountByDensity)
+        {
+            return desiredCountByDensity;
+        }
+
         private static IEnumerable<SpawnZoneArea> EnumerateAdjacentZoneAreas(
             Vector2Ushort startPosition,
             IReadOnlyDictionary<Vector2Ushort, SpawnZoneArea> spawnZoneAreas)
@@ -786,40 +791,25 @@
                         preset =>
                         {
                             var density = preset.Density * config.DensityMultiplier;
-                            var desiredCount = (int)(density * zonePositionsCount);
+                            var desiredCount = this.SharedCalculatePresetDesiredCount(
+                                preset,
+                                desiredCountByDensity: (int)(density
+                                                             * zonePositionsCount));
                             var currentCount = spawnedObjectsCount.Find(preset);
-                            //if (isInitialSpawn)
-                            //{
                             var countToSpawn =
                                 Math.Max(0, desiredCount - currentCount);
-                            //}
-
-                            // TODO: refactor this to be actually useful with local density
-                            //else // if this is an iteration spawn request
-                            //{
-                            //    // limit count to spawn to match the iteration limit
-                            //    var fractionSpawned = Math.Min(currentCount / (double)desiredCount, 1.0);
-                            //    var fractionRange = preset.IterationLimitFractionRange;
-                            //
-                            //    countToSpawn = (int)Math.Ceiling
-                            //        (desiredCount * fractionRange.GetByFraction(1 - fractionSpawned));
-                            //}
 
                             if (preset.SpawnLimitPerIteration.HasValue)
                             {
-                                countToSpawn =
-                                    Math.Min(countToSpawn,
-                                             preset.SpawnLimitPerIteration.Value);
+                                countToSpawn = Math.Min(countToSpawn,
+                                                        preset.SpawnLimitPerIteration
+                                                              .Value);
                             }
 
-                            // we're not using this feature
-                            NoiseSelector tileRandomSelector = null;
-                            // = this.CreateTileRandomSelector(density, preset, desiredCount);
-
                             var useSectorDensity = preset.PresetUseSectorDensity
-                                                   && ((density
-                                                        * SpawnZoneAreaSize
-                                                        * SpawnZoneAreaSize)
+                                                   && (density
+                                                       * SpawnZoneAreaSize
+                                                       * SpawnZoneAreaSize
                                                        >= SectorDensityThreshold);
 
                             return new SpawnRequest(preset,
@@ -827,7 +817,6 @@
                                                     currentCount,
                                                     countToSpawn,
                                                     density,
-                                                    tileRandomSelector,
                                                     useSectorDensity);
                         }));
 
@@ -945,7 +934,7 @@
             {
                 var currentDensity = request.CurrentCount / (double)zonePositionsCount;
                 sb.Append("* ")
-                  .Append(request.UseSectorDensity ? "(sector) " : ("(global) "))
+                  .Append(request.UseSectorDensity ? "(sector) " : "(global) ")
                   .Append(request.Preset.PrintEntries())
                   .AppendLine(":")
                   .Append("   +")
@@ -972,15 +961,6 @@
                 out bool isSectorDensityExceeded)
             {
                 spawnRequest = activeSpawnRequestsList.TakeByRandom(Random);
-                if (spawnRequest.TileRandomSelector != null
-                    && !spawnRequest.TileRandomSelector
-                                    .IsMatch(spawnPosition.X, spawnPosition.Y, rangeMultiplier: 1))
-                {
-                    // the spawn position doesn't satisfy the the random selector
-                    isSectorDensityExceeded = false;
-                    return;
-                }
-
                 var spawnProtoObject = spawnRequest.Preset.GetRandomObjectProto();
                 IGameObjectWithProto spawnedObject = null;
 

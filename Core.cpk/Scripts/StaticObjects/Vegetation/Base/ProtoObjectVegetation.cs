@@ -319,16 +319,16 @@
 
             var structurePoints = publicState.StructurePointsCurrent;
             if (structurePoints < this.StructurePointsMax
-                && this.StructurePointsRegenerationDurationSeconds > 0)
+                && this.StructurePointsRegenerationDurationSeconds > 0
+                && !Server.World.IsObservedByAnyPlayer(data.GameObject))
             {
-                // regenerate vegetation "health"
+                // regenerate vegetation health points (only if it's not observed by any player)
                 var regenerationPointsPerSecond =
                     this.StructurePointsMax / this.StructurePointsRegenerationDurationSeconds;
 
                 structurePoints =
-                    Math.Min(
-                        (float)(structurePoints + data.DeltaTime * regenerationPointsPerSecond),
-                        this.StructurePointsMax);
+                    Math.Min((float)(structurePoints + data.DeltaTime * regenerationPointsPerSecond),
+                             this.StructurePointsMax);
 
                 publicState.StructurePointsCurrent = structurePoints;
             }
