@@ -126,12 +126,15 @@
                     includeSubfolders: false,
                     stripFolderPathFromFilePaths: true,
                     withoutExtensions: true);
+
                 // TODO: rewrite to avoid LINQ
-                var topIds = availableFiles.Where(_ => _.StartsWith("FrontTop"))
+                var topIds = availableFiles.AsList()
+                                           .Where(_ => _.StartsWith("FrontTop"))
                                            .Select(_ => _.Substring("FrontTop".Length))
                                            .ToArray();
 
-                var bottomIds = availableFiles.Where(_ => _.StartsWith("FrontBottom"))
+                var bottomIds = availableFiles.AsList()
+                                              .Where(_ => _.StartsWith("FrontBottom"))
                                               .Select(_ => _.Substring("FrontBottom".Length))
                                               .ToArray();
 

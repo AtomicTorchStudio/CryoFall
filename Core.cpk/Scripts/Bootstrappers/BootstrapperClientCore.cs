@@ -5,6 +5,8 @@
     using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client.Music;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Server;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;

@@ -24,6 +24,11 @@
 
         public const string AccessListTitle = "Access";
 
+        public const string DecayInfoDemoVersion =
+            @"Please note: This land claim was [b]founded by a demo version player[/b].
+              [br]Because of this, the delay before the decay starts as well as the decay duration itself are [b]shortened[/b].
+              [br]When a demo player purchases the game, those durations revert to their standard values.";
+
         public const string DecayInfoFormat =
             @"Abandoned structures will start decaying after some time
               [br]and eventually disappear to prevent cluttering the map.
@@ -204,7 +209,8 @@
                 ClientTimeFormatHelper.FormatTimeDuration(
                     TimeSpan.FromSeconds(result.DecayDuration),
                     trimRemainder: true),
-                this.ViewModelProtoLandClaimInfoCurrent.CurrentStructureLandClaimDestructionTimeout);
+                this.ViewModelProtoLandClaimInfoCurrent
+                    .CurrentStructureLandClaimDestructionTimeout);
         }
 
         private void SafeItemsSlotsCapacityChangedHandler()

@@ -22,7 +22,6 @@
             inputItems.Add<ItemIngotSteel>(count: 10);
             inputItems.Add<ItemAramidFiber>(count: 10);
             inputItems.Add<ItemTarpaulin>(count: 40);
-            inputItems.Add<ItemGlassRaw>(count: 50);
             inputItems.Add<ItemComponentsElectronic>(count: 15);
 
             outputItems.Add<ItemHazmatSuit>();

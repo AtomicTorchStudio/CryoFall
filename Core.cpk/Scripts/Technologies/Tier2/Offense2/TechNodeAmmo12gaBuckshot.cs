@@ -7,7 +7,8 @@
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeAmmo12gaBuckshot>();
+                  .AddRecipe<RecipeAmmo12gaBuckshot>()
+                  .AddRecipe<RecipeAmmo12gaSaltCharge>();
 
             config.SetRequiredNode<TechNodeAmmo8mmToxic>();
         }

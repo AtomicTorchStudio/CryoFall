@@ -19,8 +19,9 @@
             OutputItems outputItems)
         {
             stations.Add<ObjectStove>();
+            stations.Add<ObjectStoveElectric>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemBottleWaterStale>(count: 1);
 

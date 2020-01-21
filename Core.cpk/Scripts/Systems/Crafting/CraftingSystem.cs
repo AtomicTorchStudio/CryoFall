@@ -91,7 +91,7 @@
                 return null;
             }
 
-            foreach (var testResult in objectsInCharacterInteractionArea)
+            foreach (var testResult in objectsInCharacterInteractionArea.AsList())
             {
                 var worldObject = testResult.PhysicsBody.AssociatedWorldObject as IStaticWorldObject;
                 if (worldObject == null

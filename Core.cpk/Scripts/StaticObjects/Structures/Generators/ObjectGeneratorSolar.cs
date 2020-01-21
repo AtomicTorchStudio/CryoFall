@@ -62,13 +62,13 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemWire>(count: 20);
+            build.AddStageRequiredItem<ItemWire>(count: 10);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemWire>(count: 10);
+            repair.AddStageRequiredItem<ItemWire>(count: 5);
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
         }
 

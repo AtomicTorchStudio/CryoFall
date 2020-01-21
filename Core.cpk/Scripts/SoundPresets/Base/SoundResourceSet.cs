@@ -42,7 +42,7 @@
                 return this.Add(new SoundResource(localSoundFilePath), weight);
             }
 
-            foreach (var file in tempFilesList)
+            foreach (var file in tempFilesList.AsList())
             {
                 this.sounds.Add(new ValueWithWeight<SoundResource>(new SoundResource(file), weight));
             }

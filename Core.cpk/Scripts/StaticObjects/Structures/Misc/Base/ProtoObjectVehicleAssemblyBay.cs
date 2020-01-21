@@ -8,7 +8,6 @@
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.GameEngine.Common.DataStructures;
-    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectVehicleAssemblyBay
@@ -62,12 +61,10 @@
 
             void CollectVehicles(CollisionGroup collisionGroup)
             {
-                using var testResults = vehicleAssemblyBay.PhysicsBody.PhysicsSpace.TestRectangle(
+                foreach (var testResult in vehicleAssemblyBay.PhysicsBody.PhysicsSpace.TestRectangle(
                     position: noObstaclesBounds.Offset,
                     size: noObstaclesBounds.Size,
-                    collisionGroup: collisionGroup);
-
-                foreach (var testResult in testResults)
+                    collisionGroup: collisionGroup).EnumerateAndReturn())
                 {
                     if (testResult.PhysicsBody.AssociatedWorldObject is IDynamicWorldObject dynamicWorldObject
                         && dynamicWorldObject.ProtoGameObject is IProtoVehicle)
@@ -103,12 +100,10 @@
 
             bool HasObstacles(CollisionGroup collisionGroup)
             {
-                using var testResults = vehicleAssemblyBay.PhysicsBody.PhysicsSpace.TestRectangle(
+                foreach (var testResult in vehicleAssemblyBay.PhysicsBody.PhysicsSpace.TestRectangle(
                     position: noObstaclesBounds.Offset,
                     size: noObstaclesBounds.Size,
-                    collisionGroup: collisionGroup);
-
-                foreach (var testResult in testResults)
+                    collisionGroup: collisionGroup).EnumerateAndReturn())
                 {
                     if (testResult.PhysicsBody.AssociatedWorldObject == vehicleAssemblyBay)
                     {

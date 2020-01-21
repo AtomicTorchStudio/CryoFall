@@ -444,6 +444,36 @@
             return result;
         }
 
+        public override bool SharedOnDamage(
+            WeaponFinalCache weaponCache,
+            IStaticWorldObject targetObject,
+            double damagePreMultiplier,
+            out double obstacleBlockDamageCoef,
+            out double damageApplied)
+        {
+            if (IsServer)
+            {
+                LandClaimSystem.ServerOnRaid(targetObject.Bounds,
+                                             weaponCache.Character);
+            }
+
+            var objectPublicState = GetPublicState(targetObject);
+            var previousStructurePoints = objectPublicState.StructurePointsCurrent;
+            if (previousStructurePoints <= 0f)
+            {
+                // already destroyed land claim object (waiting for the destroy timer)
+                obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
+                damageApplied = 0;
+                return true;
+            }
+
+            return base.SharedOnDamage(weaponCache,
+                                       targetObject,
+                                       damagePreMultiplier,
+                                       out obstacleBlockDamageCoef,
+                                       out damageApplied);
+        }
+
         void IInteractableProtoWorldObject.ServerOnClientInteract(ICharacter who, IWorldObject worldObject)
         {
             var area = LandClaimSystem.ServerGetLandClaimArea((IStaticWorldObject)worldObject);
@@ -595,21 +625,6 @@
             ConstructionStageConfig repair,
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category);
-
-        protected override void ServerOnStaticObjectDamageApplied(
-            WeaponFinalCache weaponCache,
-            IStaticWorldObject targetObject,
-            float previousStructurePoints,
-            float currentStructurePoints)
-        {
-            LandClaimSystem.ServerOnRaid(targetObject.Bounds,
-                                         weaponCache.Character);
-
-            base.ServerOnStaticObjectDamageApplied(weaponCache,
-                                                   targetObject,
-                                                   previousStructurePoints,
-                                                   currentStructurePoints);
-        }
 
         protected override void ServerOnStaticObjectZeroStructurePoints(
             WeaponFinalCache weaponCache,

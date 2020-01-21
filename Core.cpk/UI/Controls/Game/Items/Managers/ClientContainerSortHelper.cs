@@ -163,7 +163,7 @@
                                   .ThenBy(item => item.ProtoItem.Id)
                                   .ThenByDescending(item =>
                                                     {
-                                                        if (item.ProtoItem is IProtoItemWithDurablity)
+                                                        if (item.ProtoItem is IProtoItemWithDurability)
                                                         {
                                                             return item
                                                                    .GetPrivateState<IItemWithDurabilityPrivateState>()

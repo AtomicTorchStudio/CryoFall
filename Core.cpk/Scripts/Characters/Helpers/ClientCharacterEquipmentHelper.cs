@@ -265,7 +265,7 @@
                 // setup only implants
                 using var equipmentImplants = Api.Shared.WrapInTempList(
                     containerEquipment.GetItemsOfProto<IProtoItemEquipmentImplant>());
-                foreach (var item in equipmentImplants)
+                foreach (var item in equipmentImplants.AsList())
                 {
                     var proto = (IProtoItemEquipmentImplant)item.ProtoGameObject;
                     proto.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
@@ -304,7 +304,7 @@
                 containerEquipment.GetItemsOfProto<IProtoItemEquipment>());
             if (!IsAllowNakedHumans)
             {
-                if (!equipmentItems.Any(i => i.ProtoGameObject is IProtoItemEquipmentLegs))
+                if (!equipmentItems.AsList().Any(i => i.ProtoGameObject is IProtoItemEquipmentLegs))
                 {
                     // no lower cloth - apply generic one
                     var pants = GenericPantsAttachments.Value;
@@ -315,7 +315,7 @@
                             : pants.SlotAttachmentsFemale);
                 }
 
-                if (!equipmentItems.Any(i => i.ProtoGameObject is IProtoItemEquipmentChest))
+                if (!equipmentItems.AsList().Any(i => i.ProtoGameObject is IProtoItemEquipmentChest))
                 {
                     // no upper cloth - apply generic one (based on character Id)
                     var allShirts = GenericShirtAttachments.Value;
@@ -330,7 +330,7 @@
             }
 
             IItem headEquipment = null;
-            foreach (var item in equipmentItems)
+            foreach (var item in equipmentItems.AsList())
             {
                 var proto = (IProtoItemEquipment)item.ProtoGameObject;
                 proto.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
@@ -392,9 +392,9 @@
                 out var slotAttachmentsMale,
                 out var slotAttachmentsFemale);
 
-            foreach (var spriteFilePath in tempSpritePaths)
+            foreach (var spriteFilePath in tempSpritePaths.AsList())
             {
-                spriteFilePath.FilesInFolder.Dispose();
+                spriteFilePath.Dispose();
             }
 
             return new PlaceholderAttachments(slotAttachmentsMale, slotAttachmentsFemale);

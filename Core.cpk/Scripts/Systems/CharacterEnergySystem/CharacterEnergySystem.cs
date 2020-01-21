@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.CharacterEnergySystem
 {
     using System;
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Devices;
@@ -81,7 +82,7 @@
             }
 
             using var tempItemsList = SharedGetTempListPowerBanksForCharacter(character, true);
-            ServerAddEnergyInternal(energyAmountToAdd, tempItemsList);
+            ServerAddEnergyInternal(energyAmountToAdd, tempItemsList.AsList());
         }
 
         public static void ServerAddEnergyCharge(IItemsContainer container, double energyAmountToAdd)
@@ -111,12 +112,12 @@
                         using var tempCharacterPowerBanks = SharedGetTempListPowerBanksForCharacter(character,
                                                                                                     onlyEquippedDevices:
                                                                                                     false);
-                        tempItemsList.AddRange(tempCharacterPowerBanks);
+                        tempItemsList.AddRange(tempCharacterPowerBanks.AsList());
                     }
                 }
             }
 
-            ServerAddEnergyInternal(energyAmountToAdd, tempItemsList);
+            ServerAddEnergyInternal(energyAmountToAdd, tempItemsList.AsList());
             tempItemsList.Dispose();
         }
 
@@ -138,7 +139,7 @@
                 return false;
             }
 
-            if (!SharedHasEnergyCharge(tempItemsList, requiredEnergyAmount))
+            if (!SharedHasEnergyCharge(tempItemsList.AsList(), requiredEnergyAmount))
             {
                 // not enough energy stored in the battery packs
                 return false;
@@ -177,22 +178,22 @@
         public static uint SharedCalculateTotalEnergyCapacity(ICharacter character)
         {
             using var tempItemsList = SharedGetTempListPowerBanksForCharacter(character, onlyEquippedDevices: true);
-            return SharedCalculateTotalEnergyCapacity(tempItemsList);
+            return SharedCalculateTotalEnergyCapacity(tempItemsList.AsList());
         }
 
         public static double SharedCalculateTotalEnergyCharge(ICharacter character)
         {
             using var tempItemsList = SharedGetTempListPowerBanksForCharacter(character, onlyEquippedDevices: true);
-            return SharedCalculateTotalEnergyCharge(tempItemsList);
+            return SharedCalculateTotalEnergyCharge(tempItemsList.AsList());
         }
 
         public static bool SharedHasEnergyCharge(ICharacter character, double energyRequired)
         {
             using var tempItemsList = SharedGetTempListPowerBanksForCharacter(character, onlyEquippedDevices: true);
-            return SharedHasEnergyCharge(tempItemsList, energyRequired);
+            return SharedHasEnergyCharge(tempItemsList.AsList(), energyRequired);
         }
 
-        private static void ServerAddEnergyInternal(double energyAmountToAdd, ITempList<IItem> powerBanks)
+        private static void ServerAddEnergyInternal(double energyAmountToAdd, List<IItem> powerBanks)
         {
             foreach (var item in powerBanks)
             {
@@ -238,7 +239,7 @@
             ItemDurabilitySystem.ServerModifyDurability(item, -(int)Math.Ceiling(energyAmountUsed));
         }
 
-        private static uint SharedCalculateTotalEnergyCapacity(ITempList<IItem> tempItemsList)
+        private static uint SharedCalculateTotalEnergyCapacity(List<IItem> tempItemsList)
         {
             uint result = 0;
 
@@ -252,7 +253,7 @@
         }
 
         private static double SharedCalculateTotalEnergyCharge(
-            ITempList<IItem> tempItemsList,
+            List<IItem> tempItemsList,
             double stopIfEnergyExceeds = double.NaN)
         {
             var result = 0.0;
@@ -306,7 +307,7 @@
             return tempList;
         }
 
-        private static bool SharedHasEnergyCharge(ITempList<IItem> tempItemsList, double energyRequired)
+        private static bool SharedHasEnergyCharge(List<IItem> tempItemsList, double energyRequired)
         {
             var charge = SharedCalculateTotalEnergyCharge(tempItemsList,
                                                           stopIfEnergyExceeds: energyRequired);

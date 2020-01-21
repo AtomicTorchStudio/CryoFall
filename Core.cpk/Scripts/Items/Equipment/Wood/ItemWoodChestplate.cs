@@ -11,7 +11,7 @@
 
         public override string Name => "Wooden chestplate";
 
-        public override ObjectMaterial Material => ObjectMaterial.Wood;
+        public override ObjectMaterial Material => ObjectMaterial.HardTissues;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

@@ -410,7 +410,7 @@
                 // notify other clients about finished firing weapon
                 using var scopedBy = Shared.GetTempList<ICharacter>();
                 Server.World.GetScopedByPlayers(character, scopedBy);
-                Instance.CallClient(scopedBy,
+                Instance.CallClient(scopedBy.AsList(),
                                     _ => _.ClientRemote_OnWeaponFinished(character));
             }
         }
@@ -441,7 +441,7 @@
                 var observers = new HashSet<ICharacter>();
                 using var tempList = Shared.GetTempList<ICharacter>();
                 Server.World.GetScopedByPlayers(firingCharacter, tempList);
-                observers.AddRange(tempList);
+                observers.AddRange(tempList.AsList());
 
                 foreach (var hitObject in hitObjects)
                 {
@@ -459,7 +459,7 @@
 
                     Server.World.GetScopedByPlayers(hitObject.WorldObject, tempList);
                     tempList.Clear();
-                    observers.AddRange(tempList);
+                    observers.AddRange(tempList.AsList());
                 }
 
                 // add all observers within the sound radius (so they can not only hear but also see the traces)
@@ -472,7 +472,7 @@
                                                    tempList,
                                                    radius: eventNetworkRadius,
                                                    onlyPlayers: true);
-                observers.AddRange(tempList);
+                observers.AddRange(tempList.AsList());
 
                 // don't notify the attacking character
                 observers.Remove(firingCharacter);
@@ -509,7 +509,7 @@
                 using var scopedBy = Shared.GetTempList<ICharacter>();
                 Server.World.GetScopedByPlayers(character, scopedBy);
                 Instance.CallClient(
-                    scopedBy,
+                    scopedBy.AsList(),
                     _ => _.ClientRemote_OnWeaponInputStop(character));
             }
         }
@@ -543,7 +543,7 @@
 
                 var partyId = PartySystem.ServerGetParty(character)?.Id ?? 0;
 
-                Instance.CallClient(observers,
+                Instance.CallClient(observers.AsList(),
                                     _ => _.ClientRemote_OnWeaponShot(character,
                                                                      partyId,
                                                                      protoWeapon,
@@ -566,7 +566,7 @@
             {
                 using var scopedBy = Shared.GetTempList<ICharacter>();
                 Server.World.GetScopedByPlayers(character, scopedBy);
-                Instance.CallClient(scopedBy,
+                Instance.CallClient(scopedBy.AsList(),
                                     _ => _.ClientRemote_OnWeaponStart(character));
             }
         }
@@ -629,7 +629,7 @@
 
             if (IsServer)
             {
-                protoWeapon.ServerOnShot(character, weaponItem, protoWeapon, allHitObjects);
+                protoWeapon.ServerOnShot(character, weaponItem, protoWeapon, allHitObjects.AsList());
             }
         }
 
@@ -660,9 +660,10 @@
             using var testResults = character.PhysicsBody.PhysicsSpace.TestLine(
                 characterPosition,
                 targetPosition,
-                collisionGroup: CollisionGroups.Default);
+                collisionGroup: CollisionGroups.Default,
+                sendDebugEvent: false);
 
-            foreach (var testResult in testResults)
+            foreach (var testResult in testResults.AsList())
             {
                 var testResultPhysicsBody = testResult.PhysicsBody;
                 var protoTile = testResultPhysicsBody.AssociatedProtoTile;
@@ -731,7 +732,7 @@
             }
 
             var isDamageRayStopped = false;
-            foreach (var testResult in lineTestResults)
+            foreach (var testResult in lineTestResults.AsList())
             {
                 var testResultPhysicsBody = testResult.PhysicsBody;
                 var attackedProtoTile = testResultPhysicsBody.AssociatedProtoTile;

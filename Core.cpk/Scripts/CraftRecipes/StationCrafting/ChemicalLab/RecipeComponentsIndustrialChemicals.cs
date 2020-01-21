@@ -16,7 +16,7 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.Medium;
+            duration = CraftingDuration.Short;
 
             inputItems.Add<ItemPotassiumNitrate>(count: 50);
             inputItems.Add<ItemSulfurPowder>(count: 50);

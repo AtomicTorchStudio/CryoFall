@@ -101,7 +101,6 @@
             build.StageDurationSeconds = BuildDuration.Medium;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 10);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 10);
-            build.AddStageRequiredItem<ItemIngotLithium>(count: 5);
             build.AddStageRequiredItem<ItemPlastic>(count: 5);
             build.AddStageRequiredItem<ItemComponentsHighTech>(count: 2);
 

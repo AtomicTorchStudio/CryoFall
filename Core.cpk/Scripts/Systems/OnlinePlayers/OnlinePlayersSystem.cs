@@ -81,7 +81,7 @@
                 }
             }
 
-            Instance.CallClient(tempList,
+            Instance.CallClient(tempList.AsList(),
                                 _ => _.ClientRemote_TotalPlayerCharactersCountChanged(serverLastTotalPlayersCount));
         }
 

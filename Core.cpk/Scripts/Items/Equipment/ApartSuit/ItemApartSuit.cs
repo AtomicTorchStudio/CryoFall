@@ -24,12 +24,12 @@
             defense.Set(
                 impact: 0.50,
                 kinetic: 0.50,
-                heat: 0.65,
+                heat: 0.80,
                 cold: 0.65,
                 chemical: 0.75,
                 electrical: 0.70,
                 radiation: 0.75,
-                psi: 0.60);
+                psi: 0.70);
         }
     }
 }

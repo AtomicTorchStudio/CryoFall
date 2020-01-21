@@ -82,11 +82,11 @@
         {
             category = GetCategory<StructureCategoryIndustry>();
 
-            build.StagesCount = 5;
+            build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemBricks>(count: 20);
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 4);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 4);
+            build.AddStageRequiredItem<ItemBricks>(count: 10);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

@@ -106,7 +106,7 @@
         {
             ulong result = 0;
 
-            foreach (var item in tempItemsList)
+            foreach (var item in tempItemsList.AsList())
             {
                 var privateState = SharedGetPrivateState(item);
                 var charge = privateState.DurabilityCurrent;

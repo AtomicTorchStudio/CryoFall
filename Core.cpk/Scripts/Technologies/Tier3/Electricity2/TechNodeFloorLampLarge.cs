@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectLightFloorLampLarge>();
 
-            config.SetRequiredNode<TechNodePowerStorageLarge>();
+            config.SetRequiredNode<TechNodeStoveElectric>();
         }
     }
 }

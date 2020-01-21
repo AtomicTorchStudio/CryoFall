@@ -28,12 +28,12 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
 
             foreach (var container in containers)
             {
-                foreach (var item in Api.Shared.WrapInTempList(container.Items))
+                foreach (var item in Api.Shared.WrapInTempList(container.Items).EnumerateAndReturn())
                 {
-                    if (item.ProtoItem is IProtoItemWithDurablity protoItemWithDurablity)
+                    if (item.ProtoItem is IProtoItemWithDurability protoItemWithDurability)
                     {
                         var privateState = item.GetPrivateState<IItemWithDurabilityPrivateState>();
-                        var durability = protoItemWithDurablity.DurabilityMax * durabilityFraction;
+                        var durability = protoItemWithDurability.DurabilityMax * durabilityFraction;
                         privateState.DurabilityCurrent = (uint)Math.Round(durability, MidpointRounding.AwayFromZero);
                     }
                 }

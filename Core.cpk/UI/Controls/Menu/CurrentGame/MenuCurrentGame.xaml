@@ -127,12 +127,30 @@
                 <Control Style="{StaticResource ControlHorizontalSeparator}"
                          Margin="0,5,0,8" />
 
-                <core:FormattedTextBlock Content="{Binding ServerDescription}"
-                                         Width="200"
-                                         FontSize="13"
-                                         HorizontalAlignment="Center"
-                                         LineHeight="14.5"
-                                         LineStackingStrategy="BlockLineHeight" />
+                <!-- Description -->
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <core:FormattedTextBlock Content="{Binding ServerDescription}"
+                                             Width="200"
+                                             FontSize="13"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             LineHeight="14.5"
+                                             LineStackingStrategy="BlockLineHeight" />
+
+                    <!-- Edit button -->
+                    <Button Grid.Column="1"
+                            Content="{x:Static loc:CoreStrings.Button_Edit}"
+                            Command="{Binding CommandEditDescription}"
+                            Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Margin="3,0,0,0"
+                            MinWidth="40" />
+                </Grid>
+
 
                 <Grid HorizontalAlignment="Stretch"
                       Margin="0,15,0,0">
@@ -145,11 +163,11 @@
                             Command="{Binding CommandShowWelcomeMessage}"
                             Margin="0" />
 
-                    <!-- Edit welcome message -->
+                    <!-- Edit button -->
                     <Button Grid.Column="1"
                             Content="{x:Static loc:CoreStrings.Button_Edit}"
                             Command="{Binding CommandEditWelcomeMessage}"
-                            Visibility="{Binding CanEditWelcomeMessage, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}"
                             Margin="3,0,0,0"
                             MinWidth="40" />
                 </Grid>

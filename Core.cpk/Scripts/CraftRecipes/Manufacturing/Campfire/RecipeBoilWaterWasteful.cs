@@ -21,7 +21,7 @@
         {
             stations.Add<ObjectCampfire>();
 
-            duration = CraftingDuration.Medium;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemBottleWaterStale>(count: 2);
 

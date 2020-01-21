@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeIngotGold>();
 
-            config.SetRequiredNode<TechNodeSandFromStone>();
+            config.SetRequiredNode<TechNodeBombMining>();
         }
     }
 }

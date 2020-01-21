@@ -1,11 +1,20 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
-    using AtomicTorch.CBND.CoreMod.Items.Weapons.Ranged;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
+    using AtomicTorch.CBND.CoreMod.Systems.Crafting;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestCraftRangedWeapon : ProtoQuest
     {
+        public const string CraftMusketOrFlintlockPistol = "Craft musket or flintlock pistol";
+
+        public const string CraftPaperCartridge = "Craft paper cartridge";
+
+        public const string FireTheWeapon = "Fire the weapon";
+
         public override string Description =>
             "Smashing skulls in with a mace is fine, but sometimes you want something with range. Especially if you go against more serious adversaries.";
 
@@ -22,9 +31,17 @@
         {
             requirements
                 .Add(RequirementBuildStructure.Require<ObjectWeaponWorkbench>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeAmmoPaperCartridge>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeMusket>())
-                .Add(RequirementUseItem.Require<ItemMusket>());
+                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeAmmoPaperCartridge>(
+                         description: CraftPaperCartridge))
+                .Add(RequirementCraftRecipe.RequireStationRecipe(
+                         new List<Recipe.RecipeForStationCrafting>()
+                         {
+                             Api.GetProtoEntity<RecipeMusket>(),
+                             Api.GetProtoEntity<RecipeFlintlockPistol>()
+                         },
+                         description: CraftMusketOrFlintlockPistol))
+                .Add(RequirementUseItem.Require<IProtoItemWeaponRanged>(
+                         description: FireTheWeapon));
 
             prerequisites
                 .Add<QuestCraftIronTools>();

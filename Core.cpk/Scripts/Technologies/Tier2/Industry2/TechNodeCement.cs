@@ -8,8 +8,6 @@
         {
             config.Effects
                   .AddRecipe<RecipeCement>();
-
-            //config.SetRequiredNode<TechNodeAdvancedIndustry>();
         }
     }
 }

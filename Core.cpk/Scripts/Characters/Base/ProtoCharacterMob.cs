@@ -124,7 +124,8 @@
 
             using var tempList = Api.Shared.GetTempList<ICharacter>();
             ServerWorld.GetScopedByPlayers(gameObject, tempList);
-            this.CallClient(tempList, _ => _.ClientRemote_OnCharacterMobDeath(gameObject.Position));
+            this.CallClient(tempList.AsList(),
+                            _ => _.ClientRemote_OnCharacterMobDeath(gameObject.Position));
         }
 
         public override IEnumerable<IItemsContainer> SharedEnumerateAllContainers(

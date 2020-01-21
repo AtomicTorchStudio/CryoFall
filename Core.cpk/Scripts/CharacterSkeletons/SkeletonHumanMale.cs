@@ -3,7 +3,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    public class SkeletonHumanMale : SkeletonHuman
+    public class SkeletonHumanMale : ProtoCharacterSkeletonHuman
     {
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("Human/MaleBack");

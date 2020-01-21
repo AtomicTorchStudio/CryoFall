@@ -20,8 +20,8 @@
             duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemIngotCopper>(count: 5);
-            inputItems.Add<ItemComponentsElectronic>(count: 4);
-            inputItems.Add<ItemGlassRaw>(count: 15);
+            inputItems.Add<ItemComponentsElectronic>(count: 1);
+            inputItems.Add<ItemGlassRaw>(count: 10);
 
             outputItems.Add<ItemFlashlight>();
         }

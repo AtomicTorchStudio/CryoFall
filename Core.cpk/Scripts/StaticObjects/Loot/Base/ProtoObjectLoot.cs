@@ -59,7 +59,9 @@
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => (0.5, 0.15);
+        {
+            return (0.5, 0.15);
+        }
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
@@ -204,7 +206,8 @@
             {
                 Server.World.GetScopedByPlayers(worldObject, scopedBy);
                 scopedBy.Remove(character);
-                this.CallClient(scopedBy, _ => _.ClientRemote_OtherPlayerPickedUp(worldObject.TilePosition));
+                this.CallClient(scopedBy.AsList(),
+                                _ => _.ClientRemote_OtherPlayerPickedUp(worldObject.TilePosition));
             }
 
             // destroy object after success pickup

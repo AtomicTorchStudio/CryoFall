@@ -278,7 +278,7 @@
             LandClaimSystem.SharedGetAreasInBounds(targetObjectBounds,
                                                    landClaimAreas,
                                                    addGracePadding: false);
-            foreach (var area in landClaimAreas)
+            foreach (var area in landClaimAreas.AsList())
             {
                 isThereAnyLandClaimArea = true;
                 if (!LandClaimSystem.SharedIsAreaUnderRaid(area))

@@ -849,7 +849,7 @@
             using var scopedBy = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetScopedByPlayers(character, scopedBy);
             scopedBy.Remove(character);
-            Instance.CallClient(scopedBy,
+            Instance.CallClient(scopedBy.AsList(),
                                 _ => _.ClientRemote_OnOtherCharacterReloading(character, itemProto));
         }
 

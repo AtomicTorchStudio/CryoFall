@@ -1,0 +1,93 @@
+﻿<!-- ReSharper disable CanExtractXamlLocalizableStringXaml -->
+<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras.UpdatesHistory.MenuUpdatesHistory"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    SnapsToDevicePixels="False"
+    x:Name="UserControl">
+
+    <base:BaseUserControl.Resources>
+        <Style x:Key="Title" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="LineHeight" Value="17" />
+            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <Style x:Key="Date" TargetType="TextBlock" BasedOn="{StaticResource Title}">
+            <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Margin" Value="0,-3,0,0" />
+        </Style>
+    </base:BaseUserControl.Resources>
+
+    <ContentControl Padding="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    FontFamily="{StaticResource CondensedFontFamily}"
+                    FontSize="12"
+                    MaxHeight="500">
+        <ScrollViewer x:Name="ScrollViewer"
+                      Margin="7"
+                      VerticalScrollBarVisibility="Hidden">
+            <ScrollViewer.OpacityMask>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#00000000" Offset="0" />
+                    <GradientStop Color="#FF000000" Offset="0.05" />
+                    <GradientStop Color="#FF000000" Offset="0.95" />
+                    <GradientStop Color="#00000000" Offset="1" />
+                </LinearGradientBrush>
+            </ScrollViewer.OpacityMask>
+
+            <StackPanel Width="300"
+                        Orientation="Vertical"
+                        TextOptions.TextHintingMode="Animated">
+                <Image x:Name="GameLogo"
+                       Source="/UI/Images/Logo/logo_cryofall_128.png"
+                       Stretch="Uniform"
+                       SnapsToDevicePixels="False"
+                       HorizontalAlignment="Center"
+                       Height="50"
+                       Margin="0,0,0,225" />
+
+                <ItemsControl ItemsSource="{Binding Entries, ElementName=UserControl}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,0,25">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Style="{StaticResource Title}"
+                                           Text="{Binding Title}" />
+
+                                <TextBlock Grid.Row="1"
+                                           Style="{StaticResource Date}"
+                                           Text="{Binding Date}" />
+
+                                <Rectangle Grid.Row="2"
+                                           Fill="{Binding Image}"
+                                           x:Name="ImageRectangle"
+                                           UseLayoutRounding="True"
+                                           Width="308"
+                                           Height="176"
+                                           Margin="0,5,0,0" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </ContentControl>
+</base:BaseUserControl>

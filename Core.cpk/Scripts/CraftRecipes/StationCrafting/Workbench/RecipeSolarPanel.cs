@@ -18,13 +18,12 @@
 
             duration = CraftingDuration.Long;
 
-            inputItems.Add<ItemGlassRaw>(count: 100);
+            inputItems.Add<ItemGlassRaw>(count: 50);
             inputItems.Add<ItemWire>(count: 50);
-            inputItems.Add<ItemComponentsElectronic>(count: 20);
-            inputItems.Add<ItemOrePragmium>(count: 20);
             inputItems.Add<ItemComponentsOptical>(count: 10);
+            inputItems.Add<ItemComponentsElectronic>(count: 10);
             inputItems.Add<ItemPlastic>(count: 10);
-            inputItems.Add<ItemPowerCell>(count: 5);
+            inputItems.Add<ItemOrePragmium>(count: 10);
 
             outputItems.Add<ItemSolarPanel>(count: 1);
         }

@@ -20,7 +20,6 @@
 
             inputItems.Add<ItemComponentsElectronic>(count: 10);
             inputItems.Add<ItemIngotGold>(count: 4);
-            inputItems.Add<ItemIngotLithium>(count: 4);
             inputItems.Add<ItemPlastic>(count: 1);
 
             outputItems.Add<ItemComponentsHighTech>(count: 5);

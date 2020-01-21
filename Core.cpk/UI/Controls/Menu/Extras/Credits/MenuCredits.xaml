@@ -1,0 +1,277 @@
+﻿<!-- ReSharper disable CanExtractXamlLocalizableStringXaml -->
+<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Extras.Credits.MenuCredits"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    SnapsToDevicePixels="False">
+
+    <base:BaseUserControl.Resources>
+        <Style x:Key="Section" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,35,0,-3" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <Style x:Key="MiniSection" TargetType="TextBlock" BasedOn="{StaticResource Section}">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,10,0,-3" />
+        </Style>
+
+        <Style x:Key="Name" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Margin" Value="0,-1,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="LineHeight" Value="14" />
+            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+        </Style>
+
+        <Style x:Key="Title" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource BrushColor7}" />
+            <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </base:BaseUserControl.Resources>
+
+    <ContentControl Padding="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    FontFamily="{StaticResource CondensedFontFamily}"
+                    FontSize="12"
+                    MaxHeight="500">
+        <ScrollViewer x:Name="ScrollViewer"
+                      Margin="7"
+                      VerticalScrollBarVisibility="Hidden">
+            <ScrollViewer.OpacityMask>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#00000000" Offset="0" />
+                    <GradientStop Color="#FF000000" Offset="0.05" />
+                    <GradientStop Color="#FF000000" Offset="0.95" />
+                    <GradientStop Color="#00000000" Offset="1" />
+                </LinearGradientBrush>
+            </ScrollViewer.OpacityMask>
+
+            <StackPanel Width="300"
+                        Orientation="Vertical"
+                        TextOptions.TextHintingMode="Animated">
+                <Image x:Name="GameLogo"
+                       Source="/UI/Images/Logo/logo_cryofall_128.png"
+                       Stretch="Uniform"
+                       SnapsToDevicePixels="False"
+                       HorizontalAlignment="Center"
+                       Height="50"
+                       Margin="0,0,0,225" />
+
+                <TextBlock Style="{StaticResource Section}" Margin="0">CryoFall &#x2014; Development</TextBlock>
+                <TextBlock Style="{StaticResource MiniSection}">AtomicTorch Studio</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Game Designer, Producer</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Valentin Gukov @Lurler</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Lead Developer</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Vladimir Kozlov @ai_enabled</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Lead Artist</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Andrew Shevchenko @Shefik</TextBlock>
+
+
+                <TextBlock Style="{StaticResource MiniSection}" Margin="0,20,0,-3">Additional contributors</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Sound design</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Arthur Baryshev / IK-Sound</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Music</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Konstantin Glazunov</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">VFX, alpha trailer</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Konstantin Lapenko</TextBlock>
+
+
+                <TextBlock Style="{StaticResource Section}">CryoFall &#x2014; Publishing</TextBlock>
+                <TextBlock Style="{StaticResource MiniSection}">Daedalic Entertainment</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Chief Executive Officer</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Carsten Fichtelmann</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Chief Operating Officer</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Stephan Harms</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Creative Director</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Jan Müller-Michaelis</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Technical Director</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Nick Prühs</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Head of Production</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Kai Fiebig</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Head of Communications</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Sandra Hübner</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Marketing</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Marie Müller</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Mounir Aouina</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Community Management</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Lisa Mallory</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Steffen Slacki</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Sales &amp; Product Management</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Stefan Hiller</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Justus Jeromin</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Maximilian Bernardi</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Business Development, Producer</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Jonas Hüsges</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Lead Motion Designer</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Alexander Junghans</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Support</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Maria Lesk</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Human Resources</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Iris Wolfer</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Accounting</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Nils Ball</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Jessica Paulat</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">IT Administration</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Nils-Peter Brodersen</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Filipe Alves</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Localization</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Maria Lesk</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Benjamin Kuhn</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Mastering</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Eduard Wolf</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Robert Zillmer</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Head of QA</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Maik Hildebrandt</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Quality Assurance</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Sven Sauerhammer</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Gunnar Götzfried</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Saide Haberstroh</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Sven Eimuth</TextBlock>
+
+
+                <TextBlock Style="{StaticResource Section}">Localization contributors</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">German translation, proofread and LQA</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Jane Schröder</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">French translation, proofread and LQA</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Words of Magic</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Russian translation</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Kira Nepochatova</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Russian proofread and LQA</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Uliana Erofeeva</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Russian LQA</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Ilya Prokopev</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Spanish translation, proofread and LQA</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Ramón Méndez</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Brazilian Portuguese translation, proofread and LQA</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Thiago Araujo &amp; Danilo Venturini</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Chinese, Korean, and Japanese translation, proofread and LQA</TextBlock>
+                <TextBlock Style="{StaticResource Name}">WhisperGames</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Polish translation, proofread and LQA</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Michał Tosza</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Turkish translation, proofread and LQA</TextBlock>
+                <TextBlock Style="{StaticResource Name}">AiBell Localization</TextBlock>
+
+
+                <TextBlock Style="{StaticResource Section}">Special thanks</TextBlock>
+                <TextBlock Style="{StaticResource Name}"
+                           FontSize="11"
+                           LineHeight="12.5"
+                           Margin="0,5,0,0">
+                    Sergei&#160;Morozov, Jesús de Santos García, Sergio Fernandez, AkvoMaster, p0ki, Yrol&#160;Denjeah, Evil&#160;Mammoth,
+                    <LineBreak />David Parfitt aka Daitallica, Kane&#160;Hart, IndignoPlay,
+                    <LineBreak />Djekke, Kawasoe, PanBanan, KaypeX
+                    <LineBreak />Adrian, Robin and Mathias of toneworx GmbH
+                    <LineBreak />Bartłomiej Terech aka Cosiek,
+                    <LineBreak /><Run FontFamily="{StaticResource AsianFontFamily}">サーバー団地</Run>
+                    <LineBreak />Avakyn, Deathmall, RewinKant
+                    <LineBreak />Rekenbeker, PentaQ, Morgus
+                    <LineBreak />Buddaz, Ingvarr
+                </TextBlock>
+
+
+                <TextBlock Style="{StaticResource Section}">Technologies</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Renkei Engine</TextBlock>
+                <TextBlock Style="{StaticResource Name}">AtomicTorch Studio's game engine</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">AtomicSerializer</TextBlock>
+                <TextBlock Style="{StaticResource Name}">AtomicTorch Studio's serialization library</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">.NET Framework &amp; .NET Core</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Software framework</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">NoesisGUI</TextBlock>
+                <TextBlock Style="{StaticResource Name}">UI framework</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">MonoGame</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Game framework</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Lidgren Network</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Networking library</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">FMOD Sound System</TextBlock>
+                <TextBlock Style="{StaticResource Name}">by Firelight Technologies Pty Ltd</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Spine</TextBlock>
+                <TextBlock Style="{StaticResource Name}">2D skeletal animation tool</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">SharpCompress</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Compression library</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">SharpDX</TextBlock>
+                <TextBlock Style="{StaticResource Name}">Open-source .NET wrapper of the DirectX API</TextBlock>
+
+                <TextBlock Style="{StaticResource Title}">Fonts</TextBlock>
+                <TextBlock Style="{StaticResource Name}"
+                           LineHeight="12.5">
+                    Amatic SC, Oswald, Roboto,
+                    <LineBreak />Source Han Sans, Ubuntu Mono
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource Name}"
+                           Margin="0,20,0,0"
+                           LineHeight="12.5">
+                    All the license files could be found
+                    <LineBreak />in the game installation folder
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </ContentControl>
+</base:BaseUserControl>

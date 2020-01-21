@@ -20,7 +20,7 @@
             duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemComponentsPharmaceutical>(count: 100);
-            inputItems.Add<ItemComponentsHighTech>(count: 5);
+            inputItems.Add<ItemComponentsHighTech>(count: 10);
             inputItems.Add<ItemPowerCell>(count: 1);
             inputItems.Add<ItemPlastic>(count: 20);
 

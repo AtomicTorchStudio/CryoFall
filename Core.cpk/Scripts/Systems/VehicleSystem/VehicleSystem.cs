@@ -93,15 +93,15 @@
             if (IsServer)
             {
                 Server.World.GetStaticWorldObjectsInView(character,
-                                                         tempStaticObjects,
+                                                         tempStaticObjects.AsList(),
                                                          sortByDistance: false);
             }
             else
             {
-                Client.World.GetStaticWorldObjects(tempStaticObjects);
+                Client.World.GetStaticWorldObjects(tempStaticObjects.AsList());
             }
 
-            foreach (var staticWorldObject in tempStaticObjects)
+            foreach (var staticWorldObject in tempStaticObjects.AsList())
             {
                 if (staticWorldObject.ProtoStaticWorldObject is IProtoVehicleAssemblyBay protoVehicleAssemblyBay
                     && protoVehicleAssemblyBay.SharedCanInteract(character, staticWorldObject, writeToLog: false))
@@ -213,7 +213,7 @@
 
             Instance.CallClient(character,
                                 _ => _.ClientRemote_OnVehicleExitByCurrentPlayer(vehicle, protoVehicle));
-            Instance.CallClient(tempPlayers,
+            Instance.CallClient(tempPlayers.AsList(),
                                 _ => _.ClientRemote_OnVehicleExitByOtherPlayer(vehicle,
                                                                                vehicle.Position,
                                                                                protoVehicle));
@@ -421,7 +421,7 @@
 
             Instance.CallClient(character,
                                 _ => _.ClientRemote_OnVehicleEnterByCurrentPlayer(protoVehicle));
-            Instance.CallClient(tempPlayers,
+            Instance.CallClient(tempPlayers.AsList(),
                                 _ => _.ClientRemote_OnVehicleEnterByOtherPlayer(vehicle.Position, protoVehicle));
         }
 

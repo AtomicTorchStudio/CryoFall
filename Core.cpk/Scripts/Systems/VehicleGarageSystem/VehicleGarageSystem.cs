@@ -332,7 +332,7 @@
                 tempVehiclesList);
 
             var isPutAtLeastOne = false;
-            foreach (var vehicle in tempVehiclesList)
+            foreach (var vehicle in tempVehiclesList.AsList())
             {
                 if (ServerCanCharacterPutVehicleIntoGarage(vehicle, byCharacter: character))
                 {
@@ -350,7 +350,7 @@
                 Server.World.GetScopedByPlayers(currentInteractionObject, tempPlayers);
                 tempPlayers.Remove(character);
 
-                Instance.CallClient(tempPlayers,
+                Instance.CallClient(tempPlayers.AsList(),
                                     _ => _.ClientRemote_OnVehiclePutToGarageByOtherPlayer(soundPosition));
             }
 
@@ -444,7 +444,7 @@
             Server.World.GetScopedByPlayers(currentInteractionObject, tempPlayers);
             tempPlayers.Remove(character);
 
-            Instance.CallClient(tempPlayers,
+            Instance.CallClient(tempPlayers.AsList(),
                                 _ => _.ClientRemote_OnVehicleTakenFromGarageByOtherPlayer(soundPosition));
 
             return TakeVehicleResult.Success;

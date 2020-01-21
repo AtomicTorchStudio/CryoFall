@@ -4,14 +4,13 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
-    using System.Windows;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.FeaturesSlideshow;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Controllers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.FeaturesSlideshow;
 
     public class ViewModelMenuHome : BaseViewModel
     {
@@ -80,11 +79,11 @@
         public SuperObservableCollection<RssFeedEntry> NewsItemsList { get; }
             = new SuperObservableCollection<RssFeedEntry>();
 
-        public string UpdateReleaseDateText => new DateTime(2019, month: 11, day: 25)
+        public string UpdateReleaseDateText => new DateTime(2020, month: 2, day: 1)
                                                .ToString("MMMM yyyy", CultureInfo.CurrentUICulture)
                                                .ToUpperInvariant();
 
-        public string UpdateTitle => "A24—Mechanized Update";
+        public string UpdateTitle => "A25—Balancing Update";
 
         protected override void DisposeViewModel()
         {

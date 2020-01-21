@@ -11,8 +11,8 @@
         {
             config.Effects
                   .AddStructure<ObjectFurnace>()
-                  .AddRecipe<RecipeIngotCopper>()
-                  .AddRecipe<RecipeIngotIron>();
+                  .AddRecipe<RecipeIngotCopperFromOre>()
+                  .AddRecipe<RecipeIngotIronFromOre>();
 
             config.SetRequiredNode<TechNodeWorkbench>();
         }

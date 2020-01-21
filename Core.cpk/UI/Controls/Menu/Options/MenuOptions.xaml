@@ -35,7 +35,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <core:TabControlCached x:Name="TabControl" Margin="0,3,0,0"
+            <core:TabControlCached x:Name="TabControl"
+                                   Margin="0,3,0,0"
                                    SelectedItem="{Binding SelectedTab}" />
 
             <StackPanel Grid.Row="2"

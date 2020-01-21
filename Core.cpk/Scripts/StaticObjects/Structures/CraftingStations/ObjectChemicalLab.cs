@@ -41,7 +41,7 @@
         {
             category = GetCategory<StructureCategoryIndustry>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemPlanks>(count: 10);
             build.AddStageRequiredItem<ItemIngotIron>(count: 1);
@@ -49,7 +49,7 @@
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemPlanks>(count: 5);
+            repair.AddStageRequiredItem<ItemPlanks>(count: 4);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

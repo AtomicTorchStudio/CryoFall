@@ -83,7 +83,7 @@
         {
             using var tempOrderedList = Api.Shared.WrapInTempList(this.GetOrderedList());
             // simply reset the observable collection
-            this.ServersCollection.ClearAndAddRange(tempOrderedList);
+            this.ServersCollection.ClearAndAddRange(tempOrderedList.AsList());
             return;
 
             // not implemented by NoesisGUI

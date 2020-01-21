@@ -35,7 +35,7 @@
             }
 
             using var tempList = Api.Shared.WrapInTempList(data.GameObject.Items);
-            foreach (var item in tempList)
+            foreach (var item in tempList.AsList())
             {
                 Server.Items.DestroyItem(item);
             }

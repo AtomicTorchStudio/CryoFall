@@ -14,9 +14,9 @@
         public override string Description =>
             "Light variant of gravi-platform design. Relatively cheap to manufacture while offering great speed and fuel economy.";
 
-        public override ushort EnergyUsePerSecondIdle => 25;
+        public override ushort EnergyUsePerSecondIdle => 10;
 
-        public override ushort EnergyUsePerSecondMoving => 100;
+        public override ushort EnergyUsePerSecondMoving => 50;
 
         public override double EngineSoundVolume => 0.4;
 
@@ -67,13 +67,11 @@
             buildRequiredItems
                 .Add<ItemStructuralPlating>(3)
                 .Add<ItemImpulseEngine>(3)
-                .Add<ItemComponentsElectronic>(10)
-                .Add<ItemComponentsOptical>(5);
+                .Add<ItemComponentsElectronic>(10);
 
             repairStageRequiredItems
                 .Add<ItemIngotSteel>(5)
-                .Add<ItemComponentsElectronic>(1)
-                .Add<ItemComponentsOptical>(1);
+                .Add<ItemComponentsElectronic>(1);
 
             repairStagesCount = 5;
         }

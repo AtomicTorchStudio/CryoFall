@@ -28,7 +28,7 @@
         public const string Notification_NewResourceAvailable_Title =
             "New resource available";
 
-        private const string TooltipDepositSearchAreaFormat = "Search area — {0}";
+        private const string TooltipDepositSearchAreaFormat = "Search area: {0}";
 
         private readonly List<(WorldMapResourceMark mark, HUDNotificationControl notification)> notifications
             = new List<(WorldMapResourceMark mark, HUDNotificationControl notification)>();

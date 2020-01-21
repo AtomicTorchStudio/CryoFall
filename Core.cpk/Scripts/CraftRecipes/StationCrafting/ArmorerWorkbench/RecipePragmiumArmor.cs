@@ -19,10 +19,10 @@
 
             duration = CraftingDuration.VeryLong;
 
-            inputItems.Add<ItemOrePragmium>(count: 50);
+            inputItems.Add<ItemOrePragmium>(count: 60);
             inputItems.Add<ItemIngotSteel>(count: 25);
             inputItems.Add<ItemAramidFiber>(count: 25);
-            inputItems.Add<ItemBallisticPlate>(count: 2);
+            inputItems.Add<ItemBallisticPlate>(count: 3);
             inputItems.Add<ItemComponentsElectronic>(count: 10);
 
             outputItems.Add<ItemPragmiumArmor>();

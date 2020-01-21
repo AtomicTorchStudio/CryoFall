@@ -125,7 +125,7 @@
                 using var tempSourcePaths = Api.Shared.GetTempList<string>();
                 this.ClientFillSlotAttachmentSources(tempSourcePaths);
                 using var tempSpritePaths = ClientEquipmentSpriteHelper.CollectSpriteFilePaths(
-                    tempSourcePaths.ToList());
+                    tempSourcePaths.AsList());
 
                 ClientEquipmentSpriteHelper.CollectSlotAttachments(
                     tempSpritePaths.AsList(),
@@ -137,9 +137,9 @@
                 this.SlotAttachmentsMale = slotAttachmentsMale;
                 this.SlotAttachmentsFemale = slotAttachmentsFemale;
 
-                foreach (var file in tempSpritePaths)
+                foreach (var file in tempSpritePaths.AsList())
                 {
-                    file.FilesInFolder.Dispose();
+                    file.Dispose();
                 }
             }
 

@@ -139,7 +139,7 @@
                 centerLocation,
                 radius,
                 collisionGroup: CollisionGroups.Default,
-                sendDebugEvent: false))
+                sendDebugEvent: false).EnumerateAndReturn())
             {
                 if (result.PhysicsBody.AssociatedProtoTile != null)
                 {
@@ -602,6 +602,37 @@
             return null;
         }
 
+        private SpawnRequest ServerCreateSpawnRequestForPreset(
+            ObjectSpawnPreset preset,
+            SpawnConfig config,
+            int zonePositionsCount,
+            Dictionary<ObjectSpawnPreset, int> spawnedObjectsCount)
+        {
+            var density = preset.Density * config.DensityMultiplier;
+            var desiredCount = this.SharedCalculatePresetDesiredCount(
+                preset,
+                desiredCountByDensity: (int)(density * zonePositionsCount));
+
+            var currentCount = spawnedObjectsCount.Find(preset);
+            var countToSpawn = Math.Max(0, desiredCount - currentCount);
+
+            if (preset.SpawnLimitPerIteration.HasValue)
+            {
+                countToSpawn = Math.Min(countToSpawn, preset.SpawnLimitPerIteration.Value);
+            }
+
+            var useSectorDensity = preset.PresetUseSectorDensity
+                                   && (density * SpawnZoneAreaSize * SpawnZoneAreaSize
+                                       >= SectorDensityThreshold);
+
+            return new SpawnRequest(preset,
+                                    desiredCount,
+                                    currentCount,
+                                    countToSpawn,
+                                    density,
+                                    useSectorDensity);
+        }
+
         /// <summary>
         /// Get all (already populated) areas with their objects inside the zone
         /// </summary>
@@ -784,41 +815,16 @@
             await yieldIfOutOfTime();
 
             // calculate how many objects we need to spawn
-            using var allSpawnRequests = Api.Shared.WrapInTempList(
+            using var allSpawnRequestsTempList = Api.Shared.WrapInTempList(
                 this.SpawnList
                     .Where(preset => preset.Density > 0)
-                    .Select(
-                        preset =>
-                        {
-                            var density = preset.Density * config.DensityMultiplier;
-                            var desiredCount = this.SharedCalculatePresetDesiredCount(
+                    .Select(preset => this.ServerCreateSpawnRequestForPreset(
                                 preset,
-                                desiredCountByDensity: (int)(density
-                                                             * zonePositionsCount));
-                            var currentCount = spawnedObjectsCount.Find(preset);
-                            var countToSpawn =
-                                Math.Max(0, desiredCount - currentCount);
+                                config,
+                                zonePositionsCount,
+                                spawnedObjectsCount)));
 
-                            if (preset.SpawnLimitPerIteration.HasValue)
-                            {
-                                countToSpawn = Math.Min(countToSpawn,
-                                                        preset.SpawnLimitPerIteration
-                                                              .Value);
-                            }
-
-                            var useSectorDensity = preset.PresetUseSectorDensity
-                                                   && (density
-                                                       * SpawnZoneAreaSize
-                                                       * SpawnZoneAreaSize
-                                                       >= SectorDensityThreshold);
-
-                            return new SpawnRequest(preset,
-                                                    desiredCount,
-                                                    currentCount,
-                                                    countToSpawn,
-                                                    density,
-                                                    useSectorDensity);
-                        }));
+            var allSpawnRequests = allSpawnRequestsTempList.AsList();
 
             var mobsTrackingManager = SpawnedMobsTrackingManagersStore.Get(this, zone);
             var physicsSpace = Server.World.GetPhysicsSpace();
@@ -854,9 +860,9 @@
                 }
 
                 using var areasList = Api.Shared.WrapInTempList(spawnZoneAreas.Values);
-                areasList.Shuffle();
+                areasList.AsList().Shuffle();
 
-                foreach (var area in areasList)
+                foreach (var area in areasList.AsList())
                 {
                     await yieldIfOutOfTime();
                     if (activeSpawnRequestsList.Count > 0)
@@ -960,7 +966,7 @@
                 out SpawnRequest spawnRequest,
                 out bool isSectorDensityExceeded)
             {
-                spawnRequest = activeSpawnRequestsList.TakeByRandom(Random);
+                spawnRequest = activeSpawnRequestsList.AsList().TakeByRandom(Random);
                 var spawnProtoObject = spawnRequest.Preset.GetRandomObjectProto();
                 IGameObjectWithProto spawnedObject = null;
 

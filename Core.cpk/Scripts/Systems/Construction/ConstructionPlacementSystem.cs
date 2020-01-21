@@ -158,15 +158,13 @@
             // var scopedByPlayers = Server.World.GetScopedByPlayers(structure);
 
             //// Workaround:
-            using (var scopedByPlayers = Api.Shared.GetTempList<ICharacter>())
-            {
-                Server.World.GetScopedByPlayers(byCharacter, scopedByPlayers);
-                this.CallClient(scopedByPlayers,
-                                _ => _.ClientRemote_OnStructurePlaced(structure.ProtoStaticWorldObject,
-                                                                      structure.TilePosition,
-                                                                      /*isByCurrentPlayer: */
-                                                                      false));
-            }
+            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(byCharacter, scopedBy);
+            this.CallClient(scopedBy.AsList(),
+                            _ => _.ClientRemote_OnStructurePlaced(structure.ProtoStaticWorldObject,
+                                                                  structure.TilePosition,
+                                                                  /*isByCurrentPlayer: */
+                                                                  false));
 
             this.CallClient(byCharacter,
                             _ => _.ClientRemote_OnStructurePlaced(structure.ProtoStaticWorldObject,

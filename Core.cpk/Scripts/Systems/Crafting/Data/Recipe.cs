@@ -83,7 +83,7 @@
                     switch (protoItem)
                     {
                         case IProtoItemWithFreshness itemWithFreshness when itemWithFreshness.FreshnessMaxValue > 0:
-                        case IProtoItemWithDurablity durability when durability.DurabilityMax > 0:
+                        case IProtoItemWithDurability durability when durability.DurabilityMax > 0:
                             // not cancellable
                             return false;
                     }

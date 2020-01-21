@@ -209,7 +209,7 @@
             using var scopedBy = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetScopedByPlayers(character, scopedBy);
             scopedBy.Add(character);
-            this.CallClient(scopedBy, _ => _.ClientRemote_CharacterDrankWater(character));
+            this.CallClient(scopedBy.AsList(), _ => _.ClientRemote_CharacterDrankWater(character));
         }
 
         private bool SharedValidateCanDrink(ICharacter character, IStaticWorldObject objectWell)

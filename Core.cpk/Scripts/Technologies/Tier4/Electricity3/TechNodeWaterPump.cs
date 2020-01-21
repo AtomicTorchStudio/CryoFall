@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectWaterPump>();
 
-            config.SetRequiredNode<TechNodeSolarPanel>();
+            config.SetRequiredNode<TechNodeGeneratorSolar>();
         }
     }
 }

@@ -189,7 +189,7 @@
                     using var tempList = Api.Shared.GetTempList<ICharacter>();
                     Server.World.GetScopedByPlayers(targetObject, tempList);
                     tempList.Remove(weaponCache.Character);
-                    this.CallClient(tempList, _ => _.ClientRemote_OnHit());
+                    this.CallClient(tempList.AsList(), _ => _.ClientRemote_OnHit());
                 }
                 else
                 {
@@ -317,7 +317,7 @@
                 () =>
                 {
                     // kill all spawned mobs
-                    foreach (var character in Api.Shared.WrapInTempList(privateState.MobsList))
+                    foreach (var character in Api.Shared.WrapInTempList(privateState.MobsList).EnumerateAndReturn())
                     {
                         if (!character.IsDestroyed)
                         {

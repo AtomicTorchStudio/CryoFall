@@ -17,7 +17,7 @@
         {
             stations.Add<ObjectWeaponWorkbench>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemAmmo8mmStandard>(count: 2);
             inputItems.Add<ItemToxin>(count: 1);

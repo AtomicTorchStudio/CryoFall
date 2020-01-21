@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.CraftRecipes
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems;

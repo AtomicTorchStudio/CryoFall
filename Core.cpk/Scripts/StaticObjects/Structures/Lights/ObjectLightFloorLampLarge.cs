@@ -42,17 +42,15 @@
         {
             category = GetCategory<StructureCategoryElectricity>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemGlassRaw>(count: 5);
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
+            build.AddStageRequiredItem<ItemGlassRaw>(count: 10);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
 
-            repair.StagesCount = 10;
+            repair.StagesCount = 5;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemGlassRaw>(count: 3);
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
+            repair.AddStageRequiredItem<ItemGlassRaw>(count: 10);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

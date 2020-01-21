@@ -19,7 +19,7 @@
           <TPrivateState,
               TPublicState,
               TClientState>,
-          IProtoItemWithDurablity
+          IProtoItemWithDurability
         where TPrivateState : ItemWithDurabilityPrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()

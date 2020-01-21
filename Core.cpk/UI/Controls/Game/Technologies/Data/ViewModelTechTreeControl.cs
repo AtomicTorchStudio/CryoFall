@@ -9,12 +9,16 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies.Data.TreeLayout;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Extensions;
 
     public class ViewModelTechTreeControl : BaseViewModel
     {
         public const bool IsTestMode = false;
+
+        private static readonly IClientStorage SessionStorageSupressNodeResearchDialog
+            = Api.Client.Storage.GetSessionStorage("TechTree");
 
         private readonly BaseCommand commandOnNodeSelect = new ActionCommandWithParameter(ExecuteCommandOnNodeSelect);
 
@@ -142,18 +146,46 @@
                 return;
             }
 
+            if (SessionStorageSupressNodeResearchDialog.TryLoad(out bool doNotAsk)
+                && doNotAsk)
+            {
+                // the confirmation dialog is suppressed
+                TechnologiesSystem.ClientUnlockNode(techNode.TechNode);
+                return;
+            }
+
+            var stackPanel = new StackPanel();
+            stackPanel.MaxWidth = 400;
+            var textBlock = new TextBlock()
+            {
+                Text = string.Format(ViewModelWindowTechnologies.DialogDoYouWantToResearch, techNode.Title),
+                TextAlignment = TextAlignment.Left,
+                TextWrapping = TextWrapping.Wrap,
+                MaxWidth = 400
+            };
+
+            var checkboxDoNotAskAgain = new CheckBox()
+            {
+                Content = CoreStrings.Checkbox_DoNotAskAgain,
+                Margin = new Thickness(0, 7, 0, 0)
+            };
+
+            stackPanel.Children.Add(textBlock);
+            stackPanel.Children.Add(checkboxDoNotAskAgain);
+
             DialogWindow.ShowDialog(
                 CoreStrings.QuestionAreYouSure,
-                new TextBlock()
-                {
-                    Text = string.Format(ViewModelWindowTechnologies.DialogDoYouWantToResearch, techNode.Title),
-                    TextAlignment = TextAlignment.Center,
-                    TextWrapping = TextWrapping.Wrap,
-                    MaxWidth = 400
-                },
+                stackPanel,
                 okText: CoreStrings.Yes,
                 cancelText: CoreStrings.No,
-                okAction: () => TechnologiesSystem.ClientUnlockNode(techNode.TechNode),
+                okAction: () =>
+                          {
+                              TechnologiesSystem.ClientUnlockNode(techNode.TechNode);
+                              if (checkboxDoNotAskAgain.IsChecked ?? false)
+                              {
+                                  SessionStorageSupressNodeResearchDialog.Save(true, writeToLog: false);
+                              }
+                          },
                 cancelAction: () => { });
         }
 

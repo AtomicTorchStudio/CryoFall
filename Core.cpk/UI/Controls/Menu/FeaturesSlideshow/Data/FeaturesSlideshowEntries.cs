@@ -46,7 +46,7 @@
 
         public const string EntryVehicles_Title = "Vehicles";
         public const string EntryVehicles_Description =
-            "Build and upgrade a variety of futuristic vehicles to explore the world faster or use them in combat.";
+            "Build and upgrade a variety of futuristic vehicles to explore the world faster, or use them in combat.";
 
         public const string EntryCreatures_Title = "Fantastic creatures";
         public const string EntryCreatures_Description =

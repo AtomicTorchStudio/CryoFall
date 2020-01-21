@@ -29,7 +29,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
 
             foreach (var container in containers)
             {
-                foreach (var item in Api.Shared.WrapInTempList(container.Items))
+                foreach (var item in Api.Shared.WrapInTempList(container.Items).EnumerateAndReturn())
                 {
                     switch (item.ProtoItem)
                     {

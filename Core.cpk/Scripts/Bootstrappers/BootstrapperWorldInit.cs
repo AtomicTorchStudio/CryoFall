@@ -54,7 +54,7 @@
             using var playerCharacters = Api.Shared.WrapInTempList(
                 Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: false));
 
-            foreach (var character in playerCharacters)
+            foreach (var character in playerCharacters.AsList())
             {
                 var publicState = PlayerCharacter.GetPublicState(character);
                 if (publicState.IsDead)

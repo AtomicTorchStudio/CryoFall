@@ -115,7 +115,7 @@
                                     radius: RequirementNoNpcsRadius,
                                     collisionGroup: DefaultCollisionGroup,
                                     sendDebugEvent: false);
-                                foreach (var entry in tempList)
+                                foreach (var entry in tempList.AsList())
                                 {
                                     if (entry.PhysicsBody.AssociatedWorldObject is ICharacter character
                                         && character.IsNpc)
@@ -154,7 +154,7 @@
                                     radius: RequirementNoPlayersRadius,
                                     collisionGroup: DefaultCollisionGroup,
                                     sendDebugEvent: false);
-                                foreach (var entry in tempList)
+                                foreach (var entry in tempList.AsList())
                                 {
                                     if (entry.PhysicsBody.AssociatedWorldObject is ICharacter character
                                         && !character.IsNpc
@@ -320,7 +320,7 @@
                     size: (0.98, 0.98),
                     collisionGroup: checkCollisionGroup,
                     sendDebugEvent: false);
-                foreach (var entry in tempList)
+                foreach (var entry in tempList.AsList())
                 {
                     if (check(entry))
                     {

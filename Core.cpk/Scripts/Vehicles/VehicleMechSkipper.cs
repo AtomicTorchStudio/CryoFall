@@ -19,9 +19,9 @@
         public override string Description =>
             "Light design for mechanized battle armor. Boasts relatively high speed while not lacking in armor or firepower.";
 
-        public override ushort EnergyUsePerSecondIdle => 75;
+        public override ushort EnergyUsePerSecondIdle => 70;
 
-        public override ushort EnergyUsePerSecondMoving => 200;
+        public override ushort EnergyUsePerSecondMoving => 250;
 
         public override BaseItemsContainerMechEquipment EquipmentItemsContainerType
             => Api.GetProtoEntity<ContainerMechEquipmentSkipper>();
@@ -40,7 +40,7 @@
 
         public override double StatMoveSpeedRunMultiplier => 1.0; // no run mode
 
-        public override float StructurePointsMax => 600;
+        public override float StructurePointsMax => 500;
 
         public override double VehicleWorldHeight => 2.0;
 

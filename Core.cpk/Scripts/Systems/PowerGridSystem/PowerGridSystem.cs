@@ -656,7 +656,7 @@
                 foreach (var worldObject in sourceEnumeration)
                 {
                     var position = worldObject.TilePosition;
-                    foreach (var areaBounds in areasBounds)
+                    foreach (var areaBounds in areasBounds.AsList())
                     {
                         if (!areaBounds.Contains(position))
                         {

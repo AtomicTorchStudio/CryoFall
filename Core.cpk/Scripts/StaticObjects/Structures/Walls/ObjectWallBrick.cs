@@ -31,7 +31,7 @@
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemBricks>(count: 5);
-            build.AddStageRequiredItem<ItemIngotIron>(count: 1);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
             build.AddStageRequiredItem<ItemCement>(count: 5);
 
             repair.StagesCount = 5;
@@ -41,7 +41,7 @@
 
         protected override void PrepareDefense(DefenseDescription defense)
         {
-            defense.Set(ObjectDefensePresets.Tier3);
+            defense.Set(ObjectDefensePresets.Tier5);
         }
     }
 }

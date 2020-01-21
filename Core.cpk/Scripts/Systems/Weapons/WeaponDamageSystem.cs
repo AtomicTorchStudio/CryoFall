@@ -261,16 +261,16 @@
             // we're using temporary list here to prevent issues
             // when an item is destroyed during enumeration
             using var tempList = Api.Shared.WrapInTempList(targetCharacter.SharedGetPlayerContainerEquipment().Items);
-            foreach (var item in tempList)
+            foreach (var item in tempList.AsList())
             {
-                if (!(item.ProtoItem is IProtoItemWithDurablity protoItemWithDurablity))
+                if (!(item.ProtoItem is IProtoItemWithDurability protoItemWithDurability))
                 {
                     continue;
                 }
 
                 try
                 {
-                    protoItemWithDurablity.ServerOnItemDamaged(item, damageApplied);
+                    protoItemWithDurability.ServerOnItemDamaged(item, damageApplied);
                 }
                 catch (Exception ex)
                 {

@@ -51,10 +51,19 @@
         public const string ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed =
             "The area is claimed by another player, or it's too close to someone else's land claim.";
 
+        public const string ErrorCannotBuild_BaseSizeExceeded_Format =
+            "Base size exceeded. Maximum base size in any dimension is {0} cells (approximately {1} land claims stacked together in a row).";
+
+        public const string ErrorCannotBuild_DemoPlayerLandClaims =
+            "Cannot combine land claims. In order to prevent abuse/exploits, land claims belonging to demo accounts cannot be combined with other players'.";
+
         // The game has a resource contesting system preventing the players
         // to claim or build near the recently spawned oil and other resource deposits.
         public const string ErrorCannotBuild_DepositCooldown =
             "The resource deposit has only just appeared and cannot be claimed yet. Construction around it is temporary restricted.";
+
+        public const string ErrorCannotBuild_ExceededSafeStorageCapacity =
+            "Building this land claim will result in combined safe storage exceeding the possible capacity in a base. Please remove items from the safe storages of the neighboring land claims before building.";
 
         public const string ErrorCannotBuild_IntersectingWithAnotherLandClaim =
             "Intersecting with another land claim area";
@@ -749,13 +758,15 @@
                 Api.SafeInvoke(() => ServerObjectLandClaimDestroyed?.Invoke(landClaimStructure, areaBounds));
             }
 
-            if (!oldAreasInGroup.SequenceEqual(areasGroupPrivateState.ServerLandClaimsAreas))
+            if (!oldAreasInGroup.AsList()
+                                .SequenceEqual(areasGroupPrivateState.ServerLandClaimsAreas))
             {
                 // areas group changed/broken to several areas
-                var newGroups = oldAreasInGroup
-                                .GroupBy(areas => LandClaimArea.GetPublicState(areas).LandClaimAreasGroup)
-                                .Select(g => g.Key)
-                                .ToList();
+                var newGroups = oldAreasInGroup.AsList()
+                                               .GroupBy(areas => LandClaimArea
+                                                                 .GetPublicState(areas).LandClaimAreasGroup)
+                                               .Select(g => g.Key)
+                                               .ToList();
 
                 newGroups.Remove(areasGroup);
                 LandClaimAreasGroup.ServerOnBaseBroken(areasGroup, newGroups);
@@ -788,7 +799,7 @@
             using var tempList = Api.Shared.GetTempList<ILogicObject>();
             SharedGetAreasInBounds(bounds, tempList, addGracePadding: false);
 
-            foreach (var area in tempList)
+            foreach (var area in tempList.AsList())
             {
                 if (!(byCharacter is null)
                     && ServerIsOwnedArea(area, byCharacter))
@@ -1523,7 +1534,7 @@
             Logger.Important("Destroying land claim areas group - not used anymore: " + areasGroup);
             Api.Server.World.DestroyObject(areasGroup);
 
-            foreach (var area in tempRemovedAreas)
+            foreach (var area in tempRemovedAreas.AsList())
             {
                 if (area.IsDestroyed)
                 {
@@ -1579,7 +1590,7 @@
             // The rest groups will be destroyed.
             // For a candidate for the group let's take the currently existing group
             // with the max number of the land claims.
-            var currentGroup = tempListGroups.MaximumOrDefault(
+            var currentGroup = tempListGroups.AsList().MaximumOrDefault(
                 g => LandClaimAreasGroup.GetPrivateState(g).ServerLandClaimsAreas.Count);
 
             if (currentGroup == null)
@@ -1600,7 +1611,7 @@
             var areasGroupAreasList = groupPrivateState.ServerLandClaimsAreas;
 
             // assign the group to all the land claim areas there
-            foreach (var area in tempListAreas)
+            foreach (var area in tempListAreas.AsList())
             {
                 var areaPublicState = LandClaimArea.GetPublicState(area);
                 var areasGroup = areaPublicState.LandClaimAreasGroup;
@@ -1622,7 +1633,7 @@
                 Api.SafeInvoke(() => ServerAreasGroupChanged?.Invoke(area, areasGroup, currentGroup));
             }
 
-            foreach (var otherGroup in tempListGroups)
+            foreach (var otherGroup in tempListGroups.AsList())
             {
                 if (currentGroup != otherGroup)
                 {
@@ -1720,13 +1731,13 @@
             using var tempListGroups = Api.Shared.GetTempList<ILogicObject>();
             SharedGatherAreasAndGroups(bounds, tempListAreas, tempListGroups);
 
-            foreach (var areasGroup in tempListGroups)
+            foreach (var areasGroup in tempListGroups.AsList())
             {
                 ServerReleaseGroupUnconnectedAreas(areasGroup);
             }
 
             // rebuild groups for every land claim without a group there
-            foreach (var otherArea in tempListAreas)
+            foreach (var otherArea in tempListAreas.AsList())
             {
                 if (LandClaimArea.GetPublicState(otherArea).LandClaimAreasGroup == null)
                 {
@@ -1770,7 +1781,7 @@
             SharedGetConnectedAreas(tempListAreas.AsList(), bounds);
 
             // gather all groups for the areas found there
-            foreach (var area in tempListAreas)
+            foreach (var area in tempListAreas.AsList())
             {
                 var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
                 if (areasGroup != null)

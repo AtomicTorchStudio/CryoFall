@@ -102,7 +102,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
 
                 logger.Important("Purging items container in the destroyed land claim area: " + container);
                 using var items = Api.Shared.WrapInTempList(container.Items);
-                foreach (var item in items)
+                foreach (var item in items.AsList())
                 {
                     serverItems.DestroyItem(item);
                 }

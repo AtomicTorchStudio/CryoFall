@@ -279,16 +279,20 @@
             </TabItem>
 
             <TabItem Header="{x:Static loc:CoreStrings.WindowLandClaim_DecayInfo}">
-                <core:FormattedTextBlock Content="{Binding DecayInfoText}"
-                                         HorizontalAlignment="Center"
-                                         VerticalAlignment="Center"
-                                         FontSize="13"
-                                         LineHeight="14.5"
-                                         LineStackingStrategy="BlockLineHeight"
-                                         FontWeight="Normal"
-                                         Foreground="{StaticResource BrushColor7}"
-                                         FontFamily="{StaticResource CondensedFontFamily}"
-                                         TextWrapping="Wrap" />
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                    <core:FormattedTextBlock Content="{Binding DecayInfoText}"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             FontSize="13"
+                                             LineHeight="13"
+                                             LineStackingStrategy="BlockLineHeight"
+                                             FontWeight="Normal"
+                                             Foreground="{StaticResource BrushColor7}"
+                                             FontFamily="{StaticResource CondensedFontFamily}"
+                                             TextWrapping="Wrap" />
+                </ScrollViewer>
             </TabItem>
 
             <!-- Text: Owners -->

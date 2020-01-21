@@ -3104,6 +3104,11 @@
             Gets mouse screen position (in screen pixels).
             </summary>
         </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IInputClientService.TooltipDelay">
+            <summary>
+            Tooltip appearance delay (in seconds).
+            </summary>
+        </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IInputClientService.MouseWorldPosition">
             <summary>
             Gets mouse world position (in world units).

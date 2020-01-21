@@ -425,7 +425,7 @@
             var physicsSpace = Server.World.GetPhysicsSpace();
             var collisionGroup = CollisionGroups.Default;
             var vehiclePosition = vehicle.Position;
-            const double radius = SkeletonHuman.LegsColliderRadius;
+            const double radius = ProtoCharacterSkeletonHuman.LegsColliderRadius;
             var testRectangleOffset = (-radius, -radius / 2);
             foreach (var offset in this.DismountPoints)
             {
@@ -1116,7 +1116,7 @@
                                                radius: this.DestroyedExplosionRadius,
                                                onlyPlayers: true);
 
-            this.CallClient(scopedBy,
+            this.CallClient(scopedBy.AsList(),
                             _ => _.ClientRemote_VehicleExploded(vehicle.Position));
 
             ExplosionHelper.ServerExplode(
@@ -1369,7 +1369,7 @@
             Server.World.GetScopedByPlayers(vehicle, tempPlayers);
             tempPlayers.Remove(character);
 
-            this.CallClient(tempPlayers,
+            this.CallClient(tempPlayers.AsList(),
                             _ => _.ServerRemote_OnVehicleBuiltByOtherPlayer(soundPosition));
 
             return VehicleCanBuildCheckResult.Success;
@@ -1422,7 +1422,7 @@
             Server.World.GetScopedByPlayers(vehicle, tempPlayers);
             tempPlayers.Remove(character);
 
-            this.CallClient(tempPlayers,
+            this.CallClient(tempPlayers.AsList(),
                             _ => _.ServerRemote_OnVehicleRepairByOtherPlayer(soundPosition));
 
             return VehicleCanRepairCheckResult.Success;

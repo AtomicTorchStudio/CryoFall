@@ -200,7 +200,7 @@
             this.SelectRandomEntries(selectedEntries);
 
             // execute selected entries
-            foreach (var entry in selectedEntries)
+            foreach (var entry in selectedEntries.AsList())
             {
                 ExecuteEntry(entry,
                              dropItemContext,

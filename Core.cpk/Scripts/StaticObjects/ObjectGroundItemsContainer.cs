@@ -546,7 +546,7 @@
             {
                 Server.World.GetScopedByPlayers(groundItemsContainer.Owner, scopedBy);
                 scopedBy.Remove(character);
-                this.CallClient(scopedBy, _ => _.ClientRemote_OtherPlayerDroppedItem(tilePosition));
+                this.CallClient(scopedBy.AsList(), _ => _.ClientRemote_OtherPlayerDroppedItem(tilePosition));
             }
 
             return groundItemsContainer.OwnerAsStaticObject;
@@ -711,7 +711,7 @@
                 using var scopedBy = Api.Shared.GetTempList<ICharacter>();
                 Server.World.GetScopedByPlayers(worldObject, scopedBy);
                 scopedBy.Remove(data.PrivateState.ServerLastInteractCharacter);
-                this.CallClient(scopedBy, _ => _.ClientRemote_OtherPlayerPickedUp(worldObject.TilePosition));
+                this.CallClient(scopedBy.AsList(), _ => _.ClientRemote_OtherPlayerPickedUp(worldObject.TilePosition));
             }
 
             // actually destroy it

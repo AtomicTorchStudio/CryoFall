@@ -38,7 +38,7 @@
             var energyCurrent = 0u;
             foreach (var item in this.vehiclePrivateState.FuelItemsContainer.Items)
             {
-                if (item.ProtoItem is IProtoItemWithDurablity)
+                if (item.ProtoItem is IProtoItemWithDurability)
                 {
                     energyCurrent += item.GetPrivateState<ItemWithDurabilityPrivateState>().DurabilityCurrent;
                 }

@@ -20,7 +20,7 @@
             duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemPlanks>(count: 20);
-            inputItems.Add<ItemIngotCopper>(count: 10);
+            inputItems.Add<ItemIngotCopper>(count: 5);
 
             outputItems.Add<ItemMaceCopper>();
         }

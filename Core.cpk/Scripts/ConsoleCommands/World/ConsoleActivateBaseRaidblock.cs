@@ -27,7 +27,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
                 tempAreas,
                 addGracePadding: false);
 
-            foreach (var logicObject in tempAreas)
+            foreach (var logicObject in tempAreas.AsList())
             {
                 LandClaimSystem.ServerSetRaidblock(logicObject);
             }

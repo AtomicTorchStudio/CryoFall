@@ -337,8 +337,8 @@
 
             <TabItem Style="{StaticResource TabItemDelimiterStyle}" />
 
-            <!-- Text: CREDITS -->
-            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabCredits}"
+            <!-- Text: EXTRAS -->
+            <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabExtras}"
                      IsSelected="{Binding IsExtrasMenuSelected, Mode=TwoWay}"
                      Style="{StaticResource TabItemHeader}">
                 <extras:MenuExtras

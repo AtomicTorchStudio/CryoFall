@@ -25,7 +25,7 @@
 
         public override double StructureExplosiveDefenseCoef => 0.5;
 
-        public override float StructurePointsMax => 35000;
+        public override float StructurePointsMax => 30000;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {

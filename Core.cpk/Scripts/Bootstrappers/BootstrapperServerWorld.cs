@@ -46,7 +46,7 @@
 
             // destroy all land claim buildings as they don't work as intended when simply spawned
             worldObjects = Server.World.GetStaticWorldObjectsOfProto<IProtoObjectLandClaim>();
-            foreach (var worldObject in Api.Shared.WrapInTempList(worldObjects))
+            foreach (var worldObject in Api.Shared.WrapInTempList(worldObjects).EnumerateAndReturn())
             {
                 Server.World.DestroyObject(worldObject);
             }

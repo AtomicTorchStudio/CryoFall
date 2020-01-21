@@ -17,11 +17,11 @@
         {
             stations.Add<ObjectWeaponWorkbench>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemIngotCopper>(count: 3);
             inputItems.Add<ItemPaper>(count: 10);
-            inputItems.Add<ItemBlackpowder>(count: 50);
+            inputItems.Add<ItemBlackpowder>(count: 40);
 
             outputItems.Add<ItemAmmo12gaBuckshot>(count: 10);
         }

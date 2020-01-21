@@ -16,12 +16,15 @@
             OutputItems outputItems)
         {
             stations.Add<ObjectStove>();
+            stations.Add<ObjectStoveElectric>();
 
             duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemRice>(count: 5);
+            inputItems.Add<ItemBottleWater>(count: 1);
 
             outputItems.Add<ItemRiceCooked>(count: 1);
+            outputItems.Add<ItemBottleEmpty>(count: 1);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Construction
 
                 // remove floor decals
                 using var tempList = Api.Shared.WrapInTempList(staticObjects);
-                foreach (var staticWorldObject in tempList)
+                foreach (var staticWorldObject in tempList.AsList())
                 {
                     if (staticWorldObject.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal)
                     {

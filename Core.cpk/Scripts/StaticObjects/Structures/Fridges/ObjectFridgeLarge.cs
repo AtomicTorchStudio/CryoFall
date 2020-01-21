@@ -42,16 +42,16 @@
         {
             category = GetCategory<StructureCategoryStorage>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 4);
-            build.AddStageRequiredItem<ItemWire>(count: 8);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 3);
+            build.AddStageRequiredItem<ItemWire>(count: 3);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
-            repair.AddStageRequiredItem<ItemWire>(count: 4);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
+            repair.AddStageRequiredItem<ItemWire>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

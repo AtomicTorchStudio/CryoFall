@@ -97,7 +97,7 @@
             }
 
             // ReSharper disable once AccessToDisposedClosure
-            Api.SafeInvoke(() => ClientUpdateReceived?.Invoke(tempList));
+            Api.SafeInvoke(() => ClientUpdateReceived?.Invoke(tempList.AsList()));
         }
 
         private void ServerRefresh()

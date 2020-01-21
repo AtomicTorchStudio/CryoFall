@@ -44,7 +44,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
             using var tempList = Api.Shared.GetTempList<IZoneScriptConfig>();
             tempList.AddRange(protoZone.AttachedScripts);
 
-            foreach (var script in tempList)
+            foreach (var script in tempList.AsList())
             {
                 script.ServerInvoke(trigger, serverZoneInstance);
             }

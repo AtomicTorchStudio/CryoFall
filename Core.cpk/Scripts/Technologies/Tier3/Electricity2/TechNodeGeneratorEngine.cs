@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectGeneratorEngine>();
 
-            config.SetRequiredNode<TechNodeWireFromPlastic>();
+            config.SetRequiredNode<TechNodePowerStorageLarge>();
         }
     }
 }

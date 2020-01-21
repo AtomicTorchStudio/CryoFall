@@ -180,7 +180,7 @@
             }
 
             using var tempList = Api.Shared.WrapInTempList(data.GameObject.OccupiedTile.StaticObjects);
-            foreach (var occupiedTileStaticObject in tempList)
+            foreach (var occupiedTileStaticObject in tempList.AsList())
             {
                 if (occupiedTileStaticObject != data.GameObject
                     && occupiedTileStaticObject.ProtoStaticWorldObject is IProtoObjectFloor)

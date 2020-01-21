@@ -18,8 +18,8 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemIngotIron>(count: 3);
-            inputItems.Add<ItemIngotCopper>(count: 1);
+            inputItems.Add<ItemIngotIron>(count: 2);
+            inputItems.Add<ItemIngotCopper>(count: 2);
 
             outputItems.Add<ItemCanisterEmpty>(count: 1);
         }

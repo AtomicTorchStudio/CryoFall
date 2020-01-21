@@ -21,7 +21,7 @@
         protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
         {
             requirements
-                .Add(RequirementGather.Require<ObjectBushWaterbulb>(count: 5, TaskGatherWaterbulbFruit))
+                .Add(RequirementGather.Require<ObjectBushWaterbulb>(count: 3, TaskGatherWaterbulbFruit))
                 .Add(RequirementUseItem.Require<ItemWaterbulb>());
 
             prerequisites

@@ -22,6 +22,9 @@
 
     public class ChatSystem : ProtoSystem<ChatSystem>
     {
+        public const string ErrorSlowDown_Format =
+            "You are sending too many messages. Slow down a bit. You can send messages again after {0}.";
+
         public const int MaxChatEntryLength = 300;
 
         public const string NotificationCurrentPlayerMuted =
@@ -483,12 +486,10 @@
 
             chatRoom.ServerAddMessageToLog(chatEntry);
 
-            using (var tempDestination = Api.Shared.WrapInTempList(
-                chatRoom.ServerEnumerateMessageRecepients(character)))
-            {
-                tempDestination.Remove(character);
-                this.ServerSendMessage(chatRoomHolder, chatEntry, tempDestination);
-            }
+            using var tempDestination = Api.Shared.WrapInTempList(
+                chatRoom.ServerEnumerateMessageRecepients(character));
+            tempDestination.Remove(character);
+            this.ServerSendMessage(chatRoomHolder, chatEntry, tempDestination.AsList());
 
             ServerLogNewChatEntry(chatRoomHolder.Id, message, characterName);
         }

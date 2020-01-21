@@ -16,7 +16,7 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemCanisterMineralOil>(count: 5);
             inputItems.Add<ItemCoal>(count: 1);

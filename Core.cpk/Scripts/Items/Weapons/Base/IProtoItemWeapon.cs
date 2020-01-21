@@ -13,7 +13,7 @@
 
     public interface IProtoItemWeapon
         : IProtoItemWithCharacterAppearance,
-          IProtoItemWithDurablity,
+          IProtoItemWithDurability,
           IProtoItemWithHotbarOverlay
     {
         ushort AmmoCapacity { get; }

@@ -19,9 +19,9 @@
 
             duration = CraftingDuration.Long;
 
-            inputItems.Add<ItemComponentsPharmaceutical>(count: 50);
-            inputItems.Add<ItemOrePragmium>(count: 25);
-            inputItems.Add<ItemIngotCopper>(count: 25);
+            inputItems.Add<ItemComponentsPharmaceutical>(count: 25);
+            inputItems.Add<ItemOrePragmium>(count: 20);
+            inputItems.Add<ItemIngotCopper>(count: 20);
             inputItems.Add<ItemComponentsHighTech>(count: 5);
 
             outputItems.Add<ItemImplantATPEnergyExtractor>(count: 1);

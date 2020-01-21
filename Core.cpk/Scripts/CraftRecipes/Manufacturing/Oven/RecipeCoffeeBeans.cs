@@ -15,6 +15,7 @@
             OutputItems outputItems)
         {
             stations.Add<ObjectStove>();
+            stations.Add<ObjectStoveElectric>();
 
             duration = CraftingDuration.Short;
 

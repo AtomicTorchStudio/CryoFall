@@ -9,7 +9,7 @@
         public override string Name => "Display object[br]name tooltip";
 
         public override IProtoOption OrderAfterOption
-            => GetOption<GeneralOptionMouseScrollWheelMode>();
+            => GetOption<GeneralOptionTooltipDelay>();
 
         public override bool ValueProvider
         {

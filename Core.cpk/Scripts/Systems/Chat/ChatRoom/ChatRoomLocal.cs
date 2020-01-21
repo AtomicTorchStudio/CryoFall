@@ -39,7 +39,7 @@
         {
             using var tempList = Api.Shared.GetTempList<ICharacter>();
             Api.Server.World.GetScopedByPlayers(forPlayer, tempList);
-            foreach (var character in tempList)
+            foreach (var character in tempList.AsList())
             {
                 yield return character;
             }

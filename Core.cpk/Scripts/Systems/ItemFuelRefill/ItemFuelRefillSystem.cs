@@ -46,7 +46,8 @@
 
             var currentFuelAmount = item.GetPrivateState<ItemWithFuelPrivateState>()
                                         .FuelAmount;
-            Instance.CallClient(scopedBy, _ => _.ClientRemote_SetItemFuelAmount(item, currentFuelAmount));
+            Instance.CallClient(scopedBy.AsList(),
+                                _ => _.ClientRemote_SetItemFuelAmount(item, currentFuelAmount));
         }
 
         public ItemFuelRefillRequest ClientTryCreateRequest(ICharacter character, IItem item)

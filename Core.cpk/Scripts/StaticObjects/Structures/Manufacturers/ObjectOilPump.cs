@@ -94,14 +94,14 @@
 
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Medium;
-            build.AddStageRequiredItem<ItemPlanks>(count: 20);
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 5);
-            build.AddStageRequiredItem<ItemCement>(count: 10);
+            build.AddStageRequiredItem<ItemPlanks>(count: 10);
+            build.AddStageRequiredItem<ItemCement>(count: 5);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemPlanks>(count: 10);
-            repair.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            repair.AddStageRequiredItem<ItemIngotCopper>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

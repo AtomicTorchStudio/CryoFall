@@ -30,7 +30,7 @@
             // destroy all the plants over this plant pot
             foreach (var tile in gameObject.OccupiedTiles)
             {
-                foreach (var staticWorldObject in Api.Shared.WrapInTempList(tile.StaticObjects))
+                foreach (var staticWorldObject in Api.Shared.WrapInTempList(tile.StaticObjects).EnumerateAndReturn())
                 {
                     if (staticWorldObject.ProtoStaticWorldObject is IProtoObjectPlant)
                     {
@@ -55,13 +55,12 @@
         {
             build.StagesCount = 1;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemClay>(count: 25);
-            build.AddStageRequiredItem<ItemSand>(count: 10);
+            build.AddStageRequiredItem<ItemClay>(count: 20);
+            build.AddStageRequiredItem<ItemSand>(count: 5);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemClay>(count: 2);
-            repair.AddStageRequiredItem<ItemSand>(count: 1);
+            repair.AddStageRequiredItem<ItemClay>(count: 1);
         }
 
         protected override void SharedCreatePhysics(CreatePhysicsData data)

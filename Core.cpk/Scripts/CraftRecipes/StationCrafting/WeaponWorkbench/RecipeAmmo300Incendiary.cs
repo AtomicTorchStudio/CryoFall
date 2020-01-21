@@ -17,10 +17,10 @@
         {
             stations.Add<ObjectWeaponWorkbench>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemIngotSteel>(count: 5);
-            inputItems.Add<ItemIngotCopper>(count: 5);
+            inputItems.Add<ItemIngotSteel>(count: 3);
+            inputItems.Add<ItemIngotCopper>(count: 3);
             inputItems.Add<ItemFormulatedGunpowder>(count: 30);
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 5);
 

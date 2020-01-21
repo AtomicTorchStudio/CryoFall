@@ -19,7 +19,7 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemIngotIron>(count: 10);
+            inputItems.Add<ItemIngotIron>(count: 5);
 
             outputItems.Add<ItemCrowbar>();
         }

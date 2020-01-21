@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeKnifeIron>();
 
-            config.SetRequiredNode<TechNodeIronTools>();
+            config.SetRequiredNode<TechNodeMaceCopper>();
         }
     }
 }

@@ -36,8 +36,8 @@
             if (IsClient)
             {
                 using var testResults = Api.Shared.GetTempList<Vector2D>();
-                AddTestResults(physicsTestResults, testResults);
-                ClientComponentPhysicsSpaceVisualizer.VisualizeTestResults(testResults,
+                AddTestResults(physicsTestResults.AsList(), testResults.AsList());
+                ClientComponentPhysicsSpaceVisualizer.VisualizeTestResults(testResults.AsList(),
                                                                            collisionGroup,
                                                                            isClient: true);
             }
@@ -48,7 +48,7 @@
                                                                                 exceptSpectators: false);
 
                 var testResults = new List<Vector2D>();
-                AddTestResults(physicsTestResults, testResults);
+                AddTestResults(physicsTestResults.AsList(), testResults);
 
                 var collisionGroupId = CollisionGroups.GetCollisionGroupId(collisionGroup);
                 instance.CallClient(

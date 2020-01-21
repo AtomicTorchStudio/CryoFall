@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.CurrentGame.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -78,7 +79,22 @@
 
         public override string Name => "Welcome message system";
 
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
+        public static async void ClientEditDescription()
+        {
+            var originalText = await Instance.CallServer(_ => _.ServerRemote_GetDescriptionMessage());
+            originalText = originalText != null
+                               ? TrimSpacesOnEachLine(originalText)
+                               : string.Empty;
+
+            ClientOpenEditor(originalText,
+                             maxLength: 350,
+                             onSave: async text =>
+                                     {
+                                         await Instance.CallServer(_ => _.ServerRemote_SetDescription(text));
+                                         RefreshDescription();
+                                     });
+        }
+
         public static async void ClientEditWelcomeMessage()
         {
             var originalText = await Instance.CallServer(_ => _.ServerRemote_GetWelcomeMessage());
@@ -86,81 +102,13 @@
                                ? TrimSpacesOnEachLine(originalText)
                                : string.Empty;
 
-            ScrollViewer scrollviewer;
-            TextBox textBox;
-
-            {
-                scrollviewer = new ScrollViewer()
-                {
-                    Height = 530,
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    VerticalAlignment = VerticalAlignment.Stretch,
-                    VerticalScrollBarVisibility = ScrollBarVisibility.Visible,
-                };
-
-                var grid = new Grid();
-                scrollviewer.Content = grid;
-
-                var textBlockInfo = new TextBlock()
-                {
-                    Text =
-                        "Available tags: BB code like [b], [u], [i], [url=example.com]links[/url], bullet points [*], and line breaks [br] (line breaks are added automatically for new lines).",
-                    TextWrapping = TextWrapping.Wrap,
-                    Margin = new Thickness(10, 0, 10, 0),
-                    FontSize = 11,
-                    LineHeight = 12,
-                    LineStackingStrategy = LineStackingStrategy.BlockLineHeight,
-                    FontWeight = FontWeights.Bold
-                };
-
-                originalText = originalText.Trim()
-                                           .Replace("\r",     "")
-                                           .Replace("\n[br]", "\n")
-                                           .Replace("\n",     "\n[br]");
-
-                textBox = new TextBox
-                {
-                    Text = originalText,
-                    TextWrapping = TextWrapping.Wrap,
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    VerticalAlignment = VerticalAlignment.Stretch,
-                    FontSize = 13,
-                    TextAlignment = TextAlignment.Left,
-                    HorizontalContentAlignment = HorizontalAlignment.Left,
-                    VerticalContentAlignment = VerticalAlignment.Top,
-                    AcceptsReturn = true,
-                    Margin = default,
-                    MaxLength = 4096,
-                    BorderThickness = default
-                };
-
-                grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(7) });
-                grid.RowDefinitions.Add(new RowDefinition());
-                grid.Children.Add(textBlockInfo);
-                Grid.SetRow(textBox, 2);
-                grid.Children.Add(textBox);
-            }
-
-            var dialogWindow = DialogWindow.ShowDialog(
-                title: null,
-                content: scrollviewer,
-                okAction: async () =>
-                          {
-                              var text = textBox.Text
-                                                .Trim()
-                                                .Replace("\r",     "")
-                                                .Replace("\n[br]", "\n")
-                                                .Replace("\n",     "\n[br]");
-                              await Instance.CallServer(_ => _.ServerRemote_SetWelcomeMessage(text));
-                              RefreshWelcomeMessage();
-                          },
-                cancelAction: () => { },
-                okText: CoreStrings.Button_Save,
-                focusOnCancelButton: true);
-
-            dialogWindow.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-            dialogWindow.GameWindow.Width = 530;
+            ClientOpenEditor(originalText,
+                             maxLength: 4096,
+                             onSave: async text =>
+                                     {
+                                         await Instance.CallServer(_ => _.ServerRemote_SetWelcomeMessage(text));
+                                         RefreshWelcomeMessage();
+                                     });
         }
 
         public static async void ClientShowWelcomeMessage()
@@ -219,6 +167,85 @@
             return message;
         }
 
+        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
+        private static void ClientOpenEditor(string originalText, int maxLength, Action<string> onSave)
+        {
+            ScrollViewer scrollviewer;
+            TextBox textBox;
+
+            {
+                scrollviewer = new ScrollViewer()
+                {
+                    Height = 530,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    VerticalAlignment = VerticalAlignment.Stretch,
+                    VerticalScrollBarVisibility = ScrollBarVisibility.Visible,
+                };
+
+                var grid = new Grid();
+                scrollviewer.Content = grid;
+
+                var textBlockInfo = new TextBlock()
+                {
+                    Text =
+                        "Available tags: BB code like [b], [u], [i], [url=example.com]links[/url], bullet points [*], and line breaks [br] (line breaks are added automatically for new lines).",
+                    TextWrapping = TextWrapping.Wrap,
+                    Margin = new Thickness(10, 0, 10, 0),
+                    FontSize = 11,
+                    LineHeight = 12,
+                    LineStackingStrategy = LineStackingStrategy.BlockLineHeight,
+                    FontWeight = FontWeights.Bold
+                };
+
+                originalText = originalText.Trim()
+                                           .Replace("\r",     "")
+                                           .Replace("\n[br]", "\n")
+                                           .Replace("\n",     "\n[br]");
+
+                textBox = new TextBox
+                {
+                    Text = originalText,
+                    TextWrapping = TextWrapping.Wrap,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    VerticalAlignment = VerticalAlignment.Stretch,
+                    FontSize = 13,
+                    TextAlignment = TextAlignment.Left,
+                    HorizontalContentAlignment = HorizontalAlignment.Left,
+                    VerticalContentAlignment = VerticalAlignment.Top,
+                    AcceptsReturn = true,
+                    Margin = default,
+                    MaxLength = maxLength,
+                    BorderThickness = default
+                };
+
+                grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(7) });
+                grid.RowDefinitions.Add(new RowDefinition());
+                grid.Children.Add(textBlockInfo);
+                Grid.SetRow(textBox, 2);
+                grid.Children.Add(textBox);
+            }
+
+            var dialogWindow = DialogWindow.ShowDialog(
+                title: null,
+                content: scrollviewer,
+                okAction: () =>
+                          {
+                              var text = textBox.Text
+                                                .Trim()
+                                                .Replace("\r",     "")
+                                                .Replace("\n[br]", "\n")
+                                                .Replace("\n",     "\n[br]");
+                              onSave(text);
+                          },
+                cancelAction: () => { },
+                okText: CoreStrings.Button_Save,
+                focusOnCancelButton: true);
+
+            dialogWindow.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+            dialogWindow.GameWindow.Width = 530;
+        }
+
         private static async void ClientShowWelcomeMessageInternal(string welcomeMessage)
         {
             if (string.IsNullOrWhiteSpace(welcomeMessage))
@@ -269,6 +296,18 @@
             return message.Trim();
         }
 
+        private static async void RefreshDescription()
+        {
+            var viewModel = ViewModelMenuCurrentGame.Instance;
+            if (viewModel is null)
+            {
+                return;
+            }
+
+            viewModel.ServerDescription =
+                await Instance.CallServer(_ => _.ServerRemote_GetDescriptionMessage());
+        }
+
         private static async void RefreshWelcomeMessage()
         {
             if (Api.IsEditor)
@@ -316,9 +355,31 @@
             return text;
         }
 
+        private string ServerRemote_GetDescriptionMessage()
+        {
+            return Server.Core.DescriptionMessageText;
+        }
+
         private string ServerRemote_GetWelcomeMessage()
         {
             return Server.Core.WelcomeMessageText;
+        }
+
+        private bool ServerRemote_SetDescription(string text)
+        {
+            var character = ServerRemoteContext.Character;
+            if (!ServerOperatorSystem.SharedIsOperator(character))
+            {
+                throw new Exception("Not a server operator: " + character);
+            }
+
+            text = text?.Trim() ?? string.Empty;
+            Api.Server.Core.DescriptionMessageText = text;
+
+            Logger.Important("Server description message changed to:"
+                             + Environment.NewLine
+                             + text.Replace("[br]", Environment.NewLine + "[br]"));
+            return true;
         }
 
         private bool ServerRemote_SetWelcomeMessage(string text)
@@ -334,7 +395,7 @@
 
             Logger.Important("Server welcome message changed to:"
                              + Environment.NewLine
-                             + text);
+                             + text.Replace("[br]", Environment.NewLine + "[br]"));
             return true;
         }
     }

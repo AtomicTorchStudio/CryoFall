@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeAshFromFlowerOni>();
 
-            config.SetRequiredNode<TechNodeSandFromStone>();
+            config.SetRequiredNode<TechNodeGoldSmelting>();
         }
     }
 }

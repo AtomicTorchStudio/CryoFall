@@ -7,6 +7,12 @@
 
     public class QuestCraftAndEquipBetterArmor : ProtoQuest
     {
+        public const string EquipAnyChestplate = "Equip better chestplate";
+
+        public const string EquipAnyHelmet = "Equip better helmet";
+
+        public const string EquipAnyLegsProtection = "Equip better leg armor";
+
         public override string Description =>
             "It is time to get some better protection.";
 
@@ -36,18 +42,15 @@
                 // suggest wood helmet but require any head item except the cloth one
                 .Add(RequirementHaveItemEquipped.Require(
                          headEquipmentExceptCloth,
-                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
-                                       Api.GetProtoEntity<ItemWoodHelmet>().Name)))
+                         EquipAnyHelmet))
                 // suggest wood chestplate but require any chest item except the cloth one
                 .Add(RequirementHaveItemEquipped.Require(
                          chestEquipmentExceptCloth,
-                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
-                                       Api.GetProtoEntity<ItemWoodChestplate>().Name)))
+                         EquipAnyChestplate))
                 // suggest wood pants but require any legs item except the cloth one
                 .Add(RequirementHaveItemEquipped.Require(
                          legsEquipmentExceptCloth,
-                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
-                                       Api.GetProtoEntity<ItemWoodPants>().Name)));
+                         EquipAnyLegsProtection));
 
             prerequisites
                 .Add<QuestExploreBiomes1>();

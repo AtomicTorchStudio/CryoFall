@@ -96,7 +96,7 @@
 
                 using var tempScopedBy = Api.Shared.GetTempList<ICharacter>();
                 Server.World.GetScopedByPlayers(targetObject, tempScopedBy);
-                this.CallClient(tempScopedBy,
+                this.CallClient(tempScopedBy.AsList(),
                                 _ => _.ClientRemote_NoDamageToDepositUnderCooldown(weaponCache.ProtoObjectExplosive));
             }
 

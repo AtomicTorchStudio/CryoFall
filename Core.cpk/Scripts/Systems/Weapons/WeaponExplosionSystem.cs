@@ -108,7 +108,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 using var testResults = physicsSpace.TestCircle(positionEpicenter,
                                                                 radius: damageDistanceMax,
                                                                 collisionGroup: collisionGroup);
-                foreach (var testResult in testResults)
+                foreach (var testResult in testResults.AsList())
                 {
                     var testResultPhysicsBody = testResult.PhysicsBody;
                     var damagedObject = testResultPhysicsBody.AssociatedWorldObject;
@@ -358,7 +358,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             //obstaclesOnTheWay.SortBy(
             //    ServerExplosionGetDistanceToEpicenter(positionEpicenter));
 
-            foreach (var testResult in obstaclesOnTheWay)
+            foreach (var testResult in obstaclesOnTheWay.AsList())
             {
                 var testPhysicsBody = testResult.PhysicsBody;
                 if (testPhysicsBody.AssociatedProtoTile != null)

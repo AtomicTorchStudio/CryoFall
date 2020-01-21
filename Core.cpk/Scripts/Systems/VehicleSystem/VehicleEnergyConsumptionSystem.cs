@@ -66,7 +66,7 @@
                                                            Server.Game.FrameNumber,
                                                            Server.Game.FrameRate);
 
-            foreach (var character in tempListPlayers)
+            foreach (var character in tempListPlayers.AsList())
             {
                 if (!character.ServerIsOnline)
                 {

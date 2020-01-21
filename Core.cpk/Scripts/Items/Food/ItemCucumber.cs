@@ -13,7 +13,7 @@
 
         public override string Name => "Cucumber";
 
-        public override ushort OrganicValue => 5;
+        public override ushort OrganicValue => 3;
 
         public override float WaterRestore => 4;
 

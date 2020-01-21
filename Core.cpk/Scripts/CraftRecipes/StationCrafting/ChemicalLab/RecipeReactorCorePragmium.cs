@@ -16,12 +16,12 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.Long;
+            duration = CraftingDuration.Medium;
 
             inputItems.Add<ItemReactorCoreEmpty>(count: 1);
             inputItems.Add<ItemOrePragmium>(count: 50);
             inputItems.Add<ItemOreLithium>(count: 50);
-            inputItems.Add<ItemComponentsIndustrialChemicals>(count: 10);
+            inputItems.Add<ItemComponentsIndustrialChemicals>(count: 5);
 
             outputItems.Add<ItemReactorCorePragmium>(count: 1);
         }

@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeComponentsElectronic>();
 
-            config.SetRequiredNode<TechNodeComponentsMechanical>();
+            config.SetRequiredNode<TechNodeIngotLithium>();
         }
     }
 }

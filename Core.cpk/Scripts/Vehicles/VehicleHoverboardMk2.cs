@@ -14,9 +14,9 @@
         public override string Description =>
             "Heavy variant of gravi-platform design. More durable and offers higher speed and maneuverability at the cost of increased manufacturing expenses and fuel consumption.";
 
-        public override ushort EnergyUsePerSecondIdle => 30;
+        public override ushort EnergyUsePerSecondIdle => 10;
 
-        public override ushort EnergyUsePerSecondMoving => 120;
+        public override ushort EnergyUsePerSecondMoving => 60;
 
         public override double EngineSoundVolume => 0.3;
 
@@ -67,13 +67,11 @@
             buildRequiredItems
                 .Add<ItemStructuralPlating>(5)
                 .Add<ItemImpulseEngine>(5)
-                .Add<ItemComponentsElectronic>(20)
-                .Add<ItemComponentsOptical>(10);
+                .Add<ItemComponentsElectronic>(20);
 
             repairStageRequiredItems
                 .Add<ItemIngotSteel>(5)
-                .Add<ItemComponentsElectronic>(1)
-                .Add<ItemComponentsOptical>(1);
+                .Add<ItemComponentsElectronic>(1);
 
             repairStagesCount = 5;
         }

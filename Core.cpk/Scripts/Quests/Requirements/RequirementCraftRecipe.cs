@@ -74,6 +74,14 @@
             return new RequirementCraftRecipe(list, count, description);
         }
 
+        public static RequirementCraftRecipe RequireStationRecipe(
+            List<Recipe.RecipeForStationCrafting> list,
+            ushort count = 1,
+            string description = null)
+        {
+            return new RequirementCraftRecipe(list, count, description);
+        }
+
         protected override void SetTriggerActive(bool isActive)
         {
             if (isActive)

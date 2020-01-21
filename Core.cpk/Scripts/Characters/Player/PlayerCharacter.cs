@@ -64,14 +64,14 @@
         // This is the center of the character's melee hitbox.
         // It's necessary to ensure the equal distance in every way the character could shot and damage another player.
         public override float CharacterWorldWeaponOffsetMelee { get; }
-            = (float)(SkeletonHuman.MeleeHitboxOffset
-                      + SkeletonHuman.MeleeHitboxHeight / 2);
+            = (float)(ProtoCharacterSkeletonHuman.MeleeHitboxOffset
+                      + ProtoCharacterSkeletonHuman.MeleeHitboxHeight / 2);
 
         // This is the center of the character's ranged hitbox.
         // It's necessary to ensure the equal distance in every way the character could shot and damage another player.
         public override float CharacterWorldWeaponOffsetRanged { get; }
-            = (float)(SkeletonHuman.RangedHitboxOffset
-                      + SkeletonHuman.RangedHitboxHeight / 2);
+            = (float)(ProtoCharacterSkeletonHuman.RangedHitboxOffset
+                      + ProtoCharacterSkeletonHuman.RangedHitboxHeight / 2);
 
         public override string Name => "Player character";
 
@@ -592,8 +592,8 @@
             var publicState = GetPublicState(character);
             var isMale = publicState.IsMale;
             protoSkeleton = isMale
-                                ? (SkeletonHuman)SkeletonHumanMale.Value
-                                : (SkeletonHuman)SkeletonHumanFemale.Value;
+                                ? (ProtoCharacterSkeletonHuman)SkeletonHumanMale.Value
+                                : (ProtoCharacterSkeletonHuman)SkeletonHumanFemale.Value;
         }
 
         private void ClientInitializeCurrentCharacter(ClientInitializeData data)

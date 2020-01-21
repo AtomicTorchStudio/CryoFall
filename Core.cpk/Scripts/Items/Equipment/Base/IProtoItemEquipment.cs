@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
-    public interface IProtoItemEquipment : IProtoItem, IProtoItemWithDurablity
+    public interface IProtoItemEquipment : IProtoItem, IProtoItemWithDurability
     {
         byte[] CompatibleContainerSlotsIds { get; }
 

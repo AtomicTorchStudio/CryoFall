@@ -104,7 +104,7 @@
                 size: (2, 2));
 
             LandClaimSystem.SharedGetAreasInBounds(bounds, tempAreas, addGracePadding: false);
-            if (tempAreas.Any(LandClaimSystem.SharedIsAreaUnderRaid))
+            if (tempAreas.AsList().Any(LandClaimSystem.SharedIsAreaUnderRaid))
             {
                 Logger.Info("Cannot unstuck when located in an area under raid", character);
                 LandClaimSystem.SharedSendNotificationActionForbiddenUnderRaidblock(character);

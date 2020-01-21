@@ -25,8 +25,8 @@
 
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {
-            character.ServerAddStatusEffect<StatusEffectEnergyRush>(intensity: 0.05); // 30 seconds
-            character.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.1);      // 30 seconds
+            character.ServerAddStatusEffect<StatusEffectEnergyRush>(intensity: 0.1);
+            character.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.1);
 
             base.ServerOnUse(character, currentStats);
         }

@@ -7,7 +7,8 @@
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeAmmo10mmStandard>();
+                  .AddRecipe<RecipeAmmo10mmStandard>()
+                  .AddRecipe<RecipeAmmo10mmBlank>();
 
             config.SetRequiredNode<TechNodeWeaponComponents>();
         }

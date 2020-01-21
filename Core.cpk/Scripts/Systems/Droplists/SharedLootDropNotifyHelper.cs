@@ -26,7 +26,7 @@
 
             using var scopedBy = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetScopedByPlayers(worldObject, scopedBy);
-            instance.CallClient(scopedBy,
+            instance.CallClient(scopedBy.AsList(),
                                 _ => _.ClientRemote_PlayLootDroppedSound(worldObject.TilePosition));
         }
 

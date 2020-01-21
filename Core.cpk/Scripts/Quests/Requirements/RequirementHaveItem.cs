@@ -73,7 +73,10 @@
                 }
             }
 
-            state.SetCountCurrent(availableCount, this.RequiredCount);
+            state.SetCountCurrent(this.IsReversible
+                                      ? availableCount
+                                      : Math.Max(state.CountCurrent, availableCount),
+                                  this.RequiredCount);
             return state.CountCurrent >= this.RequiredCount;
         }
 

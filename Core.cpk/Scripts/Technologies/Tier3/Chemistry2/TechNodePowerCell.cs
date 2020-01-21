@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipePowerCell>();
 
-            config.SetRequiredNode<TechNodeComponentsIndustrialChemicals>();
+            config.SetRequiredNode<TechNodePlastic>();
         }
     }
 }

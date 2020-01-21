@@ -71,7 +71,7 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 10);
-            build.AddStageRequiredItem<ItemGlassRaw>(count: 20);
+            build.AddStageRequiredItem<ItemGlassRaw>(count: 10);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
             repair.StagesCount = 10;

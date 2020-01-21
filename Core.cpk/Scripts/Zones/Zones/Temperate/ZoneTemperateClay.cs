@@ -15,7 +15,7 @@
 
             // mobs
             scripts
-                .Add(GetScript<SpawnMobsCloackedLizard>())
+                .Add(GetScript<SpawnMobsCloakedLizard>())
                 .Add(GetScript<SpawnMobsCrawler>());
         }
     }

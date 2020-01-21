@@ -19,7 +19,7 @@
 
             duration = CraftingDuration.Medium;
 
-            inputItems.Add<ItemIngotSteel>(count: 15);
+            inputItems.Add<ItemIngotSteel>(count: 10);
 
             outputItems.Add<ItemMachete>();
         }

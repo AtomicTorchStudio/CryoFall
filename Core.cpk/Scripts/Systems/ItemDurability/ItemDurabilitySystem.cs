@@ -27,11 +27,11 @@
         public static void ServerInitializeItem(IItemWithDurabilityPrivateState privateState, bool isFirstTimeInit)
         {
             var item = (IItem)privateState.GameObject;
-            var protoItem = item.ProtoItem as IProtoItemWithDurablity
+            var protoItem = item.ProtoItem as IProtoItemWithDurability
                             ?? throw new Exception("The item "
                                                    + item
                                                    + " proto class don't implement "
-                                                   + nameof(IProtoItemWithDurablity));
+                                                   + nameof(IProtoItemWithDurability));
 
             privateState.DurabilityCurrent = isFirstTimeInit
                                                  ? protoItem.DurabilityMax
@@ -60,7 +60,7 @@
                 return;
             }
 
-            var protoItem = (IProtoItemWithDurablity)item.ProtoItem;
+            var protoItem = (IProtoItemWithDurability)item.ProtoItem;
             var durabilityMax = protoItem.DurabilityMax;
             if (durabilityMax == 0)
             {
@@ -99,9 +99,9 @@
 
         public static double SharedGetDurabilityFraction(IItem item)
         {
-            var protoItem = item.ProtoItem as IProtoItemWithDurablity
+            var protoItem = item.ProtoItem as IProtoItemWithDurability
                             ?? throw new Exception(
-                                $"{item} prototype doesn't implement {typeof(IProtoItemWithDurablity)}");
+                                $"{item} prototype doesn't implement {typeof(IProtoItemWithDurability)}");
             if (protoItem.DurabilityMax <= 0)
             {
                 // non-degradable item

@@ -238,7 +238,7 @@
                                       * learningPointsSharePercent
                                       / (onlinePartyMembers.Count - 1);
 
-            foreach (var partyMember in onlinePartyMembers)
+            foreach (var partyMember in onlinePartyMembers.AsList())
             {
                 if (partyMember != character)
                 {

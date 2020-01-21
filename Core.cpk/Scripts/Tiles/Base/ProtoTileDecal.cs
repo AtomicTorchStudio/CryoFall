@@ -144,7 +144,7 @@
                 throw new Exception("No decal textures found: " + localTextureFilePath);
             }
 
-            foreach (var file in tempFilesList)
+            foreach (var file in tempFilesList.AsList())
             {
                 list.Add(new TextureResource(file));
             }

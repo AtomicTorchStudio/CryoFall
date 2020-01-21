@@ -78,7 +78,7 @@
                 return;
             }
 
-            foreach (var element in Api.Shared.WrapInTempList(collection))
+            foreach (var element in Api.Shared.WrapInTempList(collection).EnumerateAndReturn())
             {
                 try
                 {

@@ -70,7 +70,7 @@
                 }
 
                 // add overlay renderers
-                foreach (var preset in overlayChunkPreset)
+                foreach (var preset in overlayChunkPreset.AsList())
                 {
                     var overlayRenderer = Api.Client.Rendering.CreateSpriteRenderer(
                         worldObject,
@@ -264,20 +264,17 @@
                         return true;
                     }
                 }
-
-                // Disabled - no need for this as we cover that empty space with the hitboxes
-                // and the space is too small to pass through so absence of a physical collider is fine.
-                //else if (Api.IsServer)
-                //{
-                //    // Only on the server side we do the check for the vertical compatible door.
-                //    // That's because we don't want to draw the "compatible wall adapters" on the client side.
-                //    // It also means that physics is a bit different between the client and the server
-                //    // in this aspect but it's barely noticeable.
-                //    if (SharedIsCompatibleDoor(worldObject, tile, recognizeConstructionSites, isHorizontal: false))
-                //    {
-                //        return true;
-                //    }
-                //}
+                else if (Api.IsServer)
+                {
+                    // Only on the server side we do the check for the vertical compatible door.
+                    // That's because we don't want to draw the "compatible wall adapters" on the client side.
+                    // It also means that physics is a bit different between the client and the server
+                    // in this aspect but it's barely noticeable.
+                    if (SharedIsCompatibleDoor(worldObject, tile, recognizeConstructionSites, isHorizontal: false))
+                    {
+                        return true;
+                    }
+                }
             }
 
             return false;

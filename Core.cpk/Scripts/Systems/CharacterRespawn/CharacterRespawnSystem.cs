@@ -55,7 +55,7 @@
         public static void ServerRemoveInvalidStatusEffects(ICharacter character)
         {
             foreach (var statusEffect in Api.Shared.WrapInTempList(
-                character.ServerEnumerateCurrentStatusEffects()))
+                character.ServerEnumerateCurrentStatusEffects()).EnumerateAndReturn())
             {
                 var protoStatusEffect = (IProtoStatusEffect)statusEffect.ProtoLogicObject;
                 if (protoStatusEffect.IsRemovedOnRespawn)

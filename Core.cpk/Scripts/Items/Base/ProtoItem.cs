@@ -200,8 +200,8 @@
                 controls.Add(ItemTooltipFuelControl.Create(item));
             }
 
-            if (this is IProtoItemWithDurablity protoItemWithDurablity
-                && protoItemWithDurablity.DurabilityMax > 0)
+            if (this is IProtoItemWithDurability protoItemWithDurability
+                && protoItemWithDurability.DurabilityMax > 0)
             {
                 controls.Add(ItemTooltipInfoDurabilityControl.Create(item));
             }
@@ -222,10 +222,10 @@
                 return;
             }
 
-            if (item.ProtoItem is IProtoItemWithDurablity protoItemWithDurablity)
+            if (item.ProtoItem is IProtoItemWithDurability protoItemWithDurability)
             {
                 // -10% of durability reduced on death
-                var durabilityDelta = protoItemWithDurablity.DurabilityMax * DurabilityFractionReduceOnDeath;
+                var durabilityDelta = protoItemWithDurability.DurabilityMax * DurabilityFractionReduceOnDeath;
                 ItemDurabilitySystem.ServerModifyDurability(item,
                                                             delta: -durabilityDelta,
                                                             roundUp: false);
@@ -362,12 +362,9 @@
         /// <param name="character"></param>
         protected void ServerNotifyItemUsed(ICharacter character, IItem item)
         {
-            using (var scopedBy = Api.Shared.GetTempList<ICharacter>())
-            {
-                Server.World.GetScopedByPlayers(character, scopedBy);
-                this.CallClient(scopedBy, _ => _.ClientRemote_CharacterUsedItem(character));
-            }
-
+            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(character, scopedBy);
+            this.CallClient(scopedBy.AsList(), _ => _.ClientRemote_CharacterUsedItem(character));
             ServerItemUseObserver.NotifyItemUsed(character, item);
         }
 

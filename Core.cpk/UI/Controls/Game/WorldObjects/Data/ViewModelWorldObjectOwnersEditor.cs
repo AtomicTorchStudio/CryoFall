@@ -156,11 +156,14 @@
 
         private void RefreshOwnersList()
         {
-            IEnumerable<string> list = this.ownersSyncList;
+            IEnumerable<string> entries = this.ownersSyncList;
             if (this.ownersListFilter != null)
             {
-                list = list.Where(this.ownersListFilter);
+                entries = entries.Where(this.ownersListFilter);
             }
+
+            var list = entries.ToList();
+            list.Sort(StringComparer.OrdinalIgnoreCase);
 
             var owners = list.Select(
                                  name => new NameEntry(

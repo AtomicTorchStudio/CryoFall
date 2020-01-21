@@ -40,7 +40,7 @@
 
         protected override void PrepareDefense(DefenseDescription defense)
         {
-            defense.Set(ObjectDefensePresets.Tier3);
+            defense.Set(ObjectDefensePresets.Tier5);
         }
     }
 }

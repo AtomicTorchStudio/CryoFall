@@ -277,7 +277,7 @@
             {
                 Server.World.GetScopedByPlayers(worldObject, scopedBy);
                 scopedBy.Remove(byCharacter);
-                this.CallClient(scopedBy,
+                this.CallClient(scopedBy.AsList(),
                                 _ => _.ClientRemote_PlayDeconstructionSound(destroyPosition));
             }
 

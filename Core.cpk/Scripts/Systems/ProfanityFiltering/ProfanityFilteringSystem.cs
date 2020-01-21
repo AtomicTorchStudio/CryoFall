@@ -232,8 +232,8 @@
             private static void Initialize()
             {
                 var sb = new StringBuilder();
-                var files = Api.Shared.FindFiles("Scripts/Systems/ProfanityFiltering/Filters/");
-                foreach (var filePath in files)
+                foreach (var filePath in Api.Shared.FindFiles("Scripts/Systems/ProfanityFiltering/Filters/")
+                                            .EnumerateAndReturn())
                 {
                     if (!filePath.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
                     {

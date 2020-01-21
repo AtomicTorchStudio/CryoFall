@@ -37,7 +37,7 @@
             foreach (var requiredAttachment in slotAttachmentsMale)
             {
                 var isFound = false;
-                foreach (var existingAttachment in originalSlotAttachmentsFemale)
+                foreach (var existingAttachment in originalSlotAttachmentsFemale.AsList())
                 {
                     if (existingAttachment.AttachmentName == requiredAttachment.AttachmentName)
                     {
@@ -96,7 +96,7 @@
             foreach (var pair in sources)
             {
                 var fullPath = pair.SourceFolderPath;
-                var filePaths = pair.FilesInFolder.AsList();
+                var filePaths = pair.FilesInFolder;
                 if (filePaths.Count == 0)
                 {
                     continue;
@@ -206,16 +206,16 @@
 
         public struct FilePathsList
         {
-            public readonly ITempList<string> FilesInFolder;
-
             public readonly string SourceFolderPath;
+
+            private readonly ITempList<string> tempList;
 
             public FilePathsList(string sourceFolderPath, ITempList<string> filesInFolder)
             {
                 this.SourceFolderPath = sourceFolderPath;
-                this.FilesInFolder = filesInFolder;
+                this.tempList = filesInFolder;
 
-                foreach (var path in filesInFolder)
+                foreach (var path in this.FilesInFolder)
                 {
                     if (!path.EndsWith(".png"))
                     {
@@ -223,6 +223,13 @@
                             "All loadable attachments must be a PNG-files: wrong file - " + path);
                     }
                 }
+            }
+
+            public List<string> FilesInFolder => this.tempList.AsList();
+
+            public void Dispose()
+            {
+                this.tempList.Dispose();
             }
         }
     }

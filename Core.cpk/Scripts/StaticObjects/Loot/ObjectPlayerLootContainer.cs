@@ -428,7 +428,7 @@
             var characterPosition = character.Position;
             var startTilePosition = new Vector2Ushort(
                 (ushort)characterPosition.X,
-                (ushort)(characterPosition.Y - SkeletonHuman.LegsColliderRadius));
+                (ushort)(characterPosition.Y - ProtoCharacterSkeletonHuman.LegsColliderRadius));
             var startTile = Server.World.GetTile(startTilePosition);
 
             var checkQueue = new List<Tile>();

@@ -24,12 +24,16 @@
 
         private DateTime? wipedDate;
 
+        public static ViewModelMenuCurrentGame Instance { get; private set; }
+
         public ViewModelMenuCurrentGame()
         {
             if (IsDesignTime)
             {
                 return;
             }
+
+            Instance = this;
 
             ServerOperatorSystem.ClientIsOperatorChanged += this.IsServerOperatorChangedHandler;
 
@@ -53,13 +57,14 @@
             this.RefreshWipedDateText();
         }
 
-        public bool CanEditWelcomeMessage => ServerOperatorSystem.ClientIsOperator();
-
         public BaseCommand CommandCopyPublicGuidToClipboard
             => new ActionCommand(() => Client.Core.CopyToClipboard(this.ServerAddress.PublicGuid.ToString()));
 
         public BaseCommand CommandDisconnect
             => new ActionCommand(this.ExecuteCommandDisconnect);
+
+        public BaseCommand CommandEditDescription
+            => new ActionCommand(WelcomeMessageSystem.ClientEditDescription);
 
         public BaseCommand CommandEditWelcomeMessage
             => new ActionCommand(WelcomeMessageSystem.ClientEditWelcomeMessage);
@@ -108,6 +113,8 @@
             }
         }
 
+        public bool IsServerOperator => ServerOperatorSystem.ClientIsOperator();
+
         public ushort PingAverageMilliseconds
             => (ushort)Math.Round(
                 this.game.GetPingAverageSeconds(yesIKnowIShouldUsePingGameInstead: true) * 1000,
@@ -121,7 +128,7 @@
         public ServerAddress ServerAddress { get; private set; }
 
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-        public string ServerDescription { get; private set; } = "Server description text";
+        public string ServerDescription { get; set; } = "Server description text";
 
         public string ServerName { get; private set; } = "Server name text";
 
@@ -177,6 +184,11 @@
 
         protected override void DisposeViewModel()
         {
+            if (ReferenceEquals(this, Instance))
+            {
+                Instance = null;
+            }
+
             base.DisposeViewModel();
 
             ServerOperatorSystem.ClientIsOperatorChanged -= this.IsServerOperatorChangedHandler;
@@ -204,7 +216,7 @@
 
         private void IsServerOperatorChangedHandler()
         {
-            this.NotifyPropertyChanged(nameof(this.CanEditWelcomeMessage));
+            this.NotifyPropertyChanged(nameof(this.IsServerOperator));
         }
 
         private void PingAverageChangedHandler()

@@ -112,9 +112,14 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody.Reset();
-            data.PhysicsBody.AddShapeCircle(
-                radius: 10,
-                group: CollisionGroups.CharacterInteractionArea);
+            
+            if (IsServer 
+                || data.GameObject.IsCurrentClientCharacter)
+            {
+                data.PhysicsBody.AddShapeCircle(
+                    radius: 10,
+                    group: CollisionGroups.CharacterInteractionArea);
+            }
         }
 
         protected override void SharedGetSkeletonProto(

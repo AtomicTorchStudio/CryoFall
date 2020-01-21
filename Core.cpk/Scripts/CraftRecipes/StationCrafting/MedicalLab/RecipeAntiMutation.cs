@@ -20,10 +20,10 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemHerbGreen>(count: 10);
-            inputItems.Add<ItemHerbRed>(count: 5);
-            inputItems.Add<ItemHerbPurple>(count: 5);
-            inputItems.Add<ItemToxin>(count: 5);
+            inputItems.Add<ItemHerbGreen>(count: 5);
+            inputItems.Add<ItemHerbRed>(count: 2);
+            inputItems.Add<ItemHerbPurple>(count: 2);
+            inputItems.Add<ItemToxin>(count: 2);
 
             outputItems.Add<ItemAntiMutation>(count: 1);
         }

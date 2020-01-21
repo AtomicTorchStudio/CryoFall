@@ -9,7 +9,7 @@
     public class SkillMaintenance : ProtoSkill
     {
         // Base percent of durability restore when repairing an item (even when skill is 0 level).
-        public const double BaseTinkerTableBonus = 10; // 10%
+        public const double BaseTinkerTableBonus = 20; // +20%
 
         /// <summary>
         /// Exp given for each individual item repaired.

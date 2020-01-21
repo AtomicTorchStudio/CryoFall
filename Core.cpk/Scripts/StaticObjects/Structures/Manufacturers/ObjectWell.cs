@@ -85,13 +85,13 @@
         {
             category = GetCategory<StructureCategoryIndustry>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemStone>(count: 10);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemStone>(count: 5);
+            repair.AddStageRequiredItem<ItemStone>(count: 2);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

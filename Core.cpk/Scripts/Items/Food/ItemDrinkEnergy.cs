@@ -12,7 +12,7 @@
 
         public override float FoodRestore => 3;
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
         public override string ItemUseCaption => ItemUseCaptions.Drink;
 
@@ -31,7 +31,7 @@
 
         protected override void ServerOnEat(ItemEatData data)
         {
-            data.Character.ServerAddStatusEffect<StatusEffectEnergyRush>(intensity: 0.3); // 3 minutes
+            data.Character.ServerAddStatusEffect<StatusEffectEnergyRush>(intensity: 0.4); // 3 minutes
             base.ServerOnEat(data);
         }
     }

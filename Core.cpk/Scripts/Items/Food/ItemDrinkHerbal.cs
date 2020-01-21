@@ -12,7 +12,7 @@
 
         public override float FoodRestore => 3;
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
         public override float HealthRestore => 1;
 

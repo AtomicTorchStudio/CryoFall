@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestMineAnyMineral : ProtoQuest
     {
@@ -22,8 +23,12 @@
 
         protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
         {
+            // minerals without stone (as it has a separate requirement)
+            var listMinerals = Api.FindProtoEntities<IProtoObjectMineral>();
+            listMinerals.Remove(Api.GetProtoEntity<ObjectMineralStone>());
+
             requirements
-                .Add(RequirementDestroy.Require<IProtoObjectMineral>(count: 5, description: this.Name))
+                .Add(RequirementDestroy.Require(list: listMinerals, count: 3, description: this.Name))
                 .Add(RequirementDestroy.Require<ObjectMineralStone>(count: 3, description: TaskMineStone));
 
             prerequisites

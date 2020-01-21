@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectFridgeLarge>();
 
-            config.SetRequiredNode<TechNodePowerStorageLarge>();
+            config.SetRequiredNode<TechNodeStoveElectric>();
         }
     }
 }

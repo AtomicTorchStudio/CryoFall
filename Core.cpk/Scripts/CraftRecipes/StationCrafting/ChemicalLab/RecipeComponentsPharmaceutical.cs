@@ -17,10 +17,9 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.Medium;
+            duration = CraftingDuration.Short;
 
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 5);
-            inputItems.Add<ItemSolvent>(count: 5);
             inputItems.Add<ItemHerbRed>(count: 5);
             inputItems.Add<ItemHerbPurple>(count: 5);
 

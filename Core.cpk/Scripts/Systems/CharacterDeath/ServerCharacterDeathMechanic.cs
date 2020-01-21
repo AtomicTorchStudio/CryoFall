@@ -279,7 +279,7 @@
         {
             // decrease durability for all equipped items (which will be dropped as the full loot)
             using var tempList = Api.Shared.WrapInTempList(fromContainer.Items);
-            foreach (var item in tempList)
+            foreach (var item in tempList.AsList())
             {
                 item.ProtoItem.ServerOnCharacterDeath(item,
                                                       isEquipped: isEquipmentContainer,

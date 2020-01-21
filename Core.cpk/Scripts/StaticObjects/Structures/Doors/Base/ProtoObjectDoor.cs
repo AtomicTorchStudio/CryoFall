@@ -736,7 +736,7 @@
                     collisionGroup: CollisionGroups.Default);
             }
 
-            foreach (var result in testResult)
+            foreach (var result in testResult.EnumerateAndReturn())
             {
                 var protoObject = result.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject;
                 if (protoObject is IProtoCharacter

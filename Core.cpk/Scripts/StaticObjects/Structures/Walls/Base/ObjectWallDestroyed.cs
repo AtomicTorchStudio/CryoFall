@@ -252,7 +252,7 @@
             SharedGatherOccupiedAndNeighborTiles(structure, tempList);
 
             // destroy all the static objects in the gathered tiles
-            foreach (var tile in tempList)
+            foreach (var tile in tempList.AsList())
             {
                 var tileStaticObjects = tile.StaticObjects;
                 for (var index = 0; index < tileStaticObjects.Count; index++)

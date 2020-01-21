@@ -17,6 +17,7 @@
         {
             stations.Add<ObjectCampfire>();
             stations.Add<ObjectStove>();
+            stations.Add<ObjectStoveElectric>();
 
             duration = CraftingDuration.Medium;
 

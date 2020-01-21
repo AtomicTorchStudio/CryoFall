@@ -130,7 +130,7 @@
             // Disabled because it break some spawn scripts order!
             //tempList.Shuffle();
 
-            foreach (var script in tempList)
+            foreach (var script in tempList.AsList())
             {
                 script.ServerInvoke(trigger, serverZoneInstance);
             }

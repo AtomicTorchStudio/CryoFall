@@ -309,11 +309,6 @@
                 != null)
             {
                 // no need for notification - after refilling it will turn on automatically
-                //NotificationSystem.ClientShowNotification(
-                //    "Cannot turn on",
-                //    "Refilling...",
-                //    color: NotificationColor.Bad,
-                //    icon: this.Icon);
                 return;
             }
 

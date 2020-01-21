@@ -115,6 +115,11 @@
         {
         }
 
+        protected override ITextureResource ClientCreateIcon()
+            => this.textureAtlas is null
+                   ? this.DefaultTexture
+                   : this.textureAtlas.Chunk(1, 0);
+
         protected virtual BaseClientComponentLightSource ClientCreateLightSource(IClientSceneObject sceneObject)
         {
             return ClientLighting.CreateLightSourceSpot(
@@ -313,7 +318,7 @@
                     return false;
                 }
 
-                foreach (var character in charactersNearby)
+                foreach (var character in charactersNearby.AsList())
                 {
                     if (character.ProtoCharacter is PlayerCharacterSpectator)
                     {

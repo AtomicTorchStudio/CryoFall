@@ -46,7 +46,7 @@
                     return;
                 }
 
-                this.DurabilityMax = ((IProtoItemWithDurablity)this.item.ProtoItem).DurabilityMax;
+                this.DurabilityMax = ((IProtoItemWithDurability)this.item.ProtoItem).DurabilityMax;
 
                 this.durabilityPrivateState = this.item.GetPrivateState<IItemWithDurabilityPrivateState>();
                 this.durabilityPrivateState.ClientSubscribe(_ => _.DurabilityCurrent,

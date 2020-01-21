@@ -35,7 +35,7 @@
             foreach (var t in physicsSpace.TestCircle(position,
                                                       SpawnNoPlayerBuiltStructuresRadius,
                                                       CollisionGroups.Default,
-                                                      sendDebugEvent: false))
+                                                      sendDebugEvent: false).EnumerateAndReturn())
             {
                 if (t.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject is IProtoObjectStructure)
                 {
@@ -50,7 +50,7 @@
                 foreach (var t in physicsSpace.TestCircle(position,
                                                           SpawnPlayerNoMobsRadius,
                                                           CollisionGroups.Default,
-                                                          sendDebugEvent: false))
+                                                          sendDebugEvent: false).EnumerateAndReturn())
                 {
                     if (t.PhysicsBody.AssociatedWorldObject is ICharacter otherCharacter
                         && otherCharacter.IsNpc)
@@ -66,7 +66,7 @@
                 foreach (var t in physicsSpace.TestCircle(position,
                                                           SpawnMobNoPlayersRadius,
                                                           CollisionGroups.Default,
-                                                          sendDebugEvent: false))
+                                                          sendDebugEvent: false).EnumerateAndReturn())
                 {
                     if (t.PhysicsBody.AssociatedWorldObject is ICharacter otherCharacter
                         && !otherCharacter.IsNpc)

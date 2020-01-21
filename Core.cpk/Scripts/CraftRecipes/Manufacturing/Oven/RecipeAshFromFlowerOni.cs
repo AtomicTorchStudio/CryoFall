@@ -16,6 +16,7 @@
             OutputItems outputItems)
         {
             stations.Add<ObjectStove>();
+            stations.Add<ObjectStoveElectric>();
             stations.Add<ObjectCampfire>();
 
             duration = CraftingDuration.Short;

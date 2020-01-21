@@ -195,7 +195,7 @@
 
                     // remove existing charred ground objects at the same tile
                     foreach (var staticWorldObject in Shared.WrapInTempList(
-                        Server.World.GetTile(tilePosition).StaticObjects))
+                        Server.World.GetTile(tilePosition).StaticObjects).EnumerateAndReturn())
                     {
                         if (staticWorldObject.ProtoStaticWorldObject is ProtoObjectCharredGround)
                         {

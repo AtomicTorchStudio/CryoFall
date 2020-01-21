@@ -114,7 +114,7 @@
                 return false;
             }
 
-            var resultItemProto = (IProtoItemWithDurablity)inputItem1.ProtoGameObject;
+            var resultItemProto = (IProtoItemWithDurability)inputItem1.ProtoGameObject;
             if (!resultItemProto.IsRepairable)
             {
                 throw new Exception("Cannot repair: the input items prototype is not repairable");
@@ -203,7 +203,7 @@
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemPlanks>(count: 10);
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
@@ -304,7 +304,7 @@
                                         containerOutput,
                                         out _);
 
-            var resultItemProto = (IProtoItemWithDurablity)inputItem1.ProtoGameObject;
+            var resultItemProto = (IProtoItemWithDurability)inputItem1.ProtoGameObject;
             var resultItemPrivateState = inputItem1.GetPrivateState<IItemWithDurabilityPrivateState>();
             resultItemPrivateState.DurabilityCurrent = (uint)Math.Round(
                 resultDurabilityFraction * resultItemProto.DurabilityMax,

@@ -337,9 +337,10 @@
                         character,
                         writeToLog,
                         requiredCollisionGroup);
-                isInsideInteractionArea =
-                    objectsInCharacterInteractionArea?.Any(t => t.PhysicsBody.AssociatedWorldObject == worldObject)
-                    ?? false;
+                isInsideInteractionArea = objectsInCharacterInteractionArea?
+                                          .AsList()
+                                          .Any(t => t.PhysicsBody.AssociatedWorldObject == worldObject)
+                                          ?? false;
             }
             else if (worldObject.ProtoWorldObject is IProtoStaticWorldObject protoStaticWorldObject)
             {
@@ -493,7 +494,7 @@
                                : targetObject.TilePosition.ToVector2D();
 
             this.CallClient(
-                scopedBy,
+                scopedBy.AsList(),
                 _ => _.ClientRemote_OnObjectDestroyed(position));
         }
 
@@ -542,7 +543,7 @@
                     toPosition,
                     CollisionGroup.GetDefault(),
                     sendDebugEvent: sendDebugEvents);
-                foreach (var test in obstaclesOnTheWay)
+                foreach (var test in obstaclesOnTheWay.AsList())
                 {
                     var testPhysicsBody = test.PhysicsBody;
                     if (!(testPhysicsBody.AssociatedProtoTile is null))

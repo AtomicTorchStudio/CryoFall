@@ -5,7 +5,7 @@
 
     public interface IProtoItemToolCrowbar
         : IProtoItemWithCharacterAppearance,
-          IProtoItemWithDurablity
+          IProtoItemWithDurability
     {
         double DeconstructionSpeedMultiplier { get; }
 

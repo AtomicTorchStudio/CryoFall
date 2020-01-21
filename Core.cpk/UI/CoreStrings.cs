@@ -95,6 +95,8 @@
         // to unblock (un-mute) chat messages from the selected player
         public const string Chat_MessageMenu_Unblock = "Unblock";
 
+        public const string Checkbox_DoNotAskAgain = "Do not ask me again";
+
         public const string ConstructionMetaInfo_Decoration =
             "This structure is purely decorative.";
 
@@ -179,6 +181,16 @@
         public const string DepositCapacityStats_Message = "This deposit will be depleted in:";
 
         public const string DepositCapacityStats_Title = "Deposit capacity";
+
+        public const string Duration_Instant = "Instant";
+
+        public const string Duration_Quick = "Quick";
+
+        public const string Duration_Slow = "Slow";
+
+        public const string Duration_VeryQuick = "Very quick";
+
+        public const string Duration_VerySlow = "Very slow";
 
         public const string EnergyUnitAbbreviation = "EU";
 
@@ -296,6 +308,8 @@
 
         public const string MainMenu_TabCurrentGame = "CURRENT GAME";
 
+        public const string MainMenu_TabExtras = "EXTRAS";
+
         public const string MainMenu_TabHome = "HOME";
 
         public const string MainMenu_TabOptions = "OPTIONS";
@@ -303,6 +317,8 @@
         public const string MainMenu_TabQuit = "QUIT";
 
         public const string MainMenu_TabServers = "SERVERS";
+
+        public const string MainMenu_TabUpdates = "UPDATES HISTORY";
 
         public const string MainMenuOverlay_Button_LinkAccount = "Link account";
 
@@ -1024,6 +1040,12 @@
 
         public const string WindowTechnologies_TechGroupUnlock = "Unlock";
 
+        public const string WindowTechnologies_TechTreeChanged =
+            @"It appears the technologies tree has been changed.
+              [br]This could be due to a game update or third-party changes (in the case of a community or modded server).
+              [br]Your researched technologies were reset and all learning points (LP) spent were refunded, so you can redistribute the points again.
+              [br]Enjoy the game!";
+
         public const string WindowTechnologies_TitlePrimaryTechnologies = "Primary technologies";
 
         public const string WindowTechnologies_TitleSpecializedTechnologies = "Specialized technologies";
@@ -1115,9 +1137,17 @@
             @"[b]Base being raided[/b]
               [br]Your base is under attack!";
 
+        public const string WorldMapMarkResourceLithium_Infinite_Tooltip =
+            @"[b]Infinite geothermal spring[/b]
+              [br]Public lithium source.";
+
         public const string WorldMapMarkResourceLithium_Tooltip =
             @"[b]Geothermal spring[/b]
               [br]Lithium deposit.";
+
+        public const string WorldMapMarkResourceOil_Infinite_Tooltip =
+            @"[b]Infinite oil seep[/b]
+              [br]Public raw petroleum oil source.";
 
         public const string WorldMapMarkResourceOil_Tooltip =
             @"[b]Oil seep[/b]

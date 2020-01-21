@@ -135,7 +135,7 @@
             // make a copy of the list (as it could be modified during the enumeration)
             // and process it
             tempList.AddRange(this.activeContexts);
-            foreach (var pair in tempList)
+            foreach (var pair in tempList.AsList())
             {
                 if (!pair.Key.ServerIsOnline)
                 {

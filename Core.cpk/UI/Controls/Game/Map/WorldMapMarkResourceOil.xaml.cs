@@ -25,7 +25,7 @@
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
             this.GetByName<ContentControl>("TextBlockTooltip").Content
                 = this.IsInfiniteSource
-                      ? $"[b]({Api.GetProtoEntity<ObjectDepositOilSeepInfinite>().Name})[/b][br]{CoreStrings.WorldMapMarkResourceOil_Tooltip}"
+                      ? CoreStrings.WorldMapMarkResourceOil_Infinite_Tooltip
                       : CoreStrings.WorldMapMarkResourceOil_Tooltip;
         }
     }

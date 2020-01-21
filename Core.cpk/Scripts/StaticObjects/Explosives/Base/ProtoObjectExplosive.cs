@@ -279,7 +279,8 @@
                         {
                             using var tempPlayers = Api.Shared.GetTempList<ICharacter>();
                             Server.World.GetScopedByPlayers(worldObject, tempPlayers);
-                            RaidingProtectionSystem.ServerNotifyShowNotificationRaidingNotAvailableNow(tempPlayers);
+                            RaidingProtectionSystem.ServerNotifyShowNotificationRaidingNotAvailableNow(
+                                tempPlayers.AsList());
                         }
                     }
                 }

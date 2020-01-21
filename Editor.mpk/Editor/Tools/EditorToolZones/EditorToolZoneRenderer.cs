@@ -167,7 +167,7 @@
                     }
                 }
 
-                foreach (var quadTreeNodeKey in listToRemove)
+                foreach (var quadTreeNodeKey in listToRemove.AsList())
                 {
                     this.RemoveRenderer(quadTreeNodeKey.Position, quadTreeNodeKey.SizePowerOfTwo);
                 }

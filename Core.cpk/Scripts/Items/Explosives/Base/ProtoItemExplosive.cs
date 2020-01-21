@@ -144,7 +144,7 @@
                     toPosition,
                     CollisionGroup.GetDefault(),
                     sendDebugEvent: false);
-                foreach (var test in obstaclesOnTheWay)
+                foreach (var test in obstaclesOnTheWay.AsList())
                 {
                     var testPhysicsBody = test.PhysicsBody;
                     if (testPhysicsBody.AssociatedProtoTile != null)

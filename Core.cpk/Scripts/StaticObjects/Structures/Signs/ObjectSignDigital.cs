@@ -52,7 +52,7 @@
 
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
+            build.AddStageRequiredItem<ItemIngotCopper>(count: 1);
             build.AddStageRequiredItem<ItemPlastic>(count: 1);
 
             repair.StagesCount = 5;

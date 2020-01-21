@@ -120,18 +120,17 @@
         {
             category = GetCategory<StructureCategoryIndustry>();
 
-            build.StagesCount = 10;
+            build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Medium;
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
             build.AddStageRequiredItem<ItemWire>(count: 5);
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 4);
             build.AddStageRequiredItem<ItemPlastic>(count: 1);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;
-            repair.AddStageRequiredItem<ItemWire>(count: 5);
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
-            repair.AddStageRequiredItem<ItemPlastic>(count: 1);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 1);
+            repair.AddStageRequiredItem<ItemWire>(count: 1);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

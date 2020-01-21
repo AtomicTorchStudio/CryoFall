@@ -135,7 +135,7 @@
                          .AppendLine($"{recipe.Name} — per single item:")
                          .AppendLine();
             var recursiveErrorsSb = new StringBuilder();
-            var tag = isOriginalRecipeManufacturing  ? "[manufacture]" : "[craft]";
+            var tag = isOriginalRecipeManufacturing ? "[manufacture]" : "[craft]";
             timeSb.AppendLine($"{tag} {originalRecipeDurationPerItem:0.##}s — x{multiplier:0.##} {recipe.Name}");
 
             foreach (var outputItem in recipe.OutputItems.Items)
@@ -147,6 +147,10 @@
             }
 
             ProcessInputRecursive(recipe, multiplier, depth: 0);
+
+            inputItems.Sort(ListOrderComparison);
+            outputItems.Sort(ListOrderComparison);
+            outputItemsExtras.Sort(ListOrderComparison);
 
             this.InputItems = inputItems;
             this.OutputItems = outputItems;
@@ -342,6 +346,11 @@
             }
 
             return null;
+        }
+
+        private static int ListOrderComparison(ProtoItemWithCountFractional x, ProtoItemWithCountFractional y)
+        {
+            return string.Compare(x.ProtoItem.Id, y.ProtoItem.Id, StringComparison.Ordinal);
         }
 
         private void ExecuteCommandDisplayTimeCalculation()

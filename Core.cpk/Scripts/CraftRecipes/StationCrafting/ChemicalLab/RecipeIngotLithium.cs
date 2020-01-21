@@ -16,7 +16,7 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemOreLithium>(count: 5);
 

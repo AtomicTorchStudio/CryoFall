@@ -8,7 +8,7 @@
 
         public override float FoodRestore => 25;
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.Preserved;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
         public override string Name => "Canned mixed meat";
 

@@ -93,7 +93,7 @@
         }
 
         private static async Task<ITextureResource> GenerateChunkProceduralTexture(
-            ITempList<Tile> tiles,
+            ITempList<Tile> tempTilesList,
             Vector2Ushort chunkStartPosition,
             ProceduralTextureRequest request)
         {
@@ -115,7 +115,7 @@
             camera.SetOrthographicProjection(textureSize.X, textureSize.Y);
 
             // create tile renderers
-            foreach (var tile in tiles)
+            foreach (var tile in tempTilesList.EnumerateAndReturn())
             {
                 var drawPosition = tile.Position.ToVector2D() - chunkStartPosition.ToVector2D();
                 drawPosition = (
@@ -131,8 +131,6 @@
                     spritePivotPoint: (0, 1),
                     renderingTag: renderingTag);
             }
-
-            tiles.Dispose();
 
             await camera.DrawAsync();
             cameraObject.Destroy();

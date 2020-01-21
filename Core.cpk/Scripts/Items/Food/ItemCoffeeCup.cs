@@ -27,7 +27,7 @@
 
         protected override void ServerOnEat(ItemEatData data)
         {
-            data.Character.ServerAddStatusEffect<StatusEffectEnergyRush>(intensity: 0.2); // minutes
+            data.Character.ServerAddStatusEffect<StatusEffectEnergyRush>(intensity: 0.4); // minutes
 
             base.ServerOnEat(data);
         }

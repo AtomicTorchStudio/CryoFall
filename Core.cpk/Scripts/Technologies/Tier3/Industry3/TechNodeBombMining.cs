@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeBombMining>();
 
-            config.SetRequiredNode<TechNodeComponentsMechanical>();
+            config.SetRequiredNode<TechNodeIngotLithium>();
         }
     }
 }
