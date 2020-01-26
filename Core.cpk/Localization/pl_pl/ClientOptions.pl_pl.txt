@@ -72,6 +72,9 @@ Przybliżona (najbliższa standardowa rozdzielczość)
 Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 Rozdzielczość zrzutu ekranu
 
+Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
+Opóźnienie podpowiedzi
+
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 Skalowanie interfejsu
 

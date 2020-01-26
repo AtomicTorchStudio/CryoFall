@@ -72,6 +72,9 @@ La plus proche (utiliser la résolution standard le plus proche)
 Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 Résolution des captures d'écran
 
+Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
+Tooltip delay
+
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 Échelle de l'interface
 

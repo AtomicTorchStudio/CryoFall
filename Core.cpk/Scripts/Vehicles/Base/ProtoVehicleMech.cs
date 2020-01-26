@@ -8,7 +8,6 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
@@ -152,22 +151,6 @@
                         skeletonComponents: new List<IClientComponent>());
                 }
             }
-        }
-
-        protected override void PrepareProtoVehicleDestroyedExplosionPreset(
-            out double damageRadius,
-            out ExplosionPreset explosionPreset,
-            out DamageDescription damageDescriptionCharacters)
-        {
-            damageRadius = 6;
-            explosionPreset = ExplosionPresets.VeryLarge;
-
-            damageDescriptionCharacters = new DamageDescription(
-                damageValue: 100,
-                armorPiercingCoef: 0,
-                finalDamageMultiplier: 1,
-                rangeMax: damageRadius,
-                damageDistribution: new DamageDistribution(DamageType.Kinetic, 1));
         }
 
         protected override void ServerInitializeVehicle(ServerInitializeData data)

@@ -343,6 +343,12 @@ Casco acolchado
 Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 Pantalones acolchados
 
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+La defensa definitiva. Esta armadura de combate te protegerá de todo aquello que intente atacarte, aunque lo hará a costa de reducir tu movilidad.
+
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Armadura superpesada
+
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 La necesidad agudiza el ingenio. No es lo más cómodo del mundo, pero ofrece una buena protección durante tus primeros pasos.
 
@@ -1202,11 +1208,17 @@ Se puede fundir para obtener cobre puro.
 Scripts/Items/Generic/ItemOreCopper@Name:
 Mineral de cobre
 
+Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
+Mineral de cobre concentrado
+
 Scripts/Items/Generic/ItemOreIron@Description:
 Se puede fundir para obtener hierro puro.
 
 Scripts/Items/Generic/ItemOreIron@Name:
 Mineral de hierro
+
+Scripts/Items/Generic/ItemOreIronConcentrate@Name:
+Mineral de hierro concentrado
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 Las sales de litio se extraen de fuentes geotérmicas y se pueden procesar para obtener metal de litio puro.

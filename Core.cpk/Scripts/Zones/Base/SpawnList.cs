@@ -40,7 +40,8 @@
             //double iterationLimitMinFraction = 0,
             //double iterationLimitMaxFraction = 0.05,
             bool useSectorDensity = true,
-            int paddingToLandClaimAreas = 0)
+            int paddingToLandClaimAreas = 0,
+            bool spawnAtLeastOnePerSector = false)
         {
             var preset = new ObjectSpawnPreset(
                 interval,
@@ -49,7 +50,8 @@
                 iterationLimitMaxFraction: 0.05,
                 isRestrictionPreset: false,
                 useSectorDensity: useSectorDensity,
-                paddingToLandClaimAreas);
+                paddingToLandClaimAreas,
+                spawnAtLeastOnePerSector);
             this.presets.Add(preset);
             return preset;
         }

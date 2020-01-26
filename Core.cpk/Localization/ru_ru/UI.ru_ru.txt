@@ -107,6 +107,9 @@ UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Разблокировать
 
+UI/CoreStrings@Checkbox_DoNotAskAgain:
+Do not ask me again
+
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Это просто украшение.
 
@@ -203,6 +206,21 @@ UI/CoreStrings@DepositCapacityStats_Message:
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Потенциал месторождения
+
+UI/CoreStrings@Duration_Instant:
+Instant
+
+UI/CoreStrings@Duration_Quick:
+Quick
+
+UI/CoreStrings@Duration_Slow:
+Slow
+
+UI/CoreStrings@Duration_VeryQuick:
+Very quick
+
+UI/CoreStrings@Duration_VerySlow:
+Very slow
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 Эн.
@@ -369,6 +387,9 @@ UI/CoreStrings@MainMenu_TabCredits:
 UI/CoreStrings@MainMenu_TabCurrentGame:
 ТЕКУЩАЯ ИГРА
 
+UI/CoreStrings@MainMenu_TabExtras:
+ДОПОЛНИТЕЛЬНО
+
 UI/CoreStrings@MainMenu_TabHome:
 ГЛАВНОЕ
 
@@ -380,6 +401,9 @@ UI/CoreStrings@MainMenu_TabQuit:
 
 UI/CoreStrings@MainMenu_TabServers:
 СЕРВЕРЫ
+
+UI/CoreStrings@MainMenu_TabUpdates:
+ИСТОРИЯ ОБНОВЛЕНИЙ
 
 UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
 Связать учетную запись
@@ -1314,6 +1338,12 @@ UI/CoreStrings@WindowTechnologies_TechGroupResearchCost:
 UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 Открыть
 
+UI/CoreStrings@WindowTechnologies_TechTreeChanged:
+`It appears the technologies tree has been changed.
+[br]This could be due to a game update or third-party changes (in the case of a community or modded server).
+[br]Your researched technologies were reset and all learning points (LP) spent were refunded, so you can redistribute the points again.
+[br]Enjoy the game!`
+
 UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
 Основные технологии
 
@@ -1427,9 +1457,17 @@ UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 `[b]На базу напали[/b]
 [br]Ваша база в опасности!`
 
+UI/CoreStrings@WorldMapMarkResourceLithium_Infinite_Tooltip:
+`[b]Infinite geothermal spring[/b]
+[br]Public lithium source.`
+
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
 `[b]Геотермальный источник[/b]
 [br]Месторождение лития.`
+
+UI/CoreStrings@WorldMapMarkResourceOil_Infinite_Tooltip:
+`[b]Infinite oil seep[/b]
+[br]Public raw petroleum oil source.`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]Месторождение нефти[/b]
@@ -1660,6 +1698,11 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessLis
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
 Доступ
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoDemoVersion:
+`Please note: This land claim was [b]founded by a demo version player[/b].
+[br]Because of this, the delay before the decay starts as well as the decay duration itself are [b]shortened[/b].
+[br]When a demo player purchases the game, those durations revert to their standard values.`
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
 `Заброшенные постройки со временем ветшают

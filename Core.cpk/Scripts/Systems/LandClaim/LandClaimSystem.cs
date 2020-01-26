@@ -63,7 +63,7 @@
             "The resource deposit has only just appeared and cannot be claimed yet. Construction around it is temporary restricted.";
 
         public const string ErrorCannotBuild_ExceededSafeStorageCapacity =
-            "Building this land claim will result in combined safe storage exceeding the possible capacity in a base. Please remove items from the safe storages of the neighboring land claims before building.";
+            "Building/upgrading this land claim will result in combined safe storage exceeding the possible capacity in a base. Please remove items from the safe storages of the neighboring land claims and then repeat the action.";
 
         public const string ErrorCannotBuild_IntersectingWithAnotherLandClaim =
             "Intersecting with another land claim area";
@@ -624,9 +624,21 @@
             return damageMultiplier;
         }
 
-        public static double ServerGetDecayDelayDurationForLandClaimAreas(List<ILogicObject> areas)
+        public static double ServerGetDecayDelayDurationForLandClaimAreas(
+            List<ILogicObject> areas,
+            bool isFounderDemoPlayer)
         {
             var decayDelayDuration = StructureConstants.StructuresAbandonedDecayDelaySeconds;
+            var decayDelayMultiplier = isFounderDemoPlayer 
+                                           ? StructureConstants.StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers 
+                                           : StructureConstants.StructuresLandClaimDecayDelayDurationMultiplier;
+            decayDelayDuration *= decayDelayMultiplier;
+            
+            if (isFounderDemoPlayer)
+            {
+                return decayDelayDuration;
+            }
+
             foreach (var area in areas)
             {
                 var worldObject = LandClaimArea.GetPrivateState(area)
@@ -634,7 +646,7 @@
 
                 var protoObjectLandClaim = (IProtoObjectLandClaim)worldObject.ProtoStaticWorldObject;
                 decayDelayDuration = Math.Max(protoObjectLandClaim.DecayDelayDuration.TotalSeconds
-                                              * StructureConstants.StructuresLandClaimDecayDelayDurationMultiplier,
+                                              * decayDelayMultiplier,
                                               decayDelayDuration);
             }
 
@@ -1591,7 +1603,8 @@
             // For a candidate for the group let's take the currently existing group
             // with the max number of the land claims.
             var currentGroup = tempListGroups.AsList().MaximumOrDefault(
-                g => LandClaimAreasGroup.GetPrivateState(g).ServerLandClaimsAreas.Count);
+                g => LandClaimAreasGroup
+                     .GetPrivateState(g).ServerLandClaimsAreas.Count);
 
             if (currentGroup == null)
             {
@@ -1886,14 +1899,14 @@
 
             var area = ServerGetLandClaimArea(landClaimStructure);
             var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
-            var areas = LandClaimAreasGroup.GetPrivateState(areasGroup).ServerLandClaimsAreas;
-            var decayDelayDuration = ServerGetDecayDelayDurationForLandClaimAreas(areas);
-
-            decayDelayDuration = Math.Max(decayDelayDuration,
-                                          StructureConstants.StructuresAbandonedDecayDelaySeconds);
+            var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
+            var areas = areasGroupPrivateState.ServerLandClaimsAreas;
+            var isFounderDemoPlayer = areasGroupPrivateState.IsFounderDemoPlayer;
+            var decayDelayDuration = ServerGetDecayDelayDurationForLandClaimAreas(areas, isFounderDemoPlayer);
 
             return new LandClaimsGroupDecayInfo(decayDelayDuration,
-                                                decayDuration: StructureConstants.StructuresDecayDurationSeconds);
+                                                decayDuration: StructureConstants.StructuresDecayDurationSeconds,
+                                                isFounderDemoPlayer);
         }
 
         private bool ServerRemote_RequestOwnedAreas()
@@ -1991,10 +2004,17 @@
 
             public readonly double DecayDuration;
 
-            public LandClaimsGroupDecayInfo(double decayDelayDuration, double decayDuration)
+            /// <summary>
+            /// Is the base was founded by a demo player?
+            /// In that case a shortened decay duration should apply.
+            /// </summary>
+            public readonly bool IsFounderDemoPlayer;
+
+            public LandClaimsGroupDecayInfo(double decayDelayDuration, double decayDuration, bool isFounderDemoPlayer)
             {
                 this.DecayDelayDuration = decayDelayDuration;
                 this.DecayDuration = decayDuration;
+                this.IsFounderDemoPlayer = isFounderDemoPlayer;
             }
         }
 

@@ -21,7 +21,8 @@
 
         public override string Name => "Mastering technologies—part two";
 
-        public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
+        // TODO: revert this back to normal constant for the given level. For now it is set to 250 until we have a decent solution for this quest.
+        public override ushort RewardLearningPoints => 250;
 
         protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
         {

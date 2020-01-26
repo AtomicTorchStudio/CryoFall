@@ -265,13 +265,13 @@
             privateState.IsLiquidStatesChanged = false;
 
             // Update fuel state:
-            // need fuel when processed liquids capacities are not full
+            // need fuel when any of the output liquids capacity are not full
             // or any of the manufacturing states has active recipe.
-            var isLiquidsCapacitiesFull
+            var isOutputLiquidCapacityFull
                 = liquidStateProcessedGasoline.Amount >= this.LiquidConfigGasoline.Capacity
-                  && liquidStateProcessedMineralOil.Amount >= this.LiquidConfigMineralOil.Capacity;
+                  || liquidStateProcessedMineralOil.Amount >= this.LiquidConfigMineralOil.Capacity;
 
-            var isNeedElectricityNow = !isLiquidsCapacitiesFull 
+            var isNeedElectricityNow = !isOutputLiquidCapacityFull 
                                        && liquidStateRawPetroleum.Amount > 0;
 
             // Consuming electricity.
@@ -311,7 +311,7 @@
                     // petroleum is not produced via this system (it's produced on recipe completion)
                     isProduceLiquid: false,
                     // use petroleum liquid if other capacities are not full
-                    isUseRequested: !isLiquidsCapacitiesFull,
+                    isUseRequested: !isOutputLiquidCapacityFull,
                     wasUsed: out var wasUsedPetroleum,
                     resetAmountToZeroWhenNotEnoughToUse: true);
 

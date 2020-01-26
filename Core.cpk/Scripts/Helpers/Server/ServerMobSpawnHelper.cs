@@ -77,7 +77,7 @@ namespace AtomicTorch.CBND.CoreMod.Helpers.Server
                 foreach (var _ in physicsSpace.TestCircle(worldPosition,
                                                           radius: noObstaclesCheckRadius,
                                                           CollisionGroups.Default,
-                                                          sendDebugEvent: false).EnumerateAndReturn())
+                                                          sendDebugEvent: false).EnumerateAndDispose())
                 {
                     // position is not valid for spawning
                     return null;

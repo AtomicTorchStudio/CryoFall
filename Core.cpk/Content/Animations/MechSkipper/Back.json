@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "cDgZExGYsz01wxFstSuJkHLR23Y", "spine": "3.7.94", "width": 77.26, "height": 136.76 },
+"skeleton": { "hash": "IRaAoApd+8baT9wCcDN3AKH446c", "spine": "3.7.94", "width": 77.26, "height": 136.76 },
 "bones": [
 	{ "name": "root", "rotation": 0.05, "scaleX": 0.068, "scaleY": 0.068 },
 	{ "name": "Pelvis", "parent": "root", "length": 177.4, "rotation": 86.08, "x": -3.68, "y": 599.72 },
@@ -3650,11 +3650,11 @@
 			},
 			"UpperArmLeft": {
 				"rotate": [
-					{ "time": 0, "angle": 4.67 },
-					{ "time": 0.3333, "angle": -17.05 },
-					{ "time": 0.6667, "angle": -25.76 },
-					{ "time": 1, "angle": -40.25 },
-					{ "time": 1.3333, "angle": -35.91 }
+					{ "time": 0, "angle": 35.84 },
+					{ "time": 0.3333, "angle": 24.51 },
+					{ "time": 0.6667, "angle": 4.63 },
+					{ "time": 1, "angle": -5.88 },
+					{ "time": 1.3333, "angle": -6.14 }
 				]
 			},
 			"UpperArmRight": {
@@ -3695,11 +3695,11 @@
 			},
 			"LowerArmLeft": {
 				"rotate": [
-					{ "time": 0, "angle": -21.01 },
-					{ "time": 0.3333, "angle": -14.12 },
-					{ "time": 0.6667, "angle": -28.66 },
-					{ "time": 1, "angle": -63.88 },
-					{ "time": 1.3333, "angle": -69.07 }
+					{ "time": 0, "angle": -52.02 },
+					{ "time": 0.3333, "angle": -56.99 },
+					{ "time": 0.6667, "angle": -61.37 },
+					{ "time": 1, "angle": -98.88 },
+					{ "time": 1.3333, "angle": -99.25 }
 				]
 			}
 		},
@@ -3725,11 +3725,11 @@
 			},
 			"UpperArmLeft": {
 				"rotate": [
-					{ "time": 0, "angle": 4.67 },
-					{ "time": 0.3333, "angle": -17.05 },
-					{ "time": 0.6667, "angle": -25.76 },
-					{ "time": 1, "angle": -40.25 },
-					{ "time": 1.3333, "angle": -35.91 }
+					{ "time": 0, "angle": 35.84 },
+					{ "time": 0.3333, "angle": 24.51 },
+					{ "time": 0.6667, "angle": 4.63 },
+					{ "time": 1, "angle": -5.88 },
+					{ "time": 1.3333, "angle": -6.14 }
 				]
 			},
 			"TurretLeft": {
@@ -3748,11 +3748,11 @@
 			},
 			"LowerArmLeft": {
 				"rotate": [
-					{ "time": 0, "angle": -21.01 },
-					{ "time": 0.3333, "angle": -14.12 },
-					{ "time": 0.6667, "angle": -28.66 },
-					{ "time": 1, "angle": -63.88 },
-					{ "time": 1.3333, "angle": -69.07 }
+					{ "time": 0, "angle": -52.02 },
+					{ "time": 0.3333, "angle": -56.99 },
+					{ "time": 0.6667, "angle": -61.37 },
+					{ "time": 1, "angle": -98.88 },
+					{ "time": 1.3333, "angle": -99.25 }
 				]
 			}
 		},
@@ -3775,11 +3775,11 @@
 			},
 			"UpperArmLeft": {
 				"rotate": [
-					{ "time": 0, "angle": 39.64 },
-					{ "time": 0.3333, "angle": 43.25 },
-					{ "time": 0.6667, "angle": 17.58 },
-					{ "time": 1, "angle": -2.87 },
-					{ "time": 1.3333, "angle": -3.64 }
+					{ "time": 0, "angle": 77.06 },
+					{ "time": 0.3333, "angle": 62.27 },
+					{ "time": 0.6667, "angle": 38.03 },
+					{ "time": 1, "angle": 23.03 },
+					{ "time": 1.3333, "angle": 8.05 }
 				]
 			},
 			"UpperArmRight": {
@@ -3802,11 +3802,11 @@
 			},
 			"TurretLeft": {
 				"rotate": [
-					{ "time": 0, "angle": 42.14 },
-					{ "time": 0.3333, "angle": 25 },
-					{ "time": 0.6667, "angle": 1.32 },
-					{ "time": 1, "angle": -7.19 },
-					{ "time": 1.3333, "angle": -46.33 }
+					{ "time": 0, "angle": 48.67 },
+					{ "time": 0.3333, "angle": -8.58 },
+					{ "time": 0.6667, "angle": -6.41 },
+					{ "time": 1, "angle": 1.56 },
+					{ "time": 1.3333, "angle": -61.88 }
 				]
 			},
 			"TurretRight": {
@@ -3830,11 +3830,11 @@
 			},
 			"LowerArmLeft": {
 				"rotate": [
-					{ "time": 0, "angle": -59.46 },
-					{ "time": 0.3333, "angle": -86.41 },
-					{ "time": 0.6667, "angle": -67.6 },
-					{ "time": 1, "angle": -77.64 },
-					{ "time": 1.3333, "angle": -70.94 }
+					{ "time": 0, "angle": -98.12 },
+					{ "time": 0.3333, "angle": -70.49 },
+					{ "time": 0.6667, "angle": -80.4 },
+					{ "time": 1, "angle": -111.93 },
+					{ "time": 1.3333, "angle": -66.61 }
 				]
 			}
 		},
@@ -3860,20 +3860,20 @@
 			},
 			"UpperArmLeft": {
 				"rotate": [
-					{ "time": 0, "angle": 39.64 },
-					{ "time": 0.3333, "angle": 43.25 },
-					{ "time": 0.6667, "angle": 17.58 },
-					{ "time": 1, "angle": -2.87 },
-					{ "time": 1.3333, "angle": -3.64 }
+					{ "time": 0, "angle": 77.06 },
+					{ "time": 0.3333, "angle": 62.27 },
+					{ "time": 0.6667, "angle": 38.03 },
+					{ "time": 1, "angle": 23.03 },
+					{ "time": 1.3333, "angle": 8.05 }
 				]
 			},
 			"TurretLeft": {
 				"rotate": [
-					{ "time": 0, "angle": 42.14 },
-					{ "time": 0.3333, "angle": 25 },
-					{ "time": 0.6667, "angle": 1.32 },
-					{ "time": 1, "angle": -7.19 },
-					{ "time": 1.3333, "angle": -46.33 }
+					{ "time": 0, "angle": 48.67 },
+					{ "time": 0.3333, "angle": -8.58 },
+					{ "time": 0.6667, "angle": -6.41 },
+					{ "time": 1, "angle": 1.56 },
+					{ "time": 1.3333, "angle": -61.88 }
 				]
 			},
 			"TargetHandLeft": {
@@ -3883,11 +3883,11 @@
 			},
 			"LowerArmLeft": {
 				"rotate": [
-					{ "time": 0, "angle": -59.46 },
-					{ "time": 0.3333, "angle": -86.41 },
-					{ "time": 0.6667, "angle": -67.6 },
-					{ "time": 1, "angle": -77.64 },
-					{ "time": 1.3333, "angle": -70.94 }
+					{ "time": 0, "angle": -98.12 },
+					{ "time": 0.3333, "angle": -70.49 },
+					{ "time": 0.6667, "angle": -80.4 },
+					{ "time": 1, "angle": -111.93 },
+					{ "time": 1.3333, "angle": -66.61 }
 				]
 			}
 		},

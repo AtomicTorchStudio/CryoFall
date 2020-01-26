@@ -115,7 +115,7 @@
             camera.SetOrthographicProjection(textureSize.X, textureSize.Y);
 
             // create tile renderers
-            foreach (var tile in tempTilesList.EnumerateAndReturn())
+            foreach (var tile in tempTilesList.EnumerateAndDispose())
             {
                 var drawPosition = tile.Position.ToVector2D() - chunkStartPosition.ToVector2D();
                 drawPosition = (

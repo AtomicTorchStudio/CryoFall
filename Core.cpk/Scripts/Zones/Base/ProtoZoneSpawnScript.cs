@@ -139,7 +139,7 @@
                 centerLocation,
                 radius,
                 collisionGroup: CollisionGroups.Default,
-                sendDebugEvent: false).EnumerateAndReturn())
+                sendDebugEvent: false).EnumerateAndDispose())
             {
                 if (result.PhysicsBody.AssociatedProtoTile != null)
                 {
@@ -293,25 +293,16 @@
                 return null;
             }
 
-            // if spawned a vegetation - set random growth progress
-            if (protoStaticWorldObject is IProtoObjectVegetation protoVegetation)
+            // if spawned a vegetation on the world initialization - set random growth progress
+            if (protoStaticWorldObject is IProtoObjectVegetation protoVegetation
+                && (trigger is null
+                    || trigger is TriggerWorldInit))
             {
-                double growProgress;
-                if (trigger == null
-                    || trigger is TriggerWorldInit)
-                {
-                    // world initialization spawn
-                    growProgress = RandomHelper.RollWithProbability(0.6)
-                                       ? 1                          // 60% are spawned in full grown state
-                                       : Random.Next(0, 11) / 10.0; // other are spawned with random growth progress
-                }
-                else
-                {
-                    // spawn saplings
-                    growProgress = 0;
-                }
+                var growthProgress = RandomHelper.RollWithProbability(0.6)
+                                         ? 1 // 60% are spawned in full grown state
+                                         : Random.Next(0, 11) / 10.0;
 
-                protoVegetation.ServerSetGrowthProgress(spawnedObject, growProgress);
+                protoVegetation.ServerSetGrowthProgress(spawnedObject, growthProgress);
             }
 
             ServerDecalsDestroyHelper.DestroyAllDecals(tilePosition, protoStaticWorldObject.Layout);
@@ -393,9 +384,17 @@
             out double countToSpawnRemains)
         {
             var spawnedObjectsCount = area.WorldObjectsByPreset.Find(preset)?.Count ?? 0;
-            var desiredObjectsCount = (int)Math.Round(
-                area.ZoneTilesCount * spawnRequest.Density,
-                MidpointRounding.AwayFromZero);
+            var desiredObjectsCountFloat = area.ZoneTilesCount * spawnRequest.Density;
+            var desiredObjectsCount = (int)Math.Round(desiredObjectsCountFloat, MidpointRounding.AwayFromZero);
+
+            if (desiredObjectsCount == 0 
+                && preset.SpawnAtLeastOnePerSector
+                && preset.PresetUseSectorDensity
+                && desiredObjectsCountFloat > 0)
+            {
+                // spawn at least a single object
+                desiredObjectsCount = 1;
+            }
 
             countToSpawnRemains = desiredObjectsCount - spawnedObjectsCount;
             return countToSpawnRemains <= 0;

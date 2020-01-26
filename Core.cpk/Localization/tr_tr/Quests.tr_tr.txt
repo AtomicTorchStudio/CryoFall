@@ -347,6 +347,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Bir bıçak üret ve bir yaratığı öldür
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
+Daha iyi bir göğüslük giy
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
+Daha iyi bir miğfer giy
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
+Daha iyi bir bacak zırhı giy
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Daha iyi koruma sağlama vakti geldi.
 
@@ -375,6 +384,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
 Daha iyi araçlar üret
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftMusketOrFlintlockPistol:
+Misket tüfeği veya çakmaklı tabanca yap
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftPaperCartridge:
+Kâğıt kartuş yap
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@FireTheWeapon:
+Silahı ateşle
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Bir gürz ile kafatası parçalamak güzeldir ama bazen menzilli bir şey istersin. Özellikle daha ciddi düşmanlara karşı olduğunda.

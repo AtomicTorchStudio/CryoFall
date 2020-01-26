@@ -94,6 +94,12 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 無限油田
 
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
+The resource deposit has only just appeared and cannot be claimed or destroyed yet.
+
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
+No damage dealt to {0}
+
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 採礦炸藥
 
@@ -590,6 +596,12 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 小落地燈
 
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
+Ideal for large bases or military outposts, this tall projector tower can ensure perfect visibility in a wide area.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
+Projector tower
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 作為基本光源使用，更重要的是它可以烹飪簡單的食譜，如烤肉。
 
@@ -635,6 +647,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
 高級鋰鹽提取器
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
+This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
+Mineral processing plant
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 可用於將任何種類的有機物質轉化為覆土，一種有機肥料。
 
@@ -661,6 +679,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 灶具
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
+Electric stove allows for faster and more convenient preparation of food.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
+Electric cooking stove
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 簡單的集水器設計用於收集少量水。在沙漠和多石地區不起作用...
@@ -695,11 +719,11 @@ Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 醫療站
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
-防禦建築，啟動時能投射出高強靈能場。
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
+Defensive structure that projects psionic field of high intensity while active.
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
-靈能投射器
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
+Psionic field generator
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 可以用於為任何可擕式電子設備充電，例如移動電源或手電筒。

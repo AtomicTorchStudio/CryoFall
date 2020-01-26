@@ -343,6 +343,12 @@ Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
 Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 缝制裤
 
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+The ultimate defense. This battle armor will protect you against anything that comes at you, but at a cost of reduced mobility.
+
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Super heavy armor
+
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 需要是发明之母。并不舒适, 但能在早期获得较高防御力。
 
@@ -1202,11 +1208,17 @@ Scripts/Items/Generic/ItemOreCopper@Description:
 Scripts/Items/Generic/ItemOreCopper@Name:
 铜矿石
 
+Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
+Copper ore concentrate
+
 Scripts/Items/Generic/ItemOreIron@Description:
 能被溶成纯铁。
 
 Scripts/Items/Generic/ItemOreIron@Name:
 铁矿石
+
+Scripts/Items/Generic/ItemOreIronConcentrate@Name:
+Iron ore concentrate
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 从热泉中提取的锂盐，能被加工成金属锂。

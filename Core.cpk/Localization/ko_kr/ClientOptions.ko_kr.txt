@@ -74,6 +74,9 @@ Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Closest:
 Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 스크린샷 해상도
 
+Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
+Tooltip delay
+
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI 크기
 

@@ -94,6 +94,12 @@ Petrol birikintisi
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 Sonsuz petrol sızması
 
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
+Kaynak deposu daha yeni belirdi ve henüz ele geçirilemez veya yok edilemez.
+
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
+{0} 'a hiçbir hasar verilmedi
+
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Maden çıkarma ücreti
 
@@ -590,6 +596,12 @@ Elektrikli abajurun küçük versiyonu. Boyutuna göre gayet parlak.
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Küçük abajur
 
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
+Büyük üsler veya askeri karakollar için ideal olan bu uzun projektör kulesi geniş bir bölgede mükemmel görünüm sağlar.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
+Projetör kulesi
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 Temel bir ışık kaynağı olarak görev görür, daha da önemlisi kavurma gibi basit tarifleri pişirmeyi sağlar.
 
@@ -635,6 +647,12 @@ Lityum tuzu çıkarıcısı
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
 Gelişmiş lityum tuzu çıkarıcı
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
+Bu işleme fabrikası saf cevheri ufalayıp, farklı cevher fraksiyonlarını düzenleyerek genel döküm getirisini artırır.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
+Maden işleme fabrikası
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Her türlü organik maddeyi malca çevirmeye yarar. Temelde bir organik gübredir.
 
@@ -661,6 +679,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 Ocak
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
+Elektrikli ocak daha hızlı ve daha kolayca yemek hazırlanmasını sağlar.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
+Elektrikli pişirme ocağı
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 Az miktarlarda su toplamak için tasarlanmış basit su toplayıcısı. Nedense çöl ve diğer taşlı yerlerde işe yaramıyor…
@@ -695,11 +719,11 @@ Her türlü sibernatik implantı yüklemek veya kaldırmak için kullanılabilen
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Tıbbi istasyon
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
 Aktifken yüksek yoğunlukta psionik bir saha yaratan savunma yapısı.
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
-Psionic projektör
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
+Psionik alan jeneratörü
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 Güç kaynağı veya el feneri gibi taşınabilir elektronik aletleri şarj etmek için kullanılabilir.

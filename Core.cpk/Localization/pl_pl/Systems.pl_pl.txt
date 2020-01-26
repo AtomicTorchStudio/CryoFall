@@ -63,6 +63,9 @@ Możesz się ruszać. Baw się dobrze!
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
 Odblokowano pomyślnie
 
+Scripts/Systems/Chat/ChatSystem@ErrorSlowDown_Format:
+Wysyłasz zbyt wiele wiadomości. Wstrzymaj się trochę. Wiadomość możesz zmów wysyłać po {0}.
+
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 Administrator serwera zabronił ci korzystania z czatu. Blokada wygasa za: {0}
 
@@ -133,8 +136,17 @@ Zbyt blisko innej działki.
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Właścicielem obszaru jest inny gracz lub obszar znajduje się zbyt blisko działki posiadanej przez innego gracza.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
+Zbyt duża baza. Maks. wymiary bazy w dowolnym kierunku to {0} kom. (ok. {1} dział. w rzędzie).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
+Nie można łączyć działek. Aby zapobiegać oszustwom, działek z kont demo nie można łączyć z działkami innych graczy.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 Złoża zasobów dopiero się pojawiły i nie można ich posiadać. Budowa wokół nich jest tymczasowo wzbroniona.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
+Budowanie/modyfikowanie na tej działce spowoduje powstanie połączonego obszaru bezpiecznego przechowywania, który jest większy niż dozwolony w bazie. Usuń elementy z bezpiecznego przechowywania w sąsiednich działkach i powtórz operację.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Przecina się z inną posiadaną działką

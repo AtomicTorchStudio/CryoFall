@@ -107,6 +107,9 @@ Mensaje privado
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Desbloquear
 
+UI/CoreStrings@Checkbox_DoNotAskAgain:
+No volver a preguntar
+
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Esta estructura es eminentemente decorativa.
 
@@ -203,6 +206,21 @@ Este depósito se agotará en:
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Capacidad del depósito
+
+UI/CoreStrings@Duration_Instant:
+Instantáneo
+
+UI/CoreStrings@Duration_Quick:
+Rápido
+
+UI/CoreStrings@Duration_Slow:
+Lento
+
+UI/CoreStrings@Duration_VeryQuick:
+Muy rápido
+
+UI/CoreStrings@Duration_VerySlow:
+Muy lento
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 UE
@@ -369,6 +387,9 @@ CRÉDITOS
 UI/CoreStrings@MainMenu_TabCurrentGame:
 PARTIDA ACTUAL
 
+UI/CoreStrings@MainMenu_TabExtras:
+EXTRAS
+
 UI/CoreStrings@MainMenu_TabHome:
 INICIO
 
@@ -380,6 +401,9 @@ SALIR
 
 UI/CoreStrings@MainMenu_TabServers:
 SERVIDORES
+
+UI/CoreStrings@MainMenu_TabUpdates:
+HISTORIAL DE ACTUALIZACIONES
 
 UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
 Vincular cuenta
@@ -1317,6 +1341,12 @@ Coste de investigación
 UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 Desbloquear
 
+UI/CoreStrings@WindowTechnologies_TechTreeChanged:
+`Parece que el árbol de Tecnologías ha sufrido cambios.
+[br]Esto podría deberse a una actualización del juego o a cambios de terceros (si se trata de un servidor modificado o de la comunidad).
+[br]Se han reiniciado las tecnologías que habías investigado y se te han devuelto todos los puntos de aprendizaje (PA) invertidos, para que los puedas volver a distribuir.
+[br]¡Disfruta del juego!`
+
 UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
 Tecnologías básicas
 
@@ -1430,9 +1460,17 @@ UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 `[b]La base está siendo asaltada[/b]
 [br]¡Tu base está siendo atacada!`
 
+UI/CoreStrings@WorldMapMarkResourceLithium_Infinite_Tooltip:
+`[b]Fuente geotérmica infinita[/b]
+[br]Fuente de litio pública.`
+
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
 `[b]Fuente geotérmica[/b]
 [br]Depósito de litio.`
+
+UI/CoreStrings@WorldMapMarkResourceOil_Infinite_Tooltip:
+`[b]Filtración de petróleo infinita[/b]
+[br]Fuente de petróleo crudo pública.`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]Filtración de petróleo[/b]
@@ -1663,6 +1701,11 @@ Puedes permitir el acceso a tu terreno adjudicado a otros supervivientes.
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
 Acceso
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoDemoVersion:
+`Ten en cuenta: Este terreno adjudicado fue [b]fundado por un jugador de la demo[/b].
+[br]Por eso mismo, se [b]reduce[/b] el tiempo para que se inicie el deterioro, así como la duración del propio proceso de deterioro.
+[br]Cuando un jugador de la demo compra el juego, dichas duraciones regresan a sus valores básicos.`
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
 `Las estructuras abandonadas empezarán a deteriorarse con el tiempo

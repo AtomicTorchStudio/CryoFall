@@ -3,7 +3,9 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Skills;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -158,6 +160,13 @@
                     {
                         // not an obstacle - it's the character or world object itself
                         continue;
+                    }
+
+                    switch (testWorldObject.ProtoWorldObject)
+                    {
+                        case IProtoObjectDeposit _: // allow deposits
+                        case ObjectWallDestroyed _: // allow destroyed walls
+                            continue;
                     }
 
                     // obstacle object on the way

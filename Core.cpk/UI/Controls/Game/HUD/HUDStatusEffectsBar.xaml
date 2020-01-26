@@ -71,7 +71,7 @@
                     <Border.Style>
                         <Style TargetType="Border">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsFlickering}" Value="True">
+                                <DataTrigger Binding="{Binding IsFlickerScheduled}" Value="True">
                                     <DataTrigger.EnterActions>
                                         <BeginStoryboard Storyboard="{StaticResource StoryboardFlicker}" />
                                     </DataTrigger.EnterActions>

@@ -25,15 +25,25 @@
                                 bloomSaturation: 1,
                                 baseSaturation: 1);
 
+        private bool isLightAdjusted;
+
         private BloomPostEffect postEffectBloom;
 
         private NightVisionPostEffect postEffectNightVision;
 
+        public override void Update(double deltaTime)
+        {
+            if (!this.isLightAdjusted
+                && this.postEffectBloom.IsCanRender
+                && this.postEffectNightVision.IsCanRender)
+            {
+                this.EnableLightAdjustments();
+            }
+        }
+
         protected override void OnDisable()
         {
-            ClientComponentLightingRenderer.AdditionalAmbientLight -= AdditionalAmbientLight;
-            ClientComponentLightingRenderer.AdditionalAmbightLightAdditiveFraction -=
-                AdditionalAmbientLightAdditiveFraction;
+            this.DisableLightAdjustments();
 
             this.postEffectBloom.Destroy();
             this.postEffectNightVision.Destroy();
@@ -41,16 +51,38 @@
 
         protected override void OnEnable()
         {
-            ClientComponentLightingRenderer.AdditionalAmbientLight += AdditionalAmbientLight;
-            ClientComponentLightingRenderer.AdditionalAmbightLightAdditiveFraction +=
-                AdditionalAmbientLightAdditiveFraction;
-
             this.postEffectNightVision = ClientPostEffectsManager.Add<NightVisionPostEffect>();
             this.postEffectNightVision.Order = PostEffectsOrder.Devices;
 
             this.postEffectBloom = ClientPostEffectsManager.Add<BloomPostEffect>();
             this.postEffectBloom.Setup(BloomSettings);
             this.postEffectBloom.Order = this.postEffectNightVision.Order - 1;
+        }
+
+        private void DisableLightAdjustments()
+        {
+            if (!this.isLightAdjusted)
+            {
+                return;
+            }
+
+            this.isLightAdjusted = false;
+            ClientComponentLightingRenderer.AdditionalAmbientLight -= AdditionalAmbientLight;
+            ClientComponentLightingRenderer.AdditionalAmbightLightAdditiveFraction -=
+                AdditionalAmbientLightAdditiveFraction;
+        }
+
+        private void EnableLightAdjustments()
+        {
+            if (this.isLightAdjusted)
+            {
+                return;
+            }
+
+            this.isLightAdjusted = true;
+            ClientComponentLightingRenderer.AdditionalAmbientLight += AdditionalAmbientLight;
+            ClientComponentLightingRenderer.AdditionalAmbightLightAdditiveFraction +=
+                AdditionalAmbientLightAdditiveFraction;
         }
     }
 }

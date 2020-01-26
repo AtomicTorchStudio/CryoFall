@@ -63,6 +63,9 @@ Agora você está livre. Aproveite!
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
 A desobstrução deu certo
 
+Scripts/Systems/Chat/ChatSystem@ErrorSlowDown_Format:
+Você está enviando mensagens demais. Vá com calma. Envie mensagens de novo depois de {0}.
+
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 Você está proibido de participar do bate-papo pelo administrador do servidor. Seu banimento termina em: {0}
 
@@ -133,8 +136,17 @@ Muito perto de outra posse de terra.
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 A posse de terra desta área pertence ou está muito próxima a outro de jogador.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
+Você ultrapassou o tamanho da base. O tamanho máximo da base em qualquer dimensão é de {0} células (aproximadamente {1} posses de terra enfileiradas).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
+Não é possível combinar as posses de terra. Para evitar abusos/exploração de vulnerabilidades do jogo, as posses de terra pertencentes às contas de demonstração não podem ser combinadas com as de outros jogadores.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 O depósito de recursos acabou de aparecer e ainda não pode ser reclamado. Fica temporariamente restrito construir em torno dele.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
+A construção/melhoria desta posse de terra resultará num depósito seguro combinado que ultrapassará a capacidade possível numa base. Remova os itens dos depósitos seguros das posses de terra vizinhas e repita a ação.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Cruza com outra posse de terra

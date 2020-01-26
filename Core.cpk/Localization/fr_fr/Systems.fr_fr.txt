@@ -63,6 +63,9 @@ Vous voilà libre. Amusez-vous bien !
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
 Déblocage réussi
 
+Scripts/Systems/Chat/ChatSystem@ErrorSlowDown_Format:
+You are sending too many messages. Slow down a bit. You can send messages again after {0}.
+
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 Vous avez été banni par l'administrateur du serveur. Vous pourrez à nouveau participer à une discussion dans : {0}
 
@@ -133,8 +136,17 @@ Trop proche d'une autre revendication territoriale.
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 La zone a été revendiquée par un autre joueur, ou bien elle est trop proche d'un territoire revendiqué par quelqu'un d'autre.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
+Base size exceeded. Maximum base size in any dimension is {0} cells (approximately {1} land claims stacked together in a row).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
+Cannot combine land claims. In order to prevent abuse/exploits, land claims belonging to demo accounts cannot be combined with other players'.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 Ce gisement de ressources vient tout juste d'apparaître et il ne peut pas encore être revendiqué. La construction est pour le moment interdite à proximité.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
+Building/upgrading this land claim will result in combined safe storage exceeding the possible capacity in a base. Please remove items from the safe storages of the neighboring land claims and then repeat the action.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Intersection avec une autre zone de revendication territoriale

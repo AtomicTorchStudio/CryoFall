@@ -72,6 +72,9 @@ Annähernd (nächstbeste Standardauflösung verwenden)
 Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 Screenshot-Auflösung
 
+Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
+Tooltip-Verzögerung
+
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI-Skalierung
 

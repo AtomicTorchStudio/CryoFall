@@ -46,6 +46,8 @@
 
         private readonly ILogicObject statusEffect;
 
+        private bool isFlickerScheduled;
+
         public ViewModelStatusEffect(ILogicObject statusEffect)
         {
             this.statusEffect = statusEffect;
@@ -59,6 +61,8 @@
                 this);
 
             this.UpdateIntensity();
+
+            this.IsFlickerScheduled = true;
         }
 
         public Brush BackgroundBrush { get; private set; }
@@ -72,7 +76,16 @@
 
         public byte IntensityPercent { get; private set; }
 
-        public bool IsFlickering { get; private set; }
+        public bool IsFlickerScheduled
+        {
+            get
+            {
+                var result = this.isFlickerScheduled;
+                this.IsFlickerScheduled = false;
+                return result;
+            }
+            private set => this.SetProperty(ref this.isFlickerScheduled, value);
+        }
 
         public bool IsIntensityPercentVisible => this.protoStatusEffect.IsIntensityPercentVisible;
 
@@ -135,8 +148,7 @@
 
         public void Flicker()
         {
-            this.IsFlickering = true;
-            this.IsFlickering = false;
+            this.IsFlickerScheduled = true;
         }
 
         private IReadOnlyList<StatModificationData> CreateEffectsList()
@@ -197,9 +209,17 @@
             var intensity = this.publicState.Intensity;
             var percent = (byte)Math.Round(intensity * 100, MidpointRounding.AwayFromZero);
             this.IntensityPercent = percent;
-            this.Visibility = intensity >= this.protoStatusEffect.VisibilityIntensityThreshold
+
+            var wasVisible = this.Visibility == Visibility.Visible;
+            var isVisible = intensity >= this.protoStatusEffect.VisibilityIntensityThreshold;
+            this.Visibility = isVisible
                                   ? Visibility.Visible
                                   : Visibility.Collapsed;
+
+            if (!wasVisible && isVisible)
+            {
+                this.IsFlickerScheduled = true;
+            }
 
             this.BackgroundBrush = GetBrush(this.protoStatusEffect.Kind, intensity);
         }

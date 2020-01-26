@@ -343,6 +343,12 @@ Scripts/Items/Equipment/Quilted/ItemQuiltedHelmet@Name:
 Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 Стеганые поножи
 
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+Самая лучшая защита. Эта боевая броня защитит вас от любых опасностей, однако ваша скорость передвижения будет снижена.
+
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Super heavy armor
+
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 Голь на выдумки хитра. Не самый удобный предмет облачения, зато неплохо защищающий на ранних этапах.
 
@@ -1202,11 +1208,17 @@ Scripts/Items/Generic/ItemOreCopper@Description:
 Scripts/Items/Generic/ItemOreCopper@Name:
 Медная руда
 
+Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
+Концентрат медной руды
+
 Scripts/Items/Generic/ItemOreIron@Description:
 Из нее можно выплавить чистое железо.
 
 Scripts/Items/Generic/ItemOreIron@Name:
 Железная руда
+
+Scripts/Items/Generic/ItemOreIronConcentrate@Name:
+Концентрат железной руды
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 Литиевая соль добывается из геотермальных источников, после чего из нее производят чистый металлический литий.

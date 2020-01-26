@@ -92,16 +92,25 @@
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => GetPublicState((IStaticWorldObject)worldObject)
-               .ConstructionProto
-               .Layout
-               .Center;
+        {
+            if (worldObject is null)
+            {
+                return (0.5, 0.5);
+            }
+ 
+            return GetPublicState((IStaticWorldObject)worldObject)
+                   .ConstructionProto
+                   .Layout
+                   .Center;
+        }
 
         public override float SharedGetStructurePointsMax(IStaticWorldObject worldObject)
-            => GetPublicState(worldObject)
-               .ConstructionProto?
-               .StructurePointsMaxForConstructionSite
-               ?? 0;
+        {
+            return GetPublicState(worldObject)
+                   .ConstructionProto?
+                   .StructurePointsMaxForConstructionSite
+                   ?? 0;
+        }
 
         public override bool SharedIsInsideCharacterInteractionArea(
             ICharacter character,

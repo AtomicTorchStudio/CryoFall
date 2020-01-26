@@ -59,7 +59,7 @@
                     Logger.Exception(ex);
                 }
 
-                if (interactingWithObject == null)
+                if (interactingWithObject is null)
                 {
                     return;
                 }
@@ -142,7 +142,7 @@
 
         public static void OnInteractionFinished(IWorldObject worldObject)
         {
-            if (worldObject == null
+            if (worldObject is null
                 || InteractingWithObject != worldObject)
             {
                 return;
@@ -185,7 +185,7 @@
                     isObserving: true);
             }
 
-            if (MouseOverObject == null
+            if (MouseOverObject is null
                 // cannot interact while on vehicle
                 || ClientCurrentCharacterHelper.Character.GetPublicState<PlayerCharacterPublicState>().CurrentVehicle != null)
             {
@@ -195,8 +195,7 @@
                 return;
             }
 
-            if (MouseOverObject == null
-                || !MouseOverObject.ProtoWorldObject.IsInteractableObject
+            if (!MouseOverObject.ProtoWorldObject.IsInteractableObject
                 || (MouseOverObject
                     != FindObjectAtCurrentMousePosition(
                         Client.Characters.CurrentPlayerCharacter,
@@ -254,7 +253,7 @@
         private void Update()
         {
             var character = Api.Client.Characters.CurrentPlayerCharacter;
-            if (character == null)
+            if (character is null)
             {
                 InteractingWithObject = null;
                 return;
@@ -264,7 +263,7 @@
                                               || !MainMenuOverlay.IsHidden
                                               || Api.Client.UI.LayoutRoot.IsMouseOver;
 
-            if (InteractingWithObject == null
+            if (InteractingWithObject is null
                 && isCannotStartNewInteraction)
             {
                 InteractingWithObject = null;
@@ -284,7 +283,7 @@
                 // first try to find by click area
                 mouseOverObjectCandidate = FindObjectAtCurrentMousePosition(character, CollisionGroups.ClickArea);
 
-                if (mouseOverObjectCandidate == null)
+                if (mouseOverObjectCandidate is null)
                 {
                     // second try to find by default collider
                     mouseOverObjectCandidate = FindObjectAtCurrentMousePosition(character, CollisionGroups.Default);
@@ -310,7 +309,7 @@
 
             if (!ClientInputManager.IsButtonDown(GameButton.ActionInteract))
             {
-                if (InteractingWithObject == null)
+                if (InteractingWithObject is null)
                 {
                     return;
                 }
@@ -329,7 +328,7 @@
                 return;
             }
 
-            if (InteractingWithObject == null)
+            if (InteractingWithObject is null)
             {
                 // world object interaction button pressed
                 InteractingWithObject = MouseOverObject;
@@ -337,7 +336,7 @@
             else
             {
                 // already interacting with something
-                if (MouseOverObject == null)
+                if (MouseOverObject is null)
                 {
                     // no current interaction
                     InteractingWithObject = null;
@@ -347,9 +346,7 @@
                     // clicked again on the same object as the current interaction - cancel it
                     InteractingWithObject = null;
                 }
-                else if (MouseOverObject?.ProtoWorldObject is IInteractableProtoWorldObject
-                             protoInteractableWorldObject
-                         && protoInteractableWorldObject.IsInteractableObject)
+                else if (MouseOverObject.ProtoWorldObject.IsInteractableObject)
                 {
                     // change to interact with the current pointed object
                     InteractingWithObject = MouseOverObject;

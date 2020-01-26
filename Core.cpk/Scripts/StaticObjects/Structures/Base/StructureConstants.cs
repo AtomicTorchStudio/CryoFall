@@ -45,6 +45,8 @@
 
         public static readonly double StructuresLandClaimDecayDelayDurationMultiplier;
 
+        public static readonly double StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers;
+
         static StructureConstants()
         {
             IsStructuresDecayEnabled =
@@ -67,6 +69,23 @@
                 @"Time multiplier before an abandoned land claim (or base) will start decaying.
                   For example, the default decay delay for the land claims (T1) is 32 hours,
                   but with 2.0 multiplier it will be increased to 64 hours (for T1).");
+
+            StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers = ServerRates.Get(
+                "StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers",
+                defaultValue: 0.875,
+                @"(for demo players only)
+                  Time multiplier before an abandoned land claim (or base) will start decaying.
+                  For example, the default decay delay for the land claims (T1) is 32 hours,
+                  but with 2.0 multiplier it will be increased to 64 hours (for T1).");
+
+            if (StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers
+                > StructuresLandClaimDecayDelayDurationMultiplier)
+            {
+                StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers =
+                    StructuresLandClaimDecayDelayDurationMultiplier;
+                Api.Logger.Error(
+                    $"Please note: {nameof(StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers)} server rate value is higher than {nameof(StructuresLandClaimDecayDelayDurationMultiplier)}. The game has reduced it to match {nameof(StructuresLandClaimDecayDelayDurationMultiplier)} but it would be better if you correct the server rates config.");
+            }
 
             StructuresDecayDurationSeconds = ServerRates.Get(
                 "StructuresDecayDurationSeconds",

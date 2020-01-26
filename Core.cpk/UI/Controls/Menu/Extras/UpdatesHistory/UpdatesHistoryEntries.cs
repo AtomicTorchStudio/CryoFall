@@ -11,7 +11,7 @@
     {
         public static readonly IReadOnlyList<Entry> Entries = new[]
         {
-            new Entry("A25—Balancing Update",
+            new Entry("A25—Balance Update",
                       new DateTime(2020, month: 1, day: 29),
                       "Updates/A25.jpg"),
 

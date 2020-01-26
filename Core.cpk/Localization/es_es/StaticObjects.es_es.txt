@@ -94,6 +94,12 @@ Filtración de petróleo
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 Filtración de petróleo infinita
 
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
+El depósito de recursos acaba de aparecer y aún no puede ser adjudicado o destruido.
+
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
+No se le ha infligido daño a: {0}
+
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Carga de minería
 
@@ -590,6 +596,12 @@ Una versión más pequeña de la lámpara de pie eléctrica. Bastante brillante 
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Lámpara de pie pequeña
 
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
+Esta torre proyectora es ideal para bases o puestos militares de gran tamaño, ya que asegurada una visibilidad perfecta en una zona amplia.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
+Torre proyectora
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 Puede servir como fuente de luz básica y, sobre todo, permite preparar recetas sencillas, tales como freír la carne.
 
@@ -635,6 +647,12 @@ Extractor de sales de litio
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
 Extractor avanzado de sales de litio
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
+Esta planta de procesado pulveriza minerales puros y ordena las diferentes fracciones de minerales para aumentar la producción general de la fundición.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
+Planta de procesado de minerales
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Se puede usar para convertir cualquier materia orgánica en mantillo. Básicamente, es un fertilizante orgánico.
 
@@ -661,6 +679,12 @@ Se usa para la mayoría de actividades culinarias. Los alimentos quedan mucho me
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 Horno de piedra
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
+Un hornillo eléctrico que permite preparar alimentos de forma más sencilla y rápida.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
+Hornillo eléctrico
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 Recolector de agua sencillo, diseñado para recoger pequeñas cantidades de agua. Por algún motivo, no funciona ni en desiertos ni en otros lugares rocosos...
@@ -695,11 +719,11 @@ Un puesto médico automatizado especial. Se puede usar para instalar o quitar to
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Puesto médico
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
 Estructura defensiva que, mientras está activa, proyecta un campo psiónico de gran intensidad.
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
-Proyector psiónico
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
+Generador de campos psiónicos
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 Se puede usar para recargar cualquier equipo electrónico portátil, tales como baterías portátiles o balizas de mano.

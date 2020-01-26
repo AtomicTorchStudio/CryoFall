@@ -94,6 +94,12 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 Niekończące się źródło ropy
 
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
+Złoża zasobów dopiero się pojawiły i nie można ich zniszczyć ani posiadać.
+
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
+Brak obrażeń zadanych: {0}
+
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Ładunek górniczy
 
@@ -590,6 +596,12 @@ Mniejsza stojąca lampa elektryczna dająca całkiem dużo światła.
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Mała lampa stojąca
 
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
+Idealna wieża oświetleniowa dla dużych baz i posterunków wojskowych - zapewnia świetną widoczność na dużym terenie.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
+Wieża oświetleniowa
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 Podstawowe źródło światła, które również pozwala na przygotowanie prostych przepisów, takich jak smażone mięso.
 
@@ -635,6 +647,12 @@ Ekstraktor soli litu
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
 Zaawansowany ekstraktor soli litu
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
+Przetwórnia proszkuje surową rudę i sortuje różne składniki rudy w celu zwiększenia ogólnej wydajności wytopu.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
+Przetwórnia minerałów
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Przekształca dowolną materię organiczną w kompost stanowiący doskonały nawóz.
 
@@ -661,6 +679,12 @@ Potrzebny do gotowania. Pozwala przyrządzić znacznie lepsze potrawy niż na og
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 Piec kuchenny
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
+Kuchenka elektryczna pozwala szybciej i wygodniej przygotowywać pożywienie.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
+Kuchenka elektryczna
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 Prosty zbiornik gromadzący niewielkie ilości wody. Z jakiegoś powodu nie sprawdza się na pustyni ani w terenach skalistych...
@@ -695,11 +719,11 @@ Zautomatyzowana stacja medyczna pozwalająca instalować i usuwać implanty cybe
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Stacja medyczna
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
-Struktura obronna, która wytwarza pole psioniczne o wysokiej intensywności.
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
+Struktura obronna generująca pole psioniczne o wysokiej intensywności.
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
-Projektor psioniczny
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
+Generator pola psionicznego
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 Może ładować dowolny przenośny sprzęt elektroniczny, np. bank zasilania czy latarkę.

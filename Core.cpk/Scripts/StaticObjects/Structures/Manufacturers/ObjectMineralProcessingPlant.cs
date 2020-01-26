@@ -18,7 +18,7 @@
 
         public override byte ContainerInputSlotsCount => 8;
 
-        public override byte ContainerOutputSlotsCount => 4;
+        public override byte ContainerOutputSlotsCount => 8;
 
         public override string Description =>
             "This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.";

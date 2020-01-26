@@ -42,7 +42,8 @@
             double iterationLimitMaxFraction,
             bool isRestrictionPreset,
             bool useSectorDensity = true,
-            int paddingToLandClaimAreas = 0)
+            int paddingToLandClaimAreas = 0,
+            bool spawnAtLeastOnePerSector = false)
         {
             this.PresetUseSectorDensity = useSectorDensity;
             this.PaddingToLandClaimAreas = paddingToLandClaimAreas;
@@ -58,6 +59,7 @@
             }
 
             this.Padding = padding;
+            this.SpawnAtLeastOnePerSector = spawnAtLeastOnePerSector;
 
             this.IterationLimitFractionRange = new RangeDouble(
                 iterationLimitMinFraction,
@@ -100,6 +102,8 @@
         public bool PresetUseSectorDensity { get; }
 
         public ushort? SpawnLimitPerIteration { get; set; }
+
+        public bool SpawnAtLeastOnePerSector { get; }
 
         //public bool UseSectorDensity { get; }
 

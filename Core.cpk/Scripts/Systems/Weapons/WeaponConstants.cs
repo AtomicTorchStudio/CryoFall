@@ -43,7 +43,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             DamageFriendlyFireMultiplier = MathHelper.Clamp(
                 ServerRates.Get(
                     "DamageFriendlyFireMultiplier",
-                    defaultValue: 0.0,
+                    defaultValue: 1.0,
                     @"Multiplier for the friendly fire damage
                       (when one party member damaging another with any weapon except explosives).
                       0.0 - disable friendly fire completely.

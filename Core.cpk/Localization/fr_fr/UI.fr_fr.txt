@@ -107,6 +107,9 @@ Message privé
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Débloquer
 
+UI/CoreStrings@Checkbox_DoNotAskAgain:
+Do not ask me again
+
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Cette structure est purement décorative.
 
@@ -202,6 +205,21 @@ Ce gisement sera épuisé dans :
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Capacité du gisement
+
+UI/CoreStrings@Duration_Instant:
+Instant
+
+UI/CoreStrings@Duration_Quick:
+Quick
+
+UI/CoreStrings@Duration_Slow:
+Slow
+
+UI/CoreStrings@Duration_VeryQuick:
+Very quick
+
+UI/CoreStrings@Duration_VerySlow:
+Very slow
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 UE
@@ -368,6 +386,9 @@ CRÉDITS
 UI/CoreStrings@MainMenu_TabCurrentGame:
 PARTIE EN COURS
 
+UI/CoreStrings@MainMenu_TabExtras:
+EXTRAS
+
 UI/CoreStrings@MainMenu_TabHome:
 ACCUEIL
 
@@ -379,6 +400,9 @@ QUITTER
 
 UI/CoreStrings@MainMenu_TabServers:
 SERVEURS
+
+UI/CoreStrings@MainMenu_TabUpdates:
+UPDATES HISTORY
 
 UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
 Lier le compte
@@ -1310,6 +1334,12 @@ Coût de recherche
 UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 Déverrouiller
 
+UI/CoreStrings@WindowTechnologies_TechTreeChanged:
+`It appears the technologies tree has been changed.
+[br]This could be due to a game update or third-party changes (in the case of a community or modded server).
+[br]Your researched technologies were reset and all learning points (LP) spent were refunded, so you can redistribute the points again.
+[br]Enjoy the game!`
+
 UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
 Technologies primaires
 
@@ -1419,9 +1449,17 @@ UI/CoreStrings@WorldMapMarkLandClaim_Tooltip_Owner:
 UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 [b]Base attaquée[/b] [br]Votre base est attaquée !
 
+UI/CoreStrings@WorldMapMarkResourceLithium_Infinite_Tooltip:
+`[b]Infinite geothermal spring[/b]
+[br]Public lithium source.`
+
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
 `[b]Source géothermale[/b]
 [br]Gisement de lithium.`
+
+UI/CoreStrings@WorldMapMarkResourceOil_Infinite_Tooltip:
+`[b]Infinite oil seep[/b]
+[br]Public raw petroleum oil source.`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]Nappe de pétrole[/b]
@@ -1652,6 +1690,11 @@ Vous pouvez accorder à d'autres survivants un accès au territoire que vous ave
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
 Accès
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoDemoVersion:
+`Please note: This land claim was [b]founded by a demo version player[/b].
+[br]Because of this, the delay before the decay starts as well as the decay duration itself are [b]shortened[/b].
+[br]When a demo player purchases the game, those durations revert to their standard values.`
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
 `Les structures à l'abandon commenceront à se dégrader après quelques temps. 

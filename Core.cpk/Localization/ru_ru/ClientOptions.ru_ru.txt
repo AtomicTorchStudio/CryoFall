@@ -72,6 +72,9 @@ Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Mode.Closest:
 Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 Разрешение скриншота
 
+Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
+Задержка подсказки
+
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 Размер интерфейса
 

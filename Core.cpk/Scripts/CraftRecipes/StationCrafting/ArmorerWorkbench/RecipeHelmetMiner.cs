@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemIngotCopper>(count: 10);
             inputItems.Add<ItemLeather>(count: 10);
-            inputItems.Add<ItemComponentsElectronic>(count: 5);
+            inputItems.Add<ItemWire>(count: 10);
             inputItems.Add<ItemGlassRaw>(count: 10);
 
             outputItems.Add<ItemHelmetMiner>();

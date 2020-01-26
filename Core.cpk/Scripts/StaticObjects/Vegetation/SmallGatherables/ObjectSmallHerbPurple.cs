@@ -12,7 +12,7 @@
     {
         public override string Name => "Purple herb";
 
-        protected override TimeSpan TimeToMature => TimeSpan.FromMinutes(30);
+        protected override TimeSpan TimeToMature => TimeSpan.Zero;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

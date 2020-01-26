@@ -16,10 +16,10 @@
         /// </summary>
         Death,
 
-        AggroStart,
+        Aggression,
 
-        Aggro,
+        Flee,
 
-        Retreat
+        Surprise
     }
 }

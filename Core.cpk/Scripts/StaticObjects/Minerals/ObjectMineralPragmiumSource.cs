@@ -317,7 +317,7 @@
                 () =>
                 {
                     // kill all spawned mobs
-                    foreach (var character in Api.Shared.WrapInTempList(privateState.MobsList).EnumerateAndReturn())
+                    foreach (var character in Api.Shared.WrapInTempList(privateState.MobsList).EnumerateAndDispose())
                     {
                         if (!character.IsDestroyed)
                         {

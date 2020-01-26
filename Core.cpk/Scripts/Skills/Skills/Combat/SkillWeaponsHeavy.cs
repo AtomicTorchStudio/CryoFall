@@ -15,6 +15,11 @@
 
         public override double ExperienceAddedPerDamageDoneMultiplier => 0.5;
 
+        /// <summary>
+        /// This is intended to reward experience per ammo expended. Basically resource->exp conversion.
+        /// </summary>
+        public override double ExperienceAddedPerShot => 5;
+
         public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
 
         public override string Name => "Heavy weapons";

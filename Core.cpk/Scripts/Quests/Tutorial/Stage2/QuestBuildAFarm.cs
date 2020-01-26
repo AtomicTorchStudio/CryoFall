@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Farms;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Farming;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestBuildAFarm : ProtoQuest
     {
@@ -23,11 +24,14 @@
 
         protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
         {
+            var listSeeds = Api.FindProtoEntities<IProtoItemSeed>();
+            listSeeds.RemoveAll(i => i is IProtoItemSapling);
+
             requirements
                 .Add(RequirementHaveTechNode.Require<TechNodeFarmingBasics>())
                 .Add(RequirementBuildStructure.Require<ObjectFarmPlot>())
                 .Add(RequirementBuildStructure.Require<ObjectFarmingWorkbench>())
-                .Add(RequirementUseItem.Require<IProtoItemSeed>(description: TaskPlantAnySeeds));
+                .Add(RequirementUseItem.Require(listSeeds, description: TaskPlantAnySeeds));
 
             prerequisites
                 .Add<QuestBuildAPermanentBase>();

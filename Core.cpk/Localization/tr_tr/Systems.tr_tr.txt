@@ -63,6 +63,9 @@ Artık kurtuldun! Tadını çıkar!
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
 Sıkışıklıktan kurtulma isteği başarılı.
 
+Scripts/Systems/Chat/ChatSystem@ErrorSlowDown_Format:
+Çok fazla mesaj gönderiyorsun. Biraz yavaşla. {0} kadar sonra tekrar mesaj gönderebilirsin.
+
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 Sunucu yöneticisi tarafından sohbete katılman yasaklandı. Yasağın kalkmasına kalan süre: {0}
 
@@ -133,9 +136,18 @@ Başka bir alan tutucuya çok yakın.
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Başka bir oyuncu bu bölgeye sahip veya başka birinin alan tutucusuna çok yakın.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
+Üs boyutu aşıldı. Herhangi bir boyuttaki maksimum üs boyutu {0} hücredir ( sırayla dizilmiş yaklaşık {1} alan tutucu).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
+Alan tutucuları birleştiremezsin. Yanlış ve kötü niyetli kullanımların önüne geçmek amacıyla deneme hesaplarına ait olan alan tutucular diğer oyuncularınkilerle birleştirilemez.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 `Kaynak yatağı daha yeni ortaya çıktı ve henüz ele geçirilemez.
 Etrafında inşaat yapmak geçici süreyle yasak.`
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
+Bu alan tutucuyu inşa etmek/geliştirmek, üsteki mümkün kapasiteyi aşan bir güvenli depo sağlayacak. Lütfen alan tutuculara komşu olan güvenli depolardaki eşyaları alın ve bunu tekrar edin.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Başka bir alan tutucuyla kesişiyor

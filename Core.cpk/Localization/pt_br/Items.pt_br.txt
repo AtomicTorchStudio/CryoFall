@@ -343,6 +343,12 @@ Capacete acolchoado
 Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 Calça acolchoada
 
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+A defesa suprema. Esta armadura de batalha protegerá você contra tudo o que te atingir, ao custo de reduzir sua mobilidade.
+
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Armadura superpesada
+
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 A necessidade é a mãe da invenção. Não é muito confortável, mas é uma proteção inicial muito boa.
 
@@ -1202,11 +1208,17 @@ Pode-se fundir até virar cobre puro.
 Scripts/Items/Generic/ItemOreCopper@Name:
 Minério de cobre
 
+Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
+Concentrado de minério de cobre
+
 Scripts/Items/Generic/ItemOreIron@Description:
 Pode-se fundir até virar ferro puro.
 
 Scripts/Items/Generic/ItemOreIron@Name:
 Minério de ferro
+
+Scripts/Items/Generic/ItemOreIronConcentrate@Name:
+Concentrado de minério de ferro
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 Sais de lítio são extraídos de fontes geotérmicas e podem ser transformados em metal de lítio puro.

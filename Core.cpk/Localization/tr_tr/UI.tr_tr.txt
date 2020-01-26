@@ -107,6 +107,9 @@ UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Engelini Kaldır
 
+UI/CoreStrings@Checkbox_DoNotAskAgain:
+Tekrar sorma
+
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Bu yapı tamamen dekoratiftir.
 
@@ -203,6 +206,21 @@ Bu yatak şu kadar sürede bitecek:
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Yatak kapasitesi
+
+UI/CoreStrings@Duration_Instant:
+Anında
+
+UI/CoreStrings@Duration_Quick:
+Çabuk
+
+UI/CoreStrings@Duration_Slow:
+Yavaş
+
+UI/CoreStrings@Duration_VeryQuick:
+Çok çabuk
+
+UI/CoreStrings@Duration_VerySlow:
+Çok yavaş
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 EB
@@ -369,6 +387,9 @@ JENERİK
 UI/CoreStrings@MainMenu_TabCurrentGame:
 GÜNCEL OYUN
 
+UI/CoreStrings@MainMenu_TabExtras:
+EKSTRALAR
+
 UI/CoreStrings@MainMenu_TabHome:
 ANA MENÜ
 
@@ -380,6 +401,9 @@ UI/CoreStrings@MainMenu_TabQuit:
 
 UI/CoreStrings@MainMenu_TabServers:
 SUNUCULAR
+
+UI/CoreStrings@MainMenu_TabUpdates:
+GÜNCELLEME GEÇMİŞİ
 
 UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
 Hesap bağla
@@ -1317,6 +1341,12 @@ Araştırma maliyeti
 UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 Kilidi aç
 
+UI/CoreStrings@WindowTechnologies_TechTreeChanged:
+`Teknoloji ağacı değişmiş gibi duruyor.
+[br]Bu oyun güncellemesi veya üçüncü parti değişiklikler sebebiyle olabilir (topluluk veya modlu bir sunucudaysanız)
+[br]Araştırılmış teknolojilerin sıfırlandı ve bütün eğitim puanların (EP) iade edildi, bunları yeniden dağıtabileceksin.
+[br]Oyunun tadını çıkar!`
+
 UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
 Ana teknolojiler
 
@@ -1430,9 +1460,17 @@ UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 `[b]Üs baskına uğruyor[/b]
 [br]Üssün saldırı altında!`
 
+UI/CoreStrings@WorldMapMarkResourceLithium_Infinite_Tooltip:
+`[b]Sonsuz jeotermal kaynak[/b]
+[br]Kamuya açık lityum kaynağı.`
+
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
 `[b]Jeotermal kaynak[/b]
 [br]Lityum yatağı`
+
+UI/CoreStrings@WorldMapMarkResourceOil_Infinite_Tooltip:
+`[b]Sınırsız petrol sızıntısı[/b]
+[br]Kamuya açık işlenmemiş petrol kaynağı.`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]Petrol birikintisi[/b]
@@ -1663,6 +1701,11 @@ Diğer hayatta kalanlara alan tutucuna erişim sağlayabilirsin.
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
 Eriş
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoDemoVersion:
+`Dikkat: Bu alan tutucu [b]deneme versiyonu oyuncusu tarafından koyuldu[/b].
+[br]Bundan dolayı, çürüme öncesi gecikme ve çürüme süresi [b]kısaltıldı[/b].
+[br]Deneme oyuncusu oyunu satın aldığında bu süreler standart hâllerine döner.`
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
 `Terk edilmiş yapılar bir süre sonra çürümeye başlar

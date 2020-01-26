@@ -11,7 +11,13 @@
 
         public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.2;
 
-        public override double ExperienceAddedPerDamageDoneMultiplier => 0.5;
+        public override double ExperienceAddedPerDamageDoneMultiplier => 0.75;
+
+        /// <summary>
+        /// Energy is almost free so to balance it the game won't reward shooting
+        /// but provide increased ExperienceAddedPerDamageDoneMultiplier.
+        /// </summary>
+        public override double ExperienceAddedPerShot => 0;
 
         public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
 

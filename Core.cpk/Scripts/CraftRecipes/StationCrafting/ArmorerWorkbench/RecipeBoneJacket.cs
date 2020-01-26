@@ -19,7 +19,7 @@
 
             duration = CraftingDuration.Medium;
 
-            inputItems.Add<ItemBones>(count: 10);
+            inputItems.Add<ItemBones>(count: 5);
             inputItems.Add<ItemLeather>(count: 3);
             inputItems.Add<ItemThread>(count: 5);
             inputItems.Add<ItemGlue>(count: 1);

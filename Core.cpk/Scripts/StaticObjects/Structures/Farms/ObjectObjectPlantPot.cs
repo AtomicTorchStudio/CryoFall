@@ -30,7 +30,7 @@
             // destroy all the plants over this plant pot
             foreach (var tile in gameObject.OccupiedTiles)
             {
-                foreach (var staticWorldObject in Api.Shared.WrapInTempList(tile.StaticObjects).EnumerateAndReturn())
+                foreach (var staticWorldObject in Api.Shared.WrapInTempList(tile.StaticObjects).EnumerateAndDispose())
                 {
                     if (staticWorldObject.ProtoStaticWorldObject is IProtoObjectPlant)
                     {

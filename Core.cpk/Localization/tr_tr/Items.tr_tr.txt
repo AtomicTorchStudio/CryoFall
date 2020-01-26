@@ -343,6 +343,12 @@ Dolgulu kask
 Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 Dolgulu pantolon
 
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+Nihai savunma. Bu savaş zırhı seni üstüne gelen her şeye karşı korur ama mobiliteyi düşürür.
+
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Süper ağır zırh
+
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 Gereksinimler icatların anasıdır. Hiç rahat değil, fakat ilk başlarda iyi bir koruma sağlar.
 
@@ -1202,11 +1208,17 @@ Eritilerek saf bakır elde edilebilir.
 Scripts/Items/Generic/ItemOreCopper@Name:
 Bakır cevheri
 
+Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
+Bakır cevheri konsantresi
+
 Scripts/Items/Generic/ItemOreIron@Description:
 Eritilerek saf demir elde edilebilir.
 
 Scripts/Items/Generic/ItemOreIron@Name:
 Demir cevheri
+
+Scripts/Items/Generic/ItemOreIronConcentrate@Name:
+Demir cevheri konsantresi
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 Lityum tuzları jeotermal kaynaklardan çıkarılabilir ve saf lityum metali elde etmek için işlenebilir.

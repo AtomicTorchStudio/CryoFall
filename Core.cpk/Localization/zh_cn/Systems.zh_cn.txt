@@ -63,6 +63,9 @@ Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSucce
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
 解除卡死成功
 
+Scripts/Systems/Chat/ChatSystem@ErrorSlowDown_Format:
+You are sending too many messages. Slow down a bit. You can send messages again after {0}.
+
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 您被服务器管理员禁止参与聊天。您的禁令在：{0}过期
 
@@ -133,8 +136,17 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooCl
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 该区域已被另一个玩家占领，或者它太接近别人的土地。
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
+Base size exceeded. Maximum base size in any dimension is {0} cells (approximately {1} land claims stacked together in a row).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
+Cannot combine land claims. In order to prevent abuse/exploits, land claims belonging to demo accounts cannot be combined with other players'.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 资源点才刚刚出现，不能占领。 暂时限制其周围建筑。
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
+Building/upgrading this land claim will result in combined safe storage exceeding the possible capacity in a base. Please remove items from the safe storages of the neighboring land claims and then repeat the action.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 与另一个玩家占领的区域相交

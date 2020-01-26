@@ -15,7 +15,7 @@
 
         protected override bool CanFlipSprite => false; // it's grass - flip is done by shader
 
-        protected override TimeSpan TimeToMature => TimeSpan.FromMinutes(45);
+        protected override TimeSpan TimeToMature => TimeSpan.Zero;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {

@@ -343,6 +343,12 @@ Gesteppter Helm
 Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 Gesteppte Hose
 
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+Die ultimative Verteidigung. Diese Kampfrüstung schützt gegen alles, was sich dir in den Weg stellt, schränkt dabei jedoch deine Beweglichkeit ein.
+
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Superschwere Rüstung
+
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 Not macht erfinderisch. Nicht sonderlich bequem, bietet jedoch schon früh passablen Schutz.
 
@@ -1202,11 +1208,17 @@ Kann in reines Kupfer geschmolzen werden.
 Scripts/Items/Generic/ItemOreCopper@Name:
 Kupfererz
 
+Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
+Kupfererzkonzentrat
+
 Scripts/Items/Generic/ItemOreIron@Description:
 Kann in reines Eisen geschmolzen werden.
 
 Scripts/Items/Generic/ItemOreIron@Name:
 Eisenerz
+
+Scripts/Items/Generic/ItemOreIronConcentrate@Name:
+Eisenerzkonzentrat
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 Lithiumsalze werden aus Thermalquellen gewonnen und können zu reinem Lithiummetall weiterverarbeitet werden.

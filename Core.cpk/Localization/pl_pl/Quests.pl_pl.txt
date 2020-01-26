@@ -347,6 +347,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Wykonaj nóż i zabij dowolne stworzenie
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
+Załóż lepszy napierśnik
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
+Załóż lepszy hełm
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
+Załóż lepszy dół pancerza
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Czas lepiej się zabezpieczyć.
 
@@ -375,6 +384,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
 Wykonaj lepsze narzędzia
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftMusketOrFlintlockPistol:
+Wyprodukuj muszkiet lub pistolet skałkowy
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftPaperCartridge:
+Wyprodukuj ładunek papierowy
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@FireTheWeapon:
+Użyj broni
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Rozbijanie czaszek buławą jest OK, ale czasami warto dysponować bronią dystansową, zwłaszcza gdy mierzysz się z trudniejszymi przeciwnikami.

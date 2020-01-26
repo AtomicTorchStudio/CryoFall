@@ -22,7 +22,7 @@
                                                                        maxX: 3,
                                                                        maxY: 3);
 
-        protected override TimeSpan TimeToMature => TimeSpan.FromHours(1);
+        protected override TimeSpan TimeToMature => TimeSpan.FromMinutes(30);
 
         protected override void ClientInitialize(ClientInitializeData data)
         {

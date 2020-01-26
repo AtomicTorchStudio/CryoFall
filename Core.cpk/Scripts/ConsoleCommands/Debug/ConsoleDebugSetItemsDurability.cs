@@ -28,7 +28,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
 
             foreach (var container in containers)
             {
-                foreach (var item in Api.Shared.WrapInTempList(container.Items).EnumerateAndReturn())
+                foreach (var item in Api.Shared.WrapInTempList(container.Items).EnumerateAndDispose())
                 {
                     if (item.ProtoItem is IProtoItemWithDurability protoItemWithDurability)
                     {

@@ -94,6 +94,12 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 무한 유전
 
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
+The resource deposit has only just appeared and cannot be claimed or destroyed yet.
+
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
+No damage dealt to {0}
+
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 채굴용 폭약
 
@@ -590,6 +596,12 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 소형 스탠드
 
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
+Ideal for large bases or military outposts, this tall projector tower can ensure perfect visibility in a wide area.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
+Projector tower
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 기본적인 광원이지만, 더 중요한 기능은 튀긴 고기와 같은 단순한 요리를 할 수 있다는 것입니다.
 
@@ -635,6 +647,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
 발전된 리튬 소금 추출기
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
+This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
+Mineral processing plant
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 어떤 종류의 유기물이라도 비료로 만들 수 있습니다. 완전한 유기농 비료로 말이죠.
 
@@ -661,6 +679,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 조리용 난로
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
+Electric stove allows for faster and more convenient preparation of food.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
+Electric cooking stove
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 소량의 물을 모을 수 있도록 설계된 단순한 물 수집기. 왜인지는 모르겠지만, 사막이나 그 밖의 암석 지대에서는 제기능을 못합니다...
@@ -695,11 +719,11 @@ Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 의료소
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
-작동되는 동안 고강도 초능력장을 방출하는 방어 구조물.
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
+Defensive structure that projects psionic field of high intensity while active.
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
-초능력 방출기
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
+Psionic field generator
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 보조 배터리나 손전등 같은 휴대용 전자 장비를 충전할 수 있습니다.

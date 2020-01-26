@@ -13,6 +13,9 @@
     /// and reset the decay timer if so.
     public sealed class StructureLandClaimDecayResetSystem : ProtoSystem<StructureLandClaimDecayResetSystem>
     {
+        private static readonly ICharactersServerService ServerCharacters
+            = IsServer ? Server.Characters : null;
+
         private static readonly ICoreServerService ServerCore
             = IsServer ? Server.Core : null;
 
@@ -39,6 +42,29 @@
                 name: "System." + this.ShortId);
         }
 
+        private static bool ServerGetIsFounderDemoPlayer(List<ILogicObject> areas)
+        {
+            var isFounderDemoPlayer = false;
+
+            foreach (var area in areas)
+            {
+                var areaPrivateState = LandClaimArea.GetPrivateState(area);
+                var founder = ServerCharacters.GetPlayerCharacter(areaPrivateState.LandClaimFounder);
+
+                if (founder.ServerIsDemoVersion)
+                {
+                    isFounderDemoPlayer = true;
+                }
+                else
+                {
+                    // one of the areas' founder is not a demo player
+                    return false;
+                }
+            }
+
+            return isFounderDemoPlayer;
+        }
+
         private static void ServerRefreshLandClaimAreasGroup(ILogicObject areasGroup)
         {
             if (areasGroup.IsDestroyed)
@@ -46,20 +72,21 @@
                 return;
             }
 
-            var areas = LandClaimAreasGroup.GetPrivateState(areasGroup).ServerLandClaimsAreas;
+            var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
+            var areas = areasGroupPrivateState.ServerLandClaimsAreas;
+            areasGroupPrivateState.IsFounderDemoPlayer = ServerGetIsFounderDemoPlayer(areas);
+
+            // check every area in the group
+            // if any of them has an online owner, reset the decay timer
             foreach (var area in areas)
             {
-                if (area.IsDestroyed)
-                {
-                    continue;
-                }
-
                 var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area, addGracePadding: true);
-                var owners = LandClaimArea.GetPrivateState(area).LandOwners;
+                var areaPrivateState = LandClaimArea.GetPrivateState(area);
+                var owners = areaPrivateState.LandOwners;
 
                 foreach (var owner in owners)
                 {
-                    var character = Server.Characters.GetPlayerCharacter(owner);
+                    var character = ServerCharacters.GetPlayerCharacter(owner);
                     if (character == null
                         || !character.ServerIsOnline)
                     {
@@ -80,7 +107,9 @@
             // helper method to reset the decay timer for all land claim buildings inside this areas group
             void ServerResetDecayTimer()
             {
-                var decayDelayDuration = LandClaimSystem.ServerGetDecayDelayDurationForLandClaimAreas(areas);
+                var decayDelayDuration = LandClaimSystem.ServerGetDecayDelayDurationForLandClaimAreas(
+                    areas,
+                    areasGroupPrivateState.IsFounderDemoPlayer);
 
                 foreach (var area in areas)
                 {

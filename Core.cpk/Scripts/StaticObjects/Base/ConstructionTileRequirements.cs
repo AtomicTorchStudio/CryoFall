@@ -56,9 +56,9 @@
 
         public const string ErrorTooCloseToWater = "Cannot build—too close to water.";
 
-        public const double RequirementNoNpcsRadius = 5;
+        public const double RequirementNoNpcsRadius = 10;
 
-        public const double RequirementNoPlayersRadius = 5;
+        public const double RequirementNoPlayersRadius = 10;
 
         public static readonly IConstructionTileRequirementsReadOnly BasicRequirements;
 

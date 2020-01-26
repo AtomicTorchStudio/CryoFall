@@ -63,6 +63,9 @@ Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSucce
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
 `Проблема с "застреванием" решена`
 
+Scripts/Systems/Chat/ChatSystem@ErrorSlowDown_Format:
+You are sending too many messages. Slow down a bit. You can send messages again after {0}.
+
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 Администратор сервера исключил вас из чата. Вы сможете вернуться через {0}
 
@@ -133,8 +136,17 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooCl
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Эта территория другого игрока, или она находится слишком близко к чужой зоне контроля.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
+Base size exceeded. Maximum base size in any dimension is {0} cells (approximately {1} land claims stacked together in a row).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
+Cannot combine land claims. In order to prevent abuse/exploits, land claims belonging to demo accounts cannot be combined with other players'.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 Месторождение только что появилось, его нельзя пока взять под контроль. Строительство рядом с ним временно недоступно.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
+Building/upgrading this land claim will result in combined safe storage exceeding the possible capacity in a base. Please remove items from the safe storages of the neighboring land claims and then repeat the action.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Пересечение с чужой зоной контроля

@@ -110,7 +110,10 @@
                                    && !(t.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject is
                                             ObjectDepositGeothermalSpring)))
                 .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
-                     c => c.Tile.StaticObjects.All(o => o.ProtoWorldObject is ObjectDepositGeothermalSpring))
+                     c => c.Tile.StaticObjects.All(
+                         o => o.ProtoWorldObject is ObjectDepositGeothermalSpring
+                              || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
+                              || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal))
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                 .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea);
 

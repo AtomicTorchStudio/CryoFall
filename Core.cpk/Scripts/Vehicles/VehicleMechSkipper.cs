@@ -6,8 +6,10 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers.Vehicles;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -87,6 +89,22 @@
                 .Add<ItemComponentsHighTech>(1);
 
             repairStagesCount = 5;
+        }
+
+        protected override void PrepareProtoVehicleDestroyedExplosionPreset(
+            out double damageRadius,
+            out ExplosionPreset explosionPreset,
+            out DamageDescription damageDescriptionCharacters)
+        {
+            damageRadius = 6;
+            explosionPreset = ExplosionPresets.VeryLarge;
+
+            damageDescriptionCharacters = new DamageDescription(
+                damageValue: 75,
+                armorPiercingCoef: 0.25,
+                finalDamageMultiplier: 1,
+                rangeMax: damageRadius,
+                damageDistribution: new DamageDistribution(DamageType.Kinetic, 1));
         }
 
         protected override void PrepareProtoVehicleLightConfig(ItemLightConfig lightConfig)

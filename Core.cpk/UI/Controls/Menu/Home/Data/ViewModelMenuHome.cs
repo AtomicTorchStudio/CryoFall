@@ -83,7 +83,7 @@
                                                .ToString("MMMM yyyy", CultureInfo.CurrentUICulture)
                                                .ToUpperInvariant();
 
-        public string UpdateTitle => "A25—Balancing Update";
+        public string UpdateTitle => "A25—Balance Update";
 
         protected override void DisposeViewModel()
         {

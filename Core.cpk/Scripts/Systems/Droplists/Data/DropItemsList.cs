@@ -378,8 +378,7 @@
             }
 
             // need to select multiple random entries
-            // ReSharper disable once SuspiciousTypeConversion.Global
-            this.frozenEntries.SelectRandomElements((List<Entry>)result, countToSelect);
+            this.frozenEntries.SelectRandomElements(result.AsList(), countToSelect);
         }
 
         /// <summary>

@@ -347,6 +347,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Fertige ein Messer an und töte ein Lebewesen
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
+Lege besseren Brustpanzer an
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
+Rüste besseren Helm aus
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
+Lege bessere Beinrüstung an
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Nun ist es an der Zeit, sich besser zu schützen.
 
@@ -375,6 +384,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
 Stelle bessere Werkzeuge her
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftMusketOrFlintlockPistol:
+Stelle eine Muskete oder Steinschlosspistole her
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftPaperCartridge:
+Stelle eine Papierpatrone her
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@FireTheWeapon:
+Benutze die Waffe
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Schädel mit einer Keule einzuschlagen ist ja ganz okay, aber manchmal braucht es etwas mit genügend Reichweite – besonders dann, wenn du dich mit ernsthafteren Gegnern messen willst.

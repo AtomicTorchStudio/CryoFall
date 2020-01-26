@@ -71,11 +71,11 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeCircle(radius: 0.4, center: (0.75, 0.5))
-                .AddShapeCircle(radius: 0.4, center: (1.25, 0.5))
-                .AddShapeRectangle((1.4, 0.7),      (0.3, 0.45),         CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (1, 0.25), offset: (0.5, 0.95), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((1.4, 0.8),      (0.3, 0.25),         CollisionGroups.ClickArea);
+                .AddShapeCircle(radius: 0.375, center: (0.75, 0.5))
+                .AddShapeCircle(radius: 0.375, center: (1.25, 0.5))
+                .AddShapeRectangle((1.4, 0.7), offset: (0.3, 0.45), CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((1, 0.25),  offset: (0.5, 0.95), CollisionGroups.HitboxRanged)
+                .AddShapeRectangle((1.4, 0.9), offset: (0.3, 0.25), CollisionGroups.ClickArea);
         }
     }
 }

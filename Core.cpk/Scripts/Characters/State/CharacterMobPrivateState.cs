@@ -16,6 +16,15 @@
         public double CurrentAgroTimeRemains { get; set; }
 
         [TempOnly]
+        public ICharacter CurrentTargetCharacter { get; set; }
+
+        [TempOnly]
+        public bool IsRetreating { get; set; }
+
+        [TempOnly]
+        public double LastFleeSoundTime { get; set; }
+
+        [TempOnly]
         public Vector2Ushort SpawnPosition { get; set; }
 
         /// <summary>

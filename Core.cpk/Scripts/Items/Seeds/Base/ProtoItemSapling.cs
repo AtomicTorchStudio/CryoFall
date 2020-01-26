@@ -12,7 +12,8 @@
     using AtomicTorch.CBND.GameApi.Data.State;
 
     public abstract class ProtoItemSapling
-        <TPrivateState, TPublicState, TClientState> : ProtoItemSeed<TPrivateState, TPublicState, TClientState>
+        <TPrivateState, TPublicState, TClientState>
+        : ProtoItemSeed<TPrivateState, TPublicState, TClientState>, IProtoItemSapling
         where TPrivateState : BasePrivateState, new()
         where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()

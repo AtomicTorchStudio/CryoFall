@@ -24,7 +24,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
                 Server.World.GetGameObjectsOfProto<IStaticWorldObject, ObjectMineralPragmiumSource>();
 
             var count = 0;
-            foreach (var worldObject in Api.Shared.WrapInTempList(allPragmiumSources).EnumerateAndReturn())
+            foreach (var worldObject in Api.Shared.WrapInTempList(allPragmiumSources).EnumerateAndDispose())
             {
                 proto.ServerForceUpdate(worldObject, deltaTime: 0);
                 count++;

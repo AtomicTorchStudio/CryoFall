@@ -2,6 +2,8 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
@@ -198,7 +200,28 @@
                             //// do these checks if the bomb will have physics!
                             //.Add(ConstructionTileRequirements.ValidatorClientOnlyNoCurrentPlayer)
                             //.Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyDynamic)
-                            .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyStatic);
+                            .Add(new ConstructionTileRequirements.Validator(
+                                     ConstructionTileRequirements.ErrorNoFreeSpace,
+                                     c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
+                                              c.Tile,
+                                              t =>
+                                              {
+                                                  if (!t.PhysicsBody.IsStatic)
+                                                  {
+                                                      // allow
+                                                      return false;
+                                                  }
+
+                                                  switch (t.PhysicsBody.AssociatedWorldObject
+                                                           ?.ProtoWorldObject)
+                                                  {
+                                                      case IProtoObjectDeposit _: // allow deposits
+                                                      case ObjectWallDestroyed _: // allow destroyed walls
+                                                          return false;
+                                                  }
+
+                                                  return true;
+                                              })));
         }
 
         protected virtual void ServerExecuteExplosion(

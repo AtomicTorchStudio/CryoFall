@@ -233,7 +233,7 @@
             {
                 var sb = new StringBuilder();
                 foreach (var filePath in Api.Shared.FindFiles("Scripts/Systems/ProfanityFiltering/Filters/")
-                                            .EnumerateAndReturn())
+                                            .EnumerateAndDispose())
                 {
                     if (!filePath.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
                     {

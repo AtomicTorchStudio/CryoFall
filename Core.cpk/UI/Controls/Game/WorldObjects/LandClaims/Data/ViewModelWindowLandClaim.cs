@@ -201,16 +201,22 @@
                 return;
             }
 
-            this.DecayInfoText = string.Format(
-                DecayInfoFormat,
-                ClientTimeFormatHelper.FormatTimeDuration(
-                    TimeSpan.FromSeconds(result.DecayDelayDuration),
-                    trimRemainder: true),
-                ClientTimeFormatHelper.FormatTimeDuration(
-                    TimeSpan.FromSeconds(result.DecayDuration),
-                    trimRemainder: true),
-                this.ViewModelProtoLandClaimInfoCurrent
-                    .CurrentStructureLandClaimDestructionTimeout);
+            var text = string.Format(DecayInfoFormat,
+                                     ClientTimeFormatHelper.FormatTimeDuration(
+                                         TimeSpan.FromSeconds(result.DecayDelayDuration),
+                                         trimRemainder: true),
+                                     ClientTimeFormatHelper.FormatTimeDuration(
+                                         TimeSpan.FromSeconds(result.DecayDuration),
+                                         trimRemainder: true),
+                                     this.ViewModelProtoLandClaimInfoCurrent
+                                         .CurrentStructureLandClaimDestructionTimeout);
+
+            if (result.IsFounderDemoPlayer)
+            {
+                text += "[br][br]" + DecayInfoDemoVersion;
+            }
+
+            this.DecayInfoText = text;
         }
 
         private void SafeItemsSlotsCapacityChangedHandler()

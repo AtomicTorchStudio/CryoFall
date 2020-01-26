@@ -94,6 +94,12 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 Unendliche Ölquelle
 
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
+Diese Ressourcenquelle ist gerade erst aufgetaucht und kann noch nicht beansprucht oder zerstört werden.
+
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
+Kein Schaden verursacht an {0}
+
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Minenladung
 
@@ -590,6 +596,12 @@ Kleinere Version der elektrischen Stehlampe. Sehr hell angesichts ihrer Größe.
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Kleine Stehlampe
 
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
+Dieser große Projektorturm ist ideal für große Basen oder Militäraußenposten geeignet und sorgt für perfekte Sichtweite innerhalb eines großflächigen Bereichs.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
+Projektorturm
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 Dient als einfache Lichtquelle und, viel wichtiger noch, ermöglicht das Kochen einfacher Rezepturen, zum Beispiel gebratenes Fleisch.
 
@@ -635,6 +647,12 @@ Lithiumsalzextraktor
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
 Erweiterter Lithiumsalzextraktor
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
+Diese Aufbereitungsanlage pulverisiert rohes Erz und sortiert es in seine verschiedene Erzanteile, um die Ergiebigkeit beim Schmelzprozess zu erhöhen.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
+Mineralaufbereitungsanlage
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Kann zum Kompostieren jedweden organischen Materials verwendet werden. Im Wesentlichen ein Pflanzendünger.
 
@@ -661,6 +679,12 @@ Für die meisten Kochzubereitungen geeignet. Ergibt wesentlich bessere Mahlzeite
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 Kochherd
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
+Ein Elektroherd ermöglicht eine schnellere und praktischere Zubereitung von Speisen.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
+Elektroherd
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 Einfacher Wasserkollektor, der kleine Mengen von Wasser sammelt. Funktioniert aus irgendeinem Grund weder in Wüsten noch in anderen felsigen Gegenden ...
@@ -695,11 +719,11 @@ Spezielle automatisierte Krankenstation, die zum Installieren oder Entfernen all
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Krankenstation
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
-Verteidigungskonstruktion, die bei Betrieb ein hochintensives psionisches Feld projiziert.
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
+Eine Verteidigungskonstruktion, die bei Inbetriebnahme ein hochintensives psionisches Feld projiziert.
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
-Psionischer Projektor
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
+Psi-Feld-Generator
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 Kann zum Aufladen jeglicher tragbarer elektronischer Geräte, wie z.B. einer Powerbank oder einer Taschenlampe, benutzt werden.

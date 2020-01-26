@@ -14,7 +14,7 @@
     {
         public override string Name => "Rustshroom";
 
-        protected override TimeSpan TimeToMature => TimeSpan.FromMinutes(45);
+        protected override TimeSpan TimeToMature => TimeSpan.Zero;
 
         public override byte ClientGetTextureAtlasColumn(
             IStaticWorldObject worldObject,

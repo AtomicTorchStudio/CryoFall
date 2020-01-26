@@ -25,7 +25,7 @@
         protected override void PrepareGatheringDroplist(DropItemsList droplist)
         {
             droplist
-                .Add<ItemOilpod>(count: 2, countRandom: 1)
+                .Add<ItemOilpod>(count: 3, countRandom: 1)
                 .Add<ItemOilpod>(count: 1, probability: 1 / 5.0, condition: SkillForaging.ConditionAdditionalYield);
         }
     }

@@ -128,6 +128,16 @@
                             _ => _.ClientRemote_OnCharacterMobDeath(gameObject.Position));
         }
 
+        public void ServerPlaySound(ICharacter characterNpc, CharacterSound characterSound)
+        {
+            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+            Api.Server.World.GetScopedByPlayers(characterNpc, scopedBy);
+            this.CallClient(scopedBy.AsList(),
+                            _ => _.ClientRemote_PlaySound(characterNpc,
+                                                          characterNpc.TilePosition,
+                                                          characterSound));
+        }
+
         public override IEnumerable<IItemsContainer> SharedEnumerateAllContainers(
             ICharacter character,
             bool includeEquipmentContainer)
@@ -146,7 +156,8 @@
             if (IsServer
                 && (!weaponCache.Character?.IsNpc ?? false))
             {
-                var mobPrivateState = GetPrivateState((ICharacter)targetObject);
+                var characterMob = (ICharacter)targetObject;
+                var mobPrivateState = GetPrivateState(characterMob);
                 mobPrivateState.CurrentAgroCharacter = weaponCache.Character;
                 mobPrivateState.CurrentAgroTimeRemains = AgroStateDuration;
                 //Logger.Dev(
@@ -354,6 +365,22 @@
         {
             var worldPosition = deathPosition + this.SharedGetObjectCenterWorldOffset(null);
             this.protoSkeleton.SoundPresetCharacter.PlaySound(CharacterSound.Death, worldPosition);
+        }
+
+        [RemoteCallSettings(DeliveryMode.Unreliable)]
+        private void ClientRemote_PlaySound(
+            ICharacter characterNpc,
+            Vector2Ushort fallbackSoundPosition,
+            CharacterSound characterSound)
+        {
+            if (characterNpc is null
+                || !characterNpc.IsInitialized)
+            {
+                this.protoSkeleton.SoundPresetCharacter.PlaySound(characterSound, fallbackSoundPosition.ToVector2D());
+                return;
+            }
+
+            this.protoSkeleton.SoundPresetCharacter.PlaySound(characterSound, characterNpc);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

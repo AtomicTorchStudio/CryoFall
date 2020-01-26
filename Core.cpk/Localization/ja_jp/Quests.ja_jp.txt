@@ -348,6 +348,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 ナイフを作り、生き物を殺す
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
+Equip better chestplate
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
+Equip better helmet
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
+Equip better leg armor
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 もっと良い防御手段について学びましょう。
 
@@ -376,6 +385,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
 より良い道具を製作する
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftMusketOrFlintlockPistol:
+Craft musket or flintlock pistol
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftPaperCartridge:
+Craft paper cartridge
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@FireTheWeapon:
+Fire the weapon
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 メイスで頭蓋骨を粉砕するとスッキリします。でも時には、遠くから攻撃できる武器も必要です。特に強い敵と対戦するときなどにね。

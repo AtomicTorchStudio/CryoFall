@@ -347,6 +347,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Fabrica un cuchillo y mata a cualquier criatura
 
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
+Equipa un peto de mejor calidad
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
+Equipa un casco de mejor calidad
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
+Equipa una pernera metálica de mejor calidad
+
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Va siendo hora de conseguir una mejor protección.
 
@@ -375,6 +384,15 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
 Fabrica herramientas mejores
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftMusketOrFlintlockPistol:
+Fabrica un mosquete o una pistola de chispa
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftPaperCartridge:
+Fabrica un cartucho de papel
+
+Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@FireTheWeapon:
+Dispara el arma
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Aplastar cráneos con una maza está bien, pero en ocasiones agradeces tener algo de largo alcance. Sobre todo si vas a enfrentarte a adversarios más duros.

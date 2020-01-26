@@ -20,7 +20,7 @@
         /// <summary>
         /// This is intended to reward experience per ammo expended. Basically resource->exp conversion.
         /// </summary>
-        public virtual double ExperienceAddedPerShot => 5.0;
+        public abstract double ExperienceAddedPerShot { get; }
 
         public sealed override bool IsSharingLearningPointsWithPartyMembers => true;
 

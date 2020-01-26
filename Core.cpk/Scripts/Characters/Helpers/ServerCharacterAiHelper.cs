@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
@@ -13,6 +14,8 @@
 
     public static class ServerCharacterAiHelper
     {
+        private const double FleeSoundRepeatInterval = 3;
+
         private static readonly IWorldServerService ServerWorldService
             = Api.IsServer
                   ? Api.Server.World
@@ -91,18 +94,21 @@
             out double rotationAngleRad)
         {
             var characterNpcPrivateState = characterNpc.GetPrivateState<CharacterMobPrivateState>();
-            var enemyCharacter = GetClosestPlayer(characterNpc);
+            var lastTargetCharacter = characterNpcPrivateState.CurrentTargetCharacter;
+            var wasRetreating = characterNpcPrivateState.IsRetreating;
+
+            var targetCharacter = GetClosestPlayer(characterNpc);
             CalculateDistanceAndDirectionToEnemy(characterNpc,
-                                                 enemyCharacter,
-                                                 out var distanceToEnemy,
+                                                 targetCharacter,
+                                                 out var distanceToTarget,
                                                  out var directionToEnemyPosition,
                                                  out var directionToEnemyHitbox);
             if (isRetreatingForHeavyVehicles
-                && !(enemyCharacter is null)
-                && !enemyCharacter.IsNpc)
+                && !(targetCharacter is null)
+                && !targetCharacter.IsNpc)
             {
                 // determine if the enemy player riding a heavy vehicle
-                var protoVehicle = PlayerCharacter.GetPublicState(enemyCharacter).CurrentVehicle?.ProtoGameObject
+                var protoVehicle = PlayerCharacter.GetPublicState(targetCharacter).CurrentVehicle?.ProtoGameObject
                                        as IProtoVehicle;
                 if (protoVehicle?.IsHeavyVehicle ?? false)
                 {
@@ -112,7 +118,7 @@
                 }
             }
 
-            if (enemyCharacter == characterNpcPrivateState.CurrentAgroCharacter)
+            if (targetCharacter == characterNpcPrivateState.CurrentAgroCharacter)
             {
                 // increase distances if agro on this character
                 distanceRetreat *= 3;
@@ -121,8 +127,8 @@
 
             if (isRetreating)
             {
-                if ((double.IsNaN(distanceToEnemy)
-                     || distanceToEnemy > characterNpcPrivateState.AttackRange)
+                if ((double.IsNaN(distanceToTarget)
+                     || distanceToTarget > characterNpcPrivateState.AttackRange)
                     && characterNpcPrivateState.WeaponState.CooldownSecondsRemains <= 0)
                 {
                     // look away when retreating
@@ -131,7 +137,7 @@
                     directionToEnemyHitbox *= -1;
                 }
 
-                if (distanceToEnemy <= distanceRetreat)
+                if (distanceToTarget <= distanceRetreat)
                 {
                     // retreat
                     movementDirection = directionToEnemyPosition * -1;
@@ -140,23 +146,34 @@
                 {
                     // retreat completed
                     movementDirection = Vector2F.Zero;
+                    targetCharacter = null;
+                    isRetreating = false;
                 }
             }
-            else
+            else // not retreating
             {
-                movementDirection = distanceToEnemy < distanceEnemyTooClose
-                                    || distanceToEnemy > distanceEnemyTooFar
+                var isTargetTooFar = distanceToTarget > distanceEnemyTooFar;
+                movementDirection = distanceToTarget < distanceEnemyTooClose
+                                    || isTargetTooFar
                                         ? Vector2F.Zero // too close or too far
                                         : directionToEnemyPosition;
+
+                if (isTargetTooFar)
+                {
+                    targetCharacter = null;
+                }
             }
+
+            characterNpcPrivateState.IsRetreating = isRetreating;
+            characterNpcPrivateState.CurrentTargetCharacter = targetCharacter;
 
             rotationAngleRad = characterNpc.GetPublicState<CharacterMobPublicState>()
                                            .AppliedInput
                                            .RotationAngleRad;
             LookOnEnemy(directionToEnemyHitbox, ref rotationAngleRad);
 
-            var isAttacking = !double.IsNaN(distanceToEnemy)
-                              && distanceToEnemy <= characterNpcPrivateState.AttackRange;
+            var isAttacking = !double.IsNaN(distanceToTarget)
+                              && distanceToTarget <= characterNpcPrivateState.AttackRange;
 
             if (isRetreating && isAttacking)
             {
@@ -165,6 +182,26 @@
             }
 
             characterNpcPrivateState.WeaponState.SharedSetInputIsFiring(isAttacking);
+
+            if (targetCharacter is null)
+            {
+                return;
+            }
+
+            if (isRetreating)
+            {
+                TryPlayFleeSound(characterNpc, characterNpcPrivateState);
+                return;
+            }
+
+            // not retreating
+            if (wasRetreating 
+                || lastTargetCharacter != targetCharacter)
+            {
+                // changed an enemy
+                var protoMob = (IProtoCharacterMob)characterNpc.ProtoCharacter;
+                protoMob.ServerPlaySound(characterNpc, CharacterSound.Aggression);
+            }
         }
 
         public static void ProcessRetreatingAi(
@@ -174,23 +211,23 @@
             out double rotationAngleRad)
         {
             var characterNpcPrivateState = characterNpc.GetPrivateState<CharacterMobPrivateState>();
-            var enemyCharacter = GetClosestPlayer(
-                characterNpc);
+            var targetCharacter = GetClosestPlayer(characterNpc);
 
-            if (enemyCharacter == characterNpcPrivateState.CurrentAgroCharacter)
+            if (targetCharacter == characterNpcPrivateState.CurrentAgroCharacter)
             {
                 // increase distances if agro on this character
                 distanceRetreat *= 3;
             }
 
             CalculateDistanceAndDirectionToEnemy(characterNpc,
-                                                 enemyCharacter,
+                                                 targetCharacter,
                                                  out var distanceToEnemy,
                                                  out var directionToEnemy,
                                                  directionToEnemyHitbox: out _);
             directionToEnemy *= -1;
 
-            if (distanceToEnemy <= distanceRetreat)
+            var isRetreating = distanceToEnemy <= distanceRetreat;
+            if (isRetreating)
             {
                 // retreat
                 movementDirection = directionToEnemy;
@@ -201,11 +238,18 @@
                 movementDirection = Vector2F.Zero;
             }
 
+            characterNpcPrivateState.IsRetreating = isRetreating;
+
             rotationAngleRad = characterNpc.GetPublicState<CharacterMobPublicState>()
                                            .AppliedInput
                                            .RotationAngleRad;
             // look away from the enemy
             LookOnEnemy(directionToEnemy, ref rotationAngleRad);
+
+            if (isRetreating)
+            {
+                TryPlayFleeSound(characterNpc, characterNpcPrivateState);
+            }
         }
 
         private static bool AnyObstaclesBetween(ICharacter npc, ICharacter player)
@@ -275,6 +319,20 @@
                 rotationAngleRad = Math.Abs(
                     Math.Atan2(directionToEnemyHitbox.Y, directionToEnemyHitbox.X) + 2 * Math.PI);
             }
+        }
+
+        private static void TryPlayFleeSound(ICharacter characterNpc, CharacterMobPrivateState characterNpcPrivateState)
+        {
+            var serverTime = Api.Server.Game.FrameTime;
+            if (serverTime - characterNpcPrivateState.LastFleeSoundTime < FleeSoundRepeatInterval)
+            {
+                // already played the flee sound recently
+                return;
+            }
+
+            characterNpcPrivateState.LastFleeSoundTime = serverTime;
+            var protoMob = (IProtoCharacterMob)characterNpc.ProtoCharacter;
+            protoMob.ServerPlaySound(characterNpc, CharacterSound.Flee);
         }
     }
 }

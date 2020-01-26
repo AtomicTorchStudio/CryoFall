@@ -249,7 +249,10 @@
 
             if (data.IsFirstTimeInit)
             {
-                this.ServerSetGrowthStage(data.GameObject, growthStage: 0);
+                this.ServerSetGrowthStage(data.GameObject,
+                                          growthStage: this.TimeToMature.Ticks > 0
+                                                           ? (byte)0
+                                                           : this.GrowthStagesCount);
             }
         }
 

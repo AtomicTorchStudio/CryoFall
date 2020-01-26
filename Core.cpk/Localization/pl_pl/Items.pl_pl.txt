@@ -343,6 +343,12 @@ Pikowany hełm
 Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 Pikowane spodnie
 
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
+Najlepsza ochrona. Ta zbroja bojowa ochroni cię przed wszystkim, jednak twoja mobilność zostanie obniżona.
+
+Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
+Superciężki pancerz
+
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 Potrzeba jest matką wynalazku. Niezbyt wygodna, ale całkiem przyzwoita ochrona na wczesnym etapie gry.
 
@@ -1202,11 +1208,17 @@ Można przetopić i uzyskać czystą miedź.
 Scripts/Items/Generic/ItemOreCopper@Name:
 Ruda miedzi
 
+Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
+Skoncentrowana ruda miedzi
+
 Scripts/Items/Generic/ItemOreIron@Description:
 Można przetopić i uzyskać czyste żelazo.
 
 Scripts/Items/Generic/ItemOreIron@Name:
 Ruda żelaza
+
+Scripts/Items/Generic/ItemOreIronConcentrate@Name:
+Skoncentrowana ruda żelaza
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 Sole litu są pozyskiwane ze źródeł geotermalnych. Po przetworzeniu można z nich uzyskać czysty lit.

@@ -94,6 +94,12 @@ Poço de petróleo
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 Poço de petróleo infinito
 
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
+O depósito de recursos acabou de aparecer e ainda não pode ser reclamado ou destruído.
+
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
+Nenhum dano causado a {0}
+
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Dinamite para mineração
 
@@ -590,6 +596,12 @@ Versão menor da luminária de piso elétrica. Para o tamanho, é muito brilhant
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Luminária de piso pequena
 
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
+Ideal para grandes bases ou postos avançados militares, esta alta torre de projeção pode assegurar visibilidade perfeita numa área ampla.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
+Torre de projeção
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 Serve como uma fonte de luz básica e, mais importante, permite preparar receitas simples, como carne frita.
 
@@ -635,6 +647,12 @@ Extrator de sais de lítio
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
 Extrator avançado de sais de lítio
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
+Esta usina de processamento pulveriza minério bruto e classifica diferentes frações de minério para aumentar o rendimento global da fundição.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
+Fábrica de processamento mineral
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Pode ser usado para converter qualquer tipo de matéria orgânica em adubo. Essencialmente, um fertilizante orgânico.
 
@@ -661,6 +679,12 @@ Usado para a maior parte das atividades de culinária, podendo produzir refeiç�
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 Fogão
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
+O fogão elétrico permite o preparo mais rápido e conveniente da comida.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
+Fogão elétrico
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 Coletor de água simples, projetado para captar pequenas quantidades de água. Por algum motivo, não funciona em desertos nem outros lugares rochosos...
@@ -695,11 +719,11 @@ Posto médico automatizado especial que pode ser usado para instalar ou remover 
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Posto médico
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
-Estrutura defensiva que, enquanto ativo, projeta um campo psíquico de alta intensidade.
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
+Estrutura defensiva que projeta um campo psiônico de alta intensidade enquanto ativo.
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
-Projetor psiônico
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
+Gerador de campo psiônico
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 Pode ser usado para recarregar qualquer equipamento eletrônico portátil, como um carregador portátil ou uma lanterna.

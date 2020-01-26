@@ -36,7 +36,7 @@
             // don't decay if there are any plants on this farm
             foreach (var tile in worldObject.OccupiedTiles)
             {
-                foreach (var staticWorldObject in Api.Shared.WrapInTempList(tile.StaticObjects).EnumerateAndReturn())
+                foreach (var staticWorldObject in Api.Shared.WrapInTempList(tile.StaticObjects).EnumerateAndDispose())
                 {
                     if (staticWorldObject.ProtoStaticWorldObject is IProtoObjectPlant)
                     {
@@ -53,7 +53,7 @@
             // destroy all the plants growing there
             foreach (var tile in gameObject.OccupiedTiles)
             {
-                foreach (var staticWorldObject in Api.Shared.WrapInTempList(tile.StaticObjects).EnumerateAndReturn())
+                foreach (var staticWorldObject in Api.Shared.WrapInTempList(tile.StaticObjects).EnumerateAndDispose())
                 {
                     if (staticWorldObject.ProtoStaticWorldObject is IProtoObjectPlant)
                     {

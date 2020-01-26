@@ -63,6 +63,9 @@ Du bist jetzt frei. Viel Spaß!
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
 Befreiung erfolgreich
 
+Scripts/Systems/Chat/ChatSystem@ErrorSlowDown_Format:
+Du hast zu viele Nachrichten versendet. Immer mit der Ruhe. Du kannst nach {0} wieder Nachrichten versenden.
+
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 Du wurdest vom Server-Administrator aus dem Chat verbannt. Dein Ban läuft ab in: {0}
 
@@ -133,8 +136,17 @@ Zu nah an einem anderen Land Claim.
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Dieses Gebiet wird von einem anderen Spieler beansprucht oder befindet sich zu nah an einem anderen Land Claim.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
+Basisgröße überschritten. Die maximale Größe einer Basis in jede Richtung beträgt {0} Zellen (ungefähr {1} Land Claims entlang einer Zeile).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
+Land Claims können nicht zusammengelegt werden. Um Missbrauch/Exploits zu verhindern, können Land Claims eines Demo-Kontos nicht mit den anderer Spieler zusammengelegt werden.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 Das Vorkommen dieser Ressource ist gerade erst zum Vorschein gekommen und kann noch nicht beansprucht werden. Das Bauen in seiner Nähe ist vorübergehend eingeschränkt.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
+Ein Bau oder eine Erweiterung dieses Land Claims überschreitet die mögliche Gesamtkapazität der sicheren Aufbewahrung einer Basis. Bitte entferne zunächst Gegenstände aus der sicheren Aufbewahrung der benachbarten Land Claims und wiederhole dann deine Aktion.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Überschneidung mit dem Gebiet eines anderen Land Claims

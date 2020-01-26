@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
 
@@ -55,8 +56,11 @@
             }
         }
 
+        // don't display raiding protection info on PvE servers or for non-OP players on PvP servers
         public Visibility Visibility
             => PveSystem.ClientIsPve(logErrorIfDataIsNotYetAvailable: false)
+               || (!this.IsRaidingProtectionEnabled
+                   && !ServerOperatorSystem.ClientIsOperator())
                    ? Visibility.Collapsed
                    : Visibility.Visible;
 

@@ -32,6 +32,15 @@
             where TProtoItem : class, IProtoItem
         {
             var list = Api.FindProtoEntities<TProtoItem>();
+            return Require(list, count, description);
+        }
+
+        public static RequirementUseItem Require<TProtoItem>(
+            IReadOnlyList<TProtoItem> list,
+            ushort count = 1,
+            string description = null)
+            where TProtoItem : class, IProtoItem
+        {
             return new RequirementUseItem(list, count, description);
         }
 

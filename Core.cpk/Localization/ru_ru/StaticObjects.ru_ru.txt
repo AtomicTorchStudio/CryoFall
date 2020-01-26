@@ -94,6 +94,12 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeep@Name:
 Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 Бесконечное месторождение нефти
 
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
+The resource deposit has only just appeared and cannot be claimed or destroyed yet.
+
+Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
+No damage dealt to {0}
+
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Шахтерская взрывчатка
 
@@ -590,6 +596,12 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Description:
 Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Малая напольная лампа
 
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
+Ideal for large bases or military outposts, this tall projector tower can ensure perfect visibility in a wide area.
+
+Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
+Projector tower
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 Служит базовым источником света и, что более важно, позволяет готовить простую пищу, например, жареное мясо.
 
@@ -635,6 +647,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced@Name:
 Электрический экстрактор лития
 
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
+This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
+Mineral processing plant
+
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Позволяет превратить любую органическую материю в перегной. Источник органических удобрений.
 
@@ -661,6 +679,12 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 Кухонная плита
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
+Electric stove allows for faster and more convenient preparation of food.
+
+Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
+Electric cooking stove
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 Простой водосборник, в который можно собрать немного воды. Почему-то бесполезен в пустыне или в горной местности...
@@ -695,11 +719,11 @@ Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Description:
 Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Медицинская станция
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Description:
-Защитное сооружение, которое при активации производит псионическое поле высокой интенсивности.
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
+Defensive structure that projects psionic field of high intensity while active.
 
-Scripts/StaticObjects/Structures/Misc/ObjectPsionicProjector@Name:
-Пси-излучатель
+Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
+Psionic field generator
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 Может использоваться для зарядки портативного электронного оборудования, такого как аккумулятор или фонарик.

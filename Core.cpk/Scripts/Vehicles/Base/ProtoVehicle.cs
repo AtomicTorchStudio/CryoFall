@@ -1110,6 +1110,21 @@
         {
             var vehicle = (IDynamicWorldObject)targetObject;
 
+            // dismount the pilot before the explosion (so it will receive the explosion's damage)
+            try
+            {
+                var pilot = GetPublicState(vehicle).PilotCharacter;
+                if (pilot != null)
+                {
+                    VehicleSystem.ServerCharacterExitCurrentVehicle(pilot, force: true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Api.Logger.Exception(ex);
+            }
+
+            // explode
             using var scopedBy = Api.Shared.GetTempList<ICharacter>();
             Server.World.GetCharactersInRadius(vehicle.TilePosition,
                                                scopedBy,

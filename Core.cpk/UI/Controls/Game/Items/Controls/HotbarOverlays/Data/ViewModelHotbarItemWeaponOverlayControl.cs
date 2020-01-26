@@ -28,17 +28,14 @@
         {
             this.ammoChangedCallback = ammoChangedCallback;
             this.weaponState = ClientCurrentCharacterHelper.PrivateState.WeaponState;
-
-            if (this.weaponState == null)
+            
+            if (this.weaponState is null)
             {
-                this.ReloadDurationSeconds = 0;
                 return;
             }
 
             this.weaponState.ClientWeaponReloadingStateChanged += this.WeaponReloadingStateChangedHandler;
             this.weaponState.ClientActiveWeaponChanged += this.ActiveWeaponChangedHandler;
-
-            this.UpdateWeaponReloadingState();
         }
 
         public ushort AmmoCountCurrent { get; set; } = 10;
@@ -93,7 +90,7 @@
                 }
 
                 var weaponPrivateState = this.item.GetPrivateState<WeaponPrivateState>();
-                var protoItemWeapon = ((IProtoItemWeapon)this.item.ProtoGameObject);
+                var protoItemWeapon = (IProtoItemWeapon)this.item.ProtoGameObject;
 
                 this.AmmoCountMax = protoItemWeapon.AmmoCapacity;
                 this.AmmoCountCurrent = weaponPrivateState.AmmoCount;
@@ -106,6 +103,8 @@
                 this.VisibilityAmmoOverlay = protoItemWeapon.CompatibleAmmoProtos.Count > 0
                                                  ? Visibility.Visible
                                                  : Visibility.Collapsed;
+
+                this.UpdateWeaponReloadingState();
             }
         }
 

@@ -63,6 +63,9 @@ Ya eres libre. ¡Disfrútalo!
 Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSuccessful_Title:
 Liberación exitosa
 
+Scripts/Systems/Chat/ChatSystem@ErrorSlowDown_Format:
+Estás mandando demasiados mensajes. Reduce un poco el ritmo. Podrás volver a mandar mensajes dentro de {0}.
+
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 El administrador del servidor te ha expulsado y no puedes participar en el chat. El tiempo de expulsión acabará en: {0}
 
@@ -133,8 +136,17 @@ Demasiado cerca de otro terreno adjudicado.
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Esta zona ha sido reclamada por otro jugador o está demasiado cerca del terreno adjudicado de otra persona.
 
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
+Se ha superado el tamaño de la base. El tamaño máximo de la base, de cualquier dimensión, es de {0} celdas (aproximadamente, el equivalente a unos {1} terrenos adjudicados, todos juntos en línea).
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
+No se pueden combinar terrenos adjudicados. Para evitar abusos o vulnerabilidades, los terrenos adjudicados de la demo no se podrán combinar con otros jugadores.
+
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 El depósito de recursos acaba de aparecer y aún no ha sido reclamado. De momento, no se puede construir a su alrededor.
+
+Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
+Construir o mejorar este terreno adjudicado provocará que la combinación de almacenamientos seguros superará la capacidad de la base. Elimina objetos de los almacenamientos seguros de los terrenos adjudicados cercanos y luego repite la acción.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Se cruza con otro terreno adjudicado

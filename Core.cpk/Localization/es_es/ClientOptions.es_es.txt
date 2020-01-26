@@ -72,6 +72,9 @@ Cercana (la más próxima a la básica)
 Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 Resolución de capturas
 
+Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
+Retraso para consejo
+
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 Tamaño interfaz
 

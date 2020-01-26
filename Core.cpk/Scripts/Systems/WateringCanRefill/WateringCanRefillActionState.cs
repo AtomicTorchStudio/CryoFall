@@ -16,20 +16,16 @@
             WateringCanRefillActionState,
             WateringCanRefillActionState.PublicState>
     {
-        public readonly IReadOnlyList<IItem> ItemsToConsumeForRefill;
-
         public readonly IItem ItemWateringCan;
 
         public WateringCanRefillActionState(
             ICharacter character,
             IWorldObject targetWorldObject,
             double durationSeconds,
-            IItem itemWateringCan,
-            IReadOnlyList<IItem> itemsToConsumeForRefill)
+            IItem itemWateringCan)
             : base(character, targetWorldObject, durationSeconds)
         {
             this.ItemWateringCan = itemWateringCan;
-            this.ItemsToConsumeForRefill = itemsToConsumeForRefill;
         }
 
         public class PublicState : BasePublicActionState

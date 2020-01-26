@@ -106,7 +106,10 @@
                                    && !(o.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject
                                             is ObjectDepositOilSeep)))
                 .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
-                     c => c.Tile.StaticObjects.All(o => o.ProtoWorldObject is ObjectDepositOilSeep))
+                     c => c.Tile.StaticObjects.All(
+                         o => o.ProtoWorldObject is ObjectDepositOilSeep
+                              || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
+                              || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal))
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                 .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea);
 

@@ -72,6 +72,9 @@ En yakın (en yakın standart çözünürlüğü kullan)
 Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 Ekran görüntüsü çözünürlüğü
 
+Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
+Araç bilgisi gecikme
+
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI ölçeği
 

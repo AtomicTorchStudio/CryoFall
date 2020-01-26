@@ -5,7 +5,7 @@
 
     public class SpawnLootRuinsMilitary : ProtoZoneSpawnScript
     {
-        public override bool CanSpawnIfPlayersNearby => true;
+        protected override double MaxSpawnAttempsMultiplier => 10;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
@@ -15,11 +15,15 @@
                 // trigger on time interval
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(SpawnRuinsConstants.SpawnInterval));
 
-            spawnList.CreatePreset(interval: 6, padding: 1)
-                     .Add<ObjectLootPileGarbageLarge>(weight: 4)
-                     .Add<ObjectLootCrateMilitary>(weight: 2)
-                     .Add<ObjectLootCrateSupply>(weight: 1)
-                     .Add<ObjectLootCrateMedical>(weight: 1)
+            var presetCrates = spawnList.CreatePreset(interval: 9, padding: 1, spawnAtLeastOnePerSector: true)
+                                        .Add<ObjectLootCrateMilitary>(weight: 2)
+                                        .Add<ObjectLootCrateSupply>(weight: 1)
+                                        .Add<ObjectLootCrateMedical>(weight: 1)
+                                        .SetCustomPaddingWithSelf(9);
+
+            spawnList.CreatePreset(interval: 10, padding: 1, spawnAtLeastOnePerSector: true)
+                     .Add<ObjectLootPileGarbageLarge>()
+                     .SetCustomPaddingWith(presetCrates, 6)
                      .SetCustomPaddingWithSelf(9);
         }
     }

@@ -1,12 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Zones
 {
-    using System;
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
     using AtomicTorch.CBND.CoreMod.Triggers;
 
     public class SpawnMobsRuinsNormal : ProtoZoneSpawnScript
     {
-        public override bool CanSpawnIfPlayersNearby => true;
+        protected override double MaxSpawnAttempsMultiplier => 10;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {

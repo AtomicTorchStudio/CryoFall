@@ -107,6 +107,9 @@ Wiadomość prywatna
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Odblokuj
 
+UI/CoreStrings@Checkbox_DoNotAskAgain:
+Nie pytaj ponownie
+
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Służy tylko do dekoracji.
 
@@ -203,6 +206,21 @@ To złoże się wyczerpie za:
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Zasobność złoża
+
+UI/CoreStrings@Duration_Instant:
+Natychmiast
+
+UI/CoreStrings@Duration_Quick:
+Szybko
+
+UI/CoreStrings@Duration_Slow:
+Powoli
+
+UI/CoreStrings@Duration_VeryQuick:
+Bardzo szybko
+
+UI/CoreStrings@Duration_VerySlow:
+Bardzo powoli
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 JE
@@ -369,6 +387,9 @@ TWÓRCY
 UI/CoreStrings@MainMenu_TabCurrentGame:
 AKTUALNA GRA
 
+UI/CoreStrings@MainMenu_TabExtras:
+DODATKI
+
 UI/CoreStrings@MainMenu_TabHome:
 GŁÓWNA
 
@@ -380,6 +401,9 @@ WYJDŹ
 
 UI/CoreStrings@MainMenu_TabServers:
 SERWERY
+
+UI/CoreStrings@MainMenu_TabUpdates:
+HISTORIA AKTUALIZACJI
 
 UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
 Połącz konta
@@ -1317,6 +1341,12 @@ Koszt badania:
 UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 Odblokuj
 
+UI/CoreStrings@WindowTechnologies_TechTreeChanged:
+`Drzewko technologii uległo zmianie.
+[br]Może to być spowodowane aktualizacją gry lub zmianami zewnętrznymi (np. wprowadzonymi przez społeczność lub na modowanym serwerze).
+[br]Odkryte przez Ciebie technologie zostały zresetowane, a punkty technologii zostały zwrócone, więc możesz je wydać ponownie.
+[br]Miłej gry!`
+
 UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
 Technologie podstawowe
 
@@ -1430,9 +1460,17 @@ UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 `[b]Baza jest atakowana[/b]
 [br]Trwa atak na bazę!`
 
+UI/CoreStrings@WorldMapMarkResourceLithium_Infinite_Tooltip:
+`[b]Niekończące się źródło geotermalne[/b]
+[br]Publiczne źródło litu.`
+
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
 `[b]Źródło geotermalne[/b]
 [br]Złoże litu.`
+
+UI/CoreStrings@WorldMapMarkResourceOil_Infinite_Tooltip:
+`[b]Niekończące się źródło ropy[/b]
+[br]Publiczne źródło naturalnej ropy naftowej.`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]Ropa[/b]
@@ -1663,6 +1701,11 @@ Możesz zapewnić innym ocalałym dostęp do swojej działki.
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessListTitle:
 Dostęp
+
+UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoDemoVersion:
+`Uwaga: ta działka [b]została stworzona przez gracza w wersji demo[/b].
+[br]Dlatego też opóźnienie przed niszczeniem i okres niszczenia są [b]krótsze[/b].
+[br]Gdy gracz w wersji demo zakupi grę, zostaną przywrócone standardowe okresy.`
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
 `Porzucone konstrukcje zaczną się rozpadać po pewnym czasie

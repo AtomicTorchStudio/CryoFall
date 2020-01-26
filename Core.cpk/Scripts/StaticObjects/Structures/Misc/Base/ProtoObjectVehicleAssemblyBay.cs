@@ -64,7 +64,7 @@
                 foreach (var testResult in vehicleAssemblyBay.PhysicsBody.PhysicsSpace.TestRectangle(
                     position: noObstaclesBounds.Offset,
                     size: noObstaclesBounds.Size,
-                    collisionGroup: collisionGroup).EnumerateAndReturn())
+                    collisionGroup: collisionGroup).EnumerateAndDispose())
                 {
                     if (testResult.PhysicsBody.AssociatedWorldObject is IDynamicWorldObject dynamicWorldObject
                         && dynamicWorldObject.ProtoGameObject is IProtoVehicle)
@@ -103,7 +103,7 @@
                 foreach (var testResult in vehicleAssemblyBay.PhysicsBody.PhysicsSpace.TestRectangle(
                     position: noObstaclesBounds.Offset,
                     size: noObstaclesBounds.Size,
-                    collisionGroup: collisionGroup).EnumerateAndReturn())
+                    collisionGroup: collisionGroup).EnumerateAndDispose())
                 {
                     if (testResult.PhysicsBody.AssociatedWorldObject == vehicleAssemblyBay)
                     {
