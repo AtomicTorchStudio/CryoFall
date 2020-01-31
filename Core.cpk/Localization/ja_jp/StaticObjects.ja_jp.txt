@@ -95,10 +95,10 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 油田（無限）
 
 Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
-The resource deposit has only just appeared and cannot be claimed or destroyed yet.
+ただいま資源ポイントが現れました。占領や壊されることができません。
 
 Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
-No damage dealt to {0}
+{0}にダメージを与えられません。
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 採掘爆弾
@@ -597,10 +597,10 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 小型フロアランプ
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
-Ideal for large bases or military outposts, this tall projector tower can ensure perfect visibility in a wide area.
+大型の基地や軍事前哨で配置され、このタワーは広い範囲の視界を確保できます。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
-Projector tower
+投射タワー
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 基本的な照明として機能し、さらに重要なことに、肉を焼いたりなど簡単なレシピを調理することができます。
@@ -648,10 +648,10 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced
 上級リチウム塩抽出機
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
-This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.
+この加工場は粗鉱を粉砕と分類し、精錬の産量をアップさせることができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
-Mineral processing plant
+鉱物加工場
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 あらゆる種類の有機物をマルチに変換するために使います。実質的な有機肥料ですね。
@@ -681,10 +681,10 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 コンロ
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
-Electric stove allows for faster and more convenient preparation of food.
+電気コンロは君をもっと素早く、もっと簡単に調理することができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
-Electric cooking stove
+電気コンロ
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 少量の水を集めるように設計されている簡単な水収集装置。どういう理由からか、砂漠や他の岩石地帯では使い物になりません…
@@ -720,10 +720,10 @@ Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 医療ステーション
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
-Defensive structure that projects psionic field of high intensity while active.
+アクティブすると高強度の靈場を投射することができる防御用建物。
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
-Psionic field generator
+霊場ジェネレータ
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 補助バッテリーや懐中電灯などの携帯用電気製品を充電できます。

@@ -7,6 +7,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterIdleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data;
@@ -210,9 +211,14 @@
             foreach (var partyMemberName in partyMembersNames)
             {
                 var partyMember = Server.Characters.GetPlayerCharacter(partyMemberName);
-                if (partyMember != null
-                    && (partyMember == character
-                        || partyMember.ServerIsOnline))
+                if (partyMember is null)
+                {
+                    continue;
+                }
+
+                if (ReferenceEquals(partyMember, character)
+                    || (partyMember.ServerIsOnline
+                        && !CharacterIdleSystem.ServerIsIdlePlayer(partyMember)))
                 {
                     onlinePartyMembers.Add(partyMember);
                 }
@@ -240,7 +246,7 @@
 
             foreach (var partyMember in onlinePartyMembers.AsList())
             {
-                if (partyMember != character)
+                if (!ReferenceEquals(partyMember, character))
                 {
                     partyMember.SharedGetTechnologies()
                                .ServerAddLearningPoints(learningPointsShare);

@@ -344,10 +344,10 @@ Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 누비 바지
 
 Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
-The ultimate defense. This battle armor will protect you against anything that comes at you, but at a cost of reduced mobility.
+최강의 보호구. 이 전투용 갑옷은 어떠한 상황에서도 착용자를 보호해줍니다. 하지만 기동성이 좋지는 않습니다.
 
 Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
-Super heavy armor
+초중갑
 
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 필요는 발명의 어머니입니다. 편안하면서도 초기의 방어구 중 괜찮은 방어력을 제공합니다.
@@ -1209,7 +1209,7 @@ Scripts/Items/Generic/ItemOreCopper@Name:
 동광석
 
 Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
-Copper ore concentrate
+동정광
 
 Scripts/Items/Generic/ItemOreIron@Description:
 순철로 제련할 수 있습니다.
@@ -1218,7 +1218,7 @@ Scripts/Items/Generic/ItemOreIron@Name:
 철광석
 
 Scripts/Items/Generic/ItemOreIronConcentrate@Name:
-Iron ore concentrate
+철정광
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 리튬 소금은 온천에서 추출되며, 순수한 금속 리튬으로 가공됩니다.

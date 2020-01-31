@@ -5,6 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Documents;
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientLanguages;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -56,9 +57,10 @@
 
             var isTagParsingMode = false;
 
-            var modeIsBold = false;
-            var modeIsItalic = false;
-            var modeIsUnderline = false;
+            bool modeIsBold = false,
+                 modeIsItalic = false,
+                 modeIsStrikethrough = false,
+                 modeIsUnderline = false;
             string modeUrlCurrentUrl = null;
 
             for (position = 0; position < text.Length; position++)
@@ -134,6 +136,18 @@
                                     yield return TryBuildRun();
 
                                     modeIsItalic = false;
+                                    break;
+                                
+                                case "s":
+                                    yield return TryBuildRun();
+
+                                    modeIsStrikethrough = true;
+                                    break;
+
+                                case "/s":
+                                    yield return TryBuildRun();
+
+                                    modeIsStrikethrough = false;
                                     break;
 
                                 case "u":
@@ -264,6 +278,12 @@
                     // currently there is no way of regulating the underline thickness
                     // it's also impossible to create custom text decorations as TextDecorations in Noesis is an enum.
                     span.TextDecorations = TextDecorations.Underline;
+                }
+
+                if (modeIsStrikethrough)
+                {
+                    // it's actually not yet supported by NoesisGUI
+                    span.TextDecorations = TextDecorations.Strikethrough;
                 }
 
                 var spanInlines = span.Inlines;

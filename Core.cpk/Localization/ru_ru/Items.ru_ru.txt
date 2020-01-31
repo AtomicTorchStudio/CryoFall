@@ -344,10 +344,10 @@ Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 Стеганые поножи
 
 Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
-Самая лучшая защита. Эта боевая броня защитит вас от любых опасностей, однако ваша скорость передвижения будет снижена.
+Самая лучшая защита. Эта боевая броня защитит вас от любых опасностей, однако ваша скорость передвижения будет ограничена.
 
 Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
-Super heavy armor
+Сверхтяжелая броня
 
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 Голь на выдумки хитра. Не самый удобный предмет облачения, зато неплохо защищающий на ранних этапах.

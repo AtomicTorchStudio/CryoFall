@@ -348,13 +348,13 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 制作一把刀并杀死任何生物
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Equip better chestplate
+装备更好的胸甲
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
-Equip better helmet
+装备更好的头盔
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Equip better leg armor
+装备更好的护腿
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 是时候获得更好的防护了。
@@ -386,13 +386,13 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
 制造更好的工具
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftMusketOrFlintlockPistol:
-Craft musket or flintlock pistol
+制造滑膛枪或燧发手枪
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftPaperCartridge:
-Craft paper cartridge
+制造纸弹
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@FireTheWeapon:
-Fire the weapon
+开火
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 用钉头锤砸碎敌人的脑袋很好，但远距离攻击也是个不错的选择。特别是在你面对更强大对手的时候。

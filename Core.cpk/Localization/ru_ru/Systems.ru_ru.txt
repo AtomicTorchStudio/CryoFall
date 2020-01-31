@@ -64,7 +64,7 @@ Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSucce
 `Проблема с "застреванием" решена`
 
 Scripts/Systems/Chat/ChatSystem@ErrorSlowDown_Format:
-You are sending too many messages. Slow down a bit. You can send messages again after {0}.
+Вы посылаете слишком много сообщений. Предлагаем немного передохнуть. Вы сможете снова посылать сообщения через {0}.
 
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 Администратор сервера исключил вас из чата. Вы сможете вернуться через {0}
@@ -137,16 +137,16 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooClo
 Эта территория другого игрока, или она находится слишком близко к чужой зоне контроля.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
-Base size exceeded. Maximum base size in any dimension is {0} cells (approximately {1} land claims stacked together in a row).
+Превышен размер базы. Максимальный размер базы во всех направлениях - {0} кл. (примерно {1} ТК, установленных в ряд).
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
-Cannot combine land claims. In order to prevent abuse/exploits, land claims belonging to demo accounts cannot be combined with other players'.
+Нельзя объединить точки контроля. В целях предотвратить злоупотребление/экплойты, точки контроля, принадлежащие демоаккаунтам, нельзя объединять с точками контроля других игроков.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 Месторождение только что появилось, его нельзя пока взять под контроль. Строительство рядом с ним временно недоступно.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
-Building/upgrading this land claim will result in combined safe storage exceeding the possible capacity in a base. Please remove items from the safe storages of the neighboring land claims and then repeat the action.
+Постройка/улучшение точки контроля объединит сейфы, в результате чего максимальная вместимость базы будет превышена. Пожалуйста, перенесите предметы из сейфов соседствующих точек контроля и повторите действие.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 Пересечение с чужой зоной контроля

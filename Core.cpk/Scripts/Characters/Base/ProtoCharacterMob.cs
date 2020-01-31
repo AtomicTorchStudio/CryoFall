@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Tiles;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.SoundCue;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -130,9 +131,23 @@
 
         public void ServerPlaySound(ICharacter characterNpc, CharacterSound characterSound)
         {
-            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
-            Api.Server.World.GetScopedByPlayers(characterNpc, scopedBy);
-            this.CallClient(scopedBy.AsList(),
+            const byte eventNetworkRadius = 15;
+            using var observers = Api.Shared.GetTempList<ICharacter>();
+
+            if (characterSound != CharacterSound.Aggression)
+            {
+                ServerWorld.GetScopedByPlayers(characterNpc, observers);
+            }
+            else
+            {
+                // this event is propagated on a larger distance and has sound cues
+                ServerWorld.GetCharactersInRadius(characterNpc.TilePosition,
+                                                  observers,
+                                                  radius: eventNetworkRadius,
+                                                  onlyPlayers: true);
+            }
+
+            this.CallClient(observers.AsList(),
                             _ => _.ClientRemote_PlaySound(characterNpc,
                                                           characterNpc.TilePosition,
                                                           characterSound));
@@ -373,14 +388,31 @@
             Vector2Ushort fallbackSoundPosition,
             CharacterSound characterSound)
         {
+            Vector2D soundCuePosition;
             if (characterNpc is null
                 || !characterNpc.IsInitialized)
             {
                 this.protoSkeleton.SoundPresetCharacter.PlaySound(characterSound, fallbackSoundPosition.ToVector2D());
+                soundCuePosition = fallbackSoundPosition.ToVector2D();
+            }
+            else
+            {
+                this.protoSkeleton.SoundPresetCharacter.PlaySound(characterSound, characterNpc);
+                soundCuePosition = characterNpc.Position;
+            }
+
+            if (characterSound != CharacterSound.Aggression)
+            {
                 return;
             }
 
-            this.protoSkeleton.SoundPresetCharacter.PlaySound(characterSound, characterNpc);
+            // add sound cues for the aggression sounds
+            for (var i = 0; i < 3; i++)
+            {
+                ClientTimersSystem.AddAction(delaySeconds: i * 0.1,
+                                             () => ClientSoundCueManager.OnSoundEvent(soundCuePosition,
+                                                                                      isPartyMember: false));
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

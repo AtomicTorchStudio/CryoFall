@@ -149,6 +149,22 @@
             return this.DefaultTexture;
         }
 
+        protected ITextureResource ClientGetTexture(
+            IStaticWorldObject worldObject,
+            VegetationPublicState publicState)
+        {
+            var textureResource = this.DefaultTexture;
+            var textureAtlas = textureResource as TextureAtlasResource;
+            if (textureAtlas == null)
+            {
+                // not a texture atlas - always use whole texture
+                return textureResource;
+            }
+
+            var columnIndex = this.ClientGetTextureAtlasColumn(worldObject, publicState);
+            return textureAtlas.Chunk(column: columnIndex, row: 0);
+        }
+
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
@@ -160,12 +176,12 @@
             clientState.LastGrowthStage = publicState.GrowthStage;
 
             var spriteRenderer = clientState.Renderer;
-            spriteRenderer.TextureResource = SystemVegetation.ClientGetTexture(
-                this,
-                gameObject,
-                publicState);
+            spriteRenderer.TextureResource = this.ClientGetTexture(gameObject,
+                                                                   publicState);
 
             clientState.Renderer = spriteRenderer;
+
+            this.ClientRefreshVegetationRendering(data.GameObject, clientState, publicState);
 
             // flip renderer with some deterministic randomization
             if (this.CanFlipSprite
@@ -180,6 +196,20 @@
             }
         }
 
+        protected virtual void ClientRefreshVegetationRendering(
+            IStaticWorldObject worldObject,
+            VegetationClientState clientState,
+            VegetationPublicState publicState)
+        {
+            clientState.LastGrowthStage = publicState.GrowthStage;
+            clientState.Renderer.TextureResource = this.ClientGetTexture(worldObject, publicState);
+
+            if (clientState.RendererShadow != null)
+            {
+                clientState.RendererShadow.Scale = this.CalculateShadowScale(clientState);
+            }
+        }
+
         protected override void ClientUpdate(ClientUpdateData data)
         {
             base.ClientUpdate(data);
@@ -188,11 +218,7 @@
             var publicState = data.PublicState;
             if (clientState.LastGrowthStage != publicState.GrowthStage)
             {
-                SystemVegetation.ClientRefreshVegetationRendering(
-                    this,
-                    data.GameObject,
-                    clientState,
-                    publicState);
+                this.ClientRefreshVegetationRendering(data.GameObject, clientState, publicState);
             }
         }
 

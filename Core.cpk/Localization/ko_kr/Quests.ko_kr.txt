@@ -348,13 +348,13 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 칼을 만들고 아무 생명체나 처치하기
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Equip better chestplate
+더 좋은 갑옷을 장착해주세요
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
-Equip better helmet
+더 좋은 헬멧을 장착해주세요
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Equip better leg armor
+더 좋은 다리 갑옷을 장착해주세요
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 더 나은 방어 수단에 대해 알아볼 시간입니다.
@@ -386,13 +386,13 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
 더 나은 도구 만들기
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftMusketOrFlintlockPistol:
-Craft musket or flintlock pistol
+머스킷 또는 수발권총 만들기
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftPaperCartridge:
-Craft paper cartridge
+페이퍼 카트리지 만들기
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@FireTheWeapon:
-Fire the weapon
+무기 발사하기
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 두개골을 메이스로 부숴버리는 것도 나쁘진 않지만, 때로는 좀 더 멀리서 공격해야 할 때도 있습니다. 특히 더 무시무시한 적들을 상대할 때는 말이죠.

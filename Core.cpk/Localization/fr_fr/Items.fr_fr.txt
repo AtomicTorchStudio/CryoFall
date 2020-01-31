@@ -344,10 +344,10 @@ Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 Pantalon rembourré
 
 Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
-The ultimate defense. This battle armor will protect you against anything that comes at you, but at a cost of reduced mobility.
+La protection ultime. Cette armure de combat vous protège contre tous les dégâts, mais réduit votre mobilité.
 
 Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
-Super heavy armor
+Armure extra-lourde
 
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 La nécessité est mère de l'invention. Ce n'est pas ce qu'il y a de plus confortable, mais niveau protection, c'est toujours mieux que rien.
@@ -1209,7 +1209,7 @@ Scripts/Items/Generic/ItemOreCopper@Name:
 Minerai de cuivre
 
 Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
-Copper ore concentrate
+Minerai de cuivre concentré
 
 Scripts/Items/Generic/ItemOreIron@Description:
 Peut être fondu pour obtenir du fer pur.
@@ -1218,7 +1218,7 @@ Scripts/Items/Generic/ItemOreIron@Name:
 Minerai de fer
 
 Scripts/Items/Generic/ItemOreIronConcentrate@Name:
-Iron ore concentrate
+Minerai de fer concentré
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 Les sels de lithium sont extraits de sources géothermales et peuvent être traités afin d'obtenir du lithium métallique pur.

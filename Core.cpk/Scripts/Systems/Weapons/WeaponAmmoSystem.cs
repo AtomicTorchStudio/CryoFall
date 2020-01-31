@@ -187,10 +187,9 @@
                 return;
             }
 
-            if (currentReloadingState == null
-                && selectedProtoItemAmmo == null
-                && (itemPrivateState.CurrentProtoItemAmmo == null
-                    || itemPrivateState.AmmoCount == 0))
+            if (currentReloadingState is null
+                && selectedProtoItemAmmo is null
+                && itemPrivateState.CurrentProtoItemAmmo is null)
             {
                 // already unloaded
                 return;

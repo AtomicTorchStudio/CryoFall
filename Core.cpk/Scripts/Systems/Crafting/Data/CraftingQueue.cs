@@ -91,5 +91,20 @@
         {
             return new[] { this.ContainerInput };
         }
+
+        protected override void OnObjectDeserialized()
+        {
+            var items = this.QueueItems;
+
+            for (var index = 0; index < items.Count; index++)
+            {
+                var entry = items[index];
+                if (entry.Recipe is null)
+                {
+                    // the recipe was not found (probably due to the game update)
+                    items.RemoveAt(index--);
+                }
+            }
+        }
     }
 }

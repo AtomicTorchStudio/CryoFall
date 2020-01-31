@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Perks;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
@@ -93,6 +94,8 @@
         /// building in this neutral (grace) area by other players or claiming it.
         /// </summary>
         public const byte MinPaddingSizeOneDirection = 1;
+
+        private const int MaxNumberOfLandClaimsInRow = 3;
 
         private static ILogicObject serverLandClaimManagerInstance;
 
@@ -248,7 +251,174 @@
                                                                       forCharacter);
                 });
 
-        public static readonly ConstructionTileRequirements.Validator ValidatorNewLandClaimNoLandClaimsNearby
+        public static readonly ConstructionTileRequirements.Validator
+            ValidatorNewLandClaimSafeStorageCapacityNotExceeded
+                = new ConstructionTileRequirements.Validator(
+                    ErrorCannotBuild_ExceededSafeStorageCapacity,
+                    context =>
+                    {
+                        if (IsClient)
+                        {
+                            // client cannot perform this check
+                            return true;
+                        }
+
+                        var forCharacter = context.CharacterBuilder;
+                        if (forCharacter == null)
+                        {
+                            return true;
+                        }
+
+                        if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                        {
+                            return true;
+                        }
+
+                        var protoObjectLandClaim = (IProtoObjectLandClaim)context.ProtoStaticObjectToBuild;
+                        if (context.TileOffset
+                            != SharedCalculateLandClaimObjectCenterTilePosition(
+                                Vector2Ushort.Zero,
+                                protoObjectLandClaim))
+                        {
+                            // we don't check offset tiles
+                            // as the land claim area calculated from the center tile of the land claim object
+                            return true;
+                        }
+
+                        var centerTilePosition = context.Tile.Position;
+                        return ServerCheckFutureBaseWillExceedSafeStorageCapacity(protoObjectLandClaim,
+                                                                                  centerTilePosition,
+                                                                                  forCharacter);
+                    });
+
+        public static readonly ConstructionTileRequirements.Validator ValidatorCheckLandClaimBaseSizeLimitNotExceeded
+            = new ConstructionTileRequirements.Validator(
+                () => string.Format(ErrorCannotBuild_BaseSizeExceeded_Format,
+                                    SharedGetMaxBaseSizeTiles(),
+                                    MaxNumberOfLandClaimsInRow),
+                context =>
+                {
+                    var forCharacter = context.CharacterBuilder;
+                    if (forCharacter == null)
+                    {
+                        return true;
+                    }
+
+                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                    {
+                        return true;
+                    }
+
+                    var protoObjectLandClaim = (IProtoObjectLandClaim)context.ProtoStaticObjectToBuild;
+                    if (context.TileOffset
+                        != SharedCalculateLandClaimObjectCenterTilePosition(Vector2Ushort.Zero, protoObjectLandClaim))
+                    {
+                        // we don't check offset tiles
+                        // as the land claim area calculated from the center tile of the land claim object
+                        return true;
+                    }
+
+                    var centerTilePosition = context.Tile.Position;
+                    var newAreaBounds = SharedCalculateLandClaimAreaBounds(
+                        centerTilePosition,
+                        protoObjectLandClaim.LandClaimWithGraceAreaSize);
+
+                    using var tempListAreas = Api.Shared.GetTempList<ILogicObject>();
+                    using var tempListGroups = Api.Shared.GetTempList<ILogicObject>();
+                    SharedGatherAreasAndGroups(newAreaBounds,
+                                               tempListAreas,
+                                               tempListGroups,
+                                               addGracePaddingToEachArea: true);
+
+                    if (tempListGroups.Count == 0)
+                    {
+                        // a new base will be created
+                        return true;
+                    }
+
+                    // a base will be expanded or grouped
+                    // calculate the future base size and determine whether it could be exceeding the allowed max size
+                    int startX = int.MaxValue,
+                        startY = int.MaxValue,
+                        endX = 0,
+                        endY = 0;
+
+                    // include max bounds of the future land claim
+                    UpdateBounds(
+                        SharedCalculateLandClaimAreaBounds(context.Tile.Position,
+                                                           MaxLandClaimSizeWithGraceArea.Value));
+
+                    foreach (var area in tempListAreas.AsList())
+                    {
+                        var bounds = SharedGetLandClaimAreaBounds(area, addGracePadding: true);
+                        UpdateBounds(bounds);
+                    }
+
+                    void UpdateBounds(RectangleInt bounds)
+                    {
+                        if (bounds.Left < startX)
+                        {
+                            startX = bounds.Left;
+                        }
+
+                        if (bounds.Bottom < startY)
+                        {
+                            startY = bounds.Bottom;
+                        }
+
+                        if (bounds.Right > endX)
+                        {
+                            endX = bounds.Right;
+                        }
+
+                        if (bounds.Top > endY)
+                        {
+                            endY = bounds.Top;
+                        }
+                    }
+
+                    var newBaseBounds = new BoundsInt(startX, startY, endX, endY);
+                    var maxBaseSizeTiles = SharedGetMaxBaseSizeTiles();
+                    return newBaseBounds.Size.X <= maxBaseSizeTiles
+                           && newBaseBounds.Size.Y <= maxBaseSizeTiles;
+                });
+
+        public static readonly ConstructionTileRequirements.Validator
+            ValidatorNewLandClaimNoLandClaimIntersectionsWithDemoPlayers
+                = new ConstructionTileRequirements.Validator(
+                    ErrorCannotBuild_DemoPlayerLandClaims,
+                    context =>
+                    {
+                        var forCharacter = context.CharacterBuilder;
+                        if (forCharacter == null)
+                        {
+                            return true;
+                        }
+
+                        if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                        {
+                            return true;
+                        }
+
+                        var protoObjectLandClaim = (IProtoObjectLandClaim)context.ProtoStaticObjectToBuild;
+                        if (context.TileOffset
+                            != SharedCalculateLandClaimObjectCenterTilePosition(
+                                Vector2Ushort.Zero,
+                                protoObjectLandClaim))
+                        {
+                            // we don't check offset tiles
+                            // as the land claim area calculated from the center tile of the land claim object
+                            return true;
+                        }
+
+                        var centerTilePosition = context.Tile.Position;
+                        return SharedCheckNoLandClaimByDemoPlayers(protoObjectLandClaim,
+                                                                   centerTilePosition,
+                                                                   forCharacter,
+                                                                   exceptAreasGroup: null);
+                    });
+
+        public static readonly ConstructionTileRequirements.Validator ValidatorNewLandClaimNoLandClaimsTooClose
             = new ConstructionTileRequirements.Validator(
                 ErrorCannotBuild_AnotherLandClaimTooClose,
                 context =>
@@ -624,33 +794,68 @@
             return damageMultiplier;
         }
 
-        public static double ServerGetDecayDelayDurationForLandClaimAreas(
-            List<ILogicObject> areas,
-            bool isFounderDemoPlayer)
+        public static bool ServerCheckFutureBaseWillExceedSafeStorageCapacity(
+            IProtoObjectLandClaim newProtoObjectLandClaim,
+            in Vector2Ushort landClaimCenterTilePosition,
+            ICharacter forCharacter)
         {
-            var decayDelayDuration = StructureConstants.StructuresAbandonedDecayDelaySeconds;
-            var decayDelayMultiplier = isFounderDemoPlayer 
-                                           ? StructureConstants.StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers 
-                                           : StructureConstants.StructuresLandClaimDecayDelayDurationMultiplier;
-            decayDelayDuration *= decayDelayMultiplier;
-            
-            if (isFounderDemoPlayer)
+            if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
             {
-                return decayDelayDuration;
+                return true;
             }
 
+            var maxSlotsCount = ItemsContainerLandClaimSafeStorage.ServerSafeItemsSlotsCapacity;
+            if (maxSlotsCount == 0)
+            {
+                return true;
+            }
+
+            var newAreaBounds = SharedCalculateLandClaimAreaBounds(
+                landClaimCenterTilePosition,
+                newProtoObjectLandClaim.LandClaimSize);
+
+            using var tempListAreas = Api.Shared.GetTempList<ILogicObject>();
+            using var tempListGroups = Api.Shared.GetTempList<ILogicObject>();
+            SharedGatherAreasAndGroups(newAreaBounds, tempListAreas, tempListGroups);
+
+            var totalOccupiedSlotsCount = 0;
+            foreach (var areasGroup in tempListGroups.AsList())
+            {
+                totalOccupiedSlotsCount += LandClaimAreasGroup.GetPrivateState(areasGroup).ItemsContainer
+                                                      .OccupiedSlotsCount;
+            }
+
+            // ensure that the total slots count is not exceeding the limit
+            return totalOccupiedSlotsCount <= maxSlotsCount;
+        }
+
+        public static double ServerGetDecayDelayDurationForLandClaimAreas(
+            List<ILogicObject> areas,
+            bool isFounderDemoPlayer,
+            out double normalDecayDelayDuration)
+        {
+            var decayDelayDuration = StructureConstants.StructuresAbandonedDecayDelaySeconds;
+            var decayDelayMultiplier = isFounderDemoPlayer
+                                           ? StructureConstants
+                                               .StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers
+                                           : StructureConstants.StructuresLandClaimDecayDelayDurationMultiplier;
+            decayDelayDuration *= decayDelayMultiplier;
+
+            normalDecayDelayDuration = decayDelayDuration;
             foreach (var area in areas)
             {
                 var worldObject = LandClaimArea.GetPrivateState(area)
                                                .ServerLandClaimWorldObject;
 
                 var protoObjectLandClaim = (IProtoObjectLandClaim)worldObject.ProtoStaticWorldObject;
-                decayDelayDuration = Math.Max(protoObjectLandClaim.DecayDelayDuration.TotalSeconds
-                                              * decayDelayMultiplier,
-                                              decayDelayDuration);
+                normalDecayDelayDuration = Math.Max(protoObjectLandClaim.DecayDelayDuration.TotalSeconds
+                                                    * decayDelayMultiplier,
+                                                    normalDecayDelayDuration);
             }
 
-            return decayDelayDuration;
+            return isFounderDemoPlayer
+                       ? decayDelayDuration
+                       : normalDecayDelayDuration;
         }
 
         public static ILogicObject ServerGetLandClaimArea(IStaticWorldObject landClaimStructure)
@@ -709,7 +914,7 @@
                               .LandClaimAreaObject = area;
 
             ServerEstablishAreasGroup(
-                SharedCalculateLandClaimAreaBounds(area));
+                SharedGetLandClaimAreaBounds(area));
 
             ServerOnAddLandOwner(area, byCharacter, notify: false);
 
@@ -935,7 +1140,7 @@
                 _ => _.ClientRemote_OnLandClaimUpgraded(area));
 
             ServerEstablishAreasGroup(
-                SharedCalculateLandClaimAreaBounds(area));
+                SharedGetLandClaimAreaBounds(area));
 
             // Even though the area's group didn't change,
             // we need to notify power system so it will rebuild power grid for the area's group.
@@ -964,13 +1169,6 @@
             var calculatedSize = new Vector2Ushort((ushort)(endX - start.X),
                                                    (ushort)(endY - start.Y));
             return new RectangleInt(start, size: calculatedSize);
-        }
-
-        public static RectangleInt SharedCalculateLandClaimAreaBounds(ILogicObject area)
-        {
-            var areaPublicState = LandClaimArea.GetPublicState(area);
-            return SharedCalculateLandClaimAreaBounds(areaPublicState.LandClaimCenterTilePosition,
-                                                      areaPublicState.ProtoObjectLandClaim.LandClaimSize);
         }
 
         public static ushort SharedCalculateLandClaimGraceAreaPaddingSizeOneDirection(ushort landClaimSize)
@@ -1112,6 +1310,56 @@
             return true;
         }
 
+        // need to verify that area bounds will not intersect with the any existing areas of demo players (even for the same founder if it's a demo account)
+        public static bool SharedCheckNoLandClaimByDemoPlayers(
+            IProtoObjectLandClaim newProtoObjectLandClaim,
+            Vector2Ushort landClaimCenterTilePosition,
+            ICharacter forCharacter,
+            ILogicObject exceptAreasGroup)
+        {
+            if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+            {
+                return true;
+            }
+
+            var newAreaBounds = SharedCalculateLandClaimAreaBounds(
+                landClaimCenterTilePosition,
+                newProtoObjectLandClaim.LandClaimWithGraceAreaSize);
+
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(newAreaBounds))
+            {
+                var areaBoundsWithPadding = SharedGetLandClaimAreaBounds(area, addGracePadding: true);
+                if (!areaBoundsWithPadding.IntersectsLoose(newAreaBounds))
+                {
+                    // there is no area (even with the padding/grace area)
+                    continue;
+                }
+
+                var areasGroup = SharedGetLandClaimAreasGroup(area);
+                if (ReferenceEquals(exceptAreasGroup, areasGroup))
+                {
+                    // this check is required to allow demo players upgrade land claims on their base
+                    continue;
+                }
+
+                if (IsServer && forCharacter.ServerIsDemoVersion
+                    || IsClient && Api.Client.MasterServer.IsDemoVersion)
+                {
+                    // the player is a demo player, restrict construction
+                    return false;
+                }
+
+                var areasGroupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
+                if (areasGroupPublicState.IsFounderDemoPlayer)
+                {
+                    // the grace/padding area of another player's land claim owner who is a demo player
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public static IReadOnlyList<ILogicObject> SharedEnumerateAllAreas()
         {
             return (IReadOnlyList<ILogicObject>)sharedLandClaimAreas;
@@ -1223,7 +1471,7 @@
                 }
 
                 hasBounds = true;
-                var bounds = SharedCalculateLandClaimAreaBounds(area);
+                var bounds = SharedGetLandClaimAreaBounds(area);
                 if (addGraceAreaPadding)
                 {
                     bounds = bounds.Inflate(areaPublicState.ProtoObjectLandClaim
@@ -1488,6 +1736,11 @@
             }
 
             return false;
+        }
+
+        public byte ServerRemote_GetLandClaimOwnersMax()
+        {
+            return LandClaimSystemConstants.SharedLandClaimOwnersMax;
         }
 
         public (ushort landClaimsNumberLimitIncrease, double raidBlockDurationSeconds)
@@ -1755,7 +2008,7 @@
                 if (LandClaimArea.GetPublicState(otherArea).LandClaimAreasGroup == null)
                 {
                     ServerEstablishAreasGroup(
-                        SharedCalculateLandClaimAreaBounds(otherArea));
+                        SharedGetLandClaimAreaBounds(otherArea));
                 }
             }
 
@@ -1766,7 +2019,7 @@
                 var currentAreas = LandClaimAreasGroup.GetPrivateState(areasGroup).ServerLandClaimsAreas;
                 using var tempListCurrentGroupAreas = Api.Shared.GetTempList<ILogicObject>();
                 SharedGetConnectedAreas(tempListCurrentGroupAreas.AsList(),
-                                        SharedCalculateLandClaimAreaBounds(currentAreas[0]));
+                                        SharedGetLandClaimAreaBounds(currentAreas[0]));
 
                 for (var index = 0; index < currentAreas.Count; index++)
                 {
@@ -1789,9 +2042,12 @@
         private static void SharedGatherAreasAndGroups(
             RectangleInt bounds,
             ITempList<ILogicObject> tempListAreas,
-            ITempList<ILogicObject> tempListGroups)
+            ITempList<ILogicObject> tempListGroups,
+            bool addGracePaddingToEachArea = false)
         {
-            SharedGetConnectedAreas(tempListAreas.AsList(), bounds);
+            SharedGetConnectedAreas(tempListAreas.AsList(),
+                                    bounds,
+                                    addGracePaddingToEachArea);
 
             // gather all groups for the areas found there
             foreach (var area in tempListAreas.AsList())
@@ -1804,7 +2060,10 @@
             }
         }
 
-        private static void SharedGetConnectedAreas(List<ILogicObject> result, RectangleInt bounds)
+        private static void SharedGetConnectedAreas(
+            List<ILogicObject> result,
+            RectangleInt bounds,
+            bool addGracePadding = false)
         {
             // TODO: this enumeration might be slow
             // find areas in bounds
@@ -1815,8 +2074,11 @@
                     continue;
                 }
 
-                var areaBounds = SharedGetLandClaimAreaBounds(area);
-                if (areaBounds.Intersects(bounds))
+                var areaBounds = SharedGetLandClaimAreaBounds(area,
+                                                              addGracePadding: addGracePadding);
+                if (addGracePadding
+                        ? areaBounds.IntersectsLoose(bounds)
+                        : areaBounds.Intersects(bounds))
                 {
                     result.Add(area);
                 }
@@ -1826,12 +2088,16 @@
             for (var index = 0; index < result.Count; index++)
             {
                 var currentArea = result[index];
-                var currentAreaBounds = SharedCalculateLandClaimAreaBounds(currentArea);
+                var currentAreaBounds = SharedGetLandClaimAreaBounds(currentArea,
+                                                                     addGracePadding: addGracePadding);
                 // find adjacent areas
                 foreach (var otherArea in sharedLandClaimAreas)
                 {
-                    var otherAreaBounds = SharedGetLandClaimAreaBounds(otherArea);
-                    if (otherAreaBounds.Intersects(currentAreaBounds)
+                    var otherAreaBounds = SharedGetLandClaimAreaBounds(otherArea,
+                                                                       addGracePadding: addGracePadding);
+                    if ((addGracePadding
+                             ? otherAreaBounds.IntersectsLoose(currentAreaBounds)
+                             : otherAreaBounds.Intersects(currentAreaBounds))
                         && !result.Contains(otherArea))
                     {
                         // found new area - it will be also checked for adjacent neighbors
@@ -1854,6 +2120,12 @@
                 $"Land claim areas cache rebuilt: spent {stopwatch.Elapsed.TotalMilliseconds:0.##} ms, contains {sharedLandClaimAreas.Count} land claims");
 
             return sharedLandClaimAreasCache;
+        }
+
+        private static int SharedGetMaxBaseSizeTiles()
+        {
+            // 2 tiles - represents an extra 1 tile padding around every side of the base with all T5 land claims
+            return 2 + MaxLandClaimSize.Value * MaxNumberOfLandClaimsInRow;
         }
 
         private static NetworkSyncList<ILogicObject> SharedGetPlayerOwnedAreas(ICharacter player)
@@ -1900,13 +2172,17 @@
             var area = ServerGetLandClaimArea(landClaimStructure);
             var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
             var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
+            var areasGroupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
             var areas = areasGroupPrivateState.ServerLandClaimsAreas;
-            var isFounderDemoPlayer = areasGroupPrivateState.IsFounderDemoPlayer;
-            var decayDelayDuration = ServerGetDecayDelayDurationForLandClaimAreas(areas, isFounderDemoPlayer);
+            var isFounderDemoPlayer = areasGroupPublicState.IsFounderDemoPlayer;
+            var decayDelayDuration = ServerGetDecayDelayDurationForLandClaimAreas(areas,
+                                                                                  isFounderDemoPlayer,
+                                                                                  out var normalDecayDelayDuration);
 
             return new LandClaimsGroupDecayInfo(decayDelayDuration,
                                                 decayDuration: StructureConstants.StructuresDecayDurationSeconds,
-                                                isFounderDemoPlayer);
+                                                isFounderDemoPlayer,
+                                                normalDecayDelayDuration);
         }
 
         private bool ServerRemote_RequestOwnedAreas()
@@ -1929,6 +2205,11 @@
             {
                 throw new Exception("Cannot interact with the land claim object as the area is not in private scope: "
                                     + area);
+            }
+
+            if (newOwners.Count > LandClaimSystemConstants.SharedLandClaimOwnersMax)
+            {
+                return WorldObjectOwnersSystem.DialogCannotSetOwners_AccessListSizeLimitExceeded;
             }
 
             var privateState = LandClaimArea.GetPrivateState(area);
@@ -2010,11 +2291,22 @@
             /// </summary>
             public readonly bool IsFounderDemoPlayer;
 
-            public LandClaimsGroupDecayInfo(double decayDelayDuration, double decayDuration, bool isFounderDemoPlayer)
+            /// <summary>
+            /// In case of the base founded by a demo player,
+            /// this number would contain a non-shortened decay duration.
+            /// </summary>
+            public readonly double NormalDecayDelayDuration;
+
+            public LandClaimsGroupDecayInfo(
+                double decayDelayDuration,
+                double decayDuration,
+                bool isFounderDemoPlayer,
+                double normalDecayDelayDuration)
             {
                 this.DecayDelayDuration = decayDelayDuration;
                 this.DecayDuration = decayDuration;
                 this.IsFounderDemoPlayer = isFounderDemoPlayer;
+                this.NormalDecayDelayDuration = normalDecayDelayDuration;
             }
         }
 

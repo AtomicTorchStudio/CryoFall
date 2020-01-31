@@ -73,7 +73,7 @@ Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 截屏解析度
 
 Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
-Tooltip delay
+提示延遲
 
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI縮放

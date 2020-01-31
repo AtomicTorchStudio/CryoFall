@@ -59,6 +59,43 @@
 
         public static void ServerInitCharacterTechnologies(PlayerCharacterTechnologies technologies)
         {
+            var needToResetTheTechTree = false;
+            var techNodes = technologies.Nodes;
+            var techGroups = technologies.Groups;
+
+            for (var index = 0; index < techNodes.Count; index++)
+            {
+                var techNode = techNodes[index];
+                if (!(techNode is null))
+                {
+                    continue;
+                }
+
+                // tech node not found
+                needToResetTheTechTree = true;
+                techNodes.RemoveAt(index);
+                index--;
+            }
+
+            for (var index = 0; index < techGroups.Count; index++)
+            {
+                var techGroup = techGroups[index];
+                if (!(techGroup is null))
+                {
+                    continue;
+                }
+
+                // tech group not found
+                needToResetTheTechTree = true;
+                techGroups.RemoveAt(index);
+                index--;
+            }
+
+            if (needToResetTheTechTree)
+            {
+                ServerResetTechTreeAndRefundLearningPoints(technologies);
+            }
+
             foreach (var techGroup in FindProtoEntities<TechGroup>())
             {
                 if (techGroup.GroupRequirements.Count > 0)
@@ -92,12 +129,34 @@
             }
         }
 
+        public static void ServerResetTechTreeAndRefundLearningPoints(PlayerCharacterTechnologies technologies)
+        {
+            var lpToRefund = 0;
+            foreach (var techNode in technologies.Nodes)
+            {
+                lpToRefund += techNode.LearningPointsPrice;
+            }
+
+            technologies.Nodes.Clear();
+
+            foreach (var techGroup in technologies.Groups)
+            {
+                lpToRefund += techGroup.LearningPointsPrice;
+            }
+
+            technologies.Groups.Clear();
+
+            technologies.ServerRefundLearningPoints(lpToRefund);
+            technologies.IsTechTreeChanged = true;
+        }
+
         public static void ServerUnlockGroup(ICharacter character, TechGroup techGroup)
         {
             techGroup.SharedValidateCanUnlock(character, skipLearningPointsCheck: false);
             var technologies = character.SharedGetTechnologies();
             technologies.ServerRemoveLearningPoints(techGroup.LearningPointsPrice);
             technologies.ServerAddGroup(techGroup);
+            technologies.IsTechTreeChanged = false;
         }
 
         public static void ServerUnlockNode(ICharacter character, TechNode techNode)
@@ -106,6 +165,7 @@
             var technologies = character.SharedGetTechnologies();
             technologies.ServerRemoveLearningPoints(techNode.LearningPointsPrice);
             technologies.ServerAddNode(techNode);
+            technologies.IsTechTreeChanged = false;
         }
 
         private double ServerRemote_RequestLearningPointsGainMultiplierRate()

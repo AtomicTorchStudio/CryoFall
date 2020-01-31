@@ -348,13 +348,13 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 製作一把刀並殺死任何生物
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Equip better chestplate
+裝備更好的胸甲
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
-Equip better helmet
+裝備更好的頭盔
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Equip better leg armor
+裝備更好的護腿
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 是時候獲得更好的防護了。
@@ -386,13 +386,13 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
 製造更好的工具
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftMusketOrFlintlockPistol:
-Craft musket or flintlock pistol
+製造滑膛槍或燧發手槍
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftPaperCartridge:
-Craft paper cartridge
+製造紙彈
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@FireTheWeapon:
-Fire the weapon
+開火
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 用釘頭錘砸碎敵人的腦袋很好，但遠距離攻擊也是個不錯的選擇。特別是在你面對更強大對手的時候。

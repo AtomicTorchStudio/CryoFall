@@ -615,7 +615,7 @@
             foreach (var area in LandClaimAreasGroup.GetPrivateState(areasGroup)
                                                     .ServerLandClaimsAreas)
             {
-                var bounds = LandClaimSystem.SharedCalculateLandClaimAreaBounds(area);
+                var bounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area);
                 areasBounds.Add(bounds);
             }
 

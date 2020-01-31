@@ -95,10 +95,10 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 Бесконечное месторождение нефти
 
 Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
-The resource deposit has only just appeared and cannot be claimed or destroyed yet.
+Месторождение ресурса только что появилось и пока не может быть захвачено или разрушено.
 
 Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
-No damage dealt to {0}
+Не нанесен урон объекту {0}
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Шахтерская взрывчатка
@@ -597,10 +597,10 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Малая напольная лампа
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
-Ideal for large bases or military outposts, this tall projector tower can ensure perfect visibility in a wide area.
+Эта вышка идеально подходит для больших баз и аванпостов, обеспечивая отличную видимость на обширной площади.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
-Projector tower
+Осветительная вышка
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 Служит базовым источником света и, что более важно, позволяет готовить простую пищу, например, жареное мясо.
@@ -648,10 +648,10 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced
 Электрический экстрактор лития
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
-This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.
+Эта перерабатывающая установка измельчает сырую руду и сортирует минералы в целях увеличения объема общей выработки.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
-Mineral processing plant
+Установка по обработке минералов
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Позволяет превратить любую органическую материю в перегной. Источник органических удобрений.
@@ -681,10 +681,10 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 Кухонная плита
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
-Electric stove allows for faster and more convenient preparation of food.
+Готовить еду на электроплите гораздо быстрее и удобнее.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
-Electric cooking stove
+Электроплита
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 Простой водосборник, в который можно собрать немного воды. Почему-то бесполезен в пустыне или в горной местности...
@@ -720,10 +720,10 @@ Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Медицинская станция
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
-Defensive structure that projects psionic field of high intensity while active.
+Защитная установка, которая при активации проецирует пси-поле высокой интенсивности.
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
-Psionic field generator
+Пси-генератор
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 Может использоваться для зарядки портативного электронного оборудования, такого как аккумулятор или фонарик.

@@ -75,7 +75,7 @@ Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 스크린샷 해상도
 
 Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
-Tooltip delay
+말풍선 도움말 표시 속도
 
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UI 크기

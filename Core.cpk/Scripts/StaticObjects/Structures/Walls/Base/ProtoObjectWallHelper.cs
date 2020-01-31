@@ -264,17 +264,18 @@
                         return true;
                     }
                 }
-                else if (Api.IsServer)
-                {
-                    // Only on the server side we do the check for the vertical compatible door.
-                    // That's because we don't want to draw the "compatible wall adapters" on the client side.
-                    // It also means that physics is a bit different between the client and the server
-                    // in this aspect but it's barely noticeable.
-                    if (SharedIsCompatibleDoor(worldObject, tile, recognizeConstructionSites, isHorizontal: false))
-                    {
-                        return true;
-                    }
-                }
+                // TODO: restore this. Commented out as it's preventing from moving via diagonal doors.
+                //else if (Api.IsServer)
+                //{
+                //    // Only on the server side we do the check for the vertical compatible door.
+                //    // That's because we don't want to draw the "compatible wall adapters" on the client side.
+                //    // It also means that physics is a bit different between the client and the server
+                //    // in this aspect but it's barely noticeable.
+                //    if (SharedIsCompatibleDoor(worldObject, tile, recognizeConstructionSites, isHorizontal: false))
+                //    {
+                //        return true;
+                //    }
+                //}
             }
 
             return false;

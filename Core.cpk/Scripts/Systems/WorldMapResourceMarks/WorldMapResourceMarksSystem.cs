@@ -28,7 +28,7 @@
             IsResourceDepositCoordinatesHiddenUntilCapturePossible =
                 ServerRates.Get(
                     "IsResourceDepositCoordinatesHiddenUntilCapturePossible",
-                    defaultValue: 0,
+                    defaultValue: 1,
                     @"(for PvP servers only) Set it to 1 to hide the resource deposit (such as oil or Li)
                        world coordinates until the capture is possible.
                        When coordinates are hidden, players will receive only a biome name

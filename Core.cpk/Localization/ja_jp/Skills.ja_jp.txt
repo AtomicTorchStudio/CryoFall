@@ -44,7 +44,7 @@ Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Description:
 従来の銃器を使ってより多くの経験を積むことで、すべての武器の特性に慣れ、より効果的に使えるようになります。
 
 Scripts/Skills/Skills/Combat/SkillWeaponsConventional@Name:
-従来の武器
+基本武器
 
 Scripts/Skills/Skills/Combat/SkillWeaponsEnergy@Description:
 エネルギー武器を頻繁に使用すると、それらがどのように機能するかをよりよく理解できるようになり、全体的な効率が向上します。

@@ -108,7 +108,7 @@ UI/CoreStrings@Chat_MessageMenu_Unblock:
 解除屏蔽
 
 UI/CoreStrings@Checkbox_DoNotAskAgain:
-Do not ask me again
+不要再次提示
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 此为纯装饰建筑。
@@ -207,19 +207,19 @@ UI/CoreStrings@DepositCapacityStats_Title:
 矿藏储量
 
 UI/CoreStrings@Duration_Instant:
-Instant
+瞬间
 
 UI/CoreStrings@Duration_Quick:
-Quick
+快速
 
 UI/CoreStrings@Duration_Slow:
-Slow
+慢速
 
 UI/CoreStrings@Duration_VeryQuick:
-Very quick
+非常快
 
 UI/CoreStrings@Duration_VerySlow:
-Very slow
+非常慢
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 能量
@@ -387,7 +387,7 @@ UI/CoreStrings@MainMenu_TabCurrentGame:
 当前游戏
 
 UI/CoreStrings@MainMenu_TabExtras:
-EXTRAS
+额外内容
 
 UI/CoreStrings@MainMenu_TabHome:
 主页
@@ -402,7 +402,7 @@ UI/CoreStrings@MainMenu_TabServers:
 服务器
 
 UI/CoreStrings@MainMenu_TabUpdates:
-UPDATES HISTORY
+更新历史
 
 UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
 链接帐户
@@ -1341,10 +1341,10 @@ UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 解锁
 
 UI/CoreStrings@WindowTechnologies_TechTreeChanged:
-`It appears the technologies tree has been changed.
-[br]This could be due to a game update or third-party changes (in the case of a community or modded server).
-[br]Your researched technologies were reset and all learning points (LP) spent were refunded, so you can redistribute the points again.
-[br]Enjoy the game!`
+`科技树已出现改动。
+[br]这可能是由于游戏更新或第三方改动(例如社区服务器安装了mod)。
+[br]你的所有已研究科技和学习点数已被重置，可以再次分配。
+[br]祝您游戏愉快！`
 
 UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
 主要科技
@@ -1460,16 +1460,16 @@ UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 [br]你的基地正遭受攻击！`
 
 UI/CoreStrings@WorldMapMarkResourceLithium_Infinite_Tooltip:
-`[b]Infinite geothermal spring[/b]
-[br]Public lithium source.`
+`[b]无限地热泉[/b]
+[br]公共锂盐采集点。`
 
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
 `[b]地热泉[/b]
 [br]可采集锂盐。`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Infinite_Tooltip:
-`[b]Infinite oil seep[/b]
-[br]Public raw petroleum oil source.`
+`[b]无限天然油田[/b]
+[br]公共原油采集点。`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]天然油田[/b]
@@ -1702,9 +1702,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessLis
 访问
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoDemoVersion:
-`Please note: This land claim was [b]founded by a demo version player[/b].
-[br]Because of this, the delay before the decay starts as well as the decay duration itself are [b]shortened[/b].
-[br]When a demo player purchases the game, those durations revert to their standard values.`
+`请注意：此主权建筑[b]由一个试玩版玩家建造[/b]。
+[br]腐化开始倒计时和腐化倒计时都将[b]缩短[/b].
+[br]当试玩版玩家购买游戏后，这些倒计时将恢复到他们的标准值。`
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
 `废弃建筑物会在一段时间后开始腐朽

@@ -348,13 +348,13 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Изготовить нож и убить любого зверя
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Equip better chestplate
+Надеть нагрудный доспех более высокого качества
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
-Equip better helmet
+Надеть шлем более высокого качества
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Equip better leg armor
+Надеть поножи более высокого качества
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Пора обзавестись защитой получше.
@@ -386,13 +386,13 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
 Изготовить инструменты получше
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftMusketOrFlintlockPistol:
-Craft musket or flintlock pistol
+Изготовить мушкет или кремневый пистолет
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftPaperCartridge:
-Craft paper cartridge
+Изготовить бумажные патроны
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@FireTheWeapon:
-Fire the weapon
+Выстрелить из оружия
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Булавой можно легко проломить череп, но иногда лучше разить врагов на расстоянии. Особенно если приходится сражаться с серьезным противником.

@@ -80,7 +80,7 @@
             <Grid Visibility="{Binding ViewModelManufacturingState.VisibilityPrimary}"
                   HorizontalAlignment="Center"
                   VerticalAlignment="{Binding VerticalAlignment}"
-                  Margin="50,10,0,5">
+                  Margin="50,5,0,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="220" />
                     <ColumnDefinition Width="15" />

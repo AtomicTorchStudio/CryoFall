@@ -16,6 +16,17 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                 return;
             }
 
+            SharedLandClaimOwnersMax = (byte)MathHelper.Clamp(
+                value: ServerRates.Get(
+                    key: "LandClaimOwnersMax",
+                    defaultValue: byte.MaxValue,
+                    description:
+                    @"This rate determines the max number of land claim's owners (including the founder).
+                      Min value: 1 owner.
+                      Max value: 255 owners (no limit displayed)."),
+                min: 1,
+                max: byte.MaxValue);
+
             SharedRaidBlockDurationSeconds = MathHelper.Clamp(
                 value: ServerRates.Get(
                     key: "RaidBlockDurationSeconds",
@@ -45,6 +56,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
         public static event Action ClientRaidBlockDurationSecondsChanged;
 
         public static ushort SharedLandClaimsNumberLimitIncrease { get; private set; }
+
+        public static byte SharedLandClaimOwnersMax { get; private set; } = byte.MaxValue;
 
         /// <summary>
         /// Determines the duration of "raid block" feature - preventing players from
@@ -96,6 +109,9 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
 
                     SharedRaidBlockDurationSeconds = raidBlockDurationSeconds;
                     Api.SafeInvoke(ClientRaidBlockDurationSecondsChanged);
+
+                    SharedLandClaimOwnersMax =
+                        await LandClaimSystem.Instance.CallServer(_ => _.ServerRemote_GetLandClaimOwnersMax());
                 }
             }
 

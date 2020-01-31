@@ -1,7 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures
 {
     using System.Runtime.CompilerServices;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.GameEngine.Common.Helpers;
 
     public static class StructureConstants
     {
@@ -108,12 +111,28 @@
 
             DepositsSpawnClaimingCooldownDuration = ServerRates.Get(
                 "DepositsSpawnClaimingCooldownDuration",
-                defaultValue: 30 * 60, // 30 minutes,
+                defaultValue: 20 * 60, // 20 minutes,
                 @"Delay in seconds before the spawned resource deposit could be claimed on a PvP server.
                   The notification about the spawned resource is displayed with this timer.
                   30 minutes by default (1800 seconds).
                   If you change this to 0 there would be no resource spawn notification (only a map mark will be added).");
+
+            if (Api.IsServer)
+            {
+                SharedDoorOwnersMax = (byte)MathHelper.Clamp(
+                    value: ServerRates.Get(
+                        key: "DoorOwnersMax",
+                        defaultValue: byte.MaxValue,
+                        description:
+                        @"This rate determines the max number of door's owners (including the builder).
+                      Min value: 1 owner.
+                      Max value: 255 owners (no limit displayed)."),
+                    min: 1,
+                    max: byte.MaxValue);
+            }
         }
+
+        public static byte SharedDoorOwnersMax { get; private set; }
 
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]
         private static void EnsureInitialized()
@@ -122,6 +141,24 @@
 
         private class Bootstrapper : BaseBootstrapper
         {
+            public override void ClientInitialize()
+            {
+                Client.Characters.CurrentPlayerCharacterChanged += Refresh;
+                Refresh();
+
+                static async void Refresh()
+                {
+                    SharedDoorOwnersMax = byte.MaxValue;
+                    if (Api.Client.Characters.CurrentPlayerCharacter == null)
+                    {
+                        return;
+                    }
+
+                    SharedDoorOwnersMax =
+                        await WorldObjectOwnersSystem.Instance.CallServer(_ => _.ServerRemote_GetDoorOwnersMax());
+                }
+            }
+
             public override void ServerInitialize(IServerConfiguration serverConfiguration)
             {
                 EnsureInitialized();

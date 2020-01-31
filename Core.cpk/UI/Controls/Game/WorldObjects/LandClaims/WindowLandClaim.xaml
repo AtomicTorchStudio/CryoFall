@@ -338,7 +338,8 @@
 
                     <worldObjects:WorldObjectOwnersEditorControl
                         Grid.Column="2"
-                        DataContext="{Binding ViewModelOwnersEditor}" />
+                        DataContext="{Binding ViewModelOwnersEditor}"
+                        Visibility="{Binding IsMaxOwnersMoreThanOne, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>
             </TabItem>
 

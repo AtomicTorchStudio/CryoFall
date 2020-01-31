@@ -7,14 +7,6 @@
 
     public class LandClaimAreasGroupPrivateState : BasePrivateState
     {
-        /// <summary>
-        /// Is the base was founded by a demo player?
-        /// In that case a shortened decay duration should apply.
-        /// </summary>
-        [SyncToClient]
-        [TempOnly]
-        public bool IsFounderDemoPlayer { get; set; }
-
         [SyncToClient]
         public IItemsContainer ItemsContainer { get; set; }
 

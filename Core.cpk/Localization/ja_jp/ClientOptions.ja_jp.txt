@@ -73,7 +73,7 @@ Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 スクリーンショットの解像度
 
 Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
-Tooltip delay
+遅延提示
 
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 UIスケール

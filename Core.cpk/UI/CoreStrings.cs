@@ -435,7 +435,7 @@
 
         public const string ModsDisabledWindow_Description =
             @"The game was unable to launch with the mods, so they were disabled.
-              [br]This is because at least one of the mods is outdated (incompatible with the current version of the game) or simply invalid.
+              [br]This is because at least one of the mods is outdated (incompatible with the current version of the game) or simply broken.
               [br]The game is unable to determine whether it's a particular mod causing an issue or if all of them are incompatible. You can check this by enabling the mods one by one.
               [br]If you want to continue using these mods, please ensure you're using their latest versions.
               [br]
@@ -1041,7 +1041,7 @@
         public const string WindowTechnologies_TechGroupUnlock = "Unlock";
 
         public const string WindowTechnologies_TechTreeChanged =
-            @"It appears the technologies tree has been changed.
+            @"It appears that technology trees have been changed.
               [br]This could be due to a game update or third-party changes (in the case of a community or modded server).
               [br]Your researched technologies were reset and all learning points (LP) spent were refunded, so you can redistribute the points again.
               [br]Enjoy the game!";

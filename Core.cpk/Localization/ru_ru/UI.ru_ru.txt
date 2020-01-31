@@ -108,7 +108,7 @@ UI/CoreStrings@Chat_MessageMenu_Unblock:
 Разблокировать
 
 UI/CoreStrings@Checkbox_DoNotAskAgain:
-Do not ask me again
+Больше не спрашивать
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Это просто украшение.
@@ -208,19 +208,19 @@ UI/CoreStrings@DepositCapacityStats_Title:
 Потенциал месторождения
 
 UI/CoreStrings@Duration_Instant:
-Instant
+Мгновенно
 
 UI/CoreStrings@Duration_Quick:
-Quick
+Быстро
 
 UI/CoreStrings@Duration_Slow:
-Slow
+Медленно
 
 UI/CoreStrings@Duration_VeryQuick:
-Very quick
+Очень быстро
 
 UI/CoreStrings@Duration_VerySlow:
-Very slow
+Очень медленно
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 Эн.
@@ -1339,10 +1339,10 @@ UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 Открыть
 
 UI/CoreStrings@WindowTechnologies_TechTreeChanged:
-`It appears the technologies tree has been changed.
-[br]This could be due to a game update or third-party changes (in the case of a community or modded server).
-[br]Your researched technologies were reset and all learning points (LP) spent were refunded, so you can redistribute the points again.
-[br]Enjoy the game!`
+`Похоже, древо технологий было изменено.
+[br]Это могло произойти в результате обновления игры или сторонних изменений (например, в случае игры на модифицированном сервере сообщества).
+[br]Изученные вами технологии подверглись сбросу, а все очки технологий (ОТ) возвращены, чтобы вы могли распределить их заново.
+[br]Приятной игры!`
 
 UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
 Основные технологии
@@ -1458,16 +1458,16 @@ UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 [br]Ваша база в опасности!`
 
 UI/CoreStrings@WorldMapMarkResourceLithium_Infinite_Tooltip:
-`[b]Infinite geothermal spring[/b]
-[br]Public lithium source.`
+`[b]Бесконечный геотермальный источник[/b]
+[br]Общественный источник лития.`
 
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
 `[b]Геотермальный источник[/b]
 [br]Месторождение лития.`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Infinite_Tooltip:
-`[b]Infinite oil seep[/b]
-[br]Public raw petroleum oil source.`
+`[b]Бесконечное месторождение нефти[/b]
+[br]Общественный источник нефти.`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]Месторождение нефти[/b]
@@ -1700,9 +1700,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessLis
 Доступ
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoDemoVersion:
-`Please note: This land claim was [b]founded by a demo version player[/b].
-[br]Because of this, the delay before the decay starts as well as the decay duration itself are [b]shortened[/b].
-[br]When a demo player purchases the game, those durations revert to their standard values.`
+`Внимание: эта точка контроля [b]установлена игроком в демоверсию[/b].
+[br]По этой причине задержка перед началом ветшания, а также длительность самого ветшания [b]сокращены[/b].
+[br]Когда игрок в демоверсию приобретет игру, это время вернется к стандартному значению.`
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
 `Заброшенные постройки со временем ветшают

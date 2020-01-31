@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Walls;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterIdleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -788,6 +789,7 @@
             foreach (var character in StaticTempCharactersNearby)
             {
                 if (!character.ServerIsOnline
+                    || CharacterIdleSystem.ServerIsIdlePlayer(character)
                     || character.ProtoCharacter is PlayerCharacterSpectator)
                 {
                     continue;

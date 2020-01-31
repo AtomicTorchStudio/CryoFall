@@ -344,10 +344,10 @@ Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 キルトのパンツ
 
 Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
-The ultimate defense. This battle armor will protect you against anything that comes at you, but at a cost of reduced mobility.
+最強のガード。この戦闘アーマーは君をあらゆるダメージから守れることができるが、一部の機動性を失わせます。
 
 Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
-Super heavy armor
+スーパーヘビーアーマー
 
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 必要は発明の母！まったく快適ではありませんが、初期段階でかなりまともな防御力を提供してくれます。
@@ -1209,7 +1209,7 @@ Scripts/Items/Generic/ItemOreCopper@Name:
 銅鉱石
 
 Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
-Copper ore concentrate
+銅精鉱
 
 Scripts/Items/Generic/ItemOreIron@Description:
 溶かして純鉄を精製することができます。
@@ -1218,7 +1218,7 @@ Scripts/Items/Generic/ItemOreIron@Name:
 鉄鉱石
 
 Scripts/Items/Generic/ItemOreIronConcentrate@Name:
-Iron ore concentrate
+鉄精鉱
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 リチウム塩は地熱泉から抽出され、純リチウム金属に加工することができます。

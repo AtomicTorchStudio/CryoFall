@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Data
 {
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
@@ -17,7 +18,8 @@
                 privateState.Owners,
                 callbackServerSetOwnersList:
                 ownersList => WorldObjectOwnersSystem.ClientSetOwners(worldObjectDoor, ownersList),
-                title: CoreStrings.ObjectOwnersList_Title + ":");
+                title: CoreStrings.ObjectOwnersList_Title + ":",
+                maxOwnersListLength: StructureConstants.SharedDoorOwnersMax);
 
             this.ViewModelAccessModeEditor = new ViewModelWorldObjectAccessModeEditor(
                 worldObjectDoor,

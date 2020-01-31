@@ -6,15 +6,22 @@
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
+    using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
+    using AtomicTorch.GameEngine.Common.Helpers;
 
     public class ViewModelWorldObjectOwnersEditor : BaseViewModel
     {
         private readonly Action<List<string>> callbackServerSetOwnersList;
+
+        private readonly sbyte displayedOwnersNumberAdjustment;
+
+        private readonly byte maxOwnersListLength;
 
         private readonly Func<string, bool> ownersListFilter;
 
@@ -26,7 +33,9 @@
             string title,
             string emptyListMessage = CoreStrings.ObjectOwnersList_Empty,
             bool canEditOwners = true,
-            Func<string, bool> ownersListFilter = null)
+            Func<string, bool> ownersListFilter = null,
+            byte maxOwnersListLength = byte.MaxValue,
+            sbyte displayedOwnersNumberAdjustment = 0)
         {
             this.Title = title;
             this.EmptyListMessage = emptyListMessage;
@@ -41,6 +50,9 @@
 
             PartySystem.ClientCurrentPartyMemberAddedOrRemoved += this.CurrentPartyMemberAddedOrRemovedHandler;
             this.RefreshHasPartyMembers();
+
+            this.maxOwnersListLength = maxOwnersListLength;
+            this.displayedOwnersNumberAdjustment = displayedOwnersNumberAdjustment;
         }
 
         public bool CanEditOwners { get; }
@@ -58,6 +70,17 @@
         public string EmptyListMessage { get; }
 
         public bool HasPartyMembers { get; private set; }
+
+        public bool IsMaxOwnersExceeded => this.Owners.Count >= this.MaxOwners;
+
+        public bool IsMaxOwnersMoreThanOne => this.maxOwnersListLength > 1;
+
+        public bool IsMaxOwnersVisible => this.MaxOwners < byte.MaxValue + this.displayedOwnersNumberAdjustment;
+
+        public byte MaxOwners =>
+            (byte)MathHelper.Clamp(this.maxOwnersListLength + this.displayedOwnersNumberAdjustment,
+                                   0,
+                                   byte.MaxValue);
 
         public string NewOwnerName { get; set; }
 
@@ -88,12 +111,13 @@
             if (this.ownersSyncList.Contains(name, StringComparer.OrdinalIgnoreCase))
             {
                 Logger.Warning("The owner is already added (there is already an owner with the entered name).");
+                this.NewOwnerName = string.Empty;
                 return;
             }
 
             var newList = this.ownersSyncList.ToList();
             newList.Add(name);
-            this.callbackServerSetOwnersList(newList);
+            this.PushChanges(newList);
             this.NewOwnerName = string.Empty;
         }
 
@@ -111,7 +135,7 @@
                                                 .Concat(partyMembers)
                                                 .Distinct()
                                                 .ToList();
-                              this.callbackServerSetOwnersList(newList);
+                              this.PushChanges(newList);
                           },
                 cancelAction: () => { },
                 focusOnCancelButton: true);
@@ -122,7 +146,7 @@
             var newList = this.ownersSyncList.ToList();
             if (newList.Remove(name))
             {
-                this.callbackServerSetOwnersList(newList);
+                this.PushChanges(newList);
             }
         }
 
@@ -147,6 +171,22 @@
         private void OwnersSyncListModificationHandler(NetworkSyncList<string> source)
         {
             this.RefreshOwnersList();
+        }
+
+        private void PushChanges(List<string> newList)
+        {
+            if (newList.Count > this.maxOwnersListLength)
+            {
+                newList.RemoveRange(index: this.maxOwnersListLength,
+                                    count: newList.Count - this.maxOwnersListLength);
+
+                NotificationSystem.ClientShowNotification(
+                    title: null,
+                    message: WorldObjectOwnersSystem.DialogCannotSetOwners_AccessListSizeLimitExceeded,
+                    color: NotificationColor.Bad);
+            }
+
+            this.callbackServerSetOwnersList(newList);
         }
 
         private void RefreshHasPartyMembers()
@@ -175,6 +215,8 @@
 
             this.Owners = owners;
             //Logger.Dev("Owners list:" + Environment.NewLine + this.ownersSyncList.GetJoinedString());
+
+            this.NotifyPropertyChanged(nameof(this.IsMaxOwnersExceeded));
         }
     }
 }

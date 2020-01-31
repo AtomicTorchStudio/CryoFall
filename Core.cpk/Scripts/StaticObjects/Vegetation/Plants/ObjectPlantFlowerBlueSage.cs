@@ -42,12 +42,25 @@
             }
         }
 
-        protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
+        protected override void ClientRefreshVegetationRendering(
+            IStaticWorldObject worldObject,
+            VegetationClientState clientState,
+            VegetationPublicState publicState)
         {
-            base.ClientSetupRenderer(renderer);
-            ClientGrassRenderingHelper.Setup(renderer,
-                                             power: 0.1f,
-                                             pivotY: 0.5f);
+            base.ClientRefreshVegetationRendering(worldObject, clientState, publicState);
+
+            if (publicState.GrowthStage > 0
+                && publicState.GrowthStage < this.GrowthStagesCount)
+            {
+                ClientGrassRenderingHelper.Setup(clientState.Renderer,
+                                                 power: 0.1f,
+                                                 pivotY: 0.5f);
+            }
+            else
+            {
+                // no grass swaying for the just planted and spoiled plant
+                clientState.Renderer.RenderingMaterial = null;
+            }
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

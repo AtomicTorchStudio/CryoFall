@@ -419,7 +419,7 @@
         {
             var craftingQueue = this.ManufacturingState.CraftingQueue;
             var item = craftingQueue.QueueItems.FirstOrDefault();
-            if (item == null)
+            if (item?.Recipe is null)
             {
                 this.CraftingProgressPercents = 0;
                 return;

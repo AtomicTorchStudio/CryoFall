@@ -52,7 +52,7 @@
 
                 <CheckBox Content="Post-effects"
                           IsChecked="{Binding IsPostEffectsEnabled}"
-                          Visibility="{Binding IsPostEffectsCheckBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+                          Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                 <CheckBox Content="Terrain blending"
                           IsChecked="{Binding IsTerrainBlendingEnabled}" />
@@ -63,7 +63,8 @@
                 <Control Style="{StaticResource ControlHorizontalSeparator}" />
 
                 <CheckBox Content="Physics visualizer"
-                          IsChecked="{Binding IsPhysicsSpaceVisualizerEnabled}" />
+                          IsChecked="{Binding IsPhysicsSpaceVisualizerEnabled}"
+                          Visibility="{Binding IsServerOperator, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                 <CheckBox Content="Lag prediction"
                           IsChecked="{Binding IsClientLagPredictionEnabled}" />
@@ -76,7 +77,7 @@
                             [b]Legend:[/b]
                             [*]Green - your position
                             [*]Red - predicted position
-                            [*]White - received server position
+                            [*]Blue - received server position
                         </core:FormattedTextBlock>
                     </base:ToolTipServiceExtend.ToolTip>
                 </CheckBox>

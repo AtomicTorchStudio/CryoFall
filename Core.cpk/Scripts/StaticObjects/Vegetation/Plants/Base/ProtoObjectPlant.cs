@@ -352,7 +352,7 @@
 
         protected virtual void PrepareSpoiledGatheringDroplist(DropItemsList spoiledGatherDroplist)
         {
-            spoiledGatherDroplist.Add<ItemFibers>(count: 5);
+            spoiledGatherDroplist.Add<ItemFibers>(count: 3, countRandom: 2);
         }
 
         protected override void PrepareTileRequirements(ConstructionTileRequirements tileRequirements)

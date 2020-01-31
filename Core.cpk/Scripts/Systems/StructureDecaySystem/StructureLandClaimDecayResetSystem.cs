@@ -73,8 +73,9 @@
             }
 
             var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
+            var areasGroupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
             var areas = areasGroupPrivateState.ServerLandClaimsAreas;
-            areasGroupPrivateState.IsFounderDemoPlayer = ServerGetIsFounderDemoPlayer(areas);
+            areasGroupPublicState.IsFounderDemoPlayer = ServerGetIsFounderDemoPlayer(areas);
 
             // check every area in the group
             // if any of them has an online owner, reset the decay timer
@@ -109,7 +110,8 @@
             {
                 var decayDelayDuration = LandClaimSystem.ServerGetDecayDelayDurationForLandClaimAreas(
                     areas,
-                    areasGroupPrivateState.IsFounderDemoPlayer);
+                    areasGroupPublicState.IsFounderDemoPlayer,
+                    out _);
 
                 foreach (var area in areas)
                 {

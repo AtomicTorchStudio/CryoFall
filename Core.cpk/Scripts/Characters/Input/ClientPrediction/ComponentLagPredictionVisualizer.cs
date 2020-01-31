@@ -45,7 +45,7 @@
         {
             get
             {
-                if (instance == null)
+                if (instance is null)
                 {
                     instance = Api.Client.Scene.CreateSceneObject(nameof(ComponentLagPredictionVisualizer))
                                   .AddComponent<ComponentLagPredictionVisualizer>(
@@ -125,7 +125,7 @@
             this.sceneObjectClientPredicted = Client.Scene.CreateSceneObject(this + " - Client prediction");
             this.sceneObjectClientActual = Client.Scene.CreateSceneObject(this + " - Client current");
 
-            CreateVisualizer(this.sceneObjectServer,          Colors.White);
+            CreateVisualizer(this.sceneObjectServer,          Colors.Aqua);
             CreateVisualizer(this.sceneObjectClientPredicted, Colors.Red);
             CreateVisualizer(this.sceneObjectClientActual,    Colors.GreenYellow);
         }
@@ -163,7 +163,7 @@
 
         private static void DestroyInstance()
         {
-            if (instance == null)
+            if (instance is null)
             {
                 return;
             }

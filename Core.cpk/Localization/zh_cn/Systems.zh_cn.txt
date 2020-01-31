@@ -64,7 +64,7 @@ Scripts/Systems/CharacterUnstuck/CharacterUnstuckSystem@NotificationUnstuckSucce
 解除卡死成功
 
 Scripts/Systems/Chat/ChatSystem@ErrorSlowDown_Format:
-You are sending too many messages. Slow down a bit. You can send messages again after {0}.
+您发信息的速度太快了，请慢一点。您能够在{0}再次发送消息。
 
 Scripts/Systems/Chat/ChatSystem@NotificationCurrentPlayerMuted:
 您被服务器管理员禁止参与聊天。您的禁令在：{0}过期
@@ -137,16 +137,16 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooClo
 该区域已被另一个玩家占领，或者它太接近别人的土地。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_BaseSizeExceeded_Format:
-Base size exceeded. Maximum base size in any dimension is {0} cells (approximately {1} land claims stacked together in a row).
+基地尺寸超标。最大基地尺寸长宽皆不可超过{0}格 (约为连续放置{1}个占领土地的距离)。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DemoPlayerLandClaims:
-Cannot combine land claims. In order to prevent abuse/exploits, land claims belonging to demo accounts cannot be combined with other players'.
+无法合并主权建筑。 为防止滥用，来自试玩版玩家的主权建筑无法和其他玩家的合并。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_DepositCooldown:
 资源点才刚刚出现，不能占领。 暂时限制其周围建筑。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_ExceededSafeStorageCapacity:
-Building/upgrading this land claim will result in combined safe storage exceeding the possible capacity in a base. Please remove items from the safe storages of the neighboring land claims and then repeat the action.
+建筑或升级此主权建筑会导致安全储存量超过上限。请将部分道具从临近主权建筑的安全储存中移除，然后再重试此操作。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_IntersectingWithAnotherLandClaim:
 与另一个玩家占领的区域相交

@@ -23,10 +23,15 @@
 
         <ScrollViewer Grid.Row="1"
                       Margin="0,0,0,5"
-                      MaxHeight="150"
+                      MinWidth="150"
                       VerticalAlignment="Top"
+                      HorizontalAlignment="Stretch"
                       CanContentScroll="True">
-            <Grid>
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <TextBlock Text="{Binding EmptyListMessage}"
                            Visibility="{Binding Owners,Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}"
                            FontSize="12"
@@ -37,6 +42,7 @@
                 <ItemsControl ItemsSource="{Binding Owners}"
                               Background="Transparent"
                               Visibility="{Binding Owners,Converter={StaticResource EmptyCollectionToVisibilityConverter}}"
+                              HorizontalAlignment="Stretch"
                               Margin="2,0,0,0">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -81,48 +87,75 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+
+                <ContentControl Grid.Row="1"
+                                Visibility="{Binding Owners,Converter={StaticResource EmptyCollectionToVisibilityConverter}}">
+                    <StackPanel
+                        Visibility="{Binding IsMaxOwnersVisible,Converter={StaticResource BoolToVisibilityConverter}}"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left">
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="{StaticResource BrushColor4}" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="FontSize" Value="10" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMaxOwnersExceeded}" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource BrushColorRed6}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="{Binding Owners.Count}" />
+                        <TextBlock Text="/" />
+                        <TextBlock Text="{Binding MaxOwners}" />
+                    </StackPanel>
+                </ContentControl>
             </Grid>
         </ScrollViewer>
 
-        <StackPanel Grid.Row="2"
-                    Orientation="Vertical"
-                    Visibility="{Binding CanEditOwners, Converter={StaticResource BoolToVisibilityConverter}}">
-            <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Center"
-                        Margin="0,0,0,2">
-                <!-- Text: Add player -->
-                <TextBlock Text="{x:Static loc:CoreStrings.ObjectOwnersList_AddPlayer}"
-                           FontSize="14"
-                           Foreground="White" />
-                <TextBlock Text=": "
-                           FontSize="14"
-                           Foreground="White" />
-            </StackPanel>
+        <Grid Grid.Row="2"
+              Visibility="{Binding CanEditOwners, Converter={StaticResource BoolToVisibilityConverter}}"
+              HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Vertical"
+                        Visibility="{Binding IsMaxOwnersExceeded, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="0,0,0,2">
+                    <!-- Text: Add player -->
+                    <TextBlock Text="{x:Static loc:CoreStrings.ObjectOwnersList_AddPlayer}"
+                               FontSize="14"
+                               Foreground="White" />
+                    <TextBlock Text=": "
+                               FontSize="14"
+                               Foreground="White" />
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding NewOwnerName}"
-                         FontSize="14"
-                         Width="120" />
-                <!-- Text: Add -->
-                <Button Content="{x:Static loc:CoreStrings.Button_Add}"
-                        Command="{Binding CommandAddNewOwner}"
-                        MinWidth="0"
-                        Height="16"
-                        Padding="10,0"
-                        Margin="5,0,0,0" />
-            </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="{Binding NewOwnerName}"
+                             FontSize="14"
+                             Width="120" />
+                    <!-- Text: Add -->
+                    <Button Content="{x:Static loc:CoreStrings.Button_Add}"
+                            Command="{Binding CommandAddNewOwner}"
+                            MinWidth="0"
+                            Height="16"
+                            Padding="10,0"
+                            Margin="5,0,0,0" />
+                </StackPanel>
 
-            <!-- Text: Add party members -->
-            <Button Content="{x:Static loc:CoreStrings.ObjectOwnersList_AddPartyMembers_Button}"
-                    Command="{Binding CommandAddPartyMembers}"
-                    IsEnabled="{Binding HasPartyMembers}"
-                    Margin="0,5,0,0"
-                    Style="{StaticResource DefaultButtonStyle}"
-                    FontSize="13"
-                    MinHeight="0"
-                    Padding="10,3"
-                    MinWidth="70" />
-        </StackPanel>
+                <!-- Text: Add party members -->
+                <Button Content="{x:Static loc:CoreStrings.ObjectOwnersList_AddPartyMembers_Button}"
+                        Command="{Binding CommandAddPartyMembers}"
+                        IsEnabled="{Binding HasPartyMembers}"
+                        Margin="0,5,0,0"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        FontSize="13"
+                        MinHeight="0"
+                        Padding="10,3"
+                        MinWidth="70" />
+            </StackPanel>
+        </Grid>
 
         <!-- Text: Only the owner can add and remove access. -->
         <TextBlock Grid.Row="2"

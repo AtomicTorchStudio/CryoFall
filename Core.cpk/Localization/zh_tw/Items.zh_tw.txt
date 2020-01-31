@@ -344,10 +344,10 @@ Scripts/Items/Equipment/Quilted/ItemQuiltedPants@Name:
 縫製褲
 
 Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Description:
-The ultimate defense. This battle armor will protect you against anything that comes at you, but at a cost of reduced mobility.
+最强防護。這套戰鬥護甲能够保護你不受各種傷害，但是會犧牲部分機動性。
 
 Scripts/Items/Equipment/SuperHeavyArmor/ItemSuperHeavyArmor@Name:
-Super heavy armor
+超重型護甲
 
 Scripts/Items/Equipment/Wood/ItemWoodChestplate@Description:
 需要是發明之母。並不舒適, 但能在早期獲得較高防禦力。
@@ -1209,7 +1209,7 @@ Scripts/Items/Generic/ItemOreCopper@Name:
 銅礦石
 
 Scripts/Items/Generic/ItemOreCopperConcentrate@Name:
-Copper ore concentrate
+銅礦集中區
 
 Scripts/Items/Generic/ItemOreIron@Description:
 能被溶成純鐵。
@@ -1218,7 +1218,7 @@ Scripts/Items/Generic/ItemOreIron@Name:
 鐵礦石
 
 Scripts/Items/Generic/ItemOreIronConcentrate@Name:
-Iron ore concentrate
+鐵礦集中區
 
 Scripts/Items/Generic/ItemOreLithium@Description:
 從熱泉中提取的鋰鹽，能被加工成金屬鋰。

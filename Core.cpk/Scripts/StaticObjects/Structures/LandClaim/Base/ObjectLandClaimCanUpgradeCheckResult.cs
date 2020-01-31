@@ -22,6 +22,12 @@
         ErrorNoActiveInteraction,
 
         [Description(LandClaimSystem.ErrorRaidBlockActionRestricted_Message)]
-        ErrorUnderRaid
+        ErrorUnderRaid,
+
+        [Description(LandClaimSystem.ErrorCannotBuild_DemoPlayerLandClaims)]
+        ErrorAreaIntersectionDemoPlayer,
+
+        [Description(LandClaimSystem.ErrorCannotBuild_ExceededSafeStorageCapacity)]
+        ErrorExceededSafeStorageCapacity
     }
 }

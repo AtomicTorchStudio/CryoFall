@@ -73,7 +73,7 @@ Scripts/ClientOptions/General/GeneralOptionScreenshotResolution@Name:
 Résolution des captures d'écran
 
 Scripts/ClientOptions/General/GeneralOptionTooltipDelay@Name:
-Tooltip delay
+Délai d'affichage[br]des bulles d'aide
 
 Scripts/ClientOptions/General/GeneralOptionUIScale@Name:
 Échelle de l'interface

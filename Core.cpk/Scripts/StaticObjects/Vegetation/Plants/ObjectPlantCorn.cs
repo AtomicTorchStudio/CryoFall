@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
@@ -26,14 +27,31 @@
 
         protected override TimeSpan TimeToMature { get; } = TimeSpan.FromHours(5);
 
+        protected override void ClientRefreshVegetationRendering(
+            IStaticWorldObject worldObject,
+            VegetationClientState clientState,
+            VegetationPublicState publicState)
+        {
+            base.ClientRefreshVegetationRendering(worldObject, clientState, publicState);
+
+            if (publicState.GrowthStage > 0
+                && publicState.GrowthStage < this.GrowthStagesCount)
+            {
+                ClientGrassRenderingHelper.Setup(clientState.Renderer,
+                                                 power: 0.1f,
+                                                 pivotY: 0.2f);
+            }
+            else
+            {
+                // no grass swaying for the just planted and spoiled plant
+                clientState.Renderer.RenderingMaterial = null;
+            }
+        }
+
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
             renderer.DrawOrderOffsetY = 0.6;
-
-            ClientGrassRenderingHelper.Setup(renderer,
-                                             power: 0.1f,
-                                             pivotY: 0.2f);
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

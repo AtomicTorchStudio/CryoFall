@@ -201,7 +201,7 @@
 
                 foreach (var area in this.areas)
                 {
-                    var areaBounds = LandClaimSystem.SharedCalculateLandClaimAreaBounds(area);
+                    var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area);
                     if (this.isGraceAreaRenderer)
                     {
                         var publicState = LandClaimArea.GetPublicState(area);

@@ -108,7 +108,7 @@ UI/CoreStrings@Chat_MessageMenu_Unblock:
 解除遮罩
 
 UI/CoreStrings@Checkbox_DoNotAskAgain:
-Do not ask me again
+不要再次提示
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 此為純裝飾建築。
@@ -207,19 +207,19 @@ UI/CoreStrings@DepositCapacityStats_Title:
 礦藏儲量
 
 UI/CoreStrings@Duration_Instant:
-Instant
+瞬間
 
 UI/CoreStrings@Duration_Quick:
-Quick
+快速
 
 UI/CoreStrings@Duration_Slow:
-Slow
+慢速
 
 UI/CoreStrings@Duration_VeryQuick:
-Very quick
+非常快
 
 UI/CoreStrings@Duration_VerySlow:
-Very slow
+非常慢
 
 UI/CoreStrings@EnergyUnitAbbreviation:
 能量
@@ -387,7 +387,7 @@ UI/CoreStrings@MainMenu_TabCurrentGame:
 當前遊戲
 
 UI/CoreStrings@MainMenu_TabExtras:
-EXTRAS
+額外內容
 
 UI/CoreStrings@MainMenu_TabHome:
 主頁
@@ -402,7 +402,7 @@ UI/CoreStrings@MainMenu_TabServers:
 伺服器
 
 UI/CoreStrings@MainMenu_TabUpdates:
-UPDATES HISTORY
+更新歷史
 
 UI/CoreStrings@MainMenuOverlay_Button_LinkAccount:
 連結帳戶
@@ -1341,10 +1341,10 @@ UI/CoreStrings@WindowTechnologies_TechGroupUnlock:
 解鎖
 
 UI/CoreStrings@WindowTechnologies_TechTreeChanged:
-`It appears the technologies tree has been changed.
-[br]This could be due to a game update or third-party changes (in the case of a community or modded server).
-[br]Your researched technologies were reset and all learning points (LP) spent were refunded, so you can redistribute the points again.
-[br]Enjoy the game!`
+`科技樹已出現改動。
+[br]這可能是由於遊戲更新或協力廠商改動（例如社區服務器安裝了mod）。
+[br]你的所有已研究科技和學習點數已被重置，可以再次分配。
+[br]祝您遊戲愉快！`
 
 UI/CoreStrings@WindowTechnologies_TitlePrimaryTechnologies:
 主要科技
@@ -1460,16 +1460,16 @@ UI/CoreStrings@WorldMapMarkRaid_Tooltip:
 [br]你的基地正遭受攻擊！`
 
 UI/CoreStrings@WorldMapMarkResourceLithium_Infinite_Tooltip:
-`[b]Infinite geothermal spring[/b]
-[br]Public lithium source.`
+`[b]無限地熱泉[/b]
+[br]公共鋰鹽採集點。`
 
 UI/CoreStrings@WorldMapMarkResourceLithium_Tooltip:
 `[b]地熱泉[/b]
 [br]可採集鋰鹽。`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Infinite_Tooltip:
-`[b]Infinite oil seep[/b]
-[br]Public raw petroleum oil source.`
+`[b]無限天然油田[/b]
+[br]公共原油採集點。`
 
 UI/CoreStrings@WorldMapMarkResourceOil_Tooltip:
 `[b]天然油田[/b]
@@ -1702,9 +1702,9 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@AccessLis
 訪問
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoDemoVersion:
-`Please note: This land claim was [b]founded by a demo version player[/b].
-[br]Because of this, the delay before the decay starts as well as the decay duration itself are [b]shortened[/b].
-[br]When a demo player purchases the game, those durations revert to their standard values.`
+`請注意：此主權建築[b]由一個試玩版玩家建造[/b]。
+[br]腐化開始倒數計時和腐化倒數計時都將[b]縮短[/b].
+[br]當試玩版玩家購買遊戲後，這些倒數計時將恢復到他們的標準值。`
 
 UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfoFormat:
 `廢棄建築物會在一段時間後開始腐朽

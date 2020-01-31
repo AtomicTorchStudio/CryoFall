@@ -410,7 +410,7 @@
                                     <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
                                     <Setter Property="FontSize" Value="13" />
                                     <Setter Property="FontWeight" Value="Bold" />
-                                    <Setter Property="Foreground" Value="{StaticResource BrushColorAlt4}" />
+                                    <Setter Property="Foreground" Value="{StaticResource BrushColorAlt5}" />
                                 </Style>
                             </StackPanel.Resources>
                             <!-- Text: Research cost -->

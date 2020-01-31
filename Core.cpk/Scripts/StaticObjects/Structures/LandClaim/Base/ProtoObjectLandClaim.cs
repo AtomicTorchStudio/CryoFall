@@ -245,9 +245,10 @@
                 }
             }
 
-            DialogWindow.ShowMessage(DialogCannotUpgrade,
-                                     text: checkResult.GetDescription(),
-                                     closeByEscapeKey: true);
+            DialogWindow.ShowDialog(DialogCannotUpgrade,
+                                    text: checkResult.GetDescription(),
+                                    textAlignment: TextAlignment.Left,
+                                    closeByEscapeKey: true);
         }
 
         public sealed override void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter)
@@ -410,6 +411,24 @@
                         character))
                 {
                     result = ObjectLandClaimCanUpgradeCheckResult.ErrorAreaIntersection;
+                }
+
+                if (!LandClaimSystem.SharedCheckNoLandClaimByDemoPlayers(
+                        protoUpgradedLandClaim,
+                        landClaimCenterTilePosition,
+                        character,
+                        exceptAreasGroup: LandClaimSystem.SharedGetLandClaimAreasGroup(currentLandClaimArea)))
+                {
+                    result = ObjectLandClaimCanUpgradeCheckResult.ErrorAreaIntersectionDemoPlayer;
+                }
+
+                if (IsServer
+                    && !LandClaimSystem.ServerCheckFutureBaseWillExceedSafeStorageCapacity(
+                        protoUpgradedLandClaim,
+                        landClaimCenterTilePosition,
+                        character))
+                {
+                    result = ObjectLandClaimCanUpgradeCheckResult.ErrorExceededSafeStorageCapacity;
                 }
             }
 
@@ -600,11 +619,14 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersectionsWithDemoPlayers);
             tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersections);
-            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimsNearby);
+            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimsTooClose);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimAmountLimit);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimDepositRequireXenogeology);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimDepositCooldown);
+            tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimBaseSizeLimitNotExceeded);
+            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimSafeStorageCapacityNotExceeded);
             tileRequirements.Add(ObjectMineralPragmiumSource.ValidatorCheckNoPragmiumSourceNearbyOnPvE);
             this.PrepareLandClaimConstructionConfig(tileRequirements, build, repair, upgrade, out category);
 

@@ -84,18 +84,12 @@
             set => ClientComponentPhysicsSpaceVisualizer.IsVisualizerEnabled = value;
         }
 
-        public bool IsPostEffectsCheckBoxVisible
-        {
-            get => Api.IsEditor
-                   || ServerOperatorSystem.ClientIsOperator();
-        }
-
         public bool IsPostEffectsEnabled
         {
             get => ClientPostEffectsManager.IsPostEffectsEnabled;
             set
             {
-                if (!this.IsPostEffectsCheckBoxVisible)
+                if (!this.IsServerOperator)
                 {
                     value = true;
                 }
@@ -103,6 +97,10 @@
                 ClientPostEffectsManager.IsPostEffectsEnabled = value;
             }
         }
+
+        public bool IsServerOperator
+            => Api.IsEditor
+               || ServerOperatorSystem.ClientIsOperator();
 
         public bool IsStatsOverlayEnabled
         {

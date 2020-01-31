@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeFlintlockPistol>();
 
-            config.SetRequiredNode<TechNodeMusket>();
+            config.SetRequiredNode<TechNodePaperCartridge>();
         }
     }
 }

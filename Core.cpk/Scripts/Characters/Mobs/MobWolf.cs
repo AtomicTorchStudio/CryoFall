@@ -66,13 +66,12 @@
         protected override void ServerUpdateMob(ServerUpdateData data)
         {
             var character = data.GameObject;
-            var currentStats = data.PublicState.CurrentStats;
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
-                isRetreating: currentStats.HealthCurrent < currentStats.HealthMax / 3,
+                isRetreating: false,
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
-                distanceRetreat: 7,
+                distanceRetreat: 0,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 5,
                 movementDirection: out var movementDirection,

@@ -36,6 +36,9 @@
             = new NetworkSyncList<TechGroup>();
 
         [SyncToClient]
+        public bool IsTechTreeChanged { get; set; }
+
+        [SyncToClient]
         public ushort LearningPoints { get; private set; }
 
         /// <summary>
@@ -131,6 +134,14 @@
             TechnologiesSystem.ServerInitCharacterTechnologies(this);
         }
 
+        public void ServerRefundLearningPoints(int lpToRefund)
+        {
+            var pointsToAdd = Math.Max(0, lpToRefund);
+            this.LearningPoints = (ushort)Math.Min(ushort.MaxValue,
+                                                   this.LearningPoints + pointsToAdd);
+            Api.Logger.Important($"Learning points refunded: +{pointsToAdd} (total: {this.LearningPoints}) for {this.Character}");
+        }
+
         /// <summary>
         /// Remove group and all nodes of this group.
         /// </summary>
@@ -191,7 +202,7 @@
             }
         }
 
-        public void ServerReset()
+        public void ServerRemoveAllTechnologies()
         {
             if (this.Groups.Count > 0)
             {

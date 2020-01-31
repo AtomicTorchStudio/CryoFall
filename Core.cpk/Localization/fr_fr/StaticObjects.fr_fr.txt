@@ -95,10 +95,10 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 Nappe de pétrole infinie
 
 Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
-The resource deposit has only just appeared and cannot be claimed or destroyed yet.
+Ce gisement de ressources vient tout juste d'apparaître. Il ne peut pas encore être revendiqué ou détruit.
 
 Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
-No damage dealt to {0}
+Aucun dommage infligé à {0}
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 Charge de mine
@@ -597,10 +597,10 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 Petite lampe de sol
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
-Ideal for large bases or military outposts, this tall projector tower can ensure perfect visibility in a wide area.
+Idéale pour les grandes bases et les avant-postes militaires, cette tour assure une visibilité parfaite dans une large zone.
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
-Projector tower
+Tour d'éclairage
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 Sert de source d'éclairage de base, et surtout, permet de préparer des recettes simples, comme de la viande braisée.
@@ -648,10 +648,10 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced
 Extracteur de sels de lithium amélioré
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
-This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.
+Cette usine de traitement broie les minerais bruts et trie les résidus, augmentant le rendement global de fonte.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
-Mineral processing plant
+Usine de traitement du minerai
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 Peut être utilisé pour convertir tout type de matière organique en compost, un excellent engrais naturel.
@@ -681,10 +681,10 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 Four de cuisson
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
-Electric stove allows for faster and more convenient preparation of food.
+Un four électrique permettant de cuisiner de manière plus rapide et plus efficace.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
-Electric cooking stove
+Four de cuisson électrique
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 Un simple collecteur d'eau, conçu pour récolter de petites quantités d'eau. Ne fonctionne pas vraiment dans les déserts ou dans les coins rocailleux...
@@ -720,10 +720,10 @@ Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 Station médicale
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
-Defensive structure that projects psionic field of high intensity while active.
+Une structure défensive qui projette un champ psionique de forte intensité lorsqu'elle est active.
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
-Psionic field generator
+Générateur de champ psionique
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 Peut être utilisée pour recharger tout équipement électronique portable comme les batteries ou les lampes de poche.

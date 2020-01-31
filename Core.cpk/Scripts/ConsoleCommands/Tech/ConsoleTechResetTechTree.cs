@@ -2,20 +2,21 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
+    using AtomicTorch.CBND.CoreMod.Systems.Technologies;
     using AtomicTorch.CBND.GameApi.Data.Characters;
 
-    public class ConsoleTechRemoveAll : BaseConsoleCommand
+    public class ConsoleTechResetTechTree : BaseConsoleCommand
     {
-        public override string Description => "Remove all tech groups/nodes from a player.";
+        public override string Description => "Reset player's tech tree and refund all the LP.";
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
 
-        public override string Name => "tech.removeAll";
+        public override string Name => "tech.resetTechTreeAndRefundLP";
 
         public string Execute([CurrentCharacterIfNull] ICharacter player = null)
         {
             var technologies = player.SharedGetTechnologies();
-            technologies.ServerRemoveAllTechnologies();
+            TechnologiesSystem.ServerResetTechTreeAndRefundLearningPoints(technologies);
             return null;
         }
     }

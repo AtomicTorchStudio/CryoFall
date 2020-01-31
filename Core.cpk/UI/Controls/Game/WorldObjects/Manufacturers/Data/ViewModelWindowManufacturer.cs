@@ -71,9 +71,7 @@
         public string Title => this.WorldObjectManufacturer.ProtoGameObject.Name;
 
         public VerticalAlignment VerticalAlignment
-            => this.ViewModelFuelBurningState != null
-                   ? VerticalAlignment.Top
-                   : VerticalAlignment.Center;
+            => VerticalAlignment.Center;
 
         public ViewModelBurningFuel ViewModelBurningFuel { get; }
 

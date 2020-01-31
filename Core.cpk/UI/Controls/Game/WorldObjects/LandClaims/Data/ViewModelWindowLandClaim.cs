@@ -68,7 +68,9 @@
                 emptyListMessage: AccessListEmpty,
                 canEditOwners: canEditOwners,
                 // exclude founder name
-                ownersListFilter: name => name != this.FounderName);
+                ownersListFilter: name => name != this.FounderName,
+                maxOwnersListLength: LandClaimSystemConstants.SharedLandClaimOwnersMax,
+                displayedOwnersNumberAdjustment: -1);
 
             this.protoObjectLandClaim =
                 (IProtoObjectLandClaim)this.landClaimWorldObject.ProtoStaticWorldObject;
@@ -201,15 +203,21 @@
                 return;
             }
 
+            var decayDelayDurationText = ClientTimeFormatHelper.FormatTimeDuration(
+                TimeSpan.FromSeconds(result.DecayDelayDuration),
+                trimRemainder: true);
+
+            var decayDurationText = ClientTimeFormatHelper.FormatTimeDuration(
+                TimeSpan.FromSeconds(result.DecayDuration),
+                trimRemainder: true);
+
+            var destructionTimeout =
+                this.ViewModelProtoLandClaimInfoCurrent.CurrentStructureLandClaimDestructionTimeout;
+
             var text = string.Format(DecayInfoFormat,
-                                     ClientTimeFormatHelper.FormatTimeDuration(
-                                         TimeSpan.FromSeconds(result.DecayDelayDuration),
-                                         trimRemainder: true),
-                                     ClientTimeFormatHelper.FormatTimeDuration(
-                                         TimeSpan.FromSeconds(result.DecayDuration),
-                                         trimRemainder: true),
-                                     this.ViewModelProtoLandClaimInfoCurrent
-                                         .CurrentStructureLandClaimDestructionTimeout);
+                                     decayDelayDurationText,
+                                     decayDurationText,
+                                     destructionTimeout);
 
             if (result.IsFounderDemoPlayer)
             {

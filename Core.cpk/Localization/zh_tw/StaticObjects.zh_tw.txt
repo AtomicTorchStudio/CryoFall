@@ -95,10 +95,10 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 無限油田
 
 Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
-The resource deposit has only just appeared and cannot be claimed or destroyed yet.
+資源點剛剛出現，無法被佔領或摧毀。
 
 Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
-No damage dealt to {0}
+對{0}無法造成傷害
 
 Scripts/StaticObjects/Explosives/Bombs/ObjectBombMining@Name:
 採礦炸藥
@@ -597,10 +597,10 @@ Scripts/StaticObjects/Structures/Lights/ObjectLightFloorLampSmall@Name:
 小落地燈
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Description:
-Ideal for large bases or military outposts, this tall projector tower can ensure perfect visibility in a wide area.
+被大型基地或軍事哨所使用，這座高塔可以確保大範圍內的視野。
 
 Scripts/StaticObjects/Structures/Lights/ObjectLightProjectorTower@Name:
-Projector tower
+投射塔
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectCampfire@Description:
 作為基本光源使用，更重要的是它可以烹飪簡單的食譜，如烤肉。
@@ -648,10 +648,10 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractorAdvanced
 高級鋰鹽提取器
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Description:
-This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.
+這個處理廠能够磨碎礦石原料並歸類分揀，新增冶煉總體產量。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMineralProcessingPlant@Name:
-Mineral processing plant
+礦物加工廠
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Description:
 可用於將任何種類的有機物質轉化為覆土，一種有機肥料。
@@ -681,10 +681,10 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Name:
 灶具
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Description:
-Electric stove allows for faster and more convenient preparation of food.
+電爐讓您能够更快、更方便的烹飪食物。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStoveElectric@Name:
-Electric cooking stove
+電爐
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWaterCollector@Description:
 簡單的集水器設計用於收集少量水。在沙漠和多石地區不起作用...
@@ -720,10 +720,10 @@ Scripts/StaticObjects/Structures/Misc/ObjectMedicalStation@Name:
 醫療站
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Description:
-Defensive structure that projects psionic field of high intensity while active.
+防禦建築，啟動時能投射出高强靈能場。
 
 Scripts/StaticObjects/Structures/Misc/ObjectPsionicFieldGenerator@Name:
-Psionic field generator
+靈場發生器
 
 Scripts/StaticObjects/Structures/Misc/ObjectRechargingStation@Description:
 可以用於為任何可擕式電子設備充電，例如移動電源或手電筒。

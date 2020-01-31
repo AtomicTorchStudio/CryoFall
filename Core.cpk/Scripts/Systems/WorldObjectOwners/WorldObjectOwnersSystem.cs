@@ -4,8 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -18,6 +20,9 @@
 
     public class WorldObjectOwnersSystem : ProtoSystem<WorldObjectOwnersSystem>
     {
+        public const string DialogCannotSetOwners_AccessListSizeLimitExceeded
+            = "Access list size limit exceeded.";
+
         public const string DialogCannotSetOwners_MessageCannotEdit
             = "You cannot edit the owners list.";
 
@@ -218,6 +223,11 @@
                 .Contains(who.Name);
         }
 
+        public byte ServerRemote_GetDoorOwnersMax()
+        {
+            return StructureConstants.SharedDoorOwnersMax;
+        }
+
         protected override void PrepareSystem()
         {
             if (IsServer)
@@ -279,6 +289,11 @@
 
         private string ServerRemote_SetOwners(IWorldObject worldObject, List<string> newOwners)
         {
+            if (newOwners.Count > LandClaimSystemConstants.SharedLandClaimOwnersMax)
+            {
+                return DialogCannotSetOwners_AccessListSizeLimitExceeded;
+            }
+
             var owner = ServerRemoteContext.Character;
             var currentOwners = GetPrivateState(worldObject).Owners;
             return ServerSetOwners(worldObject, newOwners, currentOwners, owner);

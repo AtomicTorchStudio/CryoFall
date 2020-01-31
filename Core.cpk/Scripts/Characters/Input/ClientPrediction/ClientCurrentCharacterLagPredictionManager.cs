@@ -61,6 +61,8 @@
 
         private static Vector2D? previousServerPosition;
 
+        private const bool IsLagPredictionCorrectionEnabled = true;
+
         static ClientCurrentCharacterLagPredictionManager()
         {
             SessionStorage = Api.Client.Storage.GetSessionStorage(nameof(ClientCurrentCharacterLagPredictionManager));
@@ -90,13 +92,15 @@
                 if (!isLagPredictionEnabled)
                 {
                     CurrentCharacterInputHistory.Instance.Clear();
+                    lastIsInterpolatingIdlePosition = false;
                 }
 
                 IsLagPredictionEnabledChanged?.Invoke();
             }
         }
 
-        public static void UpdatePosition(bool forceReset, IDynamicWorldObject dynamicWorldObject)
+        public static void UpdatePosition(bool forceReset, 
+                                          IDynamicWorldObject dynamicWorldObject)
         {
             var currentPlayerCharacter = ClientCurrentCharacterHelper.Character;
             if (currentPlayerCharacter is null)
@@ -104,10 +108,10 @@
                 return;
             }
 
+            // we need the latest available confirmed server position
             var serverPosition = World.GetUninterpolatedPosition(
                 dynamicWorldObject,
-                // we need the position at time on edge of interpolation (latest available one)
-                Game.ServerFrameTimeApproximated + Game.PhysicsInterpolationInterval,
+                serverFrameTime: double.MaxValue,
                 out var snapshotServerTimestamp);
 
             if (!forceReset
@@ -139,6 +143,8 @@
 
             // TODO: actually we should do this every frame in client update method (but after simulation physics in client world)
             var clientPosition = dynamicWorldObject.Position;
+
+            // predicted position is including the accumulated movement deltas since the snapshot timestamp
             var predictedPosition = serverPosition
                                     + inputHistory.GetClientMovementDelta(snapshotServerTimestamp);
 
@@ -148,6 +154,17 @@
             visualizer.UpdateCurrentPredictedPosition(predictedPosition);
 
             var predictionErrorSqr = (clientPosition - predictedPosition).LengthSquared;
+
+#pragma warning disable 162
+            // ReSharper disable HeuristicUnreachableCode
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (!IsLagPredictionCorrectionEnabled)
+            {
+                predictionErrorSqr = 0;
+            }
+            // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore 162
+
             if (predictionErrorSqr
                 < GetPredictionErrorToleranceSqr(currentPlayerCharacter))
             {
@@ -155,6 +172,8 @@
                 lastIsInterpolatingIdlePosition = false;
                 return;
             }
+
+            //Api.Logger.Error("Prediction error: " + Math.Sqrt(predictionErrorSqr).ToString("F3"));
 
             // too big prediction error
             Vector2D correctedClientPosition;

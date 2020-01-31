@@ -324,10 +324,22 @@
         private static void TryPlayFleeSound(ICharacter characterNpc, CharacterMobPrivateState characterNpcPrivateState)
         {
             var serverTime = Api.Server.Game.FrameTime;
-            if (serverTime - characterNpcPrivateState.LastFleeSoundTime < FleeSoundRepeatInterval)
+            var timeSinceLastFleeSound = serverTime - characterNpcPrivateState.LastFleeSoundTime;
+            if (timeSinceLastFleeSound < FleeSoundRepeatInterval)
             {
                 // already played the flee sound recently
                 return;
+            }
+
+            if (timeSinceLastFleeSound < 2 * FleeSoundRepeatInterval)
+            {
+                // played the flee sound quite recently
+                // we don't want to play it like it's a cuckoo clock (exactly every X seconds)
+                // so let's apply some randomization here
+                if (RandomHelper.Next(0, 5) != 0)
+                {
+                    return;
+                }
             }
 
             characterNpcPrivateState.LastFleeSoundTime = serverTime;

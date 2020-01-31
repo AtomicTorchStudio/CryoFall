@@ -348,13 +348,13 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftAKnifeAndKillAnyCreature@Name:
 Fabriquer un couteau et tuer une créature
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyChestplate:
-Equip better chestplate
+Vous équiper d'un meilleur plastron
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyHelmet:
-Equip better helmet
+Vous équiper d'un meilleur casque
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@EquipAnyLegsProtection:
-Equip better leg armor
+Vous équiper de meilleures jambières
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftAndEquipBetterArmor@Description:
 Il est temps de mieux se protéger.
@@ -386,13 +386,13 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftIronTools@Name:
 Fabriquer de meilleurs outils
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftMusketOrFlintlockPistol:
-Craft musket or flintlock pistol
+Fabriquer un mousquet ou un pistolet à silex
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@CraftPaperCartridge:
-Craft paper cartridge
+Fabriquer une cartouche en papier
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@FireTheWeapon:
-Fire the weapon
+Tirer avec l'arme
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Description:
 Écraser des crânes à grands coups de massue est efficace, mais il est parfois utile de pouvoir tirer à distance, notamment quand vos adversaires commencent à devenir coriaces.

@@ -158,7 +158,7 @@
                 return;
             }
 
-            SystemVegetation.ClientRefreshVegetationRendering(this, data.GameObject, clientState, publicState);
+            this.ClientRefreshVegetationRendering(data.GameObject, clientState, publicState);
             clientState.LastHasHarvest = publicState.HasHarvest;
         }
 
