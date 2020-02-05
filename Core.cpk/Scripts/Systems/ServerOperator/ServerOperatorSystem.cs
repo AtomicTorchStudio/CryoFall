@@ -70,7 +70,7 @@
 
         public static bool SharedIsOperator(ICharacter character)
         {
-            if (character == null)
+            if (character is null)
             {
                 return false;
             }
@@ -101,15 +101,14 @@
                 $"Server operator mode is changed: \"{name}\" - operator mode is {(isOperator ? "enabled" : "disabled")}");
 
             var character = Server.Characters.GetPlayerCharacter(name);
-            if (character == null)
+            if (character is null)
             {
                 return;
             }
 
             // notify that player
-            Instance.CallClient(
-                character,
-                _ => _.ClientRemote_SetCurrentUserIsOperator(isOperator));
+            Instance.CallClient(character,
+                                _ => _.ClientRemote_SetCurrentUserIsOperator(isOperator));
         }
 
         private void ClientRemote_SetCurrentUserIsOperator(bool isOperator)
@@ -132,7 +131,8 @@
             }
 
             var isOperator = SharedIsOperator(character);
-            this.CallClient(character, _ => _.ClientRemote_SetCurrentUserIsOperator(isOperator));
+            this.CallClient(character,
+                            _ => _.ClientRemote_SetCurrentUserIsOperator(isOperator));
         }
     }
 }

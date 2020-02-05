@@ -57,6 +57,11 @@
             this.stageStructureAddValue = this.structurePointsMax / this.Config.StagesCount;
         }
 
+        public double StructurePointsMax
+        {
+            get => this.structurePointsMax;
+        }
+
         public override IWorldObject TargetWorldObject => this.WorldObject;
 
         public bool CheckIsNeeded()
@@ -85,6 +90,14 @@
             if (this.currentStageTimeRemainsSeconds <= 0)
             {
                 this.SharedOnStageCompleted();
+            }
+            else if (Api.IsClient)
+            {
+                if (this.ObjectPublicState.StructurePointsCurrent >= this.structurePointsMax)
+                {
+                    // apparently the building finished construction/repair before the client simulation was complete
+                    this.AbortAction();
+                }
             }
 
             this.UpdateProgress();
@@ -133,6 +146,7 @@
             var durationSeconds = this.Config.StageDurationSeconds;
             durationSeconds /= this.ProtoItemConstructionTool.ConstructionSpeedMultiplier;
             durationSeconds /= character.SharedGetFinalStatMultiplier(StatName.BuildingSpeed);
+            durationSeconds = Api.Shared.RoundDurationByServerFrameDuration(durationSeconds);
 
             if (isFirstStage && Api.IsClient)
             {
@@ -170,7 +184,8 @@
             this.currentStageDurationSeconds = this.CalculateStageDurationSeconds(this.Character, isFirstStage: false);
             this.currentStageTimeRemainsSeconds += this.currentStageDurationSeconds;
 
-            var newStructurePoints = this.ObjectPublicState.StructurePointsCurrent
+            var currentStructurePoints = this.ObjectPublicState.StructurePointsCurrent;
+            var newStructurePoints = currentStructurePoints
                                      + this.stageStructureAddValue;
 
             // Please note: as we're using floating number (StructurePointsCurrent) to track the construction progress
@@ -178,7 +193,10 @@
             // The tolerance is also needed to handle the case when the blueprint was damaged only slightly.
             var completionTolerance = this.stageStructureAddValue / 2.0;
 
-            if (newStructurePoints + completionTolerance < this.structurePointsMax)
+            // Please note: client will simply always construct until finished
+            // Server will keep building stages until the completion tolerance reached.
+            if ((Api.IsClient && currentStructurePoints < this.structurePointsMax)
+                || (Api.IsServer && newStructurePoints + completionTolerance < this.structurePointsMax))
             {
                 // repairing/building is still possible - more stages are available
                 if (Api.IsServer)
@@ -230,13 +248,6 @@
                     this.CharacterPrivateState.Skills.ServerAddSkillExperience<SkillBuilding>(
                         SkillBuilding.ExperienceAddWhenRepairFinished);
                 }
-            }
-            else
-            {
-                // play success sound
-                Api.GetProtoEntity<ObjectConstructionSite>()
-                   .SharedGetObjectSoundPreset()
-                   .PlaySound(ObjectSound.InteractSuccess);
             }
 
             this.SetCompleted(isCancelled: false);

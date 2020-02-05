@@ -133,9 +133,10 @@
                                                  : Visibility.Collapsed;
 
                 // uncomment to test the long list
-                //list = list.Concat(list).ToList();
-                //list = list.Concat(list).ToList();
-                //list = list.Concat(list).ToList();
+                //for (var i = 0; i < 3; i++)
+                //{
+                //    list = list.Concat(list).ToList();
+                //}
 
                 this.Members = list.Select(
                                        name => new ViewModelPartyMember(

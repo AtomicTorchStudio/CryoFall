@@ -84,6 +84,21 @@
             }
         }
 
+        public bool IsSortOrderReversed
+        {
+            get => this.controller.IsSortOrderReversed;
+            set
+            {
+                if (this.controller.IsSortOrderReversed == value)
+                {
+                    return;
+                }
+
+                this.controller.IsSortOrderReversed = value;
+                this.NotifyThisPropertyChanged();
+            }
+        }
+
         public Visibility ListEmptyVisibility { get; set; } = Visibility.Collapsed;
 
         public Visibility ListNotEmptyVisibility { get; set; } = Visibility.Visible;
@@ -181,6 +196,21 @@
 
                 var sortBy = ViewModelServersListSortType.AllSortTypes[value];
                 this.controller.SortType = sortBy;
+                this.NotifyThisPropertyChanged();
+            }
+        }
+
+        public ServersListSortType SortType
+        {
+            get => this.controller.SortType;
+            set
+            {
+                if (this.controller.SortType == value)
+                {
+                    return;
+                }
+
+                this.controller.SortType = value;
                 this.NotifyThisPropertyChanged();
             }
         }

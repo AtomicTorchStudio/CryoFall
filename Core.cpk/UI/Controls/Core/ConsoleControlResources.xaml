@@ -179,9 +179,9 @@
                                     <Path x:Name="path1" Data="M8,0 L10,2 2,10 0,8 z" Stretch="Fill"
                                           Fill="{TemplateBinding Foreground}" />
                                 </Grid>
-                                <Rectangle x:Name="BackgroundDisabled" Margin="2"
+                                <!--Rectangle x:Name="BackgroundDisabled" Margin="2"
                                            Fill="{StaticResource DisabledBackground}"
-                                           StrokeThickness="0" Visibility="Collapsed" />
+                                           StrokeThickness="0" Visibility="Collapsed" />-->
                             </Grid>
                         </BulletDecorator.Bullet>
                         <ContentPresenter Margin="{TemplateBinding Padding}"
@@ -190,10 +190,9 @@
                                           UseLayoutRounding="{TemplateBinding UseLayoutRounding}" />
                     </BulletDecorator>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="{StaticResource DisabledBackground}" />
+                        <!--<Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="BackgroundDisabled" Property="Visibility" Value="Visible" />
-                        </Trigger>
+                        </Trigger>-->
                         <Trigger Property="IsChecked" Value="false">
                             <Setter TargetName="ToggleCheck" Property="Visibility" Value="Collapsed" />
                         </Trigger>
@@ -213,6 +212,9 @@
             <Trigger Property="IsPressed" Value="true">
                 <Setter Property="Background" Value="{StaticResource ButtonBackgroundMouseOverHighlight}" />
                 <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderMouseOver}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="Red" />
             </Trigger>
         </Style.Triggers>
     </Style>

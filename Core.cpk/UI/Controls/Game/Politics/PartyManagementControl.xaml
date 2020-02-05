@@ -37,8 +37,7 @@
             </Grid.RowDefinitions>
 
             <!-- Party members list -->
-            <ScrollViewer MaxHeight="230"
-                          VerticalAlignment="Top"
+            <ScrollViewer VerticalAlignment="Top"
                           CanContentScroll="True">
                 <Grid>
                     <ItemsControl ItemsSource="{Binding Members}"

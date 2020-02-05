@@ -28,6 +28,12 @@
             data.ClientState.Renderer.DrawOrder = DrawOrder.FloorCharredGround + 1;
         }
 
+        protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
+        {
+            base.ClientSetupRenderer(renderer);
+            renderer.PositionOffset += (0, 0.25);
+        }
+
         protected override void CreateLayout(StaticObjectLayout layout)
         {
             layout.Setup("#",
@@ -60,7 +66,7 @@
             // but has melee weapon collider - could be destroyed with a melee weapon
             data.PhysicsBody
                 .AddShapeRectangle(size: (0.3, 1),   offset: (0.35, 0.5), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.8, 1.7), offset: (0.1, 0.15), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.8, 1.5), offset: (0.1, 0.3), group: CollisionGroups.ClickArea);
         }
     }
 }

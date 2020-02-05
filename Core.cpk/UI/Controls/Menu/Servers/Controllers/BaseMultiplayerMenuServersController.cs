@@ -10,13 +10,20 @@
 
     public abstract class BaseMultiplayerMenuServersController : IDisposable
     {
+        private const string ServerOfflineTitle
+            = "[" + ServerViewModelsProvider.InfoServerOfflineTitle + "]";
+
         protected readonly List<(ServerAddress server, ViewModelServerInfoListEntry viewModel)>
             ServerAddressToServerViewModel =
                 new List<(ServerAddress, ViewModelServerInfoListEntry)>();
 
         protected readonly ServerViewModelsProvider ServerViewModelsProvider;
 
+        private ServersListSortType defaultSortType;
+
         private bool isListAvailable;
+
+        private bool isSortOrderReversed;
 
         private ServersListSortType sortType;
 
@@ -28,6 +35,16 @@
         public event Action IsListAvailableChanged;
 
         public event Action ListChanged;
+
+        public ServersListSortType DefaultSortType
+        {
+            get => this.defaultSortType;
+            set
+            {
+                this.defaultSortType = value;
+                this.SortType = value;
+            }
+        }
 
         public bool IsClearingNow { get; set; }
 
@@ -46,6 +63,21 @@
             }
         }
 
+        public bool IsSortOrderReversed
+        {
+            get => this.isSortOrderReversed;
+            set
+            {
+                if (this.IsSortOrderReversed == value)
+                {
+                    return;
+                }
+
+                this.isSortOrderReversed = value;
+                this.SortEntries();
+            }
+        }
+
         public SuperObservableCollection<ViewModelServerInfoListEntry> ServersCollection { get; }
             = new SuperObservableCollection<ViewModelServerInfoListEntry>();
 
@@ -60,7 +92,7 @@
                 }
 
                 this.sortType = value;
-                this.FillServersList();
+                this.SortEntries();
             }
         }
 
@@ -105,38 +137,66 @@
         protected IEnumerable<ViewModelServerInfoListEntry> GetOrderedList()
         {
             var entries = this.ServerAddressToServerViewModel.Select(s => s.viewModel);
+            if (this.sortType == ServersListSortType.None)
+            {
+                return entries; // return as is (it could be a recent/history list)
+            }
+
+            if (this.sortType == ServersListSortType.Featured)
+            {
+                entries = ReverseIfRequested(
+                    entries.OrderBy(s => !s.ViewModelServerInfo.IsOfficial) // official first
+                           .ThenBy(s => !s.ViewModelServerInfo.IsFeatured)  // then featured
+                           .ThenBy(s => s.ViewModelServerInfo.Title));
+
+                // apply further sorting to return incompatible servers last
+                return entries.OrderBy(s => s.ViewModelServerInfo.IsCompatible == false);
+            }
+
             return this.sortType switch
             {
-                ServersListSortType.None => entries, // return as is (it could be a recent/history list)
+                ServersListSortType.Title
+                => ReverseIfRequested(entries.Where(s => !IsEmptyOrPlaceholderServerTitle(s))
+                                             .OrderBy(s => s.ViewModelServerInfo.Title))
+                    .Concat(entries.Where(IsEmptyOrPlaceholderServerTitle)
+                                   .OrderBy(p => p.ViewModelServerInfo.Address)),
 
-                ServersListSortType.Featured => entries
-                                                // official first (yes, it should use negated bool flag)
-                                                .OrderBy(s => !s.ViewModelServerInfo.IsOfficial)
-                                                .ThenBy(s => !s.ViewModelServerInfo.IsFeatured)
-                                                .ThenBy(s => s.ViewModelServerInfo.Title),
+                ServersListSortType.Ping
+                => ReverseIfRequested(
+                        entries.Where(v => v.ViewModelServerInfo.Ping.HasValue)
+                               .OrderBy(s => s.ViewModelServerInfo.Ping.Value)
+                               .ThenBy(s => s.ViewModelServerInfo.Title))
+                    .Concat(entries.Where(s => !s.ViewModelServerInfo.Ping.HasValue)
+                                   .OrderBy(s => s.ViewModelServerInfo.Title)),
 
-                ServersListSortType.Title => entries.Where(s => !string.IsNullOrEmpty(s.ViewModelServerInfo.Title))
-                                                    .OrderBy(s => s.ViewModelServerInfo.Title)
-                                                    .Concat(entries
-                                                            .Where(s => string.IsNullOrEmpty(
-                                                                       s.ViewModelServerInfo.Title))
-                                                            .OrderBy(p => p.ViewModelServerInfo.Address)),
+                ServersListSortType.OnlinePlayersCount
+                => ReverseIfRequested(
+                        entries.Where(s => s.ViewModelServerInfo.IsInfoReceived)
+                               .OrderByDescending(s => s.ViewModelServerInfo.PlayersOnlineCount)
+                               .ThenBy(s => s.ViewModelServerInfo.Title))
+                    .Concat(entries.Where(s => !s.ViewModelServerInfo.IsInfoReceived)
+                                   .OrderBy(s => s.ViewModelServerInfo.Title)),
 
-                ServersListSortType.Ping => entries.Where(v => v.ViewModelServerInfo.IsPingMeasurementDone)
-                                                   .OrderBy(s => s.ViewModelServerInfo.Ping)
-                                                   .ThenBy(s => s.ViewModelServerInfo.Title)
-                                                   .Concat(entries.Where(v => !v.ViewModelServerInfo
-                                                                                .IsPingMeasurementDone)
-                                                                  .OrderBy(p => p.ViewModelServerInfo.Address)),
-
-                ServersListSortType.OnlinePlayersCount => entries
-                                                          .OrderBy(s => !s.ViewModelServerInfo.IsInfoReceived)
-                                                          .ThenByDescending(
-                                                              s => s.ViewModelServerInfo.PlayersOnlineCount)
-                                                          .ThenBy(s => s.ViewModelServerInfo.Title),
+                ServersListSortType.LastWipe
+                => ReverseIfRequested(
+                        entries.Where(s => s.ViewModelServerInfo.IsInfoReceived)
+                               .OrderByDescending(s => s.ViewModelServerInfo.WipedDate.Value)
+                               .ThenBy(s => s.ViewModelServerInfo.Title))
+                    .Concat(entries.Where(s => !s.ViewModelServerInfo.IsInfoReceived)
+                                   .OrderBy(s => s.ViewModelServerInfo.Title)),
 
                 _ => throw new ArgumentException("Unknown sort order: " + this.sortType)
             };
+
+            IEnumerable<ViewModelServerInfoListEntry> ReverseIfRequested(IEnumerable<ViewModelServerInfoListEntry> query)
+            {
+                if (this.IsSortOrderReversed)
+                {
+                    query = query.Reverse();
+                }
+
+                return query;
+            }
         }
 
         protected void OnListChanged()
@@ -145,6 +205,14 @@
         }
 
         protected abstract void PopulateServersList();
+
+        private static bool IsEmptyOrPlaceholderServerTitle(ViewModelServerInfoListEntry s)
+        {
+            var title = s.ViewModelServerInfo.Title;
+            return string.IsNullOrEmpty(title)
+                   || "...".Equals(title, StringComparison.Ordinal)
+                   || ServerOfflineTitle.Equals(title, StringComparison.Ordinal);
+        }
 
         private void FillServersList()
         {

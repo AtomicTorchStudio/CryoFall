@@ -7,13 +7,14 @@
                     xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
                     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
                     mc:Ignorable="d" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-                    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
+                    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+                    xmlns:servers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="DefaultStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <system:Double x:Key="ServerIconSize">42</system:Double>
-    <GridLength x:Key="ColumnWidthServerIcon">42</GridLength>
+    <system:Double x:Key="ServerIconSize">41</system:Double>
+    <GridLength x:Key="ColumnWidthServerIcon">41</GridLength>
     <GridLength x:Key="ColumnWidthPadding">20</GridLength>
     <GridLength x:Key="ColumnWidthPing">70</GridLength>
     <GridLength x:Key="ColumnWidthPlayers">70</GridLength>
@@ -213,10 +214,11 @@
     <DataTemplate x:Key="ServerInfoEntryTemplate"
                   DataType="{x:Type data:ViewModelServerInfoListEntry}">
         <ContentControl>
+            <!-- Enter sound is bugged due to the template reusing -->
+            <!--core:SoundUI.EnterSound="{StaticResource SoundListElementEnter}"-->
             <Grid VerticalAlignment="Top"
                   Background="Transparent"
                   core:SoundUI.ClickSound="{StaticResource SoundListElementClick}"
-                  core:SoundUI.EnterSound="{StaticResource SoundListElementEnter}"
                   services:DoubleClickService.CommandOnDoubleClick="{Binding ViewModelServerInfo.CommandJoinServer}"
                   services:DoubleClickService.CommandOnDoubleClickParameter="{Binding ViewModelServerInfo}">
                 <Grid.ColumnDefinitions>
@@ -236,15 +238,6 @@
                 <Rectangle Width="{DynamicResource ServerIconSize}"
                            Height="{DynamicResource ServerIconSize}"
                            Fill="{Binding ViewModelServerInfo.Icon}" />
-
-                <Rectangle Width="{DynamicResource ServerIconSize}"
-                           Height="{DynamicResource ServerIconSize}"
-                           Visibility="{Binding ViewModelServerInfo.IncompatibleVisibility}"
-                           Fill="#44FF0000" />
-
-                <!--<game:LoadingDisplayControl Width="16" Height="16"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center" Visibility="{Binding LoadingDisplayVisibility}" />-->
 
                 <Grid Grid.Column="1"
                       Margin="7,-12,5,0"
@@ -276,7 +269,6 @@
                     </StackPanel>
                 </Grid>
 
-
                 <TextBlock Grid.Column="1"
                            Margin="7,16,5,0"
                            Text="{Binding ViewModelServerInfo.Address.HostAddress}"
@@ -284,6 +276,7 @@
 
                 <TextBlock Grid.Column="3"
                            Text="{Binding ViewModelServerInfo.PingText}"
+                           Foreground="{Binding ViewModelServerInfo.PingForegroundBrush}"
                            Style="{StaticResource TextBlockServerStatStyle}" />
 
                 <TextBlock Grid.Column="4"
@@ -306,6 +299,11 @@
                               CommandParameter="{Binding}" />
                 </StackPanel>
 
+                <Rectangle Grid.ColumnSpan="8"
+                           Visibility="{Binding ViewModelServerInfo.IncompatibleVisibility}"
+                           Fill="#77330000" 
+                           Margin="-2,-1"
+                           IsHitTestVisible="False" />
             </Grid>
         </ContentControl>
     </DataTemplate>
@@ -323,6 +321,7 @@
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="2,1" />
         <Setter Property="Margin" Value="0,2" />
+        <Setter Property="Visibility" Value="{Binding ViewModelServerInfo.VisibilityInList}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -364,7 +363,79 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="Template" Value="{StaticResource DefaultListBoxTemplate}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ScrollViewer Focusable="false"
+                                      HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                      VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                            <ScrollViewer.Style>
+                                <Style TargetType="ScrollViewer">
+                                    <Setter Property="services:ScrollViewerWithButtonsService.IsEnabled" Value="True" />
+                                    <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+                                    <Setter Property="CanContentScroll" Value="False" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                                <Grid Background="Transparent">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <ScrollContentPresenter
+                                                        Content="{TemplateBinding Content}"
+                                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                        CanContentScroll="{TemplateBinding CanContentScroll}" />
+
+                                                    <RepeatButton
+                                                        VerticalAlignment="Top"
+                                                        Command="{Binding CommandScrollUp}"
+                                                        Visibility="{Binding VisibilityScrollUp}"
+                                                        IsEnabled="{TemplateBinding IsMouseOver}"
+                                                        Style="{StaticResource VerticalScrollWideRepeatButton}"
+                                                        Background="{TemplateBinding Background}" />
+
+                                                    <RepeatButton
+                                                        VerticalAlignment="Bottom"
+                                                        Command="{Binding CommandScrollDown}"
+                                                        Visibility="{Binding VisibilityScrollDown}"
+                                                        IsEnabled="{TemplateBinding IsMouseOver}"
+                                                        Style="{StaticResource VerticalScrollWideRepeatButton}"
+                                                        Background="{TemplateBinding Background}">
+                                                        <RepeatButton.LayoutTransform>
+                                                            <RotateTransform Angle="180" />
+                                                        </RepeatButton.LayoutTransform>
+                                                    </RepeatButton>
+
+                                                    <Border Grid.Column="1"
+                                                            Margin="{TemplateBinding BorderThickness}"
+                                                            BorderBrush="{x:Null}">
+                                                        <ScrollBar x:Name="PART_VerticalScrollBar"
+                                                                   Margin="1,1,1,1"
+                                                                   Value="{TemplateBinding VerticalOffset}"
+                                                                   Orientation="Vertical"
+                                                                   Minimum="0"
+                                                                   Maximum="{TemplateBinding ScrollableHeight}"
+                                                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                                                   ViewportSize="{TemplateBinding ViewportHeight}" />
+                                                    </Border>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ScrollViewer.Style>
+                            <ItemsPresenter Margin="{TemplateBinding Padding}"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </ScrollViewer>
+                        <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
@@ -392,28 +463,51 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Text: Server info -->
-                        <TextBlock Grid.Column="1"
-                                   Grid.ColumnSpan="2"
-                                   Text="{x:Static loc:CoreStrings.MenuServers_ColumnInfo}"
-                                   HorizontalAlignment="Left"
-                                   Margin="4,0,0,0" />
+                        <StackPanel Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Left"
+                                    Margin="4,0,0,0">
+                            <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_ColumnInfo}" />
+                            <servers:ServerColumnSortOrderControl CurrentSortOrder="{Binding SortType, Mode=TwoWay}"
+                                                                  IsCurrentSortOrderReversed="{Binding IsSortOrderReversed, Mode=TwoWay}"
+                                                                  TargetSortOrder="Title"
+                                                                  IsTargetOrderReversed="True" />
+                        </StackPanel>
 
                         <!-- Text: Ping -->
-                        <TextBlock Grid.Column="3"
-                                   Text="{x:Static loc:CoreStrings.ServerPing}"
-                                   HorizontalAlignment="Center"
-                                   Margin="7,0,0,0" />
+                        <StackPanel Grid.Column="3"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="7,0,0,0">
+                            <TextBlock Text="{x:Static loc:CoreStrings.ServerPing}" />
+                            <servers:ServerColumnSortOrderControl CurrentSortOrder="{Binding SortType, Mode=TwoWay}"
+                                                                  IsCurrentSortOrderReversed="{Binding IsSortOrderReversed, Mode=TwoWay}"
+                                                                  TargetSortOrder="Ping"
+                                                                  IsTargetOrderReversed="True" />
+                        </StackPanel>
 
                         <!-- Text: Players -->
-                        <TextBlock Grid.Column="4"
-                                   Text="{x:Static loc:CoreStrings.ServerPlayersCount}"
-                                   HorizontalAlignment="Center"
-                                   Margin="7,0,0,0" />
+                        <StackPanel Grid.Column="4"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="7,0,0,0">
+                            <TextBlock Text="{x:Static loc:CoreStrings.ServerPlayersCount}" />
+                            <servers:ServerColumnSortOrderControl CurrentSortOrder="{Binding SortType, Mode=TwoWay}"
+                                                                  IsCurrentSortOrderReversed="{Binding IsSortOrderReversed, Mode=TwoWay}"
+                                                                  TargetSortOrder="OnlinePlayersCount" />
+                        </StackPanel>
 
-                        <TextBlock Grid.Column="5"
-                                   Text="{x:Static loc:CoreStrings.ServerWipedDate}"
-                                   HorizontalAlignment="Center"
-                                   Margin="7,0,0,0" />
+                        <StackPanel Grid.Column="5"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="7,0,0,0">
+                            <TextBlock Text="{x:Static loc:CoreStrings.ServerWipedDate}" />
+                            <servers:ServerColumnSortOrderControl CurrentSortOrder="{Binding SortType, Mode=TwoWay}"
+                                                                  IsCurrentSortOrderReversed="{Binding IsSortOrderReversed, Mode=TwoWay}"
+                                                                  TargetSortOrder="LastWipe"
+                                                                  IsTargetOrderReversed="True" />
+                        </StackPanel>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

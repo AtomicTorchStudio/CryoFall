@@ -106,7 +106,8 @@
                         <TextBlock Text="{x:Static loc:CoreStrings.ServerPing}" />
                         <TextBlock Text=":" />
                     </StackPanel>
-                    <TextBlock Text="{Binding PingAverageMilliseconds}"
+                    <TextBlock Text="{Binding PingGameMilliseconds}"
+                               Foreground="{Binding PingGameForegroundBrush}"
                                Grid.Row="2"
                                Grid.Column="2"
                                HorizontalAlignment="Right" />

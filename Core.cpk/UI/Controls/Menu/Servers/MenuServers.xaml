@@ -12,6 +12,7 @@
     mc:Ignorable="d"
     d:DesignHeight="600"
     Width="950"
+    x:Name="UserControl"
     d:DataContext="{d:DesignInstance data:ViewModelMenuServers, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
     <base:BaseUserControl.Resources>
@@ -63,16 +64,16 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                         <RowDefinition />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Control Grid.Row="1"
+                    <Control Grid.Row="0"
                              Style="{StaticResource MultiplayerTableHeaderControlStyle}"
                              Margin="5,0,14,5"
                              Visibility="{Binding ListNotEmptyVisibility}" />
 
-                    <ListBox Grid.Row="2"
+                    <ListBox Grid.Row="1"
                              ItemsSource="{Binding ServersList}"
                              Style="{StaticResource ServersListBoxStyle}"
                              SelectedItem="{Binding SelectedServer}"
@@ -80,7 +81,7 @@
                              ItemTemplate="{StaticResource ServerInfoEntryTemplate}"
                              ItemContainerStyle="{StaticResource ServersListBoxContainerStyle}" />
 
-                    <StackPanel Grid.Row="2"
+                    <StackPanel Grid.Row="1"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Orientation="Vertical"
@@ -93,7 +94,7 @@
                             FontFamily="{StaticResource CondensedFontFamily}" />
                     </StackPanel>
 
-                    <StackPanel Grid.Row="2"
+                    <StackPanel Grid.Row="1"
                                 Orientation="Vertical"
                                 Visibility="{Binding LoadingDisplayVisibility}"
                                 HorizontalAlignment="Center"
@@ -107,6 +108,52 @@
                             Style="{StaticResource ServersLoadingTextBlockStyle}"
                             FontSize="14"
                             FontFamily="{StaticResource CondensedFontFamily}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2"
+                                Orientation="Horizontal"
+                                Margin="0,5,0,-2"
+                                HorizontalAlignment="Center">
+                        <StackPanel.LayoutTransform>
+                            <ScaleTransform ScaleX="0.75" ScaleY="0.75" />
+                        </StackPanel.LayoutTransform>
+
+                        <CheckBox Content="{x:Static loc:CoreStrings.MenuServers_Checkbox_ShowEmpty}"
+                                  IsChecked="{Binding DataContext.ShowEmptyServers, ElementName=UserControl}"
+                                  Focusable="False"
+                                  FontSize="13"
+                                  FontWeight="Bold" />
+
+                        <CheckBox Content="{x:Static loc:CoreStrings.MenuServers_Checkbox_ShowIncompatible}"
+                                  IsChecked="{Binding DataContext.ShowIncompatibleServers, ElementName=UserControl}"
+                                  Focusable="False"
+                                  FontSize="13"
+                                  FontWeight="Bold"
+                                  Margin="20,0,0,0" />
+
+                        <CheckBox Content="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvP_Title}"
+                                  IsChecked="{Binding DataContext.ShowPvPServers, ElementName=UserControl}"
+                                  IsEnabled="{Binding DataContext.ShowPvEServers, ElementName=UserControl}"
+                                  Focusable="False"
+                                  FontSize="13"
+                                  FontWeight="Bold"
+                                  Margin="20,0,0,0" />
+
+                        <CheckBox Content="{x:Static loc:CoreStrings.MenuServers_ServerTag_PvE_Title}"
+                                  IsChecked="{Binding DataContext.ShowPvEServers, ElementName=UserControl}"
+                                  IsEnabled="{Binding DataContext.ShowPvPServers, ElementName=UserControl}"
+                                  Focusable="False"
+                                  FontSize="13"
+                                  FontWeight="Bold"
+                                  Margin="20,0,0,0" />
+
+                        <!--<ComboBox Grid.Column="6"
+                                  ItemsSource="{Binding SelectListSortBy}"
+                                  SelectedIndex="{Binding SortBySelectedIndex}"
+                                  DisplayMemberPath="Title" 
+                                  Focusable="False" 
+                                  FontSize="8"
+                                  FontWeight="Bold" />-->
                     </StackPanel>
                 </Grid>
             </ControlTemplate>
@@ -169,23 +216,27 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
 
-                                <StackPanel Grid.Row="0" Grid.Column="0"
+                                <StackPanel Grid.Row="0"
+                                            Grid.Column="0"
                                             Orientation="Horizontal">
                                     <!-- Text: Address -->
                                     <TextBlock Text="{x:Static loc:CoreStrings.ServerAddress}" />
                                     <TextBlock Text=": " />
                                 </StackPanel>
-                                <TextBlock Grid.Row="0" Grid.Column="1"
+                                <TextBlock Grid.Row="0" 
+                                           Grid.Column="1"
                                            Text="{Binding ViewModelServerInfo.Address.HostAddress}"
                                            HorizontalAlignment="Right" TextWrapping="Wrap" />
 
-                                <StackPanel Grid.Row="1" Grid.Column="0"
+                                <StackPanel Grid.Row="1" 
+                                            Grid.Column="0"
                                             Orientation="Horizontal">
                                     <!-- Text: Public GUID -->
                                     <TextBlock Text="{x:Static loc:CoreStrings.MenuServers_PublicGUID}" />
                                     <TextBlock Text=": " />
                                 </StackPanel>
-                                <TextBlock Grid.Row="1" Grid.Column="1"
+                                <TextBlock Grid.Row="1" 
+                                           Grid.Column="1"
                                            Text="{Binding ViewModelServerInfo.Address.PublicGuid}"
                                            MaxWidth="100"
                                            HorizontalAlignment="Right"
@@ -206,32 +257,40 @@
                                     </base:ToolTipServiceExtend.ToolTip>
                                 </TextBlock>
 
-                                <StackPanel Grid.Row="2" Grid.Column="0"
+                                <StackPanel Grid.Row="2" 
+                                            Grid.Column="0"
                                             Orientation="Horizontal">
                                     <!-- Text: Ping -->
                                     <TextBlock Text="{x:Static loc:CoreStrings.ServerPing}" />
                                     <TextBlock Text=": " />
                                 </StackPanel>
-                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ViewModelServerInfo.PingText}"
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="1"
+                                           Text="{Binding ViewModelServerInfo.PingText}"
+                                           Foreground="{Binding ViewModelServerInfo.PingForegroundBrush}"
                                            HorizontalAlignment="Right" />
 
-                                <StackPanel Grid.Row="3" Grid.Column="0"
+                                <StackPanel Grid.Row="3" 
+                                            Grid.Column="0"
                                             Orientation="Horizontal">
                                     <!-- Text: Players -->
                                     <TextBlock Text="{x:Static loc:CoreStrings.ServerPlayersCount}" />
                                     <TextBlock Text=": " />
                                 </StackPanel>
-                                <TextBlock Grid.Row="3" Grid.Column="1"
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="1"
                                            Text="{Binding ViewModelServerInfo.PlayersText}"
                                            HorizontalAlignment="Right" />
 
-                                <StackPanel Grid.Row="4" Grid.Column="0"
+                                <StackPanel Grid.Row="4"
+                                            Grid.Column="0"
                                             Orientation="Horizontal">
                                     <!-- Text: Wiped -->
                                     <TextBlock Text="{x:Static loc:CoreStrings.ServerWipedDate}" />
                                     <TextBlock Text=": " />
                                 </StackPanel>
-                                <TextBlock Grid.Row="4" Grid.Column="1"
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="1"
                                            Text="{Binding ViewModelServerInfo.WipedDateText}"
                                            HorizontalAlignment="Right" />
                             </Grid>
@@ -245,7 +304,9 @@
                             </ScrollViewer>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Bottom">
+                        <StackPanel Grid.Row="1" 
+                                    Orientation="Vertical" 
+                                    VerticalAlignment="Bottom">
                             <!-- Text: Join Server -->
                             <Button Content="{x:Static loc:CoreStrings.MenuServers_Button_JoinServer}"
                                     Margin="0,5,0,0"
@@ -423,7 +484,8 @@
                         <RowDefinition Height="10" />
                     </Grid.RowDefinitions>
 
-                    <ContentControl Foreground="White" Template="{StaticResource SelectedServerInfoControlTemplate}" />
+                    <ContentControl Foreground="White" 
+                                    Template="{StaticResource SelectedServerInfoControlTemplate}" />
 
                     <StackPanel Orientation="Vertical"
                                 Grid.Row="2"

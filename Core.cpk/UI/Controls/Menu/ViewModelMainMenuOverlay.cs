@@ -4,6 +4,7 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -14,6 +15,8 @@
         private static ViewModelMainMenuOverlay instance;
 
         private bool isCurrentGameTabEnabled;
+
+        private bool isServersMenuSelected;
 
         private TabItem selectedTab;
 
@@ -94,6 +97,23 @@
         public bool IsExtrasMenuSelected { get; set; }
 
         public bool IsOptionsMenuSelected { get; set; }
+
+        public bool IsServersMenuSelected
+        {
+            get => this.isServersMenuSelected;
+            set
+            {
+                if (this.isServersMenuSelected == value)
+                {
+                    return;
+                }
+
+                this.isServersMenuSelected = value;
+                this.NotifyThisPropertyChanged();
+
+                ViewModelMenuServers.Instance?.ResetSortOrder();
+            }
+        }
 
         public Visibility IsServersMenuVisible => Api.IsEditor
                                                       ? Visibility.Collapsed

@@ -59,7 +59,23 @@
             var rendering = Api.Client.Rendering;
             var renderingTag = request.TextureName;
 
-            var size = customSize ?? await rendering.GetTextureSize(textureResources[0].TextureResource);
+            var qualityScaleCoef = rendering.CalculateCurrentQualityScaleCoefWithOffset(0);
+
+            Vector2Ushort size;
+            if (customSize != null)
+            {
+                size = customSize.Value;
+                if (qualityScaleCoef > 1)
+                {
+                    size = new Vector2Ushort((ushort)(size.X / qualityScaleCoef),
+                                             (ushort)(size.Y / qualityScaleCoef));
+                }
+            }
+            else
+            {
+                size = await rendering.GetTextureSize(textureResources[0].TextureResource);
+            }
+
             request.ThrowIfCancelled();
 
             // create camera and render texture
@@ -74,10 +90,17 @@
             // create and prepare sprite renderers
             foreach (var entry in textureResources)
             {
+                var positionOffset = entry.Offset;
+                if (positionOffset.HasValue
+                    && qualityScaleCoef > 1)
+                {
+                    positionOffset /= qualityScaleCoef;
+                }
+
                 rendering.CreateSpriteRenderer(
                     cameraObject,
                     entry.TextureResource,
-                    positionOffset: entry.Offset,
+                    positionOffset: positionOffset,
                     spritePivotPoint: entry.PivotPoint ?? (0, 1), // draw down by default
                     renderingTag: renderingTag);
             }

@@ -6,6 +6,7 @@
     using System.Windows.Controls;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Performance.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Servers;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -16,6 +17,15 @@
         public const string DialogCannotConnect_Message = "Please wait until the server info is acquired.";
 
         public const string DialogCannotConnect_Title = "Cannot connect";
+
+        public static readonly SolidColorBrush BrushPingDefault
+            = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+
+        public static readonly SolidColorBrush BrushPingRed
+            = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0x66, 0x66));
+
+        public static readonly SolidColorBrush BrushPingYellow
+            = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xEE, 0x88));
 
         public static readonly Brush IconPlaceholderBrush
             = IsDesignTime ? Brushes.LightSlateGray : null;
@@ -44,7 +54,7 @@
 
         private int lastIconLoadRequestId;
 
-        private ushort? ping;
+        private ushort? ping = ushort.MaxValue;
 
         private string title = "...";
 
@@ -235,9 +245,14 @@
                 }
 
                 this.ping = value;
-                this.PingText = value?.ToString() ?? "...";
+                this.NotifyThisPropertyChanged();
+
+                this.PingText = this.ping?.ToString() ?? "...";
+                this.PingForegroundBrush = GetPingForegroundBrush(this.ping);
             }
         }
+
+        public Brush PingForegroundBrush { get; private set; } = BrushPingDefault;
 
         public string PingText { get; private set; } = "100";
 
@@ -263,6 +278,8 @@
         }
 
         public AppVersion Version { get; set; }
+
+        public Visibility VisibilityInList { get; set; } = Visibility.Visible;
 
         public DateTime? WipedDate
         {
@@ -331,6 +348,19 @@
             return CoreStrings.WipedDate_JustWiped;
         }
 
+        public static Brush GetPingForegroundBrush(ushort? ping)
+        {
+            if (!ping.HasValue
+                || ping.Value <= ViewModelNetworkPerformanceStats.PingSubstantialValue)
+            {
+                return BrushPingDefault;
+            }
+
+            return ping.Value <= ViewModelNetworkPerformanceStats.PingSevereValue
+                       ? BrushPingYellow
+                       : BrushPingRed;
+        }
+
         public void RefreshAndDisplayPleaseWaitDialog(
             Action onInfoReceivedOrCannotReach)
         {
@@ -393,6 +423,54 @@
             }
         }
 
+        public void RefreshVisibilityInList()
+        {
+            // ReSharper disable once ReplaceWithSingleAssignment.True
+            var isVisible = true;
+
+            // try apply incompatible servers filter
+            if (isVisible
+                && !ServerViewModelsProvider.ShowIncompatibleServers
+                && this.IsCompatible.HasValue
+                && !this.IsCompatible.Value)
+            {
+                isVisible = false;
+            }
+
+            if (isVisible
+                && this.IsInfoReceived)
+            {
+                // try apply empty servers filter
+                if (isVisible
+                    && !ServerViewModelsProvider.ShowEmptyServers
+                    && this.PlayersOnlineCount == 0
+                    && !this.IsSelected)
+                {
+                    isVisible = false;
+                }
+
+                // try apply PvE servers filter
+                if (isVisible
+                    && !ServerViewModelsProvider.ShowPvEServers
+                    && this.IsPvE)
+                {
+                    isVisible = false;
+                }
+
+                // try apply PvP servers filter
+                if (isVisible
+                    && !ServerViewModelsProvider.ShowPvPServers
+                    && this.IsPvP)
+                {
+                    isVisible = false;
+                }
+            }
+
+            this.VisibilityInList = isVisible
+                                        ? Visibility.Visible
+                                        : Visibility.Collapsed;
+        }
+
         public async void ReloadIcon()
         {
             if (IsDesignTime)
@@ -423,11 +501,11 @@
         public void Reset()
         {
             this.IsInfoReceived = false;
-            this.ping = null;
+            this.Ping = null;
             //this.Title = string.Empty;
             //this.IsFeatured = false; // do not reset is featured flag!
             this.Description = CoreStrings.PleaseWait;
-            this.PingText = "...";
+            this.PlayersOnlineCount = 0;
             this.PlayersText = "...";
             this.CommandRefresh = null;
             this.LoadingDisplayVisibility = Visibility.Visible;
@@ -441,6 +519,7 @@
             this.IsPvP = false;
             this.IsPvE = false;
             this.WipedDate = null;
+            this.VisibilityInList = Visibility.Visible;
         }
 
         /// <summary>

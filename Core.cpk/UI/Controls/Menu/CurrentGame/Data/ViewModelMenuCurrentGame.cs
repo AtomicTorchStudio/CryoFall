@@ -158,6 +158,9 @@
         public string WipedDateText
             => ViewModelServerInfo.FormatWipedDate(this.wipedDate);
 
+        public Brush PingGameForegroundBrush 
+            => ViewModelServerInfo.GetPingForegroundBrush(this.PingGameMilliseconds);
+
         public async void ReloadIcon()
         {
             if (IsDesignTime)
@@ -227,6 +230,7 @@
         private void PingGameChangedHandler()
         {
             this.NotifyPropertyChanged(nameof(this.PingGameMilliseconds));
+            this.NotifyPropertyChanged(nameof(this.PingGameForegroundBrush));
         }
 
         private void RefreshWipedDateText()

@@ -173,12 +173,13 @@
 
     <SolidColorBrush x:Key="BrushColorLabelForeground" Color="{StaticResource ColorLabelForeground}" />
     <SolidColorBrush x:Key="BrushColorAltLabelForeground" Color="{StaticResource ColorAltLabelForeground}" />
+    <SolidColorBrush x:Key="BrushColorLabelForegroundDisabled" Color="{StaticResource ColorLabelForeground}" Opacity="0.85" />
 
     <SolidColorBrush x:Key="LabelActionControlColor" Color="#DDFFBC0A" />
     <SolidColorBrush x:Key="LabelActionControlBackground" Color="#30FFBC0A" />
 
     <SolidColorBrush x:Key="DisabledBackground" Color="Black" Opacity="0.35" />
-
+    
     <SolidColorBrush x:Key="ButtonForeground" Color="White" />
 
     <SolidColorBrush x:Key="BrushCraftingProgressBarBackground" Color="Black" Opacity="0.33333" />
@@ -753,7 +754,6 @@
                 <Setter TargetName="ToggleIndeterminate" Property="Visibility" Value="Visible" />
             </Trigger>-->
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="{StaticResource DisabledBackground}" />
                             <Setter TargetName="BackgroundDisabled" Property="Visibility" Value="Visible" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="false">
@@ -765,6 +765,7 @@
         </Setter>
         <Setter Property="Background" Value="{StaticResource ButtonBackgroundNormal}" />
         <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderNormal}" />
+        <!--<Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />-->
         <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
@@ -779,10 +780,13 @@
                 <Setter Property="Background" Value="{StaticResource ButtonBackgroundPressedHighlight}" />
                 <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderMouseOver}" />
             </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForegroundDisabled}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
-    <!-- Checkbox style -->
+    <!-- Radiobutton style -->
     <Style TargetType="{x:Type RadioButton}">
         <Setter Property="core:SoundUI.ClickSound" Value="{StaticResource SoundCheckboxClick}" />
         <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundCheckboxEnter}" />
@@ -814,9 +818,9 @@
                                     <Path x:Name="path1" Data="M8,0 L10,2 2,10 0,8 z" Stretch="Fill"
                                           Fill="{TemplateBinding Foreground}" />
                                 </Grid>
-                                <Rectangle x:Name="BackgroundDisabled" Margin="2"
+                                <!--<Rectangle x:Name="BackgroundDisabled" Margin="2"
                                            Fill="{StaticResource DisabledBackground}"
-                                           StrokeThickness="0" Visibility="Collapsed" />
+                                           StrokeThickness="0" Visibility="Collapsed" />-->
                             </Grid>
                         </BulletDecorator.Bullet>
                         <ContentPresenter Margin="{TemplateBinding Padding}"
@@ -825,10 +829,9 @@
                                           UseLayoutRounding="{TemplateBinding UseLayoutRounding}" />
                     </BulletDecorator>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="{StaticResource DisabledBackground}" />
+                        <!--<Trigger Property="IsEnabled" Value="false">                            
                             <Setter TargetName="BackgroundDisabled" Property="Visibility" Value="Visible" />
-                        </Trigger>
+                        </Trigger>-->
                         <Trigger Property="IsChecked" Value="false">
                             <Setter TargetName="ToggleCheck" Property="Visibility" Value="Collapsed" />
                         </Trigger>
@@ -851,6 +854,9 @@
             <Trigger Property="IsPressed" Value="true">
                 <Setter Property="Background" Value="{StaticResource ButtonBackgroundPressedHighlight}" />
                 <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderMouseOver}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForegroundDisabled}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -1140,9 +1146,9 @@
             <Trigger Property="IsPressed" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource ScrollBarForegroundPressed}" />
             </Trigger>
-            <!--<Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Foreground" Value="{StaticResource DisabledBackground}" />
-            </Trigger>-->
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForegroundDisabled}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -1187,8 +1193,9 @@
             <Trigger Property="IsDragging" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource ScrollBarForegroundPressed}" />
             </Trigger>
+            <!-- It doesn't work as intended -->
             <!--<Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Foreground" Value="{StaticResource DisabledBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource DisabledForeground}" />
             </Trigger>-->
         </Style.Triggers>
     </Style>

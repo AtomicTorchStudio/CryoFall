@@ -54,22 +54,19 @@
 
                 var serverAddress = publicServerInfo.Address;
                 var viewModelServer = this.ServerViewModelsProvider.GetServerInfoViewModel(serverAddress);
-                var viewModelServerInfo = viewModelServer.ViewModelServerInfo;
+                var item = viewModelServer.ViewModelServerInfo;
 
-                viewModelServerInfo.IsFeatured = publicServerInfo.IsFeatured;
-                viewModelServerInfo.IsOfficial = publicServerInfo.IsOfficial;
+                item.IsFeatured = publicServerInfo.IsFeatured;
+                item.IsOfficial = publicServerInfo.IsOfficial;
 
-                if (!viewModelServerInfo.IsInfoReceived)
+                if (!item.IsInfoReceived)
                 {
                     // set info from public info - but never overwrite the data already set from the actual server info
-                    viewModelServerInfo.Title = publicServerInfo.Title;
-                    viewModelServerInfo.IsModded = !publicServerInfo.IsOfficial
+                    item.Title = publicServerInfo.Title;
+                    item.IsModded = !publicServerInfo.IsOfficial
                                                    && publicServerInfo.IsModded;
-                    viewModelServerInfo.Version = publicServerInfo.Version;
-                    viewModelServerInfo.NetworkProtocolVersion = 0;
-                    //viewModelServer.PingMeasurementDone += this.ViewModelServerPingMeasurementDoneHandler;
-                    //viewModelServer.TitleSet += this.ViewModelServerTitleSetHandler;
-                    //viewModelServer.OnlinePlayersCountSet += this.ViewModelServerOnlinePlayersCountSetHandler;
+                    item.Version = publicServerInfo.Version;
+                    item.NetworkProtocolVersion = 0;
                 }
 
                 this.ServerAddressToServerViewModel.Add((serverAddress, viewModelServer));

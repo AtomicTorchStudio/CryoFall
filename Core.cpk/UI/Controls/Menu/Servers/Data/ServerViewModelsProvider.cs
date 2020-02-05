@@ -33,6 +33,14 @@
 
         private static ServerViewModelsProvider instance;
 
+        private static bool showEmptyServers = true;
+
+        private static bool showIncompatibleServers = true;
+
+        private static bool showPvEServers = true;
+
+        private static bool showPvPServers = true;
+
         private readonly BaseCommand commandRefresh;
 
         private readonly IServersProvider serversProvider = Api.Client.MasterServer.ServersProvider;
@@ -58,6 +66,78 @@
 
         public static ServerViewModelsProvider Instance
             => instance ??= new ServerViewModelsProvider();
+
+        public static bool ShowEmptyServers
+        {
+            get => showEmptyServers;
+            set
+            {
+                if (ShowEmptyServers == value)
+                {
+                    return;
+                }
+
+                showEmptyServers = value;
+                foreach (var pair in Instance.serverViewModels)
+                {
+                    pair.Value.RefreshVisibilityInList();
+                }
+            }
+        }
+
+        public static bool ShowIncompatibleServers
+        {
+            get => showIncompatibleServers;
+            set
+            {
+                if (showIncompatibleServers == value)
+                {
+                    return;
+                }
+
+                showIncompatibleServers = value;
+                foreach (var pair in Instance.serverViewModels)
+                {
+                    pair.Value.RefreshVisibilityInList();
+                }
+            }
+        }
+
+        public static bool ShowPvEServers
+        {
+            get => showPvEServers;
+            set
+            {
+                if (showPvEServers == value)
+                {
+                    return;
+                }
+
+                showPvEServers = value;
+                foreach (var pair in Instance.serverViewModels)
+                {
+                    pair.Value.RefreshVisibilityInList();
+                }
+            }
+        }
+
+        public static bool ShowPvPServers
+        {
+            get => showPvPServers;
+            set
+            {
+                if (showPvPServers == value)
+                {
+                    return;
+                }
+
+                showPvPServers = value;
+                foreach (var pair in Instance.serverViewModels)
+                {
+                    pair.Value.RefreshVisibilityInList();
+                }
+            }
+        }
 
         public bool IsEnabled
         {
@@ -233,6 +313,7 @@
             viewModel.WipedDate = serverInfo.CreationDateUtc.ToLocalTime();
 
             viewModel.IsInfoReceived = true;
+            viewModel.RefreshVisibilityInList();
         }
 
         public void ServerPingUpdatedHandled(ServerAddress address, ushort pingMs, bool isPingMeasurementDone)

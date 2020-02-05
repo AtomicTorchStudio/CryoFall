@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components.Camera;
@@ -28,6 +29,8 @@
                 // post-effects are enabled by default in non-Editor
                 isPostEffectsEnabled = true;
             }
+
+            ServerOperatorSystem.ClientIsOperatorChanged += IsServerOperatorChangedHandler;
         }
 
         public static event Action IsPostEffectsEnabledChanged;
@@ -85,6 +88,15 @@
         {
             Api.ValidateIsClient();
             Api.Client.Rendering.PostEffectsRendering += PostEffectsRenderingHandler;
+        }
+
+        private static void IsServerOperatorChangedHandler()
+        {
+            if (!ServerOperatorSystem.ClientIsOperator())
+            {
+                // non-operator players should have this feature enabled
+                IsPostEffectsEnabled = true;
+            }
         }
 
         private static void PostEffectsRenderingHandler()

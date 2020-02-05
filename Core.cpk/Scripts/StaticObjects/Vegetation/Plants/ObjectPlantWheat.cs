@@ -33,7 +33,7 @@
         {
             base.ClientRefreshVegetationRendering(worldObject, clientState, publicState);
 
-            if (publicState.GrowthStage > 0
+            if (publicState.GrowthStage > 1
                 && publicState.GrowthStage < this.GrowthStagesCount)
             {
                 ClientGrassRenderingHelper.Setup(clientState.Renderer,

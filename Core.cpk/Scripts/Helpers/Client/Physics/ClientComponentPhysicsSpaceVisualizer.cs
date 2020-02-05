@@ -9,6 +9,7 @@
     using System.Windows.Media;
     using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Helpers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Helpers.Data;
     using AtomicTorch.CBND.GameApi.Data.Physics;
@@ -94,6 +95,8 @@
                     CollisionGroupId.ClickArea
                 };
             }
+
+            ServerOperatorSystem.ClientIsOperatorChanged += IsServerOperatorChangedHandler;
         }
 
         public ClientComponentPhysicsSpaceVisualizer()
@@ -290,6 +293,15 @@
             else
             {
                 component.Destroy();
+            }
+        }
+
+        private static void IsServerOperatorChangedHandler()
+        {
+            if (!ServerOperatorSystem.ClientIsOperator())
+            {
+                // non-operator players should have this feature disabled
+                IsVisualizerEnabled = false;
             }
         }
 

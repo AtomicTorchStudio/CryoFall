@@ -321,6 +321,7 @@
 
             <!-- Text: SERVERS -->
             <TabItem Header="{x:Static loc:CoreStrings.MainMenu_TabServers}"
+                     IsSelected="{Binding IsServersMenuSelected, Mode=TwoWay}"
                      Style="{StaticResource TabItemHeader}"
                      Visibility="{Binding IsServersMenuVisible}">
                 <servers:MenuServers />

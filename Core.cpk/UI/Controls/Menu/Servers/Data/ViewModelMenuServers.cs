@@ -40,7 +40,6 @@
             Instance = this;
 
             this.serverViewModelsProvider = ServerViewModelsProvider.Instance;
-            var serversProvider = Client.MasterServer.ServersProvider;
 
             this.FeaturedServers =
                 new ViewModelServersList(
@@ -49,7 +48,7 @@
                             specialCondition: info => info.IsOfficial
                                                       || (info.IsFeatured && !info.IsModded))
                         {
-                            SortType = ServersListSortType.Featured
+                            DefaultSortType = ServersListSortType.Featured
                         },
                     this.OnSelectedServerChanged);
             this.FeaturedServers.IsActive = true;
@@ -62,7 +61,7 @@
                                                       && !info.IsFeatured
                                                       && !info.IsModded)
                         {
-                            SortType = ServersListSortType.OnlinePlayersCount
+                            DefaultSortType = ServersListSortType.OnlinePlayersCount
                         },
                     this.OnSelectedServerChanged);
 
@@ -73,26 +72,26 @@
                             specialCondition: info => !info.IsOfficial
                                                       && info.IsModded)
                         {
-                            SortType = ServersListSortType.OnlinePlayersCount
+                            DefaultSortType = ServersListSortType.OnlinePlayersCount
                         },
                     this.OnSelectedServerChanged);
 
             this.CustomServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(serversProvider.Custom, this.serverViewModelsProvider),
+                    new MultiplayerMenuServersController(this.serversProvider.Custom, this.serverViewModelsProvider),
                     this.OnSelectedServerChanged);
 
             this.FavoriteServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(serversProvider.Favorite, this.serverViewModelsProvider)
+                    new MultiplayerMenuServersController(this.serversProvider.Favorite, this.serverViewModelsProvider)
                     {
-                        SortType = ServersListSortType.OnlinePlayersCount
+                        DefaultSortType = ServersListSortType.OnlinePlayersCount
                     },
                     this.OnSelectedServerChanged);
 
             this.HistoryServers =
                 new ViewModelServersList(
-                    new MultiplayerMenuServersController(serversProvider.History, this.serverViewModelsProvider),
+                    new MultiplayerMenuServersController(this.serversProvider.History, this.serverViewModelsProvider),
                     this.OnSelectedServerChanged);
 
             this.allServersLists = new[]
@@ -123,7 +122,7 @@
                     Client.MasterServer.ServersProvider.Favorite,
                     onFinished: () =>
                                 {
-                                    // Hack: reset IsFavorite flag for previous favorite view models.
+                                    // let's simply reset the IsFavorite flag
                                     foreach (var viewModel in viewModels)
                                     {
                                         var viewModelServerInfo = viewModel.ViewModelServerInfo;
@@ -176,6 +175,80 @@
 
         public Visibility SelectedServerVisibility { get; set; }
 
+        public bool ShowEmptyServers
+        {
+            get => ServerViewModelsProvider.ShowEmptyServers;
+            set
+            {
+                if (ServerViewModelsProvider.ShowEmptyServers == value)
+                {
+                    return;
+                }
+
+                ServerViewModelsProvider.ShowEmptyServers = value;
+                this.NotifyThisPropertyChanged();
+            }
+        }
+
+        public bool ShowIncompatibleServers
+        {
+            get => ServerViewModelsProvider.ShowIncompatibleServers;
+            set
+            {
+                if (ServerViewModelsProvider.ShowIncompatibleServers == value)
+                {
+                    return;
+                }
+
+                ServerViewModelsProvider.ShowIncompatibleServers = value;
+                this.NotifyThisPropertyChanged();
+            }
+        }
+
+        public bool ShowPvEServers
+        {
+            get => ServerViewModelsProvider.ShowPvEServers;
+            set
+            {
+                if (ServerViewModelsProvider.ShowPvEServers == value)
+                {
+                    return;
+                }
+
+                if (!value
+                    && !ServerViewModelsProvider.ShowPvPServers)
+                {
+                    // don't allow disabling the last checkbox
+                    return;
+                }
+
+                ServerViewModelsProvider.ShowPvEServers = value;
+                this.NotifyThisPropertyChanged();
+            }
+        }
+
+        public bool ShowPvPServers
+        {
+            get => ServerViewModelsProvider.ShowPvPServers;
+            set
+            {
+                if (ServerViewModelsProvider.ShowPvPServers == value)
+                {
+                    return;
+                }
+
+                if (!value
+                    && !ServerViewModelsProvider.ShowPvEServers)
+                {
+                    // don't allow disabling the last checkbox
+                    return;
+                }
+
+                ServerViewModelsProvider.ShowPvPServers = value;
+                this.NotifyThisPropertyChanged();
+            }
+        }
+
         public ViewModelServerInfoListEntry GetSelectedItem()
         {
             // ReSharper disable once LoopCanBeConvertedToQuery
@@ -188,6 +261,15 @@
             }
 
             return null;
+        }
+
+        public void ResetSortOrder()
+        {
+            foreach (var list in this.allServersLists)
+            {
+                list.SortType = list.Controller.DefaultSortType;
+                list.IsSortOrderReversed = false;
+            }
         }
 
         protected override void DisposeViewModel()
@@ -279,17 +361,25 @@
         {
             foreach (var serversList in this.allServersLists)
             {
-                if (serversList.IsActive
-                    && serversList.Controller.SortType == ServersListSortType.OnlinePlayersCount)
+                if (!serversList.IsActive)
                 {
-                    serversList.SortEntries();
+                    continue;
+                }
+
+                switch (serversList.Controller.SortType)
+                {
+                    case ServersListSortType.OnlinePlayersCount:
+                    case ServersListSortType.LastWipe:
+                        serversList.SortEntries();
+                        break;
+                    // Please note: we don't sort on server info receive if the list is ordered by ping
                 }
             }
         }
 
         private void ServerPingUpdatedHandled(ServerAddress address, ushort pingMs, bool isPingMeasurementDone)
         {
-            if (isPingMeasurementDone)
+            if (!isPingMeasurementDone)
             {
                 return;
             }

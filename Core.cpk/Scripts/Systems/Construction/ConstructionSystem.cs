@@ -213,6 +213,15 @@
                 return;
             }
 
+            if (IsClient
+                && (worldObject.IsDestroyed
+                    || actionState.ObjectPublicState.StructurePointsCurrent >= actionState.StructurePointsMax))
+            {
+                // apparently the building finished construction/repair before the client simulation was complete
+                SharedActionCompleted(character, actionState);
+                return;
+            }
+
             characterPrivateState.SetCurrentActionState(null);
 
             Logger.Info($"Building/repairing cancelled: {worldObject} by {character}", character);
@@ -244,6 +253,16 @@
             }
 
             characterPrivateState.SetCurrentActionState(null);
+
+            if (IsClient)
+            {
+                // play success sound
+                Api.GetProtoEntity<ObjectConstructionSite>()
+                   .SharedGetObjectSoundPreset()
+                   .PlaySound(ObjectSound.InteractSuccess,
+                              limitOnePerFrame: false,
+                              volume: 0.5f);
+            }
         }
 
         public static bool SharedCheckCanInteract(
@@ -362,7 +381,7 @@
                 return;
             }
 
-            if (!SharedCheckCanInteract(character, worldObject, writeToLog: true))
+            if (!SharedCheckCanInteract(character, worldObject, true))
             {
                 return;
             }
@@ -431,8 +450,8 @@
                 // "Cannot build"
                 NotificationNotEnoughItems_Title,
                 errorMessage,
-                color: NotificationColor.Bad,
-                icon: proto.Icon);
+                NotificationColor.Bad,
+                proto.Icon);
         }
 
         private void ClientRemote_ClientShowNotificationCannotPlace(string errorMessage, IProtoStaticWorldObject proto)
@@ -441,8 +460,8 @@
                 // "Cannot place"
                 NotificationCannotPlace,
                 errorMessage,
-                color: NotificationColor.Bad,
-                icon: proto.Icon);
+                NotificationColor.Bad,
+                proto.Icon);
         }
 
         private void ClientRemote_ShowNotEnoughItemsNotification(IProtoItemToolToolbox protoItemToolToolbox)

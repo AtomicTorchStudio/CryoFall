@@ -29,13 +29,14 @@
                 <Setter Property="Focusable" Value="False" />
                 <Setter Property="Width" Value="48" />
                 <Setter Property="Height" Value="51" />
-                <Setter Property="Margin" Value="3,0" />
                 <Setter Property="Padding" Value="0,0,0,2" />
                 <Setter Property="VerticalAlignment" Value="Top" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type hud:HUDButton}">
-                            <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5">
+                            <Grid x:Name="grid" 
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Margin="3,0">
                                 <Grid.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform />
@@ -100,8 +101,8 @@
                                 <Border x:Name="BorderDisabled"
                                         BorderThickness="1,0,1,1"
                                         CornerRadius="0,0,5,5"
-                                        Background="#66777777" 
-                                        BorderBrush="#66777777"
+                                        Background="#88555555"
+                                        BorderBrush="#88555555"
                                         Visibility="Collapsed" />
                             </Grid>
 
@@ -172,9 +173,49 @@
             </hud:HUDButton.BrushHighlighted>
         </hud:HUDButton>
 
-        <hud:HUDButton DataContext="{Binding MenuSkills}"
+        <hud:HUDButton DataContext="{Binding MenuConstruction}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}"
+                       IsEnabled="{Binding DataContext.IsConstructionMenuAvailable, ElementName=UserControl}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Construction -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Construction}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="ConstructionMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_building.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_building_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuMap}"
                        Command="{Binding CommandToggle}"
                        IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Map -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Map}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="MapMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_map.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_map_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuSkills}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}"
+                       Margin="12,0,0,0">
             <base:ToolTipServiceExtend.ToolTip>
                 <!-- Text: Skills -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Skills}">
@@ -210,28 +251,29 @@
             </hud:HUDButton.BrushHighlighted>
         </hud:HUDButton>
 
-        <hud:HUDButton DataContext="{Binding MenuMap}"
+        <hud:HUDButton DataContext="{Binding MenuQuests}"
                        Command="{Binding CommandToggle}"
                        IsSelected="{Binding IsSelected}">
             <base:ToolTipServiceExtend.ToolTip>
-                <!-- Text: Map -->
-                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Map}">
+                <!-- Text: Quests -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Quests}">
                     <core:LabelWithButton.Button>
-                        <core:GameButtonReference Button="MapMenu" />
+                        <core:GameButtonReference Button="QuestsMenu" />
                     </core:LabelWithButton.Button>
                 </core:LabelWithButton>
             </base:ToolTipServiceExtend.ToolTip>
             <hud:HUDButton.BrushNormal>
-                <ImageBrush ImageSource="/UI/Images/Icons/icon_map.png" />
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_quests.png" />
             </hud:HUDButton.BrushNormal>
             <hud:HUDButton.BrushHighlighted>
-                <ImageBrush ImageSource="/UI/Images/Icons/icon_map_on.png" />
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_quests_on.png" />
             </hud:HUDButton.BrushHighlighted>
         </hud:HUDButton>
 
         <hud:HUDButton DataContext="{Binding MenuSocial}"
                        Command="{Binding CommandToggle}"
-                       IsSelected="{Binding IsSelected}">
+                       IsSelected="{Binding IsSelected}"
+                       Margin="12,0,0,0">
             <base:ToolTipServiceExtend.ToolTip>
                 <!-- Text: Social -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Social}">
@@ -267,48 +309,9 @@
             </hud:HUDButton.BrushHighlighted>
         </hud:HUDButton>
 
-        <hud:HUDButton DataContext="{Binding MenuQuests}"
-                       Command="{Binding CommandToggle}"
-                       IsSelected="{Binding IsSelected}">
-            <base:ToolTipServiceExtend.ToolTip>
-                <!-- Text: Quests -->
-                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Quests}">
-                    <core:LabelWithButton.Button>
-                        <core:GameButtonReference Button="QuestsMenu" />
-                    </core:LabelWithButton.Button>
-                </core:LabelWithButton>
-            </base:ToolTipServiceExtend.ToolTip>
-            <hud:HUDButton.BrushNormal>
-                <ImageBrush ImageSource="/UI/Images/Icons/icon_quests.png" />
-            </hud:HUDButton.BrushNormal>
-            <hud:HUDButton.BrushHighlighted>
-                <ImageBrush ImageSource="/UI/Images/Icons/icon_quests_on.png" />
-            </hud:HUDButton.BrushHighlighted>
-        </hud:HUDButton>
-
-        <hud:HUDButton DataContext="{Binding MenuConstruction}"
-                       Command="{Binding CommandToggle}"
-                       IsSelected="{Binding IsSelected}"
-                       IsEnabled="{Binding DataContext.IsConstructionMenuAvailable, ElementName=UserControl}">
-            <base:ToolTipServiceExtend.ToolTip>
-                <!-- Text: Construction -->
-                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Construction}">
-                    <core:LabelWithButton.Button>
-                        <core:GameButtonReference Button="ConstructionMenu" />
-                    </core:LabelWithButton.Button>
-                </core:LabelWithButton>
-            </base:ToolTipServiceExtend.ToolTip>
-            <hud:HUDButton.BrushNormal>
-                <ImageBrush ImageSource="/UI/Images/Icons/icon_building.png" />
-            </hud:HUDButton.BrushNormal>
-            <hud:HUDButton.BrushHighlighted>
-                <ImageBrush ImageSource="/UI/Images/Icons/icon_building_on.png" />
-            </hud:HUDButton.BrushHighlighted>
-        </hud:HUDButton>
-
         <hud:HUDButton Command="{Binding CommandQuitVehicle}"
                        Visibility="{Binding IsQuitVehicleButtonVisible, Converter={StaticResource BoolToVisibilityConverter}}"
-                       Margin="15,0,0,0">
+                       Margin="12,0,0,0">
             <hud:HUDButton.BorderBrush>
                 <SolidColorBrush Color="#FF3DA83D" />
             </hud:HUDButton.BorderBrush>
@@ -319,7 +322,7 @@
                 </LinearGradientBrush>
             </Control.Background>
             <base:ToolTipServiceExtend.ToolTip>
-                <!-- Text: Construction -->
+                <!-- Text: Dismount vehicle -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_DismountVehicle}">
                     <core:LabelWithButton.Button>
                         <core:GameButtonReference Button="VehicleEnterExit" />

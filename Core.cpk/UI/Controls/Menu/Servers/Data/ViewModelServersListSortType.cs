@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -12,9 +11,12 @@
         public static readonly ReadOnlyCollection<ServersListSortType> AllSortTypes =
             new List<ServersListSortType>
             {
+                ServersListSortType.None,
                 ServersListSortType.OnlinePlayersCount,
                 ServersListSortType.Ping,
-                ServersListSortType.Title
+                ServersListSortType.Title,
+                ServersListSortType.LastWipe,
+                ServersListSortType.Featured
             }.AsReadOnly();
 
         public static readonly Dictionary<ServersListSortType, ViewModelServersListSortType>
@@ -30,32 +32,12 @@
 
         public ViewModelServersListSortType(ServersListSortType sortType)
         {
-            string title;
-            switch (sortType)
-            {
-                case ServersListSortType.None:
-                    title = string.Empty;
-                    break;
-                case ServersListSortType.Ping:
-                    title = CoreStrings.ServerPing;
-                    break;
-                case ServersListSortType.Title:
-                    title = CoreStrings.Title;
-                    break;
-                case ServersListSortType.OnlinePlayersCount:
-                    title = CoreStrings.WindowSocial_TitleOnlinePlayersList;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(sortType));
-            }
-
-            this.Title = title;
             this.SortType = sortType;
         }
 
         public ServersListSortType SortType { get; }
 
-        public string Title { get; }
+        public string Title => this.SortType.GetDescription();
 
         public static ViewModelServersListSortType GetViewModel(ServersListSortType sortType)
         {

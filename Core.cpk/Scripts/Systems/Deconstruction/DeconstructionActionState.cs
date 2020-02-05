@@ -149,8 +149,10 @@
             }
 
             var durationSeconds = DefaultDeconstructionStepDurationSeconds;
-            durationSeconds /= (this.ProtoItemCrowbarTool?.DeconstructionSpeedMultiplier ?? 1);
+            durationSeconds /= this.ProtoItemCrowbarTool?.DeconstructionSpeedMultiplier ?? 1;
             durationSeconds /= character.SharedGetFinalStatMultiplier(StatName.BuildingSpeed);
+            durationSeconds = Api.Shared.RoundDurationByServerFrameDuration(durationSeconds);
+
             if (isFirstStage && Api.IsClient)
             {
                 // Add ping to all client action durations.
@@ -189,7 +191,8 @@
                 oldStructurePoints,
                 newStructurePoints);
 
-            if (newStructurePoints > 0)
+            if (Api.IsClient // client will simply always deconstruct until finished
+                || newStructurePoints > 0)
             {
                 // deconstruction progressed
                 if (Api.IsServer)

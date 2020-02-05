@@ -374,11 +374,11 @@
             if (isByCurrentPlayer)
             {
                 // play 2D sound
-                soundPreset.PlaySound(ObjectSound.Place);
+                soundPreset.PlaySound(ObjectSound.Place, limitOnePerFrame: false);
             }
             else
             {
-                // play 3D sound (at built object)
+                // play 3D sound (at the built object location)
                 soundPreset.PlaySound(ObjectSound.Place,
                                       position.ToVector2D() + protoStaticWorldObject.Layout.Center);
             }

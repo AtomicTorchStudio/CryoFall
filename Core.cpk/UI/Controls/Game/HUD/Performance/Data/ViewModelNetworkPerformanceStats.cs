@@ -8,9 +8,9 @@
 
     public class ViewModelNetworkPerformanceStats : ViewModelPerformanceStatsBase
     {
-        private const int PingSevereValue = 250;
+        public const int PingSevereValue = 250;
 
-        private const int PingSubstantialValue = 125;
+        public const int PingSubstantialValue = 125;
 
         private static readonly ICurrentGameService Game = Api.Client.CurrentGame;
 

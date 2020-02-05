@@ -82,6 +82,13 @@
                 return;
             }
 
+            if (IsClient && worldObject.IsDestroyed)
+            {
+                // apparently the building finished deconstruction before the client simulation was complete
+                SharedActionCompleted(character, actionState);
+                return;
+            }
+
             characterPrivateState.SetCurrentActionState(null);
 
             Logger.Important($"Deconstruction cancelled: {worldObject} by {character}", character);
