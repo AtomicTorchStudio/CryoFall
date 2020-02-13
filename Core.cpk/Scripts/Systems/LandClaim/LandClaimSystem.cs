@@ -304,7 +304,10 @@
                         return true;
                     }
 
-                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                    // as players want to check this limit in Editor (to plan a base),
+                    // it's enabled even for creative mode players there
+                    if (!Api.IsEditor
+                        && CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
                     {
                         return true;
                     }
@@ -699,7 +702,8 @@
 
         public delegate void DelegateServerObjectLandClaimDestroyed(
             IStaticWorldObject landClaimStructure,
-            RectangleInt areaBounds);
+            RectangleInt areaBounds,
+            bool isDestroyedByPlayers);
 
         public delegate void ServerLandClaimsGroupChangedDelegate(
             ILogicObject area,
@@ -822,7 +826,7 @@
             foreach (var areasGroup in tempListGroups.AsList())
             {
                 totalOccupiedSlotsCount += LandClaimAreasGroup.GetPrivateState(areasGroup).ItemsContainer
-                                                      .OccupiedSlotsCount;
+                                                              .OccupiedSlotsCount;
             }
 
             // ensure that the total slots count is not exceeding the limit
@@ -940,6 +944,7 @@
             var areaBounds = SharedGetLandClaimAreaBounds(area);
 
             StructureDecaySystem.ServerBeginDecayForStructuresInArea(areaBounds);
+            var areaPrivateState = LandClaimArea.GetPrivateState(area);
             var areaPublicState = LandClaimArea.GetPublicState(area);
             var areasGroup = areaPublicState.LandClaimAreasGroup;
             var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
@@ -961,18 +966,19 @@
             ServerTryRebuildLandClaimsGroups(areasGroupBounds);
 
             if (ServerCharacters.EnumerateAllPlayerCharacters(onlyOnline: true)
-                                .Any(
-                                    c =>
-                                        PlayerCharacter.GetPublicState(c).CurrentPublicActionState is
-                                            DeconstructionActionState.PublicState deconstructionState
-                                        && deconstructionState.TargetWorldObject == landClaimStructure))
+                                .Any(c =>
+                                         PlayerCharacter.GetPublicState(c).CurrentPublicActionState is
+                                             DeconstructionActionState.PublicState deconstructionState
+                                         && deconstructionState.TargetWorldObject == landClaimStructure))
             {
                 // land claim structure is deconstructed by a crowbar
             }
             else
             {
                 // land claim structure simply destroyed
-                Api.SafeInvoke(() => ServerObjectLandClaimDestroyed?.Invoke(landClaimStructure, areaBounds));
+                Api.SafeInvoke(() => ServerObjectLandClaimDestroyed?.Invoke(landClaimStructure, 
+                                                                            areaBounds, 
+                                                                            areaPrivateState.IsDestroyedByPlayers));
             }
 
             if (!oldAreasInGroup.AsList()
@@ -1153,18 +1159,15 @@
 
         public static RectangleInt SharedCalculateLandClaimAreaBounds(Vector2Ushort centerTilePosition, ushort size)
         {
-            var worldBounds = IsServer
-                                  ? ServerWorld.WorldBounds
-                                  : ClientWorld.WorldBounds;
             var pos = centerTilePosition;
             var halfSize = size / 2.0;
 
             var start = new Vector2Ushort(
-                (ushort)Math.Max(Math.Ceiling(pos.X - halfSize), worldBounds.MinX),
-                (ushort)Math.Max(Math.Ceiling(pos.Y - halfSize), worldBounds.MinY));
+                (ushort)Math.Max(Math.Ceiling(pos.X - halfSize), 0),
+                (ushort)Math.Max(Math.Ceiling(pos.Y - halfSize), 0));
 
-            var endX = Math.Min(Math.Ceiling(pos.X + halfSize), worldBounds.MaxX);
-            var endY = Math.Min(Math.Ceiling(pos.Y + halfSize), worldBounds.MaxY);
+            var endX = Math.Min(Math.Ceiling(pos.X + halfSize), ushort.MaxValue);
+            var endY = Math.Min(Math.Ceiling(pos.Y + halfSize), ushort.MaxValue);
 
             var calculatedSize = new Vector2Ushort((ushort)(endX - start.X),
                                                    (ushort)(endY - start.Y));
@@ -1644,12 +1647,21 @@
             return false;
         }
 
-        public static bool SharedIsPositionInsideOwnedOrFreeArea(Vector2Ushort tilePosition, ICharacter who)
+        public static bool SharedIsPositionInsideOwnedOrFreeArea(
+            Vector2Ushort tilePosition,
+            ICharacter who,
+            bool addGracePadding = false)
         {
             var foundAnyAreas = false;
             foreach (var area in SharedGetLandClaimAreasCache().EnumerateForPosition(tilePosition))
             {
-                var areaBounds = SharedGetLandClaimAreaBounds(area);
+                var areaBounds = SharedGetLandClaimAreaBounds(area, addGracePadding);
+                if (addGracePadding)
+                {
+                    // remove the border cases (touching with the land claim grace area)
+                    areaBounds = areaBounds.Inflate(-1);
+                }
+
                 if (!areaBounds.Contains(tilePosition))
                 {
                     // the tile position is not inside this area

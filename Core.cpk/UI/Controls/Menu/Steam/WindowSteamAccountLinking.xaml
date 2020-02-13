@@ -32,11 +32,11 @@
             <StackPanel Visibility="{Binding ViewVisibilityModeSelection}"
                         Orientation="Vertical">
                 <!-- Text: You can link your Steam account with your AtomicTorch.com account or create a new one. -->
-                <TextBlock
+                <!--<TextBlock
                     Text="{x:Static loc:CoreStrings.WindowSteamAccountLinking_YouCanLinkYourSteam}"
                     HorizontalAlignment="Left"
-                    Margin="20,0,0,10" />
-            
+                    Margin="20,0,0,10" />-->
+
                 <!-- Create new AtomicTorch account -->
                 <Button
                     Content="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount}"
@@ -46,7 +46,8 @@
                     HorizontalAlignment="Center"
                     MinWidth="324" />
 
-                <!-- Link to my existing AtomicTorch account -->
+                <!-- This option is removed as we don't support it after the Steam-only user account is already created -->
+                <!-- Link to my existing AtomicTorch account --><!--
                 <Button
                     Content="{x:Static loc:CoreStrings.WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch}"
                     Command="{Binding CommandOpenAccountLinkingForm}"
@@ -54,7 +55,7 @@
                     FontSize="18"
                     HorizontalAlignment="Center"
                     MinWidth="324"
-                    Margin="0,13,0,0" />
+                    Margin="0,13,0,0" />-->
 
                 <!-- Cancel -->
                 <Button Content="{x:Static loc:CoreStrings.Button_Cancel}"

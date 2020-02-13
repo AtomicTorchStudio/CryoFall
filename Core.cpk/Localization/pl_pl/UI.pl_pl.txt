@@ -754,7 +754,7 @@ UI/CoreStrings@PowerGridState_Capacity:
 Wydajność:
 
 UI/CoreStrings@PowerGridState_Consumers:
-Użytkownicy:
+Urządzenia:
 
 UI/CoreStrings@PowerGridState_CurrentConsumption:
 Bieżące zużycie:

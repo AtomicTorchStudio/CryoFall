@@ -269,7 +269,7 @@
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
-            ObjectMineralPragmiumHelper.ClientInitializeLightForSource(data.GameObject);
+            ObjectMineralPragmiumHelper.ClientInitializeLightForSource(data.GameObject.ClientSceneObject);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)

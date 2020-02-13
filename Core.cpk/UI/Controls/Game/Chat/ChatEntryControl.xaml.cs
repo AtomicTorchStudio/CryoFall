@@ -27,6 +27,8 @@
 
         private ViewModelChatEntryControl viewModel;
 
+        public ViewModelChatEntryControl ViewModel => this.viewModel;
+
         public void Hide(double delaySeconds)
         {
             if (this.isHiddenOrHiding)
@@ -95,7 +97,6 @@
 
         protected override void OnUnloaded()
         {
-            base.OnUnloaded();
             this.DestroyViewModel();
 
             this.MouseUp -= this.MouseUpHandler;
@@ -195,12 +196,15 @@
                     Command = this.viewModel.CommandCopy,
                 });
 
-            contextMenuItems.Add(
-                new MenuItem()
-                {
-                    Header = CoreStrings.Chat_MessageMenu_CopyName,
-                    Command = this.viewModel.CommandCopyName
-                });
+            if (!string.IsNullOrEmpty(this.viewModel.ChatEntry.From))
+            {
+                contextMenuItems.Add(
+                    new MenuItem()
+                    {
+                        Header = CoreStrings.Chat_MessageMenu_CopyName,
+                        Command = this.viewModel.CommandCopyName
+                    });
+            }
 
             if (this.viewModel.VisibilityCanInviteToParty == Visibility.Visible)
             {

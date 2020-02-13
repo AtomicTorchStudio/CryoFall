@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -82,7 +83,11 @@
                 maxAttempts: 200);
         }
 
-        protected override int SharedCalculatePresetDesiredCount(ObjectSpawnPreset preset, int desiredCountByDensity)
+        protected override int SharedCalculatePresetDesiredCount(
+            ObjectSpawnPreset preset,
+            IServerZone zone,
+            int currentCount,
+            int desiredCountByDensity)
         {
             if (Api.IsEditor)
             {
@@ -97,6 +102,12 @@
                 return desiredCountByDensity;
             }
 
+            if (zone.ProtoGameObject is ZoneTemperateForest)
+            {
+                // to balance boreal and temperate forests for A25 we're increasing the spawn density in temperate forest
+                desiredCountByDensity = (int)Math.Round(desiredCountByDensity * 1.17);
+            }
+            
             // throttle spawn to ensure even distribution of spawned objects during 48 hours since the startup
             return (int)(desiredCountByDensity * hoursSinceWorldCreation / 48);
         }

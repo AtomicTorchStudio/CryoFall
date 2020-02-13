@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
@@ -23,29 +22,23 @@
         private static readonly Dictionary<ILogicObject, StateSubscriptionStorage> StateSubscriptionStorages
             = new Dictionary<ILogicObject, StateSubscriptionStorage>();
 
-        private static readonly Color ZoneColorGraceArea
-            = Color.FromArgb(0x30, 0x33, 0x33, 0x33);
-
-        private static readonly Color ZoneColorNotOwnedByPlayer
-            = Color.FromArgb(0x40, 0xDD, 0x00, 0x00);
-
-        private static readonly Color ZoneColorOwnedByPlayer
-            = Color.FromArgb(0x30, 0x00, 0xFF, 0x00);
-
         static ClientLandClaimAreaManager()
         {
             RendererManagerGraceAreas = new ClientLandClaimGroupsRendererManager(
-                ZoneColorGraceArea,
+                LandClaimZoneColors.ZoneColorGraceArea,
                 drawOrder: DrawOrder.Overlay - 3,
-                isGraceAreaRenderer: true);
+                isGraceAreaRenderer: true,
+                isFlippedTexture: true);
 
             RendererManagerNotOwnedByPlayer = new ClientLandClaimGroupsRendererManager(
-                ZoneColorNotOwnedByPlayer,
-                drawOrder: DrawOrder.Overlay - 2);
+                LandClaimZoneColors.ZoneColorNotOwnedByPlayer,
+                drawOrder: DrawOrder.Overlay - 2,
+                isFlippedTexture: true);
 
             RendererManagerOwnedByPlayer = new ClientLandClaimGroupsRendererManager(
-                ZoneColorOwnedByPlayer,
-                drawOrder: DrawOrder.Overlay - 1);
+                LandClaimZoneColors.ZoneColorOwnedByPlayer,
+                drawOrder: DrawOrder.Overlay - 1,
+                isFlippedTexture: false);
 
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
             ClientInputContext.Start("Land claim visualizer")

@@ -8,6 +8,7 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.Data"
+    xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelPartyManagementControl, IsDesignTimeCreatable=True}">
@@ -51,46 +52,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel x:Name="MemberEntryStackPanel"
-                                            Background="Transparent"
-                                            Orientation="Horizontal"
-                                            Margin="0,2">
-                                    <!-- Online indicator (as a bullet point) -->
-                                    <Grid Width="7"
-                                          Height="7"
-                                          VerticalAlignment="Center"
-                                          Margin="0,0,4,-1">
-                                        <Ellipse
-                                            Visibility="{Binding IsOnline, Converter={StaticResource BoolToVisibilityConverter}}"
-                                            Fill="#AA00EE00" />
-
-                                        <Ellipse
-                                            Visibility="{Binding IsOnline, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                                            Stroke="#AA00EE00"
-                                            StrokeThickness="1" />
-                                    </Grid>
-
-                                    <TextBlock Text="{Binding Name}"
-                                               FontSize="14"
-                                               FontWeight="Bold"
-                                               Foreground="{StaticResource BrushColor6}"
-                                               VerticalAlignment="Center" />
-
-                                    <ContentControl
-                                        Visibility="{Binding IsMouseOver, ElementName=MemberEntryStackPanel, Converter={StaticResource BoolToVisibilityConverter}}">
-                                        <Button Command="{Binding CommandRemove}"
-                                                CommandParameter="{Binding Name}"
-                                                Visibility="{Binding RemoveButtonVisibility}"
-                                                FontSize="9"
-                                                Margin="6,0,0,0"
-                                                Padding="2"
-                                                MinWidth="0"
-                                                MinHeight="0"
-                                                Focusable="False">
-                                            <Control Style="{StaticResource CrossControlStyle}" />
-                                        </Button>
-                                    </ContentControl>
-                                </StackPanel>
+                                <politics:PartyMemberEntryControl />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

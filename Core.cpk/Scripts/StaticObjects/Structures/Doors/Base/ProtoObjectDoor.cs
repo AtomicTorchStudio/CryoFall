@@ -370,6 +370,8 @@
                 SharedWallConstructionRefreshHelper.SharedRefreshNeighborObjects(occupiedTile,
                                                                                  isDestroy: false);
             }
+
+            StructureLandClaimIndicatorManager.ClientInitialize(data.GameObject);
         }
 
         protected override void ClientInteractStart(ClientObjectData data)

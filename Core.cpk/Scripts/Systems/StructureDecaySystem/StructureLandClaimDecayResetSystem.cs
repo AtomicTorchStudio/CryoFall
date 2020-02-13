@@ -75,6 +75,7 @@
             var areasGroupPrivateState = LandClaimAreasGroup.GetPrivateState(areasGroup);
             var areasGroupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
             var areas = areasGroupPrivateState.ServerLandClaimsAreas;
+            // TODO: it's better to move this code to another place as this property is used in several other places
             areasGroupPublicState.IsFounderDemoPlayer = ServerGetIsFounderDemoPlayer(areas);
 
             // check every area in the group

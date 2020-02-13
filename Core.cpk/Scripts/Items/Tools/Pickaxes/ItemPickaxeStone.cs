@@ -9,7 +9,8 @@
         public override string Description => "Stone pickaxe can be used to mine mineral deposits.";
 
         // high penalty when hitting buildings such as a claimed wall/door
-        public override double DurabilityDecreaseMultiplierWhenHittingBuildings => 30;
+        public override double DurabilityDecreaseMultiplierWhenHittingBuildings
+            => base.DurabilityDecreaseMultiplierWhenHittingBuildings * 3;
 
         public override uint DurabilityMax => 600;
 

@@ -48,6 +48,8 @@
 
         void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter);
 
+        void ServerOnRepairStageFinished(IStaticWorldObject worldObject, ICharacter character);
+
         void SharedCreatePhysicsConstructionBlueprint(IPhysicsBody physicsBody);
 
         float SharedGetStructurePointsMax(IStaticWorldObject worldObject);

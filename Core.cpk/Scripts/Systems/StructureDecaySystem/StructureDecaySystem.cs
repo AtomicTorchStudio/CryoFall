@@ -16,9 +16,6 @@
     /// </summary>
     public sealed class StructureDecaySystem : ProtoSystem<StructureDecaySystem>
     {
-        private static readonly ICoreServerService ServerCore
-            = IsServer ? Server.Core : null;
-
         private static readonly IGameServerService ServerGame
             = IsServer ? Server.Game : null;
 

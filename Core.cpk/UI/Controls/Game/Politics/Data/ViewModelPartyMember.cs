@@ -3,8 +3,10 @@
     using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.OnlinePlayers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelPartyMember : BaseViewModel
@@ -25,6 +27,10 @@
             OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved += this.OnlinePlayersSystemPlayerAddedOrRemovedHandler;
         }
 
+        public BaseCommand CommandCopyName => new ActionCommand(this.ExecuteCommandCopyName);
+
+        public BaseCommand CommandOpenPrivateChat => new ActionCommand(this.ExecuteCommandOpenPrivateChat);
+
         public BaseCommand CommandRemove { get; }
 
         public bool IsOnline { get; private set; }
@@ -37,6 +43,16 @@
         {
             base.DisposeViewModel();
             OnlinePlayersSystem.ClientOnPlayerAddedOrRemoved -= this.OnlinePlayersSystemPlayerAddedOrRemovedHandler;
+        }
+
+        private void ExecuteCommandCopyName()
+        {
+            Api.Client.Core.CopyToClipboard(this.Name);
+        }
+
+        private void ExecuteCommandOpenPrivateChat()
+        {
+            ChatSystem.ClientOpenPrivateChat(withCharacterName: this.Name);
         }
 
         private void OnlinePlayersSystemPlayerAddedOrRemovedHandler(string name, bool isOnline)

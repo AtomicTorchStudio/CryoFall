@@ -55,7 +55,7 @@
             IsStructuresDecayEnabled =
                 ServerRates.Get(
                     "StructuresDecayEnabled",
-                    defaultValue: 1,
+                    defaultValue: Api.IsEditor ? 0 : 1,
                     @"Set it to 0 to disable the structures decay.
                     Set it to 1 to enable the structures decay.")
                 > 0;

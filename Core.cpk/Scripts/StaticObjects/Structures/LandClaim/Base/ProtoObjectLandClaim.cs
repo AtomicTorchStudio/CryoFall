@@ -5,6 +5,7 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
@@ -21,6 +22,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -50,12 +52,6 @@
 
         public const string NotificationUpgraded_Title = "Successfully upgraded";
 
-        private static readonly Color BlueprintAreaColorGrace = Color.FromArgb(0x33, 0x22, 0x22, 0x22);
-
-        private static readonly Color BlueprintAreaColorGreen = Color.FromArgb(0x44, 0x00, 0xFF, 0x00);
-
-        private static readonly Color BlueprintAreaColorRed = Color.FromArgb(0x66, 0xDD, 0x00, 0x00);
-
         private static readonly RenderingMaterial ClientBlueprintAreaRenderingMaterial;
 
         private static readonly RenderingMaterial ClientBlueprintGraceAreaRenderingMaterial;
@@ -72,11 +68,21 @@
             {
                 // prepare material and effect parameters
                 ClientBlueprintAreaRenderingMaterial = ClientLandClaimGroupRenderer.CreateRenderingMaterial();
+                ClientBlueprintAreaRenderingMaterial.EffectParameters
+                                                    .Set("IsFlipped", false);
+
                 ClientBlueprintGraceAreaRenderingMaterial = ClientLandClaimGroupRenderer.CreateRenderingMaterial();
-                ClientBlueprintGraceAreaRenderingMaterial.EffectParameters.Set("Color", BlueprintAreaColorGrace);
+                ClientBlueprintGraceAreaRenderingMaterial.EffectParameters
+                                                         .Set("Color",     LandClaimZoneColors.ZoneColorGraceArea)
+                                                         .Set("IsFlipped", true);
 
                 ClientBlueprintRestrictedTileRenderingMaterial = ClientLandClaimGroupRenderer.CreateRenderingMaterial();
-                ClientBlueprintRestrictedTileRenderingMaterial.EffectParameters.Set("Color", BlueprintAreaColorRed);
+                ClientBlueprintRestrictedTileRenderingMaterial.EffectParameters
+                                                              .Set("SpriteTexture", new TextureResource("FX/WhiteCell"))
+                                                              .Set("Color",
+                                                                   // red color
+                                                                   LandClaimZoneColors.ZoneColorNotOwnedByPlayer)
+                                                              .Set("IsFlipped", true);
             }
         }
 
@@ -128,40 +134,72 @@
                 return;
             }
 
+            var character = ClientCurrentCharacterHelper.Character;
+
             // display area only when player placing a blueprint
             Color color;
             var sizeWithGraceArea = this.LandClaimWithGraceAreaSize;
+
+            var centerPosition =
+                LandClaimSystem.SharedCalculateLandClaimObjectCenterTilePosition(Vector2Ushort.Zero, this);
+
             if (blueprint.IsCanBuild)
             {
-                color = BlueprintAreaColorGreen;
+                // green color
+                color = LandClaimZoneColors.ZoneColorOwnedByPlayer.WithAlpha(0x80);
                 ClientBlueprintAreaRenderingMaterial.EffectParameters.Set("Color", color);
-                CreateBlueprintAreaRenderer(ClientBlueprintAreaRenderingMaterial,      this.LandClaimSize);
-                CreateBlueprintAreaRenderer(ClientBlueprintGraceAreaRenderingMaterial, sizeWithGraceArea);
+                CreateBlueprintAreaRenderer(ClientBlueprintAreaRenderingMaterial, this.LandClaimSize);
 
-                // can build a land claim area, but highlight the restricted tiles
-                var world = Client.World;
-                var startTilePosition = tile.Position;
-                var halfSize = sizeWithGraceArea / 2;
-                for (var x = 1 - halfSize; x <= halfSize; x++)
-                for (var y = 1 - halfSize; y <= halfSize; y++)
-                {
-                    var checkTile = world.GetTile(startTilePosition.X + x,
-                                                  startTilePosition.Y + y,
-                                                  logOutOfBounds: false);
-                    ProcessFutureLandClaimAreaTile(checkTile, x, y);
-                }
+                // add grace area (two columns and two rows - as a border to the green area)
+                var gracePadding = this.LandClaimGraceAreaPaddingSizeOneDirection;
+                var graceColumnLeft = CreateBlueprintAreaRenderer(ClientBlueprintGraceAreaRenderingMaterial,
+                                                                  gracePadding);
+                graceColumnLeft.PositionOffset = (centerPosition.X - sizeWithGraceArea / 2,
+                                                  centerPosition.Y - sizeWithGraceArea / 2);
+                graceColumnLeft.Scale = (gracePadding, sizeWithGraceArea);
+
+                var graceColumnRight = CreateBlueprintAreaRenderer(ClientBlueprintGraceAreaRenderingMaterial,
+                                                                   gracePadding);
+                graceColumnRight.PositionOffset = (centerPosition.X + sizeWithGraceArea / 2 - gracePadding,
+                                                   centerPosition.Y - sizeWithGraceArea / 2);
+                graceColumnRight.Scale = (gracePadding, sizeWithGraceArea);
+
+                var graceTopRow = CreateBlueprintAreaRenderer(ClientBlueprintGraceAreaRenderingMaterial,
+                                                              gracePadding);
+                graceTopRow.PositionOffset = (centerPosition.X - sizeWithGraceArea / 2 + gracePadding,
+                                              centerPosition.Y + sizeWithGraceArea / 2 - gracePadding);
+                graceTopRow.Scale = (sizeWithGraceArea - 2 * gracePadding, gracePadding);
+
+                var graceBottomRow = CreateBlueprintAreaRenderer(ClientBlueprintGraceAreaRenderingMaterial,
+                                                                 gracePadding);
+                graceBottomRow.PositionOffset = (centerPosition.X - sizeWithGraceArea / 2 + gracePadding,
+                                                 centerPosition.Y - sizeWithGraceArea / 2);
+                graceBottomRow.Scale = (sizeWithGraceArea - 2 * gracePadding, gracePadding);
             }
             else // cannot build a land claim there
             {
-                color = BlueprintAreaColorRed;
+                // red color
+                color = LandClaimZoneColors.ZoneColorNotOwnedByPlayer;
                 ClientBlueprintAreaRenderingMaterial.EffectParameters.Set("Color", color);
                 CreateBlueprintAreaRenderer(ClientBlueprintAreaRenderingMaterial,
                                             size: sizeWithGraceArea);
             }
 
-            void CreateBlueprintAreaRenderer(RenderingMaterial renderingMaterial, int size)
+            // additionally highlight the restricted tiles
+            var world = Client.World;
+            var startTilePosition = tile.Position;
+            var halfSize = sizeWithGraceArea / 2;
+            for (var x = 1 - halfSize; x <= halfSize; x++)
+            for (var y = 1 - halfSize; y <= halfSize; y++)
             {
-                var offset = LandClaimSystem.SharedCalculateLandClaimObjectCenterTilePosition(Vector2Ushort.Zero, this);
+                var checkTile = world.GetTile(startTilePosition.X + x,
+                                              startTilePosition.Y + y,
+                                              logOutOfBounds: false);
+                ProcessFutureLandClaimAreaTile(checkTile, x, y);
+            }
+
+            IComponentSpriteRenderer CreateBlueprintAreaRenderer(RenderingMaterial renderingMaterial, int size)
+            {
                 var areaBlueprint = Api.Client.Rendering.CreateSpriteRenderer(
                     blueprint.SceneObject,
                     null,
@@ -172,8 +210,10 @@
                 areaBlueprint.IgnoreTextureQualityScaling = true;
                 areaBlueprint.Scale = size;
 
-                areaBlueprint.PositionOffset = (offset.X - size / 2,
-                                                offset.Y - size / 2);
+                areaBlueprint.PositionOffset = (centerPosition.X - size / 2,
+                                                centerPosition.Y - size / 2);
+
+                return areaBlueprint;
             }
 
             void ProcessFutureLandClaimAreaTile(Tile checkTile, int offsetX, int offsetY)
@@ -217,7 +257,11 @@
             bool IsRestrictedTile(Tile t)
                 => t.IsCliffOrSlope
                    || t.ProtoTile.Kind != TileKind.Solid
-                   || t.ProtoTile.IsRestrictingConstruction;
+                   || t.ProtoTile.IsRestrictingConstruction
+                   || !LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(
+                       t.Position,
+                       character,
+                       addGracePadding: true);
         }
 
         public async void ClientUpgrade(IStaticWorldObject worldObjectLandClaim, IProtoObjectLandClaim upgradeStructure)
@@ -251,6 +295,25 @@
                                     closeByEscapeKey: true);
         }
 
+        public override void ServerApplyDecay(IStaticWorldObject worldObject, double deltaTime)
+        {
+            var publicState = GetPublicState(worldObject);
+            if (publicState.StructurePointsCurrent <= 0)
+            {
+                // already awaiting destruction
+                return;
+            }
+
+            base.ServerApplyDecay(worldObject, deltaTime);
+
+            if (publicState.StructurePointsCurrent <= 0)
+            {
+                // decayed to the point of starting the destroy timer
+                var areaPrivateState = LandClaimArea.GetPrivateState(publicState.LandClaimAreaObject);
+                areaPrivateState.IsDestroyedByPlayers = false;
+            }
+        }
+
         public sealed override void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter)
         {
             base.ServerOnBuilt(structure, byCharacter);
@@ -261,6 +324,13 @@
         {
             base.ServerOnDestroy(gameObject);
             LandClaimSystem.ServerOnObjectLandClaimDestroyed(gameObject);
+        }
+
+        public override void ServerOnRepairStageFinished(IStaticWorldObject worldObject, ICharacter character)
+        {
+            var publicState = GetPublicState(worldObject);
+            var areaPrivateState = LandClaimArea.GetPrivateState(publicState.LandClaimAreaObject);
+            areaPrivateState.IsDestroyedByPlayers = false;
         }
 
         public ObjectLandClaimCanUpgradeCheckResult ServerRemote_UpgradeStructure(
@@ -476,13 +546,21 @@
                                              weaponCache.Character);
             }
 
-            var objectPublicState = GetPublicState(targetObject);
-            var previousStructurePoints = objectPublicState.StructurePointsCurrent;
+            var publicState = GetPublicState(targetObject);
+            var previousStructurePoints = publicState.StructurePointsCurrent;
             if (previousStructurePoints <= 0f)
             {
                 // already destroyed land claim object (waiting for the destroy timer)
                 obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;
                 damageApplied = 0;
+
+                if (IsServer
+                    && weaponCache.Character != null)
+                {
+                    var areaPrivateState = LandClaimArea.GetPrivateState(publicState.LandClaimAreaObject);
+                    areaPrivateState.IsDestroyedByPlayers = true;
+                }
+
                 return true;
             }
 
@@ -619,10 +697,10 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
-            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersectionsWithDemoPlayers);
             tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersections);
-            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimsTooClose);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimAmountLimit);
+            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersectionsWithDemoPlayers);
+            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimsTooClose);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimDepositRequireXenogeology);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimDepositCooldown);
             tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimBaseSizeLimitNotExceeded);
@@ -673,6 +751,12 @@
                     this.ServerForceUpdate(worldObject, publicState);
                     return;
                 }
+            }
+
+            if (byCharacter != null)
+            {
+                var areaPrivateState = LandClaimArea.GetPrivateState(publicState.LandClaimAreaObject);
+                areaPrivateState.IsDestroyedByPlayers = true;
             }
 
             if (publicState.ServerTimeForDestruction.HasValue)

@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -97,7 +98,7 @@
             {
                 return (0.5, 0.5);
             }
- 
+
             return GetPublicState((IStaticWorldObject)worldObject)
                    .ConstructionProto
                    .Layout
@@ -140,6 +141,8 @@
         {
             // do not call base implementation
             //base.ClientInitialize(data);
+
+            StructureLandClaimIndicatorManager.ClientInitialize(data.GameObject);
 
             var worldObject = data.GameObject;
             var publicState = data.PublicState;

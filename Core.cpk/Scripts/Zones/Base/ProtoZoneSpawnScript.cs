@@ -309,7 +309,11 @@
             return spawnedObject;
         }
 
-        protected virtual int SharedCalculatePresetDesiredCount(ObjectSpawnPreset preset, int desiredCountByDensity)
+        protected virtual int SharedCalculatePresetDesiredCount(
+            ObjectSpawnPreset preset,
+            IServerZone zone,
+            int currentCount,
+            int desiredCountByDensity)
         {
             return desiredCountByDensity;
         }
@@ -387,7 +391,7 @@
             var desiredObjectsCountFloat = area.ZoneTilesCount * spawnRequest.Density;
             var desiredObjectsCount = (int)Math.Round(desiredObjectsCountFloat, MidpointRounding.AwayFromZero);
 
-            if (desiredObjectsCount == 0 
+            if (desiredObjectsCount == 0
                 && preset.SpawnAtLeastOnePerSector
                 && preset.PresetUseSectorDensity
                 && desiredObjectsCountFloat > 0)
@@ -604,15 +608,18 @@
         private SpawnRequest ServerCreateSpawnRequestForPreset(
             ObjectSpawnPreset preset,
             SpawnConfig config,
+            IServerZone zone,
             int zonePositionsCount,
             Dictionary<ObjectSpawnPreset, int> spawnedObjectsCount)
         {
+            var currentCount = spawnedObjectsCount.Find(preset);
             var density = preset.Density * config.DensityMultiplier;
             var desiredCount = this.SharedCalculatePresetDesiredCount(
                 preset,
+                zone,
+                currentCount,
                 desiredCountByDensity: (int)(density * zonePositionsCount));
 
-            var currentCount = spawnedObjectsCount.Find(preset);
             var countToSpawn = Math.Max(0, desiredCount - currentCount);
 
             if (preset.SpawnLimitPerIteration.HasValue)
@@ -820,6 +827,7 @@
                     .Select(preset => this.ServerCreateSpawnRequestForPreset(
                                 preset,
                                 config,
+                                zone,
                                 zonePositionsCount,
                                 spawnedObjectsCount)));
 

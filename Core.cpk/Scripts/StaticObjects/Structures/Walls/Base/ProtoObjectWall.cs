@@ -89,6 +89,8 @@
 
             // ensure that the destroyed texture atlas is preloaded - in case the wall is destroyed we need this texture ASAP
             Client.Rendering.PreloadTextureAsync(this.TextureAtlasDestroyed);
+
+            StructureLandClaimIndicatorManager.ClientInitialize(data.GameObject);
         }
 
         protected override void ClientObserving(ClientObjectData data, bool isObserving)

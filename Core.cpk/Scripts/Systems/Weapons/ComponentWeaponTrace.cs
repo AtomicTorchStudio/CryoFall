@@ -3,6 +3,7 @@
     using System;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -18,6 +19,8 @@
         private double fireDistance;
 
         private bool hasHit;
+
+        private WeaponHitData hitData;
 
         private Vector2D normalizedRay;
 
@@ -55,6 +58,7 @@
             WeaponFireTracePreset weaponTracePreset,
             Vector2D worldPositionSource,
             Vector2D endPosition,
+            WeaponHitData lastHitData,
             bool hasHit)
         {
             if (weaponTracePreset is null)
@@ -64,19 +68,15 @@
             }
 
             var deltaPos = endPosition - worldPositionSource;
-            var fireDistance = deltaPos.Length;
-            fireDistance = Math.Max(0, fireDistance);
-
-            // extend fire distance by start offset (yes, we're using `-` here as TraceStartWorldOffset expected to be negative)
-            fireDistance -= weaponTracePreset.TraceStartWorldOffset;
+            var fireDistance = CalculateFireDistance(weaponTracePreset, deltaPos);
             if (fireDistance <= weaponTracePreset.TraceMinDistance)
             {
                 return;
             }
 
-            var angleRad = -Math.Atan2(deltaPos.Y, deltaPos.X);
-            var normalizedRay = new Vector2D(Math.Cos(-angleRad),
-                                             Math.Sin(-angleRad));
+            CalculateAngleAndDirection(deltaPos,
+                                       out var angleRad,
+                                       out var normalizedRay);
 
             // offset start position of the ray
             worldPositionSource += normalizedRay * weaponTracePreset.TraceStartWorldOffset;
@@ -101,10 +101,10 @@
                 drawOrder: DrawOrder.Light);
 
             componentSpriteRender.RotationAngleRad = (float)angleRad;
-            componentSpriteRender.BlendMode = weaponTracePreset.UseScreenBlending 
+            componentSpriteRender.BlendMode = weaponTracePreset.UseScreenBlending
                                                   ? BlendMode.Screen
                                                   : BlendMode.AlphaBlendPremultiplied;
-            
+
             sceneObject.AddComponent<ComponentWeaponTrace>()
                        .Setup(weaponTracePreset,
                               componentSpriteRender,
@@ -112,13 +112,16 @@
                               normalizedRay,
                               fireDistance,
                               totalDuration,
-                              hasHit);
+                              hasHit,
+                              lastHitData);
 
             sceneObject.Destroy(totalDuration);
         }
 
         public override void LateUpdate(double deltaTime)
         {
+            this.UpdateDirectionRayAndDistance();
+
             var spriteWorldLength = this.weaponTracePreset.TraceWorldLength;
 
             this.currentTime += deltaTime;
@@ -173,6 +176,26 @@
             this.componentSpriteRender.Color = Color.FromArgb(colorOpacity, 0xFF, 0xFF, 0xFF);
         }
 
+        private static void CalculateAngleAndDirection(
+            Vector2D deltaPos,
+            out double angleRad,
+            out Vector2D normalizedRay)
+        {
+            angleRad = -Math.Atan2(deltaPos.Y, deltaPos.X);
+            normalizedRay = new Vector2D(Math.Cos(-angleRad),
+                                         Math.Sin(-angleRad));
+        }
+
+        private static double CalculateFireDistance(WeaponFireTracePreset weaponTracePreset, Vector2D deltaPos)
+        {
+            var fireDistance = deltaPos.Length;
+            fireDistance = Math.Max(0, fireDistance);
+
+            // extend fire distance by start offset (yes, we're using `-` here as TraceStartWorldOffset expected to be negative)
+            fireDistance -= weaponTracePreset.TraceStartWorldOffset;
+            return fireDistance;
+        }
+
         private static double CalculateTimeToHit(double fireDistance, WeaponFireTracePreset weaponTracePreset)
         {
             return fireDistance / weaponTracePreset.TraceSpeed;
@@ -185,7 +208,8 @@
             Vector2D normalizedRay,
             double fireDistance,
             double totalDuration,
-            bool hasHit)
+            bool hasHit,
+            WeaponHitData hitData)
         {
             this.weaponTracePreset = weaponTracePreset;
             this.componentSpriteRender = componentSpriteRender;
@@ -194,8 +218,32 @@
             this.fireDistance = fireDistance;
             this.totalDuration = totalDuration;
             this.hasHit = hasHit;
+            this.hitData = hitData;
 
             this.LateUpdate(0);
+        }
+
+        // If the hit was detected, guide the projectile towards the current hit target location.
+        // For example, when other players firing into the current player
+        // and the current player has large ping, it will look like the shots are hitting empty space but damage is dealt.
+        // This method will guide projectiles to ensure there is no such issue.
+        private void UpdateDirectionRayAndDistance()
+        {
+            if (!this.hasHit
+                || !(this.hitData.WorldObject is IDynamicWorldObject dynamicWorldObject))
+            {
+                return;
+            }
+
+            var endPosition = dynamicWorldObject.Position + this.hitData.HitPoint;
+            var deltaPos = endPosition - this.worldPositionSource;
+            this.fireDistance = CalculateFireDistance(this.weaponTracePreset, deltaPos);
+
+            CalculateAngleAndDirection(deltaPos,
+                                       out var angleRad,
+                                       out this.normalizedRay);
+
+            this.componentSpriteRender.RotationAngleRad = (float)angleRad;
         }
     }
 }

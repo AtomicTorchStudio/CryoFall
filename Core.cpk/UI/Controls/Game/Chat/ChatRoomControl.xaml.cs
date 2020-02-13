@@ -205,12 +205,14 @@
             }
 
             ChatSystem.ClientChatRoomMessageReceived += this.ClientChatRoomMessageReceivedHandler;
+            ClientChatBlockList.CharacterBlockStatusChanged += this.CharacterBlockStatusChangedHandler;
             this.PopulateEntriesFromRoomLog();
         }
 
         protected override void OnUnloaded()
         {
             ChatSystem.ClientChatRoomMessageReceived -= this.ClientChatRoomMessageReceivedHandler;
+            ClientChatBlockList.CharacterBlockStatusChanged -= this.CharacterBlockStatusChangedHandler;
         }
 
         private void AddChatEntry(ChatEntry chatEntry)
@@ -229,6 +231,30 @@
                 && !this.isExpanded)
             {
                 chatEntryControl.Hide(delaySeconds: DefaultNewEntryHideDelaySeconds);
+            }
+        }
+
+        private void CharacterBlockStatusChangedHandler((string name, bool isBlocked) blockedInfo)
+        {
+            if (!blockedInfo.isBlocked)
+            {
+                // unblocked
+                return;
+            }
+
+            // blocked - find and remove chat entries from this player
+            var blockedName = blockedInfo.name;
+
+            for (var index = 0; index < this.stackPanelChatLogChildren.Count; index++)
+            {
+                var entry = (ChatEntryControl)this.stackPanelChatLogChildren[index];
+                var chatEntryFrom = entry.ViewModel.ChatEntry.From;
+
+                if (blockedName.Equals(chatEntryFrom))
+                {
+                    // found a chat entry from this user, remove it
+                    this.stackPanelChatLogChildren.RemoveAt(index--);
+                }
             }
         }
 
@@ -425,6 +451,8 @@
             var chatEntries = ChatSystem.SharedGetChatRoom((ILogicObject)this.viewModelChatRoom.ChatRoom.GameObject)
                                         .ChatLog
                                         .ToList();
+
+            chatEntries.RemoveAll(e => ClientChatBlockList.IsBlocked(e.From));
 
             if (chatEntries.Count == 0)
             {

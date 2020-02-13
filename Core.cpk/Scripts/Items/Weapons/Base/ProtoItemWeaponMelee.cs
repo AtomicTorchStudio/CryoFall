@@ -38,7 +38,7 @@
 
         public override double DamageApplyDelay => 0.075;
 
-        public virtual double DurabilityDecreaseMultiplierWhenHittingBuildings => 5.0;
+        public virtual double DurabilityDecreaseMultiplierWhenHittingBuildings => 10.0;
 
         public override double FireAnimationDuration => 0.6;
 

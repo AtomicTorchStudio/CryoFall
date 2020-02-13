@@ -7,9 +7,9 @@
     {
         bool IsActivatesRaidModeForLandClaim { get; }
 
-        double StructureDamage { get; set; }
+        double StructureDamage { get; }
 
-        double StructureDefensePenetrationCoef { get; set; }
+        double StructureDefensePenetrationCoef { get; }
 
         double ServerCalculateTotalDamageByExplosive(IProtoStaticWorldObject targetStaticWorldObjectProto);
 

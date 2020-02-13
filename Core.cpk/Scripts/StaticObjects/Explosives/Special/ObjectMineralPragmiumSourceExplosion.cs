@@ -37,6 +37,8 @@
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
+        public override float VolumeExplosion => 3;
+
         public override void ServerOnDestroy(IStaticWorldObject gameObject)
         {
             var tilePosition = gameObject.TilePosition;
@@ -69,19 +71,31 @@
             componentBombCountdown.IsRendering = false;
             this.ClientAddShakes(componentBombCountdown);
 
-            var lightSource = ObjectMineralPragmiumHelper.ClientInitializeLightForSource(data.GameObject);
-            sceneObject.AddComponent<ClientComponentLightSourceEffectPulsating>()
-                       .Setup(lightSource,
-                              fromPercents: 85,
-                              toPercents: 120,
-                              durationSeconds: 1);
+            var sceneObjectEffect = Client.Scene
+                                          .CreateSceneObject("Pragmium source explosion effect",
+                                                             position: sceneObject.Position);
+            var soundEmitter = Api.Client.Audio.CreateSoundEmitter(
+                sceneObjectEffect,
+                soundResource: new SoundResource("Ambient/Earthquake"),
+                is3D: true,
+                worldPositionOffset: this.Layout.Center,
+                radius: 7,
+                isLooped: true);
 
-            var soundEmitter = Api.Client.Audio.CreateSoundEmitter(data.GameObject,
-                                                                   new SoundResource("Ambient/Earthquake"),
-                                                                   true,
-                                                                   radius: 7,
-                                                                   isLooped: true);
             soundEmitter.Seek(0);
+            soundEmitter.CustomMinDistance = ExplosionDamageRadius;
+            soundEmitter.CustomMaxDistance = 10 + ExplosionDamageRadius;
+
+            var lightSource = ObjectMineralPragmiumHelper.ClientInitializeLightForSource(sceneObjectEffect);
+            sceneObjectEffect
+                .AddComponent<ClientComponentLightSourceEffectPulsating>()
+                .Setup(data.GameObject,
+                       safeDistance: ExplosionDamageRadius + 1, // add extra tile just to ensure safety
+                       lightSource,
+                       soundEmitter,
+                       fromPercents: 85,
+                       toPercents: 120,
+                       durationSeconds: 1);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -126,6 +140,12 @@
         protected override void PrepareProtoObjectExplosive(out ExplosionPreset explosionPresets)
         {
             explosionPresets = ExplosionPresets.SpecialPragmiumSourceExplosion;
+        }
+
+        protected override double SharedPrepareStatDamageToCharacters(double damageValue)
+        {
+            // we want to damage characters even if there is a reduced explosion damage rate (such as on a PvE server)
+            return damageValue;
         }
 
         protected override void SharedProcessCreatedPhysics(CreatePhysicsData data)

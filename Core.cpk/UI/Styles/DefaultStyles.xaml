@@ -173,13 +173,14 @@
 
     <SolidColorBrush x:Key="BrushColorLabelForeground" Color="{StaticResource ColorLabelForeground}" />
     <SolidColorBrush x:Key="BrushColorAltLabelForeground" Color="{StaticResource ColorAltLabelForeground}" />
-    <SolidColorBrush x:Key="BrushColorLabelForegroundDisabled" Color="{StaticResource ColorLabelForeground}" Opacity="0.85" />
+    <SolidColorBrush x:Key="BrushColorLabelForegroundDisabled" Color="{StaticResource ColorLabelForeground}"
+                     Opacity="0.85" />
 
     <SolidColorBrush x:Key="LabelActionControlColor" Color="#DDFFBC0A" />
     <SolidColorBrush x:Key="LabelActionControlBackground" Color="#30FFBC0A" />
 
     <SolidColorBrush x:Key="DisabledBackground" Color="Black" Opacity="0.35" />
-    
+
     <SolidColorBrush x:Key="ButtonForeground" Color="White" />
 
     <SolidColorBrush x:Key="BrushCraftingProgressBarBackground" Color="Black" Opacity="0.33333" />

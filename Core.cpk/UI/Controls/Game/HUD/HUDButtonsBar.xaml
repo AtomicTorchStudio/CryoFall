@@ -34,7 +34,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type hud:HUDButton}">
-                            <Grid x:Name="grid" 
+                            <Grid x:Name="grid"
                                   RenderTransformOrigin="0.5,0.5"
                                   Margin="3,0">
                                 <Grid.RenderTransform>
@@ -133,7 +133,8 @@
 
     <StackPanel x:Name="ButtonsStackPanel"
                 Orientation="Horizontal"
-                HorizontalAlignment="Center">
+                HorizontalAlignment="Center"
+                Margin="60,0,0,0"> <!-- Move a bit to the right to compensate for the hidden vehicle dismount button -->
 
         <hud:HUDButton DataContext="{Binding MenuInventory}"
                        Command="{Binding CommandToggle}"
@@ -310,7 +311,7 @@
         </hud:HUDButton>
 
         <hud:HUDButton Command="{Binding CommandQuitVehicle}"
-                       Visibility="{Binding IsQuitVehicleButtonVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                       Visibility="{Binding IsQuitVehicleButtonVisible, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
                        Margin="12,0,0,0">
             <hud:HUDButton.BorderBrush>
                 <SolidColorBrush Color="#FF3DA83D" />
@@ -337,7 +338,6 @@
                 <ImageBrush ImageSource="/UI/Images/Icons/icon_dismount_vehicle.png" />
             </hud:HUDButton.BrushHighlighted>
         </hud:HUDButton>
-
 
     </StackPanel>
 </base:BaseUserControl>

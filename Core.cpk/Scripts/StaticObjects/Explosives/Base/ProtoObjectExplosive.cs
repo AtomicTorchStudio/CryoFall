@@ -49,9 +49,9 @@
 
         public sealed override double ServerUpdateIntervalSeconds => 0; // every frame
 
-        public double StructureDamage { get; set; }
+        public double StructureDamage { get; private set; }
 
-        public double StructureDefensePenetrationCoef { get; set; }
+        public double StructureDefensePenetrationCoef { get; private set; }
 
         public sealed override float StructurePointsMax => 9001; // it's non-damageable anyway
 
@@ -176,7 +176,7 @@
                     damageDistribution);
 
                 this.damageDescriptionCharacters = new DamageDescription(
-                    damageValue * WeaponConstants.DamageExplosivesToCharactersMultiplier,
+                    damageValue: this.SharedPrepareStatDamageToCharacters(damageValue),
                     armorPiercingCoef,
                     finalDamageMultiplier,
                     rangeMax: this.DamageRadius,
@@ -189,7 +189,7 @@
                     out var damageValue,
                     out var defencePenetrationCoef);
 
-                this.StructureDamage = damageValue * WeaponConstants.DamageExplosivesToStructuresMultiplier;
+                this.StructureDamage = this.SharedPrepareStatDamageToStructures(damageValue);
                 this.StructureDefensePenetrationCoef = MathHelper.Clamp(defencePenetrationCoef, 0, 1);
             }
         }
@@ -263,6 +263,16 @@
         // see method PrepareTileRequirements
         protected sealed override void SharedCreatePhysics(CreatePhysicsData data)
         {
+        }
+
+        protected virtual double SharedPrepareStatDamageToCharacters(double damageValue)
+        {
+            return damageValue * WeaponConstants.DamageExplosivesToCharactersMultiplier;
+        }
+
+        protected virtual double SharedPrepareStatDamageToStructures(double damageValue)
+        {
+            return damageValue * WeaponConstants.DamageExplosivesToStructuresMultiplier;
         }
 
         private void ServerExplode(IStaticWorldObject worldObject, ICharacter character)

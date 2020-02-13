@@ -71,7 +71,7 @@
         {
             if (Api.IsClient)
             {
-                ClientStorageLastServerMessage = Api.Client.Storage.GetStorage("Servers/LastWelcomeMessages");
+                ClientStorageLastServerMessage = Api.Client.Storage.GetSessionStorage("Servers/LastWelcomeMessages");
                 ClientStorageLastServerMessage.RegisterType(typeof(ServerAddress));
                 ClientStorageLastServerMessage.RegisterType(typeof(AtomicGuid));
             }

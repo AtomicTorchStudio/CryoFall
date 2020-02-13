@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -40,7 +41,7 @@
                                                       .Add<ObjectDepositOilSeepInfinite>();
 
             var presetOilSeep = spawnList.CreatePreset(interval: 130, padding: 1, useSectorDensity: false);
-            presetOilSeep.SpawnLimitPerIteration = 1;
+            presetOilSeep.SpawnLimitPerIteration = 2;
             presetOilSeep.AddExact<ObjectDepositOilSeep>()
                          .SetCustomPaddingWithSelf(79)
                          .SetCustomPaddingWith(restrictionInfiniteOilSeep,      59)
@@ -89,7 +90,11 @@
                 maxAttempts: 200);
         }
 
-        protected override int SharedCalculatePresetDesiredCount(ObjectSpawnPreset preset, int desiredCountByDensity)
+        protected override int SharedCalculatePresetDesiredCount(
+            ObjectSpawnPreset preset,
+            IServerZone zone,
+            int currentCount,
+            int desiredCountByDensity)
         {
             if (Api.IsEditor)
             {
@@ -104,8 +109,23 @@
                 return desiredCountByDensity;
             }
 
+            if (zone.ProtoGameObject is ZoneTemperateSwamp)
+            {
+                // to ensure the oil seeps in the swamp are balanced in A25
+                // make their quantity 4 (and spawn them in pairs, seel later)
+                desiredCountByDensity = (int)Math.Round(desiredCountByDensity * 1.33);
+            }
+
             // throttle spawn to ensure even distribution of spawned objects during 48 hours since the startup
-            return (int)(desiredCountByDensity * hoursSinceWorldCreation / 48);
+            var result = (int)(desiredCountByDensity * hoursSinceWorldCreation / 48);
+
+            // to balance the oil spawn in A25
+            // ensure that the initial oil seeps are spawned in pairs to make them harder to capture by a single team
+            // e.g. rise the limit always by two
+            // this also applies to the swamp
+            result = (result / 2) * 2;
+
+            return result;
         }
     }
 }

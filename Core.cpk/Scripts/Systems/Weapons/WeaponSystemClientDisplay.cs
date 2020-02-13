@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
@@ -80,7 +81,8 @@
                 ComponentWeaponTrace.Create(weaponTracePreset,
                                             worldPositionSource,
                                             endPosition,
-                                            hasHit: endsWithHit);
+                                            hasHit: endsWithHit,
+                                            lastHitData: hitObjects.LastOrDefault(t => t.WorldObject != null));
             }
 
             foreach (var hitData in hitObjects)

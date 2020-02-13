@@ -2,6 +2,7 @@
 {
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.UI.Helpers;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class StructureLandClaimIndicator : BaseUserControl, ICacheableControl
@@ -11,6 +12,8 @@
                                         typeof(bool),
                                         typeof(StructureLandClaimIndicator),
                                         new PropertyMetadata(default(bool)));
+
+        public IComponentAttachedControl AttachedToComponent;
 
         public bool IsClaimed
         {

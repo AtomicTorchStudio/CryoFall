@@ -10,6 +10,7 @@ sampler SpriteTextureSampler
 };
 
 float4 Color;
+bool IsFlipped;
 
 struct VertexShaderOutput
 {
@@ -21,6 +22,12 @@ struct VertexShaderOutput
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
     float2 uv = MainCameraCalculateWorldUV(input.Position.xy);
+    if (IsFlipped)
+    {
+        uv.x = 1 - uv.x;
+        uv *= 0.75;
+    }
+
     float4 color = SpriteTexture.Sample(SpriteTextureSampler, uv);
     // de-premultiply alpha
     color.rgb /= color.a;

@@ -23,8 +23,8 @@
             Stroke="Black"
             StrokeThickness="1"
             Stretch="Uniform"
-            Width="32"
-            Height="32"
+            Width="38"
+            Height="38"
             UseLayoutRounding="False" />
         <Path
             Visibility="{Binding IsClaimed, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
@@ -33,8 +33,8 @@
             Stroke="Black"
             StrokeThickness="1"
             Stretch="Uniform"
-            Width="32"
-            Height="32"
+            Width="38"
+            Height="38"
             UseLayoutRounding="False" />
     </Grid>
 

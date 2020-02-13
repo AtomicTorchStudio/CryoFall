@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
-    using System;
     using System.Collections.Generic;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -295,29 +294,19 @@
 
             var item = data.GameObject;
             var currentCharacter = ClientCurrentCharacterHelper.Character;
-            if (item.Container == null
-                || item.Container.OwnerAsCharacter != currentCharacter
-                || item.Container != item.Container.OwnerAsCharacter.SharedGetPlayerContainerEquipment())
+            if (item.Container?.OwnerAsCharacter != currentCharacter)
             {
-                // item of another character or not equipped
+                // item of another character
                 return;
             }
 
             var publicState = data.PublicState;
 
-            // check if item is in a hotbar selected slot, if not - make it not active
-            if (!SharedUpdateActiveState(item, publicState))
+            if (!this.SharedUpdateActiveState(item, publicState))
             {
                 return;
             }
-
-            if (!this.SharedCanActivate(currentCharacter, item))
-            {
-                // deactivate
-                publicState.IsActive = false;
-                return;
-            }
-
+            
             this.ItemFuelConfig.SharedTryConsumeFuel(item,
                                                      data.PrivateState,
                                                      data.DeltaTime,
@@ -351,25 +340,11 @@
             var item = data.GameObject;
             var publicState = data.PublicState;
 
-            // check if item is in a hotbar selected slot, if not - make it not active
-            if (!SharedUpdateActiveState(item, publicState))
+            if (!this.SharedUpdateActiveState(item, publicState))
             {
                 return;
             }
-
-            var character = item.Container.OwnerAsCharacter;
-            if (character != null)
-            {
-                if (!this.SharedCanActivate(character, item))
-                {
-                    // deactivate
-                    publicState.IsActive = false;
-                    return;
-                }
-
-                ServerItemUseObserver.NotifyItemUsed(character, item);
-            }
-
+            
             this.ItemFuelConfig.SharedTryConsumeFuel(item, data.PrivateState, data.DeltaTime, out var isFuelRanOut);
             if (isFuelRanOut)
             {
@@ -412,27 +387,6 @@
                     item));
         }
 
-        // it's shared - but can be executed for the current character on client side
-        private static bool SharedUpdateActiveState(IItem item, TPublicState publicState)
-        {
-            var itemOwnerCharacter = item.Container?.OwnerAsCharacter;
-            if (itemOwnerCharacter != null
-                && itemOwnerCharacter.ServerIsOnline
-                && item.Container == itemOwnerCharacter.SharedGetPlayerContainerEquipment())
-            {
-                return publicState.IsActive;
-            }
-
-            if (!publicState.IsActive)
-            {
-                return false;
-            }
-
-            Logger.Info(item + " is not in an equipment slot or player is offline - make it inactive");
-            publicState.IsActive = false;
-            return false;
-        }
-
         private void ClientTrySetActiveState(IItem item, bool setIsActive)
         {
             var publicState = GetPublicState(item);
@@ -449,15 +403,14 @@
             }
 
             if (setIsActive
-                && item.Container
-                != item.Container.OwnerAsCharacter?
-                    .SharedGetPlayerContainerEquipment())
+                && item.Container != item.Container.OwnerAsCharacter?.SharedGetPlayerContainerEquipment())
             {
                 Logger.Info(item + " cannot activate - not in an equipment slot");
                 return;
             }
 
-            if (setIsActive && !this.SharedCanActivate(ClientCurrentCharacterHelper.Character, item))
+            if (setIsActive
+                && !this.SharedCanActivate(ClientCurrentCharacterHelper.Character, item))
             {
                 setIsActive = false;
             }
@@ -491,11 +444,12 @@
 
             if (item.Container != characterPublicState.ContainerEquipment)
             {
-                throw new Exception("The head equipment light item must be located in the character equipment: "
-                                    + item);
+                Logger.Warning("The head equipment light item must be located in the character equipment: " + item);
+                return;
             }
 
-            if (setIsActive && !this.SharedCanActivate(character, item))
+            if (setIsActive
+                && !this.SharedCanActivate(character, item))
             {
                 setIsActive = false;
             }
@@ -512,6 +466,38 @@
 
             publicState.IsActive = setIsActive;
             Logger.Info($"Player switched light mode: {item}, isActive={setIsActive}", character);
+        }
+
+        // it's shared - but can be executed for the current character on client side
+        private bool SharedUpdateActiveState(IItem item, TPublicState publicState)
+        {
+            if (!publicState.IsActive)
+            {
+                return false;
+            }
+
+            var itemOwnerCharacter = item.Container?.OwnerAsCharacter;
+            if (itemOwnerCharacter != null
+                && itemOwnerCharacter.ServerIsOnline
+                // check if item is in a hotbar selected slot, if not - make it not active
+                && item.Container == itemOwnerCharacter.SharedGetPlayerContainerEquipment()
+                // check if item can be active now
+                && this.SharedCanActivate(itemOwnerCharacter, item))
+            {
+                return true;
+            }
+
+            Logger.Info(item + " is not in an equipment slot or player is offline - make it inactive");
+            if (IsServer)
+            {
+                publicState.IsActive = false;
+            }
+            else
+            {
+                this.ClientTrySetActiveState(item, setIsActive: false);
+            }
+
+            return false;
         }
     }
 

@@ -99,7 +99,8 @@
         {
             var currentVehicle = ClientCurrentCharacterHelper.PublicState.CurrentVehicle;
             if (!(currentVehicle is null)
-                && !currentVehicle.IsInitialized)
+                && (!currentVehicle.IsInitialized 
+                    || !currentVehicle.ClientHasPrivateState))
             {
                 // not yet ready - refresh after delay
                 ClientTimersSystem.AddAction(delaySeconds: 0.1,

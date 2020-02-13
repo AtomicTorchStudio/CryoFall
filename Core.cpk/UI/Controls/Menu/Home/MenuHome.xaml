@@ -7,13 +7,14 @@
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:servicesClient="clr-namespace:AtomicTorch.CBND.GameApi.ServicesClient;assembly=AtomicTorch.CBND.GameApi.WPF"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Home.Data"
     xmlns:data1="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Servers.Data"
-    xmlns:data2="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Home.Data"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance data2:ViewModelMenuHome, IsDesignTimeCreatable=True}"
+    d:DataContext="{d:DesignInstance data:ViewModelMenuHome, IsDesignTimeCreatable=True}"
     d:DesignWidth="1340" d:DesignHeight="630" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
-    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services">
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
 
@@ -23,13 +24,13 @@
 
             <!-- ReSharper disable Xaml.RedundantResource -->
             <!-- Override columns width for recent servers list -->
-            <system:Double x:Key="ServerIconSize">28</system:Double>
-            <GridLength x:Key="ColumnWidthServerIcon">28</GridLength>
+            <system:Double x:Key="ServerIconSize">26</system:Double>
+            <GridLength x:Key="ColumnWidthServerIcon">26</GridLength>
             <GridLength x:Key="ColumnWidthPadding">0</GridLength>
             <GridLength x:Key="ColumnWidthPing">50</GridLength>
-            <GridLength x:Key="ColumnWidthPlayers">80</GridLength>
+            <GridLength x:Key="ColumnWidthPlayers">50</GridLength>
             <GridLength x:Key="ColumnWidthWiped">0</GridLength>
-            <GridLength x:Key="ColumnWidthFavorite">40</GridLength>
+            <GridLength x:Key="ColumnWidthFavorite">0</GridLength>
             <ControlTemplate x:Key="ColumnWipedDateContentTemplate"
                              TargetType="ContentControl">
                 <!-- No content in "Wiped" column -->
@@ -43,7 +44,7 @@
                 <Setter Property="Foreground" Value="#FFCCCCCC" />
             </Style>
 
-            <data2:DateToStringConverter x:Key="DateToStringConverter" />
+            <data:DateToStringConverter x:Key="DateToStringConverter" />
 
             <Style TargetType="{x:Type core:HyperlinkControl}">
                 <Setter Property="HorizontalAlignment" Value="Left" />
@@ -68,6 +69,80 @@
                 </Setter>
             </Style>
 
+            <DataTemplate x:Key="ServerInfoEntryItemTemplateMenuHome"
+                          DataType="{x:Type data1:ViewModelServerInfoListEntry}">
+                <!-- Enter sound is bugged due to the template reusing -->
+                <!--core:SoundUI.EnterSound="{StaticResource SoundListElementEnter}"-->
+                <Grid Background="Transparent"
+                      core:SoundUI.ClickSound="{StaticResource SoundListElementClick}"
+                      services:DoubleClickService.CommandOnDoubleClick="{Binding CommandJoinServer}"
+                      services:DoubleClickService.CommandOnDoubleClickParameter="{Binding}"
+                      DataContext="{Binding ViewModelServerInfo}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource ColumnWidthServerIcon}" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{StaticResource ColumnWidthPadding}" />
+                        <ColumnDefinition Width="{StaticResource ColumnWidthPing}" />
+                        <ColumnDefinition Width="{StaticResource ColumnWidthPlayers}" />
+                        <ColumnDefinition Width="{StaticResource ColumnWidthWiped}" />
+                        <ColumnDefinition Width="{StaticResource ColumnWidthFavorite}" />
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle Width="{StaticResource ServerIconSize}"
+                               Height="{StaticResource ServerIconSize}"
+                               Fill="#11FFFFFF" />
+
+                    <Rectangle Width="{StaticResource ServerIconSize}"
+                               Height="{StaticResource ServerIconSize}"
+                               Fill="{Binding Icon}" />
+
+                    <Grid Grid.Column="1"
+                          Margin="5,0,5,0"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Title}"
+                                   Style="{StaticResource TextBlockServerTitleStyle}" />
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <Control Template="{StaticResource BlockOfficialMultiplayerServerTemplate}"
+                                     Visibility="{Binding IsOfficial, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                            <Control Template="{StaticResource BlockFeaturedMultiplayerServerTemplate}"
+                                     Visibility="{Binding IsFeatured, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                            <Control Template="{StaticResource BlockModdedMultiplayerServerTemplate}"
+                                     Visibility="{Binding IsModded, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                            <Control Template="{StaticResource BlockPvPMultiplayerServerTemplate}"
+                                     Visibility="{Binding IsPvP, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                            <Control Template="{StaticResource BlockPvEMultiplayerServerTemplate}"
+                                     Visibility="{Binding IsPvE, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Grid.Column="3"
+                               Text="{Binding PingText}"
+                               Foreground="{Binding PingForegroundBrush}"
+                               Style="{StaticResource TextBlockServerStatStyle}" />
+
+                    <TextBlock Grid.Column="4"
+                               Text="{Binding PlayersText}"
+                               Style="{StaticResource TextBlockServerStatStyle}" />
+
+                    <Rectangle Grid.ColumnSpan="8"
+                               Visibility="{Binding IncompatibleVisibility}"
+                               Fill="#77330000"
+                               Margin="-2,-1"
+                               IsHitTestVisible="False" />
+                </Grid>
+            </DataTemplate>
+
             <ControlTemplate x:Key="HistoryServersListDataTemplate">
                 <Grid d:DataContext="{d:DesignInstance data1:ViewModelServersList}">
                     <Grid.RowDefinitions>
@@ -81,8 +156,9 @@
                              Style="{StaticResource ServersListBoxStyle}"
                              SelectedItem="{Binding SelectedServer}"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"
-                             ItemTemplate="{StaticResource ServerInfoEntryTemplate}"
-                             ItemContainerStyle="{StaticResource ServersListBoxContainerStyle}" />
+                             ItemContainerStyle="{StaticResource ServersListBoxContainerStyle}"
+                             ItemTemplate="{StaticResource ServerInfoEntryItemTemplateMenuHome}"
+                             Margin="0,-2,0,0" />
 
                     <StackPanel Grid.Row="2"
                                 HorizontalAlignment="Center"

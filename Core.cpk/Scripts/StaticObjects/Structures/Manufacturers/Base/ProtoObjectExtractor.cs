@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -131,6 +132,15 @@
             var objectDeposit = this.SharedGetDepositWorldObject(data.GameObject.OccupiedTile);
             // force reinitialize deposit to ensure the deposit healthbar will be hidden
             objectDeposit?.ClientInitialize();
+
+            if (objectDeposit != null
+                && ((IProtoObjectDeposit)objectDeposit.ProtoGameObject).LifetimeTotalDurationSeconds <= 0)
+            {
+                // this extractor is built over an infinite source
+                // remove a "broken shield" icon as this area cannot be claimed
+                // this extractor cannot be damaged anyway (see SharedOnDamage method)
+                StructureLandClaimIndicatorManager.ClientDeinitialize(data.GameObject);
+            }
         }
 
         protected override void ClientObserving(ClientObjectData data, bool isObserving)

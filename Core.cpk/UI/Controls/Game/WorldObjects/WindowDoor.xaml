@@ -24,20 +24,16 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Vertical"
-                            VerticalAlignment="Center">
-                    <worldObjects:WorldObjectOwnersEditorControl DataContext="{Binding ViewModelOwnersEditor}"
-                                                                 Margin="2,0,0,5" />
-                </StackPanel>
+                <worldObjects:WorldObjectOwnersEditorControl DataContext="{Binding ViewModelOwnersEditor}"
+                                                             Margin="2,0,0,5"
+                                                             VerticalAlignment="Center" />
 
                 <Control Style="{StaticResource ControlVerticalSeparator}"
                          Grid.Column="1" />
 
-                <StackPanel Orientation="Vertical"
-                            Grid.Column="2"
-                            VerticalAlignment="Center">
-                    <worldObjects:WorldObjectAccessModeEditorControl DataContext="{Binding ViewModelAccessModeEditor}" />
-                </StackPanel>
+                <worldObjects:WorldObjectAccessModeEditorControl DataContext="{Binding ViewModelAccessModeEditor}"
+                                                                 Grid.Column="2"
+                                                                 VerticalAlignment="Center" />
             </Grid>
         </Grid>
 

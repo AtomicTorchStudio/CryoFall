@@ -15,12 +15,12 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             // regular trees
-            var regularTrees = spawnList.CreatePreset(interval: 4, padding: 1.5)
+            var regularTrees = spawnList.CreatePreset(interval: 6.1, padding: 1.5)
                                         .Add<ObjectTreePoplar>()
                                         .SetCustomPaddingWithSelf(3);
 
             // higher density for pines
-            var pines = spawnList.CreatePreset(interval: 3.5, padding: 1.5)
+            var pines = spawnList.CreatePreset(interval: 3.85, padding: 1.5)
                                  .Add<ObjectTreePineBoreal>()
                                  // not directly near (left, right, etc.), but diagonally - ok!
                                  .SetCustomPaddingWithSelf(1.1);

@@ -17,7 +17,8 @@
         public override double SpecialEffectProbability => 0.1; // 10%
 
         // high penalty when hitting buildings such as a claimed wall/door
-        public override double DurabilityDecreaseMultiplierWhenHittingBuildings => 6;
+        public override double DurabilityDecreaseMultiplierWhenHittingBuildings
+            => base.DurabilityDecreaseMultiplierWhenHittingBuildings * 1.5;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsMelee>();
 

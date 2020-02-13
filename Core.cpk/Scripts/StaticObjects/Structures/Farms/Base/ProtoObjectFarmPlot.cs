@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Tiles;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -80,6 +81,7 @@
         protected override void ClientInitialize(ClientInitializeData data)
         {
             this.ClientAddAutoStructurePointsBar(data);
+            StructureLandClaimIndicatorManager.ClientInitialize(data.GameObject);
 
             var worldObject = data.GameObject;
             var tile = worldObject.OccupiedTile;

@@ -16,16 +16,22 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             // bushes
-            spawnList.CreatePreset(interval: 10, padding: 1)
-                     .Add<ObjectSmallPineapple>(weight: 2)
-                     .Add<ObjectBushYellow>()
-                     .Add<ObjectBushPurple>()
-                     .Add<ObjectBushCoffee>()
-                     .SetCustomPaddingWithSelf(5);
+            var bushes = spawnList.CreatePreset(interval: 13, padding: 1)
+                                  .Add<ObjectBushYellow>()
+                                  .Add<ObjectBushPurple>()
+                                  .Add<ObjectBushCoffee>()
+                                  .SetCustomPaddingWithSelf(5);
 
-            spawnList.CreatePreset(interval: 10, padding: 2)
-                     .Add<ObjectBushWaterbulb>()
-                     .SetCustomPaddingWithSelf(5);
+            var bushWaterbulb = spawnList.CreatePreset(interval: 10, padding: 2)
+                                         .Add<ObjectBushWaterbulb>()
+                                         .SetCustomPaddingWithSelf(5)
+                                         .SetCustomPaddingWith(bushes, 5);
+
+            spawnList.CreatePreset(interval: 16, padding: 1)
+                     .Add<ObjectSmallPineapple>()
+                     .SetCustomPaddingWithSelf(5)
+                     .SetCustomPaddingWith(bushes,        5)
+                     .SetCustomPaddingWith(bushWaterbulb, 5);
         }
     }
 }

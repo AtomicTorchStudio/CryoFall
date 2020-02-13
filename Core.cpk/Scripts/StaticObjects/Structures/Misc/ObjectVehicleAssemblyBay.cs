@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -52,7 +53,9 @@
             renderer.PositionOffset = WorldPositionOffset;
             // set custom size (don't use auto scaling)
             renderer.Scale = null;
-            renderer.Size = (512 * 0.5, 572 * 0.5);
+            var qualityScaleCoef = Api.Client.Rendering.CalculateCurrentQualityScaleCoefWithOffset(0);
+            renderer.Size = (512 * 0.5 / qualityScaleCoef, 
+                             572 * 0.5 / qualityScaleCoef);
         }
 
         public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)

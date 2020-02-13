@@ -40,13 +40,15 @@
         public ClientLandClaimGroupsRendererManager(
             Color zoneColor,
             DrawOrder drawOrder,
-            bool isGraceAreaRenderer = false)
+            bool isGraceAreaRenderer = false,
+            bool isFlippedTexture = false)
         {
             this.drawOrder = drawOrder;
             this.isGraceAreaRenderer = isGraceAreaRenderer;
 
             this.material = ClientLandClaimGroupRenderer.CreateRenderingMaterial();
             this.material.EffectParameters.Set("Color", zoneColor);
+            this.material.EffectParameters.Set("IsFlipped", isFlippedTexture);
 
             this.sceneObject = Api.Client.Scene.CreateSceneObject(nameof(ClientLandClaimGroupsRendererManager)
                                                                   + " "

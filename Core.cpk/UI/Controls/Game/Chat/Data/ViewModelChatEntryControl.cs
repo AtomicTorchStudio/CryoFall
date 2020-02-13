@@ -61,6 +61,8 @@
             this.UpdateText(inlines);
         }
 
+        public ChatEntry ChatEntry => this.chatEntry;
+
         public BaseCommand CommandCopy => new ActionCommand(this.ExecuteCommandCopy);
 
         public BaseCommand CommandCopyName => new ActionCommand(this.ExecuteCommandCopyName);
@@ -179,8 +181,8 @@
 
         protected override void DisposeViewModel()
         {
-            base.DisposeViewModel();
             ClientChatBlockList.CharacterBlockStatusChanged -= this.CharacterBlockStatusChangedHandler;
+            base.DisposeViewModel();
         }
 
         private static void AddSupporterBadge(InlineCollection inlines)
@@ -196,8 +198,8 @@
                 Stretch = Stretch.Uniform
             };
             iconPath.SetBinding(Shape.FillProperty,
-                                 // bind to the foreground of the hidden textblock
-                                 new Binding("Foreground") { Source = hiddenTextBlock });
+                                // bind to the foreground of the hidden textblock
+                                new Binding("Foreground") { Source = hiddenTextBlock });
 
             var grid = new Grid()
             {
@@ -222,6 +224,11 @@
 
         private void CharacterBlockStatusChangedHandler((string name, bool isBlocked) obj)
         {
+            if (this.IsDisposed)
+            {
+                return;
+            }
+
             this.NotifyPropertyChanged(nameof(this.VisibilityCanBlock));
             this.NotifyPropertyChanged(nameof(this.VisibilityCanUnblock));
         }

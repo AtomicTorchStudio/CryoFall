@@ -13,8 +13,8 @@
         <ResourceDictionary Source="DefaultStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <system:Double x:Key="ServerIconSize">41</system:Double>
-    <GridLength x:Key="ColumnWidthServerIcon">41</GridLength>
+    <system:Double x:Key="ServerIconSize">40</system:Double>
+    <GridLength x:Key="ColumnWidthServerIcon">40</GridLength>
     <GridLength x:Key="ColumnWidthPadding">20</GridLength>
     <GridLength x:Key="ColumnWidthPing">70</GridLength>
     <GridLength x:Key="ColumnWidthPlayers">70</GridLength>
@@ -30,7 +30,8 @@
         <ContentPresenter />
     </ControlTemplate>
 
-    <Style x:Key="TextBlockServerTitleStyle" TargetType="{x:Type TextBlock}">
+    <Style x:Key="TextBlockServerTitleStyle"
+           TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
         <Setter Property="FontSize" Value="14" />
@@ -41,14 +42,16 @@
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
     </Style>
 
-    <Style x:Key="TextBlockServerAddressStyle" BasedOn="{StaticResource TextBlockServerTitleStyle}"
+    <Style x:Key="TextBlockServerAddressStyle"
+           BasedOn="{StaticResource TextBlockServerTitleStyle}"
            TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="{StaticResource ServerAddressForegroundBrush}" />
         <Setter Property="FontSize" Value="9" />
     </Style>
 
     <!-- Used for ping, players number, and wipe date columns -->
-    <Style x:Key="TextBlockServerStatStyle" BasedOn="{StaticResource TextBlockServerTitleStyle}"
+    <Style x:Key="TextBlockServerStatStyle"
+           BasedOn="{StaticResource TextBlockServerTitleStyle}"
            TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="13" />
         <Setter Property="LineHeight" Value="13" />
@@ -211,102 +214,6 @@
         </Setter>
     </Style>
 
-    <DataTemplate x:Key="ServerInfoEntryTemplate"
-                  DataType="{x:Type data:ViewModelServerInfoListEntry}">
-        <ContentControl>
-            <!-- Enter sound is bugged due to the template reusing -->
-            <!--core:SoundUI.EnterSound="{StaticResource SoundListElementEnter}"-->
-            <Grid VerticalAlignment="Top"
-                  Background="Transparent"
-                  core:SoundUI.ClickSound="{StaticResource SoundListElementClick}"
-                  services:DoubleClickService.CommandOnDoubleClick="{Binding ViewModelServerInfo.CommandJoinServer}"
-                  services:DoubleClickService.CommandOnDoubleClickParameter="{Binding ViewModelServerInfo}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="{DynamicResource ColumnWidthServerIcon}" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{DynamicResource ColumnWidthPadding}" />
-                    <ColumnDefinition Width="{DynamicResource ColumnWidthPing}" />
-                    <ColumnDefinition Width="{DynamicResource ColumnWidthPlayers}" />
-                    <ColumnDefinition Width="{DynamicResource ColumnWidthWiped}" />
-                    <ColumnDefinition Width="{DynamicResource ColumnWidthFavorite}" />
-                </Grid.ColumnDefinitions>
-
-                <Rectangle Width="{DynamicResource ServerIconSize}"
-                           Height="{DynamicResource ServerIconSize}"
-                           Fill="#11FFFFFF" />
-
-                <Rectangle Width="{DynamicResource ServerIconSize}"
-                           Height="{DynamicResource ServerIconSize}"
-                           Fill="{Binding ViewModelServerInfo.Icon}" />
-
-                <Grid Grid.Column="1"
-                      Margin="7,-12,5,0"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="{Binding ViewModelServerInfo.Title}"
-                               Style="{StaticResource TextBlockServerTitleStyle}" />
-
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                        <Control Template="{StaticResource BlockOfficialMultiplayerServerTemplate}"
-                                 Visibility="{Binding ViewModelServerInfo.IsOfficial, Converter={StaticResource BoolToVisibilityConverter}}" />
-
-                        <Control Template="{StaticResource BlockFeaturedMultiplayerServerTemplate}"
-                                 Visibility="{Binding ViewModelServerInfo.IsFeatured, Converter={StaticResource BoolToVisibilityConverter}}" />
-
-                        <Control Template="{StaticResource BlockModdedMultiplayerServerTemplate}"
-                                 Visibility="{Binding ViewModelServerInfo.IsModded, Converter={StaticResource BoolToVisibilityConverter}}" />
-
-                        <Control Template="{StaticResource BlockPvPMultiplayerServerTemplate}"
-                                 Visibility="{Binding ViewModelServerInfo.IsPvP, Converter={StaticResource BoolToVisibilityConverter}}" />
-
-                        <Control Template="{StaticResource BlockPvEMultiplayerServerTemplate}"
-                                 Visibility="{Binding ViewModelServerInfo.IsPvE, Converter={StaticResource BoolToVisibilityConverter}}" />
-                    </StackPanel>
-                </Grid>
-
-                <TextBlock Grid.Column="1"
-                           Margin="7,16,5,0"
-                           Text="{Binding ViewModelServerInfo.Address.HostAddress}"
-                           Style="{StaticResource TextBlockServerAddressStyle}" />
-
-                <TextBlock Grid.Column="3"
-                           Text="{Binding ViewModelServerInfo.PingText}"
-                           Foreground="{Binding ViewModelServerInfo.PingForegroundBrush}"
-                           Style="{StaticResource TextBlockServerStatStyle}" />
-
-                <TextBlock Grid.Column="4"
-                           Text="{Binding ViewModelServerInfo.PlayersText}"
-                           Style="{StaticResource TextBlockServerStatStyle}" />
-
-                <ContentControl Grid.Column="5"
-                                Template="{DynamicResource ColumnWipedDateContentTemplate}">
-                    <TextBlock Text="{Binding ViewModelServerInfo.WipedDateText}"
-                               TextAlignment="Center"
-                               Style="{StaticResource TextBlockServerStatStyle}" />
-                </ContentControl>
-
-                <StackPanel Grid.Column="6"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-                    <CheckBox Style="{StaticResource CheckBoxFavoriteStyle}"
-                              IsChecked="{Binding ViewModelServerInfo.IsFavorite}"
-                              Command="{Binding ViewModelServerInfo.CommandFavoriteToggle}"
-                              CommandParameter="{Binding}" />
-                </StackPanel>
-
-                <Rectangle Grid.ColumnSpan="8"
-                           Visibility="{Binding ViewModelServerInfo.IncompatibleVisibility}"
-                           Fill="#77330000" 
-                           Margin="-2,-1"
-                           IsHitTestVisible="False" />
-            </Grid>
-        </ContentControl>
-    </DataTemplate>
 
     <Style x:Key="ServersListBoxContainerStyle" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Background">
@@ -361,7 +268,10 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
-        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="VirtualizingStackPanel.ScrollUnit" Value="Item" />
+        <!-- Cannot use Recycling mode here due to a bug in NoesisGUI 2.2 -->
+        <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Standard" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Template">
             <Setter.Value>
@@ -374,7 +284,6 @@
                                 <Style TargetType="ScrollViewer">
                                     <Setter Property="services:ScrollViewerWithButtonsService.IsEnabled" Value="True" />
                                     <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
-                                    <Setter Property="CanContentScroll" Value="False" />
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -434,6 +343,13 @@
                                 BorderBrush="{TemplateBinding BorderBrush}" />
                     </Grid>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="Background" Value="Transparent" />

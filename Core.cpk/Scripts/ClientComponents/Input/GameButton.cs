@@ -169,7 +169,7 @@
 
         // (See the screenshot settings in the General options tab)
         [Description("Capture screenshot")]
-        [ButtonInfo(InputKey.F12)]
+        [ButtonInfo(InputKey.F4, InputKey.F12)]
         CaptureScreenshot,
 
         // Point on an items container and press this button to sort its content

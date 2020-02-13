@@ -217,7 +217,8 @@
             }
 
             // check ammo (if applicable to this weapon prototype)
-            var canFire = state.WeaponReloadingState is null
+            var canFire = (Api.IsClient || character.ServerIsOnline)
+                          && state.WeaponReloadingState is null
                           && protoWeapon.SharedCanFire(character, state);
             if (state.CooldownSecondsRemains > 0)
             {

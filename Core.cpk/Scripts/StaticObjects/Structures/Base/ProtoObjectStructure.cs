@@ -18,6 +18,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.ConstructionTooltip;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
@@ -102,6 +103,8 @@
 
         public sealed override void ClientDeinitialize(IStaticWorldObject gameObject)
         {
+            StructureLandClaimIndicatorManager.ClientDeinitialize(gameObject);
+
             base.ClientDeinitialize(gameObject);
 
             if (this.currentDisplayedRepairTooltip != null)
@@ -210,6 +213,10 @@
             ServerStructuresManager.NotifyObjectDestroyed(gameObject);
         }
 
+        public virtual void ServerOnRepairStageFinished(IStaticWorldObject worldObject, ICharacter character)
+        {
+        }
+
         public virtual void SharedCreatePhysicsConstructionBlueprint(IPhysicsBody physicsBody)
         {
             foreach (Vector2D tileOffset in this.Layout.TileOffsets)
@@ -298,6 +305,12 @@
 
         protected virtual void ClientDeinitializeStructure(IStaticWorldObject gameObject)
         {
+        }
+
+        protected override void ClientInitialize(ClientInitializeData data)
+        {
+            base.ClientInitialize(data);
+            StructureLandClaimIndicatorManager.ClientInitialize(data.GameObject);
         }
 
         protected override void ClientUpdate(ClientUpdateData data)

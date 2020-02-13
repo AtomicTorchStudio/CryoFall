@@ -17,10 +17,6 @@
 
         public override string Description => "Incredibly powerful short-range weapon. Requires energy to operate.";
 
-        // double the basic durability decrease to ensure the rapiers are not so useful to destroy armored safes
-        public override double DurabilityDecreaseMultiplierWhenHittingBuildings =>
-            base.DurabilityDecreaseMultiplierWhenHittingBuildings * 2;
-
         public override uint DurabilityMax => 500;
 
         public override double EnergyUsePerHit => 25;

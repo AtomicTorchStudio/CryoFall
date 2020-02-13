@@ -5,6 +5,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
     using System.Diagnostics.CodeAnalysis;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.Items.Devices;
+    using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
@@ -176,6 +177,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemWateringCanCopper>();
                     CreateItem<ItemWateringCanSteel>();
                     CreateItem<ItemWateringCanPlastic>();
+                    CreateItem<ItemBottleWater>(100);
                     CreateItem<ItemSeedsBellPepper>();
                     CreateItem<ItemSeedsCarrot>();
                     CreateItem<ItemSeedsChiliPepper>();

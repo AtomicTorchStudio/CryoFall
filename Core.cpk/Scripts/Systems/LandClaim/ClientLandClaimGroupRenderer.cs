@@ -153,8 +153,7 @@
 
             this.isVisible = true;
 
-            if (this.isDisplayOverlays
-                || this.areas.Count == 1)
+            if (this.isDisplayOverlays)
             {
                 // render each area as a separate single layer
                 foreach (var area in this.areas)
@@ -205,7 +204,8 @@
                     if (this.isGraceAreaRenderer)
                     {
                         var publicState = LandClaimArea.GetPublicState(area);
-                        areaBounds = areaBounds.Inflate(publicState.ProtoObjectLandClaim.LandClaimGraceAreaPaddingSizeOneDirection);
+                        areaBounds = areaBounds.Inflate(publicState.ProtoObjectLandClaim
+                                                                   .LandClaimGraceAreaPaddingSizeOneDirection);
                     }
 
                     var areaBoundsRight = (ushort)areaBounds.Right;
@@ -213,7 +213,23 @@
                     for (var x = (ushort)areaBounds.Left; x < areaBoundsRight; x++)
                     for (var y = (ushort)areaBounds.Bottom; y < areaBoundsTop; y++)
                     {
-                        quadTree.SetFilledPosition(new Vector2Ushort(x, y));
+                        quadTree.SetFilledPosition((x, y));
+                    }
+                }
+
+                if (this.isGraceAreaRenderer)
+                {
+                    // remove filled areas so only the grace area around the base is rendered
+                    foreach (var area in this.areas)
+                    {
+                        var areaBounds = LandClaimSystem.SharedGetLandClaimAreaBounds(area);
+                        var areaBoundsRight = (ushort)areaBounds.Right;
+                        var areaBoundsTop = (ushort)areaBounds.Top;
+                        for (var x = (ushort)areaBounds.Left; x < areaBoundsRight; x++)
+                        for (var y = (ushort)areaBounds.Bottom; y < areaBoundsTop; y++)
+                        {
+                            quadTree.ResetFilledPosition((x, y));
+                        }
                     }
                 }
 

@@ -24,7 +24,7 @@
         public override string Name => "FPS limit";
 
         public override IProtoOption OrderAfterOption
-            => GetOption<VideoOptionScreenMode>();
+            => GetOption<VideoOptionScreenAspectRatio>();
 
         public override LimitMode ValueProvider
         {

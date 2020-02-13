@@ -57,6 +57,8 @@
             this.stageStructureAddValue = this.structurePointsMax / this.Config.StagesCount;
         }
 
+        public bool IsRepair => !(this.WorldObject.ProtoGameObject is ProtoObjectConstructionSite);
+
         public double StructurePointsMax
         {
             get => this.structurePointsMax;
@@ -204,6 +206,12 @@
                     this.ObjectPublicState.StructurePointsCurrent = (float)newStructurePoints;
                     Api.Logger.Important(
                         $"Building/repairing progressed: {this.WorldObject} structure points: {newStructurePoints}/{this.structurePointsMax}; by {this.Character}");
+
+                    if (this.IsRepair)
+                    {
+                        ((IProtoObjectStructure)this.WorldObject.ProtoStaticWorldObject)
+                            .ServerOnRepairStageFinished(this.WorldObject, this.Character);
+                    }
                 }
 
                 this.UpdateProgress();
@@ -233,6 +241,12 @@
                 Api.Logger.Important(
                     $"Building/repairing completed: {this.WorldObject} structure points: {newStructurePoints}/{this.structurePointsMax}; by {this.Character}");
                 this.ObjectPublicState.StructurePointsCurrent = (float)newStructurePoints;
+
+                if (this.IsRepair)
+                {
+                    ((IProtoObjectStructure)this.WorldObject.ProtoStaticWorldObject)
+                        .ServerOnRepairStageFinished(this.WorldObject, this.Character);
+                }
 
                 if (this.ObjectPublicState is ConstructionSitePublicState constructionSiteState)
                 {

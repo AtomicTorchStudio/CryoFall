@@ -3219,16 +3219,16 @@
             Please note that this will be very low for integrated GPUs as they're usually using RAM for video memory.
             </summary>
         </member>
-        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IRenderingClientService.GpuVramWithSharedRamAmount">
-            <summary>
-            GPU VRAM plus shared RAM amount (in bytes).
-            In case of integrated GPUs that's the correct way of measuring the available video memory.
-            </summary>
-        </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IRenderingClientService.GpuVramUsage">
             <summary>
             Current GPU VRAM usage (in bytes).
             Please note: it's available only in DX12. Will return 0 if not available.
+            </summary>
+        </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IRenderingClientService.GpuVramWithSharedRamAmount">
+            <summary>
+            GPU VRAM plus shared RAM amount (in bytes).
+            In case of integrated GPUs that's the correct way of measuring the available video memory.
             </summary>
         </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IRenderingClientService.WorldCameraWorldOffset">
@@ -3765,6 +3765,11 @@
             </param>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetGameObjectsOfProto``2">
+            <summary>
+            Please note - this method is not available during Bootstrapper execution.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetGameObjectsOfProto``2(``1)">
             <summary>
             Please note - this method is not available during Bootstrapper execution.
             </summary>

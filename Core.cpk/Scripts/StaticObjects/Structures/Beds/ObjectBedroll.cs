@@ -24,8 +24,15 @@
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
-            base.ClientInitialize(data);
-            data.ClientState.Renderer.DrawOrder = DrawOrder.FloorCharredGround + 1;
+            var worldObject = data.GameObject;
+            var clientState = data.ClientState;
+
+            this.ClientAddAutoStructurePointsBar(data);
+
+            clientState.Renderer = Client.Rendering.CreateSpriteRenderer(
+                worldObject,
+                this.DefaultTexture,
+                drawOrder: DrawOrder.FloorCharredGround + 1);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -66,7 +73,7 @@
             // but has melee weapon collider - could be destroyed with a melee weapon
             data.PhysicsBody
                 .AddShapeRectangle(size: (0.3, 1),   offset: (0.35, 0.5), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.8, 1.5), offset: (0.1, 0.3), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.8, 1.5), offset: (0.1, 0.3),  group: CollisionGroups.ClickArea);
         }
     }
 }

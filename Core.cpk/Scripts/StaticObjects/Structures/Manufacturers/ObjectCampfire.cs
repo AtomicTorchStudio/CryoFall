@@ -56,13 +56,18 @@
 
         protected override void ClientInitialize(ClientInitializeData data)
         {
-            base.ClientInitialize(data);
+            var worldObject = data.GameObject;
+            var clientState = data.ClientState;
+
+            this.ClientAddAutoStructurePointsBar(data);
+
+            clientState.Renderer = Client.Rendering.CreateSpriteRenderer(
+                worldObject,
+                this.DefaultTexture);
 
             var spriteRenderer = data.ClientState.Renderer;
             var drawOrderOffsetY = 0.5;
             spriteRenderer.DrawOrderOffsetY = drawOrderOffsetY;
-
-            var worldObject = data.GameObject;
 
             // setup light source
             var lightSource = ClientLighting.CreateLightSourceSpot(

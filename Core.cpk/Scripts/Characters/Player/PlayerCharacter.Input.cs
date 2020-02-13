@@ -366,11 +366,13 @@
             hasVehicle = vehicle != null;
 
             if (!hasVehicle
-                || !vehicle.IsInitialized)
+                || !vehicle.IsInitialized
+                || !vehicle.ClientHasPrivateState)
             {
                 vehicleSelectedItem = null;
                 isAwaitingVehicleInitialization = hasVehicle
-                                                  && !vehicle.IsInitialized;
+                                                  && (!vehicle.IsInitialized
+                                                      || !vehicle.ClientHasPrivateState);
                 return null;
             }
 

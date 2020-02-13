@@ -88,11 +88,8 @@
                     currentSelectedProtoConstruction = selectedProtoStructure;
 
                     componentObjectPlacementHelper = Client.Scene
-                                                           .CreateSceneObject(
-                                                               "ConstructionHelper",
-                                                               Vector2D.Zero)
-                                                           .AddComponent<
-                                                               ClientComponentObjectPlacementHelper>();
+                                                           .CreateSceneObject("ConstructionHelper")
+                                                           .AddComponent<ClientComponentObjectPlacementHelper>();
 
                     // repeat placement for held button only for walls, floor and farms
                     var isRepeatCallbackIfHeld = selectedProtoStructure is IProtoObjectWall
