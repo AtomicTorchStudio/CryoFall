@@ -16,22 +16,29 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             // bushes
-            var bushes = spawnList.CreatePreset(interval: 13, padding: 1)
-                                  .Add<ObjectBushYellow>()
-                                  .Add<ObjectBushPurple>()
-                                  .Add<ObjectBushCoffee>()
-                                  .SetCustomPaddingWithSelf(5);
+            var bushesBerry = spawnList.CreatePreset(interval: 13, padding: 1)
+                                       .Add<ObjectBushYellow>()
+                                       .Add<ObjectBushPurple>()
+                                       .Add<ObjectBushCoffee>()
+                                       .SetCustomPaddingWithSelf(5);
 
             var bushWaterbulb = spawnList.CreatePreset(interval: 10, padding: 2)
                                          .Add<ObjectBushWaterbulb>()
                                          .SetCustomPaddingWithSelf(5)
-                                         .SetCustomPaddingWith(bushes, 5);
+                                         .SetCustomPaddingWith(bushesBerry, 5);
 
-            spawnList.CreatePreset(interval: 16, padding: 1)
-                     .Add<ObjectSmallPineapple>()
-                     .SetCustomPaddingWithSelf(5)
-                     .SetCustomPaddingWith(bushes,        5)
-                     .SetCustomPaddingWith(bushWaterbulb, 5);
+            var bushOilpod = spawnList.CreatePreset(interval: 25, padding: 2)
+                                      .Add<ObjectBushOilpod>()
+                                      .SetCustomPaddingWithSelf(5)
+                                      .SetCustomPaddingWith(bushesBerry,   5)
+                                      .SetCustomPaddingWith(bushWaterbulb, 5);
+
+            var objectPineapple = spawnList.CreatePreset(interval: 16, padding: 1)
+                                           .Add<ObjectSmallPineapple>()
+                                           .SetCustomPaddingWithSelf(5)
+                                           .SetCustomPaddingWith(bushesBerry,   5)
+                                           .SetCustomPaddingWith(bushWaterbulb, 5)
+                                           .SetCustomPaddingWith(bushOilpod,    5);
         }
     }
 }

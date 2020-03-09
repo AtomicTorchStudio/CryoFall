@@ -703,7 +703,9 @@
         public delegate void DelegateServerObjectLandClaimDestroyed(
             IStaticWorldObject landClaimStructure,
             RectangleInt areaBounds,
-            bool isDestroyedByPlayers);
+            LandClaimAreaPublicState areaPublicState,
+            bool isDestroyedByPlayers,
+            bool isDeconstructed);
 
         public delegate void ServerLandClaimsGroupChangedDelegate(
             ILogicObject area,
@@ -965,21 +967,18 @@
 
             ServerTryRebuildLandClaimsGroups(areasGroupBounds);
 
-            if (ServerCharacters.EnumerateAllPlayerCharacters(onlyOnline: true)
-                                .Any(c =>
-                                         PlayerCharacter.GetPublicState(c).CurrentPublicActionState is
-                                             DeconstructionActionState.PublicState deconstructionState
-                                         && deconstructionState.TargetWorldObject == landClaimStructure))
-            {
-                // land claim structure is deconstructed by a crowbar
-            }
-            else
-            {
-                // land claim structure simply destroyed
-                Api.SafeInvoke(() => ServerObjectLandClaimDestroyed?.Invoke(landClaimStructure, 
-                                                                            areaBounds, 
-                                                                            areaPrivateState.IsDestroyedByPlayers));
-            }
+            // is land claim structure is deconstructed by a crowbar?
+            var isDeconstructed = ServerCharacters
+                                  .EnumerateAllPlayerCharacters(onlyOnline: true)
+                                  .Any(c => PlayerCharacter.GetPublicState(c).CurrentPublicActionState
+                                                is DeconstructionActionState.PublicState deconstructionState
+                                            && deconstructionState.TargetWorldObject == landClaimStructure);
+
+            Api.SafeInvoke(() => ServerObjectLandClaimDestroyed?.Invoke(landClaimStructure,
+                                                                        areaBounds,
+                                                                        areaPublicState,
+                                                                        areaPrivateState.IsDestroyedByPlayers,
+                                                                        isDeconstructed));
 
             if (!oldAreasInGroup.AsList()
                                 .SequenceEqual(areasGroupPrivateState.ServerLandClaimsAreas))

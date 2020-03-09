@@ -47,13 +47,17 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
             // ensure there is no existing entry for it
             ClientDeinitialize(worldObject);
 
-            var isLandClaimedByAnyone = LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject);
+            var playerPosition = ClientCurrentCharacterHelper.Character?.TilePosition ?? Vector2Ushort.Zero;
             StructureLandClaimIndicator control = null;
 
-            if (!isLandClaimedByAnyone)
+            if (IsNearby(worldObject, playerPosition))
             {
-                var component = SetupFor(worldObject, isClaimed: false);
-                control = (StructureLandClaimIndicator)component.Control;
+                var isLandClaimedByAnyone = LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject);
+                if (!isLandClaimedByAnyone)
+                {
+                    var component = SetupFor(worldObject, isClaimed: false);
+                    control = (StructureLandClaimIndicator)component.Control;
+                }
             }
 
             initializedOverlays[worldObject] = control;
@@ -87,6 +91,13 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
             control.AttachedToComponent?.Destroy();
             control.AttachedToComponent = null;
             ControlsCache<StructureLandClaimIndicator>.Instance.Push(control);
+        }
+
+        private static bool IsNearby(IStaticWorldObject worldObject, Vector2Ushort playerPosition)
+        {
+            return (worldObject.TilePosition.TileSqrDistanceTo(playerPosition)
+                    <= (ClientComponentAutoDisplayStructurePointsBar.MaxDistance
+                        * ClientComponentAutoDisplayStructurePointsBar.MaxDistance));
         }
 
         private static IComponentAttachedControl SetupFor(IStaticWorldObject worldObject, bool isClaimed)
@@ -128,9 +139,7 @@ namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars
                 var isDisplayed = false;
 
                 if (forceDisplayAll
-                    || (worldObject.TilePosition.TileSqrDistanceTo(playerPosition)
-                        <= (ClientComponentAutoDisplayStructurePointsBar.MaxDistance
-                            * ClientComponentAutoDisplayStructurePointsBar.MaxDistance)))
+                    || IsNearby(worldObject, playerPosition))
                 {
                     // can display only if close enough of if Alt/L key is held
                     isDisplayed = !LandClaimSystem.SharedIsObjectInsideAnyArea(worldObject);

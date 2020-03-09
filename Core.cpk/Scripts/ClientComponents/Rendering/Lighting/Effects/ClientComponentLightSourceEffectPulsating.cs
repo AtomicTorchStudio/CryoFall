@@ -108,6 +108,7 @@
 
         private void Apply(double deltaTime)
         {
+            var worldObjectIsDestroyed = this.worldObject.IsDestroyed;
             var isSafeDistance = this.IsSafeDistance();
 
             // we're multiplying on 2 here because the duration is for the whole interval (back+forward)
@@ -130,7 +131,7 @@
                 {
                     this.value = 0;
 
-                    if (!this.worldObject.IsDestroyed)
+                    if (!worldObjectIsDestroyed)
                     {
                         // start increasing value
                         this.isIncreasingValue = true;
@@ -146,21 +147,28 @@
 
             this.soundVolume = MathHelper.LerpWithDeltaTime(
                 this.soundVolume,
-                this.worldObject.IsDestroyed ? 0 : 1,
+                worldObjectIsDestroyed ? 0 : 1,
                 deltaTime,
                 rate: 5);
 
             this.postEffect.Intensity = this.value * this.postEffectIntensityMultiplier;
             this.soundEmitter.Volume = (float)this.soundVolume;
-
+            
             var sizeX = this.sizeRangeX.Min + this.value * (this.sizeRangeX.Max - this.sizeRangeX.Min);
             var sizeY = this.sizeRangeY.Min + this.value * (this.sizeRangeY.Max - this.sizeRangeY.Min);
+
+            if (worldObjectIsDestroyed)
+            {
+                sizeX *= this.postEffectIntensityMultiplier;
+                sizeY *= this.postEffectIntensityMultiplier;
+            }
+
             this.lightSource.RenderingSize = new Size2F((float)sizeX, (float)sizeY);
 
-            if (this.worldObject.IsDestroyed
-                && this.value == 0
-                && this.postEffectIntensityMultiplier == 0
-                && this.soundVolume == 0)
+            if (worldObjectIsDestroyed
+                && this.value < 0.001
+                && this.postEffectIntensityMultiplier < 0.001
+                && this.soundVolume < 0.001)
             {
                 this.SceneObject.Destroy();
             }

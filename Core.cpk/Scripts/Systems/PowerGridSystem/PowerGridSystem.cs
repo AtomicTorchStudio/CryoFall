@@ -61,7 +61,7 @@
         {
             if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityConsumer protoConsumer
                 && protoConsumer.ElectricityConsumptionPerSecondWhenActive > 0
-                || worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer protoProducer)
+                || worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer)
             {
                 ObjectPowerStateOverlay.CreateFor(worldObject);
             }
@@ -300,7 +300,7 @@
             // process producers
             {
                 var isPowerGridHasFullCharge = state.ElectricityAmount >= state.ElectricityCapacity;
-                var isPowerGridChargeBelowThreshold = (state.ElectricityAmount / state.ElectricityCapacity)
+                var isPowerGridChargeBelowThreshold = state.ElectricityAmount / state.ElectricityCapacity
                                                       < PowerProductionChargeThreshold;
 
                 // power demand is used only to handle generators idle/active state
@@ -431,6 +431,7 @@
             LandClaimSystem.ServerAreasGroupCreated += ServerLandClaimsGroupCreatedHandler;
             LandClaimSystem.ServerAreasGroupDestroyed += ServerLandClaimsGroupDestroyedHandler;
             LandClaimSystem.ServerAreasGroupChanged += ServerLandClaimsGroupChangedHandler;
+            LandClaimSystem.ServerObjectLandClaimDestroyed += ServerObjectLandClaimDestroyedHandler;
 
             if (IsClient)
             {
@@ -571,6 +572,45 @@
             ServerWorld.DestroyObject(grid);
         }
 
+        private static void ServerObjectLandClaimDestroyedHandler(
+            IStaticWorldObject landClaimStructure,
+            RectangleInt areaBounds,
+            LandClaimAreaPublicState areaPublicState,
+            bool isDestroyedByPlayers,
+            bool isDeconstructed)
+        {
+            var powerGrid = SharedGetPowerGrid(areaPublicState.LandClaimAreasGroup);
+            if (powerGrid is null)
+            {
+                Logger.Error("Power grid is null");
+                return;
+            }
+
+            Logger.Important(
+                $"Cutting off the power for objects inside the destroyed land claim area: {landClaimStructure} {areaBounds}");
+            var consumersInArea =
+                ServerWorld.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityConsumer>(areaBounds);
+
+            foreach (var consumerObject in consumersInArea)
+            {
+                var consumerState = consumerObject.GetPublicState<IObjectElectricityConsumerPublicState>();
+                if (consumerState.ElectricityConsumerState == ElectricityConsumerState.PowerOn)
+                {
+                    consumerState.ElectricityConsumerState = ElectricityConsumerState.PowerOffOutage;
+                }
+            }
+
+            var producersInArea =
+                ServerWorld.GetStaticWorldObjectsOfProtoInBounds<IProtoObjectElectricityProducer>(areaBounds);
+            foreach (var producerObject in producersInArea)
+            {
+                var producerState = producerObject.GetPublicState<IObjectElectricityProducerPublicState>();
+                producerState.ElectricityProducerState = ElectricityProducerState.PowerOff;
+            }
+
+            ServerRebuildPowerGrid(powerGrid);
+        }
+
         private static void ServerRebuildPowerGrid(ILogicObject powerGrid)
         {
             var state = PowerGrid.GetPublicState(powerGrid);
@@ -686,7 +726,7 @@
             }
 
             var powerGrid = SharedGetPowerGrid(worldObject);
-            if (powerGrid == null)
+            if (powerGrid is null && isOn)
             {
                 return SetPowerModeResult.NoPowerGridExist;
             }
@@ -921,7 +961,7 @@
                 return SetPowerModeResult.CannotInteractWithObject;
             }
 
-            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer protoProducer)
+            if (worldObject.ProtoStaticWorldObject is IProtoObjectElectricityProducer)
             {
                 // producer
                 return ServerSetProducerPowerMode(worldObject,

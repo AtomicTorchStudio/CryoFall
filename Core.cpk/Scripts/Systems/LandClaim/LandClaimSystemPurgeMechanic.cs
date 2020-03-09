@@ -5,10 +5,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Barrels;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -164,8 +166,15 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
             private static void ServerObjectLandClaimDestroyedHandler(
                 IStaticWorldObject landClaimStructure,
                 RectangleInt areaBounds,
-                bool isDestroyedByPlayers)
+                LandClaimAreaPublicState areaPublicState,
+                bool isDestroyedByPlayers,
+                bool isDeconstructed)
             {
+                if (isDeconstructed)
+                {
+                    return;
+                }
+
                 if (!PveSystem.ServerIsPvE
                     && isDestroyedByPlayers)
                 {

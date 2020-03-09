@@ -5,5 +5,7 @@
 
     public interface IReadOnlyStationsList : IReadOnlyList<IProtoStaticWorldObject>
     {
+        // Optimized to minimize GC allocations.
+        bool Contains(IProtoWorldObject protoWorldObject);
     }
 }

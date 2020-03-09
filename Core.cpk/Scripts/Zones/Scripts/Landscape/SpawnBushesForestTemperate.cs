@@ -15,12 +15,17 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             // bushes
-            spawnList.CreatePreset(interval: 10, padding: 2)
-                     .Add<ObjectBushYellow>()
-                     .Add<ObjectBushPurple>()
-                     .Add<ObjectBushCoffee>()
-                     .Add<ObjectBushWaterbulb>()
-                     .SetCustomPaddingWithSelf(5);
+            var bushes = spawnList.CreatePreset(interval: 10, padding: 2)
+                                  .Add<ObjectBushYellow>()
+                                  .Add<ObjectBushPurple>()
+                                  .Add<ObjectBushCoffee>()
+                                  .Add<ObjectBushWaterbulb>()
+                                  .SetCustomPaddingWithSelf(5);
+
+            var bushOilpod = spawnList.CreatePreset(interval: 25, padding: 2)
+                                      .Add<ObjectBushOilpod>()
+                                      .SetCustomPaddingWithSelf(5)
+                                      .SetCustomPaddingWith(bushes, 5);
         }
     }
 }

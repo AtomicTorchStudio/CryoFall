@@ -2,6 +2,7 @@
 
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -18,6 +19,20 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
         public string Execute()
         {
             Api.Shared.ForceGCCollect(out var memoryBefore, out var memoryAfter);
+            return
+                $"GC completed. Memory use: {memoryBefore / (1024d * 1024d):F1}MB -> {memoryAfter / (1024d * 1024d):F1}MB";
+        }
+
+        public string Execute(byte generation)
+        {
+            if (generation > 2)
+            {
+                throw new Exception("Max generation is 2");
+            }
+
+            Api.Shared.ForceGCCollect(generation, 
+                                      out var memoryBefore, 
+                                      out var memoryAfter);
             return
                 $"GC completed. Memory use: {memoryBefore / (1024d * 1024d):F1}MB -> {memoryAfter / (1024d * 1024d):F1}MB";
         }

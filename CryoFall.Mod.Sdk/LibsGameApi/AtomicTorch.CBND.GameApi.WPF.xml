@@ -2191,6 +2191,13 @@
             THIS IS ONLY FOR DEBUG PURPOSES (for special console command).
             </summary>
         </member>
+        <member name="M:AtomicTorch.CBND.GameApi.Scripting.ISharedApi.ForceGCCollect(System.Byte,System.Int64@,System.Int64@)">
+            <summary>
+            Force memory garbage collection.
+            PLEASE DON'T USE THIS DIRECTLY.
+            THIS IS ONLY FOR DEBUG PURPOSES (for special console command).
+            </summary>
+        </member>
         <member name="M:AtomicTorch.CBND.GameApi.Scripting.ISharedApi.GetFileName(System.String)">
             <summary>
             Equivalent to <see cref="M:System.IO.Path.GetFileName(System.String)" /> - use this method because System.IO is a forbidden namespace.

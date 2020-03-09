@@ -263,26 +263,21 @@
                 playerCharacterCenter,
                 CollisionGroup.GetDefault(),
                 sendDebugEvent: false);
+
             foreach (var test in obstaclesOnTheWay.AsList())
             {
                 var testPhysicsBody = test.PhysicsBody;
-                if (testPhysicsBody.AssociatedProtoTile != null)
+                if (testPhysicsBody.AssociatedProtoTile is null)
                 {
-                    // obstacle tile on the way
-                    return true;
-                }
-
-                var testWorldObject = testPhysicsBody.AssociatedWorldObject;
-                if (testWorldObject == npc
-                    || testWorldObject == player
-                    || testWorldObject.ProtoGameObject is IProtoVehicle)
-                {
-                    // not an obstacle - it's one of the characters or vehicle
                     continue;
                 }
 
-                // obstacle object on the way
-                return true;
+                var tile = ServerWorldService.GetTile(testPhysicsBody.Position.ToVector2Ushort());
+                if (!tile.IsSlope)
+                {
+                    // cliff tile on the way
+                    return true;
+                }
             }
 
             return false;

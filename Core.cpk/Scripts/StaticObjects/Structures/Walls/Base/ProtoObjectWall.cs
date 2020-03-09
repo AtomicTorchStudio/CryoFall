@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectWall
         <TPrivateState,
@@ -34,6 +35,11 @@
         public TextureAtlasResource TextureAtlasPrimary { get; private set; }
 
         public virtual string TextureAtlasPrimaryPath => this.GenerateTexturePath();
+
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
+                                                                       minY: -1,
+                                                                       maxX: 1,
+                                                                       maxY: 1);
 
         public void ClientRefreshRenderer(IStaticWorldObject worldObject)
         {

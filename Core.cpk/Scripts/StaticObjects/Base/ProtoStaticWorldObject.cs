@@ -139,10 +139,7 @@
         /// For wide/high objects (and objects with large lights) it's necessary to increase their visual height so they will be
         /// included in view scope properly.
         /// </summary>
-        public virtual BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
-                                                                      minY: -1,
-                                                                      maxX: 1,
-                                                                      maxY: 1);
+        public virtual BoundsInt ViewBoundsExpansion => default;
 
         public bool CheckTileRequirements(Vector2Ushort startTilePosition, ICharacter character, bool logErrors)
         {

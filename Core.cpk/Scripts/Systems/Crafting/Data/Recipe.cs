@@ -432,6 +432,20 @@
                 this.AddRange(protos);
                 return this;
             }
+
+            // Optimized to minimize GC allocations.
+            public bool Contains(IProtoWorldObject protoWorldObject)
+            {
+                foreach (var entry in this)
+                {
+                    if (ReferenceEquals(entry, protoWorldObject))
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
         }
     }
 }

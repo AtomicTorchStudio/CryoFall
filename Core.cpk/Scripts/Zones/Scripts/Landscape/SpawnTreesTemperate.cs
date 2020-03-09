@@ -15,7 +15,7 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             // regular trees
-            var regularTrees = spawnList.CreatePreset(interval: 4, padding: 1.5)
+            var regularTrees = spawnList.CreatePreset(interval: 5.6, padding: 1.5)
                                         .Add<ObjectTreeBirch>()
                                         .Add<ObjectTreeOak>()
                                         .SetCustomPaddingWithSelf(2.1);
@@ -26,7 +26,7 @@
                                        .SetCustomPaddingWithSelf(5.0);
 
             // clusters of pines
-            spawnList.CreatePreset(interval: 10, padding: 1.5, useSectorDensity: false)
+            spawnList.CreatePreset(interval: 10, padding: 1.5)
                      .Add<ObjectTreePine>()
                      .SetCustomPaddingWith(regularTrees, 6)
                      .SetCustomPaddingWith(rubberTrees,  6)

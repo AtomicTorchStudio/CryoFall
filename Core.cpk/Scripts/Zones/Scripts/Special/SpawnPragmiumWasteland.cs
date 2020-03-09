@@ -16,19 +16,19 @@
                 // (please note when changing this value to adjust the destruction timeout in ObjectMineralPragmiumNode)
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(30)));
 
-            spawnList.CreatePreset(interval: 10, padding: 2, useSectorDensity: false)
+            spawnList.CreatePreset(interval: 10, padding: 2)
                      .Add<ObjectMineralPragmiumNode>();
 
             // mob spawn
-            var presetLizard = spawnList.CreatePreset(interval: 22, padding: 0.5, useSectorDensity: false)
+            var presetLizard = spawnList.CreatePreset(interval: 22, padding: 0.5)
                                         .Add<MobFireLizard>()
                                         .SetCustomPaddingWithSelf(12);
 
-            var presetScorpion = spawnList.CreatePreset(interval: 26, padding: 0.5, useSectorDensity: false)
+            var presetScorpion = spawnList.CreatePreset(interval: 26, padding: 0.5)
                                           .Add<MobScorpion>()
                                           .SetCustomPaddingWithSelf(15);
 
-            var presetBeetle = spawnList.CreatePreset(interval: 15, padding: 0.5, useSectorDensity: false)
+            var presetBeetle = spawnList.CreatePreset(interval: 15, padding: 0.5)
                                         .Add<MobPragmiumBeetle>()
                                         .SetCustomPaddingWithSelf(5);
 

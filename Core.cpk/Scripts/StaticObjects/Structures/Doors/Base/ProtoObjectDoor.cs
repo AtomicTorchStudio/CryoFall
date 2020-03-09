@@ -51,15 +51,19 @@
 
         private const double HorizontalDoorPhysicsHeight = 0.5;
 
-        private const double VerticalDoorPhysicsWidthOpened = 0.25;
-        
         // Workaround: using the same width as for opened door to prevent issue with the door opening-closing in cycle
         // due to a change of direct line of sight when door width changed.
         private const double VerticalDoorPhysicsWidthClosed = VerticalDoorPhysicsWidthOpened;
 
+        private const double VerticalDoorPhysicsWidthClosedOffsetX = 0.5 - VerticalDoorPhysicsWidthClosed * 0.5;
+
+        private const double VerticalDoorPhysicsWidthOpened = 0.25;
+
         private const double VerticalDoorPhysicsWidthOpenedOffsetX = 0.5 - VerticalDoorPhysicsWidthOpened * 0.5;
 
-        private const double VerticalDoorPhysicsWidthClosedOffsetX = 0.5 - VerticalDoorPhysicsWidthClosed * 0.5;
+        // ReSharper disable once StaticMemberInGenericType
+        private static readonly List<ICharacter> StaticTempCharactersNearby
+            = new List<ICharacter>(capacity: 64);
 
         private readonly Lazy<ProceduralTexture> lazyHorizontalDoorBlueprintTexture;
 
@@ -139,6 +143,11 @@
 
         public override float StructurePointsMaxForConstructionSite
             => this.StructurePointsMax / 25;
+
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
+                                                                       minY: -1,
+                                                                       maxX: 1,
+                                                                       maxY: 1);
 
         protected ITextureAtlasResource AtlasTextureHorizontal { get; set; }
 
@@ -765,10 +774,6 @@
             // no obstacles, can be closed
             return true;
         }
-
-        // ReSharper disable once StaticMemberInGenericType
-        private static readonly List<ICharacter> StaticTempCharactersNearby 
-            = new List<ICharacter>(capacity: 64);
 
         private bool ServerCheckIsDoorShouldBeOpened(
             IStaticWorldObject worldObject,

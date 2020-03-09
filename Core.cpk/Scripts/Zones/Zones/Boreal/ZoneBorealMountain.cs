@@ -16,7 +16,8 @@
                 .Add(GetScript<SpawnResourceStone>().Configure(densityMultiplier: 0.5))
                 .Add(GetScript<SpawnResourceCoal>())
                 .Add(GetScript<SpawnResourceSaltpeter>())
-                .Add(GetScript<SpawnResourceSulfur>());
+                .Add(GetScript<SpawnResourceSulfur>())
+                .Add(GetScript<SpawnResourceSalt>().Configure(densityMultiplier: 0.125));
 
             // mobs
             scripts
