@@ -998,7 +998,8 @@
         public static void ServerOnRaid(
             RectangleInt bounds,
             ICharacter byCharacter,
-            bool forceEvenIfNoCharacter = false)
+            bool forceEvenIfNoCharacter = false,
+            bool isShort = false)
         {
             if (!forceEvenIfNoCharacter
                 && byCharacter is null)
@@ -1030,7 +1031,7 @@
                     continue;
                 }
 
-                ServerSetRaidblock(area);
+                ServerSetRaidblock(area, isShort);
             }
         }
 
@@ -1057,7 +1058,7 @@
             }
         }
 
-        public static void ServerSetRaidblock(ILogicObject area)
+        public static void ServerSetRaidblock(ILogicObject area, bool isShort)
         {
             var areaPrivateState = LandClaimArea.GetPrivateState(area);
             var areaPublicState = LandClaimArea.GetPublicState(area);
@@ -1065,8 +1066,14 @@
             var areasGroupPublicState = LandClaimAreasGroup.GetPublicState(areasGroup);
             var time = Server.Game.FrameTime;
 
+            if (isShort)
+            {
+                // HACK: as currently the game doesn't provide an actual duration for the raidblock, we're simply changing the raidblock duration
+                time -= LandClaimSystemConstants.SharedRaidBlockDurationSeconds * 0.9;
+            }
+
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (areasGroupPublicState.LastRaidTime == time)
+            if (areasGroupPublicState.LastRaidTime >= time)
             {
                 return;
             }

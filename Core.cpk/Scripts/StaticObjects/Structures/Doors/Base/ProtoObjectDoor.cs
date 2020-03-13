@@ -49,7 +49,8 @@
 
         private const double DrawWorldOffsetYVerticalDoor = 0.1;
 
-        private const double HorizontalDoorPhysicsHeight = 0.5;
+        // carefully selected so even players standing close to it cannot receive a ranged weapon damage
+        private const double HorizontalDoorPhysicsHeight = 0.64;
 
         // Workaround: using the same width as for opened door to prevent issue with the door opening-closing in cycle
         // due to a change of direct line of sight when door width changed.

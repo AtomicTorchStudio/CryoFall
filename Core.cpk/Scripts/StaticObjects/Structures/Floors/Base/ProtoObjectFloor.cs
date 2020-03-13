@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectFloor
         <TPrivateState,
@@ -46,6 +47,11 @@
         public sealed override double ObstacleBlockDamageCoef => 0;
 
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
+
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
+                                                                       minY: -1,
+                                                                       maxX: 1,
+                                                                       maxY: 1);
 
         public void ClientRefreshRenderer(IStaticWorldObject worldObject)
         {

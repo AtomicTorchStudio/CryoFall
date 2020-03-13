@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectFarmPlot : ProtoObjectFarmPlot
     {
@@ -22,6 +23,11 @@
         public override ITextureResource Texture { get; }
             = new TextureResource("Terrain/Field/TileField1.jpg",
                                   isTransparent: false);
+
+        public override BoundsInt ViewBoundsExpansion => new BoundsInt(minX: -1,
+                                                                       minY: -1,
+                                                                       maxX: 1,
+                                                                       maxY: 1);
 
         protected override TextureResource TextureFieldFertilized { get; }
             = new TextureResource("Terrain/Field/FertilizedField.png");

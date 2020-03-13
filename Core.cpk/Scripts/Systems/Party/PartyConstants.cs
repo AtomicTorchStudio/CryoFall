@@ -33,17 +33,19 @@
                 = MathHelper.Clamp(
                       ServerRates.Get(
                           "PartyLearningPointsSharePercent",
-                          defaultValue: 30.0,
+                          defaultValue: 0,
                           @"This rate determines the percent of gained learning points 
                             distributed to other online party members.
-                            By default, 30% of gained LP is deducted and shared among
+                            By default, this feature is disabled: 0% of gained LP is deducted and shared among
                             all the other online party members equally.
-                            You also receive part of the said 30% LP from all other party members.
+                            You can enable it to any percent you want but generally we don't recommend going higher than 30!
                             If there are no other online party members, 100% of gained LP goes to the player who gained it.
                             You can set this value at any number from 0 to 100 percents if it makes any sense."),
                       min: 0.0,
                       max: 100.0)
                   / 100.0;
+
+            PartyLearningPointsSharePercent = MathHelper.Clamp(PartyLearningPointsSharePercent, min: 0, max: 1);
         }
 
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]

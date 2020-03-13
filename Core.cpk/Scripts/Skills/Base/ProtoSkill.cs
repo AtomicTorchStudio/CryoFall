@@ -224,9 +224,11 @@
                 }
             }
 
-            if (onlinePartyMembers.Count <= 1)
+            if (onlinePartyMembers.Count <= 1
+                || PartyConstants.PartyLearningPointsSharePercent == 0)
             {
-                // no party or a single member party - add all LP to the current character
+                // no party, or a single member party, or no party share %
+                // - add all LP to the current character
                 character.SharedGetTechnologies()
                          .ServerAddLearningPoints(learningPointsToAdd);
                 return;
@@ -234,14 +236,13 @@
 
             // player has a party
             // add only a share of LP to current character
-            var learningPointsSharePercent = MathHelper.Clamp(PartyConstants.PartyLearningPointsSharePercent, 0, 1);
-            var currentCharacterLearningPointsShare = learningPointsToAdd * (1 - learningPointsSharePercent);
+            var currentCharacterLearningPointsShare = learningPointsToAdd * (1 - PartyConstants.PartyLearningPointsSharePercent);
             character.SharedGetTechnologies()
                      .ServerAddLearningPoints(currentCharacterLearningPointsShare);
 
             // distribute the rest equally to the other party members
             var learningPointsShare = learningPointsToAdd
-                                      * learningPointsSharePercent
+                                      * PartyConstants.PartyLearningPointsSharePercent
                                       / (onlinePartyMembers.Count - 1);
 
             foreach (var partyMember in onlinePartyMembers.AsList())

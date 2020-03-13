@@ -19,6 +19,9 @@
 
         public override bool CanFlipSprite => false;
 
+        // necessary as lava crack is a light source
+        public override bool HasIncreasedScopeSize => true;
+
         public virtual double HeatIntensity => 1;
 
         public abstract double HeatRadiusMax { get; }

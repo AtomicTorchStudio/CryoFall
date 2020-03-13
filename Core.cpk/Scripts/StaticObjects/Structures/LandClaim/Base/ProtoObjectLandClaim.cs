@@ -107,6 +107,8 @@
 
         public override bool IsRepeatPlacement => false;
 
+        public virtual bool IsShortRaidblockOnHit => false;
+
         public ushort LandClaimGraceAreaPaddingSizeOneDirection
             => this.lazyLandClaimGraceAreaPaddingSizeOneDirection.Value;
 
@@ -543,7 +545,8 @@
             if (IsServer)
             {
                 LandClaimSystem.ServerOnRaid(targetObject.Bounds,
-                                             weaponCache.Character);
+                                             weaponCache.Character,
+                                             isShort: this.IsShortRaidblockOnHit);
             }
 
             var publicState = GetPublicState(targetObject);
