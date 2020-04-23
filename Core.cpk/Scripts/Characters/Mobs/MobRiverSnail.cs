@@ -20,7 +20,7 @@
 
         public override double ServerUpdateIntervalSeconds => 1;
 
-        public override double StatDefaultHealthMax => 40;
+        public override double StatDefaultHealthMax => 30;
 
         public override double StatMoveSpeed => 0.1;
 

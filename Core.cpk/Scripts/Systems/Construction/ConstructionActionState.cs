@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
@@ -11,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -65,6 +67,11 @@
         }
 
         public override IWorldObject TargetWorldObject => this.WorldObject;
+
+        public bool CheckIsAllowed()
+        {
+            return LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(this.WorldObject, this.Character);
+        }
 
         public bool CheckIsNeeded()
         {

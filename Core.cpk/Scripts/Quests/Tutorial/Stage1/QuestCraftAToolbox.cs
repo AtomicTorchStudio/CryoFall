@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
     public class QuestCraftAToolbox : ProtoQuest
     {
@@ -15,13 +16,13 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementCraftRecipe.RequireHandRecipe<RecipeToolboxT1>());
+            tasks
+                .Add(TaskCraftRecipe.RequireHandRecipe<RecipeToolboxT1>());
 
             prerequisites
-                .Add<QuestPerformBasicActions>();
+                .Add<QuestChopDownATree>();
         }
     }
 }

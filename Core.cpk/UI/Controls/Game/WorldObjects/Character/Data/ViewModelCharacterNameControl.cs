@@ -43,6 +43,10 @@
                                              callback: _ => this.Refresh(),
                                              this);
 
+            this.publicState.ClientSubscribe(_ => _.ClanTag,
+                                             callback: _ => this.Refresh(),
+                                             this);
+
             PartySystem.ClientCurrentPartyMemberAddedOrRemoved += this.ClientCurrentPartyMemberAddedOrRemovedHandler;
 
             this.Refresh();
@@ -86,6 +90,11 @@
                 }
 
                 var result = name;
+                if (!string.IsNullOrEmpty(this.publicState.ClanTag))
+                {
+                    result = string.Format(CoreStrings.ClanTag_FormatWithName, this.publicState.ClanTag, result);
+                }
+
                 if (DevelopersListHelper.IsDeveloper(name))
                 {
                     result = ViewModelChatEntryControl.ChatNamePrefix_Developer + "\n" + result;
@@ -95,7 +104,7 @@
                 {
                     result = CoreStrings.NicknameOfflinePlayer + "\n" + result;
                 }
-
+                
                 return result;
             }
         }

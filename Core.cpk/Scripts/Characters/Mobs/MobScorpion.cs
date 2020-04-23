@@ -39,13 +39,13 @@
         {
             base.FillDefaultEffects(effects);
 
-            effects.AddValue(this, StatName.DefenseImpact,     0.6);
-            effects.AddValue(this, StatName.DefenseKinetic,    0.6);
-            effects.AddValue(this, StatName.DefenseHeat,       0.4);
-            effects.AddValue(this, StatName.DefenseCold,       0.4);
-            effects.AddValue(this, StatName.DefenseChemical,   0.8);
-            effects.AddValue(this, StatName.DefenseElectrical, 0.4);
-            effects.AddValue(this, StatName.DefensePsi,        1.0);
+            effects.AddValue(this, StatName.DefenseImpact, 0.6)
+                   .AddValue(this, StatName.DefenseKinetic,    0.6)
+                   .AddValue(this, StatName.DefenseHeat,       0.4)
+                   .AddValue(this, StatName.DefenseCold,       0.0)
+                   .AddValue(this, StatName.DefenseChemical,   0.8)
+                   .AddValue(this, StatName.DefenseElectrical, 0.4)
+                   .AddValue(this, StatName.DefensePsi,        1.0);
         }
 
         protected override void PrepareProtoCharacterMob(

@@ -2,6 +2,7 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Zones;

@@ -1,64 +1,4 @@
-﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
-Zbuduj: {0}
-
-Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-Ukończ: {0} (grupa technologiczna)
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-wykorzystując {0}
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
-Wykonaj
-
-Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
-Zniszcz: {0}
-
-Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
-Zgromadź: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
-Zbierz: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
-Wyposaż: {0}
-
-Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-Poznaj umiejętność: {0} do poziomu {1}
-
-Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-Poznaj umiejętności: {0} do poziomu {1}
-
-Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-Odblokuj grupę technologiczną: {0}
-
-Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-Odblokuj grupy technologiczne ({0}): {1}
-
-Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-Poznaj: {0} (w grupie technologicznej {1})
-
-Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
-Zabij: {0}
-
-Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
-Wytwórz: {0}
-
-Scripts/Quests/Requirements/RequirementRun@DescriptionText:
-Przebiegnij 10 metrów
-
-Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
-Posortuj ekwipunek
-
-Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
-Użyj: {0}
-
-Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
-Odwiedź: {0}
-
-Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
-Odwiedź: {0}
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+﻿Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 Możesz wskazać swój punkt odradzania, umieszczając gdzieś śpiwór. Następnym razem, gdy twoja postać odrodzi się, pojawi się w miejscu śpiwora.
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
@@ -156,17 +96,6 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 Zgromadź zasoby
 
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
-Aby uzyskać dostęp do większej ilości struktur, w menu technologii należy odblokować „budynki podstawowe”.
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
-`[*] Naciśnij klawisz G, aby przejść do menu technologii (jeśli sterowanie nie zostało zmienione).
-[*] Odblokowanie węzła technologii wymaga użycia [b]PT[/b] (punkty technologii).
-[*] Punkty technologii (PT) dostajesz za wykonywanie sensownych działań w grze; ich liczba jest proporcjonalna do poziomu zyskiwanego doświadczenia w umiejętnościach.`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
-Poznaj podstawowe technologie budowlane
-
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
 Wydobywaj kamienie
 
@@ -182,16 +111,6 @@ Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
 Wydobądź dowolny minerał
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
-Jest jeszcze kilka innych rzeczy, które musisz wiedzieć, aby w pełni cieszyć się z grania w CryoFall, jak np. jak sortować ekwipunek i biegać!
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
-`[*] Aby posortować ekwipunek, wystarczy go otworzyć i nacisnąć [u]środkowy przycisk myszy[/u] lub [u]klawisz Z[/u] (jeśli nie zmieniono sterowania), gdy kursor myszy znajduje się na siatce ekwipunku. W ten sposób można posortować [b]DOWOLNĄ[/b] siatkę ekwipunku (np. skrzynie).
-[*] Aby biegać, wystarczy przytrzymać [u]klawisz Shift[/u] podczas chodzenia. Przebiegnij teraz kilka metrów. Bieganie może cię uratować przed niebezpiecznymi drapieżnikami.`
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
-Wykonaj podstawowe działania
 
 Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
 Zbierz owoce bulwy wodnej
@@ -222,9 +141,10 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 Rolnictwo to doskonała metoda na pozyskiwanie ogromnych ilości żywności. Czas pogrzebać w ziemi!
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
-`[*] Gospodarstwo warto zbudować [b]w obrębie[/b] ścian, które chronią przed innymi ocalałymi ostrzącymi sobie zęby na twoje zbiory. :)
-[*] Różne rośliny dojrzewają po różnym czasie, dają różne plony i mają różne właściwości.
-[*] Później możesz odkryć lepsze nawozy i inne usprawnienia rolnicze.`
+`[*] [b]Nasiona[/b] są znajdowane losowo [b]podczas zbierania trawy[/b]. Niektóre specjalne nasiona można znaleźć tylko w ruinach.
+[*]Gospodarstwo warto zbudować [b]w obrębie ścian[/b], które chronią przed innymi ocalałymi ostrzącymi sobie zęby na twoje zbiory. :)
+[*]Różne rośliny dojrzewają po różnym czasie, dają różne plony i mają różne właściwości.
+[*]Później możesz odkryć lepsze nawozy i inne usprawnienia rolnicze.`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
 Zbuduj gospodarstwo
@@ -403,7 +323,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
 [*] Istnieją [b]różne typy obrażeń[/b], a różne pancerze chronią inaczej w przypadku odmiennych typów obrażeń. Te informacje są dostępne na ekranie ekwipunku.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
-Wytwórz broń dystansową
+Wytwórz prymitywną broń
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
 Każdy ekosystem cechuje się odmienną florą i fauną (i innymi aspektami). Warto zaznajomić się z każdym z podstawowych typów terenów, aby nauczyć się maksymalnie je wykorzystywać.
@@ -437,6 +357,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Znajdź i użyj zielone zioło
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
+Aby uzyskać dostęp do większej ilości struktur, w menu technologii należy odblokować „budynki podstawowe”.
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
+`[*] Naciśnij klawisz G, aby przejść do menu technologii (jeśli sterowanie nie zostało zmienione).
+[*] Odblokowanie węzła technologii wymaga użycia [b]PT[/b] (punkty technologii).
+[*] Punkty technologii (PT) dostajesz za wykonywanie sensownych działań w grze; ich liczba jest proporcjonalna do poziomu zyskiwanego doświadczenia w umiejętnościach.`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
+Poznaj podstawowe technologie budowlane
+
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
 Polowanie! Na początek lepiej unikać bardziej niebezpiecznych zwierząt, ale później można się już z nimi zmierzyć.
 
@@ -458,6 +389,16 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Najlepszy łowca – część druga
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
+Jest jeszcze kilka innych rzeczy, które musisz wiedzieć, aby w pełni cieszyć się z grania w CryoFall, jak np. jak sortować ekwipunek i biegać!
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
+`[*] Aby posortować ekwipunek, wystarczy go otworzyć i nacisnąć [u]środkowy przycisk myszy[/u] lub klawisz [u]Z[/u] (jeśli nie zmieniono sterowania), gdy kursor myszy znajduje się na siatce ekwipunku. W ten sposób można posortować [b]DOWOLNĄ[/b] siatkę ekwipunku (np. skrzynie).
+[*] Aby biegać, wystarczy przytrzymać [u]klawisz Shift[/u] podczas chodzenia. Przebiegnij teraz kilka metrów. Bieganie może cię uratować przed niebezpiecznymi drapieżnikami.`
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
+Wykonaj podstawowe działania
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
 Odblokuj dowolną umiejętność
@@ -481,6 +422,16 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Wyburz łomem
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
+Pragmium to rzadki obcy materiał wymagany podczas konstruowania większości zaawansowanych technologii. Postaraj się go znaleźć.
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
+`[*] Uważaj! Wydobywanie pragmium jest bardzo niebezpieczne.
+[*] Duże żyły pragmium można znaleźć na pustyni, a małe w pobliżu wulkanów.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
+Zdobądź pragmium!
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
 Wydobywaj minerały solne
@@ -565,6 +516,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Zbadaj stare ruiny
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Zbierz przedmioty z zasobników
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 Jeszcze więcej polowania! Tym razem starcie z bardziej niebezpiecznymi zwierzętami.

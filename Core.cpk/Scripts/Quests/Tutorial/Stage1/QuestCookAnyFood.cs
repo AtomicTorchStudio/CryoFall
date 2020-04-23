@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.Items.Food;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
     public class QuestCookAnyFood : ProtoQuest
     {
@@ -20,12 +21,12 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementManufactureItem.Require<IProtoItemFood>(count: 1,
+            tasks
+                .Add(TaskManufactureItem.Require<IProtoItemFood>(count: 1,
                                                                         description: this.Name))
-                .Add(RequirementUseItem.Require<IProtoItemFood>(count: 1,
+                .Add(TaskUseItem.Require<IProtoItemFood>(count: 1,
                                                                 description: TaskEatAnyFood));
 
             prerequisites

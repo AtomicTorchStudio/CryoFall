@@ -13,6 +13,9 @@ Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
 Требуется {0} ОТ (имеется только {1}).
 
+Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
+Недоступно в течение {0} после вайпа сервера (пожалуйста, подождите {1}).
+
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 Требуется открытая технология: {0}
 
@@ -99,6 +102,12 @@ Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
 Готовка 2
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
+Почему бы не сделать ваш интерьер более привлекательным?
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
+Украшения
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
 Улучшенные технологии защиты предоставляют чертежи более качественной брони.
@@ -192,6 +201,12 @@ Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
 Готовка 3
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
+Усовершенствуйте свое окружение еще больше!
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
+Украшения 2
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 Улучшенные технологии защиты.

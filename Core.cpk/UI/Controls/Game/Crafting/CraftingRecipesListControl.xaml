@@ -14,17 +14,6 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services">
 
-    <base:BaseUserControl.Resources>
-        <ResourceDictionary>
-
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/UI/Styles/SpecialItemsPanel.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-        </ResourceDictionary>
-    </base:BaseUserControl.Resources>
-
-
     <Grid DataContext="{Binding ViewModel, ElementName=UserControl}">
         <ScrollViewer VerticalScrollBarVisibility="Visible"
                       Margin="-3,0,3,2"

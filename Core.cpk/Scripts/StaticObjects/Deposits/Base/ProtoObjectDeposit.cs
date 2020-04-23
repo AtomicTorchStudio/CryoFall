@@ -8,13 +8,14 @@
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
+    using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectDeposit
         <TPrivateState,
@@ -65,12 +66,8 @@
         {
             if (!objectDeposit.IsDestroyed)
             {
-                this.ServerSendObjectDestroyedEvent(objectDeposit);
-                Server.World.DestroyObject(objectDeposit);
+                this.ServerOnStaticObjectZeroStructurePoints(null, null, objectDeposit);
             }
-
-            // explode
-            Server.World.CreateStaticWorldObject<ObjectDepositExplosion>(objectDeposit.TilePosition);
         }
 
         public override bool SharedOnDamage(
@@ -80,7 +77,7 @@
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
-            if (weaponCache.ProtoObjectExplosive != null)
+            if (weaponCache.ProtoExplosive != null)
             {
                 // allow to explode only a resource deposit which could be claimed
                 if (WorldMapResourceMarksSystem.SharedCalculateTimeRemainsToClaimCooldownSeconds(targetObject)
@@ -97,7 +94,7 @@
                 using var tempScopedBy = Api.Shared.GetTempList<ICharacter>();
                 Server.World.GetScopedByPlayers(targetObject, tempScopedBy);
                 this.CallClient(tempScopedBy.AsList(),
-                                _ => _.ClientRemote_NoDamageToDepositUnderCooldown(weaponCache.ProtoObjectExplosive));
+                                _ => _.ClientRemote_NoDamageToDepositUnderCooldown(weaponCache.ProtoExplosive));
             }
 
             // only damage from explosives is accepted
@@ -166,15 +163,6 @@
             tileRequirements.Add(ConstructionTileRequirements.ValidatorNotRestrictedAreaEvenForServer);
         }
 
-        /// <summary>
-        /// When the deposit is depleted, create a special object in its place.
-        /// </summary>
-        protected virtual void ServerCreateDepletedObject(Vector2Ushort tilePosition)
-        {
-            // we're using the same "charred ground" object as in case of deposit explosion
-            Server.World.CreateStaticWorldObject<ObjectCharredGround3Deposit>(tilePosition);
-        }
-
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
@@ -193,7 +181,6 @@
 
         protected virtual void ServerOnDecayCompleted(IStaticWorldObject worldObject)
         {
-            this.ServerCreateDepletedObject(worldObject.TilePosition);
             this.ServerOnStaticObjectZeroStructurePoints(null, null, worldObject);
         }
 
@@ -204,6 +191,16 @@
         {
             base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, byWeaponProto, targetObject);
             this.ServerOnExtractorDestroyedForDeposit(targetObject);
+        }
+
+        protected override void ServerOnStaticObjectZeroStructurePoints(
+            WeaponFinalCache weaponCache,
+            ICharacter byCharacter,
+            IWorldObject targetObject)
+        {
+            Server.World.CreateStaticWorldObject<ObjectDepletedDeposit>(targetObject.TilePosition);
+
+            base.ServerOnStaticObjectZeroStructurePoints(weaponCache, byCharacter, targetObject);
         }
 
         protected virtual void ServerTryDecay(
@@ -265,13 +262,20 @@
             return true;
         }
 
-        private void ClientRemote_NoDamageToDepositUnderCooldown(IProtoObjectExplosive protoObjectExplosive)
+        private void ClientRemote_NoDamageToDepositUnderCooldown(IProtoGameObject protoObjectExplosive)
         {
+            var icon = protoObjectExplosive switch
+            {
+                IProtoObjectExplosive objectExplosive => objectExplosive.Icon,
+                IProtoItem item                       => item.Icon,
+                _                                     => null
+            };
+
             NotificationSystem.ClientShowNotification(
                 string.Format(NotificationNoDamageToDepositUnderCooldown_TitleFormat, this.Name),
                 NotificationNoDamageToDepositUnderCooldown_Description,
                 color: NotificationColor.Bad,
-                protoObjectExplosive.Icon);
+                icon);
         }
     }
 

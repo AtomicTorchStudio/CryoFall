@@ -11,7 +11,9 @@
     d:DesignHeight="450" d:DesignWidth="800"
     d:DataContext="{d:DesignInstance data:ViewModelWindowEditorItemsBrowserWindow, d:IsDesignTimeCreatable=True}">
     <core:BaseUserControlWithWindow.Resources>
-        <Style x:Key="ItemsListBoxStyle" TargetType="ListBox">
+        <Style x:Key="ItemsListBoxStyle" 
+               TargetType="ListBox"
+               BasedOn="{StaticResource {x:Type ListBox}}">
             <Setter Property="Margin" Value="0,5" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="Background" Value="Transparent" />

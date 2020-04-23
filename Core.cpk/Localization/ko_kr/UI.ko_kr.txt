@@ -104,11 +104,63 @@ UI/CoreStrings@Chat_MessageMenu_Mention:
 UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 비공개 메시지
 
+UI/CoreStrings@Chat_MessageMenu_Report:
+신고
+
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 차단 해제
 
+UI/CoreStrings@Chat_PressKeyToOpen_Format:
+채팅을 시작하려면 [{0}] 키를 누르세요
+
+UI/CoreStrings@ChatDisclaimer_Button_DisableChat:
+채팅 숨김 상태 유지
+
+UI/CoreStrings@ChatDisclaimer_Button_EnableChat:
+채팅 활성화
+
+UI/CoreStrings@ChatDisclaimer_Checkbox:
+이해했습니다
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Community:
+[b]참고:[/b] 커뮤니티 서버에서 플레이 중입니다. 채팅 관리는 서버장의 책임입니다. 대개 채팅은 관리되지 않기에 다른 플레이어들로부터 불쾌하거나 모욕적인 메시지에 노출될 수 있습니다. 이러한 점을 감안할 수 있는 분들만 채팅을 활설화하시기 바랍니다.
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Official:
+[b]참고:[/b] 채팅은 관리되지 않아 다른 플레이어들로부터 불쾌하거나 모욕적인 메시지에 노출될 수 있습니다. 이러한 점을 감안할 수 있는 분들만 채팅을 활설화하시기 바랍니다.
+
+UI/CoreStrings@ChatDisclaimer_Title_Community:
+이 커뮤니티 서버에서 게임 내 채팅을 사용하시겠습니까?
+
+UI/CoreStrings@ChatDisclaimer_Title_Official:
+이 서버에서 게임 내 채팅을 사용하시겠습니까?
+
+UI/CoreStrings@ChatDisclaimer_UseBlock:
+`부적절한 메시지를 접했을 경우, 메시지를 클릭한 뒤, "신고" 또는 "차단"을 선택하세요.`
+
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 다시 묻지 않기
+
+UI/CoreStrings@ClanTag_Current:
+클랜 태그:
+
+UI/CoreStrings@ClanTag_Exists:
+`해당 클랜 태그는 이미 다른 팀이 사용하고 있습니다.
+[br]다른 태그를 선택하세요.`
+
+UI/CoreStrings@ClanTag_FormatWithName:
+[{0}] {1}
+
+UI/CoreStrings@ClanTag_Invalid:
+해당 클랜 태그는 유효하지 않습니다.
+
+UI/CoreStrings@ClanTag_Requirements:
+`클랜 태그 필요 조건:
+[*] 라틴 문자와 숫자만 가능
+[*] 첫 글자는 문자
+[*] 최대 4 글자`
+
+UI/CoreStrings@ClanTag_Select:
+클랜 태그를 선택해주세요
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 이 구조물은 순전히 장식용입니다.
@@ -151,6 +203,12 @@ UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 잠금 해제된 제조법
+
+UI/CoreStrings@CrateIconControl_NoIcon:
+아이콘 없음
+
+UI/CoreStrings@CrateIconControl_SelectIcon:
+아이콘을 골라주세요
 
 UI/CoreStrings@Defense_Format_Chemical:
 화학 물질 보호: {0}
@@ -201,11 +259,20 @@ CryoFall의 체험판에 오신 것을 환영합니다. 체험 시간 동안 아
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 점유 가능까지 남은 시간:
 
+UI/CoreStrings@DepositCapacityStats_Depleted:
+고갈된 매장지입니다.
+
 UI/CoreStrings@DepositCapacityStats_Message:
 매장지가 고갈되기까지남은 시간:
 
 UI/CoreStrings@DepositCapacityStats_Title:
 매장량
+
+UI/CoreStrings@DepositCapacityStats_TitleInfinite:
+심층 매장지 (낮은 생산량, 무한)
+
+UI/CoreStrings@DepositCapacityStats_TitleLimited:
+표층 매장지 (높은 생산량)
 
 UI/CoreStrings@Duration_Instant:
 즉시
@@ -275,6 +342,9 @@ UI/CoreStrings@Gender_Male:
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 탈것에서 내리기
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Completionist:
+완벽주의자
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 건설
@@ -380,6 +450,9 @@ UI/CoreStrings@LoginAtomicTorchForm_KeepMeLoggedIn:
 
 UI/CoreStrings@LoginAtomicTorchForm_Title:
 [url=atomictorch.com/Account/Register]AtomicTorch.com[/url] 계정으로 로그인
+
+UI/CoreStrings@LootHacking_Progress:
+해킹 진척도
 
 UI/CoreStrings@MainMenu_TabCredits:
 만든이들
@@ -558,6 +631,12 @@ PvP 서버에는 어떠한 제약도 없습니다. 이곳에서는 죽고 죽일
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
 
+UI/CoreStrings@Meteorite_CooldownMessage_TimeRemainsFormat:
+충분히 식을 때까지 남은 시간: {0}.
+
+UI/CoreStrings@Meteorite_CooldownMessage_TooHotForMining:
+채굴하기에는 운석이 아직 너무 뜨겁습니다.
+
 UI/CoreStrings@ModsDisabledWindow_Description:
 `이용할 수 없는 모드 때문에 게임을 실행할 수 없어 모드를 차단했습니다.
 [br]원인은 하나 이상의 모드가 오래(현재 게임 버전과 호환되지 않음)되었거나 단순히 유효하지 않는 것입니다.
@@ -632,6 +711,12 @@ UI/CoreStrings@Notification_ActionForbidden:
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 배치할 수 없음
 
+UI/CoreStrings@Notification_ErrorCannotInteract:
+상호 작용할 수 없습니다
+
+UI/CoreStrings@Notification_ErrorObjectUsedByAnotherPlayer:
+해당 오브젝트는 다른 플레이어가 사용하고 있습니다.
+
 UI/CoreStrings@Notification_ObstaclesOnTheWay:
 장애물이 길을 막고 있습니다!
 
@@ -665,6 +750,9 @@ UI/CoreStrings@ObjectOwnersList_RemoveOwner:
 UI/CoreStrings@ObjectOwnersList_Title:
 소유자
 
+UI/CoreStrings@ObjectOwnersList_Title2:
+소유자:
+
 UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
 구매
 
@@ -688,9 +776,6 @@ UI/CoreStrings@PartyManagement_CurrentPartySize:
 
 UI/CoreStrings@PartyManagement_HowToInvite:
 초대하려면 아래에 플레이어 이름을 입력하거나 플레이어 이름을 마우스 오른쪽 버튼으로 누르십시오.
-
-UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-파티원이 획득한 학습 포인트 중 일부는 모든 파티원에게 동일하게 나눠집니다.
 
 UI/CoreStrings@PartyManagement_InviteMember:
 파티원 초대
@@ -766,6 +851,9 @@ UI/CoreStrings@PowerGridState_DepletedIn:
 UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
 영구
 
+UI/CoreStrings@PowerGridState_EfficiencyDescription:
+전력망의 효율은 기지의 크기에 따라 달라집니다.
+
 UI/CoreStrings@PowerGridState_EfficiencyFormat:
 (효율성 {0}%)
 
@@ -830,7 +918,7 @@ UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 스크린샷 준비: {0} (열려면 클릭)
 
 UI/CoreStrings@SelectUsernameForm_Message:
-AtomicTorch.com 계정의 사용자 이름을 선택하십시오.
+사용자 이름을 선택하세요
 
 UI/CoreStrings@ServerAddress:
 주소
@@ -891,6 +979,15 @@ UI/CoreStrings@TechGroupTooltip_TechnologiesAvailableCount:
 
 UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 잠금 해제된 기술
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_AvailableNow:
+이제 이용 가능 (시간 차단문 만료)
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Format:
+이용 가능까지 남은 시간: [b]{0}[/b]
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Title:
+시간 차단문:
 
 UI/CoreStrings@TechNodeTooltip_Perks:
 특전:
@@ -1094,6 +1191,24 @@ UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 무작위
 
+UI/CoreStrings@WindowCompletionist_ButtonAccept:
+수락
+
+UI/CoreStrings@WindowCompletionist_ProgressLabel:
+진척도:
+
+UI/CoreStrings@WindowCompletionist_TabCreatures:
+생명체
+
+UI/CoreStrings@WindowCompletionist_TabFood:
+식량
+
+UI/CoreStrings@WindowCompletionist_TabLoot:
+전리품
+
+UI/CoreStrings@WindowCompletionist_UndiscoveredEntryTitle:
+???
+
 UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
 설계도 필요
 
@@ -1109,6 +1224,16 @@ UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 총 필요 자원
+
+UI/CoreStrings@WindowCrateIconSelector_CanPickIcon:
+이 컨테이너에 있는 모든 아이템의 아이콘을 선택할 수 있습니다.
+
+UI/CoreStrings@WindowCrateIconSelector_NoItemsToSelectIcon:
+`컨테이너가 비어 있습니다.
+[br]아이콘을 선택할 수 있는 아이템이 없습니다.`
+
+UI/CoreStrings@WindowCrateIconSelector_SelectedIcon:
+선택된 아이콘
 
 UI/CoreStrings@WindowDataLog_Content:
 콘텐츠
@@ -1136,6 +1261,9 @@ UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
 부식 정보
+
+UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
+부식 시스템에 대해 이해했습니다
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 이 기지의 모든 토지 점유소 구조물 간 금고 저장 아이템이 공유됩니다.
@@ -1486,13 +1614,13 @@ UI/CoreStrings@Yes:
 예
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Source Han Sans K
+/UI/Fonts/#Source Han Sans K, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Source Han Sans K
+/UI/Fonts/#Source Han Sans K, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Source Han Sans K
+/UI/Fonts/#Source Han Sans K, /UI/Fonts/#Twemoji Mozilla
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 연결됨
@@ -1509,6 +1637,15 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 `{0} 님과의 채팅을 닫으시겠습니까?
 [br]대화 기록은 저장되며, 나중에 다시 채팅할 수 있습니다.`
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
+처음으로 처치하였습니다.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
+처음으로 섭취하였습니다.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_LootDiscovered_MessageFormat:
+처음으로 발견하였습니다.
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 이 제조법은 분해 가능한 요소가 포함되어 있기 때문에 취소할 수 없습니다.
@@ -1529,6 +1666,15 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 아이템이 떨어졌습니다
 
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Finished:
+이벤트 완료!
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeRemainingFormat:
+남은 시간: {0}
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
+진행 중인 이벤트
+
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
 `당신의 기지 중 한 곳이 습격받고 있습니다!
 [br]({0};{1})`
@@ -1544,6 +1690,9 @@ UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceA
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
 새로운 자원의 원천 이용 가능
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@TooltipDepositSearchAreaFormat:
+탐색 영역: {0}
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 좌표 복사
@@ -1596,7 +1745,7 @@ UI/Controls/Game/Player/Data/ContainerHelpStrings@LeftClickFullHand_Title:
 아이템을 선택한 상태에서 마우스 왼쪽 버튼으로 슬롯 클릭
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Description:
-인벤토리 분류하기 (가리킬 수 있는 모든 아이템에 사용 가능).
+인벤토리 분류하기 (가리킬 수 있는 모든 아이템 격자에 사용 가능).
 
 UI/Controls/Game/Player/Data/ContainerHelpStrings@MiddleClick_Title:
 마우스 가운데 버튼 (스크롤 휠) 클릭
@@ -1637,8 +1786,17 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleFace:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 머리카락
 
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
+머리카락 색
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+피부색
+
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 상안
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
+미지정
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 파티를 떠나시겠습니까?
@@ -1717,12 +1875,6 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]
 [br]토지 점유소를 상위 단계로 [b]업그레이드[/b]하면 부식 지연 시간이 증가합니다.
 [br]기지 전체의 부식 지연 시간은 [b]최고[/b] 단계의 토지 점유소 건물에 기반합니다.`
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
-고갈된 매장지입니다.
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
-무한 매장지입니다.
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 연료 없음
@@ -1819,6 +1971,12 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_T
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
 다양한 미래형 탈것을 제작 및 업그레이드하여 세계를 보다 빠르게 탐험하거나 전투에 이용할 수 있습니다.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+월드 이벤트
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+CryoFall 월드에서 일어나는 많은 이벤트에 자주 참여해주세요. 운석이 떨어진 곳을 탐사하거나 생존자 무리를 모아 위험한 보스를 처치해보시기 바랍니다.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 환상의 생명체

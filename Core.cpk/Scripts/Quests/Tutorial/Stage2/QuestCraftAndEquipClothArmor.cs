@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Defense;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -17,21 +18,21 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveTechNode.Require<TechNodeClothArmor>())
+            tasks
+                .Add(TaskHaveTechNode.Require<TechNodeClothArmor>())
                 // suggest cloth hat but require any head item
-                .Add(RequirementHaveItemEquipped.Require<IProtoItemEquipmentHead>(
-                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
+                .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentHead>(
+                         string.Format(TaskHaveItemEquipped.DescriptionFormat,
                                        Api.GetProtoEntity<ItemClothHat>().Name)))
                 // suggest cloth shirt but require any chest item
-                .Add(RequirementHaveItemEquipped.Require<IProtoItemEquipmentChest>(
-                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
+                .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentChest>(
+                         string.Format(TaskHaveItemEquipped.DescriptionFormat,
                                        Api.GetProtoEntity<ItemClothShirt>().Name)))
                 // suggest cloth pants but require any legs item
-                .Add(RequirementHaveItemEquipped.Require<IProtoItemEquipmentLegs>(
-                         string.Format(RequirementHaveItemEquipped.DescriptionFormat,
+                .Add(TaskHaveItemEquipped.Require<IProtoItemEquipmentLegs>(
+                         string.Format(TaskHaveItemEquipped.DescriptionFormat,
                                        Api.GetProtoEntity<ItemClothPants>().Name)));
 
             prerequisites

@@ -1,0 +1,18 @@
+﻿Scripts/Events/EventBossPragmiumQueen@Description:
+`普拉格女皇已出現在地表。
+ [br]珍貴的寶藏等待著勇敢的倖存者！`
+
+Scripts/Events/EventMeteoriteDrop@Description:
+`隕石已落在高亮地區。
+ [br]快去挖掘罕見的礦物!`
+
+Scripts/Events/EventMigration@Description:
+此世界的生物似乎正在遷徙，這是狩獵的好機會。
+
+Scripts/Events/EventSpaceDrop@Description:
+`太空殘骸已落在高亮地區。
+ [br]快去收集罕見的廢料!`
+
+Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
+進度：{0}/{1}
+

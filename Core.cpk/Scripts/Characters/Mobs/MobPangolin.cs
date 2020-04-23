@@ -29,7 +29,7 @@
         {
             base.FillDefaultEffects(effects);
 
-            effects.AddValue(this, StatName.DefenseImpact, 0.6);
+            effects.AddValue(this, StatName.DefenseImpact, 0.5);
         }
 
         protected override void PrepareProtoCharacterMob(

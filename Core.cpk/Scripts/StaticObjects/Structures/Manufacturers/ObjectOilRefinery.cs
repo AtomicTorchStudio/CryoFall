@@ -31,7 +31,7 @@
         public override string Description =>
             "Refines raw petroleum oil into more useful components, such as fuel and mineral oil.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 2;
+        public override double ElectricityConsumptionPerSecondWhenActive => 4;
 
         public override double LiquidCapacityGasoline => 100;
 
@@ -43,7 +43,7 @@
         // to fix an issue with the floating point precision
         // (e.g. a case when 0.0001 liquid level shortage prevents from collecting a full canister).
         // With the adjusted number we have a barely noticeable profit which resolves the issue.
-        public override double LiquidGasolineProductionPerSecond => 0.2002; 
+        public override double LiquidGasolineProductionPerSecond => 0.2002;
 
         public override double LiquidMineralOilProductionPerSecond => 0.2002;
 
@@ -113,7 +113,7 @@
             build.AddStageRequiredItem<ItemCement>(count: 10);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 3);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 3);
-            
+
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;
             repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);

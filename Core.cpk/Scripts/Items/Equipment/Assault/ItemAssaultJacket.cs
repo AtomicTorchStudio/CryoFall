@@ -9,9 +9,9 @@
 
         public override uint DurabilityMax => 1200;
 
-        public override string Name => "Assault armor jacket";
-
         public override ObjectMaterial Material => ObjectMaterial.HardTissues;
+
+        public override string Name => "Assault armor jacket";
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

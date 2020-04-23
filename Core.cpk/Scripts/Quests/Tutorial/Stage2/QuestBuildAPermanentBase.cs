@@ -1,8 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Construction;
 
     public class QuestBuildAPermanentBase : ProtoQuest
@@ -28,17 +27,15 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveTechNode.Require<TechNodeLandClaimT1>())
-                .Add(RequirementBuildStructure.Require<ObjectLandClaimT1>())
-                .Add(RequirementBuildStructure.Require<ObjectWallWood>())
-                .Add(RequirementBuildStructure.Require<ObjectDoorWood>());
+            tasks
+                .Add(TaskHaveTechNode.Require<TechNodeLandClaimT1>())
+                .Add(TaskBuildStructure.Require<ObjectLandClaimT1>());
 
             prerequisites
                 .Add<QuestCraftAndEquipClothArmor>()
-                .Add<QuestCollectHerbsAndCraftMedicine>();
+                .Add<QuestPerformBasicActions>();
         }
     }
 }

@@ -18,8 +18,8 @@
 
             duration = CraftingDuration.Long;
 
-            inputItems.Add<ItemGlassRaw>(count: 50);
-            inputItems.Add<ItemWire>(count: 50);
+            inputItems.Add<ItemGlassRaw>(count: 25);
+            inputItems.Add<ItemWire>(count: 25);
             inputItems.Add<ItemComponentsOptical>(count: 10);
             inputItems.Add<ItemComponentsElectronic>(count: 10);
             inputItems.Add<ItemPlastic>(count: 10);

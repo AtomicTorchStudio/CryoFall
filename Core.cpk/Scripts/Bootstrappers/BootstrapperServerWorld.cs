@@ -11,17 +11,28 @@
 
     [PrepareOrder(afterType: typeof(BootstrapperServerCore))]
     [PrepareOrder(afterType: typeof(LandClaimSystem.BootstrapperLandClaimSystem))]
-    [PrepareOrder(afterType: typeof(WorldMapResourceMarksSystem.BootstrapperWorldMapResourcesSystem))]
+    [PrepareOrder(afterType: typeof(WorldMapResourceMarksSystem.Bootstrapper))]
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public class BootstrapperServerWorld : BaseBootstrapper
     {
+        public const int MapVersion = 263;
+
         public override void ServerInitialize(IServerConfiguration serverConfiguration)
         {
-            if (!Api.Server.Database.TryGet("Core", "IsInitialMapLoaded", out bool isInitialMapLoaded)
+            var db = Api.Server.Database;
+
+            if (!db.TryGet("Core", "IsInitialMapLoaded", out bool isInitialMapLoaded)
                 || !isInitialMapLoaded)
             {
-                Api.Server.Database.Set("Core", "IsInitialMapLoaded", true);
+                db.Set("Core", "IsInitialMapLoaded", true);
                 LoadMap();
+                db.Set("Core", "MapCurrentGameVersion", MapVersion);
+            }
+            else if (!db.TryGet("Core", "MapCurrentGameVersion", out int mapVersion)
+                     || MapVersion != mapVersion)
+            {
+                UpdateMap();
+                db.Set("Core", "MapCurrentGameVersion", MapVersion);
             }
         }
 
@@ -50,6 +61,11 @@
             {
                 Server.World.DestroyObject(worldObject);
             }
+        }
+
+        private static void UpdateMap()
+        {
+            Server.World.UpdateWorld(new ServerMapResource(GetInitialMapName()));
         }
     }
 }

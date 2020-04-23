@@ -605,6 +605,7 @@
             foreach (var producerObject in producersInArea)
             {
                 var producerState = producerObject.GetPublicState<IObjectElectricityProducerPublicState>();
+                // TODO: we need a way to restore power to power producers too, consider introducing PowerOffOutage
                 producerState.ElectricityProducerState = ElectricityProducerState.PowerOff;
             }
 

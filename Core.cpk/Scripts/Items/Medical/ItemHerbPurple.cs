@@ -4,8 +4,8 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemHerbPurple : ProtoItemMedical, IProtoItemOrganic
     {
@@ -22,7 +22,8 @@
 
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {
-            character.ServerRemoveStatusEffectIntensity<StatusEffectRadiationPoisoning>(intensityToRemove: 0.05); // 15 sec
+            character.ServerRemoveStatusEffectIntensity<StatusEffectRadiationPoisoning>(
+                intensityToRemove: 0.05);                                                             // 15 sec
             character.ServerRemoveStatusEffectIntensity<StatusEffectToxins>(intensityToRemove: 0.05); // 15 sec
 
             base.ServerOnUse(character, currentStats);

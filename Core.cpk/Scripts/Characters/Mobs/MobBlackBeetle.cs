@@ -29,10 +29,10 @@
         {
             base.FillDefaultEffects(effects);
 
-            effects.AddValue(this, StatName.DefenseImpact,   0.2);
-            effects.AddValue(this, StatName.DefenseKinetic,  0.2);
-            effects.AddValue(this, StatName.DefenseHeat,     0.2);
-            effects.AddValue(this, StatName.DefenseChemical, 0.4);
+            effects.AddValue(this, StatName.DefenseImpact, 0.2)
+                   .AddValue(this, StatName.DefenseKinetic,  0.2)
+                   .AddValue(this, StatName.DefenseHeat,     0.2)
+                   .AddValue(this, StatName.DefenseChemical, 0.4);
         }
 
         protected override void PrepareProtoCharacterMob(

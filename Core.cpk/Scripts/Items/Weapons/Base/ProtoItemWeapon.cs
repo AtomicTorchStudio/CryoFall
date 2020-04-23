@@ -17,14 +17,18 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
+    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
+    using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
 
     public abstract class ProtoItemWeapon
         <TPrivateState,
@@ -40,8 +44,6 @@
         where TClientState : BaseClientState, new()
     {
         private readonly Lazy<ProtoSkillWeapons> lazyWeaponSkillPrototype;
-
-        private TextureResource cachedWeaponTextureResource;
 
         private ClientInputContext helperInputListener;
 
@@ -64,6 +66,8 @@
         public virtual bool CanDamageStructures => true;
 
         public abstract string CharacterAnimationAimingName { get; }
+
+        public abstract CollisionGroup CollisionGroup { get; }
 
         public IReadOnlyList<IProtoItemAmmo> CompatibleAmmoProtos { get; private set; }
 
@@ -112,13 +116,18 @@
         public virtual (float min, float max) SoundPresetWeaponDistance
             => (SoundConstants.AudioListenerMinDistance, SoundConstants.AudioListenerMaxDistance);
 
+        public virtual (float min, float max) SoundPresetWeaponDistance3DSpread
+            => default;
+
         public virtual double SpecialEffectProbability => 0;
 
         public virtual string WeaponAttachmentName => "WeaponRifle";
 
         public ProtoSkillWeapons WeaponSkillProto => this.lazyWeaponSkillPrototype.Value;
 
-        ITextureResource IProtoItemWeapon.WeaponTextureResource => this.cachedWeaponTextureResource;
+        ITextureResource IProtoItemWeapon.WeaponTextureResource => this.CachedWeaponTextureResource;
+
+        protected TextureResource CachedWeaponTextureResource { get; private set; }
 
         protected abstract ProtoSkillWeapons WeaponSkill { get; }
 
@@ -139,6 +148,63 @@
             }
         }
 
+        public virtual void ClientOnFireModChanged(bool isFiring, uint shotsDone)
+        {
+            WeaponSystem.Instance.CallServer(
+                _ => _.ServerRemote_SetWeaponFiringMode(isFiring, shotsDone));
+        }
+
+        public virtual void ClientOnWeaponHitOrTrace(
+            ICharacter firingCharacter,
+            IProtoItemWeapon protoWeapon,
+            IProtoItemAmmo protoAmmo,
+            IProtoCharacter protoCharacter,
+            in Vector2Ushort fallbackCharacterPosition,
+            IReadOnlyList<WeaponHitData> hitObjects,
+            in Vector2D endPosition,
+            bool endsWithHit)
+        {
+        }
+
+        public virtual void ClientOnWeaponShot(ICharacter character)
+        {
+        }
+
+        public virtual void ClientPlayWeaponHitSound(
+            [CanBeNull] IWorldObject hitWorldObject,
+            IProtoWorldObject protoWorldObject,
+            WeaponFireScatterPreset fireScatterPreset,
+            ObjectMaterial objectMaterial,
+            Vector2D worldObjectPosition)
+        {
+            // apply some volume variation
+            var volume = SoundConstants.VolumeHit;
+            volume *= RandomHelper.Range(0.8f, 1.0f);
+            var pitch = RandomHelper.Range(0.95f, 1.05f);
+
+            // adjust volume proportionally to the number of scattered projects per fire
+            var projectilesCount = fireScatterPreset.ProjectileAngleOffets.Length;
+            volume *= (float)Math.Pow(1.0 / projectilesCount, 0.35);
+
+            if (hitWorldObject != null)
+            {
+                this.SoundPresetHit.PlaySound(
+                    objectMaterial,
+                    hitWorldObject,
+                    volume: volume,
+                    pitch: pitch);
+            }
+            else
+            {
+                this.SoundPresetHit.PlaySound(
+                    objectMaterial,
+                    protoWorldObject,
+                    worldPosition: worldObjectPosition,
+                    volume: volume,
+                    pitch: pitch);
+            }
+        }
+
         public virtual void ClientSetupSkeleton(
             IItem item,
             ICharacter character,
@@ -151,37 +217,13 @@
             protoCharacterSkeleton.ClientSetupItemInHand(
                 skeletonRenderer,
                 this.WeaponAttachmentName,
-                this.cachedWeaponTextureResource);
+                this.CachedWeaponTextureResource);
         }
 
         public virtual string GetCharacterAnimationNameFire(ICharacter character)
         {
             // no animation by default
             return null;
-        }
-
-        public virtual void ServerOnDamageApplied(
-            WeaponFinalCache weaponCache,
-            IWorldObject damagedObject,
-            double damage)
-        {
-            if (!(damagedObject is ICharacter damagedCharacter))
-            {
-                return;
-            }
-
-            if (damage <= 0)
-            {
-                // no special effects in case damage is 0
-                return;
-            }
-
-            var protoItemAmmo = weaponCache.Weapon != null
-                                    ? GetPrivateState(weaponCache.Weapon).CurrentProtoItemAmmo
-                                    : null;
-
-            protoItemAmmo?.ServerOnCharacterHit(damagedCharacter, damage);
-            this.ServerTryToApplySpecialEffect(weaponCache, damage, damagedCharacter);
         }
 
         public virtual void ServerOnItemBrokeAndDestroyed(IItem item, IItemsContainer container, byte slotId)
@@ -200,13 +242,14 @@
                 return;
             }
 
-            privateState.AmmoCount = 0;
+            privateState.SetAmmoCount(0);
 
             // try spawn into the destroyed item slot
             var result = Server.Items.CreateItem(
                 container: container,
                 protoItem: privateState.CurrentProtoItemAmmo,
-                count: ammoCount);
+                count: ammoCount,
+                slotId: slotId);
             if (result.IsEverythingCreated
                 || container.OwnerAsCharacter == null)
             {
@@ -233,19 +276,19 @@
             IProtoItemWeapon protoWeapon,
             IReadOnlyList<IWorldObject> hitObjects)
         {
-            if (weaponItem != null)
-            {
-                ServerItemUseObserver.NotifyItemUsed(character, weaponItem);
-            }
-
             // try reduce weapon durability
             // for ranged weapon - when shot
             // for melee weapon - when at least one object was hit
             var characterSkills = character.SharedGetSkills();
-            if (characterSkills == null)
+            if (characterSkills is null)
             {
                 // not a player character - don't degrade the weapon
                 return;
+            }
+
+            if (weaponItem != null)
+            {
+                ServerItemUseObserver.NotifyItemUsed(character, weaponItem);
             }
 
             var shouldDegrade = true;
@@ -348,8 +391,97 @@
                 return false;
             }
 
-            privateState.AmmoCount -= this.AmmoConsumptionPerShot;
+            privateState.SetAmmoCount(
+                (ushort)(privateState.AmmoCount - this.AmmoConsumptionPerShot));
             return true;
+        }
+
+        public virtual void SharedOnHit(
+            WeaponFinalCache weaponCache,
+            IWorldObject damagedObject,
+            double damage,
+            WeaponHitData hitData,
+            out bool isDamageStop)
+        {
+            isDamageStop = false;
+
+            var protoItemAmmo = weaponCache.Weapon is null
+                                    ? null
+                                    : GetPrivateState(weaponCache.Weapon).CurrentProtoItemAmmo;
+
+            if (IsServer)
+            {
+                protoItemAmmo?.ServerOnObjectHit(weaponCache,
+                                                 damagedObject,
+                                                 damage,
+                                                 hitData,
+                                                 ref isDamageStop);
+
+                if (damage > 0
+                    && damagedObject is ICharacter damagedCharacter)
+                {
+                    this.ServerTryToApplySpecialEffect(weaponCache, damage, damagedCharacter);
+                }
+            }
+            else // if client
+            {
+                protoItemAmmo?.ClientOnObjectHit(weaponCache,
+                                                 damagedObject,
+                                                 damage,
+                                                 hitData,
+                                                 ref isDamageStop);
+            }
+        }
+
+        public virtual void SharedOnMiss(WeaponFinalCache weaponCache, Vector2D endPosition)
+        {
+            var protoItemAmmo = weaponCache.Weapon is null
+                                    ? null
+                                    : GetPrivateState(weaponCache.Weapon).CurrentProtoItemAmmo;
+
+            if (protoItemAmmo is null)
+            {
+                return;
+            }
+
+            if (IsServer)
+            {
+                protoItemAmmo.ServerOnMiss(weaponCache, endPosition);
+            }
+            else
+            {
+                protoItemAmmo.ClientOnMiss(weaponCache, endPosition);
+            }
+        }
+
+        public virtual void SharedOnWeaponAmmoChanged(IItem item, ushort ammoCount)
+        {
+        }
+
+        public virtual double SharedUpdateAndGetFirePatternCurrentSpreadAngleDeg(WeaponState state)
+        {
+            var pattern = this.FirePatternPreset;
+            if (!pattern.IsEnabled)
+            {
+                // no weapon fire spread
+                return 0;
+            }
+
+            state.FirePatternCooldownSecondsRemains = this.FirePatternCooldownDuration;
+
+            var shotNumber = state.FirePatternCurrentShotNumber;
+            state.FirePatternCurrentShotNumber = (ushort)(shotNumber + 1);
+
+            var initialSequenceLength = pattern.InitialSequence.Length;
+            if (shotNumber < initialSequenceLength)
+            {
+                // initial fire sequence
+                return pattern.InitialSequence[shotNumber];
+            }
+
+            // cycled fire sequence
+            var sequenceNumber = (shotNumber - initialSequenceLength) % pattern.CycledSequence.Length;
+            return pattern.CycledSequence[sequenceNumber];
         }
 
         protected static ICollection<TAmmo> GetAmmoOfType<TAmmo>()
@@ -466,7 +598,7 @@
                     $"{nameof(this.FireAnimationDuration)} is bigger than {nameof(this.FireInterval)}");
             }
 
-            this.cachedWeaponTextureResource = this.WeaponTextureResource;
+            this.CachedWeaponTextureResource = this.WeaponTextureResource;
 
             DamageDescription overrideDamageDescription = null;
             this.PrepareProtoWeapon(

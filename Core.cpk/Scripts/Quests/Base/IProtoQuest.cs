@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Resources;
 
@@ -14,7 +15,7 @@
 
         IReadOnlyList<IProtoQuest> Prerequisites { get; }
 
-        IReadOnlyList<IQuestRequirement> Requirements { get; }
+        IReadOnlyList<IPlayerTask> Tasks { get; }
 
         ushort RewardLearningPoints { get; }
     }

@@ -10,8 +10,6 @@
             config.Effects
                   .AddStructure<ObjectLandClaimT1>()
                   .AddPerk<PerkIncreaseLandClaimLimitT1>();
-
-            config.SetRequiredNode<TechNodeWoodDoor>();
         }
     }
 }

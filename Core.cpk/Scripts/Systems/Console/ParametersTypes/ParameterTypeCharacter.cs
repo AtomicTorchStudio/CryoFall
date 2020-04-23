@@ -5,6 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public class ParameterTypeCharacter : BaseConsoleCommandParameterType
@@ -53,10 +54,16 @@
 
         private static IEnumerable<ICharacter> GetAllCharacters()
         {
-            var characters = IsServer
-                                 ? Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: false)
-                                 : Client.Characters.GetKnownPlayerCharacters();
-            return characters.OrderBy(c => c.Name);
+            if (IsServer)
+            {
+                return Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: false)
+                             .OrderBy(c => c.Name);
+            }
+
+            using var tempPlayerCharacters = Api.Shared.GetTempList<ICharacter>();
+            Client.Characters.GetKnownPlayerCharacters(tempPlayerCharacters);
+            return tempPlayerCharacters.AsList()
+                                       .OrderBy(c => c.Name);
         }
     }
 }

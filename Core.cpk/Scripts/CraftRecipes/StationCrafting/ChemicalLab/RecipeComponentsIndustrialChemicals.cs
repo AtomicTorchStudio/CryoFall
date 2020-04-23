@@ -18,9 +18,9 @@
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemPotassiumNitrate>(count: 50);
-            inputItems.Add<ItemSulfurPowder>(count: 50);
-            inputItems.Add<ItemSalt>(count: 50);
+            inputItems.Add<ItemPotassiumNitrate>(count: 25);
+            inputItems.Add<ItemSulfurPowder>(count: 25);
+            inputItems.Add<ItemSalt>(count: 25);
             inputItems.Add<ItemOreLithium>(count: 25);
             inputItems.Add<ItemAsh>(count: 25);
             inputItems.Add<ItemCanisterMineralOil>(count: 5);

@@ -17,12 +17,12 @@
         protected override void PrepareEffects(Effects effects)
         {
             // increase certain activity effectiveness
-            effects.AddPercent(this, StatName.MiningSpeed,      50);
-            effects.AddPercent(this, StatName.WoodcuttingSpeed, 50);
+            effects.AddPercent(this, StatName.MiningSpeed, 50)
+                   .AddPercent(this, StatName.WoodcuttingSpeed, 50);
 
             // increase combat effectiveness
-            effects.AddPercent(this, StatName.WeaponMeleeDamageBonusMultiplier,         10);
-            effects.AddPercent(this, StatName.WeaponMeleeSpecialEffectChanceMultiplier, 100);
+            effects.AddPercent(this, StatName.WeaponMeleeDamageBonusMultiplier, 10)
+                   .AddPercent(this, StatName.WeaponMeleeSpecialEffectChanceMultiplier, 100);
         }
     }
 }

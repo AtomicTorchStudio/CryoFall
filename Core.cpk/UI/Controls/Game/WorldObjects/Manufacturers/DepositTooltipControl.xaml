@@ -46,8 +46,7 @@
                     </Style>
                 </StackPanel.Resources>
                 <!-- Text: This deposit will be depleted in: -->
-                <TextBlock Text="{x:Static loc:CoreStrings.DepositCapacityStats_Message}"
-                           Visibility="{Binding DepletedInPrefixVisibility}" />
+                <TextBlock Text="{x:Static loc:CoreStrings.DepositCapacityStats_Message}" />
 
                 <TextBlock Text="{Binding DepletionDurationText}"
                            FontWeight="Bold" />

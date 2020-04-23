@@ -19,7 +19,7 @@
             this.item = item;
         }
 
-        protected override void OnLoaded()
+        protected override void InitControl()
         {
             this.DataContext = this.viewModel = new ViewModelHotbarItemWateringCanOverlayControl()
             {

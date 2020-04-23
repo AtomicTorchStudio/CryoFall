@@ -10,6 +10,19 @@ Las baterías no tienen carga suficiente.
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 No se puede usar {0}
 
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
+`Parece que ya llevas un rato de inactividad.
+[br]Se han suspendido el hambre y la sed.`
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
+Se permite chatear, fabricar o usar objetos consumibles.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part3:
+Cualquier otra acción desactivará el modo Inactividad.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Title:
+Modo Inactividad
+
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
 `Podrás reaparecer en tu cama dentro de {0} segundos.
 [br]También puedes reaparecer en el mundo ahora mismo.`
@@ -89,6 +102,9 @@ General
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 Local
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomTrade@Title:
+Comerciar
 
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
 No se puede construir ahí
@@ -251,6 +267,18 @@ No puedes invitar, ya que el operador del servidor te ha silenciado.
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 El jugador invitado no está conectado. Solo los jugadores conectados pueden ser invitados a un grupo.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_AreYouSure:
+¿Seguro que quieres denunciar el siguiente mensaje?
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_CommunityServerDisclaimer:
+[b]Aviso:[/b] Estás jugando en un servidor de la comunidad, así que la moderación del chat es responsabilidad del dueño o de la dueña del servidor. Por lo general, los chats carecen de moderación.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_OfficialServersDisclaimer:
+[b]Aviso:[/b] Los servidores oficiales no cuentan con moderación.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_Title:
+Denunciar un mensaje
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
 No se puede interactuar. Estás demasiado lejos o no se puede acceder al edificio.
@@ -460,6 +488,9 @@ Siempre cerrado
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 ¡No tienes acceso!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
+Se ha superado el límite de tamaño de la lista de acceso.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
 No puedes editar la lista de dueños.

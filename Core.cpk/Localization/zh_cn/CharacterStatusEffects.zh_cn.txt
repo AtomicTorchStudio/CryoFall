@@ -40,6 +40,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 力量提升
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Description:
+你已经休息一段时间，所以你更容易学习新的东西，或强化技能。 (这是一个每日加成，在离线足够长的时间后获得；它可以为你提供加成直至耗尽。)
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Name:
+精神饱满
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 你正在出血，如果不进行治疗将持续流失生命。微弱出血将会自愈，但是严重的伤害可能需要绷带和止血药剂。
 

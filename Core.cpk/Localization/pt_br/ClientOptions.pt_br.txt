@@ -123,6 +123,12 @@ Resolução de renderização
 Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
 Vídeo
 
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@ScreenMode.Force16To9:
+16:9 (visão máxima JvJ)
+
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@Name:
+Taxa de proporção da tela
+
 Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
 Tela cheia
 

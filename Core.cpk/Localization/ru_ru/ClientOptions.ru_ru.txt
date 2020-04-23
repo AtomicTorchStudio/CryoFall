@@ -123,6 +123,12 @@ Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
 Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
 Видео
 
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@ScreenMode.Force16To9:
+16:9 (макс. обзор для PvP)
+
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@Name:
+Формат экрана
+
 Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
 На весь экран
 

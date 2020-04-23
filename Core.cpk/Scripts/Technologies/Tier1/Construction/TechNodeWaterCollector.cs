@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectWaterCollector>();
 
-            config.SetRequiredNode<TechNodeWoodCrate>();
+            config.SetRequiredNode<TechNodeLandClaimT1>();
         }
     }
 }

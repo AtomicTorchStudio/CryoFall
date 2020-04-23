@@ -17,8 +17,10 @@
         /// </summary>
         ServerEveryone = 1 << 2,
 
+        ServerModerator = 1 << 3,
+
         ClientAndServerEveryone = Client | ServerEveryone,
 
-        ClientAndServerOperatorOnly = Client | ServerOperator,
+        ClientAndServerOperatorOnly = Client | ServerOperator
     }
 }

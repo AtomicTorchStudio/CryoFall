@@ -26,6 +26,8 @@
 
         protected override TimeSpan TimeToMature { get; } = TimeSpan.FromHours(1);
 
+        protected override TimeSpan TimeToHarvestSpoil => TimeSpan.FromDays(5);
+
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
             => (0.5, 0.2);
 

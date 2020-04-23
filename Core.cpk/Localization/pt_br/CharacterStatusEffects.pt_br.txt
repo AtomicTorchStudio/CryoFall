@@ -40,6 +40,12 @@ Você está sob a influência de um estimulante, ficando temporariamente muito m
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Força aumentada
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Description:
+Como faz algum tempo que você está descansando, é mais fácil aprender coisas novas ou aperfeiçoar suas habilidade. (Este é um bônus diário, que acumula quando você fica offline por tempo suficiente; é usado para conceder bônus especiais à medida que se esgota).
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Name:
+Descanso de qualidade
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Você está sangrando, o que, se não for tratado, fará você perder vida de forma constante. Pequenos sangramentos desaparecem sozinhos, mas ferimentos mais graves podem exigir bandagens ou remédios hemostáticos.
 

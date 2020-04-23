@@ -23,7 +23,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override ushort OrganicCapacity => 250;
+        public override ushort OrganicCapacity => 500;
 
         public override double OrganicDecreasePerSecondWhenActive => 0.125;
 

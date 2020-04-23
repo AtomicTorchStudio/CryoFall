@@ -15,10 +15,6 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:helpers="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Helpers">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="SoundResources.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <helpers:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
 
     <!-- Constants -->
@@ -250,7 +246,7 @@
     <SolidColorBrush x:Key="WidgetBorderBrush" Color="{StaticResource WidgetBorderColor}" />
     <SolidColorBrush x:Key="WidgetBackgroundBrush" Color="#B4000000" />
 
-    <Style TargetType="{x:Type core:WidgetPanel}">
+    <Style TargetType="{x:Type core:WidgetPanel}" BasedOn="{StaticResource {x:Type UserControl}}">
         <Setter Property="WidgetBackground" Value="{StaticResource WidgetBackgroundBrush}" />
     </Style>
 
@@ -283,18 +279,29 @@
     </LinearGradientBrush>
 
     <!-- Apply default font settings for all root elements -->
-    <Style x:Key="DefaultStyleForRoot" TargetType="{x:Type UserControl}">
+    <Style x:Key="DefaultStyleForRoot" TargetType="{x:Type UserControl}" BasedOn="{StaticResource {x:Type UserControl}}">
         <Setter Property="UseLayoutRounding" Value="False" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="{StaticResource BrushColorLabelForeground}" />
     </Style>
 
     <!-- Label style -->
     <Style TargetType="{x:Type Label}">
+      <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Foreground"
                 Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}}" />
         <Setter Property="Padding" Value="0" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Label">
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}"/>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
     </Style>
 
     <!-- Hyperlink style -->
@@ -624,17 +631,21 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsFocused" Value="true">
+                        <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="Border" Property="Background"
                                     Value="{StaticResource ButtonSmallBackgroundFocusedHighlight}" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
+                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Border" Property="Background"
                                     Value="{StaticResource ButtonSmallBackgroundMouseOverHighlight}" />
                         </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
+                        <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="Border" Property="Background"
                                     Value="{StaticResource ButtonSmallBackgroundPressedHighlight}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Opacity"
+                                    Value="0.5" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1475,6 +1486,7 @@
         <Setter Property="Foreground" Value="{StaticResource ButtonForeground}" />
         <Setter Property="Background" Value="{StaticResource ButtonBackgroundNormal}" />
         <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderNormal}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="MaxDropDownHeight" Value="500" />
         <Setter Property="Template">
             <Setter.Value>
@@ -1489,8 +1501,11 @@
                             PopupAnimation="None">
                             <Grid x:Name="DropDown" MinWidth="{TemplateBinding ActualWidth}"
                                   MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <Border x:Name="DropDownBorder" Margin="0,1,0,0" BorderThickness="1"
-                                        BorderBrush="{StaticResource BrushColorAlt5}" CornerRadius="1">
+                                <Border x:Name="DropDownBorder" 
+                                        Margin="0,1,0,0" 
+                                        BorderThickness="1"
+                                        BorderBrush="{StaticResource BrushColorAlt5}" 
+                                        CornerRadius="1">
                                     <Border.Background>
                                         <SolidColorBrush Color="{StaticResource ColorAlt0}" Opacity="0.975" />
                                     </Border.Background>
@@ -1519,6 +1534,7 @@
                                 Template="{StaticResource ComboBoxToggleButtonTemplate}"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                             <ContentPresenter
                                 x:Name="ContentSite"
@@ -1696,19 +1712,11 @@
                 <ItemsPresenter Margin="{TemplateBinding Padding}"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
             </ScrollViewer>
-            <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}"
+            <Border x:Name="Border" 
+                    Background="{x:Null}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
                     BorderBrush="{TemplateBinding BorderBrush}" />
-            <!--<Border x:Name="BackgroundDisabled" BorderThickness="1" Background="{StaticResource DisabledBackground}"
-                    Visibility="Collapsed" />-->
         </Grid>
-        <ControlTemplate.Triggers>
-            <!--<Trigger Property="IsEnabled" Value="false">
-                <Setter TargetName="BackgroundDisabled" Property="Visibility" Value="Visible" />
-            </Trigger>-->
-            <!--<Trigger Property="IsGrouping" Value="true">
-                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-            </Trigger>-->
-        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style TargetType="{x:Type ListBox}">
@@ -1890,12 +1898,15 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <ItemsPresenter Grid.Row="0" KeyboardNavigation.TabIndex="1"
+                        <ItemsPresenter Grid.Row="0"
+                                        KeyboardNavigation.TabIndex="1"
                                         VerticalAlignment="Stretch"
                                         HorizontalAlignment="Stretch"
                                         Margin="-5,0" />
 
-                        <Grid x:Name="ContentGrid" Grid.Row="2" HorizontalAlignment="Stretch"
+                        <Grid x:Name="ContentGrid"
+                              Grid.Row="2"
+                              HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch" />
                     </Grid>
                 </ControlTemplate>
@@ -2519,6 +2530,74 @@
         </Setter>
     </Style>
 
+    <Style x:Key="VerticalScrollWideRepeatButtonNoArrow" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="15" />
+        <Setter Property="Interval" Value="50" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="StoryboardFlash" RepeatBehavior="Forever"
+                                    AutoReverse="True">
+                            <ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                Storyboard.TargetName="path">
+                                <EasingColorKeyFrame KeyTime="0"
+                                                     Value="{StaticResource ColorAlt4}" />
+                                <EasingColorKeyFrame KeyTime="0:0:0.5"
+                                                     Value="{StaticResource ColorAlt6}" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <ContentControl x:Name="border">
+                        <ContentControl.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="#FF000000" />
+                                <GradientStop Color="#00000000" Offset="1" />
+                            </LinearGradientBrush>
+                        </ContentControl.Background>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.1" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                            Storyboard.TargetName="Hover">
+                                            <EasingColorKeyFrame Value="#21FFFFFF" KeyTime="0" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                            Storyboard.TargetName="Hover">
+                                            <EasingColorKeyFrame Value="#33FFFFFF" KeyTime="0" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid IsHitTestVisible="False" Width="20" Height="8"
+                              HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </ContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="VerticalWideButtonScrollViewerStyle" TargetType="ScrollViewer">
         <Setter Property="services:ScrollViewerWithButtonsService.IsEnabled" Value="True" />
         <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
@@ -2612,6 +2691,60 @@
         </Setter>
     </Style>
 
+    <Style x:Key="VerticalScrollViewerWithFadeStyle" TargetType="ScrollViewer">
+        <Setter Property="services:ScrollViewerWithButtonsService.IsEnabled" Value="True" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+        <Setter Property="CanContentScroll" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollContentPresenter
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            CanContentScroll="{TemplateBinding CanContentScroll}" />
+
+                        <RepeatButton
+                            VerticalAlignment="Top"
+                            Command="{Binding CommandScrollUp}"
+                            Visibility="{Binding VisibilityScrollUp}"
+                            IsEnabled="{TemplateBinding IsMouseOver}"
+                            Style="{StaticResource VerticalScrollWideRepeatButtonNoArrow}"
+                            Background="{TemplateBinding Background}" />
+
+                        <RepeatButton
+                            VerticalAlignment="Bottom"
+                            Command="{Binding CommandScrollDown}"
+                            Visibility="{Binding VisibilityScrollDown}"
+                            IsEnabled="{TemplateBinding IsMouseOver}"
+                            Style="{StaticResource VerticalScrollWideRepeatButtonNoArrow}"
+                            Background="{TemplateBinding Background}">
+                            <RepeatButton.LayoutTransform>
+                                <RotateTransform Angle="180" />
+                            </RepeatButton.LayoutTransform>
+                        </RepeatButton>
+
+                        <Border Grid.Column="1"
+                                Margin="{TemplateBinding BorderThickness}"
+                                BorderBrush="{x:Null}">
+                            <ScrollBar x:Name="PART_VerticalScrollBar"
+                                       Margin="1,1,1,1"
+                                       Value="{TemplateBinding VerticalOffset}"
+                                       Orientation="Vertical"
+                                       Minimum="0"
+                                       Maximum="{TemplateBinding ScrollableHeight}"
+                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                       ViewportSize="{TemplateBinding ViewportHeight}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <ImageBrush x:Key="ResistanceBarForegroundImageTexture"
                 ImageSource="/UI/Images/Menus/Equipment/DamageResistanceBarForeground.png"
@@ -3048,7 +3181,8 @@
         <Setter Property="Width" Value="32" />
         <Setter Property="Height" Value="32" />
         <Setter Property="Canvas.Left" Value="-16" />
-        <Setter Property="Canvas.Top" Value="-32" />
+        <!-- Offset is not -32 as there is a shadow on the most map markers so the bottom part is not used -->
+        <Setter Property="Canvas.Top" Value="-31" />
     </Style>
 
     <Style x:Key="WorldMapMarkImageCenteredStyle" TargetType="Image"

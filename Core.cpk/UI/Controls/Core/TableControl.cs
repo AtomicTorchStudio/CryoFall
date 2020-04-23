@@ -12,7 +12,7 @@
                 nameof(ColumnsSpacingWidth),
                 typeof(double),
                 typeof(TableControl),
-                new PropertyMetadata(10));
+                new PropertyMetadata(10.0));
 
         private UIElementCollection children;
 

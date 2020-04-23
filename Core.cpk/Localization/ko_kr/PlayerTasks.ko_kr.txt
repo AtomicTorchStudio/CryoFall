@@ -1,0 +1,63 @@
+﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
+건설: {0}
+
+Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
+완료: {0} (기술 그룹)
+
+Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
+– {0}
+
+Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
+제작
+
+Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
+파괴: {0}
+
+Scripts/PlayerTasks/TaskGather@DescriptionFormat:
+채집: {0}
+
+Scripts/PlayerTasks/TaskHaveItem@DescriptionFormat:
+수집: {0}
+
+Scripts/PlayerTasks/TaskHaveItemEquipped@DescriptionFormat:
+장비: {0}
+
+Scripts/PlayerTasks/TaskHaveSkill@DescriptionFormat:
+스킬 배우기: {0}을 레벨{1} 까지
+
+Scripts/PlayerTasks/TaskHaveSkills@DescriptionFormat:
+스킬 배우기: {0}을 레벨{1} 까지
+
+Scripts/PlayerTasks/TaskHaveTechGroup@DescriptionFormat:
+{0} (기술 그룹) 잠금 해제
+
+Scripts/PlayerTasks/TaskHaveTechGroups@DescriptionFormat:
+기술 그룹 {0}개 잠금 해제: {1}
+
+Scripts/PlayerTasks/TaskHaveTechNode@DescriptionFormat:
+배우기: {0} ({1} 기술 그룹)
+
+Scripts/PlayerTasks/TaskKill@DescriptionFormat:
+처치: {0}
+
+Scripts/PlayerTasks/TaskKillAny@DescriptionFormat:
+처치: {0}
+
+Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
+생산: {0}
+
+Scripts/PlayerTasks/TaskRun@DescriptionText:
+10 미터 달리기
+
+Scripts/PlayerTasks/TaskSortItemsContainer@DescriptionText:
+인벤토리 아이템 정렬하기
+
+Scripts/PlayerTasks/TaskUseItem@DescriptionFormat:
+사용: {0}
+
+Scripts/PlayerTasks/TaskVisitTile@DescriptionFormat:
+방문: {0}
+
+Scripts/PlayerTasks/TaskVisitZone@DescriptionFormat:
+방문: {0}
+

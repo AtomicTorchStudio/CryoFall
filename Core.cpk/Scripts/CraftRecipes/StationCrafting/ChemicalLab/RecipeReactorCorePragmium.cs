@@ -20,7 +20,7 @@
 
             inputItems.Add<ItemReactorCoreEmpty>(count: 1);
             inputItems.Add<ItemOrePragmium>(count: 40);
-            inputItems.Add<ItemOreLithium>(count: 40);
+            inputItems.Add<ItemOreLithium>(count: 25);
             inputItems.Add<ItemComponentsIndustrialChemicals>(count: 5);
 
             outputItems.Add<ItemReactorCorePragmium>(count: 1);

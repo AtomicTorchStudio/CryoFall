@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
 
     /// <summary>
@@ -28,9 +29,9 @@
         protected ProtoItemToolPickaxe()
         {
             var name = this.GetType().Name;
-            this.Icon = new TextureResource("Items/Tools/Pickaxes/" + name);
+            this.Icon = new TextureResource("Items/Tools/" + name);
             this.WeaponTextureResource = new TextureResource(
-                "Characters/Tools/Pickaxes/" + name,
+                "Characters/Tools/" + name,
                 isProvidesMagentaPixelPosition: true);
         }
 
@@ -45,6 +46,11 @@
         protected sealed override ProtoSkillWeapons WeaponSkill => null;
 
         protected override TextureResource WeaponTextureResource { get; }
+
+        public virtual double ServerGetDamageToMineral(IStaticWorldObject targetObject)
+        {
+            return this.DamageToMinerals;
+        }
 
         protected override void PrepareProtoWeapon(
             out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos,

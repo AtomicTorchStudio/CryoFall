@@ -11,6 +11,8 @@
 
         float HealthRestore { get; }
 
+        bool IsAvailableInCompletionist { get; }
+
         float StaminaRestore { get; }
 
         float WaterRestore { get; }

@@ -10,7 +10,7 @@
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
-            renderer.Scale = 2;
+            renderer.DrawOrderOffsetY = 1;
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)
@@ -22,8 +22,8 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (1.8, 1.1), offset: (0.1, 0));
-            AddFullHeightWallHitboxes(data, width: 1.8, offsetX: 0.1);
+                .AddShapeRectangle(size: (1.7, 1.1), offset: (0.15, 0));
+            AddHalfHeightWallHitboxes(data, width: 1.4, offsetX: 0.3);
         }
     }
 }

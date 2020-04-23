@@ -2,10 +2,17 @@
 {
     using System.Windows.Media;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class TileWaterSea : ProtoTileWater
     {
+        private TileWaterSeaBridge bridgeProtoTile;
+
         public override byte BlendOrder => byte.MaxValue;
+
+        public override IProtoTileWater BridgeProtoTile
+            => this.bridgeProtoTile
+                   ??= Api.GetProtoEntity<TileWaterSeaBridge>();
 
         public override string Name => "Water (sea)";
 

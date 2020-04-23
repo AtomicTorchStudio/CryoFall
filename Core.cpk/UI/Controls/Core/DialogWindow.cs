@@ -14,7 +14,7 @@
                 nameof(TitleFontSize),
                 typeof(double),
                 typeof(DialogWindow),
-                new PropertyMetadata(10));
+                new PropertyMetadata(10.0));
 
         public static readonly DependencyProperty WindowTitleProperty = DependencyProperty.Register(
             nameof(WindowTitle),
@@ -28,9 +28,9 @@
 
         public Action OkAction;
 
-        private Button btnCancel;
+        private Button buttonCancel;
 
-        private Button btnOk;
+        private Button buttonOk;
 
         private bool closeByEscapeKey;
 
@@ -46,6 +46,10 @@
         }
 
         public event EventHandler Closed;
+
+        public Button ButtonCancel => this.buttonCancel;
+
+        public Button ButtonOk => this.buttonOk;
 
         public string CancelText { get; private set; }
 
@@ -230,48 +234,48 @@
         // TODO: remove this hack method
         public void ForceShowCancelButton()
         {
-            Grid.SetColumn(this.btnOk, 0);
-            this.btnOk.Margin = new Thickness(0, 0, 5, 0);
-            this.btnCancel.Visibility = Visibility.Visible;
-            this.window.FocusOnControl = this.btnCancel;
+            Grid.SetColumn(this.buttonOk, 0);
+            this.buttonOk.Margin = new Thickness(0, 0, 5, 0);
+            this.buttonCancel.Visibility = Visibility.Visible;
+            this.window.FocusOnControl = this.buttonCancel;
         }
 
         protected override void InitControl()
         {
             var templateRoot = (FrameworkElement)VisualTreeHelper.GetChild(this, 0);
             this.window = templateRoot.GetByName<GameWindow>("Window");
-            this.btnOk = templateRoot.GetByName<Button>("BtnOk");
-            this.btnCancel = templateRoot.GetByName<Button>("BtnCancel");
+            this.buttonOk = templateRoot.GetByName<Button>("BtnOk");
+            this.buttonCancel = templateRoot.GetByName<Button>("BtnCancel");
 
             if (!string.IsNullOrEmpty(this.OkText))
             {
-                this.btnOk.Content = this.OkText;
+                this.buttonOk.Content = this.OkText;
             }
 
             if (!string.IsNullOrEmpty(this.CancelText))
             {
-                this.btnCancel.Content = this.CancelText;
+                this.buttonCancel.Content = this.CancelText;
             }
 
             if (this.CancelAction == null)
             {
-                Grid.SetColumn(this.btnOk, 1);
-                this.btnOk.Margin = new Thickness(0);
-                this.btnCancel.Visibility = Visibility.Collapsed;
+                Grid.SetColumn(this.buttonOk, 1);
+                this.buttonOk.Margin = new Thickness(0);
+                this.buttonCancel.Visibility = Visibility.Collapsed;
             }
 
             if (this.HideOkButton)
             {
-                Grid.SetColumn(this.btnCancel, 1);
-                this.btnCancel.Margin = new Thickness(0);
-                this.btnOk.Visibility = Visibility.Collapsed;
+                Grid.SetColumn(this.buttonCancel, 1);
+                this.buttonCancel.Margin = new Thickness(0);
+                this.buttonOk.Visibility = Visibility.Collapsed;
             }
 
             //this.window.IsModal = true;
             this.window.CloseByEscapeKey = this.CloseByEscapeKey;
-            this.window.FocusOnControl = this.FocusOnCancelButton && this.btnCancel.Visibility == Visibility.Visible
-                                             ? this.btnCancel
-                                             : this.btnOk;
+            this.window.FocusOnControl = this.FocusOnCancelButton && this.buttonCancel.Visibility == Visibility.Visible
+                                             ? this.buttonCancel
+                                             : this.buttonOk;
 
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
             this.window.WindowName = string.Format("Dialog window \"{0}\"", this.WindowTitle);
@@ -283,8 +287,8 @@
 
             this.UpdateWindowZIndexOffset();
 
-            this.btnOk.Click += this.BtnOkOnClick;
-            this.btnCancel.Click += this.BtnCancelOnClick;
+            this.buttonOk.Click += this.ButtonOkClickHandler;
+            this.buttonCancel.Click += this.ButtonCancelClickHandler;
             this.window.StateChanged += this.WindowStateChangedHandler;
 
             // TODO: remove this hack (use class with constants to define all the common Z index offsets?)
@@ -296,17 +300,17 @@
         {
             base.OnUnloaded();
 
-            this.btnOk.Click -= this.BtnOkOnClick;
-            this.btnCancel.Click -= this.BtnCancelOnClick;
+            this.buttonOk.Click -= this.ButtonOkClickHandler;
+            this.buttonCancel.Click -= this.ButtonCancelClickHandler;
             this.window.StateChanged -= this.WindowStateChangedHandler;
         }
 
-        private void BtnCancelOnClick(object sender, RoutedEventArgs routedEventArgs)
+        private void ButtonCancelClickHandler(object sender, RoutedEventArgs routedEventArgs)
         {
             this.window.Close(DialogResult.Cancel);
         }
 
-        private void BtnOkOnClick(object sender, RoutedEventArgs routedEventArgs)
+        private void ButtonOkClickHandler(object sender, RoutedEventArgs routedEventArgs)
         {
             this.window.Close(DialogResult.OK);
         }

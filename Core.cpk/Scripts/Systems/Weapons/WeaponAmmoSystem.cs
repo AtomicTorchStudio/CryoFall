@@ -254,9 +254,9 @@
 
         public static void ServerTryReloadSameAmmo(ICharacter character)
         {
-            var currentWeaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
+            var weaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
 
-            var item = currentWeaponState.ItemWeapon;
+            var item = weaponState.ItemWeapon;
             if (item == null)
             {
                 // no active weapon to reload
@@ -286,7 +286,7 @@
 
             IProtoItemAmmo selectedProtoItemAmmo = null;
 
-            var currentReloadingState = currentWeaponState.WeaponReloadingState;
+            var currentReloadingState = weaponState.WeaponReloadingState;
             if (currentReloadingState != null)
             {
                 // already reloading
@@ -325,13 +325,17 @@
                 item,
                 itemProto,
                 selectedProtoItemAmmo);
-            currentWeaponState.WeaponReloadingState = weaponReloadingState;
+            weaponState.WeaponReloadingState = weaponReloadingState;
             //Logger.Dev("Weapon started reloading without a client request " + item, character);
 
             if (weaponReloadingState.SecondsToReloadRemains <= 0)
             {
                 // instant-reload weapon - perform local reloading
-                SharedProcessWeaponReload(character, currentWeaponState, out _);
+                SharedProcessWeaponReload(character, weaponState, out _);
+            }
+            else if (IsServer)
+            {
+                ServerNotifyAboutReloading(character, weaponState, isFinished: false);
             }
         }
 
@@ -381,8 +385,8 @@
 
             // reloaded
             reloadingState.SecondsToReloadRemains = 0;
-            SharedProcessWeaponReload(character, 
-                                      weaponState, 
+            SharedProcessWeaponReload(character,
+                                      weaponState,
                                       out var isAmmoTypeChanged);
 
             if (isAmmoTypeChanged
@@ -390,12 +394,36 @@
             {
                 weaponState.ShotsDone = 0;
                 weaponState.ServerLastClientReportedShotsDoneCount = null;
+                weaponState.CustomTargetPosition = null;
                 //Api.Logger.Dev("Reset ServerLastClientReportedShotsDoneCount. Last value: "
                 //               + weaponState.ServerLastClientReportedShotsDoneCount);
             }
 
             weaponState.FirePatternCooldownSecondsRemains = 0;
             weaponState.IsIdleAutoReloadingAllowed = true;
+        }
+
+        // send notification about reloading to players in scope (so they can play a sound)
+        private static void ServerNotifyAboutReloading(ICharacter character, WeaponState weaponState, bool isFinished)
+        {
+            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
+            Server.World.GetScopedByPlayers(character, scopedBy);
+            scopedBy.Remove(character);
+            if (scopedBy.Count == 0)
+            {
+                return;
+            }
+
+            if (isFinished)
+            {
+                Instance.CallClient(scopedBy.AsList(),
+                                    _ => _.ClientRemote_OnOtherCharacterReloaded(character, weaponState.ProtoWeapon));
+            }
+            else
+            {
+                Instance.CallClient(scopedBy.AsList(),
+                                    _ => _.ClientRemote_OnOtherCharacterReloading(character, weaponState.ProtoWeapon));
+            }
         }
 
         private static IGrouping<IProtoItemAmmo, IItem> SharedFindNextAmmoGroup(
@@ -585,7 +613,7 @@
                         character);
 
                     weaponAmmoCount = 0;
-                    itemWeaponPrivateState.AmmoCount = 0;
+                    itemWeaponPrivateState.SetAmmoCount(0);
                 }
                 else // if the same ammo type is loaded              
                 if (weaponAmmoCount == weaponAmmoCapacity)
@@ -703,11 +731,29 @@
                 weaponAmmoCount = 0;
             }
 
-            itemWeaponPrivateState.AmmoCount = (ushort)weaponAmmoCount;
+            itemWeaponPrivateState.SetAmmoCount((ushort)weaponAmmoCount);
+
+            if (weaponAmmoCount == 0)
+            {
+                // weapon unloaded - and the log entry about this is already written (see above)
+                return;
+            }
 
             Logger.Info(
                 $"Weapon reloaded: {itemWeapon} - ammo {weaponAmmoCount}/{weaponAmmoCapacity} {selectedProtoItemAmmo?.ToString() ?? "<no ammo>"}",
                 character);
+
+            if (IsServer)
+            {
+                ServerNotifyAboutReloading(character, weaponState, isFinished: true);
+            }
+            else
+            {
+                weaponState.ProtoWeapon.SoundPresetWeapon
+                           .PlaySound(WeaponSound.ReloadFinished,
+                                      character,
+                                      SoundConstants.VolumeWeapon);
+            }
         }
 
         private static List<ItemWithCount> SharedSelectAmmoItemsFromGroup(
@@ -749,7 +795,15 @@
                                                       protoAmmo.Icon);
         }
 
-        [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 30)]
+        [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 30, keyArgIndex: 0)]
+        private void ClientRemote_OnOtherCharacterReloaded(ICharacter character, IProtoItemWeapon protoWeapon)
+        {
+            protoWeapon.SoundPresetWeapon.PlaySound(WeaponSound.ReloadFinished,
+                                                    character,
+                                                    SoundConstants.VolumeWeapon);
+        }
+
+        [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 30, keyArgIndex: 0)]
         private void ClientRemote_OnOtherCharacterReloading(ICharacter character, IProtoItemWeapon protoWeapon)
         {
             protoWeapon.SoundPresetWeapon.PlaySound(WeaponSound.Reload,
@@ -844,12 +898,10 @@
                 // instant-reloading weapon
                 SharedProcessWeaponReload(character, weaponState, out _);
             }
-
-            using var scopedBy = Api.Shared.GetTempList<ICharacter>();
-            Server.World.GetScopedByPlayers(character, scopedBy);
-            scopedBy.Remove(character);
-            Instance.CallClient(scopedBy.AsList(),
-                                _ => _.ClientRemote_OnOtherCharacterReloading(character, itemProto));
+            else if (IsServer)
+            {
+                ServerNotifyAboutReloading(character, weaponState, isFinished: false);
+            }
         }
 
         private readonly struct ItemWithCount

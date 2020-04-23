@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
@@ -11,6 +12,8 @@
 
     public class MobFireLizard : ProtoCharacterMob
     {
+        private IReadOnlyList<AiWeaponPreset> weaponPresets;
+
         public override bool AiIsRunAwayFromHeavyVehicles => false;
 
         public override float CharacterWorldHeight => 1.3f;
@@ -31,9 +34,9 @@
         {
             base.FillDefaultEffects(effects);
 
-            effects.AddValue(this, StatName.DefenseImpact,  0.4);
-            effects.AddValue(this, StatName.DefenseKinetic, 0.2);
-            effects.AddValue(this, StatName.DefenseHeat,    0.4);
+            effects.AddValue(this, StatName.DefenseImpact, 0.4)
+                   .AddValue(this, StatName.DefenseKinetic, 0.2)
+                   .AddValue(this, StatName.DefenseHeat,    0.8);
         }
 
         protected override void PrepareProtoCharacterMob(
@@ -60,25 +63,31 @@
         protected override void ServerInitializeCharacterMob(ServerInitializeData data)
         {
             base.ServerInitializeCharacterMob(data);
-            var weaponProto = GetProtoEntity<ItemWeaponLizardFangs>();
-            data.PrivateState.WeaponState.SharedSetWeaponProtoOnly(weaponProto);
-            data.PublicState.SharedSetCurrentWeaponProtoOnly(weaponProto);
+
+            this.weaponPresets = new AiWeaponPresetList()
+                                 .Add(new AiWeaponPreset(GetProtoEntity<ItemWeaponLizardFangs>()))
+                                 .Add(new AiWeaponPreset(GetProtoEntity<ItemWeaponLizardPoison>()))
+                                 .ToReadReadOnly();
+
+            ServerMobWeaponHelper.TrySetWeapon(data.GameObject,
+                                               this.weaponPresets[0].ProtoWeapon,
+                                               rebuildWeaponsCacheNow: false);
         }
 
         protected override void ServerUpdateMob(ServerUpdateData data)
         {
             var character = data.GameObject;
-            var currentStats = data.PublicState.CurrentStats;
 
             ServerCharacterAiHelper.ProcessAggressiveAi(
                 character,
-                isRetreating: currentStats.HealthCurrent < currentStats.HealthMax / 4,
-                isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
-                distanceRetreat: 10,
+                isRetreating: false,
+                isRetreatingForHeavyVehicles: false,
+                distanceRetreat: 0,
                 distanceEnemyTooClose: 1,
-                distanceEnemyTooFar: 8,
+                distanceEnemyTooFar: 9,
                 movementDirection: out var movementDirection,
-                rotationAngleRad: out var rotationAngleRad);
+                rotationAngleRad: out var rotationAngleRad,
+                this.weaponPresets);
 
             this.ServerSetMobInput(character, movementDirection, rotationAngleRad);
         }

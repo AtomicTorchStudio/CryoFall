@@ -12,7 +12,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
         public override string Description =>
             "Un-mutes the player (remove from the temporary mute list on the server).";
 
-        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
+        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerModerator;
 
         public override string Name => "mod.muteList.remove";
 

@@ -11,18 +11,27 @@
     {
         private readonly (float min, float max)? customDistance;
 
+        private readonly (float min, float max)? customDistance3DSpread;
+
         private readonly Dictionary<TSoundKey, SoundResourceSet> dictionary;
 
-        public SoundPreset((float min, float max)? customDistance = null)
+        public SoundPreset(
+            (float min, float max)? customDistance = null,
+            (float min, float max)? customDistance3DSpread = null)
         {
             this.dictionary = new Dictionary<TSoundKey, SoundResourceSet>();
             this.customDistance = customDistance;
+            this.customDistance3DSpread = customDistance3DSpread;
         }
 
-        internal SoundPreset(Dictionary<TSoundKey, SoundResourceSet> dictionary, (float min, float max)? customDistance)
+        internal SoundPreset(
+            Dictionary<TSoundKey, SoundResourceSet> dictionary,
+            (float min, float max)? customDistance,
+            (float min, float max)? customDistance3DSpread)
         {
             this.dictionary = dictionary;
             this.customDistance = customDistance;
+            this.customDistance3DSpread = customDistance3DSpread;
         }
 
         public static implicit operator ReadOnlySoundPreset<TSoundKey>(SoundPreset<TSoundKey> preset)
@@ -80,7 +89,8 @@
         public SoundPreset<TSoundKey> Clone()
         {
             return new SoundPreset<TSoundKey>(this.dictionary.ToDictionary(p => p.Key, p => p.Value.Clone()),
-                                              this.customDistance);
+                                              this.customDistance,
+                                              this.customDistance3DSpread);
         }
 
         /// <summary>
@@ -109,7 +119,8 @@
                 this.dictionary.ToDictionary(
                     p => p.Key,
                     p => p.Value.ToReadOnly()),
-                this.customDistance);
+                this.customDistance,
+                this.customDistance3DSpread);
         }
 
         private SoundPreset<TSoundKey> Add(TSoundKey key, double frequency, IEnumerable<SoundResource> soundResources)
@@ -143,10 +154,14 @@
         /// </summary>
         /// <param name="localSoundsFolderPath">Path inside "Content/Sounds/" folder.</param>
         /// <param name="throwExceptionIfNoFilesFound"></param>
+        /// <param name="customDistance">Custom sound emitter distance settings.</param>
+        /// <param name="customDistance3DSpread">Custom sound emitter 3D spread distance settings.</param>
         /// <returns></returns>
         public static ReadOnlySoundPreset<TSoundKey> CreateFromFolder<TSoundKey>(
             string localSoundsFolderPath,
-            bool throwExceptionIfNoFilesFound = true)
+            bool throwExceptionIfNoFilesFound = true,
+            (float min, float max)? customDistance = null,
+            (float min, float max)? customDistance3DSpread = null)
             where TSoundKey : struct, Enum
         {
             if (!localSoundsFolderPath.EndsWith("/"))
@@ -154,7 +169,8 @@
                 localSoundsFolderPath += "/";
             }
 
-            var preset = new SoundPreset<TSoundKey>();
+            var preset = new SoundPreset<TSoundKey>(customDistance: customDistance,
+                                                    customDistance3DSpread: customDistance3DSpread);
             foreach (var enumValue in EnumExtensions.GetValues<TSoundKey>())
             {
                 preset.Add(enumValue, localSoundsFolderPath + enumValue.ToString());

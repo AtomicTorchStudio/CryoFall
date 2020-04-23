@@ -111,6 +111,26 @@
             this.RefreshTabVisibility();
         }
 
+        public void TryResetUnreadFlag()
+        {
+            if (!this.HasUnreadMessages
+                || !this.isSelected
+                || !this.IsOpened)
+            {
+                return;
+            }
+
+            this.HasUnreadMessages = false;
+
+            if (this.ChatRoom is ChatRoomPrivate privateChat)
+                // this check is incorrect as this flag is no longer updated
+                // (it's synchronized only once)
+                //&& privateChat.ClientIsUnreadByCurrentCharacter())
+            {
+                ChatSystem.ClientSetPrivateChatRead(privateChat);
+            }
+        }
+
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
@@ -178,24 +198,6 @@
             }
 
             this.IsTabVisible = isTabVisible;
-        }
-
-        private void TryResetUnreadFlag()
-        {
-            if (!this.HasUnreadMessages
-                || !this.isSelected
-                || !this.IsOpened)
-            {
-                return;
-            }
-
-            this.HasUnreadMessages = false;
-
-            if (this.ChatRoom is ChatRoomPrivate privateChat
-                && privateChat.ClientIsUnreadByCurrentCharacter())
-            {
-                ChatSystem.ClientSetPrivateChatRead(privateChat);
-            }
         }
     }
 }

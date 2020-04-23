@@ -61,6 +61,9 @@ Examinar
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
 Recolectar
 
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Hack:
+Piratear
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 Interactuar
 
@@ -142,11 +145,8 @@ Caja de suministros
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Hierba
 
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-Gran montón de basura
-
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
-Montón de basura pequeño
+Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
+Montón de basura
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Piedra
@@ -216,6 +216,15 @@ Usa un pico para extraer este recurso.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Fisura
+
+Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
+Meteorito
+
+Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
+Restos de la Reina de pragmio
+
+Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
+Basura espacial
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Más resistente y con más espacio que los barriles de madera. Es útil para almacenar grandes cantidades de líquido.
@@ -345,25 +354,25 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 Mesa de trabajo
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-Tiene más espacio que una simple caja de madera y es más difícil de destruir.
+Ofrece más espacio que una simple caja de madera.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
 Caja de hierro
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
-Una de las mejores formas de almacenar cosas. Tiene mucho espacio y mantiene tus cosas a salvo ante la mayoría de situaciones.
+La caja de acero es la que más espacio ofrece. Te permite almacenar todos los objetos de manera compacta.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
 Caja de acero
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
-Caja extragrande para almacenar de forma cómoda y segura un gran número de objetos.
+Caja extragrande para almacenar de forma cómoda un gran número de objetos.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
 Caja grande
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-La caja más sencilla para almacenar tus posesiones. Eso sí, puede ser fácil de destruir.
+Esta es la caja más básica en la que guardar tus cosas.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
 Caja de madera
@@ -380,16 +389,58 @@ Caja fuerte muy blindada que puede soportar incluso las explosiones más potente
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 Caja blindada
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
+Altar de estilo oriental en el que se mete incienso.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
+Altar de incienso
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 A saber qué simboliza este estandarte... ¡pero es genial!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
-Estandarte rojo
+Estandarte
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
+Bañera de estilo clásico. Satisface tus necesidades de higiene.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
+Bañera
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
+¿Qué habitación está completa sin una estantería?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
+Estantería
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
+Un biombo con un dibujo clásico de un tigre, igual que en los viejos cuentos.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Name:
+Biombo
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Description:
+Un montón de oro impresionante. ¡Guárdalo en la caja fuerte!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
+Montón de oro
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
+Un piano hermoso y de una calidad exquisita.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
+Piano
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
+Demuestra que la caza se te da de maravilla decorando tu habitación con esta lujosa alfombra.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Name:
+Alfombra de oso
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Description:
 Esta bonita alfombra consigue que toda habitación sea más acogedora y bonita.
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Name:
 Alfombra
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
@@ -397,6 +448,12 @@ Demuéstrales a tus enemigos que vas muy en serio. ¡No se tolerará el allanami
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 Calavera en una pica
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Description:
+Un sofá blandito y muy cómodo. Ideal para el salón.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Name:
+Sofá
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 Una auténtica demostración de tus riquezas. Solo los más ricos de entre los ricos pueden permitirse algo así.
@@ -409,6 +466,30 @@ Qué mejor forma de demostrar tu riqueza que malgastando este cristal tan valios
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Estatua de pragmio
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
+Una sencilla mesa de estilo europeo clásico.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Name:
+Mesa
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Description:
+Un trono real, ideal para tu sala de audiencias principal. Que los campesinos tengan claro quién manda.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Name:
+Trono
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
+Para ofrecer la máxima privacidad, asegúrate de ponerlo en una habitación separada y bien ventilada.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
+Inodoro
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
+Jarrón decorativo muy valioso.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
+Jarrón
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Este suelo ya está decorado.
@@ -639,7 +720,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
 Horno eléctrico
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
-Permite la extracción de sales de litio de las fuentes geotérmicas.
+Permite la extracción de sales de litio de una reserva subterránea o directamente de una fuente geotérmica, lo cual aumenta su eficacia.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Extractor de sales de litio
@@ -660,7 +741,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Caja de mantillo
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-Se puede construir sobre una filtración de petróleo para extraer petróleo crudo directamente del suelo.
+Permite la extracción de petróleo crudo de una reserva subterránea o directamente de una filtración de petróleo, lo cual aumenta su eficacia.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Bomba de petróleo
@@ -704,11 +785,17 @@ Ofrece una fuente inagotable de agua fresca. Ahora ya no te morirás nunca de se
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 Pozo
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-El extractor requiere una fuente geotérmica.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_CannotBuildTooCloseToDeposit:
+Demasiado cerca de un depósito de recursos. Puedes construir justo encima.
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-La bomba necesita una filtración de petróleo para funcionar.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_TooCloseToDepletedDeposit:
+Demasiado cerca de un depósito vacío.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorTooCloseToAnotherExtractor:
+Demasiado cerca de otro extractor.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooCloseToAnotherOilPump:
+Demasiado cerca de otra bomba de petróleo.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Este terreno no ofrece acceso a la mesa de agua.
@@ -967,6 +1054,9 @@ Trigo
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 Se necesita terreno de granja.
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
+Hierba azul
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
 Hierba verde

@@ -76,6 +76,36 @@ Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 Боеприпасы 8 мм с токсином
 
+Scripts/Items/Ammo/ItemAmmoArrowIron@Description:
+Улучшенная стрела с железным наконечником. С огнестрельным оружием их, конечно, не сравнить, но они просты в изготовлении.
+
+Scripts/Items/Ammo/ItemAmmoArrowIron@Name:
+Стрела с железным наконечником
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
+Простая стрела с каменным наконечником. Проще не бывает.
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
+Стрела с каменным наконечником
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
+Граната особого назначения, которая при ударе распыляет жидкий гелий с частицами прагмия, чтобы заморозить цель.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
+Гелиевая граната
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
+Стандартная фугасная граната, которая наносит урон всему в небольшом радиусе от места удара.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Name:
+Фугасная граната
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
+Специальная зажигательная граната, которая при ударе наносит большой термальный урон.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
+Зажигательная граната
+
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Простейшие боеприпасы. Подходят только против слабых целей, зато дешевы и просты в изготовлении.
 
@@ -1268,6 +1298,12 @@ Scripts/Items/Generic/ItemPowerCell@Description:
 Scripts/Items/Generic/ItemPowerCell@Name:
 Силовая ячейка
 
+Scripts/Items/Generic/ItemPragmiumHeart@Description:
+Странный кристаллический орган неизвестного прагмиевого биовида.
+
+Scripts/Items/Generic/ItemPragmiumHeart@Name:
+Прагмиевое сердце
+
 Scripts/Items/Generic/ItemPreservative@Description:
 Пищевой консервант. Можно добавить в упакованную пищу, чтобы она дольше хранилась.
 
@@ -1637,6 +1673,12 @@ Scripts/Items/Medical/ItemHemostatic@Description:
 Scripts/Items/Medical/ItemHemostatic@Name:
 Кровоостанавливающее лекарство
 
+Scripts/Items/Medical/ItemHerbBlue@Description:
+Лекарственная трава, которую используют как катализатор в сложных медицинских рецептах. Нельзя принимать в сыром виде, так как она содержит токсины.
+
+Scripts/Items/Medical/ItemHerbBlue@Name:
+Синяя трава
+
 Scripts/Items/Medical/ItemHerbGreen@Description:
 Лекарственная трава с уникальными исцеляющими и антибактериальными свойствами. Можно использовать просто так, но в приготовленном виде намного эффективнее.
 
@@ -1874,6 +1916,12 @@ Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Нет топлива
 
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
+Этот хрупкий прагмиевый топорик использует молекулярно-резонансную механику, что делает его гораздо более быстрым, чем любые аналоги.
+
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
+Прагмиевый топорик
+
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 Железная кирка используется для добычи минералов. Она более эффективна и крепка по сравнению с каменной киркой.
 
@@ -1982,11 +2030,29 @@ Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Невероятно мощное оружие ближнего боя. Для его работы нужна энергия.
 
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Технология древних времен. Все еще работает на высоте.
+
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Арбалет
+
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
 Примитивный пистолет. Использует бумажные гильзы для патронов. Имеет два заряда, которые можно выпустить очень быстро.
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 Кремневый пистолет
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Однозарядный гранатомет стреляет специально разработанными снарядами крупного калибра, которые взрываются при ударе, нанося мощный урон.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Гранатомет
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Гранатомет револьверного типа. Идеален во время штурма или в борьбе с хорошо защищённой целью.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Многозарядный гранатомет
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
 Пистолет, использующий боеприпасы 10 мм.
@@ -2048,11 +2114,23 @@ Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 Револьвер
 
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
+Легкая автоматическая снайперская винтовка для 10-мм патронов.
+
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
+Легкая автоматическая винтовка
+
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
 Тяжелая крупнокалиберная винтовка, использующая мощные боеприпасы калибра .300.
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 Тяжелая винтовка
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
+Примитивная винтовка со скользящим затвором, в которой используются 8-мм патроны.
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
+Винтовка
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
 Старая верная двустволка. Использует боеприпасы 12-го калибра.

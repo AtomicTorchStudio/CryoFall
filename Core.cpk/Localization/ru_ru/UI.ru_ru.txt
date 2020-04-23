@@ -104,11 +104,63 @@ UI/CoreStrings@Chat_MessageMenu_Mention:
 UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 Личное сообщение
 
+UI/CoreStrings@Chat_MessageMenu_Report:
+Пожаловаться
+
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Разблокировать
 
+UI/CoreStrings@Chat_PressKeyToOpen_Format:
+Нажмите [{0}], чтобы использовать чат
+
+UI/CoreStrings@ChatDisclaimer_Button_DisableChat:
+Спрятать чат
+
+UI/CoreStrings@ChatDisclaimer_Button_EnableChat:
+Включить чат
+
+UI/CoreStrings@ChatDisclaimer_Checkbox:
+Я понимаю и соглашаюсь
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Community:
+[b]Внимание:[/b] вы играете на сервере сообщества, поэтому модерирование чата является обязанностью хозяина сервера. Обычно чаты НЕ модерируются, и вы можете встретить грубое обращение или даже оскорбления от других игроков. Включайте чат, только если вы готовы принять эти условия.
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Official:
+[b]Внимание:[/b] чат НЕ модерируется, и вы можете встретить грубое обращение или даже оскорбления от других игроков. Включайте чат, только если вы готовы принять эти условия.
+
+UI/CoreStrings@ChatDisclaimer_Title_Community:
+Включить игровой чат на этом сервере сообщества?
+
+UI/CoreStrings@ChatDisclaimer_Title_Official:
+Включить игровой чат на этом сервере?
+
+UI/CoreStrings@ChatDisclaimer_UseBlock:
+`Если вы увидите неуместные сообщения, пожалуйста, щелкните по нужному сообщению и выберите "Пожаловаться" или "Заблокировать".`
+
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 Больше не спрашивать
+
+UI/CoreStrings@ClanTag_Current:
+Клановый тег:
+
+UI/CoreStrings@ClanTag_Exists:
+`Этот тег уже используется другой командой.
+[br]Пожалуйста, выберите другой тег.`
+
+UI/CoreStrings@ClanTag_FormatWithName:
+[{0}] {1}
+
+UI/CoreStrings@ClanTag_Invalid:
+Этот тег не подходит.
+
+UI/CoreStrings@ClanTag_Requirements:
+`Требования к тегу клана:
+[*] только латинские буквы и цифры
+[*] начинается с буквы
+[*] максимум 4 символа`
+
+UI/CoreStrings@ClanTag_Select:
+Пожалуйста, выберите клановый тег
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Это просто украшение.
@@ -151,6 +203,12 @@ UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Открыто рецептов
+
+UI/CoreStrings@CrateIconControl_NoIcon:
+Нет значка
+
+UI/CoreStrings@CrateIconControl_SelectIcon:
+Выберите значок
 
 UI/CoreStrings@Defense_Format_Chemical:
 Защита от химикатов: {0}
@@ -201,11 +259,20 @@ UI/CoreStrings@Demo_Welcome:
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 Доступно для контроля через:
 
+UI/CoreStrings@DepositCapacityStats_Depleted:
+Это месторождение истощилось.
+
 UI/CoreStrings@DepositCapacityStats_Message:
 Это месторождение истощится через:
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Потенциал месторождения
+
+UI/CoreStrings@DepositCapacityStats_TitleInfinite:
+Глубокое месторождение (медленная добыча, бесконечное)
+
+UI/CoreStrings@DepositCapacityStats_TitleLimited:
+Месторождение на поверхности (быстрая добыча)
 
 UI/CoreStrings@Duration_Instant:
 Мгновенно
@@ -275,6 +342,9 @@ UI/CoreStrings@Gender_Male:
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 Покинуть транспорт
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Completionist:
+Коллекционер
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 Строительство
@@ -380,6 +450,9 @@ UI/CoreStrings@LoginAtomicTorchForm_KeepMeLoggedIn:
 
 UI/CoreStrings@LoginAtomicTorchForm_Title:
 Войти с помощью учетной записи [url=atomictorch.com/Account/Register]AtomicTorch.com[/url]
+
+UI/CoreStrings@LootHacking_Progress:
+Прогресс взлома
 
 UI/CoreStrings@MainMenu_TabCredits:
 АВТОРЫ
@@ -558,6 +631,12 @@ UI/CoreStrings@MenuServers_ServerTag_PvP_Description:
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
 
+UI/CoreStrings@Meteorite_CooldownMessage_TimeRemainsFormat:
+{0} до необходимого охлаждения.
+
+UI/CoreStrings@Meteorite_CooldownMessage_TooHotForMining:
+Метеорит пока слишком горячий для добычи минералов.
+
 UI/CoreStrings@ModsDisabledWindow_Description:
 `Не удалось запустить игру с модами, поэтому они были отключены.
 [br]Причина в том, что по крайней мере один из модов устарел (несовместим с текущей версией игры) или неисправен.
@@ -632,6 +711,12 @@ UI/CoreStrings@Notification_ActionForbidden:
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 Невозможно разместить здесь
 
+UI/CoreStrings@Notification_ErrorCannotInteract:
+Взаимодействие невозможно
+
+UI/CoreStrings@Notification_ErrorObjectUsedByAnotherPlayer:
+Объект используется другим игроком.
+
 UI/CoreStrings@Notification_ObstaclesOnTheWay:
 Препятствия!
 
@@ -665,6 +750,9 @@ UI/CoreStrings@ObjectOwnersList_RemoveOwner:
 UI/CoreStrings@ObjectOwnersList_Title:
 Владельцы
 
+UI/CoreStrings@ObjectOwnersList_Title2:
+Владельцы:
+
 UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
 ПОКУПКА
 
@@ -688,9 +776,6 @@ UI/CoreStrings@PartyManagement_CurrentPartySize:
 
 UI/CoreStrings@PartyManagement_HowToInvite:
 Для приглашения введите имя игрока или щелкните ПКМ по сообщению игрока в чате.
-
-UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-Часть очков технологий, полученных любым участником группы, будет разделена между всеми участниками.
 
 UI/CoreStrings@PartyManagement_InviteMember:
 Пригласить участника
@@ -766,6 +851,9 @@ UI/CoreStrings@PowerGridState_DepletedIn:
 UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
 Никогда
 
+UI/CoreStrings@PowerGridState_EfficiencyDescription:
+Эффективность электросети зависит от размера базы.
+
 UI/CoreStrings@PowerGridState_EfficiencyFormat:
 (эффективность {0}%)
 
@@ -830,7 +918,7 @@ UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 Скриншот готов: {0} (щелкните, чтобы открыть)
 
 UI/CoreStrings@SelectUsernameForm_Message:
-Пожалуйста, выберите имя пользователя для учетной записи AtomicTorch.com
+Пожалуйста, выберите имя пользователя
 
 UI/CoreStrings@ServerAddress:
 Адрес
@@ -891,6 +979,15 @@ UI/CoreStrings@TechGroupTooltip_TechnologiesAvailableCount:
 
 UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 Открыто технологий
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_AvailableNow:
+Доступно (временное ограничение истекло)
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Format:
+Будет доступно через: [b]{0}[/b]
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Title:
+Временное ограничение:
 
 UI/CoreStrings@TechNodeTooltip_Perks:
 Бонусы:
@@ -1094,6 +1191,24 @@ UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Случайно
 
+UI/CoreStrings@WindowCompletionist_ButtonAccept:
+Принять
+
+UI/CoreStrings@WindowCompletionist_ProgressLabel:
+Прогресс:
+
+UI/CoreStrings@WindowCompletionist_TabCreatures:
+Существа
+
+UI/CoreStrings@WindowCompletionist_TabFood:
+Еда
+
+UI/CoreStrings@WindowCompletionist_TabLoot:
+Добыча
+
+UI/CoreStrings@WindowCompletionist_UndiscoveredEntryTitle:
+???
+
 UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
 Требования чертежа
 
@@ -1109,6 +1224,16 @@ UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 Всего требуется
+
+UI/CoreStrings@WindowCrateIconSelector_CanPickIcon:
+Вы можете выбрать значок любого предмета, помещенного в этот контейнер.
+
+UI/CoreStrings@WindowCrateIconSelector_NoItemsToSelectIcon:
+`Контейнер пуст.
+[br]Нет предметов, значок которых можно выбрать.`
+
+UI/CoreStrings@WindowCrateIconSelector_SelectedIcon:
+Выбранный значок
 
 UI/CoreStrings@WindowDataLog_Content:
 Содержимое
@@ -1136,6 +1261,9 @@ UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
 Ветшание
+
+UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
+Я знаю о системе ветшания
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 Предметы в сейфе доступны из всех точек контроля этой базы.
@@ -1485,13 +1613,13 @@ UI/CoreStrings@Yes:
 Да
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 Подключено
@@ -1508,6 +1636,15 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 `Хотите закрыть личный чат с игроком {0}?
 [br]История чата будет сохранена, вы сможете открыть этот чат позже.`
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
+Убито впервые.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
+Употреблено впервые.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_LootDiscovered_MessageFormat:
+Найдено впервые.
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 Поскольку рецепт включает портящиеся компоненты, отменить его нельзя.
@@ -1528,6 +1665,15 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 Вы потеряли свои вещи
 
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Finished:
+Событие завершено!
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeRemainingFormat:
+Оставшееся время: {0}
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
+Активное событие
+
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
 `На одну из ваших баз нападают!
 [br]({0};{1})`
@@ -1543,6 +1689,9 @@ UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceA
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
 Доступно новое месторождение
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@TooltipDepositSearchAreaFormat:
+Зона поиска: {0}
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 Копировать координаты
@@ -1636,8 +1785,17 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleFace:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 Волосы
 
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
+Цвет волос
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+Тон кожи
+
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Верх
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
+не выбран
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 Вы точно хотите покинуть группу?
@@ -1716,12 +1874,6 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]
 [br]Вы можете увеличить задержку ветшания, [b]улучшив[/b] любую точку контроля до более высокого уровня.
 [br]Задержка ветшания всей базы определяется точкой контроля [b]самого высокого[/b] уровня.`
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
-Это месторождение истощилось.
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
-Это месторождение бесконечно.
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Нет топлива
@@ -1818,6 +1970,12 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_T
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
 Собирайте и совершенствуйте разнообразный футуристический транспорт, чтобы исследовать мир быстрее или использовать в битве.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+Мировые события
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+Регулярно участвуйте в многочисленных событиях в мире CryoFall: будь то исследование места падения метеорита или сражение с опасным боссом вместе с группой других выживших.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Фантастические существа

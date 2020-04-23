@@ -1,10 +1,13 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Explosives.Bombs
 {
     using System;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -24,8 +27,10 @@
         public override string Name => "Mining charge";
 
         public override double ServerCalculateTotalDamageByExplosive(
-            IProtoStaticWorldObject targetStaticWorldObjectProto)
+            ICharacter byCharacter,
+            IStaticWorldObject targetStaticWorldObject)
         {
+            var targetStaticWorldObjectProto = targetStaticWorldObject.ProtoStaticWorldObject;
             if (targetStaticWorldObjectProto is IProtoObjectMineral
                 || targetStaticWorldObjectProto is IProtoObjectDeposit)
             {
@@ -33,7 +38,7 @@
                 return DamageToMinerals;
             }
 
-            return base.ServerCalculateTotalDamageByExplosive(targetStaticWorldObjectProto);
+            return base.ServerCalculateTotalDamageByExplosive(byCharacter, targetStaticWorldObject);
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -99,6 +104,19 @@
         protected override void PrepareProtoObjectExplosive(out ExplosionPreset explosionPresets)
         {
             explosionPresets = ExplosionPresets.Large;
+        }
+
+        protected override void PrepareTileRequirements(ConstructionTileRequirements tileRequirements)
+        {
+            base.PrepareTileRequirements(tileRequirements);
+
+            // disallow placing mining bombs on the floor on the PvE servers
+            tileRequirements.Add(
+                new ConstructionTileRequirements.Validator(
+                    ConstructionTileRequirements.ErrorNoFreeSpace,
+                    c => !PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false)
+                         || c.Tile.StaticObjects.All(
+                             o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Floor)));
         }
     }
 }

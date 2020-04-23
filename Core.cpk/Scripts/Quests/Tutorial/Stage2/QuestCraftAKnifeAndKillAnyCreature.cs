@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
 
     public class QuestCraftAKnifeAndKillAnyCreature : ProtoQuest
@@ -20,15 +21,15 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementCraftRecipe.RequireHandRecipe<RecipeKnifeStone>())
-                .Add(RequirementKill.Require<IProtoCharacterMob>(count: 1, description: TaskKillAnyCreature))
-                .Add(RequirementGather.Require<ObjectCorpse>(count: 1, description: TaskLootAnyCreature));
+            tasks
+                .Add(TaskCraftRecipe.RequireHandRecipe<RecipeKnifeStone>())
+                .Add(TaskKillAny.Require<IProtoCharacterMob>(count: 1, description: TaskKillAnyCreature))
+                .Add(TaskGather.Require<ObjectCorpse>(count: 1, description: TaskLootAnyCreature));
 
             prerequisites
-                .Add<QuestUnlockAndBuildWorkbench>();
+                .Add<QuestPerformBasicActions>();
         }
     }
 }

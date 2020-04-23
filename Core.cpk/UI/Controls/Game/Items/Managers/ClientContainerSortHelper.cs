@@ -18,6 +18,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Quests;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -187,7 +188,7 @@
 
             Api.Client.Audio.PlayOneShot(SortContainerSoundResource);
 
-            RequirementSortItemsContainer.Helper.ClientOnItemsContainerSorted();
+            TaskSortItemsContainer.Helper.ClientOnItemsContainerSorted();
         }
 
         private static Type Type<T>()

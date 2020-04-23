@@ -1,0 +1,30 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Crates.CrateIconControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Crates.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelCrateIconControl, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+
+    <Button Style="{StaticResource SmallButtonStyle}"
+            Padding="3"
+            base:ToolTipServiceExtend.ToolTip="{x:Static loc:CoreStrings.CrateIconControl_SelectIcon}"
+            Command="{Binding CommandOpenCrateIconSelectorWindow}">
+        <Grid>
+            <Rectangle Fill="{Binding IconPlaceholder}"
+                       Width="38"
+                       Height="38" />
+            <Rectangle Fill="{Binding Icon}"
+                       Visibility="{Binding IsIconAvailable, Converter={StaticResource BoolToVisibilityConverter}}"
+                       Width="36"
+                       Height="36"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+        </Grid>
+    </Button>
+</base:BaseUserControl>

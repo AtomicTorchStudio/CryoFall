@@ -87,7 +87,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                     }
 
                     SharedLandClaimsNumberLimitIncrease = 0;
-                    if (Api.Client.Characters.CurrentPlayerCharacter == null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
                     {
                         return;
                     }

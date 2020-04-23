@@ -1,11 +1,15 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -36,6 +40,8 @@
 
         public virtual double CharacterAnimationAimingRecoilPowerAddCoef => 1;
 
+        public override CollisionGroup CollisionGroup => CollisionGroups.HitboxRanged;
+
         /// <summary>
         /// Ranged weapon don't have fire animation. It uses recoil animation instead.
         /// <see cref="CharacterAnimationAimingRecoilDuration" />.
@@ -52,7 +58,30 @@
 
         public override (float min, float max) SoundPresetWeaponDistance
             => (SoundConstants.AudioListenerMinDistanceRangedShot,
-                SoundConstants.AudioListenerMaxDistanceRangedShot);
+                SoundConstants.AudioListenerMaxDistanceRangedShotFirearms);
+
+        public override void ClientOnWeaponShot(ICharacter character)
+        {
+            // add muzzle flash
+            var clientState = character.GetClientState<BaseCharacterClientState>();
+            if (!clientState.HasWeaponAnimationAssigned)
+            {
+                return;
+            }
+
+            var skeletonRenderer = clientState.SkeletonRenderer;
+            WeaponSystemClientDisplay.ClientCreateMuzzleFlash(this, character, skeletonRenderer);
+
+            var recoilAnimationName = this.CharacterAnimationAimingRecoilName;
+            if (recoilAnimationName != null
+                && this.CharacterAnimationAimingRecoilPower > 0
+                && this.CharacterAnimationAimingRecoilDuration > 0)
+            {
+                WeaponSystemClientDisplay.ClientSetRecoilAnimation(character,
+                                                                   this,
+                                                                   skeletonRenderer);
+            }
+        }
 
         protected override void ClientPreloadTextures()
         {

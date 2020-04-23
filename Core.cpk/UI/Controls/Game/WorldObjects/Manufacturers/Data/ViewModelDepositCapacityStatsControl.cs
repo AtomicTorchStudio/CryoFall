@@ -7,27 +7,27 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
-    using AtomicTorch.CBND.CoreMod.Systems.PvE;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
     using AtomicTorch.CBND.CoreMod.Systems.WorldMapResourceMarks;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ViewModelDepositCapacityStatsControl : BaseViewModel
     {
-        public const string TitleDepositDepleted = "This deposit has been depleted.";
-
-        public const string TitleDepositInfinite = "This deposit is infinite.";
-
         private readonly IProtoObjectDeposit protoDeposit;
 
         private readonly StaticObjectPublicState publicState;
 
+        private readonly Vector2Ushort tilePosition;
+
         private readonly IStaticWorldObject worldObjectDeposit;
 
-        public ViewModelDepositCapacityStatsControl(IStaticWorldObject worldObjectDeposit)
+        public ViewModelDepositCapacityStatsControl(IStaticWorldObject worldObjectDeposit, Vector2Ushort tilePosition)
         {
             this.worldObjectDeposit = worldObjectDeposit;
+            this.tilePosition = tilePosition;
             if (worldObjectDeposit != null)
             {
                 this.publicState = worldObjectDeposit.GetPublicState<StaticObjectPublicState>();
@@ -41,24 +41,23 @@
                     _ => this.RefreshDepletion(),
                     this);
             }
-            else
-            {
-                // no deposit (assume depleted)
-                this.ValueMax = 0;
-            }
-
-            this.RefreshDepletion();
 
             this.RefreshAvailableToClaim();
+
+            this.RefreshByTimer();
         }
 
         public bool CanClaim => this.CalculateTimeToClaim() <= 0;
 
-        public Visibility DepletedInPrefixVisibility { get; private set; }
+        public Visibility DepletedDurationVisibility { get; private set; }
 
         public string DepletionDurationText { get; private set; }
 
         public string DepositTitle => this.protoDeposit?.Name;
+
+        public bool IsDepletedDeposit { get; set; }
+
+        public bool IsInfiniteDeposit { get; set; }
 
         public string TimeToClaimText
             => ClientTimeFormatHelper.FormatTimeDuration(
@@ -89,7 +88,7 @@
 
         private int CalculateTimeToClaim()
         {
-            if (this.worldObjectDeposit == null)
+            if (this.worldObjectDeposit is null)
             {
                 return 0;
             }
@@ -119,35 +118,55 @@
             }
         }
 
+        private void RefreshByTimer()
+        {
+            if (this.IsDisposed)
+            {
+                return;
+            }
+
+            this.RefreshDepletion();
+            ClientTimersSystem.AddAction(delaySeconds: 1,
+                                         this.RefreshByTimer);
+        }
+
         private void RefreshDepletion()
         {
-            this.ValueCurrent = this.publicState?.StructurePointsCurrent ?? 0;
-            if (this.ValueCurrent <= 0)
+            var depletedDeposit = ObjectDepletedDeposit.SharedGetDepletedDepositWorldObject(this.tilePosition);
+            if (depletedDeposit != null)
             {
-                if (PveSystem.ClientIsPve(logErrorIfDataIsNotYetAvailable: true))
-                {
-                    // PvE mode doesn't require the deposit under the extractor
-                    this.DepletionDurationText = TitleDepositInfinite;
-                    this.ValueCurrent = this.ValueMax = 1;
-                }
-                else
-                {
-                    this.DepletionDurationText = TitleDepositDepleted;
-                }
+                // depleted deposit
+                this.IsInfiniteDeposit = false;
+                this.IsDepletedDeposit = true;
+                this.DepletionDurationText = null;
+                this.DepletedDurationVisibility = Visibility.Collapsed;
+                this.ValueMax = 1;
+                this.ValueCurrent = 0;
+                return;
+            }
 
-                this.DepletedInPrefixVisibility = Visibility.Collapsed;
+            this.IsDepletedDeposit = false;
+
+            var currentValue = this.publicState != null
+                               && this.protoDeposit != null
+                               && this.protoDeposit.LifetimeTotalDurationSeconds > 0
+                                   ? this.publicState.StructurePointsCurrent
+                                   : 0;
+            if (currentValue <= 0)
+            {
+                // no deposit/infinite deposit
+                this.IsInfiniteDeposit = true;
+                this.DepletionDurationText = CoreStrings.DepositCapacityStats_TitleInfinite;
+                this.DepletedDurationVisibility = Visibility.Collapsed;
+                this.ValueCurrent = this.ValueMax = 1;
                 return;
             }
 
             var lifetimeTotalDurationSeconds = this.protoDeposit.LifetimeTotalDurationSeconds;
-            if (lifetimeTotalDurationSeconds == 0)
-            {
-                this.DepletionDurationText = TitleDepositInfinite;
-                this.DepletedInPrefixVisibility = Visibility.Collapsed;
-                return;
-            }
+            this.ValueCurrent = currentValue;
 
-            this.DepletedInPrefixVisibility = Visibility.Visible;
+            this.IsInfiniteDeposit = false;
+            this.DepletedDurationVisibility = Visibility.Visible;
             var structurePointsFraction = this.ValueCurrent / this.ValueMax;
 
             var remainsNoExtraction = structurePointsFraction

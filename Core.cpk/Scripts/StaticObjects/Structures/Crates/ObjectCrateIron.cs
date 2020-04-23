@@ -7,7 +7,7 @@
 
     public class ObjectCrateIron : ProtoObjectCrate
     {
-        public override string Description => "Affords more space than a simple wooden crate and is harder to destroy.";
+        public override string Description => "Affords more space than a simple wooden crate.";
 
         public override bool HasOwnersList => false;
 

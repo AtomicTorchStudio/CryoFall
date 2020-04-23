@@ -1,0 +1,18 @@
+﻿Scripts/Events/EventBossPragmiumQueen@Description:
+`Pragmium Kraliçesi yüzeyde belirdi.
+[br]En cesur kahramanları değerli yağma bekliyor!`
+
+Scripts/Events/EventMeteoriteDrop@Description:
+`Meteoritler haritanın vurgulanmış alanına düştü.
+[br]Nadir mineraller için madene koş!`
+
+Scripts/Events/EventMigration@Description:
+Bu dünyanın yerli yaşam formları farklı bir bölümden geliyormuş gibi duruyor. Bu avcılık için büyük fırsat sunuyor.
+
+Scripts/Events/EventSpaceDrop@Description:
+`Uzay enkazı haritada vurgulanan noktaya düştü.
+[br]Değerli malzemeler toplamak için koş!`
+
+Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
+İlerleme: {0}/{1}
+

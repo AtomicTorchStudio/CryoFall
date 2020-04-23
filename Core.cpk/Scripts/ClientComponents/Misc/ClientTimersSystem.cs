@@ -4,6 +4,7 @@ namespace AtomicTorch.CBND.CoreMod
 {
     using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
     using AtomicTorch.CBND.GameApi.ServicesClient;
 
@@ -21,6 +22,8 @@ namespace AtomicTorch.CBND.CoreMod
 
         public static void AddAction(double delaySeconds, Action action)
         {
+            Api.ValidateIsClient();
+            delaySeconds = Math.Max(0, delaySeconds);
             var timeToInvokeAt = delaySeconds + Core.ClientRealTime;
             GetOrCreateInstance().AddActionInternal(timeToInvokeAt, action);
         }

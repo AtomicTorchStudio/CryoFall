@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.HotbarOverlays.Data
 {
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
     using AtomicTorch.CBND.CoreMod.Systems.WateringCanRefill;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;

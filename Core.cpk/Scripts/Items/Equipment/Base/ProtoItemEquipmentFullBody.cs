@@ -27,9 +27,9 @@
 
         public abstract bool IsHeadVisible { get; }
 
-        public override bool RequireEquipmentTextures => true;
-
         public abstract ObjectMaterial Material { get; }
+
+        public override bool RequireEquipmentTextures => true;
 
         public ReadOnlySoundPreset<CharacterSound> SoundPresetCharacterOverride { get; private set; }
 

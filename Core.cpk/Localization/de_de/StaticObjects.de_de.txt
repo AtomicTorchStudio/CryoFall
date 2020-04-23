@@ -61,6 +61,9 @@ Untersuchen
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
 Ernten
 
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Hack:
+Hacken
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 Interagieren
 
@@ -142,11 +145,8 @@ Vorratscontainer
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Gras
 
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-Großer Müllhaufen
-
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
-Kleiner Müllhaufen
+Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
+Müllhaufen
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Stein
@@ -216,6 +216,15 @@ Benutze eine Spitzhacke, um diese Ressource abzubauen.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Kluft
+
+Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
+Meteorit
+
+Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
+Überreste der Pragmiumkönigin
+
+Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
+Weltraumschrott
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Größer und robuster als Holzfässer. Zur Aufbewahrung großer Mengen von Flüssigkeiten geeignet.
@@ -345,25 +354,25 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 Werkbank
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-Bietet mehr Platz als eine einfache Holzkiste und ist schwerer zu zerstören.
+Bietet mehr Platz als eine einfache Holzkiste.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
 Eisenkiste
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
-Eine der besten Arten, um Gegenstände zu lagern. Bewahrt deine Sachen in den meisten Situationen sicher auf und bietet den meisten Platz.
+Unter den einfachen Kisten bietet die Stahlkiste den größten Platz und erlaubt dir so, deine Gegenstände kompakt zu verstauen.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
 Stahlkiste
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
-Geräumige Kiste für die bequeme und sichere Aufbewahrung einer großen Menge von Gegenständen.
+Extrageräumige Kiste zur bequemen Aufbewahrung einer großen Menge von Gegenständen.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
 Große Kiste
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-Dies ist die einfachste Version einer Kiste zur Aufbewahrung deiner Besitztümer. Kann jedoch leicht zerstört werden.
+Dies ist die einfachste Kiste zum Aufbewahren eigener Besitztümer.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
 Holzkiste
@@ -380,16 +389,58 @@ Schwer gepanzerter Tresor, der sogar den stärksten Explosionen standhalten kann
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 Panzertresor
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
+Fernöstlich anmutender Altar zum Entzünden von Räucherwerk.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
+Räucheraltar
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 Was auch immer dieses Banner symbolisiert – es sieht cool aus!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
-Rotes Banner
+Banner
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
+Klassische Badewanne für all deine hygienischen Bedürfnisse.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
+Badewanne
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
+Was wäre ein Zimmer nur ohne ein Bücherregal?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
+Bücherregal
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
+Raumteiler mit der klassischen Darstellung eines Tigers, ganz wie in den alten Sagen und Legenden.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Name:
+Raumteiler
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Description:
+Beeindruckender Goldhaufen. Verwahre ihn sicher in deinem Tresor!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
+Ein Haufen Gold
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
+Ein hübsches und meisterhaft gefertigtes, rabenschwarzes Klavier.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
+Klavier
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
+Stelle unter Beweis, dass du ein echter Jäger bist, und dekoriere dein Zimmer mit diesem luxuriösen Fell.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Name:
+Bärenfell
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Description:
 Dieser ausgefallene Teppich lässt jeden Raum wärmer und gemütlicher erscheinen.
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Name:
 Teppich
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
@@ -397,6 +448,12 @@ Zeige deinen Feinden, dass du nicht zu Scherzen aufgelegt bist. Hausfriedensbruc
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 Aufgespießter Totenkopf
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Description:
+Weich und bequem, ideal fürs Wohnzimmer.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Name:
+Sofa
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 Eine wahre Zurschaustellung deines Reichtums. Nur die Reichsten der Reichen können es sich leisten, etwas Derartiges zu bauen.
@@ -409,6 +466,30 @@ Dieses kostbare Kristall zu rein ästhetischen Zwecken zu verschwenden, ist eine
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Pragmiumstatue
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
+Einfacher Tisch im alteuropäischen Stil.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Name:
+Tisch
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Description:
+Ein königlicher Thron für deinen Audienzsaal. Zeige den Bauern, wer hier der Boss ist.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Name:
+Thron
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
+Am besten macht sie sich in einem separaten und gut belüfteten Raum für ein Maximum an Privatsphäre.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
+Toilette
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
+Sehr wertvolle und dekorative Vase.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
+Vase
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Es gibt bereits eine Fußbodendekoration.
@@ -639,7 +720,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
 Elektro-Schmelzofen
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
-Ermöglicht die Gewinnung von Lithiumsalzen aus Thermalquellen.
+Ermöglicht das Extrahieren von Lithiumsalzen aus einem unterirdischen Reservoir oder direkt aus einer Thermalquelle für höhere Effizienz.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Lithiumsalzextraktor
@@ -660,7 +741,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Kompostbox
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-Kann auf einer Ölquelle errichtet werden, um rohes Erdöl direkt aus dem Boden zu extrahieren.
+Ermöglicht das Extrahieren von Erdöl aus einem unterirdischen Reservoir oder direkt aus einer Ölquelle für höhere Effizienz.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Ölpumpe
@@ -704,11 +785,17 @@ Eine unerschöpfliche Frischwasserquelle. Jetzt kannst du nicht mehr verdursten.
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 Brunnen
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-Der Extraktor benötigt eine geothermale Quelle.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_CannotBuildTooCloseToDeposit:
+Zu nah an einem Ressourcenvorkommen gelegen. Du kannst genau darüber bauen.
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-Die Pumpe benötigt eine Ölquelle.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_TooCloseToDepletedDeposit:
+Zu nah an einem erschöpften Vorkommen gelegen.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorTooCloseToAnotherExtractor:
+Zu nah an einem anderen Extraktor gelegen.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooCloseToAnotherOilPump:
+Zu nah an einer anderen Ölpumpe gelegen.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Dieser Bodentyp besitzt keinen Zugang zum Grundwasserspiegel.
@@ -967,6 +1054,9 @@ Weizen
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 Erfordert Farmland.
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
+Blaues Heilkraut
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
 Grünes Heilkraut

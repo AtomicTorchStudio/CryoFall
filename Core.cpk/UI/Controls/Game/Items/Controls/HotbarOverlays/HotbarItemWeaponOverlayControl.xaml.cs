@@ -24,14 +24,17 @@
             this.item = item;
         }
 
-        protected override void OnLoaded()
+        protected override void InitControl()
         {
             this.DataContext = this.viewModel = new ViewModelHotbarItemWeaponOverlayControl(
                                        ammoChangedCallback: this.RefreshTooltip)
                                    {
                                        Item = this.item
                                    };
+        }
 
+        protected override void OnLoaded()
+        {
             this.MouseEnter += this.MouseEnterOrLeaveHandler;
             this.MouseLeave += this.MouseEnterOrLeaveHandler;
         }

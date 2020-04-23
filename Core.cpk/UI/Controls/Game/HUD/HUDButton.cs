@@ -2,6 +2,7 @@
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -36,11 +37,23 @@
                 typeof(HUDButton),
                 new PropertyMetadata(default(bool), IsSelectedPropertyChanged));
 
+        public static readonly DependencyProperty BadgeContentProperty =
+            DependencyProperty.Register(nameof(BadgeContent),
+                                        typeof(FrameworkElement),
+                                        typeof(HUDButton),
+                                        new PropertyMetadata(default(Control)));
+
         static HUDButton()
         {
             DefaultStyleKeyProperty.OverrideMetadata(
                 typeof(HUDButton),
                 new FrameworkPropertyMetadata(typeof(HUDButton)));
+        }
+
+        public FrameworkElement BadgeContent
+        {
+            get => (FrameworkElement)this.GetValue(BadgeContentProperty);
+            set => this.SetValue(BadgeContentProperty, value);
         }
 
         public Brush BrushHighlighted
@@ -73,6 +86,14 @@
             this.MouseLeave += this.HUDButtonMouseEnterOrLeaveHandler;
 
             this.UpdateVisualState(useTransitions: false);
+
+            var badgeContent = this.BadgeContent;
+            if (badgeContent != null)
+            {
+                // workaround for NoesisGUI 3.0
+                var child = (FrameworkElement)VisualTreeHelper.GetChild(badgeContent, 0);
+                child.DataContext = this.DataContext;
+            }
         }
 
         protected override void OnUnloaded()

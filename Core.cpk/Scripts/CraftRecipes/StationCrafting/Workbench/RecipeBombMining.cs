@@ -19,8 +19,8 @@ namespace AtomicTorch.CBND.CoreMod.CraftRecipes
 
             duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemBlackpowder>(count: 100);
             inputItems.Add<ItemIngotCopper>(count: 10);
+            inputItems.Add<ItemBlackpowder>(count: 50);
             inputItems.Add<ItemPaper>(count: 50);
 
             outputItems.Add<ItemBombMining>(count: 10);

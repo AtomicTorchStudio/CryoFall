@@ -1,0 +1,2 @@
+ * AtomicTorch.CBND.CoreMod.Events.EventCreaturesMigration
+   -> AtomicTorch.CBND.CoreMod.Events.EventMigration

@@ -83,18 +83,15 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-
-        <!--<Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Red" />
-
-        <Border Grid.Row="0" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                Background="Green" />
-
-        <Border Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                Background="Blue" />
-
-        <Border Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                Background="Yellow" />-->
-
+        
+        <core:Scalebox Grid.Row="0" Grid.Column="0" Scale="1">
+            <Border VerticalAlignment="Top" 
+                    HorizontalAlignment="Left"
+                    Margin="5,40,0,0">
+                <hud:HUDMiniMap />
+            </Border>
+        </core:Scalebox>
+        
         <core:Scalebox Grid.Row="0" Grid.Column="1" Scale="1">
             <Border VerticalAlignment="Top" HorizontalAlignment="Center">
                 <hud:HUDButtonsBar />

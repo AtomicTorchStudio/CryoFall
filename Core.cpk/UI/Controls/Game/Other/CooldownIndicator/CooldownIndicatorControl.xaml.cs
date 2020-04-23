@@ -11,7 +11,7 @@
                 nameof(SetTotalDuration),
                 typeof(double),
                 typeof(CooldownIndicatorControl),
-                new PropertyMetadata(0, SetTotalDurationPropertyValueChanged));
+                new PropertyMetadata(0.0, SetTotalDurationPropertyValueChanged));
 
         public static readonly DependencyProperty ViewModelProperty
             = DependencyProperty.Register(nameof(ViewModel),

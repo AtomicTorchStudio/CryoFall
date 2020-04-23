@@ -10,6 +10,19 @@ Rozładowane banki zasilania.
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 Nie można użyć: {0}
 
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
+`Dawno Cię nie było.
+[br]Pragnienie i głód zostały wstrzymane.`
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
+Możesz rozmawiać, tworzyć przedmioty i używać przedmiotów.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part3:
+Jeśli wykonasz inne działanie, tryb POZA GRĄ zostanie wyłączony.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Title:
+Tryb POZA GRĄ
+
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
 `Możesz odrodzić się w swoim łóżku za {0} s.
 [br]Albo możesz się odrodzić w świecie gry już teraz.`
@@ -89,6 +102,9 @@ Globalny
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 Lokalny
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomTrade@Title:
+Handel
 
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
 Tam nie można budować
@@ -251,6 +267,18 @@ Nie możesz zaprosić z powodu wyciszenia twojej postaci przez operatora serwera
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 Zaproszony gracz jest w trybie offline. Do grupy można zaprosić tylko graczy online.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_AreYouSure:
+Czy na pewno zgłosić tę wiadomość?
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_CommunityServerDisclaimer:
+[b]Uwaga:[/b] Grasz na serwerze społeczności, więc właściciel serwera jest odpowiedzialny za moderowanie czatu. Czaty zazwyczaj nie są moderowane.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_OfficialServersDisclaimer:
+[b]Uwaga:[/b] Serwery oficjalne NIE są moderowane.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_Title:
+Zgłoś wiadomość
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
 Nie można wykonać – za daleko lub przeszkody.
@@ -460,6 +488,9 @@ Zawsze zamknięte
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 Brak dostępu!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
+Przekroczono limit rozmiaru listy dostępu.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
 Nie można edytować listy właścicieli.

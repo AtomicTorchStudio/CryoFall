@@ -9,6 +9,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Axes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
@@ -61,9 +62,9 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
             CreateItem(player, GetProtoEntity<ItemReactorCorePragmium>(), 1);
 
             // Equipment items
-            Server.Items.CreateItem<ItemClothShirt>(container: containerEquipment, slotId: (byte?)EquipmentType.Chest);
-            Server.Items.CreateItem<ItemClothHat>(container: containerEquipment, slotId: (byte?)EquipmentType.Head);
-            Server.Items.CreateItem<ItemClothPants>(container: containerEquipment, slotId: (byte?)EquipmentType.Legs);
+            //Server.Items.CreateItem<ItemClothShirt>(container: containerEquipment, slotId: (byte?)EquipmentType.Chest);
+            //Server.Items.CreateItem<ItemClothHat>(container: containerEquipment, slotId: (byte?)EquipmentType.Head);
+            //Server.Items.CreateItem<ItemClothPants>(container: containerEquipment, slotId: (byte?)EquipmentType.Legs);
             Server.Items.CreateItem<ItemPowerBankLarge>(container: containerEquipment);
 
             return "Added some test items to " + player;

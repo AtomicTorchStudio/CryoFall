@@ -4,10 +4,15 @@
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class SkeletonBlackBeetle : ProtoCharacterSkeletonAnimal
     {
         public override double DefaultMoveSpeed => 1.35;
+
+        public override Vector2D IconOffset => (-5, 15);
+
+        public override double IconScale => 0.75;
 
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("BlackBeetle/Back");

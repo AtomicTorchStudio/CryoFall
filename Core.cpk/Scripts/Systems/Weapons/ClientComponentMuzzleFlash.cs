@@ -71,14 +71,12 @@
                 out this.spriteRendererSmoke,
                 out this.componentAnimatorSmoke,
                 smokeAtlasRow,
-                protoWeapon,
                 muzzleFlashTextureAtlas);
 
             this.CreateSpriteRendererAndAnimator(
                 out this.spriteRendererFlash,
                 out this.componentAnimatorFlash,
                 flashAtlasRow,
-                protoWeapon,
                 muzzleFlashTextureAtlas);
 
             this.Update(deltaTime: 0);
@@ -137,7 +135,6 @@
             this.lightSource.Opacity = (this.lightDuration - this.time) / this.lightDuration;
 
             // calculate sprite position offset
-
             var protoSkeleton = this.character.GetClientState<BaseCharacterClientState>().CurrentProtoSkeleton;
             var slotName = protoSkeleton.SlotNameItemInHand;
             var weaponSlotScreenOffset = this.skeletonRenderer.GetSlotScreenOffset(attachmentName: slotName);
@@ -178,7 +175,7 @@
 
             this.componentAnimatorFlash.ForceUpdate(deltaTime);
             this.componentAnimatorSmoke.ForceUpdate(deltaTime);
-
+            
             // visualize muzzle flash position
             //ClientComponentPhysicsSpaceVisualizer.ProcessServerDebugPhysicsTesting(
             //    new CircleShape(boneWorldPosition, radius: 0.3, collisionGroup: CollisionGroups.Default));
@@ -198,7 +195,6 @@
             out IComponentSpriteRenderer spriteRenderer,
             out ClientComponentSpriteSheetAnimator componentAnimatorFlash,
             byte atlasRow,
-            IProtoItemWeaponRanged protoWeapon,
             TextureAtlasResource muzzleFlashTextureAtlas)
         {
             var animationFrameDurationSeconds = this.animationDuration

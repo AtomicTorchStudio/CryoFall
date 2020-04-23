@@ -14,10 +14,10 @@
         // TODO: there is an issue with long beard, add sprite mask clipping and restore this to true
         public override bool IsHeadVisible => false;
 
+        public override ObjectMaterial Material => ObjectMaterial.HardTissues;
+
         //  please don't translate A.P.A.R.T. abbreviation
         public override string Name => "A.P.A.R.T. suit";
-
-        public override ObjectMaterial Material => ObjectMaterial.HardTissues;
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

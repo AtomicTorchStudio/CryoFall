@@ -92,10 +92,54 @@
         // clicking on this menu entry will open a private chat with the selected player
         public const string Chat_MessageMenu_PrivateMessage = "Private message";
 
+        // to report (for moderation) a chat message
+        public const string Chat_MessageMenu_Report = "Report";
+
         // to unblock (un-mute) chat messages from the selected player
         public const string Chat_MessageMenu_Unblock = "Unblock";
 
+        public const string Chat_PressKeyToOpen_Format = "Press [{0}] to start using chat";
+
+        public const string ChatDisclaimer_Button_DisableChat = "Keep the chat hidden";
+
+        public const string ChatDisclaimer_Button_EnableChat = "Enable chat";
+
+        public const string ChatDisclaimer_Checkbox = "I understand and accept";
+
+        public const string ChatDisclaimer_NotModerated_Community =
+            "[b]Please note:[/b] You're playing on a community server, so the chat moderation is the responsibility of the server owner. Usually chats are NOT moderated, and you might be exposed to less-than-pleasant messages or even insults by other players. Only enable the chat if you are willing to accept these possibilities.";
+
+        public const string ChatDisclaimer_NotModerated_Official =
+            "[b]Please note:[/b] The chat is NOT moderated and you might be exposed to less-than-pleasant messages or even insults by other players. Only enable the chat if you are willing to accept these possibilities.";
+
+        public const string ChatDisclaimer_Title_Community =
+            "Would you like to enable in-game chat on this community server?";
+
+        public const string ChatDisclaimer_Title_Official =
+            "Would you like to enable in-game chat on this server?";
+
+        public const string ChatDisclaimer_UseBlock =
+            @"If you encounter any inappropriate messages—please click on the message and select ""Report"" or ""Block.""";
+
         public const string Checkbox_DoNotAskAgain = "Do not ask me again";
+
+        public const string ClanTag_Current = "Clan tag:";
+
+        public const string ClanTag_Exists =
+            @"This clan tag is already taken by another team.
+              [br]Please select another one.";
+
+        public const string ClanTag_FormatWithName = "[{0}] {1}";
+
+        public const string ClanTag_Invalid = "This clan tag is invalid.";
+
+        public const string ClanTag_Requirements =
+            @"Clan tag requirements:
+              [*] only Latin letters and digits
+              [*] starts with a letter
+              [*] four character max";
+
+        public const string ClanTag_Select = "Please select a clan tag";
 
         public const string ConstructionMetaInfo_Decoration =
             "This structure is purely decorative.";
@@ -136,6 +180,10 @@
               You can unlock more recipes in the technologies menu.";
 
         public const string CraftingRecipesList_TitleRecipesUnlocked = "Recipes unlocked";
+
+        public const string CrateIconControl_NoIcon = "No icon";
+
+        public const string CrateIconControl_SelectIcon = "Pick an icon";
 
         public const string Defense_Format_Chemical = "Chemical protection: {0}";
 
@@ -178,9 +226,15 @@
         // It's displayed like: Available for claim in: 29 minutes 59 seconds.
         public const string DepositAvailableForClaiming_Message = "Available to claim in:";
 
+        public const string DepositCapacityStats_Depleted = "This deposit has been depleted.";
+
         public const string DepositCapacityStats_Message = "This deposit will be depleted in:";
 
         public const string DepositCapacityStats_Title = "Deposit capacity";
+
+        public const string DepositCapacityStats_TitleInfinite = "Deep deposit (low yield, infinite)";
+
+        public const string DepositCapacityStats_TitleLimited = "Surface deposit (high yield)";
 
         public const string Duration_Instant = "Instant";
 
@@ -227,6 +281,8 @@
         public const string Gender_Male = "Male";
 
         public const string HUDButtonsBar_DismountVehicle = "Dismount vehicle";
+
+        public const string HUDButtonsBar_MenuTitle_Completionist = "Completionist";
 
         public const string HUDButtonsBar_MenuTitle_Construction = "Construction";
 
@@ -303,6 +359,8 @@
 
         public const string LoginAtomicTorchForm_Title =
             "Login with [url=atomictorch.com/Account/Register]AtomicTorch.com[/url] account";
+
+        public const string LootHacking_Progress = "Hacking progress";
 
         public const string MainMenu_TabCredits = "CREDITS";
 
@@ -433,6 +491,10 @@
 
         public const string MenuServers_ServerTag_PvP_Title = "PvP";
 
+        public const string Meteorite_CooldownMessage_TimeRemainsFormat = "{0} until cooled down sufficiently.";
+
+        public const string Meteorite_CooldownMessage_TooHotForMining = "The meteorite is still too hot for mining.";
+
         public const string ModsDisabledWindow_Description =
             @"The game was unable to launch with the mods, so they were disabled.
               [br]This is because at least one of the mods is outdated (incompatible with the current version of the game) or simply broken.
@@ -499,6 +561,12 @@
 
         public const string Notification_CannotPlaceThere_Title = "Cannot place there";
 
+        public const string Notification_ErrorCannotInteract
+            = "Cannot interact";
+
+        public const string Notification_ErrorObjectUsedByAnotherPlayer
+            = "This object is being used by another player.";
+
         public const string Notification_ObstaclesOnTheWay = "Obstacles in the way!";
 
         public const string Notification_TooFar = "Too far!";
@@ -523,6 +591,9 @@
 
         public const string ObjectOwnersList_Title = "Owners";
 
+        // It's the same as ObjectOwnersList_Title but has ":" char in the end
+        public const string ObjectOwnersList_Title2 = "Owners:";
+
         public const string ObjectTradingStationDisplay_ModeBuying = "BUYING";
 
         public const string ObjectTradingStationDisplay_ModeSelling = "FOR SALE";
@@ -539,10 +610,6 @@
 
         public const string PartyManagement_HowToInvite =
             "Enter player name below to invite them or right click any player name in the chat.";
-
-        // TODO: this is a poor description which requires rewriting ASAP meanwhile the line is hidden.
-        public const string PartyManagement_InfoExperienceSharing =
-            "Part of the learning points gained by any member of the party is shared equally among members.";
 
         public const string PartyManagement_InviteMember = "Invite member";
 
@@ -604,6 +671,9 @@
 
         public const string PowerGridState_DepletedIn_DurationNever = "Never";
 
+        public const string PowerGridState_EfficiencyDescription
+            = "Power grid efficiency depends on the size of the base.";
+
         public const string PowerGridState_EfficiencyFormat = "(efficiency {0}%)";
 
         public const string PowerGridState_EnergyInformation = "Energy information";
@@ -649,7 +719,7 @@
             "Screenshot ready: {0} (click to open)";
 
         public const string SelectUsernameForm_Message =
-            "Please select a username for your AtomicTorch.com account";
+            "Please select a username";
 
         public const string ServerAddress = "Address";
 
@@ -698,6 +768,12 @@
         public const string TechGroupTooltip_TechnologiesAvailableCount = "Technologies available";
 
         public const string TechGroupTooltip_TechnologiesUnlockedCount = "Technologies unlocked";
+
+        public const string TechGroupTooltip_TimeGate_AvailableNow = "Available now (time-gate expired)";
+
+        public const string TechGroupTooltip_TimeGate_Format = "Will be available in: [b]{0}[/b]";
+
+        public const string TechGroupTooltip_TimeGate_Title = "Time-gate:";
 
         public const string TechNodeTooltip_Perks = "Perks:";
 
@@ -843,6 +919,19 @@
 
         public const string WindowCharacterStyleCustomization_Button_Randomize = "Random";
 
+        // Accept/claim/receive the reward.
+        public const string WindowCompletionist_ButtonAccept = "Accept";
+
+        public const string WindowCompletionist_ProgressLabel = "Progress:";
+
+        public const string WindowCompletionist_TabCreatures = "Creatures";
+
+        public const string WindowCompletionist_TabFood = "Food";
+
+        public const string WindowCompletionist_TabLoot = "Loot";
+
+        public const string WindowCompletionist_UndiscoveredEntryTitle = "???";
+
         public const string WindowConstructionMenu_BlueprintRequires = "Blueprint requires";
 
         public const string WindowConstructionMenu_Button_Build = "Build";
@@ -854,6 +943,15 @@
         public const string WindowConstructionMenu_PlaceBlueprint = "Place blueprint";
 
         public const string WindowConstructionMenu_TotalRequired = "Total required";
+
+        public const string WindowCrateIconSelector_CanPickIcon =
+            "You can pick an icon from any of the items placed in this container.";
+
+        public const string WindowCrateIconSelector_NoItemsToSelectIcon =
+            @"This container is empty.
+              [br]There are no items to pick an icon from.";
+
+        public const string WindowCrateIconSelector_SelectedIcon = "Selected icon";
 
         public const string WindowDataLog_Content = "Content";
 
@@ -873,6 +971,9 @@
             "You cannot use land claim to store resources and basic items.";
 
         public const string WindowLandClaim_DecayInfo = "Decay info";
+
+        public const string WindowLandClaim_DecayInfo_ConfirmationCheckbox =
+            "I'm aware of the decay system";
 
         public const string WindowLandClaim_SafeStorageIsShared =
             "The safe storage items are shared between all the land claim structures on this base.";

@@ -196,7 +196,16 @@
 
                 case DecalHidingSetting.AnyObject:
                     // don't show decals if there is any object
-                    return !tile.StaticObjects.Any();
+                    foreach (var staticWorldObject in tile.StaticObjects)
+                    {
+                        var kind = staticWorldObject.ProtoStaticWorldObject.Kind;
+                        if (kind != StaticObjectKind.SpecialAllowDecals)
+                        {
+                            return false;
+                        }
+                    }
+
+                    return true;
 
                 case DecalHidingSetting.StructureOrFloorObject:
                     foreach (var staticWorldObject in tile.StaticObjects)
@@ -204,6 +213,7 @@
                         var kind = staticWorldObject.ProtoStaticWorldObject.Kind;
                         switch (kind)
                         {
+                            case StaticObjectKind.Platform:
                             case StaticObjectKind.Structure:
                             case StaticObjectKind.Floor:
                             case StaticObjectKind.FloorDecal:

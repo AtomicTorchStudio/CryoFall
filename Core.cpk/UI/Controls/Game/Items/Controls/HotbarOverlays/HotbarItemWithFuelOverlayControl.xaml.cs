@@ -23,10 +23,10 @@
             this.itemFuelConfig = itemFuelConfig;
         }
 
-        protected override void OnLoaded()
+        protected override void InitControl()
         {
-            this.DataContext =
-                this.viewModel = new ViewModelHotbarItemWithFuelOverlayControl(this.item, this.itemFuelConfig);
+            this.DataContext = this.viewModel =
+                                   new ViewModelHotbarItemWithFuelOverlayControl(this.item, this.itemFuelConfig);
         }
 
         protected override void OnUnloaded()

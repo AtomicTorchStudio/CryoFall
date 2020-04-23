@@ -4,7 +4,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Ammo;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterEnergySystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -63,28 +63,8 @@
                                            componentLightSource,
                                            "Weapon");
 
-            skeletonComponents.Add(componentLightSource);
             skeletonComponents.Add(componentLightInSkeleton);
-        }
-
-        public override void ServerOnDamageApplied(
-            WeaponFinalCache weaponCache,
-            IWorldObject damagedObject,
-            double damage)
-        {
-            base.ServerOnDamageApplied(weaponCache, damagedObject, damage);
-
-            if (IsClient)
-            {
-                // on client we cannot consume energy
-                return;
-            }
-
-            // consume energy on hit
-            var byCharacter = weaponCache.Character;
-            var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(byCharacter,
-                                                                                        this.EnergyUsePerHit);
-            CharacterEnergySystem.ServerDeductEnergyCharge(byCharacter, requiredEnergyAmount);
+            skeletonComponents.Add(componentLightSource);
         }
 
         public override bool SharedCanFire(ICharacter character, WeaponState weaponState)
@@ -147,6 +127,32 @@
                 character,
                 this.EnergyUsePerShot);
             return CharacterEnergySystem.ServerDeductEnergyCharge(character, requiredEnergyAmount);
+        }
+
+        public override void SharedOnHit(
+            WeaponFinalCache weaponCache,
+            IWorldObject damagedObject,
+            double damage,
+            WeaponHitData hitData,
+            out bool isDamageStop)
+        {
+            base.SharedOnHit(weaponCache,
+                             damagedObject,
+                             damage,
+                             hitData,
+                             out isDamageStop);
+
+            if (IsClient)
+            {
+                // on client we cannot consume energy
+                return;
+            }
+
+            // consume energy on hit
+            var byCharacter = weaponCache.Character;
+            var requiredEnergyAmount = SkillWeaponsEnergy.SharedGetRequiredEnergyAmount(byCharacter,
+                                                                                        this.EnergyUsePerHit);
+            CharacterEnergySystem.ServerDeductEnergyCharge(byCharacter, requiredEnergyAmount);
         }
 
         protected virtual BaseClientComponentLightSource ClientCreateLightSource(

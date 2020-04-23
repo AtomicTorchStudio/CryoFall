@@ -154,6 +154,10 @@
         [ButtonInfo(InputKey.P)]
         PoliticsMenu,
 
+        [Description(CoreStrings.HUDButtonsBar_MenuTitle_Completionist)]
+        [ButtonInfo(InputKey.N)]
+        CompletionistMenu,
+
         [Description("Developer console")]
         [ButtonInfo(InputKey.OemTilde, InputKey.CircumflexAccent)]
         ToggleDeveloperConsole,
@@ -192,6 +196,6 @@
         // Hold to display the land claim zones and healthbars for all damaged objects on the screen (or you can also just hold the Alt key).
         [Description("Display land claim[br]and health bars")]
         [ButtonInfo(InputKey.L)]
-        DisplayLandClaim,
+        DisplayLandClaim
     }
 }

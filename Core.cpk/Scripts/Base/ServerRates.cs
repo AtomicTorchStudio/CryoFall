@@ -25,6 +25,22 @@
                 description);
         }
 
+        public static string Get(
+            string key,
+            string defaultValue,
+            string description)
+        {
+            if (Api.IsClient)
+            {
+                return defaultValue;
+            }
+
+            return ServerCore.GetValueFromConfig(
+                key,
+                defaultValue,
+                description);
+        }
+
         public static int Get(
             string key,
             int defaultValue,
@@ -39,6 +55,30 @@
                 key,
                 defaultValue,
                 description);
+        }
+
+        public static void Reset(
+            string key,
+            string defaultValue,
+            string description)
+        {
+            ServerCore.ResetConfigValue(key, defaultValue, description);
+        }
+
+        public static void Reset(
+            string key,
+            int defaultValue,
+            string description)
+        {
+            ServerCore.ResetConfigValue(key, defaultValue, description);
+        }
+
+        public static void Reset(
+            string key,
+            double defaultValue,
+            string description)
+        {
+            ServerCore.ResetConfigValue(key, defaultValue, description);
         }
     }
 }

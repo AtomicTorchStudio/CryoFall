@@ -18,7 +18,8 @@
 
         public const int WorldTileTextureSize = 4;
 
-        private const int MaxSimultaneouslyLoadingChunks = 16;
+        // the limit is not actually required (don't affect the performance much)
+        private const int MaxSimultaneouslyLoadingChunks = 128;
 
         private static readonly ICoreClientService ClientCoreService = Api.Client.Core;
 
@@ -74,7 +75,8 @@
                     // ReSharper disable once AccessToDisposedClosure
                     request => GenerateChunkProceduralTexture(tempTilesList, chunkStartPosition, request),
                     isTransparent: false,
-                    isUseCache: false);
+                    isUseCache: false,
+                    useThrottling: false);
 
                 var brush = ClientUIService.GetTextureBrush(proceduralTexture, Stretch.Fill);
                 //brush = ClientUIService.GetTextureBrush(new TextureResource("TestWhiteRect", isTransparent: false), Stretch.None);

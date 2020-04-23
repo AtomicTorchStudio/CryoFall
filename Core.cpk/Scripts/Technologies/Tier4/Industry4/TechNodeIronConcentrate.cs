@@ -7,8 +7,7 @@
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                  .AddRecipe<RecipeOreIronConcentrate>()
-                  .AddRecipe<RecipeIngotIronFromConcentrate>();
+                  .AddRecipe<RecipeOreIronConcentrate>();
 
             config.SetRequiredNode<TechNodeMineralProcessingPlant>();
         }

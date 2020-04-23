@@ -3,8 +3,7 @@
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
 
-    public class ObjectDisplayCasePublicState
-        : StaticObjectPublicState
+    public class ObjectDisplayCasePublicState : ObjectCratePublicState
     {
         [SyncToClient]
         public IItemsContainer ItemsContainer { get; set; }

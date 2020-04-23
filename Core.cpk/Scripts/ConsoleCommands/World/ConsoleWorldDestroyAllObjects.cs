@@ -4,10 +4,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
 {
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.World;
 
-    [PrototypeIgnoredForNetwork]
     public class ConsoleWorldDestroyAllObjects : BaseConsoleCommand
     {
         public override string Description =>

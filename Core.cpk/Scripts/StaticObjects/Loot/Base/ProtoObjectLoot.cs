@@ -40,12 +40,14 @@
 
         public override string InteractionTooltipText => InteractionTooltipTexts.PickUp;
 
+        public virtual bool IsAvailableInCompletionist => false;
+
         // we don't consider this as a floor object as we want decals appear under it
         public override StaticObjectKind Kind => StaticObjectKind.NaturalObject;
 
         public IReadOnlyDropItemsList LootDroplist { get; private set; }
 
-        public override double ObstacleBlockDamageCoef => 0d;
+        public override double ObstacleBlockDamageCoef => 0;
 
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
@@ -55,7 +57,9 @@
 
         public virtual CursorId GetInteractionCursorId(bool isCanInteract)
         {
-            return isCanInteract ? CursorId.PickupPossible : CursorId.PickupImpossible;
+            return isCanInteract
+                       ? CursorId.PickupPossible
+                       : CursorId.PickupImpossible;
         }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)

@@ -1,7 +1,4 @@
-﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
-병 깨뜨리기
-
-Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+﻿Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
 통에 휘발유 채우기
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:

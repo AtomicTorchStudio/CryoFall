@@ -104,11 +104,63 @@ UI/CoreStrings@Chat_MessageMenu_Mention:
 UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 プライベートメッセージ
 
+UI/CoreStrings@Chat_MessageMenu_Report:
+報告
+
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 アンロック
 
+UI/CoreStrings@Chat_PressKeyToOpen_Format:
+[{0}]を押してチャットを開始
+
+UI/CoreStrings@ChatDisclaimer_Button_DisableChat:
+チャットを非表示
+
+UI/CoreStrings@ChatDisclaimer_Button_EnableChat:
+チャット有効
+
+UI/CoreStrings@ChatDisclaimer_Checkbox:
+了解しました
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Community:
+[b]注意：[/b]あなたはコミュニティサーバーでプレイしているので、チャットのモデレーションはサーバー所有者の責任です。通常、チャットはモデレートされておらず、他のプレイヤーによる不快なメッセージや侮辱にさらされる可能性があります。これらの可能性を受け入れる場合のみ、チャットを有効にしてください。
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Official:
+[b]注意：[/b]チャットはモデレートされておらず、他のプレイヤーによる不快なメッセージや侮辱にさらされる可能性があります。これらの可能性を受け入れる場合のみ、チャットを有効にしてください。
+
+UI/CoreStrings@ChatDisclaimer_Title_Community:
+このコミュニティサーバーでゲーム内チャットを有効にしますか？
+
+UI/CoreStrings@ChatDisclaimer_Title_Official:
+このサーバーでゲーム内チャットを有効にしますか？
+
+UI/CoreStrings@ChatDisclaimer_UseBlock:
+不適切なメッセージが表示された場合は、メッセージをクリックして「報告」または「ブロック」を選択してください。
+
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 二度と聞かないでください
+
+UI/CoreStrings@ClanTag_Current:
+クランタグ：
+
+UI/CoreStrings@ClanTag_Exists:
+`このクランタグは既に他のチームが使用済みです。
+[br]他のものを選択してください。`
+
+UI/CoreStrings@ClanTag_FormatWithName:
+[{0}] {1}
+
+UI/CoreStrings@ClanTag_Invalid:
+このクランタグは無効です。
+
+UI/CoreStrings@ClanTag_Requirements:
+`クランタグの要件：
+[*] 英数字のみ
+[*] 文字で始まる
+[*] 4文字以内`
+
+UI/CoreStrings@ClanTag_Select:
+クランタグを選択してください
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 この建物は装飾用です。
@@ -151,6 +203,12 @@ UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 アンロックされたレシピ
+
+UI/CoreStrings@CrateIconControl_NoIcon:
+アイコンなし
+
+UI/CoreStrings@CrateIconControl_SelectIcon:
+アイコンを選ぶ
 
 UI/CoreStrings@Defense_Format_Chemical:
 耐化学保護：{0}
@@ -201,11 +259,20 @@ CryoFallの体験版へようこそ。 体験版の期間中、制限なくゲ�
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 所有可能まで：
 
+UI/CoreStrings@DepositCapacityStats_Depleted:
+資源地が枯渇しました。
+
 UI/CoreStrings@DepositCapacityStats_Message:
 資源が枯渇するまで：
 
 UI/CoreStrings@DepositCapacityStats_Title:
 埋蔵量
+
+UI/CoreStrings@DepositCapacityStats_TitleInfinite:
+深層採掘（低効率、無限）
+
+UI/CoreStrings@DepositCapacityStats_TitleLimited:
+表層採掘（高効率）
 
 UI/CoreStrings@Duration_Instant:
 瞬間
@@ -275,6 +342,9 @@ UI/CoreStrings@Gender_Male:
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 乗り物から降りる
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Completionist:
+達成度
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 建設
@@ -380,6 +450,9 @@ UI/CoreStrings@LoginAtomicTorchForm_KeepMeLoggedIn:
 
 UI/CoreStrings@LoginAtomicTorchForm_Title:
 [url=atomictorch.com/Account/Register]AtomicTorch.com[/url]アカウントでログイン
+
+UI/CoreStrings@LootHacking_Progress:
+ハッキング進捗度
 
 UI/CoreStrings@MainMenu_TabCredits:
 クレジット
@@ -558,6 +631,12 @@ PvPサーバーには制限はなく、殺したり殺されたりします。
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
 
+UI/CoreStrings@Meteorite_CooldownMessage_TimeRemainsFormat:
+十分に冷えるまで{0}。
+
+UI/CoreStrings@Meteorite_CooldownMessage_TooHotForMining:
+隕石が熱すぎてまだ採掘できません。
+
 UI/CoreStrings@ModsDisabledWindow_Description:
 `利用できないMODのためゲームが実行できずMODを無効化しました。
 [br]原因は、一つ以上のMODが古い(現在のゲームバージョンと互換性がない)か、または単に利用できないためです。
@@ -632,6 +711,12 @@ UI/CoreStrings@Notification_ActionForbidden:
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 そこには置けません
 
+UI/CoreStrings@Notification_ErrorCannotInteract:
+操作不可
+
+UI/CoreStrings@Notification_ErrorObjectUsedByAnotherPlayer:
+このオブジェクトは他のプレイヤーが使用しています。
+
 UI/CoreStrings@Notification_ObstaclesOnTheWay:
 障害物があります！
 
@@ -665,6 +750,9 @@ UI/CoreStrings@ObjectOwnersList_RemoveOwner:
 UI/CoreStrings@ObjectOwnersList_Title:
 所有者
 
+UI/CoreStrings@ObjectOwnersList_Title2:
+所有者：
+
 UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
 購入
 
@@ -688,9 +776,6 @@ UI/CoreStrings@PartyManagement_CurrentPartySize:
 
 UI/CoreStrings@PartyManagement_HowToInvite:
 下にプレイヤー名を入力して招待するか、チャット内のプレイヤー名を右クリックしてください。
-
-UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-パーティーメンバーによって獲得された学習ポイントの一部は、メンバー間で平等に共有されます。
 
 UI/CoreStrings@PartyManagement_InviteMember:
 メンバーを招待
@@ -766,6 +851,9 @@ UI/CoreStrings@PowerGridState_DepletedIn:
 UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
 永久
 
+UI/CoreStrings@PowerGridState_EfficiencyDescription:
+送電網の効率は、拠点の大きさに依存します。
+
 UI/CoreStrings@PowerGridState_EfficiencyFormat:
 (効率性 {0}%)
 
@@ -830,7 +918,7 @@ UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 スクリーンショット準備完了：{0}（クリックして開く）
 
 UI/CoreStrings@SelectUsernameForm_Message:
-AtomicTorch.comアカウントのユーザー名を選択してください
+ユーザー名を選択してください
 
 UI/CoreStrings@ServerAddress:
 アドレス
@@ -891,6 +979,15 @@ UI/CoreStrings@TechGroupTooltip_TechnologiesAvailableCount:
 
 UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 アンロック済みの技術
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_AvailableNow:
+利用可能になりました（タイムゲート期限切れ）
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Format:
+利用可能まで：[b]{0}[/b]
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Title:
+タイムゲート
 
 UI/CoreStrings@TechNodeTooltip_Perks:
 特典：
@@ -1094,6 +1191,24 @@ UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 ランダム
 
+UI/CoreStrings@WindowCompletionist_ButtonAccept:
+受諾
+
+UI/CoreStrings@WindowCompletionist_ProgressLabel:
+進捗度：
+
+UI/CoreStrings@WindowCompletionist_TabCreatures:
+生物
+
+UI/CoreStrings@WindowCompletionist_TabFood:
+食料
+
+UI/CoreStrings@WindowCompletionist_TabLoot:
+戦利品
+
+UI/CoreStrings@WindowCompletionist_UndiscoveredEntryTitle:
+???
+
 UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
 設計図が必要
 
@@ -1109,6 +1224,16 @@ UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 必要な材料
+
+UI/CoreStrings@WindowCrateIconSelector_CanPickIcon:
+この箱にあるアイテムの中からアイコンを選ぶことができます。
+
+UI/CoreStrings@WindowCrateIconSelector_NoItemsToSelectIcon:
+`この箱は空です。
+[br]選べるアイテムがありません。`
+
+UI/CoreStrings@WindowCrateIconSelector_SelectedIcon:
+選択アイコン
 
 UI/CoreStrings@WindowDataLog_Content:
 内容
@@ -1136,6 +1261,9 @@ UI/CoreStrings@WindowLandClaim_AllowedItemsDescription:
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
 劣化情報
+
+UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
+劣化システムを理解しました
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 収納箱のアイテムはこの拠点にあるすべての所有地標でシェアされています。
@@ -1487,13 +1615,13 @@ UI/CoreStrings@Yes:
 
 UI/LanguageFonts@FontCondensed:
 `/UI/Fonts/#Roboto Condensed, 
-/UI/Fonts/#Source Han Sans`
+/UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla`
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 接続済み
@@ -1510,6 +1638,15 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 `{0}とのプライベートチャットを閉じますか？
 [br]チャット履歴が保存され後で再度開くことができます。`
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
+初めて殺されました。
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
+初めて消費しました。
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_LootDiscovered_MessageFormat:
+初めて発見しました。
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 レシピには分解可能な要素が含まれているため、キャンセルすることはできません。
@@ -1530,6 +1667,15 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 アイテムが落ちました
 
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Finished:
+イベント終了！
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeRemainingFormat:
+残り時間：{0}
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
+進行中のイベント
+
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
 `拠点の一つが襲撃を受けています！
 [br]({0};{1})`
@@ -1544,6 +1690,9 @@ UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceA
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
 新しい資源が利用可能
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@TooltipDepositSearchAreaFormat:
+探索エリア：{0}
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 座標をコピー
@@ -1638,8 +1787,17 @@ UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleFace:
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 髪
 
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
+髪の色
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+肌の色
+
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 上
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
+未選択
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 本当にパーティーを抜けますか？
@@ -1718,12 +1876,6 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]
 [br]所有地をより上のレベルに [b]アップグレード[/b]することで、劣化時間を延長することができます。
 [br]すべての拠点の劣化時間はレベルが[b]最も高い[/b]所有物に基づいています。`
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
-資源が枯渇しました。
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
-資源は無限です。
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 燃料不足
@@ -1820,6 +1972,12 @@ UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_T
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
 色々な未来型の乗り物を作り、アップグレードして、世界をより早く探検したり、戦闘で使ってみましょう。
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+ワールドイベント
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+CryoFallの世界で起こる多くのイベントに定期的に参加しましょう。隕石の墜落現場を探索したり、生存者を集めて危険なボスを倒したり。
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 変わった生き物

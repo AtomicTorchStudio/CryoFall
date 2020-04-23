@@ -18,6 +18,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterStamina;
+    using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.NewbieProtection;
@@ -85,7 +86,7 @@
 
         public override double StatDefaultHealthMax => 100;
 
-        public override double StatDefaultStaminaMax => 100;
+        public virtual double StatDefaultStaminaMax => 100;
 
         public virtual double StatDefaultWaterMax => 100;
 
@@ -99,7 +100,7 @@
         // 5 stamina per second (with total 100 stamina and without skills this gives 20 seconds sprint, 40 with athletics skill, even more with survival skill)
         public virtual double StatRunningStaminaConsumptionUsePerSecond => 5.0;
 
-        public override double StatStaminaRegenerationPerSecond => 5;
+        public virtual double StatStaminaRegenerationPerSecond => 5;
 
         /// <summary>
         /// This is a special client method which is invoked for current player character only
@@ -163,12 +164,14 @@
             WeaponFinalCache weaponCache,
             IWorldObject targetObject,
             double damagePreMultiplier,
+            double damagePostMultiplier,
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
             if (!base.SharedOnDamage(weaponCache,
                                      targetObject,
                                      damagePreMultiplier,
+                                     damagePostMultiplier,
                                      out obstacleBlockDamageCoef,
                                      out damageApplied))
             {
@@ -374,8 +377,10 @@
         {
             base.FillDefaultEffects(effects);
 
-            effects.AddValue(this, StatName.FoodMax,  this.StatDefaultFoodMax);
-            effects.AddValue(this, StatName.WaterMax, this.StatDefaultWaterMax);
+            effects.AddValue(this, StatName.FoodMax, this.StatDefaultFoodMax)
+                   .AddValue(this, StatName.WaterMax,                     this.StatDefaultWaterMax)
+                   .AddValue(this, StatName.StaminaMax,                   this.StatDefaultStaminaMax)
+                   .AddValue(this, StatName.StaminaRegenerationPerSecond, this.StatStaminaRegenerationPerSecond);
 
             effects.AddValue(this,
                              StatName.RunningStaminaConsumptionPerSecond,
@@ -434,16 +439,16 @@
 
             // the game is run as Editor
             // auto pwn in editor mode
-            GetProtoEntity<ConsoleAdminPwn>().Execute(player: character);
+            ConsoleCommandsSystem.SharedGetCommand<ConsoleAdminPwn>().Execute(player: character);
             // add all the skills
-            GetProtoEntity<ConsoleSkillsSetAll>().Execute(player: character);
+            ConsoleCommandsSystem.SharedGetCommand<ConsoleSkillsSetAll>().Execute(player: character);
             // add all the technologies
-            GetProtoEntity<ConsoleTechAddAll>().Execute(player: character);
+            ConsoleCommandsSystem.SharedGetCommand<ConsoleTechAddAll>().Execute(player: character);
 
             this.ServerRebuildFinalCacheIfNeeded(data.PrivateState, publicState);
 
             // add all the quests (and complete them)
-            GetProtoEntity<ConsoleQuestCompleteAll>().Execute(player: character);
+            ConsoleCommandsSystem.SharedGetCommand<ConsoleQuestCompleteAll>().Execute(player: character);
         }
 
         protected override void ServerPrepareCharacter(ServerInitializeData data)
@@ -461,6 +466,7 @@
 
             privateState.Technologies.ServerInit();
             privateState.Quests.ServerInit();
+            privateState.Achievements.ServerInit();
         }
 
         protected void ServerRebuildFinalCacheIfNeeded(

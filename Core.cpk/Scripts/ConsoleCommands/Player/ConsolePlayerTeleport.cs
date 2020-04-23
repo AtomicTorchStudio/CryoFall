@@ -5,10 +5,12 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
     using System;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -22,14 +24,14 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
         public override string Description =>
             "Teleports a player character to the specified tile position in the world or to another player depending on arguments used.";
 
-        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
+        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerModerator;
 
         public override string Name => "player.teleport";
 
         public static Task<string> ClientCallTeleportAsync(Vector2D worldPosition)
         {
-            return Api.GetProtoEntity<ConsolePlayerTeleport>()
-                      .CallServer(_ => _.ServerRemote_Teleport(worldPosition));
+            return ConsolePlayerTeleportSystem.Instance
+                                              .CallServer(_ => _.ServerRemote_Teleport(worldPosition));
         }
 
         public string Execute(ushort x, ushort y, [CurrentCharacterIfNull] ICharacter player = null)
@@ -135,22 +137,32 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
             ServerWorldService.SetPosition(objectToTeleport, toPosition);
         }
 
-        [RemoteAuthorizeServerOperator]
-        private string ServerRemote_Teleport(Vector2D worldPosition)
+        private class ConsolePlayerTeleportSystem : ProtoSystem<ConsolePlayerTeleportSystem>
         {
-            try
+            public override string Name => nameof(ConsolePlayerTeleportSystem);
+
+            public string ServerRemote_Teleport(Vector2D worldPosition)
             {
-                var character = ServerRemoteContext.Character;
-                ServerTeleport(character, worldPosition);
-                var message = CreateResultMessage(character);
-                Logger.Important(message);
-                return message;
-            }
-            catch (Exception ex)
-            {
-                var message = ex.Message;
-                Logger.Important(message);
-                return "Error: " + message;
+                try
+                {
+                    var character = ServerRemoteContext.Character;
+                    if (character.ProtoCharacter is PlayerCharacterSpectator
+                        || CreativeModeSystem.SharedIsInCreativeMode(character))
+                    {
+                        ServerTeleport(character, worldPosition);
+                        var message = CreateResultMessage(character);
+                        Logger.Important(message);
+                        return message;
+                    }
+
+                    return "Error: you're not in creative mode and not a spectator. You cannot use the teleport system.";
+                }
+                catch (Exception ex)
+                {
+                    var message = ex.Message;
+                    Logger.Important(message);
+                    return "Error: " + message;
+                }
             }
         }
     }

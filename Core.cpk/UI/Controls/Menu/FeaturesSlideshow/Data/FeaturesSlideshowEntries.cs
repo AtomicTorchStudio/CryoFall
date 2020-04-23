@@ -48,6 +48,10 @@
         public const string EntryVehicles_Description =
             "Build and upgrade a variety of futuristic vehicles to explore the world faster, or use them in combat.";
 
+        public const string EntryEvents_Title = "World events";
+        public const string EntryEvents_Description =
+            "Participate in the many events happening in the world of CryoFall regularly. Be it exploring the crash site of a meteorite or gathering a group of survivors to defeat a dangerous boss.";
+
         public const string EntryCreatures_Title = "Fantastic creatures";
         public const string EntryCreatures_Description =
             "Explore a diverse world with a multitude of different biomes and dozens of fantastic creatures.";
@@ -93,6 +97,9 @@
             new Entry(EntryVehicles_Title,
                       EntryVehicles_Description,
                       "Features/Vehicles.png"),
+            new Entry(EntryEvents_Title,
+                      EntryEvents_Description,
+                      "Features/Events.png"),
             new Entry(EntryCreatures_Title,
                       EntryCreatures_Description,
                       "Features/Creatures.png"),

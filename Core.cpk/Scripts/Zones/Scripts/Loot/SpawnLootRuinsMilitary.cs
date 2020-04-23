@@ -5,7 +5,7 @@
 
     public class SpawnLootRuinsMilitary : ProtoZoneSpawnScript
     {
-        protected override double MaxSpawnAttempsMultiplier => 10;
+        protected override double MaxSpawnAttemptsMultiplier => 10;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
@@ -20,11 +20,6 @@
                                         .Add<ObjectLootCrateSupply>(weight: 1)
                                         .Add<ObjectLootCrateMedical>(weight: 1)
                                         .SetCustomPaddingWithSelf(9);
-
-            spawnList.CreatePreset(interval: 10, padding: 1, spawnAtLeastOnePerSector: true)
-                     .Add<ObjectLootPileGarbageLarge>()
-                     .SetCustomPaddingWith(presetCrates, 6)
-                     .SetCustomPaddingWithSelf(9);
         }
     }
 }

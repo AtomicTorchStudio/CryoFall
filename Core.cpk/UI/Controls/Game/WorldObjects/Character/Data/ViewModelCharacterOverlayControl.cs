@@ -26,8 +26,7 @@
 
             this.ViewModelCharacterHealthBarControl = new ViewModelCharacterHealthBarControl
             {
-                CharacterCurrentStats = this.publicState
-                                            .CurrentStats
+                CharacterCurrentStats = this.publicState.CurrentStats
             };
 
             this.ViewModelCharacterPublicStatusEffects =
@@ -53,23 +52,6 @@
         }
 
         private void Update()
-        {
-            if (this.publicState.IsDead)
-            {
-                this.VisualStateName = "Collapsed";
-                return;
-            }
-
-            if (!ClientTimeOfDayVisibilityHelper.ClientIsObservable(this.character))
-            {
-                this.VisualStateName = "Collapsed";
-                return;
-            }
-
-            this.VisualStateName = "Visible";
-        }
-
-        private void UpdateVisibility()
         {
             if (this.publicState.IsDead)
             {

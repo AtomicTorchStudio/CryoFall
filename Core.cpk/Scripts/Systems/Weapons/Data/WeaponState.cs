@@ -4,10 +4,13 @@
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class WeaponState
     {
         public double CooldownSecondsRemains;
+
+        public Vector2D? CustomTargetPosition;
 
         public double DamageApplyDelaySecondsRemains;
 
@@ -15,14 +18,14 @@
 
         public ushort FirePatternCurrentShotNumber;
 
+        public bool IsEventWeaponStartSent;
+
+        public bool IsFiring;
+
         /// <summary>
         /// Is idle auto-reloading allowed? (idle means when client is not firing)
         /// </summary>
         public bool IsIdleAutoReloadingAllowed;
-
-        public bool IsEventWeaponStartSent;
-
-        public bool IsFiring;
 
         public IItem ItemWeapon;
 
@@ -118,6 +121,7 @@
 
             this.ShotsDone = 0;
             this.ServerLastClientReportedShotsDoneCount = 0;
+            this.CustomTargetPosition = null;
 
             // cancel firing input
             this.SharedSetInputIsFiring(false);

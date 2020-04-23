@@ -123,6 +123,12 @@ Résolution de rendu
 Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
 Vidéo
 
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@ScreenMode.Force16To9:
+16:9 (Vue max en JcJ)
+
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@Name:
+Ratio d'affichage
+
 Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
 Plein écran
 

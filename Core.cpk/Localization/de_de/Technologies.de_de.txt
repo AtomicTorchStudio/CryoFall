@@ -13,6 +13,9 @@ Diese Technologie wurde bereits freigeschaltet
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
 Erfordert {0} Lernpunkte (nur {1} verfügbar).
 
+Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
+Nicht verfügbar für {0} nach dem Server-Wipe (bitte {1} warten).
+
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 Erfordert freigeschaltete Technologie: {0}
 
@@ -99,6 +102,12 @@ Fortgeschrittene Kochrezepte für eine Vielzahl von neuen Nahrungsmitteln.
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
 Kochen 2
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
+Warum hübschst du deine Umgebung nicht ein wenig auf?
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
+Dekorationen
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
 Verbesserte Schutztechnologien für bessere Rüstungsentwürfe.
@@ -192,6 +201,12 @@ Noch komplexere Kochrezepte für absolute Feinschmecker.
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
 Kochen 3
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
+Individualisiere deine Umgebung noch ein Stück mehr!
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
+Dekorationen 2
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 Erweiterte Schutztechnologien.

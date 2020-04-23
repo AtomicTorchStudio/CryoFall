@@ -10,6 +10,9 @@
 
         public const string Gather = "Gather";
 
+        // hacking a terminal, etc
+        public const string Hack = "Hack";
+
         public const string Interact = "Interact";
 
         public const string Loot = "Loot";

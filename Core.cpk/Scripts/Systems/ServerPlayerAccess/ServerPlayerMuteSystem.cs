@@ -43,6 +43,8 @@
                 throw new Exception("Cannot mute NPC character");
             }
 
+            Api.Assert(minutes > 0, "Minutes should be > 0");
+
             mutedTillDictionary[character.Name] = Api.Server.Game.FrameTime + 60 * minutes;
             Api.Logger.Important($"Player muted: {character}. Mute duration: {minutes} minutes");
         }

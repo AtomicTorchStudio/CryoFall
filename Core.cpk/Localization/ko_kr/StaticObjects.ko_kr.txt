@@ -61,6 +61,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
 채집
 
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Hack:
+해킹
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 상호 작용
 
@@ -142,11 +145,8 @@ Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 풀
 
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-큰 쓰레기 더미
-
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
-작은 쓰레기 더미
+Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
+쓰레기 더미
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 돌
@@ -216,6 +216,15 @@ Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 틈
+
+Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
+운석
+
+Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
+프라그뮴 여왕의 유해
+
+Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
+우주 쓰레기
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 나무통보다 용량이 더 크고 견고합니다. 다량의 액체를 저장하는 데 유용합니다.
@@ -345,25 +354,25 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 작업대
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-단순한 나무 상자보다 용량이 더 크며, 파괴하기가 더 어렵습니다.
+단순한 나무 상자보다 더 많은 것을 담을 수 있습니다.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
 철제 상자
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
-아이템을 보관하는 데 있어서 가장 좋은 방법 중 하나. 대부분의 온갖 상황에서도 아이템을 안전하게 보관하여, 상자 중 용량이 가장 큽니다.
+강철 상자는 모든 단순한 상자 중에 가장 커서 모든 아이템을 빽빽이 넣어 보관할 수 있습니다.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
 강철 상자
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
-대량의 아이템을 편리하고 안전하게 보관할 수 있는 추가적인 대형 상자.
+대량의 아이템을 편리하게 보관할 수 있는 추가적인 대형 상자.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
 큰 상자
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-자신이 가진 것들은 보관하는 가장 단순한 상자입니다. 쉽게 파괴됩니다.
+자신의 소유물을 보관할 수 있는 가장 단순한 상자입니다.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
 나무 상자
@@ -380,16 +389,58 @@ Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 장갑 금고
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
+향을 넣어 두는 동양식 제단.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
+향단
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 이 현수막이 무엇을 상징하든, 멋집니다!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
-빨간색 현수막
+깃발
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
-이 화려한 바닥 깔개를 깔면, 어떤 공간이라도 사람들에게 더 따뜻하고 좋은 느낌을 주게 됩니다.
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
+위생적 욕구를 만족시켜주는 고전적인 욕조.
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
+욕조
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
+책꽂이 없는 방을 완벽한 방이라 할 수 있을까요?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
+책꽂이
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
+옛날 이야기에 등장하는 호랑이를 고전적 모습으로 그린 병풍.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Name:
+병풍
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Description:
+아름다운 황금 더미. 금고에 넣어 안전하게 보관하세요!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
+황금 더미
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
+아름답고 훌륭하게 만들어진 칠흑빛 피아노.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
+피아노
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
+진정한 사냥꾼임을 증명하여 이 화려한 깔개로 방을 장식하세요.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Name:
+곰 가죽 깔개
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Description:
+이 화려한 바닥 깔개를 깔면, 어떤 공간이라도 더 따뜻하고 좋은 느낌을 줍니다.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Name:
 바닥 깔개
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
@@ -397,6 +448,12 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 해골 스파이크
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Description:
+부드럽고 편안하며, 거실에 안성맞춤입니다.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Name:
+소파
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 자신의 부를 보여주는 진정한 증거. 부자들 중에서도 가장 부유한 사람들만이 이것을 만들어 세울 수 있습니다.
@@ -409,6 +466,30 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Desc
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 프라그뮴 조각상
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
+옛 유럽풍의 단순한 탁자.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Name:
+탁자
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Description:
+왕좌는 접객실에 가장 어울립니다. 누가 윗사람인지 아랫놈들에게 알려주도록 합시다.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Name:
+왕좌
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
+사생활을 최대한 보장하려면 통풍이 잘 되는 분리된 방에 두는 것이 좋습니다.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
+변기
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
+값비싼 장식용 꽃병.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
+꽃병
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 바닥이 이미 장식되어 있습니다.
@@ -639,7 +720,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
 전기로
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
-온천에서 리튬 소금을 추출할 수 있습니다.
+지하 저수지 또는 온천에서 바로 리튬 소금을 추출하여 효율성을 향상시킵니다.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 리튬 소금 추출기
@@ -660,13 +741,13 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 비료함
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-유전 위에 설치되어 직접 원유를 추출합니다.
+지하 저수지 또는 유전에서 바로 원유를 추출하여 효율성을 향상시킵니다.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 오일펌프
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPumpAdvanced@Name:
-발전된 석유 펌프
+발전된 오일펌프
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
 원유를 연료나 광물유와 같이 더욱 유용하게 정제합니다.
@@ -704,11 +785,17 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 우물
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-추출기에는 온천이 필요합니다.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_CannotBuildTooCloseToDeposit:
+자원 매장지와 너무 가깝습니다. 그 바로 위에 지을 수 있습니다.
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-펌프에는 유전이 필요합니다.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_TooCloseToDepletedDeposit:
+고갈된 매장지와 너무 가깝습니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorTooCloseToAnotherExtractor:
+다른 추출기와 너무 가깝습니다.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooCloseToAnotherOilPump:
+다른 오일펌프와 너무 가깝습니다.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 이러한 지형에는 빗물막이에 접근할 수 없습니다.
@@ -966,6 +1053,9 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 농경지가 필요합니다.
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
+파란색 약초
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
 초록색 약초

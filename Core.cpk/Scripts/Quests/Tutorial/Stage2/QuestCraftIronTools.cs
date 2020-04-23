@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
 
     public class QuestCraftIronTools : ProtoQuest
@@ -15,12 +16,12 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveTechNode.Require<TechNodeIronTools>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeAxeIron>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipePickaxeIron>());
+            tasks
+                .Add(TaskHaveTechNode.Require<TechNodeIronTools>())
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeAxeIron>())
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipePickaxeIron>());
 
             prerequisites
                 .Add<QuestBuildFurnaceAndSmeltCopper>();

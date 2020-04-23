@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.SlotOverlays;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;

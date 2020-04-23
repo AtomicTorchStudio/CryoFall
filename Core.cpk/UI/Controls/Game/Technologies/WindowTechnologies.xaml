@@ -15,11 +15,6 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
     <core:BaseUserControlWithWindow.Resources>
         <ResourceDictionary>
-
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/UI/Styles/SpecialItemsPanel.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
             <Style x:Key="TechnologiesSectionTitleLabelStyle" TargetType="Label">
                 <Setter Property="Margin" Value="0,0,0,6" />
                 <Setter Property="Template">
@@ -275,10 +270,8 @@
                     </ResourceDictionary>
                 </Style.Resources>
             </Style>
-
         </ResourceDictionary>
     </core:BaseUserControlWithWindow.Resources>
-
 
     <core:GameWindow x:Name="GameWindow"
                      Width="{StaticResource GameMenuStandardWindowWidth}"

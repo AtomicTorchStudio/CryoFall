@@ -15,6 +15,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -29,12 +30,14 @@
         // Remove dead mob's corpse (and the mob game object itself) after this timeout.
         public const double CorpseTimeoutSeconds = 5 * 60;
 
+        public override ITextureResource DefaultTexture => TextureResource.NoTexture;
+
         public double DurationGatheringSeconds => 4; // how long it takes to loot the body
 
         public override string InteractionTooltipText => InteractionTooltipTexts.Loot;
 
-        // we don't consider this as a floor object as we want decals appear under it
-        public override StaticObjectKind Kind => StaticObjectKind.NaturalObject;
+        // allow terrain decals under it
+        public override StaticObjectKind Kind => StaticObjectKind.SpecialAllowDecals;
 
         public override string Name => "Corpse";
 
@@ -138,6 +141,11 @@
             obstacleBlockDamageCoef = 0;
             damageApplied = 0; // no damage
             return false;      // no hit
+        }
+
+        protected override ITextureResource ClientCreateIcon()
+        {
+            return this.DefaultTexture;
         }
 
         protected override void ClientInitialize(ClientInitializeData data)

@@ -10,12 +10,13 @@ sampler2D TextureScreenBufferSampler : register(s0) = sampler_state
 };
 
 float Intensity;
+float AdditionalLight;
 float Time;
 
 float GetVignettingCoef(float relativeScreenPosition)
 {
 	float result = 1 - abs(relativeScreenPosition - 0.5) * 2;
-	return result;//pow(result, 0.9);
+	return result;
 }
 
 // Note: this shader effect is partially based on https://www.shadertoy.com/view/4sXSWs
@@ -46,6 +47,7 @@ float4 MainPS(VSOutput input) : COLOR0
 
 	// make color grayscale but use only the green component
 	modifiedColor.g = dot(modifiedColor.rgb, float3(0.3, 0.59, 0.11));
+    modifiedColor.g += AdditionalLight;
 	modifiedColor.rb = 0;
 		
 	// apply vignetting

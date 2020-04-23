@@ -22,6 +22,9 @@ Gąsienica
 Scripts/Characters/Mobs/MobFireLizard@Name:
 Jaszczurka ognista
 
+Scripts/Characters/Mobs/MobFloater@Name:
+Mózgacz
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Miodożer
 
@@ -33,6 +36,9 @@ Scripts/Characters/Mobs/MobPangolin@Name:
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Żuk pragmiumowy
+
+Scripts/Characters/Mobs/MobPragmiumQueen@Name:
+Królowa pragmium
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Ślimak

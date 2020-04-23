@@ -1,4 +1,6 @@
-﻿namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
+﻿// ReSharper disable CanExtractXamlLocalizableStringCSharp
+
+namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 {
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;

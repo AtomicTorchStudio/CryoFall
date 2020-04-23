@@ -10,6 +10,19 @@ Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUs
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 Невозможно использовать: {0}
 
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
+`Похоже, вы были неактивны некоторое время.
+[br]Жажда и голод приостановлены.`
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
+Можно пользоваться чатом, крафтить и применять расходуемые предметы.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part3:
+Любые другие действия отменят режим неактивности.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Title:
+Режим неактивности
+
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
 `Вы возродитесь в своей постели через {0} сек.
 [br]Или вы можете возродиться в мире прямо сейчас.`
@@ -89,6 +102,9 @@ Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 Локальный
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomTrade@Title:
+Торговля
 
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
 Невозможно здесь построить
@@ -251,6 +267,18 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 Приглашенный игрок не в сети. В группу могут быть приглашены только игроки, которые сейчас в игре.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_AreYouSure:
+Пожаловаться на это сообщение?
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_CommunityServerDisclaimer:
+[b]Внимание:[/b] вы играете на сервере сообщества, поэтому модерирование чата является обязанностью хозяина сервера. Обычно чаты не модерируются.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_OfficialServersDisclaimer:
+[b]Внимание:[/b] официальные серверы НЕ модерируются.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_Title:
+Пожаловаться на сообщение
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
 Невозможно взаимодействовать (слишком далеко или постройка недоступна).
@@ -460,6 +488,9 @@ Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 У вас нет права доступа!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
+Размер списка доступа превышен.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
 Вы не можете изменить список владельцев.

@@ -5,7 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
@@ -185,10 +185,10 @@
                 throw new ArgumentNullException(nameof(protoStructure));
             }
 
-            var protoConstructionSite = Api.GetProtoEntity<ObjectConstructionSite>();
+            var protoConstructionSite = protoStructure.ConstructionSitePrototype;
             var constructionSite = Server.World.CreateStaticWorldObject(protoConstructionSite, tilePosition);
 
-            var serverState = ObjectConstructionSite.GetPublicState(constructionSite);
+            var serverState = ProtoObjectConstructionSite.GetPublicState(constructionSite);
             serverState.Setup(protoStructure);
 
             constructionSite.ProtoStaticWorldObject.SharedCreatePhysics(constructionSite);

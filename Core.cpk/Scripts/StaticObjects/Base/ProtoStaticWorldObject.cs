@@ -70,9 +70,14 @@
                 Api.ValidateIsClient();
 
                 var createdIcon = this.ClientCreateIcon();
-                //if (newIcon is ITextureAtlasResource newIconAsAtlas)
-                //{
-                // texture atlas! Convert it to the real texture (UI doesn't support atlases)
+                if (TextureResource.NoTexture.Equals(createdIcon))
+                {
+                    this.icon = createdIcon;
+                    return this.icon;
+                }
+
+                // use icon helper which will ensure the icon has a reasonable size
+                // (no icon will be generated if the size is within the limit)
                 var proceduralIcon = new ProceduralTexture(
                     this.ShortId + " icon",
                     isTransparent: true,
@@ -81,7 +86,6 @@
                                                  createdIcon,
                                                  request),
                     dependsOn: new[] { createdIcon });
-                //}
 
                 this.icon = proceduralIcon;
                 return this.icon;
@@ -166,6 +170,7 @@
             WeaponFinalCache weaponCache,
             IWorldObject targetObject,
             double damagePreMultiplier,
+            double damagePostMultiplier,
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
@@ -461,7 +466,7 @@
             this.ServerSendObjectDestroyedEvent(targetObject);
             Server.World.DestroyObject(targetObject);
 
-            if (weaponCache == null)
+            if (weaponCache is null)
             {
                 return;
             }

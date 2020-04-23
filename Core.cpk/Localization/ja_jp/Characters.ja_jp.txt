@@ -22,6 +22,9 @@ Scripts/Characters/Mobs/MobCrawler@Name:
 Scripts/Characters/Mobs/MobFireLizard@Name:
 ファイアリザード
 
+Scripts/Characters/Mobs/MobFloater@Name:
+フローター
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 ミツアナグマ
 
@@ -33,6 +36,9 @@ Scripts/Characters/Mobs/MobPangolin@Name:
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 プラグミウムビートル
+
+Scripts/Characters/Mobs/MobPragmiumQueen@Name:
+プラグミウムクイーン
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 カタツムリ

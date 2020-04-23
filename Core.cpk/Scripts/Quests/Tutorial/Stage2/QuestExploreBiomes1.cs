@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Tiles;
 
     public class QuestExploreBiomes1 : ProtoQuest
@@ -15,14 +16,14 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementVisitTile.Require<TileForestTemperate>())
-                .Add(RequirementVisitTile.Require<TileForestTropical>())
-                .Add(RequirementVisitTile.Require<TileBeachTemperate>())
-                .Add(RequirementVisitTile.Require<TileLakeShore>())
-                .Add(RequirementVisitTile.Require<TileMeadows>());
+            tasks
+                .Add(TaskVisitTile.Require<TileForestTemperate>())
+                .Add(TaskVisitTile.Require<TileForestTropical>())
+                .Add(TaskVisitTile.Require<TileBeachTemperate>())
+                .Add(TaskVisitTile.Require<TileLakeShore>())
+                .Add(TaskVisitTile.Require<TileMeadows>());
 
             prerequisites
                 .Add<QuestClaySandGlassBottlesWaterCollector>();

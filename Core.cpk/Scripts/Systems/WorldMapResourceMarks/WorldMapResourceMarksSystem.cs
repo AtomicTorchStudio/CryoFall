@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using AtomicTorch.CBND.CoreMod.Bootstrappers;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.GameApi.Data;
@@ -12,11 +13,12 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
-    using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class WorldMapResourceMarksSystem : ProtoSystem<WorldMapResourceMarksSystem>
     {
+        private const int DepositSearchAreaCircleRadius = 130;
+
         private static int? clientServerResourceSpawnClaimingCooldownDuration;
 
         private static ILogicObject serverManagerInstance;
@@ -28,7 +30,9 @@
             IsResourceDepositCoordinatesHiddenUntilCapturePossible =
                 ServerRates.Get(
                     "IsResourceDepositCoordinatesHiddenUntilCapturePossible",
-                    defaultValue: 1,
+                    defaultValue: Api.IsEditor
+                                      ? 0
+                                      : 1,
                     @"(for PvP servers only) Set it to 1 to hide the resource deposit (such as oil or Li)
                        world coordinates until the capture is possible.
                        When coordinates are hidden, players will receive only a biome name
@@ -60,11 +64,30 @@
             if (IsResourceDepositCoordinatesHiddenUntilCapturePossible
                 && timeToClaimRemains > 0)
             {
-                searchAreaCircleRadius = 210;
-                searchAreaCirclePosition = ServerCalculateSearchAreaApproximateCircle(staticWorldObject,
-                                                                                      position,
-                                                                                      biome,
-                                                                                      searchAreaCircleRadius);
+                var stopwatch = Stopwatch.StartNew();
+                searchAreaCircleRadius = DepositSearchAreaCircleRadius;
+
+                try
+                {
+                    if (!ServerSearchAreaHelper.GenerateSearchArea(position,
+                                                                   biome,
+                                                                   searchAreaCircleRadius,
+                                                                   out searchAreaCirclePosition,
+                                                                   maxAttempts: 100))
+                    {
+                        Logger.Warning(
+                            "Unable to calculate an approximate search area for the resource deposit location, will use the center area: "
+                            + staticWorldObject);
+
+                        searchAreaCirclePosition = position;
+                    }
+                }
+                finally
+                {
+                    Logger.Important(
+                        $"Calculating a resource deposit search area took {stopwatch.ElapsedMilliseconds}ms (for {staticWorldObject} in {biome.ShortId} biome)");
+                }
+
                 // hide position
                 position = Vector2Ushort.Zero;
             }
@@ -177,7 +200,8 @@
             {
                 if (!clientServerResourceSpawnClaimingCooldownDuration.HasValue)
                 {
-                    Logger.Info("No data received yet for " + nameof(clientServerResourceSpawnClaimingCooldownDuration));
+                    Logger.Info("No data received yet for "
+                                + nameof(clientServerResourceSpawnClaimingCooldownDuration));
                     return 0;
                 }
 
@@ -227,99 +251,16 @@
             return false;
         }
 
-        /// <summary>
-        /// Calculates the search area position and radius.
-        /// </summary>
-        private static Vector2Ushort ServerCalculateSearchAreaApproximateCircle(
-            IStaticWorldObject staticWorldObject,
-            Vector2Ushort position,
-            IProtoTile biome,
-            ushort circleRadius)
+        protected override void PrepareSystem()
         {
-            var serverWorld = Server.World;
-            var biomeSessionIndex = biome.SessionIndex;
-
-            var circleCenter = Vector2Ushort.Zero;
-            var stopwatch = Stopwatch.StartNew();
-            try
+            if (IsClient)
             {
-                if (TryToCreateSearchArea(desiredBiomeMatchRatio: 0.75)
-                    || TryToCreateSearchArea(desiredBiomeMatchRatio: 0.5)
-                    || TryToCreateSearchArea(desiredBiomeMatchRatio: 0.25)
-                    || TryToCreateSearchArea(desiredBiomeMatchRatio: 0.1))
-                {
-                    return circleCenter;
-                }
-
-                Logger.Warning(
-                    "Unable to calculate an approximate search area for the resource deposit location, will return a random area: "
-                    + staticWorldObject);
-                return circleCenter;
-            }
-            finally
-            {
-                Logger.Important(
-                    $"Calculating a resource deposit search area took {stopwatch.ElapsedMilliseconds}ms (for {staticWorldObject} in {biome.ShortId} biome)");
+                return;
             }
 
-            bool TryToCreateSearchArea(double desiredBiomeMatchRatio)
-            {
-                for (var attempt = 0; attempt < 100; attempt++)
-                {
-                    // randomize circle offset to be somewhere within 5-100% from the actual center
-                    var offset = circleRadius * (0.05 + 0.95 * RandomHelper.NextDouble());
-
-                    var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
-                    var resultD = new Vector2D(position.X + offset * Math.Cos(angle),
-                                               position.Y + offset * Math.Sin(angle));
-
-                    circleCenter = new Vector2Ushort((ushort)MathHelper.Clamp(resultD.X, 0, ushort.MaxValue),
-                                                     (ushort)MathHelper.Clamp(resultD.Y, 0, ushort.MaxValue));
-
-                    if (IsValidCircle())
-                    {
-                        return true;
-                    }
-
-                    bool IsValidCircle()
-                    {
-                        uint totalChecks = 0,
-                             biomeMathes = 0,
-                             waterOrOutOfBounds = 0;
-                        for (var x = -circleRadius; x < circleRadius; x += 10)
-                        for (var y = -circleRadius; y < circleRadius; y += 10)
-                        {
-                            totalChecks++;
-                            var tile = serverWorld.GetTile(circleCenter.X + x,
-                                                           circleCenter.Y + y,
-                                                           logOutOfBounds: false);
-                            if (tile.IsOutOfBounds)
-                            {
-                                waterOrOutOfBounds++;
-                                biomeMathes++; // yes, consider it a biome match
-                                continue;
-                            }
-
-                            if (tile.ProtoTileSessionIndex == biomeSessionIndex)
-                            {
-                                biomeMathes++;
-                            }
-                            else if (tile.ProtoTile.Kind == TileKind.Water)
-                            {
-                                waterOrOutOfBounds++;
-                                biomeMathes++; // yes, consider it a biome match
-                            }
-                        }
-
-                        var biomeMatchRatio = biomeMathes / (double)totalChecks;
-                        var waterOrOutOfBoundsRatio = waterOrOutOfBounds / (double)totalChecks;
-                        return biomeMatchRatio >= desiredBiomeMatchRatio
-                               && waterOrOutOfBoundsRatio <= 0.3;
-                    }
-                }
-
-                return false;
-            }
+            Logger.Important("World marks system initialized. Deposit marks are "
+                             + (IsResourceDepositCoordinatesHiddenUntilCapturePossible ? "hidden" : "displayed")
+                             + " until it's possible to capture them.");
         }
 
         private ILogicObject ServerRemote_AcquireManagerInstance()
@@ -336,7 +277,7 @@
         }
 
         [PrepareOrder(afterType: typeof(BootstrapperServerCore))]
-        public class BootstrapperWorldMapResourcesSystem : BaseBootstrapper
+        public class Bootstrapper : BaseBootstrapper
         {
             public override void ClientInitialize()
             {
@@ -346,7 +287,7 @@
 
                 async void ClientTryRequestWorldResourcesAsync()
                 {
-                    if (Api.Client.Characters.CurrentPlayerCharacter == null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
                     {
                         return;
                     }
@@ -356,7 +297,7 @@
                         delaySeconds: 3,
                         async () =>
                         {
-                            if (Api.Client.Characters.CurrentPlayerCharacter == null)
+                            if (Api.Client.Characters.CurrentPlayerCharacter is null)
                             {
                                 return;
                             }
@@ -407,22 +348,13 @@
                             }
                         });
 
-                    // TODO: A25 remove the try-catch block here
-                    try
-                    {
-                        clientServerResourceSpawnClaimingCooldownDuration = null;
-                        var taskGetCooldownDuration = Instance.CallServer(
-                            _ => _.ServerRemote_AcquireServerResourceSpawnClaimingCooldownDuration());
-                        await taskGetCooldownDuration;
-                        clientServerResourceSpawnClaimingCooldownDuration = taskGetCooldownDuration.Result;
-                        Logger.Important("Received deposit claiming cooldown duration: " + clientServerResourceSpawnClaimingCooldownDuration);
-                    }
-                    catch
-                    {
-                        clientServerResourceSpawnClaimingCooldownDuration = 30 * 60;
-                        Logger.Warning("Not received the deposit claiming cooldown duration, using the legacy value: "
-                                   + clientServerResourceSpawnClaimingCooldownDuration);
-                    }
+                    clientServerResourceSpawnClaimingCooldownDuration = null;
+                    var taskGetCooldownDuration = Instance.CallServer(
+                        _ => _.ServerRemote_AcquireServerResourceSpawnClaimingCooldownDuration());
+                    await taskGetCooldownDuration;
+                    clientServerResourceSpawnClaimingCooldownDuration = taskGetCooldownDuration.Result;
+                    Logger.Important("Received deposit claiming cooldown duration: "
+                                     + clientServerResourceSpawnClaimingCooldownDuration);
 
                     Api.SafeInvoke(ClientDepositClaimCooldownDurationReceived);
                 }
@@ -473,16 +405,6 @@
                 Server.Database.Remove(key, key);
                 Server.World.DestroyObject(serverManagerInstance);
                 ServerLoadSystem();
-            }
-        }
-
-        private class Bootstrapper : BaseBootstrapper
-        {
-            public override void ServerInitialize(IServerConfiguration serverConfiguration)
-            {
-                Logger.Important("World marks system initialized. Deposit marks are "
-                                 + (IsResourceDepositCoordinatesHiddenUntilCapturePossible ? "hidden" : "displayed")
-                                 + " until it's possible to capture them.");
             }
         }
     }

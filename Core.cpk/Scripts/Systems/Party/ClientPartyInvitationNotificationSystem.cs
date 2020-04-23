@@ -120,6 +120,8 @@
                     autoHide: false,
                     icon: IconPartyInvitation);
 
+                control.CallbackOnRightClickHide = () => PartySystem.ClientInvitationDecline(name);
+
                 NotificationsFromInviteeDictionary.Add(
                     name,
                     new WeakReference<HUDNotificationControl>(control));

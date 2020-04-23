@@ -3,8 +3,10 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
@@ -19,6 +21,7 @@
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
 
     public abstract class ProtoCharacterSkeleton : ProtoEntity, IProtoCharacterSkeleton
     {
@@ -54,7 +57,7 @@
 
         public abstract SkeletonResource SkeletonResourceFront { get; }
 
-        public virtual string SlotNameItemInHand => "Weapon";
+        public abstract string SlotNameItemInHand { get; }
 
         public ReadOnlySoundPreset<CharacterSound> SoundPresetCharacter { get; private set; }
 
@@ -101,6 +104,165 @@
             return rendererShadow;
         }
 
+        public virtual void ClientGetAimingOrientation(
+            [CanBeNull] ICharacter character,
+            double angleRad,
+            ViewOrientation lastViewOrientation,
+            out ViewOrientation viewOrientation,
+            out float aimCoef)
+        {
+            var angleDeg = angleRad * MathConstants.RadToDeg;
+            viewOrientation = new ViewOrientation(
+                isUp: this.ClientIsOrientedUp(angleDeg),
+                isLeft: ClientCharacterAnimationHelper.IsLeftHalfOfCircle(angleDeg));
+
+            if (viewOrientation.IsLeft == lastViewOrientation.IsLeft
+                && viewOrientation.IsUp != lastViewOrientation.IsUp)
+            {
+                // switched up/down
+                if (lastViewOrientation.IsUp)
+                {
+                    // COMMENTED OUT - we don't need tolerance for keeping the up orientation
+                    //// if view orientation was up, but now down
+                    //if (lastViewOrientation.IsLeft)
+                    //{
+                    //	// if view orientation was up-left, but now down-left
+                    //	if (angleDeg < 90 + toleranceUpVerticalFlipDeg)
+                    //	{
+                    //		// keep up-left orientation
+                    //		viewOrientation.IsUp = true;
+                    //	}
+                    //}
+                    //else // if view orientation was up-right, but now down-right
+                    //{
+                    //	if (angleDeg > 90 - toleranceUpVerticalFlipDeg)
+                    //	{
+                    //		// keep up-right orientation
+                    //		viewOrientation.IsUp = true;
+                    //	}
+                    //}
+                }
+                else
+                {
+                    // if view orientation was down, but now up
+                    if (lastViewOrientation.IsLeft)
+                    {
+                        // if view orientation was down-left, but now up-left
+                        if (angleDeg > 180 - this.OrientationThresholdDownToUpFlipDeg)
+                        {
+                            // keep down-left orientation
+                            viewOrientation.IsUp = false;
+                        }
+                    }
+                    else // if view orientation was down-right, but now up-right
+                    {
+                        if (angleDeg < this.OrientationThresholdDownToUpFlipDeg)
+                        {
+                            // keep down-right orientation
+                            viewOrientation.IsUp = false;
+                        }
+                    }
+                }
+            }
+            else if (viewOrientation.IsLeft != lastViewOrientation.IsLeft
+                     && viewOrientation.IsUp == lastViewOrientation.IsUp)
+            {
+                // switched left/right
+                if (lastViewOrientation.IsUp)
+                {
+                    if (lastViewOrientation.IsLeft)
+                    {
+                        // if view orientation was left-up, but now right-up
+                        if (angleDeg > 90 - this.OrientationThresholdUpHorizontalFlipDeg)
+                        {
+                            // keep up-left orientation
+                            viewOrientation.IsLeft = true;
+                        }
+                    }
+                    else
+                    {
+                        // if view orientation was right-up, but now left-up
+                        if (angleDeg < 90 + this.OrientationThresholdUpHorizontalFlipDeg)
+                        {
+                            // keep up-right orientation
+                            viewOrientation.IsLeft = false;
+                        }
+                    }
+                }
+                else
+                {
+                    if (lastViewOrientation.IsLeft)
+                    {
+                        // if view orientation was left-down, but now right-down
+                        if (angleDeg < 270 + this.OrientationThresholdDownHorizontalFlipDeg
+                            && angleDeg > 270)
+                        {
+                            // keep down-left orientation
+                            viewOrientation.IsLeft = true;
+                        }
+                    }
+                    else
+                    {
+                        // if view orientation was right-down, but now left-down
+                        if (angleDeg > 270 - this.OrientationThresholdDownHorizontalFlipDeg
+                            && angleDeg < 270)
+                        {
+                            // keep down-right orientation
+                            viewOrientation.IsLeft = false;
+                        }
+                    }
+                }
+            }
+
+            // let's calculate aim coef
+            var aimAngle = angleDeg;
+            if (viewOrientation.IsUp)
+            {
+                // offset angle
+                aimAngle += 45;
+                // calculated angle between 0 and 270 degrees
+                aimAngle %= 360;
+                // calculate coef (from 0 to 2)
+                aimCoef = (float)(aimAngle / 180);
+
+                if (viewOrientation.IsLeft)
+                {
+                    // if left orientation, aimCoef values will be from 1 to 2
+                    // remap them to values from 1 to 0 respectively
+                    aimCoef = 1.5f - aimCoef;
+                }
+            }
+            else // if oriented down
+            {
+                if (aimAngle < 90)
+                {
+                    // it means we're in first quarter, extend aimAngle
+                    // on 360 degrees to keep coordinates continuum (from 180*3/4 to 180*(2+(1/4)))
+                    aimAngle += 360;
+                }
+
+                // offset angle
+                aimAngle -= 45;
+                // calculated angle between 0 and 270 degrees
+                aimAngle = 360 - aimAngle;
+                // calculate coef (from 0 to 2)
+                aimCoef = (float)(aimAngle / 180);
+
+                if (viewOrientation.IsLeft)
+                {
+                    // if left orientation, aimCoef values will be from 1 to 2
+                    // remap them to values from 1 to 0 respectively
+                    aimCoef = 1.5f - aimCoef;
+                }
+
+                // invert coefficient
+                aimCoef = 1f - aimCoef;
+            }
+
+            //Api.Logger.WriteDev(
+            //    $"AngleDeg: {angleDeg:F2}. Aiming coef: {aimCoef:F2}. Current view data: isUp={viewOrientation.IsUp} isLeft={viewOrientation.IsLeft}");
+        }
+
         public virtual void ClientResetItemInHand(IComponentSkeleton skeletonRenderer)
         {
             skeletonRenderer.SetAttachment(this.SlotNameItemInHand, attachmentName: null);
@@ -137,6 +299,58 @@
                 radius * 2,
                 center: (-radius / 2, radius),
                 group: CollisionGroups.HitboxRanged);
+        }
+
+        public void GetCurrentAnimationSetting(
+            ICharacter character,
+            CharacterMoveModes moveModes,
+            double angle,
+            ViewOrientation lastViewOrientation,
+            out string starterAnimationName,
+            out string currentAnimationName,
+            out DrawMode currentDrawMode,
+            out float aimCoef,
+            out ViewOrientation viewOrientation,
+            out bool isIdle)
+        {
+            this.ClientGetAimingOrientation(character,
+                                            angle,
+                                            lastViewOrientation,
+                                            out viewOrientation,
+                                            out aimCoef);
+
+            currentDrawMode = viewOrientation.IsLeft ? DrawMode.Default : DrawMode.FlipHorizontally;
+
+            isIdle = moveModes == CharacterMoveModes.None;
+            if (isIdle)
+            {
+                starterAnimationName = null;
+                currentAnimationName = "Idle";
+                return;
+            }
+
+            if ((moveModes & (CharacterMoveModes.Left | CharacterMoveModes.Right))
+                != CharacterMoveModes.None)
+            {
+                if (viewOrientation.IsLeft && (moveModes & CharacterMoveModes.Left) != 0
+                    || !viewOrientation.IsLeft && (moveModes & CharacterMoveModes.Right) != 0)
+                {
+                    starterAnimationName = "RunSideStart";
+                    currentAnimationName = "RunSide";
+                }
+                else
+                {
+                    starterAnimationName = "RunSideBackwardStart";
+                    currentAnimationName = "RunSideBackward";
+                }
+            }
+            else
+            {
+                // going up or down
+                var isMoveUp = (moveModes & CharacterMoveModes.Up) != 0;
+                starterAnimationName = isMoveUp ? "RunUpStart" : "RunDownStart";
+                currentAnimationName = isMoveUp ? "RunUp" : "RunDown";
+            }
         }
 
         public
@@ -189,6 +403,14 @@
             var (soundPresetCharacter, soundPresetMovement) = this.GetSoundPresets(character);
             soundPresetCharacter.PlaySound(soundKey, character);
             soundPresetMovement.PlaySound(soundKey, character);
+        }
+
+        protected bool ClientIsOrientedUp(double angleDeg)
+        {
+            // we consider upper half-circle as starting from "extra angle" to 180-"extra angle" degrees, not 0 to 180
+            var extraAngle = this.OrientationDownExtraAngle;
+            return angleDeg > extraAngle
+                   && angleDeg < 180.0 - extraAngle;
         }
 
         protected sealed override void PrepareProto()
@@ -306,7 +528,7 @@
                 pitch: (float)pitch);
         }
 
-        private ReadOnlySoundPreset<CharacterSound> PrepareSoundPresetCharacter()
+        protected virtual ReadOnlySoundPreset<CharacterSound> PrepareSoundPresetCharacter()
         {
             if (!Api.Shared.IsFolderExists(ContentPaths.Sounds + this.SoundsFolderPath))
             {

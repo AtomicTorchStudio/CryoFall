@@ -48,12 +48,13 @@
                 return 0;
             }
 
-            if (weaponCache.ProtoObjectExplosive != null
-                && targetObject.ProtoWorldObject is IProtoStaticWorldObject targetStaticWorldObjectProto)
+            if (weaponCache.ProtoExplosive != null
+                && targetObject is IStaticWorldObject targetStaticWorldObject)
             {
                 // special case - apply the explosive damage to static object
-                return ServerCalculateTotalDamageByExplosive(weaponCache.ProtoObjectExplosive,
-                                                             targetStaticWorldObjectProto,
+                return ServerCalculateTotalDamageByExplosive(weaponCache.Character,
+                                                             weaponCache.ProtoExplosive,
+                                                             targetStaticWorldObject,
                                                              damagePreMultiplier);
             }
 
@@ -94,7 +95,10 @@
                 totalDamage *= WeaponConstants.DamagePvpMultiplier;
             }
             else if (damagingCharacter != null
-                     && !damagingCharacter.IsNpc)
+                     && !damagingCharacter.IsNpc
+                     && targetObject.ProtoGameObject 
+                         is IProtoCharacterMob protoCharacterMob 
+                     && !protoCharacterMob.IsBoss)
             {
                 // apply PvE damage multiplier
                 totalDamage *= WeaponConstants.DamagePveMultiplier;
@@ -177,6 +181,7 @@
             ICharacter targetCharacter,
             WeaponFinalCache weaponCache,
             double damagePreMultiplier,
+            double damagePostMultiplier,
             out bool isHit,
             out double damageApplied)
         {
@@ -206,6 +211,9 @@
                 targetFinalStatsCache,
                 damagePreMultiplier,
                 clampDefenseTo1: true);
+
+            totalDamage *= damagePostMultiplier;
+
             if (totalDamage <= 0)
             {
                 damageApplied = 0;
@@ -225,9 +233,9 @@
             {
                 targetCurrentStats.ServerReduceHealth(totalDamage, damageSource: attackerCharacter);
             }
-            else if (weaponCache.ProtoObjectExplosive != null)
+            else if (weaponCache.ProtoExplosive != null)
             {
-                targetCurrentStats.ServerReduceHealth(totalDamage, damageSource: weaponCache.ProtoObjectExplosive);
+                targetCurrentStats.ServerReduceHealth(totalDamage, damageSource: weaponCache.ProtoExplosive);
             }
             else
             {
@@ -316,11 +324,12 @@
         }
 
         private static double ServerCalculateTotalDamageByExplosive(
-            IProtoObjectExplosive protoObjectExplosive,
-            IProtoStaticWorldObject targetStaticWorldObjectProto,
+            ICharacter byCharacter,
+            IProtoExplosive protoObjectExplosive,
+            IStaticWorldObject targetStaticWorldObject,
             double damagePreMultiplier)
         {
-            var damage = protoObjectExplosive.ServerCalculateTotalDamageByExplosive(targetStaticWorldObjectProto);
+            var damage = protoObjectExplosive.ServerCalculateTotalDamageByExplosive(byCharacter, targetStaticWorldObject);
             damage *= damagePreMultiplier;
             return damage;
         }
@@ -354,17 +363,11 @@
                 return false;
             }
 
-            if (weaponCache.ProtoObjectExplosive != null)
-            {
-                // PvP damage by explosives is not subject to friendly fire 
-                // damage allowed
-                return false;
-            }
-
             // we have a PvP case when damage is dealt by weapon
-            if (targetCharacter == damagingCharacter)
+            if (ReferenceEquals(targetCharacter, damagingCharacter)
+                && weaponCache.ProtoExplosive is null)
             {
-                // PvP damage disabled as player should not be able to harm self with a weapon
+                // PvP damage disabled as player should not be able to harm self with a non-explosive weapon
                 return true;
             }
 

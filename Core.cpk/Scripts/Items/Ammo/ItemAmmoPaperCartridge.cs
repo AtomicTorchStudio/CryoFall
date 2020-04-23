@@ -21,9 +21,8 @@
             armorPiercingCoef = 0;
             finalDamageMultiplier = 1.5;
             rangeMax = 8;
-
-            damageDistribution.Set(DamageType.Kinetic, 0.7);
-            damageDistribution.Set(DamageType.Impact,  0.3);
+            damageDistribution.Set(DamageType.Kinetic, 0.7)
+                              .Set(DamageType.Impact, 0.3);
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()

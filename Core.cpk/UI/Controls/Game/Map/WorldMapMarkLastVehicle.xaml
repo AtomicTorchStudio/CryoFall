@@ -12,7 +12,8 @@
     d:DesignHeight="300" d:DesignWidth="300">
     <Canvas>
         <Image Source="{Binding ImageSource, ElementName=UserControl}"
-               Style="{StaticResource WorldMapMarkImagePinStyle}">
+               Style="{StaticResource WorldMapMarkImagePinStyle}"
+               Canvas.Top="-15">
             <base:ToolTipServiceExtend.ToolTip>
                 <core:FormattedTextBlock
                     Content="{x:Static loc:CoreStrings.WorldMapMarkLandClaim_Tooltip_LastUsedVehicle}" />

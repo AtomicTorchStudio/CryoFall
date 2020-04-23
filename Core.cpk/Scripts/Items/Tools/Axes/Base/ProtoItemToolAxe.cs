@@ -7,6 +7,7 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
 
     /// <summary>
@@ -28,15 +29,20 @@
         protected ProtoItemToolAxe()
         {
             var name = this.GetType().Name;
-            this.Icon = new TextureResource("Items/Tools/Axes/" + name);
+            this.Icon = new TextureResource("Items/Tools/" + name);
             this.WeaponTextureResource = new TextureResource(
-                "Characters/Tools/Axes/" + name,
+                "Characters/Tools/" + name,
                 isProvidesMagentaPixelPosition: true);
         }
 
         public abstract double DamageToNonTree { get; }
 
         public abstract double DamageToTree { get; }
+
+        public virtual double ServerGetDamageToTree(IStaticWorldObject targetObject)
+        {
+            return this.DamageToTree;
+        }
 
         public override ITextureResource Icon { get; }
 

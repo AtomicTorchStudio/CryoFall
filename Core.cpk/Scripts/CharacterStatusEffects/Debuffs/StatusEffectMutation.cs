@@ -25,9 +25,9 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            effects.AddPercent(this, StatName.RadiationPoisoningEffectMultiplier, 1000);
-
-            effects.AddPercent(this, StatName.RadiationPoisoningIncreaseRateMultiplier, 10000);
+            // instant death from radiation is guaranteed
+            effects.AddPercent(this, StatName.RadiationPoisoningEffectMultiplier, 1000)
+                   .AddPercent(this, StatName.RadiationPoisoningIncreaseRateMultiplier, 10000);
         }
     }
 }

@@ -76,6 +76,36 @@ Des projectiles de 8mm modifiés, avec une cavité qui contient une petite quant
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 Balles à toxine 8mm
 
+Scripts/Items/Ammo/ItemAmmoArrowIron@Description:
+Une flèche améliorée à pointe de fer. Ne vaut pas une arme à feu, mais très facile à fabriquer.
+
+Scripts/Items/Ammo/ItemAmmoArrowIron@Name:
+Flèche à pointe de fer
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
+Une simple flèche à pointe de pierre. Difficile de faire plus simple.
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
+Flèche à pointe de pierre
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
+Une grenade à usage spécifique qui projette de l'hélium liquide mélangé à des particules de pragmium afin d'immobiliser une cible.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
+Grenade à hélium
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
+Une grenade hautement explosive qui endommage tout dans un rayon de faible taille autour du point d'impact.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Name:
+Grenade HE
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
+Une grenade incendiaire spéciale qui inflige de sévères dommages thermiques.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
+Grenade incendiaire
+
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Des munitions d'arme à feu particulièrement basiques. Efficaces uniquement contre les cibles les plus faibles, mais bon marché et faciles à produire.
 
@@ -1268,6 +1298,12 @@ Une petite cellule énergétique universelle utilisable dans divers appareils é
 Scripts/Items/Generic/ItemPowerCell@Name:
 Cellule énergétique
 
+Scripts/Items/Generic/ItemPragmiumHeart@Description:
+Un étrange organe cristallin provenant d'une forme de vie inconnue basée sur le pragmium.
+
+Scripts/Items/Generic/ItemPragmiumHeart@Name:
+Cœur de pragmium
+
 Scripts/Items/Generic/ItemPreservative@Description:
 Du conservateur alimentaire. Peut-être ajouté à toute nourriture emballée pour qu'elle se conserve bien plus longtemps.
 
@@ -1637,6 +1673,12 @@ Un hémostatique permet de stopper complètement un saignement, et réduit parti
 Scripts/Items/Medical/ItemHemostatic@Name:
 Hémostatique
 
+Scripts/Items/Medical/ItemHerbBlue@Description:
+Une herbe médicinale utilisée comme catalyseur dans certaines recettes complexes. Ne doit pas être consommée à l'état brut, car bourrée de toxines.
+
+Scripts/Items/Medical/ItemHerbBlue@Name:
+Herbe bleue
+
 Scripts/Items/Medical/ItemHerbGreen@Description:
 Une herbe médicinale aux propriétés thérapeutiques et antibactériennes uniques. Peut être utilisée telle quelle, mais devient bien plus efficace lorsqu'elle est convenablement préparée.
 
@@ -1874,6 +1916,12 @@ Remplissage requis.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 À court de combustible
 
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
+Une fragile hachette en pragmium tirant parti du principe de résonance moléculaire pour considérablement accélérer le travail par rapport aux alternatives conventionnelles.
+
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
+Hachette en pragmium
+
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 La pioche en fer peut être utilisée pour exploiter les gisements de minerai. Plus rapide et plus durable que la pioche en pierre.
 
@@ -1982,11 +2030,29 @@ Rapière laser (jaune)
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Une arme à courte portée d'une incroyable puissance. Nécessite de l'énergie pour fonctionner.
 
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Une technologie du bon vieux temps, efficace comme au bon vieux temps.
+
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Arbalète
+
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
 Un pistolet primitif. Utilise des cartouches en papier comme munitions. Contient deux charges qu'il est possible de tirer très rapidement.
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 Pistolet à silex
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Un lance-grenade à projectile unique, spécifiquement conçu pour les munitions à gros calibre, infligeant de terribles dommages à l'impact.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Lance-grenade
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Un lance-grenade à barillet. Idéal pour les missions d'assaut ou lorsque confronté à des cibles lourdement blindées.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Lance-grenade à répétition
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
 Un pistolet conçu pour être utilisé avec des munitions de 10mm.
@@ -2048,11 +2114,23 @@ Une arme à feu à répétition dotée d'un barillet rotatif qui contient les mu
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 Revolver
 
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
+Un fusil de sniper automatique léger conçu pour les munitions de 10mm.
+
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
+Fusil léger
+
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
 Un fusil lourd conçu pour être utilisé avec de puissantes munitions de 7,62mm.
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 Fusil lourd
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
+Un fusil à verrou primitif conçu pour les très communes munitions de 8mm.
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
+Fusil à verrou
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
 Une pétoire de grand-père. Utilise des cartouches de calibre 12.

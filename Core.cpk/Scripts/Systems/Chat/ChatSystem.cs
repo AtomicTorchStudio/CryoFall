@@ -41,6 +41,8 @@
 
         private static ILogicObject sharedLocalChatRoomHolder;
 
+        private static ILogicObject sharedTradeChatRoomHolder;
+
         public delegate void ClientReceivedMessageDelegate(BaseChatRoom chatRoom, in ChatEntry chatEntry);
 
         public static event Action<BaseChatRoom> ClientChatRoomAdded;
@@ -64,6 +66,10 @@
             var chatRoom = SharedGetChatRoom(chatRoomHolder);
             switch (chatRoom)
             {
+                case ChatRoomTrade _:
+                    sharedTradeChatRoomHolder = chatRoomHolder;
+                    break;
+
                 case ChatRoomGlobal _:
                     sharedGlobalChatRoomHolder = chatRoomHolder;
                     break;
@@ -256,7 +262,7 @@
         private static void ClientPlayerJoinedOrLeftHandler(string name, bool isOnline)
         {
             if (name == Client.Characters.CurrentPlayerCharacter.Name
-                || sharedGlobalChatRoomHolder == null)
+                || sharedGlobalChatRoomHolder is null)
             {
                 return;
             }
@@ -272,11 +278,8 @@
                                           DateTime.Now,
                                           hasSupporterPack: false);
 
-            // No player joined/left notification in global chat
-            // when there are over 10 online players on the server
-            // (except for the party members).
-            var skipGlobalChat = OnlinePlayersSystem.ClientOnlinePlayersCount > 10
-                                 && !PartySystem.ClientIsPartyMember(name);
+            // display player joined/left notification in global chat only for the party members
+            var skipGlobalChat = !PartySystem.ClientIsPartyMember(name);
 
             if (!skipGlobalChat)
             {
@@ -499,6 +502,7 @@
             var character = ServerRemoteContext.Character;
 
             ServerAddChatRoomToPlayerScope(character, sharedGlobalChatRoomHolder);
+            ServerAddChatRoomToPlayerScope(character, sharedTradeChatRoomHolder);
             ServerAddChatRoomToPlayerScope(character, sharedLocalChatRoomHolder);
 
             if (ServerPrivateChatRoomsCache.TryGetValue(character, out var characterPrivateChatRooms))
@@ -525,6 +529,8 @@
 
             private const string DatabaseKeyLocalChatRoomHolder = "LocalChatRoomHolder";
 
+            private const string DatabaseKeyTradeChatRoomHolder = "TradeChatRoomHolder";
+
             private static readonly IWorldServerService ServerWorld = IsServer ? Api.Server.World : null;
 
             public override void ClientInitialize()
@@ -535,10 +541,11 @@
 
                 Refresh();
 
-                void Refresh()
+                static void Refresh()
                 {
                     sharedLocalChatRoomHolder = null;
                     sharedGlobalChatRoomHolder = null;
+                    sharedTradeChatRoomHolder = null;
 
                     if (Api.Client.Characters.CurrentPlayerCharacter != null)
                     {
@@ -551,13 +558,15 @@
             {
                 Server.Characters.PlayerOnlineStateChanged += ServerPlayerOnlineStateChangedHandler;
                 Server.Characters.PlayerNameChanged += ServerPlayerNameChangedHandler;
-                Server.World.WorldBoundsChanged += this.ServerWorldBoundsChangedHandler;
+                Server.World.WorldBoundsChanged += ServerLoadSystem;
 
                 ServerLoadSystem();
             }
 
             private static void ServerLoadSystem()
             {
+                ServerPrivateChatRoomsCache.Clear();
+
                 var database = Server.Database;
                 if (!database.TryGet(nameof(ChatSystem),
                                      DatabaseKeyGlobalChatRoomHolder,
@@ -565,6 +574,14 @@
                 {
                     sharedGlobalChatRoomHolder = ServerCreateChatRoom(new ChatRoomGlobal());
                     database.Set(nameof(ChatSystem), DatabaseKeyGlobalChatRoomHolder, sharedGlobalChatRoomHolder);
+                }
+
+                if (!database.TryGet(nameof(ChatSystem),
+                                     DatabaseKeyTradeChatRoomHolder,
+                                     out sharedTradeChatRoomHolder))
+                {
+                    sharedTradeChatRoomHolder = ServerCreateChatRoom(new ChatRoomTrade());
+                    database.Set(nameof(ChatSystem), DatabaseKeyTradeChatRoomHolder, sharedTradeChatRoomHolder);
                 }
 
                 if (!database.TryGet(nameof(ChatSystem),
@@ -607,21 +624,8 @@
                     });
             }
 
-            private void ServerWorldBoundsChangedHandler()
+            private static void ServerWorldBoundsChangedHandler()
             {
-                foreach (var chatRoomHolder in ServerWorld
-                                               .GetGameObjectsOfProto<ILogicObject, ChatRoomHolder>()
-                                               .ToList())
-                {
-                    Server.World.DestroyObject(chatRoomHolder);
-                }
-
-                ServerPrivateChatRoomsCache.Clear();
-
-                var database = Server.Database;
-                database.Remove(nameof(ChatSystem), DatabaseKeyGlobalChatRoomHolder);
-                database.Remove(nameof(ChatSystem), DatabaseKeyLocalChatRoomHolder);
-
                 ServerLoadSystem();
             }
         }

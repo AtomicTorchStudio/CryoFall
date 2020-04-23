@@ -15,6 +15,8 @@
 
         public override string Name => "Healing";
 
+        public override double ServerUpdateIntervalSeconds => 0.5;
+
         protected override void ServerUpdate(StatusEffectData data)
         {
             // increase character health

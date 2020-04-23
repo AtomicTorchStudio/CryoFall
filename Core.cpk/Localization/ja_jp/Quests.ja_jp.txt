@@ -1,64 +1,4 @@
-﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
-建設：{0}
-
-Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-習得：{0}（技術群）
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-{0}
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
-製作
-
-Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
-破壊：{0}
-
-Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
-採取：{0}
-
-Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
-収集：{0}
-
-Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
-装備：{0}
-
-Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-スキル習得：{0}をレベル{1}まで
-
-Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-スキル習得：{0}をレベル{1}まで
-
-Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-技術群のロック解除：{0}
-
-Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-{0}技術群のロック解除：{1}
-
-Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-技術習得：{0}（{1}技術群）
-
-Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
-殺害：{0}
-
-Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
-生産：{0}
-
-Scripts/Quests/Requirements/RequirementRun@DescriptionText:
-10メートルダッシュする
-
-Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
-インベントリのアイテムを並べ替える
-
-Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
-使用：{0}
-
-Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
-訪問：{0}
-
-Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
-訪問：{0}
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+﻿Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 寝袋を設置することで復活ポイントを指定することができます。 次回キャラクターが復活するとき、ここに現れます。
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
@@ -156,17 +96,6 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 材料を集める
 
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
-より多くの建築物を造るためには、技術メニューの「基本建築」のロックを解除する必要があります。
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
-`[*] 操作方法を変更していなければ、"G"を押すことで技術メニューに素早くアクセスできます。
-[*] 各技術のロックを解除するには、[b]LP[/b]（学習ポイント）が必要です。
-[*] 学習ポイントは様々な活動から得られ、スキル経験値が増えると共に獲得量が増えていきます。`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
-基本的な建築技術を学ぶ
-
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
 石を採掘する
 
@@ -182,16 +111,6 @@ Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
 任意の鉱物を採掘する
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
-CryoFallをもっと楽しむには、インベントリの並び替え方法やキャラクターを走らせる方法など、知っておくべきことがいくつかあります！
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
-`[*] インベントリをソートするには、インベントリグリッドの上にカーソルを置きながら[u]マウスの中ボタン[/u]または[u]Zキー[/u]を押します（操作設定を変更していない場合）。同様に[b]任意の[/b]インベントリグリッド（箱など）をソートできます。
-[*] スプリント（走る）には、[u]Shiftキー[/u]を押しながら移動します。試しに数メートル走ってみてください。スプリントは危険な捕食者から逃れるのに役立ちます。`
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
-基本的なアクションを実行する
 
 Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
 水球の実を集める
@@ -222,8 +141,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 農業は、持続的に十分な量の食料を得るために良い方法です。手を土で汚す時が来ました！
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
-`[*] 他の生存者が作物を略奪するかもしれないので、農場は防御壁の[b]内側に[/b]設置することをお勧めします。
-[*] 植物が成熟するまでの所要時間、収穫数、その他の特性はさまざまです。
+`[*] [b]種[/b]は[b]草を収集[/b]している際にランダムで見つけることができます。遺跡内でしか手に入らない特殊な種もあります。
+[*] 他の生存者が作物を略奪するかもしれないので、農場は防御壁の[b]内側に[/b]設置することをお勧めします。
+[*] 植物が成熟するまでの所要時間、収穫量、その他特性はさまざまです。
 [*] 後に農場の効率を改善するために、より良い肥料や他のものを研究することができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
@@ -404,7 +324,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
 [*] [b]ダメージの種類はそれぞれ異なり[/b]、異なる防御力を発揮します。インベントリ画面で情報を見ることができます。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
-遠距離武器を製作する
+旧式の銃器を製作する
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
 全ての環境には、それぞれ異なる特性を持った動植物が生殖しています。それぞれの基本的な生態環境をよく理解して、最大限に活用することをお勧めします。
@@ -438,6 +358,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 グリーンハーブを見つけて使う
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
+より多くの構造物を建築するには、技術メニューの「基本建築」のロックを解除する必要があります。
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
+`[*] 操作方法を変更していなければ、"G"を押すことで技術メニューに素早くアクセスできます。
+[*] 各技術のロックを解除するには、[b]LP[/b]（学習ポイント）が必要です。
+[*] 学習ポイントは様々な活動から得られ、スキル経験値が増えると共に獲得量が増えていきます。`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
+基本的な建築技術を学ぶ
+
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
 狩りに行く時間です！初心者にとっては、危険な動物は避けた方がいいかもしれませんが、他にもいろいろな選択肢があります。
 
@@ -458,6 +389,16 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 狩りの達人－パート2
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
+CryoFallをもっと楽しむには、インベントリの並び替え方法やキャラクターを走らせる方法など、知っておくべきことがいくつかあります！
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
+`[*] インベントリをソートするには、インベントリグリッドの上にカーソルを置きながら[u]マウスの中ボタン[/u]または[u]Zキー[/u]を押します（操作設定を変更していない場合）。同様に[b]任意の[/b]インベントリグリッド（箱など）をソートできます。
+[*] スプリント（走る）には、[u]Shiftキー[/u]を押しながら移動します。試しに数メートル走ってみてください。スプリントは危険な捕食者から逃れるのに役立ちます。`
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
+基本的なアクションを実行する
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
 スキルのロックを解除する
@@ -481,6 +422,16 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 バールを使って解体する
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
+プラグミウムは、最先端の技術に必要な希少な宇宙鉱物です。探して手に入れましょう。
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
+`[*] 気をつけて！プラグミウムの採掘は非常に危険です。
+[*] 大きなプラグミウムの尖塔は砂漠地帯でよく見られ、小さなプラグミウム塊は火山の近くによく落ちています。`
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
+プラグミウムが必要です！
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
 塩鉱物を採掘する
@@ -565,6 +516,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 古い遺跡を探索する
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+いくつかの箱を略奪
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 もっともっと狩りをしましょう！今回はもっと危険な動物を狙ってみましょう。

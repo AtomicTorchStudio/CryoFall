@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Lights;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Construction;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
@@ -20,14 +21,14 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveTechNode.Require<TechNodeFloorLampOil>())
-                .Add(RequirementHaveTechNode.Require<TechNodeOilLamp>())
-                .Add(RequirementBuildStructure.Require<ObjectLightFloorLampOil>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeOilLamp>())
-                .Add(RequirementManufactureItem.Require<ItemCampFuel>(count: 3));
+            tasks
+                .Add(TaskHaveTechNode.Require<TechNodeFloorLampOil>())
+                .Add(TaskHaveTechNode.Require<TechNodeOilLamp>())
+                .Add(TaskBuildStructure.Require<ObjectLightFloorLampOil>())
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeOilLamp>())
+                .Add(TaskHaveItem.Require<ItemCampFuel>(count: 3, isReversible: false));
 
             prerequisites
                 .Add<QuestBuildEvaporativeFridge>();

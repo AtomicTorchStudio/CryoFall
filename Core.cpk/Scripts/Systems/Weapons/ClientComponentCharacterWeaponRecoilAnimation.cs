@@ -63,9 +63,18 @@
                 return;
             }
 
-            if (this.skeletonRenderer.GetCurrentAnimationName(AnimationTrackIndexes.ItemAiming) == null)
+            try
             {
-                // no aiming animation is active
+                if (this.skeletonRenderer.GetCurrentAnimationName(AnimationTrackIndexes.ItemAiming) is null)
+                {
+                    // no aiming animation is active
+                    this.RemoveAnimationAndDisable();
+                    return;
+                }
+            }
+            catch
+            {
+                // the skeleton renderer is probably disposed
                 this.RemoveAnimationAndDisable();
                 return;
             }
@@ -110,8 +119,16 @@
         {
             // do not destroy - reuse
             //this.Destroy();
-            this.skeletonRenderer.RemoveAnimationTrack(
-                trackIndex: AnimationTrackIndexes.ItemAimingRecoil);
+            try
+            {
+                this.skeletonRenderer.RemoveAnimationTrack(
+                    trackIndex: AnimationTrackIndexes.ItemAimingRecoil);
+            }
+            catch
+            {
+                // ignore the exception, probably the skeleton renderer is already disposed
+            }
+
             this.IsEnabled = false;
             this.power = 0;
         }

@@ -75,13 +75,13 @@
             nameof(MaxValue),
             typeof(double),
             typeof(ValueBarControl),
-            new FrameworkPropertyMetadata(1f, MaxValuePropertyChangedHandler));
+            new FrameworkPropertyMetadata(1.0, MaxValuePropertyChangedHandler));
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
             nameof(Value),
             typeof(double),
             typeof(ValueBarControl),
-            new FrameworkPropertyMetadata(1f, ValuePropertyChangedHandler));
+            new FrameworkPropertyMetadata(1.0, ValuePropertyChangedHandler));
 
         public static readonly DependencyProperty CurrentValueBarWidthProperty =
             DependencyProperty.Register(

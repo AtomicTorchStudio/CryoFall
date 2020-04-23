@@ -7,7 +7,7 @@
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                .AddRecipe<RecipeStructuralPlating>();
+                  .AddRecipe<RecipeStructuralPlating>();
 
             config.SetRequiredNode<TechNodeImpulseEngine>();
         }

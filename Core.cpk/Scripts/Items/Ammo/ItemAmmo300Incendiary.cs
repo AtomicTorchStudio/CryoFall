@@ -14,8 +14,13 @@
 
         public override string Name => ".300 incendiary ammo";
 
-        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
+        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)
         {
+            if (damage < 1)
+            {
+                return;
+            }
+
             // 40% chance to add bleeding
             if (RandomHelper.RollWithProbability(0.40))
             {
@@ -38,8 +43,8 @@
             finalDamageMultiplier = 1.5;
             rangeMax = 10;
 
-            damageDistribution.Set(DamageType.Kinetic, 0.6);
-            damageDistribution.Set(DamageType.Heat,    0.4);
+            damageDistribution.Set(DamageType.Kinetic, 0.6)
+                              .Set(DamageType.Heat, 0.4);
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()

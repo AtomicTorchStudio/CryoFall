@@ -1,64 +1,4 @@
-﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
-İnşa et: {0}
-
-Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-Tamamla: {0} (teknoloji sınıfı)
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-üzerinde {0}
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
-Üret
-
-Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
-Yok et: {0}
-
-Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
-Topla: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
-Biriktir: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
-Kuşan: {0}
-
-Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-Yeteneği öğren: {0} / {1} seviyesine
-
-Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-Yetenekleri öğren: {0} / {1} seviyesine
-
-Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-Teknoloji sınıfının kilidini aç: {0}
-
-Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-Teknoloji sınıflarının {0} kilidini aç: {1}
-
-Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-Öğren: {0} ({1} teknoloji sınıfı içinde)
-
-Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
-Öldür: {0}
-
-Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
-İmal et: {0}
-
-Scripts/Quests/Requirements/RequirementRun@DescriptionText:
-10 metre depar at
-
-Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
-Envanterdeki eşyaları sırala
-
-Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
-Kullan: {0}
-
-Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
-Ziyaret et: {0}
-
-Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
-Ziyaret et: {0}
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+﻿Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 Bir yatak yerleştirerek yeniden doğma noktanı belirleyebilirsin. Bir sonraki seferde karakterin yeniden doğduğunda orada ortaya çıkacaktır.
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
@@ -156,17 +96,6 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 Kaynak topla
 
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
-`Daha fazla yapıya ulaşmak için teknoloji menüsü altındaki "basit yapıların" kilidini açman gerekiyor.`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
-`[*] Kontrolleri değiştirmediysen, "G" tuşuna basarak teknoloji menüsüne hızlıca ulaşabilirsin.
-[*] Bir teknoloji ağının kilidini açmak için [b]EP[/b] (eğitim puanları) gereklidir.
-[*] Eğitim puanları anlamlı etkinliklerden kazanılır ve yetenek deneyimi kazancıyla doğrudan orantılıdır.`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
-Basit inşa teknolojisi öğren
-
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
 Taş kaz
 
@@ -182,16 +111,6 @@ Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
 Bir mineral kaz
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
-CryoFall'ın tadını tam olarak çıkartmak için envanterinizi nasıl sıralayabileceğin veya nasıl depar atabileceğin gibi bilmen gereken bir kaç özellik daha var.
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
-`[*] Envanteri sıralamak için yalnızca envanteri aç ve envanter sisteminde gezinirken [u]orta fare tuşuna[/u] veya [u]Z tuşuna[/u] (kontrol ayarlarını değiştirmediysen) bas. [b]TÜM[/b] envanter sistemini bu şekilde sıralayabilirsin (ör. sandıklar).
-[*] Depar atmak için hareket halindeyken [u]Shift[/u] tuşunu basılı tut. Denemek için  birkaç metre depar at. Depar atmak tehlikeli avcılardan uzaklaşmana yardımcı olur.`
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
-Basit eylemler gerçekleştir
 
 Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
 Su soğanı topla
@@ -222,7 +141,8 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 Tarım, çok miktarda yiyecek almanın en iyi ve sürdürülebilir yöntemidir. Ellerini kirletmenin zamanı geldi!
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
-`[*] Tarlalarını duvarlarının [b]içerisine[/b] inşa etmek iyi bir fikir olabilir, diğer oyuncular ürünlerini senin yerine toplayabilir :)
+`[*] [b]Tohumlar[/b] basitçe [b]çimen toplarken[/b] bulunabilir. Bazı özel tohumlar sadece harabelerde bulunabilir.
+[*] Tarlalarını duvarlarının [b]içerisine[/b] inşa etmek iyi bir fikir olabilir, diğer oyuncular ürünlerini senin yerine toplayabilir :)
 [*] Bitkilerin olgunlaşma süresi, toplanacak ürün miktarı ve diğer özellikleri birbirinden farklıdır.
 [*] Daha sonra tarlalarının verimliliğini artırmak için gübre veya başka şeyler araştırabilirsin.`
 
@@ -403,7 +323,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
 [*] [b]Farkı zarar tipleri[/b] vardır ve farklı zırhlar, her biri için farklı koruma değerleri sunar. Bu bilgiyi, envanter ekranında görebilirsin.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
-Menzilli silah üret
+İlkel ateşli silah üret
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
 Her farklı çevrenin, başka özellikleri dışında kendine özel bir bitki örtüsü ve faunası vardır. Hepsinden en iyi şekilde yararlanmak için temel çevrelerin hepsini tanımak iyi bir fikirdir.
@@ -437,6 +357,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Yeşil bitki bul ve kullan
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
+`Daha fazla yapıya ulaşmak için teknoloji menüsü altındaki "basit yapıların" kilidini açman gerekiyor.`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
+`[*] Kontrolleri değiştirmediysen, "G" tuşuna basarak teknoloji menüsüne hızlıca ulaşabilirsin.
+[*] Bir teknoloji ağının kilidini açmak için [b]EP[/b] (eğitim puanları) gereklidir.
+[*] Eğitim puanları anlamlı etkinliklerden kazanılır ve yetenek deneyimi kazancıyla doğrudan orantılıdır.`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
+Basit inşa teknolojisi öğren
+
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
 Avlanma zamanı! Başlarda daha tehlikeli hayvanlardan kaçınmak daha iyi olabilir ama başka bir sürü seçenek var.
 
@@ -458,6 +389,16 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Usta avcı - ikinci kısım
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
+CryoFall'ın tadını tam olarak çıkartmak için envanterinizi nasıl sıralayabileceğin veya nasıl depar atabileceğin gibi bilmen gereken bir kaç özellik daha var.
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
+`[*] Envanteri sıralamak için yalnızca envanteri aç ve envanter sisteminde gezinirken [u]orta fare tuşuna[/u] veya [u]Z tuşuna[/u] (kontrol ayarlarını değiştirmediysen) bas. [b]TÜM[/b] envanter sistemini bu şekilde sıralayabilirsin (ör. sandıklar).
+[*] Depar atmak için hareket halindeyken [u]Shift[/u] tuşunu basılı tut. Denemek için  birkaç metre depar at. Depar atmak tehlikeli avcılardan uzaklaşmana yardımcı olur.`
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
+Basit eylemler gerçekleştir
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
 Bir yetenek aç
@@ -481,6 +422,16 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Yıkım için levye kullan
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
+Pragmium, en gelişmiş teknolojiler için kullanılan nadir ve yabancı bir mineraldir. Biraz bulup elde etmeye çalış.
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
+`[*] Dikkat! Pragmium madenciliği çok tehlikelidir.
+[*] Büyük pragmium kuleleri yaygın olarak çöllerde bulunabilirken küçük olanlar genelde yanardağ çevrelerinde bulunur.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
+Pragmium elde et!
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
 Tuz minerali kaz
@@ -565,6 +516,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Eski harabeleri keşfet
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Konteyner yağmala
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 Daha fazla avlanma vakti! Bu sefer daha tehlikeli hayvanlarla.

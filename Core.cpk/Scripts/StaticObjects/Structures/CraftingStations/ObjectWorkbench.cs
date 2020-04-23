@@ -38,6 +38,9 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Clear()
+                            .Add(ConstructionTileRequirements.DefaultForPlayerStructuresOwnedOrFreeLand);
+
             category = GetCategory<StructureCategoryIndustry>();
 
             build.StagesCount = 5;

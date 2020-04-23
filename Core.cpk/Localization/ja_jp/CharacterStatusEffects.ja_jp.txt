@@ -40,6 +40,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 筋肉増強
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Description:
+しばらく休んでいると、新しいことを覚えたり、スキルを磨いたりしやすくなります。(これはオフライン状態が続いている間に蓄積していくデイリーボーナスで、全て無くなると特別ボーナスが与えられます。)
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Name:
+休養十分
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 出血しています。治療しなければ継続的に体力を失うことになります。軽度の出血は自然に治まりますが、より重度の怪我では包帯や止血薬の使用が必要になる場合があります。
 

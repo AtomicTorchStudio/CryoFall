@@ -22,6 +22,9 @@ Spinnentier
 Scripts/Characters/Mobs/MobFireLizard@Name:
 Feuerechse
 
+Scripts/Characters/Mobs/MobFloater@Name:
+Gleitling
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Honigdachs
 
@@ -33,6 +36,9 @@ Schuppentier
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Pragmiumkäfer
+
+Scripts/Characters/Mobs/MobPragmiumQueen@Name:
+Pragmiumkönigin
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Schnecke

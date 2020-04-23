@@ -58,6 +58,8 @@
 
         public virtual bool IsIntensityPercentVisible => true;
 
+        public virtual bool IsPublic => this.VisibilityIntensityThreshold < 1;
+
         public virtual bool IsRemovedOnRespawn => true;
 
         public abstract StatusEffectKind Kind { get; }
@@ -205,7 +207,7 @@
             this.isAutoDecrease = this.IntensityAutoDecreasePerSecondValue > 0
                                   || this.IntensityAutoDecreasePerSecondFraction > 0;
 
-            if (IsServer 
+            if (IsServer
                 && this.GetType().HasOverride(nameof(this.ServerOnAutoAdd), isPublic: false))
             {
                 TriggerTimeInterval.ServerConfigureAndRegister(
@@ -270,11 +272,11 @@
                 return;
             }
 
-            intensity -= this.IntensityAutoDecreasePerSecondValue;
+            intensity -= this.IntensityAutoDecreasePerSecondValue * data.DeltaTime;
 
             if (this.IntensityAutoDecreasePerSecondFraction > 0)
             {
-                intensity *= 1 - this.IntensityAutoDecreasePerSecondFraction;
+                intensity *= 1 - this.IntensityAutoDecreasePerSecondFraction * data.DeltaTime;
             }
 
             data.Intensity = intensity;
@@ -318,9 +320,9 @@
 
         private void ServerRefreshPublicStatusEffectEntry(in StatusEffectData effectData)
         {
-            if (this.VisibilityIntensityThreshold >= 1)
+            if (!this.IsPublic)
             {
-                // never show this effect
+                // never show this effect to other players
                 return;
             }
 

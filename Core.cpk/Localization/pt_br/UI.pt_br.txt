@@ -104,11 +104,63 @@ Menção
 UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 Mensagem particular
 
+UI/CoreStrings@Chat_MessageMenu_Report:
+Denunciar
+
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Desbloquear
 
+UI/CoreStrings@Chat_PressKeyToOpen_Format:
+Pressione [{0}] para começar a utilizar o chat
+
+UI/CoreStrings@ChatDisclaimer_Button_DisableChat:
+Manter o chat escondido
+
+UI/CoreStrings@ChatDisclaimer_Button_EnableChat:
+Ativar o chat
+
+UI/CoreStrings@ChatDisclaimer_Checkbox:
+Compreendi e aceito
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Community:
+[b]Atenção:[/b] você está jogando num servidor de comunidade, então a moderação do chat é de responsabilidade do proprietário do servidor. Essas conversas NÃO são moderadas, e talvez você se exponha a mensagens desagradáveis ou até mesmo insultos de outros jogadores. Ative o chat apenas se aceitar essas possibilidades.
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Official:
+[b]Atenção:[/b] o chat NÃO é moderado, e talvez você se exponha a mensagens desagradáveis ou até mesmo insultos de outros jogadores. Ative o chat apenas se aceitar essas possibilidades.
+
+UI/CoreStrings@ChatDisclaimer_Title_Community:
+Quer ativar o chat dentro do jogo neste servidor de comunidade?
+
+UI/CoreStrings@ChatDisclaimer_Title_Official:
+Quer ativar o chat dentro do jogo neste servidor?
+
+UI/CoreStrings@ChatDisclaimer_UseBlock:
+`Se encontrar mensagens inadequadas, clique na mensagem e selecione "Denunciar" ou "Bloquear".`
+
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 Não me pergunte de novo
+
+UI/CoreStrings@ClanTag_Current:
+Etiqueta de clã:
+
+UI/CoreStrings@ClanTag_Exists:
+`Esta etiqueta de clã já está sendo usada por outra equipe.
+[br]Selecione outra.`
+
+UI/CoreStrings@ClanTag_FormatWithName:
+[{0}] {1}
+
+UI/CoreStrings@ClanTag_Invalid:
+Esta etiqueta de clã é inválida.
+
+UI/CoreStrings@ClanTag_Requirements:
+`Requisitos da etiqueta de clã:
+[*] apenas letras e dígitos latinos
+[*] comece com uma letra
+[*] quatro caracteres no máximo`
+
+UI/CoreStrings@ClanTag_Select:
+Selecione uma etiqueta de clã
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Esta estrutura é meramente decorativa.
@@ -151,6 +203,12 @@ UI/CoreStrings@CraftingRecipesList_NoRecipesKnown:
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Receitas desbloqueadas
+
+UI/CoreStrings@CrateIconControl_NoIcon:
+Sem ícone
+
+UI/CoreStrings@CrateIconControl_SelectIcon:
+Escolha um ícone
 
 UI/CoreStrings@Defense_Format_Chemical:
 Proteção química: {0}
@@ -201,11 +259,20 @@ Bem-vindo à versão de demonstração de CryoFall. Você pode jogar o jogo sem 
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 Disponível para posse em:
 
+UI/CoreStrings@DepositCapacityStats_Depleted:
+Este depósito está esgotado.
+
 UI/CoreStrings@DepositCapacityStats_Message:
 Este depósito ficará esgotado em:
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Capacidade do depósito
+
+UI/CoreStrings@DepositCapacityStats_TitleInfinite:
+Depósito profundo (produção baixa, infinito)
+
+UI/CoreStrings@DepositCapacityStats_TitleLimited:
+Depósito de superfície (produção alta)
 
 UI/CoreStrings@Duration_Instant:
 Instantâneo
@@ -275,6 +342,9 @@ Homem
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 Desmontar veículo
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Completionist:
+Completista
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 Construção
@@ -380,6 +450,9 @@ Me mantenha logado(a)
 
 UI/CoreStrings@LoginAtomicTorchForm_Title:
 Fazer login com a conta [url=atomictorch.com/Account/Register]AtomicTorch.com[/url]
+
+UI/CoreStrings@LootHacking_Progress:
+Progresso da pirataria
 
 UI/CoreStrings@MainMenu_TabCredits:
 CRÉDITOS
@@ -558,6 +631,12 @@ Os servidores JvJ são irrestritos; neles, você pode matar e morrer.
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 JvJ
 
+UI/CoreStrings@Meteorite_CooldownMessage_TimeRemainsFormat:
+{0} até que esfrie o suficiente.
+
+UI/CoreStrings@Meteorite_CooldownMessage_TooHotForMining:
+O meteorito ainda está quente demais para ser garimpado.
+
 UI/CoreStrings@ModsDisabledWindow_Description:
 `O jogo foi incapaz de rodar com os mods, então eles foram desativados.
 [br]Isto é devido a pelo menos um dos mods estar desatualizado (incompatível com a versão atual do jogo) ou simplesmente inválido.
@@ -632,6 +711,12 @@ Proibido
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 Não é possível colocar aí
 
+UI/CoreStrings@Notification_ErrorCannotInteract:
+Não é possível interagir
+
+UI/CoreStrings@Notification_ErrorObjectUsedByAnotherPlayer:
+Este objeto está sendo utilizado por outro jogador.
+
 UI/CoreStrings@Notification_ObstaclesOnTheWay:
 Obstáculo no caminho!
 
@@ -665,6 +750,9 @@ Excluir dono
 UI/CoreStrings@ObjectOwnersList_Title:
 Donos
 
+UI/CoreStrings@ObjectOwnersList_Title2:
+Donos:
+
 UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
 COMPRANDO
 
@@ -688,9 +776,6 @@ Tamanho do grupo
 
 UI/CoreStrings@PartyManagement_HowToInvite:
 Digite abaixo o nome de jogador para convidar essa pessoa ou clique com o botão direito do mouse em qualquer nome de jogador no bate-papo.
-
-UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-Parte dos pontos de aprendizagem adquiridos por qualquer membro do grupo é compartilhada igualmente entre os membros.
 
 UI/CoreStrings@PartyManagement_InviteMember:
 Convidar um membro
@@ -766,6 +851,9 @@ Esgota em:
 UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
 Nunca
 
+UI/CoreStrings@PowerGridState_EfficiencyDescription:
+A eficiência da rede elétrica depende do tamanho da base.
+
 UI/CoreStrings@PowerGridState_EfficiencyFormat:
 (eficiência {0}%)
 
@@ -830,7 +918,7 @@ UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 Captura de tela pronta: {0} (clique para abrir)
 
 UI/CoreStrings@SelectUsernameForm_Message:
-Escolha um nome de usuário para a sua conta AtomicTorch.com
+Selecione um nome de usuário
 
 UI/CoreStrings@ServerAddress:
 Endereço
@@ -891,6 +979,15 @@ Tecnologias disponíveis
 
 UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 Tecnologias desbloqueadas
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_AvailableNow:
+Disponível agora (a espera já acabou)
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Format:
+Estará disponível em: [b]{0}[/b]
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Title:
+Espera:
 
 UI/CoreStrings@TechNodeTooltip_Perks:
 Vantagens:
@@ -1094,6 +1191,24 @@ Exemplos:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Aleatório
 
+UI/CoreStrings@WindowCompletionist_ButtonAccept:
+Aceitar
+
+UI/CoreStrings@WindowCompletionist_ProgressLabel:
+Progresso:
+
+UI/CoreStrings@WindowCompletionist_TabCreatures:
+Criaturas
+
+UI/CoreStrings@WindowCompletionist_TabFood:
+Comida
+
+UI/CoreStrings@WindowCompletionist_TabLoot:
+Espólio
+
+UI/CoreStrings@WindowCompletionist_UndiscoveredEntryTitle:
+???
+
 UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
 O projeto requer
 
@@ -1109,6 +1224,16 @@ Pôr projeto
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 Total necessário
+
+UI/CoreStrings@WindowCrateIconSelector_CanPickIcon:
+Você pode escolher um ícone de qualquer um dos itens colocados neste recipiente.
+
+UI/CoreStrings@WindowCrateIconSelector_NoItemsToSelectIcon:
+`Este recipiente está vazio.
+[br]Não há itens para escolher um ícone.`
+
+UI/CoreStrings@WindowCrateIconSelector_SelectedIcon:
+Ícone selecionado
 
 UI/CoreStrings@WindowDataLog_Content:
 Conteúdo
@@ -1136,6 +1261,9 @@ Não é possível utilizar a posse de terra para guardar recursos e itens básic
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
 Informação de deterioração
+
+UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
+Estou ciente do sistema de deterioração
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 Os itens guardados em segurança são compartilhados entre todas as estruturas da posse de terra nessa base.
@@ -1485,13 +1613,13 @@ UI/CoreStrings@Yes:
 Sim
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 Conectado
@@ -1508,6 +1636,15 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 `Quer fechar o bate-papo privado com {0}?
 [br]O histórico será salvo e você pode reabrir o bate-papo mais tarde.`
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
+Primeira vez que morre.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
+Primeira vez que é consumido(a).
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_LootDiscovered_MessageFormat:
+Primeira vez que é encontrado(a).
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 Não é possível cancelar esta receita porque envolve componentes degradáveis.
@@ -1528,6 +1665,15 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 Seus itens caíram no chão
 
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Finished:
+Evento terminado!
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeRemainingFormat:
+Tempo restante: {0}
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
+Evento ativo
+
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
 `Uma das suas bases está sendo invadida!
 [br]({0};{1})`
@@ -1543,6 +1689,9 @@ UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceA
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
 Novo recurso disponível
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@TooltipDepositSearchAreaFormat:
+Área de busca: {0}
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 Copiar coordenadas
@@ -1636,8 +1785,17 @@ Rosto
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 Cabelo
 
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
+Cor do cabelo
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+Cor da pele
+
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Parte superior
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
+sem selecionar
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 Quer mesmo sair do grupo?
@@ -1716,12 +1874,6 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]
 [br]Você pode aumentar a demora na desintegração [b]melhorando[/b] qualquer uma das posses de terra para um nível superior.
 [br]Esta demora na desintegração da base inteira depende da construção do [b]nível mais alto[/b] dentro da posse de terra.`
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
-Este depósito ficou esgotado.
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
-Este depósito é infinito.
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Sem combustível
@@ -1818,6 +1970,12 @@ Veículos
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
 Construa e melhore uma série de veículos futuristas para explorar o mundo mais rápido ou usá-los em combate.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+Eventos mundiais
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+Participe regularmente nos diversos eventos que acontecem no mundo de CryoFall, seja explorando o local da queda de um meteorito ou reunindo um grupo de sobreviventes para derrotar um chefe perigoso.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Criaturas fantásticas

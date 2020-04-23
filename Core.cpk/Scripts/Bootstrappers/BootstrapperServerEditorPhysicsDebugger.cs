@@ -22,11 +22,11 @@
 
                 if (this.currentPhysicsSpace != null)
                 {
-                    this.currentPhysicsSpace.DebugShapeTesting -= this.PhysicsSpaceDebugTestingHandler;
+                    this.currentPhysicsSpace.DebugShapeTesting -= PhysicsSpaceDebugTestingHandler;
                 }
 
                 this.currentPhysicsSpace = value;
-                this.currentPhysicsSpace.DebugShapeTesting += this.PhysicsSpaceDebugTestingHandler;
+                this.currentPhysicsSpace.DebugShapeTesting += PhysicsSpaceDebugTestingHandler;
             }
         }
 
@@ -42,7 +42,7 @@
             this.SetCurrentPhysicsSpace();
         }
 
-        private void PhysicsSpaceDebugTestingHandler(IPhysicsShape shape)
+        private static void PhysicsSpaceDebugTestingHandler(IPhysicsShape shape)
         {
             SharedEditorPhysicsDebugger.ServerSendDebugPhysicsTesting(shape);
         }

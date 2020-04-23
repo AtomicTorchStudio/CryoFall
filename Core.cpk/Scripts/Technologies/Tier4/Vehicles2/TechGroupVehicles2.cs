@@ -7,8 +7,6 @@
 
     public class TechGroupVehicles2 : TechGroup
     {
-        public override FeatureAvailability AvailableIn => FeatureAvailability.OnlyPvP;
-
         public override string Description => "Advanced combat vehicles and transportation.";
 
         public override string Name => "Vehicles 2";

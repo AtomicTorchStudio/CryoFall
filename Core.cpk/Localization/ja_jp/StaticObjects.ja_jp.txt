@@ -61,6 +61,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
 採取
 
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Hack:
+ハッキング
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 使う
 
@@ -95,7 +98,7 @@ Scripts/StaticObjects/Deposits/ObjectDepositOilSeepInfinite@Name:
 油田（無限）
 
 Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_Description:
-ただいま資源ポイントが現れました。占領や壊されることができません。
+今、資源埋蔵地が出現しましたが、まだ所有も破壊もできません。
 
 Scripts/StaticObjects/Deposits/Base/ProtoObjectDeposit@NotificationNoDamageToDepositUnderCooldown_TitleFormat:
 {0}にダメージを与えられません。
@@ -116,7 +119,7 @@ Scripts/StaticObjects/Explosives/Special/ObjectDepositExplosion@Name:
 埋蔵地爆発
 
 Scripts/StaticObjects/Explosives/Special/ObjectMineralPragmiumSourceExplosion@Name:
-プラグミウム源爆弾
+プラグミウム源爆発
 
 Scripts/StaticObjects/Loot/ObjectCorpse@Name:
 死体
@@ -142,11 +145,8 @@ Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 草
 
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-大きなゴミの山
-
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
-小さなゴミの山
+Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
+ゴミの山
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 石
@@ -216,6 +216,15 @@ Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 亀裂
+
+Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
+隕石
+
+Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
+プラグミウムクイーンの残骸
+
+Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
+宇宙ゴミ
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 木樽よりも容量が大きくて丈夫。大量の液体を保管するのに役立ちます。
@@ -345,25 +354,25 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 作業台
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-単純な木箱よりも広いスペースを確保し、壊れにくいです。
+シンプルな木箱よりも広いスペースが確保できます。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
 鉄箱
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
-アイテムを保管する最良の方法の1つ。ほとんどの状況でアイテムを安全に保ち、広いスペースがあります。
+鋼の箱は収納箱の中で最も収納容量があるので、コンパクトに収納することができます。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
 鋼の箱
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
-大量のアイテムを便利に安全に保管するための特大サイズの箱。
+大量のアイテムを便利に保管するための特大サイズの箱。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
 大型の箱
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-自分の持ち物を保管するための一番シンプルな収納です。簡単に壊れます。
+持ち物を収納するための最もシンプルな箱です。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
 木箱
@@ -380,16 +389,58 @@ Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 装甲金庫
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
+お香を入れるための東洋風の祭壇。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
+香壇
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 どんな意味があるかわからないけど、カッコイイ！
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
-赤いバナー
+旗じるし
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
-派手なフロアラグは、どんな部屋でも暖かく居心地よくすることができます。
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
+衛生面によいクラシカルなスタイルのバスタブ。
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
+バスタブ
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
+本棚がないと部屋っぽくないでしょう？
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
+本棚
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
+昔話に出てくるような古典的な虎が描かれた屏風。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Name:
+屏風
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Description:
+豪勢な金の山。金庫に入れて安全に保管しておきましょう！
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
+金の山
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
+美しく、高級感あふれる漆黒のピアノ。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
+ピアノ
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
+あなたが本物のハンターであることを示し、この豪華なラグで部屋を飾りましょう。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Name:
+クマのラグ
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Description:
+このファンシーなフロアラグは、どんな部屋も暖かく素敵に演出してくれます。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Name:
 フロアラグ
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
@@ -397,6 +448,12 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 頭蓋骨の墓標
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Description:
+ふんわりとした肌触りで、リビングにぴったり。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Name:
+ソファー
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 真のセレブの象徴。本当のお金持ちだけが建設できます。
@@ -410,11 +467,35 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Desc
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 プラグミウムの像
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
+オールドヨーロピアンスタイルのシンプルなテーブル。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Name:
+テーブル
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Description:
+謁見の間に最適な王室の玉座。誰がボスなのかを平民に知らしめることができます。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Name:
+玉座
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
+プライバシーを最大限に確保するためにも、風通しの良い独立した部屋に置くようにしましょう。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
+トイレ
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
+高価そうな装飾用の壺。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
+壺
+
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 すでに床が装飾されています。
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Description:
-ほとんどの侵入者に対する優れた防御手段。爆破物に耐えられるほどは強くありません。
+ほとんどの侵入者に対する優れた防御手段。爆発物に耐えられるほどは強くありません。
 
 Scripts/StaticObjects/Structures/Doors/ObjectDoorIron@Name:
 鉄の扉
@@ -639,7 +720,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
 電気炉
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
-地熱泉からリチウム塩を抽出することができます。
+地下貯水池から、または地熱泉から直接リチウム塩を抽出し、効率を高めることができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 リチウム塩抽出機
@@ -660,7 +741,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 マルチボックス
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-油田の上に建設して原油を地面から直接抽出することができます。
+地下貯水池から、または油田から直接石油を抽出し、効率を高めることができます。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 オイルポンプ
@@ -672,7 +753,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Description:
 原油を燃料や鉱物油などのより有用な成分に精製します。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilRefinery@Name:
-石油精製所
+製油機
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectStove@Description:
 ほとんどの料理で使われます。キャンプファイヤーよりはるかにおいしい食事を作り出すことができます。
@@ -704,11 +785,17 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 井戸
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-抽出機には地熱泉が必要です。
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_CannotBuildTooCloseToDeposit:
+資源埋蔵地に近すぎます。その真上に建設可能です。
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-ポンプには油田が必要です。
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_TooCloseToDepletedDeposit:
+枯渇した資源埋蔵地に近すぎます。
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorTooCloseToAnotherExtractor:
+他の抽出機に近すぎます。
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooCloseToAnotherOilPump:
+他のオイルポンプに近すぎます。
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 この地形は地下水面へのアクセスを提供していません。
@@ -966,6 +1053,9 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 農耕地が必要です。
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
+ブルーハーブ
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
 グリーンハーブ

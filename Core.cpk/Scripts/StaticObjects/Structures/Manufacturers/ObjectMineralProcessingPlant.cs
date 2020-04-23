@@ -23,7 +23,7 @@
         public override string Description =>
             "This processing plant pulverizes raw ore and sorts different ore fractions to increase overall smelting yield.";
 
-        public override double ElectricityConsumptionPerSecondWhenActive => 2;
+        public override double ElectricityConsumptionPerSecondWhenActive => 4;
 
         public override bool IsAutoSelectRecipe => false;
 
@@ -52,8 +52,8 @@
                 autoInverseAnimation: false,
                 randomizeInitialFrame: true);
 
-            data.ClientState.SoundEmitter.CustomMaxDistance = 10f;
-            data.ClientState.SoundEmitter.Volume = 1.0f;
+            data.ClientState.SoundEmitter.CustomMaxDistance = 6f;
+            data.ClientState.SoundEmitter.Volume = 0.5f;
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)

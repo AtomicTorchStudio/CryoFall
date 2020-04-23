@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Buffs;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
-    using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
 
     public class ItemCoffeeCup : ProtoItemFood
     {

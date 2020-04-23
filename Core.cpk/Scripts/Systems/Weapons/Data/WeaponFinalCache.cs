@@ -21,7 +21,7 @@
 
         public readonly double InvertedArmorPiercingCoef;
 
-        public readonly IProtoObjectExplosive ProtoObjectExplosive;
+        public readonly IProtoExplosive ProtoExplosive;
 
         public readonly IProtoItemWeapon ProtoWeapon;
 
@@ -36,13 +36,13 @@
             [CanBeNull] IProtoItemWeapon protoWeapon,
             [CanBeNull] IProtoItemAmmo protoAmmo,
             DamageDescription damageDescription,
-            IProtoObjectExplosive protoObjectExplosive = null)
+            IProtoExplosive protoExplosive = null)
         {
             this.Character = character;
             this.Weapon = weapon;
             this.ProtoWeapon = (IProtoItemWeapon)weapon?.ProtoItem ?? protoWeapon;
             this.ProtoAmmo = protoAmmo;
-            this.ProtoObjectExplosive = protoObjectExplosive;
+            this.ProtoExplosive = protoExplosive;
 
             if (damageDescription == null)
             {
@@ -114,8 +114,9 @@
             {
                 var statNameSpecialEffectChance = weaponSkillProto.StatNameSpecialEffectChanceMultiplier;
                 probability *= characterFinalStatsCache.GetMultiplier(statNameSpecialEffectChance);
-                this.SpecialEffectProbability = probability;
             }
+
+            this.SpecialEffectProbability = probability;
 
             this.FireScatterPreset = protoAmmo?.OverrideFireScatterPreset 
                                    ?? protoWeapon?.FireScatterPreset

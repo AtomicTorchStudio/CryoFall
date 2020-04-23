@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -20,7 +19,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
@@ -407,7 +405,7 @@
                 interval: TimeSpan.FromSeconds(ServerUpdateInterval));
         }
 
-        private static void ClientNotifyNewbieCannotPerformAction(IProtoGameObject iconSource)
+        public static void ClientNotifyNewbieCannotPerformAction(IProtoGameObject iconSource)
         {
             var icon = iconSource switch
             {
@@ -419,7 +417,8 @@
             NotificationSystem.ClientShowNotification(
                 title: Notification_CannotPerformActionWhileUnderProtection,
                 icon: icon,
-                onClick: Menu.Open<WindowPolitics>);
+                onClick: Menu.Open<WindowPolitics>,
+                color: NotificationColor.Bad);
         }
 
         private static void ServerSendNewbieProtectionTimeRemaining(ICharacter character)
@@ -516,7 +515,7 @@
 
                 void Refresh()
                 {
-                    if (Api.Client.Characters.CurrentPlayerCharacter == null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
                     {
                         ClientNewbieProtectionTimeRemaining = 0;
                         Api.SafeInvoke(

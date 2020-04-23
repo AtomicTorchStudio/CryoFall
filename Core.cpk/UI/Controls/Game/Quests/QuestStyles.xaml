@@ -14,7 +14,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="1" HorizontalAlignment="Stretch" />
+                    <StackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -31,15 +31,18 @@
                     </DataTemplate.Resources>
 
                     <Grid Margin="0,2"
-                          HorizontalAlignment="Left"
+                          HorizontalAlignment="Stretch"
                           d:DataContext="{d:DesignInstance data:ViewModelQuestRequirement, IsDesignTimeCreatable=True}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <!-- Bullet point -->
-                        <Canvas Width="12" Height="12" Margin="0,0,4,0"
+                        <Canvas Width="12"
+                                Height="12"
+                                Margin="0,0,4,0"
                                 VerticalAlignment="Center">
                             <Ellipse
                                 Width="12"
@@ -48,7 +51,7 @@
                                 StrokeThickness="1" />
 
                             <Ellipse
-                                Visibility="{Binding IsSatisfied, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter}}"
                                 Width="8"
                                 Height="8"
                                 Canvas.Top="2"
@@ -56,12 +59,21 @@
                                 Fill="{StaticResource BrushColor5}" />
                         </Canvas>
 
+                        <Rectangle Grid.Column="2"
+                                   Fill="{Binding Icon}"
+                                   Visibility="{Binding HasIcon, Converter={StaticResource BoolToVisibilityConverter}}"
+                                   Width="48"
+                                   Height="48"
+                                   Margin="3,0,0,0"
+                                   HorizontalAlignment="Left" />
+
                         <ContentControl Grid.Column="1"
-                                        x:Name="DescriptionContent">
+                                        x:Name="DescriptionContent"
+                                        VerticalAlignment="Center">
                             <ContentControl.Style>
                                 <Style>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsSatisfied}"
+                                        <DataTrigger Binding="{Binding IsCompleted}"
                                                      Value="True">
                                             <DataTrigger.EnterActions>
                                                 <BeginStoryboard>
@@ -108,6 +120,7 @@
                                 </StackPanel>
                             </Grid>
                         </ContentControl>
+
                     </Grid>
                 </DataTemplate>
             </Setter.Value>

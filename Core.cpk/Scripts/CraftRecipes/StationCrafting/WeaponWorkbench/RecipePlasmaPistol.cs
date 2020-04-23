@@ -19,8 +19,8 @@
 
             duration = CraftingDuration.VeryLong;
 
-            inputItems.Add<ItemIngotCopper>(count: 200);
-            inputItems.Add<ItemPlastic>(count: 50);
+            inputItems.Add<ItemIngotCopper>(count: 100);
+            inputItems.Add<ItemPlastic>(count: 20);
             inputItems.Add<ItemComponentsOptical>(count: 10);
             inputItems.Add<ItemComponentsHighTech>(count: 5);
             inputItems.Add<ItemPowerCell>(count: 1);

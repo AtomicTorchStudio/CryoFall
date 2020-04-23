@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Technologies.Tier1.Construction
 {
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Beds;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
 
@@ -12,8 +11,9 @@
         {
             config.Effects
                   .AddStructure<ObjectWallWood>()
-                  .AddStructure<ObjectFloorWood>()
-                  .AddStructure<ObjectBedroll>();
+                  .AddStructure<ObjectFloorWood>();
+
+            config.SetRequiredNode<TechNodeLandClaimT1>();
         }
     }
 }

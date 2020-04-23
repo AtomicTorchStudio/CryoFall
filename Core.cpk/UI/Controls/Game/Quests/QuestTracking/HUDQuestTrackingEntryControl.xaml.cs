@@ -67,7 +67,8 @@
         protected override void OnLoaded()
         {
             this.viewModel = new ViewModelQuestEntry(this.QuestEntry,
-                                                     callbackOnFinishedStateChanged: _ => { });
+                                                     callbackOnFinishedStateChanged: _ => { },
+                                                     showRequirementIcons: false);
             this.DataContext = this.viewModel;
             this.UpdateLayout();
             this.viewModel.RequiredHeight = (float)this.ActualHeight;

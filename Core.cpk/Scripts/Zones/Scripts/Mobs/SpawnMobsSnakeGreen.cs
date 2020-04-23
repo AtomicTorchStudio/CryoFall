@@ -13,7 +13,7 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             spawnList.CreatePreset(interval: 35, padding: 0.5, useSectorDensity: false)
-                     .Add<MobSnakeGreen>()
+                     .AddExact<MobSnakeGreen>()
                      .SetCustomPaddingWithSelf(40);
         }
     }

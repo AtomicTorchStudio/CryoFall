@@ -5,8 +5,8 @@
     public class ItemPowerBankPrivateState : ItemWithDurabilityPrivateState
     {
         [SyncToClient(DeliveryMode.ReliableSequenced,
-            maxUpdatesPerSecond: 2,
-            networkDataType: typeof(float))]
+                      maxUpdatesPerSecond: 2,
+                      networkDataType: typeof(float))]
         public double EnergyCharge { get; set; }
     }
 }

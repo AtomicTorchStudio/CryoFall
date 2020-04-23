@@ -1,0 +1,63 @@
+﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
+Построить: {0}
+
+Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
+Завершить: {0} (древо технологий)
+
+Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
+здесь: {0}
+
+Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
+Изготовить
+
+Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
+Уничтожить: {0}
+
+Scripts/PlayerTasks/TaskGather@DescriptionFormat:
+Собрать: {0}
+
+Scripts/PlayerTasks/TaskHaveItem@DescriptionFormat:
+Найти: {0}
+
+Scripts/PlayerTasks/TaskHaveItemEquipped@DescriptionFormat:
+Надеть: {0}
+
+Scripts/PlayerTasks/TaskHaveSkill@DescriptionFormat:
+Изучить навык: {0} до {1} ур.
+
+Scripts/PlayerTasks/TaskHaveSkills@DescriptionFormat:
+Изучить навыки: {0} до {1} ур.
+
+Scripts/PlayerTasks/TaskHaveTechGroup@DescriptionFormat:
+Исследовать: {0} (древо технологий)
+
+Scripts/PlayerTasks/TaskHaveTechGroups@DescriptionFormat:
+Исследовать {0} шт. древ технологий: {1}
+
+Scripts/PlayerTasks/TaskHaveTechNode@DescriptionFormat:
+Исследовать: {0} (в техн. древе {1})
+
+Scripts/PlayerTasks/TaskKill@DescriptionFormat:
+Убить: {0}
+
+Scripts/PlayerTasks/TaskKillAny@DescriptionFormat:
+Убить: {0}
+
+Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
+Произвести: {0}
+
+Scripts/PlayerTasks/TaskRun@DescriptionText:
+Пробежать 10 метров
+
+Scripts/PlayerTasks/TaskSortItemsContainer@DescriptionText:
+Сортировать предметы инвентаря
+
+Scripts/PlayerTasks/TaskUseItem@DescriptionFormat:
+Применить: {0}
+
+Scripts/PlayerTasks/TaskVisitTile@DescriptionFormat:
+Посетить: {0}
+
+Scripts/PlayerTasks/TaskVisitZone@DescriptionFormat:
+Посетить: {0}
+

@@ -5,7 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
@@ -95,6 +95,9 @@
         public IReadOnlyList<TechNode> ListedInTechNodes
             => this.listedInTechNodes
                ?? (IReadOnlyList<TechNode>)Array.Empty<TechNode>();
+
+        public virtual ProtoObjectConstructionSite ConstructionSitePrototype
+            => Api.GetProtoEntity<ObjectConstructionSite>();
 
         public override string ShortId { get; }
 
@@ -361,11 +364,8 @@
             var configRepair = new ConstructionStageConfig();
             var configUpgrade = new ConstructionUpgradeConfig();
 
-            tileRequirements.Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
-                            .Add(ConstructionTileRequirements.ValidatorNoNpcsAround)
-                            .Add(ConstructionTileRequirements.ValidatorNoPlayersNearby)
-                            .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea)
-                            .Add(LandClaimSystem.ValidatorNoRaid);
+            tileRequirements.Clear()
+                            .Add(ConstructionTileRequirements.DefaultForPlayerStructuresOwnedLand);
 
             this.PrepareConstructionConfig(
                 tileRequirements,

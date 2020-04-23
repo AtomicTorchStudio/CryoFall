@@ -3,17 +3,22 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public abstract class ProtoObjectDecorationFloor : ProtoObjectDecoration
     {
         public const string ErrorHasFloorDecoration = "There is already floor decoration.";
 
-        public static ConstructionTileRequirements.Validator ValidatorNoFloorDecoration
+        public static readonly ConstructionTileRequirements.Validator ValidatorNoFloorDecoration
             = new ConstructionTileRequirements.Validator(
                 ErrorHasFloorDecoration,
                 c => !c.Tile.StaticObjects.Any(
                          o => o.ProtoStaticWorldObject is ProtoObjectDecorationFloor));
+
+        // it's technically a floor decoration but we don't have a special object kind for it
+        // floor works fine
+        public override StaticObjectKind Kind => StaticObjectKind.Floor;
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -35,7 +40,7 @@
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                 .Add(ConstructionTileRequirements.ValidatorNoNpcsAround)
                 .Add(ConstructionTileRequirements.ValidatorNoPlayersNearby)
-                .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea)
+                .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLand)
                 .Add(LandClaimSystem.ValidatorNoRaid);
 
             this.PrepareFloorDecorationConstructionConfig(build, repair);

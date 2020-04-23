@@ -5,7 +5,7 @@
 
     public class SpawnLootRuinsResidential : ProtoZoneSpawnScript
     {
-        protected override double MaxSpawnAttempsMultiplier => 10;
+        protected override double MaxSpawnAttemptsMultiplier => 10;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
@@ -19,11 +19,6 @@
                                         .Add<ObjectLootCrateSupply>()
                                         .Add<ObjectLootCrateFood>()
                                         .SetCustomPaddingWithSelf(9);
-
-            spawnList.CreatePreset(interval: 9, padding: 1, spawnAtLeastOnePerSector: true)
-                     .Add<ObjectLootPileGarbageLarge>()
-                     .SetCustomPaddingWith(presetCrates, 6)
-                     .SetCustomPaddingWithSelf(9);
         }
     }
 }

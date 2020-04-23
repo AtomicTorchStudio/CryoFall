@@ -2,7 +2,9 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.GameApi.Scripting;
@@ -23,28 +25,34 @@
               [*] To craft paper cartridges, you will also have to craft [b]gunpowder[/b] and [b]paper[/b] first.
               [*] There are [b]different damage types[/b], and different armor offers different protection values for each. You can see this information in your inventory screen.";
 
-        public override string Name => "Craft ranged weapon";
+        public override string Name => "Craft primitive firearms";
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementBuildStructure.Require<ObjectWeaponWorkbench>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeAmmoPaperCartridge>(
+            var recipeMusket = Api.GetProtoEntity<RecipeMusket>();
+            var recipeFlintlockPistol = Api.GetProtoEntity<RecipeFlintlockPistol>();
+
+            tasks
+                .Add(TaskBuildStructure.Require<ObjectWeaponWorkbench>())
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeAmmoPaperCartridge>(
                          description: CraftPaperCartridge))
-                .Add(RequirementCraftRecipe.RequireStationRecipe(
-                         new List<Recipe.RecipeForStationCrafting>()
-                         {
-                             Api.GetProtoEntity<RecipeMusket>(),
-                             Api.GetProtoEntity<RecipeFlintlockPistol>()
-                         },
-                         description: CraftMusketOrFlintlockPistol))
-                .Add(RequirementUseItem.Require<IProtoItemWeaponRanged>(
+                .Add(TaskCraftRecipe.RequireStationRecipe(
+                                        new List<Recipe.RecipeForStationCrafting>()
+                                        {
+                                            recipeMusket,
+                                            recipeFlintlockPistol
+                                        },
+                                        description: CraftMusketOrFlintlockPistol)
+                                    .WithIcon(ClientItemIconHelper.CreateComposedIcon(this.ShortId,
+                                                                                      recipeFlintlockPistol.Icon,
+                                                                                      recipeMusket.Icon)))
+                .Add(TaskUseItem.Require<IProtoItemWeaponRanged>(
                          description: FireTheWeapon));
 
             prerequisites
-                .Add<QuestCraftIronTools>();
+                .Add<QuestUseCrowbarAndDeconstructBuilding>();
         }
     }
 }

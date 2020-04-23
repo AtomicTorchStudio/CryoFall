@@ -118,8 +118,8 @@ Czas przeładowania
 Scripts/Base/Stats/StatName@CraftingSpeed:
 Szybkość wytwarzania
 
-Scripts/Base/Stats/StatName@ItemExplosivePlantingTimeMultiplier:
-Czas podkładania materiałów wybuchowych
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Szybkość podkładania materiałów wybuchowych
 
 Scripts/Base/Stats/StatName@HuntingLootingSpeed:
 Szybkość zbierania łupów

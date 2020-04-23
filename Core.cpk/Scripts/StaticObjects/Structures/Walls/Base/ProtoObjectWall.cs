@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Walls;
     using AtomicTorch.CBND.CoreMod.Helpers.Primitives;
+    using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -104,6 +105,25 @@
             base.ClientObserving(data, isObserving);
             StructureLandClaimIndicatorManager.ClientObserving(data.GameObject, isObserving);
         }
+
+        protected sealed override void PrepareConstructionConfig(
+            ConstructionTileRequirements tileRequirements,
+            ConstructionStageConfig build,
+            ConstructionStageConfig repair,
+            ConstructionUpgradeConfig upgrade,
+            out ProtoStructureCategory category)
+        {
+            this.PrepareConstructionConfig(build,
+                                           repair,
+                                           upgrade,
+                                           out category);
+        }
+
+        protected abstract void PrepareConstructionConfig(
+            ConstructionStageConfig build,
+            ConstructionStageConfig repair,
+            ConstructionUpgradeConfig upgrade,
+            out ProtoStructureCategory category);
 
         protected sealed override void PrepareProtoStaticWorldObject()
         {

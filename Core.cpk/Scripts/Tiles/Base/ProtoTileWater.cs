@@ -38,6 +38,8 @@
 
         private RenderingMaterial waterPrimaryMaterial;
 
+        public abstract IProtoTileWater BridgeProtoTile { get; }
+
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Liquid;
 
         public sealed override TileKind Kind => TileKind.Water;
@@ -100,6 +102,11 @@
         public RenderingMaterial ClientGetWaterPrimaryMaterial()
         {
             return this.waterPrimaryMaterial;
+        }
+
+        public override bool ClientIsBlendingWith(ProtoTile protoTile)
+        {
+            return protoTile.Kind != TileKind.Water;
         }
 
         protected override ITextureResource GetEditorIconTexture()

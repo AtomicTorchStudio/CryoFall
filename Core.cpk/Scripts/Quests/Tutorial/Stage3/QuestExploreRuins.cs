@@ -1,6 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.Items.Equipment;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
+    using AtomicTorch.CBND.CoreMod.Systems.Resources;
     using AtomicTorch.CBND.CoreMod.Tiles;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestExploreRuins : ProtoQuest
     {
@@ -16,10 +21,24 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        public const string TaskGatherLoot = "Loot some containers";
+
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementVisitTile.Require<TileRuins>());
+            tasks
+                .Add(TaskHaveItemEquipped.Require<ItemRespirator>())
+                .Add(TaskVisitTile.Require<TileRuins>())
+                .Add(TaskGather.Require(new IProtoObjectGatherable[]
+                                        {
+                                            Api.GetProtoEntity<ObjectLootCrateFood>(),
+                                            Api.GetProtoEntity<ObjectLootCrateHightech>(),
+                                            Api.GetProtoEntity<ObjectLootCrateIndustrial>(),
+                                            Api.GetProtoEntity<ObjectLootCrateMedical>(),
+                                            Api.GetProtoEntity<ObjectLootCrateMilitary>(),
+                                            Api.GetProtoEntity<ObjectLootCrateSupply>()
+                                        },
+                                        count: 5,
+                                        TaskGatherLoot));
 
             prerequisites
                 .Add<QuestCompleteTier1Technologies>();

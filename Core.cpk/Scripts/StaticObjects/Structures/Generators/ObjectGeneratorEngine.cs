@@ -45,7 +45,7 @@
         {
             var publicState = GetPublicState(worldObject);
 
-            maxProduction = 16;
+            maxProduction = 15;
             currentProduction = publicState.IsActive
                                     ? maxProduction
                                     : 0;

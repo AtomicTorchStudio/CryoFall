@@ -12,6 +12,7 @@
     <helpers:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <helpers:NullToHiddenVisibilityConverter x:Key="NullToHiddenVisibilityConverter" />
     <helpers:EmptyCollectionToVisibilityConverter x:Key="EmptyCollectionToVisibilityConverter" />
+    <helpers:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
     <helpers:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
     <helpers:BoolReverseConverter x:Key="BoolReverseConverter" />
     <helpers:InstanceToBooleanConverter x:Key="InstanceToBooleanConverter" />
@@ -34,11 +35,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <Style TargetType="ContentControl">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Background" Value="{x:Null}" />
     </Style>
 
     <Style TargetType="{x:Type core:Scalebox}">

@@ -34,26 +34,6 @@
         {
         }
 
-        public static double CalculateTimeToHit(
-            WeaponFireTracePreset weaponTracePreset,
-            Vector2D worldPositionSource,
-            Vector2D endPosition)
-        {
-            if (weaponTracePreset is null)
-            {
-                // no weapon trace for this weapon
-                return 0;
-            }
-
-            var deltaPos = endPosition - worldPositionSource;
-            var fireDistance = deltaPos.Length;
-            // hit happens when the end of the weapon trace sprite touches the target, so cut the distance accordingly
-
-            fireDistance -= weaponTracePreset.TraceWorldLength;
-            fireDistance = Math.Max(0, fireDistance);
-            return CalculateTimeToHit(fireDistance, weaponTracePreset);
-        }
-
         public static void Create(
             WeaponFireTracePreset weaponTracePreset,
             Vector2D worldPositionSource,
@@ -89,7 +69,7 @@
                 fireDistance -= weaponTracePreset.TraceWorldLength;
             }
 
-            var totalDuration = CalculateTimeToHit(fireDistance, weaponTracePreset);
+            var totalDuration = WeaponSystemClientDisplay.SharedCalculateTimeToHit(fireDistance, weaponTracePreset);
 
             var sceneObject = Api.Client.Scene.CreateSceneObject("Temp_WeaponTrace");
             var componentSpriteRender = Api.Client.Rendering.CreateSpriteRenderer(
@@ -103,6 +83,7 @@
             componentSpriteRender.RotationAngleRad = (float)angleRad;
             componentSpriteRender.BlendMode = weaponTracePreset.UseScreenBlending
                                                   ? BlendMode.Screen
+                                                  // it's important to use premultiplied mode here for correct rendering
                                                   : BlendMode.AlphaBlendPremultiplied;
 
             sceneObject.AddComponent<ComponentWeaponTrace>()
@@ -194,11 +175,6 @@
             // extend fire distance by start offset (yes, we're using `-` here as TraceStartWorldOffset expected to be negative)
             fireDistance -= weaponTracePreset.TraceStartWorldOffset;
             return fireDistance;
-        }
-
-        private static double CalculateTimeToHit(double fireDistance, WeaponFireTracePreset weaponTracePreset)
-        {
-            return fireDistance / weaponTracePreset.TraceSpeed;
         }
 
         private void Setup(

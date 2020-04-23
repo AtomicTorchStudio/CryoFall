@@ -18,15 +18,15 @@
 
         protected override void PrepareEffects(Effects effects)
         {
-            effects.AddPercent(this, StatName.MiningSpeed,                         -50);
-            effects.AddPercent(this, StatName.WoodcuttingSpeed,                    -50);
-            effects.AddPercent(this, StatName.BuildingSpeed,                       -50);
-            effects.AddPercent(this, StatName.CraftingSpeed,                       -50);
-            effects.AddPercent(this, StatName.FarmingTasksSpeed,                   -50);
-            effects.AddPercent(this, StatName.ForagingSpeed,                       -50);
-            effects.AddPercent(this, StatName.HuntingLootingSpeed,                 -50);
-            effects.AddPercent(this, StatName.SearchingSpeed,                      -50);
-            effects.AddPercent(this, StatName.ItemExplosivePlantingTimeMultiplier, 50); // 50% slower
+            effects.AddPercent(this, StatName.MiningSpeed, -50)
+                   .AddPercent(this, StatName.WoodcuttingSpeed,                     -50)
+                   .AddPercent(this, StatName.BuildingSpeed,                        -50)
+                   .AddPercent(this, StatName.CraftingSpeed,                        -50)
+                   .AddPercent(this, StatName.FarmingTasksSpeed,                    -50)
+                   .AddPercent(this, StatName.ForagingSpeed,                        -50)
+                   .AddPercent(this, StatName.HuntingLootingSpeed,                  -50)
+                   .AddPercent(this, StatName.SearchingSpeed,                       -50)
+                   .AddPercent(this, StatName.ItemExplosivePlantingSpeedMultiplier, -50);
         }
     }
 }

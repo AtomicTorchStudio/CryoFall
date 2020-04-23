@@ -7,7 +7,7 @@
 
     public class ObjectDepositExplosion : ProtoObjectExplosive
     {
-        public override double DamageRadius => 4;
+        public override double DamageRadius => 6;
 
         public override ITextureResource DefaultTexture
             => this.ExplosionPreset.SpriteAtlasResources[0].Chunk(6, 0);

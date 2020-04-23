@@ -3,6 +3,7 @@
     using System;
     using System.Runtime.CompilerServices;
     using System.Windows.Media.Animation;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -23,6 +24,11 @@
 
         public static void ShowOn(ICharacter character, string message)
         {
+            if (!ClientChatDisclaimerConfirmationHelper.IsChatAllowedForCurrentServer)
+            {
+                return;
+            }
+
             message = message.ToLowerInvariant();
 
             var positionOffset = (0,

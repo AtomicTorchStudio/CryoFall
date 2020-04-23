@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Helpers.Client.Music
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.AmbientSound;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Misc;
     using AtomicTorch.CBND.CoreMod.Playlists;
@@ -11,7 +12,6 @@
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
-    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public static class GameplayMusicHelper
@@ -78,6 +78,23 @@
             return false;
         }
 
+        private static bool IsBossMusicShouldPlay()
+        {
+            using var tempCharacters = Api.Shared.GetTempList<ICharacter>();
+            Api.Client.Characters.GetKnownCharacters(tempCharacters);
+
+            foreach (var character in tempCharacters.AsList())
+            {
+                if (character.IsNpc
+                    && ((IProtoCharacterMob)character.ProtoGameObject).IsBoss)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private static void Refresh()
         {
             var shouldPlay = Api.Client.CurrentGame.ConnectionState == ConnectionState.Connected
@@ -92,6 +109,12 @@
                     ClientMusicSystem.CurrentPlaylist = null;
                 }
 
+                return;
+            }
+
+            if (IsBossMusicShouldPlay())
+            {
+                ClientMusicSystem.CurrentPlaylist = Api.GetProtoEntity<PlaylistBoss>();
                 return;
             }
 
@@ -117,8 +140,7 @@
                 return;
             }
 
-
-            if (ComponentAmbientSoundManager.Instance?.IsMusicSuppressedByAmbient() 
+            if (ComponentAmbientSoundManager.Instance?.IsMusicSuppressedByAmbient()
                 ?? false)
             {
                 ClientMusicSystem.CurrentPlaylist = null;

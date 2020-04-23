@@ -1,0 +1,94 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.LootHacking.ObjectHackingProgressDisplayControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Hacking.Data"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelObjectHackingProgressDisplayControl}">
+
+    <StackPanel Orientation="Vertical">
+        <TextBlock Text="{x:Static loc:CoreStrings.LootHacking_Progress}"
+                   Foreground="#FFFFCC00"
+                   FontSize="21"
+                   LineHeight="19"
+                   LineStackingStrategy="BlockLineHeight"
+                   FontWeight="Bold"
+                   FontFamily="{StaticResource CondensedFontFamily}"
+                   noesis:Text.Stroke="Black"
+                   noesis:Text.StrokeThickness="3"
+                   HorizontalAlignment="Center"
+                   TextAlignment="Center" />
+
+        <Border BorderBrush="Black"
+                BorderThickness="1.5"
+                CornerRadius="3"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <core:ValueBarControl
+                x:Name="ValueBarControl"
+                Value="{Binding HackingProgress}"
+                MaxValue="100"
+                BarBrush="#FFFFCC00"
+                Background="#66000000"
+                BorderBrush="#FFFFCC00"
+                Width="128"
+                Height="14"
+                BorderThickness="1"
+                Padding="0"
+                IsDisplayLabel="False"
+                IsDisplayTooltip="False">
+                <core:ValueBarControl.Template>
+                    <ControlTemplate TargetType="{x:Type core:ValueBarControl}">
+                        <Grid x:Name="LayoutRoot">
+                            <Border x:Name="Border"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="3" />
+
+                            <ContentPresenter HorizontalAlignment="Left"
+                                              Margin="{TemplateBinding Padding}" />
+
+                            <Border CornerRadius="3"
+                                    Margin="{TemplateBinding Padding}">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0"
+                                                         EndPoint="0.5,1"
+                                                         Opacity="0.15">
+                                        <GradientStop Color="Transparent" Offset="0" />
+                                        <GradientStop Color="#99000000" Offset="0.5" />
+                                        <GradientStop Color="#FF000000" Offset="0.75" />
+                                        <GradientStop Color="#FF000000" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+
+                            <!--<TextBlock x:Name="TextBlockValueDisplay"
+                                   Text="100/100"
+                                   FontSize="13"
+                                   Margin="0,-2,0,0"
+                                   Foreground="{StaticResource BrushColor6}"
+                                   FontFamily="{StaticResource DigitsFontFamily}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   noesis:Text.Stroke="Black"
+                                   noesis:Text.StrokeThickness="2" />-->
+                        </Grid>
+                    </ControlTemplate>
+                </core:ValueBarControl.Template>
+
+                <Border Background="{Binding BarBrush, ElementName=ValueBarControl}" CornerRadius="3" />
+            </core:ValueBarControl>
+        </Border>
+
+    </StackPanel>
+
+</base:BaseUserControl>

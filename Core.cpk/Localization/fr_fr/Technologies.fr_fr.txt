@@ -13,6 +13,9 @@ Cette technologie a déjà été déverrouillée
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
 Nécessite {0} points d'apprentissage (seulement {1} disponibles).
 
+Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
+Indisponible pendant {0} après un effacement de serveur (veuillez patienter {1}).
+
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 Déverrouillage de technologie requis : {0}
 
@@ -99,6 +102,12 @@ Des recettes plus sophistiquées, pour de nouveaux plats plus variés.
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
 Cuisine 2
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
+Pourquoi ne pas rendre votre environnement plus agréable ?
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
+Décorations
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
 Des technologies de protection améliorées permettant de créer de meilleures armures.
@@ -192,6 +201,12 @@ Des recettes encore plus complexes pour les véritables amateurs de nourriture d
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
 Cuisine 3
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
+Personnalisez encore plus votre environnement !
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
+Décorations 2
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 Des technologies de protection évoluées.

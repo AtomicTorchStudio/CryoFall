@@ -5,7 +5,19 @@
     public static class WeaponsSoundPresets
     {
         public static readonly ReadOnlySoundPreset<WeaponSound> SpecialUseSkeletonSound
-            = new SoundPreset<WeaponSound>().ToReadOnly();
+            = new SoundPreset<WeaponSound>();
+
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRanged
+            = new SoundPreset<WeaponSound>()
+              .Add(Reload,         "Weapons/Ranged/Reload")
+              .Add(ReloadFinished, "Weapons/Ranged/ReloadFinished")
+              .Add(Empty,          "Weapons/Ranged/Empty");
+
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponGrenadeLauncher
+            = WeaponRanged.Clone()
+                          .Replace(Shot,           "Weapons/Ranged/ShotGrenadeLauncher")
+                          .Replace(Reload,         "Weapons/Ranged/ReloadGrenadeLauncher")
+                          .Replace(ReloadFinished, "Weapons/Ranged/ReloadGrenadeLauncherFinished");
 
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponMelee
             = new SoundPreset<WeaponSound>()
@@ -15,14 +27,15 @@
             = new SoundPreset<WeaponSound>()
                 .Add(Shot, "Weapons/MeleeEnergy/LaserRapier/Shot");
 
-        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRanged
-            = new SoundPreset<WeaponSound>()
-              .Add(Reload, "Weapons/Ranged/Reload")
-              .Add(Empty,  "Weapons/Ranged/Empty");
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedBoltActionRifle
+            = WeaponRanged.Clone()
+                          .Replace(Shot, "Weapons/Ranged/ShotBoltActionRifle");
 
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedBow
             = WeaponRanged.Clone()
-                          .Replace(Shot, "Weapons/Ranged/ShotBow");
+                          .Replace(Shot,           "Weapons/Ranged/ShotBow")
+                          .Replace(Reload,         "Weapons/Ranged/ReloadCrossbow")
+                          .Replace(ReloadFinished, "Weapons/Ranged/ReloadCrossbowFinished");
 
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedFlintlockPistol
             = WeaponRanged.Clone()
@@ -31,6 +44,10 @@
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLaser
             = WeaponRanged.Clone()
                           .Replace(Shot, "Weapons/Ranged/ShotLaser");
+
+        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLightRifle
+            = WeaponRanged.Clone()
+                          .Replace(Shot, "Weapons/Ranged/ShotLightRifle");
 
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLuger
             = WeaponRanged.Clone()

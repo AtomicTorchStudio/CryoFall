@@ -40,16 +40,16 @@
             this.HorizontalAlignment = HorizontalAlignment.Left;
             var hideRequestId = ++this.lastHideRequestId;
 
-            ClientTimersSystem.AddAction(
-                delaySeconds,
-                () =>
+            ClientTimersSystem.AddAction(delaySeconds, HideAfterDelay);
+
+            void HideAfterDelay()
+            {
+                if (this.isHiddenOrHiding
+                    && hideRequestId == this.lastHideRequestId)
                 {
-                    if (this.isHiddenOrHiding
-                        && hideRequestId == this.lastHideRequestId)
-                    {
-                        VisualStateManager.GoToElementState(this.textBlock, "Hidden", true);
-                    }
-                });
+                    VisualStateManager.GoToElementState(this.textBlock, "Hidden", true);
+                }
+            }
         }
 
         public void Setup(ChatRoomControl chatRoomControl, ChatEntry value)
@@ -233,6 +233,13 @@
                     {
                         Header = CoreStrings.Chat_MessageMenu_Block,
                         Command = this.viewModel.CommandToggleBlock,
+                    });
+
+                contextMenuItems.Add(
+                    new MenuItem()
+                    {
+                        Header = CoreStrings.Chat_MessageMenu_Report,
+                        Command = this.viewModel.CommandReport
                     });
             }
 

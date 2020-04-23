@@ -20,7 +20,7 @@
             = ObjectMineralPragmiumSourceExplosion.ExplosionDamageRadius + 6;
 
         // because this script called very rare we're increasing the spawn attempts count
-        protected override double MaxSpawnAttempsMultiplier => 150;
+        protected override double MaxSpawnAttemptsMultiplier => 150;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {

@@ -14,16 +14,6 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:services="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Services"
     xmlns:construction="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Construction">
-    <core:BaseUserControlWithWindow.Resources>
-        <ResourceDictionary>
-
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/UI/Styles/SpecialItemsPanel.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-        </ResourceDictionary>
-    </core:BaseUserControlWithWindow.Resources>
-
 
     <core:GameWindow x:Name="GameWindow"
                      Width="{StaticResource GameMenuStandardWindowWidth}"

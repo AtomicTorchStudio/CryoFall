@@ -45,6 +45,7 @@
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
             <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
             <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Template" Value="{StaticResource DefaultListBoxTemplate}" />
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>
@@ -194,6 +195,7 @@
                                TextWrapping="Wrap"
                                TextTrimming="None"
                                VerticalAlignment="Center"
+                               MaxWidth="120"
                                Margin="5,0,0,0" />
                     <ui:ToolTipServiceExtend.ToolTip>
                         <tooltips:ItemTooltipControl ProtoItem="{Binding SelectedProtoItem}" />

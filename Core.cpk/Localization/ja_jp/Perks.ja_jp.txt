@@ -1,5 +1,5 @@
 ﻿Scripts/Perks/PerkClaimDeposits@Name:
-油田とリチウム埋蔵地を所有
+油田・リチウム埋蔵地所有権
 
 Scripts/Perks/PerkIncreaseLandClaimLimitT1@TitleFormat:
 最大所有地数：{0}

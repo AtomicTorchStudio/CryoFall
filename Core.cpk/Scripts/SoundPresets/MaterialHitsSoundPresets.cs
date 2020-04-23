@@ -4,7 +4,7 @@
 
     public static class MaterialHitsSoundPresets
     {
-        private static readonly (float min, float max) HitSoundDistancePreset
+        public static readonly (float min, float max) HitSoundDistancePreset
             = (min: SoundConstants.AudioListenerMinDistanceObjectHit,
                max: SoundConstants.AudioListenerMaxDistanceObjectHit);
 

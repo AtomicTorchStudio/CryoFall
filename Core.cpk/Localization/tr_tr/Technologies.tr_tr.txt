@@ -13,6 +13,9 @@ Teknoloji zaten açıldı
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
 {0} eğitim puanı gerekiyor (sadece {1} var).
 
+Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
+Sunucu silinmesi sonrası {0} için uygun değil (lütfen {1} 'i bekleyin).
+
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 Açılmış teknoloji gerektiriyor: {0}
 
@@ -99,6 +102,12 @@ Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
 Yemek pişirme 2
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
+Etrafını niye daha güzel kılmıyorsun?
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
+Dekorasyonlar
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
 Gelişmiş koruma teknolojileri daha iyi zırh şemaları sağlar.
@@ -192,6 +201,12 @@ Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
 Yemek pişirme 3
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
+Etrafını daha da özelleştir!
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
+Dekorasyonlar 2
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 İleri koruma teknolojileri

@@ -74,13 +74,14 @@
             void ProcessExplosionDirection(int xOffset, int yOffset)
             {
                 foreach (var (_, offsetIndex) in
-                    WeaponExplosionSystem.SharedEnumerateExplosionBombermanDirectionTilesWithTargets(positionEpicenter: positionEpicenter,
-                                                                             damageDistanceFullDamage:
-                                                                             DamageRadiusFullDamage,
-                                                                             damageDistanceMax: DamageRadiusMax,
-                                                                             Api.Client.World,
-                                                                             xOffset,
-                                                                             yOffset))
+                    WeaponExplosionSystem.SharedEnumerateExplosionBombermanDirectionTilesWithTargets(
+                        positionEpicenter: positionEpicenter,
+                        damageDistanceFullDamage:
+                        DamageRadiusFullDamage,
+                        damageDistanceMax: DamageRadiusMax,
+                        Api.Client.World,
+                        xOffset,
+                        yOffset))
                 {
                     ClientTimersSystem.AddAction(
                         delaySeconds: 0.1 * offsetIndex, // please note the offsetIndex is starting with 1
@@ -143,9 +144,20 @@
 
         private static double ServerCalculateDamageCoefByDistanceForDynamicObjects(double distance)
         {
-            distance -= 1.42;
+            var distanceThreshold = 1;
+            if (distance <= distanceThreshold)
+            {
+                return 1;
+            }
+
+            distance -= distanceThreshold;
             distance = Math.Max(0, distance);
-            return 1 - (distance / DamageRadiusDynamicObjectsOnly);
+
+            var maxDistance = DamageRadiusDynamicObjectsOnly;
+            maxDistance -= distanceThreshold;
+            maxDistance = Math.Max(0, maxDistance);
+
+            return 1 - Math.Min(distance / maxDistance, 1);
         }
     }
 }

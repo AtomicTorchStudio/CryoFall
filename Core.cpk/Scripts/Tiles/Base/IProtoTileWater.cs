@@ -6,6 +6,8 @@
 
     public interface IProtoTileWater : IProtoTile
     {
+        IProtoTileWater BridgeProtoTile { get; }
+
         TextureResource UnderwaterGroundTextureAtlas { get; }
 
         RenderingMaterial ClientGetWaterBlendMaterial(ClientTileBlendHelper.BlendLayer blendLayer);

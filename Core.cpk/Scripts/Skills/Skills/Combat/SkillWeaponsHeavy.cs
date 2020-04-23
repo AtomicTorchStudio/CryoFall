@@ -6,7 +6,7 @@
 
     public class SkillWeaponsHeavy : ProtoSkillWeaponsRanged
     {
-        private const double ExperienceAddWhenExplosivePlanted = 500.0;
+        private const double ExperienceAddWhenExplosivePlanted = 250.0;
 
         public override string Description =>
             "Heavy weaponry usage trains you to operate it with greater skill, providing additional means to bring on the hurt.";
@@ -18,7 +18,7 @@
         /// <summary>
         /// This is intended to reward experience per ammo expended. Basically resource->exp conversion.
         /// </summary>
-        public override double ExperienceAddedPerShot => 5;
+        public override double ExperienceAddedPerShot => 15;
 
         public override double ExperienceToLearningPointsConversionMultiplier => 1.0;
 
@@ -40,7 +40,6 @@
             ICharacter character,
             double experienceMultiplier)
         {
-            // if multiplier is zero or negative - do not add anythying.
             if (experienceMultiplier <= 0)
             {
                 return;
@@ -53,24 +52,30 @@
 
         protected override void PrepareProtoWeaponsSkillRanged(SkillConfig config)
         {
-            //base.PrepareProtoWeaponsSkillRanged(config);
-
+            // faster explosion planting
             // unlock bonus
             config.AddStatEffect(
-                StatName.ItemExplosivePlantingTimeMultiplier,
+                StatName.ItemExplosivePlantingSpeedMultiplier,
                 level: 1,
-                percentBonus: -5);
+                percentBonus: 20);
 
             // every level bonus
             config.AddStatEffect(
-                StatName.ItemExplosivePlantingTimeMultiplier,
-                formulaPercentBonus: level => -level * 2);
+                StatName.ItemExplosivePlantingSpeedMultiplier,
+                formulaPercentBonus: level => level * 3);
 
             // lvl 20 bonus
             config.AddStatEffect(
-                StatName.ItemExplosivePlantingTimeMultiplier,
+                StatName.ItemExplosivePlantingSpeedMultiplier,
                 level: 20,
-                percentBonus: -5);
+                percentBonus: 20);
+
+            // other bonuses
+            config.AddStatEffect(this.StatNameReloadingSpeedMultiplier.Value,
+                                 formulaPercentBonus: level => -level * 2);
+
+            config.AddStatEffect(this.StatNameDegrationRateMultiplier,
+                                 formulaPercentBonus: level => -level * 2);
         }
     }
 }

@@ -1,0 +1,63 @@
+﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
+建造： {0}
+
+Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
+完成: {0}（科技組）
+
+Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
+正在 {0}
+
+Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
+製作
+
+Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
+摧毀: {0}
+
+Scripts/PlayerTasks/TaskGather@DescriptionFormat:
+採集: {0}
+
+Scripts/PlayerTasks/TaskHaveItem@DescriptionFormat:
+收集: {0}
+
+Scripts/PlayerTasks/TaskHaveItemEquipped@DescriptionFormat:
+裝備: {0}
+
+Scripts/PlayerTasks/TaskHaveSkill@DescriptionFormat:
+學習技能: {0}至{1}級
+
+Scripts/PlayerTasks/TaskHaveSkills@DescriptionFormat:
+學習技能: {0}至{1}級
+
+Scripts/PlayerTasks/TaskHaveTechGroup@DescriptionFormat:
+解鎖 {0} （科技組）
+
+Scripts/PlayerTasks/TaskHaveTechGroups@DescriptionFormat:
+解鎖 {0} 科技組: {1}
+
+Scripts/PlayerTasks/TaskHaveTechNode@DescriptionFormat:
+學習科技: {0} (位於 {1} 組)
+
+Scripts/PlayerTasks/TaskKill@DescriptionFormat:
+殺死: {0}
+
+Scripts/PlayerTasks/TaskKillAny@DescriptionFormat:
+殺死: {0}
+
+Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
+製造: {0}
+
+Scripts/PlayerTasks/TaskRun@DescriptionText:
+衝刺10米
+
+Scripts/PlayerTasks/TaskSortItemsContainer@DescriptionText:
+整理物品欄道具
+
+Scripts/PlayerTasks/TaskUseItem@DescriptionFormat:
+使用: {0}
+
+Scripts/PlayerTasks/TaskVisitTile@DescriptionFormat:
+訪問: {0}
+
+Scripts/PlayerTasks/TaskVisitZone@DescriptionFormat:
+訪問: {0}
+

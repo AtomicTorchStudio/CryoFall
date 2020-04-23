@@ -11,11 +11,6 @@
                     mc:Ignorable="d">
     <!-- This resource dictionary contains styles related to containers and items (inventory, slots, etc) -->
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="RequiredStyles.xaml" />
-        <ResourceDictionary Source="DefaultStyles.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <system:Double x:Key="IconItemSize">52</system:Double>
 
     <SolidColorBrush x:Key="ItemSlotControlBackgroundBrush" Color="#44444444" />

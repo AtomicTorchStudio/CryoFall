@@ -78,7 +78,10 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ItemsControl}">
-                            <ItemsPresenter />
+                            <StackPanel Orientation="Vertical">
+                                <Rectangle Style="{StaticResource SectionHeaderBackground}" />
+                                <ItemsPresenter />
+                            </StackPanel>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -315,10 +318,9 @@
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Rectangle Style="{StaticResource SectionHeaderBackground}"
-                               Visibility="{Binding ActiveQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
 
                     <ScrollViewer Grid.Row="1"
+                                  Style="{StaticResource VerticalScrollViewerWithFadeStyle}"
                                   Padding="0,0,2,0">
                         <ItemsControl ItemsSource="{Binding ActiveQuests}"
                                       Style="{StaticResource QuestItemsControlStyle}"
@@ -336,8 +338,13 @@
                                 HorizontalAlignment="Stretch"
                                 Grid.Row="2"
                                 Margin="0,0,0,-4">
+
+                        <Control Style="{StaticResource ControlHorizontalSeparator}"
+                                 Margin="0" />
+
                         <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Center">
+                                    HorizontalAlignment="Center"
+                                    Margin="0,2,0,-2">
                             <StackPanel.Resources>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Foreground" Value="{StaticResource BrushColorAlt3}" />
@@ -365,10 +372,9 @@
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Rectangle Style="{StaticResource SectionHeaderBackground}"
-                               Visibility="{Binding CompletedQuests, Converter={StaticResource EmptyCollectionToVisibilityConverter}}" />
 
                     <ScrollViewer Grid.Row="1"
+                                  Style="{StaticResource VerticalScrollViewerWithFadeStyle}"
                                   Padding="0,0,2,0">
                         <ItemsControl ItemsSource="{Binding CompletedQuests}"
                                       Style="{StaticResource QuestItemsControlStyle}"
@@ -386,8 +392,13 @@
                                 HorizontalAlignment="Stretch"
                                 Grid.Row="2"
                                 Margin="0,0,0,-4">
+
+                        <Control Style="{StaticResource ControlHorizontalSeparator}"
+                                 Margin="0" />
+
                         <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Center">
+                                    HorizontalAlignment="Center"
+                                    Margin="0,2,0,-2">
                             <StackPanel.Resources>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Foreground" Value="{StaticResource BrushColorAlt3}" />

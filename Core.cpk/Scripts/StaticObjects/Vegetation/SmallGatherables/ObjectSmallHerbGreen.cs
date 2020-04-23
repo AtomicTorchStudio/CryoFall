@@ -17,6 +17,11 @@
 
         protected override TimeSpan TimeToMature => TimeSpan.Zero;
 
+        protected override ITextureResource ClientCreateIcon()
+        {
+            return new TextureResource(this.GenerateTexturePath() + "Icon");
+        }
+
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);

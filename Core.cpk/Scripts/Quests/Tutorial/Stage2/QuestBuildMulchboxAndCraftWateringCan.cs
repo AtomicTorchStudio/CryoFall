@@ -2,8 +2,11 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestBuildMulchboxAndCraftWateringCan : ProtoQuest
     {
@@ -24,13 +27,14 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeWateringCanWood>())
-                .Add(RequirementBuildStructure.Require<ObjectMulchbox>())
-                .Add(RequirementUseItem.Require<IProtoItemToolWateringCan>(description: TaskUseWateringCan))
-                .Add(RequirementUseItem.Require<ItemMulch>(description: TaskUseMulch));
+            tasks
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeWateringCanWood>())
+                .Add(TaskBuildStructure.Require<ObjectMulchbox>())
+                .Add(TaskUseItem.Require<IProtoItemToolWateringCan>(description: TaskUseWateringCan)
+                                .WithIcon(Api.GetProtoEntity<ItemWateringCanWood>().Icon))
+                .Add(TaskUseItem.Require<ItemMulch>(description: TaskUseMulch));
 
             prerequisites
                 .Add<QuestBuildAFarm>()

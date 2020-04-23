@@ -10,7 +10,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
         public override string Description =>
             "Enables or disables the whitelist";
 
-        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
+        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerModerator;
 
         public override string Name => "mod.whiteList.enabled";
 

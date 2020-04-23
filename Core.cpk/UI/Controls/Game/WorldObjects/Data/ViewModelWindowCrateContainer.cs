@@ -36,7 +36,7 @@
                 callbackServerSetOwnersList:
                 ownersList => WorldObjectOwnersSystem.ClientSetOwners(this.WorldObjectCrate,
                                                                       ownersList),
-                title: CoreStrings.ObjectOwnersList_Title + ":");
+                title: CoreStrings.ObjectOwnersList_Title2);
 
             this.ViewModelAccessModeEditor = new ViewModelWorldObjectAccessModeEditor(
                 worldObjectCrate,

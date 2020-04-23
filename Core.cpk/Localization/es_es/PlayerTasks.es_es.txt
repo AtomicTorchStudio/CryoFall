@@ -1,0 +1,63 @@
+﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
+Construir: {0}
+
+Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
+Completa el grupo de tecnologías: {0}
+
+Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
+en {0}
+
+Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
+Fabricar
+
+Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
+Destruir: {0}
+
+Scripts/PlayerTasks/TaskGather@DescriptionFormat:
+Recolectar: {0}
+
+Scripts/PlayerTasks/TaskHaveItem@DescriptionFormat:
+Consigue: {0}
+
+Scripts/PlayerTasks/TaskHaveItemEquipped@DescriptionFormat:
+Equipar: {0}
+
+Scripts/PlayerTasks/TaskHaveSkill@DescriptionFormat:
+Aprender habilidad: {0} de nivel {1}
+
+Scripts/PlayerTasks/TaskHaveSkills@DescriptionFormat:
+Aprender habilidades: {0} de nivel {1}
+
+Scripts/PlayerTasks/TaskHaveTechGroup@DescriptionFormat:
+Desbloquea el grupo de tecnologías: {0}
+
+Scripts/PlayerTasks/TaskHaveTechGroups@DescriptionFormat:
+Desbloquea {0} grupos de tecnologías: {1}
+
+Scripts/PlayerTasks/TaskHaveTechNode@DescriptionFormat:
+Aprender: {0} (está en el grupo tecnológico {1})
+
+Scripts/PlayerTasks/TaskKill@DescriptionFormat:
+Matar: {0}
+
+Scripts/PlayerTasks/TaskKillAny@DescriptionFormat:
+Matar: {0}
+
+Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
+Fabricar: {0}
+
+Scripts/PlayerTasks/TaskRun@DescriptionText:
+Corre durante 10 metros.
+
+Scripts/PlayerTasks/TaskSortItemsContainer@DescriptionText:
+Ordenar objetos del inventario
+
+Scripts/PlayerTasks/TaskUseItem@DescriptionFormat:
+Usar: {0}
+
+Scripts/PlayerTasks/TaskVisitTile@DescriptionFormat:
+Visitar: {0}
+
+Scripts/PlayerTasks/TaskVisitZone@DescriptionFormat:
+Visitar: {0}
+

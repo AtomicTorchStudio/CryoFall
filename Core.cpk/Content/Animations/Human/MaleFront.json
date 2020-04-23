@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "iNq+xrtvgoRE9qzOOasxKQKOl0I", "spine": "3.7.94", "width": 41.41, "height": 83.46 },
+"skeleton": { "hash": "Ud2hH0gY9nUYgL/2mJvi54HMcXg", "spine": "3.7.94", "width": 41.84, "height": 84.02 },
 "bones": [
 	{ "name": "root", "rotation": 0.05, "scaleX": 0.068, "scaleY": 0.068 },
 	{ "name": "Pelvis", "parent": "root", "length": 71.03, "rotation": 92.71, "x": -36.27, "y": 299.86 },
@@ -97,8 +97,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 76.9,
-				"width": 36,
-				"height": 66
+				"width": 42,
+				"height": 67
 			}
 		},
 		"CalfLeftEquipment": {
@@ -109,8 +109,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 76.9,
-				"width": 36,
-				"height": 66
+				"width": 42,
+				"height": 67
 			}
 		},
 		"CalfRight": {
@@ -121,8 +121,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 75.04,
-				"width": 38,
-				"height": 65
+				"width": 42,
+				"height": 66
 			}
 		},
 		"CalfRightEquipment": {
@@ -133,8 +133,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 75.04,
-				"width": 38,
-				"height": 65
+				"width": 42,
+				"height": 66
 			}
 		},
 		"FootLeft": {
@@ -145,8 +145,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 147.13,
-				"width": 49,
-				"height": 45
+				"width": 53,
+				"height": 49
 			}
 		},
 		"FootLeftEquipment": {
@@ -157,8 +157,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 147.13,
-				"width": 49,
-				"height": 45
+				"width": 53,
+				"height": 49
 			}
 		},
 		"FootRight": {
@@ -169,8 +169,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 151.86,
-				"width": 52,
-				"height": 40
+				"width": 55,
+				"height": 43
 			}
 		},
 		"FootRightEquipment": {
@@ -181,8 +181,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 151.86,
-				"width": 52,
-				"height": 40
+				"width": 55,
+				"height": 43
 			}
 		},
 		"HandLeft": {
@@ -193,8 +193,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 128.29,
-				"width": 58,
-				"height": 58
+				"width": 61,
+				"height": 59
 			},
 			"HandLeft2": {
 				"path": "Front/Male/HandLeft2",
@@ -203,8 +203,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 119.79,
-				"width": 51,
-				"height": 54
+				"width": 50,
+				"height": 53
 			}
 		},
 		"HandLeftEquipment": {
@@ -215,8 +215,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 119.79,
-				"width": 51,
-				"height": 54
+				"width": 50,
+				"height": 53
 			},
 			"HandLeftEquipment": {
 				"path": "Front/Male/HandLeft",
@@ -225,8 +225,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 129.09,
-				"width": 58,
-				"height": 58
+				"width": 61,
+				"height": 59
 			}
 		},
 		"HandRight": {
@@ -237,7 +237,7 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 70.65,
-				"width": 45,
+				"width": 48,
 				"height": 62
 			},
 			"HandRight2": {
@@ -247,8 +247,8 @@
 				"scaleX": 2.96,
 				"scaleY": 2.96,
 				"rotation": 152.86,
-				"width": 51,
-				"height": 48
+				"width": 53,
+				"height": 49
 			}
 		},
 		"HandRightEquipment": {
@@ -259,8 +259,8 @@
 				"scaleX": 2.96,
 				"scaleY": 2.96,
 				"rotation": 152.86,
-				"width": 51,
-				"height": 48
+				"width": 53,
+				"height": 49
 			},
 			"HandRightEquipment": {
 				"path": "Front/Male/HandRight",
@@ -269,20 +269,20 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 70.65,
-				"width": 45,
+				"width": 48,
 				"height": 62
 			}
 		},
 		"Head": {
 			"Head": {
 				"path": "Front/Male/Head",
-				"x": 94.33,
-				"y": 15.42,
+				"x": 84.41,
+				"y": 1.41,
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": -91.14,
-				"width": 112,
-				"height": 142
+				"width": 106,
+				"height": 150
 			}
 		},
 		"HipLeft": {
@@ -293,8 +293,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 82.76,
-				"width": 46,
-				"height": 65
+				"width": 48,
+				"height": 66
 			}
 		},
 		"HipLeftEquipment": {
@@ -305,8 +305,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 82.76,
-				"width": 46,
-				"height": 65
+				"width": 48,
+				"height": 66
 			}
 		},
 		"HipRight": {
@@ -317,8 +317,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 71.37,
-				"width": 50,
-				"height": 75
+				"width": 52,
+				"height": 77
 			}
 		},
 		"HipRightEquipment": {
@@ -329,8 +329,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 71.37,
-				"width": 50,
-				"height": 75
+				"width": 52,
+				"height": 77
 			}
 		},
 		"LowerArmLeft": {
@@ -341,7 +341,7 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 102.88,
-				"width": 43,
+				"width": 44,
 				"height": 66
 			}
 		},
@@ -353,7 +353,7 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 102.88,
-				"width": 43,
+				"width": 44,
 				"height": 66
 			}
 		},
@@ -365,7 +365,7 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 104.8,
-				"width": 42,
+				"width": 44,
 				"height": 59
 			}
 		},
@@ -377,7 +377,7 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 104.8,
-				"width": 42,
+				"width": 44,
 				"height": 59
 			}
 		},
@@ -389,8 +389,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": -92.71,
-				"width": 90,
-				"height": 101
+				"width": 93,
+				"height": 100
 			}
 		},
 		"PelvisEquipment": {
@@ -401,8 +401,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": -92.71,
-				"width": 90,
-				"height": 101
+				"width": 93,
+				"height": 100
 			}
 		},
 		"Torso": {
@@ -413,8 +413,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": -88.13,
-				"width": 129,
-				"height": 153
+				"width": 132,
+				"height": 154
 			}
 		},
 		"TorsoEquipment": {
@@ -425,8 +425,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": -88.13,
-				"width": 129,
-				"height": 153
+				"width": 132,
+				"height": 154
 			}
 		},
 		"UpperArmLeft": {
@@ -437,8 +437,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 64.23,
-				"width": 58,
-				"height": 89
+				"width": 59,
+				"height": 91
 			}
 		},
 		"UpperArmLeftEquipment": {
@@ -449,8 +449,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 64.23,
-				"width": 58,
-				"height": 89
+				"width": 59,
+				"height": 91
 			}
 		},
 		"UpperArmRight": {
@@ -461,8 +461,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 107.17,
-				"width": 50,
-				"height": 75
+				"width": 53,
+				"height": 76
 			}
 		},
 		"UpperArmRightEquipment": {
@@ -473,8 +473,8 @@
 				"scaleX": 2.957,
 				"scaleY": 2.957,
 				"rotation": 107.17,
-				"width": 50,
-				"height": 75
+				"width": 53,
+				"height": 76
 			}
 		},
 		"Weapon": {

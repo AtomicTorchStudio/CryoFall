@@ -8,10 +8,16 @@
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
+    using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoObjectCrate
         <TPrivateState,
@@ -25,7 +31,7 @@
           IProtoObjectWithOwnersList,
           IProtoObjectWithAccessMode
         where TPrivateState : ObjectCratePrivateState, new()
-        where TPublicState : StaticObjectPublicState, new()
+        where TPublicState : ObjectCratePublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
         // how long the items dropped on the ground from the destroyed crate should remain there
@@ -39,6 +45,8 @@
 
         public bool IsClosedAccessModeAvailable => false;
 
+        public virtual bool IsSupportItemIcon => true;
+
         public abstract byte ItemsSlotsCount { get; }
 
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
@@ -46,8 +54,25 @@
         public override float StructurePointsMaxForConstructionSite
             => this.StructurePointsMax / 25;
 
+        protected virtual Vector2D ItemIconOffset => (0, 0.0425);
+
+        protected virtual double ItemIconScale => 0.3;
+
         protected virtual IProtoItemsContainer ItemsContainerType
             => Api.GetProtoEntity<ItemsContainerDefault>();
+
+        protected virtual ITextureResource TextureResourceIconPlate { get; }
+            = new TextureResource("StaticObjects/Structures/Crates/ObjectCrate_Plate");
+
+        public void ClientSetIconSource(IStaticWorldObject worldObjectCrate, IProtoEntity iconSource)
+        {
+            if (GetPublicState(worldObjectCrate).IconSource == iconSource)
+            {
+                return;
+            }
+
+            this.CallServer(_ => _.ServerRemote_SetIconSource(worldObjectCrate, iconSource));
+        }
 
         public override void ServerOnBuilt(IStaticWorldObject structure, ICharacter byCharacter)
         {
@@ -104,6 +129,12 @@
         {
         }
 
+        protected override void ClientInitialize(ClientInitializeData data)
+        {
+            base.ClientInitialize(data);
+            this.ClientSetupIconRenderer(data);
+        }
+
         protected override void ClientInteractStart(ClientObjectData data)
         {
             InteractableWorldObjectHelper.ClientStartInteract(data.GameObject);
@@ -114,6 +145,59 @@
             TPrivateState privateState)
         {
             return WindowCrateContainer.Show(worldObject, privateState);
+        }
+
+        protected virtual void ClientSetupIconRenderer(ClientInitializeData data)
+        {
+            if (!this.IsSupportItemIcon)
+            {
+                return;
+            }
+
+            var clientState = data.ClientState;
+
+            var spriteRenderIconPlate = Client.Rendering.CreateSpriteRenderer(
+                data.GameObject,
+                this.TextureResourceIconPlate,
+                spritePivotPoint: (0.5, 0.5));
+
+            var spriteRenderIcon = Client.Rendering.CreateSpriteRenderer(
+                data.GameObject,
+                TextureResource.NoTexture,
+                spritePivotPoint: (0.5, 0.5));
+
+            spriteRenderIconPlate.Scale = 1.2;
+            spriteRenderIcon.Scale = 1.95 * this.ItemIconScale;
+
+            this.ClientSetupIconSpriteRenderer(clientState.Renderer, spriteRenderIconPlate);
+            this.ClientSetupIconSpriteRenderer(clientState.Renderer, spriteRenderIcon);
+
+            var publicState = data.PublicState;
+            publicState.ClientSubscribe(
+                _ => _.IconSource,
+                _ => UpdateIcon(),
+                clientState);
+
+            UpdateIcon();
+
+            // local method for updating public liquid state
+            void UpdateIcon()
+            {
+                var iconSource = publicState.IconSource;
+                spriteRenderIcon.IsEnabled = spriteRenderIconPlate.IsEnabled = iconSource != null;
+                spriteRenderIcon.TextureResource = ClientCrateIconHelper.GetIcon(iconSource);
+            }
+        }
+
+        protected virtual void ClientSetupIconSpriteRenderer(
+            IComponentSpriteRenderer spriteRenderer,
+            IComponentSpriteRenderer iconRenderer)
+        {
+            var iconOffset = this.ItemIconOffset;
+            var offsetY = spriteRenderer.DrawOrderOffsetY + iconOffset.Y;
+            iconRenderer.PositionOffset = (x: spriteRenderer.PositionOffset.X + iconOffset.X,
+                                           y: spriteRenderer.PositionOffset.Y + offsetY);
+            iconRenderer.DrawOrderOffsetY -= offsetY;
         }
 
         protected override void ServerInitialize(ServerInitializeData data)
@@ -159,10 +243,24 @@
                 .AddShapeRectangle(size: (1, 0.2),   offset: (0, 1.1), group: CollisionGroups.HitboxRanged)
                 .AddShapeRectangle(size: (1, 0.75),  offset: (0, 0.4), group: CollisionGroups.ClickArea);
         }
+
+        private void ServerRemote_SetIconSource(IStaticWorldObject worldObjectCrate, IProtoEntity iconSource)
+        {
+            this.VerifyGameObject(worldObjectCrate);
+
+            var character = ServerRemoteContext.Character;
+            if (!this.SharedCanInteract(character, worldObjectCrate, writeToLog: true))
+            {
+                return;
+            }
+
+            var publicState = GetPublicState(worldObjectCrate);
+            publicState.IconSource = iconSource;
+        }
     }
 
     public abstract class ProtoObjectCrate
-        : ProtoObjectCrate<ObjectCratePrivateState, StaticObjectPublicState,
+        : ProtoObjectCrate<ObjectCratePrivateState, ObjectCratePublicState,
             StaticObjectClientState>
     {
     }

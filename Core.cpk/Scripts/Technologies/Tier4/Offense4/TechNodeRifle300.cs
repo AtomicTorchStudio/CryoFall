@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeRifle300>();
 
-            config.SetRequiredNode<TechNodeMachinegun300>();
+            config.SetRequiredNode<TechNodeAmmo300Incendiary>();
         }
     }
 }

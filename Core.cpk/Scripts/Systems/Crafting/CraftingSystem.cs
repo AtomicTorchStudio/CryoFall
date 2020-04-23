@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Crafting
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
@@ -217,13 +216,15 @@
                 return true;
             }
 
-            var lastRecipe = craftingQueueItems.Last();
-            var macCountToCraft = recipe.OutputItems.Items[0].ProtoItem.MaxItemsPerStack;
-            if (lastRecipe.CanCombineWith(recipe)
-                && (int)lastRecipe.CountToCraftRemains + (int)countToCraft <= macCountToCraft)
+            foreach (var scheduledQueueItem in craftingQueueItems)
             {
-                // allow to increase the recipe count
-                return true;
+                var macCountToCraft = recipe.OutputItems.Items[0].ProtoItem.MaxItemsPerStack;
+                if (scheduledQueueItem.CanCombineWith(recipe)
+                    && (int)scheduledQueueItem.CountToCraftRemains + (int)countToCraft <= macCountToCraft)
+                {
+                    // allow to increase already queued recipe's count
+                    return true;
+                }
             }
 
             Logger.Info("Crafting queue is full", character);
@@ -300,7 +301,7 @@
 
                 async void Refresh()
                 {
-                    if (Api.Client.Characters.CurrentPlayerCharacter == null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
                     {
                         return;
                     }

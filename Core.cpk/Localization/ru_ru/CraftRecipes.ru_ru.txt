@@ -1,7 +1,4 @@
-﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
-Разбить бутылку
-
-Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+﻿Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
 Наполнить бочку бензином
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:

@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Bushes;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Industry2;
@@ -22,13 +23,13 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementDestroy.Require<ObjectMineralSalt>(count: 5, description: TaskMineSalt))
-                .Add(RequirementGather.Require<ObjectBushOilpod>(count: 5))
-                .Add(RequirementHaveTechNode.Require<TechNodePetroleumFromOilpods>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeCanisterPetroleum>());
+            tasks
+                .Add(TaskDestroy.Require<ObjectMineralSalt>(count: 5, description: TaskMineSalt))
+                .Add(TaskGather.Require<ObjectBushOilpod>(count: 5))
+                .Add(TaskHaveTechNode.Require<TechNodePetroleumFromOilpods>())
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeCanisterPetroleum>());
 
             prerequisites
                 .Add<QuestExploreBiomes3>();

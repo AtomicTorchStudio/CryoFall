@@ -16,7 +16,6 @@
     <core:BaseUserControlWithWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/UI/Styles/SpecialItemsPanel.xaml" />
                 <ResourceDictionary Source="WindowVehicleStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -26,8 +25,8 @@
                                   d:DataContext="{d:DesignInstance data:ViewModelWindowObjectVehicle, IsDesignTimeCreatable=True}">
         <TabControl Margin="10,5"
                     Style="{StaticResource TabControlCompactStyle}">
-            <TabItem Header="{x:Static loc:CoreStrings.WindowsObjectVehicle_TabVehicleTitle}"
-                     IsSelected="{Binding IsPrimaryTabSelected, Mode=TwoWay}">
+            <TabItem Header="{x:Static loc:CoreStrings.WindowsObjectVehicle_TabVehicleTitle}">
+                     <!--IsSelected="{Binding IsFuelContainerActive, Mode=TwoWay}">-->
                 <Grid Margin="0,7,0,0"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Center">

@@ -9,6 +9,8 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
+    using AtomicTorch.CBND.CoreMod.Systems.EmojiSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
     using AtomicTorch.CBND.CoreMod.UI.Services;
@@ -45,6 +47,8 @@
 
         private uint activatedOnFrameNumber;
 
+        private Button buttonToggleEmojiPicker;
+
         private bool? isActive;
 
         private bool isExpanded;
@@ -80,6 +84,8 @@
                     this.textBoxChatInput.Visibility = Visibility.Visible;
                     this.textBoxChatInput.Focusable = true;
 
+                    this.buttonToggleEmojiPicker.Visibility = Visibility.Visible;
+
                     this.scrollViewerChatLog.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
                     this.scrollViewerChatLog.Focusable = true;
 
@@ -91,6 +97,7 @@
                     this.scrollViewerChatLog.MouseLeftButtonUp += this.ScrollViewerChatLogMouseLeftButtonUpHandler;
 
                     this.viewModelChatRoom.IsOpened = true;
+                    this.RefreshScrollViewerChatLogVisibility();
 
                     if (this.viewModelChatRoom.IsSelected)
                     {
@@ -103,6 +110,8 @@
                     this.SetIsExpanded(false);
                     this.textBoxChatInput.Visibility = Visibility.Hidden;
                     this.textBoxChatInput.Focusable = false;
+
+                    this.buttonToggleEmojiPicker.Visibility = Visibility.Collapsed;
 
                     this.HideEntries();
 
@@ -156,17 +165,7 @@
             this.IsActive = true;
 
             from = "@" + from + ", ";
-            if (this.textBoxChatInput.Text.Length == 0)
-            {
-                this.textBoxChatInput.Text = from;
-                this.textBoxChatInput.CaretIndex = from.Length;
-            }
-            else
-            {
-                var insertPosition = this.textBoxChatInput.CaretIndex;
-                this.textBoxChatInput.Text = this.textBoxChatInput.Text.Insert(insertPosition, " " + from);
-                this.textBoxChatInput.CaretIndex = insertPosition + 1 + from.Length;
-            }
+            this.InsertTextAtCurrentCaretPosition(from, addPaddingIfNecessary: true);
         }
 
         public void FocusInput()
@@ -185,11 +184,19 @@
                 });
         }
 
+        public void OnEmojiSelected(string emoji)
+        {
+            this.InsertTextAtCurrentCaretPosition(emoji, addPaddingIfNecessary: false);
+        }
+
         protected override void InitControl()
         {
             this.textBoxChatInput = this.GetByName<TextBox>("TextBoxChatInput");
             this.textBoxChatInput.Visibility = Visibility.Hidden;
             this.textBoxChatInput.Focusable = false;
+
+            this.buttonToggleEmojiPicker = this.GetByName<Button>("ButtonToggleEmojiPicker");
+            this.buttonToggleEmojiPicker.Visibility = Visibility.Collapsed;
 
             this.scrollViewerChatLog = this.GetByName<ScrollViewer>("ScrollViewerChatLog");
             this.stackPanelChatLogChildren = this.GetByName<StackPanel>("StackPanelChatLog").Children;
@@ -204,13 +211,18 @@
                 this.SetIsExpanded(true);
             }
 
+            this.buttonToggleEmojiPicker.Click += this.ButtonToggleEmojiPickerClickHandler;
             ChatSystem.ClientChatRoomMessageReceived += this.ClientChatRoomMessageReceivedHandler;
             ClientChatBlockList.CharacterBlockStatusChanged += this.CharacterBlockStatusChangedHandler;
+
             this.PopulateEntriesFromRoomLog();
+
+            this.RefreshScrollViewerChatLogVisibility();
         }
 
         protected override void OnUnloaded()
         {
+            this.buttonToggleEmojiPicker.Click -= this.ButtonToggleEmojiPickerClickHandler;
             ChatSystem.ClientChatRoomMessageReceived -= this.ClientChatRoomMessageReceivedHandler;
             ClientChatBlockList.CharacterBlockStatusChanged -= this.CharacterBlockStatusChangedHandler;
         }
@@ -232,6 +244,13 @@
             {
                 chatEntryControl.Hide(delaySeconds: DefaultNewEntryHideDelaySeconds);
             }
+        }
+
+        private void ButtonToggleEmojiPickerClickHandler(object sender, RoutedEventArgs e)
+        {
+            Api.Client.UI.LayoutRootChildren.Add(
+                new EmojiPickerPopupControl(this,
+                                            placementTarget: this.buttonToggleEmojiPicker));
         }
 
         private void CharacterBlockStatusChangedHandler((string name, bool isBlocked) blockedInfo)
@@ -285,8 +304,11 @@
 
             lastMessageReceivedSoundPlayerFrameNumber = frameNumber;
 
-            Api.Client.Audio.PlayOneShot(this.GetMessageReceivedSound(chatEntry),
-                                         volume: SoundConstants.VolumeUIChat);
+            if (ClientChatDisclaimerConfirmationHelper.IsChatAllowedForCurrentServer)
+            {
+                Api.Client.Audio.PlayOneShot(this.GetMessageReceivedSound(chatEntry),
+                                             volume: SoundConstants.VolumeUIChat);
+            }
         }
 
         private ChatEntryControl CreateChatEntryControl(ChatEntry chatEntry)
@@ -353,14 +375,16 @@
 
                     this.IsActive = false;
                     this.ChatPanel.Close();
-                    break;
+                    return;
 
                 case Key.Escape:
                     e.Handled = true;
                     this.IsActive = false;
                     this.ChatPanel.Close();
-                    break;
+                    return;
             }
+
+            ClientTimersSystem.AddAction(0, this.ReplaceEmojis);
         }
 
         private void InputPreviewKeyDownHandler(object sender, KeyEventArgs e)
@@ -422,9 +446,14 @@
                     this.ChatPanel.SelectTab<ChatRoomLocal>();
                     break;
 
-                case "$":
+                case "%":
                     e.Handled = true;
                     this.ChatPanel.SelectTab<ChatRoomGlobal>();
+                    break;
+
+                case "$":
+                    e.Handled = true;
+                    this.ChatPanel.SelectTab<ChatRoomTrade>();
                     break;
 
                 case "#":
@@ -432,6 +461,55 @@
                     e.Handled = true;
                     break;
             }
+        }
+
+        private void InsertTextAtCurrentCaretPosition(string text, bool addPaddingIfNecessary)
+        {
+            var currentText = this.textBoxChatInput.Text;
+            if (currentText.Length == 0)
+            {
+                this.textBoxChatInput.Text = text;
+                this.textBoxChatInput.CaretIndex = text.Length;
+                return;
+            }
+
+            // insert at current index position
+            if (addPaddingIfNecessary)
+            {
+                text = " " + text;
+            }
+
+            var originalCaretIndex = this.textBoxChatInput.CaretIndex;
+            var insertPosition = originalCaretIndex;
+            for (var index = 0; index < insertPosition; index++)
+            {
+                var c = currentText[index];
+                if (!char.IsSurrogate(c))
+                {
+                    // skip surrogate pair's second code point
+                    continue;
+                }
+
+                insertPosition++;
+                index++;
+            }
+
+            this.textBoxChatInput.Text = currentText.Insert(insertPosition, text);
+
+            // figure out length of the text without the UTF surrogate pairs
+            var textLengthWithoutSurrogates = 0;
+            for (var index = 0; index < text.Length; index++)
+            {
+                textLengthWithoutSurrogates++;
+                var c = text[index];
+                if (char.IsSurrogate(c))
+                {
+                    // skip surrogate pair's second code point
+                    index++;
+                }
+            }
+
+            this.textBoxChatInput.CaretIndex = originalCaretIndex + textLengthWithoutSurrogates;
         }
 
         private void LimitScrollViewerHeight()
@@ -479,6 +557,29 @@
             this.ScrollToBottom(force: true);
         }
 
+        private void RefreshScrollViewerChatLogVisibility()
+        {
+            this.scrollViewerChatLog.Visibility =
+                ClientChatDisclaimerConfirmationHelper.GetIsNeedToDisplayDisclaimerForCurrentServer(out _)
+                    ? Visibility.Hidden
+                    : Visibility.Visible;
+        }
+
+        private void ReplaceEmojis()
+        {
+            var originalText = this.textBoxChatInput.Text;
+            var newText = EmojiHelper.ReplaceAsciiToUnicodeEmoji(originalText);
+
+            if (string.Equals(originalText, newText, StringComparison.Ordinal))
+            {
+                return;
+            }
+
+            var caretIndex = this.textBoxChatInput.CaretIndex;
+            this.textBoxChatInput.Text = newText;
+            this.textBoxChatInput.CaretIndex = caretIndex - (originalText.Length - newText.Length) - 1;
+        }
+
         private void ScrollToBottom(bool force)
         {
             this.scrollViewerChatLog.UpdateLayout();
@@ -497,6 +598,8 @@
             {
                 return;
             }
+
+            message = EmojiHelper.ReplaceAsciiToUnicodeEmoji(message);
 
             Api.Client.Audio
                .PlayOneShot(SoundResourceMessageSend,

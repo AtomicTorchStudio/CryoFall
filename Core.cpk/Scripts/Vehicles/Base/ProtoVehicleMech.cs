@@ -1,16 +1,17 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Vehicles
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ItemContainers.Vehicles;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Vehicle.Data;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
-    using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
@@ -64,8 +65,10 @@
         public override BaseUserControlWithWindow ClientOpenUI(IWorldObject worldObject)
         {
             var privateState = GetPrivateState((IDynamicWorldObject)worldObject);
-            return WindowObjectVehicle.Open((IDynamicWorldObject)worldObject,
-                                            vehicleExtraControl: new ControlMechEquipment(privateState));
+            return WindowObjectVehicle.Open(
+                (IDynamicWorldObject)worldObject,
+                vehicleExtraControl: new ControlMechEquipment(),
+                vehicleExtraControlViewModel: new ViewModelControlMechEquipment(privateState));
         }
 
         public override void ServerOnDestroy(IDynamicWorldObject gameObject)
@@ -189,6 +192,26 @@
             publicState.ProtoItemLeftTurretSlot = privateState.EquipmentItemsContainer.GetItemAtSlot(0)?.ProtoItem;
             // not used yet
             //publicState.ProtoItemSlotRightTurret = privateState.EquipmentItemsContainer.GetItemAtSlot(1)?.ProtoItem;
+        }
+
+        protected override double SharedCalculateDamageByWeapon(
+            WeaponFinalCache weaponCache,
+            double damagePreMultiplier,
+            IDynamicWorldObject targetObject,
+            out double obstacleBlockDamageCoef)
+        {
+            var damage = base.SharedCalculateDamageByWeapon(weaponCache,
+                                                            damagePreMultiplier,
+                                                            targetObject,
+                                                            out obstacleBlockDamageCoef);
+            if (weaponCache.Character?.ProtoGameObject is IProtoCharacterMob protoCharacterMob
+                && protoCharacterMob.IsBoss)
+            {
+                // for balancing reasons we're increasing damage by boss
+                damage *= 1.75;
+            }
+
+            return damage;
         }
 
         protected override void SharedSetupCurrentPlayerUI(IDynamicWorldObject vehicle)

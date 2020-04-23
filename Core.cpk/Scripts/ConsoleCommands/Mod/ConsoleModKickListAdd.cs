@@ -14,7 +14,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
         public override string Description =>
             "Kicks the player from the server for the defined amount of time.";
 
-        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
+        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerModerator;
 
         public override string Name => "mod.kickList.add";
 

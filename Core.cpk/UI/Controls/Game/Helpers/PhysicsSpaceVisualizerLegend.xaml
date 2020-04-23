@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     x:Name="UserControl"
     d:DesignHeight="300" d:DesignWidth="300"
-    Margin="5,32,0,0"
+    Margin="5,222,0,0"
     VerticalAlignment="Top"
     HorizontalAlignment="Left"
     FontSize="12"

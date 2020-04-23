@@ -1,11 +1,13 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Quests
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Quests;
     using AtomicTorch.CBND.GameApi.Data;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -15,6 +17,8 @@
     public class QuestsSystem : ProtoSystem<QuestsSystem>
     {
         public static IReadOnlyList<IProtoQuest> AllQuests;
+
+        public static event Action<ICharacter, IProtoQuest> ServerCharacterQuestCompleted;
 
         public override string Name => "Quests system";
 
@@ -43,14 +47,20 @@
             IProtoQuest questToComplete,
             bool ignoreRequirements)
         {
-            characterQuests.ServerTryClaimReward(questToComplete, ignoreRequirements);
+            characterQuests.ServerClaimReward(questToComplete, ignoreRequirements);
+
+            var handler = ServerCharacterQuestCompleted;
+            if (handler != null)
+            {
+                Api.SafeInvoke(() => handler.Invoke(characterQuests.Character, questToComplete));
+            }
 
             // success! (no exceptions thrown)
             // adding dependant quests
             foreach (var otherQuest in AllQuests)
             {
                 if (!otherQuest.Prerequisites.Contains(questToComplete)
-                    || !ServerArePrequisitesSatisfied(otherQuest, characterQuests))
+                    || !ServerArePrerequisitesSatisfied(otherQuest, characterQuests))
                 {
                     continue;
                 }
@@ -64,7 +74,7 @@
             // add all quests which don't have any prerequisites or which are already satisfied
             foreach (var protoQuest in AllQuests)
             {
-                var isUnlocked = ServerArePrequisitesSatisfied(protoQuest, characterQuests);
+                var isUnlocked = ServerArePrerequisitesSatisfied(protoQuest, characterQuests);
                 characterQuests.ServerTryAddQuest(protoQuest, isUnlocked);
             }
         }
@@ -77,7 +87,7 @@
             AllQuests = list.ToArray();
         }
 
-        private static bool ServerArePrequisitesSatisfied(IProtoQuest quest, PlayerCharacterQuests characterQuests)
+        private static bool ServerArePrerequisitesSatisfied(IProtoQuest quest, PlayerCharacterQuests characterQuests)
         {
             if (quest.Prerequisites.Count == 0)
             {

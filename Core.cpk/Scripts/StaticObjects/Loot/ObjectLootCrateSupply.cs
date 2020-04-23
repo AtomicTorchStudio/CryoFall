@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Seeds;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Axes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Pickaxes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;

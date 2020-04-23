@@ -125,6 +125,12 @@ Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
 Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
 비디오
 
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@ScreenMode.Force16To9:
+16:9 (PvP 최대 시야)
+
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@Name:
+화면비
+
 Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
 전체 화면
 

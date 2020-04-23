@@ -21,13 +21,12 @@
             out double rangeMax,
             DamageDistribution damageDistribution)
         {
-            damageValue = 10;
+            damageValue = 12; // actual damage won't be too big, due to pellets spread
             armorPiercingCoef = 0;
             finalDamageMultiplier = 5;
             rangeMax = 7;
-
-            damageDistribution.Set(DamageType.Kinetic, 0.8);
-            damageDistribution.Set(DamageType.Impact,  0.2);
+            damageDistribution.Set(DamageType.Kinetic, 0.8)
+                              .Set(DamageType.Impact, 0.2);
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()

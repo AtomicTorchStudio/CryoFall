@@ -9,9 +9,9 @@
 
         public override uint DurabilityMax => 800;
 
-        public override string Name => "Quilted coat";
-
         public override ObjectMaterial Material => ObjectMaterial.SoftTissues;
+
+        public override string Name => "Quilted coat";
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

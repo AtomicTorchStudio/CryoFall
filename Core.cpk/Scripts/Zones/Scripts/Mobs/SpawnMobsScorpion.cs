@@ -13,7 +13,7 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             spawnList.CreatePreset(interval: 30, padding: 0.5, useSectorDensity: false)
-                     .Add<MobScorpion>()
+                     .AddExact<MobScorpion>()
                      .SetCustomPaddingWithSelf(35);
         }
     }

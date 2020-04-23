@@ -7,6 +7,12 @@
     {
         public override bool CanAddItem(CanAddItemContext context)
         {
+            var character = context.ByCharacter;
+            if (character == null)
+            {
+                return true;
+            }
+
             return context.Item.ProtoItem is IProtoItemWithDurability protoItemWithDurability
                    && protoItemWithDurability.DurabilityMax > 0
                    && protoItemWithDurability.IsRepairable;

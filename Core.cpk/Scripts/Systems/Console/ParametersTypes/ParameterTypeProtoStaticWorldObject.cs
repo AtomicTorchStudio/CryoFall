@@ -10,7 +10,7 @@
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public class ParameterTypeProtoStaticWorldObject : BaseConsoleCommandParameterProtoType<IProtoStaticWorldObject>
     {
-        public override string ShortDescription => "proto static world object name";
+        public override string ShortDescription => "static world object prototype name";
 
         protected override List<IProtoStaticWorldObject> GetProtoEntitiesList()
         {

@@ -42,7 +42,9 @@
                 return;
             }
 
-            this.viewModel = new ViewModelDepositCapacityStatsControl(this.lastWorldObjectDeposit);
+            this.viewModel = new ViewModelDepositCapacityStatsControl(
+                this.lastWorldObjectDeposit,
+                tilePosition: this.lastWorldObjectDeposit.TilePosition);
             this.DataContext = this.viewModel;
         }
     }

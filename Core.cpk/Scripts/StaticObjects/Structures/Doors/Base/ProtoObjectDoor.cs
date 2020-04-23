@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Helpers.Client.Walls;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
@@ -401,15 +402,24 @@
                 new ViewModelWindowDoor(data.GameObject));
         }
 
-        protected override void PrepareConstructionConfig(
+        protected sealed override void PrepareConstructionConfig(
             ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
             ConstructionStageConfig repair,
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
-            category = GetCategory<StructureCategoryBuildings>();
+            this.PrepareConstructionConfig(build,
+                                           repair,
+                                           upgrade,
+                                           out category);
         }
+
+        protected abstract void PrepareConstructionConfig(
+            ConstructionStageConfig build,
+            ConstructionStageConfig repair,
+            ConstructionUpgradeConfig upgrade,
+            out ProtoStructureCategory category);
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
         {
@@ -843,11 +853,10 @@
 
                 var characterPhysicsBody = character.PhysicsBody;
                 var characterCenter = character.Position + characterPhysicsBody.CenterOffset;
-                if (!SharedHasObstaclesOnTheWay(character,
-                                                characterCenter,
-                                                characterPhysicsBody.PhysicsSpace,
-                                                worldObject,
-                                                sendDebugEvents: true))
+                if (!ObstacleTestHelper.SharedHasObstaclesOnTheWay(characterCenter,
+                                                   characterPhysicsBody.PhysicsSpace,
+                                                   worldObject,
+                                                   sendDebugEvents: true))
                 {
                     return true;
                 }

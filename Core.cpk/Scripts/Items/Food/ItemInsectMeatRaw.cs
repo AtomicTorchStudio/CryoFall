@@ -7,7 +7,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Stats;
 
-    public class ItemInsectMeatRaw : ProtoItemFood, IProtoItemOrganic
+    public class ItemInsectMeatRaw : ProtoItemFood
     {
         public override string Description =>
             "Disgusting insect meat. Maybe cooking it will make it slightly less disgusting.";
@@ -15,6 +15,8 @@
         public override float FoodRestore => 3;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Perishable;
+
+        public override bool IsAvailableInCompletionist => false;
 
         public override string Name => "Raw insect meat";
 

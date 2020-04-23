@@ -35,7 +35,7 @@
             "Better knowledge of mineral deposits increases your excavation speed, yield and chances to find rare resources. Applies only when you're using a pickaxe.";
 
         public override double ExperienceToLearningPointsConversionMultiplier =>
-            0.5; // lower since each mineral gives 120 exp (which would mean 1.2LP without this multiplier)
+            0.6; // lower since each mineral gives 120 exp (which would mean 1.2LP without this multiplier)
 
         public override bool IsSharingLearningPointsWithPartyMembers => true;
 

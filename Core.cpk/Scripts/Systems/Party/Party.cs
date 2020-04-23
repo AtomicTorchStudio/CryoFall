@@ -41,6 +41,8 @@
 
         public class PartyPublicState : BasePublicState
         {
+            [SyncToClient]
+            public string ClanTag { get; set; }
         }
     }
 }

@@ -4,10 +4,21 @@
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Resources;
 
-    public interface IProtoCharacterMob : IProtoCharacter, IProtoSpawnableObject
+    public interface IProtoCharacterMob : IProtoCharacterCore, IProtoSpawnableObject
     {
+        ITextureResource Icon { get; }
+
+        bool IsAvailableInCompletionist { get; }
+
+        bool IsBoss { get; }
+
         IReadOnlyDropItemsList LootDroplist { get; }
+
+        double MobKillExperienceMultiplier { get; }
+
+        void ServerOnDeath(ICharacter character);
 
         void ServerPlaySound(ICharacter characterNpc, CharacterSound characterSound);
     }

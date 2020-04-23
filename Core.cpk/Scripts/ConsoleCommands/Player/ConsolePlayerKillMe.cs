@@ -24,7 +24,9 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
             "Kills you. Use when you desperately need to get rid of yourself and respawn."
             + " You cannot kill yourself more often than once in 5 minutes.";
 
-        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerEveryone;
+        // this command was changed to server operator only
+        // the game now has an option to unstuck player directly from the inventory window
+        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
 
         public override string Name => "player.killMe";
 

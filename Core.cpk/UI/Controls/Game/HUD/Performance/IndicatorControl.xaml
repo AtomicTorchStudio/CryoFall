@@ -10,13 +10,14 @@
                       Background="Transparent"
                       d:DesignHeight="300" d:DesignWidth="300"
                       d:DataContext="{d:DesignInstance data:ViewModelPerformanceStatsBase, IsDesignTimeCreatable=True}"
-                      UseLayoutRounding="False">
+                      UseLayoutRounding="False"
+                      Height="46"
+                      Width="46"
+                      Margin="-10">
 
     <ContentControl x:Name="LayoutRoot"
                     Background="Transparent"
-                    Opacity="1"
-                    Height="46"
-                    Margin="-10">
+                    Opacity="1">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisibilityStates">
                 <VisualStateGroup.Transitions>

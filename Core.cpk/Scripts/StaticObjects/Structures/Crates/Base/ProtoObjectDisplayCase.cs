@@ -12,6 +12,8 @@
         where TPublicState : ObjectDisplayCasePublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
+        public override bool IsSupportItemIcon => false;
+
         public override byte ItemsSlotsCount => 1;
 
         protected override void ServerInitialize(ServerInitializeData data)

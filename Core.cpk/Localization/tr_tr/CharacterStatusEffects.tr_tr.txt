@@ -40,6 +40,12 @@ Seni geçici olarak daha güçlü kılan bir uyarıcının etkisi altındasın. 
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Artırılmış güç
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Description:
+Bir süredir istirahat ediyordun. Bu sebeple yeni yetenekler öğrenmeyi ve yeteneklerini iyiye götürmeyi daha kolay buluyorsun. (Bu uzun bir süre çevrimdışı kaldığında biriken günlük bir bonustur. Tükenirken özel bonuslar vermek için kullanılır.)
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Name:
+İyi dinlenmiş
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Kanıyorsun, tedavi edilmezse sürekli olarak sağlık kaybına neden olacak. Küçük kanamalar kendi kendine iyileşir, daha ciddi yaralanmalar bandaj veya kan kesici ilaç kullanımını gerektirebilir.
 

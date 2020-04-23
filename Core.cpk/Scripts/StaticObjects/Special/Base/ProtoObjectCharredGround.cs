@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -29,7 +30,7 @@
 
         public sealed override double ServerUpdateIntervalSeconds => double.MaxValue;
 
-        public override float StructurePointsMax => 9001;
+        public override float StructurePointsMax => 0; // non-damageable
 
         public static void ServerSetWorldOffset(IStaticWorldObject worldObject, Vector2F worldOffset)
         {
@@ -85,7 +86,10 @@
             // schedule destruction by timer
             var worldObject = data.GameObject;
             ServerTimersSystem.AddAction(
-                delaySeconds: this.ObjectDespawnDurationSeconds,
+                delaySeconds: PveSystem.ServerIsPvE
+                                  // no sense in keeping the charred ground for too long on the PvE servers
+                                  ? 30 * 60 // 30 minutes
+                                  : this.ObjectDespawnDurationSeconds,
                 () => ServerDespawnTimerCallback(worldObject));
 
             data.PublicState.WorldOffset = this.Layout.Center.ToVector2F();

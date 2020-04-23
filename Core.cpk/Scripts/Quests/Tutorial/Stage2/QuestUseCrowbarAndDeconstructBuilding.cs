@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
 
     public class QuestUseCrowbarAndDeconstructBuilding : ProtoQuest
@@ -17,16 +18,15 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeCrowbar>())
-                .Add(RequirementDeconstructStructure.Require<IProtoObjectStructure>(
+            tasks
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeCrowbar>())
+                .Add(TaskDeconstructStructure.Require<IProtoObjectStructure>(
                          description: this.Name));
 
             prerequisites
-                .Add<QuestCraftAndEquipBetterArmor>()
-                .Add<QuestCraftRangedWeapon>();
+                .Add<QuestCraftIronTools>();
         }
     }
 }

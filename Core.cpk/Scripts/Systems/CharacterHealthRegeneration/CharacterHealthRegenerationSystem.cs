@@ -47,8 +47,8 @@
                 }
 
                 var stats = publicState.CurrentStats;
-                if (!character.IsNpc 
-                    && stats.StaminaCurrent <= 0)
+                if (!character.IsNpc
+                    && ((PlayerCharacterCurrentStats)stats).StaminaCurrent <= 0)
                 {
                     // cannot regenerate health - no energy
                     continue;

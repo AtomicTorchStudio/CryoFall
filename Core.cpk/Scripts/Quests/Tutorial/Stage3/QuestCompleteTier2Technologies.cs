@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Chemistry;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Construction2;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Cooking2;
@@ -24,22 +25,23 @@
         // TODO: revert this back to normal constant for the given level. For now it is set to 250 until we have a decent solution for this quest.
         public override ushort RewardLearningPoints => 250;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementCompleteTechGroup.Require<TechGroupChemistry>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupConstruction2>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupCooking2>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupDefense2>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupFarming2>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupIndustry2>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupElectricity>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupMedicine>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupOffense2>());
+            tasks
+                .Add(TaskCompleteTechGroup.Require<TechGroupChemistry>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupConstruction2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupCooking2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupDefense2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupFarming2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupIndustry2>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupElectricity>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupMedicine>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupOffense2>());
 
             prerequisites
                 .Add<QuestMasterHunter5>()
-                .Add<QuestExploreBiomes4>();
+                .Add<QuestExploreBiomes4>()
+                .Add<QuestAcquirePragmium>();
         }
     }
 }

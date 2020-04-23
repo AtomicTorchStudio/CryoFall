@@ -1,0 +1,62 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.WorldMapMarkEvent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    x:Name="UserControl"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300">
+
+    <base:BaseUserControl.Resources>
+        <Storyboard x:Key="StoryboardAnimation"
+                    AutoReverse="False"
+                    RepeatBehavior="Forever"
+                    Duration="0:1:00">
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                Storyboard.TargetName="Ellipse">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:1:00" Value="360" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </base:BaseUserControl.Resources>
+
+    <base:BaseUserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource StoryboardAnimation}" />
+        </EventTrigger>
+    </base:BaseUserControl.Triggers>
+
+    <Grid>
+        <!-- Inner static ellipse (to outer stroke is done as a separate ellipse) -->
+        <Ellipse Stretch="Fill"
+                 RenderTransformOrigin="0.5,0.5"
+                 Stroke="Transparent"
+                 StrokeThickness="4"
+                 Margin="1">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="{Binding EllipseColorStart, ElementName=UserControl}" Offset="0" />
+                    <GradientStop Color="{Binding EllipseColorEnd, ElementName=UserControl}" Offset="1" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <!-- Rotating ellipse with outer stroke -->
+        <Ellipse x:Name="Ellipse"
+                 Stretch="Fill"
+                 RenderTransformOrigin="0.5,0.5"
+                 StrokeThickness="4"
+                 StrokeDashArray="1.5,1.5">
+            <Ellipse.Stroke>
+                <SolidColorBrush Color="{Binding EllipseColorStroke, ElementName=UserControl}" />
+            </Ellipse.Stroke>
+            <Ellipse.RenderTransform>
+                <RotateTransform />
+            </Ellipse.RenderTransform>
+        </Ellipse>
+    </Grid>
+
+</base:BaseUserControl>

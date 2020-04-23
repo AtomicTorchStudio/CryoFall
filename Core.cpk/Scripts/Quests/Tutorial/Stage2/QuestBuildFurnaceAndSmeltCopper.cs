@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
 
@@ -17,15 +18,15 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveTechNode.Require<TechNodeSmelting>())
-                .Add(RequirementBuildStructure.Require<ObjectFurnace>())
-                .Add(RequirementManufactureItem.Require<ItemIngotCopper>(count: 10));
+            tasks
+                .Add(TaskHaveTechNode.Require<TechNodeSmelting>())
+                .Add(TaskBuildStructure.Require<ObjectFurnace>())
+                .Add(TaskManufactureItem.Require<ItemIngotCopper>(count: 10));
 
             prerequisites
-                .Add<QuestBuildAPermanentBase>();
+                .Add<QuestCollectHerbsAndCraftMedicine>();
         }
     }
 }

@@ -13,16 +13,16 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             var crawler = spawnList.CreatePreset(interval: 12, padding: 0.5)
-                                   .Add<MobCrawler>()
+                                   .AddExact<MobCrawler>()
                                    .SetCustomPaddingWithSelf(12);
 
             var fireLizard = spawnList.CreatePreset(interval: 15, padding: 0.5)
-                                      .Add<MobFireLizard>()
+                                      .AddExact<MobFireLizard>()
                                       .SetCustomPaddingWith(crawler, 15)
                                       .SetCustomPaddingWithSelf(15);
 
             var blackBeetle = spawnList.CreatePreset(interval: 15, padding: 0.5)
-                                       .Add<MobBlackBeetle>()
+                                       .AddExact<MobBlackBeetle>()
                                        .SetCustomPaddingWith(crawler,    15)
                                        .SetCustomPaddingWith(fireLizard, 15)
                                        .SetCustomPaddingWithSelf(15);

@@ -76,6 +76,36 @@ Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 8mm毒素弹药
 
+Scripts/Items/Ammo/ItemAmmoArrowIron@Description:
+强化铁头箭。 仍然不如火器，但非常容易制作。
+
+Scripts/Items/Ammo/ItemAmmoArrowIron@Name:
+铁头箭
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
+简单的石箭。 没有比这更简易的了。
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
+石箭
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
+特殊的榴弹，能在命中时释放混合了普拉格粒子的液态氦，冰冻目标。
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
+氦榴弹
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
+标准高爆榴弹，能对命中半径范围内的敌人造成伤害。
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Name:
+高爆榴弹
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
+特殊燃烧榴弹，能在爆破时造成大量热能伤害。
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
+燃烧榴弹
+
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 基础枪械弹药。只对弱小目标有效，但是便宜易生产。
 
@@ -1268,6 +1298,12 @@ Scripts/Items/Generic/ItemPowerCell@Description:
 Scripts/Items/Generic/ItemPowerCell@Name:
 能量电池
 
+Scripts/Items/Generic/ItemPragmiumHeart@Description:
+来自普拉格生物的奇怪水晶器官。
+
+Scripts/Items/Generic/ItemPragmiumHeart@Name:
+普拉格之心
+
 Scripts/Items/Generic/ItemPreservative@Description:
 食品的防腐剂。 可以对包装好的食物添加，让其保存更长时间。
 
@@ -1637,6 +1673,12 @@ Scripts/Items/Medical/ItemHemostatic@Description:
 Scripts/Items/Medical/ItemHemostatic@Name:
 凝血剂
 
+Scripts/Items/Medical/ItemHerbBlue@Description:
+制造高级药品所需的医用草药。因其中含有毒素，不可生服。
+
+Scripts/Items/Medical/ItemHerbBlue@Name:
+蓝色草药
+
 Scripts/Items/Medical/ItemHerbGreen@Description:
 拥有独特治疗和抗菌效果的草药。能够直接使用，但制备后效果更佳。
 
@@ -1874,6 +1916,12 @@ Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 没油了
 
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
+这种脆弱的普拉格手斧使用了原子震动技术，使其效率远高于传统工具。
+
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
+普拉格手斧
+
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 铁镐可以用来采集矿物。效率和耐久度都高于石镐。
 
@@ -1982,11 +2030,29 @@ Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 非常强大的近距离武器。需要能量才能开火。
 
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+旧时代传承的技术。依然有效。
+
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+弩
+
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
 原始的手枪。使用纸包弹作为弹药。能够装填两发并快速连续射击。
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 燧发手枪
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+单发榴弹发射器，能够发射大口径榴弹并对目标范围造成大量伤害。
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+榴弹发射器
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+左轮式榴弹发射器。适合突击任务或者应对重甲敌人。
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+多管榴弹发射器
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
 使用10mm弹药的手枪。
@@ -2048,11 +2114,23 @@ Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 左轮手枪
 
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
+轻型自动狙击枪，使用10mm弹药。
+
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
+轻型步枪
+
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
 使用.300弹药的重型反器材步枪。
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 重型步枪
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
+原始的栓动步枪，使用常见的8mm弹药。
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
+栓动步枪
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
 老式霰弹枪。使用12号弹药。

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Beds;
 
     public class QuestBuildABedroll : ProtoQuest
@@ -16,13 +17,14 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementBuildStructure.Require<ObjectBedroll>());
+            tasks
+                .Add(TaskBuildStructure.Require<ObjectBedroll>(isSharedWithPartyMembers: false));
 
             prerequisites
-                .Add<QuestLearnBasicBuilding>();
+                .Add<QuestCraftATorch>()
+                .Add<QuestSecureBasicWaterSource>();
         }
     }
 }

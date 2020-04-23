@@ -4,8 +4,8 @@
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Buffs;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
 
     public class ItemHerbGreen : ProtoItemMedical, IProtoItemOrganic
     {

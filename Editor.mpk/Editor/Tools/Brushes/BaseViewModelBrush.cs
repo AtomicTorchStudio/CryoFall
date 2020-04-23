@@ -4,6 +4,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Helpers;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public abstract class BaseViewModelBrush : BaseViewModel
     {

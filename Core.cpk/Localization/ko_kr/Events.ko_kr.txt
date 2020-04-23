@@ -1,0 +1,18 @@
+﻿Scripts/Events/EventBossPragmiumQueen@Description:
+`프라그뮴 여왕이 지상에 나타났습니다.
+[br]값비싼 전리품이 용감한 생존자들을 기다리고 있습니다!`
+
+Scripts/Events/EventMeteoriteDrop@Description:
+`운석이 지도에 강조 표시된 부분에 떨어졌습니다.
+[br]희귀한 광물을 얻고 싶다면, 빨리 달리세요!`
+
+Scripts/Events/EventMigration@Description:
+이 세계의 토착 생명체는 다른 지역으로 이동한 것 같습니다. 덕분에 사냥하기에 좋은 기회가 마련되었습니다.
+
+Scripts/Events/EventSpaceDrop@Description:
+`우주 쓰레기가 지도에 강조 표시된 부분에 떨어졌습니다.
+[br]값어치 있는 고물을 얻고 싶다면, 빨리 달리세요!`
+
+Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
+진척도: {0}/{1}
+

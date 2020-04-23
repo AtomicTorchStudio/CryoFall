@@ -19,7 +19,7 @@
               TClientState>,
           IProtoObjectFridge
         where TPrivateState : ObjectCratePrivateState, new()
-        where TPublicState : StaticObjectPublicState, new()
+        where TPublicState : ObjectCratePublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
         // ReSharper disable once StaticMemberInGenericType
@@ -27,6 +27,8 @@
             = new Lazy<IProtoItemsContainer>(Api.GetProtoEntity<ItemsContainerFridge>);
 
         public abstract double FreshnessDurationMultiplier { get; }
+
+        public override bool IsSupportItemIcon => false;
 
         protected sealed override IProtoItemsContainer ItemsContainerType
             => LazyFridgeContainer.Value;
@@ -47,7 +49,7 @@
     public abstract class ProtoObjectFridge
         : ProtoObjectFridge<
             ObjectCratePrivateState,
-            StaticObjectPublicState,
+            ObjectCratePublicState,
             StaticObjectClientState>
     {
     }

@@ -55,7 +55,7 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (2.0, 0.6),  offset: (0.0, 0.1))
+                .AddShapeRectangle(size: (1.9, 0.575),  offset: (0.05, 0.125))
                 .AddShapeRectangle(size: (1.8, 0.9),  offset: (0.1, 0.1),  group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(size: (1.8, 0.15), offset: (0.1, 0.85), group: CollisionGroups.HitboxRanged)
                 .AddShapeRectangle(size: (1.8, 0.9),  offset: (0.1, 0.1),  group: CollisionGroups.ClickArea);

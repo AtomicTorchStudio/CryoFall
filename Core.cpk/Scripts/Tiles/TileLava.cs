@@ -11,6 +11,8 @@
     {
         public override byte BlendOrder => byte.MaxValue;
 
+        public override IProtoTileWater BridgeProtoTile => null;
+
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Mud;
 
         public override string Name => "Lava";

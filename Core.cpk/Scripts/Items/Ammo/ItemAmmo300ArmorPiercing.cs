@@ -14,8 +14,13 @@
 
         public override string Name => ".300 armor-piercing ammo";
 
-        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
+        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)
         {
+            if (damage < 1)
+            {
+                return;
+            }
+
             // 40% chance to add bleeding
             if (RandomHelper.RollWithProbability(0.40))
             {
@@ -43,7 +48,6 @@
             armorPiercingCoef = 0.5;
             finalDamageMultiplier = 1;
             rangeMax = 10;
-
             damageDistribution.Set(DamageType.Kinetic, 1);
         }
 

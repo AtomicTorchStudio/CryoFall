@@ -10,7 +10,7 @@
 
         public override string ClientGetTitle()
         {
-            return "$ " + Title;
+            return "% " + Title;
         }
 
         public override IEnumerable<ICharacter> ServerEnumerateMessageRecepients(ICharacter forPlayer)

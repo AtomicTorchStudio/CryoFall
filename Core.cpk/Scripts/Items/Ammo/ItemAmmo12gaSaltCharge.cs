@@ -19,13 +19,15 @@
             = new WeaponFireScatterPreset(
                 new[] { -3.0, -1.5, 0.0, 1.5, 3.0 });
 
-        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
+        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)
         {
-            if (damage > 1)
+            if (damage < 1)
             {
-                // if it was able to inflict any real damage - add full pain
-                damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 1);
+                return;
             }
+
+            // if it was able to inflict any real damage - add full pain
+            damagedCharacter.ServerAddStatusEffect<StatusEffectPain>(intensity: 1);
         }
 
         protected override void PrepareDamageDescription(
@@ -39,7 +41,6 @@
             armorPiercingCoef = 0;
             finalDamageMultiplier = 2;
             rangeMax = 7;
-
             damageDistribution.Set(DamageType.Impact, 1.0);
         }
 

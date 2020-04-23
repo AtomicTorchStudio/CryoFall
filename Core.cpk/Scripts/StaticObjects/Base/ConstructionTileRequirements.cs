@@ -56,9 +56,13 @@
 
         public const string ErrorTooCloseToWater = "Cannot build—too close to water.";
 
-        public const double RequirementNoNpcsRadius = 10;
+        // don't make it too large otherwise it's really tough to build a base
+        // (a chicken somewhere nearby will make players quite unhappy)
+        public const double RequirementNoNpcsRadius = 5;
 
-        public const double RequirementNoPlayersRadius = 10;
+        // quite high to prevent Fortnite-like gameplay with players spamming blueprints
+        // but not too much to ensure the player could be seen even staying above or below
+        public const double RequirementNoPlayersRadius = 8;
 
         public static readonly IConstructionTileRequirementsReadOnly BasicRequirements;
 
@@ -223,7 +227,6 @@
                             c => !c.Tile.StaticObjects.Any(
                                      o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor));
 
-        // please note - this is server-side validator only, it's safely skipped by client
         public static readonly Validator ValidatorNotRestrictedArea
             = new Validator(ErrorCannotBuildInRestrictedArea,
                             c =>
@@ -244,8 +247,6 @@
                                 return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
                             });
 
-        // please note - this is server-side validator only, it's safely skipped by client
-        // this version will prevent even the server from spawning objects there
         public static readonly Validator ValidatorNotRestrictedAreaEvenForServer
             = new Validator(ErrorCannotBuildInRestrictedArea,
                             c =>
@@ -258,6 +259,10 @@
 
                                 return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
                             });
+
+        public static readonly IConstructionTileRequirementsReadOnly DefaultForPlayerStructuresOwnedLand;
+
+        public static readonly IConstructionTileRequirementsReadOnly DefaultForPlayerStructuresOwnedOrFreeLand;
 
         private static readonly Lazy<IServerZone> ServerZoneRestrictedArea
             = new Lazy<IServerZone>(
@@ -291,6 +296,22 @@
                                       .Add(ValidatorNoPhysicsBodyStatic)
                                       .AddClientOnly(ValidatorClientOnlyNoCurrentPlayer)
                                       .Add(ValidatorNoPhysicsBodyDynamic);
+
+            DefaultForPlayerStructuresOwnedOrFreeLand = DefaultForStaticObjects
+                                                        .Clone()
+                                                        .Add(ValidatorNotRestrictedArea)
+                                                        .Add(ValidatorNoNpcsAround)
+                                                        .Add(ValidatorNoPlayersNearby)
+                                                        .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLand)
+                                                        .Add(LandClaimSystem.ValidatorNoRaid);
+
+            DefaultForPlayerStructuresOwnedLand = DefaultForStaticObjects
+                                                  .Clone()
+                                                  .Add(ValidatorNotRestrictedArea)
+                                                  .Add(ValidatorNoNpcsAround)
+                                                  .Add(ValidatorNoPlayersNearby)
+                                                  .Add(LandClaimSystem.ValidatorIsOwnedLand)
+                                                  .Add(LandClaimSystem.ValidatorNoRaid);
         }
 
         public ConstructionTileRequirements(ConstructionTileRequirements toClone)
@@ -376,11 +397,22 @@
             foreach (var tileOffset in proto.Layout.TileOffsets)
             {
                 var tile = WorldService.GetTile(startTilePosition.X + tileOffset.X,
-                                                startTilePosition.Y + tileOffset.Y);
+                                                startTilePosition.Y + tileOffset.Y,
+                                                logOutOfBounds: false);
                 var context = new Context(tile, character, proto, tileOffset);
-                if (this.Check(context, out var errorMessage))
+                string errorMessage;
+
+                if (tile.IsOutOfBounds)
                 {
-                    continue;
+                    errorMessage = "Out of bounds";
+                }
+                else
+                {
+                    if (this.Check(context, out errorMessage))
+                    {
+                        // valid tile
+                        continue;
+                    }
                 }
 
                 // check failed

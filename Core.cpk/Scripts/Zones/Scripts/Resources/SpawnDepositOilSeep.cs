@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier3.XenoGeology;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -19,7 +20,7 @@
     public class SpawnDepositOilSeep : ProtoZoneSpawnScript
     {
         // because this script called very rare we're increasing the spawn attempts count
-        protected override double MaxSpawnAttempsMultiplier => 300;
+        protected override double MaxSpawnAttemptsMultiplier => 300;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
@@ -34,18 +35,18 @@
             var restrictionPresetPragmium = spawnList.CreateRestrictedPreset()
                                                      .Add<ObjectMineralPragmiumSource>();
 
-            var restrictionCharredGroundDeposit = spawnList.CreateRestrictedPreset()
-                                                           .Add<ObjectCharredGround3Deposit>();
+            var restrictionDepletedDeposit = spawnList.CreateRestrictedPreset()
+                                                      .Add<ObjectDepletedDeposit>();
 
             var restrictionInfiniteOilSeep = spawnList.CreateRestrictedPreset()
                                                       .Add<ObjectDepositOilSeepInfinite>();
 
-            var presetOilSeep = spawnList.CreatePreset(interval: 130, padding: 1, useSectorDensity: false);
-            presetOilSeep.SpawnLimitPerIteration = 2;
+            var presetOilSeep = spawnList.CreatePreset(interval: 183, padding: 1, useSectorDensity: false);
+            presetOilSeep.SpawnLimitPerIteration = 1;
             presetOilSeep.AddExact<ObjectDepositOilSeep>()
                          .SetCustomPaddingWithSelf(79)
-                         .SetCustomPaddingWith(restrictionInfiniteOilSeep,      59)
-                         .SetCustomPaddingWith(restrictionCharredGroundDeposit, 49)
+                         .SetCustomPaddingWith(restrictionInfiniteOilSeep, 59)
+                         .SetCustomPaddingWith(restrictionDepletedDeposit, 49)
                          // ensure no spawn near Pragmium
                          .SetCustomPaddingWith(restrictionPresetPragmium,
                                                SpawnResourcePragmium.PaddingPragmiumWithOilDeposit)
@@ -101,31 +102,28 @@
                 return desiredCountByDensity;
             }
 
-            var hoursSinceWorldCreation = (Api.Server.Game.FrameTime - Api.Server.Game.WorldCreationTime)
-                                          / (60 * 60);
+            // throttle spawn to ensure even distribution of spawned objects during specified hours since the startup
+            const double spawnSpreadDurationHours = 48;
 
-            if (hoursSinceWorldCreation >= 48)
+            var hoursSinceWorldCreation = Api.Server.Game.SecondsSinceWorldCreation / (60 * 60);
+
+            // apply the timegate offset as there should be no deposits spawn until Xenogeology is available for research
+            var timeGateHours = Api.GetProtoEntity<TechGroupXenogeology>().TimeGatePvP / (60 * 60);
+            if (timeGateHours > 0)
+            {
+                // as there is a timegate ensure the spawn could start immediately after it's expired without requiring any additional time
+                timeGateHours -= spawnSpreadDurationHours / desiredCountByDensity;
+                timeGateHours = Math.Max(0, timeGateHours);
+                hoursSinceWorldCreation -= timeGateHours;
+                hoursSinceWorldCreation = Math.Max(0, hoursSinceWorldCreation);
+            }
+
+            if (hoursSinceWorldCreation >= spawnSpreadDurationHours)
             {
                 return desiredCountByDensity;
             }
 
-            if (zone.ProtoGameObject is ZoneTemperateSwamp)
-            {
-                // to ensure the oil seeps in the swamp are balanced in A25
-                // make their quantity 4 (and spawn them in pairs, seel later)
-                desiredCountByDensity = (int)Math.Round(desiredCountByDensity * 1.33);
-            }
-
-            // throttle spawn to ensure even distribution of spawned objects during 48 hours since the startup
-            var result = (int)(desiredCountByDensity * hoursSinceWorldCreation / 48);
-
-            // to balance the oil spawn in A25
-            // ensure that the initial oil seeps are spawned in pairs to make them harder to capture by a single team
-            // e.g. rise the limit always by two
-            // this also applies to the swamp
-            result = (result / 2) * 2;
-
-            return result;
+            return (int)(desiredCountByDensity * hoursSinceWorldCreation / spawnSpreadDurationHours);
         }
     }
 }

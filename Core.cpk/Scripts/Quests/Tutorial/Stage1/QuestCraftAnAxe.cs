@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
     public class QuestCraftAnAxe : ProtoQuest
     {
@@ -14,11 +15,11 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementCraftRecipe.RequireHandRecipe<RecipeRope>())
-                .Add(RequirementCraftRecipe.RequireHandRecipe<RecipeAxeStone>());
+            tasks
+                .Add(TaskCraftRecipe.RequireHandRecipe<RecipeRope>())
+                .Add(TaskCraftRecipe.RequireHandRecipe<RecipeAxeStone>());
 
             prerequisites
                 .Add<QuestGatherResources>();

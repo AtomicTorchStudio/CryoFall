@@ -1,0 +1,63 @@
+﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
+Baue: {0}
+
+Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
+Vollende: {0} (Tech.-Gruppe)
+
+Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
+an {0}
+
+Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
+Stelle her
+
+Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
+Zerstöre: {0}
+
+Scripts/PlayerTasks/TaskGather@DescriptionFormat:
+Sammle: {0}
+
+Scripts/PlayerTasks/TaskHaveItem@DescriptionFormat:
+Sammle: {0}
+
+Scripts/PlayerTasks/TaskHaveItemEquipped@DescriptionFormat:
+Rüste aus: {0}
+
+Scripts/PlayerTasks/TaskHaveSkill@DescriptionFormat:
+Lerne Fähigkeit: {0} auf Level {1}
+
+Scripts/PlayerTasks/TaskHaveSkills@DescriptionFormat:
+Lerne Fähigkeiten: {0} auf Level {1}
+
+Scripts/PlayerTasks/TaskHaveTechGroup@DescriptionFormat:
+Schalte {0} frei (Tech.-Gruppe)
+
+Scripts/PlayerTasks/TaskHaveTechGroups@DescriptionFormat:
+Schalte {0} Tech.-Gruppen frei: {1}
+
+Scripts/PlayerTasks/TaskHaveTechNode@DescriptionFormat:
+Erlerne: {0} (in {1} Tech.-Gruppe)
+
+Scripts/PlayerTasks/TaskKill@DescriptionFormat:
+Töte: {0}
+
+Scripts/PlayerTasks/TaskKillAny@DescriptionFormat:
+Töte: {0}
+
+Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
+Stelle her: {0}
+
+Scripts/PlayerTasks/TaskRun@DescriptionText:
+Renne 10 Meter
+
+Scripts/PlayerTasks/TaskSortItemsContainer@DescriptionText:
+Sortiere Inventar
+
+Scripts/PlayerTasks/TaskUseItem@DescriptionFormat:
+Benutze: {0}
+
+Scripts/PlayerTasks/TaskVisitTile@DescriptionFormat:
+Besuche: {0}
+
+Scripts/PlayerTasks/TaskVisitZone@DescriptionFormat:
+Besuche: {0}
+

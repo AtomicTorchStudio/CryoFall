@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeSteppenHawkGold>();
 
-            config.SetRequiredNode<TechNodeGoldCrown>();
+            config.SetRequiredNode<TechNodeGoldChestplate>();
         }
     }
 }

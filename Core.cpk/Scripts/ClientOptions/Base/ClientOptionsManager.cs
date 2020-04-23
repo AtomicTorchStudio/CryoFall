@@ -7,7 +7,7 @@
 
     public static class ClientOptionsManager
     {
-        public static List<IProtoOption> Options { get; private set; }
+        public static IReadOnlyList<IProtoOption> Options { get; private set; }
 
         public static TOption GetOption<TOption>()
             where TOption : IProtoOption, new()
@@ -44,7 +44,7 @@
 
             Options = Api.Shared.FindScriptingTypes<IProtoOption>()
                          .Select(t => t.CreateInstance())
-                         .ToList();
+                         .ToArray();
         }
     }
 }

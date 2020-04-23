@@ -13,8 +13,6 @@
 
         public override double AmmoReloadDuration => 2;
 
-        public override double FireInterval => 0.2; // can fire as soon as reloaded
-
         public override double CharacterAnimationAimingRecoilDuration => 0.45;
 
         public override double CharacterAnimationAimingRecoilPower => 1.3;
@@ -22,6 +20,8 @@
         public override string Description => "Old grandpa shotgun. Uses 12ga ammunition.";
 
         public override uint DurabilityMax => 120;
+
+        public override double FireInterval => 0.2; // can fire as soon as reloaded
 
         public override string Name => "Double-barreled shotgun";
 

@@ -26,10 +26,10 @@
             var oldViewModel = this.ViewModelPowerGridState;
 
             var powerGrid = this.privateState.PowerGrid;
-            this.ViewModelPowerGridState = powerGrid == null
+
+            this.ViewModelPowerGridState = powerGrid is null
                                                ? null
-                                               : new ViewModelPowerGridState(
-                                                   PowerGrid.GetPublicState(powerGrid));
+                                               : new ViewModelPowerGridState(PowerGrid.GetPublicState(powerGrid));
 
             oldViewModel?.Dispose();
         }

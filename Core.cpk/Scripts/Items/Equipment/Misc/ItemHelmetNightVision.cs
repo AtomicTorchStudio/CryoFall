@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.NightVision;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -25,11 +25,13 @@
             IItem item,
             ICharacter character,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview)
         {
-            base.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
+            base.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents, isPreview);
 
-            if (character == null
+            if (isPreview
+                || character == null
                 || !character.IsCurrentClientCharacter
                 || !GetPublicState(item).IsActive)
             {

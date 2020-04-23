@@ -2,7 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.Characters.Mobs;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -91,11 +94,14 @@
             double distanceEnemyTooClose,
             double distanceEnemyTooFar,
             out Vector2F movementDirection,
-            out double rotationAngleRad)
+            out double rotationAngleRad,
+            IReadOnlyList<AiWeaponPreset> weaponList = null)
         {
-            var characterNpcPrivateState = characterNpc.GetPrivateState<CharacterMobPrivateState>();
-            var lastTargetCharacter = characterNpcPrivateState.CurrentTargetCharacter;
-            var wasRetreating = characterNpcPrivateState.IsRetreating;
+            var privateState = characterNpc.GetPrivateState<CharacterMobPrivateState>();
+            var weaponState = privateState.WeaponState;
+
+            var lastTargetCharacter = privateState.CurrentTargetCharacter;
+            var wasRetreating = privateState.IsRetreating;
 
             var targetCharacter = GetClosestPlayer(characterNpc);
             CalculateDistanceAndDirectionToEnemy(characterNpc,
@@ -118,7 +124,7 @@
                 }
             }
 
-            if (targetCharacter == characterNpcPrivateState.CurrentAgroCharacter)
+            if (targetCharacter == privateState.CurrentAgroCharacter)
             {
                 // increase distances if agro on this character
                 distanceRetreat *= 3;
@@ -128,8 +134,8 @@
             if (isRetreating)
             {
                 if ((double.IsNaN(distanceToTarget)
-                     || distanceToTarget > characterNpcPrivateState.AttackRange)
-                    && characterNpcPrivateState.WeaponState.CooldownSecondsRemains <= 0)
+                     || distanceToTarget > privateState.AttackRange)
+                    && weaponState.CooldownSecondsRemains <= 0)
                 {
                     // look away when retreating
                     // and the enemy is not within the attack range
@@ -164,24 +170,51 @@
                 }
             }
 
-            characterNpcPrivateState.IsRetreating = isRetreating;
-            characterNpcPrivateState.CurrentTargetCharacter = targetCharacter;
+            privateState.IsRetreating = isRetreating;
+            privateState.CurrentTargetCharacter = targetCharacter;
 
             rotationAngleRad = characterNpc.GetPublicState<CharacterMobPublicState>()
                                            .AppliedInput
                                            .RotationAngleRad;
             LookOnEnemy(directionToEnemyHitbox, ref rotationAngleRad);
 
-            var isAttacking = !double.IsNaN(distanceToTarget)
-                              && distanceToTarget <= characterNpcPrivateState.AttackRange;
+            var isAttacking = false;
+
+            if (!double.IsNaN(distanceToTarget))
+            {
+                if (weaponList is null)
+                {
+                    isAttacking = distanceToTarget <= privateState.AttackRange;
+                }
+                else
+                {
+                    SelectAiWeapon(characterNpc,
+                                   distanceToTarget,
+                                   weaponList,
+                                   out var desiredProtoWeapon,
+                                   out var isWithinRange);
+
+                    isAttacking = isWithinRange
+                                  && ReferenceEquals(desiredProtoWeapon,
+                                                     weaponState.ProtoWeapon);
+                }
+            }
 
             if (isRetreating && isAttacking)
             {
-                // don't attack every time when retreating
-                isAttacking = RandomHelper.Next(0, 6) == 0;
+                if (weaponState.ProtoWeapon is ProtoItemMobWeaponMelee)
+                {
+                    // don't attack every time when retreating
+                    isAttacking = RandomHelper.Next(0, 6) == 0;
+                }
+                else
+                {
+                    // don't attack with ranged weapon when retreating
+                    isAttacking = false;
+                }
             }
 
-            characterNpcPrivateState.WeaponState.SharedSetInputIsFiring(isAttacking);
+            weaponState.SharedSetInputIsFiring(isAttacking);
 
             if (targetCharacter is null)
             {
@@ -190,15 +223,100 @@
 
             if (isRetreating)
             {
-                TryPlayFleeSound(characterNpc, characterNpcPrivateState);
+                TryPlayFleeSound(characterNpc, privateState);
                 return;
             }
 
             // not retreating
-            if (wasRetreating 
+            if (wasRetreating
                 || lastTargetCharacter != targetCharacter)
             {
                 // changed an enemy
+                var protoMob = (IProtoCharacterMob)characterNpc.ProtoCharacter;
+                protoMob.ServerPlaySound(characterNpc, CharacterSound.Aggression);
+            }
+        }
+
+        public static void ProcessBossAi(
+            ICharacter characterNpc,
+            IReadOnlyList<AiWeaponPreset> weaponList,
+            double distanceEnemyTooClose,
+            double distanceEnemyTooFar,
+            out Vector2F movementDirection,
+            out double rotationAngleRad)
+        {
+            var privateState = characterNpc.GetPrivateState<CharacterMobPrivateState>();
+            var publicState = characterNpc.GetPublicState<CharacterMobPublicState>();
+            var weaponState = privateState.WeaponState;
+
+            var lastTargetCharacter = privateState.CurrentTargetCharacter;
+
+            var targetCharacter = GetClosestPlayer(characterNpc);
+            CalculateDistanceAndDirectionToEnemy(characterNpc,
+                                                 targetCharacter,
+                                                 out var distanceToTarget,
+                                                 out var directionToEnemyPosition,
+                                                 out var directionToEnemyHitbox);
+
+            var isTargetTooFar = distanceToTarget > distanceEnemyTooFar;
+            movementDirection = distanceToTarget < distanceEnemyTooClose
+                                || isTargetTooFar
+                                    ? Vector2F.Zero // too close or too far
+                                    : directionToEnemyPosition;
+
+            if (isTargetTooFar)
+            {
+                targetCharacter = null;
+            }
+
+            privateState.CurrentTargetCharacter = targetCharacter;
+
+            rotationAngleRad = publicState.AppliedInput.RotationAngleRad;
+            if (weaponState.CooldownSecondsRemains <= 0)
+            {
+                // can aim
+                LookOnEnemy(directionToEnemyHitbox, ref rotationAngleRad);
+            }
+            else
+            {
+                // attacked recently, don't change character's rotation while attack animation is in progress
+            }
+
+            bool isAttacking;
+
+            if (double.IsNaN(distanceToTarget))
+            {
+                isAttacking = false;
+            }
+            else
+            {
+                SelectAiWeapon(characterNpc,
+                               distanceToTarget,
+                               weaponList,
+                               out var desiredProtoWeapon,
+                               out var isWithinRange);
+
+                isAttacking = isWithinRange
+                              && ReferenceEquals(desiredProtoWeapon, weaponState.ProtoWeapon);
+            }
+
+            weaponState.SharedSetInputIsFiring(isAttacking);
+
+            if (weaponState.ProtoWeapon is ProtoItemMobWeaponNova)
+            {
+                // don't move while using a Nova attack
+                movementDirection = default;
+            }
+
+            if (targetCharacter is null)
+            {
+                return;
+            }
+
+            if (lastTargetCharacter != targetCharacter
+                && lastTargetCharacter is null)
+            {
+                // focus on an enemy
                 var protoMob = (IProtoCharacterMob)characterNpc.ProtoCharacter;
                 protoMob.ServerPlaySound(characterNpc, CharacterSound.Aggression);
             }
@@ -313,6 +431,54 @@
             {
                 rotationAngleRad = Math.Abs(
                     Math.Atan2(directionToEnemyHitbox.Y, directionToEnemyHitbox.X) + 2 * Math.PI);
+            }
+        }
+
+        private static void SelectAiWeapon(
+            ICharacter character,
+            double distanceToTarget,
+            IReadOnlyList<AiWeaponPreset> weaponList,
+            out IProtoItemWeapon desiredProtoWeapon,
+            out bool isWithinRange)
+        {
+            desiredProtoWeapon = null;
+            isWithinRange = false;
+
+            var privateState = character.GetPrivateState<CharacterMobPrivateState>();
+            var weaponState = privateState.WeaponState;
+            if (weaponState.CooldownSecondsRemains > 0.001
+                || weaponState.DamageApplyDelaySecondsRemains > 0.001)
+            {
+                // cannot switch weapon now, try to use the currently selected weapon
+                //Api.Logger.Dev("Weapon cooldown remains: " + weaponState.CooldownSecondsRemains
+                //               + " damageApplyDelaySecondsRemains: " +  weaponState.DamageApplyDelaySecondsRemains);
+                desiredProtoWeapon = weaponState.ProtoWeapon;
+                foreach (var weaponPreset in weaponList)
+                {
+                    if (ReferenceEquals(weaponPreset.ProtoWeapon, desiredProtoWeapon))
+                    {
+                        isWithinRange = distanceToTarget < weaponPreset.MaxAttackRange;
+                        break;
+                    }
+                }
+
+                return;
+            }
+
+            // try to select the weapon from the list
+            foreach (var weaponPreset in weaponList)
+            {
+                isWithinRange = distanceToTarget < weaponPreset.MaxAttackRange;
+                if (!isWithinRange)
+                {
+                    continue;
+                }
+
+                desiredProtoWeapon = weaponPreset.ProtoWeapon;
+                ServerMobWeaponHelper.TrySetWeapon(character,
+                                                   desiredProtoWeapon,
+                                                   rebuildWeaponsCacheNow: false);
+                break;
             }
         }
 

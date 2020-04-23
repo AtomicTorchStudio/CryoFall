@@ -25,6 +25,11 @@
 
         protected override bool CanFlipSprite => false; // it's grass - flip is done by shader
 
+        protected override ITextureResource ClientCreateIcon()
+        {
+            return new TextureResource(this.GenerateTexturePath() + "Icon");
+        }
+
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             renderer.PositionOffset = (0.5, 0.0);

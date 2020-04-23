@@ -187,7 +187,7 @@
 
                     <Control Template="{StaticResource ControlTemplateArrow}"
                              Margin="3" />
-                    
+
                     <!-- Text: Mineral oil -->
                     <TextBlock Text="{x:Static loc:CoreStrings.TitleLiquidMineralOil}"
                                Style="{StaticResource TextBlockStyleCraftingCaption}"

@@ -13,6 +13,9 @@ Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
 需要{0}个学习点（仅{1}可用）。
 
+Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
+在服务器清空后{0}不可用（请等待{1}）.
+
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 需要解锁科技：{0}
 
@@ -99,6 +102,12 @@ Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
 烹饪2
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
+不妨美化以下环境？
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
+装饰
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
 改进的保护技术提供了更好的装甲蓝图。
@@ -192,6 +201,12 @@ Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
 烹饪3
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
+进一步自定义环境！
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
+装饰2
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 高级保护技术。

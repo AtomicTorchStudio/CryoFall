@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Quests;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -12,7 +12,7 @@
     using AtomicTorch.CBND.GameApi.Data.State.NetSync;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    public class PlayerCharacterQuests : BaseNetObject
+    public class PlayerCharacterQuests : BaseNetObject, IPlayerActiveTasksHolder
     {
         private readonly List<CharacterQuestEntry> serverLockedQuests
             = new List<CharacterQuestEntry>();
@@ -28,6 +28,54 @@
         public NetworkSyncList<CharacterQuestEntry> Quests { get; }
             = new NetworkSyncList<CharacterQuestEntry>();
 
+        public void OnActiveTaskCompletedStateChanged(ServerPlayerActiveTask activeTask)
+        {
+            var quest = (IProtoQuest)activeTask.PlayerTask.TaskTarget;
+            var questEntry = this.SharedFindQuestEntry(quest, out _);
+            questEntry.OnActiveTaskCompletedStateChanged(activeTask);
+        }
+
+        /// <summary>
+        /// Please note - it will throw an exception if the reward cannot be claimed or the quest is already completed.
+        /// </summary>
+        public void ServerClaimReward(IProtoQuest quest, bool ignoreTasks)
+        {
+            var questEntry = this.SharedFindQuestEntry(quest, out bool questEntryIsUnlocked);
+            if (questEntry is null)
+            {
+                throw new Exception("No quest entry found for: " + quest);
+            }
+
+            if (!questEntryIsUnlocked)
+            {
+                throw new Exception("The quest is not unlocked " + quest);
+            }
+
+            if (!ignoreTasks
+                && !questEntry.AreAllTasksCompleted)
+            {
+                throw new Exception("The quest tasks are not completed " + quest);
+            }
+
+            if (questEntry.IsCompleted)
+            {
+                throw new Exception("The quest is already completed and the reward is already claimed " + quest);
+            }
+
+            questEntry.ServerSetCompleted();
+
+            var rewardLearningPoints = quest.RewardLearningPoints;
+            rewardLearningPoints = (ushort)Math.Round(
+                rewardLearningPoints * TechConstants.ServerLearningPointsGainMultiplier,
+                MidpointRounding.AwayFromZero);
+            this.Character.SharedGetTechnologies()
+                .ServerAddLearningPoints(rewardLearningPoints, allowModifyingByStat: false);
+
+            Api.Logger.Important(
+                $"Quest completed and reward claimed: {quest.ShortId}. Learning points added: {rewardLearningPoints}",
+                this.Character);
+        }
+
         public void ServerInit()
         {
             Process(this.Quests);
@@ -40,7 +88,7 @@
                 for (var index = 0; index < list.Count; index++)
                 {
                     var entry = list[index];
-                    if (entry.Quest == null)
+                    if (entry.Quest is null)
                     {
                         // invalid quest entry
                         list.RemoveAt(index);
@@ -53,8 +101,8 @@
                         continue;
                     }
 
-                    entry.ServerEnsureRequirementsStateIsValid();
-                    entry.ServerCreateActiveRequirementStates(this.Character);
+                    entry.ServerEnsureTasksStateIsValid();
+                    entry.ServerCreateActiveTasks(this.Character, this);
                 }
             }
         }
@@ -62,7 +110,7 @@
         public void ServerRemoveNewFlag(IProtoQuest quest)
         {
             var questEntry = this.SharedFindQuestEntry(quest, out var isUnlocked);
-            if (questEntry == null)
+            if (questEntry is null)
             {
                 throw new Exception("No quest entry for: " + quest);
             }
@@ -98,7 +146,11 @@
         public void ServerTryAddQuest(IProtoQuest quest, bool isUnlocked)
         {
             var questEntry = this.SharedFindQuestEntry(quest, out _);
-            if (questEntry != null)
+            if (questEntry is null)
+            {
+                questEntry = new CharacterQuestEntry(quest);
+            }
+            else
             {
                 // already has an entry
                 if (isUnlocked
@@ -111,10 +163,6 @@
                     // no need to add the quest entry
                     return;
                 }
-            }
-            else
-            {
-                questEntry = new CharacterQuestEntry(quest);
             }
 
             if (isUnlocked)
@@ -129,51 +177,13 @@
             //Api.Logger.Important($"Quest added: {quest.ShortId} as {(isUnlocked ? "unlocked" : "locked")}",
             //                     this.Character);
 
-            questEntry.ServerCreateActiveRequirementStates(this.Character);
-        }
-
-        public void ServerTryClaimReward(IProtoQuest quest, bool ignoreRequirements)
-        {
-            var questEntry = this.SharedFindQuestEntry(quest, out bool questEntryIsUnlocked);
-            if (questEntry == null)
-            {
-                throw new Exception("No quest entry found for: " + quest);
-            }
-
-            if (!questEntryIsUnlocked)
-            {
-                throw new Exception("The quest is not unlocked " + quest);
-            }
-
-            if (!ignoreRequirements
-                && !questEntry.AreAllRequirementsSatisfied)
-            {
-                throw new Exception("The quest requirements are not satisfied " + quest);
-            }
-
-            if (questEntry.IsCompleted)
-            {
-                throw new Exception("The quest is already completed and the reward is already claimed " + quest);
-            }
-
-            questEntry.ServerSetCompleted();
-
-            var rewardLearningPoints = quest.RewardLearningPoints;
-            rewardLearningPoints = (ushort)Math.Round(
-                rewardLearningPoints * TechConstants.ServerLearningPointsGainMultiplier,
-                MidpointRounding.AwayFromZero);
-            this.Character.SharedGetTechnologies()
-                .ServerAddLearningPoints(rewardLearningPoints, allowModifyingByStats: false);
-
-            Api.Logger.Important(
-                $"Quest completed and reward claimed: {quest.ShortId}. Learning points added: {rewardLearningPoints}",
-                this.Character);
+            questEntry.ServerCreateActiveTasks(this.Character, this);
         }
 
         public void ServerTryRemoveQuest(IProtoQuest quest)
         {
             var questEntry = this.SharedFindQuestEntry(quest, out _);
-            if (questEntry == null)
+            if (questEntry is null)
             {
                 // no such entry
                 return;
@@ -215,7 +225,7 @@
         public bool SharedHasCompletedQuest(IProtoQuest quest)
         {
             var questEntry = this.SharedFindQuestEntry(quest, out var isUnlocked);
-            if (questEntry == null
+            if (questEntry is null
                 || !isUnlocked)
             {
                 // no such entry
@@ -225,48 +235,50 @@
             return questEntry.IsCompleted;
         }
 
-        public bool SharedHasCompletedRequirement(IQuestRequirement requirement)
+        public bool SharedHasCompletedTask(IPlayerTask task)
         {
-            var quest = requirement.Quest;
-            Api.Assert(quest != null, "Requirement must have an associated quest");
+            if (!(task.TaskTarget is IProtoQuest quest))
+            {
+                throw new Exception("Task must have an associated quest");
+            }
 
             var questEntry = this.SharedFindQuestEntry(quest, out _);
-            if (questEntry == null)
+            if (questEntry is null)
             {
                 // no such entry
                 return false;
             }
 
             if (questEntry.IsCompleted
-                || questEntry.AreAllRequirementsSatisfied)
+                || questEntry.AreAllTasksCompleted)
             {
-                // all requirements are/were satisfied
+                // all tasks are/were completed
                 return true;
             }
 
-            // find a state for this requirement and check whether it's satisfied
-            var indexOfRequirement = -1;
-            var requirements = quest.Requirements;
-            if (requirements == null)
+            // find a state for this task and check whether it's completed
+            var indexOfTask = -1;
+            var tasks = quest.Tasks;
+            if (tasks is null)
             {
                 return false;
             }
 
-            for (var index = 0; index < requirements.Count; index++)
+            for (var index = 0; index < tasks.Count; index++)
             {
-                var r = requirements[index];
-                if (r != requirement)
+                var r = tasks[index];
+                if (r != task)
                 {
                     continue;
                 }
 
-                indexOfRequirement = index;
+                indexOfTask = index;
                 break;
             }
 
-            Api.Assert(indexOfRequirement >= 0, "Requirement not exist in quest");
-            var requirementState = questEntry.RequirementStates[indexOfRequirement];
-            return requirementState.IsSatisfied;
+            Api.Assert(indexOfTask >= 0, "Task not exist in quest");
+            var taskState = questEntry.TaskStates[indexOfTask];
+            return taskState.IsCompleted;
         }
 
         private static void ServerCharacterJoinedOrLeftPartyHandler(ICharacter character)
@@ -274,29 +286,27 @@
             var playerCharacterQuests = character.SharedGetQuests();
             foreach (var quest in playerCharacterQuests.Quests)
             {
-                quest.ServerRefreshAllRequirementsSatisfied(character);
+                quest.ServerRefreshAllTasksCompleted(character);
             }
         }
 
         public class CharacterQuestEntry : BaseNetObject
         {
             [NonSerialized]
-            private List<ServerCharacterActiveQuestRequirement> serverActiveRequirements;
+            private List<ServerPlayerActiveTask> serverActiveTasks;
 
             public CharacterQuestEntry(IProtoQuest quest)
             {
                 this.Quest = quest;
-                this.ServerSetupRequirementStates();
+                this.ServerSetupTaskStates();
             }
 
             /// <summary>
-            /// When all requirements are satisfied, player can claim the reward and then <see cref="IsCompleted" /> should be set to
+            /// When all tasks are completed, player can claim the reward and then <see cref="IsCompleted" /> should be set to
             /// true.
             /// </summary>
             [SyncToClient]
-            public bool AreAllRequirementsSatisfied { get; private set; }
-
-            //public ICharacter Character => (ICharacter)this.GameObject;
+            public bool AreAllTasksCompleted { get; private set; }
 
             [SyncToClient]
             public bool IsCompleted { get; private set; }
@@ -308,78 +318,84 @@
             public IProtoQuest Quest { get; }
 
             [SyncToClient]
-            public IReadOnlyList<QuestRequirementState> RequirementStates { get; private set; }
+            public IReadOnlyList<PlayerTaskState> TaskStates { get; private set; }
 
-            public void OnActiveRequirementSatisfiedStateChanged(
-                ServerCharacterActiveQuestRequirement activeRequirement)
+            public void OnActiveTaskCompletedStateChanged(ServerPlayerActiveTask activeTask)
             {
-                var isSatisfied = activeRequirement.QuestRequirementState.IsSatisfied;
-                for (var index = 0; index < this.serverActiveRequirements.Count; index++)
+                var isCompleted = activeTask.PlayerTaskState.IsCompleted;
+                for (var index = 0; index < this.serverActiveTasks.Count; index++)
                 {
-                    var entry = this.serverActiveRequirements[index];
-                    if (entry != activeRequirement)
+                    var entry = this.serverActiveTasks[index];
+                    if (entry != activeTask)
                     {
                         continue;
                     }
 
                     // found entry
-                    if (isSatisfied
-                        && !activeRequirement.QuestRequirement.IsReversible)
+                    if (isCompleted
+                        && !activeTask.PlayerTask.IsReversible)
                     {
-                        // remove this active requirement entry as it's satisfied and cannot be reversed
-                        activeRequirement.IsActive = false;
-                        this.serverActiveRequirements.RemoveAt(index);
+                        // remove this active task entry as it's completed and cannot be reversed
+                        activeTask.IsActive = false;
+                        this.serverActiveTasks.RemoveAt(index);
                     }
 
-                    this.ServerRefreshAllRequirementsSatisfied(activeRequirement.Character);
+                    this.ServerRefreshAllTasksCompleted(activeTask.Character);
                     return;
                 }
 
-                throw new Exception("Unknown requirement satisfied: " + activeRequirement);
+                Api.Logger.Error("Unknown task completed: " + activeTask);
             }
 
-            public void ServerCreateActiveRequirementStates(ICharacter character)
+            public void ServerCreateActiveTasks(
+                ICharacter character,
+                IPlayerActiveTasksHolder activeTasksHolder)
             {
-                this.ServerResetActiveRequirements();
+                this.ServerResetActiveTasks();
                 if (this.IsCompleted)
                 {
-                    // the quest is finished - no active requirements required in that case
+                    // the quest is completed - no active tasks required in that case
                     return;
                 }
 
-                var requirements = this.Quest.Requirements;
+                var tasks = this.Quest.Tasks;
 
-                this.serverActiveRequirements = new List<ServerCharacterActiveQuestRequirement>(requirements.Count);
+                this.serverActiveTasks = new List<ServerPlayerActiveTask>(tasks.Count);
 
-                // refresh the requirement states
-                for (byte index = 0; index < requirements.Count; index++)
+                // refresh the task states
+                for (byte index = 0; index < tasks.Count; index++)
                 {
-                    var requirement = requirements[index];
-                    var requirementState = this.RequirementStates[index];
-                    requirement.ServerRefreshIsSatisfied(character, requirementState);
+                    var task = tasks[index];
+                    var taskState = this.TaskStates[index];
+                    task.ServerRefreshIsCompleted(character, taskState);
 
-                    if (!requirementState.IsSatisfied
-                        || requirement.IsReversible)
+                    if (taskState.IsCompleted
+                        && !task.IsReversible)
                     {
-                        // create active requirement entry
-                        var questRequirement = new ServerCharacterActiveQuestRequirement(this, index, character);
-                        this.serverActiveRequirements.Add(questRequirement);
-                        questRequirement.IsActive = true;
+                        continue;
                     }
+
+                    // create active task entry
+                    var questTask = new ServerPlayerActiveTask(task,
+                                                               taskState,
+                                                               activeTasksHolder,
+                                                               character);
+                    this.serverActiveTasks.Add(questTask);
+                    questTask.IsActive = true;
                 }
 
-                this.ServerRefreshAllRequirementsSatisfied(character);
+                this.ServerRefreshAllTasksCompleted(character);
             }
 
             public void ServerDestroy()
             {
-                this.ServerResetActiveRequirements();
+                this.ServerResetActiveTasks();
             }
 
-            public void ServerEnsureRequirementsStateIsValid()
+            public void ServerEnsureTasksStateIsValid()
             {
-                var requirements = this.Quest.Requirements;
-                var isValid = this.RequirementStates.Count == requirements.Count;
+                var tasks = this.Quest.Tasks;
+                var isValid = this.TaskStates.Count == tasks.Count;
                 try
                 {
                     if (!isValid)
@@ -387,12 +403,12 @@
                         return;
                     }
 
-                    // check that the requirement state types are matching
-                    for (byte index = 0; index < requirements.Count; index++)
+                    // check that the task state types are matching
+                    for (byte index = 0; index < tasks.Count; index++)
                     {
-                        var requirement = requirements[index];
-                        var requirementState = this.RequirementStates[index];
-                        if (requirement.IsStateTypeMatch(requirementState))
+                        var task = tasks[index];
+                        var taskState = this.TaskStates[index];
+                        if (task.IsStateTypeMatch(taskState))
                         {
                             continue;
                         }
@@ -405,108 +421,114 @@
                 {
                     if (!isValid)
                     {
-                        this.ServerResetActiveRequirements();
-                        this.ServerSetupRequirementStates();
+                        this.ServerResetActiveTasks();
+                        this.ServerSetupTaskStates();
                     }
                 }
             }
 
-            public void ServerRefreshAllRequirementsSatisfied(ICharacter character)
+            public void ServerRefreshAllTasksCompleted(ICharacter character)
             {
                 if (this.IsCompleted)
                 {
-                    // the quest is already finished
+                    // the quest is already completed
                     return;
                 }
 
-                var satisfied = false;
+                var completed = false;
                 try
                 {
-                    if (!this.RequirementStates.All(s => s.IsSatisfied))
+                    foreach (var state in this.TaskStates)
                     {
-                        // not all requirements are satisfied
-                        return;
+                        if (!state.IsCompleted)
+                        {
+                            // not all tasks are completed
+                            return;
+                        }
                     }
 
-                    // ensure that all requirement states are updated and really satisfied
-                    var requirements = this.Quest.Requirements;
-                    for (byte index = 0; index < requirements.Count; index++)
+                    // ensure that all task states are updated and really completed
+                    var tasks = this.Quest.Tasks;
+                    for (byte index = 0; index < tasks.Count; index++)
                     {
-                        var requirement = requirements[index];
-                        var requirementState = this.RequirementStates[index];
-                        requirement.ServerRefreshIsSatisfied(character, requirementState);
+                        var task = tasks[index];
+                        var taskState = this.TaskStates[index];
+                        task.ServerRefreshIsCompleted(character, taskState);
                     }
 
-                    if (!this.RequirementStates.All(s => s.IsSatisfied))
+                    foreach (var state in this.TaskStates)
                     {
-                        // not all requirements are satisfied
-                        return;
+                        if (!state.IsCompleted)
+                        {
+                            // not all tasks are completed
+                            return;
+                        }
                     }
 
-                    satisfied = true;
+                    completed = true;
                 }
                 finally
                 {
-                    if (satisfied
-                        && !this.AreAllRequirementsSatisfied)
+                    if (completed
+                        && !this.AreAllTasksCompleted)
                     {
-                        //Api.Logger.Important("Quest requirements become satisfied: " + this.Quest.ShortId,
+                        //Api.Logger.Important("Quest tasks became completed: " + this.Quest.ShortId,
                         //                     character);
-                        this.AreAllRequirementsSatisfied = true;
+                        this.AreAllTasksCompleted = true;
                     }
-                    else if (!satisfied
-                             && this.AreAllRequirementsSatisfied)
+                    else if (!completed
+                             && this.AreAllTasksCompleted)
                     {
-                        //Api.Logger.Important("Quest requirements become unsatisfied: " + this.Quest.ShortId,
+                        //Api.Logger.Important("Quest tasks became incomplete: " + this.Quest.ShortId,
                         //                     character);
-                        this.AreAllRequirementsSatisfied = false;
+                        this.AreAllTasksCompleted = false;
                     }
                 }
             }
 
             public void ServerSetCompleted()
             {
-                this.ServerResetActiveRequirements();
+                this.ServerResetActiveTasks();
                 this.IsCompleted = true;
-                this.AreAllRequirementsSatisfied = true;
+                this.AreAllTasksCompleted = true;
                 this.IsNew = false;
-                this.RequirementStates = null;
+                this.TaskStates = null;
             }
 
-            private void ServerResetActiveRequirements()
+            private void ServerResetActiveTasks()
             {
-                if (this.serverActiveRequirements == null)
+                if (this.serverActiveTasks is null)
                 {
                     return;
                 }
 
-                // deactivate all the active requirements
-                foreach (var characterActiveQuestRequirement in this.serverActiveRequirements)
+                // deactivate all the active tasks
+                foreach (var characterActiveQuestTask in this.serverActiveTasks)
                 {
-                    characterActiveQuestRequirement.IsActive = false;
+                    characterActiveQuestTask.IsActive = false;
                 }
 
-                this.serverActiveRequirements = null;
+                this.serverActiveTasks = null;
             }
 
-            private void ServerSetupRequirementStates()
+            private void ServerSetupTaskStates()
             {
-                Api.Assert(!this.IsCompleted, "Cannot create requirement states for completed quest");
+                Api.Assert(!this.IsCompleted, "Cannot create task states for completed quest");
 
-                // ensure active requirements are reset
-                this.ServerResetActiveRequirements();
+                // ensure active tasks are reset
+                this.ServerResetActiveTasks();
 
-                var requirements = this.Quest.Requirements;
-                // we never modify this list but NetworkSyncList is required in order to bind its elements (QuestRequirementState) to the state owner
-                var requirementStates = new NetworkSyncList<QuestRequirementState>(requirements.Count);
+                var tasks = this.Quest.Tasks;
+                // we never modify this list but NetworkSyncList is required in order to bind its elements (QuestTaskState) to the state owner
+                var taskStates = new NetworkSyncList<PlayerTaskState>(tasks.Count);
 
-                foreach (var requirement in requirements)
+                foreach (var task in tasks)
                 {
-                    var state = requirement.CreateState();
-                    requirementStates.Add(state);
+                    var state = task.CreateState();
+                    taskStates.Add(state);
                 }
 
-                this.RequirementStates = requirementStates;
+                this.TaskStates = taskStates;
             }
         }
     }

@@ -4,9 +4,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Debug
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
-    using AtomicTorch.CBND.GameApi;
 
-    [PrototypeIgnoredForNetwork]
     public class ConsoleDebugSetAllVegetablesFullGrown : BaseConsoleCommand
     {
         public override string Description =>

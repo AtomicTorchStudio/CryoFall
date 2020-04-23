@@ -76,6 +76,36 @@ Modifizierte 8mm-Munition mit einem ummantelten Hohlraum, der mit einer kleinen 
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 8mm Giftmunition
 
+Scripts/Items/Ammo/ItemAmmoArrowIron@Description:
+Verbesserter Pfeil mit Eisenspitze. Noch nicht annähernd so gut wie Schusswaffen, aber sehr einfach herzustellen.
+
+Scripts/Items/Ammo/ItemAmmoArrowIron@Name:
+Pfeil mit Eisenspitze
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
+Einfacher Pfeil mit Steinspitze. Einfacher geht es kaum.
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
+Pfeil mit Steinspitze
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
+Spezialgranate, die beim Einschlag flüssiges und mit Pragmiumpartikeln versetztes Helium freisetzt und ein Ziel so gefrieren lässt.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
+Heliumgranate
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
+Standardisierte hochexplosive Granate, die bei ihrem Einschlag alles innerhalb eines kleinen Umkreises beschädigt.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Name:
+HE-Granate
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
+Spezielle Brandgranate, die beim Einschlag schweren thermischen Schaden verursacht.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
+Brandgranate
+
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Herkömmliche Schusswaffenmunition. Geeignet nur für schwächere Ziele, jedoch einfach und billig in der Produktion.
 
@@ -1268,6 +1298,12 @@ Kleine, vielseitige Energiezelle, die in einer Vielzahl von elektronischen Gerä
 Scripts/Items/Generic/ItemPowerCell@Name:
 Energiezelle
 
+Scripts/Items/Generic/ItemPragmiumHeart@Description:
+Ein sonderbares kristallines Organ unbekannter Pragmiumlebensformen.
+
+Scripts/Items/Generic/ItemPragmiumHeart@Name:
+Pragmiumherz
+
 Scripts/Items/Generic/ItemPreservative@Description:
 Nahrungskonservierungsmittel. Kann verpackten Lebenmitteln hinzugefügt werden, um diese wesentlich haltbarer zu machen.
 
@@ -1637,6 +1673,12 @@ Blutgerinner können Blutungen vollständig stillen und jegliche andere Blutunge
 Scripts/Items/Medical/ItemHemostatic@Name:
 Blutgerinner
 
+Scripts/Items/Medical/ItemHerbBlue@Description:
+Medizinisches Heilkraut, das als Katalysator für komplexe medizinische Rezepturen verwendet wird. Sollte aufgrund seiner toxischen Bestandteile nicht roh verzehrt werden.
+
+Scripts/Items/Medical/ItemHerbBlue@Name:
+Blaues Heilkraut
+
 Scripts/Items/Medical/ItemHerbGreen@Description:
 Heilpflanze mit einzigartigen heilenden und antibakteriellen Eigenschaften. Kann so verwendet werden, ist jedoch bei richtiger Zubereitung um ein Vielfaches wirksamer.
 
@@ -1874,6 +1916,12 @@ Muss nachgefüllt werden.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Leer
 
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
+Dieses fragile Pragmiumbeil bedient sich molekularer Resonanzmechanik und ist so viel schneller als herkömmliche Alternativen.
+
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
+Pragmiumbeil
+
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 Eiserne Spitzhacke, die zum Abbauen von Bodenschätzen verwendet werden kann. Schneller und langlebiger als eine Spitzhacke aus Stein.
 
@@ -1982,11 +2030,29 @@ Laserrapier (gelb)
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Erstaunlich starke Nahkampfwaffe. Benötigt Energie.
 
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Technologie aus grauer Vorzeit. Funktioniert noch immer so gut wie eh und je.
+
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Armbrust
+
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
 Primitive Pistole. Verwendet Papiermunition. Hält zwei Ladungen, die sehr schnell verschossen werden können.
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 Steinschlosspistole
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Einzelschüssiger Granatwerfer, der speziell gefertigte, großkalibrige Munition verschießt, die beim Einschlag explodiert und so massiven Schaden verursacht.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Granatwerfer
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Nach dem Prinzip eines Revolvers funktionierender Granatwerfer. Ideal für Angriffsmissionen oder im Kampf gegen schwergepanzerte Ziele.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Mehrschüssiger Granatwerfer
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
 Handfeuerwaffe entwickelt für 10mm-Munition.
@@ -2048,11 +2114,23 @@ Herkömmliche durchladende Handfeuerwaffe mit einem sich drehenden Munitionszyli
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 Revolver
 
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
+Leichtes automatisches Scharfschützengewehr entwickelt für 10mm-Munition.
+
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
+Leichtes Gewehr
+
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
 Schweres Anti-Material-Gewehr entwickelt für .300-Munition.
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 Schweres Gewehr
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
+Primitives Repetiergewehr entwickelt für herkömmliche 8mm-Munition.
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
+Repetiergewehr
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
 Opas alte Schrotflinte. Benutzt Kaliber 12-Munition.

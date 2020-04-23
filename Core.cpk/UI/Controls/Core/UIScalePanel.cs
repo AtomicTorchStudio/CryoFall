@@ -31,8 +31,8 @@
 
         public bool IsInverse
         {
-            get { return (bool)this.GetValue(IsInverseProperty); }
-            set { this.SetValue(IsInverseProperty, value); }
+            get => (bool)this.GetValue(IsInverseProperty);
+            set => this.SetValue(IsInverseProperty, value);
         }
 
         protected override void InitControl()

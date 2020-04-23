@@ -26,7 +26,6 @@
             armorPiercingCoef = 0;
             finalDamageMultiplier = 1;
             rangeMax = 0;
-
             damageDistribution.Set(DamageType.Kinetic, 1);
         }
 

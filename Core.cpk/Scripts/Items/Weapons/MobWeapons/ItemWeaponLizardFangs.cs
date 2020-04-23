@@ -21,9 +21,9 @@
             // no ammo used
             compatibleAmmoProtos = null;
 
-            var damageDistribution = new DamageDistribution();
-            damageDistribution.Set(DamageType.Impact,   0.8);
-            damageDistribution.Set(DamageType.Chemical, 0.2); // uses poison or something :)
+            var damageDistribution = new DamageDistribution()
+                                     .Set(DamageType.Impact,   0.8)
+                                     .Set(DamageType.Chemical, 0.2); // uses poison or something :)
 
             overrideDamageDescription = new DamageDescription(
                 damageValue: 22,

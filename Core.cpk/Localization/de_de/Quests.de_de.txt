@@ -1,64 +1,4 @@
-﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
-Baue: {0}
-
-Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-Vollenden: {0} (Technologiegruppe)
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-an {0}
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
-Herstellen
-
-Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
-Zerstöre: {0}
-
-Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
-Sammle: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
-Sammle: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
-Rüste aus: {0}
-
-Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-Lerne {0} (Fähigkeit) auf Level {1}
-
-Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-Lerne {0} (Fähigkeiten) auf Level {1}
-
-Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-Freischalten: {0} (Tech.-Gruppe)
-
-Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-Freischalten: {0} ({1} Tech.-Gruppen)
-
-Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-Erlerne: {0} (in {1} Tech.-Gruppe)
-
-Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
-Töte: {0}
-
-Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
-Stelle her: {0}
-
-Scripts/Quests/Requirements/RequirementRun@DescriptionText:
-Renne 10 Meter
-
-Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
-Sortiere Inventar
-
-Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
-Benutze: {0}
-
-Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
-Besuche: {0}
-
-Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
-Besuche: {0}
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+﻿Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 Du kannst deinen Respawn-Punkt festlegen, indem du einen Schlafsack platzierst. Wenn dein Charakter das nächste Mal respawnt, so wird er dort auftauchen.
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
@@ -156,17 +96,6 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 Sammle Ressourcen
 
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
-`Um Zugriff auf weitere Strukturen zu erhalten, musst du "Einfache Gebäude" im Technologiemenü freischalten.`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
-`[*] Sofern du die Tastaturbelegung nicht verändert hast, kannst du schnell aufs Technologiemenü zugreifen, indem du "G" drückst.
-[*] Um Technologieverbindungen freizuschalten, brauchst du [b]LP[/b] (Lernpunkte).
-[*] Lernpunkte können durch die Ausführung einer jeden sinnvollen Tätigkeit erhalten werden. Sie verhalten sich direkt proportional zum Erfahrungsanstieg deiner Fähigkeiten.`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
-Erlerne einfache Gebäudetechnologie
-
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
 Grabe nach Stein
 
@@ -182,16 +111,6 @@ Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
 Baue ein Mineral ab
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
-Es gibt noch ein paar andere Dinge, die du wissen musst, um CryoFall in vollen Zügen genießen zu können, so zum Beispiel das Sortieren deines Inventars oder wie du deinen Charakter rennen lässt!
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
-`[*] Um dein Inventar zu sortieren, öffne es und drücke die [u]mittlere Maustaste[/u] oder die [u]Z Taste[/u] (sofern du nichts an der Tastaturbelegung geändert hast), während du den Mauszeiger über das Inventargitter bewegst. [b]JEDES[/b] Inventargitter (z.B. Truhen) ist auf diese Weise sortierbar.
-[*] Um zu rennen, halte die [u]Umschalttaste[/u] während des Laufens gedrückt. Versuche einmal, ein paar Meter zu rennen. Wegzurennen, kann dir dabei helfen, gefährlichen Raubtieren zu entkommen.`
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
-Erlerne die Grundlagen
 
 Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
 Sammle Wasserknollenfrucht
@@ -222,9 +141,10 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 Landwirtschaft ist eine gute und nachhaltige Art und Weise, große Mengen an Lebensmitteln zu erhalten. Höchste Zeit, dir die Hände schmutzig zu machen!
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
-`[*] Es ist eine gute Idee, deine Farm [b]innerhalb[/b] deiner Schutzmauern zu bauen. Andere Überlebende könnten anderenfalls auf die Idee kommen, deine Ernte selbst einzuholen. :)
+`[*] [b]Samen[/b] können zufällig beim [b]Sammeln von Gras[/b] gefunden werden. Einige spezielle Samen lassen sich nur in den Ruinen finden.
+[*] Es ist eine gute Idee, deine Farm [b]innerhalb[/b] deiner Schutzmauern zu errichten, ansonsten könnten andere Überlebende auf die Idee kommen, deine Ernte selbst einzuholen. :)
 [*] Pflanzen unterscheiden sich in ihrer Wachstumsdauer, der Anzahl an möglichen Ernten und anderen Eigenschaften voneinander.
-[*] Später hast du die Möglichkeit, besseren Dünger zu entwickeln und die Effizienz deiner Farm zu erhöhen.`
+[*] Später hast du die Möglichkeit, besseren Dünger und andere Dinge zu entwickeln, die die Effizienz deiner Farm steigern.`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
 Baue eine Farm
@@ -403,7 +323,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
 [*] Es gibt [b]unterschiedliche Schadenstypen[/b] und verschiedene Rüstungen bieten unterschiedliche Arten von Schutz. Diesbezügliche Informationen findest du in deinem Inventar.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
-Fertige eine Distanzwaffe an
+Stelle einfache Schusswaffen her
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
 Jedes Biom besitzt, neben anderen Eigenschaften, eine einzigartige Flora und Fauna. Es ist von Vorteil, sich mit den grundlegenden Biomen vertraut zu machen, damit sie dir von maximalem Nutzen sein können.
@@ -437,6 +357,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Finde und benutze grünes Heilkraut
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
+`Um Zugriff auf weitere Strukturen zu erhalten, musst du "Einfache Gebäude" im Technologiemenü freischalten.`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
+`[*] Sofern du die Tastaturbelegung nicht verändert hast, kannst du schnell aufs Technologiemenü zugreifen, indem du "G" drückst.
+[*] Um Technologieverbindungen freizuschalten, brauchst du [b]LP[/b] (Lernpunkte).
+[*] Lernpunkte können durch die Ausführung einer jeden sinnvollen Tätigkeit erhalten werden. Sie verhalten sich direkt proportional zum Erfahrungsanstieg deiner Fähigkeiten.`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
+Erlerne einfache Gebäudetechnologie
+
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
 Zeit für die Jagd! Anfangs ist es wohl besser, den gefährlicheren Tieren aus dem Weg zu gehen, aber da draußen bleiben dir noch genug andere Optionen.
 
@@ -458,6 +389,16 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Meisterjäger – Teil 2
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
+Es gibt noch ein paar andere Dinge, die du wissen musst, um CryoFall in vollen Zügen genießen zu können, zum Beispiel das Sortieren deines Inventars oder wie du deinen Charakter rennen lässt!
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
+`[*] Um dein Inventar zu sortieren, öffne es und drücke die [u]mittlere Maustaste[/u] oder die [u]Z-Taste[/u] (sofern du nichts an der Tastaturbelegung geändert hast), während du den Mauszeiger über das Inventargitter bewegst. [b]JEDES[/b] Inventargitter (z.B. Truhen) ist auf diese Weise sortierbar.
+[*] Um zu rennen, halte die [u]Umschalttaste[/u] gedrückt, während du dich bewegst. Versuche einmal, ein paar Meter zu rennen. Wegzurennen kann dir dabei helfen, gefährlichen Raubtieren zu entkommen.`
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
+Erlerne die Grundlagen
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
 Schalte eine Fähigkeit frei
@@ -481,6 +422,16 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Brechstange zum Abreißen benutzen
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
+Pragmium ist ein seltenes außerirdisches Mineral, das in den fortschrittlichsten Technologien benutzt wird. Versuche etwas davon zu finden.
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
+`[*] Vorsicht! Pragmium zu schürfen, ist sehr gefährlich.
+[*] Große Pragmiumspitzen kommen in der Wüste vor, während sich kleinere Nester häufig in der Nähe von Vulkanen befinden.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
+Finde Pragmium!
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
 Baue Salz ab
@@ -565,6 +516,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Erkunde alte Ruinen
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Durchsuche einige Container
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 Noch mehr Zeit für die Jagd! Diesmal mit noch gefährlicheren Tieren.

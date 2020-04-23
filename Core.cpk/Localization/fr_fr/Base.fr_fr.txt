@@ -118,8 +118,8 @@ Temps de recharge
 Scripts/Base/Stats/StatName@CraftingSpeed:
 Vitesse de fabrication
 
-Scripts/Base/Stats/StatName@ItemExplosivePlantingTimeMultiplier:
-Temps de placement des explosifs
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Vitesse de pose d'explosif
 
 Scripts/Base/Stats/StatName@HuntingLootingSpeed:
 Vitesse de pillage

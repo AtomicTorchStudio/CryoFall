@@ -11,7 +11,8 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelWindowCrateContainer, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:crates="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Crates">
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory"
                                   SoundOpening="{StaticResource SoundWindowContainerOpen}"
@@ -20,7 +21,13 @@
             <!-- Simple items list in case the owners list is not editable (no tabs necessary) -->
             <ContentControl
                 Visibility="{Binding HasOwnersList, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
-                <controls:ItemsContainerExchangeControl DataContext="{Binding ViewModelItemsContainerExchange}" />
+                <Grid>
+                    <controls:ItemsContainerExchangeControl DataContext="{Binding ViewModelItemsContainerExchange}" />
+                    <crates:CrateIconControl WorldObjectCrate="{Binding WorldObjectCrate}"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Bottom"
+                                             Margin="0,0,5,5" />
+                </Grid>
             </ContentControl>
 
             <!-- Tab control in case the owners list is editable (so there are two tabs - Items and Owners) -->
@@ -31,8 +38,13 @@
                 <!-- Text: Items -->
                 <TabItem Header="{x:Static loc:CoreStrings.ItemsContainer_Title}"
                          IsSelected="True">
-                    <controls:ItemsContainerExchangeControl DataContext="{Binding ViewModelItemsContainerExchange}"
-                                                            Margin="0,-7,0,0" />
+                    <Grid Margin="0,-7,0,0" >
+                        <controls:ItemsContainerExchangeControl DataContext="{Binding ViewModelItemsContainerExchange}" />
+                        <crates:CrateIconControl WorldObjectCrate="{Binding WorldObjectCrate}"
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Bottom"
+                                                 Margin="0,0,-5,5" />
+                    </Grid>
                 </TabItem>
 
                 <!-- Text: Owners -->

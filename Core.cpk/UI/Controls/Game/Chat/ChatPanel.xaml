@@ -14,7 +14,7 @@
 
     <core:TabControlCached x:Name="TabControl"
                            ForceContentPreloading="True"
-                           Width="470"
+                           Width="476"
                            Height="400"
                            Margin="75,0,0,110"
                            HorizontalAlignment="Left"
@@ -57,6 +57,18 @@
                                       Grid.Column="1"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Stretch" />
+                                
+                                <TextBlock Grid.Column="1"
+                                           x:Name="TextBlockPressKeyToOpen"
+                                           Foreground="{StaticResource BrushColorAlt7}"
+                                           FontFamily="{StaticResource CondensedFontFamily}"
+                                           FontSize="12"
+                                           FontWeight="Bold"
+                                           Background="{StaticResource ChatEntryBackground}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Bottom"
+                                           Padding="5,3"
+                                           Margin="{Binding Margin, ElementName=TabItemsHolder}"/>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsHitTestVisible" Value="False">

@@ -1,8 +1,13 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.LiquidContainer;
     using AtomicTorch.CBND.CoreMod.Systems.PowerGridSystem;
@@ -14,8 +19,11 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using static ObjectExtractorConstants;
 
     public abstract class ProtoObjectExtractor
         : ProtoObjectManufacturer<
@@ -24,16 +32,42 @@
               StaticObjectClientState>,
           IProtoObjectExtractor
     {
-        /// <summary>
-        /// These constants are adjusting both extraction speed and fuel consumption speed.
-        /// </summary>
-        public const double PveInfiniteExtractorSpeedMultiplier = 0.5;
+        public const string Error_CannotBuildTooCloseToDeposit
+            = "Too close to a resource deposit. You can build right over it.";
 
-        public const double PvePlayerBuiltExtractorSpeedMultiplier = 0.25;
+        public const string Error_TooCloseToDepletedDeposit
+            = "Too close to a depleted deposit.";
 
-        public const double PvpInfiniteExtractorSpeedMultiplier = 1.0;
+        public const double FuelBurningSpeedMultiplier = 0.5;
 
-        public const double PvpPlayerBuiltExtractorSpeedMultiplier = 0.5;
+        private const int MinDistanceBetweenExtractors = 11;
+
+        protected static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDepletedDeposit
+            = new ConstructionTileRequirements.Validator(
+                Error_TooCloseToDepletedDeposit,
+                c =>
+                {
+                    if (c.TileOffset != default)
+                    {
+                        return true;
+                    }
+
+                    var startPosition = c.Tile.Position;
+                    var objectsInBounds = SharedFindObjectsNearby<ObjectDepletedDeposit>(startPosition);
+                    if (objectsInBounds.Any())
+                    {
+                        // found a depleted deposit nearby
+                        return false;
+                    }
+
+                    return true;
+                });
+
+        public override ProtoObjectConstructionSite ConstructionSitePrototype
+            => Api.GetProtoEntity<ObjectConstructionSiteForExtractor>();
+
+        // necessary for distance checks
+        public override bool HasIncreasedScopeSize => true;
 
         public override bool IsAutoSelectRecipe => true;
 
@@ -77,19 +111,6 @@
                                                                writeToLog);
         }
 
-        public override double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
-        {
-            var rate = base.SharedGetCurrentElectricityConsumptionRate(worldObject);
-            if (rate <= 0)
-            {
-                return 0;
-            }
-
-            var objectDeposit = this.SharedGetDepositWorldObject(worldObject.OccupiedTile);
-            rate *= SharedGetSpeedMultiplier(objectDeposit);
-            return rate;
-        }
-
         public override bool SharedOnDamage(
             WeaponFinalCache weaponCache,
             IStaticWorldObject targetObject,
@@ -114,6 +135,24 @@
                                        damagePreMultiplier,
                                        out obstacleBlockDamageCoef,
                                        out damageApplied);
+        }
+
+        // Please note: the start position is located in bottom left corner of the layout.
+        protected static IEnumerable<IStaticWorldObject> SharedFindObjectsNearby
+            <TProtoObject>(Vector2Ushort startPosition)
+            where TProtoObject : class, IProtoStaticWorldObject
+        {
+            var world = IsServer
+                            ? (IWorldService)Server.World
+                            : (IWorldService)Client.World;
+
+            // TODO: the offset here should be taken from current prototype Layout (its center)
+            var bounds = new RectangleInt(startPosition + (1, 1),
+                                          size: (1, 1));
+            bounds = bounds.Inflate(MinDistanceBetweenExtractors);
+
+            var objectsInBounds = world.GetStaticWorldObjectsOfProtoInBounds<TProtoObject>(bounds);
+            return objectsInBounds;
         }
 
         protected override void ClientDeinitializeStructure(IStaticWorldObject gameObject)
@@ -256,30 +295,46 @@
 
             if (weaponCache == null
                 || (weaponCache.ProtoWeapon == null
-                    && weaponCache.ProtoObjectExplosive == null)
+                    && weaponCache.ProtoExplosive == null)
                 || PveSystem.ServerIsPvE)
             {
                 return;
             }
 
+            // explode
+            var tilePosition = targetObject.TilePosition;
+            Server.World.CreateStaticWorldObject<ObjectDepositExplosion>(tilePosition);
+
             // the damage was dealt by a weapon or explosive - try to explode the deposit
             var worldObjectDeposit = this.SharedGetDepositWorldObject(
-                Server.World.GetTile(targetObject.TilePosition));
-            ((IProtoObjectDeposit)worldObjectDeposit?.ProtoStaticWorldObject)?
-                .ServerOnExtractorDestroyedForDeposit(worldObjectDeposit);
+                Server.World.GetTile(tilePosition));
+
+            if (worldObjectDeposit != null)
+            {
+                ((IProtoObjectDeposit)worldObjectDeposit.ProtoStaticWorldObject)
+                    .ServerOnExtractorDestroyedForDeposit(worldObjectDeposit);
+            }
+            else
+            {
+                // create charred ground at the center of the explosion
+                Server.World.CreateStaticWorldObject(GetProtoEntity<ObjectCharredGround1>(),
+                                                     (tilePosition + this.Layout.Center.ToVector2Int())
+                                                     .ToVector2Ushort());
+            }
         }
 
         protected override void ServerUpdate(ServerUpdateData data)
         {
             var worldObject = data.GameObject;
             var privateState = data.PrivateState;
+            var objectDepletedDeposit =
+                ObjectDepletedDeposit.SharedGetDepletedDepositWorldObject(worldObject.OccupiedTile);
             var objectDeposit = this.SharedGetDepositWorldObject(worldObject.OccupiedTile);
 
             var fuelBurningState = privateState.FuelBurningState;
-            if (objectDeposit == null
-                && !PveSystem.ServerIsPvE)
+            if (objectDepletedDeposit != null)
             {
-                // no deposit object in PvP - stop extraction
+                // this is a depleted deposit - stop extraction
                 data.PublicState.IsActive = false;
                 privateState.LiquidContainerState.Amount = 0;
                 if (fuelBurningState != null)
@@ -289,8 +344,6 @@
 
                 return;
             }
-
-            var deltaTime = data.DeltaTime * SharedGetSpeedMultiplier(objectDeposit);
 
             var isActive = false;
             var isFull = privateState.LiquidContainerState.Amount >= this.LiquidContainerConfig.Capacity;
@@ -323,7 +376,7 @@
                     fuelBurningState,
                     byproductsCraftQueue: null,
                     this.ManufacturingConfig,
-                    deltaTime,
+                    data.DeltaTime * FuelBurningSpeedMultiplier,
                     byproductsQueueRate: 1,
                     isNeedFuelNow: !isFull);
 
@@ -339,7 +392,7 @@
                 this.LiquidContainerConfig,
                 data.PrivateState.ManufacturingState,
                 this.ManufacturingConfig,
-                deltaTime,
+                data.DeltaTime * SharedGetSpeedMultiplier(objectDeposit),
                 // the pump produce petroleum only when active
                 isProduceLiquid: data.PublicState.IsActive,
                 forceUpdateRecipe: true);
@@ -356,22 +409,21 @@
             {
                 if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
                 {
-                    return objectDeposit is null // is player built deposit?
-                               ? PvePlayerBuiltExtractorSpeedMultiplier
-                               : PveInfiniteExtractorSpeedMultiplier;
+                    return objectDeposit is null
+                               ? ExtractorPvE
+                               : InfiniteExtractorPvE;
                 }
 
                 // extractor in PvP
-                if (objectDeposit == null)
+                if (objectDeposit is null)
                 {
-                    // should never happen, there is no deposit so no extraction can go on
-                    return 0;
+                    return ExtractorPvpWithoutDeposit;
                 }
 
                 var protoObjectDeposit = (IProtoObjectDeposit)objectDeposit.ProtoStaticWorldObject;
-                return protoObjectDeposit.LifetimeTotalDurationSeconds <= 0 // is infinite deposit?
-                           ? PvpInfiniteExtractorSpeedMultiplier
-                           : PvpPlayerBuiltExtractorSpeedMultiplier;
+                return protoObjectDeposit.LifetimeTotalDurationSeconds <= 0
+                           ? InfiniteExtractorPvP
+                           : ExtractorPvpWithDeposit;
             }
         }
     }

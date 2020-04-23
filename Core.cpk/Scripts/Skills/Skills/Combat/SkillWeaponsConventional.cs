@@ -9,7 +9,7 @@
 
         public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.2;
 
-        public override double ExperienceAddedPerDamageDoneMultiplier => 0.5;
+        public override double ExperienceAddedPerDamageDoneMultiplier => 0.75;
 
         /// <summary>
         /// This is intended to reward experience per ammo expended. Basically resource->exp conversion.
@@ -31,5 +31,33 @@
 
         public override StatName StatNameSpecialEffectChanceMultiplier
             => StatName.WeaponConventionalSpecialEffectChanceMultiplier;
+
+        protected override void PrepareProtoWeaponsSkillRanged(SkillConfig config)
+        {
+            var statNameDamageBonus = this.StatNameDamageBonusMultiplier;
+            var statNameReloadingSpeed = this.StatNameReloadingSpeedMultiplier;
+            var statNameDegradationRate = this.StatNameDegrationRateMultiplier;
+
+            config.AddStatEffect(
+                statNameDamageBonus,
+                level: 10,
+                percentBonus: 2);
+
+            config.AddStatEffect(
+                statNameDamageBonus,
+                level: 20,
+                percentBonus: 3);
+
+            if (statNameReloadingSpeed.HasValue)
+            {
+                config.AddStatEffect(
+                    statNameReloadingSpeed.Value,
+                    formulaPercentBonus: level => -level * 2);
+            }
+
+            config.AddStatEffect(
+                statNameDegradationRate,
+                formulaPercentBonus: level => -level * 2);
+        }
     }
 }

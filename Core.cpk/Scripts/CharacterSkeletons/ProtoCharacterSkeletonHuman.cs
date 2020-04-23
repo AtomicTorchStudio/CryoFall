@@ -29,6 +29,8 @@
 
         public override float OrientationThresholdUpHorizontalFlipDeg => 20;
 
+        public override string SlotNameItemInHand => "Weapon";
+
         public override double SpeedMultiplier => 1;
 
         public override double WorldScale => 0.15;
@@ -103,10 +105,15 @@
                 var mixIn = 0.033333f;
                 var mixInStatic = 0.15f;
                 var mixOut = 0.15f;
+                // fast mix-in into attacks, slower mix-out
                 skeleton.SetMixDuration(null, "AttackMeleeHorizontal",        mixIn,       mixOut);
                 skeleton.SetMixDuration(null, "AttackMeleeHorizontal_Static", mixInStatic, mixOut);
                 skeleton.SetMixDuration(null, "AttackMeleeVertical",          mixIn,       mixOut);
                 skeleton.SetMixDuration(null, "AttackMeleeVertical_Static",   mixInStatic, mixOut);
+
+                // fast mix between attacks
+                skeleton.SetMixDuration("AttackMeleeHorizontal",        "AttackMeleeVertical",        mixIn, mixIn);
+                skeleton.SetMixDuration("AttackMeleeHorizontal_Static", "AttackMeleeVertical_Static", mixIn, mixIn);
             }
 
             // disable mix for these movement animations

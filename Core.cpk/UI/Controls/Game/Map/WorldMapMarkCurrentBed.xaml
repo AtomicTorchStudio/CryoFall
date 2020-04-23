@@ -11,7 +11,8 @@
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core">
     <Canvas>
         <Image Source="Images/Bed.png"
-               Style="{StaticResource WorldMapMarkImagePinStyle}">
+               Style="{StaticResource WorldMapMarkImagePinStyle}"
+               Canvas.Top="-25">
             <base:ToolTipServiceExtend.ToolTip>
                 <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.WorldMapMarkCurrentBed_Tooltip}" />
             </base:ToolTipServiceExtend.ToolTip>

@@ -10,6 +10,19 @@ Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUs
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 {0} 사용 불가
 
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
+`잠시 아무 활동을 하지 않은 것으로 보입니다.
+[br]갈증과 배고픔이 고정됩니다.`
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
+채팅이나 제작, 또는 소모 아이템 사용은 가능합니다.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part3:
+아무 활동을 하면 잠수 모드가 해제됩니다.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Title:
+잠수 모드
+
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
 `{0}초 후에 잠자리에서 부활합니다.
 [br]또는 지금 당장 부활할 수 있습니다.`
@@ -89,6 +102,9 @@ Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 로컬
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomTrade@Title:
+거래
 
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
 지을 수 없음
@@ -251,6 +267,18 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 초대한 플레이어가 오프라인 상태입니다. 온라인 플레이어만 파티에 초대할 수 있습니다.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_AreYouSure:
+다음 메시지를 신고하시겠습니까?
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_CommunityServerDisclaimer:
+[b]참고:[/b] 커뮤니티 서버에서 플레이 중입니다. 채팅 관리는 서버장의 책임입니다. 대개 서버장은 채팅에 간섭하지 않습니다.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_OfficialServersDisclaimer:
+[b]참고:[/b] 공식 서버는 관리되지 않습니다.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_Title:
+메시지 신고
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
 상호작용 불가 - 너무 멀거나 접근할 수 없는 건물입니다.
@@ -460,6 +488,9 @@ Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 접근할 수 없습니다!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
+접근권 목록 크기 제한을 초과하였습니다.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
 소유자 명단을 수정할 수 없습니다.

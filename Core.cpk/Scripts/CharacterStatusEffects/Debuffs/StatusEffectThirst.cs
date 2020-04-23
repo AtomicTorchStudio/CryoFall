@@ -18,6 +18,8 @@
 
         public override double ServerAutoAddRepeatIntervalSeconds => 1;
 
+        public override double ServerUpdateIntervalSeconds => 0.5;
+
         protected override void ClientDeinitialize(StatusEffectData data)
         {
             ClientComponentStatusEffectThirstManager.Intensity = 0;

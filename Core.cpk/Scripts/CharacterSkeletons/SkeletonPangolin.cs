@@ -4,10 +4,15 @@
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class SkeletonPangolin : ProtoCharacterSkeletonAnimal
     {
         public override double DefaultMoveSpeed => 0.825;
+
+        public override double IconScale => 0.6;
+
+        public override Vector2D IconOffset => (-45, 20);
 
         public override float OrientationDownExtraAngle => 5;
 

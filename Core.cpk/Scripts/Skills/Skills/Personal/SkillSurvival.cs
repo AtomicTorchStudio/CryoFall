@@ -2,10 +2,8 @@
 {
     using System;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterIdleSystem;
     using AtomicTorch.CBND.CoreMod.Triggers;
-    using AtomicTorch.CBND.GameApi.Data.Characters;
     using static Stats.StatName;
 
     public class SkillSurvival : ProtoSkill
@@ -17,8 +15,8 @@
         public override string Description =>
             "Increases your chances to stay alive by improving your maximum health, food, water and energy reserves. You are just that much tougher to kill!";
 
-        public override double ExperienceToLearningPointsConversionMultiplier =>
-            0.2; // this is 1/5 of the standard conversion, because survival skill takes no effort from the player to advance
+        // LP is not provided for this skill as it's too easy to gain just by being online and it's causing confusing LP gained notification
+        public override double ExperienceToLearningPointsConversionMultiplier => 0;
 
         public override bool IsSharingLearningPointsWithPartyMembers => false;
 
@@ -44,11 +42,6 @@
                 config.AddStatEffect(
                     statName,
                     formulaPercentBonus: level => level);
-
-                config.AddStatEffect(
-                    statName,
-                    level: maxLevel,
-                    percentBonus: 5);
             }
 
             if (IsServer)
@@ -65,8 +58,6 @@
             const double experienceToAdd = ExperienceAddWhenOnlinePerSecond
                                            * TimerIntervalSeconds;
 
-            var serverTime = Server.Game.FrameTime;
-
             foreach (var character in Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true))
             {
                 if (character.ProtoCharacter.GetType() != typeof(PlayerCharacter))
@@ -82,7 +73,7 @@
                     continue;
                 }
 
-                if (CharacterIdleSystem.ServerIsIdlePlayer(character, serverTime))
+                if (CharacterIdleSystem.ServerIsIdlePlayer(character))
                 {
                     // idle character
                     continue;

@@ -118,8 +118,8 @@ Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Scripts/Base/Stats/StatName@CraftingSpeed:
 製作速度
 
-Scripts/Base/Stats/StatName@ItemExplosivePlantingTimeMultiplier:
-爆発物の設置時間
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+爆弾設置速度
 
 Scripts/Base/Stats/StatName@HuntingLootingSpeed:
 略奪速度

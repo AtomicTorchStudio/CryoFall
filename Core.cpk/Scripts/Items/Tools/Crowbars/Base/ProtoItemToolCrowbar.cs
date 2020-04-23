@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Deconstruction;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -31,17 +30,14 @@
         protected ProtoItemToolCrowbar()
         {
             var name = this.GetType().Name;
-            this.Icon = new TextureResource("Items/Tools/Crowbars/" + name);
             this.CharacterTextureResource = new TextureResource(
-                "Characters/Tools/Crowbars/" + name,
+                "Characters/Tools/" + name,
                 isProvidesMagentaPixelPosition: true);
         }
 
         public virtual TextureResource CharacterTextureResource { get; }
 
         public abstract double DeconstructionSpeedMultiplier { get; }
-
-        public override ITextureResource Icon { get; }
 
         public ReadOnlySoundPreset<ObjectSound> ObjectInteractionSoundsPreset { get; private set; }
 

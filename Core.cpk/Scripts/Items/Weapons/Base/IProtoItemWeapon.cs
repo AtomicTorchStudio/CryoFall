@@ -7,9 +7,12 @@
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
 
     public interface IProtoItemWeapon
         : IProtoItemWithCharacterAppearance,
@@ -30,6 +33,8 @@
         bool CanDamageStructures { get; }
 
         string CharacterAnimationAimingName { get; }
+
+        CollisionGroup CollisionGroup { get; }
 
         IReadOnlyList<IProtoItemAmmo> CompatibleAmmoProtos { get; }
 
@@ -53,12 +58,12 @@
         /// </summary>
         double FireInterval { get; }
 
-        WeaponFirePatternPreset FirePatternPreset { get; }
-
         /// <summary>
         /// Time until current fire sequence/pattern is reset.
         /// </summary>
         double FirePatternCooldownDuration { get; }
+
+        WeaponFirePatternPreset FirePatternPreset { get; }
 
         WeaponFireScatterPreset FireScatterPreset { get; }
 
@@ -84,18 +89,27 @@
 
         (float min, float max) SoundPresetWeaponDistance { get; }
 
+        (float min, float max) SoundPresetWeaponDistance3DSpread { get; }
+
         double SpecialEffectProbability { get; }
 
         ProtoSkillWeapons WeaponSkillProto { get; }
 
         ITextureResource WeaponTextureResource { get; }
 
-        string GetCharacterAnimationNameFire(ICharacter character);
+        void ClientOnFireModChanged(bool isFiring, uint shotsDone);
 
-        void ServerOnDamageApplied(
-            WeaponFinalCache weaponCache,
-            IWorldObject damagedObject,
-            double damage);
+        void ClientOnWeaponHitOrTrace(
+            ICharacter firingCharacter,
+            IProtoItemWeapon protoWeapon,
+            IProtoItemAmmo protoAmmo,
+            IProtoCharacter protoCharacter,
+            in Vector2Ushort fallbackCharacterPosition,
+            IReadOnlyList<WeaponHitData> hitObjects,
+            in Vector2D endPosition,
+            bool endsWithHit);
+
+        string GetCharacterAnimationNameFire(ICharacter character);
 
         void ServerOnShot(
             ICharacter character,
@@ -106,5 +120,27 @@
         bool SharedCanFire(ICharacter character, WeaponState weaponState);
 
         bool SharedOnFire(ICharacter character, WeaponState weaponState);
+
+        void SharedOnHit(
+            WeaponFinalCache weaponCache,
+            IWorldObject damagedObject,
+            double damage,
+            WeaponHitData hitData,
+            out bool isDamageStop);
+
+        void SharedOnMiss(WeaponFinalCache weaponCache, Vector2D endPosition);
+
+        void SharedOnWeaponAmmoChanged(IItem item, ushort ammoCount);
+
+        double SharedUpdateAndGetFirePatternCurrentSpreadAngleDeg(WeaponState weaponState);
+
+        void ClientOnWeaponShot(ICharacter character);
+
+        void ClientPlayWeaponHitSound(
+            [CanBeNull] IWorldObject hitWorldObject,
+            IProtoWorldObject protoWorldObject,
+            WeaponFireScatterPreset fireScatterPreset,
+            ObjectMaterial objectMaterial,
+            Vector2D worldObjectPosition);
     }
 }

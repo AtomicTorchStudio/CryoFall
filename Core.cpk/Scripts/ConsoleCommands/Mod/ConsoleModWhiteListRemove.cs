@@ -11,7 +11,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
         public override string Description =>
             "Removes a player name from the whitelist.";
 
-        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
+        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerModerator;
 
         public override string Name => "mod.whiteList.remove";
 

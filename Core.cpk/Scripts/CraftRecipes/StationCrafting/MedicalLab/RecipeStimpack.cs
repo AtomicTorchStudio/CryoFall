@@ -22,7 +22,7 @@
             inputItems.Add<ItemComponentsPharmaceutical>(count: 10);
             inputItems.Add<ItemIngotCopper>(count: 5);
             inputItems.Add<ItemHerbGreen>(count: 2);
-            inputItems.Add<ItemHerbRed>(count: 2);
+            inputItems.Add<ItemHerbBlue>(count: 2);
 
             outputItems.Add<ItemStimpack>(count: 1);
         }

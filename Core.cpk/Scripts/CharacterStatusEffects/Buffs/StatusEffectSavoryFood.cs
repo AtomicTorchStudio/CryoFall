@@ -17,8 +17,8 @@
         protected override void PrepareEffects(Effects effects)
         {
             // small bonuses to learning
-            effects.AddPercent(this, StatName.LearningsPointsGainMultiplier, 10);
-            effects.AddPercent(this, StatName.SkillsExperienceGainMultiplier, 10);
+            effects.AddPercent(this, StatName.LearningsPointsGainMultiplier, 10)
+                   .AddPercent(this, StatName.SkillsExperienceGainMultiplier, 10);
         }
     }
 }

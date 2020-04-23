@@ -21,15 +21,15 @@
 
             // mob spawn
             var presetLizard = spawnList.CreatePreset(interval: 22, padding: 0.5)
-                                        .Add<MobFireLizard>()
+                                        .AddExact<MobFireLizard>()
                                         .SetCustomPaddingWithSelf(12);
 
             var presetScorpion = spawnList.CreatePreset(interval: 26, padding: 0.5)
-                                          .Add<MobScorpion>()
+                                          .AddExact<MobScorpion>()
                                           .SetCustomPaddingWithSelf(15);
 
             var presetBeetle = spawnList.CreatePreset(interval: 15, padding: 0.5)
-                                        .Add<MobPragmiumBeetle>()
+                                        .AddExact<MobPragmiumBeetle>()
                                         .SetCustomPaddingWithSelf(5);
 
             // define custom spawn padding between different mobs

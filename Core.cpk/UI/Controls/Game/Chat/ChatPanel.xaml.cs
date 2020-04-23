@@ -11,6 +11,8 @@
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
+    using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class ChatPanel : BaseUserControl
@@ -24,7 +26,11 @@
 
         private TabControlCached tabControl;
 
+        private ContentControl tabItemsHolder;
+
         private ScrollViewer tabsScrollViewer;
+
+        private TextBlock textBlockPressKeyToOpenChat;
 
         public static ChatPanel Instance { get; private set; }
 
@@ -35,6 +41,15 @@
             {
                 if (this.isActive == value)
                 {
+                    return;
+                }
+
+                if (value
+                    && !ClientChatDisclaimerConfirmationHelper.IsChatAllowedForCurrentServer)
+                {
+                    // don't allow opening chat until player confirms the disclaimer
+                    ClientChatDisclaimerConfirmationHelper.OpenDisclaimerDialogIfNecessary(
+                        askAgain: true);
                     return;
                 }
 
@@ -70,6 +85,8 @@
                         chatRoomTab.ViewModelChatRoom.SetIsTabVisibleInPanel(true);
                         chatRoomTab.ChatRoomControl.IsActive = true;
                     }
+
+                    ClientChatDisclaimerConfirmationHelper.OpenDisclaimerDialogIfNecessary();
                 }
                 else
                 {
@@ -85,6 +102,8 @@
                         chatRoomTab.ViewModelChatRoom.SetIsTabVisibleInPanel(false);
                         chatRoomTab.ChatRoomControl.IsActive = false;
                     }
+
+                    this.textBlockPressKeyToOpenChat.Visibility = Visibility.Collapsed;
                 }
 
                 this.tabsScrollViewer.ScrollToEnd();
@@ -110,6 +129,23 @@
 
             this.IsActive = true;
             chatRoomTab.TabItem.IsSelected = true;
+        }
+
+        public void RefreshState()
+        {
+            this.tabItemsHolder.Visibility =
+                ClientChatDisclaimerConfirmationHelper.GetIsNeedToDisplayDisclaimerForCurrentServer(out _)
+                    ? Visibility.Hidden
+                    : Visibility.Visible;
+
+            if (ClientChatDisclaimerConfirmationHelper.IsChatAllowedForCurrentServer)
+            {
+                this.Visibility = Visibility.Visible;
+                return;
+            }
+
+            this.IsActive = false;
+            this.Visibility = Visibility.Hidden;
         }
 
         public void SelectNextTab()
@@ -175,15 +211,32 @@
         protected override void InitControl()
         {
             this.tabControl = this.GetByName<TabControlCached>("TabControl");
-            this.tabsScrollViewer = ((FrameworkElement)VisualTreeHelper.GetChild(this.tabControl, 0))
-                .GetByName<ScrollViewer>("TabsScrollViewer");
+            var visualRoot = ((FrameworkElement)VisualTreeHelper.GetChild(this.tabControl, 0));
+            this.tabsScrollViewer = visualRoot.GetByName<ScrollViewer>("TabsScrollViewer");
+            this.tabItemsHolder = visualRoot.GetByName<ContentControl>("TabItemsHolder");
+            this.textBlockPressKeyToOpenChat = visualRoot.GetByName<TextBlock>("TextBlockPressKeyToOpen");
+            this.textBlockPressKeyToOpenChat.Visibility = Visibility.Collapsed;
+
             this.IsActive = false;
             Instance = this;
-
+            
             ChatSystem.ClientChatRoomAdded += this.ChatRoomAddedHandler;
             ChatSystem.ClientChatRoomRemoved += this.ChatRoomRemovedHandler;
+            ChatSystem.ClientChatRoomMessageReceived += this.ClientChatRoomMessageReceivedHandler;
+            ClientInputManager.ButtonKeyMappingUpdated += this.ClientInputManagerButtonKeyMappingUpdatedHandler;
             this.tabControl.MouseUp += this.TabControlMouseUp;
             this.MouseDown += this.MouseButtonDownHandler;
+
+            Api.Client.CurrentGame.ConnectionStateChanged
+                += () =>
+                   {
+                       if (Api.Client.CurrentGame.ConnectionState == ConnectionState.Connected)
+                       {
+                           this.RefreshState();
+                       }
+                   };
+
+            this.RefreshState();
         }
 
         private static int CompareTabs(TabItem tabA, TabItem tabB)
@@ -207,8 +260,11 @@
                     case ChatRoomLocal _:
                         return 1;
 
-                    case ChatRoomParty _:
+                    case ChatRoomTrade _:
                         return 2;
+
+                    case ChatRoomParty _:
+                        return 3;
 
                     default:
                         return int.MaxValue;
@@ -231,6 +287,11 @@
                 {
                     // chat room with blocked player - ignore it
                     return;
+                }
+
+                if (privateChatRoom.ClientIsUnreadByCurrentCharacter())
+                {
+                    this.RefreshTextBlockPressKeyToOpenVisibility();
                 }
             }
 
@@ -271,6 +332,10 @@
                 viewModelChatRoom.SetIsTabVisibleInPanel(true);
                 chatRoomControl.IsActive = true;
             }
+            else if (viewModelChatRoom.HasUnreadMessages)
+            {
+                viewModelChatRoom.SetIsTabVisibleInPanel(true);
+            }
 
             if (chatRoom is ChatRoomGlobal)
             {
@@ -294,6 +359,19 @@
             chatRoomTab.ViewModelChatRoom.Dispose();
         }
 
+        private void ClientChatRoomMessageReceivedHandler(BaseChatRoom chatroom, in ChatEntry chatentry)
+        {
+            this.RefreshTextBlockPressKeyToOpenVisibility();
+        }
+
+        private void ClientInputManagerButtonKeyMappingUpdatedHandler(IWrappedButton obj)
+        {
+            if (obj == WrappedButton<GameButton>.GetWrappedButton(GameButton.OpenChat))
+            {
+                this.UpdateTextBlockPressKeyToOpen();
+            }
+        }
+
         private void MouseButtonDownHandler(object sender, MouseButtonEventArgs e)
         {
             if (this.tabControl.IsMouseOver)
@@ -306,6 +384,24 @@
             this.IsActive = false;
         }
 
+        private void RefreshTextBlockPressKeyToOpenVisibility()
+        {
+            if (!this.isLoaded)
+            {
+                return;
+            }
+
+            if (ClientChatDisclaimerConfirmationHelper.GetIsNeedToDisplayDisclaimerForCurrentServer(out _))
+            {
+                this.textBlockPressKeyToOpenChat.Visibility = Visibility.Visible;
+                this.UpdateTextBlockPressKeyToOpen();
+            }
+            else
+            {
+                this.textBlockPressKeyToOpenChat.Visibility = Visibility.Collapsed;
+            }
+        }
+
         private void TabControlMouseUp(object sender, MouseButtonEventArgs e)
         {
             if (!this.IsActive)
@@ -316,6 +412,21 @@
             // focus on current chat room control
             var chatRoomControl = (ChatRoomControl)((TabItem)this.tabControl.SelectedItem).Content;
             chatRoomControl.FocusInput();
+        }
+
+        private void UpdateTextBlockPressKeyToOpen()
+        {
+            if (this.textBlockPressKeyToOpenChat.Visibility != Visibility.Visible)
+            {
+                return;
+            }
+
+            this.textBlockPressKeyToOpenChat.Text
+                = string.Format(
+                    CoreStrings.Chat_PressKeyToOpen_Format,
+                    ClientInputManager.GetKeyForAbstractButton(
+                                          WrappedButton<GameButton>.GetWrappedButton(GameButton.OpenChat))
+                                      .ToString());
         }
 
         private class ChatRoomTab

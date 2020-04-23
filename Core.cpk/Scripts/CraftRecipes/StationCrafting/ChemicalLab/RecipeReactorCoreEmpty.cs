@@ -18,8 +18,8 @@
 
             duration = CraftingDuration.Long;
 
-            inputItems.Add<ItemIngotSteel>(count: 20);
-            inputItems.Add<ItemPlastic>(count: 10);
+            inputItems.Add<ItemIngotSteel>(count: 10);
+            inputItems.Add<ItemPlastic>(count: 5);
             inputItems.Add<ItemComponentsElectronic>(count: 10);
 
             outputItems.Add<ItemReactorCoreEmpty>(count: 1);

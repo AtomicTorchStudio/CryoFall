@@ -21,7 +21,7 @@
             inputItems.Add<ItemIngotCopper>(count: 10);
             inputItems.Add<ItemIngotLithium>(count: 5);
 
-            outputItems.Add<ItemComponentsElectronic>(count: 5);
+            outputItems.Add<ItemComponentsElectronic>(count: 10);
         }
     }
 }

@@ -37,6 +37,11 @@ namespace AtomicTorch.CBND.CoreMod.Helpers.Server
             double noObstaclesCheckRadius,
             int maxAttempts)
         {
+            if (countToSpawn <= 0)
+            {
+                return;
+            }
+
             var spawnBounds = excludeBounds.Inflate(maxSpawnDistanceFromExcludeBounds,
                                                     maxSpawnDistanceFromExcludeBounds);
             var physicsSpace = Api.Server.World.GetPhysicsSpace();

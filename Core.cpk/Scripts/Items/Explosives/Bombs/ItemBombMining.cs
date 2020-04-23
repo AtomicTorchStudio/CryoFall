@@ -13,8 +13,8 @@
 
         public override string Name => "Mining charge";
 
-        protected override double PlantingExperienceMultiplier =>
-            0; // no heavy weapon experience, since it is not even a weapon
+        // it will result in 10 XP as normally bomb provides 250 XP
+        protected override double PlantingExperienceMultiplier => 1 / 25.0;
 
         protected override void PrepareProtoItemExplosive(
             out IProtoObjectExplosive objectExplosiveProto)

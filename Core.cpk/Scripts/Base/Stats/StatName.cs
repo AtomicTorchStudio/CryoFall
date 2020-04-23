@@ -190,8 +190,8 @@
         [Description("Crafting speed")]
         CraftingSpeed,
 
-        [Description("Explosive planting time")]
-        ItemExplosivePlantingTimeMultiplier,
+        [Description("Explosive planting speed")]
+        ItemExplosivePlantingSpeedMultiplier,
 
         [RelatedToSkill(typeof(SkillHunting))]
         [Description("Looting speed")]

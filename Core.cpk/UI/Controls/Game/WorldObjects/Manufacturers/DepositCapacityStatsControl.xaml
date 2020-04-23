@@ -35,23 +35,45 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                    MaxWidth="120"
+                    MaxWidth="160"
                     VerticalAlignment="Center">
             <StackPanel.Resources>
-                <Style TargetType="TextBlock">
+                <Style TargetType="{x:Type core:FormattedTextBlock}">
                     <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
-                    <Setter Property="FontSize" Value="10" />
+                    <Setter Property="FontSize" Value="11" />
                     <Setter Property="LineHeight" Value="11.5" />
                     <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
                     <Setter Property="TextWrapping" Value="Wrap" />
-                    <Setter Property="TextAlignment" Value="Center" />
+                    <Setter Property="TextAlignment" Value="Left" />
+                </Style>
+
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
+                    <Setter Property="FontSize" Value="11" />
+                    <Setter Property="LineHeight" Value="11.5" />
+                    <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                    <Setter Property="TextAlignment" Value="Left" />
                 </Style>
             </StackPanel.Resources>
-            <!-- Text: This deposit will be depleted in: -->
-            <TextBlock Text="{x:Static loc:CoreStrings.DepositCapacityStats_Message}"
-                       Visibility="{Binding DepletedInPrefixVisibility}" />
-            <TextBlock Text="{Binding DepletionDurationText}"
+
+            <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.DepositCapacityStats_TitleLimited}"
+                                     Visibility="{Binding IsInfiniteDeposit, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}" 
+                                     Margin="0,0,0,12" />
+
+            <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.DepositCapacityStats_TitleInfinite}"
+                                     Visibility="{Binding IsInfiniteDeposit, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+            <TextBlock Text="{x:Static loc:CoreStrings.DepositCapacityStats_Depleted}"
+                       Visibility="{Binding IsDepletedDeposit, Converter={StaticResource BoolToVisibilityConverter}}"
                        FontWeight="Bold" />
+
+            <TextBlock Text="{x:Static loc:CoreStrings.DepositCapacityStats_Message}"
+                       Visibility="{Binding DepletedDurationVisibility}" />
+
+            <TextBlock Text="{Binding DepletionDurationText}"
+                       FontWeight="Bold"
+                       Visibility="{Binding DepletedDurationVisibility}" />
         </StackPanel>
     </StackPanel>
 

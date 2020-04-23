@@ -76,16 +76,16 @@
 
         private float GetRotationAngleRad()
         {
+            if (WindowsManager.OpenedWindowsCount > 0)
+            {
+                // any window is opened - keep latest orientation
+                return this.characterInput.RotationAngleRad;
+            }
+
             var mouseWorldPosition = Api.Client.Input.MouseWorldPosition;
             var deltaPositionToMouseCursor = this.character.Position
                                              + (0, this.character.ProtoCharacter.CharacterWorldWeaponOffsetRanged)
                                              - mouseWorldPosition;
-
-            //var mouseScreenPosition = Api.Client.Input.MouseScreenPosition;
-            //var screenSize = Api.Client.Rendering.ViewportSize;
-            //var screenCenterPosition = (screenSize.X * 0.5f, screenSize.Y * 0.5f);
-            //var deltaPositionToMouseCursor = (screenCenterPosition.X - mouseScreenPosition.X,
-            //                                              mouseScreenPosition.Y - screenCenterPosition.Y);
 
             var rotationAngleRad = Math.Abs(Math.PI
                                             + Math.Atan2(deltaPositionToMouseCursor.Y,

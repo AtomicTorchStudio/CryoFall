@@ -33,7 +33,7 @@
     [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
     public abstract class ProtoZoneSpawnScript : ProtoZoneScript<SpawnConfig>, IZoneScriptWithDefaultConfiguration
     {
-        public const int DefaultAreaSpawnAttempsCountPerPreset = SpawnZoneAreaSize * SpawnZoneAreaSize / 8;
+        public const int DefaultAreaSpawnAttemptsCountPerPreset = SpawnZoneAreaSize * SpawnZoneAreaSize / 8;
 
         public const int DefaultSpawnMaxSpawnFailedAttemptsInRow = 150;
 
@@ -88,7 +88,7 @@
         /// </summary>
         public ObjectSpawnPreset[] SpawnList { get; private set; }
 
-        protected virtual double MaxSpawnAttempsMultiplier => 1;
+        protected virtual double MaxSpawnAttemptsMultiplier => 1;
 
         public IZoneScriptConfig Configure(double densityMultiplier)
         {
@@ -809,7 +809,7 @@
                                                   : DefaultSpawnMaxSpawnFailedAttemptsInRow;
 
             maxSpawnFailedAttemptsInRow = (int)Math.Min(int.MaxValue,
-                                                        maxSpawnFailedAttemptsInRow * this.MaxSpawnAttempsMultiplier);
+                                                        maxSpawnFailedAttemptsInRow * this.MaxSpawnAttemptsMultiplier);
 
             // calculate how many objects are already available
             var spawnedObjectsCount = spawnZoneAreas
@@ -860,7 +860,7 @@
             stopwatchTotal.Restart();
             if (allSpawnRequests.Any(r => r.UseSectorDensity))
             {
-                maxSpawnFailedAttemptsInRow = DefaultAreaSpawnAttempsCountPerPreset;
+                maxSpawnFailedAttemptsInRow = DefaultAreaSpawnAttemptsCountPerPreset;
                 if (isInitialSpawn)
                 {
                     maxSpawnFailedAttemptsInRow *= 16;
@@ -900,7 +900,7 @@
                     }
 
                     // make a few attempts to spawn in this area
-                    var attempts = activeSpawnRequestsList.Count * DefaultAreaSpawnAttempsCountPerPreset;
+                    var attempts = activeSpawnRequestsList.Count * DefaultAreaSpawnAttemptsCountPerPreset;
                     for (var attempt = 0; attempt < attempts; attempt++)
                     {
                         await yieldIfOutOfTime();

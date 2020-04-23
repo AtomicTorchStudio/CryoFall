@@ -42,7 +42,7 @@
 
         public override string ShortId { get; }
 
-        public override float StructurePointsMax => 9001; // it's non-damageable anyway
+        public override float StructurePointsMax => 0; // it's non-damageable
 
         public sealed override bool SharedOnDamage(
             WeaponFinalCache weaponCache,
@@ -118,6 +118,10 @@
         {
             var folderPath = SharedGetRelativeFolderPath(thisType, typeof(ProtoObjectProp));
             return new TextureResource($"StaticObjects/Props/{folderPath}/{thisType.Name}.png");
+        }
+
+        protected override void ServerInitialize(ServerInitializeData data)
+        {
         }
     }
 }

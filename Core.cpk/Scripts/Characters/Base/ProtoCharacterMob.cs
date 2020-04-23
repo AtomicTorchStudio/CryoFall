@@ -6,17 +6,21 @@
     using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.CoreMod.Characters.Input;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Tiles;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.SoundCue;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
+    using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
@@ -70,6 +74,19 @@
 
         public abstract bool AiIsRunAwayFromHeavyVehicles { get; }
 
+        public ITextureResource Icon
+        {
+            get
+            {
+                this.SharedGetSkeletonProto(null, out var skeletonProto, out _);
+                return ((ProtoCharacterSkeletonAnimal)skeletonProto).Icon;
+            }
+        }
+
+        public virtual bool IsAvailableInCompletionist => true;
+
+        public virtual bool IsBoss => false;
+
         public IReadOnlyDropItemsList LootDroplist { get; private set; }
 
         public abstract double MobKillExperienceMultiplier { get; }
@@ -82,17 +99,15 @@
 
         public override string ShortId { get; }
 
-        public override double StatDefaultStaminaMax => 0; // currently we don't use energy for mobs
-
         public override double StatHealthRegenerationPerSecond => 10.0 / 60.0; // 10 health points per minute
-
-        public override double StatStaminaRegenerationPerSecond => 0.0; // currently we don't use energy for mobs
 
         /// <summary>
         /// Determines whether the creature should be automatically despawned
         /// if it's too far from the spawn location for too long.
         /// </summary>
         protected virtual bool IsAutoDespawn => true;
+
+        protected virtual byte SoundEventsNetworkRadius => 15;
 
         public override void ClientDeinitialize(ICharacter gameObject)
         {
@@ -115,23 +130,28 @@
             throw new NotImplementedException();
         }
 
-        public override void ServerOnDestroy(ICharacter gameObject)
+        public virtual void ServerOnDeath(ICharacter character)
         {
-            base.ServerOnDestroy(gameObject);
-            if (!GetPublicState(gameObject).IsDead)
-            {
-                return;
-            }
+            this.ServerSendDeathSoundEvent(character);
+            
+            ServerWorld.DestroyObject(character);
 
-            using var tempList = Api.Shared.GetTempList<ICharacter>();
-            ServerWorld.GetScopedByPlayers(gameObject, tempList);
-            this.CallClient(tempList.AsList(),
-                            _ => _.ClientRemote_OnCharacterMobDeath(gameObject.Position));
+            var position = character.Position;
+            var tilePosition = position.ToVector2Ushort();
+            var rotationAngleRad = character.GetPublicState<ICharacterPublicState>().AppliedInput.RotationAngleRad;
+            var isLeftOrientation = ClientCharacterAnimationHelper.IsLeftHalfOfCircle(
+                angleDeg: rotationAngleRad * MathConstants.RadToDeg);
+            var isFlippedHorizontally = !isLeftOrientation;
+
+            var objectCorpse = ServerWorld.CreateStaticWorldObject<ObjectCorpse>(tilePosition);
+            ObjectCorpse.ServerSetupCorpse(objectCorpse,
+                                           (IProtoCharacterMob)character.ProtoCharacter,
+                                           (Vector2F)(position - tilePosition.ToVector2D()),
+                                           isFlippedHorizontally: isFlippedHorizontally);
         }
 
         public void ServerPlaySound(ICharacter characterNpc, CharacterSound characterSound)
         {
-            const byte eventNetworkRadius = 15;
             using var observers = Api.Shared.GetTempList<ICharacter>();
 
             if (characterSound != CharacterSound.Aggression)
@@ -143,7 +163,7 @@
                 // this event is propagated on a larger distance and has sound cues
                 ServerWorld.GetCharactersInRadius(characterNpc.TilePosition,
                                                   observers,
-                                                  radius: eventNetworkRadius,
+                                                  radius: this.SoundEventsNetworkRadius,
                                                   onlyPlayers: true);
             }
 
@@ -165,6 +185,7 @@
             WeaponFinalCache weaponCache,
             IWorldObject targetObject,
             double damagePreMultiplier,
+            double damagePostMultiplier,
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
@@ -182,6 +203,7 @@
             return base.SharedOnDamage(weaponCache,
                                        targetObject,
                                        damagePreMultiplier,
+                                       damagePostMultiplier,
                                        out obstacleBlockDamageCoef,
                                        out damageApplied);
         }
@@ -194,6 +216,18 @@
                                                      GetPrivateState(character),
                                                      GetPublicState(character));
             }
+        }
+
+        protected override void ClientCreateOverlayControl(ICharacter character)
+        {
+            if (this.IsBoss)
+            {
+                Client.UI.LayoutRootChildren.Add(
+                    new CharacterBossInfoControl(character));
+                return;
+            }
+
+            base.ClientCreateOverlayControl(character);
         }
 
         protected override void ClientInitialize(ClientInitializeData data)
@@ -225,27 +259,46 @@
             // don't call the base initialize
             // base.ServerInitializeCharacter(data);
 
+            var character = data.GameObject;
+            var publicState = data.PublicState;
+            var privateState = data.PrivateState;
+
             this.ServerInitializeCharacterMob(data);
 
-            var character = data.GameObject;
-            var privateState = data.PrivateState;
-            SharedCharacterStatsHelper.RefreshCharacterFinalStatsCache(this.ProtoCharacterDefaultEffects,
-                                                                       data.PublicState,
-                                                                       privateState,
-                                                                       isFirstTime: data.IsFirstTimeInit);
+            SharedCharacterStatsHelper.RefreshCharacterFinalStatsCache(
+                this.ProtoCharacterDefaultEffects,
+                data.PublicState,
+                privateState,
+                // always rebuild the mob character state
+                // as the game doesn't store current HP for mobs
+                isFirstTime: true);
 
             var weaponState = privateState.WeaponState;
-            WeaponSystem.RebuildWeaponCache(character, weaponState);
+            WeaponSystem.SharedRebuildWeaponCache(character, weaponState);
             privateState.AttackRange = weaponState.WeaponCache?.RangeMax ?? 0;
 
             if (data.IsFirstTimeInit)
             {
                 privateState.SpawnPosition = character.TilePosition;
             }
+            else if (publicState.IsDead)
+            {
+                // should never happen as the ServerCharacterDeathMechanic should properly destroy the character
+                Logger.Error("(Should never happen) Destroying dead mob character: " + character);
+                this.ServerOnDeath(character);
+            }
         }
 
         protected virtual void ServerInitializeCharacterMob(ServerInitializeData data)
         {
+        }
+
+        protected void ServerSendDeathSoundEvent(ICharacter character)
+        {
+            using var tempList = Api.Shared.GetTempList<ICharacter>();
+            ServerWorld.GetScopedByPlayers(character, tempList);
+            this.CallClient(tempList.AsList(),
+                            _ => _.ClientRemote_OnCharacterMobDeath(character.Position));
         }
 
         protected void ServerSetMobInput(
@@ -286,7 +339,7 @@
                 },
                 moveSpeed);
 
-            double ClampDirection(double dir)
+            static double ClampDirection(double dir)
             {
                 const double directionThreshold = 0.1;
                 if (dir > directionThreshold)
@@ -311,9 +364,6 @@
 
             if (publicState.IsDead)
             {
-                // should never happen as the ServerCharacterDeathMechanic should properly destroy the character
-                Logger.Error("(Should never happen) Destroying dead mob character: " + character);
-                ServerWorld.DestroyObject(character);
                 return;
             }
 

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Generators;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Lights;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.PowerStorage;
@@ -21,12 +22,12 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementBuildStructure.Require<ObjectGeneratorSteam>())
-                .Add(RequirementBuildStructure.Require<ObjectPowerStorage>())
-                .Add(RequirementBuildStructure.Require<ObjectLightFloorLampSmall>());
+            tasks
+                .Add(TaskBuildStructure.Require<ObjectGeneratorSteam>())
+                .Add(TaskBuildStructure.Require<ObjectPowerStorage>())
+                .Add(TaskBuildStructure.Require<ObjectLightFloorLampSmall>());
 
             prerequisites
                 .Add<QuestBuildChemicalLab>();

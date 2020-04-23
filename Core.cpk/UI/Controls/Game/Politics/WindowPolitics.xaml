@@ -10,15 +10,6 @@
     d:DesignHeight="80" d:DesignWidth="850"
     d:DataContext="{d:DesignInstance data:ViewModelWindowSocial, IsDesignTimeCreatable=True}"
     xmlns:politics="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics">
-    <core:BaseUserControlWithWindow.Resources>
-        <ResourceDictionary>
-
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/UI/Styles/SpecialItemsPanel.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-        </ResourceDictionary>
-    </core:BaseUserControlWithWindow.Resources>
 
     <core:GameWindow x:Name="GameWindow"
                      Width="{StaticResource GameMenuStandardWindowWidth}"

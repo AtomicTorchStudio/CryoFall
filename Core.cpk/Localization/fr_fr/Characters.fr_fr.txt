@@ -22,6 +22,9 @@ Rampant
 Scripts/Characters/Mobs/MobFireLizard@Name:
 Lézard de feu
 
+Scripts/Characters/Mobs/MobFloater@Name:
+Flotteur
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Ratel
 
@@ -33,6 +36,9 @@ Pangolin
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Scarabée de pragmium
+
+Scripts/Characters/Mobs/MobPragmiumQueen@Name:
+Reine du pragmium
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Escargot

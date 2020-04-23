@@ -6,7 +6,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.ItemFuelRefill;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -141,7 +141,8 @@
             IItem item,
             ICharacter character,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview)
         {
             var isActive = GetPublicState(item).IsActive;
 
@@ -164,8 +165,8 @@
                                            componentLightSource,
                                            "Head");
 
-            skeletonComponents.Add(componentLightSource);
             skeletonComponents.Add(componentLightInSkeleton);
+            skeletonComponents.Add(componentLightSource);
         }
 
         public void ClientToggleLight(IItem item)
@@ -306,7 +307,7 @@
             {
                 return;
             }
-            
+
             this.ItemFuelConfig.SharedTryConsumeFuel(item,
                                                      data.PrivateState,
                                                      data.DeltaTime,
@@ -344,7 +345,7 @@
             {
                 return;
             }
-            
+
             this.ItemFuelConfig.SharedTryConsumeFuel(item, data.PrivateState, data.DeltaTime, out var isFuelRanOut);
             if (isFuelRanOut)
             {

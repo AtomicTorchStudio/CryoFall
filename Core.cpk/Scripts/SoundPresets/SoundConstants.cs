@@ -31,13 +31,17 @@
         /// Objects located with distance larger than this will be not audible.
         /// Please note: can be overridden by <see cref="IComponentSoundEmitter" />.
         /// </summary>
-        public const float AudioListenerMaxDistance = 15f;
+        public const float AudioListenerMaxDistance = 15;
 
         public const float AudioListenerMaxDistanceObjectDestroy = 20;
 
         public const float AudioListenerMaxDistanceObjectHit = 20;
 
-        public const float AudioListenerMaxDistanceRangedShot = 30;
+        public const float AudioListenerMaxDistanceRangedShotFirearms = 45;
+
+        public const float AudioListenerMaxDistanceRangedShotBows = 15;
+
+        public const float AudioListenerMaxDistanceRangedShotMobs = 15;
 
         /// <summary>
         /// Same as AudioListenerMinDistance but if object is closer than this distance

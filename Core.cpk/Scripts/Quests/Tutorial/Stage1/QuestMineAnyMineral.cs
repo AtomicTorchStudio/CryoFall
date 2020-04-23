@@ -1,6 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
+    using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestMineAnyMineral : ProtoQuest
@@ -21,15 +24,21 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
             // minerals without stone (as it has a separate requirement)
             var listMinerals = Api.FindProtoEntities<IProtoObjectMineral>();
             listMinerals.Remove(Api.GetProtoEntity<ObjectMineralStone>());
 
-            requirements
-                .Add(RequirementDestroy.Require(list: listMinerals, count: 3, description: this.Name))
-                .Add(RequirementDestroy.Require<ObjectMineralStone>(count: 3, description: TaskMineStone));
+            tasks
+                .Add(TaskVisitTile.Require<TileRocky>())
+                .Add(TaskDestroy.Require(list: listMinerals, count: 3, description: this.Name)
+                                .WithIcon(Api.IsClient
+                                              ? ClientItemIconHelper.CreateComposedIcon(this.ShortId,
+                                                                                        Api.GetProtoEntity<ObjectMineralIron>().Icon,
+                                                                                        Api.GetProtoEntity<ObjectMineralCopper>().Icon)
+                                              : null))
+                .Add(TaskDestroy.Require<ObjectMineralStone>(count: 3, description: TaskMineStone));
 
             prerequisites
                 .Add<QuestCraftAPickaxe>();

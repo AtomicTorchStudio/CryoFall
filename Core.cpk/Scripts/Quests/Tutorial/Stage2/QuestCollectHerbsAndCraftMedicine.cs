@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Cooking;
 
     public class QuestCollectHerbsAndCraftMedicine : ProtoQuest
@@ -19,16 +20,17 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveTechNode.Require<TechNodeHerbalRemedy>())
-                .Add(RequirementHaveItem.Require<ItemHerbGreen>(count: 2, isReversible: false))
-                .Add(RequirementHaveItem.Require<ItemMushroomRust>(count: 1, isReversible: false))
-                .Add(RequirementHaveItem.Require<ItemWaterbulb>(count: 1, isReversible: false))
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeHerbalRemedy>());
+            tasks
+                .Add(TaskHaveTechNode.Require<TechNodeHerbalRemedy>())
+                .Add(TaskHaveItem.Require<ItemHerbGreen>(count: 2, isReversible: false))
+                .Add(TaskHaveItem.Require<ItemMushroomRust>(count: 1, isReversible: false))
+                .Add(TaskHaveItem.Require<ItemWaterbulb>(count: 1, isReversible: false))
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeHerbalRemedy>());
 
             prerequisites
+                .Add<QuestLearnBasicBuilding>()
                 .Add<QuestFindAndUseGreenHerb>();
         }
     }

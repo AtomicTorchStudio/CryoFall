@@ -39,249 +39,30 @@
     </landClaims:WindowLandClaimBase.Resources>
 
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory">
+        <Grid Margin="10,5">
+            <Grid
+                Visibility="{Binding IsLandClaimDecayInfoConfirmed, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="4" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="7" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="3" />
+                </Grid.RowDefinitions>
 
-        <TabControl Style="{StaticResource TabControlCompactStyle}"
-                    Margin="10,5">
+                <TextBlock Text="{x:Static loc:CoreStrings.WindowLandClaim_DecayInfo}"
+                           Foreground="{StaticResource BrushColorLabelForeground}"
+                           FontFamily="{StaticResource CondensedFontFamily}"
+                           FontSize="15"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center" />
 
-            <!-- Text: Main -->
-            <TabItem Header="{x:Static loc:CoreStrings.Window_Tab_Main}">
-                <Grid Margin="5,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.69*" />
-                        <ColumnDefinition Width="30" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0"
-                                DataContext="{Binding ViewModelProtoLandClaimInfoCurrent}"
-                                Orientation="Vertical"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding ViewModelStructure.Title}"
-                                   Style="{StaticResource TextBlockTitleStyle}" />
-
-                        <!-- Description text -->
-                        <TextBlock Text="{Binding ViewModelStructure.Description}"
-                                   Style="{StaticResource TextBlockDescriptionStyle}"
-                                   Margin="0,0,0,5" />
-
-                        <!-- Stats -->
-                        <landClaims:ProtoLandClaimStatsControl />
-                    </StackPanel>
-
-                    <Control Style="{StaticResource ControlVerticalSeparator}" Grid.Column="1" />
-
-                    <Grid Grid.Column="2"
-                          Visibility="{Binding ViewModelStructureUpgrade, Converter={StaticResource NullToVisibilityConverter}}"
-                          VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="10" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
-                        <!-- Big icon (structure preview) -->
-                        <Rectangle
-                            Fill="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.Icon}"
-                            Width="128"
-                            Height="128"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Margin="-16,0" />
-
-                        <Grid Grid.Column="2">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <!-- Title -->
-                            <TextBlock Grid.Row="1"
-                                       Text="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.Title}"
-                                       Style="{StaticResource TextBlockTitleStyle}" />
-
-                            <!-- Description text (for upgrade) -->
-                            <TextBlock Grid.Row="2"
-                                       Text="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.DescriptionUpgrade}"
-                                       Style="{StaticResource TextBlockDescriptionStyle}" />
-
-                            <!-- Item requirements display -->
-                            <Border Grid.Row="3"
-                                    Padding="5"
-                                    CornerRadius="3"
-                                    BorderThickness="1"
-                                    HorizontalAlignment="Center"
-                                    Margin="-10,10">
-                                <Border.Background>
-                                    <SolidColorBrush Color="{StaticResource Color1}" Opacity="0.3" />
-                                </Border.Background>
-                                <Border.BorderBrush>
-                                    <SolidColorBrush Color="{StaticResource Color6}" Opacity="0.3" />
-                                </Border.BorderBrush>
-
-                                <Grid HorizontalAlignment="Center">
-                                    <Grid
-                                        Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}}">
-                                        <Grid MinWidth="130"
-                                              Visibility="{Binding ViewModelStructureUpgrade.IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition />
-                                            </Grid.RowDefinitions>
-
-                                            <!-- Text: Required -->
-                                            <TextBlock Grid.Row="0"
-                                                       Text="{x:Static loc:CoreStrings.WindowLandClaim_UpgradingTitleRequiredItems}"
-                                                       FontSize="10"
-                                                       FontWeight="Bold"
-                                                       Foreground="{StaticResource BrushColor6}"
-                                                       HorizontalAlignment="Center" />
-
-                                            <!-- Display icons for required items (total) -->
-                                            <controls:RequiredItemsPanelControl Grid.Row="1"
-                                                                                Items="{Binding ViewModelStructureUpgrade.RequiredItems}"
-                                                                                CountMultiplier="1"
-                                                                                IconSize="40"
-                                                                                FontSize="11"
-                                                                                TextStrokeThickness="1"
-                                                                                HorizontalAlignment="Center" />
-                                        </Grid>
-
-                                        <!-- Text: Upgrading this structure requires learning relevant technology. -->
-                                        <TextBlock
-                                            Grid.Row="0"
-                                            Text="{x:Static loc:CoreStrings.WindowLandClaim_UpgradingRequiresLearningTech}"
-                                            Foreground="{StaticResource BrushColor6}"
-                                            FontWeight="Bold"
-                                            FontSize="11"
-                                            Visibility="{Binding ViewModelStructureUpgrade.IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}}"
-                                            HorizontalAlignment="Stretch"
-                                            Margin="3,0"
-                                            TextWrapping="Wrap"
-                                            Width="150" />
-                                    </Grid>
-
-                                    <!-- Text: Only the owner can upgrade this structure. -->
-                                    <TextBlock
-                                        Text="{x:Static loc:CoreStrings.WindowLandClaim_UpgradingOnlyOwnerCanDo}"
-                                        Foreground="{StaticResource BrushColor6}"
-                                        FontWeight="Bold"
-                                        FontSize="11"
-                                        Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                                        HorizontalAlignment="Stretch"
-                                        Margin="3,0"
-                                        TextWrapping="Wrap"
-                                        Width="150" />
-                                </Grid>
-                            </Border>
-
-                            <!-- Upgrade button -->
-                            <ContentControl Grid.Row="4"
-                                            Background="Transparent">
-                                <Button Content="{x:Static loc:CoreStrings.Button_Upgrade}"
-                                        Command="{Binding CommandUpgrade}"
-                                        HorizontalAlignment="Center"
-                                        IsEnabled="{Binding ViewModelStructureUpgrade.IsCanUpgrade}" />
-
-                                <ui:ToolTipServiceExtend.ToolTip>
-                                    <landClaims:ProtoLandClaimStatsControl
-                                        DataContext="{Binding ViewModelProtoLandClaimInfoUpgrade}" />
-                                </ui:ToolTipServiceExtend.ToolTip>
-                            </ContentControl>
-                        </Grid>
-                    </Grid>
-
-                    <Grid Column="2"
-                          Visibility="{Binding ViewModelStructureUpgrade, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Reverse}">
-                        <!-- Text: No upgrades available -->
-                        <TextBlock Text="{x:Static loc:CoreStrings.TitleNoUpgradesAvailable}"
-                                   Style="{StaticResource TextBlockTitleStyle}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="0" />
-                    </Grid>
-                </Grid>
-            </TabItem>
-
-            <!-- Text: Safe storage -->
-            <TabItem Header="{x:Static loc:CoreStrings.TitleSafeStorage}"
-                     Visibility="{Binding IsSafeStorageAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
-                <Grid VerticalAlignment="Center"
-                      HorizontalAlignment="Center"
-                      MaxHeight="234">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="10" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-
-                    <TextBlock
-                        Grid.Row="0"
-                        Text="{x:Static loc:CoreStrings.WindowLandClaim_SafeStorageIsShared}"
-                        Visibility="{Binding IsSafeStorageCapacityExceeded, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center"
-                        FontFamily="{StaticResource CondensedFontFamily}"
-                        FontWeight="Bold"
-                        FontSize="12"
-                        Foreground="{StaticResource BrushColor7}"
-                        Margin="0,4" />
-
-                    <StackPanel Grid.Row="0"
-                                Visibility="{Binding IsSafeStorageCapacityExceeded, Converter={StaticResource BoolToVisibilityConverter}}"
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Center">
-                        <Control Style="{StaticResource ControlExclamationPointStyle}"
-                                 VerticalAlignment="Center"
-                                 Margin="0,0,4,0" />
-
-                        <TextBlock
-                            Text="{x:Static loc:CoreStrings.ItemsContainer_CapacityExceededTakeOnly}"
-                            VerticalAlignment="Center"
-                            TextWrapping="Wrap"
-                            TextAlignment="Center"
-                            FontFamily="{StaticResource CondensedFontFamily}"
-                            FontWeight="Bold"
-                            FontSize="12"
-                            Foreground="{StaticResource BrushColorRed6}"
-                            Margin="0,4" />
-                    </StackPanel>
-
-                    <TextBlock
-                        Grid.Row="1"
-                        Text="{x:Static loc:CoreStrings.WindowLandClaim_AllowedItemsDescription}"
-                        Visibility="{Binding IsSafeStorageCapacityExceeded, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center"
-                        FontFamily="{StaticResource CondensedFontFamily}"
-                        FontWeight="Bold"
-                        FontSize="12"
-                        Foreground="{StaticResource BrushColor7}"
-                        Margin="0,-4,0,4" />
-
-
-                    <controls:ItemsContainerExchangeControl Grid.Row="3"
-                                                            DataContext="{Binding ViewModelItemsContainerExchange}"
-                                                            Margin="0,-8,0,0" />
-                </Grid>
-            </TabItem>
-
-            <TabItem Header="{x:Static loc:CoreStrings.TitlePowerGrid}">
-                <powerGrid:PowerGridStateControl DataContext="{Binding ViewModelPowerGridState}" />
-            </TabItem>
-
-            <TabItem Header="{x:Static loc:CoreStrings.WindowLandClaim_DecayInfo}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto"
                               HorizontalAlignment="Center"
-                              VerticalAlignment="Center">
+                              VerticalAlignment="Top">
                     <core:FormattedTextBlock Content="{Binding DecayInfoText}"
                                              HorizontalAlignment="Center"
                                              VerticalAlignment="Center"
@@ -293,57 +74,327 @@
                                              FontFamily="{StaticResource CondensedFontFamily}"
                                              TextWrapping="Wrap" />
                 </ScrollViewer>
-            </TabItem>
 
-            <!-- Text: Owners -->
-            <TabItem Header="{x:Static loc:CoreStrings.ObjectOwnersList_Title}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
+                <CheckBox Grid.Row="4"
+                          x:Name="CheckBox"
+                          Content="{x:Static loc:CoreStrings.WindowLandClaim_DecayInfo_ConfirmationCheckbox}"
+                          FontFamily="{StaticResource CondensedFontFamily}"
+                          FontSize="14"
+                          HorizontalAlignment="Center"
+                          Focusable="False" />
 
-                    <StackPanel Orientation="Vertical"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
-                        <StackPanel Orientation="Horizontal">
-                            <!-- Text: Owner -->
-                            <TextBlock Text="{x:Static loc:CoreStrings.TitleOwner}"
-                                       FontWeight="Bold"
-                                       FontSize="14"
-                                       Foreground="White" />
-                            <TextBlock Text=":"
-                                       FontWeight="Bold"
-                                       FontSize="14"
-                                       Foreground="White" />
+                <Button Grid.Row="6"
+                        Command="{Binding CommandConfirmLandClaimDecayMessage}"
+                        Content="{x:Static loc:CoreStrings.Button_Continue}"
+                        IsEnabled="{Binding IsChecked, ElementName=CheckBox}"
+                        Focusable="False" />
+            </Grid>
+
+            <TabControl
+                Visibility="{Binding IsLandClaimDecayInfoConfirmed, Converter={StaticResource BoolToVisibilityConverter}}"
+                Style="{StaticResource TabControlCompactStyle}">
+
+                <!-- Text: Main -->
+                <TabItem Header="{x:Static loc:CoreStrings.Window_Tab_Main}">
+                    <Grid Margin="5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.69*" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0"
+                                    DataContext="{Binding ViewModelProtoLandClaimInfoCurrent}"
+                                    Orientation="Vertical"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding ViewModelStructure.Title}"
+                                       Style="{StaticResource TextBlockTitleStyle}" />
+
+                            <!-- Description text -->
+                            <TextBlock Text="{Binding ViewModelStructure.Description}"
+                                       Style="{StaticResource TextBlockDescriptionStyle}"
+                                       Margin="0,0,0,5" />
+
+                            <!-- Stats -->
+                            <landClaims:ProtoLandClaimStatsControl />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,2">
-                            <!-- Bullet point -->
-                            <Ellipse
-                                Width="6"
-                                Height="6"
-                                Fill="{StaticResource BrushColor6}"
+                        <Control Style="{StaticResource ControlVerticalSeparator}" Grid.Column="1" />
+
+                        <Grid Grid.Column="2"
+                              Visibility="{Binding ViewModelStructureUpgrade, Converter={StaticResource NullToVisibilityConverter}}"
+                              VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Big icon (structure preview) -->
+                            <Rectangle
+                                Fill="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.Icon}"
+                                Width="128"
+                                Height="128"
+                                HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Margin="0,0,3,0" />
+                                Margin="-16,0" />
 
-                            <TextBlock Text="{Binding FounderName}"
-                                       FontSize="12"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource BrushColor6}"
-                                       VerticalAlignment="Center" />
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Title -->
+                                <TextBlock Grid.Row="1"
+                                           Text="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.Title}"
+                                           Style="{StaticResource TextBlockTitleStyle}" />
+
+                                <!-- Description text (for upgrade) -->
+                                <TextBlock Grid.Row="2"
+                                           Text="{Binding ViewModelStructureUpgrade.ViewModelUpgradedStructure.DescriptionUpgrade}"
+                                           Style="{StaticResource TextBlockDescriptionStyle}" />
+
+                                <!-- Item requirements display -->
+                                <Border Grid.Row="3"
+                                        Padding="5"
+                                        CornerRadius="3"
+                                        BorderThickness="1"
+                                        HorizontalAlignment="Center"
+                                        Margin="-10,10">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{StaticResource Color1}" Opacity="0.3" />
+                                    </Border.Background>
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="{StaticResource Color6}" Opacity="0.3" />
+                                    </Border.BorderBrush>
+
+                                    <Grid HorizontalAlignment="Center">
+                                        <Grid
+                                            Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <Grid MinWidth="130"
+                                                  Visibility="{Binding ViewModelStructureUpgrade.IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+
+                                                <!-- Text: Required -->
+                                                <TextBlock Grid.Row="0"
+                                                           Text="{x:Static loc:CoreStrings.WindowLandClaim_UpgradingTitleRequiredItems}"
+                                                           FontSize="10"
+                                                           FontWeight="Bold"
+                                                           Foreground="{StaticResource BrushColor6}"
+                                                           HorizontalAlignment="Center" />
+
+                                                <!-- Display icons for required items (total) -->
+                                                <controls:RequiredItemsPanelControl Grid.Row="1"
+                                                                                    Items="{Binding ViewModelStructureUpgrade.RequiredItems}"
+                                                                                    CountMultiplier="1"
+                                                                                    IconSize="40"
+                                                                                    FontSize="11"
+                                                                                    TextStrokeThickness="1"
+                                                                                    HorizontalAlignment="Center" />
+                                            </Grid>
+
+                                            <!-- Text: Upgrading this structure requires learning relevant technology. -->
+                                            <TextBlock
+                                                Grid.Row="0"
+                                                Text="{x:Static loc:CoreStrings.WindowLandClaim_UpgradingRequiresLearningTech}"
+                                                Foreground="{StaticResource BrushColor6}"
+                                                FontWeight="Bold"
+                                                FontSize="11"
+                                                Visibility="{Binding ViewModelStructureUpgrade.IsTechLocked, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                HorizontalAlignment="Stretch"
+                                                Margin="3,0"
+                                                TextWrapping="Wrap"
+                                                Width="150" />
+                                        </Grid>
+
+                                        <!-- Text: Only the owner can upgrade this structure. -->
+                                        <TextBlock
+                                            Text="{x:Static loc:CoreStrings.WindowLandClaim_UpgradingOnlyOwnerCanDo}"
+                                            Foreground="{StaticResource BrushColor6}"
+                                            FontWeight="Bold"
+                                            FontSize="11"
+                                            Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                                            HorizontalAlignment="Stretch"
+                                            Margin="3,0"
+                                            TextWrapping="Wrap"
+                                            Width="150" />
+                                    </Grid>
+                                </Border>
+
+                                <!-- Upgrade button -->
+                                <ContentControl Grid.Row="4"
+                                                Background="Transparent">
+                                    <Button Content="{x:Static loc:CoreStrings.Button_Upgrade}"
+                                            Command="{Binding CommandUpgrade}"
+                                            HorizontalAlignment="Center"
+                                            IsEnabled="{Binding ViewModelStructureUpgrade.IsCanUpgrade}" />
+
+                                    <ui:ToolTipServiceExtend.ToolTip>
+                                        <landClaims:ProtoLandClaimStatsControl
+                                            DataContext="{Binding ViewModelProtoLandClaimInfoUpgrade}" />
+                                    </ui:ToolTipServiceExtend.ToolTip>
+                                </ContentControl>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Column="2"
+                              Visibility="{Binding ViewModelStructureUpgrade, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Reverse}">
+                            <!-- Text: No upgrades available -->
+                            <TextBlock Text="{x:Static loc:CoreStrings.TitleNoUpgradesAvailable}"
+                                       Style="{StaticResource TextBlockTitleStyle}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="0" />
+                        </Grid>
+                    </Grid>
+                </TabItem>
+
+                <!-- Text: Safe storage -->
+                <TabItem Header="{x:Static loc:CoreStrings.TitleSafeStorage}"
+                         Visibility="{Binding IsSafeStorageAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          MaxHeight="234">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Text="{x:Static loc:CoreStrings.WindowLandClaim_SafeStorageIsShared}"
+                            Visibility="{Binding IsSafeStorageCapacityExceeded, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"
+                            FontFamily="{StaticResource CondensedFontFamily}"
+                            FontWeight="Bold"
+                            FontSize="12"
+                            Foreground="{StaticResource BrushColor7}"
+                            Margin="0,4" />
+
+                        <StackPanel Grid.Row="0"
+                                    Visibility="{Binding IsSafeStorageCapacityExceeded, Converter={StaticResource BoolToVisibilityConverter}}"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                            <Control Style="{StaticResource ControlExclamationPointStyle}"
+                                     VerticalAlignment="Center"
+                                     Margin="0,0,4,0" />
+
+                            <TextBlock
+                                Text="{x:Static loc:CoreStrings.ItemsContainer_CapacityExceededTakeOnly}"
+                                VerticalAlignment="Center"
+                                TextWrapping="Wrap"
+                                TextAlignment="Center"
+                                FontFamily="{StaticResource CondensedFontFamily}"
+                                FontWeight="Bold"
+                                FontSize="12"
+                                Foreground="{StaticResource BrushColorRed6}"
+                                Margin="0,4" />
                         </StackPanel>
-                    </StackPanel>
 
-                    <worldObjects:WorldObjectOwnersEditorControl
-                        Grid.Column="2"
-                        DataContext="{Binding ViewModelOwnersEditor}"
-                        Visibility="{Binding IsMaxOwnersMoreThanOne, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                </Grid>
-            </TabItem>
+                        <TextBlock
+                            Grid.Row="1"
+                            Text="{x:Static loc:CoreStrings.WindowLandClaim_AllowedItemsDescription}"
+                            Visibility="{Binding IsSafeStorageCapacityExceeded, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"
+                            FontFamily="{StaticResource CondensedFontFamily}"
+                            FontWeight="Bold"
+                            FontSize="12"
+                            Foreground="{StaticResource BrushColor7}"
+                            Margin="0,-4,0,4" />
 
-        </TabControl>
 
+                        <controls:ItemsContainerExchangeControl Grid.Row="3"
+                                                                DataContext="{Binding ViewModelItemsContainerExchange}"
+                                                                Margin="0,-8,0,0" />
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="{x:Static loc:CoreStrings.TitlePowerGrid}">
+                    <powerGrid:PowerGridStateControl DataContext="{Binding ViewModelPowerGridState}" />
+                </TabItem>
+
+                <TabItem Header="{x:Static loc:CoreStrings.WindowLandClaim_DecayInfo}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                        <core:FormattedTextBlock Content="{Binding DecayInfoText}"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center"
+                                                 FontSize="13"
+                                                 LineHeight="13"
+                                                 LineStackingStrategy="BlockLineHeight"
+                                                 FontWeight="Normal"
+                                                 Foreground="{StaticResource BrushColor7}"
+                                                 FontFamily="{StaticResource CondensedFontFamily}"
+                                                 TextWrapping="Wrap" />
+                    </ScrollViewer>
+                </TabItem>
+
+                <!-- Text: Owners -->
+                <TabItem Header="{x:Static loc:CoreStrings.ObjectOwnersList_Title}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Text: Owner -->
+                                <TextBlock Text="{x:Static loc:CoreStrings.TitleOwner}"
+                                           FontWeight="Bold"
+                                           FontSize="14"
+                                           Foreground="White" />
+                                <TextBlock Text=":"
+                                           FontWeight="Bold"
+                                           FontSize="14"
+                                           Foreground="White" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <!-- Bullet point -->
+                                <Ellipse
+                                    Width="6"
+                                    Height="6"
+                                    Fill="{StaticResource BrushColor6}"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,3,0" />
+
+                                <TextBlock Text="{Binding FounderName}"
+                                           FontSize="12"
+                                           FontWeight="Bold"
+                                           Foreground="{StaticResource BrushColor6}"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <worldObjects:WorldObjectOwnersEditorControl
+                            Grid.Column="2"
+                            DataContext="{Binding ViewModelOwnersEditor}"
+                            Visibility="{Binding IsMaxOwnersMoreThanOne, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    </Grid>
+                </TabItem>
+
+            </TabControl>
+        </Grid>
     </core:WindowMenuWithInventory>
 </landClaims:WindowLandClaimBase>

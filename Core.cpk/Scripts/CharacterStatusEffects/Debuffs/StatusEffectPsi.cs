@@ -21,6 +21,8 @@
 
         public override string Name => "Psi influence";
 
+        public override double ServerUpdateIntervalSeconds => 0.5;
+
         protected override StatName DefenseStatName => StatName.DefensePsi;
 
         /// <summary>

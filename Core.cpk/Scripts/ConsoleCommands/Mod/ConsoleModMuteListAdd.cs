@@ -17,7 +17,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
         public override string Description =>
             "Mutes the player on the server for the defined amount of time.";
 
-        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
+        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerModerator;
 
         public override string Name => "mod.muteList.add";
 
@@ -28,19 +28,26 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mod
                 throw new Exception("The character name is not provided");
             }
 
+            minutes ??= DefaultDuration;
+            if (minutes < 0)
+            {
+                throw new Exception($"Minutes must be in 0-{int.MaxValue} range");
+            }
+
+            if (minutes.Value == 0)
+            {
+                // un-mute
+                if (ServerPlayerMuteSystem.Unmute(character))
+                {
+                    return $"{character.Name} successfully un-muted";
+                }
+
+                return $"{character.Name} was not muted so no changes are done";
+            }
+
             if (character == this.ExecutionContextCurrentCharacter)
             {
                 throw new Exception("You cannot mute yourself");
-            }
-
-            if (minutes == null)
-            {
-                minutes = DefaultDuration;
-            }
-
-            if (minutes < 1)
-            {
-                throw new Exception($"Minutes must be in 1-{int.MaxValue} range");
             }
 
             ServerPlayerMuteSystem.Mute(character, minutes.Value);

@@ -58,10 +58,14 @@
             character.ServerRemoveAllStatusEffects();
         }
 
+        public static bool SharedIsSpectator(ICharacter character)
+            => character.ProtoCharacter is PlayerCharacterSpectator;
+
         public override bool SharedOnDamage(
             WeaponFinalCache weaponCache,
             IWorldObject targetObject,
             double damagePreMultiplier,
+            double damagePostMultiplier,
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
@@ -112,8 +116,8 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody.Reset();
-            
-            if (IsServer 
+
+            if (IsServer
                 || data.GameObject.IsCurrentClientCharacter)
             {
                 data.PhysicsBody.AddShapeCircle(

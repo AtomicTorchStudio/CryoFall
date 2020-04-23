@@ -22,6 +22,9 @@ Aracnídeo
 Scripts/Characters/Mobs/MobFireLizard@Name:
 Lagarto de fogo
 
+Scripts/Characters/Mobs/MobFloater@Name:
+Flutuador
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Ratel
 
@@ -33,6 +36,9 @@ Pangolim
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Besouro de prágmio
+
+Scripts/Characters/Mobs/MobPragmiumQueen@Name:
+Rainha de Prágmio
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Lesma

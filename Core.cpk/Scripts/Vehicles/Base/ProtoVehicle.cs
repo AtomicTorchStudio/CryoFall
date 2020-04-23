@@ -13,7 +13,7 @@
     using AtomicTorch.CBND.CoreMod.ItemContainers.Vehicles;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
@@ -292,8 +292,8 @@
                                            componentLightSource,
                                            skeletonSlotName: "Torso");
 
-            skeletonComponents.Add(componentLightSource);
             skeletonComponents.Add(componentLightInSkeleton);
+            skeletonComponents.Add(componentLightSource);
 
             RefreshLights();
 
@@ -876,7 +876,8 @@
 
             if (pilotCharacter != null
                 && pilotCharacter.IsInitialized
-                && pilotCharacter.IsCurrentClientCharacter)
+                && pilotCharacter.IsCurrentClientCharacter
+                && vehicle.ClientHasPrivateState)
             {
                 this.SharedSetupCurrentPlayerUI(vehicle);
             }
@@ -1037,13 +1038,24 @@
                 weaponFinalCache: weaponFinalCache,
                 damageOnlyDynamicObjects: false,
                 isDamageThroughObstacles: false,
-                callbackCalculateDamageCoefByDistance: CalcDamageByDistance);
+                callbackCalculateDamageCoefByDistance: CalcDamageCoefByDistance);
 
-            double CalcDamageByDistance(double distance)
+            double CalcDamageCoefByDistance(double distance)
             {
-                distance -= 1.42;
+                var distanceThreshold = 0.5;
+                if (distance <= distanceThreshold)
+                {
+                    return 1;
+                }
+
+                distance -= distanceThreshold;
                 distance = Math.Max(0, distance);
-                return 1 - (distance / this.DestroyedVehicleDamageRadius);
+
+                var maxDistance = this.DestroyedVehicleDamageRadius;
+                maxDistance -= distanceThreshold;
+                maxDistance = Math.Max(0, maxDistance);
+
+                return 1 - Math.Min(distance / maxDistance, 1);
             }
         }
 
@@ -1137,7 +1149,8 @@
             ExplosionHelper.ServerExplode(
                 character:
                 null, // yes, no damaging character here otherwise it will not receive the damage if staying close
-                protoObjectExplosive: null,
+                protoExplosive: null,
+                protoWeapon: null,
                 explosionPreset: this.DestroyedExplosionPreset,
                 epicenterPosition: vehicle.Position
                                    + this.SharedGetObjectCenterWorldOffset(targetObject),

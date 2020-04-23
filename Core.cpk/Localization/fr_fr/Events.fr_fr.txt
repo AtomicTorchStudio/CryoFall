@@ -1,0 +1,18 @@
+﻿Scripts/Events/EventBossPragmiumQueen@Description:
+`La Reine du pragmium a fait son apparition à la surface.
+[br]Un butin précieux attend les survivants les plus courageux !`
+
+Scripts/Events/EventMeteoriteDrop@Description:
+`Des météorites sont tombées dans la zone en surbrillance sur la carte.
+[br]Précipitez-vous pour récupérer des minerais rares !`
+
+Scripts/Events/EventMigration@Description:
+Des formes de vies indigènes semblent avoir entamé une migration vers un autre secteur. Voilà une belle opportunité pour la chasse !
+
+Scripts/Events/EventSpaceDrop@Description:
+`Des débris spatiaux sont tombés dans la zone en surbrillance sur la carte.
+[br]Précipitez-vous afin de récupérer de précieux composants !`
+
+Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
+Progression : {0}/{1}
+

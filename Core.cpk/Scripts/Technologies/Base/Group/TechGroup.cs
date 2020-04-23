@@ -28,6 +28,7 @@
             if (IsClient)
             {
                 PveSystem.ClientIsPvEChanged += SharedRebuildAllNodes;
+                TechConstants.ClientPvpTechTimeGameReceivedHandler += SharedRebuildAllNodes;
             }
         }
 
@@ -117,6 +118,8 @@
 
         public abstract TechTier Tier { get; }
 
+        public double TimeGatePvP { get; private set; }
+
         protected internal virtual double GroupNodesUnlockPriceMultiplier { get; } = 1;
 
         protected virtual double GroupUnlockPriceMultiplier { get; } = 1;
@@ -177,37 +180,29 @@
                     $"Tier out of range: {this.Tier} - max tier is {TechConstants.MaxTier}");
             }
 
-            SharedRebuildAllNodes();
-
-            var rootNodes = new List<TechNode>();
-            foreach (var protoTechNode in this.Nodes)
-            {
-                if (protoTechNode.RequiredNode == null)
-                {
-                    rootNodes.Add(protoTechNode);
-                }
-            }
-
-            this.RootNodes = rootNodes;
             this.LearningPointsPrice = this.CalculateLearningPointsPrice();
-
-            var requirements = new Requirements();
-            this.PrepareTechGroup(requirements);
-            if (this.LearningPointsPrice > 0)
-            {
-                requirements.Insert(0, new TechGroupRequirementLearningPoints(this.LearningPointsPrice));
-            }
-
-            this.GroupRequirements = requirements;
+            SharedRebuildAllNodes();
         }
 
         protected abstract void PrepareTechGroup(Requirements requirements);
 
         private static void SharedRebuildAllNodes()
         {
+            if (Api.IsClient
+                && (!PveSystem.ClientIsPveFlagReceived
+                    || !TechConstants.ClientPvpTechTimeGateIsReceived))
+            {
+                AvailableTechGroups = new TechGroup[0];
+                return;
+            }
+
+            var isPvE = PveSystem.SharedIsPve(false);
+
             var allTechGroups = Api.FindProtoEntities<TechGroup>();
             foreach (var techGroup in allTechGroups)
             {
+                SetupTimeGate(techGroup);
+
                 techGroup.Nodes = techGroup.IsAvailable
                                       ? (IReadOnlyList<TechNode>)LazyAllNodesWithoutFiltering
                                                                  .Value
@@ -220,10 +215,66 @@
                                       : new TechNode[0];
 
                 Api.SafeInvoke(techGroup.NodesChanged);
+
+                var rootNodes = new List<TechNode>();
+                foreach (var protoTechNode in techGroup.Nodes)
+                {
+                    if (protoTechNode.RequiredNode == null
+                        || !protoTechNode.RequiredNode.IsAvailable)
+                    {
+                        rootNodes.Add(protoTechNode);
+                    }
+                }
+
+                techGroup.RootNodes = rootNodes;
+
+                var requirements = new Requirements();
+                techGroup.PrepareTechGroup(requirements);
+                if (techGroup.LearningPointsPrice > 0)
+                {
+                    requirements.Insert(0, new TechGroupRequirementLearningPoints(techGroup.LearningPointsPrice));
+                }
+
+                if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false)
+                    && techGroup.TimeGatePvP > 0)
+                {
+                    requirements.Add(new TechGroupRequirementTimeGate(techGroup.TimeGatePvP));
+                }
+
+                techGroup.GroupRequirements = requirements;
             }
 
-            AvailableTechGroups = allTechGroups.Where(t => t.IsAvailable).ToList();
+            AvailableTechGroups = allTechGroups.Where(t => t.IsAvailable).ToArray();
             Api.SafeInvoke(AvailableTechGroupsChanged);
+
+            void SetupTimeGate(TechGroup techGroup)
+            {
+                if (isPvE)
+                {
+                    techGroup.TimeGatePvP = 0;
+                    return;
+                }
+
+                switch (techGroup.Tier)
+                {
+                    case TechTier.Tier3:
+                        techGroup.TimeGatePvP = techGroup.IsPrimary
+                                                    ? TechConstants.PvpTechTimeGameTier3Basic
+                                                    : TechConstants.PvpTechTimeGameTier3Specialized;
+                        break;
+
+                    case TechTier.Tier4:
+                    case TechTier.Tier5:
+                        techGroup.TimeGatePvP = techGroup.IsPrimary
+                                                    ? TechConstants.PvpTechTimeGameTier4Basic
+                                                    : TechConstants.PvpTechTimeGameTier4Specialized;
+                        break;
+
+                    default:
+                        techGroup.TimeGatePvP = 0;
+                        break;
+                }
+            }
         }
 
         private ushort CalculateLearningPointsPrice()

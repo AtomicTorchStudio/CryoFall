@@ -27,9 +27,116 @@
     {
         private static readonly ISharedApi Shared = Api.Shared;
 
-        public static void OnWeaponFinished(ICharacter character)
+        public static void ClientAddHitSparks(
+            IReadOnlyWeaponHitSparksPreset hitSparksPreset,
+            WeaponHitData hitData,
+            IWorldObject hitWorldObject,
+            IProtoWorldObject protoWorldObject,
+            Vector2D worldObjectPosition,
+            int projectilesCount,
+            ObjectMaterial objectMaterial,
+            bool hasTrace)
         {
-            if (character == null
+            var sceneObject = Api.Client.Scene.CreateSceneObject("Temp_HitSparks");
+            sceneObject.Position = worldObjectPosition;
+            var hitPoint = hitData.HitPoint.ToVector2D();
+
+            if (!hitData.IsCliffsHit)
+            {
+                // move hitpoint a bit closer to the center of the object
+                hitPoint = WeaponSystem.SharedOffsetHitWorldPositionCloserToObjectCenter(
+                    hitWorldObject,
+                    protoWorldObject,
+                    hitPoint,
+                    isRangedWeapon: hasTrace);
+            }
+
+            if (projectilesCount == 1
+                && !hasTrace)
+            {
+                // randomize hitpoint a bit by adding a little random offset
+                var maxOffsetDistance = 0.2;
+                var range = maxOffsetDistance * RandomHelper.NextDouble();
+                var angleRad = 2 * Math.PI * RandomHelper.NextDouble();
+                var randomOffset = new Vector2D(range * Math.Cos(angleRad),
+                                                range * Math.Sin(angleRad));
+
+                hitPoint += randomOffset;
+            }
+
+            var sparksEntry = hitSparksPreset.GetForMaterial(objectMaterial);
+            var componentSpriteRender = Api.Client.Rendering.CreateSpriteRenderer(
+                sceneObject,
+                positionOffset: hitPoint,
+                spritePivotPoint: (0.5, 0.225),
+                drawOrder: hasTrace
+                               ? DrawOrder.Light
+                               : DrawOrder.Default);
+            componentSpriteRender.DrawOrderOffsetY = -hitPoint.Y;
+            componentSpriteRender.Scale = (float)Math.Pow(1.0 / projectilesCount, 0.35);
+
+            if (sparksEntry.UseScreenBlending)
+            {
+                componentSpriteRender.BlendMode = BlendMode.Screen;
+            }
+
+            if (!hasTrace)
+            {
+                componentSpriteRender.RotationAngleRad = (float)(RandomHelper.NextDouble() * 2 * Math.PI);
+            }
+
+            const double animationFrameDuration = 1 / 30.0;
+            var componentAnimator = sceneObject.AddComponent<ClientComponentSpriteSheetAnimator>();
+            var hitSparksEntry = sparksEntry;
+            componentAnimator.Setup(
+                componentSpriteRender,
+                hitSparksEntry.SpriteSheetAnimationFrames,
+                frameDurationSeconds: animationFrameDuration,
+                isLooped: false);
+
+            var totalAnimationDuration = animationFrameDuration * componentAnimator.FramesCount;
+            var totalDurationWithLight = 0.15 + totalAnimationDuration;
+            if (hitSparksEntry.LightColor.HasValue)
+            {
+                // create light spot (even for melee weapons)
+                var lightSource = ClientLighting.CreateLightSourceSpot(
+                    sceneObject,
+                    color: hitSparksEntry.LightColor.Value,
+                    spritePivotPoint: (0.5, 0.5),
+                    size: 7,
+                    // we don't want to display nickname/healthbar for the firing character, it's too quick anyway
+                    logicalSize: 0,
+                    positionOffset: hitPoint);
+
+                ClientComponentOneShotLightAnimation.Setup(lightSource, totalDurationWithLight);
+            }
+
+            componentSpriteRender.Destroy(totalAnimationDuration);
+            componentAnimator.Destroy(totalAnimationDuration);
+
+            sceneObject.Destroy(totalDurationWithLight);
+        }
+
+        public static void ClientCreateMuzzleFlash(
+            IProtoItemWeaponRanged protoWeapon,
+            ICharacter characterWorldObject,
+            IComponentSkeleton skeletonRenderer)
+        {
+            if (protoWeapon?.MuzzleFlashDescription.TextureAtlas is null)
+            {
+                // no muzzle flash defined for this weapon
+                return;
+            }
+
+            // get scene object (of character) to attach the components to
+            var sceneObject = characterWorldObject.ClientSceneObject;
+            sceneObject.AddComponent<ClientComponentMuzzleFlash>()
+                       .Setup(characterWorldObject, skeletonRenderer, protoWeapon);
+        }
+
+        public static void ClientOnWeaponFinished(ICharacter character)
+        {
+            if (character is null
                 || !character.IsInitialized)
             {
                 return;
@@ -42,17 +149,17 @@
                 return;
             }
 
-            var weaponProto = GetCharacterCurrentWeaponProto(character);
+            var weaponProto = SharedGetCharacterCurrentWeaponProto(character);
             weaponProto.SoundPresetWeapon.PlaySound(
                 WeaponSound.Stop,
                 character,
                 volume: SoundConstants.VolumeWeapon);
 
             // ensure that the weapon is stopped too
-            OnWeaponInputStop(character);
+            ClientOnWeaponInputStop(character);
         }
 
-        public static void OnWeaponHitOrTrace(
+        public static void ClientOnWeaponHitOrTrace(
             ICharacter firingCharacter,
             IProtoItemWeapon protoWeapon,
             IProtoItemAmmo protoAmmo,
@@ -68,15 +175,25 @@
                 firingCharacter = null;
             }
 
-            var worldPositionSource = CalculateWeaponShotWorldPositon(firingCharacter,
-                                                                      protoWeapon,
-                                                                      protoCharacter,
-                                                                      fallbackCharacterPosition.ToVector2D());
-
-            var isRangedWeapon = protoWeapon is IProtoItemWeaponRanged;
             var weaponTracePreset = protoWeapon.FireTracePreset
                                     ?? protoAmmo?.FireTracePreset;
-            if (isRangedWeapon)
+            var worldPositionSource = SharedCalculateWeaponShotWorldPositon(
+                firingCharacter,
+                protoWeapon,
+                protoCharacter,
+                fallbackCharacterPosition.ToVector2D(),
+                hasTrace: weaponTracePreset?.HasTrace ?? false);
+
+            protoWeapon.ClientOnWeaponHitOrTrace(firingCharacter,
+                                                 protoWeapon,
+                                                 protoAmmo,
+                                                 protoCharacter,
+                                                 fallbackCharacterPosition,
+                                                 hitObjects,
+                                                 endPosition,
+                                                 endsWithHit);
+
+            if (weaponTracePreset?.HasTrace ?? false)
             {
                 ComponentWeaponTrace.Create(weaponTracePreset,
                                             worldPositionSource,
@@ -99,11 +216,11 @@
                 double delay;
                 {
                     var worldObjectPosition = CalculateWorldObjectPosition(hitWorldObject, hitData);
-                    delay = isRangedWeapon
-                                ? ComponentWeaponTrace.CalculateTimeToHit(weaponTracePreset,
-                                                                          worldPositionSource: worldPositionSource,
-                                                                          endPosition: worldObjectPosition
-                                                                                       + hitData.HitPoint.ToVector2D())
+                    delay = weaponTracePreset?.HasTrace ?? false
+                                ? SharedCalculateTimeToHit(weaponTracePreset,
+                                                           worldPositionSource: worldPositionSource,
+                                                           endPosition: worldObjectPosition
+                                                                        + hitData.HitPoint.ToVector2D())
                                 : 0;
                 }
 
@@ -114,16 +231,9 @@
                         // re-calculate the world object position
                         var worldObjectPosition = CalculateWorldObjectPosition(hitWorldObject, hitData);
 
-                        var volume = SoundConstants.VolumeHit;
-                        // apply some volume variation
-                        volume *= RandomHelper.Range(0.8f, 1.0f);
-                        var pitch = RandomHelper.Range(0.95f, 1.05f);
-
-                        // adjust volume proportionally to the number of scattered projects per fire
                         var fireScatterPreset = protoAmmo?.OverrideFireScatterPreset
                                                 ?? protoWeapon.FireScatterPreset;
                         var projectilesCount = fireScatterPreset.ProjectileAngleOffets.Length;
-                        volume *= (float)Math.Pow(1.0 / projectilesCount, 0.35);
 
                         var objectMaterial = hitData.FallbackObjectMaterial;
                         if (hitWorldObject is ICharacter hitCharacter
@@ -133,34 +243,22 @@
                                 .SharedGetObjectMaterialForCharacter(hitCharacter);
                         }
 
-                        if (hitWorldObject != null)
-                        {
-                            protoWeapon.SoundPresetHit.PlaySound(
-                                objectMaterial,
-                                hitWorldObject,
-                                volume: volume,
-                                pitch: pitch);
-                        }
-                        else
-                        {
-                            protoWeapon.SoundPresetHit.PlaySound(
-                                objectMaterial,
-                                protoWorldObject,
-                                worldPosition: worldObjectPosition,
-                                volume: volume,
-                                pitch: pitch);
-                        }
+                        protoWeapon.ClientPlayWeaponHitSound(hitWorldObject,
+                                                             protoWorldObject,
+                                                             fireScatterPreset,
+                                                             objectMaterial,
+                                                             worldObjectPosition);
 
                         if (weaponTracePreset != null)
                         {
-                            AddHitSparks(weaponTracePreset.HitSparksPreset,
-                                         hitData,
-                                         hitWorldObject,
-                                         protoWorldObject,
-                                         worldObjectPosition,
-                                         projectilesCount,
-                                         objectMaterial,
-                                         isRangedWeapon);
+                            ClientAddHitSparks(weaponTracePreset.HitSparksPreset,
+                                               hitData,
+                                               hitWorldObject,
+                                               protoWorldObject,
+                                               worldObjectPosition,
+                                               projectilesCount,
+                                               objectMaterial,
+                                               hasTrace: weaponTracePreset.HasTrace);
                         }
                     });
 
@@ -176,9 +274,9 @@
             }
         }
 
-        public static void OnWeaponInputStop(ICharacter character)
+        public static void ClientOnWeaponInputStop(ICharacter character)
         {
-            if (character == null
+            if (character is null
                 || !character.IsInitialized)
             {
                 return;
@@ -200,7 +298,7 @@
 
             void StopAnimation(byte trackIndex)
             {
-                if (skeletonRenderer.GetCurrentAnimationName(trackIndex) == null)
+                if (skeletonRenderer.GetCurrentAnimationName(trackIndex) is null)
                 {
                     return;
                 }
@@ -211,7 +309,7 @@
             }
         }
 
-        public static void OnWeaponShot(
+        public static void ClientOnWeaponShot(
             ICharacter character,
             uint partyId,
             IProtoItemWeapon protoWeapon,
@@ -267,7 +365,7 @@
                     characterSkeleton = (ProtoCharacterSkeleton)characterSkeleton1;
                 }
 
-                if (characterSkeleton == null)
+                if (characterSkeleton is null)
                 {
                     emitter = null;
                 }
@@ -296,35 +394,22 @@
                 var distance = protoWeapon.SoundPresetWeaponDistance;
                 emitter.CustomMinDistance = distance.min;
                 emitter.CustomMaxDistance = distance.max;
+
+                var distance3DSpread = protoWeapon.SoundPresetWeaponDistance3DSpread;
+                emitter.CustomMinDistance3DSpread = distance3DSpread.min;
+                emitter.CustomMaxDistance3DSpread = distance3DSpread.max;
             }
 
-            if (protoWeapon is IProtoItemWeaponRanged rangedWeapon
-                && character != null
-                && ReferenceEquals(protoWeapon, GetCharacterCurrentWeaponProto(character)))
+            if (character != null
+                && ReferenceEquals(protoWeapon, SharedGetCharacterCurrentWeaponProto(character)))
             {
-                // add muzzle flash
-                var clientState = character.GetClientState<BaseCharacterClientState>();
-                if (!clientState.HasWeaponAnimationAssigned)
-                {
-                    return;
-                }
-
-                var skeletonRenderer = clientState.SkeletonRenderer;
-                CreateMuzzleFlash(rangedWeapon, character, skeletonRenderer);
-
-                var recoilAnimationName = rangedWeapon.CharacterAnimationAimingRecoilName;
-                if (recoilAnimationName != null
-                    && rangedWeapon.CharacterAnimationAimingRecoilPower > 0
-                    && rangedWeapon.CharacterAnimationAimingRecoilDuration > 0)
-                {
-                    SetRecoilAnimation(character, rangedWeapon, skeletonRenderer);
-                }
+                protoWeapon.ClientOnWeaponShot(character);
             }
         }
 
-        public static void OnWeaponStart(ICharacter character)
+        public static void ClientOnWeaponStart(ICharacter character)
         {
-            if (character == null
+            if (character is null
                 || !character.IsInitialized)
             {
                 return;
@@ -338,19 +423,19 @@
 
             clientState.IsWeaponFiringAnimationActive = true;
 
-            var weapon = GetCharacterCurrentWeaponProto(character);
+            var weapon = SharedGetCharacterCurrentWeaponProto(character);
             weapon.SoundPresetWeapon.PlaySound(
                 WeaponSound.Start,
                 character,
                 volume: SoundConstants.VolumeWeapon);
 
             var fireAnimationName = weapon.GetCharacterAnimationNameFire(character);
-            if (fireAnimationName == null)
+            if (fireAnimationName is null)
             {
                 return;
             }
 
-            SetFiringAnimation(
+            ClientSetFiringAnimation(
                 weapon,
                 clientState.SkeletonRenderer,
                 AnimationTrackIndexes.ItemFiring,
@@ -360,10 +445,10 @@
                 mixWithCurrent: false,
                 isLooped: weapon.IsLoopedAttackAnimation);
 
-            RefreshCurrentAttackAnimation(character);
+            ClientRefreshCurrentAttackAnimation(character);
         }
 
-        public static void RefreshCurrentAttackAnimation(ICharacter character)
+        public static void ClientRefreshCurrentAttackAnimation(ICharacter character)
         {
             var clientState = character.GetClientState<BaseCharacterClientState>();
             var protoSkeleton = clientState.CurrentProtoSkeleton;
@@ -384,9 +469,9 @@
                 return;
             }
 
-            var weapon = GetCharacterCurrentWeaponProto(character);
+            var weapon = SharedGetCharacterCurrentWeaponProto(character);
             var firingAnimationName = weapon.GetCharacterAnimationNameFire(character);
-            if (firingAnimationName == null)
+            if (firingAnimationName is null)
             {
                 // no animation needed
                 return;
@@ -394,145 +479,109 @@
 
             if (weapon.IsLoopedAttackAnimation)
             {
-                var lastFiringAnimationName = skeletonRenderer.GetLatestAddedAnimationName(
-                    AnimationTrackIndexes.ItemFiring);
+                var trackIndexFiring = AnimationTrackIndexes.ItemFiring;
 
-                if (!skeletonRenderer.IsLooped(AnimationTrackIndexes.ItemFiring))
+                var currentAnimationName = skeletonRenderer.GetCurrentAnimationName(
+                    trackIndexFiring,
+                    getLatestAddedAnimation: false);
+                var lastFiringAnimationName = skeletonRenderer.GetLatestAddedAnimationName(
+                    trackIndexFiring);
+
+                if (firingAnimationName == currentAnimationName
+                    && firingAnimationName != lastFiringAnimationName)
                 {
-                    // weapon stopped firing or already scheduled the next attack animation
+                    // stop future scheduled attack animations and restore the loop
+                    //Api.Logger.Dev($"Will keep the current firing animation: {firingAnimationName}");
+                    skeletonRenderer.RemoveAnimationTrackNextEntries(trackIndexFiring);
+                    skeletonRenderer.SetAnimationLoopMode(trackIndexFiring, isLooped: true);
                 }
                 else if (firingAnimationName != lastFiringAnimationName)
                 {
-                    // replace animation with the proper one
-                    SetFiringAnimation(
+                    //Api.Logger.Dev($"replace firing animation with the proper one: {lastFiringAnimationName} -> {firingAnimationName}");
+                    ClientSetFiringAnimation(
                         weapon,
                         skeletonRenderer,
-                        AnimationTrackIndexes.ItemFiring,
+                        trackIndexFiring,
                         firingAnimationName,
                         weapon.FireAnimationDuration,
                         weapon.FireInterval,
                         mixWithCurrent: true,
-                        isLooped: weapon.IsLoopedAttackAnimation);
+                        isLooped: true);
                 }
             }
 
             if (!isCharacterMoving
                 && protoSkeleton.HasStaticAttackAnimations)
             {
-                RefreshStaticAttackAnimation(skeletonRenderer, weapon, firingAnimationName);
+                ClientRefreshStaticAttackAnimation(skeletonRenderer, weapon);
             }
         }
 
-        private static void AddHitSparks(
-            IReadOnlyWeaponHitSparksPreset hitSparksPreset,
-            WeaponHitData hitData,
-            IWorldObject hitWorldObject,
-            IProtoWorldObject protoWorldObject,
-            Vector2D worldObjectPosition,
-            int projectilesCount,
-            ObjectMaterial objectMaterial,
-            bool isRangedWeapon)
+        public static void ClientSetRecoilAnimation(
+            ICharacter character,
+            IProtoItemWeaponRanged weaponProto,
+            IComponentSkeleton skeletonRenderer)
         {
-            var sceneObject = Api.Client.Scene.CreateSceneObject("Temp_HitSparks");
-            sceneObject.Position = worldObjectPosition;
-            var hitPoint = hitData.HitPoint.ToVector2D();
-
-            if (!hitData.IsCliffsHit)
-            {
-                // move hitpoint a bit closer to the center of the object
-                hitPoint = WeaponSystem.SharedOffsetHitWorldPositionCloserToObjectCenter(
-                    hitWorldObject,
-                    protoWorldObject,
-                    hitPoint,
-                    isRangedWeapon);
-            }
-
-            if (projectilesCount == 1
-                && !isRangedWeapon)
-            {
-                // randomize hitpoint a bit by adding a little random offset
-                var maxOffsetDistance = 0.2;
-                var range = maxOffsetDistance * RandomHelper.NextDouble();
-                var angleRad = 2 * Math.PI * RandomHelper.NextDouble();
-                var randomOffset = new Vector2D(range * Math.Cos(angleRad),
-                                                range * Math.Sin(angleRad));
-
-                hitPoint += randomOffset;
-            }
-
-            var sparksEntry = hitSparksPreset.GetForMaterial(objectMaterial);
-            var componentSpriteRender = Api.Client.Rendering.CreateSpriteRenderer(
-                sceneObject,
-                positionOffset: hitPoint,
-                spritePivotPoint: (0.5, 0.225),
-                drawOrder: isRangedWeapon
-                               ? DrawOrder.Light
-                               : DrawOrder.Default);
-            componentSpriteRender.DrawOrderOffsetY = -hitPoint.Y;
-            componentSpriteRender.Scale = (float)Math.Pow(1.0 / projectilesCount, 0.35);
-
-            if (sparksEntry.UseScreenBlending)
-            {
-                componentSpriteRender.BlendMode = BlendMode.Screen;
-            }
-
-            if (!isRangedWeapon)
-            {
-                componentSpriteRender.RotationAngleRad = (float)(RandomHelper.NextDouble() * 2 * Math.PI);
-            }
-
-            const double animationFrameDuration = 1 / 30.0;
-            var componentAnimator = sceneObject.AddComponent<ClientComponentSpriteSheetAnimator>();
-            var hitSparksEntry = sparksEntry;
-            componentAnimator.Setup(
-                componentSpriteRender,
-                hitSparksEntry.SpriteSheetAnimationFrames,
-                frameDurationSeconds: animationFrameDuration,
-                isLooped: false);
-
-            var totalAnimationDuration = animationFrameDuration * componentAnimator.FramesCount;
-            var totalDurationWithLight = 0.15 + totalAnimationDuration;
-            if (hitSparksEntry.LightColor.HasValue)
-            {
-                // create light spot (even for melee weapons)
-                var lightSource = ClientLighting.CreateLightSourceSpot(
-                    sceneObject,
-                    color: hitSparksEntry.LightColor.Value,
-                    spritePivotPoint: (0.5, 0.5),
-                    size: 7,
-                    // we don't want to display nickname/healthbar for the firing character, it's too quick anyway
-                    logicalSize: 0,
-                    positionOffset: hitPoint);
-
-                ClientComponentOneShotLightAnimation.Setup(lightSource, totalDurationWithLight);
-            }
-
-            componentSpriteRender.Destroy(totalAnimationDuration);
-            componentAnimator.Destroy(totalAnimationDuration);
-
-            sceneObject.Destroy(totalDurationWithLight);
+            var sceneObject = character.ClientSceneObject;
+            var componentRecoil = sceneObject.FindComponent<ClientComponentCharacterWeaponRecoilAnimation>()
+                                  ?? sceneObject.AddComponent<ClientComponentCharacterWeaponRecoilAnimation>();
+            componentRecoil.StartRecoil(character, weaponProto, skeletonRenderer);
         }
 
-        private static Vector2D CalculateWeaponShotWorldPositon(
+        public static double SharedCalculateTimeToHit(
+            WeaponFireTracePreset weaponTracePreset,
+            Vector2D worldPositionSource,
+            Vector2D endPosition)
+        {
+            if (weaponTracePreset is null)
+            {
+                // no weapon trace for this weapon
+                return 0;
+            }
+
+            var deltaPos = endPosition - worldPositionSource;
+            var fireDistance = deltaPos.Length;
+            // hit happens when the end of the weapon trace sprite touches the target, so cut the distance accordingly
+
+            fireDistance -= weaponTracePreset.TraceWorldLength;
+            fireDistance = Math.Max(0, fireDistance);
+            return SharedCalculateTimeToHit(fireDistance, weaponTracePreset);
+        }
+
+        public static double SharedCalculateTimeToHit(double fireDistance, WeaponFireTracePreset weaponTracePreset)
+        {
+            return fireDistance / weaponTracePreset.TraceSpeed;
+        }
+
+        public static Vector2D SharedCalculateWeaponShotWorldPositon(
             ICharacter character,
             IProtoItemWeapon protoWeapon,
             IProtoCharacter protoCharacter,
-            Vector2D fallbackPosition)
+            Vector2D fallbackPosition,
+            bool hasTrace)
         {
             Vector2D worldPositionSource;
             if (character != null
                 && character.IsInitialized)
             {
-                if (character.GetClientState<BaseCharacterClientState>().SkeletonRenderer is {} skeletonRenderer
-                    && protoWeapon is IProtoItemWeaponRanged protoItemWeaponRanged)
+                if (Api.IsClient
+                    && hasTrace
+                    && character.GetClientState<BaseCharacterClientState>().SkeletonRenderer is {} skeletonRenderer)
                 {
                     var protoSkeleton = character.GetClientState<BaseCharacterClientState>().CurrentProtoSkeleton;
                     var slotName = protoSkeleton.SlotNameItemInHand;
-                    var weaponSlotScreenOffset = skeletonRenderer.GetSlotScreenOffset(attachmentName: slotName);
-                    var muzzleFlashTextureOffset = protoItemWeaponRanged.MuzzleFlashDescription.TextureScreenOffset;
+                    var slotOffset = skeletonRenderer.GetSlotScreenOffset(attachmentName: slotName);
+                    var muzzleFlashTextureOffset = Vector2F.Zero;
+
+                    if (protoWeapon is IProtoItemWeaponRanged protoItemWeaponRanged)
+                    {
+                        muzzleFlashTextureOffset =
+                            protoItemWeaponRanged.MuzzleFlashDescription.TextureScreenOffset.ToVector2F();
+                    }
+
                     var boneWorldPosition = skeletonRenderer.TransformSlotPosition(
                         slotName,
-                        weaponSlotScreenOffset + (Vector2F)muzzleFlashTextureOffset,
+                        slotOffset + muzzleFlashTextureOffset,
                         out _);
                     worldPositionSource = boneWorldPosition;
                 }
@@ -551,68 +600,53 @@
             return worldPositionSource;
         }
 
-        private static void CreateMuzzleFlash(
-            IProtoItemWeaponRanged protoWeapon,
-            ICharacter characterWorldObject,
-            IComponentSkeleton skeletonRenderer)
-        {
-            if (protoWeapon == null)
-            {
-                // not a ranged weapon
-                return;
-            }
-
-            // get scene object (of character) to attach the components to
-            var sceneObject = characterWorldObject.ClientSceneObject;
-            sceneObject.AddComponent<ClientComponentMuzzleFlash>()
-                       .Setup(characterWorldObject, skeletonRenderer, protoWeapon);
-        }
-
-        private static IProtoItemWeapon GetCharacterCurrentWeaponProto(ICharacter character)
-        {
-            return character.GetPublicState<ICharacterPublicState>().SelectedItemWeaponProto;
-        }
-
-        private static void RefreshStaticAttackAnimation(
+        // Synchronize static firing animation with the firing animation
+        private static void ClientRefreshStaticAttackAnimation(
             IComponentSkeleton skeletonRenderer,
-            IProtoItemWeapon weapon,
-            string firingAnimationName)
+            IProtoItemWeapon weapon)
         {
             // ReSharper disable once CanExtractXamlLocalizableStringCSharp
-            var staticFiringAnimationName = firingAnimationName + "_Static";
-            var lastStaticAnimationName = skeletonRenderer.GetLatestAddedAnimationName(
-                AnimationTrackIndexes.ItemFiringStatic);
+            var currentAnimationName = skeletonRenderer.GetCurrentAnimationName(
+                AnimationTrackIndexes.ItemFiring,
+                getLatestAddedAnimation: false);
 
-            if (lastStaticAnimationName == staticFiringAnimationName)
-            {
-                return;
-            }
-
-            if (skeletonRenderer.GetLatestAddedAnimationName(AnimationTrackIndexes.ItemFiring)
-                == null)
+            if (currentAnimationName is null)
             {
                 // no current firing animation - no need the static animation
                 return;
             }
 
+            var trackIndexStaticFiring = AnimationTrackIndexes.ItemFiringStatic;
+            var staticFiringAnimationName = currentAnimationName + "_Static";
+            var currentStaticAnimationName = skeletonRenderer.GetCurrentAnimationName(
+                trackIndexStaticFiring,
+                getLatestAddedAnimation: false);
+
+            if (currentStaticAnimationName == staticFiringAnimationName)
+            {
+                return;
+            }
+
+            skeletonRenderer.RemoveAnimationTrack(trackIndexStaticFiring);
+
             // need to update the static attack animation
-            SetFiringAnimation(
+            ClientSetFiringAnimation(
                 weapon,
                 skeletonRenderer,
-                AnimationTrackIndexes.ItemFiringStatic,
+                trackIndexStaticFiring,
                 staticFiringAnimationName,
                 weapon.FireAnimationDuration,
                 weapon.FireInterval,
-                mixWithCurrent: true,
+                mixWithCurrent: false,
                 isLooped: weapon.IsLoopedAttackAnimation);
 
             // synchronize static with non-static animation tracks
             skeletonRenderer.SetAnimationTime(
-                AnimationTrackIndexes.ItemFiringStatic,
+                trackIndexStaticFiring,
                 skeletonRenderer.GetAnimationTime(AnimationTrackIndexes.ItemFiring));
         }
 
-        private static void SetFiringAnimation(
+        private static void ClientSetFiringAnimation(
             IProtoItemWeapon weaponProto,
             IComponentSkeleton skeletonRenderer,
             byte trackIndex,
@@ -624,6 +658,7 @@
         {
             fireAnimationDuration = Shared.RoundDurationByServerFrameDuration(fireAnimationDuration);
             fireInterval = Shared.RoundDurationByServerFrameDuration(fireInterval);
+            //var animationDelay = weaponProto.DamageApplyDelay;
 
             var currentFireAnimation = skeletonRenderer.GetCurrentAnimationName(trackIndex);
             if (currentFireAnimation == fireAnimationName)
@@ -635,9 +670,10 @@
                     + " - usually it means that the DamageApplyDelaySeconds+FireIntervalSeconds is lower than the attack animation duration for "
                     + weaponProto
                     + " (they must be matching perfectly).");
-            }
 
-            if (currentFireAnimation != null)
+                skeletonRenderer.RemoveAnimationTrack(trackIndex);
+            }
+            else if (currentFireAnimation != null)
             {
                 if (mixWithCurrent)
                 {
@@ -664,15 +700,9 @@
                 cooldownDuration: (float)cooldownDuration);
         }
 
-        private static void SetRecoilAnimation(
-            ICharacter character,
-            IProtoItemWeaponRanged weaponProto,
-            IComponentSkeleton skeletonRenderer)
+        private static IProtoItemWeapon SharedGetCharacterCurrentWeaponProto(ICharacter character)
         {
-            var sceneObject = character.ClientSceneObject;
-            var componentRecoil = sceneObject.FindComponent<ClientComponentCharacterWeaponRecoilAnimation>()
-                                  ?? sceneObject.AddComponent<ClientComponentCharacterWeaponRecoilAnimation>();
-            componentRecoil.StartRecoil(character, weaponProto, skeletonRenderer);
+            return character.GetPublicState<ICharacterPublicState>().SelectedItemWeaponProto;
         }
     }
 }

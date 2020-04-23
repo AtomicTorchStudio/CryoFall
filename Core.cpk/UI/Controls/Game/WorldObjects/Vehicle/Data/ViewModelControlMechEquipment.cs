@@ -51,5 +51,11 @@
         }
 
         public IItemsContainer MechEquipmentItemsContainer { get; }
+
+        protected override void DisposeViewModel()
+        {
+            this.IsActive = false;
+            base.DisposeViewModel();
+        }
     }
 }

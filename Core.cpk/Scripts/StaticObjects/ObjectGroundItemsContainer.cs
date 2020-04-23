@@ -5,6 +5,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
@@ -73,8 +74,8 @@
 
         public bool IsIgnoredBySpawnScripts => false;
 
-        // this is a "natural object" to allow decals to show under it
-        public StaticObjectKind Kind => StaticObjectKind.NaturalObject;
+        // allow terrain decals under it
+        public StaticObjectKind Kind => StaticObjectKind.SpecialAllowDecals;
 
         public StaticObjectLayoutReadOnly Layout { get; } = StaticObjectLayout.DefaultOneTileLayout;
 
@@ -772,12 +773,11 @@
             var worldObjectPointClosestToCharacter = new BoundsInt(tilePosition, Vector2Int.One)
                 .ClampInside(characterCenter);
 
-            obstaclesOnTheWay = SharedHasObstaclesOnTheWay(character,
-                                                           characterCenter,
-                                                           physicsSpace,
-                                                           worldObjectCenter,
-                                                           worldObjectPointClosestToCharacter,
-                                                           sendDebugEvents: false);
+            obstaclesOnTheWay = ObstacleTestHelper.SharedHasObstaclesOnTheWay(characterCenter,
+                                                              physicsSpace,
+                                                              worldObjectCenter,
+                                                              worldObjectPointClosestToCharacter,
+                                                              sendDebugEvents: false);
 
             return !obstaclesOnTheWay;
         }

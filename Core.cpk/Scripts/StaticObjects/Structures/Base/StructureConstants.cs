@@ -31,6 +31,9 @@
         /// </summary>
         public const double StructureDecaySystemUpdateIntervalSeconds = 5 * 60; // every 5 minutes
 
+        /// <summary>
+        /// Please note that it doesn't affect fuel/electricity consumption.
+        /// </summary>
         public static readonly double DepositsExtractionSpeedMultiplier;
 
         /// <summary>
@@ -75,7 +78,7 @@
 
             StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers = ServerRates.Get(
                 "StructuresLandClaimDecayDelayDurationMultiplierForDemoPlayers",
-                defaultValue: 0.875,
+                defaultValue: 0.5,
                 @"(for demo players only)
                   Time multiplier before an abandoned land claim (or base) will start decaying.
                   For example, the default decay delay for the land claims (T1) is 32 hours,
@@ -106,8 +109,7 @@
             DepositsExtractionSpeedMultiplier = ServerRates.Get(
                 "DepositsExtractionSpeedMultiplier",
                 defaultValue: 1.0,
-                @"Deposits extraction rate for oil/Li extractors.
-                  Please note: it also changes the power/fuel consumption of the deposit extractors.");
+                @"Deposits extraction rate for oil/Li extractors.");
 
             DepositsSpawnClaimingCooldownDuration = ServerRates.Get(
                 "DepositsSpawnClaimingCooldownDuration",
@@ -149,7 +151,7 @@
                 static async void Refresh()
                 {
                     SharedDoorOwnersMax = byte.MaxValue;
-                    if (Api.Client.Characters.CurrentPlayerCharacter == null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
                     {
                         return;
                     }

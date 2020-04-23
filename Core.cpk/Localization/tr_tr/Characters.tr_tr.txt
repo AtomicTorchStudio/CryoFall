@@ -22,6 +22,9 @@ Sürüngen
 Scripts/Characters/Mobs/MobFireLizard@Name:
 Ateş kertenkelesi
 
+Scripts/Characters/Mobs/MobFloater@Name:
+Uçan
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Bal porsuğu
 
@@ -33,6 +36,9 @@ Karıncayiyen
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Pragmium böceği
+
+Scripts/Characters/Mobs/MobPragmiumQueen@Name:
+Pragmium Kraliçesi
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Salyangoz

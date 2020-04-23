@@ -1,7 +1,4 @@
-﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
-Casser une bouteille
-
-Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+﻿Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
 Remplir le tonneau avec l'essence
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:

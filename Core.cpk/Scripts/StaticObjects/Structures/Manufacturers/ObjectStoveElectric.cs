@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public class ObjectStoveElectric : ProtoObjectManufacturer
     {
@@ -43,6 +44,10 @@
             var publicState = data.PublicState;
             var clientState = data.ClientState;
 
+            var soundEmitter = this.ClientCreateActiveStateSoundEmitterComponent(data.GameObject);
+            soundEmitter.CustomMaxDistance = 4;
+            soundEmitter.Volume = 0.5f;
+
             publicState.ClientSubscribe(_ => _.IsActive,
                                         _ => RefreshActiveState(),
                                         data.ClientState);
@@ -54,7 +59,15 @@
                 clientState.Renderer.TextureResource = publicState.IsActive
                                                            ? textureActive
                                                            : this.DefaultTexture;
+
+                soundEmitter.IsEnabled = publicState.IsActive;
             }
+        }
+
+        protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
+        {
+            base.ClientSetupRenderer(renderer);
+            renderer.DrawOrderOffsetY = 0.25;
         }
 
         protected override void CreateLayout(StaticObjectLayout layout)
@@ -97,17 +110,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (1.8, 0.8),
-                                   offset: (0.1, 0))
-                .AddShapeRectangle(size: (1.6, 1.3),
-                                   offset: (0.2, 0),
-                                   group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (1.5, 0.3),
-                                   offset: (0.25, 0.85),
-                                   group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (1.5, 1.4),
-                                   offset: (0.25, 0),
-                                   group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (1.57, 0.8), offset: (0.05, 0))
+                .AddShapeRectangle(size: (1.57, 0.3), offset: (0.05, 0.6),  group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (1.57, 0.3), offset: (0.05, 0.85), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (1.57, 1.4), offset: (0.05, 0),    group: CollisionGroups.ClickArea);
         }
     }
 }

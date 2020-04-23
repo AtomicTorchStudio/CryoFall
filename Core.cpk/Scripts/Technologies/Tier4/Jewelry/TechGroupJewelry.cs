@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Technologies.Tier4.Jewelry
 {
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier3.Decorations2;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier3.Defense3;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier3.Industry3;
 
@@ -13,6 +14,7 @@
 
         protected override void PrepareTechGroup(Requirements requirements)
         {
+            requirements.AddGroup<TechGroupDecorations2>(completion: 1);
             requirements.AddGroup<TechGroupIndustry3>(completion: 1);
             requirements.AddGroup<TechGroupDefense3>(completion: 0.2);
         }

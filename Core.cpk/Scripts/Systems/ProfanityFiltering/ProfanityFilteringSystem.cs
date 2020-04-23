@@ -7,8 +7,10 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
 
-    public class ProfanityFilteringSystem
+    public static class ProfanityFilteringSystem
     {
+        public const char ProfanityFilterReplacementChar = '*';
+
         private static readonly List<FilterEntry> FilterBlacklist = new List<FilterEntry>();
 
         private static readonly List<FilterEntry> FilterWhitelist = new List<FilterEntry>();
@@ -121,7 +123,7 @@
                 currentIndex = newStartIndex;
 
                 return text.Remove(currentIndex, length)
-                           .Insert(currentIndex, new string('*', length));
+                           .Insert(currentIndex, new string(ProfanityFilterReplacementChar, length));
             }
 
             int FindNextEmptyCharIndex(string text, int index)

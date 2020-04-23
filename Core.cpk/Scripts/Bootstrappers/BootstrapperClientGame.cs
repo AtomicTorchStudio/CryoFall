@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Completionist;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
@@ -43,8 +44,6 @@
 
         public static event Action<ICharacter> InitCallback;
 
-        public static event Action<ICharacter> InitEditorModeCallback;
-
         public static event Action<ICharacter> InitEndCallback;
 
         public static event Action ResetCallback;
@@ -60,18 +59,14 @@
                 return;
             }
 
-            InitCallback?.Invoke(currentCharacter);
             ClientCurrentCharacterHelper.Init(currentCharacter);
+            InitCallback?.Invoke(currentCharacter);
 
             if (currentCharacter.ProtoCharacter == Api.GetProtoEntity<PlayerCharacter>()
                 || currentCharacter.ProtoCharacter == Api.GetProtoEntity<PlayerCharacterSpectator>()
                 || currentCharacter.ProtoCharacter == Api.GetProtoEntity<PlayerCharacterMob>())
             {
                 InitGameplayMode(currentCharacter);
-            }
-            else
-            {
-                InitEditorModeCallback.Invoke(currentCharacter);
             }
 
             CreativeModeSystem.ClientRequestCurrentUserIsInCreativeMode();
@@ -117,13 +112,14 @@
 
                             Menu.Toggle<WindowInventory>();
                         })
-                    .HandleButtonDown(GameButton.CraftingMenu,     Menu.Toggle<WindowHandCrafting>)
-                    .HandleButtonDown(GameButton.MapMenu,          Menu.Toggle<WindowWorldMap>)
-                    .HandleButtonDown(GameButton.SkillsMenu,       Menu.Toggle<WindowSkills>)
-                    .HandleButtonDown(GameButton.TechnologiesMenu, Menu.Toggle<WindowTechnologies>)
-                    .HandleButtonDown(GameButton.SocialMenu,       Menu.Toggle<WindowSocial>)
-                    .HandleButtonDown(GameButton.PoliticsMenu,     Menu.Toggle<WindowPolitics>)
-                    .HandleButtonDown(GameButton.QuestsMenu,       Menu.Toggle<WindowQuests>)
+                    .HandleButtonDown(GameButton.CraftingMenu,      Menu.Toggle<WindowHandCrafting>)
+                    .HandleButtonDown(GameButton.MapMenu,           Menu.Toggle<WindowWorldMap>)
+                    .HandleButtonDown(GameButton.SkillsMenu,        Menu.Toggle<WindowSkills>)
+                    .HandleButtonDown(GameButton.TechnologiesMenu,  Menu.Toggle<WindowTechnologies>)
+                    .HandleButtonDown(GameButton.SocialMenu,        Menu.Toggle<WindowSocial>)
+                    .HandleButtonDown(GameButton.PoliticsMenu,      Menu.Toggle<WindowPolitics>)
+                    .HandleButtonDown(GameButton.QuestsMenu,        Menu.Toggle<WindowQuests>)
+                    .HandleButtonDown(GameButton.CompletionistMenu, Menu.Toggle<WindowCompletionist>)
                     .HandleButtonDown(GameButton.OpenChat,
                                       () =>
                                       {

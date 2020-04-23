@@ -17,7 +17,7 @@
 
     public class BootstrapperClientEditor : BaseBootstrapper
     {
-        private const string EditorWelcomeMessage =
+        public const string EditorWelcomeMessage =
             @"Controls:
               [*][b]F8[/b] key to toggle [b][u]Editor Mode[/u][/b]
               [*][b]F2[/b] to quicksave
@@ -42,7 +42,7 @@
             ClientInputManager.RegisterButtonsEnum<EditorButton>();
 
             ClientUpdateHelper.UpdateCallback += this.ClientUpdateCallback;
-            BootstrapperClientGame.InitEditorModeCallback += this.InitEditorMode;
+            BootstrapperClientGame.InitCallback += this.Init;
             BootstrapperClientGame.ResetCallback += this.Reset;
 
             ClientInputContext.Start("Editor quick save/load")
@@ -80,7 +80,7 @@
             }
 
             var currentPlayerCharacter = Client.Characters.CurrentPlayerCharacter;
-            if (currentPlayerCharacter == null)
+            if (currentPlayerCharacter is null)
             {
                 return;
             }
@@ -104,8 +104,13 @@
             }
         }
 
-        private void InitEditorMode(ICharacter currentCharacter)
+        private void Init(ICharacter currentCharacter)
         {
+            if (currentCharacter.ProtoCharacter != Api.GetProtoEntity<PlayerCharacterEditorMode>())
+            {
+                return;
+            }
+
             Api.Client.UI.LayoutRootChildren.Add(new EditorHUDLayoutControl());
 
             ClientComponentWorldCameraZoomManager.Instance.ZoomBounds = ZoomBoundsEditorMode;

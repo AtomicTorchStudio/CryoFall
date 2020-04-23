@@ -8,9 +8,11 @@
     public class ObjectCrateWood : ProtoObjectCrate
     {
         public override string Description =>
-            "This is the most simple crate for storage of one's possessions. Can be easily destroyed, though.";
+            "This is the most simple crate for storage of one's possessions.";
 
         public override bool HasOwnersList => false;
+
+        public override bool IsSupportItemIcon => false;
 
         public override byte ItemsSlotsCount => 16;
 

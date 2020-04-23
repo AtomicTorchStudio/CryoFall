@@ -40,6 +40,12 @@ Jesteś pod wpływem stymulatora, który powoduje, że przez pewien czas wzrasta
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Zwiększona siła
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Description:
+Po długim odpoczynku łatwiej jest się uczyć i poznawać nowe umiejętności. (Jest to codzienna premia, która się kumuluje, gdy odpowiedni długo jesteś offline. Użycie jej zapewnia specjalne korzyści).
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Name:
+Dobry wypoczynek
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Niezatamowane krwawienie będzie powodować ciągłą utratę zdrowia. Niewielkie krwawienie ustąpi samoistnie, ale poważniejsze urazy mogą wymagać użycia bandaży lub leków hemostatycznych.
 

@@ -21,13 +21,12 @@
             out double rangeMax,
             DamageDistribution damageDistribution)
         {
-            damageValue = 15;
+            damageValue = 16;
             armorPiercingCoef = 0;
             finalDamageMultiplier = 2.5;
             rangeMax = 7;
-
-            damageDistribution.Set(DamageType.Kinetic, 0.7);
-            damageDistribution.Set(DamageType.Impact,  0.3);
+            damageDistribution.Set(DamageType.Kinetic, 0.7)
+                              .Set(DamageType.Impact, 0.3);
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()

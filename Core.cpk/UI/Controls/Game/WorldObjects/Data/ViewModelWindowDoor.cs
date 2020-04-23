@@ -18,7 +18,7 @@
                 privateState.Owners,
                 callbackServerSetOwnersList:
                 ownersList => WorldObjectOwnersSystem.ClientSetOwners(worldObjectDoor, ownersList),
-                title: CoreStrings.ObjectOwnersList_Title + ":",
+                title: CoreStrings.ObjectOwnersList_Title2,
                 maxOwnersListLength: StructureConstants.SharedDoorOwnersMax);
 
             this.ViewModelAccessModeEditor = new ViewModelWorldObjectAccessModeEditor(

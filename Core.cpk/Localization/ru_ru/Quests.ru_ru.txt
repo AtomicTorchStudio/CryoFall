@@ -1,64 +1,4 @@
-﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
-Построить: {0}
-
-Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-Завершить: {0} (древо технологий)
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-постройка: {0}
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
-Изготовить
-
-Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
-Уничтожить: {0}
-
-Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
-Собрать: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
-Найти: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
-Надеть: {0}
-
-Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-Изучить навык: {0} до {1} ур.
-
-Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-Изучить навыки: {0} до {1} ур.
-
-Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-Исследовать: {0} (древо технологий)
-
-Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-Исследовать {0} шт. древ технологий: {1}
-
-Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-Исследовать: {0} (в техн. древе {1})
-
-Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
-Убить: {0}
-
-Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
-Произвести: {0}
-
-Scripts/Quests/Requirements/RequirementRun@DescriptionText:
-Пробежать 10 метров
-
-Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
-Сортировать предметы инвентаря
-
-Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
-Применить: {0}
-
-Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
-Посетить: {0}
-
-Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
-Посетить: {0}
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+﻿Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 Вы можете выбрать место возрождения, расположив там спальный мешок. При следующем возрождении ваш персонаж появится там.
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
@@ -156,17 +96,6 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 Собрать ресурсы
 
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
-`Чтобы получить доступ к зданиям, необходимо исследовать "Базовые постройки" в меню технологий.`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
-`[*] Нажмите клавишу "G" для быстрого доступа к меню технологий, если вы не меняли управление.
-[*] Чтобы открыть любую технологию, требуются [b]ОТ[/b] (очки технологий).
-[*] Очки технологий можно получить за любую осмысленную деятельность. Они прямо пропорциональны полученному опыту при использовании навыков.`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
-Исследовать базовые постройки
-
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
 Добыть камень
 
@@ -182,16 +111,6 @@ Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
 Добыть любые минералы
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
-Есть еще несколько вещей, которые помогут вам облегчить игру в CryoFall: например, сортировка предметов в инвентаре и умение быстро бегать!
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
-`[*] Чтобы отсортировать предметы в инвентаре, просто откройте его и нажмите [u]среднюю кнопку мыши[/u] или [u]клавишу "Z"[/u] (если вы не меняли управление), удерживая курсор на сетке инвентаря. Вот так можно сортировать [b]ЛЮБУЮ[/b] сетку инвентаря (например, ящики).
-[*] Для быстрого бега (или просто бега) нажмите и удерживайте [u]клавишу "Shift"[/u] при перемещении. Попробуйте пробежать несколько метров. Это поможет вам убегать от хищников.`
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
-Выполнить базовые действия
 
 Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
 Собрать водянику
@@ -222,9 +141,10 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 Фермерство — лучший способ получить большое количество пищи. Не бойтесь замарать руки!
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
-`[*] Разумно построить ферму [b]внутри[/b] защитного периметра стен, чтобы другие выжившие не собрали ваш урожай за вас :)
-[*] У разных растений свой срок созревания, количество урожаев и другие важные свойства.
-[*] Позже вы сможете открыть полезные удобрения и прочие способы повышения эффективности фермы.`
+`[*] [b]Семена[/b] можно случайно обнаружить во время [b]сбора травы[/b]. Некоторые особые семена вы найдете лишь в руинах.
+[*] Рекомендуем вам обустраивать ферму [b]внутри[/b] своих стен, иначе другие выжившие могут собрать ваш урожай за вас. :)
+[*] Вид растений влияет на то, с какой скоростью они растут, сколько урожая дают, а также на другие их качества.
+[*] Вскоре вы сможете исследовать более качественные удобрения и другие вещи, которые помогут вам повысить производительность своей фермы.`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
 Построить ферму
@@ -403,7 +323,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
 [*] Существуют [b]разные виды урона[/b], а разные типы брони обладают определенным уровнем защиты от каждого из них. Подробнее об этом можно прочитать на экране инвентаря.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
-Изготовить стрелковое оружие
+Изготовление примитивного огнестрельного оружия
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
 Помимо определенных свойств, каждая климатическая зона обладает уникальной флорой и фауной. Вам следует хорошенько изучить каждую зону, чтобы впоследствии использовать их максимально эффективно.
@@ -436,6 +356,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 Найти и использовать зеленую траву
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
+`Чтобы получить доступ к большему числу строений, откройте "Базовые постройки" в меню технологий.`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
+`[*] Вы можете быстро открыть меню технологий, нажав клавишу G, если вы не меняли управление.
+[*] Для того чтобы изучить любую технологию, требуются [b]ОТ[/b] (очки технологий).
+[*] Очки технологий можно заработать, совершая конструктивные действия, и они прямо пропорциональны вашему набору опыта.`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
+Изучить базовые постройки
+
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
 Пора отправляться на охоту! Новичкам лучше избегать опасных животных, но здесь водятся и более безобидные звери.
 
@@ -457,6 +388,16 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 Мастерство охотника: часть вторая
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
+Есть еще несколько вещей, которые важно знать, чтобы полноценно играть в CryoFall: например, как сортировать любой инвентарь и как заставить персонажа побежать!
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
+`[*] Чтобы отсортировать инвентарь, просто откройте его и нажмите [u]среднюю кнопку мыши[/u] или [u]клавишу Z[/u] (если вы не меняли управление) при наведении курсора на ячейки инвентаря. Этим способом вы можете отсортировать [b]ЛЮБОЙ[/b] инвентарь (например, сундуки и пр.)
+[*] Чтобы побежать, просто нажмите и удерживайте [u]клавишу Shift[/u] во время движения. Пробегите несколько метров, чтобы потренироваться. Бег поможет вам спастись от опасных хищников.`
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
+Выполнение базовых действий
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
 Откройте любой навык
@@ -480,6 +421,16 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 Используйте лом для разборки
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
+Прагмий — это редкий инопланетный минерал, необходимый для большинства продвинутых технологий. Попробуйте добыть немного.
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
+`[*] Будьте осторожны! Добыча прагмия — это опасное дело.
+[*] Крупные прагмиевые источники обычно находятся в пустыне, а небольшие месторождения образуются около вулканов.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
+Добудьте прагмий!
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
 Добыть соль
@@ -564,6 +515,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 Исследовать старые руины
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+Обыщите несколько контейнеров
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 Пора снова отправляться на охоту! На этот раз ваша цель — опасные животные.

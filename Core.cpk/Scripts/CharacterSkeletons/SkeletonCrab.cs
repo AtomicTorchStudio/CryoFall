@@ -11,6 +11,8 @@
 
         public override bool HasStaticAttackAnimations => false;
 
+        public override double IconScale => 0.8;
+
         // no back-view
         public override SkeletonResource SkeletonResourceBack { get; }
             = null;

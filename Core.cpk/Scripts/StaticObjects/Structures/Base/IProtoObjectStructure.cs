@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures
 {
     using System.Collections.Generic;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Technologies;
@@ -29,6 +30,8 @@
         bool IsRepeatPlacement { get; }
 
         IReadOnlyList<TechNode> ListedInTechNodes { get; }
+
+        ProtoObjectConstructionSite ConstructionSitePrototype { get; }
 
         float StructurePointsMaxForConstructionSite { get; }
 

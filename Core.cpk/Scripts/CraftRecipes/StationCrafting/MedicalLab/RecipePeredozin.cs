@@ -21,7 +21,7 @@
 
             inputItems.Add<ItemComponentsPharmaceutical>(count: 5);
             inputItems.Add<ItemAnimalFat>(count: 5);
-            inputItems.Add<ItemHerbPurple>(count: 1);
+            inputItems.Add<ItemHerbPurple>(count: 2);
 
             outputItems.Add<ItemPeredozin>(count: 1);
         }

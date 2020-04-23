@@ -101,25 +101,6 @@
                 isAutoSelectRecipe: this.IsAutoSelectRecipe);
         }
 
-        public override double SharedGetCurrentElectricityConsumptionRate(IStaticWorldObject worldObject)
-        {
-            var rate = base.SharedGetCurrentElectricityConsumptionRate(worldObject);
-            if (rate <= 0)
-            {
-                return 0;
-            }
-
-            var isPvEserver = PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false);
-            if (isPvEserver)
-            {
-                // on PvE servers oil refinery has reduced speed and electricity consumption
-                rate *= PveSystem.OilRefineryActionSpeedMultiplier;
-            }
-
-            return rate;
-        }
-
-
         protected override void PrepareProtoStaticWorldObject()
         {
             base.PrepareProtoStaticWorldObject();
@@ -240,7 +221,7 @@
             var liquidStateRawPetroleum = privateState.LiquidStateRawPetroleum;
             var liquidStateProcessedGasoline = privateState.LiquidStateGasoline;
             var liquidStateProcessedMineralOil = privateState.LiquidStateMineralOil;
-            
+
             // Force update all recipes:
             // it will auto-detect and verify current recipes for every crafting queue.
             var isLiquidStatesChanged = privateState.IsLiquidStatesChanged;
@@ -271,7 +252,7 @@
                 = liquidStateProcessedGasoline.Amount >= this.LiquidConfigGasoline.Capacity
                   || liquidStateProcessedMineralOil.Amount >= this.LiquidConfigMineralOil.Capacity;
 
-            var isNeedElectricityNow = !isOutputLiquidCapacityFull 
+            var isNeedElectricityNow = !isOutputLiquidCapacityFull
                                        && liquidStateRawPetroleum.Amount > 0;
 
             // Consuming electricity.
@@ -295,12 +276,6 @@
                 // apply extraction rate multiplier (it applies to oil refinery production rate)
                 var deltaTimeLiquidProcessing = deltaTime;
                 deltaTimeLiquidProcessing *= StructureConstants.ManufacturingSpeedMultiplier;
-
-                if (PveSystem.ServerIsPvE)
-                {
-                    // on PvE servers oil refinery has reduced speed and electricity consumption
-                    deltaTimeLiquidProcessing *= PveSystem.OilRefineryActionSpeedMultiplier;
-                }
 
                 // active, we can "transfer" liquids and progress crafting queues for processed liquids
                 // try transfer ("use") raw petroleum bar

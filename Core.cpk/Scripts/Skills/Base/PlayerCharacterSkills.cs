@@ -44,7 +44,7 @@
 
             if (experience > 0)
             {
-                experience *= TechConstants.SkillExperienceGainMultiplier;
+                experience *= TechConstants.ServerSkillExperienceGainMultiplier;
             }
             else
             {

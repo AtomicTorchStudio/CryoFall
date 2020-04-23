@@ -21,6 +21,9 @@
 
         public abstract bool IsCanRender { get; }
 
+        public virtual bool IsCanRenderAndNotSuppressed
+            => !this.IsSuppressed && this.IsCanRender;
+
         public bool IsEnabled
         {
             get => this.isEnabled;
@@ -45,6 +48,8 @@
                 }
             }
         }
+
+        public bool IsSuppressed { get; set; }
 
         public PostEffectsOrder Order
         {

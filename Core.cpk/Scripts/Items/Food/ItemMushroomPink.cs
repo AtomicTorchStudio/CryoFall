@@ -13,6 +13,8 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Lasting;
 
+        public override bool IsAvailableInCompletionist => false;
+
         public override string Name => "Pink mushroom";
 
         public override ushort OrganicValue => 5;

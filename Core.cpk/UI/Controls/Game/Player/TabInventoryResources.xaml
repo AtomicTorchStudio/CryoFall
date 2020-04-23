@@ -6,10 +6,6 @@
                     xmlns:player="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player"
                     mc:Ignorable="d">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/UI/Styles/DefaultStyles.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <GridLength x:Key="PlayerMenuContainerWithLinesFirstColumnWidth">300</GridLength>
 
     <ControlTemplate x:Key="PlayerMenuContainerWithLines">

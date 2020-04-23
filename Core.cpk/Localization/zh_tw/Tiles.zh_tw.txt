@@ -32,7 +32,7 @@ Scripts/Tiles/TileRoads@Name:
 道路
 
 Scripts/Tiles/TileRocky@Name:
-多岩
+崎嶇山脈
 
 Scripts/Tiles/TileRuins@Name:
 遺跡

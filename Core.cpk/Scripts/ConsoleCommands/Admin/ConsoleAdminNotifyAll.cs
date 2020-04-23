@@ -2,6 +2,7 @@
 
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 {
+    using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -18,18 +19,23 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 
         public string Execute(string message)
         {
-            this.CallClient(
+            ConsoleAdminNotifyAllSystem.Instance.CallClient(
                 Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true),
                 _ => _.ClientRemote_ShowNotification(message));
             return null;
         }
 
-        private void ClientRemote_ShowNotification(string message)
+        private class ConsoleAdminNotifyAllSystem : ProtoSystem<ConsoleAdminNotifyAllSystem>
         {
-            NotificationSystem.ClientShowNotification(
-                                  title: null,
-                                  message: message)
-                              .HideAfterDelay(10 * 60);
+            public override string Name => nameof(ConsoleAdminNotifyAllSystem);
+
+            public void ClientRemote_ShowNotification(string message)
+            {
+                NotificationSystem.ClientShowNotification(
+                                      title: null,
+                                      message: message)
+                                  .HideAfterDelay(10 * 60);
+            }
         }
     }
 }

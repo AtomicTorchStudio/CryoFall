@@ -146,7 +146,8 @@
                 this.equipmentContainer,
                 this.currentSkeleton,
                 this.protoCharacterSkeleton,
-                skeletonComponents);
+                skeletonComponents,
+                isPreview: true);
 
             // we don't need these extra components in inventory view
             foreach (var skeletonComponent in skeletonComponents)

@@ -17,7 +17,7 @@
 
         public override string Name => "Broken leg";
 
-        public override double ServerUpdateIntervalSeconds => 0.1;
+        public override double ServerUpdateIntervalSeconds => 0.5;
 
         protected override void PrepareEffects(Effects effects)
         {

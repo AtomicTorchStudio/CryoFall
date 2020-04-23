@@ -3,7 +3,6 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDamageTrackingSystem;
@@ -83,7 +82,7 @@
             deadCharacter.ProtoCharacter.SharedCreatePhysics(deadCharacter);
 
             Action<ICharacter> onCharacterDeath;
-            if (!(deadCharacter.ProtoCharacter is PlayerCharacter))
+            if (deadCharacter.ProtoCharacter is IProtoCharacterMob protoCharacterMob)
             {
                 onCharacterDeath = CharacterDeath;
                 if (onCharacterDeath != null)
@@ -91,7 +90,7 @@
                     Api.SafeInvoke(() => onCharacterDeath(deadCharacter));
                 }
 
-                ReplaceMobWithCorpse(deadCharacter);
+                protoCharacterMob.ServerOnDeath(deadCharacter);
                 return;
             }
 
@@ -165,26 +164,25 @@
                 () => CharacterKilled?.Invoke(attackerCharacter, targetCharacter));
 
             if (attackerCharacter.IsNpc
-                || !(protoSkill is ProtoSkillWeapons protoSkillWeapon))
+                || !targetCharacter.IsNpc)
             {
                 return;
             }
 
-            // give weapon experience for kill
             var playerCharacterSkills = attackerCharacter.SharedGetSkills();
-            protoSkillWeapon.ServerOnKill(playerCharacterSkills, killedCharacter: targetCharacter);
-
-            if (!(targetCharacter.ProtoCharacter is ProtoCharacterMob protoMob))
-            {
-                return;
-            }
 
             // give hunting skill experience for mob kill
-            var experience = SkillHunting.ExperienceForKill;
-            experience *= protoMob.MobKillExperienceMultiplier;
-            if (experience > 0)
+            var huntXP = SkillHunting.ExperienceForKill;
+            huntXP *= ((IProtoCharacterMob)targetCharacter.ProtoGameObject).MobKillExperienceMultiplier;
+            if (huntXP > 0)
             {
-                playerCharacterSkills.ServerAddSkillExperience<SkillHunting>(experience);
+                playerCharacterSkills.ServerAddSkillExperience<SkillHunting>(huntXP);
+            }
+
+            if (protoSkill is ProtoSkillWeapons protoSkillWeapon)
+            {
+                // give weapon experience for kill
+                protoSkillWeapon.ServerOnKill(playerCharacterSkills, killedCharacter: targetCharacter);
             }
         }
 
@@ -201,20 +199,34 @@
 
         private static void DropPlayerLoot(ICharacter character)
         {
+            var containerEquipment = character.SharedGetPlayerContainerEquipment();
+            var containerHand = character.SharedGetPlayerContainerHand();
+            var containerHotbar = character.SharedGetPlayerContainerHotbar();
+            var containerInventory = character.SharedGetPlayerContainerInventory();
+
             if (PveSystem.ServerIsPvE)
             {
                 // don't drop player loot on death in PvE
+                Api.Logger.Important("Player character is dead - reduce durability for the equipped items", character);
+
+                // process items and drop loot
+                ProcessContainerItemsOnDeathInPvE(isEquipmentContainer: true,
+                                                  fromContainer: containerEquipment);
+
+                ProcessContainerItemsOnDeathInPvE(isEquipmentContainer: false,
+                                                  fromContainer: containerHand);
+
+                ProcessContainerItemsOnDeathInPvE(isEquipmentContainer: false,
+                                                  fromContainer: containerHotbar);
+
+                ProcessContainerItemsOnDeathInPvE(isEquipmentContainer: false,
+                                                  fromContainer: containerInventory);
                 return;
             }
 
             Api.Logger.Important("Player character is dead - drop loot", character);
 
             CraftingMechanics.ServerCancelCraftingQueue(character);
-
-            var containerEquipment = character.SharedGetPlayerContainerEquipment();
-            var containerHand = character.SharedGetPlayerContainerHand();
-            var containerHotbar = character.SharedGetPlayerContainerHotbar();
-            var containerInventory = character.SharedGetPlayerContainerInventory();
 
             var characterContainersOccupiedSlotsCount = containerEquipment.OccupiedSlotsCount
                                                         + containerHand.OccupiedSlotsCount
@@ -239,22 +251,22 @@
                 lootContainer,
                 (byte)characterContainersOccupiedSlotsCount);
 
-            // drop loot
-            ProcessContainerItemsOnDeath(isEquipmentContainer: true,
-                                         fromContainer: containerEquipment,
-                                         toContainer: lootContainer);
+            // process items and drop loot
+            ProcessContainerItemsOnDeathInPvP(isEquipmentContainer: true,
+                                              fromContainer: containerEquipment,
+                                              toContainer: lootContainer);
 
-            ProcessContainerItemsOnDeath(isEquipmentContainer: false,
-                                         fromContainer: containerHand,
-                                         toContainer: lootContainer);
+            ProcessContainerItemsOnDeathInPvP(isEquipmentContainer: false,
+                                              fromContainer: containerHand,
+                                              toContainer: lootContainer);
 
-            ProcessContainerItemsOnDeath(isEquipmentContainer: false,
-                                         fromContainer: containerHotbar,
-                                         toContainer: lootContainer);
+            ProcessContainerItemsOnDeathInPvP(isEquipmentContainer: false,
+                                              fromContainer: containerHotbar,
+                                              toContainer: lootContainer);
 
-            ProcessContainerItemsOnDeath(isEquipmentContainer: false,
-                                         fromContainer: containerInventory,
-                                         toContainer: lootContainer);
+            ProcessContainerItemsOnDeathInPvP(isEquipmentContainer: false,
+                                              fromContainer: containerInventory,
+                                              toContainer: lootContainer);
 
             if (lootContainer.OccupiedSlotsCount <= 0)
             {
@@ -272,7 +284,19 @@
             // please note - no need to notify player about the dropped loot, it's automatically done by ClientDroppedItemsNotificationsManager
         }
 
-        private static void ProcessContainerItemsOnDeath(
+        private static void ProcessContainerItemsOnDeathInPvE(bool isEquipmentContainer, IItemsContainer fromContainer)
+        {
+            // decrease durability for all equipped items (which will be dropped as the full loot)
+            using var tempList = Api.Shared.WrapInTempList(fromContainer.Items);
+            foreach (var item in tempList.AsList())
+            {
+                item.ProtoItem.ServerOnCharacterDeath(item,
+                                                      isEquipped: isEquipmentContainer,
+                                                      out _);
+            }
+        }
+
+        private static void ProcessContainerItemsOnDeathInPvP(
             bool isEquipmentContainer,
             IItemsContainer fromContainer,
             IItemsContainer toContainer)
@@ -290,24 +314,6 @@
                     ServerItems.MoveOrSwapItem(item, toContainer, out _);
                 }
             }
-        }
-
-        private static void ReplaceMobWithCorpse(ICharacter deadCharacter)
-        {
-            var position = deadCharacter.Position;
-            var rotationAngleRad = deadCharacter.GetPublicState<ICharacterPublicState>().AppliedInput.RotationAngleRad;
-            var isLeftOrientation = ClientCharacterAnimationHelper.IsLeftHalfOfCircle(
-                angleDeg: rotationAngleRad * MathConstants.RadToDeg);
-            var isFlippedHorizontally = !isLeftOrientation;
-
-            var tilePosition = position.ToVector2Ushort();
-
-            ServerWorld.DestroyObject(deadCharacter);
-            var objectCorpse = ServerWorld.CreateStaticWorldObject<ObjectCorpse>(tilePosition);
-            ObjectCorpse.ServerSetupCorpse(objectCorpse,
-                                           (IProtoCharacterMob)deadCharacter.ProtoCharacter,
-                                           (Vector2F)(position - tilePosition.ToVector2D()),
-                                           isFlippedHorizontally: isFlippedHorizontally);
         }
 
         // "Graveyard" is a technical area in the bottom right corner of the map.

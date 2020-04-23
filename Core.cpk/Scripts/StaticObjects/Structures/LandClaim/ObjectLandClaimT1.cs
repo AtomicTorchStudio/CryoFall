@@ -10,7 +10,7 @@
 
     public class ObjectLandClaimT1 : ProtoObjectLandClaim
     {
-        public override TimeSpan DecayDelayDuration { get; } = TimeSpan.FromHours(32);
+        public override TimeSpan DecayDelayDuration { get; } = TimeSpan.FromHours(56);
 
         public override string Description =>
             "Helps you make your base safer by keeping other survivors from building or deconstructing anything in the surrounding area. Land claim also ensures that your structures do not decay over time.";

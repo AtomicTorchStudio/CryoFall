@@ -9,7 +9,7 @@
             config.Effects
                   .AddStructure<ObjectDisplayCase>();
 
-            config.SetRequiredNode<TechNodeIronSign>();
+            config.SetRequiredNode<TechNodeIronDoor>();
         }
     }
 }

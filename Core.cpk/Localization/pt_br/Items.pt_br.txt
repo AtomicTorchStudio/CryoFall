@@ -76,6 +76,36 @@ Munição modificada de 8 mm contendo uma cavidade fechada com uma pequena quant
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 Munição de toxina de 8 mm
 
+Scripts/Items/Ammo/ItemAmmoArrowIron@Description:
+Flecha com pontas de ferro melhoradas. Ainda não tão boas quanto as armas de fogo, mas muito fáceis de fazer.
+
+Scripts/Items/Ammo/ItemAmmoArrowIron@Name:
+Flecha com ponta de ferro
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
+Flecha simples com ponta de pedra. Mais simples do que isso não existe.
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
+Flecha com ponta de pedra
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
+Granada para fins especiais que dispersa hélio líquido impregnado de partículas de prágmio no momento do impacto para congelar o alvo.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
+Hélio granada
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
+Granada padrão com material altamente explosivo que causa dano a tudo num pequeno raio no ponto de impacto.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Name:
+Granada explosiva
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
+Granada incendiária especial que inflige danos térmicos pesados no momento do impacto.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
+Granada incendiária
+
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Munição padrão para armas de fogo. Adequada apenas para alvos mais fracos, mas simples e barata de produzir.
 
@@ -1268,6 +1298,12 @@ Uma célula de energia universal usada em diversos dispositivos eletrônicos par
 Scripts/Items/Generic/ItemPowerCell@Name:
 Célula de energia
 
+Scripts/Items/Generic/ItemPragmiumHeart@Description:
+Estranho órgão cristalino de formas de vida de prágmio desconhecidas.
+
+Scripts/Items/Generic/ItemPragmiumHeart@Name:
+Coração de prágmio
+
 Scripts/Items/Generic/ItemPreservative@Description:
 Conservante alimentar. Pode-se adicionar a alimentos embalados, permitindo que durem muito mais tempo.
 
@@ -1637,6 +1673,12 @@ O remédio hemostático é usado para estancar sangramento e reduzir parcialment
 Scripts/Items/Medical/ItemHemostatic@Name:
 Remédio hemostático
 
+Scripts/Items/Medical/ItemHerbBlue@Description:
+Erva medicinal utilizada como catalisador de receitas médicas complexas. Não deve ser usada in natura, já que contém toxinas.
+
+Scripts/Items/Medical/ItemHerbBlue@Name:
+Erva azul
+
 Scripts/Items/Medical/ItemHerbGreen@Description:
 Erva medicinal com propriedades curativas e antibactericidas. Pode ser usada in natura, mas é muito mais potente quando devidamente preparada.
 
@@ -1874,6 +1916,12 @@ Precisa reabastecer.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Sem combustível
 
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
+Esta frágil machadinha de prágmio utiliza a mecânica de ressonância molecular, tornando-a muito mais rápida do que as alternativas convencionais.
+
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
+Machadinha de prágmio
+
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 A picareta de ferro pode ser usada para garimpar depósitos minerais. É mais rápida e resistente do que a de pedra.
 
@@ -1982,11 +2030,29 @@ Espada-laser (amarela)
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Arma de curto alcance extremamente poderosa. Requer energia para ser operada.
 
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Tecnologia de antigamente. Ainda funciona tão bem quanto antes.
+
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Balestra
+
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
 Arma rústica. Usa cartucho de papel como munição. Acomoda duas cargas que podem ser disparadas com muita rapidez.
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 Pistola de pederneira
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Lançador de granadas simples que dispara munição de grande calibre especialmente concebida para explodir no momento do impacto, provocando muito dano.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Lança-granadas
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Lançador de granadas do tipo revólver. Ideal para missões de assalto ou para confrontar alvos fortemente blindados.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Lança-granadas múltiplo
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
 Pistola criada para utilizar cartuchos de 10 mm.
@@ -2048,11 +2114,23 @@ Uma arma de fogo de repetição simples com um cilindro giratório que acomoda a
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 Revólver
 
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
+Fuzil de precisão automático leve desenvolvido para projéteis de 10 mm.
+
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
+Fuzil leve
+
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
 Fuzil pesado criado para utilizar poderosos cartuchos de calibre .300.
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 Fuzil pesado
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
+Fuzil primitivo de ação de ferrolho desenvolvido para projéteis de uso comum de 8 mm.
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
+Fuzil de ação de ferrolho
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
 Espingarda das antigas. Usa munição calibre 12.

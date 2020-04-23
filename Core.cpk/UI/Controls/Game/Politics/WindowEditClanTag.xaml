@@ -1,0 +1,57 @@
+﻿<core:BaseUserControlWithWindow x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics.WindowEditClanTag"
+                                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+                                x:Name="UserControl"
+                                mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
+                                xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    <core:GameWindow x:Name="GameWindow"
+                     Width="250"
+                     CloseByEscapeKey="True"
+                     FocusOnControl="{Binding ElementName=TextBoxServerHost}">
+        <Grid x:Name="LayoutRoot">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{x:Static loc:CoreStrings.ClanTag_Select}"
+                       FontWeight="Bold"
+                       FontSize="13"
+                       Foreground="{StaticResource WindowTitleForeground}"
+                       HorizontalAlignment="Center" 
+                       Margin="0,0,0,5" />
+
+            <core:FormattedTextBlock
+                Content="{x:Static loc:CoreStrings.ClanTag_Requirements}"
+                FontSize="12"
+                Grid.Row="1"
+                TextWrapping="Wrap" />
+
+            <TextBox x:Name="TextBox"
+                     Grid.Row="2"
+                     Margin="0,10"
+                     MaxLength="4"
+                     VerticalAlignment="Center" />
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="ButtonAction"
+                        Content="{x:Static loc:CoreStrings.Button_Save}" />
+
+                <Button x:Name="ButtonCancel"
+                        Grid.Column="2"
+                        Content="{x:Static loc:CoreStrings.Button_Cancel}" />
+            </Grid>
+        </Grid>
+    </core:GameWindow>
+</core:BaseUserControlWithWindow>

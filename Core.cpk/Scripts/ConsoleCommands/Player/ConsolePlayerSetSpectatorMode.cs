@@ -13,7 +13,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
         public override string Description
             => "Toggles spectator mode.";
 
-        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
+        // this command is available for operators and moderators
+        public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerModerator;
 
         public override string Name => "player.setSpectatorMode";
 

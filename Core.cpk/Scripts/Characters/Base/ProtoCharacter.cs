@@ -61,8 +61,6 @@
 
         public virtual double StatDefaultHealthMax => 100;
 
-        public abstract double StatDefaultStaminaMax { get; }
-
         public abstract double StatHealthRegenerationPerSecond { get; }
 
         /// <inheritdoc />
@@ -72,8 +70,6 @@
         /// Used when the character is in the run mode as multiplier to its speed.
         /// </summary>
         public virtual double StatMoveSpeedRunMultiplier => 2;
-
-        public abstract double StatStaminaRegenerationPerSecond { get; }
 
         public IProtoCharacterSkeleton ClientGetCurrentProtoSkeleton(ICharacter character)
         {
@@ -160,6 +156,7 @@
             WeaponFinalCache weaponCache,
             IWorldObject targetObject,
             double damagePreMultiplier,
+            double damagePostMultiplier,
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
@@ -168,6 +165,7 @@
                 targetCharacter,
                 weaponCache,
                 damagePreMultiplier,
+                damagePostMultiplier,
                 out var isHit,
                 out damageApplied);
 
@@ -195,6 +193,15 @@
             this.ProtoCharacterDefaultEffects = effects.ToReadOnly();
         }
 
+        protected virtual void ClientCreateOverlayControl(ICharacter character)
+        {
+            Client.UI.AttachControl(
+                character,
+                new CharacterOverlayControl(character),
+                positionOffset: (0, character.ProtoCharacter.CharacterWorldHeight),
+                isFocusable: false);
+        }
+
         protected override void ClientInitialize(ClientInitializeData data)
         {
             base.ClientInitialize(data);
@@ -204,12 +211,7 @@
 
             if (!character.IsCurrentClientCharacter)
             {
-                var yOffset = character.ProtoCharacter.CharacterWorldHeight;
-                clientState.HealthbarControl = Client.UI.AttachControl(
-                    character,
-                    new CharacterOverlayControl(character),
-                    positionOffset: (0, yOffset),
-                    isFocusable: false);
+                this.ClientCreateOverlayControl(character);
             }
 
             publicState.ClientSubscribe(_ => _.IsDead,
@@ -255,14 +257,10 @@
 
         protected virtual void FillDefaultEffects(Effects effects)
         {
-            effects.AddValue(this, StatName.MoveSpeed,                    this.StatMoveSpeed);
-            effects.AddValue(this, StatName.MoveSpeedRunMultiplier,       this.StatMoveSpeedRunMultiplier);
-            effects.AddValue(this, StatName.StaminaRegenerationPerSecond, this.StatStaminaRegenerationPerSecond);
-
-            effects.AddValue(this, StatName.HealthRegenerationPerSecond, this.StatHealthRegenerationPerSecond);
-
-            effects.AddValue(this, StatName.HealthMax,  this.StatDefaultHealthMax);
-            effects.AddValue(this, StatName.StaminaMax, this.StatDefaultStaminaMax);
+            effects.AddValue(this, StatName.HealthMax, this.StatDefaultHealthMax)
+                   .AddValue(this, StatName.HealthRegenerationPerSecond, this.StatHealthRegenerationPerSecond)
+                   .AddValue(this, StatName.MoveSpeed,                   this.StatMoveSpeed)
+                   .AddValue(this, StatName.MoveSpeedRunMultiplier,      this.StatMoveSpeedRunMultiplier);
         }
 
         protected void PlaySound(CharacterSound soundKey, ICharacter character)

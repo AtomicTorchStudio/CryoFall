@@ -5,7 +5,6 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
-    using System.Windows.Shapes;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Perks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
@@ -28,7 +27,11 @@
         public const string Notification_NewResourceAvailable_Title =
             "New resource available";
 
-        private const string TooltipDepositSearchAreaFormat = "Search area: {0}";
+        public const string TooltipDepositSearchAreaFormat = "Search area: {0}";
+
+        private readonly bool drawSearchAreas;
+
+        private readonly bool enableNotifications;
 
         private readonly List<(WorldMapResourceMark mark, HUDNotificationControl notification)> notifications
             = new List<(WorldMapResourceMark mark, HUDNotificationControl notification)>();
@@ -41,9 +44,14 @@
 
         private readonly WorldMapController worldMapController;
 
-        public ClientWorldMapResourcesVisualizer(WorldMapController worldMapController)
+        public ClientWorldMapResourcesVisualizer(
+            WorldMapController worldMapController,
+            bool enableNotifications,
+            bool drawSearchAreas = true)
         {
             this.worldMapController = worldMapController;
+            this.enableNotifications = enableNotifications;
+            this.drawSearchAreas = drawSearchAreas;
 
             WorldMapResourceMarksSystem.ClientMarkAdded += this.MarkAddedHandler;
             WorldMapResourceMarksSystem.ClientMarkRemoved += this.MarkRemovedHandler;
@@ -158,25 +166,28 @@
             this.worldMapController.AddControl(mapControl);
             this.visualizedMarks.Add((mark, mapControl));
 
-            if (mark.SearchAreaCirclePosition != default)
+            if (mark.SearchAreaCirclePosition != default
+                && this.drawSearchAreas)
             {
                 // add a circle for the search area
-                var circleControl = new Ellipse()
+                var circleRadius = mark.SearchAreaCircleRadius;
+                var control = new WorldMapMarkEvent
                 {
-                    Width = 2 * mark.SearchAreaCircleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
-                    Height = 2 * mark.SearchAreaCircleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
-                    Fill = new SolidColorBrush(Color.FromArgb(0x44,   0xBB, 0x66, 0x66)),
-                    Stroke = new SolidColorBrush(Color.FromArgb(0x77, 0xBB, 0x66, 0x66)),
-                    StrokeThickness = 2
+                    Width = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
+                    Height = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
+                    EllipseColorStroke = Color.FromArgb(0x99, 0xBB, 0x66, 0x66),
+                    EllipseColorStart = Color.FromArgb(0x00, 0xBB, 0x66, 0x66),
+                    EllipseColorEnd = Color.FromArgb(0x55,   0xBB, 0x66, 0x66)
                 };
+
                 var circleCanvasPosition = this.worldMapController.WorldToCanvasPosition(
                     mark.SearchAreaCirclePosition.ToVector2D());
-                Canvas.SetLeft(circleControl, circleCanvasPosition.X - circleControl.Width / 2);
-                Canvas.SetTop(circleControl, circleCanvasPosition.Y - circleControl.Height / 2);
-                Panel.SetZIndex(circleControl, 1);
-                this.worldMapController.AddControl(circleControl, scaleWithZoom: false);
-                this.visualizedSearchAreas.Add((mark, circleControl));
-                ToolTipServiceExtend.SetToolTip(circleControl,
+                Canvas.SetLeft(control, circleCanvasPosition.X - control.Width / 2);
+                Canvas.SetTop(control, circleCanvasPosition.Y - control.Height / 2);
+                Panel.SetZIndex(control, 1);
+                this.worldMapController.AddControl(control, scaleWithZoom: false);
+                this.visualizedSearchAreas.Add((mark, control));
+                ToolTipServiceExtend.SetToolTip(control,
                                                 string.Format(TooltipDepositSearchAreaFormat,
                                                               mark.ProtoWorldObject.Name));
             }
@@ -237,6 +248,11 @@
 
         private void TryCreateNotification(WorldMapResourceMark mark)
         {
+            if (!this.enableNotifications)
+            {
+                return;
+            }
+
             var timeRemains = (int)WorldMapResourceMarksSystem.SharedCalculateTimeToClaimLimitRemovalSeconds(
                 mark.ServerSpawnTime);
 

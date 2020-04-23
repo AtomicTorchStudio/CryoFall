@@ -9,22 +9,28 @@
     xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map.Data"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:map="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map"
     x:Name="UserControl"
     Focusable="False"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelControlWorldMap, IsDesignTimeCreatable=True}">
-    <core:PanningPanel PanningWidth="1024"
+
+    <core:PanningPanel x:Name="PanningPanel"
+                       PanningWidth="1024"
                        PanningHeight="1024"
-                       x:Name="PanningPanel"
                        SnapsToDevicePixels="False">
         <core:PanningPanel.Template>
             <ControlTemplate TargetType="{x:Type core:PanningPanel}">
+                <!-- The background color is the color which is used for the unexplored tiles -->
                 <Grid x:Name="LayoutRoot"
-                      Background="{TemplateBinding Background}">
+                      Background="#CC000000"
+                      Opacity="0.8">
                     <Canvas x:Name="CanvasContentWrapper"
-                            Background="Black">
+                            Background="Transparent">
                         <Canvas x:Name="CanvasContent"
                                 RenderTransformOrigin="0.5,0.5">
                             <Rectangle Width="{TemplateBinding PanningWidth}"
@@ -128,6 +134,35 @@
                                        Text="{Binding MapExploredPercent, StringFormat={}~{0}%}" />
                         </Grid>
                     </Border>
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="VisibilityStates">
+                            <VisualStateGroup.Transitions>
+                                <VisualTransition To="FullOpacity" GeneratedDuration="0:0:0.1" />
+                                <VisualTransition To="SemiTransparent" GeneratedDuration="0:0:0.2" />
+                            </VisualStateGroup.Transitions>
+                            <VisualState x:Name="SemiTransparent" />
+                            <VisualState x:Name="FullOpacity">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" />
+                                </Storyboard>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+
+                    <i:Interaction.Triggers>
+                        <ei:DataTrigger
+                            Binding="{Binding IsFullOpacityNow, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type map:ControlWorldMap}}}"
+                            Value="True">
+                            <ei:GoToStateAction StateName="FullOpacity" />
+                        </ei:DataTrigger>
+                        <ei:DataTrigger
+                            Binding="{Binding IsFullOpacityNow, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type map:ControlWorldMap}}}"
+                            Value="False">
+                            <ei:GoToStateAction StateName="SemiTransparent" />
+                        </ei:DataTrigger>
+                    </i:Interaction.Triggers>
+
                 </Grid>
             </ControlTemplate>
         </core:PanningPanel.Template>

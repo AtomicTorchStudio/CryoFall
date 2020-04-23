@@ -11,6 +11,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.Party;
+    using AtomicTorch.CBND.CoreMod.Systems.PlayerReportSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -72,6 +73,8 @@
         public BaseCommand CommandMention => new ActionCommand(this.ExecuteCommandMention);
 
         public BaseCommand CommandOpenPrivateChat => new ActionCommand(this.ExecuteCommandOpenPrivateChat);
+
+        public BaseCommand CommandReport => new ActionCommand(this.ExecuteCommandReport);
 
         public BaseCommand CommandToggleBlock => new ActionCommand(this.ExecuteCommandToggleBlock);
 
@@ -262,6 +265,11 @@
         private void ExecuteCommandOpenPrivateChat()
         {
             ChatSystem.ClientOpenPrivateChat(withCharacterName: this.chatEntry.From);
+        }
+
+        private void ExecuteCommandReport()
+        {
+            PlayerReportSystem.ClientReportChatEntry(this.chatEntry);
         }
 
         private void ExecuteCommandToggleBlock()

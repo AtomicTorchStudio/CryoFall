@@ -1,7 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
     public class QuestCraftATorch : ProtoQuest
     {
@@ -16,15 +18,14 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementCraftRecipe.RequireHandRecipe<RecipeTorch>())
-                .Add(RequirementUseItem.Require<ItemTorch>());
+            tasks
+                .Add(TaskCraftRecipe.RequireHandRecipe<RecipeTorch>())
+                .Add(TaskUseItem.Require<ItemTorch>());
 
             prerequisites
-                .Add<QuestLearnBasicBuilding>()
-                .Add<QuestCookAnyFood>();
+                .Add<QuestMineAnyMineral>();
         }
     }
 }

@@ -23,12 +23,6 @@
             element.SetValue(IsEnabledProperty, value);
         }
 
-        private static void FrameworkElement_Loaded(object sender, RoutedEventArgs e)
-        {
-            var child = (FrameworkElement)VisualTreeHelper.GetChild((FrameworkElement)sender, 0);
-            child.DataContext = new ViewModelScrollViewerVerticalTemplate((ScrollViewer)sender);
-        }
-
         private static void PropertyChangedCallback(
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs e)
@@ -38,8 +32,14 @@
                 throw new Exception("You cannot disable this, only enable");
             }
 
-            var frameworkElement = (FrameworkElement)dependencyObject;
-            frameworkElement.Loaded += FrameworkElement_Loaded;
+            var scrollViewer = (ScrollViewer)dependencyObject;
+            scrollViewer.Loaded += ScrollViewerLoadedHandler;
+        }
+
+        private static void ScrollViewerLoadedHandler(object sender, RoutedEventArgs e)
+        {
+            var child = (FrameworkElement)VisualTreeHelper.GetChild((FrameworkElement)sender, 0);
+            child.DataContext = new ViewModelScrollViewerVerticalTemplate((ScrollViewer)sender);
         }
     }
 }

@@ -15,11 +15,12 @@
 
         public override byte ContainerFuelSlotsCount => 1;
 
-        public override string Description => "Allows extraction of lithium salts from geothermal springs.";
+        public override string Description =>
+            "Allows extraction of lithium salts from underground reservoir or directly from a geothermal spring for increased efficiency.";
 
         public override double LiquidCapacity => 100;
 
-        public override double LiquidProductionAmountPerSecond => 1;
+        public override double LiquidProductionAmountPerSecond => 0.25;
 
         public override string Name => "Lithium salts extractor";
 

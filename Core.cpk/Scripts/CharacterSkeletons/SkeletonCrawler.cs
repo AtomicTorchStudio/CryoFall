@@ -9,6 +9,8 @@
     {
         public override double DefaultMoveSpeed => 1.5;
 
+        public override double IconScale => 0.8;
+
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("Crawler/Back");
 

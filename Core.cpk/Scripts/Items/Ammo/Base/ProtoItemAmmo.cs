@@ -1,10 +1,13 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Ammo
 {
     using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
+    using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public abstract class ProtoItemAmmo
         <TPrivateState,
@@ -39,8 +42,40 @@
 
         public virtual WeaponFireScatterPreset? OverrideFireScatterPreset { get; }
 
-        public virtual void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
+        public virtual void ClientOnMiss(WeaponFinalCache weaponCache, Vector2D endPosition)
         {
+        }
+
+        public virtual void ClientOnObjectHit(
+            WeaponFinalCache weaponCache,
+            IWorldObject damagedObject,
+            double damage,
+            WeaponHitData hitData,
+            ref bool isDamageStop)
+        {
+        }
+
+        public virtual void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)
+        {
+        }
+
+        public virtual void ServerOnMiss(WeaponFinalCache weaponCache, Vector2D endPosition)
+        {
+        }
+
+        public virtual void ServerOnObjectHit(
+            WeaponFinalCache weaponCache,
+            IWorldObject damagedObject,
+            double damage,
+            WeaponHitData hitData,
+            ref bool isDamageStop)
+        {
+            if (damagedObject is ICharacter damagedCharacter)
+            {
+                this.ServerOnCharacterHit(damagedCharacter,
+                                          damage,
+                                          ref isDamageStop);
+            }
         }
 
         protected abstract void PrepareDamageDescription(

@@ -60,6 +60,9 @@
             }
         }
 
+        [ViewModelNotAutoDisposeField]
+        public IMenu MenuInstance => this.menu;
+
         public static void CloseAll()
         {
             foreach (var menu in RegisteredMenus)

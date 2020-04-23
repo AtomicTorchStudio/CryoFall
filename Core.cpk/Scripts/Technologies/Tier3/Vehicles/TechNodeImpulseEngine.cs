@@ -7,7 +7,7 @@
         protected override void PrepareTechNode(Config config)
         {
             config.Effects
-                .AddRecipe<RecipeImpulseEngine>();
+                  .AddRecipe<RecipeImpulseEngine>();
 
             config.SetRequiredNode<TechNodeVehicleAssemblyBay>();
         }

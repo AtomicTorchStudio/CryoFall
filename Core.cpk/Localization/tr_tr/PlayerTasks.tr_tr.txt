@@ -1,0 +1,63 @@
+﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
+İnşa et: {0}
+
+Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
+Tamamla: {0} (teknoloji sınıfı)
+
+Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
+üzerinde {0}
+
+Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
+Üret
+
+Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
+Yok et: {0}
+
+Scripts/PlayerTasks/TaskGather@DescriptionFormat:
+Topla: {0}
+
+Scripts/PlayerTasks/TaskHaveItem@DescriptionFormat:
+Biriktir: {0}
+
+Scripts/PlayerTasks/TaskHaveItemEquipped@DescriptionFormat:
+Kuşan: {0}
+
+Scripts/PlayerTasks/TaskHaveSkill@DescriptionFormat:
+Yeteneği öğren: {0} / {1} seviyesine
+
+Scripts/PlayerTasks/TaskHaveSkills@DescriptionFormat:
+Yetenekleri öğren: {0} / {1} seviyesine
+
+Scripts/PlayerTasks/TaskHaveTechGroup@DescriptionFormat:
+Teknoloji sınıfının kilidini aç: {0}
+
+Scripts/PlayerTasks/TaskHaveTechGroups@DescriptionFormat:
+Teknoloji sınıflarının {0} kilidini aç: {1}
+
+Scripts/PlayerTasks/TaskHaveTechNode@DescriptionFormat:
+Öğren: {0} ({1} teknoloji sınıfı içinde)
+
+Scripts/PlayerTasks/TaskKill@DescriptionFormat:
+Öldür: {0}
+
+Scripts/PlayerTasks/TaskKillAny@DescriptionFormat:
+Öldür: {0}
+
+Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
+İmal et: {0}
+
+Scripts/PlayerTasks/TaskRun@DescriptionText:
+10 metre depar at
+
+Scripts/PlayerTasks/TaskSortItemsContainer@DescriptionText:
+Envanterdeki eşyaları sırala
+
+Scripts/PlayerTasks/TaskUseItem@DescriptionFormat:
+Kullan: {0}
+
+Scripts/PlayerTasks/TaskVisitTile@DescriptionFormat:
+Ziyaret et: {0}
+
+Scripts/PlayerTasks/TaskVisitZone@DescriptionFormat:
+Ziyaret et: {0}
+

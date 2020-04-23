@@ -62,14 +62,12 @@
             Logger.Info(
                 $"Power grid merged. Electricity merged: {fromState.ElectricityAmount:F0}+{toState.ElectricityAmount:F0} with 50% penalty. {fromPowerGrid} and {toPowerGrid}");
 
-            // Combine charge from both power grids but decrease it on 50
-            // % to prevent exploit with separate power-generating bases combined/split.
-            toState.ElectricityAmount = 0.5
-                                        * (fromState.ElectricityAmount
-                                           + toState.ElectricityAmount);
+            // Combine charge from both power grids.
+            // (due to base size limit of 3x3 it's no longer reasonable to exploit this
+            // by merging small generation base with the primary base)
+            toState.ElectricityAmount = fromState.ElectricityAmount + toState.ElectricityAmount;
 
-            Logger.Info(
-                $"Electricity merge result: {toState.ElectricityAmount:F0} in {toPowerGrid}");
+            Logger.Info($"Electricity merge result: {toState.ElectricityAmount:F0} in {toPowerGrid}");
         }
 
         public override void ServerOnDestroy(ILogicObject gameObject)

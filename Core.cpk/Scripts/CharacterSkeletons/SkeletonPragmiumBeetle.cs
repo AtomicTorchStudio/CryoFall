@@ -4,10 +4,15 @@
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class SkeletonPragmiumBeetle : ProtoCharacterSkeletonAnimal
     {
         public override double DefaultMoveSpeed => 1.35;
+
+        public override Vector2D IconOffset => (-10, 15);
+
+        public override double IconScale => 0.8;
 
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("PragmiumBeetle/Back");

@@ -34,8 +34,9 @@
             </Grid>
 
             <Control Grid.Row="0"
-                     Grid.RowSpan="2
-                     " Grid.ColumnSpan="2"
+                     Grid.RowSpan="2"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
                      Template="{StaticResource PlayerMenuContainerWithLines}" />
 
         </Grid>

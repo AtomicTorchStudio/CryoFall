@@ -21,11 +21,17 @@
             IItem item,
             ICharacter character,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview)
         {
-            base.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
+            base.ClientSetupSkeleton(item,
+                                     character,
+                                     skeletonRenderer,
+                                     skeletonComponents,
+                                     isPreview);
 
-            if (character == null
+            if (isPreview
+                || character == null
                 || !character.IsCurrentClientCharacter)
             {
                 return;
@@ -40,7 +46,7 @@
         /// <summary>
         /// It increases ambient light for the lighting system during the night.
         /// </summary>
-        private class ClientComponentArtificialRetinaEffect : ClientComponent
+        public class ClientComponentArtificialRetinaEffect : ClientComponent
         {
             private const double AdditionalAmbientLight = 0.8;
 

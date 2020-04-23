@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.SoundPresets;

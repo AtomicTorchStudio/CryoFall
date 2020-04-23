@@ -109,8 +109,6 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
-            tileRequirements.Add(LandClaimSystem.ValidatorIsOwnedArea);
-
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 10;

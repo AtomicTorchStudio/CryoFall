@@ -72,14 +72,15 @@
         {
             if (!isEquipped)
             {
-                shouldDrop = true;
+                // drop unequipped implant only if full loot is enabled
+                shouldDrop = ItemConstants.ServerPvpIsFullLootEnabled;
                 return;
             }
 
             // equipped implants never drop on death
             shouldDrop = false;
 
-            // durability reduced on death
+            // reduce equipped item's durability on death
             var fraction = MathHelper.Clamp(this.DurabilityFractionReduceOnDeath, 0, 1);
             var durabilityDelta = this.DurabilityMax * fraction;
             ItemDurabilitySystem.ServerModifyDurability(item,

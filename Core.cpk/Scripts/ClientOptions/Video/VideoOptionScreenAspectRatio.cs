@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.GameApi;
 
-    [PrototypeIgnoredForNetwork]
     public class VideoOptionScreenAspectRatio
         : ProtoOptionCombobox<
             VideoOptionsCategory,
@@ -16,7 +15,7 @@
             [Description(CoreStrings.TitleModeAuto)]
             Auto,
 
-            [Description("16:9 (PvP max view)")]
+            [Description("16:9 (PvP maximum view)")]
             Force16To9
         }
 

@@ -36,6 +36,8 @@
 
         public override string Name => "Heat";
 
+        public override double ServerUpdateIntervalSeconds => 0.1;
+
         protected override StatName DefenseStatName => StatName.DefenseHeat;
 
         /// <summary>

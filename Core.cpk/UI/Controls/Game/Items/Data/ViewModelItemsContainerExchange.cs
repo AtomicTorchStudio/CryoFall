@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Managers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -38,6 +39,8 @@
             this.Container = (IClientItemsContainer)container;
 
             this.enableShortcuts = enableShortcuts;
+
+            this.IsActive = !ItemsContainerExchangeControl.IsEnabledOnlyWhenLoaded;
         }
 
         public BaseCommand CommandMatch => new ActionCommandWithParameter(this.ExecuteCommandMatch);
@@ -80,7 +83,6 @@
 
                 if (this.isActive)
                 {
-                    // setup shortcuts
                     var character = ClientCurrentCharacterHelper.Character;
                     ClientContainersExchangeManager.Register(
                         this,
@@ -91,10 +93,12 @@
                             character.SharedGetPlayerContainerHotbar()
                         });
 
+                    // setup shortcuts
                     // ReSharper disable once CanExtractXamlLocalizableStringCSharp
                     this.inputListener = ClientInputContext
                                          .Start("Container exchange")
-                                         .HandleButtonDown(GameButton.ContainerTakeAll, this.ExecuteCommandTakeAll)
+                                         .HandleButtonDown(GameButton.ContainerTakeAll,
+                                                           this.ExecuteCommandTakeAll)
                                          .HandleButtonDown(GameButton.ContainerMoveItemsMatchDown,
                                                            this.ExecuteCommandMatchDown)
                                          .HandleButtonDown(GameButton.ContainerMoveItemsMatchUp,

@@ -1,0 +1,18 @@
+﻿Scripts/Events/EventBossPragmiumQueen@Description:
+`Прагмиевая королева выползла на поверхность.
+[br]Храбрейших из героев ждет ценная добыча!`
+
+Scripts/Events/EventMeteoriteDrop@Description:
+`В зону, обозначенную на карте, упали метеориты.
+[br]Поспешите добыть редкие минералы!`
+
+Scripts/Events/EventMigration@Description:
+Похоже, местные биологические виды мигрируют в другую зону. Это отличная возможность для охоты.
+
+Scripts/Events/EventSpaceDrop@Description:
+`В зону, отмеченную на карте, упали обломки из космоса.
+[br]Поспешите, вдруг там есть что-то ценное!`
+
+Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
+Прогресс: {0}/{1}
+

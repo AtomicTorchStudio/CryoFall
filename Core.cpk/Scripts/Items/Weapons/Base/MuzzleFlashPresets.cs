@@ -54,6 +54,9 @@
                      .Set(textureAtlas: MuzzleFlashAtlases.AtlasNoSmokeLarge,
                           lightPower: 8);
 
+        public static readonly IMuzzleFlashDescriptionReadOnly None
+            = new MuzzleFlashDescription();
+
         // Primitive weapons
         public static readonly IMuzzleFlashDescriptionReadOnly PrimitivePistol
             = Default.Clone()

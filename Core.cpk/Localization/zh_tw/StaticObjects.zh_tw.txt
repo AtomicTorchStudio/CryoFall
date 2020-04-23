@@ -61,6 +61,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
 收集
 
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Hack:
+入侵
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 互動
 
@@ -142,11 +145,8 @@ Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 草
 
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-大垃圾堆
-
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
-小垃圾堆
+Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
+垃圾堆
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 石頭
@@ -216,6 +216,15 @@ Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 裂縫
+
+Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
+隕石
+
+Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
+普拉格女皇屍體
+
+Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
+太空殘骸
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 比木桶更寬敞，更堅固。適用于儲存大量液體。
@@ -345,25 +354,25 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 工作臺
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-比簡單的木箱提供更多的空間，更難以破壞。
+比簡單的木箱提供更多的空間。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
 鐵箱
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
-存儲商品的最佳方式之一。可以一定程度上保障物品安全，並擁有最大的空間。
+鋼箱擁有簡易容器中最大的容量，允許你將大量物品存放在一處。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
 鋼箱
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
-超大箱子，方便安全地存放大量物品。
+超大箱子，方便地存放大量物品。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
 大箱子
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-這是存放個人財產的最簡單的箱子。但是很容易被摧毀。
+這是存放個人財產的最簡單的箱子。
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
 木箱子
@@ -380,16 +389,58 @@ Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 裝甲保險箱
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
+東方風格的祭壇，可以焚香。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
+香壇
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 無論這個旗幟象徵著什麼 — 重點是它看起來很酷！
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
-紅色旗幟
+旗幟
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
+經典浴缸，滿足所有衛生需求。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
+浴缸
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
+沒有書架，不算房間。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
+書架
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
+繪有老虎的古風屏風。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Name:
+屏風
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Description:
+看起來很土豪的金幣堆。把它放在你的保險庫裡！
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
+金幣堆
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
+製作精良，魅力無窮的黑色高級鋼琴。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
+鋼琴
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
+用這個奢華的地毯展示自己的獵物和狩獵技巧。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Name:
+熊皮地毯
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Description:
 這種豪華的地毯可以使任何房間感覺更暖更好。
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Name:
 地毯
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
@@ -397,6 +448,12 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 尖刺顱骨
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Description:
+又軟又舒適，起居室必備。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Name:
+沙發
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 展示你的財富。 只有真正的有錢人才能造得出這樣的東西。
@@ -409,6 +466,30 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Desc
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 普拉格雕像
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
+歐式桌子。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Name:
+桌子
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Description:
+理想的大殿王座。讓那些農民知道誰是他們的老大。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Name:
+王座
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
+記得把這個放在通風好的房間裡。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
+馬桶
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
+極其珍貴的裝飾罐。
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
+罐
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 已經有地板裝飾。
@@ -639,7 +720,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
 電熔爐
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
-允許從地熱泉中提取鋰鹽。
+使你可以從地下資源點或溫泉直接高效採集鋰鹽。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 鋰鹽提取器
@@ -660,7 +741,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 覆土箱
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-可以在天然油田上建造，直接從地下提取原油。
+使你可以從地下資源點或油田直接高效採集石油。
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 油泵
@@ -704,11 +785,17 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 井
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-提取器需要地熱泉。
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_CannotBuildTooCloseToDeposit:
+過於靠近資源點。
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-油泵需要天然油田。
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_TooCloseToDepletedDeposit:
+過於靠近已枯竭資源點。
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorTooCloseToAnotherExtractor:
+過於靠近另一個提取器
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooCloseToAnotherOilPump:
+過於靠近另一個石油泵。
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 這種地面類型無法挖掘地下水。
@@ -967,6 +1054,9 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 需要農田。
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
+藍色草藥
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
 綠草藥

@@ -10,6 +10,19 @@ Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUs
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 {0}を使用できません
 
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
+`しばらく活動を休止していたようですね。
+[br]喉の渇きと飢えは休止しています。`
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
+チャット、製作、消耗品の使用は許可されています。
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part3:
+それ以外の操作をすると、AFKモードは無効になります。
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Title:
+AFKモード
+
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
 `{0}秒後にベッドで復活することができます。
 [br]または、今すぐランダム地点で復活することもできます。`
@@ -90,6 +103,9 @@ Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 ローカル
 
+Scripts/Systems/Chat/ChatRoom/ChatRoomTrade@Title:
+取引
+
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
 そこには建てられません
 
@@ -156,7 +172,7 @@ Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_LandClaimAmountLimitE
 [br]新しい技術を研究することによってその数を増やすことができます。`
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_NeedXenogeologyTech:
-異世界地質学 (レベル 3) を研究して油田とリチウム埋蔵地を所有するか、その近くに所有地を配置してください。
+油田とリチウム埋蔵地を所有するか、その近くに所有地標を設置するには、異世界地質学 (レベル 3) を研究する必要があります。
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_RaidUnderWay:
 `襲撃を受けています。
@@ -251,6 +267,18 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 招待したプレイヤーはオフラインです。オンラインのプレイヤーだけを招待することができます。
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_AreYouSure:
+以下のメッセージを報告してもよろしいでしょうか？
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_CommunityServerDisclaimer:
+[b]注意：[/b]あなたはコミュニティサーバーでプレイしているので、チャットのモデレーションはサーバー所有者の責任です。通常、チャットはモデレートされません。
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_OfficialServersDisclaimer:
+[b]注意：[/b]公式サーバーはモデレートされていません。
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_Title:
+メッセージを報告
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
 やり取りできません。遠すぎるか、建物にアクセスできません。
@@ -458,6 +486,9 @@ Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 アクセス権を持っていません！
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
+アクセスリストのサイズ制限を超えました。
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
 所有者リストを編集することはできません。

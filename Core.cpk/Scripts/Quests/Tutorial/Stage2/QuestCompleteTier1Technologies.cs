@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Construction;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Cooking;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Defense;
@@ -19,15 +20,15 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementCompleteTechGroup.Require<TechGroupConstruction>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupIndustry>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupFarming>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupCooking>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupOffense>())
-                .Add(RequirementCompleteTechGroup.Require<TechGroupDefense>());
+            tasks
+                .Add(TaskCompleteTechGroup.Require<TechGroupConstruction>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupIndustry>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupFarming>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupCooking>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupOffense>())
+                .Add(TaskCompleteTechGroup.Require<TechGroupDefense>());
 
             prerequisites
                 .Add<QuestExploreBiomes2>()

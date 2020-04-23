@@ -3,7 +3,6 @@
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
 {
     using AtomicTorch.CBND.CoreMod.Systems.Console;
-    using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -20,34 +19,10 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Admin
         {
             foreach (var protoZone in Api.FindProtoEntities<IProtoZone>())
             {
-                this.ExecuteZoneScripts(protoZone);
+                ConsoleAdminSpawnZone.ExecuteZoneScripts(protoZone);
             }
 
             return "All spawn scripts executed";
-        }
-
-        private void ExecuteZoneScripts(
-            IProtoZone protoZone,
-            bool isInitialSpawn = false)
-        {
-            var serverZoneInstance = protoZone.ServerZoneInstance;
-            if (protoZone.AttachedScripts.Count == 0)
-            {
-                // No scripts attached to this zone
-                return;
-            }
-
-            var trigger = isInitialSpawn
-                              ? (ProtoTrigger)Api.GetProtoEntity<TriggerWorldInit>()
-                              : (ProtoTrigger)Api.GetProtoEntity<TriggerTimeInterval>();
-
-            using var tempList = Api.Shared.GetTempList<IZoneScriptConfig>();
-            tempList.AddRange(protoZone.AttachedScripts);
-
-            foreach (var script in tempList.AsList())
-            {
-                script.ServerInvoke(trigger, serverZoneInstance);
-            }
         }
     }
 }

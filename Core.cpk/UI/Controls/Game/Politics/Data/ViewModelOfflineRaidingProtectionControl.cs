@@ -59,8 +59,7 @@
         // don't display raiding protection info on PvE servers or for non-OP players on PvP servers
         public Visibility Visibility
             => PveSystem.ClientIsPve(logErrorIfDataIsNotYetAvailable: false)
-               || (!this.IsRaidingProtectionEnabled
-                   && !ServerOperatorSystem.ClientIsOperator())
+               || !this.IsRaidingProtectionEnabled
                    ? Visibility.Collapsed
                    : Visibility.Visible;
 

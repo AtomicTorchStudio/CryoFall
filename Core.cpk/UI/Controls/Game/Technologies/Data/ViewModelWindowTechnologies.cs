@@ -259,12 +259,8 @@
                     continue;
                 }
 
-                if (stringBuilder.Length > 0)
-                {
-                    stringBuilder.Append("[br]");
-                }
-
-                stringBuilder.Append(errorMessage);
+                stringBuilder.Append("[*]")
+                             .Append(errorMessage);
             }
 
             NotificationSystem.ClientShowNotification(

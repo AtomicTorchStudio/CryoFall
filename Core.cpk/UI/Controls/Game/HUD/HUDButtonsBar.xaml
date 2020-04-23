@@ -14,121 +14,122 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
 
     <base:BaseUserControl.Resources>
-        <ResourceDictionary>
+        <LinearGradientBrush x:Key="HUDButtonBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" Offset="1" />
+            <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}" />
+        </LinearGradientBrush>
 
-            <LinearGradientBrush x:Key="HUDButtonBackground" EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorOpaque}" Offset="1" />
-                <GradientStop Color="{StaticResource WidgetBackgroundGradientColorNonOpaque}" />
-            </LinearGradientBrush>
-
-            <Style TargetType="{x:Type hud:HUDButton}">
-                <Setter Property="OverridesDefaultStyle" Value="True" />
-                <Setter Property="Background" Value="{StaticResource HUDButtonBackground}" />
-                <Setter Property="BorderBrush" Value="{StaticResource WidgetBorderBrush}" />
-                <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
-                <Setter Property="Focusable" Value="False" />
-                <Setter Property="Width" Value="48" />
-                <Setter Property="Height" Value="51" />
-                <Setter Property="Padding" Value="0,0,0,2" />
-                <Setter Property="VerticalAlignment" Value="Top" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type hud:HUDButton}">
-                            <Grid x:Name="grid"
-                                  RenderTransformOrigin="0.5,0.5"
-                                  Margin="3,0">
-                                <Grid.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform />
-                                        <SkewTransform />
-                                        <RotateTransform />
-                                        <TranslateTransform />
-                                    </TransformGroup>
-                                </Grid.RenderTransform>
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup x:Name="ExpandingStates">
-                                        <VisualStateGroup.Transitions>
-                                            <VisualTransition GeneratedDuration="0:0:0.1">
-                                                <VisualTransition.GeneratedEasingFunction>
-                                                    <CubicEase EasingMode="EaseInOut" />
-                                                </VisualTransition.GeneratedEasingFunction>
-                                            </VisualTransition>
-                                        </VisualStateGroup.Transitions>
-                                        <VisualState x:Name="Collapsed">
-                                            <Storyboard>
-                                                <DoubleAnimationUsingKeyFrames
-                                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)"
-                                                    Storyboard.TargetName="grid">
-                                                    <EasingDoubleKeyFrame KeyTime="0" Value="-8" />
-                                                </DoubleAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState x:Name="Expanded" />
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                                <Border Background="#99000000"
-                                        CornerRadius="0,0,5,5" />
-                                <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="1,0,1,1"
-                                        CornerRadius="0,0,5,5">
-                                    <Grid>
-                                        <Border CornerRadius="0,0,5,5" Margin="-1,0,-1,-1"
-                                                Background="{TemplateBinding Background}" />
-                                        <Border x:Name="BorderHighlight" CornerRadius="0,0,5,5" Visibility="Collapsed">
-                                            <Border.Background>
-                                                <SolidColorBrush Color="#FF6DB6FF" Opacity="0.3" />
-                                            </Border.Background>
-                                        </Border>
-                                        <!--<Border x:Name="BorderMouseOver" CornerRadius="0,0,5,5" Visibility="Collapsed">
+        <Style TargetType="{x:Type hud:HUDButton}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="{StaticResource HUDButtonBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource WidgetBorderBrush}" />
+            <Setter Property="core:SoundUI.EnterSound" Value="{StaticResource SoundTabEnter}" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="48" />
+            <Setter Property="Height" Value="51" />
+            <Setter Property="Padding" Value="0,0,0,2" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type hud:HUDButton}">
+                        <Grid x:Name="grid"
+                              RenderTransformOrigin="0.5,0.5"
+                              Margin="3,0">
+                            <Grid.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </Grid.RenderTransform>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ExpandingStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.1">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <CubicEase EasingMode="EaseInOut" />
+                                            </VisualTransition.GeneratedEasingFunction>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Collapsed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)"
+                                                Storyboard.TargetName="grid">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="-8" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Expanded" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border Background="#99000000"
+                                    CornerRadius="0,0,5,5" />
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="1,0,1,1"
+                                    CornerRadius="0,0,5,5">
+                                <Grid>
+                                    <Border CornerRadius="0,0,5,5" Margin="-1,0,-1,-1"
+                                            Background="{TemplateBinding Background}" />
+                                    <Border x:Name="BorderHighlight" CornerRadius="0,0,5,5" Visibility="Collapsed">
+                                        <Border.Background>
+                                            <SolidColorBrush Color="#FF6DB6FF" Opacity="0.3" />
+                                        </Border.Background>
+                                    </Border>
+                                    <!--<Border x:Name="BorderMouseOver" CornerRadius="0,0,5,5" Visibility="Collapsed">
                                             <Border.Background>
                                                 <SolidColorBrush Color="#FF6DB6FF" Opacity="0.2" />
                                             </Border.Background>
                                         </Border>-->
-                                    </Grid>
-                                </Border>
-                                <Button Command="{TemplateBinding Command}"
-                                        Style="{x:Null}"
-                                        VerticalAlignment="Bottom"
-                                        Margin="{TemplateBinding Padding}">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="{x:Type Button}">
-                                            <ContentPresenter />
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                    <Rectangle x:Name="Icon" Fill="{TemplateBinding BrushNormal}" Width="40"
-                                               Height="40" />
-                                </Button>
-                                <Border x:Name="BorderDisabled"
-                                        BorderThickness="1,0,1,1"
-                                        CornerRadius="0,0,5,5"
-                                        Background="#88555555"
-                                        BorderBrush="#88555555"
-                                        Visibility="Collapsed" />
-                            </Grid>
+                                </Grid>
+                            </Border>
+                            <Button Command="{TemplateBinding Command}"
+                                    Style="{x:Null}"
+                                    VerticalAlignment="Bottom"
+                                    Margin="{TemplateBinding Padding}">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <ContentPresenter />
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Rectangle x:Name="Icon" Fill="{TemplateBinding BrushNormal}" Width="40"
+                                           Height="40" />
+                            </Button>
+                            <Border x:Name="BorderDisabled"
+                                    BorderThickness="1,0,1,1"
+                                    CornerRadius="0,0,5,5"
+                                    Background="#88555555"
+                                    BorderBrush="#88555555"
+                                    Visibility="Collapsed" />
 
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <!--<Setter TargetName="BorderMouseOver" Property="Visibility" Value="Visible" />-->
-                                    <!--<Setter TargetName="Icon" Property="Fill"
+                            <ContentPresenter ContentSource="BadgeContent"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Bottom"
+                                              Margin="0,0,-7,-6" />
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <!--<Setter TargetName="BorderMouseOver" Property="Visibility" Value="Visible" />-->
+                                <!--<Setter TargetName="Icon" Property="Fill"
                                             Value="{Binding BrushHighlighted, RelativeSource={RelativeSource TemplatedParent}}" />-->
-                                </Trigger>
+                            </Trigger>
 
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter TargetName="BorderHighlight" Property="Visibility" Value="Visible" />
-                                    <Setter TargetName="Icon" Property="Fill"
-                                            Value="{Binding BrushHighlighted, RelativeSource={RelativeSource TemplatedParent}}" />
-                                </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="BorderHighlight" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="Icon" Property="Fill"
+                                        Value="{Binding BrushHighlighted, RelativeSource={RelativeSource TemplatedParent}}" />
+                            </Trigger>
 
-                                <Trigger Property="IsEnabled" Value="False">
-                                    <Setter TargetName="BorderDisabled" Property="Visibility" Value="Visible" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-        </ResourceDictionary>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="BorderDisabled" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </base:BaseUserControl.Resources>
 
     <StackPanel x:Name="ButtonsStackPanel"
@@ -194,29 +195,10 @@
             </hud:HUDButton.BrushHighlighted>
         </hud:HUDButton>
 
-        <hud:HUDButton DataContext="{Binding MenuMap}"
-                       Command="{Binding CommandToggle}"
-                       IsSelected="{Binding IsSelected}">
-            <base:ToolTipServiceExtend.ToolTip>
-                <!-- Text: Map -->
-                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Map}">
-                    <core:LabelWithButton.Button>
-                        <core:GameButtonReference Button="MapMenu" />
-                    </core:LabelWithButton.Button>
-                </core:LabelWithButton>
-            </base:ToolTipServiceExtend.ToolTip>
-            <hud:HUDButton.BrushNormal>
-                <ImageBrush ImageSource="/UI/Images/Icons/icon_map.png" />
-            </hud:HUDButton.BrushNormal>
-            <hud:HUDButton.BrushHighlighted>
-                <ImageBrush ImageSource="/UI/Images/Icons/icon_map_on.png" />
-            </hud:HUDButton.BrushHighlighted>
-        </hud:HUDButton>
-
         <hud:HUDButton DataContext="{Binding MenuSkills}"
                        Command="{Binding CommandToggle}"
                        IsSelected="{Binding IsSelected}"
-                       Margin="12,0,0,0">
+                       Margin="16,0,0,0">
             <base:ToolTipServiceExtend.ToolTip>
                 <!-- Text: Skills -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Skills}">
@@ -271,10 +253,66 @@
             </hud:HUDButton.BrushHighlighted>
         </hud:HUDButton>
 
-        <hud:HUDButton DataContext="{Binding MenuSocial}"
+        <hud:HUDButton DataContext="{Binding MenuCompletionist}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Completionist -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Completionist}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="CompletionistMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_completionist.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_completionist_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+            <hud:HUDButton.BadgeContent>
+                <!-- Workaround for NoesisGUI 3.0 applied here -->
+                <Border CornerRadius="5"
+                        Background="{StaticResource BrushColorAlt0}"
+                        BorderBrush="{StaticResource BrushColorAlt5}"
+                        BorderThickness="0.75"
+                        Padding="2,0"
+                        Visibility="{Binding Visibility, ElementName=TextBlock}">
+                    <TextBlock x:Name="TextBlock"
+                               Text="{Binding MenuInstance.DataContext.TotalPendingEntries}"
+                               Visibility="{Binding MenuInstance.DataContext.HasPendingEntries, Converter={StaticResource BoolToVisibilityConverter}}"
+                               Foreground="White"
+                               FontSize="10"
+                               MinWidth="10"
+                               FontFamily="{StaticResource DigitsFontFamily}"
+                               TextAlignment="Center" />
+                </Border>
+            </hud:HUDButton.BadgeContent>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuMap}"
                        Command="{Binding CommandToggle}"
                        IsSelected="{Binding IsSelected}"
-                       Margin="12,0,0,0">
+                       Margin="16,0,0,0">
+            <base:ToolTipServiceExtend.ToolTip>
+                <!-- Text: Map -->
+                <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Map}">
+                    <core:LabelWithButton.Button>
+                        <core:GameButtonReference Button="MapMenu" />
+                    </core:LabelWithButton.Button>
+                </core:LabelWithButton>
+            </base:ToolTipServiceExtend.ToolTip>
+            <hud:HUDButton.BrushNormal>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_map.png" />
+            </hud:HUDButton.BrushNormal>
+            <hud:HUDButton.BrushHighlighted>
+                <ImageBrush ImageSource="/UI/Images/Icons/icon_map_on.png" />
+            </hud:HUDButton.BrushHighlighted>
+        </hud:HUDButton>
+
+        <hud:HUDButton DataContext="{Binding MenuSocial}"
+                       Command="{Binding CommandToggle}"
+                       IsSelected="{Binding IsSelected}">
             <base:ToolTipServiceExtend.ToolTip>
                 <!-- Text: Social -->
                 <core:LabelWithButton Content="{x:Static loc:CoreStrings.HUDButtonsBar_MenuTitle_Social}">
@@ -312,7 +350,7 @@
 
         <hud:HUDButton Command="{Binding CommandQuitVehicle}"
                        Visibility="{Binding IsQuitVehicleButtonVisible, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
-                       Margin="12,0,0,0">
+                       Margin="16,0,0,0">
             <hud:HUDButton.BorderBrush>
                 <SolidColorBrush Color="#FF3DA83D" />
             </hud:HUDButton.BorderBrush>

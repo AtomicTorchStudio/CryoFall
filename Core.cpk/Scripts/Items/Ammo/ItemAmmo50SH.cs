@@ -13,8 +13,13 @@
 
         public override string Name => ".50 SH ammo";
 
-        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
+        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)
         {
+            if (damage < 1)
+            {
+                return;
+            }
+
             // 25% chance to add bleeding
             if (RandomHelper.RollWithProbability(0.25))
             {
@@ -33,7 +38,6 @@
             armorPiercingCoef = 0.20;
             finalDamageMultiplier = 1.3;
             rangeMax = 10;
-
             damageDistribution.Set(DamageType.Kinetic, 1);
         }
 

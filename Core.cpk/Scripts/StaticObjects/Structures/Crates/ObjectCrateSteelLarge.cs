@@ -6,11 +6,12 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectCrateSteelLarge : ProtoObjectCrate
     {
         public override string Description =>
-            "Extra large crate for convenient and safe storage of huge quantities of items.";
+            "Extra large crate for convenient storage of huge quantities of items.";
 
         public override bool HasOwnersList => false;
 
@@ -25,6 +26,8 @@
         public override double StructureExplosiveDefenseCoef => 0.25;
 
         public override float StructurePointsMax => 18000;
+
+        protected override Vector2D ItemIconOffset => (1, base.ItemIconOffset.Y);
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -65,9 +68,9 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle(size: (1.8, 0.475), offset: (0.1, 0.4))
-                .AddShapeRectangle(size: (2, 0.75),    offset: (0, 0.4), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (2, 0.2),     offset: (0, 1.1), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (2, 0.75),    offset: (0, 0.4), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (1.8, 0.75),  offset: (0.1, 0.4), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (1.8, 0.2),   offset: (0.1, 1.1), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (1.8, 0.75),  offset: (0.1, 0.4), group: CollisionGroups.ClickArea);
         }
     }
 }

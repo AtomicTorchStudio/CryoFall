@@ -99,12 +99,18 @@
             this.RequestDecayInfoTextAsync();
         }
 
+        public BaseCommand CommandConfirmLandClaimDecayMessage
+            => new ActionCommand(this.ExecuteCommandConfirmLandClaimDecayMessage);
+
         public BaseCommand CommandUpgrade
             => new ActionCommand(this.ExecuteCommandUpgrade);
 
         public string DecayInfoText { get; private set; } = CoreStrings.PleaseWait;
 
         public string FounderName => this.privateState.LandClaimFounder;
+
+        public bool IsLandClaimDecayInfoConfirmed
+            => LandClaimDecayInfoConfirmationHelper.IsConfirmedForCurrentServer;
 
         public bool IsOwner => this.FounderName == ClientCurrentCharacterHelper.Character.Name
                                || CreativeModeSystem.ClientIsInCreativeMode();
@@ -152,6 +158,12 @@
                 -= this.SafeStorageSlotsChangedHandler;
 
             viewModel.Dispose();
+        }
+
+        private void ExecuteCommandConfirmLandClaimDecayMessage()
+        {
+            LandClaimDecayInfoConfirmationHelper.SetConfirmedForCurrentServer();
+            this.NotifyPropertyChanged(nameof(this.IsLandClaimDecayInfoConfirmed));
         }
 
         private void ExecuteCommandUpgrade()

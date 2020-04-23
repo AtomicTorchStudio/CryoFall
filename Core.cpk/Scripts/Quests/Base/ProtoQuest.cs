@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.Data;
@@ -12,6 +13,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
 
+    [PrepareOrder(afterType: typeof(IProtoStaticWorldObject))]
     [PrepareOrder(afterType: typeof(IProtoSkill))]
     [PrepareOrder(afterType: typeof(IProtoTile))]
     [PrepareOrder(afterType: typeof(TechNode))]
@@ -27,7 +29,7 @@
               TClientState>,
           IProtoQuest
         where TPrivateState : BasePrivateState, new()
-        where TPublicState : QuestPublicState, new()
+        where TPublicState : BasePublicState, new()
         where TClientState : BaseClientState, new()
     {
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
@@ -59,7 +61,7 @@
             this.Icon = icon;
         }
 
-        public override double ClientUpdateIntervalSeconds => 0.1;
+        public override double ClientUpdateIntervalSeconds => double.MaxValue;
 
         public abstract string Description { get; }
 
@@ -69,35 +71,35 @@
 
         public IReadOnlyList<IProtoQuest> Prerequisites { get; private set; }
 
-        public IReadOnlyList<IQuestRequirement> Requirements { get; private set; }
-
         public abstract ushort RewardLearningPoints { get; }
 
-        public override double ServerUpdateIntervalSeconds => 1;
+        public override double ServerUpdateIntervalSeconds => double.MaxValue;
 
         public override string ShortId { get; }
 
+        public IReadOnlyList<IPlayerTask> Tasks { get; private set; }
+
         protected sealed override void PrepareProto()
         {
-            var requirements = new RequirementsList();
+            var tasks = new TasksList();
             var prerequisites = new QuestsList();
 
-            this.PrepareQuest(prerequisites, requirements);
+            this.PrepareQuest(prerequisites, tasks);
 
-            Api.Assert(requirements.Count >= 1,    "At least one requirement required for a quest");
-            Api.Assert(requirements.Count <= 256,  "Max 256 requirements per quest");
+            Api.Assert(tasks.Count >= 1,           "At least one task required for a quest");
+            Api.Assert(tasks.Count <= 256,         "Max 256 tasks per quest");
             Api.Assert(prerequisites.Count <= 256, "Max 256 prerequisites per quest");
 
-            foreach (var requirement in requirements)
+            foreach (var task in tasks)
             {
-                requirement.Quest = this;
+                task.TaskTarget = this;
             }
 
-            this.Requirements = requirements;
+            this.Tasks = tasks;
             this.Prerequisites = prerequisites;
         }
 
-        protected abstract void PrepareQuest(QuestsList prerequisites, RequirementsList requirements);
+        protected abstract void PrepareQuest(QuestsList prerequisites, TasksList tasks);
 
         protected class QuestsList : List<IProtoQuest>, IReadOnlyQuestsList
         {
@@ -126,15 +128,15 @@
             }
         }
 
-        protected class RequirementsList : List<IQuestRequirement>
+        protected class TasksList : List<IPlayerTask>
         {
-            public RequirementsList() : base(capacity: 1)
+            public TasksList() : base(capacity: 1)
             {
             }
 
-            public new RequirementsList Add(IQuestRequirement requirement)
+            public new TasksList Add(IPlayerTask task)
             {
-                base.Add(requirement);
+                base.Add(task);
                 return this;
             }
         }
@@ -143,7 +145,7 @@
     public abstract class ProtoQuest
         : ProtoQuest<
             EmptyPrivateState,
-            QuestPublicState,
+            EmptyPublicState,
             EmptyClientState>
     {
     }

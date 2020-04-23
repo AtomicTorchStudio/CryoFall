@@ -12,7 +12,7 @@
         public override string Description =>
             "Whatever this banner symbolizes—it looks cool!";
 
-        public override string Name => "Red banner";
+        public override string Name => "Banner";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Wood;
 
@@ -37,7 +37,7 @@
             build.StagesCount = 10;
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemPlanks>(count: 5);
-            build.AddStageRequiredItem<ItemThread>(count: 10);
+            build.AddStageRequiredItem<ItemThread>(count: 5);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;

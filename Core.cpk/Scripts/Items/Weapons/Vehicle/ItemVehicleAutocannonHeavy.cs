@@ -45,7 +45,7 @@
 
         public override string WeaponAttachmentName => "TurretLeft";
 
-        protected override ProtoSkillWeapons WeaponSkill => null;
+        protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsHeavy>();
 
         public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected)
         {

@@ -9,9 +9,9 @@
 
         public override uint DurabilityMax => 500;
 
-        public override string Name => "Braided chestplate";
-
         public override ObjectMaterial Material => ObjectMaterial.SoftTissues;
+
+        public override string Name => "Braided chestplate";
 
         protected override void PrepareDefense(DefenseDescription defense)
         {

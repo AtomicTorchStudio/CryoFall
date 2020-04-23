@@ -163,7 +163,7 @@
 
             this.effectInstanceCompose.Parameters
                 .Set("LightmapTexture", renderTargetLightMap)
-                .Set("Ambient",
+                .Set("AmbientFraction",
                      (float)(AmbientLightFraction + AdditionalAmbientLight))
                 .Set("MinAdditiveLightFraction",
                      (float)(MinAdditiveLightFraction + AdditionalAmbightLightAdditiveFraction))

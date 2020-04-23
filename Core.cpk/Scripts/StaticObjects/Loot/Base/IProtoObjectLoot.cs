@@ -6,5 +6,7 @@
     public interface IProtoObjectLoot : IProtoStaticWorldObject
     {
         IReadOnlyDropItemsList LootDroplist { get; }
+
+        bool IsAvailableInCompletionist { get; }
     }
 }

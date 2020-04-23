@@ -16,7 +16,7 @@
         {
             stations.Add<ObjectMineralProcessingPlant>();
 
-            duration = CraftingDuration.Medium;
+            duration = CraftingDuration.Short;
 
             inputItems.Add<ItemOreCopper>(count: 3);
 

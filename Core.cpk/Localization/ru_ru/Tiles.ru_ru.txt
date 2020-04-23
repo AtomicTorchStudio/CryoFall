@@ -32,7 +32,7 @@ Scripts/Tiles/TileRoads@Name:
 Дороги
 
 Scripts/Tiles/TileRocky@Name:
-Скалы
+Скалистые горы
 
 Scripts/Tiles/TileRuins@Name:
 Руины

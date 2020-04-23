@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.Cursor;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -309,22 +310,7 @@
 
             if (!ClientInputManager.IsButtonDown(GameButton.ActionInteract))
             {
-                if (InteractingWithObject is null)
-                {
-                    return;
-                }
-
-                // have a current interaction - check whether it's not valid anymore
-                if (!InteractingWithObject.ProtoWorldObject.SharedIsInsideCharacterInteractionArea(
-                        Client.Characters.CurrentPlayerCharacter,
-                        InteractingWithObject,
-                        writeToLog: false))
-                {
-                    Logger.Important(
-                        $"Cannot interact with {nameof(InteractingWithObject)}: {InteractingWithObject} - finishing interaction");
-                    InteractingWithObject = null;
-                }
-
+                // no need to perform any distance checks here as InteractionCheckerSystem will do them
                 return;
             }
 

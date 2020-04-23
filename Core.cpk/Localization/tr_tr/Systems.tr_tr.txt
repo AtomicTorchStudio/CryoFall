@@ -10,6 +10,19 @@ Taşınabilir şarjın şarjı yok.
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 {0}'ı kullanamazsın
 
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
+`Bir süredir aktif değil gibi duruyorsun.
+[br]Susuzluk ve açlık askıya alındı.`
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
+Sohbet etmek, üretmek ve tüketilebilir kullanmak serbesttir.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part3:
+Başka eylemler AFK modunu devre dışı bırakır.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Title:
+AFK Modu
+
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
 `{0} saniyede yatağında yeniden doğabilirsin.
 [br]Ya da şu anda dünyada yeniden doğabilirsin.`
@@ -89,6 +102,9 @@ Genel
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 Yerel
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomTrade@Title:
+Ticaret
 
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
 Oraya inşa edemezsin.
@@ -252,6 +268,18 @@ Sunucu operatörü tarafından sessize alındığın için davet gönderemezsin.
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 Davet edilen oyuncu çevrim dışı. Sadece çevrim içi oyuncular bir partiye davet edilebilir.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_AreYouSure:
+Bu mesajı bildirmek istediğinden emin misin?
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_CommunityServerDisclaimer:
+[b]Lütfen bilin:[/b]Topluluk sunucusunda oynuyorsunuz. Yani sohbet moderasyonu sunucu sahibine aittir. Genelde sohbetler kontrol edilmez.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_OfficialServersDisclaimer:
+[b]Lütfen bilin:[/b]Resmî sunucularda moderatör yoktur.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_Title:
+Mesaj bildir
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
 Etkileşime geçilemez-ya çok uzak ya da bina erişilmez durumda.
@@ -461,6 +489,9 @@ Her zaman kapalı
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 Erişimin yok!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
+Erişim listesi boyutu sınırı aşıldı.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
 Sahip listesini düzenleyemezsin.

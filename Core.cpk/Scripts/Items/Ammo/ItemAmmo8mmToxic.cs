@@ -13,8 +13,13 @@
 
         public override string Name => "8mm toxin ammo";
 
-        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
+        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)
         {
+            if (damage < 1)
+            {
+                return;
+            }
+
             damagedCharacter.ServerAddStatusEffect<StatusEffectToxins>(intensity: 0.05); // 15 seconds
         }
 
@@ -29,9 +34,8 @@
             armorPiercingCoef = 0;
             finalDamageMultiplier = 2;
             rangeMax = 9;
-
-            damageDistribution.Set(DamageType.Kinetic,  0.4);
-            damageDistribution.Set(DamageType.Chemical, 0.6);
+            damageDistribution.Set(DamageType.Kinetic, 0.4)
+                              .Set(DamageType.Chemical, 0.6);
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()

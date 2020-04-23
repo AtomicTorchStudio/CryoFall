@@ -9,6 +9,8 @@
     {
         public override double DefaultMoveSpeed => 0.1;
 
+        public override double IconScale => 0.9;
+
         public override float OrientationDownExtraAngle => 5;
 
         public override SkeletonResource SkeletonResourceBack { get; }

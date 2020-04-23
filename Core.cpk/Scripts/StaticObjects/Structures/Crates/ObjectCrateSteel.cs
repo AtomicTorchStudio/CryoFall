@@ -8,7 +8,7 @@
     public class ObjectCrateSteel : ProtoObjectCrate
     {
         public override string Description =>
-            "One of the best ways to store goods. Keeps one's things safe in most situations and has the most space.";
+            "Steel crate has the most space of all simple crates, allowing you to store all your items in a compact way.";
 
         public override bool HasOwnersList => false;
 

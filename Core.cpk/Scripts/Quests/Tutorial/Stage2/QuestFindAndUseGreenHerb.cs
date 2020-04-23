@@ -1,6 +1,9 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.Items.Medical;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.SmallGatherables;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestFindAndUseGreenHerb : ProtoQuest
     {
@@ -16,11 +19,16 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveItem.Require<ItemHerbGreen>(count: 1, isReversible: false))
-                .Add(RequirementUseItem.Require<ItemHerbGreen>(count: 1));
+            var iconHerbGreen = Api.IsClient
+                                    ? Api.GetProtoEntity<ObjectSmallHerbGreen>().Icon
+                                    : null;
+
+            tasks
+                .Add(TaskHaveItem.Require<ItemHerbGreen>(count: 1, isReversible: false)
+                                 .WithIcon(iconHerbGreen))
+                .Add(TaskUseItem.Require<ItemHerbGreen>(count: 1));
 
             prerequisites
                 .Add<QuestCraftAKnifeAndKillAnyCreature>();

@@ -50,7 +50,30 @@
                 StatName.WeaponEnergyWeaponEnergyConsumptionMultiplier,
                 formulaPercentBonus: level => -level * 2);
 
-            base.PrepareProtoWeaponsSkillRanged(config);
+            var statNameDamageBonus = this.StatNameDamageBonusMultiplier;
+            var statNameReloadingSpeed = this.StatNameReloadingSpeedMultiplier;
+            var statNameDegradationRate = this.StatNameDegrationRateMultiplier;
+
+            config.AddStatEffect(
+                statNameDamageBonus,
+                level: 10,
+                percentBonus: 2);
+
+            config.AddStatEffect(
+                statNameDamageBonus,
+                level: 20,
+                percentBonus: 3);
+
+            if (statNameReloadingSpeed.HasValue)
+            {
+                config.AddStatEffect(
+                    statNameReloadingSpeed.Value,
+                    formulaPercentBonus: level => -level * 2);
+            }
+
+            config.AddStatEffect(
+                statNameDegradationRate,
+                formulaPercentBonus: level => -level * 2);
         }
     }
 }

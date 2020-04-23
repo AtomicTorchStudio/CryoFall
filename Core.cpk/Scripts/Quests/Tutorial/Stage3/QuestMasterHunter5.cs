@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
     public class QuestMasterHunter5 : ProtoQuest
     {
@@ -13,13 +14,13 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementKill.Require<MobBurrower>(count: 1))
-                .Add(RequirementKill.Require<MobPragmiumBeetle>(count: 1))
-                .Add(RequirementKill.Require<MobFireLizard>(count: 1))
-                .Add(RequirementKill.Require<MobScorpion>(count: 1));
+            tasks
+                .Add(TaskKill.Require<MobBurrower>(count: 1))
+                .Add(TaskKill.Require<MobPragmiumBeetle>(count: 1))
+                .Add(TaskKill.Require<MobFireLizard>(count: 1))
+                .Add(TaskKill.Require<MobScorpion>(count: 1));
 
             prerequisites
                 .Add<QuestMasterHunter4>()

@@ -12,31 +12,37 @@
 
     public class ViewModelQuestEntry : BaseViewModel
     {
+        private readonly bool showRequirementIcons;
+
         public ViewModelQuestEntry(
             PlayerCharacterQuests.CharacterQuestEntry questEntry,
-            Action<ViewModelQuestEntry> callbackOnFinishedStateChanged)
+            Action<ViewModelQuestEntry> callbackOnFinishedStateChanged,
+            bool showRequirementIcons = true)
         {
+            this.showRequirementIcons = showRequirementIcons;
             this.QuestEntry = questEntry;
 
-            var requirements = questEntry.Quest.Requirements;
+            var requirements = questEntry.Quest.Tasks;
             var viewModels = new ViewModelQuestRequirement[requirements.Count];
             for (var index = 0; index < requirements.Count; index++)
             {
                 var requirement = requirements[index];
                 var requirementState = questEntry.IsCompleted
                                            ? null
-                                           : questEntry.RequirementStates[index];
+                                           : questEntry.TaskStates[index];
 
-                viewModels[index] = new ViewModelQuestRequirement(requirement, requirementState);
+                viewModels[index] = new ViewModelQuestRequirement(requirement,
+                                                                  requirementState,
+                                                                  showIcon: showRequirementIcons);
             }
 
             this.Requirements = viewModels;
 
             this.QuestEntry.ClientSubscribe(
-                _ => _.AreAllRequirementsSatisfied,
+                _ => _.AreAllTasksCompleted,
                 _ =>
                 {
-                    this.NotifyPropertyChanged(nameof(this.AreAllRequirementsSatisfied));
+                    this.NotifyPropertyChanged(nameof(this.AreAllTasksCompleted));
                     this.NotifyPropertyChanged(nameof(this.IsRewardCanBeClaimed));
                     this.NotifyPropertyChanged(nameof(this.IsNew));
                     callbackOnFinishedStateChanged(this);
@@ -60,11 +66,11 @@
                 _ => this.NotifyPropertyChanged(nameof(this.IsNew)),
                 this);
 
-            TechConstants.ClientLearningPointsGainMultiplierChanged +=
-                this.ClientLearningPointsGainMultiplierChangedHandler;
+            TechConstants.ClientLearningPointsGainMultiplierReceived +=
+                this.ClientLearningPointsGainMultiplierReceivedHandler;
         }
 
-        public bool AreAllRequirementsSatisfied => this.QuestEntry.AreAllRequirementsSatisfied;
+        public bool AreAllTasksCompleted => this.QuestEntry.AreAllTasksCompleted;
 
         public BaseCommand CommandClaimReward => new ActionCommand(this.ExecuteCommandClaimReward);
 
@@ -84,7 +90,7 @@
                              && !this.IsRewardCanBeClaimed
                              && !this.IsCompletedAndRewardClaimed;
 
-        public bool IsRewardCanBeClaimed => this.AreAllRequirementsSatisfied
+        public bool IsRewardCanBeClaimed => this.AreAllTasksCompleted
                                             && !this.IsCompletedAndRewardClaimed;
 
         public PlayerCharacterQuests.CharacterQuestEntry QuestEntry { get; }
@@ -127,11 +133,11 @@
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
-            TechConstants.ClientLearningPointsGainMultiplierChanged -=
-                this.ClientLearningPointsGainMultiplierChangedHandler;
+            TechConstants.ClientLearningPointsGainMultiplierReceived -=
+                this.ClientLearningPointsGainMultiplierReceivedHandler;
         }
 
-        private void ClientLearningPointsGainMultiplierChangedHandler()
+        private void ClientLearningPointsGainMultiplierReceivedHandler()
         {
             this.NotifyPropertyChanged(nameof(this.RewardLearningPoints));
         }

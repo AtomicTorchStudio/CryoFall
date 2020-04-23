@@ -3,19 +3,48 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
+    using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
+    using AtomicTorch.CBND.CoreMod.Systems.CharacterUnstuck;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.GameApi;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
+    using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Extensions;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.Scripting.Network;
     using AtomicTorch.CBND.GameApi.ServicesServer;
+    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
+    using JetBrains.Annotations;
+    using static SoundPresets.ObjectMaterial;
 
-    public static class WeaponExplosionSystem
+    public class WeaponExplosionSystem : ProtoSystem<WeaponExplosionSystem>
     {
+        public static readonly IReadOnlyWeaponHitSparksPreset ExplosionHitSparksPreset
+            = WeaponHitSparksPresets.Firearm;
+
+        public static readonly ReadOnlySoundPreset<ObjectMaterial> SoundPresetHitExplosion
+            = new SoundPreset<ObjectMaterial>(MaterialHitsSoundPresets.HitSoundDistancePreset)
+              .Add(SoftTissues, "Hit/Ranged/SoftTissues")
+              .Add(HardTissues, "Hit/Ranged/HardTissues")
+              .Add(SolidGround, "Hit/Ranged/SolidGround")
+              .Add(Vegetation,  "Hit/Ranged/Vegetation")
+              .Add(Wood,        "Hit/Ranged/Wood")
+              .Add(Stone,       "Hit/Ranged/Stone")
+              .Add(Metal,       "Hit/Ranged/Metal")
+              .Add(Glass,       "Hit/Ranged/Glass");
+
+        [NotLocalizable]
+        public override string Name => "Weapon explosion system";
+
         /// <summary>
         /// Bomberman-style explosion penetrating the walls in a cross.
         /// </summary>
@@ -31,6 +60,11 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
         {
             Api.Assert(damageDistanceMax >= damageDistanceFullDamage,
                        $"{nameof(damageDistanceMax)} must be >= {nameof(damageDistanceFullDamage)}");
+
+            var playerCharacterSkills = weaponFinalCache.Character?.SharedGetSkills();
+            var protoWeaponSkill = playerCharacterSkills != null
+                                       ? weaponFinalCache.ProtoWeapon?.WeaponSkillProto
+                                       : null;
 
             var world = Api.Server.World;
             var allDamagedObjects = new HashSet<IWorldObject>();
@@ -81,8 +115,30 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                         weaponFinalCache,
                         damagedObject,
                         damagePreMultiplier,
+                        damagePostMultiplier: 1.0,
                         out _,
-                        out _);
+                        out var damageApplied);
+
+                    if (Api.IsServer)
+                    {
+                        if (damageApplied > 0
+                            && damagedObject is ICharacter damagedCharacter)
+                        {
+                            CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(damagedCharacter);
+                        }
+
+                        if (damageApplied > 0)
+                        {
+                            // give experience for damage
+                            protoWeaponSkill?.ServerOnDamageApplied(playerCharacterSkills,
+                                                                    damagedObject,
+                                                                    damageApplied);
+                        }
+
+                        weaponFinalCache.ProtoExplosive?.ServerOnObjectHitByExplosion(damagedObject,
+                                                                                      damageApplied,
+                                                                                      weaponFinalCache);
+                    }
                 }
             }
         }
@@ -94,11 +150,22 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             WeaponFinalCache weaponFinalCache,
             bool damageOnlyDynamicObjects,
             bool isDamageThroughObstacles,
-            Func<double, double> callbackCalculateDamageCoefByDistance)
+            Func<double, double> callbackCalculateDamageCoefByDistance,
+            [CanBeNull] CollisionGroup collisionGroup = null)
         {
+            var playerCharacterSkills = weaponFinalCache.Character?.SharedGetSkills();
+            var protoWeaponSkill = playerCharacterSkills != null
+                                       ? weaponFinalCache.ProtoWeapon?.WeaponSkillProto
+                                       : null;
+
             // collect all damaged objects via physics space
             var damageCandidates = new HashSet<IWorldObject>();
-            var defaultCollisionGroup = CollisionGroups.Default;
+            if (collisionGroup is null)
+            {
+                collisionGroup = CollisionGroups.Default;
+            }
+
+            var defaultCollisionGroup = collisionGroup;
             CollectDamagedPhysicalObjects(defaultCollisionGroup);
             CollectDamagedPhysicalObjects(CollisionGroups.HitboxMelee);
             CollectDamagedPhysicalObjects(CollisionGroups.HitboxRanged);
@@ -186,13 +253,19 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             }
 
             // order by distance to explosion center
-            var orderedDamagedObjects =
-                damageCandidates.OrderBy(ServerExplosionGetDistanceToEpicenter(positionEpicenter));
-            // process all damaged objects
-            foreach (var damagedObject in orderedDamagedObjects)
+            var orderedDamageCandidates = damageCandidates.OrderBy(
+                ServerExplosionGetDistanceToEpicenter(positionEpicenter, collisionGroup));
+
+            var hitCharacters = new List<WeaponHitData>();
+
+            // process all damage candidates
+            foreach (var damagedObject in orderedDamageCandidates)
             {
                 if (!isDamageThroughObstacles
-                    && ServerHasObstacleForExplosion(physicsSpace, positionEpicenter, damagedObject))
+                    && ServerHasObstacleForExplosion(physicsSpace,
+                                                     positionEpicenter,
+                                                     damagedObject,
+                                                     defaultCollisionGroup))
                 {
                     continue;
                 }
@@ -207,8 +280,77 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     weaponFinalCache,
                     damagedObject,
                     damagePreMultiplier,
+                    damagePostMultiplier: 1.0,
                     out _,
-                    out _);
+                    out var damageApplied);
+
+                if (damageApplied > 0
+                    && damagedObject is ICharacter damagedCharacter)
+                {
+                    CharacterUnstuckSystem.ServerTryCancelUnstuckRequest(damagedCharacter);
+                    hitCharacters.Add(new WeaponHitData(damagedCharacter,
+                                                        (0,
+                                                         damagedCharacter
+                                                             .ProtoCharacter.CharacterWorldWeaponOffsetRanged)));
+                }
+
+                if (damageApplied > 0)
+                {
+                    // give experience for damage
+                    protoWeaponSkill?.ServerOnDamageApplied(playerCharacterSkills,
+                                                            damagedObject,
+                                                            damageApplied);
+                }
+
+                weaponFinalCache.ProtoExplosive?.ServerOnObjectHitByExplosion(damagedObject,
+                                                                              damageApplied,
+                                                                              weaponFinalCache);
+
+                (weaponFinalCache.ProtoWeapon as ProtoItemMobWeaponNova)?
+                    .ServerOnObjectHitByNova(damagedObject,
+                                             damageApplied,
+                                             weaponFinalCache);
+            }
+
+            if (hitCharacters.Count == 0)
+            {
+                return;
+            }
+
+            // display damages on clients in scope of every damaged object
+            var observers = new HashSet<ICharacter>();
+            using var tempList = Api.Shared.GetTempList<ICharacter>();
+
+            foreach (var hitObject in hitCharacters)
+            {
+                if (hitObject.WorldObject is ICharacter damagedCharacter
+                    && !damagedCharacter.IsNpc)
+                {
+                    // notify the damaged character
+                    observers.Add(damagedCharacter);
+                }
+
+                Server.World.GetScopedByPlayers(hitObject.WorldObject, tempList);
+                tempList.Clear();
+                observers.AddRange(tempList.AsList());
+            }
+
+            // add all observers within the sound radius
+            var eventNetworkRadius = (byte)Math.Max(
+                20,
+                Math.Ceiling(1.5 * damageDistanceMax));
+
+            tempList.Clear();
+            Server.World.GetCharactersInRadius(positionEpicenter.ToVector2Ushort(),
+                                               tempList,
+                                               radius: eventNetworkRadius,
+                                               onlyPlayers: true);
+            observers.AddRange(tempList.AsList());
+
+            if (observers.Count > 0)
+            {
+                Instance.CallClient(observers,
+                                    _ => _.ClientRemote_OnCharactersHitByExplosion(hitCharacters));
             }
         }
 
@@ -261,10 +403,86 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             }
         }
 
+        private static void ClientOnCharactersHitByExplosion(IReadOnlyList<WeaponHitData> hitCharacters)
+        {
+            foreach (var hitData in hitCharacters)
+            {
+                var protoWorldObject = hitData.FallbackProtoWorldObject;
+                var objectMaterial = hitData.FallbackObjectMaterial;
+                var hitWorldObject = hitData.WorldObject;
+                if (hitWorldObject != null
+                    && !hitWorldObject.IsInitialized)
+                {
+                    hitWorldObject = null;
+                }
+
+                var worldObjectPosition = CalculateWorldObjectPosition(hitWorldObject, hitData);
+
+                // apply some volume variation
+                var volume = SoundConstants.VolumeHit;
+                volume *= RandomHelper.Range(0.8f, 1.0f);
+                var pitch = RandomHelper.Range(0.95f, 1.05f);
+
+                if (hitWorldObject != null)
+                {
+                    SoundPresetHitExplosion.PlaySound(
+                        objectMaterial,
+                        hitWorldObject,
+                        volume: volume,
+                        pitch: pitch);
+                }
+                else
+                {
+                    SoundPresetHitExplosion.PlaySound(
+                        objectMaterial,
+                        protoWorldObject,
+                        worldPosition: worldObjectPosition,
+                        volume: volume,
+                        pitch: pitch);
+                }
+
+                WeaponSystemClientDisplay.ClientAddHitSparks(
+                    ExplosionHitSparksPreset,
+                    hitData,
+                    hitWorldObject,
+                    protoWorldObject,
+                    worldObjectPosition,
+                    projectilesCount: 1,
+                    objectMaterial,
+                    hasTrace: false);
+            }
+
+            static Vector2D CalculateWorldObjectPosition(IWorldObject worldObject, WeaponHitData hitData)
+            {
+                return worldObject switch
+                {
+                    IDynamicWorldObject dynamicWorldObject => dynamicWorldObject.Position,
+                    IStaticWorldObject _                   => worldObject.TilePosition.ToVector2D(),
+                    _                                      => hitData.FallbackTilePosition.ToVector2D()
+                };
+            }
+        }
+
         private static double ServerCalculateDistanceToDamagedObject(Vector2D fromPosition, IWorldObject worldObject)
         {
             switch (worldObject)
             {
+                case ICharacter character:
+                    // find the closest character position inside the explosion area by checking its hitbox
+                    var closestCharacterPosition = character.PhysicsBody.ClampPointInside(fromPosition,
+                                                                                          CollisionGroups.HitboxRanged,
+                                                                                          out var isSuccess);
+                    if (!isSuccess)
+                    {
+                        closestCharacterPosition = character.Position;
+                    }
+
+                    // visualize the closest character position
+                    //SharedEditorPhysicsDebugger.ServerSendDebugPhysicsTesting(
+                    //    new PointShape(closestCharacterPosition, CollisionGroups.HitboxRanged));
+
+                    return fromPosition.DistanceTo(closestCharacterPosition);
+
                 case IDynamicWorldObject dynamicWorldObject:
                     return fromPosition.DistanceTo(dynamicWorldObject.Position);
 
@@ -288,22 +506,27 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             }
         }
 
-        private static Func<IWorldObject, Vector2D> ServerExplosionGetDistanceToEpicenter(Vector2D positionEpicenter)
+        private static Func<IWorldObject, Vector2D> ServerExplosionGetDistanceToEpicenter(
+            Vector2D positionEpicenter,
+            CollisionGroup collisionGroup)
         {
-            return testResult => ServerGetClosestPointToExplosionEpicenter(testResult.PhysicsBody, positionEpicenter)
+            return testResult => ServerGetClosestPointToExplosionEpicenter(testResult.PhysicsBody,
+                                                                           positionEpicenter,
+                                                                           collisionGroup)
                                  - positionEpicenter;
         }
 
         private static Vector2D ServerGetClosestPointToExplosionEpicenter(
             IPhysicsBody physicsBody,
-            Vector2D positionEpicenter)
+            Vector2D positionEpicenter,
+            CollisionGroup collisionGroup)
         {
             if (!(physicsBody.AssociatedWorldObject?.ProtoWorldObject
                       is IProtoStaticWorldObject protoStaticWorldObject))
             {
                 return physicsBody.ClampPointInside(
                     positionEpicenter,
-                    CollisionGroups.Default,
+                    collisionGroup,
                     out _);
             }
 
@@ -331,68 +554,117 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
         private static bool ServerHasObstacleForExplosion(
             IPhysicsSpace physicsSpace,
             Vector2D positionEpicenter,
-            IWorldObject targetWorldObject)
+            IWorldObject targetWorldObject,
+            CollisionGroup collisionGroup)
         {
-            //// doesn't work as expected due to the penetration resolution not implemented yet
-            //// for the line segment collision with other shapes
-            //// get closest point to the explosion epicenter
-            ////var targetPosition = targetWorldObject.PhysicsBody.ClampPointInside(
-            ////    positionEpicenter,
-            ////    CollisionGroups.Default);
-            //
-            //var targetPosition = targetWorldObject.PhysicsBody.Position
-            //                     + targetWorldObject.PhysicsBody.CenterOffset;
+            var worldObjectCenter = SharedGetWorldObjectCenter(targetWorldObject);
+            var worldObjectPointClosestToCharacter = targetWorldObject.PhysicsBody.ClampPointInside(
+                positionEpicenter,
+                collisionGroup,
+                out var isSuccess);
 
-            if (targetWorldObject.PhysicsBody == null)
+            if (!isSuccess)
             {
-                return false;
+                // the physics body seems to not have the specified collider, let's check for the default collider instead
+                worldObjectPointClosestToCharacter = targetWorldObject.PhysicsBody.ClampPointInside(
+                    positionEpicenter,
+                    CollisionGroups.Default,
+                    out _);
             }
 
-            var targetPosition = ServerGetClosestPointToExplosionEpicenter(targetWorldObject.PhysicsBody,
-                                                                           positionEpicenter);
-
-            using var obstaclesOnTheWay = physicsSpace.TestLine(
-                positionEpicenter,
-                targetPosition,
-                collisionGroup: CollisionGroups.Default);
-            //obstaclesOnTheWay.SortBy(
-            //    ServerExplosionGetDistanceToEpicenter(positionEpicenter));
-
-            foreach (var testResult in obstaclesOnTheWay.AsList())
+            // let's test by casting rays from "fromPosition" (usually it's the character's center) to:
+            // 0) world object center
+            // 1) world object point closest to the character
+            // 2) combined - take X from center, take Y from closest
+            // 3) combined - take X from closest, take Y from center
+            if (TestHasObstacle(worldObjectCenter)
+                && TestHasObstacle(worldObjectPointClosestToCharacter)
+                && TestHasObstacle((worldObjectCenter.X, worldObjectPointClosestToCharacter.Y))
+                && TestHasObstacle((worldObjectPointClosestToCharacter.X, worldObjectCenter.Y)))
             {
-                var testPhysicsBody = testResult.PhysicsBody;
-                if (testPhysicsBody.AssociatedProtoTile != null)
-                {
-                    // obstacle tile on the way
-                    return true;
-                }
-
-                var testWorldObject = testPhysicsBody.AssociatedWorldObject;
-                if (testWorldObject == targetWorldObject)
-                {
-                    // not an obstacle - it's the target object itself
-                    // stop checking collisions as we've reached the target object
-                    return false;
-                }
-
-                if (testWorldObject is IDynamicWorldObject)
-                {
-                    // not an obstacle - dynamic objects (such as characters and vehicles) are not considered as an obstacle for the explosion
-                    continue;
-                }
-
-                if (testWorldObject.ProtoWorldObject is IDamageableProtoWorldObject damageableProtoWorldObject
-                    && damageableProtoWorldObject.ObstacleBlockDamageCoef < 1)
-                {
-                    // damage goes through
-                    continue;
-                }
-
-                // obstacle object on the way
+                // has obstacle
                 return true;
             }
 
             return false;
+
+            // local method for testing if there is an obstacle from current to the specified position
+            bool TestHasObstacle(Vector2D toPosition)
+            {
+                using var obstaclesOnTheWay = physicsSpace.TestLine(
+                    positionEpicenter,
+                    toPosition,
+                    collisionGroup,
+                    sendDebugEvent: true);
+                foreach (var test in obstaclesOnTheWay.AsList())
+                {
+                    var testPhysicsBody = test.PhysicsBody;
+                    if (!(testPhysicsBody.AssociatedProtoTile is null))
+                    {
+                        // obstacle tile on the way
+                        return true;
+                    }
+
+                    var testWorldObject = testPhysicsBody.AssociatedWorldObject;
+                    if (ReferenceEquals(testWorldObject, targetWorldObject))
+                    {
+                        // not an obstacle - it's the target object itself
+                        // stop checking collisions as we've reached the target object
+                        return false;
+                    }
+
+                    if (testWorldObject is IDynamicWorldObject)
+                    {
+                        // dynamic world objects are not assumed as an obstacle
+                        continue;
+                    }
+
+                    // no need for this check anymore as we're checking for general "is ICharacter" above
+                    //if (ReferenceEquals(testWorldObject, character))
+                    //{
+                    //    // not an obstacle - it's the player's character itself
+                    //    continue;
+                    //}
+
+                    if (testWorldObject.ProtoWorldObject is IDamageableProtoWorldObject damageableProtoWorldObject
+                        && damageableProtoWorldObject.ObstacleBlockDamageCoef < 1)
+                    {
+                        // damage goes through
+                        continue;
+                    }
+
+                    // obstacle object on the way
+                    return true;
+                }
+
+                // no obstacles
+                return false;
+            }
+
+            static Vector2D SharedGetWorldObjectCenter(IWorldObject worldObject)
+            {
+                if (worldObject is IDynamicWorldObject dynamicWorldObject)
+                {
+                    return dynamicWorldObject.Position;
+                }
+
+                return worldObject.TilePosition.ToVector2D()
+                       + worldObject.PhysicsBody.CenterOffset;
+            }
+        }
+
+        private static void ServerOnObjectHitByNova(
+            IWorldObject damagedObject,
+            double damageApplied,
+            WeaponFinalCache weaponFinalCache)
+        {
+            throw new NotImplementedException();
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableOrdered)]
+        private void ClientRemote_OnCharactersHitByExplosion(IReadOnlyList<WeaponHitData> hitCharacters)
+        {
+            ClientOnCharactersHitByExplosion(hitCharacters);
         }
     }
 }

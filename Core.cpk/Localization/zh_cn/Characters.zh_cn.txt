@@ -22,6 +22,9 @@ Scripts/Characters/Mobs/MobCrawler@Name:
 Scripts/Characters/Mobs/MobFireLizard@Name:
 火蜥蜴
 
+Scripts/Characters/Mobs/MobFloater@Name:
+漂浮者
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 蜜獾
 
@@ -33,6 +36,9 @@ Scripts/Characters/Mobs/MobPangolin@Name:
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 普拉格甲虫
+
+Scripts/Characters/Mobs/MobPragmiumQueen@Name:
+普拉格女皇
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 蜗牛

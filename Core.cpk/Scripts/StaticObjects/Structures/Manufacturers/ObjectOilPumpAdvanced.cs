@@ -27,11 +27,11 @@
         public override string Description => GetProtoEntity<ObjectOilPump>().Description;
 
         // do not change, see electricity math model
-        public override double ElectricityConsumptionPerSecondWhenActive => 4;
+        public override double ElectricityConsumptionPerSecondWhenActive => 2;
 
         public override double LiquidCapacity => 100;
 
-        public override double LiquidProductionAmountPerSecond => 0.4;
+        public override double LiquidProductionAmountPerSecond => 0.2;
 
         public override string Name => "Advanced oil pump";
 
@@ -82,7 +82,6 @@
             build.AddStageRequiredItem<ItemCement>(count: 10);
             build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
             build.AddStageRequiredItem<ItemIngotCopper>(count: 2);
-
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Medium;

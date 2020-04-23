@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -75,14 +76,20 @@
         }
 
         /// <summary>
+        /// Returns true if character has the Moderator role or it's null and we're on the server
+        /// (it means the command is invoked from the server system console directly).
+        /// </summary>
+        public static bool ServerIsModeratorOrSystemConsole(ICharacter character)
+            => ServerModeratorSystem.SharedIsModerator(character)
+               || character == null && Api.IsServer;
+
+        /// <summary>
         /// Returns true if character has the Operator role or it's null and we're on the server
         /// (it means the command is invoked from the server system console directly).
         /// </summary>
         public static bool ServerIsOperatorOrSystemConsole(ICharacter character)
-        {
-            return ServerOperatorSystem.SharedIsOperator(character)
-                   || character == null && Api.IsServer;
-        }
+            => ServerOperatorSystem.SharedIsOperator(character)
+               || character == null && Api.IsServer;
 
         public static void ServerOnConsoleCommandResult(
             ICharacter byCharacter,
@@ -111,6 +118,21 @@
             SharedExecuteConsoleCommand(text, byCharacter);
         }
 
+        public static TConsoleCommand SharedGetCommand<TConsoleCommand>()
+            where TConsoleCommand : BaseConsoleCommand, new()
+        {
+            var requiredType = typeof(TConsoleCommand);
+            foreach (var command in allCommands)
+            {
+                if (command.GetType() == requiredType)
+                {
+                    return (TConsoleCommand)command;
+                }
+            }
+
+            throw new Exception("Command not found: " + requiredType.FullName);
+        }
+
         public static List<BaseConsoleCommand> SharedGetCommandNamesSuggestions(string startsWith)
         {
             IEnumerable<BaseConsoleCommand> commands = allCommands;
@@ -128,7 +150,8 @@
                 commands = commands.Where(
                     // exclude server commands on Client-side
                     c => c.Kind != ConsoleCommandKinds.ServerEveryone
-                         && c.Kind != ConsoleCommandKinds.ServerOperator);
+                         && c.Kind != ConsoleCommandKinds.ServerOperator
+                         && c.Kind != ConsoleCommandKinds.ServerModerator);
             }
 
             return commands
@@ -136,7 +159,6 @@
                        command => command.Name.StartsWith(startsWith, StringComparison.OrdinalIgnoreCase)
                                   || (command.Alias?.StartsWith(startsWith, StringComparison.OrdinalIgnoreCase)
                                       ?? false))
-                   .Take(MaxSuggestions)
                    .ToList();
         }
 
@@ -158,17 +180,7 @@
                 out var arguments,
                 out var argumentIndexForSuggestion);
 
-            BaseConsoleCommand consoleCommand = null;
-            foreach (var command in allCommands)
-            {
-                if (command.GetNameOrAlias(commandName)
-                           .Equals(commandName, StringComparison.OrdinalIgnoreCase))
-                {
-                    consoleCommand = command;
-                    break;
-                }
-            }
-
+            var consoleCommand = SharedFindConsoleCommandByName(commandName);
             if (consoleCommand == null)
             {
                 // unknown command
@@ -186,7 +198,8 @@
 
             if (IsServer
                 && (kind & ConsoleCommandKinds.ServerOperator) == 0
-                && (kind & ConsoleCommandKinds.ServerEveryone) == 0)
+                && (kind & ConsoleCommandKinds.ServerEveryone) == 0
+                && (kind & ConsoleCommandKinds.ServerModerator) == 0)
             {
                 // non-server command
                 return null;
@@ -199,14 +212,18 @@
         {
             // populate commands
             var dictionary = new Dictionary<string, BaseConsoleCommand>(StringComparer.OrdinalIgnoreCase);
-            IEnumerable<BaseConsoleCommand> commands = FindProtoEntities<BaseConsoleCommand>();
+            IEnumerable<BaseConsoleCommand> commands = Api.Shared.FindScriptingTypes<BaseConsoleCommand>()
+                                                          .Select(t => t.CreateInstance())
+                                                          .ToArray();
 
             if (IsServer)
             {
                 commands = commands.Where(
                     c => (c.Kind & ConsoleCommandKinds.ServerEveryone) != 0
-                         || (c.Kind & ConsoleCommandKinds.ServerOperator) != 0);
+                         || (c.Kind & ConsoleCommandKinds.ServerOperator) != 0
+                         || (c.Kind & ConsoleCommandKinds.ServerModerator) != 0);
             }
+
             //// Commented out - client still need to know about server commands in order
             //// to provide proper auto-complete.
             ////else // if client
@@ -302,6 +319,27 @@
             commandData.Execute(byCharacter);
         }
 
+        private static BaseConsoleCommand SharedFindConsoleCommandByName(string commandName)
+        {
+            if (string.IsNullOrEmpty(commandName))
+            {
+                return null;
+            }
+
+            BaseConsoleCommand consoleCommand = null;
+            foreach (var command in allCommands)
+            {
+                if (command.GetNameOrAlias(commandName)
+                           .Equals(commandName, StringComparison.OrdinalIgnoreCase))
+                {
+                    consoleCommand = command;
+                    break;
+                }
+            }
+
+            return consoleCommand;
+        }
+
         private static IReadOnlyList<string> SharedSuggestAutocomplete(
             string text,
             ICharacter byCharacter,
@@ -318,6 +356,7 @@
             IReadOnlyList<string> suggestions;
 
             var isOperator = ServerIsOperatorOrSystemConsole(byCharacter);
+            var isModerator = ServerIsModeratorOrSystemConsole(byCharacter);
 
             if (commandData == null) // don't have parsed command - suggest commands
             {
@@ -347,20 +386,43 @@
                     }
                 }
 
+                if (!isModerator)
+                {
+                    // remove moderator-only commands
+                    if (IsServer)
+                    {
+                        suggestedCommands.RemoveAll(
+                            sc => (sc.Kind & ConsoleCommandKinds.ServerModerator) != 0);
+                    }
+                }
+
                 suggestions = suggestedCommands.Select(sc => sc.GetNameOrAlias(parsedCommandName)).ToList();
                 consoleCommandVariant = suggestedCommands.FirstOrDefault()?.Variants.FirstOrDefault();
             }
             else // parsed command - suggest parameters for this command
             {
                 if (!isOperator
-                    && commandData.ConsoleCommand.Kind == ConsoleCommandKinds.ServerOperator)
+                    && (commandData.ConsoleCommand.Kind & ConsoleCommandKinds.ServerOperator) != 0)
                 {
                     // cannot suggest anything to the non-operator player for an operator-only command
                     consoleCommandVariant = null;
                     return EmptySuggestionsArray;
                 }
 
+                if (!isModerator
+                    && (commandData.ConsoleCommand.Kind & ConsoleCommandKinds.ServerModerator) != 0)
+                {
+                    // cannot suggest anything to the non-moderator player for an moderator-only command
+                    consoleCommandVariant = null;
+                    return EmptySuggestionsArray;
+                }
+
                 suggestions = commandData.GetParameterSuggestions(byCharacter, out consoleCommandVariant);
+            }
+
+            if (suggestions?.Count >= MaxSuggestions)
+            {
+                suggestions = suggestions.Take(MaxSuggestions).ToList();
             }
 
             return suggestions ?? EmptySuggestionsArray;
@@ -377,13 +439,14 @@
                 writeToLog: false);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, maxCallsPerSecond: 30)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, avoidBuffer: true)]
         private void ClientRemote_GetSuggestionsCallback(
-            BaseConsoleCommand consoleCommand,
+            string consoleCommandName,
             byte variantIndex,
             IReadOnlyList<string> suggestions,
             byte requestId)
         {
+            var consoleCommand = SharedFindConsoleCommandByName(consoleCommandName);
             var commandVariant = consoleCommand?.Variants[variantIndex];
             ClientSuggestionsCallback(commandVariant, suggestions ?? EmptySuggestionsArray, requestId);
         }
@@ -399,7 +462,7 @@
             SharedExecuteConsoleCommand(text, byCharacter: ServerRemoteContext.Character);
         }
 
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, maxCallsPerSecond: 30)]
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, avoidBuffer: true)]
         private void ServerRemote_GetSuggestions(string text, ushort textPosition, byte requestId)
         {
             var byCharacter = ServerRemoteContext.Character;
@@ -426,9 +489,13 @@
                 }
             }
 
+            var consoleCommandName = consoleCommand?.Name;
             this.CallClient(
                 byCharacter,
-                _ => _.ClientRemote_GetSuggestionsCallback(consoleCommand, variantIndex, suggestions, requestId));
+                _ => _.ClientRemote_GetSuggestionsCallback(consoleCommandName,
+                                                           variantIndex,
+                                                           suggestions,
+                                                           requestId));
         }
     }
 }

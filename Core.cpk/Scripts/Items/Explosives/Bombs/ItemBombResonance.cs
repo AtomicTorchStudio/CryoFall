@@ -13,7 +13,7 @@
 
         public override string Name => "Resonance bomb";
 
-        protected override double PlantingExperienceMultiplier => 1;
+        protected override double PlantingExperienceMultiplier => 2;
 
         protected override void PrepareProtoItemExplosive(
             out IProtoObjectExplosive objectExplosiveProto)

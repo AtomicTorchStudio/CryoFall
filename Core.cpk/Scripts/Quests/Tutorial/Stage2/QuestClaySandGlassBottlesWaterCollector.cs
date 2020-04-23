@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
     public class QuestClaySandGlassBottlesWaterCollector : ProtoQuest
@@ -21,14 +22,12 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementBuildStructure.Require<ObjectWaterCollector>())
-                .Add(RequirementHaveItem.Require<ItemSand>(count: 50, isReversible: false))
-                .Add(RequirementHaveItem.Require<ItemAsh>(count: 10, isReversible: false))
-                .Add(RequirementManufactureItem.Require<ItemGlassRaw>(count: 50))
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeBottle>(count: 5));
+            tasks
+                .Add(TaskBuildStructure.Require<ObjectWaterCollector>())
+                .Add(TaskManufactureItem.Require<ItemGlassRaw>(count: 50))
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeBottle>(count: 5));
 
             prerequisites
                 .Add<QuestUnlockSkills>()

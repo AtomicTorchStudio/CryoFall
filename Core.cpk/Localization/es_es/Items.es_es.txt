@@ -76,6 +76,36 @@ Munición modificada de 8 mm, con una cavidad en la que contiene una pequeña ca
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 Munición tóxica de 8 mm
 
+Scripts/Items/Ammo/ItemAmmoArrowIron@Description:
+Una flecha mejorada, con la punta de hierro. Sigue sin ser tan buena como las armas de fuego, pero es muy fácil de hacer.
+
+Scripts/Items/Ammo/ItemAmmoArrowIron@Name:
+Flecha con punta de hierro
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
+Una flecha sencilla, con la punta de piedra. Lo más básico que existe.
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
+Flecha con punta de piedra
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
+Una granada especial que, al impactar, suelta una mezcla de helio líquido y partículas de pragmio que congela al objetivo.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
+Granada de helio
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
+Granada básica muy explosiva. Daña a todo lo que se encuentre en un pequeño radio alrededor de la zona de impacto.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Name:
+Granada explosiva
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
+Una granada incendiaria especial que inflige mucho daño término al impactar.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
+Granada incendiaria
+
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Munición básica de armas de fuego. Solo es válida contra objetivos débiles, pero es barata y fácil de producir.
 
@@ -1268,6 +1298,12 @@ Pequeña célula de energía universal que se usa en diversos dispositivos elect
 Scripts/Items/Generic/ItemPowerCell@Name:
 Célula de energía
 
+Scripts/Items/Generic/ItemPragmiumHeart@Description:
+Extraño órgano cristalino de una forma de vida desconocida basada en el pragmio.
+
+Scripts/Items/Generic/ItemPragmiumHeart@Name:
+Corazón de pragmio
+
 Scripts/Items/Generic/ItemPreservative@Description:
 Conservante alimenticio. Se puede añadir a la comida empaquetada para conseguir que dure mucho más tiempo.
 
@@ -1637,6 +1673,12 @@ Los medicamentos hemostáticos se pueden usar para detener las hemorragias y red
 Scripts/Items/Medical/ItemHemostatic@Name:
 Hemostático
 
+Scripts/Items/Medical/ItemHerbBlue@Description:
+Hierba médica que se usa como catalizador para complejas recetas médicas. No se puede comer cruda, ya que contiene toxinas.
+
+Scripts/Items/Medical/ItemHerbBlue@Name:
+Hierba azul
+
 Scripts/Items/Medical/ItemHerbGreen@Description:
 Hierba medicinal con unas propiedades únicas de curación y antibacterianas. Puede usarse tal cual, pero es mucho más potente cuando se prepara adecuadamente.
 
@@ -1874,6 +1916,12 @@ Hay que rellenarlo.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Sin combustible
 
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
+Esta frágil hachuela de pragmio usa mecánicas de resonancia molecular para ser mucho más rápida que las alternativas convencionales.
+
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
+Hachuela de pragmio
+
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 El pico de hierro se puede usar para picar depósitos de minerales. Es más rápido y resistente que el pico de piedra.
 
@@ -1982,11 +2030,29 @@ Espada ropera láser (amarilla)
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Arma de corto alcance con una potencia increíble. Se necesita energía para poder usarla.
 
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Tecnología de los viejos tiempos. Sigue funcionando tan bien como antes.
+
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Ballesta
+
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
 Pistola primitiva. Usa cartuchos de papel como munición. Admite dos cargas, las cuales se pueden disparar muy rápido.
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 Pistola de chispa
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Sencillo lanzagranadas que dispara proyectiles de gran calibre diseñados especialmente para él y que explotan al impactar, infligiendo muchísimo daño.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Lanzagranadas
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Lanzagranadas de tipo revólver. Ideal para misiones de asalto o para hacer frente a objetivos muy bien blindados.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Lanzagranadas múltiple
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
 Arma de mano desarrollada para proyectiles de 10 mm.
@@ -2048,11 +2114,23 @@ Sencilla arma de fuego de repetición, con un cilindro giratorio en el que se in
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 Revólver
 
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
+Fusil de francotirador automático ligero. Desarrollado para munición de 10 mm.
+
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
+Fusil ligero
+
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
 Fusil antimateria pesado. Fue desarrollado para usar proyectiles muy potentes del calibre 300.
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 Fusil pesado
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
+Fusil de cerrojo primitivo. Fue desarrollado para ser utilizado con munición de 8 mm.
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
+Fusil de cerrojo
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
 La escopeta del abuelo. Usa munición del calibre 12.

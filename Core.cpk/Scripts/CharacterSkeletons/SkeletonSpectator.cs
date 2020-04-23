@@ -23,6 +23,8 @@
 
         public override SkeletonResource SkeletonResourceFront => null;
 
+        public override string SlotNameItemInHand => null;
+
         protected override string SoundsFolderPath => "Skeletons/Human";
 
         protected override double VolumeFootsteps => 0;

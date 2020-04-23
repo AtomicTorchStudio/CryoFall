@@ -2,8 +2,6 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client;
-    using AtomicTorch.CBND.CoreMod.Items.Seeds;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -32,17 +30,14 @@
         protected ProtoItemToolToolbox()
         {
             var name = this.GetType().Name;
-            this.Icon = new TextureResource("Items/Tools/Toolboxes/" + name);
             this.CharacterTextureResource = new TextureResource(
-                "Characters/Tools/Toolboxes/" + name,
+                "Characters/Tools/" + name,
                 isProvidesMagentaPixelPosition: true);
         }
 
         public virtual TextureResource CharacterTextureResource { get; }
 
         public abstract double ConstructionSpeedMultiplier { get; }
-
-        public override ITextureResource Icon { get; }
 
         public ReadOnlySoundPreset<ObjectSound> ObjectInteractionSoundsPreset { get; private set; }
 

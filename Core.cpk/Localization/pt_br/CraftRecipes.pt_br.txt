@@ -1,7 +1,4 @@
-﻿Scripts/CraftRecipes/HandCrafting/RecipeBreakBottle@Name:
-Quebra de garrafa
-
-Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
+﻿Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddGasoline@Name:
 Encha o barril com gasolina
 
 Scripts/CraftRecipes/Manufacturing/Barrel/RecipeBarrelAddMineralOil@Name:

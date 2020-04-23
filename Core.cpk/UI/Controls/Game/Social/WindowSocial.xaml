@@ -6,22 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social.Data"
-    xmlns:ui="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:social="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Social"
     mc:Ignorable="d"
     d:DesignHeight="80"
     d:DesignWidth="850"
     d:DataContext="{d:DesignInstance data:ViewModelWindowSocial, IsDesignTimeCreatable=True}">
-    <core:BaseUserControlWithWindow.Resources>
-        <ResourceDictionary>
-
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/UI/Styles/SpecialItemsPanel.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-        </ResourceDictionary>
-    </core:BaseUserControlWithWindow.Resources>
 
     <core:GameWindow x:Name="GameWindow"
                      Width="{StaticResource GameMenuStandardWindowWidth}"

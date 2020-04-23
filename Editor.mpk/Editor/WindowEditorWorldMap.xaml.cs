@@ -1,8 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Editor
 {
+    using System;
     using AtomicTorch.CBND.CoreMod.Editor.Scripts;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -10,7 +12,7 @@
     {
         private ControlWorldMap controlWorldMap;
 
-        private ClientWorldMapResourcesVisualizer resourcesVisualizer;
+        private IWorldMapVisualizer[] visualisers;
 
         protected override void InitMenu()
         {
@@ -20,8 +22,19 @@
 
         protected override void WindowClosed()
         {
-            this.resourcesVisualizer.Dispose();
-            this.resourcesVisualizer = null;
+            foreach (var visualiser in this.visualisers)
+            {
+                try
+                {
+                    visualiser.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    Api.Logger.Exception(ex, "Exception during visualizer disposing");
+                }
+            }
+
+            this.visualisers = Array.Empty<IWorldMapVisualizer>();
 
             this.controlWorldMap.WorldMapController.IsActive = false;
 
@@ -31,21 +44,25 @@
         protected override void WindowOpened()
         {
             base.WindowOpened();
-            this.controlWorldMap.WorldMapController.MapClickCallback = this.MapClickHandler;
+            this.controlWorldMap.WorldMapController.MapClickCallback = MapClickHandler;
         }
 
         protected override void WindowOpening()
         {
             var controller = this.controlWorldMap.WorldMapController;
 
-            this.resourcesVisualizer = new ClientWorldMapResourcesVisualizer(controller);
+            this.visualisers = new IWorldMapVisualizer[]
+            {
+                new ClientWorldMapResourcesVisualizer(controller, enableNotifications: true),
+                new ClientWorldMapEventVisualizer(controller, enableNotifications: true)
+            };
 
             controller.IsActive = true;
-            
+
             base.WindowOpening();
         }
 
-        private void MapClickHandler(Vector2D worldPosition)
+        private static void MapClickHandler(Vector2D worldPosition)
         {
             EditorSystem.ClientTeleport(worldPosition);
         }

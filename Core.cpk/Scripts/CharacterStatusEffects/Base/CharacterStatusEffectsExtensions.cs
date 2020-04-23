@@ -110,7 +110,7 @@
             {
                 var statusEffect = statusEffects[index];
                 if (removeOnlyDebuffs
-                    && ((IProtoStatusEffect)statusEffect.ProtoLogicObject).Kind != StatusEffectKind.Debuff)
+                    && ((IProtoStatusEffect)statusEffect.ProtoLogicObject).Kind == StatusEffectKind.Buff)
                 {
                     continue;
                 }

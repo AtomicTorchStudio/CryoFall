@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
 
     public class QuestBuildChemicalLab : ProtoQuest
@@ -15,13 +16,13 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementBuildStructure.Require<ObjectChemicalLab>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeAcidSulfuric>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeAcidNitric>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeNitrocellulosePowder>());
+            tasks
+                .Add(TaskBuildStructure.Require<ObjectChemicalLab>())
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeAcidSulfuric>())
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeAcidNitric>())
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeNitrocellulosePowder>());
 
             prerequisites
                 .Add<QuestCompleteTier1Technologies>();

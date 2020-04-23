@@ -1,7 +1,8 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Quests.Data
 {
     using System.Windows;
-    using AtomicTorch.CBND.CoreMod.Quests;
+    using System.Windows.Media;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -13,50 +14,54 @@
         private static readonly SoundResource SoundResourceQuestRequirementSatisfied =
             new SoundResource("UI/Quests/QuestRequirementSatisfied.ogg");
 
-        private static ulong lastRequirementSatisfiedFrame;
+        private static ulong lastTaskFinishedFrameNumber;
 
-        private readonly IQuestRequirement requirement;
+        private readonly IPlayerTask requirement;
 
-        private readonly QuestRequirementState requirementState;
+        private readonly bool showIcon;
 
-        private readonly QuestRequirementStateWithCount requirementStateWithCount;
+        private readonly PlayerTaskState taskState;
+
+        private readonly PlayerTaskStateWithCount taskStateWithCount;
 
         public ViewModelQuestRequirement(
-            IQuestRequirement requirement,
+            IPlayerTask requirement,
             // can be null when the quest is completed
-            [CanBeNull] QuestRequirementState requirementState)
+            [CanBeNull] PlayerTaskState taskState,
+            bool showIcon)
         {
             this.requirement = requirement;
-            this.requirementState = requirementState;
+            this.taskState = taskState;
+            this.showIcon = showIcon;
 
-            this.requirementState?.ClientSubscribe(
-                _ => _.IsSatisfied,
-                isSatisfiedNow =>
+            this.taskState?.ClientSubscribe(
+                _ => _.IsCompleted,
+                isCompletedNow =>
                 {
-                    this.NotifyPropertyChanged(nameof(this.IsSatisfied));
-                    if (!isSatisfiedNow)
+                    this.NotifyPropertyChanged(nameof(this.IsCompleted));
+                    if (!isCompletedNow)
                     {
                         return;
                     }
 
                     // play requirement satisfied sound (not more often than once per frame)
-                    if (lastRequirementSatisfiedFrame != Client.CurrentGame.ServerFrameNumber)
+                    if (lastTaskFinishedFrameNumber != Client.CurrentGame.ServerFrameNumber)
                     {
-                        lastRequirementSatisfiedFrame = Client.CurrentGame.ServerFrameNumber;
+                        lastTaskFinishedFrameNumber = Client.CurrentGame.ServerFrameNumber;
                         Api.Client.Audio.PlayOneShot(SoundResourceQuestRequirementSatisfied, volume: 0.5f);
                     }
                 },
                 this);
 
-            if (requirement is IQuestRequirementWithCount questRequirementWithCount)
+            if (requirement is IPlayerTaskWithCount questRequirementWithCount)
             {
                 this.CountRequired = questRequirementWithCount.RequiredCount;
 
-                if (requirementState != null)
+                if (taskState != null)
                 {
                     // requirement state can be null if the quest is already completed
-                    this.requirementStateWithCount = (QuestRequirementStateWithCount)requirementState;
-                    this.requirementStateWithCount.ClientSubscribe(
+                    this.taskStateWithCount = (PlayerTaskStateWithCount)taskState;
+                    this.taskStateWithCount.ClientSubscribe(
                         _ => _.CountCurrent,
                         _ => this.NotifyPropertyChanged(nameof(this.CountCurrent)),
                         this);
@@ -68,12 +73,12 @@
         {
             get
             {
-                if (this.requirementStateWithCount != null)
+                if (this.taskStateWithCount != null)
                 {
-                    return this.requirementStateWithCount.CountCurrent;
+                    return this.taskStateWithCount.CountCurrent;
                 }
 
-                if (this.requirementState == null)
+                if (this.taskState == null)
                 {
                     // the quest is completed so there is no requirement state
                     return this.CountRequired;
@@ -92,6 +97,11 @@
 
         public string Description => this.requirement.Description;
 
-        public bool IsSatisfied => this.requirementState?.IsSatisfied ?? true;
+        public bool HasIcon => this.showIcon
+                               && this.requirement.Icon != null;
+
+        public Brush Icon => Api.Client.UI.GetTextureBrush(this.requirement.Icon);
+
+        public bool IsCompleted => this.taskState?.IsCompleted ?? true;
     }
 }

@@ -1,0 +1,63 @@
+﻿Scripts/PlayerTasks/TaskBuildStructure@DescriptionFormat:
+Zbuduj: {0}
+
+Scripts/PlayerTasks/TaskCompleteTechGroup@DescriptionFormat:
+Ukończ: {0} (grupa tech.)
+
+Scripts/PlayerTasks/TaskCraftRecipe@CraftOnStationNameTitleFormat:
+– {0}
+
+Scripts/PlayerTasks/TaskCraftRecipe@DescriptionTitlePrefix:
+Wykonaj
+
+Scripts/PlayerTasks/TaskDestroy@DescriptionFormat:
+Zniszcz: {0}
+
+Scripts/PlayerTasks/TaskGather@DescriptionFormat:
+Zgromadź: {0}
+
+Scripts/PlayerTasks/TaskHaveItem@DescriptionFormat:
+Zbierz: {0}
+
+Scripts/PlayerTasks/TaskHaveItemEquipped@DescriptionFormat:
+Wyposaż: {0}
+
+Scripts/PlayerTasks/TaskHaveSkill@DescriptionFormat:
+Poznaj umiejętność: {0} do poziomu {1}
+
+Scripts/PlayerTasks/TaskHaveSkills@DescriptionFormat:
+Poznaj umiejętności: {0} do poziomu {1}
+
+Scripts/PlayerTasks/TaskHaveTechGroup@DescriptionFormat:
+Odblokuj {0} (grupa tech.)
+
+Scripts/PlayerTasks/TaskHaveTechGroups@DescriptionFormat:
+Odblokuj grupy tech. – {0}: {1}
+
+Scripts/PlayerTasks/TaskHaveTechNode@DescriptionFormat:
+Poznaj: {0} (w {1} gr. tech.)
+
+Scripts/PlayerTasks/TaskKill@DescriptionFormat:
+Zabij: {0}
+
+Scripts/PlayerTasks/TaskKillAny@DescriptionFormat:
+Zabij: {0}
+
+Scripts/PlayerTasks/TaskManufactureItem@DescriptionFormat:
+Wytwórz: {0}
+
+Scripts/PlayerTasks/TaskRun@DescriptionText:
+Przebiegnij 10 metrów
+
+Scripts/PlayerTasks/TaskSortItemsContainer@DescriptionText:
+Posortuj ekwipunek
+
+Scripts/PlayerTasks/TaskUseItem@DescriptionFormat:
+Użyj: {0}
+
+Scripts/PlayerTasks/TaskVisitTile@DescriptionFormat:
+Odwiedź: {0}
+
+Scripts/PlayerTasks/TaskVisitZone@DescriptionFormat:
+Odwiedź: {0}
+

@@ -15,6 +15,8 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Lasting;
 
+        public override bool IsAvailableInCompletionist => false;
+
         public override string Name => "Rustshroom";
 
         public override ushort OrganicValue => 5;

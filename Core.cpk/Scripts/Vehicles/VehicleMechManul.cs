@@ -52,7 +52,7 @@
                 impact: 0.60,
                 kinetic: 0.60,
                 heat: 0.50,
-                cold: 0.50,
+                cold: 0.15,
                 chemical: 0.70,
                 electrical: 0.40,
                 radiation: 0.0,

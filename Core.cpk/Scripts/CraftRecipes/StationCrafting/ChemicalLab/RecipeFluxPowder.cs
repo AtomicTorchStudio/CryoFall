@@ -16,12 +16,12 @@
         {
             stations.Add<ObjectChemicalLab>();
 
-            duration = CraftingDuration.VeryShort;
+            duration = CraftingDuration.Short;
 
-            inputItems.Add<ItemSand>(count: 2);
-            inputItems.Add<ItemPotassiumNitrate>(count: 1);
+            inputItems.Add<ItemSand>(count: 10);
+            inputItems.Add<ItemPotassiumNitrate>(count: 5);
 
-            outputItems.Add<ItemFluxPowder>(count: 1);
+            outputItems.Add<ItemFluxPowder>(count: 5);
         }
     }
 }

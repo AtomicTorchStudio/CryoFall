@@ -10,7 +10,7 @@
 
     public class ObjectLandClaimT2 : ProtoObjectLandClaim
     {
-        public override TimeSpan DecayDelayDuration { get; } = TimeSpan.FromHours(56);
+        public override TimeSpan DecayDelayDuration { get; } = TimeSpan.FromHours(80);
 
         public override string Description => GetProtoEntity<ObjectLandClaimT1>().Description;
 

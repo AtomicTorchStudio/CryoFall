@@ -13,7 +13,7 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(5)));
 
             spawnList.CreatePreset(interval: 25, padding: 0.5, useSectorDensity: false)
-                     .Add<MobCrawler>()
+                     .AddExact<MobCrawler>()
                      .SetCustomPaddingWithSelf(20);
         }
     }

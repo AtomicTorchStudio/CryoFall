@@ -46,7 +46,7 @@
         public const string NotificationItemCannotBeUsedInVehicle =
             "This item cannot be used while you're riding a vehicle.";
 
-        private const double DurabilityFractionReduceOnDeath = 0.1;
+        private const double DurabilityFractionReduceOnDeath = 0.15;
 
         /// <summary>
         /// This flag will be true only in case the method <see cref="ClientItemUseStart" /> or <see cref="ClientItemUseFinish" />
@@ -216,7 +216,10 @@
 
         public virtual void ServerOnCharacterDeath(IItem item, bool isEquipped, out bool shouldDrop)
         {
-            shouldDrop = true;
+            // only unequipped items will drop unless full loot system enabled
+            shouldDrop = ItemConstants.ServerPvpIsFullLootEnabled
+                         || !isEquipped;
+
             if (!isEquipped)
             {
                 return;
@@ -224,7 +227,7 @@
 
             if (item.ProtoItem is IProtoItemWithDurability protoItemWithDurability)
             {
-                // -10% of durability reduced on death
+                // reduce equipped item's durability on death
                 var durabilityDelta = protoItemWithDurability.DurabilityMax * DurabilityFractionReduceOnDeath;
                 ItemDurabilitySystem.ServerModifyDurability(item,
                                                             delta: -durabilityDelta,

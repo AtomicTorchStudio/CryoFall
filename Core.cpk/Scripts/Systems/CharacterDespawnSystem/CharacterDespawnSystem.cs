@@ -36,8 +36,6 @@
                 return;
             }
 
-            Server.Characters.PlayerOnlineStateChanged += this.ServerPlayerOnlineStateChangedHandler;
-
             TriggerTimeInterval.ServerConfigureAndRegister(
                 callback: ServerUpdate,
                 name: "System." + this.ShortId,
@@ -49,8 +47,6 @@
             var privateState = character.GetPrivateState<PlayerCharacterPrivateState>();
             if (character.ServerIsOnline)
             {
-                // player online - update last online time
-                privateState.ServerLastOnlineTime = serverTime;
                 return false;
             }
 
@@ -68,13 +64,7 @@
                 return false;
             }
 
-            var offlineSinceTime = privateState.ServerLastOnlineTime;
-            if (!offlineSinceTime.HasValue)
-            {
-                privateState.ServerLastOnlineTime = serverTime;
-                return false;
-            }
-
+            var offlineSinceTime = privateState.ServerLastActiveTime;
             if (serverTime < offlineSinceTime + OfflineDurationToDespawn)
             {
                 // despawn timeout is not reached yet
@@ -100,13 +90,6 @@
                     ServerCharacterDeathMechanic.DespawnCharacter(character);
                 }
             }
-        }
-
-        private void ServerPlayerOnlineStateChangedHandler(ICharacter character, bool isOnline)
-        {
-            // just record the last player online state change (even for online)
-            var privateState = character.GetPrivateState<PlayerCharacterPrivateState>();
-            privateState.ServerLastOnlineTime = Server.Game.FrameTime;
         }
     }
 }

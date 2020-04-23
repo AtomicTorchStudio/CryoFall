@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
     using AtomicTorch.CBND.CoreMod.Stats;
@@ -60,7 +61,7 @@
                         >= Server.Game.FrameTime + proposedWateringDuration - 60)))
             {
                 // the plant is already watered enough
-                Instance.CallClient(character, _ => _.ClientRemote_CannotWanterAlreadyWatered(protoItem));
+                Instance.CallClient(character, _ => _.ClientRemote_CannotWaterAlreadyWatered(protoItem));
                 return false;
             }
 
@@ -201,7 +202,7 @@
         }
 
         [RemoteCallSettings(DeliveryMode.ReliableSequenced)]
-        private void ClientRemote_CannotWanterAlreadyWatered(IProtoItem protoItem)
+        private void ClientRemote_CannotWaterAlreadyWatered(IProtoItem protoItem)
         {
             NotificationSystem.ClientShowNotification(
                 NotificationCannotWater_Title,

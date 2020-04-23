@@ -13,6 +13,9 @@ Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
 {0} 학습 포인트 필요 (현재 {1}).
 
+Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
+서버 청소 후 {0} 동안 이용할 수 없습니다 ({1} 기다려주세요).
+
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 필요한 잠금 해제된 기술: {0}
 
@@ -99,6 +102,12 @@ Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
 요리 2
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
+주변을 더 멋있게 꾸며보는 건 어떠신가요?
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
+장식
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
 더 좋은 방어구 설계도를 제공하는 향상된 보호 기술.
@@ -192,6 +201,12 @@ Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
 요리 3
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
+주변을 더욱 더 꾸며보세요!
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
+장식 2
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 발전된 보호 기술.

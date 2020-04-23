@@ -53,27 +53,23 @@
         {
             var name = this.GetType().Name;
 
-            this.Icon = new TextureResource("Items/Tools/Lights/" + name);
-
             this.CharacterTextureResourceInactive = new TextureResource(
-                "Characters/Tools/Lights/" + name,
+                "Characters/Tools/" + name,
                 isProvidesMagentaPixelPosition: true);
 
             this.CharacterTextureResourceActive = new TextureResource(
-                "Characters/Tools/Lights/" + name + "Active",
+                "Characters/Tools/" + name + "Active",
                 isProvidesMagentaPixelPosition: true);
         }
 
         public override bool CanBeSelectedInVehicle => true;
 
-        public override ITextureResource Icon { get; }
-
         public IReadOnlyItemFuelConfig ItemFuelConfig { get; private set; }
 
         public IReadOnlyItemLightConfig ItemLightConfig { get; private set; }
 
-        // we're forcing updates to one per second to properly (and slowly) reduce durability of the light item
-        public sealed override double ServerUpdateIntervalSeconds => 5;
+        // slowly reduce durability of the light item
+        public override double ServerUpdateIntervalSeconds => 5;
 
         protected virtual string ActiveLightCharacterAnimationName => "Torch2";
 
@@ -149,8 +145,8 @@
                                            componentLightSource,
                                            "Weapon");
 
-            skeletonComponents.Add(componentLightSource);
             skeletonComponents.Add(componentLightInSkeleton);
+            skeletonComponents.Add(componentLightSource);
         }
 
         public void ClientTrySetActiveState(IItem item, bool setIsActive)

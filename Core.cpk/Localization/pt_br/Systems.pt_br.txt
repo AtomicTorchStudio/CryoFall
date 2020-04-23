@@ -10,6 +10,19 @@ Carregadores portáteis sem carga suficiente.
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 Não é possível usar {0}
 
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
+`Parece que você está sem nenhuma atividade há algum tempo.
+[br]Tanto a sede quanto a fome estão suspensas.`
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
+É permitido conversar, produzir ou usar consumíveis.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part3:
+`Qualquer outra ação desativará o modo "Longe do Teclado".`
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Title:
+`Modo "Longe do Teclado"`
+
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
 `Em {0} segundos, você pode ressurgir na sua cama.
 [br]Ou pode ressurgir agora mesmo no mundo.`
@@ -89,6 +102,9 @@ Global
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 Local
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomTrade@Title:
+Negociar
 
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
 Não é possível construir ali
@@ -251,6 +267,18 @@ Você não pode fazer convites porque o operador do servidor te bloqueou.
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 O(a) jogador(a) convidado está offline. Somente jogadores online podem ser convidados para um grupo.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_AreYouSure:
+Quer mesmo denunciar a seguinte mensagem?
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_CommunityServerDisclaimer:
+[b]Atenção:[/b] você está jogando num servidor de comunidade, então a moderação do chat é de responsabilidade do proprietário do servidor. Essas conversas não costumam ser moderadas.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_OfficialServersDisclaimer:
+[b]Atenção:[/b] os servidores oficiais NÃO são moderados.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_Title:
+Denunciar uma mensagem
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
 Não é possível interagir (longe demais ou construção inacessível).
@@ -459,6 +487,9 @@ Sempre fechado
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 Você não tem acesso!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
+Limite do tamanho da lista de acesso excedido.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
 Você não pode editar a lista de donos.

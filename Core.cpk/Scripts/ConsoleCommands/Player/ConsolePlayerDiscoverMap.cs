@@ -2,9 +2,11 @@
 
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.WorldDiscovery;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ConsolePlayerDiscoverMap : BaseConsoleCommand
     {
@@ -18,7 +20,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
         {
             WorldDiscoverySystem.Instance.ServerDiscoverWorldChunks(
                 player,
-                Server.World.GetAllChunkTilePositions());
+                new List<Vector2Ushort>(Server.World.GetAllChunkTilePositions()));
 
             return $"{player} now discovered whole map.";
         }

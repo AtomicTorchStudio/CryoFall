@@ -25,9 +25,16 @@
             TechGroup techGroup,
             bool isAdded);
 
-        public static event CharacterTechGroupAddedOrRemovedDelegate CharacterGroupAddedOrRemoved;
+        public delegate void DelegateCharacterGainedLearningPoints(
+            ICharacter character,
+            int gainedLearningPoints,
+            bool isModifiedByStat);
 
-        public static event CharacterNodeAddedOrRemovedDelegate CharacterTechNodeAddedOrRemoved;
+        public static event DelegateCharacterGainedLearningPoints ServerCharacterGainedLearningPoints;
+
+        public static event CharacterTechGroupAddedOrRemovedDelegate ServerCharacterGroupAddedOrRemoved;
+
+        public static event CharacterNodeAddedOrRemovedDelegate ServerCharacterTechNodeAddedOrRemoved;
 
         public ICharacter Character => (ICharacter)this.GameObject;
 
@@ -65,17 +72,17 @@
             this.Groups.Add(techGroup);
             var character = this.Character;
             Api.Logger.Info("Tech group added: " + techGroup.ShortId, character);
-            Api.SafeInvoke(() => CharacterGroupAddedOrRemoved?.Invoke(character, techGroup, isAdded: true));
+            Api.SafeInvoke(() => ServerCharacterGroupAddedOrRemoved?.Invoke(character, techGroup, isAdded: true));
         }
 
-        public void ServerAddLearningPoints(double points, bool allowModifyingByStats = true)
+        public void ServerAddLearningPoints(double points, bool allowModifyingByStat = true)
         {
             if (points <= 0)
             {
                 return;
             }
 
-            if (allowModifyingByStats)
+            if (allowModifyingByStat)
             {
                 points *= this.Character.SharedGetFinalStatMultiplier(StatName.LearningsPointsGainMultiplier);
             }
@@ -115,6 +122,10 @@
             }
 
             Api.Logger.Info($"Learning points gained: +{pointsToAdd} (total: {result})", this.Character);
+
+            Api.SafeInvoke(
+                () => ServerCharacterGainedLearningPoints?.Invoke(this.Character, pointsToAdd, allowModifyingByStat));
+
             this.Character.ServerAddSkillExperience<SkillLearning>(
                 pointsToAdd * SkillLearning.ExperienceAddedPerLPEarned);
         }
@@ -139,7 +150,36 @@
             var pointsToAdd = Math.Max(0, lpToRefund);
             this.LearningPoints = (ushort)Math.Min(ushort.MaxValue,
                                                    this.LearningPoints + pointsToAdd);
-            Api.Logger.Important($"Learning points refunded: +{pointsToAdd} (total: {this.LearningPoints}) for {this.Character}");
+            Api.Logger.Important(
+                $"Learning points refunded: +{pointsToAdd} (total: {this.LearningPoints}) for {this.Character}");
+        }
+
+        public void ServerRemoveAllTechnologies()
+        {
+            if (this.Groups.Count > 0)
+            {
+                foreach (var techGroup in this.Groups.ToList())
+                {
+                    this.ServerRemoveGroup(techGroup);
+                }
+
+                this.Groups.Clear();
+            }
+
+            if (this.Nodes.Count > 0)
+            {
+                foreach (var techNode in this.Nodes.ToList())
+                {
+                    this.ServerRemoveNode(techNode);
+                }
+
+                this.Nodes.Clear();
+            }
+
+            Api.Logger.Info("Technologies reset", this.Character);
+            this.ServerInit();
+
+            this.Character.SharedSetFinalStatsCacheDirty();
         }
 
         /// <summary>
@@ -152,7 +192,7 @@
                 return;
             }
 
-            Api.SafeInvoke(() => CharacterGroupAddedOrRemoved?.Invoke(this.Character, techGroup, isAdded: false));
+            Api.SafeInvoke(() => ServerCharacterGroupAddedOrRemoved?.Invoke(this.Character, techGroup, isAdded: false));
 
             // remove nodes of this group
             for (var index = 0; index < this.Nodes.Count; index++)
@@ -192,7 +232,8 @@
                 return;
             }
 
-            Api.SafeInvoke(() => CharacterTechNodeAddedOrRemoved?.Invoke(this.Character, techNode, isAdded: false));
+            Api.SafeInvoke(
+                () => ServerCharacterTechNodeAddedOrRemoved?.Invoke(this.Character, techNode, isAdded: false));
             this.Character.SharedSetFinalStatsCacheDirty();
 
             // remove all the dependent nodes
@@ -200,34 +241,6 @@
             {
                 this.ServerRemoveNode(dependentNode);
             }
-        }
-
-        public void ServerRemoveAllTechnologies()
-        {
-            if (this.Groups.Count > 0)
-            {
-                foreach (var techGroup in this.Groups.ToList())
-                {
-                    this.ServerRemoveGroup(techGroup);
-                }
-
-                this.Groups.Clear();
-            }
-
-            if (this.Nodes.Count > 0)
-            {
-                foreach (var techNode in this.Nodes.ToList())
-                {
-                    this.ServerRemoveNode(techNode);
-                }
-
-                this.Nodes.Clear();
-            }
-
-            Api.Logger.Info("Technologies reset", this.Character);
-            this.ServerInit();
-
-            this.Character.SharedSetFinalStatsCacheDirty();
         }
 
         public void ServerResetLearningPointsRemainder()
@@ -304,7 +317,7 @@
             this.Nodes.Add(techNode);
             var character = this.Character;
             Api.Logger.Info("Tech node added: " + techNode.ShortId, character);
-            Api.SafeInvoke(() => CharacterTechNodeAddedOrRemoved?.Invoke(character, techNode, isAdded: true));
+            Api.SafeInvoke(() => ServerCharacterTechNodeAddedOrRemoved?.Invoke(character, techNode, isAdded: true));
 
             // add all required nodes recursively
             var currentNode = techNode;

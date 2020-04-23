@@ -48,6 +48,7 @@
 
             Server.Items.SetCount(item, item.Count - 1);
             CharacterEnergySystem.ServerAddEnergyCharge(character, this.FuelAmount);
+            ServerItemUseObserver.NotifyItemUsed(character, item);
         }
 
         private bool SharedIsRechargeNeeded(ICharacter character)

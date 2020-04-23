@@ -22,6 +22,9 @@ Acechador
 Scripts/Characters/Mobs/MobFireLizard@Name:
 Lagarto de fuego
 
+Scripts/Characters/Mobs/MobFloater@Name:
+Flotador
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 Ratel
 
@@ -33,6 +36,9 @@ Pangolín
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 Escarabajo de pragmio
+
+Scripts/Characters/Mobs/MobPragmiumQueen@Name:
+Reina de pragmio
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 Caracol

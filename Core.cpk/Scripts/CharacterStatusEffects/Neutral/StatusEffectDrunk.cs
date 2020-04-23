@@ -37,8 +37,8 @@
             // energy regeneration +25%
             effects.AddPercent(this, StatName.StaminaRegenerationPerSecond, 25);
 
-            // movement speed -10%
-            effects.AddPercent(this, StatName.MoveSpeed, -10);
+            // movement speed -5%
+            effects.AddPercent(this, StatName.MoveSpeed, -5);
 
             // pain -50%
             effects.AddPercent(this, StatName.PainIncreaseRateMultiplier, -50);

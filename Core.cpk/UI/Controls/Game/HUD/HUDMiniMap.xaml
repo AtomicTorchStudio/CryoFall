@@ -1,0 +1,210 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.HUDMiniMap"
+    x:Name="UserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.HUD.Data"
+    xmlns:noesisGuiExtensions="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance data:ViewModelHUDMiniMap}">
+
+    <base:BaseUserControl.Resources>
+        <SolidColorBrush x:Key="MiniButtonForegroundBrush">#FF111111</SolidColorBrush>
+
+        <Style x:Key="MiniButtonStyle"
+               TargetType="{x:Type Button}"
+               BasedOn="{StaticResource SmallButtonStyle}">
+            <Setter Property="Padding" Value="0,-1,0,-2" />
+            <Setter Property="MinWidth" Value="20" />
+            <Setter Property="MinHeight" Value="20" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="FontFamily" Value="{StaticResource DigitsFontFamily}" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Background" Value="#FFCCCCCC" />
+            <Setter Property="Foreground" Value="{StaticResource MiniButtonForegroundBrush}" />
+        </Style>
+    </base:BaseUserControl.Resources>
+
+    <Grid>
+        <Grid x:Name="PanelControls"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              Margin="4,4,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Background="Transparent">
+                <StackPanel Orientation="Vertical"
+                            Visibility="{Binding IsMapVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Button minus (shrink size) -->
+                        <Button
+                            Visibility="{Binding CanDecreaseSize, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
+                            Style="{StaticResource MiniButtonStyle}"
+                            Content="&#x2212;"
+                            Command="{Binding CommandChangeSize}"
+                            CommandParameter="-" />
+
+                        <!-- Button plus (expand size) -->
+                        <Button
+                            Visibility="{Binding CanIncreaseSize, Converter={StaticResource BoolToHiddenVisibilityConverter}}"
+                            Style="{StaticResource MiniButtonStyle}"
+                            Content="&#x002B;"
+                            Command="{Binding CommandChangeSize}"
+                            CommandParameter="+"
+                            Margin="4,0,0,0" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Minimap expand button (displayed only when the minimap is collapsed) -->
+                <Button
+                    Visibility="{Binding IsMapVisible, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}"
+                    Style="{StaticResource MiniButtonStyle}"
+                    Command="{Binding CommandChangeSize}"
+                    CommandParameter="+"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
+
+                    <Button.Content>
+                        <Path Width="30"
+                              Stretch="Uniform"
+                              Fill="#BBFFFFFF"
+                              Data="m 28.290004,278.90225 7.6,-13.88 c 0.09,-0.35 0.179999,-0.79 0.260001,-1.23 0.09,-0.43 0.179999,-0.87 0.179999,-1.31 0,-2.18 -0.959999,-4.1 -2.359999,-5.5 -1.480002,-1.48 -3.490002,-2.36 -5.680001,-2.36 -2.180001,0 -4.190001,0.88 -5.670001,2.36 -0.26,0.26 -0.610001,0.61 -0.88,0.96 -0.870001,1.31 -1.480001,2.89 -1.480001,4.54 0,0.44 0.09,0.88 0.17,1.31 0,0.44 0.18,0.88 0.270001,1.23 z m -26.550004,7.34 12.060002,-16.16 v -14.93 L 1.74,260.39225 Z m 13.800002,-16.24 11.880002,11.52 v -0.51999 l -8.300002,-15.20001 v -0.17 c -0.26,-0.44 -0.34,-0.96 -0.43,-1.57 -0.09,-0.53 -0.18,-1.05 -0.18,-1.58 0,-1.74 0.53,-3.31 1.31,-4.71 l -4.28,-2.45 z m 13.630001,12.40001 13.190003,-3.85001 v -23.4 l -5.510001,2.62 c 0.789998,1.4 1.23,3.06 1.23,4.71 0,0.53 -0.09,1.05 -0.180001,1.58 -0.09,0.52 -0.17,1.04 -0.349999,1.57 -0.09,0.09 -0.09,0.09 -0.09,0.17 l -8.290002,15.20001 z m 13.190003,-2.01 -13.190003,3.83999 0.09,10.74001 13.100002,-3.75 z m -14.940002,3.58 -11.880002,-11.53001 v 18.78001 l 11.970002,3.67 z M 13.800002,273.05225 1.74,289.21226 v 5.68 l 12.060002,-3.67 z m 1.31,-20 5.76,3.23 c 0.18,-0.17 0.35,-0.43 0.520001,-0.61 1.75,-1.74 4.2,-2.79 6.900001,-2.79 2.71,0 5.159999,1.05 6.9,2.79 0.180001,0.26 0.439999,0.44 0.620001,0.7 l 6.979999,-3.32 c 0.09,-0.08 0.260001,-0.17 0.440002,-0.17 0.519999,0 0.869998,0.43 0.869998,0.87 v 38.08001 c 0,0.44 -0.259998,0.79 -0.61,0.86999 l -14.850001,4.28001 h -0.519999 l -13.450002,-4.19 -13.540002,4.19 c -0.43000004,0.09 -0.96,-0.17 -1.04,-0.61 -0.09,-0.09 -0.09,-0.17 -0.09,-0.26 v -36.33001 c 0,-0.35 0.26,-0.7 0.60999996,-0.79 l 13.71000204,-6.02 c 0.26,-0.09 0.52,-0.09 0.79,0.08 z m 13.180002,3.67 c 1.579999,0 2.970001,0.61 3.929999,1.66 1.050002,0.96 1.660001,2.36 1.660001,3.93 0,0.35 -0.08,0.61 -0.08,0.96 -0.09,0.26 -0.180001,0.61 -0.270002,0.87 -0.34,1.14 -1.129998,2.01 -1.999999,2.71 -0.960001,0.61 -2.01,1.05 -3.24,1.05 -1.220002,0 -2.270001,-0.44 -3.230001,-1.05 -0.96,-0.7 -1.66,-1.57 -2.01,-2.71 -0.08,-0.26 -0.17,-0.61 -0.26,-0.87 -0.08,-0.35 -0.08,-0.61 -0.08,-0.96 0,-1.57 0.61,-2.97 1.65,-3.93 0.97,-1.05 2.360001,-1.66 3.930002,-1.66 z m 2.71,2.88 c -0.7,-0.7 -1.660001,-1.13 -2.71,-1.13 -1.04,0 -2.000001,0.43 -2.700001,1.13 -0.7,0.7 -1.14,1.66 -1.14,2.71 0,0.26 0.09,0.44 0.09,0.61 0,0.26 0.09,0.44 0.17,0.61 0.27,0.79 0.7,1.4 1.4,1.92 0.610001,0.44 1.400001,0.7 2.180001,0.7 0.789998,0 1.579999,-0.26 2.189999,-0.7 0.610002,-0.52 1.130001,-1.13 1.4,-1.92 0.08,-0.17 0.17,-0.35 0.17,-0.61 0,-0.17 0.09,-0.35 0.09,-0.61 0,-1.05 -0.44,-2.01 -1.139999,-2.71 z" />
+                    </Button.Content>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="Transparent">
+                                <ContentPresenter Margin="3"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <Slider Grid.Row="1"
+                    Visibility="{Binding IsMapVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Height="90"
+                    MinHeight="90"
+                    Value="{Binding Zoom}"
+                    Maximum="{Binding ZoomMax}"
+                    Minimum="{Binding ZoomMin}"
+                    SmallChange="0.05"
+                    LargeChange="0.05"
+                    Margin="-8,-4"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Focusable="False" />
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup>
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition To="Visible" GeneratedDuration="0:0:0.1" />
+                        <VisualTransition To="Collapsed" GeneratedDuration="0:0:0.2" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Visible" />
+                    <VisualState x:Name="Collapsed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+
+        <Grid Visibility="{Binding IsMapVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+              Width="{Binding ControlWidth}"
+              Height="{Binding ControlHeight}"
+              Background="Transparent"
+              IsHitTestVisible="False">
+            <core:PanningPanel x:Name="PanningPanel"
+                               PanningWidth="1024"
+                               PanningHeight="1024"
+                               Opacity="0.6"
+                               SnapsToDevicePixels="False"
+                               IsHitTestVisible="False"
+                               IsAutoCalculatingMinZoom="False"
+                               MinZoom="{Binding ZoomMin}"
+                               MaxZoom="{Binding ZoomMax}">
+                <core:PanningPanel.Template>
+                    <ControlTemplate TargetType="{x:Type core:PanningPanel}">
+                        <Grid x:Name="LayoutRoot"
+                              Background="#66000000">
+                            <Canvas x:Name="CanvasContentWrapper">
+                                <Canvas x:Name="CanvasContent"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Rectangle Width="{TemplateBinding PanningWidth}"
+                                               Height="{TemplateBinding PanningHeight}"
+                                               IsHitTestVisible="False" />
+                                    <Canvas x:Name="CanvasContentItems"
+                                            IsItemsHost="True"
+                                            UseLayoutRounding="False" />
+                                </Canvas>
+                            </Canvas>
+                        </Grid>
+                    </ControlTemplate>
+                </core:PanningPanel.Template>
+            </core:PanningPanel>
+
+            <TextBlock x:Name="TextBlockCoordinates"
+                       Text="{Binding ViewModelControlWorldMap.CurrentPositionText, ElementName=UserControl}"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       FontSize="12"
+                       FontFamily="{StaticResource CondensedFontFamily}"
+                       noesisGuiExtensions:Text.Stroke="Black"
+                       noesisGuiExtensions:Text.StrokeThickness="1"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Bottom"
+                       Margin="2,0,0,0">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition To="CoordinatesVisible" GeneratedDuration="0:0:0.1" />
+                            <VisualTransition To="CoordinatesCollapsed" GeneratedDuration="0:0:0.2" />
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="CoordinatesVisible" />
+                        <VisualState x:Name="CoordinatesCollapsed">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" />
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </TextBlock>
+        </Grid>
+
+        <i:Interaction.Triggers>
+            <ei:DataTrigger
+                Binding="{Binding IsMouseOverIncludingHidden}"
+                Value="True">
+                <ei:GoToStateAction StateName="Visible" TargetName="PanelControls" />
+                <ei:GoToStateAction StateName="CoordinatesVisible" TargetName="TextBlockCoordinates" />
+            </ei:DataTrigger>
+            <ei:DataTrigger
+                Binding="{Binding IsMouseOverIncludingHidden}"
+                Value="False">
+                <ei:GoToStateAction StateName="Collapsed" TargetName="PanelControls" />
+                <ei:GoToStateAction StateName="CoordinatesCollapsed" TargetName="TextBlockCoordinates" />
+            </ei:DataTrigger>
+        </i:Interaction.Triggers>
+
+    </Grid>
+
+</base:BaseUserControl>

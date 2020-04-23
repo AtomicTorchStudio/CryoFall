@@ -4,10 +4,15 @@
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class SkeletonScorpion : ProtoCharacterSkeletonAnimal
     {
         public override double DefaultMoveSpeed => 2.25;
+
+        public override double IconScale => 0.46;
+
+        public override Vector2D IconOffset => (-55, 30);
 
         public override SkeletonResource SkeletonResourceBack { get; }
             = new SkeletonResource("Scorpion/Back");

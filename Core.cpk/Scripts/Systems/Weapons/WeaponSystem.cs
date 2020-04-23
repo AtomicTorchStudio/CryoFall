@@ -41,6 +41,12 @@
             var character = Client.Characters.CurrentPlayerCharacter;
             var state = PlayerCharacter.GetPrivateState(character).WeaponState;
 
+            if (state.ProtoWeapon is null)
+            {
+                // player cannot use default attack when on a hoverboard
+                return;
+            }
+
             if (state.SharedGetInputIsFiring()
                 == isFiring)
             {
@@ -83,47 +89,91 @@
             }
 
             // set firing mode on server
-            Instance.CallServer(_ => _.ServerRemote_SetWeaponFiringMode(isFiring, shotsDone));
+            state.ProtoWeapon.ClientOnFireModChanged(isFiring, shotsDone);
             //Logger.Dev(isFiring
             //               ? "SetWeaponFiringMode: firing!"
             //               : $"SetWeaponFiringMode: stop firing! Shots done: {shotsDone}");
         }
 
-        public static void RebuildWeaponCache(
-            ICharacter character,
-            WeaponState weaponState)
+        public static bool SharedHasTileObstacle(
+            Vector2D fromPosition,
+            byte characterTileHeight,
+            IWorldObject targetObject,
+            Vector2D targetPosition)
         {
-            DamageDescription damageDescription = null;
-            var item = weaponState.ItemWeapon;
-            var protoItem = weaponState.ProtoWeapon;
-            if (protoItem == null)
+            var physicsSpace = targetObject.PhysicsBody.PhysicsSpace;
+            bool anyCliffIsAnObstacle;
+            switch (targetObject)
             {
-                return;
+                case IDynamicWorldObject dynamicWorldObject:
+                    anyCliffIsAnObstacle = characterTileHeight != dynamicWorldObject.Tile.Height;
+                    break;
+
+                case IStaticWorldObject staticWorldObject:
+                    anyCliffIsAnObstacle = characterTileHeight != staticWorldObject.OccupiedTile.Height;
+                    break;
+
+                default:
+                    anyCliffIsAnObstacle = true;
+                    break;
             }
 
-            IProtoItemAmmo protoAmmo = null;
-            if (item != null)
+            return SharedHasTileObstacle(fromPosition,
+                                         characterTileHeight,
+                                         targetPosition,
+                                         physicsSpace,
+                                         anyCliffIsAnObstacle);
+        }
+
+        // Ensure that player can hit objects only on the same height level
+        // and can fire through over the pits (the cliffs of the lower heights).
+        public static bool SharedHasTileObstacle(
+            Vector2D fromPosition,
+            byte characterTileHeight,
+            Vector2D targetPosition,
+            IPhysicsSpace physicsSpace,
+            bool anyCliffIsAnObstacle)
+        {
+            using var testResults = physicsSpace.TestLine(
+                fromPosition,
+                targetPosition,
+                collisionGroup: CollisionGroups.Default,
+                sendDebugEvent: false);
+
+            foreach (var testResult in testResults.AsList())
             {
-                var weaponPrivateState = item.GetPrivateState<WeaponPrivateState>();
-                protoAmmo = weaponPrivateState.CurrentProtoItemAmmo;
+                var testResultPhysicsBody = testResult.PhysicsBody;
+                var protoTile = testResultPhysicsBody.AssociatedProtoTile;
+
+                if (protoTile is null
+                    || protoTile.Kind != TileKind.Solid)
+                {
+                    continue;
+                }
+
+                var testResultPosition = testResultPhysicsBody.Position;
+                var attackedTile = IsServer
+                                       ? Server.World.GetTile((Vector2Ushort)testResultPosition)
+                                       : Client.World.GetTile((Vector2Ushort)testResultPosition);
+                if (attackedTile.IsSlope)
+                {
+                    // slope is not an obstacle
+                    continue;
+                }
+
+                // found collision with a cliff
+                if (anyCliffIsAnObstacle)
+                {
+                    return true;
+                }
+
+                if (attackedTile.Height >= characterTileHeight)
+                {
+                    return true; // cliff to higher tile is always an obstacle
+                }
             }
 
-            if (protoItem.OverrideDamageDescription != null)
-            {
-                damageDescription = protoItem.OverrideDamageDescription;
-            }
-            else if (protoAmmo != null)
-            {
-                damageDescription = protoAmmo.DamageDescription;
-            }
-
-            weaponState.WeaponCache = new WeaponFinalCache(
-                character,
-                character.SharedGetFinalStatsCache(),
-                item,
-                weaponState.ProtoWeapon,
-                protoAmmo,
-                damageDescription);
+            return false; // no obstacles
         }
 
         public static Vector2D SharedOffsetHitWorldPositionCloserToObjectCenter(
@@ -159,6 +209,43 @@
             var offset = coef * (objectCenterPosition - hitPoint);
             hitPoint += offset;
             return hitPoint;
+        }
+
+        public static void SharedRebuildWeaponCache(
+            ICharacter character,
+            WeaponState weaponState)
+        {
+            DamageDescription damageDescription = null;
+            var item = weaponState.ItemWeapon;
+            var protoItem = weaponState.ProtoWeapon;
+            if (protoItem == null)
+            {
+                return;
+            }
+
+            IProtoItemAmmo protoAmmo = null;
+            if (item != null)
+            {
+                var weaponPrivateState = item.GetPrivateState<WeaponPrivateState>();
+                protoAmmo = weaponPrivateState.CurrentProtoItemAmmo;
+            }
+
+            if (protoItem.OverrideDamageDescription != null)
+            {
+                damageDescription = protoItem.OverrideDamageDescription;
+            }
+            else if (protoAmmo != null)
+            {
+                damageDescription = protoAmmo.DamageDescription;
+            }
+
+            weaponState.WeaponCache = new WeaponFinalCache(
+                character,
+                character.SharedGetFinalStatsCache(),
+                item,
+                weaponState.ProtoWeapon,
+                protoAmmo,
+                damageDescription);
         }
 
         public static void SharedUpdateCurrentWeapon(
@@ -266,6 +353,11 @@
                 return;
             }
 
+            if (state.WeaponCache is null)
+            {
+                SharedRebuildWeaponCache(character, state);
+            }
+
             // let's process what happens when we're in the firing mode
             if (!state.IsEventWeaponStartSent)
             {
@@ -278,10 +370,6 @@
                 // initialize delay to next shot
                 state.DamageApplyDelaySecondsRemains =
                     Shared.RoundDurationByServerFrameDuration(protoWeapon.DamageApplyDelay);
-                if (state.WeaponCache is null)
-                {
-                    RebuildWeaponCache(character, state);
-                }
 
                 SharedCallOnWeaponShot(character, protoWeapon);
             }
@@ -299,9 +387,12 @@
             state.ShotsDone++;
             //Logger.Dev("Weapon fired, shots done: " + state.ShotsDone);
             SharedFireWeapon(character, state.ItemWeapon, protoWeapon, state);
-            state.CooldownSecondsRemains += Shared.RoundDurationByServerFrameDuration(protoWeapon.FireInterval)
-                                            - Shared.RoundDurationByServerFrameDuration(
-                                                protoWeapon.DamageApplyDelay);
+            var cooldownDuration = Shared.RoundDurationByServerFrameDuration(protoWeapon.FireInterval)
+                                   - Shared.RoundDurationByServerFrameDuration(protoWeapon.DamageApplyDelay);
+
+            //Logger.Dev($"Cooldown adding: {cooldownDuration} for {protoWeapon}");
+
+            state.CooldownSecondsRemains += cooldownDuration;
 
             if (!protoWeapon.IsLoopedAttackAnimation)
             {
@@ -310,6 +401,22 @@
                 // "Fix extended animation "stuck" issue for mobs (like limbs stuck in the end position and movement animation appears broken)"
                 state.IsEventWeaponStartSent = false;
             }
+        }
+
+        [RemoteCallSettings(DeliveryMode.ReliableSequenced, maxCallsPerSecond: 120)]
+        public void ServerRemote_SetWeaponFiringMode(
+            bool isFiring,
+            uint clientShotsDone)
+        {
+            var character = ServerRemoteContext.Character;
+            var weaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
+
+            //Logger.Dev(isFiring
+            //               ? "SetWeaponFiringMode: firing!"
+            //               : $"SetWeaponFiringMode: stop firing! Shots done: {clientShotsDone}");
+
+            weaponState.SharedSetInputIsFiring(isFiring,
+                                               clientShotsDone);
         }
 
         private static Vector2D GetShotEndPosition(
@@ -404,7 +511,7 @@
             if (IsClient)
             {
                 // finished firing weapon on Client-side
-                WeaponSystemClientDisplay.OnWeaponFinished(character);
+                WeaponSystemClientDisplay.ClientOnWeaponFinished(character);
             }
             else // if this is Server
             {
@@ -427,14 +534,14 @@
             if (IsClient)
             {
                 // display weapon shot on Client-side
-                WeaponSystemClientDisplay.OnWeaponHitOrTrace(firingCharacter,
-                                                             protoWeapon,
-                                                             protoAmmo,
-                                                             firingCharacter.ProtoCharacter,
-                                                             firingCharacter.Position.ToVector2Ushort(),
-                                                             hitObjects,
-                                                             endPosition,
-                                                             endsWithHit);
+                WeaponSystemClientDisplay.ClientOnWeaponHitOrTrace(firingCharacter,
+                                                                   protoWeapon,
+                                                                   protoAmmo,
+                                                                   firingCharacter.ProtoCharacter,
+                                                                   firingCharacter.Position.ToVector2Ushort(),
+                                                                   hitObjects,
+                                                                   endPosition,
+                                                                   endsWithHit);
             }
             else // if server
             {
@@ -452,7 +559,8 @@
                         continue;
                     }
 
-                    if (hitObject.WorldObject is ICharacter damagedCharacter)
+                    if (hitObject.WorldObject is ICharacter damagedCharacter
+                        && !damagedCharacter.IsNpc)
                     {
                         // notify the damaged character
                         observers.Add(damagedCharacter);
@@ -502,7 +610,7 @@
             if (IsClient)
             {
                 // finished firing weapon on Client-side
-                WeaponSystemClientDisplay.OnWeaponInputStop(character);
+                WeaponSystemClientDisplay.ClientOnWeaponInputStop(character);
             }
             else // if this is Server
             {
@@ -522,12 +630,12 @@
             if (IsClient)
             {
                 // start firing weapon on Client-side
-                WeaponSystemClientDisplay.OnWeaponShot(character,
-                                                       partyId:
-                                                       0, // not relevant here as it's the current player firing the weapon
-                                                       protoWeapon: protoWeapon,
-                                                       protoCharacter: character.ProtoCharacter,
-                                                       fallbackPosition: character.Position.ToVector2Ushort());
+                WeaponSystemClientDisplay.ClientOnWeaponShot(character,
+                                                             partyId:
+                                                             0, // not relevant here as it's the current player firing the weapon
+                                                             protoWeapon: protoWeapon,
+                                                             protoCharacter: character.ProtoCharacter,
+                                                             fallbackPosition: character.Position.ToVector2Ushort());
             }
             else // if IsServer
             {
@@ -561,7 +669,7 @@
             if (IsClient)
             {
                 // start firing weapon on Client-side
-                WeaponSystemClientDisplay.OnWeaponStart(character);
+                WeaponSystemClientDisplay.ClientOnWeaponStart(character);
             }
             else // if IsServer
             {
@@ -578,7 +686,10 @@
             IProtoItemWeapon protoWeapon,
             WeaponState weaponState)
         {
-            protoWeapon.SharedOnFire(character, weaponState);
+            if (!protoWeapon.SharedOnFire(character, weaponState))
+            {
+                return;
+            }
 
             var playerCharacterSkills = character.SharedGetSkills();
             var protoWeaponSkill = playerCharacterSkills != null
@@ -591,9 +702,9 @@
             }
 
             var weaponCache = weaponState.WeaponCache;
-            if (weaponCache == null)
+            if (weaponCache is null)
             {
-                RebuildWeaponCache(character, weaponState);
+                SharedRebuildWeaponCache(character, weaponState);
                 weaponCache = weaponState.WeaponCache;
             }
 
@@ -604,11 +715,9 @@
             var isMeleeWeapon = protoWeapon is IProtoItemWeaponMelee;
             var characterProtoCharacter = (IProtoCharacterCore)character.ProtoCharacter;
             var fromPosition = characterProtoCharacter.SharedGetWeaponFireWorldPosition(character, isMeleeWeapon);
-            var fireSpreadAngleOffsetDeg = SharedUpdateAndGetFirePatternCurrentSpreadAngleDeg(weaponState, protoWeapon);
+            var fireSpreadAngleOffsetDeg = protoWeapon.SharedUpdateAndGetFirePatternCurrentSpreadAngleDeg(weaponState);
 
-            var collisionGroup = isMeleeWeapon
-                                     ? CollisionGroups.HitboxMelee
-                                     : CollisionGroups.HitboxRanged;
+            var collisionGroup = protoWeapon.CollisionGroup;
 
             using var allHitObjects = Shared.GetTempList<IWorldObject>();
             var shotsPerFire = weaponCache.FireScatterPreset.ProjectileAngleOffets;
@@ -618,6 +727,7 @@
                                         protoWeapon,
                                         fromPosition,
                                         weaponCache,
+                                        weaponState.CustomTargetPosition,
                                         characterProtoCharacter,
                                         fireSpreadAngleOffsetDeg + angleOffsetDeg,
                                         collisionGroup,
@@ -634,77 +744,12 @@
             }
         }
 
-        private static bool SharedHasTileObstacle(
-            ICharacter character,
-            byte characterTileHeight,
-            IWorldObject targetObject,
-            Vector2D targetPosition)
-        {
-            var characterPosition = character.Position;
-            bool anyCliffIsAnObstacle;
-
-            switch (targetObject)
-            {
-                case IDynamicWorldObject dynamicWorldObject:
-                    anyCliffIsAnObstacle = characterTileHeight != dynamicWorldObject.Tile.Height;
-                    break;
-
-                case IStaticWorldObject staticWorldObject:
-                    anyCliffIsAnObstacle = characterTileHeight != staticWorldObject.OccupiedTile.Height;
-                    break;
-
-                default:
-                    anyCliffIsAnObstacle = true;
-                    break;
-            }
-
-            using var testResults = character.PhysicsBody.PhysicsSpace.TestLine(
-                characterPosition,
-                targetPosition,
-                collisionGroup: CollisionGroups.Default,
-                sendDebugEvent: false);
-
-            foreach (var testResult in testResults.AsList())
-            {
-                var testResultPhysicsBody = testResult.PhysicsBody;
-                var protoTile = testResultPhysicsBody.AssociatedProtoTile;
-
-                if (protoTile is null
-                    || protoTile.Kind != TileKind.Solid)
-                {
-                    continue;
-                }
-
-                var testResultPosition = testResultPhysicsBody.Position;
-                var attackedTile = IsServer
-                                       ? Server.World.GetTile((Vector2Ushort)testResultPosition)
-                                       : Client.World.GetTile((Vector2Ushort)testResultPosition);
-                if (attackedTile.IsSlope)
-                {
-                    // slope is not an obstacle
-                    continue;
-                }
-
-                // found collision with a cliff
-                if (anyCliffIsAnObstacle)
-                {
-                    return true;
-                }
-
-                if (attackedTile.Height >= characterTileHeight)
-                {
-                    return true; // cliff to higher tile is always an obstacle
-                }
-            }
-
-            return false; // no obstacles
-        }
-
         private static void SharedShotWeaponHitscan(
             ICharacter character,
             IProtoItemWeapon protoWeapon,
             Vector2D fromPosition,
             WeaponFinalCache weaponCache,
+            Vector2D? customTargetPosition,
             IProtoCharacterCore characterProtoCharacter,
             double fireSpreadAngleOffsetDeg,
             CollisionGroup collisionGroup,
@@ -714,10 +759,23 @@
             PlayerCharacterSkills playerCharacterSkills,
             ITempList<IWorldObject> allHitObjects)
         {
-            var toPosition = fromPosition
-                             + new Vector2D(weaponCache.RangeMax, 0)
+            Vector2D toPosition;
+            var rangeMax = weaponCache.RangeMax;
+            if (customTargetPosition.HasValue)
+            {
+                var direction = customTargetPosition.Value - fromPosition;
+                // ensure the max range is not exceeded
+                direction = direction.ClampMagnitude(rangeMax);
+                toPosition = fromPosition + direction;
+            }
+            else
+            {
+                toPosition = fromPosition
+                             + new Vector2D(rangeMax, 0)
                                  .RotateRad(characterProtoCharacter.SharedGetRotationAngleRad(character)
                                             + fireSpreadAngleOffsetDeg * Math.PI / 180.0);
+            }
+
             using var lineTestResults = character.PhysicsBody.PhysicsSpace.TestLine(
                 fromPosition: fromPosition,
                 toPosition: toPosition,
@@ -780,7 +838,7 @@
                 }
 
                 // don't allow damage is there is no direct line of sight on physical colliders layer between the two objects
-                if (SharedHasTileObstacle(character,
+                if (SharedHasTileObstacle(character.Position,
                                           characterTileHeight,
                                           damagedObject,
                                           testResult.PhysicsBody.Position + testResult.PhysicsBody.CenterOffset))
@@ -796,6 +854,7 @@
                             weaponCache,
                             damagedObject,
                             damageMultiplier,
+                            damagePostMultiplier: 1.0,
                             out var obstacleBlockDamageCoef,
                             out var damageApplied))
                     {
@@ -803,11 +862,22 @@
                         continue;
                     }
 
+                    var hitData = new WeaponHitData(damagedObject,
+                                                    testResult.Penetration.ToVector2F());
+                    weaponCache.ProtoWeapon
+                               .SharedOnHit(weaponCache,
+                                            damagedObject,
+                                            damageApplied,
+                                            hitData,
+                                            out var isDamageStop);
+
+                    if (isDamageStop)
+                    {
+                        obstacleBlockDamageCoef = 1;
+                    }
+
                     if (IsServer)
                     {
-                        weaponCache.ProtoWeapon
-                                   .ServerOnDamageApplied(weaponCache, damagedObject, damageApplied);
-
                         if (damageApplied > 0
                             && damagedObject is ICharacter damagedCharacter)
                         {
@@ -832,17 +902,16 @@
                         break;
                     }
 
-                    //var hitPosition = testResultPhysicsBody.Position + testResult.Penetration;
-                    hitObjects.Add(new WeaponHitData(damagedObject,
-                                                     testResult.Penetration.ToVector2F())); //, hitPosition));
+                    hitObjects.Add(hitData);
 
                     if (isMeleeWeapon)
                     {
                         // currently melee weapon could attack only one object on the ray
+                        isDamageRayStopped = true;
                         break;
                     }
 
-                    damageMultiplier = damageMultiplier * (1.0 - obstacleBlockDamageCoef);
+                    damageMultiplier *= 1.0 - obstacleBlockDamageCoef;
                     if (damageMultiplier <= 0)
                     {
                         // target blocked the damage ray
@@ -856,6 +925,11 @@
                                                      hitObjects,
                                                      toPosition,
                                                      isRangedWeapon: !isMeleeWeapon);
+            if (hitObjects.Count == 0)
+            {
+                protoWeapon.SharedOnMiss(weaponCache,
+                                         shotEndPosition);
+            }
 
             SharedCallOnWeaponHitOrTrace(character,
                                          protoWeapon,
@@ -903,34 +977,6 @@
             return !canStopFiring;
         }
 
-        private static double SharedUpdateAndGetFirePatternCurrentSpreadAngleDeg(
-            WeaponState state,
-            IProtoItemWeapon protoWeapon)
-        {
-            var pattern = protoWeapon.FirePatternPreset;
-            if (!pattern.IsEnabled)
-            {
-                // no weapon fire spread
-                return 0;
-            }
-
-            state.FirePatternCooldownSecondsRemains = protoWeapon.FirePatternCooldownDuration;
-
-            var shotNumber = state.FirePatternCurrentShotNumber;
-            state.FirePatternCurrentShotNumber = (ushort)(shotNumber + 1);
-
-            var initialSequenceLength = pattern.InitialSequence.Length;
-            if (shotNumber < initialSequenceLength)
-            {
-                // initial fire sequence
-                return pattern.InitialSequence[shotNumber];
-            }
-
-            // cycled fire sequence
-            var sequenceNumber = (shotNumber - initialSequenceLength) % pattern.CycledSequence.Length;
-            return pattern.CycledSequence[sequenceNumber];
-        }
-
         // in case server fired more ammo than the client we can fix this here
         [RemoteCallSettings(DeliveryMode.ReliableOrdered)]
         private void ClientRemote_FixAmmoCount(IItem itemWeapon, int extraShotsDone)
@@ -942,10 +988,11 @@
             Logger.Warning(
                 $"Client correcting ammo count for weapon by server request: {itemWeapon}. Current ammo count: {weaponPrivateState.AmmoCount}. Delta ammo (correction): {deltaAmmo}");
 
-            weaponPrivateState.AmmoCount = (ushort)MathHelper.Clamp(
-                weaponPrivateState.AmmoCount + deltaAmmo,
-                0,
-                ushort.MaxValue);
+            weaponPrivateState.SetAmmoCount(
+                (ushort)MathHelper.Clamp(
+                    weaponPrivateState.AmmoCount + deltaAmmo,
+                    0,
+                    ushort.MaxValue));
 
             var state = ClientCurrentCharacterHelper.PrivateState.WeaponState;
             state.ShotsDone = (uint)MathHelper.Clamp(
@@ -967,7 +1014,7 @@
                 return;
             }
 
-            WeaponSystemClientDisplay.OnWeaponFinished(whoFires);
+            WeaponSystemClientDisplay.ClientOnWeaponFinished(whoFires);
         }
 
         [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 120)]
@@ -981,14 +1028,14 @@
             Vector2D endPosition,
             bool endsWithHit)
         {
-            WeaponSystemClientDisplay.OnWeaponHitOrTrace(firingCharacter,
-                                                         protoWeapon,
-                                                         protoAmmo,
-                                                         protoCharacter,
-                                                         fallbackCharacterPosition,
-                                                         hitObjects,
-                                                         endPosition,
-                                                         endsWithHit);
+            WeaponSystemClientDisplay.ClientOnWeaponHitOrTrace(firingCharacter,
+                                                               protoWeapon,
+                                                               protoAmmo,
+                                                               protoCharacter,
+                                                               fallbackCharacterPosition,
+                                                               hitObjects,
+                                                               endPosition,
+                                                               endsWithHit);
         }
 
         [RemoteCallSettings(
@@ -1004,7 +1051,7 @@
                 return;
             }
 
-            WeaponSystemClientDisplay.OnWeaponInputStop(whoFires);
+            WeaponSystemClientDisplay.ClientOnWeaponInputStop(whoFires);
         }
 
         [RemoteCallSettings(DeliveryMode.Unreliable, maxCallsPerSecond: 60)]
@@ -1021,11 +1068,11 @@
                 whoFires = null;
             }
 
-            WeaponSystemClientDisplay.OnWeaponShot(whoFires,
-                                                   partyId,
-                                                   protoWeapon,
-                                                   fallbackProtoCharacter,
-                                                   fallbackPosition);
+            WeaponSystemClientDisplay.ClientOnWeaponShot(whoFires,
+                                                         partyId,
+                                                         protoWeapon,
+                                                         fallbackProtoCharacter,
+                                                         fallbackPosition);
         }
 
         [RemoteCallSettings(
@@ -1041,23 +1088,7 @@
                 return;
             }
 
-            WeaponSystemClientDisplay.OnWeaponStart(whoFires);
-        }
-
-        [RemoteCallSettings(DeliveryMode.ReliableSequenced, maxCallsPerSecond: 120)]
-        private void ServerRemote_SetWeaponFiringMode(
-            bool isFiring,
-            uint clientShotsDone)
-        {
-            var character = ServerRemoteContext.Character;
-            var weaponState = PlayerCharacter.GetPrivateState(character).WeaponState;
-
-            //Logger.Dev(isFiring
-            //               ? "SetWeaponFiringMode: firing!"
-            //               : $"SetWeaponFiringMode: stop firing! Shots done: {clientShotsDone}");
-
-            weaponState.SharedSetInputIsFiring(isFiring,
-                                               clientShotsDone);
+            WeaponSystemClientDisplay.ClientOnWeaponStart(whoFires);
         }
     }
 }

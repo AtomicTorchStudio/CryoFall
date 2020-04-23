@@ -26,14 +26,18 @@
 
         public readonly (float min, float max)? CustomDistance;
 
+        public readonly (float min, float max)? CustomDistance3DSpread;
+
         private readonly Dictionary<TSoundKey, ReadOnlySoundResourceSet> dictionary;
 
         private ReadOnlySoundPreset(
             [NotNull] Dictionary<TSoundKey, ReadOnlySoundResourceSet> dictionary,
-            (float min, float max)? customDistance)
+            (float min, float max)? customDistance,
+            (float min, float max)? customDistance3DSpread)
         {
             this.dictionary = dictionary;
             this.CustomDistance = customDistance;
+            this.CustomDistance3DSpread = customDistance3DSpread;
         }
 
         public int SoundsCount
@@ -46,7 +50,8 @@
         {
             return new SoundPreset<TSoundKey>(
                 this.dictionary.ToDictionary(p => p.Key, p => p.Value.Clone()),
-                this.CustomDistance);
+                this.CustomDistance,
+                this.CustomDistance3DSpread);
         }
 
         /// <summary>
@@ -238,9 +243,12 @@
 
         internal static ReadOnlySoundPreset<TSoundKey> Create(
             Dictionary<TSoundKey, ReadOnlySoundResourceSet> dictionary,
-            (float min, float max)? customDistance)
+            (float min, float max)? customDistance,
+            (float min, float max)? customDistance3DSpread)
         {
-            return new ReadOnlySoundPreset<TSoundKey>(dictionary, customDistance);
+            return new ReadOnlySoundPreset<TSoundKey>(dictionary,
+                                                      customDistance,
+                                                      customDistance3DSpread);
         }
 
         private void ApplyCustomDistance(IComponentSoundEmitter emitter)
@@ -249,6 +257,12 @@
             {
                 emitter.CustomMinDistance = this.CustomDistance.Value.min;
                 emitter.CustomMaxDistance = this.CustomDistance.Value.max;
+            }
+
+            if (this.CustomDistance3DSpread.HasValue)
+            {
+                emitter.CustomMinDistance3DSpread = this.CustomDistance3DSpread.Value.min;
+                emitter.CustomMaxDistance3DSpread = this.CustomDistance3DSpread.Value.max;
             }
         }
 

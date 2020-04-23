@@ -1,9 +1,8 @@
-﻿using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Chemistry;
-using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Construction2;
-using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Industry2;
-
-namespace AtomicTorch.CBND.CoreMod.Technologies.Tier3.Vehicles
+﻿namespace AtomicTorch.CBND.CoreMod.Technologies.Tier3.Vehicles
 {
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Chemistry;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Construction2;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier2.Industry2;
 
     public class TechGroupVehicles : TechGroup
     {

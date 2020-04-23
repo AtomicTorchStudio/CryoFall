@@ -13,6 +13,9 @@ Scripts/Technologies/Base/Group/TechGroup@ErrorTechIsAlreadyUnlocked:
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
 {0} 学習ポイントが必要です（現在 {1} ）。
 
+Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
+サーバーワイプ後{0}間は利用できません（{1}お待ちください）。
+
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 解除が必要な技術：{0}
 
@@ -99,6 +102,12 @@ Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Description:
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
 料理2
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
+周りを飾り付けてみませんか？
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
+装飾
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
 防御技術の向上は、より優れた防具を提供してくれます。
@@ -192,6 +201,12 @@ Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Description:
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
 料理3
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
+周辺をさらにカスタマイズしましょう！
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
+装飾2
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 高度な防御技術。

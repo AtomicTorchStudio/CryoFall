@@ -19,7 +19,7 @@
 
             duration = CraftingDuration.VeryShort;
 
-            inputItems.Add<ItemComponentsPharmaceutical>(count: 5);
+            inputItems.Add<ItemHerbRed>(count: 2);
 
             outputItems.Add<ItemPainkiller>(count: 1);
         }

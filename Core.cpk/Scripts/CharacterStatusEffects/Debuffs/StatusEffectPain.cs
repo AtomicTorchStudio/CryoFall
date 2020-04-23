@@ -21,6 +21,8 @@
 
         public override string Name => "Severe pain";
 
+        public override double ServerUpdateIntervalSeconds => 0.5;
+
         protected override void ClientDeinitialize(StatusEffectData data)
         {
             ClientComponentStatusEffectPainManager.TargetIntensity = 0;

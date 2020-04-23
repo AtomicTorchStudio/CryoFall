@@ -8,7 +8,7 @@
     public class PublicActionStateWithTargetObjectSounds : BasePublicActionState
     {
         [NonSerialized]
-        private IComponentSoundEmitter soundEmitter;
+        protected IComponentSoundEmitter soundEmitter;
 
         protected override void ClientOnCompleted()
         {
@@ -20,12 +20,7 @@
             }
 
             var objectSoundPreset = this.SharedGetObjectSoundPreset();
-            if (objectSoundPreset == null)
-            {
-                return;
-            }
-
-            objectSoundPreset.PlaySound(
+            objectSoundPreset?.PlaySound(
                 this.IsCancelled
                     ? ObjectSound.InteractFail
                     : ObjectSound.InteractSuccess,
@@ -40,7 +35,7 @@
             }
 
             var objectSoundPreset = this.SharedGetObjectSoundPreset();
-            if (objectSoundPreset == null)
+            if (objectSoundPreset is null)
             {
                 return;
             }

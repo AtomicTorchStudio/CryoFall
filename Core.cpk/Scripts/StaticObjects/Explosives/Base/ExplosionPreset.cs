@@ -37,6 +37,8 @@
 
         public readonly double ServerDamageApplyDelay;
 
+        public readonly byte SoundsCuesNumber;
+
         public readonly ReadOnlySoundResourceSet SoundSet;
 
         public readonly double SpriteAnimationDuration;
@@ -74,7 +76,8 @@
             Color lightColor,
             float screenShakesDuration,
             float screenShakesWorldDistanceMin,
-            float screenShakesWorldDistanceMax)
+            float screenShakesWorldDistanceMax,
+            byte soundsCuesNumber)
         {
             this.ServerDamageApplyDelay = serverDamageApplyDelay;
             this.SpriteAtlasResources = spriteAtlasResources;
@@ -98,6 +101,7 @@
             this.ScreenShakesDuration = screenShakesDuration;
             this.ScreenShakesWorldDistanceMin = screenShakesWorldDistanceMin;
             this.ScreenShakesWorldDistanceMax = screenShakesWorldDistanceMax;
+            this.SoundsCuesNumber = soundsCuesNumber;
             this.SpriteDrawOrder = spriteDrawOrder;
             this.ProtoObjectCharredGround = protoObjectCharredGround;
 
@@ -131,7 +135,8 @@
             Color? spriteColorAdditive = null,
             Color? spriteColorMultiplicative = null,
             double spriteBrightness = 1,
-            DrawOrder spriteDrawOrder = DrawOrder.Explosion)
+            DrawOrder spriteDrawOrder = DrawOrder.Explosion,
+            byte soundsCuesNumber = 17)
         {
             var sounds = new SoundResourceSet()
                          .Add(soundSetPath)
@@ -176,7 +181,8 @@
                                        lightColor,
                                        (float)screenShakesDuration,
                                        (float)screenShakesWorldDistanceMin,
-                                       (float)screenShakesWorldDistanceMax);
+                                       (float)screenShakesWorldDistanceMax,
+                                       soundsCuesNumber);
         }
     }
 }

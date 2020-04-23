@@ -25,7 +25,7 @@
 
         public override TileKind Kind => TileKind.Solid;
 
-        public override string Name => "Rocky";
+        public override string Name => "Rocky mountains";
 
         public override string WorldMapTexturePath
             => "Map/Rocky.png";

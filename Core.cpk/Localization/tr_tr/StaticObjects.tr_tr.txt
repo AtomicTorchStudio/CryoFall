@@ -61,6 +61,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
 Topla
 
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Hack:
+Hackle
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 Etkileşime geç
 
@@ -142,11 +145,8 @@ Erzak sandığı
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Çimen
 
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-Büyük çöp yığını
-
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
-Küçük çöp yığını
+Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
+Çöp yığını
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Taş
@@ -216,6 +216,15 @@ Bu kaynaktan maden çıkarmak için kazmayı kullan.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Çatlak
+
+Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
+Meteorit
+
+Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
+Pragmium Kraliçesi duruyor
+
+Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
+Uzay enkazı
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Ahşap varillerden daha geniş ve dayanıklı. Yüksek miktarda sıvı saklamak için kullanışlı.
@@ -345,25 +354,25 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 Tezgâh
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-Basit bir ahşap sandıktan daha fazla yeri vardır ve yok edilmesi daha güçtür.
+Basit bir ahşap sandıktan daha fazla yere sahiptir.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
 Demir sandık
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
-Mal depolamak için en iyi yollardan biri. Çoğu durumda kişinin eşyalarını güvenli tutar ve en fazla yere sahiptir.
+Çelik sandık bütün basit sandıkların en genişidir ve kompakt şekilde eşya stoklamanı sağlar.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
 Çelik sandık
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
-Fazla miktarlardaki eşyaları uygun ve güvenli bir şekilde depolamak için aşırı büyük sandık.
+Fazla miktarlardaki eşyaları uygun şekilde depolamak için aşırı büyük sandık.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
 Büyük sandık
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-Kişinin eşyalarını depolaması için en basit sandıktır. Fakat kolayca yok edilebilir.
+Bu mal depolamak için olabilecek en basit sandık.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
 Ahşap sandık
@@ -380,16 +389,58 @@ En güçlü patlayıcılara bile dayanabilen ağır zırhlı kasa. Yapması kola
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 Zırhlı kasa
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
+İçinde tütsü yakmak için doğu tarzı sunak.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
+Tütsü sunağı
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 Bu bayrak her neyi temsil ediyorsa - havalı gözüküyor!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
-Kırmızı bayrak
+Sancak
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
+Bütün hijyenik ihtiyaçların için klasik tarzda küvet.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
+Küvet
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
+Kitaplık olmadan oda mı olurmuş?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
+Kitaplık
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
+Eski masaldaki gibi, kaplan bulunan bir paravan.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Name:
+Paravan
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Description:
+Etkileyici altın yığını. Güvenli tutmak için bunu kasana koy!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
+Altın yığını
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
+Güzel ve ustaca yapılmış kapkara piyano.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
+Piyano
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
+Gerçek bir avcı olduğunu göstererek odanı bu lüks kilimle süsle.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Name:
+Ayı kilimi
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Description:
 Bu süslü kilim her odayı daha sıcak ve daha hoş yapabilir.
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Name:
 Kilim
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
@@ -397,6 +448,12 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 Demire geçirilmiş kafatası
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Description:
+Yumuşak ve rahat. Tam oturma odasına göre.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Name:
+Kanepe
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 Zenginliğinin gerçek bir göstergesi. Böyle bir şeyi ancak en zenginler inşa edebilir.
@@ -409,6 +466,30 @@ Bu değerli kristali sadece estetik bir amaç uğruna harcamak, kişinin zenginl
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Pragmium heykel
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
+Eski Avrupa stilinde basit masa.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Name:
+Masa
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Description:
+Ana kabul salonun için ideal bir kraliyet tahtı. Köylüler patronun kim olduğunu bilsin.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Name:
+Taht
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
+Maksimum mahremiyet için bunu ayrı ve iyi havalandırılmış bir odaya koyduğundan emin ol.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
+Tuvalet
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
+Çok değerli dekoratif vazo.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
+Vazo
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Bir zemin dekorasyonu var bile.
@@ -639,7 +720,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
 Elektrikli fırın
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
-Jeotermal su kaynaklarından lityum tuzu çıkarmaya yarar.
+Yeraltı rezervinden veya direkt jeotermal kaynaktan daha yüksek verimlilikle lityum tuzu çıkarılmasını sağlar.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Lityum tuzu çıkarıcısı
@@ -660,7 +741,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Malç kutusu
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-Zeminden ham petrol çıkarmak için bir petrol birikintisinin üzerine inşa edilebilir.
+Yeraltı rezervinden veya direkt petrol sızıntısından daha yüksek verimlilikle petrol çıkarılmasını sağlar.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Petrol pompası
@@ -704,11 +785,17 @@ Tükenmez tatlı su kaynağı sağlar. Artık susuzluktan ölmeyeceksin. Nedense
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 Kuyu
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-Çıkarıcı, jeotermal su kaynağı gerektirir.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_CannotBuildTooCloseToDeposit:
+Kaynak birikimine çok yakın. Tam üstüne inşa edebilirsin.
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-Pompa, petrol birikintisi gerektirir.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_TooCloseToDepletedDeposit:
+Tükenmiş kaynağa çok yakın.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorTooCloseToAnotherExtractor:
+Başka bir çıkarıcıya çok yakın.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooCloseToAnotherOilPump:
+Başka bir yakıt pompasına çok yakın.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Bu tür zemin, su tabakasına erişim sağlamaz.
@@ -966,6 +1053,9 @@ Buğday
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 Tarım yeri gerekiyor
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
+Mavi ot
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
 Yeşil bitki

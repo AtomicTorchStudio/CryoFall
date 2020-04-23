@@ -123,6 +123,12 @@ Scripts/ClientOptions/Video/VideoOptionRenderingResolutionScale@Name:
 Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
 視頻
 
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@ScreenMode.Force16To9:
+16:9(PvP最大化)
+
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@Name:
+螢幕比例
+
 Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
 全屏
 

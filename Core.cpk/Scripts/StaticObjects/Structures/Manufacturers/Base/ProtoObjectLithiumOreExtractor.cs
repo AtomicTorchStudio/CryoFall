@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
@@ -15,19 +16,18 @@
 
     public abstract class ProtoObjectLithiumOreExtractor : ProtoObjectExtractor
     {
-        public const string ErrorRequiresGeothermalSpring = "The extractor requires a geothermal spring.";
+        public const string ErrorTooCloseToAnotherExtractor
+            = "Too close to another extractor.";
 
-        protected static readonly ConstructionTileRequirements.Validator ValidatorForPvP
+        private static readonly ConstructionTileRequirements.Validator ValidatorGroundTypeOrGeothermalSpring
             = new ConstructionTileRequirements.Validator(
-                ErrorRequiresGeothermalSpring,
+                () => string.Format("[b]{0}[/b][br]{1}[*]{2}[*]{3}",
+                                    ConstructionTileRequirements.Error_UnsuitableGround_Title,
+                                    ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn,
+                                    Api.GetProtoEntity<TileForestTemperate>().Name,
+                                    Api.GetProtoEntity<TileForestBoreal>().Name),
                 c =>
                 {
-                    if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
-                    {
-                        // don't validate this condition on PvE servers
-                        return true;
-                    }
-
                     foreach (var obj in c.Tile.StaticObjects)
                     {
                         if (obj.ProtoStaticWorldObject is ObjectDepositGeothermalSpring)
@@ -36,31 +36,73 @@
                         }
                     }
 
-                    return false;
-                });
-
-        protected static readonly ConstructionTileRequirements.Validator ValidatorForPvE
-            = new ConstructionTileRequirements.Validator(
-                () => "[b]"
-                      + ConstructionTileRequirements.Error_UnsuitableGround_Title
-                      + "[/b]"
-                      + "[br]"
-                      + ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn
-                      + "[*]"
-                      + Api.GetProtoEntity<TileForestTemperate>().Name
-                      + "[*]"
-                      + Api.GetProtoEntity<TileForestBoreal>().Name,
-                c =>
-                {
-                    if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
-                    {
-                        // don't validate this condition on PvP servers
-                        return true;
-                    }
-
                     var protoTile = c.Tile.ProtoTile;
                     return protoTile is TileForestTemperate
                            || protoTile is TileForestBoreal;
+                });
+
+        private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToAnotherExtractor
+            = new ConstructionTileRequirements.Validator(
+                ErrorTooCloseToAnotherExtractor,
+                c =>
+                {
+                    if (c.TileOffset != default)
+                    {
+                        return true;
+                    }
+
+                    if (PveSystem.SharedIsPve(false))
+                    {
+                        // no distance limit in PvE
+                        return true;
+                    }
+
+                    var startPosition = c.Tile.Position;
+                    var objectsInBounds = SharedFindObjectsNearby<IProtoObjectStructure>(startPosition);
+                    foreach (var obj in objectsInBounds)
+                    {
+                        switch (obj.ProtoStaticWorldObject)
+                        {
+                            case ProtoObjectLithiumOreExtractor _:
+                                // found another extractor nearby
+                                return false;
+
+                            case ProtoObjectConstructionSite _
+                                when ProtoObjectConstructionSite.SharedGetConstructionProto(obj) is
+                                         ProtoObjectLithiumOreExtractor:
+                                // found a blueprint for another extractor nearby
+                                return false;
+                        }
+                    }
+
+                    return true;
+                });
+
+        private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDeposit
+            = new ConstructionTileRequirements.Validator(
+                Error_CannotBuildTooCloseToDeposit,
+                c =>
+                {
+                    if (c.TileOffset != default)
+                    {
+                        return true;
+                    }
+
+                    var startPosition = c.Tile.Position;
+                    var objectsInBounds = SharedFindObjectsNearby<ObjectDepositGeothermalSpring>(startPosition);
+                    foreach (var obj in objectsInBounds)
+                    {
+                        if (startPosition == obj.TilePosition)
+                        {
+                            // can build right over the source
+                            continue;
+                        }
+
+                        // found a deposit nearby but not right under it - cannot build too close to a deposit
+                        return false;
+                    }
+
+                    return true;
                 });
 
         public override byte ContainerInputSlotsCount => 0;
@@ -95,11 +137,12 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
-            // Lithium salt extractor requires each tile to contain a geothermal spring.
             tileRequirements
                 .Clear()
-                .Add(ValidatorForPvP)
-                .Add(ValidatorForPvE)
+                .Add(ValidatorGroundTypeOrGeothermalSpring)
+                .Add(ValidatorTooCloseToAnotherExtractor)
+                .Add(ValidatorTooCloseToDeposit)
+                .Add(ValidatorTooCloseToDepletedDeposit)
                 .Add(ConstructionTileRequirements.BasicRequirements)
                 .Add(ConstructionTileRequirements.ValidatorClientOnlyNoCurrentPlayer)
                 .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyDynamic)
@@ -115,7 +158,7 @@
                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal))
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
-                .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea);
+                .Add(LandClaimSystem.ValidatorIsOwnedLand);
 
             this.PrepareConstructionConfig(build, repair, out category);
         }

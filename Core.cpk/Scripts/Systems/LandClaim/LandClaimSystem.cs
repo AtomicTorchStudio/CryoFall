@@ -104,7 +104,7 @@
                   ? new List<ILogicObject>() // workaround for client so it will be able to query (empty) list
                   : null;
 
-        public static readonly ConstructionTileRequirements.Validator ValidatorIsOwnedOrFreeArea
+        public static readonly ConstructionTileRequirements.Validator ValidatorIsOwnedOrFreeLand
             = new ConstructionTileRequirements.Validator(
                 ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed,
                 context =>
@@ -162,7 +162,7 @@
                     return noAreasThere;
                 });
 
-        public static readonly ConstructionTileRequirements.Validator ValidatorIsOwnedArea
+        public static readonly ConstructionTileRequirements.Validator ValidatorIsOwnedLand
             = new ConstructionTileRequirements.Validator(
                 ErrorCannotBuild_RequiresOwnedArea,
                 context =>
@@ -779,7 +779,7 @@
             }
 
             // unprotected building
-            if (weaponCache.ProtoObjectExplosive == null)
+            if (weaponCache.ProtoExplosive == null)
             {
                 // damage multiplier for weapon
                 damageMultiplier *= 50;
@@ -794,7 +794,7 @@
             else
             {
                 // damage multiplier for explosive
-                damageMultiplier *= 8;
+                damageMultiplier *= 25;
             }
 
             return damageMultiplier;
@@ -1572,10 +1572,12 @@
             foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(bounds))
             {
                 var areaBounds = SharedGetLandClaimAreaBounds(area);
-                if (areaBounds.IntersectsLoose(bounds))
+                if (!areaBounds.IntersectsLoose(bounds))
                 {
-                    return true;
+                    continue;
                 }
+
+                return true;
             }
 
             return false;
@@ -1583,7 +1585,51 @@
 
         public static bool SharedIsObjectInsideAnyArea(IStaticWorldObject worldObject)
         {
-            return SharedIsLandClaimedByAnyone(worldObject.Bounds);
+            var bounds = worldObject.Bounds;
+            if (!SharedIsLandClaimedByAnyone(bounds))
+            {
+                return false;
+            }
+
+            // verify full coverage of all object tiles by any land claim area
+            if (bounds.Width == 1 && bounds.Height == 1)
+            {
+                return true;
+            }
+
+            using var tempListTilePositionsRemains = Api.Shared.GetTempList<Vector2Ushort>();
+            var tilePositionsRemains = tempListTilePositionsRemains.AsList();
+            foreach (var occupiedTilePosition in worldObject.OccupiedTilePositions)
+            {
+                tilePositionsRemains.Add(occupiedTilePosition);
+            }
+
+            foreach (var area in SharedGetLandClaimAreasCache().EnumerateForBounds(bounds))
+            {
+                var areaBounds = SharedGetLandClaimAreaBounds(area);
+                if (!areaBounds.IntersectsLoose(bounds))
+                {
+                    continue;
+                }
+
+                for (var index = 0; index < tilePositionsRemains.Count; index++)
+                {
+                    var tilePosition = tilePositionsRemains[index];
+                    if (!areaBounds.Contains(tilePosition))
+                    {
+                        continue;
+                    }
+
+                    tilePositionsRemains.RemoveAt(index--);
+                    if (tilePositionsRemains.Count == 0)
+                    {
+                        // the bounds are fully covered by this areas group
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         public static bool SharedIsObjectInsideOwnedOrFreeArea(IStaticWorldObject worldObject, ICharacter who)
@@ -2346,7 +2392,7 @@
                 static async void ClientTryRequestOwnedAreas()
                 {
                     ClientIsOwnedAreasReceived = false;
-                    if (Api.Client.Characters.CurrentPlayerCharacter == null)
+                    if (Api.Client.Characters.CurrentPlayerCharacter is null)
                     {
                         return;
                     }

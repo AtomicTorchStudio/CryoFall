@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
 
     public class QuestBuildMedicalLab : ProtoQuest
@@ -16,13 +17,13 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementBuildStructure.Require<ObjectMedicalLab>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeBandage>())
-                .Add(RequirementCraftRecipe.RequireStationRecipe<RecipeStrengthBoostSmall>())
-                .Add(RequirementUseItem.Require<ItemStrengthBoostSmall>());
+            tasks
+                .Add(TaskBuildStructure.Require<ObjectMedicalLab>())
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeBandage>())
+                .Add(TaskCraftRecipe.RequireStationRecipe<RecipeStrengthBoostSmall>())
+                .Add(TaskUseItem.Require<ItemStrengthBoostSmall>());
 
             prerequisites
                 .Add<QuestCompleteTier1Technologies>();

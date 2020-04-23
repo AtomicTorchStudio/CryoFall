@@ -21,7 +21,7 @@
         public double TextureScale { get; set; }
 
         public Vector2D TextureScreenOffset { get; set; }
-
+        
         public MuzzleFlashDescription Clone()
         {
             return new MuzzleFlashDescription()

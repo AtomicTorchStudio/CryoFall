@@ -23,7 +23,8 @@
             IItem item,
             ICharacter character,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents);
+            List<IClientComponent> skeletonComponents,
+            bool isPreview);
 
         bool SharedCanApplyEffects(IItem item, IItemsContainer containerEquipment);
     }

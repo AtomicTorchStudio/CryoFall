@@ -11,7 +11,7 @@
             config.Effects
                   .AddRecipe<RecipeBombModern>();
 
-            config.SetRequiredNode<TechNodeAmmo300Incendiary>();
+            config.SetRequiredNode<TechNodeAmmoGrenadeIncendiary>();
         }
     }
 }

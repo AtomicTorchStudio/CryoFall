@@ -13,7 +13,7 @@
 
         public override double ElectricityConsumptionPerSecondWhenActive => 0.25;
 
-        public override double FreshnessDurationMultiplier => 10;
+        public override double FreshnessDurationMultiplier => 12;
 
         public override bool HasOwnersList => false;
 
@@ -44,8 +44,8 @@
 
             build.StagesCount = 5;
             build.StageDurationSeconds = BuildDuration.Short;
-            build.AddStageRequiredItem<ItemIngotSteel>(count: 3);
-            build.AddStageRequiredItem<ItemWire>(count: 3);
+            build.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            build.AddStageRequiredItem<ItemWire>(count: 2);
             build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
 
             repair.StagesCount = 10;

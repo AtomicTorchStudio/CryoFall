@@ -26,7 +26,7 @@
         public override byte ContainerFuelSlotsCount => 1;
 
         public override string Description =>
-            "Can be built over an oil seep to extract raw petroleum oil directly from the ground.";
+            "Allows extraction of petroleum oil from underground reservoir or directly from an oil seep for increased efficiency.";
 
         public override double LiquidCapacity => 100;
 

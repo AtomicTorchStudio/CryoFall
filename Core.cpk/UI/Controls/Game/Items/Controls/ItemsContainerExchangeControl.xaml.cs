@@ -5,9 +5,12 @@
 
     public partial class ItemsContainerExchangeControl : BaseUserControl
     {
+        public const bool IsEnabledOnlyWhenLoaded = false;
+
         protected override void OnLoaded()
         {
-            if (this.DataContext is ViewModelItemsContainerExchange viewModel)
+            if (IsEnabledOnlyWhenLoaded
+                && this.DataContext is ViewModelItemsContainerExchange viewModel)
             {
                 viewModel.IsActive = true;
             }
@@ -15,7 +18,8 @@
 
         protected override void OnUnloaded()
         {
-            if (this.DataContext is ViewModelItemsContainerExchange viewModel)
+            if (IsEnabledOnlyWhenLoaded
+                && this.DataContext is ViewModelItemsContainerExchange viewModel)
             {
                 viewModel.IsActive = false;
             }

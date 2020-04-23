@@ -4,6 +4,7 @@
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.Systems;
@@ -168,26 +169,25 @@
                 this.PercentOutputText = string.Empty;
                 return;
             }
+
+            if (inputItem1 == null
+                || inputItem2 == null)
+            {
+                this.PercentOutputText = "?";
+            }
             else
             {
-                if (inputItem1 == null
-                    || inputItem2 == null)
-                {
-                    this.PercentOutputText = "?";
-                }
-                else
-                {
-                    var resultPercent = ObjectTinkerTable.SharedCalculateResultDurabilityFraction(inputItem1,
-                                                                                                  inputItem2,
-                                                                                                  character);
-                    this.PercentOutputText = (byte)(100 * resultPercent) + "%";
-                }
+                var resultPercent = ObjectTinkerTable.SharedCalculateResultDurabilityFraction(inputItem1,
+                                                                                              inputItem2,
+                                                                                              character);
+                this.PercentOutputText = (byte)(100 * resultPercent) + "%";
             }
 
-            string GetDurabilityPercentText(IItem item) =>
-                item == null
-                    ? string.Empty
-                    : ItemDurabilitySystem.SharedGetDurabilityPercent(item) + "%";
+            static string GetDurabilityPercentText(IItem item)
+                => item == null
+                   || !(item.ProtoItem is IProtoItemWithDurability)
+                       ? string.Empty
+                       : ItemDurabilitySystem.SharedGetDurabilityPercent(item) + "%";
         }
     }
 }

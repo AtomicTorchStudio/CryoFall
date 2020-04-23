@@ -25,11 +25,11 @@
 
         IReadOnlyDictionary<StatName, double> IReadOnlyStatsDictionary.Values => this.Values;
 
-        public void AddPercent(IProtoEntity source, StatName statName, double percent)
+        public BaseStatsDictionary AddPercent(IProtoEntity source, StatName statName, double percent)
         {
-            if (percent == 0d)
+            if (percent == 0)
             {
-                return;
+                return this;
             }
 
             var multiplier = percent / 100d;
@@ -37,7 +37,7 @@
             // simply sum multipliers (like values)
             if (multiplier == 0)
             {
-                return;
+                return this;
             }
 
             StatsSources.RegisterPercent(ref this.sources, source, statName, percent);
@@ -55,13 +55,14 @@
 
             this.ValidateIsNotReadOnly();
             this.Multipliers[statName] = multiplier;
+            return this;
         }
 
-        public void AddValue(IProtoEntity source, StatName statName, double value)
+        public BaseStatsDictionary AddValue(IProtoEntity source, StatName statName, double value)
         {
-            if (value == 0d)
+            if (value == 0)
             {
-                return;
+                return this;
             }
 
             StatsSources.RegisterValue(ref this.sources, source, statName, value);
@@ -74,6 +75,7 @@
 
             this.ValidateIsNotReadOnly();
             this.Values[statName] = value;
+            return this;
         }
 
         public FinalStatsCache CalculateFinalStatsCache()

@@ -40,18 +40,17 @@
                       Command="{Binding CommandCraftingCountSetOne}"
                       FontFamily="{StaticResource CondensedFontFamily}" />
 
-        <RepeatButton
-            Grid.Column="1"
-            Content="&#x2212;"
-            FontSize="14"
-            FontWeight="Bold"
-            Padding="0,-1,0,-2"
-            MinWidth="{StaticResource ButtonSize}"
-            MinHeight="{StaticResource ButtonSize}"
-            Focusable="False"
-            VerticalAlignment="Center"
-            Command="{Binding CommandCraftingCountDecrease}"
-            FontFamily="{StaticResource DigitsFontFamily}" />
+        <RepeatButton Grid.Column="1"
+                      Content="&#x2212;"
+                      FontSize="14"
+                      FontWeight="Bold"
+                      Padding="0,-1,0,-2"
+                      MinWidth="{StaticResource ButtonSize}"
+                      MinHeight="{StaticResource ButtonSize}"
+                      Focusable="False"
+                      VerticalAlignment="Center"
+                      Command="{Binding CommandCraftingCountDecrease}"
+                      FontFamily="{StaticResource DigitsFontFamily}" />
 
         <TextBox x:Name="TextBoxCount"
                  Text="{Binding CountToCraftString, UpdateSourceTrigger=PropertyChanged}"

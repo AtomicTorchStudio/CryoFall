@@ -22,6 +22,9 @@ Scripts/Characters/Mobs/MobCrawler@Name:
 Scripts/Characters/Mobs/MobFireLizard@Name:
 불꽃 도마뱀
 
+Scripts/Characters/Mobs/MobFloater@Name:
+부유충
+
 Scripts/Characters/Mobs/MobHoneyBadger@Name:
 벌꿀오소리
 
@@ -33,6 +36,9 @@ Scripts/Characters/Mobs/MobPangolin@Name:
 
 Scripts/Characters/Mobs/MobPragmiumBeetle@Name:
 프라그뮴 딱정벌레
+
+Scripts/Characters/Mobs/MobPragmiumQueen@Name:
+프라그뮴 여왕
 
 Scripts/Characters/Mobs/MobRiverSnail@Name:
 달팽이

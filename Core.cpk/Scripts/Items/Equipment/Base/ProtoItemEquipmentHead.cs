@@ -63,7 +63,8 @@
             IItem item,
             ICharacter character,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview)
         {
             // we don't call basic implementation here
             //base.ClientSetupSkeleton(item, character, skeletonRenderer);

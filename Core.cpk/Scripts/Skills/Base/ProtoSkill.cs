@@ -170,10 +170,10 @@
             byte currentLevel)
         {
             var multiplier = this.ExperienceToLearningPointsConversionMultiplier
-                             * TechConstants.SkillExperienceToLearningPointsConversionMultiplier;
+                             * TechConstants.ServerSkillExperienceToLearningPointsConversionMultiplier;
 
             // apply reversed experience gain multiplier so faster/slower skill exp gain speed will not affect LP gain speed
-            multiplier /= TechConstants.SkillExperienceGainMultiplier;
+            multiplier /= TechConstants.ServerSkillExperienceGainMultiplier;
 
             if (multiplier <= 0
                 || double.IsNaN(multiplier))

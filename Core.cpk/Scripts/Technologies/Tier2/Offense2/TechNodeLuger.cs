@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeLuger>();
 
-            config.SetRequiredNode<TechNodeShotgunDoublebarreled>();
+            config.SetRequiredNode<TechNodeRevolver8mm>();
         }
     }
 }

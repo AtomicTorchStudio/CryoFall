@@ -15,7 +15,7 @@
 
     public class PanningPanel : BaseItemsControl
     {
-        private const double MouseScrollWheelZoomSpeed = 0.0015;
+        public const double MouseScrollWheelZoomSpeed = 0.0015;
 
         private const double ZoomAnimationDurationSeconds = 0.1;
 
@@ -23,7 +23,7 @@
             nameof(DefaultZoom),
             typeof(double),
             typeof(PanningPanel),
-            new PropertyMetadata(1d));
+            new PropertyMetadata(1d, DefaultZoomPropertyChanged));
 
         public static readonly DependencyProperty MaxZoomProperty = DependencyProperty.Register(
             nameof(MaxZoom),
@@ -59,7 +59,7 @@
             DependencyProperty.Register(nameof(IsAutoCalculatingMinZoom),
                                         typeof(bool),
                                         typeof(PanningPanel),
-                                        new PropertyMetadata(default(bool)));
+                                        new PropertyMetadata(defaultValue: true));
 
         private ClickHandlerHelper clickHandlerHelper;
 
@@ -80,8 +80,6 @@
         private TranslateTransform contentTranslateTransform;
 
         private Canvas contentWrapper;
-
-        private bool isInitialized;
 
         private bool isListeningToScaleEvents = true;
 
@@ -268,9 +266,12 @@
             {
                 this.UpdateBounds();
 
-                this.isListeningToScaleEvents = false;
-                this.sliderScale.Value = newScale;
-                this.isListeningToScaleEvents = true;
+                if (this.sliderScale != null)
+                {
+                    this.isListeningToScaleEvents = false;
+                    this.sliderScale.Value = newScale;
+                    this.isListeningToScaleEvents = true;
+                }
             }
 
             this.OnZoomChanged(isByPlayersInput: false);
@@ -297,29 +298,28 @@
 
             this.clippingRect = new RectangleGeometry();
             this.contentWrapper.Clip = this.clippingRect;
-            this.sliderScale = layoutRoot.GetByName<Slider>("SliderScale");
+            this.sliderScale = layoutRoot.FindName<Slider>("SliderScale");
+
+            this.CurrentTargetZoom = this.DefaultZoom;
         }
 
         protected override void OnLoaded()
         {
             this.UpdatePanningSize();
 
-            if (!this.isInitialized)
-            {
-                this.SetZoom(this.DefaultZoom);
-                this.isInitialized = true;
-            }
-            else
-            {
-                this.SetZoom(this.CurrentTargetZoom);
-            }
+            this.SetZoom(this.CurrentTargetZoom);
 
             if (!IsDesignTime)
             {
                 // subscribe to drag/zoom mouse events
                 this.contentWrapper.PreviewMouseLeftButtonDown += this.ContentWrapperOnMouseLeftButtonDownHandler;
                 this.contentWrapper.MouseWheel += this.ContentWrapperMouseWheelHandler;
-                this.sliderScale.ValueChanged += this.SliderScaleValueChangedHandler;
+
+                if (this.sliderScale != null)
+                {
+                    this.sliderScale.ValueChanged += this.SliderScaleValueChangedHandler;
+                }
+
                 this.SizeChanged += this.CanvasSizeChangedHandler;
 
                 this.clickHandlerHelper = new ClickHandlerHelper(
@@ -351,7 +351,12 @@
             // unsubscribe drag/zoom mouse events
             this.contentWrapper.PreviewMouseLeftButtonDown -= this.ContentWrapperOnMouseLeftButtonDownHandler;
             this.contentWrapper.MouseWheel -= this.ContentWrapperMouseWheelHandler;
-            this.sliderScale.ValueChanged -= this.SliderScaleValueChangedHandler;
+
+            if (this.sliderScale != null)
+            {
+                this.sliderScale.ValueChanged -= this.SliderScaleValueChangedHandler;
+            }
+
             this.SizeChanged -= this.CanvasSizeChangedHandler;
 
             this.clickHandlerHelper.Dispose();
@@ -426,6 +431,15 @@
             this.OnZoomChanged(isByPlayersInput: true);
         }
 
+        private static void DefaultZoomPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (PanningPanel)d;
+            if (!control.isLoaded)
+            {
+                control.CurrentTargetZoom = control.DefaultZoom;
+            }
+        }
+
         private static void MinOrMaxZoomPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var panningPanel = (PanningPanel)d;
@@ -468,24 +482,16 @@
             this.MinZoom = Math.Min(1.0 / scale, this.MaxZoom);
         }
 
-        private Vector2D CalculateOffset(Vector2D point)
-        {
-            var scale = this.contentScaleTransform.ScaleX;
-            point = ((this.clipperSize.X - point.X * 2d * scale) / 2d,
-                     (this.clipperSize.Y - point.Y * 2d * scale) / 2d);
-
-            point = this.ClampOffset(point);
-            return point;
-        }
-
         private void CanvasSizeChangedHandler(object sender, SizeChangedEventArgs arg1)
         {
             this.Refresh();
         }
 
         private Vector2D ClampOffset(Vector2D offset)
-            => (-MathHelper.Clamp(-offset.X, this.offsetBounds.MinX, this.offsetBounds.MaxX),
-                -MathHelper.Clamp(-offset.Y, this.offsetBounds.MinY, this.offsetBounds.MaxY));
+        {
+            return (-MathHelper.Clamp(-offset.X, this.offsetBounds.MinX, this.offsetBounds.MaxX),
+                    -MathHelper.Clamp(-offset.Y, this.offsetBounds.MinY, this.offsetBounds.MaxY));
+        }
 
         private void ContentWrapperMouseWheelHandler(object sender, MouseWheelEventArgs e)
         {
@@ -494,9 +500,12 @@
             var newScale = Math.Exp(Math.Log(this.CurrentTargetZoom) + wheelRotation);
             newScale = MathHelper.Clamp(newScale, this.MinZoom, this.MaxZoom);
 
-            this.isListeningToScaleEvents = false;
-            this.sliderScale.Value = newScale;
-            this.isListeningToScaleEvents = true;
+            if (this.sliderScale != null)
+            {
+                this.isListeningToScaleEvents = false;
+                this.sliderScale.Value = newScale;
+                this.isListeningToScaleEvents = true;
+            }
 
             this.ZoomToPoint(newScale, this.GetMouseCanvasPosition(), isInstant: false);
             //Api.Logger.Write("Current zoom: " + currentZoom.ToString("F2"), LogSeverity.Dev);
@@ -637,7 +646,7 @@
                                        this.contentWrapper.ActualHeight / 2);
             }
 
-            this.ZoomToPoint(e.NewValue, contentWrapperPoint.Value, isInstant: false);
+            this.ZoomToPoint(this.sliderScale.Value, contentWrapperPoint.Value, isInstant: false);
         }
 
         private void UpdateBounds()

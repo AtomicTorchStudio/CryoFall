@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Special;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier3.XenoGeology;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -18,7 +19,7 @@
     public class SpawnDepositGeothermalSpring : ProtoZoneSpawnScript
     {
         // because this script called very rare we're increasing the spawn attempts count
-        protected override double MaxSpawnAttempsMultiplier => 300;
+        protected override double MaxSpawnAttemptsMultiplier => 300;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)
         {
@@ -33,15 +34,15 @@
             var restrictionInfiniteGeothermalSpring = spawnList.CreateRestrictedPreset()
                                                                .Add<ObjectDepositGeothermalSpringInfinite>();
 
-            var restrictionCharredGroundDeposit = spawnList.CreateRestrictedPreset()
-                                                           .Add<ObjectCharredGround3Deposit>();
+            var restrictionDepletedDeposit = spawnList.CreateRestrictedPreset()
+                                                      .Add<ObjectDepletedDeposit>();
 
-            var presetGeothermalSpring = spawnList.CreatePreset(interval: 159, padding: 1, useSectorDensity: false);
+            var presetGeothermalSpring = spawnList.CreatePreset(interval: 225, padding: 1, useSectorDensity: false);
             presetGeothermalSpring.SpawnLimitPerIteration = 1;
             presetGeothermalSpring.AddExact<ObjectDepositGeothermalSpring>()
                                   .SetCustomPaddingWithSelf(79)
                                   .SetCustomPaddingWith(restrictionInfiniteGeothermalSpring, 59)
-                                  .SetCustomPaddingWith(restrictionCharredGroundDeposit,     49)
+                                  .SetCustomPaddingWith(restrictionDepletedDeposit,          49)
                                   // ensure no spawn near cliffs
                                   .SetCustomCanSpawnCheckCallback(
                                       (physicsSpace, position)
@@ -89,25 +90,39 @@
             int currentCount,
             int desiredCountByDensity)
         {
+            if (zone.ProtoGameObject is ZoneBorealForest)
+            {
+                // to balance boreal and temperate forests and ensure they have a bit different number of resources for A26
+                // we're increasing the spawn density in boreal forest
+                desiredCountByDensity = (int)Math.Round(desiredCountByDensity * 1.25);
+            }
+
             if (Api.IsEditor)
             {
                 return desiredCountByDensity;
             }
 
-            var hoursSinceWorldCreation = (Api.Server.Game.FrameTime - Api.Server.Game.WorldCreationTime)
-                                          / (60 * 60);
+            // throttle spawn to ensure even distribution of spawned objects during specified hours since the startup
+            const double spawnSpreadDurationHours = 48;
 
-            if (hoursSinceWorldCreation >= 48)
+            var hoursSinceWorldCreation = Api.Server.Game.SecondsSinceWorldCreation / (60 * 60);
+
+            // apply the timegate offset as there should be no deposits spawn until Xenogeology is available for research
+            var timeGateHours = Api.GetProtoEntity<TechGroupXenogeology>().TimeGatePvP / (60 * 60);
+            if (timeGateHours > 0)
+            {
+                // as there is a timegate ensure the spawn could start immediately after it's expired without requiring any additional time
+                timeGateHours -= spawnSpreadDurationHours / desiredCountByDensity;
+                timeGateHours = Math.Max(0, timeGateHours);
+                hoursSinceWorldCreation -= timeGateHours;
+                hoursSinceWorldCreation = Math.Max(0, hoursSinceWorldCreation);
+            }
+
+            if (hoursSinceWorldCreation >= spawnSpreadDurationHours)
             {
                 return desiredCountByDensity;
             }
 
-            if (zone.ProtoGameObject is ZoneTemperateForest)
-            {
-                // to balance boreal and temperate forests for A25 we're increasing the spawn density in temperate forest
-                desiredCountByDensity = (int)Math.Round(desiredCountByDensity * 1.17);
-            }
-            
             // throttle spawn to ensure even distribution of spawned objects during 48 hours since the startup
             return (int)(desiredCountByDensity * hoursSinceWorldCreation / 48);
         }

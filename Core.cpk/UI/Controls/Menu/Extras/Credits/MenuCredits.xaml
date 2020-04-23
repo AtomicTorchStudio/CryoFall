@@ -222,7 +222,7 @@
                     <LineBreak /><Run FontFamily="{StaticResource AsianFontFamily}">サーバー団地</Run>
                     <LineBreak />Avakyn, Deathmall, RewinKant
                     <LineBreak />Rekenbeker, PentaQ, Morgus
-                    <LineBreak />Buddaz, Ingvarr
+                    <LineBreak />Buddaz, Ingvarr, torac
                 </TextBlock>
 
 
@@ -263,6 +263,7 @@
                            LineHeight="12.5">
                     Amatic SC, Oswald, Roboto,
                     <LineBreak />Source Han Sans, Ubuntu Mono
+                    <LineBreak />Twemoji Mozilla
                 </TextBlock>
 
                 <TextBlock Style="{StaticResource Name}"

@@ -72,7 +72,7 @@
             upgrade.AddUpgrade<ObjectLandClaimT5>()
                    .AddRequiredItem<ItemPlastic>(count: 50)
                    .AddRequiredItem<ItemOrePragmium>(count: 50)
-                   .AddRequiredItem<ItemComponentsHighTech>(count: 20)
+                   .AddRequiredItem<ItemComponentsHighTech>(count: 25)
                    .AddRequiredItem<ItemPowerCell>(count: 5);
         }
     }

@@ -147,6 +147,11 @@
             return this;
         }
 
+        public void Clear()
+        {
+            this.entries.Clear();
+        }
+
         public bool ContainsDroplist(IReadOnlyDropItemsList other)
         {
             if (this == other)

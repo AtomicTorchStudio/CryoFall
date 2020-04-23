@@ -1,64 +1,4 @@
-﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
-건설: {0}
-
-Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-기술 그룹 학습 완료: {0}
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-{0}
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
-제작:
-
-Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
-파괴: {0}
-
-Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
-채집: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
-수집: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
-장비: {0}
-
-Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-스킬 배우기: {0}을 레벨 {1}까지
-
-Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-스킬 배우기: {0}을 레벨 {1}까지
-
-Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-기술 그룹 잠금 해제: {0}
-
-Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-기술 그룹 {0}개 잠금 해제: {1}
-
-Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-기술 배우기: {0} ({1} 그룹)
-
-Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
-처치: {0}
-
-Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
-생산: {0}
-
-Scripts/Quests/Requirements/RequirementRun@DescriptionText:
-10미터 달리기
-
-Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
-인벤토리 아이템 정렬하기
-
-Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
-사용: {0}
-
-Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
-방문: {0}
-
-Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
-방문: {0}
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+﻿Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 침낭을 배치하여 부활 지점을 지정할 수 있습니다.
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
@@ -156,17 +96,6 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 자원 모으기
 
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
-`더 많은 구조물을 지으려면, 기술 메뉴에 있는 "기본 건물"의 잠금을 해제해야 합니다.`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
-`[*] 컨트롤을 변경하지 않았다면, "G"를 눌러 기술 메뉴로 빠르게 이동할 수 있습니다.
-[*] 기술 노드의 잠금을 해제하려면 [b]LP[/b] (학습 포인트)가 필요합니다.
-[*] 학습 포인트는 다양한 활동으로 얻을 수 있으며, 이것으로 스킬을 배울 수 있습니다.`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
-기본 건물 기술 배우기
-
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
 돌 채굴하기
 
@@ -182,16 +111,6 @@ Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
 아무 광석이나 채굴하기
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
-인벤토리 정렬 방법이나 달리기 방법과 같이 CryoFall을 즐기기 위해 알아야 할 것들이 몇 가지 있습니다.
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
-`[*] 인벤토리를 정렬하려면, 인벤토리를 열고 [u]마우스 가운데 버튼[/u]이나 (컨트롤을 변경하지 않은 경우) [u]Z 키[/u]를 누르기만 하면 됩니다. 인벤토리에 있는 [b]모든[/b] 아이템을 정렬시킬 수 있습니다.
-[*] 달리려면 이동 중에 그냥 [u]Shift 키[/u]를 누르고 있으면 됩니다. 한 번 몇 미터만 달려보세요. 위험한 포식자에게서 도망칠 때 달리기가 유용하게 사용될 겁니다.`
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
-기본 행동 익히기
 
 Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
 수구 열매 모으기
@@ -222,8 +141,9 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 농사는 많은 양의 음식을 얻을 수 있는 지속 가능하고 좋은 방법입니다. 손에 흙을 좀 묻혀 봅시다!
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
-`[*] 다른 생존자들이 농작물을 가져 갈 수 도 있기 때문에 [b]벽 내부[/b]에 농장을 짓는 것이 좋습니다.
-[*] 모든 농작물은 생장 시간, 수확 가능 횟수, 그 밖의 특성이 전부 다릅니다.
+`[*] [b]씨앗[/b]은 [b]풀을 모으는 동안[/b] 무작위로 발견할 수 있습니다. 일부 특별한 씨앗은 유적에서만 발견됩니다.
+[*] 다른 생존자들이 농작물을 훔쳐 갈 수도 있으니 벽으로 둘러싸여 있는 [b]내부[/b]에 농장을 짓는 게 좋습니다 :)
+[*] 모든 농작물은 생장 시간, 수확 가능 횟수, 그밖의 특성이 전부 다릅니다.
 [*] 나중이 되면, 농장의 생산성을 높이기 위해 더 나은 비료와 기타 사항들을 연구할 수 있게 됩니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
@@ -403,7 +323,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
 [*] [b]다양한 대미지 유형[/b]이 있으며, 또한 방어구마다 다른 방어 특성을 가지고 있습니다. 이 정보는 인벤토리 화면에서 확인할 수 있습니다.`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
-원거리 무기 만들기
+구식 화기 만들기
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
 모든 환경에는 각기 다른 특성을 지닌 고유한 동식물이 살고 있습니다. 그것을 최대한 활용하는 것이 좋습니다.
@@ -437,6 +357,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 초록색 허브를 찾아 사용하세요
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
+`더 많은 구조물을 지으려면, 기술 메뉴에 있는 "기본 건물"의 잠금을 해제해야 합니다.`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
+`[*] 컨트롤을 변경하지 않았다면, "G"를 눌러 기술 메뉴로 빠르게 이동할 수 있습니다.
+[*] 기술 노드의 잠금을 해제하려면 [b]LP[/b] (학습 포인트)가 필요합니다.
+[*] 학습 포인트는 다양한 활동으로 얻을 수 있으며, 이것으로 스킬을 배울 수 있습니다.`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
+기본 건물 기술 배우기
+
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
 사냥하러 갈 시간입니다! 처음에는 위험한 동물들을 피하는 것이 나을지도 모르지만, 다양한 선택권이 있습니다.
 
@@ -458,6 +389,16 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 사냥 숙달하기-제2부
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
+인벤토리 정렬 방법이나 달리기 방법과 같이 CryoFall을 완전히 즐기기 위해 알아야 할 것들이 몇 가지 있습니다!
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
+`[*] 인벤토리를 정렬하려면, 인벤토리를 열고 [u]마우스 가운데 버튼[/u]이나 (컨트롤을 변경하지 않은 경우) [u]Z 키[/u]를 누르기만 하면 됩니다. [b]모든[/b] 인벤토리 격자(예: 상자)를 이와 같이 정렬시킬 수 있습니다.
+[*] 달리려면 이동 중에 그냥 [u]Shift 키[/u]를 누르고 있으면 됩니다. 한 번 몇 미터만 달려보세요. 위험한 포식자에게서 도망칠 때 달리기가 유용하게 사용될 겁니다.`
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
+기본 행동 익히기
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
 아무 스킬이나 잠금 해제하기
@@ -481,6 +422,16 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 쇠지렛대를 사용하여 해체하기
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
+프라그뮴은 가장 높은 수준의 기술에 필요한 외계 광물입니다. 프라그뮴 몇 개를 찾아서 얻어보세요.
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
+`[*] 경고! 프라그뮴 채굴은 매우 위험합니다.
+[*] 대형 프라그뮴 첨탑은 주로 사막에서 발견되며, 소형 프라그뮴 덩어리는 화산 근처에서 발견되는 경우가 많습니다.`
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
+프라그뮴 획득하기!
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
 소금 광물 채굴하기
@@ -565,6 +516,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 오래된 유적 탐험하기
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+컨테이너 약탈하기
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 사냥을 더 해볼 시간입니다! 이번에는 더 위험한 동물들을 상대해봅시다.

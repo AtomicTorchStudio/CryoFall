@@ -8,7 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.GameEngine.Common.Helpers;
 
-    public class ItemMeatRaw : ProtoItemFood, IProtoItemOrganic
+    public class ItemMeatRaw : ProtoItemFood
     {
         public override string Description =>
             "Raw meat. Can be prepared in a variety of ways. Eating it raw is probably not a very good idea...";
@@ -16,6 +16,8 @@
         public override float FoodRestore => 5;
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Perishable;
+
+        public override bool IsAvailableInCompletionist => false;
 
         public override string Name => "Raw meat";
 

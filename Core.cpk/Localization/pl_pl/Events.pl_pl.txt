@@ -1,0 +1,18 @@
+﻿Scripts/Events/EventBossPragmiumQueen@Description:
+`Na powierzchnię wyszła Królowa pragmium.
+[br]Na najdzielniejszych bohaterów czekają cenne łupy!`
+
+Scripts/Events/EventMeteoriteDrop@Description:
+`Na zaznaczony obszar mapy spadł deszcz meteorów.
+[br]Biegnij tam i zdobądź rzadkie minerały!`
+
+Scripts/Events/EventMigration@Description:
+Rdzenne formy życia migrują do innych obszarów – to świetna okazja na polowanie.
+
+Scripts/Events/EventSpaceDrop@Description:
+`Na zaznaczony obszar mapy spadły kosmiczne śmieci.
+[br]Biegnij tam i zdobądź rzadkie przedmioty!`
+
+Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
+Postęp: {0}/{1}
+

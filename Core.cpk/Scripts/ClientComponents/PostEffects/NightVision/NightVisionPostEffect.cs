@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.NightVision
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components.Camera;
@@ -48,7 +49,9 @@
         public override void Render(IRenderTarget2D source, IRenderTarget2D destination)
         {
             Rendering.GraphicsDevice.SetRenderTarget(destination);
-            this.effectInstance.Parameters.Set("TextureScreenBuffer", source);
+            this.effectInstance.Parameters
+                .Set("TextureScreenBuffer", source)
+                .Set("AdditionalLight",     (float)TimeOfDaySystem.DayFraction);
             Rendering.GraphicsDevice.DrawFullScreen(this.effectInstance, BlendMode.Opaque);
         }
 

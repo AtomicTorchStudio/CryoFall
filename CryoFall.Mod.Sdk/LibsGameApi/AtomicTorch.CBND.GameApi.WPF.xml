@@ -3501,11 +3501,15 @@
         <member name="P:AtomicTorch.CBND.GameApi.ServicesServer.IGameServerService.FrameNumber">
             <summary>
             Gets the current server frame number.
+            Please note that you should not use this value in persistent scenarios
+            - please use FrameTime for such scenarios.
+            The frame number might change from the same frame time
+            when the savegame is reloaded on a server with a different FPS setting.
             </summary>
         </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesServer.IGameServerService.FrameRate">
             <summary>
-            Gets the current server frame rate (tickrate).
+            Gets the current server FPS (tickrate).
             </summary>
         </member>
         <member name="P:AtomicTorch.CBND.GameApi.ServicesServer.IGameServerService.FrameTime">
@@ -3679,6 +3683,11 @@
             Please note - this method is not available during Bootstrapper execution.
             </summary>
         </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetStaticWorldObjectsOfProtoInBounds``1(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
+            <summary>
+            Please note—on the server side this method might return the same object several times. Be sure to filter such duplicates.
+            </summary>
+        </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetTile(AtomicTorch.GameEngine.Common.Primitives.Vector2Ushort,System.Boolean)">
             <summary>
             Gets the tile for specified tile position.
@@ -3839,11 +3848,6 @@
             <param name="character">Owner of the view.</param>
             <param name="result">Temporary list of static world objects to store the result.</param>
             <param name="sortByDistance">If true, the result will be sorted by distance.</param>
-        </member>
-        <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetStaticWorldObjectsOfProtoInBounds``1(AtomicTorch.GameEngine.Common.Primitives.RectangleInt)">
-            <summary>
-            Please note—this method might return the same object several times. Be sure to filter such duplicates.
-            </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldServerService.GetWorldObjectsInView(AtomicTorch.CBND.GameApi.Data.Characters.ICharacter,System.Collections.Generic.IList{AtomicTorch.CBND.GameApi.Data.World.IWorldObject},System.Boolean)">
             <summary>

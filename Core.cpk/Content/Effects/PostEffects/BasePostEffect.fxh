@@ -1,7 +1,5 @@
 ﻿#include "../Lib.fxh"
 
-#define FULLSCREEN_VS compile VS_SHADERMODEL MainVS()
-
 struct VSOutput
 {
     float4 Position : SV_POSITION;
@@ -30,7 +28,7 @@ technique FullscreenPostEffect
 {
     pass P0
     {
-        VertexShader = FULLSCREEN_VS;
+        VertexShader = compile VS_SHADERMODEL MainVS();
         PixelShader = compile PS_SHADERMODEL MainPS();
     }
 };

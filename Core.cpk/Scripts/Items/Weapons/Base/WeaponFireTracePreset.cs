@@ -32,7 +32,10 @@
             double traceEndFadeOutExponent = 1.0,
             bool useScreenBlending = false)
         {
-            this.TraceTexture = new TextureResource(traceTexturePath, isTransparent: true);
+            this.TraceTexture = traceTexturePath != null
+                                    ? new TextureResource(traceTexturePath, isTransparent: true)
+                                    : null;
+
             this.TraceSpeed = traceSpeed;
             this.HitSparksPreset = hitSparksPreset;
 
@@ -46,5 +49,7 @@
 
             this.UseScreenBlending = useScreenBlending;
         }
+
+        public bool HasTrace => !(this.TraceTexture is null);
     }
 }

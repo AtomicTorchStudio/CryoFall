@@ -99,7 +99,6 @@
         private static void ServerTimerTickCallback()
         {
             // update water and food for all online player characters
-            var serverTime = Server.Game.FrameTime;
             foreach (var character in Server.Characters.EnumerateAllPlayerCharacters(onlyOnline: true))
             {
                 if (character.ProtoCharacter.GetType() != typeof(PlayerCharacter))
@@ -115,7 +114,7 @@
                     continue;
                 }
 
-                if (CharacterIdleSystem.CharacterIdleSystem.ServerIsIdlePlayer(character, serverTime))
+                if (CharacterIdleSystem.CharacterIdleSystem.ServerIsIdlePlayer(character))
                 {
                     // idle character
                     continue;

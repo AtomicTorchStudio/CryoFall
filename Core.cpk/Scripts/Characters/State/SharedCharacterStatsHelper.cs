@@ -95,18 +95,20 @@
             CharacterCurrentStats stats,
             bool isFirstTime)
         {
-            if (!Api.IsServer)
+            if (Api.IsClient)
             {
                 return;
             }
 
             // these values could be set only on the Server-side
             stats.ServerSetHealthMax((float)finalStatsCache[StatName.HealthMax]);
-            stats.ServerSetStaminaMax((float)finalStatsCache[StatName.StaminaMax]);
 
-            var playerStats = stats as PlayerCharacterCurrentStats;
-            playerStats?.ServerSetFoodMax((float)finalStatsCache[StatName.FoodMax]);
-            playerStats?.ServerSetWaterMax((float)finalStatsCache[StatName.WaterMax]);
+            if (stats is PlayerCharacterCurrentStats playerStats)
+            {
+                playerStats.ServerSetStaminaMax((float)finalStatsCache[StatName.StaminaMax]);
+                playerStats.ServerSetFoodMax((float)finalStatsCache[StatName.FoodMax]);
+                playerStats.ServerSetWaterMax((float)finalStatsCache[StatName.WaterMax]);
+            }
 
             if (isFirstTime)
             {

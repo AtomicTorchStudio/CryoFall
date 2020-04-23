@@ -13,6 +13,9 @@ A tecnologia já está desbloqueada
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
 Requer {0} pontos de aprendizagem (somente {1} disponível(is)).
 
+Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
+Não disponível para {0} após limpeza do servidor (aguarde {1}).
+
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 Requer tecnologia {0} desbloqueada
 
@@ -99,6 +102,12 @@ Receitas culinária mais avançadas para uma variedade maior de novas comidas.
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
 Culinária 2
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
+Por que não tornar seu ambiente mais agradável?
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
+Decorações
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
 Tecnologias de proteção aprimoradas que oferecem melhores projetos de armadura.
@@ -192,6 +201,12 @@ Receitas culinárias ainda mais complexas para verdadeiros conhecedores de prato
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
 Culinária 3
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
+Personalize ainda mais seu ambiente!
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
+Decorações 2
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 Tecnologias de proteção avançadas.

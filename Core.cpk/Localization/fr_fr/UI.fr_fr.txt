@@ -104,11 +104,63 @@ Mentionner
 UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 Message privé
 
+UI/CoreStrings@Chat_MessageMenu_Report:
+Signaler
+
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Débloquer
 
+UI/CoreStrings@Chat_PressKeyToOpen_Format:
+Appuyez sur [{0}] pour commencer à discuter
+
+UI/CoreStrings@ChatDisclaimer_Button_DisableChat:
+Masquer la discussion
+
+UI/CoreStrings@ChatDisclaimer_Button_EnableChat:
+Activer la discussion
+
+UI/CoreStrings@ChatDisclaimer_Checkbox:
+Je comprends et j'accepte
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Community:
+[b]Remarque :[/b] vous jouez sur un serveur communautaire. La modération des discussions est donc sous la responsabilité du propriétaire du serveur. En général, les discussions ne sont pas modérées et il est possible que vous receviez des messages déplaisants ou des insultes de la part d'autres joueurs. N'activez la discussion que si vous êtes prêt à accepter cette éventualité.
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Official:
+[b]Remarque :[/b] la discussion n'est PAS modérée. Il est possible que vous receviez des messages déplaisants ou des insultes de la part d'autres joueurs. N'activez la discussion que si vous êtes prêt à accepter cette éventualité.
+
+UI/CoreStrings@ChatDisclaimer_Title_Community:
+Souhaitez-vous activer la discussion en jeu sur ce serveur communautaire ?
+
+UI/CoreStrings@ChatDisclaimer_Title_Official:
+Souhaitez-vous activer la discussion en jeu sur ce serveur ?
+
+UI/CoreStrings@ChatDisclaimer_UseBlock:
+Si vous recevez un message inapproprié, cliquez sur le message et sélectionnez Signaler ou Bloquer
+
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 Ne plus demander
+
+UI/CoreStrings@ClanTag_Current:
+Sigle de clan :
+
+UI/CoreStrings@ClanTag_Exists:
+`Ce sigle de clan est déjà utilisé par une autre équipe.
+[br]Veuillez en choisir un autre.`
+
+UI/CoreStrings@ClanTag_FormatWithName:
+[{0}] {1}
+
+UI/CoreStrings@ClanTag_Invalid:
+Ce sigle de clan n'est pas valide.
+
+UI/CoreStrings@ClanTag_Requirements:
+`Règles concernant les sigle de clans :
+[*] Uniquement des lettres latines et des chiffres
+[*] Doit commencer par une lettre
+[*] Quatre caractères maximum`
+
+UI/CoreStrings@ClanTag_Select:
+Veuillez choisir un sigle de clan
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Cette structure est purement décorative.
@@ -151,6 +203,12 @@ Vous pouvez débloquer plus de recettes dans le menu des technologies.`
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Recettes déverrouillées
+
+UI/CoreStrings@CrateIconControl_NoIcon:
+Pas d'icône
+
+UI/CoreStrings@CrateIconControl_SelectIcon:
+Choisissez une icône
 
 UI/CoreStrings@Defense_Format_Chemical:
 Protection chimique : {0}
@@ -200,11 +258,20 @@ Bienvenue à la version de démo de CryoFall. Vous pourrez explorer le jeu sans 
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 Revendicable dans :
 
+UI/CoreStrings@DepositCapacityStats_Depleted:
+Ce gisement est épuisé.
+
 UI/CoreStrings@DepositCapacityStats_Message:
 Ce gisement sera épuisé dans :
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Capacité du gisement
+
+UI/CoreStrings@DepositCapacityStats_TitleInfinite:
+Gisement profond (faible rendement, infini)
+
+UI/CoreStrings@DepositCapacityStats_TitleLimited:
+Gisement de surface (haut rendement)
 
 UI/CoreStrings@Duration_Instant:
 Aucun
@@ -274,6 +341,9 @@ Homme
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 Descendre du véhicule
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Completionist:
+Complétiste
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 Construction
@@ -379,6 +449,9 @@ Me laisser connecté
 
 UI/CoreStrings@LoginAtomicTorchForm_Title:
 Connexion sur [url=atomictorch.com/Account/Register]AtomicTorch.com[/url]
+
+UI/CoreStrings@LootHacking_Progress:
+Progression du piratage
 
 UI/CoreStrings@MainMenu_TabCredits:
 CRÉDITS
@@ -553,6 +626,12 @@ Il s'agit d'un serveur « Joueur contre Joueur » qui se concentre sur le comb
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 JcJ
 
+UI/CoreStrings@Meteorite_CooldownMessage_TimeRemainsFormat:
+{0} avant un refroidissement suffisant.
+
+UI/CoreStrings@Meteorite_CooldownMessage_TooHotForMining:
+La météorite est encore trop chaude pour être exploitable.
+
 UI/CoreStrings@ModsDisabledWindow_Description:
 `Le jeu n'a pas pu être lancé avec les mods, qui ont donc été désactivés.
 [br]Il est possible qu'au moins un des mods soit trop ancien (non compatible avec la version actuelle du jeu) ou tout simplement non valide.
@@ -627,6 +706,12 @@ Interdit
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 Impossible à placer ici
 
+UI/CoreStrings@Notification_ErrorCannotInteract:
+Interaction impossible
+
+UI/CoreStrings@Notification_ErrorObjectUsedByAnotherPlayer:
+Cet objet est en cours d'utilisation par un autre joueur.
+
 UI/CoreStrings@Notification_ObstaclesOnTheWay:
 Obstacles !
 
@@ -660,6 +745,9 @@ Supprimer propriétaire
 UI/CoreStrings@ObjectOwnersList_Title:
 Propriétaires
 
+UI/CoreStrings@ObjectOwnersList_Title2:
+Propriétaires :
+
 UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
 ACHÈTE
 
@@ -683,9 +771,6 @@ Taille du groupe
 
 UI/CoreStrings@PartyManagement_HowToInvite:
 Tapez un nom de joueur ci-dessous pour l'inviter ou faites un clic droit sur un nom de joueur dans la fenêtre de discussion.
-
-UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-Une partie des points d'apprentissage gagnés par les membres du groupe est partagée de manière égale au sein des membres.
 
 UI/CoreStrings@PartyManagement_InviteMember:
 Inviter un membre
@@ -761,6 +846,9 @@ Vide dans :
 UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
 Jamais
 
+UI/CoreStrings@PowerGridState_EfficiencyDescription:
+L'efficacité du réseau électrique dépend de la taille de la base.
+
 UI/CoreStrings@PowerGridState_EfficiencyFormat:
 (efficacité {0}%)
 
@@ -825,7 +913,7 @@ UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 Capture d'écran prête : {0} (cliquez pour ouvrir)
 
 UI/CoreStrings@SelectUsernameForm_Message:
-Veuillez choisir un nom d'utilisateur pour votre compte AtomicTorch.com
+Veuillez choisir un nom d'utilisateur
 
 UI/CoreStrings@ServerAddress:
 Adresse
@@ -886,6 +974,15 @@ Technologies disponibles
 
 UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 Technologies déverrouillées
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_AvailableNow:
+Disponible maintenant (temporisation terminée)
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Format:
+Sera disponible dans : [b]{0}[/b]
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Title:
+Temporisation
 
 UI/CoreStrings@TechNodeTooltip_Perks:
 Talents:
@@ -1089,6 +1186,24 @@ Par exemple :
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Aléatoire
 
+UI/CoreStrings@WindowCompletionist_ButtonAccept:
+Accepter
+
+UI/CoreStrings@WindowCompletionist_ProgressLabel:
+Progression :
+
+UI/CoreStrings@WindowCompletionist_TabCreatures:
+Créatures
+
+UI/CoreStrings@WindowCompletionist_TabFood:
+Nourriture
+
+UI/CoreStrings@WindowCompletionist_TabLoot:
+Butin
+
+UI/CoreStrings@WindowCompletionist_UndiscoveredEntryTitle:
+???
+
 UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
 Le schéma nécessite
 
@@ -1104,6 +1219,16 @@ Placer le schéma
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 Total requis
+
+UI/CoreStrings@WindowCrateIconSelector_CanPickIcon:
+Vous pouvez sélectionner l'icône de n'importe quel objet placé dans ce contenant.
+
+UI/CoreStrings@WindowCrateIconSelector_NoItemsToSelectIcon:
+`Ce contenant est vide.
+[br]Il n'y a aucun objet permettant de choisir une icône.`
+
+UI/CoreStrings@WindowCrateIconSelector_SelectedIcon:
+Icône sélectionnée
 
 UI/CoreStrings@WindowDataLog_Content:
 Contenu
@@ -1131,6 +1256,9 @@ Vous ne pouvez pas utiliser les revendications territoriales pour stocker des re
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
 Délabrement
+
+UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
+J'ai compris le principe du système de délabrement
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 Les objets stockés ici sont partagés entre les structures de revendications territoriales de la base.
@@ -1477,13 +1605,13 @@ UI/CoreStrings@Yes:
 Oui
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 Connecté
@@ -1500,6 +1628,15 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 `Voulez-vous fermer la discussion privée avec {0} ?
 [br]L'historique de la conversation sera sauvegardé et vous pourrez la reprendre plus tard.`
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
+Tué pour la première fois
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
+Consommé pour la première fois.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_LootDiscovered_MessageFormat:
+Trouvé pour la première fois.
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 Cette recette utilisant des composants dégradables, vous ne pouvez pas l'annuler.
@@ -1520,6 +1657,15 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 Vos objets sont tombés au sol
 
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Finished:
+Évènement terminé !
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeRemainingFormat:
+Temps restant : {0}
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
+Évènement actif
+
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
 `L'une de vos bases est attaquée !
 [br]({0};{1})`
@@ -1535,6 +1681,9 @@ UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceA
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
 Nouvelle ressource disponible
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@TooltipDepositSearchAreaFormat:
+Fouiller la zone : {0}
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 Copier les coordonnées
@@ -1628,8 +1777,17 @@ Visage
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 Chevelure
 
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
+Couleur de cheveux
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+Couleur de peau
+
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Haut
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
+non sélectionné
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 Souhaitez-vous vraiment quitter le groupe ?
@@ -1708,12 +1866,6 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]
 [br]Vous pouvez repousser le début du délabrement en  [b]améliorant[/b] n'importe laquelle des revendications territoriales au plus haut rang.
 [br]Le délai de la base entière est fondé sur le bâtiment de revendication territoriale de [b]plus haut[/b] rang.`
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
-Ce gisement est épuisé.
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
-Ce gisement est infini.
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Pas de combustible
@@ -1810,6 +1962,12 @@ Véhicules
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
 Construisez et améliorez un ensemble de véhicules futuristes pour explorer l'univers plus rapidement ou pour utiliser en combat.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+Évènements mondiaux
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+Participez aux nombreux évènements régulièrement organisés au sein du monde de CryoFall, comme l'exploration du site de crash d'une météorite ou l'alliance avec un groupe de survivants afin de vaincre un dangereux boss.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Créatures fantastiques

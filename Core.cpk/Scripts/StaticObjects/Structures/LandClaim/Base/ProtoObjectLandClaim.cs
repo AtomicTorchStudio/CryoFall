@@ -397,7 +397,8 @@
                 return true;
             }
 
-            if (CreativeModeSystem.SharedIsInCreativeMode(character))
+            if (PlayerCharacterSpectator.SharedIsSpectator(character)
+                || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 return true;
             }
@@ -584,8 +585,9 @@
             }
 
             var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
-            if (CreativeModeSystem.SharedIsInCreativeMode(who)
-                && !LandClaimSystem.ServerIsOwnedArea(area, who))
+            if (!LandClaimSystem.ServerIsOwnedArea(area, who)
+                && (PlayerCharacterSpectator.SharedIsSpectator(who)
+                    || CreativeModeSystem.SharedIsInCreativeMode(who)))
             {
                 Server.World.EnterPrivateScope(who, area);
             }
@@ -603,8 +605,9 @@
             }
 
             var areasGroup = LandClaimArea.GetPublicState(area).LandClaimAreasGroup;
-            if (CreativeModeSystem.SharedIsInCreativeMode(who)
-                && !LandClaimSystem.ServerIsOwnedArea(area, who))
+            if (!LandClaimSystem.ServerIsOwnedArea(area, who)
+                && (PlayerCharacterSpectator.SharedIsSpectator(who)
+                    || CreativeModeSystem.SharedIsInCreativeMode(who)))
             {
                 Server.World.ExitPrivateScope(who, area);
             }
@@ -700,15 +703,20 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
-            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersections);
-            tileRequirements.Add(LandClaimSystem.ValidatorCheckCharacterLandClaimAmountLimit);
-            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersectionsWithDemoPlayers);
-            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimsTooClose);
-            tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimDepositRequireXenogeology);
-            tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimDepositCooldown);
-            tileRequirements.Add(LandClaimSystem.ValidatorCheckLandClaimBaseSizeLimitNotExceeded);
-            tileRequirements.Add(LandClaimSystem.ValidatorNewLandClaimSafeStorageCapacityNotExceeded);
-            tileRequirements.Add(ObjectMineralPragmiumSource.ValidatorCheckNoPragmiumSourceNearbyOnPvE);
+            tileRequirements
+                .Clear()
+                .Add(ConstructionTileRequirements.DefaultForPlayerStructuresOwnedOrFreeLand)
+                // land-claim specific requirements
+                .Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersections)
+                .Add(LandClaimSystem.ValidatorCheckCharacterLandClaimAmountLimit)
+                .Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimIntersectionsWithDemoPlayers)
+                .Add(LandClaimSystem.ValidatorNewLandClaimNoLandClaimsTooClose)
+                .Add(LandClaimSystem.ValidatorCheckLandClaimDepositRequireXenogeology)
+                .Add(LandClaimSystem.ValidatorCheckLandClaimDepositCooldown)
+                .Add(LandClaimSystem.ValidatorCheckLandClaimBaseSizeLimitNotExceeded)
+                .Add(LandClaimSystem.ValidatorNewLandClaimSafeStorageCapacityNotExceeded)
+                .Add(ObjectMineralPragmiumSource.ValidatorCheckNoPragmiumSourceNearbyOnPvE);
+
             this.PrepareLandClaimConstructionConfig(tileRequirements, build, repair, upgrade, out category);
 
             var landClaimSize = this.LandClaimSize;

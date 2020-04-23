@@ -65,7 +65,7 @@
             }
         }
 
-        public void ServerDiscoverWorldChunks(ICharacter character, IEnumerable<Vector2Ushort> chunkTilePositions)
+        public void ServerDiscoverWorldChunks(ICharacter character, IReadOnlyList<Vector2Ushort> chunkTilePositions)
         {
             if (!this.serverPlayerDiscoveredChunkTiles.TryGetValue(character, out var hashSet))
             {
@@ -159,7 +159,7 @@
 
         private void ServerPlayerCharacterObservedTilesHandler(
             ICharacter character,
-            List<Vector2Ushort> chunkTilePositions)
+            IReadOnlyList<Vector2Ushort> chunkTilePositions)
         {
             //Logger.WriteDev($"Character observed tiles: {character} tiles: {Environment.NewLine}"
             //                + chunkTilePositions.GetJoinedString(Environment.NewLine));

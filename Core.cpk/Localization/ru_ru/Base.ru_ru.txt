@@ -118,8 +118,8 @@ Scripts/Base/Stats/StatName@WeaponExoticReloadingSpeedMultiplier:
 Scripts/Base/Stats/StatName@CraftingSpeed:
 Скорость крафтинга
 
-Scripts/Base/Stats/StatName@ItemExplosivePlantingTimeMultiplier:
-Время установки взрывчатки
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Скорость установки взрывчатки
 
 Scripts/Base/Stats/StatName@HuntingLootingSpeed:
 Скорость сбора добычи

@@ -52,10 +52,19 @@
             IItem item,
             ICharacter character,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview)
         {
-            base.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
-            ClientRefreshNightVisionState(item);
+            base.ClientSetupSkeleton(item,
+                                     character,
+                                     skeletonRenderer,
+                                     skeletonComponents,
+                                     isPreview);
+
+            if (!isPreview)
+            {
+                ClientRefreshNightVisionState(item);
+            }
         }
 
         public void ClientToggleLight(IItem item)

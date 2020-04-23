@@ -7,9 +7,9 @@
         public override string Description =>
             "Continuous use of melee weapons grants you prowess with this type of arm, resulting in increased damage and efficiency.";
 
-        public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.4;
+        public override double ExperienceAddedOnKillPerMaxEnemyHealthMultiplier => 0.5;
 
-        public override double ExperienceAddedPerDamageDoneMultiplier => 1.0;
+        public override double ExperienceAddedPerDamageDoneMultiplier => 1.5;
 
         // since melee doesn't use any ammo we don't want any exp for just waving your knife around :)
         public override double ExperienceAddedPerShot => 0;
@@ -32,9 +32,6 @@
 
         protected override void PrepareProtoSkill(SkillConfig config)
         {
-            // Since close combat weapons are inferior to ranged weapons it have special bonuses to counteract that.
-            // (that's why we override prepare method here)
-
             config.Category = GetCategory<SkillCategoryCombat>();
 
             var statNameDamageBonus = this.StatNameDamageBonusMultiplier;

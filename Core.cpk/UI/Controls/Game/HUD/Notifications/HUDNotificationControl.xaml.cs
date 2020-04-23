@@ -15,6 +15,8 @@
 
     public partial class HUDNotificationControl : BaseUserControl
     {
+        public Action CallbackOnRightClickHide;
+
         public SoundResource soundToPlay;
 
         private Border root;
@@ -195,6 +197,7 @@
         private void RootMouseButtonRightHandler(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
+            this.CallbackOnRightClickHide?.Invoke();
             this.Hide(quick: true);
         }
 

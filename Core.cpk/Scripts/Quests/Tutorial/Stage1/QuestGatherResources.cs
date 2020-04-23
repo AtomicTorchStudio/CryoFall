@@ -1,6 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Loot;
+    using AtomicTorch.CBND.GameApi.Resources;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestGatherResources : ProtoQuest
     {
@@ -14,12 +18,23 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveItem.Require<ItemFibers>(count: 10))
-                .Add(RequirementHaveItem.Require<ItemTwigs>(count: 10))
-                .Add(RequirementHaveItem.Require<ItemStone>(count: 10));
+            ITextureResource iconGrass = null,
+                             iconTwigs = null,
+                             iconStone = null;
+
+            if (IsClient)
+            {
+                iconGrass = Api.GetProtoEntity<ObjectLootGrass>().Icon;
+                iconTwigs = Api.GetProtoEntity<ObjectLootTwigs>().Icon;
+                iconStone = Api.GetProtoEntity<ObjectLootStone>().Icon;
+            }
+
+            tasks
+                .Add(TaskHaveItem.Require<ItemFibers>(count: 10).WithIcon(iconGrass))
+                .Add(TaskHaveItem.Require<ItemTwigs>(count: 10).WithIcon(iconTwigs))
+                .Add(TaskHaveItem.Require<ItemStone>(count: 10).WithIcon(iconStone));
         }
     }
 }

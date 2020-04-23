@@ -4,6 +4,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -110,6 +111,9 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Clear()
+                            .Add(ConstructionTileRequirements.DefaultForPlayerStructuresOwnedOrFreeLand);
+
             category = GetCategory<StructureCategoryFood>();
 
             build.StagesCount = 1;

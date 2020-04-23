@@ -6,7 +6,6 @@
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
-    using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems.Watering;
@@ -41,17 +40,14 @@
         protected ProtoItemToolWateringCan()
         {
             var name = this.GetType().Name;
-            this.Icon = new TextureResource("Items/Tools/WateringCans/" + name);
             this.CharacterTextureResource = new TextureResource(
-                "Characters/Tools/WateringCans/" + name,
+                "Characters/Tools/" + name,
                 isProvidesMagentaPixelPosition: true);
         }
 
         public virtual double ActionDurationWateringSeconds => 1;
 
         public virtual TextureResource CharacterTextureResource { get; }
-
-        public override ITextureResource Icon { get; }
 
         public abstract byte WaterCapacity { get; }
 

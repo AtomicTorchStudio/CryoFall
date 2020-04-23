@@ -13,6 +13,11 @@
         Reload,
 
         /// <summary>
+        /// Reload finish sound like cocking a gun.
+        /// </summary>
+        ReloadFinished,
+
+        /// <summary>
         /// Could be played for certain weapons that have "prepare" cycle, such as gatling gun spinning up or laser heating up
         /// before shooting.
         /// </summary>

@@ -19,11 +19,11 @@
         public const string NotificationBurnedOut = "The torch has burned out.";
 
         private static readonly TextureResource CharacterTextureResourceBurned =
-            new TextureResource("Characters/Tools/Lights/ItemTorchBurned");
+            new TextureResource("Characters/Tools/ItemTorchBurned");
 
         private static readonly TextureAtlasResource TextureAtlasFire
             = new TextureAtlasResource(
-                "Characters/Tools/Lights/ItemTorchFire",
+                "Characters/Tools/ItemTorchFire",
                 columns: 4,
                 rows: 2,
                 isTransparent: true);
@@ -35,6 +35,8 @@
             0; // Important! No durability limit here, the item will be destroyed when the fuel amount is zero
 
         public override string Name => "Torch";
+
+        public override double ServerUpdateIntervalSeconds => 1;
 
         protected override string ActiveLightCharacterAnimationName => "Torch";
 
@@ -157,8 +159,8 @@
                 icon: this.Icon,
                 playSound: false);
 
-            this.SharedGetItemSoundPreset()
-                .PlaySound(ItemSound.Unequip);
+            SoundPresetsHelper.SharedGetItemSoundPreset(this)
+                              .PlaySound(ItemSound.Unequip);
         }
     }
 }

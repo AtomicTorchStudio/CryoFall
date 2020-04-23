@@ -123,6 +123,12 @@ Render çözünürlüğü
 Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
 Görüntü
 
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@ScreenMode.Force16To9:
+16:9 (PvP maksimum görüntü)
+
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@Name:
+Ekran açı oranı
+
 Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
 Tam ekran
 

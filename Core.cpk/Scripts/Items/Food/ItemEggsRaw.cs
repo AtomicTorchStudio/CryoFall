@@ -16,6 +16,8 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Normal;
 
+        public override bool IsAvailableInCompletionist => false;
+
         public override string Name => "Animal eggs";
 
         public override ushort OrganicValue => 5;

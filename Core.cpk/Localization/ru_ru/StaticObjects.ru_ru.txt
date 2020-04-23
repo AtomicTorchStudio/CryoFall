@@ -61,6 +61,9 @@ Scripts/StaticObjects/Base/InteractionTooltipTexts@Examine:
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
 Собрать
 
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Hack:
+Взломать
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 Использовать
 
@@ -142,11 +145,8 @@ Scripts/StaticObjects/Loot/ObjectLootCrateSupply@Name:
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Трава
 
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-Большая куча мусора
-
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
-Небольшая куча мусора
+Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
+Куча мусора
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Камень
@@ -216,6 +216,15 @@ Scripts/StaticObjects/Minerals/Base/ProtoObjectMineral@NotificationUsePickaxe:
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Трещина
+
+Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
+Метеорит
+
+Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
+Останки прагмиевой королевы
+
+Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
+Космический мусор
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Более вместительная и крепкая, чем деревянная бочка. Используется для хранения большого объема жидкости.
@@ -345,25 +354,25 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 Верстак
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-Более вместительный и прочный, чем обычный деревянный ящик.
+Здесь больше места, чем в обычном деревянном ящике.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
 Железный ящик
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
-Одно из лучших мест для хранения. Очень вместительный и прочный, он уцелеет в большинстве случаев.
+В стальном ящике больше места, чем во всех остальных обычных ящиках. В нем можно хранить свои вещи компактным образом.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
 Стальной ящик
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
-Очень большой ящик, в нем удобно и безопасно хранить целую гору вещей.
+Очень крупный ящик для удобного хранения большого количества предметов.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
 Большой ящик
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-Самый простой ящик для хранения разных вещей. Увы, его довольно легко уничтожить.
+Самый простой ящик для хранения пожитков.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
 Деревянный ящик
@@ -380,16 +389,58 @@ Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Description:
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 Бронированный сейф
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
+Алтарь в восточном стиле для благовоний.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
+Алтарь благовоний
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
-Что бы это знамя ни символизировало — это выглядит здорово!
+Что бы этот вымпел ни символизировал — выглядит здорово!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
-Красное знамя
+Вымпел
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
-Этот эффектный ковер задает стиль всей комнате.
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
+Ванна в классическом стиле для всех ваших гигиенических потребностей.
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
+Ванна
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
+Стеллаж с книгами отлично дополнит любую комнату.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
+Книжный стеллаж
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
+Ширма с классическим изображением тигра, как в старинной сказке.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Name:
+Ширма
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Description:
+Впечатляющие горы золота. Положите их в хранилище, чтобы не растерять!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
+Горы золота
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
+Стильное и искусно выполненное пианино угольно-черного цвета.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
+Пианино
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
+Покажите всем, что вы настоящий охотник, и украсьте свое жилище этой шикарной шкурой.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Name:
+Медвежья шкура
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Description:
+Этот эффектный и уютный ковер задает стиль всей комнате.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Name:
 Напольный ковер
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
@@ -397,6 +448,12 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 Череп на пике
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Description:
+Этот мягкий и удобный диван прекрасно подойдет для гостиной.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Name:
+Диван
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 Доказательство вашего богатства. Только самые зажиточные поселенцы могут позволить себе изготовить нечто подобное.
@@ -409,6 +466,30 @@ Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Desc
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Прагмиевая статуя
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
+Простой стол в старинном европейском стиле.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Name:
+Стол
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Description:
+Королевский трон будет идеально смотреться в вашем главном зале для аудиенций. Пусть холопы знают, кто тут начальник.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Name:
+Трон
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
+Постарайтесь поместить его в отдельное помещение. С хорошей вентиляцией.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
+Унитаз
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
+Очень ценная декоративная ваза.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
+Ваза
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Здесь уже есть напольное украшение.
@@ -639,7 +720,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
 Электрическая плавильная печь
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
-Позволяет извлекать литиевую соль из геотермальных источников.
+Позволяет максимально эффективно извлекать литиевую соль из подземного месторождения или прямо из геотермального источника.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Экстрактор лития
@@ -660,7 +741,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Ящик с перегноем
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-Устанавливается на месторождении нефти, позволяя добывать сырую нефть из земных недр.
+Позволяет максимально эффективно извлекать нефть из подземного источника или из месторождения нефти.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Нефтекачалка
@@ -704,11 +785,17 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Description:
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 Колодец
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-Для работы экстрактора нужен геотермальный источник.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_CannotBuildTooCloseToDeposit:
+Слишком близко к месторождению ресурса. Следует строить прямо на нем.
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-Для работы нефтекачалки требуется месторождение нефти.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_TooCloseToDepletedDeposit:
+Слишком близко к истощившемуся месторождению.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorTooCloseToAnotherExtractor:
+Слишком близко к другому экстрактору.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooCloseToAnotherOilPump:
+Слишком близко к другой нефтекачалке.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Этот тип почвы не позволяет достать до грунтовых вод.
@@ -967,6 +1054,9 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 Требуется фермерский участок.
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
+Синяя трава
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
 Зеленая трава

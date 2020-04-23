@@ -76,6 +76,36 @@ Zmodyfikowana amunicja 8 mm zawierającą niewielką ilość skoncentrowanej tok
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 Amunicja z toksyną 8 mm
 
+Scripts/Items/Ammo/ItemAmmoArrowIron@Description:
+Ulepszona strzała z żelaznym grotem. Broń palna nadal jest lepsza, ale strzałę łatwiej wykonać.
+
+Scripts/Items/Ammo/ItemAmmoArrowIron@Name:
+Strzała z żelaznym grotem
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
+Strzała z kamiennym grotem. Najbardziej podstawowa strzała.
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
+Strzała z żelaznym grotem
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
+Granat specjalny, który po uderzeniu rozrzuca cząsteczki helu z pragmium zamrażające cel.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
+Granat helowy
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
+Standardowy granat odłamkowy, który niszczy wszystko w niewielkiej odległości od miejsca eksplozji.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Name:
+Granat odłamkowy
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
+Specjalny granat zapalający zadający poważne obrażenia termiczne.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
+Granat zapalający
+
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Podstawowa amunicja do broni palnej. Odpowiednia tylko do powstrzymywania słabszych celów, ale tania i łatwa w produkcji.
 
@@ -1268,6 +1298,12 @@ Małe uniwersalne ogniwo zasilające stosowane w różnych urządzeniach elektro
 Scripts/Items/Generic/ItemPowerCell@Name:
 Ogniwo zasilające
 
+Scripts/Items/Generic/ItemPragmiumHeart@Description:
+Dziwny krystaliczny organ z nieznanej pragmiumowej formy życia.
+
+Scripts/Items/Generic/ItemPragmiumHeart@Name:
+Pragmiumowe serce
+
 Scripts/Items/Generic/ItemPreservative@Description:
 Konserwanty spożywcze. Można dodać do pakowanej żywności, wydłużając jej przydatność do spożycia.
 
@@ -1637,6 +1673,12 @@ Lek homeostatyczny może całkowicie zatamować bieżące krwawienie i częścio
 Scripts/Items/Medical/ItemHemostatic@Name:
 Lek hemostatyczny
 
+Scripts/Items/Medical/ItemHerbBlue@Description:
+Zioło lecznicze stanowiące podstawę wielu złożonych przepisów medycznych. Nie należy spożywać na surowo, ponieważ zawiera toksyny.
+
+Scripts/Items/Medical/ItemHerbBlue@Name:
+Niebieskie zioło
+
 Scripts/Items/Medical/ItemHerbGreen@Description:
 Zioło o unikalnych właściwościach leczniczych i antybakteryjnych. Można stosować na surowo lub odpowiednio przygotować, uzyskując znacznie lepszy efekt działania.
 
@@ -1874,6 +1916,12 @@ Wymagane uzupełnienie.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Brak paliwa
 
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
+W tym delikatnym toporze z pragmium zastosowano rezonansowe technologie mechaniki molekularnej powodujące, że jest on znacznie szybszy niż konwencjonalne rozwiązania.
+
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
+Topór z pragmium
+
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 Żelazny kilof pozwala eksploatować złoża minerałów. Szybszy i trwalszy niż kilof.
 
@@ -1982,11 +2030,29 @@ Rapier laserowy (żółty)
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 Niesamowicie potężna broń krótkiego zasięgu. Wymaga energii do działania.
 
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Technologia z przeszłości; nadal nieźle działa.
+
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Kusza
+
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
 Prymitywny pistolet na ładunki papierowe. Mieści dwa ładunki, które można bardzo szybko odpalić.
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 Pistolet skałkowy
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Granatnik strzela wielkokalibrowymi pociskami, które eksplodują po trafieniu, zadając poważane obrażenia.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Granatnik
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Granatnik rewolwerowy doskonale sprawdzający się podczas ataku lub walk z ciężko opancerzonymi wrogami.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Granatnik wielokrotny
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
 Pistolet przystosowany do amunicji 10 mm.
@@ -2048,11 +2114,23 @@ Prosty pistolet powtarzalny z obrotowym magazynkiem na amunicję.
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 Rewolwer
 
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
+Lekki karabin automatyczny na amunicję 10 mm.
+
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
+Karabin lekki
+
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
 Ciężki karabin przeciwpancerny przystosowany do amunicji .300 o dużej mocy.
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 Ciężki karabin
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
+Prymitywny karabin na popularną amunicję 8 mm.
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
+Karabin strzelecki
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
 Stara strzelba dziadka na amunicję o kalibrze 12.

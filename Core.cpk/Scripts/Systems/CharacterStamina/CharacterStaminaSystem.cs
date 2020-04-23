@@ -94,7 +94,7 @@
         [RemoteCallSettings(DeliveryMode.ReliableOrdered)]
         private void ClientRemote_StaminaChange(float deltaStamina)
         {
-            var stats = ClientCurrentCharacterHelper.PublicState.CurrentStats;
+            var stats = ClientCurrentCharacterHelper.PublicState.CurrentStatsExtended;
             stats.SharedSetStaminaCurrent(stats.StaminaCurrent + deltaStamina, notifyClient: false);
             //Logger.Dev("Received stamina change from server: " + deltaStamina.ToString("F2"));
         }

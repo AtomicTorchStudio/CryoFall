@@ -123,6 +123,12 @@ Render-Auflösung
 Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
 Video
 
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@ScreenMode.Force16To9:
+16:9 (PvP maximale Sicht)
+
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@Name:
+Bildschirm-Seitenverhältnis
+
 Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
 Vollbild
 

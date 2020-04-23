@@ -104,11 +104,63 @@ Erwähnen
 UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 Private Nachricht
 
+UI/CoreStrings@Chat_MessageMenu_Report:
+Melden
+
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Entblocken
 
+UI/CoreStrings@Chat_PressKeyToOpen_Format:
+Drücke [{0}] um den Chat zu nutzen
+
+UI/CoreStrings@ChatDisclaimer_Button_DisableChat:
+Chat versteckt halten
+
+UI/CoreStrings@ChatDisclaimer_Button_EnableChat:
+Chat aktivieren
+
+UI/CoreStrings@ChatDisclaimer_Checkbox:
+Ich habe verstanden und akzeptiere
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Community:
+[b]Bitte beachte:[/b] Du spielst auf einem Community-Server. Chat-Moderation obliegt der Verantwortung des Server-Inhabers. Chats sind für gewöhnlich NICHT moderiert und es kann sein, dass du unschönen Nachrichten oder sogar Beleidigungen anderer Spieler ausgesetzt bist. Aktiviere den Chat nur dann, wenn du dich damit einverstanden erklärst.
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Official:
+[b]Bitte beachte:[/b] Chats sind in der Regel NICHT moderiert und es kann sein, dass du unschönen Nachrichten oder sogar Beleidigungen anderer Spieler ausgesetzt bist. Aktiviere den Chat nur dann, wenn du dich damit einverstanden erklärst.
+
+UI/CoreStrings@ChatDisclaimer_Title_Community:
+Möchtest du den In-Game-Chat auf diesem Community-Server aktivieren?
+
+UI/CoreStrings@ChatDisclaimer_Title_Official:
+Möchtest du den In-Game-Chat auf diesem Server aktivieren?
+
+UI/CoreStrings@ChatDisclaimer_UseBlock:
+`Falls du unangemessene Nachrichten erhältst – bitte klicke auf die Nachricht und wähle zwischen "Melden" oder "Blocken".`
+
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 Nicht erneut fragen
+
+UI/CoreStrings@ClanTag_Current:
+Clan-Tag:
+
+UI/CoreStrings@ClanTag_Exists:
+`Dieser Clan-Tag wird bereits von einem anderen Team benutzt.
+[br]Bitte wähle einen anderen.`
+
+UI/CoreStrings@ClanTag_FormatWithName:
+[{0}] {1}
+
+UI/CoreStrings@ClanTag_Invalid:
+Dieser Clan-Tag ist ungültig.
+
+UI/CoreStrings@ClanTag_Requirements:
+`Clan-Tag Anforderungen:
+[*] nur lateinische Buchstaben und Ziffern
+[*] muss mit einem Buchstaben beginnen
+[*] maximal vier Zeichen`
+
+UI/CoreStrings@ClanTag_Select:
+Bitte wähle einen Clan-Tag
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Diese Konstruktion ist rein dekorativ.
@@ -151,6 +203,12 @@ Weitere Rezepturen lassen sich im Technologiemenü freischalten.`
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Freigeschaltete Rezepturen
+
+UI/CoreStrings@CrateIconControl_NoIcon:
+Kein Icon
+
+UI/CoreStrings@CrateIconControl_SelectIcon:
+Wähle ein Icon
 
 UI/CoreStrings@Defense_Format_Chemical:
 Chemischer Schutz: {0}
@@ -201,11 +259,20 @@ Willkommen zur Demoversion von CryoFall. Für die Dauer der Demo kannst du das S
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 Inanspruchnahme möglich in:
 
+UI/CoreStrings@DepositCapacityStats_Depleted:
+Dieses Vorkommen ist erschöpft.
+
 UI/CoreStrings@DepositCapacityStats_Message:
 Dieses Vorkommen ist erschöpft in:
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Vorkommenskapazität
+
+UI/CoreStrings@DepositCapacityStats_TitleInfinite:
+Tiefenvorkommen (kleiner Ertrag, unendlich)
+
+UI/CoreStrings@DepositCapacityStats_TitleLimited:
+Oberflächenvorkommen (hoher Ertrag)
 
 UI/CoreStrings@Duration_Instant:
 Sofort
@@ -275,6 +342,9 @@ Männlich
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 Fahrzeug verlassen
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Completionist:
+Komplettist
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 Konstruktion
@@ -380,6 +450,9 @@ Eingeloggt bleiben
 
 UI/CoreStrings@LoginAtomicTorchForm_Title:
 Login mit [url=atomictorch.com/Account/Register]AtomicTorch.com[/url] Nutzerkonto
+
+UI/CoreStrings@LootHacking_Progress:
+Hack-Fortschritt
 
 UI/CoreStrings@MainMenu_TabCredits:
 ABSPANN
@@ -558,6 +631,12 @@ Mach dich bereit zu kämpfen!`
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
 
+UI/CoreStrings@Meteorite_CooldownMessage_TimeRemainsFormat:
+{0} bis zur Abkühlung.
+
+UI/CoreStrings@Meteorite_CooldownMessage_TooHotForMining:
+Der Meteor ist noch zu heiß zum Schürfen.
+
 UI/CoreStrings@ModsDisabledWindow_Description:
 `Das Spiel konnte mit den Mods nicht gestartet werden. Somit wurden diese deaktiviert.
 [br]Das kann daran liegen, dass einer der Mods veraltet (also inkompatibel mit der aktuellen Version des Spiels) oder ungültig ist.
@@ -632,6 +711,12 @@ Verboten
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 Kann nicht dort platziert werden
 
+UI/CoreStrings@Notification_ErrorCannotInteract:
+Interaktion unmöglich
+
+UI/CoreStrings@Notification_ErrorObjectUsedByAnotherPlayer:
+Dieses Objekt wird bereits von einem anderen Spieler benutzt.
+
 UI/CoreStrings@Notification_ObstaclesOnTheWay:
 Hindernisse im Weg!
 
@@ -665,6 +750,9 @@ Eigentümer entfernen
 UI/CoreStrings@ObjectOwnersList_Title:
 Eigentümer
 
+UI/CoreStrings@ObjectOwnersList_Title2:
+Eigentümer:
+
 UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
 ZUM KAUF
 
@@ -688,9 +776,6 @@ Gruppengröße
 
 UI/CoreStrings@PartyManagement_HowToInvite:
 Gib einen Spielernamen ein, um eine Einladung zu verschicken oder klicke mit rechts auf einen beliebigen Spielernamen im Chat.
-
-UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-Ein Teil der von jedem Gruppenmitglied erlangten Lernpunkte wird in gleichen Teilen innerhalb der Gruppe aufgeteilt.
 
 UI/CoreStrings@PartyManagement_InviteMember:
 Mitglied einladen
@@ -766,6 +851,9 @@ Aufgebraucht in:
 UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
 Nie
 
+UI/CoreStrings@PowerGridState_EfficiencyDescription:
+Die Stromnetzeffizienz hängt von der Größe der Basis ab.
+
 UI/CoreStrings@PowerGridState_EfficiencyFormat:
 (Effizienz {0}%)
 
@@ -830,7 +918,7 @@ UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 Screenshot bereit: {0} (zum Öffnen anklicken)
 
 UI/CoreStrings@SelectUsernameForm_Message:
-Bitte wähle einen Benutzernamen für dein AtomicTorch.com Nutzerkonto aus
+Bitte wähle einen Benutzernamen
 
 UI/CoreStrings@ServerAddress:
 Adresse
@@ -891,6 +979,15 @@ Verfügbare Technologien
 
 UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 Freigeschaltete Technologien
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_AvailableNow:
+Jetzt verfügbar (Zeitfenster abgelaufen)
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Format:
+Verfügbar in: [b]{0}[/b]
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Title:
+Zeitfenster:
 
 UI/CoreStrings@TechNodeTooltip_Perks:
 Vorteile:
@@ -1094,6 +1191,24 @@ Beispiele:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Zufällig
 
+UI/CoreStrings@WindowCompletionist_ButtonAccept:
+Akzeptieren
+
+UI/CoreStrings@WindowCompletionist_ProgressLabel:
+Fortschritt:
+
+UI/CoreStrings@WindowCompletionist_TabCreatures:
+Kreaturen
+
+UI/CoreStrings@WindowCompletionist_TabFood:
+Nahrung
+
+UI/CoreStrings@WindowCompletionist_TabLoot:
+Beute
+
+UI/CoreStrings@WindowCompletionist_UndiscoveredEntryTitle:
+???
+
 UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
 Entwurf benötigt
 
@@ -1109,6 +1224,16 @@ Entwurf platzieren
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 Insgesamt erforderlich
+
+UI/CoreStrings@WindowCrateIconSelector_CanPickIcon:
+Du kannst ein Icon aus allen Gegenständen wählen, die sich in diesem Container befinden.
+
+UI/CoreStrings@WindowCrateIconSelector_NoItemsToSelectIcon:
+`Dieser Container ist leer.
+[br]Es gibt keine Gegenstände, aus denen sich ein Icon auswählen lässt.`
+
+UI/CoreStrings@WindowCrateIconSelector_SelectedIcon:
+Ausgewähltes Icon
 
 UI/CoreStrings@WindowDataLog_Content:
 Inhalt
@@ -1136,6 +1261,9 @@ Ein Land Claim lässt sich nicht zum Lagern von Ressourcen und einfachen Gegenst
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
 Verfall-Info
+
+UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
+Ich kenne das Zerfall-System
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 Gegenstände in sicherer Aufbewahrung werden von jeder Land Claim-Konstruktion dieser Basis geteilt.
@@ -1486,13 +1614,13 @@ UI/CoreStrings@Yes:
 Ja
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 Verbunden
@@ -1509,6 +1637,15 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 `Möchtest du den privaten Chat mit {0} schließen?
 [br]Der Chatverlauf wird gespeichert und du kannst den Chat später erneut öffnen.`
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
+Zum ersten Mal getötet.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
+Zum ersten Mal verzehrt.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_LootDiscovered_MessageFormat:
+Zum ersten Mal gefunden.
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 Da diese Rezeptur degradierbare Komponenten enthält, kann sie nicht abgebrochen werden.
@@ -1529,6 +1666,15 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 Deine Gegenstände wurden fallengelassen
 
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Finished:
+Event beendet!
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeRemainingFormat:
+Verbleibende Zeit: {0}
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
+Aktives Event
+
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
 `Eine deiner Basen wird angegriffen!
 [br]({0};{1})`
@@ -1544,6 +1690,9 @@ UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceA
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
 Neue Ressource verfügbar
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@TooltipDepositSearchAreaFormat:
+Suchareal: {0}
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 Koordinaten kopieren
@@ -1637,8 +1786,17 @@ Gesicht
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 Haare
 
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
+Haarfarbe
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+Hautfarbe
+
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Oben
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
+nicht ausgewählt
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 Bist du sicher, dass du die Gruppe verlassen möchtest?
@@ -1717,12 +1875,6 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]
 [br]Du kannst die Zeit bis zum Einsetzen des Verfalls erhöhen, indem du einen deiner Land Claims auf einen höheren Rang [b]erweiterst[/b].
 [br]Die Verzögerung des Verfalls der gesamten Basis orientiert sich am Land Claim-Gebäude mit dem [b]höchsten[/b] Rang.`
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
-Dieses Vorkommen ist erschöpft.
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
-Dieses Vorkommen ist unendlich.
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Kein Brennstoff
@@ -1819,6 +1971,12 @@ Fahrzeuge
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
 Baue und upgrade eine Vielzahl von futuristischen Fahrzeugen, um die Welt schneller zu erkunden oder sie im Kampf einzusetzen.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+Welt-Events
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+Nehme an den vielen Events teil, die regelmäßig in der Welt von CryoFall stattfinden, sei es beim Erkunden von Meteoritenkratern oder indem du gemeinsam mit einer Gruppe von Überlebenden den gefährlichen Weltboss besiegst.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Fantastische Kreaturen

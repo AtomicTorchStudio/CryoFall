@@ -10,6 +10,19 @@ Nicht genug Ladung in der Powerbank vorhanden.
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 {0} kann nicht verwendet werden
 
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
+`Wie es scheint, bist du seit einer Weile inaktiv.
+[br]Hunger und Durst wurden ausgesetzt.`
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
+Chatten oder das Herstellen und Konsumieren von Gegenständen ist erlaubt.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part3:
+Jede andere Aktion deaktiviert den AFK-Modus.
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Title:
+AFK-Modus
+
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
 `Du kannst in {0} Sek. in deinem Bett respawnen.
 [br]Oder du kannst sofort in der Welt respawnen.`
@@ -89,6 +102,9 @@ Global
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 Lokal
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomTrade@Title:
+Tausch
 
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
 Kein Bau an dieser Stelle möglich
@@ -251,6 +267,18 @@ Du kannst niemanden einladen, da du vom Server-Besitzer stummgeschaltet wurdest.
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 Der eingeladene Spieler ist offline. Nur Spieler, die online sind, können in eine Gruppe eingeladen werden.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_AreYouSure:
+Bist du sicher, dass du die folgende Nachricht melden möchtest?
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_CommunityServerDisclaimer:
+[b]Bitte beachte:[/b] Du spielst auf einem Community-Server. Chat-Moderation obliegt der Verantwortung des Server-Inhabers. Für gewöhnlich werden Chats nicht moderiert.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_OfficialServersDisclaimer:
+[b]Bitte beachte:[/b] Offizielle Server werden NICHT moderiert.
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_Title:
+Eine Nachricht melden
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
 Keine Interaktion möglich – zu weit entfernt oder Gebäude unzugänglich.
@@ -460,6 +488,9 @@ Immer geschlossen
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 Du besitzt keinen Zugang!
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
+Größenlimit der Zugangsliste überschritten.
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
 Du kannst die Liste der Besitzer nicht bearbeiten.

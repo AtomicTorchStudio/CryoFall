@@ -19,9 +19,9 @@
 
         public override string Name => "Red herb";
 
-        public override float StaminaRestore => 50;
-
         public ushort OrganicValue => 3;
+
+        public override float StaminaRestore => 50;
 
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {

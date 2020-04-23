@@ -40,6 +40,7 @@
         public static void AddAction(double delaySeconds, Action action)
         {
             Api.ValidateIsServer();
+            delaySeconds = Math.Max(0, delaySeconds);
             var timeToInvokeAt = delaySeconds + Game.FrameTime;
             Instance.AddActionInternal(timeToInvokeAt, action);
         }

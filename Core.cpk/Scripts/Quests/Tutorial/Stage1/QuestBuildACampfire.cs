@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
 
     public class QuestBuildACampfire : ProtoQuest
@@ -16,10 +17,10 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementBuildStructure.Require<ObjectCampfire>());
+            tasks
+                .Add(TaskBuildStructure.Require<ObjectCampfire>());
 
             prerequisites
                 .Add<QuestCraftAToolbox>();

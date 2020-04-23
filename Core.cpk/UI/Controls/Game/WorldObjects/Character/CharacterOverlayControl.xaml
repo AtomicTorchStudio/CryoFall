@@ -14,10 +14,10 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance data:ViewModelCharacterOverlayControl, IsDesignTimeCreatable=True}"
-    VerticalAlignment="Bottom"
-    Opacity="1">
+    VerticalAlignment="Bottom">
 
-    <Grid>
+    <Grid x:Name="LayoutRoot"
+          Opacity="0">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -95,22 +95,23 @@
                                       GeneratedDuration="0:0:0.25" />
                 </VisualStateGroup.Transitions>
 
-                <VisualState x:Name="Visible" />
-                <VisualState x:Name="Collapsed">
+                <VisualState x:Name="Collapsed" />
+                <VisualState x:Name="Visible">
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                         To="0" />
+                        <DoubleAnimation Storyboard.TargetName="LayoutRoot"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="1" />
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
         <i:Interaction.Triggers>
-            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Visible">
-                <ei:GoToStateAction StateName="Visible" />
-            </ei:DataTrigger>
             <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Collapsed">
                 <ei:GoToStateAction StateName="Collapsed" />
+            </ei:DataTrigger>
+            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Visible">
+                <ei:GoToStateAction StateName="Visible" />
             </ei:DataTrigger>
         </i:Interaction.Triggers>
     </Grid>

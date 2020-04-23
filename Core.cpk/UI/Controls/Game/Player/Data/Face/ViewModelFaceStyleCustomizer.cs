@@ -15,6 +15,10 @@
 
         public const string TitleHair = "Hair";
 
+        public const string TitleHairColor = "Hair color";
+
+        public const string TitleSkinColor = "Skin color";
+
         // face top part title
         public const string TitleTop = "Top";
 

@@ -45,6 +45,8 @@
 
         public override ITextureResource Icon { get; }
 
+        public virtual bool IsAvailableInCompletionist => true;
+
         public virtual string ItemUseCaption => ItemUseCaptions.Eat;
 
         /// <summary>

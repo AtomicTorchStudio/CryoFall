@@ -21,7 +21,7 @@
             "Understanding of planet's flora increases your harvesting speed and chances to get better yield.";
 
         public override double ExperienceToLearningPointsConversionMultiplier =>
-            0.25; // less exp for foraging, since it is so easy to do
+            0.3; // less exp for foraging, since it is so easy to do
 
         public override bool IsSharingLearningPointsWithPartyMembers => true;
 

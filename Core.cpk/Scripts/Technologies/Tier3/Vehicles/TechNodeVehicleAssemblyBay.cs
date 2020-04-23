@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Technologies.Tier3.Vehicles
 {
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
-    using AtomicTorch.CBND.CoreMod.Vehicles;
 
     public class TechNodeVehicleAssemblyBay : TechNode<TechGroupVehicles>
     {
@@ -9,7 +8,6 @@
         {
             config.Effects
                   .AddStructure<ObjectVehicleAssemblyBay>();
-
         }
     }
 }

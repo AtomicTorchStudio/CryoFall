@@ -18,8 +18,6 @@
 
         public bool HasWeaponAnimationAssigned { get; set; }
 
-        public IComponentAttachedControl HealthbarControl { get; set; }
-
         public bool? IsDead { get; set; }
 
         public bool IsWeaponFiringAnimationActive { get; set; }

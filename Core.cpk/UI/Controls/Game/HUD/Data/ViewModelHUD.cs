@@ -5,6 +5,8 @@
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Menu;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Completionist;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Completionist.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Map;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Player;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Politics;
@@ -37,6 +39,7 @@
             this.MenuPolitics = Menu.Register<WindowPolitics>();
             this.MenuTechTree = Menu.Register<WindowTechnologies>();
             this.MenuQuests = Menu.Register<WindowQuests>();
+            this.MenuCompletionist = Menu.Register<WindowCompletionist>();
 
             ClientCurrentCharacterHelper.PublicState
                                         .ClientSubscribe(_ => _.CurrentVehicle,
@@ -54,6 +57,8 @@
         public bool IsPlayersHotbarVisible { get; private set; }
 
         public bool IsQuitVehicleButtonVisible { get; private set; }
+
+        public Menu MenuCompletionist { get; }
 
         public Menu MenuConstruction { get; }
 
@@ -99,7 +104,7 @@
         {
             var currentVehicle = ClientCurrentCharacterHelper.PublicState.CurrentVehicle;
             if (!(currentVehicle is null)
-                && (!currentVehicle.IsInitialized 
+                && (!currentVehicle.IsInitialized
                     || !currentVehicle.ClientHasPrivateState))
             {
                 // not yet ready - refresh after delay

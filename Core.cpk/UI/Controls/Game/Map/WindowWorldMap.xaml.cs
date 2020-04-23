@@ -43,7 +43,8 @@
                 new ClientWorldMapBedVisualizer(controller),
                 new ClientWorldMapDroppedItemsVisualizer(controller),
                 new ClientWorldMapTradingTerminalsVisualizer(controller),
-                new ClientWorldMapResourcesVisualizer(controller),
+                new ClientWorldMapResourcesVisualizer(controller, enableNotifications: true),
+                new ClientWorldMapEventVisualizer(controller, enableNotifications: true),
                 new ClientWorldMapPartyMembersVisualizer(controller),
                 new ClientWorldMapLastVehicleVisualizer(controller)
             };
@@ -138,7 +139,9 @@
                     () => Api.Client.Core.CopyToClipboard(mapPositionWithOffset.ToString()))
             });
 
-            if (ServerOperatorSystem.ClientIsOperator())
+            var character = Api.Client.Characters.CurrentPlayerCharacter;
+            if (character.ProtoCharacter is PlayerCharacterSpectator
+                || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 var mapPositionWithoutOffset = this.controlWorldMap.WorldMapController.PointedMapPositionWithoutOffset;
                 contextMenu.Items.Add(new MenuItem()
@@ -182,8 +185,7 @@
 
             var character = ClientCurrentCharacterHelper.Character;
             if (character.ProtoCharacter is PlayerCharacterSpectator
-                || (CreativeModeSystem.ClientIsInCreativeMode()
-                    && ServerOperatorSystem.ClientIsOperator()))
+                || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 this.CallTeleport(worldPosition);
             }

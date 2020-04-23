@@ -40,6 +40,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Повышенная сила
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Description:
+Вы отдыхали некоторое время, поэтому теперь вам легче усваивать новые знания и оттачивать навыки. (Это ежедневный бонус, который вы получаете, находясь продолжительное время вне игры. Он используется автоматически во время игры, ускоряя прогресс персонажа)
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Name:
+Хороший отдых
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Вы истекаете кровью и будете постепенно терять здоровье, если не получите лечения. Слабые кровотечения проходят сами собой, а сильные могут потребовать перевязки или кровоостанавливающих лекарств.
 

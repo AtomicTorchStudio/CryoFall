@@ -2,8 +2,6 @@
 {
     using System.Windows;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
-    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public partial class WorldMapMarkResourceOil : BaseUserControl

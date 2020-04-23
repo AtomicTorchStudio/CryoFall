@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Fridges;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Construction;
 
@@ -16,11 +17,11 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveTechNode.Require<TechNodeFridgeEvaporator>())
-                .Add(RequirementBuildStructure.Require<ObjectFridgeEvaporator>());
+            tasks
+                .Add(TaskHaveTechNode.Require<TechNodeFridgeEvaporator>())
+                .Add(TaskBuildStructure.Require<ObjectFridgeEvaporator>());
 
             prerequisites
                 .Add<QuestBuildMulchboxAndCraftWateringCan>();

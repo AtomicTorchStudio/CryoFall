@@ -20,6 +20,8 @@
 
         public override string Name => "Toxins";
 
+        public override double ServerUpdateIntervalSeconds => 0.5;
+
         protected override void PrepareEffects(Effects effects)
         {
             // no health regeneration while affected by toxins

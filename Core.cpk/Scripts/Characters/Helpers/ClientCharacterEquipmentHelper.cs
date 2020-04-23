@@ -6,9 +6,11 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
+    using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.NightVision;
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
-    using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
+    using AtomicTorch.CBND.CoreMod.Items.Implants;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -183,15 +185,26 @@
             }
 
             if (character.IsCurrentClientCharacter
-                && character.ProtoCharacter is PlayerCharacter
-                && !skeletonComponents.Any(c => c is ClientComponentLightInSkeleton))
+                && character.ProtoCharacter is PlayerCharacter)
             {
-                // this is current client character and it doesn't have light in hand
-                // create a faint light source (see called method comments)
-                var lightSource = PlayerCharacter.ClientCreateDefaultLightSource(character);
-                if (lightSource != null)
+                TryAddArtificialLightArea(character, skeletonComponents);
+            }
+
+            // ensure all the added skeleton components are instantly updated
+            // to make them ready for rendering (fixes light flickering issue)
+            foreach (var c in skeletonComponents)
+            {
+                if (!(c is ClientComponent component)
+                    || !component.IsEnabled)
                 {
-                    skeletonComponents.Add(lightSource);
+                    continue;
+                }
+
+                component.Update(0);
+
+                if (component.IsLateUpdateEnabled)
+                {
+                    component.LateUpdate(0);
                 }
             }
         }
@@ -256,7 +269,8 @@
             IItemsContainer containerEquipment,
             IComponentSkeleton skeletonRenderer,
             ProtoCharacterSkeleton skeleton,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview = false)
         {
             if (!(skeleton is SkeletonHumanMale)
                 && !(skeleton is SkeletonHumanFemale))
@@ -268,7 +282,11 @@
                 foreach (var item in equipmentImplants.AsList())
                 {
                     var proto = (IProtoItemEquipmentImplant)item.ProtoGameObject;
-                    proto.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
+                    proto.ClientSetupSkeleton(item,
+                                              character,
+                                              skeletonRenderer,
+                                              skeletonComponents,
+                                              isPreview);
                 }
 
                 return;
@@ -333,7 +351,11 @@
             foreach (var item in equipmentItems.AsList())
             {
                 var proto = (IProtoItemEquipment)item.ProtoGameObject;
-                proto.ClientSetupSkeleton(item, character, skeletonRenderer, skeletonComponents);
+                proto.ClientSetupSkeleton(item,
+                                          character,
+                                          skeletonRenderer,
+                                          skeletonComponents,
+                                          isPreview);
 
                 if (item.ProtoItem is IProtoItemEquipmentHead
                     && headEquipment == null)
@@ -398,6 +420,31 @@
             }
 
             return new PlaceholderAttachments(slotAttachmentsMale, slotAttachmentsFemale);
+        }
+
+        // Adds light area around the player in case it doesn't have any light source or night vision equipped.
+        private static void TryAddArtificialLightArea(
+            ICharacter character,
+            List<IClientComponent> skeletonComponents)
+        {
+            foreach (var c in skeletonComponents)
+            {
+                switch (c)
+                {
+                    case ClientComponentLightInSkeleton _:
+                    case ClientComponentNightVisionEffect _:
+                    case ItemImplantArtificialRetina.ClientComponentArtificialRetinaEffect _:
+                        return;
+                }
+            }
+
+            // this is current client character and it doesn't have light in hand
+            // create a faint light source (see called method comments)
+            var lightSource = PlayerCharacter.ClientCreateDefaultLightSource(character);
+            if (lightSource != null)
+            {
+                skeletonComponents.Add(lightSource);
+            }
         }
 
         [NotPersistent]

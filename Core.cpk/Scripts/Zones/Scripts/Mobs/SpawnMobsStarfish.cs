@@ -13,7 +13,7 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(5)));
 
             spawnList.CreatePreset(interval: 20, padding: 0.5, useSectorDensity: false)
-                     .Add<MobStarfish>()
+                     .AddExact<MobStarfish>()
                      .SetCustomPaddingWithSelf(25);
         }
     }

@@ -11,14 +11,6 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">
 
-    <core:BaseUserControlWithWindow.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/UI/Styles/SpecialItemsPanel.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </core:BaseUserControlWithWindow.Resources>
-
     <core:WindowMenuWithInventory x:Name="WindowMenuWithInventory"
                                   d:DataContext="{d:DesignInstance data:ViewModelWindowObjectVehicleAssemblyBay, IsDesignTimeCreatable=True}">
         <TabControl Margin="10,5"
@@ -415,7 +407,7 @@
                             Margin="0,0,0,5" />
 
                     <Grid Grid.Row="1"
-                          Visibility="{Binding AccessibleVehicles, Converter={StaticResource EmptyCollectionToVisibilityConverter}}">
+                          Visibility="{Binding AccessibleVehicles.Count, Converter={StaticResource CountToVisibilityConverter}}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
@@ -490,7 +482,7 @@
                     <!-- Text: You don't have access to any vehicles yet. -->
                     <TextBlock Grid.Row="1"
                                Text="{x:Static loc:CoreStrings.VehicleGarage_TitleNoAccessibleVehicles}"
-                               Visibility="{Binding AccessibleVehicles, Converter={StaticResource EmptyCollectionToVisibilityConverter}, ConverterParameter=Reverse}"
+                               Visibility="{Binding AccessibleVehicles.Count, Converter={StaticResource CountToVisibilityConverter}, ConverterParameter=Reverse}"
                                Foreground="{StaticResource BrushColor6}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center" />

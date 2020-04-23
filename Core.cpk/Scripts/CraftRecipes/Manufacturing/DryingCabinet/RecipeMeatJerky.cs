@@ -17,7 +17,7 @@
         {
             stations.Add<ObjectDryingCabinet>();
 
-            duration = CraftingDuration.VeryLong;
+            duration = CraftingDuration.Long;
 
             inputItems.Add<ItemMeatRaw>();
             inputItems.Add<ItemSalt>(count: 2);

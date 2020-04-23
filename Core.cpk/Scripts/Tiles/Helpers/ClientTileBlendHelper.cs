@@ -390,10 +390,14 @@
             }
 
             if (!isHeightsBlendPhase
-                && currentTileTexture.CalculatedBlendOrder
-                > otherTileTexture.CalculatedBlendOrder)
+                && currentTileTexture.CalculatedBlendOrder > otherTileTexture.CalculatedBlendOrder)
             {
                 // no need to blend because other tile blend order is higher
+                return;
+            }
+
+            if (!otherTileTexture.ProtoTile.ClientIsBlendingWith(currentTileTexture.ProtoTile))
+            {
                 return;
             }
 

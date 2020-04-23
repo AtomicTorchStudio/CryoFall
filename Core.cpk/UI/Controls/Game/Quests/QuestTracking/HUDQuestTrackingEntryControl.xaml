@@ -140,7 +140,7 @@
                                 Margin="4,0,0,0"
                                 CornerRadius="2"
                                 Padding="3,1"
-                                Visibility="{Binding AreAllRequirementsSatisfied, Converter={StaticResource BoolToVisibilityConverter}}">
+                                Visibility="{Binding AreAllTasksCompleted, Converter={StaticResource BoolToVisibilityConverter}}">
                             <Border.Background>
                                 <SolidColorBrush Color="{StaticResource ColorAlt2}"
                                                  Opacity="0.4" />

@@ -10,15 +10,15 @@
     {
         public override string Description => "Basic knife. Better than fists, but not by much.";
 
+        // high penalty when hitting buildings such as a claimed wall/door
+        public override double DurabilityDecreaseMultiplierWhenHittingBuildings
+            => base.DurabilityDecreaseMultiplierWhenHittingBuildings * 1.5;
+
         public override uint DurabilityMax => 60;
 
         public override string Name => "Stone knife";
 
         public override double SpecialEffectProbability => 0.1; // 10%
-
-        // high penalty when hitting buildings such as a claimed wall/door
-        public override double DurabilityDecreaseMultiplierWhenHittingBuildings
-            => base.DurabilityDecreaseMultiplierWhenHittingBuildings * 1.5;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsMelee>();
 

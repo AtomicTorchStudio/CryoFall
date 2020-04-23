@@ -9,10 +9,8 @@
     mc:Ignorable="d"
     d:DesignHeight="80" d:DesignWidth="850"
     d:DataContext="{d:DesignInstance data:ViewModelWindowSkills, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
-    <core:BaseUserControlWithWindow.Resources>
-        <ResourceDictionary Source="/UI/Styles/SpecialItemsPanel.xaml" />
-    </core:BaseUserControlWithWindow.Resources>
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:noesis="clr-namespace:NoesisGUIExtensions;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs">
 
     <core:GameWindow x:Name="GameWindow"
                      Width="{StaticResource GameMenuStandardWindowWidth}"
@@ -73,6 +71,12 @@
                                          SelectedItem="{Binding ElementName=CategoriesControl, Path=DataContext.SelectedSkill}"
                                          Background="Transparent"
                                          BorderThickness="0">
+                                    <ListBox.Template>
+                                        <ControlTemplate TargetType="{x:Type ListBox}">
+                                            <!-- no scroll viewer here as we have an outer scroll viewer -->
+                                            <ItemsPresenter />
+                                        </ControlTemplate>
+                                    </ListBox.Template>
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <!-- Skill in skills list template -->
@@ -436,7 +440,7 @@
                                                   IsValueInterpolated="False"
                                                   BorderThickness="1"
                                                   Background="Transparent"
-                                                  BorderBrush="{StaticResource BrushColorAlt6}"
+                                                  BorderBrush="{StaticResource BrushColorAlt4}"
                                                   Height="20"
                                                   Width="210"
                                                   Padding="2"
@@ -466,7 +470,9 @@
                                                        Text="100%"
                                                        Foreground="{TemplateBinding Foreground}"
                                                        FontFamily="{TemplateBinding FontFamily}"
-                                                       FontWeight="{TemplateBinding FontWeight}" />
+                                                       FontWeight="{TemplateBinding FontWeight}"
+                                                       noesis:Text.Stroke="#FF000000"
+                                                       noesis:Text.StrokeThickness="1.25" />
                                         </Grid>
                                     </ControlTemplate>
                                 </core:ValueBarControl.Template>

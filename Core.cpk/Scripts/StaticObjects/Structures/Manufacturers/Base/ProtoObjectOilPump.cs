@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
@@ -14,19 +15,18 @@
 
     public abstract class ProtoObjectOilPump : ProtoObjectExtractor
     {
-        public const string ErrorRequiresOilSeep = "The pump requires an oil seep.";
+        public const string ErrorTooCloseToAnotherOilPump
+            = "Too close to another oil pump.";
 
-        private static readonly ConstructionTileRequirements.Validator ValidatorForPvP
+        private static readonly ConstructionTileRequirements.Validator ValidatorGroundTypeOrOilSeep
             = new ConstructionTileRequirements.Validator(
-                ErrorRequiresOilSeep,
+                () => string.Format("{0}[br]{1}[*]{2}[*]{3}",
+                                    ConstructionTileRequirements.Error_UnsuitableGround_Title,
+                                    ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn,
+                                    Api.GetProtoEntity<TileBarren>().Name,
+                                    Api.GetProtoEntity<TileSwamp>().Name),
                 c =>
                 {
-                    if (PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
-                    {
-                        // don't validate this condition on PvE servers
-                        return true;
-                    }
-
                     foreach (var obj in c.Tile.StaticObjects)
                     {
                         if (obj.ProtoStaticWorldObject is ObjectDepositOilSeep)
@@ -35,31 +35,79 @@
                         }
                     }
 
-                    return false;
+                    var protoTile = c.Tile.ProtoTile;
+                    if (!(protoTile is TileBarren
+                          || protoTile is TileSwamp))
+                    {
+                        // unsuitable ground type
+                        return false;
+                    }
+
+                    return true;
                 });
 
-        private static readonly ConstructionTileRequirements.Validator ValidatorForPvE
+        private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToAnotherOilPump
             = new ConstructionTileRequirements.Validator(
-                () => "[b]"
-                      + ConstructionTileRequirements.Error_UnsuitableGround_Title
-                      + "[/b]"
-                      + "[br]"
-                      + ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn
-                      + "[*]"
-                      + Api.GetProtoEntity<TileBarren>().Name
-                      + "[*]"
-                      + Api.GetProtoEntity<TileSwamp>().Name,
+                ErrorTooCloseToAnotherOilPump,
                 c =>
                 {
-                    if (!PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false))
+                    if (c.TileOffset != default)
                     {
-                        // don't validate this condition on PvP servers
                         return true;
                     }
 
-                    var protoTile = c.Tile.ProtoTile;
-                    return protoTile is TileBarren
-                           || protoTile is TileSwamp;
+                    if (PveSystem.SharedIsPve(false))
+                    {
+                        // no distance limit in PvE
+                        return true;
+                    }
+
+                    var startPosition = c.Tile.Position;
+                    var objectsInBounds = SharedFindObjectsNearby<IProtoObjectStructure>(startPosition);
+                    foreach (var obj in objectsInBounds)
+                    {
+                        switch (obj.ProtoStaticWorldObject)
+                        {
+                            case ProtoObjectOilPump _:
+                                // found another extractor nearby
+                                return false;
+
+                            case ProtoObjectConstructionSite _
+                                when ProtoObjectConstructionSite.SharedGetConstructionProto(obj) is
+                                         ProtoObjectOilPump:
+                                // found a blueprint for another extractor nearby
+                                return false;
+                        }
+                    }
+
+                    return true;
+                });
+
+        private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDeposit
+            = new ConstructionTileRequirements.Validator(
+                Error_CannotBuildTooCloseToDeposit,
+                c =>
+                {
+                    if (c.TileOffset != default)
+                    {
+                        return true;
+                    }
+
+                    var startPosition = c.Tile.Position;
+                    var objectsInBounds = SharedFindObjectsNearby<ObjectDepositOilSeep>(startPosition);
+                    foreach (var obj in objectsInBounds)
+                    {
+                        if (startPosition == obj.TilePosition)
+                        {
+                            // can build right over the source
+                            continue;
+                        }
+
+                        // found a deposit nearby but not right under it - cannot build too close to a deposit
+                        return false;
+                    }
+
+                    return true;
                 });
 
         public override byte ContainerInputSlotsCount => 1;
@@ -89,13 +137,12 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
-            // Oil pump requires each tile to contain an oil seep.
-            // Notice: technically it will be possible to construct one oil pump on two oil seeps if they're nearby,
-            // so there should be the oil spawn limitation to avoid that case!
             tileRequirements
                 .Clear()
-                .Add(ValidatorForPvP)
-                .Add(ValidatorForPvE)
+                .Add(ValidatorGroundTypeOrOilSeep)
+                .Add(ValidatorTooCloseToAnotherOilPump)
+                .Add(ValidatorTooCloseToDeposit)
+                .Add(ValidatorTooCloseToDepletedDeposit)
                 .Add(ConstructionTileRequirements.BasicRequirements)
                 .Add(ConstructionTileRequirements.ValidatorClientOnlyNoCurrentPlayer)
                 .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyDynamic)
@@ -111,7 +158,7 @@
                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal))
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
-                .Add(LandClaimSystem.ValidatorIsOwnedOrFreeArea);
+                .Add(LandClaimSystem.ValidatorIsOwnedLand);
 
             this.PrepareConstructionConfig(build,
                                            repair,

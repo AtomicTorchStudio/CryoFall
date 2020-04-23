@@ -42,21 +42,15 @@
         {
             get
             {
-                switch (this.Tier)
+                return this.Tier switch
                 {
-                    case TechTier.Tier1:
-                        return Tier1Letter;
-                    case TechTier.Tier2:
-                        return Tier2Letter;
-                    case TechTier.Tier3:
-                        return Tier3Letter;
-                    case TechTier.Tier4:
-                        return Tier4Letter;
-                    case TechTier.Tier5:
-                        return Tier5Letter;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                    TechTier.Tier1 => Tier1Letter,
+                    TechTier.Tier2 => Tier2Letter,
+                    TechTier.Tier3 => Tier3Letter,
+                    TechTier.Tier4 => Tier4Letter,
+                    TechTier.Tier5 => Tier5Letter,
+                    _              => throw new ArgumentOutOfRangeException()
+                };
             }
         }
 

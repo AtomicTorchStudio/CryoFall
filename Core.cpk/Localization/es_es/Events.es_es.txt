@@ -1,0 +1,18 @@
+﻿Scripts/Events/EventBossPragmiumQueen@Description:
+`La Reina de pragmio ha aparecido en la superficie.
+[br]¡Un botín muy jugoso aguarda a los supervivientes más valerosos!`
+
+Scripts/Events/EventMeteoriteDrop@Description:
+`Han caído meteoritos en la zona destacada del mapa.
+[br]¡Ve rápido para obtener minerales raros!`
+
+Scripts/Events/EventMigration@Description:
+Parece que las formas de vida indígenas de este mundo están migrando a una zona diferente. Es el momento ideal para ir de caza.
+
+Scripts/Events/EventSpaceDrop@Description:
+`Ha caído basura espacial en la zona destacada del mapa.
+[br]¡Ve rápido para conseguir basura valiosa!`
+
+Scripts/Events/Base/ProtoEventDrop@ProgressTextFormat:
+Progreso: {0}/{1}
+

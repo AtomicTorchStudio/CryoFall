@@ -31,6 +31,9 @@
         public AppliedCharacterInput AppliedInput { get; private set; }
 
         [SyncToClient]
+        public string ClanTag { get; set; }
+
+        [SyncToClient]
         public IItemsContainer ContainerEquipment { get; private set; }
 
         [SyncToClient(receivers: ScopePlayers)]

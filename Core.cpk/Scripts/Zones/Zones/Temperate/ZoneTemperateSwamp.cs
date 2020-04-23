@@ -34,6 +34,10 @@
                 .Add(GetScript<SpawnResourceHerbs>().Configure(densityMultiplier: 0.25))
                 .Add(GetScript<SpawnSugarcane>().Configure(densityMultiplier: 0.2));
 
+            // swamp exclusive blue herb
+            scripts
+                .Add(GetScript<SpawnResourceHerbBlue>());
+
             // loot
             scripts
                 .Add(GetScript<SpawnLootGeneric>().Configure(densityMultiplier: 0.5)); // loot (stone, grass, twigs)

@@ -17,13 +17,13 @@
         protected override void PrepareEffects(Effects effects)
         {
             // small bonuses in many areas
-            effects.AddValue(this, StatName.HealthMax, 10);
-            effects.AddPercent(this, StatName.HealthRegenerationPerSecond,              25);
-            effects.AddPercent(this, StatName.StaminaRegenerationPerSecond,             25);
-            effects.AddPercent(this, StatName.RadiationPoisoningIncreaseRateMultiplier, -10);
-            effects.AddPercent(this, StatName.ToxinsIncreaseRateMultiplier,             -10);
-            effects.AddPercent(this, StatName.BleedingIncreaseRateMultiplier,           -10);
-            effects.AddPercent(this, StatName.PainIncreaseRateMultiplier,               -10);
+            effects.AddValue(this, StatName.HealthMax, 10)
+                   .AddPercent(this, StatName.HealthRegenerationPerSecond,              25)
+                   .AddPercent(this, StatName.StaminaRegenerationPerSecond,             25)
+                   .AddPercent(this, StatName.RadiationPoisoningIncreaseRateMultiplier, -10)
+                   .AddPercent(this, StatName.ToxinsIncreaseRateMultiplier,             -10)
+                   .AddPercent(this, StatName.BleedingIncreaseRateMultiplier,           -10)
+                   .AddPercent(this, StatName.PainIncreaseRateMultiplier,               -10);
         }
     }
 }

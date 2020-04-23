@@ -35,11 +35,6 @@
         where TPublicState : StaticObjectPublicState, new()
         where TClientState : DefaultMineralClientState, new()
     {
-        /// <summary>
-        /// There are four damage stages - from 0 (not damaged) to 1 (slightly damaged)... to 4 (destroyed)
-        /// </summary>
-        public const int DamageStagesCount = 4;
-
         public const string NotificationUsePickaxe = "Use a pickaxe to mine this resource.";
 
         private TextureAtlasResource textureAtlasResource;
@@ -61,11 +56,18 @@
         /// </summary>
         public virtual byte TextureVariantsCount => 1;
 
+        protected virtual bool CanFlipSprite => true;
+
+        /// <summary>
+        /// There are four damage stages - from 0 (not damaged) to 1 (slightly damaged)... to 4 (destroyed)
+        /// </summary>
+        protected virtual int DamageStagesCount => 4;
+
         public byte SharedCalculateDamageStage(float structurePoints)
         {
             var max = this.StructurePointsMax;
             structurePoints = MathHelper.Clamp(structurePoints, 0, max);
-            return (byte)(DamageStagesCount * ((max - structurePoints) / max));
+            return (byte)(this.DamageStagesCount * ((max - structurePoints) / max));
         }
 
         protected virtual ITextureResource ClientGetTextureResource(
@@ -110,7 +112,12 @@
             renderer.DrawOrderOffsetY = 0.5;
 
             var worldObject = renderer.SceneObject.AttachedWorldObject;
-            if (worldObject == null)
+            if (worldObject is null)
+            {
+                return;
+            }
+
+            if (!this.CanFlipSprite)
             {
                 return;
             }
@@ -154,7 +161,7 @@
                 var previousDamageStage = this.SharedCalculateDamageStage(previousStructurePoints);
                 var currentDamageStage = this.SharedCalculateDamageStage(currentStructurePoints);
 
-                if (currentDamageStage == DamageStagesCount)
+                if (currentDamageStage == this.DamageStagesCount)
                 {
                     // do not apply this method for last damage stage - processing will be done at ServerOnStaticObjectDestroyed() instead.
                     currentDamageStage--;
@@ -195,7 +202,10 @@
         {
             base.ServerOnStaticObjectDestroyedByCharacter(byCharacter, byWeaponProto, targetObject);
             // it will spawn the drop items
-            this.ServerOnDamageStageIncreased(byCharacter, byWeaponProto, targetObject, damageStage: DamageStagesCount);
+            this.ServerOnDamageStageIncreased(byCharacter,
+                                              byWeaponProto,
+                                              targetObject,
+                                              damageStage: this.DamageStagesCount);
         }
 
         protected override double SharedCalculateDamageByWeapon(
@@ -214,7 +224,7 @@
                 var damageMultiplier = weaponCache.Character
                                                   .SharedGetFinalStatMultiplier(StatName.MiningSpeed);
 
-                return protoItemToolMining.DamageToMinerals
+                return protoItemToolMining.ServerGetDamageToMineral(targetObject)
                        * damageMultiplier
                        * ToolsConstants.ActionMiningSpeedMultiplier;
             }
@@ -254,7 +264,7 @@
             var publicState = GetPublicState(mineralObject);
             var structurePoints = publicState.StructurePointsCurrent;
             var damageStage = this.SharedCalculateDamageStage(structurePoints);
-            if (damageStage == DamageStagesCount)
+            if (damageStage == this.DamageStagesCount)
             {
                 // destroyed completely
                 return;
@@ -304,7 +314,7 @@
                 {
                     // add experience proportional to the mineral structure points (effectively - for the time spent on mining)
                     var exp = SkillMining.ExperienceAddPerStructurePoint;
-                    exp *= this.StructurePointsMax / DamageStagesCount;
+                    exp *= this.StructurePointsMax / this.DamageStagesCount;
                     byCharacter?.ServerAddSkillExperience<SkillMining>(exp);
                 }
             }

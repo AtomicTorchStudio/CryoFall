@@ -3,6 +3,7 @@
 namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mobs
 {
     using System;
+    using System.Text;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -23,21 +24,40 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mobs
 
         public override string Name => "mobs.spawn";
 
-        public string Execute(IProtoCharacterMob protoMob, ushort x, ushort y)
+        public string Execute(
+            IProtoCharacterMob protoMob,
+            ushort x,
+            ushort y,
+            byte count = 1)
         {
             var worldOffset = ServerWorldService.WorldBounds.Offset;
             x += worldOffset.X;
             y += worldOffset.Y;
 
-            return ServerSpawn(protoMob, (x, y));
+            var result = new StringBuilder();
+            for (var i = 0; i < count; i++)
+            {
+                result.AppendLine(ServerSpawn(protoMob, (x, y)));
+            }
+
+            return result.ToString();
         }
 
-        public string Execute(IProtoCharacterMob protoMob, [CurrentCharacterIfNull] ICharacter nearPlayer = null)
+        public string Execute(
+            IProtoCharacterMob protoMob,
+            byte count = 1,
+            [CurrentCharacterIfNull] ICharacter nearPlayer = null)
         {
-            return ServerSpawn(protoMob, nearPlayer.Position);
+            var result = new StringBuilder();
+            for (var i = 0; i < count; i++)
+            {
+                result.AppendLine(ServerSpawn(protoMob, nearPlayer.Position));
+            }
+
+            return result.ToString();
         }
 
-        private static Vector2D FindClosestPosition(Vector2D position)
+        private static Vector2D? FindClosestPosition(Vector2D position)
         {
             var physicsSpace = ServerWorldService.GetPhysicsSpace();
             var collisionGroup = CollisionGroup.GetDefault();
@@ -66,7 +86,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mobs
                 }
             }
 
-            throw new Exception("No empty position available nearby.");
+            return null;
 
             // Local function for checking if the position is valid.
             bool IsValidPosition(Vector2D pos)
@@ -88,20 +108,24 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Mobs
             }
         }
 
-        private static string ServerSpawn(IProtoCharacterMob protoMob, Vector2D position)
+        private static string ServerSpawn(IProtoCharacterMob protoMob, Vector2D desiredPosition)
         {
-            position = FindClosestPosition(position);
+            var position = FindClosestPosition(desiredPosition);
+            if (!position.HasValue)
+            {
+                return "No empty position available nearby.";
+            }
 
             var character = Server.Characters.SpawnCharacter(
                 protoMob,
-                position);
+                position.Value);
 
             if (character == null)
             {
                 throw new Exception("Cannot spawn character.");
             }
 
-            return $"{character} spawned at {position}.";
+            return $"{character} spawned at {position.Value}.";
         }
     }
 }

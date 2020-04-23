@@ -2,6 +2,7 @@
 {
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
     using AtomicTorch.CBND.CoreMod.Items.Devices;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
 
     public class QuestMasterHunter2 : ProtoQuest
     {
@@ -17,14 +18,14 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveItemEquipped.Require<ItemHuntersTools>())
-                .Add(RequirementKill.Require<MobPangolin>(count: 1))
-                .Add(RequirementKill.Require<MobTropicalBoar>(count: 1))
-                .Add(RequirementKill.Require<MobTurtle>(count: 1))
-                .Add(RequirementKill.Require<MobSnakeGreen>(count: 1));
+            tasks
+                .Add(TaskHaveItemEquipped.Require<ItemHuntersTools>())
+                .Add(TaskKill.Require<MobPangolin>(count: 1))
+                .Add(TaskKill.Require<MobTropicalBoar>(count: 1))
+                .Add(TaskKill.Require<MobTurtle>(count: 1))
+                .Add(TaskKill.Require<MobSnakeGreen>(count: 1));
 
             prerequisites
                 .Add<QuestMasterHunter1>();

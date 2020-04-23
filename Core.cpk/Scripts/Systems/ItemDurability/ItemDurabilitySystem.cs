@@ -99,10 +99,9 @@
 
         public static double SharedGetDurabilityFraction(IItem item)
         {
-            var protoItem = item.ProtoItem as IProtoItemWithDurability
-                            ?? throw new Exception(
-                                $"{item} prototype doesn't implement {typeof(IProtoItemWithDurability)}");
-            if (protoItem.DurabilityMax <= 0)
+            var protoItem = item.ProtoItem as IProtoItemWithDurability;
+            if (protoItem is null
+                || protoItem.DurabilityMax <= 0)
             {
                 // non-degradable item
                 return 1.0;

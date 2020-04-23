@@ -47,7 +47,7 @@
             ref DamageDescription damageDescription)
         {
             damageDescription = new DamageDescription(
-                damageValue: 24,
+                damageValue: 28, // this may seem high, but because of the spread not all projectiles hit the target
                 armorPiercingCoef: 0.0,
                 finalDamageMultiplier: 2.2,
                 rangeMax: 8,

@@ -40,6 +40,12 @@ Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Description:
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 강화된 힘
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Description:
+잠시 휴식한 당신은 새로운 것을 배우거나 스킬을 갈고 닦기가 훨씬 수월해졌다는 것을 느낍니다.(이것은 장기간 오프라인 상태에 있는 동안 매일 쌓이는 보너스로, 특별 보너스를 제공하는 데 사용됩니다.)
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Name:
+원기 충만
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 치료를 하지 않으면 계속 체력을 잃게 됩니다. 경미한 출혈은 저절로 사라지지만, 그보다 훨씬 심각한 부상은 붕대 또는 지혈제의 사용이 필요합니다.
 

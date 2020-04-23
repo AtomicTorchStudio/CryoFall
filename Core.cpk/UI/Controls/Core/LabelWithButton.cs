@@ -41,6 +41,16 @@
             set => this.SetValue(TextKeyProperty, value);
         }
 
+        protected override void OnLoaded()
+        {
+            ClientInputManager.ButtonKeyMappingUpdated += this.ClientInputManagerButtonKeyMappingUpdatedHandler;
+        }
+
+        protected override void OnUnloaded()
+        {
+            ClientInputManager.ButtonKeyMappingUpdated -= this.ClientInputManagerButtonKeyMappingUpdatedHandler;
+        }
+
         private static void ButtonPropertyChangedCallback(
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -56,6 +66,14 @@
             }
 
             control.UpdateTextKey(buttonReference.AbstractButton);
+        }
+
+        private void ClientInputManagerButtonKeyMappingUpdatedHandler(IWrappedButton obj)
+        {
+            if (obj == this.Button.AbstractButton)
+            {
+                this.UpdateTextKey(obj);
+            }
         }
 
         private void UpdateTextKey(IWrappedButton button)

@@ -47,6 +47,8 @@
 
         public virtual bool IsAutoTakeAll => false;
 
+        public virtual bool IsAvailableInCompletionist => true;
+
         public byte ItemsSlotsCount => this.MaxItemsSlotsCount;
 
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
@@ -103,6 +105,7 @@
                     NotificationSystem.ServerSendItemsNotification(character, dropItemResult);
                     Server.World.DestroyObject(worldObject); // destroy object after success pickup
                     character.ServerAddSkillExperience<SkillSearching>(skillExperienceToAdd);
+                    ServerLootEventHelper.OnLootReceived(character, worldObject);
                     return true;
                 }
 
@@ -124,6 +127,7 @@
             Server.Items.SetSlotsCount(itemsContainer, itemsContainer.OccupiedSlotsCount);
 
             character.ServerAddSkillExperience<SkillSearching>(skillExperienceToAdd);
+            ServerLootEventHelper.OnLootReceived(character, worldObject);
 
             Server.World.EnterPrivateScope(character, worldObject);
 

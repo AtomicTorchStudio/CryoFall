@@ -16,6 +16,7 @@
     <Grid VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -27,6 +28,44 @@
                    Margin="0,0,0,3" />
 
         <Grid Grid.Row="1"
+              Visibility="{Binding HasParty, Converter={StaticResource BoolToVisibilityConverter}}"
+              VerticalAlignment="Top"
+              Margin="5,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{x:Static loc:CoreStrings.ClanTag_Current}"
+                       FontFamily="{StaticResource CondensedFontFamily}"
+                       FontSize="12"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center" />
+
+            <TextBlock Grid.Column="1"
+                       Text="{Binding ClanTag}"
+                       FontFamily="{StaticResource CondensedFontFamily}"
+                       FontSize="12"
+                       Foreground="{StaticResource BrushColor5}"
+                       FontWeight="Bold"
+                       Margin="4,0,0,0"
+                       VerticalAlignment="Center" />
+
+            <Button Grid.Column="2"
+                    Content="{x:Static loc:CoreStrings.Button_Edit}"
+                    Command="{Binding CommandEditClanTag}"
+                    Visibility="{Binding IsPartyLeader, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Focusable="False"
+                    FontSize="12"
+                    MinWidth="10"
+                    MinHeight="10"
+                    Padding="3,1"
+                    Margin="4,0,0,0"
+                    VerticalAlignment="Center" />
+        </Grid>
+
+        <Grid Grid.Row="2"
               Visibility="{Binding HasParty, Converter={StaticResource BoolToVisibilityConverter}}"
               VerticalAlignment="Top"
               Margin="5,0,0,0">
@@ -131,16 +170,6 @@
                     Content="{x:Static loc:CoreStrings.PartyManagement_Button_Leave}"
                     Command="{Binding CommandLeaveParty}"
                     Margin="0,13,0,3" />
-
-            <!-- TODO: this is a poor description which requires rewriting ASAP meanwhile the line is hidden. -->
-            <!--<core:FormattedTextBlock
-                Content="{x:Static loc:CoreStrings.PartyManagement_InfoExperienceSharing}"
-                Foreground="{StaticResource BrushColor5}"
-                FontSize="10"
-                LineHeight="11"
-                LineStackingStrategy="BlockLineHeight"
-                TextWrapping="Wrap"
-                Margin="0,10,0,0" />-->
         </Grid>
 
         <StackPanel Grid.Row="1"

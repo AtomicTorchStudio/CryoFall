@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Systems.Watering
 {
     using AtomicTorch.CBND.CoreMod.Characters.Player;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.WateringCans;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.Characters;

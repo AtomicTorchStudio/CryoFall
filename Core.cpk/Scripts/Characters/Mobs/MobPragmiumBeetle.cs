@@ -30,14 +30,14 @@
         {
             base.FillDefaultEffects(effects);
 
-            effects.AddValue(this, StatName.DefenseImpact,     0.4);
-            effects.AddValue(this, StatName.DefenseKinetic,    0.4);
-            effects.AddValue(this, StatName.DefenseHeat,       0.6);
-            effects.AddValue(this, StatName.DefenseChemical,   1.0);
-            effects.AddValue(this, StatName.DefenseCold,       0.2);
-            effects.AddValue(this, StatName.DefenseElectrical, 0.4);
-            effects.AddValue(this, StatName.DefensePsi,        1.0);
-            effects.AddValue(this, StatName.DefenseRadiation,  1.0);
+            effects.AddValue(this, StatName.DefenseImpact, 0.4)
+                   .AddValue(this, StatName.DefenseKinetic,    0.4)
+                   .AddValue(this, StatName.DefenseHeat,       0.6)
+                   .AddValue(this, StatName.DefenseChemical,   1.0)
+                   .AddValue(this, StatName.DefenseCold,       0.2)
+                   .AddValue(this, StatName.DefenseElectrical, 0.4)
+                   .AddValue(this, StatName.DefensePsi,        1.0)
+                   .AddValue(this, StatName.DefenseRadiation,  1.0);
         }
 
         protected override void PrepareProtoCharacterMob(
@@ -70,7 +70,7 @@
                 character,
                 isRetreating: false,
                 isRetreatingForHeavyVehicles: this.AiIsRunAwayFromHeavyVehicles,
-                distanceRetreat: 7,
+                distanceRetreat: 0,
                 distanceEnemyTooClose: 1,
                 distanceEnemyTooFar: 6,
                 movementDirection: out var movementDirection,

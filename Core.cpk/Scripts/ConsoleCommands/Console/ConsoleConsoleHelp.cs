@@ -64,6 +64,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Console
                     // add server suffix for server commands
                     case ConsoleCommandKinds.ServerEveryone:
                     case ConsoleCommandKinds.ServerOperator:
+                    case ConsoleCommandKinds.ServerModerator:
                         prefix = "/";
                         break;
 
@@ -174,6 +175,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Console
                     return "server";
                 case ConsoleCommandKinds.ServerOperator:
                     return "server (operator only)";
+                case ConsoleCommandKinds.ServerModerator:
+                    return "server (moderator/operator only)";
                 case ConsoleCommandKinds.ClientAndServerEveryone:
                     return "client & server";
                 case ConsoleCommandKinds.ClientAndServerOperatorOnly:

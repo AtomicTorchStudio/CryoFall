@@ -13,8 +13,13 @@
 
         public override string Name => "12-gauge slug ammo";
 
-        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage)
+        public override void ServerOnCharacterHit(ICharacter damagedCharacter, double damage, ref bool isDamageStop)
         {
+            if (damage < 1)
+            {
+                return;
+            }
+
             damagedCharacter.ServerAddStatusEffect<StatusEffectDazed>(
                 intensity: 0.4 / StatusEffectDazed.MaxDuration);
         }
@@ -30,9 +35,8 @@
             armorPiercingCoef = 0;
             finalDamageMultiplier = 1.1;
             rangeMax = 9;
-
-            damageDistribution.Set(DamageType.Kinetic, 0.7);
-            damageDistribution.Set(DamageType.Impact,  0.3);
+            damageDistribution.Set(DamageType.Kinetic, 0.7)
+                              .Set(DamageType.Impact, 0.3);
         }
 
         protected override WeaponFireTracePreset PrepareFireTracePreset()

@@ -19,10 +19,10 @@
             duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemComponentsElectronic>(count: 10);
-            inputItems.Add<ItemIngotGold>(count: 4);
+            inputItems.Add<ItemIngotGold>(count: 5);
             inputItems.Add<ItemPlastic>(count: 1);
 
-            outputItems.Add<ItemComponentsHighTech>(count: 5);
+            outputItems.Add<ItemComponentsHighTech>(count: 10);
         }
     }
 }

@@ -97,10 +97,22 @@
                                FontWeight="Bold"
                                LineHeight="13"
                                LineStackingStrategy="BlockLineHeight"
-                               Foreground="{StaticResource BrushColorAlt7}"
-                               HorizontalAlignment="Center"
+                               Foreground="{StaticResource BrushColorAltLabelForeground}"
+                               HorizontalAlignment="Left"
                                TextAlignment="Left"
                                TextWrapping="Wrap" />
+                    
+                    <TextBlock Text="{x:Static newbieProtection:NewbieProtectionSystem.Notification_CannotDamageOtherPlayersOrLootBags}"
+                               FontSize="12"
+                               FontFamily="{StaticResource DefaultFontFamily}"
+                               FontWeight="Bold"
+                               LineHeight="13"
+                               LineStackingStrategy="BlockLineHeight"
+                               Foreground="{StaticResource BrushColorAltLabelForeground}"
+                               HorizontalAlignment="Left"
+                               TextAlignment="Left"
+                               TextWrapping="Wrap"
+                               Margin="0,5,0,0" />
 
                     <TextBlock Text="{x:Static newbieProtection:NewbieProtectionSystem.NewbieProtectionExpireInFormat}"
                                Foreground="{StaticResource BrushColor6}"

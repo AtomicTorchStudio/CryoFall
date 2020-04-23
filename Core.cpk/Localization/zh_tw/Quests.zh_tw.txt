@@ -1,64 +1,4 @@
-﻿Scripts/Quests/Requirements/RequirementBuildStructure@DescriptionFormat:
-建築: {0}
-
-Scripts/Quests/Requirements/RequirementCompleteTechGroup@DescriptionFormat:
-完成科技組: {0}
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@CraftOnStationNameTitleFormat:
-位於 {0}
-
-Scripts/Quests/Requirements/RequirementCraftRecipe@DescriptionTitlePrefix:
-製作
-
-Scripts/Quests/Requirements/RequirementDestroy@DescriptionFormat:
-摧毀: {0}
-
-Scripts/Quests/Requirements/RequirementGather@DescriptionFormat:
-採集: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItem@DescriptionFormat:
-收集: {0}
-
-Scripts/Quests/Requirements/RequirementHaveItemEquipped@DescriptionFormat:
-裝備: {0}
-
-Scripts/Quests/Requirements/RequirementHaveSkill@DescriptionFormat:
-學習技能: {0}至{1}級
-
-Scripts/Quests/Requirements/RequirementHaveSkills@DescriptionFormat:
-學習技能: {0}至{1}級
-
-Scripts/Quests/Requirements/RequirementHaveTechGroup@DescriptionFormat:
-解鎖科技組: {0}
-
-Scripts/Quests/Requirements/RequirementHaveTechGroups@DescriptionFormat:
-解鎖 {0} 科技組: {1}
-
-Scripts/Quests/Requirements/RequirementHaveTechNode@DescriptionFormat:
-學習科技: {0} (位於 {1} 組)
-
-Scripts/Quests/Requirements/RequirementKill@DescriptionFormat:
-殺死: {0}
-
-Scripts/Quests/Requirements/RequirementManufactureItem@DescriptionFormat:
-製造: {0}
-
-Scripts/Quests/Requirements/RequirementRun@DescriptionText:
-衝刺10米
-
-Scripts/Quests/Requirements/RequirementSortItemsContainer@DescriptionText:
-整理物品欄道具
-
-Scripts/Quests/Requirements/RequirementUseItem@DescriptionFormat:
-使用: {0}
-
-Scripts/Quests/Requirements/RequirementVisitTile@DescriptionFormat:
-訪問: {0}
-
-Scripts/Quests/Requirements/RequirementVisitZone@DescriptionFormat:
-訪問: {0}
-
-Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
+﻿Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Description:
 你可以通過設置鋪蓋卷來選擇重生位置。
 
 Scripts/Quests/Tutorial/Stage1/QuestBuildABedroll@Hints:
@@ -156,17 +96,6 @@ Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Hints:
 Scripts/Quests/Tutorial/Stage1/QuestGatherResources@Name:
 收集資源
 
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Description:
-`要建造更多建築，你需要在科技功能表中解鎖"基礎建築"。`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Hints:
-`[*] 你可以通過按下"G"鍵來快速訪問科技菜單。
-[*] 解鎖科技節點需要花費[b]LP[/b] (學習點數)。
-[*] 學習點數可以從所有的有意義活動中獲得，與你的技能經驗獲取掛鉤。`
-
-Scripts/Quests/Tutorial/Stage1/QuestLearnBasicBuilding@Name:
-學習基礎建築科技
-
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@TaskMineStone:
 挖掘石頭
 
@@ -182,16 +111,6 @@ Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Hints:
 
 Scripts/Quests/Tutorial/Stage1/QuestMineAnyMineral@Name:
 挖掘任何礦物
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Description:
-在開始享受遊戲之前，你還有幾件事要學，例如整理物品欄和衝刺！
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Hints:
-`[*] 要整理物品欄，先將物品欄打開，然後按下[u]滑鼠中鍵[/u]或者[u]Z鍵[/u]。你可以通過此方式整理[b]任何[/b]物品欄介面(例如箱子)。
-[*] 衝刺只需在移動時按下[u]Shift鍵[/u]即可進行。衝刺能讓你快速逃離危險的捕食者。`
-
-Scripts/Quests/Tutorial/Stage1/QuestPerformBasicActions@Name:
-進行基礎行動
 
 Scripts/Quests/Tutorial/Stage1/QuestSecureBasicWaterSource@TaskGatherWaterbulbFruit:
 收集水莖果
@@ -222,9 +141,10 @@ Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Description:
 農業是可持續的食物來源，並且能給你帶來大量收穫。準備下地幹活吧！
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Hints:
-`[*] 最好將你的農場建在圍牆[b]內部[/b]，不然其他倖存者可能會來偷你的菜哦。
-[*] 不同的植物擁有不同的屬性，例如成熟週期，收割次數等等。
-[*] 你可以在未來研究肥料等科技來進一步提升農業效率。`
+`[*] [b]種子[/b]可以在收集草時獲得。部分特殊種子可以在遺跡中獲得。
+ [*] 最好將你的農場建在圍牆[b]內部[/b]，不然其他倖存者可能會來偷你的菜哦。
+ [*] 不同的植物擁有不同的屬性，例如成熟週期，收割次數等等。
+ [*] 你可以在未來研究肥料等科技來進一步提升農業效率。`
 
 Scripts/Quests/Tutorial/Stage2/QuestBuildAFarm@Name:
 建造農場
@@ -403,7 +323,7 @@ Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Hints:
 [*] 遊戲中存在[b]不同的傷害類型[/b]，不同的裝甲提供不同的抗性。您可以在物品欄中看到此資訊。`
 
 Scripts/Quests/Tutorial/Stage2/QuestCraftRangedWeapon@Name:
-製造遠端武器
+製造原始火器
 
 Scripts/Quests/Tutorial/Stage2/QuestExploreBiomes1@Description:
 每個不同的生態圈都有其獨特的植物群和動物群，以及特殊屬性。熟悉每個基生態圈以最大限度地利用它們。
@@ -437,6 +357,17 @@ Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Hints:
 Scripts/Quests/Tutorial/Stage2/QuestFindAndUseGreenHerb@Name:
 找到並使用綠草藥
 
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Description:
+`要建造更多建築，你需要在科技功能表中解鎖"基礎建築"。`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Hints:
+`[*] 你可以通過按下"G"鍵來快速訪問科技菜單。
+ [*] 解鎖科技節點需要花費[b]LP[/b] (學習點數)。
+ [*] 學習點數可以從所有的有意義活動中獲得，與你的技能經驗獲取掛鉤。`
+
+Scripts/Quests/Tutorial/Stage2/QuestLearnBasicBuilding@Name:
+學習基礎建築科技
+
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter1@Description:
 是時候去打獵了！對於初學者來說，避免更危險的動物可能會更好，還有很多東西可供狩獵。
 
@@ -458,6 +389,16 @@ Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestMasterHunter2@Name:
 狩獵大師 - 第二部分
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Description:
+在開始享受遊戲之前，你還有幾件事要學，例如整理物品欄和衝刺！
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Hints:
+`[*] 要整理物品欄，先將物品欄打開，然後按下[u]滑鼠中鍵[/u]或者[u]Z鍵[/u]。你可以通過此方式整理[b]任何[/b]物品欄介面(例如箱子)。
+ [*] 衝刺只需在移動時按下[u]Shift鍵[/u]即可進行。衝刺能讓你快速逃離危險的捕食者。`
+
+Scripts/Quests/Tutorial/Stage2/QuestPerformBasicActions@Name:
+進行基礎行動
 
 Scripts/Quests/Tutorial/Stage2/QuestUnlockSkills@TaskUnlockAnyCharacterSkills:
 解鎖任何技能
@@ -481,6 +422,16 @@ Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Hints:
 
 Scripts/Quests/Tutorial/Stage2/QuestUseCrowbarAndDeconstructBuilding@Name:
 使用撬棍進行拆解
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Description:
+普拉格是一種稀有外星材料，最為尖端的科技都會使用到它。嘗試找到一些普拉格。
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Hints:
+`[*]小心！ 採集普拉格礦是非常危險的。
+ [*]大型普拉格礦點通常可以在沙漠發現，而小型礦點，常常可以在火山附近發現。`
+
+Scripts/Quests/Tutorial/Stage3/QuestAcquirePragmium@Name:
+獲得普拉格礦!
 
 Scripts/Quests/Tutorial/Stage3/QuestAdvancedResourcesAcquisition@TaskMineSalt:
 開採鹽礦
@@ -565,6 +516,9 @@ Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Hints:
 
 Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@Name:
 探索遺址
+
+Scripts/Quests/Tutorial/Stage3/QuestExploreRuins@TaskGatherLoot:
+掠奪一些容器
 
 Scripts/Quests/Tutorial/Stage3/QuestMasterHunter3@Description:
 是時候狩獵了！這次來打更危險的動物。

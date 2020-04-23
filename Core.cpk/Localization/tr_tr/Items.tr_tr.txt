@@ -76,6 +76,36 @@ Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 8mm toksinli mühimmat
 
+Scripts/Items/Ammo/ItemAmmoArrowIron@Description:
+Geliştirilmiş demir uçlu ok. Ateşli silahlar kadar iyi olmasa da yapması oldukça kolay.
+
+Scripts/Items/Ammo/ItemAmmoArrowIron@Name:
+Demir uçlu ok
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
+Basit taş uçlu ok. Bundan basiti de olmaz.
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
+Taş uçlu ok
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
+İsabet ettikten sonra hedefi dondurmak için sıvı helyum karışımlı pragmium parçaları yayan el bombası.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
+Helyum bombası
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
+İsabet ettiği noktanın yakın çevresindeki her şeye hasar veren standart patlayıcı el bombası.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Name:
+Patlayıcı Bomba
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
+İsabet ettikten sonra ağır termal hasar veren özel yanıcı bomba.
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
+Yanıcı bomba
+
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 Temel ateşli silah mühimmatı. Yalnızca zayıf hedefler için uygun, fakat üretilmesi ucuz ve kolay.
 
@@ -1268,6 +1298,12 @@ Birçok elektronik cihazda güç depolamak için kullanılan çok amaçlı güç
 Scripts/Items/Generic/ItemPowerCell@Name:
 Güç bataryası
 
+Scripts/Items/Generic/ItemPragmiumHeart@Description:
+Bilinmeyen bir pragmium yaşam formundan tuhaf bir kristal.
+
+Scripts/Items/Generic/ItemPragmiumHeart@Name:
+Pragmium kalp
+
 Scripts/Items/Generic/ItemPreservative@Description:
 Gıda koruyucu. Paketlenmiş yiyeceklere eklenebilir, çok daha uzun süre dayanmalarını sağlar.
 
@@ -1637,6 +1673,12 @@ Hemostatik, kanamaları durdurmak ve etki süresi boyunca oluşacak diğer kanam
 Scripts/Items/Medical/ItemHemostatic@Name:
 Hemostatik
 
+Scripts/Items/Medical/ItemHerbBlue@Description:
+Karmaşık tıbbi tariflerde katalizör olarak kullanılan tıbbi ot. Toksin içerdiği için çiğ olarak tüketilmemelidir.
+
+Scripts/Items/Medical/ItemHerbBlue@Name:
+Mavi ot
+
 Scripts/Items/Medical/ItemHerbGreen@Description:
 Benzersiz iyileştirici ve antibakteriyel özelliklere sahip şifalı bitki. Olduğu gibi kullanılabilir fakat uygun bir şekilde hazırlandığında çok daha etkili bir hale gelir.
 
@@ -1874,6 +1916,12 @@ Yeniden doldurma gerekli.
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 Yakıt bitti
 
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
+Bu kırılgan pragmium baltası moleküler rezonans mekanikleri kullanarak geleneksel alternatiflerinden çok daha hızlı olur.
+
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
+Pragmium balta
+
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 Demir kazma maden yataklarını kazmak için kullanılabilir. Taş kazmadan daha hızlı ve dayanıklıdır.
 
@@ -1982,11 +2030,29 @@ Lazer kılıç (sarı)
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 İnanılmaz derecede güçlü kısa menzilli silah. Çalıştırmak için enerji gereklidir.
 
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+Eski zamanlardan kalma teknoloji. Hâlâ eskisi gibi çalışıyor.
+
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+Arbalet
+
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
 İlkel tabanca. Cephane olarak kağıt kovanları kullanır. Çok hızlı bir şekilde iki el ateş edilebilir.
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 Çakmaklı tabanca
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+Özellikle yüksek kalibreli mühimmatlar için üretilmiş, isabet ettikten sonra patlayarak büyük hasar veren tekli bomba atar.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+Bomba atar
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+Altıpatlar tarzı bomba atar. Saldırı görevleri için ve ağır zırhlı hedeflerle savaşırken ideal.
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+Çoklu bomba atar
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
 10mm mermi için geliştirilen tabanca.
@@ -2048,11 +2114,23 @@ Cephaneyi tutan döner bir silindire sahip basit bir tabanca.
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 Altıpatlar
 
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
+10mm mermi için geliştirilmiş hafif otomatik keskin nişancı tüfeği.
+
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
+Hafif tüfek
+
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
 Yüksek enerjili .300 mermi için geliştirilmiş ağır materyalsavar tüfek.
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 Ağır tüfek
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
+Genelde 8mm mermiyle kullanılan ilkel mekanizmaları tüfek.
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
+Mekanizmalı tüfek
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
 Dedenin eski av tüfeği. 12 kalibre mühimmat kullanır.

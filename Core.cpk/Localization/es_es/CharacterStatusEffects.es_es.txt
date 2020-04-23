@@ -40,6 +40,12 @@ Estás bajo los efectos de un estimulante que te vuelve temporalmente más fuert
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Fuerza aumentada
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Description:
+Como has descansado un rato, te resulta más fácil aprender nuevas cosas o pulir tus habilidades. (Esta es una bonificación diaria que se acumula cuando pasas el tiempo suficiente sin conectarte. Se usa para ofrecer bonificaciones especiales mientras se consume).
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Name:
+Descanso de calidad
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Estás sangrando. Si no tratas tus heridas, seguirás perdiendo salud sin parar. Las heridas pequeñas dejarán de sangrar por sí solas, pero para las más graves necesitarás vendas o medicamentos hemostáticos.
 

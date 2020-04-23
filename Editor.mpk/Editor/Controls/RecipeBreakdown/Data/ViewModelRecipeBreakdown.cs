@@ -55,7 +55,6 @@
             {
                 typeof(RecipeFibersFromPlastic),
                 typeof(RecipeFibersFromLeaf),
-                typeof(RecipeBreakBottle),
                 typeof(RecipeCoinPennyRecycle),
                 typeof(RecipeCoinShinyRecycle)
             };

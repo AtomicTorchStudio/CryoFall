@@ -40,6 +40,12 @@ Du stehst unter dem Einfluss einer Stimulanz, die dich vorübergehend stärker m
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Erhöhte Stärke
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Description:
+Du hast dich eine Weile ausgeruht, sodass es dir nun leichter fällt, Neues zu erlernen oder deine Fähigkeiten zu verbessern. (Dies ist ein täglicher Bonus, der sich ansammelt, wenn du eine gewisse Zeit lang offline bist und der dir während seiner Dauer besondere Boni bietet.)
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Name:
+Ausgeruht
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Du blutest. Wenn du die Wunde nicht versorgst, wirst du kontinuierlich an Gesundheit verlieren. Kleine Blutungen heilen von selbst. Ernsthafte Verletzungen können jedoch eine Versorgung durch Verbände oder blutstillende Medikamente erfordern.
 

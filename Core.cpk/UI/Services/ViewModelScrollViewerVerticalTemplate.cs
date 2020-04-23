@@ -2,7 +2,6 @@
 {
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
@@ -13,7 +12,6 @@
         public ViewModelScrollViewerVerticalTemplate(ScrollViewer scrollViewer)
         {
             this.scrollViewer = scrollViewer;
-            this.scrollViewer.PreviewMouseWheel += this.PreviewMouseWheelHandler;
             this.scrollViewer.ScrollChanged += this.ScrollChangedHandler;
             this.CommandScrollUp = new ActionCommand(this.ExecuteCommandScrollLeft);
             this.CommandScrollDown = new ActionCommand(this.ExecuteCommandScrollRight);
@@ -31,7 +29,6 @@
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
-            this.scrollViewer.PreviewMouseWheel -= this.PreviewMouseWheelHandler;
             this.scrollViewer.ScrollChanged -= this.ScrollChangedHandler;
         }
 
@@ -43,22 +40,6 @@
         private void ExecuteCommandScrollRight()
         {
             this.scrollViewer.LineDown();
-        }
-
-        private void PreviewMouseWheelHandler(object sender, MouseWheelEventArgs e)
-        {
-            e.Handled = true;
-            var scrollviewer = (ScrollViewer)sender;
-            if (e.Delta > 0)
-            {
-                scrollviewer.LineUp();
-            }
-            else
-            {
-                scrollviewer.LineDown();
-            }
-
-            this.Refresh();
         }
 
         private void Refresh()

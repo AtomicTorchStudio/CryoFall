@@ -41,6 +41,8 @@
         // displayed when player attempts to interact with a buying station which has no trading lots
         public const string NotificationNoTradingLots = "No trading lots here";
 
+        public override bool HasIncreasedScopeSize => true;
+
         public bool HasOwnersList => true;
 
         public bool IsAutoEnterPrivateScopeOnInteraction =>

@@ -17,7 +17,7 @@
         {
             stations.Add<ObjectMineralProcessingPlant>();
 
-            duration = CraftingDuration.Short;
+            duration = CraftingDuration.VeryShort;
 
             inputItems.Add<ItemStone>(count: 25);
 

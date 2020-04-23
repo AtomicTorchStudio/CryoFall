@@ -12,6 +12,7 @@
     <Canvas>
         <Image Source="Images/LandClaim.png"
                Style="{StaticResource WorldMapMarkImagePinStyle}"
+               Canvas.Left="-6.5"
                Visibility="{Binding IsFounder, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}}">
             <base:ToolTipServiceExtend.ToolTip>
                 <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.WorldMapMarkLandClaim_Tooltip_Owner}" />
@@ -20,6 +21,7 @@
 
         <Image Source="Images/LandClaimWithAccess.png"
                Style="{StaticResource WorldMapMarkImagePinStyle}"
+               Canvas.Left="-6.5"
                Visibility="{Binding IsFounder, ElementName=UserControl, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Reverse}">
             <base:ToolTipServiceExtend.ToolTip>
                 <core:FormattedTextBlock Content="{x:Static loc:CoreStrings.WorldMapMarkLandClaim_Tooltip}" />

@@ -123,6 +123,12 @@ Rozdz. renderowania
 Scripts/ClientOptions/Video/VideoOptionsCategory@Name:
 Wideo
 
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@ScreenMode.Force16To9:
+16:9 (maks. widok PvP)
+
+Scripts/ClientOptions/Video/VideoOptionScreenAspectRatio@Name:
+Proporcje ekranu
+
 Scripts/ClientOptions/Video/VideoOptionScreenMode@ScreenMode.Fullscreen:
 Pełny ekran
 

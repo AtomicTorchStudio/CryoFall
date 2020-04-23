@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Tiles;
 
     public class QuestExploreBiomes3 : ProtoQuest
@@ -15,11 +16,11 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage3;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementVisitTile.Require<TileSaltFlats>())
-                .Add(RequirementVisitTile.Require<TileBarren>());
+            tasks
+                .Add(TaskVisitTile.Require<TileSaltFlats>())
+                .Add(TaskVisitTile.Require<TileBarren>());
 
             prerequisites
                 .Add<QuestEstablishPowerGrid>()

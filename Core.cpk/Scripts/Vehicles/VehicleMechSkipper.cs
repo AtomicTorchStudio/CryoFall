@@ -42,7 +42,7 @@
 
         public override double StatMoveSpeedRunMultiplier => 1.0; // no run mode
 
-        public override float StructurePointsMax => 500;
+        public override float StructurePointsMax => 450;
 
         public override double VehicleWorldHeight => 2.0;
 
@@ -52,7 +52,7 @@
                 impact: 0.60,
                 kinetic: 0.50,
                 heat: 0.40,
-                cold: 0.40,
+                cold: 0.10,
                 chemical: 0.60,
                 electrical: 0.40,
                 radiation: 0.0,

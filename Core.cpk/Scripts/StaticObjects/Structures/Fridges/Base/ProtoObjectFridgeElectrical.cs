@@ -17,7 +17,7 @@
               TClientState>,
           IProtoObjectElectricityConsumer
         where TPrivateState : ObjectCratePrivateState, new()
-        where TPublicState : StaticObjectElectricityConsumerPublicState, new()
+        where TPublicState : ElectricalFridgePublicState, new()
         where TClientState : StaticObjectClientState, new()
     {
         public abstract double ElectricityConsumptionPerSecondWhenActive { get; }
@@ -73,7 +73,7 @@
     public abstract class ProtoObjectFridgeElectrical
         : ProtoObjectFridgeElectrical<
             ObjectCratePrivateState,
-            StaticObjectElectricityConsumerPublicState,
+            ElectricalFridgePublicState,
             StaticObjectClientState>
     {
     }

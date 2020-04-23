@@ -23,7 +23,7 @@
         public NetworkSyncList<IProtoStatusEffect> CurrentPublicStatusEffects { get; private set; }
 
         [SyncToClient]
-        [TempOnly]
+        [TempOnly] // yes, mobs stats (currently only the health points) is not saved as HP is regenerated anyway
         public CharacterCurrentStats CurrentStats { get; set; }
 
         [SyncToClient]

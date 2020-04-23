@@ -10,8 +10,10 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
+    using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
@@ -35,6 +37,8 @@
         public override double AmmoReloadDuration => 0;
 
         public override string CharacterAnimationAimingName => null;
+
+        public override CollisionGroup CollisionGroup => CollisionGroups.HitboxMelee;
 
         public override double DamageApplyDelay => 0.075;
 

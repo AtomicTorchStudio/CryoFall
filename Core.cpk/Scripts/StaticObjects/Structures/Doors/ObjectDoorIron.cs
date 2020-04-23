@@ -42,7 +42,6 @@
         public override float StructurePointsMax => 30000;
 
         protected override void PrepareConstructionConfig(
-            ConstructionTileRequirements tileRequirements,
             ConstructionStageConfig build,
             ConstructionStageConfig repair,
             ConstructionUpgradeConfig upgrade,

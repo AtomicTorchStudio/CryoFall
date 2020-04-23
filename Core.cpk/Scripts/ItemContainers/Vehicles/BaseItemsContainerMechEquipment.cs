@@ -20,6 +20,12 @@
                 return false;
             }
 
+            if (context.ByCharacter == null)
+            {
+                // perhaps the server is placing destroyed weapon's ammo there
+                return true;
+            }
+
             var allowedSlotsIds = this.GetAllowedSlotsIds(context.Item.ProtoItem);
             if (allowedSlotsIds == null)
             {

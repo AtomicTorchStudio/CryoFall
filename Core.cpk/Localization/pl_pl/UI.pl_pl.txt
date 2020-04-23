@@ -104,11 +104,63 @@ Wspomnij
 UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 Wiadomość prywatna
 
+UI/CoreStrings@Chat_MessageMenu_Report:
+Zgłoś
+
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Odblokuj
 
+UI/CoreStrings@Chat_PressKeyToOpen_Format:
+Włącz czat przyciskiem [{0}]
+
+UI/CoreStrings@ChatDisclaimer_Button_DisableChat:
+Ukrywaj czat
+
+UI/CoreStrings@ChatDisclaimer_Button_EnableChat:
+Włącz czat
+
+UI/CoreStrings@ChatDisclaimer_Checkbox:
+Rozumiem i akceptuję
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Community:
+[b]Uwaga:[/b] Grasz na serwerze społeczności, więc właściciel serwera jest odpowiedzialny za moderowanie czatu. Czaty zazwyczaj NIE są moderowane, więc możesz spotkać się z nieprzyjemnymi wypowiedziami lub szykanami ze strony innych graczy. Czat włączasz na własną odpowiedzialność.
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Official:
+[b]Uwaga:[/b] Czat NIE jest moderowany, więc możesz spotkać się z nieprzyjemnymi wypowiedziami lub szykanami ze strony innych graczy. Czat włączasz na własną odpowiedzialność.
+
+UI/CoreStrings@ChatDisclaimer_Title_Community:
+Czy włączyć czat w grze na tym serwerze społeczności?
+
+UI/CoreStrings@ChatDisclaimer_Title_Official:
+Czy włączyć czat w grze na tym serwerze?
+
+UI/CoreStrings@ChatDisclaimer_UseBlock:
+Jeśli otrzymasz nieprzyjemne wiadomości, kliknij daną wiadomość i wybierz przycisk Zgłoś lub Blokuj.
+
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 Nie pytaj ponownie
+
+UI/CoreStrings@ClanTag_Current:
+Znacznik klanu:
+
+UI/CoreStrings@ClanTag_Exists:
+`Ten znacznik został już zagarnięty przez inny zespół.
+[br]Wybierz inny znacznik.`
+
+UI/CoreStrings@ClanTag_FormatWithName:
+[{0}] {1}
+
+UI/CoreStrings@ClanTag_Invalid:
+Nieprawidłowy znacznik klanu.
+
+UI/CoreStrings@ClanTag_Requirements:
+`Znacznik klanu – wymagania:
+[*] tylko litery łacińskie i cyfry
+[*] zaczyna się literą
+[*] maks. 4 znaki`
+
+UI/CoreStrings@ClanTag_Select:
+Wybierz znacznik klanu
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Służy tylko do dekoracji.
@@ -151,6 +203,12 @@ Dodatkowe przepisy możesz odblokować w menu technologii.`
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Odblokowane przepisy
+
+UI/CoreStrings@CrateIconControl_NoIcon:
+Brak ikony
+
+UI/CoreStrings@CrateIconControl_SelectIcon:
+Wybierz ikonę
 
 UI/CoreStrings@Defense_Format_Chemical:
 Ochrona chemiczna: {0}
@@ -201,11 +259,20 @@ Witamy w wersji demonstracyjnej CryoFall. Wersja demo pozwala grać bez żądnyc
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 Możliwość przejęcia za:
 
+UI/CoreStrings@DepositCapacityStats_Depleted:
+To złoże zostało wyczerpane.
+
 UI/CoreStrings@DepositCapacityStats_Message:
 To złoże się wyczerpie za:
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Zasobność złoża
+
+UI/CoreStrings@DepositCapacityStats_TitleInfinite:
+Głębokie złoże (mały urobek, nieskończone)
+
+UI/CoreStrings@DepositCapacityStats_TitleLimited:
+Złoże powierzchniowe (duży urobek)
 
 UI/CoreStrings@Duration_Instant:
 Natychmiast
@@ -275,6 +342,9 @@ Mężczyzna
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 Demontaż pojazdu
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Completionist:
+Zdobywca
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 Budowanie
@@ -380,6 +450,9 @@ Nie wylogowuj
 
 UI/CoreStrings@LoginAtomicTorchForm_Title:
 Zaloguj się za pomocą konta [url=atomictorch.com/Account/Register]AtomicTorch.com[/url]
+
+UI/CoreStrings@LootHacking_Progress:
+Postęp hackowania
 
 UI/CoreStrings@MainMenu_TabCredits:
 TWÓRCY
@@ -558,6 +631,12 @@ Gotuj się do walki!`
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
 
+UI/CoreStrings@Meteorite_CooldownMessage_TimeRemainsFormat:
+{0} do bezpiecznego wystygnięcia.
+
+UI/CoreStrings@Meteorite_CooldownMessage_TooHotForMining:
+Nie można obrabiać meteorytu – jest zbyt gorący.
+
 UI/CoreStrings@ModsDisabledWindow_Description:
 `Gry nie udało się uruchomić z modami, więc zostały one wyłączone.
 [br]Przyczyna: co najmniej jeden mod jest nieaktualny (niezgodny z aktualną wersją gry) lub po prostu nie działa.
@@ -634,6 +713,12 @@ Niedozwolone
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 Nie można tam umieścić
 
+UI/CoreStrings@Notification_ErrorCannotInteract:
+Nie można wykonać
+
+UI/CoreStrings@Notification_ErrorObjectUsedByAnotherPlayer:
+Obiekt jest używany przez innego gracza.
+
 UI/CoreStrings@Notification_ObstaclesOnTheWay:
 Przeszkody na drodze!
 
@@ -667,6 +752,9 @@ Usuń właściciela
 UI/CoreStrings@ObjectOwnersList_Title:
 Właściciele
 
+UI/CoreStrings@ObjectOwnersList_Title2:
+Właściciele:
+
 UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
 ZAKUP
 
@@ -690,9 +778,6 @@ Wielkość grupy
 
 UI/CoreStrings@PartyManagement_HowToInvite:
 Aby zaprosić gracza, poniżej wprowadź jego nazwę, lub prawym przyciskiem myszy kliknij dowolną nazwę gracza na czacie.
-
-UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-Część punktów technologii uzyskiwanych przez wszystkich członków jest po równo dzielona między wszystkimi członkami.
 
 UI/CoreStrings@PartyManagement_InviteMember:
 Zaproś członka
@@ -768,6 +853,9 @@ Wyczerpanie:
 UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
 Nigdy
 
+UI/CoreStrings@PowerGridState_EfficiencyDescription:
+Wydajność sieci energetycznej zależy od wielkości bazy.
+
 UI/CoreStrings@PowerGridState_EfficiencyFormat:
 (wydajność {0}%)
 
@@ -832,7 +920,7 @@ UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 Zrzut ekranu gotowy: {0} (kliknij, aby otworzyć)
 
 UI/CoreStrings@SelectUsernameForm_Message:
-Wybierz nazwę użytkownika dla konta AtomicTorch.com
+Wybierz nazwę użytkownika
 
 UI/CoreStrings@ServerAddress:
 Adres
@@ -893,6 +981,15 @@ Dostępne technologie
 
 UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 Odblokowane technologie
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_AvailableNow:
+Dostępne (koniec ograniczenia czasowego)
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Format:
+Dostępność za: [b]{0}[/b]
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Title:
+Ograniczenie czasowe:
 
 UI/CoreStrings@TechNodeTooltip_Perks:
 Atuty:
@@ -1096,6 +1193,24 @@ Przykłady:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Wylosuj
 
+UI/CoreStrings@WindowCompletionist_ButtonAccept:
+Akceptuj
+
+UI/CoreStrings@WindowCompletionist_ProgressLabel:
+Postęp:
+
+UI/CoreStrings@WindowCompletionist_TabCreatures:
+Stwory
+
+UI/CoreStrings@WindowCompletionist_TabFood:
+Żywność
+
+UI/CoreStrings@WindowCompletionist_TabLoot:
+Łup
+
+UI/CoreStrings@WindowCompletionist_UndiscoveredEntryTitle:
+???
+
 UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
 Wymagane na początek
 
@@ -1111,6 +1226,16 @@ Ustaw
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 Wymagane przedmioty
+
+UI/CoreStrings@WindowCrateIconSelector_CanPickIcon:
+Ikonę można wybrać spośród dowolnych przedmiotów w tym zasobniku.
+
+UI/CoreStrings@WindowCrateIconSelector_NoItemsToSelectIcon:
+`Zasobnik jest pusty.
+[br]Brak przedmiotów do wybrania ikony.`
+
+UI/CoreStrings@WindowCrateIconSelector_SelectedIcon:
+Wybrana ikona
 
 UI/CoreStrings@WindowDataLog_Content:
 Zawartość
@@ -1138,6 +1263,9 @@ Posiadanie działki nie umożliwia przechowywania zasobów ani przedmiotów pods
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
 Info. o rozpadzie
+
+UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
+Wiem, jak działa rozpad
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 Bezpiecznie przechowywane przedmioty są współdzielone we wszystkich posiadanych działkach w bazie.
@@ -1488,13 +1616,13 @@ UI/CoreStrings@Yes:
 Tak
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 Połączone
@@ -1511,6 +1639,15 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 `Czy chcesz zamknąć prywatny czat z: {0}?
 [br]Historia czatu zostanie zapisana, a czat możesz otworzyć później.`
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
+Pierwsza śmierć.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
+Pierwsze spożycie.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_LootDiscovered_MessageFormat:
+Pierwsze znalezienie.
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 Przepis zawiera psujące się składniki, więc nie można go anulować.
@@ -1531,6 +1668,15 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 Przedmioty zostały upuszczone
 
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Finished:
+Koniec wydarzenia!
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeRemainingFormat:
+Pozostały czas: {0}
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
+Aktywne wydarzenie
+
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
 `Jedna z twoich baz jest atakowana!
 [br]({0};{1})`
@@ -1546,6 +1692,9 @@ UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceA
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
 Dostępne nowe zasoby
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@TooltipDepositSearchAreaFormat:
+Przeszukaj obszar: {0}
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 Kopiuj współrzędne
@@ -1639,8 +1788,17 @@ Twarz
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 Włosy
 
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
+Kolor włosów
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+Kolor skóry
+
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Góra
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
+nie wybrano
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 Czy na pewno opuścić grupę?
@@ -1720,12 +1878,6 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]
 [br]Można opóźnić rozpad, [b]ulepszając[/b] posiadane działki do wyższego poziomu.
 [br]Opóźnienie rozpadu całej bazy jest zależne od [b]najwyższego[/b] poziomu posiadanej działki.`
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
-To złoże zostało wyczerpane.
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
-To złoże jest nieskończone.
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Brak paliwa
@@ -1822,6 +1974,12 @@ Pojazdy
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
 Twórz i modyfikuj różnorodne futurystyczne pojazdy. Pozwalają one szybciej eksplorować świat i są użyteczne w walce.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+Wydarzenia na świecie
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+Bierz udział w częstych wydarzeniach CryoFall i badaj miejsca, gdzie spadły meteoryty lub z grupą innych bohaterów pokonaj groźnego bossa.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Fantastyczne stworzenia

@@ -61,6 +61,9 @@ Zbadaj
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
 Zbierz
 
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Hack:
+Hackuj
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 Interakcja
 
@@ -142,11 +145,8 @@ Skrzynka z zaopatrzeniem
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Trawa
 
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-Duża sterta śmieci
-
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
-Mała sterta śmieci
+Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
+Sterta śmieci
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Kamień
@@ -216,6 +216,15 @@ Użyj kilofu do wydobycia tego zasobu.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Szczelina
+
+Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
+Meteoryt
+
+Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
+Szczątki Królowej pragmium
+
+Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
+Kosmiczne śmieci
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Większa i bardziej wytrzymała niż beczka drewniana. Służy do przechowywania dużych ilości płynów.
@@ -345,25 +354,25 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 Stół warsztatowy
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-Pomieści więcej niż zwykła skrzynia drewniana i jest bardziej trwała.
+Pomieści więcej niż zwykła skrzynia drewniana.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
 Skrzynia żelazna
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
-Najlepsza skrzynia do przechowywania przedmiotów. Zabezpiecza dobytek w większości sytuacji i jest najbardziej pojemna.
+Stalowa skrzynia zapewnia najwięcej miejsca ze wszystkich skrzyń i pozwala przechowywać wszystkie przedmioty.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
 Skrzynia stalowa
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
-Bardzo duża skrzynia zapewniająca wygodne i bezpieczne przechowywanie ogromnych ilości przedmiotów.
+Bardzo duża skrzynia zapewniająca wygodne przechowywanie ogromnych ilości przedmiotów.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
 Duża skrzynia
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-Podstawowa skrzynia do przechowywania dobytku. Można ją jednak łatwo zniszczyć.
+Podstawowa skrzynia do przechowywania dobytku.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
 Skrzynia drewniana
@@ -380,16 +389,58 @@ Opancerzony sejf, którego nie imają się nawet najsilniejsze materiały wybuch
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 Sejf pancerny
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
+Ołtarz na wschodnią modłę. Można tu umieścić kadzidło.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
+Ołtarz na kadzidło
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 Ta flaga fajnie wygląda!
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
-Czerwona flaga
+Flaga
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
-Ten fantazyjny dywan powoduje, że każdy pokój stanie się bardziej przytulny.
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
+Klasyczna wanna kąpielowa.
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
+Wanna
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
+W każdym pomieszczeniu musi być półka.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
+Półka
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
+Parawan z klasycznym motywem tygrysa, jak ze starych opowieści.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Name:
+Parawan
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Description:
+Imponująca sterta złota. Schowaj ją szybko!
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
+Sterta złota
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
+Pięknie wykonane, czarne pianino.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
+Pianino
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
+Pokaż żyłkę prawdziwego łowcy i połóż na podłodze ten luksus.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Name:
+Dywan z niedźwiedzia
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Description:
+Ten fantazyjny dywan spowoduje, że każdy pokój stanie się bardziej przytulny.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Name:
 Dywan
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
@@ -397,6 +448,12 @@ Pokaż wrogom, że nie żartujesz. Żadne wtargnięcia na posesję nie będą to
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 Czaszka na kiju
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Description:
+Miękka i wygodna – doskonale pasuje do pokoju dziennego.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Name:
+Sofa
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 Prawdziwy pokaz twojego bogactwa. Tylko najbogatszych stać na zbudowanie czegoś takiego.
@@ -409,6 +466,30 @@ Marnowanie tego cennego kryształu na dekoracje pokazuje twoje bogactwo.
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Posąg z pragmium
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
+Prosty stół w starym, europejskim stylu.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Name:
+Stół
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Description:
+Królewski tron doskonale pasujący do sali audiencyjnej; niech parobki wiedzą, kto tu rządzi.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Name:
+Tron
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
+Ustaw w oddzielnym pomieszczeniu z dobrą wentylacją i ciesz się chwilą prywatności.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
+Toaleta
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
+Bardzo cenna waza.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
+Waza
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Podłoga już jest ozdobiona.
@@ -639,7 +720,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
 Piec elektryczny
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
-Umożliwia ekstrahowanie soli litu ze źródeł geotermalnych.
+Umożliwia ekstrahowanie soli litu ze zbiornika podziemnego lub bezpośrednio ze źródeł geotermalnych (co jest bardziej wydajne).
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Ekstraktor soli litu
@@ -660,7 +741,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Kompostownik
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-Można ją postawić na źródle ropy naftowej i wydobywać nieprzetworzoną ropę naftową bezpośrednio z ziemi.
+Umożliwia wydobywanie ropy naftowej ze zbiornika podziemnego lub bezpośrednio ze źródła ropy (co jest bardziej wydajne).
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Szyb naftowy
@@ -704,11 +785,17 @@ Zapewnia niewyczerpane źródło wody pitnej. Już nie umrzesz z pragnienia. Z j
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 Studnia
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-Ekstraktor wymaga źródła geotermalnego.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_CannotBuildTooCloseToDeposit:
+Zbyt blisko złoża zasobów. Można budować na nim.
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-Pompa wymaga źródła ropy naftowej.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_TooCloseToDepletedDeposit:
+Zbyt blisko wyczerpanego złoża.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorTooCloseToAnotherExtractor:
+Zbyt blisko innego ekstraktora.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooCloseToAnotherOilPump:
+Zbyt blisko innej pompy ropy.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Ten typ gruntu nie zapewnia dostępu do wód gruntowych.
@@ -966,6 +1053,9 @@ Pszenica
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 Wymaga działki rolnej.
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
+Niebieskie zioło
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
 Zielone zioło

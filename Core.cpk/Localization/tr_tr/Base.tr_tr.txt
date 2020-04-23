@@ -118,8 +118,8 @@ Yeniden doldurma süresi
 Scripts/Base/Stats/StatName@CraftingSpeed:
 Üretim hızı
 
-Scripts/Base/Stats/StatName@ItemExplosivePlantingTimeMultiplier:
-Patlayıcı yerleştirme süresi
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Patlayıcı yerleştirme hızı
 
 Scripts/Base/Stats/StatName@HuntingLootingSpeed:
 Yağma hızı

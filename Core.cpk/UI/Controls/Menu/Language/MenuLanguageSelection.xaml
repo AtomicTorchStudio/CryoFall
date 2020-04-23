@@ -28,6 +28,7 @@
             <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Template" Value="{StaticResource DefaultListBoxTemplate}" />
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>

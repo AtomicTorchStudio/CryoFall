@@ -40,6 +40,12 @@ Vous êtes sous l'influence d'un stimulant qui augmente temporairement votre for
 Scripts/CharacterStatusEffects/Buffs/StatusEffectStrength@Name:
 Force augmentée
 
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Description:
+Vous vous êtes reposé pendant quelques temps. Vous éprouvez plus de facilité à apprendre de nouvelles choses et à peaufiner vos compétences. (Ce bonus quotidien s'accumule lorsque vous restez hors ligne pendant un certain temps. Il fournit des avantages spéciaux jusqu'à son épuisement.)
+
+Scripts/CharacterStatusEffects/Buffs/StatusEffectWellRested@Name:
+Bien reposé
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBleeding@Description:
 Vous saignez : vous allez continuer à perdre de la santé si vous ne vous soignez pas. Un saignement mineur finit par s'arrêter tout seul, mais les blessures graves nécessitent des bandages ou un médicament hémostatique.
 

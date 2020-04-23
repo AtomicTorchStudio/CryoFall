@@ -17,6 +17,10 @@
         private static readonly ICharactersServerService CharactersServerService
             = IsServer ? Server.Characters : null;
 
+        // It's just a hashset of objects to track the number of controls subscribed on party member location info.
+        private static readonly HashSet<object> ClientEnabledForObjects
+            = new HashSet<object>();
+
         private static readonly TimeSpan ServerRefreshInterval
             = TimeSpan.FromSeconds(1);
 
@@ -27,7 +31,10 @@
 
         public static event Action<IReadOnlyList<ClientPartyMemberData>> ClientUpdateReceived;
 
-        public static bool ClientIsEnabled
+        [NotLocalizable]
+        public override string Name => "Party members visualization system";
+
+        private static bool ClientIsEnabled
         {
             get => clientIsEnabled;
             set
@@ -46,8 +53,26 @@
             }
         }
 
-        [NotLocalizable]
-        public override string Name => "Party members visualization system";
+        public static void ClientDisableFor(object key)
+        {
+            ClientEnabledForObjects.Remove(key);
+            ClientIsEnabled = ClientEnabledForObjects.Count > 0;
+        }
+
+        public static void ClientEnableFor(object key)
+        {
+            ClientEnabledForObjects.Add(key);
+            var wasEnabled = ClientIsEnabled;
+            ClientIsEnabled = true;
+
+            if (wasEnabled
+                && PartySystem.ClientCurrentParty != null)
+            {
+                // ensure client requesting an update ASAP to quickly display party members on the map
+                // (minimal delay)
+                Instance.CallServer(_ => _.ServerRemote_RefreshNow());
+            }
+        }
 
         protected override void PrepareSystem()
         {
@@ -59,6 +84,20 @@
                     ServerRefreshInterval,
                     this.ServerRefresh,
                     $"{this.ShortId}.{nameof(this.ServerRefresh)}");
+            }
+            else
+            {
+                PartySystem.ClientCurrentPartyChanged += this.ClientCurrentPartyChangedHandler;
+            }
+        }
+
+        private void ClientCurrentPartyChangedHandler()
+        {
+            if (clientIsEnabled)
+            {
+                // re-initialize to subscribe for the event
+                ClientIsEnabled = false;
+                ClientIsEnabled = true;
             }
         }
 
@@ -114,9 +153,15 @@
                 }
 
                 var partyMembers = PartySystem.ServerGetPartyMembersReadOnly(character);
-                if (partyMembers.Count <= 1)
+                if (partyMembers.Count == 1)
                 {
-                    // don't have a party or an empty party - stop updating
+                    // only single party member here, don't send an update
+                    continue;
+                }
+
+                if (partyMembers.Count == 0)
+                {
+                    // don't have a party
                     this.subscribedCharacters.RemoveAt(index);
                     index--;
                     continue;
@@ -124,6 +169,19 @@
 
                 this.ServerSendUpdate(character, partyMembers);
             }
+        }
+
+        private void ServerRemote_RefreshNow()
+        {
+            var character = ServerRemoteContext.Character;
+            var partyMembers = PartySystem.ServerGetPartyMembersReadOnly(character);
+            if (partyMembers.Count <= 1)
+            {
+                // don't have a party or an empty party
+                return;
+            }
+
+            this.ServerSendUpdate(character, partyMembers); // send immediate update
         }
 
         private void ServerRemote_SetSubscription(bool isEnabled)
@@ -142,18 +200,17 @@
             }
 
             var partyMembers = PartySystem.ServerGetPartyMembersReadOnly(character);
-            if (partyMembers.Count <= 1)
-            {
-                // don't have a party or an empty party - no need to subscribe
-                return;
-            }
-
             this.subscribedCharacters.Add(character);
-            this.ServerSendUpdate(character, partyMembers); // send immediate update
+            this.ServerSendUpdate(character, partyMembers);
         }
 
         private void ServerSendUpdate(ICharacter character, IReadOnlyList<string> partyMembers)
         {
+            if (partyMembers.Count <= 1)
+            {
+                return;
+            }
+
             var currentCharacterName = character.Name;
             var result = new NetworkPartyMemberData[partyMembers.Count - 1];
             var index = 0;

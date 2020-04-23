@@ -3,7 +3,6 @@
     using System;
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects;
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.Special;
-    using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.StatusEffects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting.ClientComponents;
@@ -153,7 +152,7 @@
 
             this.postEffect.Intensity = this.value * this.postEffectIntensityMultiplier;
             this.soundEmitter.Volume = (float)this.soundVolume;
-            
+
             var sizeX = this.sizeRangeX.Min + this.value * (this.sizeRangeX.Max - this.sizeRangeX.Min);
             var sizeY = this.sizeRangeY.Min + this.value * (this.sizeRangeY.Max - this.sizeRangeY.Min);
 

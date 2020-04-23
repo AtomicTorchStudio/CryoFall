@@ -24,7 +24,7 @@
                            Foreground="{StaticResource BrushColor6}" />
 
                 <ScrollViewer Style="{StaticResource ItemsScrollViewerStyle}"
-                              MaxHeight="250">
+                              MaxHeight="130">
                     <ItemsControl ItemsSource="{Binding ProtoTilesForTarget}"
                                   Style="{StaticResource ItemsControlStyleForEditorToolItems}"
                                   Background="Transparent" />
@@ -38,7 +38,7 @@
                            Foreground="{StaticResource BrushColor6}" />
 
                 <ScrollViewer Style="{StaticResource ItemsScrollViewerStyle}"
-                              MaxHeight="250">
+                              MaxHeight="130">
                     <ItemsControl ItemsSource="{Binding ProtoTilesForNoise}"
                                   Style="{StaticResource ItemsControlStyleForEditorToolItems}"
                                   Background="Transparent" />

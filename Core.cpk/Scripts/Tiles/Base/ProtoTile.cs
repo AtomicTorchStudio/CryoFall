@@ -128,6 +128,11 @@
             return ((ProtoTile)tile.ProtoTile).CharacterMoveSpeedMultiplier;
         }
 
+        public virtual bool ClientIsBlendingWith(ProtoTile protoTile)
+        {
+            return true;
+        }
+
         public void ClientRefreshDecals(Tile tile, IClientSceneObject sceneObject)
         {
             ClientTileDecalHelper.RefreshDecalRenderers(tile, sceneObject);
@@ -180,12 +185,30 @@
                 // full cell blocking
                 foreach (var neighborTile in tile.EightNeighborTiles)
                 {
-                    if (neighborTile.ProtoTile.Kind != TileKind.Water)
+                    if (neighborTile.ProtoTile.Kind == TileKind.Water)
                     {
-                        // has a non-water tile nearby - create physics tile to block passage here
-                        physicsBody.AddShapeRectangle((1, 1));
-                        return;
+                        continue;
                     }
+
+                    // has a non-water tile nearby - need to create physics tile to block passage here
+                    // however, first we need to ensure this tile doesn't have a platform
+                    var isPlatformFound = false;
+                    foreach (var staticObject in tile.StaticObjects)
+                    {
+                        if (staticObject.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform)
+                        {
+                            isPlatformFound = true;
+                            break;
+                        }
+                    }
+
+                    if (isPlatformFound)
+                    {
+                        continue;
+                    }
+
+                    physicsBody.AddShapeRectangle((1, 1));
+                    return;
                 }
 
                 // this tile doesn't has neighbor non-water tile so we can skip creating physics for it

@@ -88,7 +88,7 @@
             foreach (var questEntry in this.questsList)
             {
                 if (questEntry.IsNew
-                    || (questEntry.AreAllRequirementsSatisfied
+                    || (questEntry.AreAllTasksCompleted
                         && !questEntry.IsCompleted))
                 {
                     return true;

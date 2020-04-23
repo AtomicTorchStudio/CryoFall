@@ -42,11 +42,6 @@
 
         protected override double DefenseMultiplier { get; } = 0;
 
-        public override void ServerOnCharacterDeath(IItem item, bool isEquipped, out bool shouldDrop)
-        {
-            shouldDrop = true;
-        }
-
         public override void ServerOnItemDamaged(IItem item, double damageApplied)
         {
             // no durability degradation

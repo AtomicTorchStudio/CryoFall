@@ -13,6 +13,7 @@
                      Width="{StaticResource GameMenuBigWindowWidth}"
                      Height="{StaticResource GameMenuBigWindowHeight}"
                      FocusOnControl="{Binding ElementName=GameWindow}"
+                     Background="Transparent"
                      Padding="0">
         <map:ControlWorldMap x:Name="ControlWorldMap" />
     </core:GameWindow>

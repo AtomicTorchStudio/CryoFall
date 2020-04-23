@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.GameApi.Scripting;
 
@@ -24,7 +25,7 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
             var headEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentHead>()
                                               .Where(i => !(i is ItemClothHat))
@@ -37,18 +38,18 @@
             var legsEquipmentExceptCloth = Api.FindProtoEntities<IProtoItemEquipmentLegs>()
                                               .Where(i => !(i is ItemClothPants))
                                               .ToList();
-            requirements
-                .Add(RequirementBuildStructure.Require<ObjectArmorerWorkbench>())
+            tasks
+                .Add(TaskBuildStructure.Require<ObjectArmorerWorkbench>())
                 // suggest wood helmet but require any head item except the cloth one
-                .Add(RequirementHaveItemEquipped.Require(
+                .Add(TaskHaveItemEquipped.Require(
                          headEquipmentExceptCloth,
                          EquipAnyHelmet))
                 // suggest wood chestplate but require any chest item except the cloth one
-                .Add(RequirementHaveItemEquipped.Require(
+                .Add(TaskHaveItemEquipped.Require(
                          chestEquipmentExceptCloth,
                          EquipAnyChestplate))
                 // suggest wood pants but require any legs item except the cloth one
-                .Add(RequirementHaveItemEquipped.Require(
+                .Add(TaskHaveItemEquipped.Require(
                          legsEquipmentExceptCloth,
                          EquipAnyLegsProtection));
 

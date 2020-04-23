@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
@@ -43,9 +44,6 @@
         public const string Notification_StuffBelongsToAnotherPlayer_Message =
             "This belongs to another player.";
 
-        // in PvE oil refinery is working slowly but also consuming proportionally less electricity
-        public const double OilRefineryActionSpeedMultiplier = 1 / 4.0;
-
         private static readonly bool serverIsPvE;
 
         private static bool? clientIsPvE;
@@ -85,6 +83,8 @@
                 Instance.CallServer(_ => _.ServerRemote_SetDuelMode(value));
             }
         }
+
+        public static bool ClientIsPveFlagReceived => clientIsPvE.HasValue;
 
         // for client this flag is received via bootstrapper call
         public static bool ServerIsPvE
@@ -156,7 +156,8 @@
         {
             if (!SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false)
                 || characterA.IsNpc
-                || characterB.IsNpc)
+                || characterB.IsNpc
+                || ReferenceEquals(characterA, characterB))
             {
                 return true;
             }
@@ -248,6 +249,13 @@
                 if (WorldObjectOwnersSystem.SharedIsOwner(weaponCache.Character, targetObject))
                 {
                     // vehicle owner can always damage it
+                    return true;
+                }
+
+                if (weaponCache.Character?.ProtoGameObject is IProtoCharacterMob protoCharacterMob
+                    && protoCharacterMob.IsBoss)
+                {
+                    // boss can damage a vehicle without a pilot
                     return true;
                 }
             }

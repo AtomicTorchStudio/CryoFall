@@ -5,15 +5,19 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.CBND.GameApi.ServicesServer;
 
     public class ServerOperatorSystem : ProtoSystem<ServerOperatorSystem>
     {
+        private static readonly ICoreServerOperatorsService ServerOperators
+            = IsServer ? Server.Core.Operators : null;
+
         private static bool clientIsServerOperator;
 
         public static event Action ClientIsOperatorChanged;
 
         public static IReadOnlyCollection<string> ServerOperatorsList
-            => Server.Core.ServerOperators;
+            => ServerOperators.Operators;
 
         public override string Name => "Server operator system";
 
@@ -45,7 +49,7 @@
 
         public static bool ServerIsOperator(string username)
         {
-            return Server.Core.IsServerOperator(username);
+            return ServerOperators.IsOperator(username);
         }
 
         public static void ServerRemove(ICharacter character)
@@ -77,7 +81,7 @@
 
             if (IsServer)
             {
-                return Server.Core.IsServerOperator(character.Name);
+                return ServerOperators.IsOperator(character.Name);
             }
 
             return clientIsServerOperator
@@ -91,7 +95,7 @@
                 isOperator = true;
             }
 
-            var isChanged = Server.Core.SetServerOperatorAccess(name, isOperator);
+            var isChanged = ServerOperators.SetOperatorAccess(name, isOperator);
             if (!isChanged)
             {
                 return;

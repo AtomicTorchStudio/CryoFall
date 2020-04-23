@@ -118,8 +118,8 @@ Tempo de recarga
 Scripts/Base/Stats/StatName@CraftingSpeed:
 Velocidade de produção
 
-Scripts/Base/Stats/StatName@ItemExplosivePlantingTimeMultiplier:
-Tempo de instalação de explosivo
+Scripts/Base/Stats/StatName@ItemExplosivePlantingSpeedMultiplier:
+Velocidade de instalação de explosivo
 
 Scripts/Base/Stats/StatName@HuntingLootingSpeed:
 Velocidade para saquear

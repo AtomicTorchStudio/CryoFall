@@ -73,11 +73,11 @@
             build.StageDurationSeconds = BuildDuration.Short;
             build.AddStageRequiredItem<ItemIngotSteel>(count: 5);
             build.AddStageRequiredItem<ItemGlassRaw>(count: 5);
-            build.AddStageRequiredItem<ItemComponentsElectronic>(count: 1);
+            build.AddStageRequiredItem<ItemComponentsElectronic>(count: 2);
 
             repair.StagesCount = 10;
             repair.StageDurationSeconds = BuildDuration.Short;
-            repair.AddStageRequiredItem<ItemIngotSteel>(count: 2);
+            repair.AddStageRequiredItem<ItemIngotSteel>(count: 3);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)

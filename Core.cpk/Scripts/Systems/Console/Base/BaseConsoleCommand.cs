@@ -8,19 +8,68 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Extensions;
+    using AtomicTorch.CBND.GameApi.Logging;
+    using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
+    using AtomicTorch.CBND.GameApi.ServicesServer;
     using JetBrains.Annotations;
 
     // we mark it as used implicitly with members to avoid ReSharper marking "Execute*" methods as not used
     [UsedImplicitly(targetFlags: ImplicitUseTargetFlags.WithMembers)]
-    public abstract class BaseConsoleCommand : ProtoEntity
+    public abstract class BaseConsoleCommand
     {
+        protected BaseConsoleCommand()
+        {
+            var type = this.GetType();
+            this.Id = type.FullName;
+            this.ShortId = type.Name;
+
+            // ReSharper disable once VirtualMemberCallInConstructor
+            if (this.Name.Contains(' '))
+            {
+                throw new Exception(
+                    "Command Name property should not contain spaces - " + this.ShortId + ": Name=>" + this.Name);
+            }
+        }
+
         public virtual string Alias { get; }
 
         public abstract string Description { get; }
 
+        public string Id { get; }
+
         public abstract ConsoleCommandKinds Kind { get; }
 
+        public abstract string Name { get; }
+
+        public string ShortId { get; }
+
         public IReadOnlyList<ConsoleCommandVariant> Variants { get; private set; }
+
+        /// <summary>
+        /// Gets the ClientScriptingApi - use only on Client-side.
+        /// </summary>
+        protected static IClientApi Client => Api.Client;
+
+        /// <summary>
+        /// Returns true if current code is executing on Client-side.
+        /// </summary>
+        protected static bool IsClient => Api.IsClient;
+
+        /// <summary>
+        /// Returns true if current code is executing on Server-side.
+        /// </summary>
+        protected static bool IsServer => Api.IsServer;
+
+        /// <summary>
+        /// Gets the logger instance.
+        /// </summary>
+        protected static ILogger Logger => Api.Logger;
+
+        /// <summary>
+        /// Returns ServerApi - use only on Server-side.
+        /// </summary>
+        protected static IServerApi Server => Api.Server;
 
         /// <summary>
         /// Gets the character executing this command
@@ -131,9 +180,11 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
             // if server
             var isServerCommandForEveryone = (this.Kind & ConsoleCommandKinds.ServerEveryone) != 0;
             var isServerCommandRequiresOperator = (this.Kind & ConsoleCommandKinds.ServerOperator) != 0;
+            var isServerCommandRequiresModerator = (this.Kind & ConsoleCommandKinds.ServerModerator) != 0;
 
             if (!isServerCommandForEveryone
-                && !isServerCommandRequiresOperator)
+                && !isServerCommandRequiresOperator
+                && !isServerCommandRequiresModerator)
             {
                 throw new Exception("Cannot execute client command on Server-side: " + this.Name);
             }
@@ -146,17 +197,38 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Console
                     throw new Exception("You need a server operator access to execute this command: " + this.Name);
                 }
             }
+
+            if (isServerCommandRequiresModerator)
+            {
+                var isModerator = ConsoleCommandsSystem.ServerIsModeratorOrSystemConsole(byCharacter);
+                if (!isModerator)
+                {
+                    throw new Exception("You need a moderator operator access to execute this command: " + this.Name);
+                }
+            }
         }
 
-        protected override void PrepareProto()
+        /// <summary>
+        /// Gets the instances of proto-classes of the specified type. For example, use IItemType as type parameter to get all
+        /// proto-classes of IItemType.
+        /// </summary>
+        /// <typeparam name="TProtoEntity">Type of proto entity.</typeparam>
+        /// <returns>Collection of instances which implements specified prototype.</returns>
+        protected static List<TProtoEntity> FindProtoEntities<TProtoEntity>()
+            where TProtoEntity : class, IProtoEntity
         {
-            base.PrepareProto();
+            return Api.FindProtoEntities<TProtoEntity>();
+        }
 
-            if (this.Name.Contains(' '))
-            {
-                throw new Exception(
-                    "Command Name property should not contain spaces - " + this.ShortId + ": Name=>" + this.Name);
-            }
+        /// <summary>
+        /// Gets the instance of proto-class by its type.
+        /// </summary>
+        /// <typeparam name="TProtoEntity">Type of proto entity.</typeparam>
+        /// <returns>Instance of proto-class.</returns>
+        protected static TProtoEntity GetProtoEntity<TProtoEntity>()
+            where TProtoEntity : class, IProtoEntity, new()
+        {
+            return Api.GetProtoEntity<TProtoEntity>();
         }
 
         private ConsoleCommandVariant MatchVariant(ICharacter byCharacter, string[] arguments)

@@ -48,7 +48,8 @@
                              Margin="5,0,0,0" />
             </StackPanel>
 
-            <ContentControl Grid.Row="2" FontSize="12"
+            <ContentControl Grid.Row="2" 
+                            FontSize="12"
                             Foreground="{StaticResource BrushColorLabelForeground}">
                 <ItemsControl ItemsSource="{Binding CurrentFaceStyleCustomizer.StyleSettings}"
                               HorizontalAlignment="Center">
@@ -115,7 +116,6 @@
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-
                 </ItemsControl>
             </ContentControl>
 

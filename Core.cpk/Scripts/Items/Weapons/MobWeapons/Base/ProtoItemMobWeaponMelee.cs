@@ -21,12 +21,16 @@
 
         public override ITextureResource Icon => null;
 
+        public override bool IsLoopedAttackAnimation => false;
+
         public override string Name => this.ShortId;
+
+        public override double ReadyDelayDuration => 0;
 
         public override double SpecialEffectProbability =>
             1; // Must always be 1 for all animal weapons. Individual effects will be rolled in the effect function.
 
-        protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsMelee>();
+        protected override ProtoSkillWeapons WeaponSkill => null;
 
         protected override TextureResource WeaponTextureResource => null;
 

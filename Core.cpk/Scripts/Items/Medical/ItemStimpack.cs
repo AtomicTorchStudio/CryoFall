@@ -22,8 +22,8 @@
 
         protected override void ServerOnUse(ICharacter character, PlayerCharacterCurrentStats currentStats)
         {
-            // adds health regeneration
-            character.ServerAddStatusEffect<StatusEffectHealingFast>(intensity: 0.4); // 4 seconds (+10hp each second)
+            // adds fast health regeneration
+            character.ServerAddStatusEffect<StatusEffectHealingFast>(intensity: 0.4); // 4 seconds (+10 HP each second)
 
             base.ServerOnUse(character, currentStats);
         }

@@ -104,11 +104,63 @@ Bahset
 UI/CoreStrings@Chat_MessageMenu_PrivateMessage:
 Özel mesaj
 
+UI/CoreStrings@Chat_MessageMenu_Report:
+Bildir
+
 UI/CoreStrings@Chat_MessageMenu_Unblock:
 Engelini Kaldır
 
+UI/CoreStrings@Chat_PressKeyToOpen_Format:
+Sohbeti kullanmaya başlamak için [{0}] tuşuna basın
+
+UI/CoreStrings@ChatDisclaimer_Button_DisableChat:
+Sohbeti gizli tut
+
+UI/CoreStrings@ChatDisclaimer_Button_EnableChat:
+Sohbeti etkinleştir
+
+UI/CoreStrings@ChatDisclaimer_Checkbox:
+Anlıyor ve kabul ediyorum
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Community:
+[b]Lütfen bilin:[/b] Bir topluluk sunucusunda oynuyorsunuz, bu yüzden sohbet moderasyonu sunucu sahibinin sorumluluğundadır. Genelde sohbetlerde KONTROL yoktur ve bazı oyuncular tarafından hoş olmayan mesajlar alabilir, hatta hakarete uğrayabilirsiniz. Bu seçeneklere hazır değilseniz sohbeti aktif etmeyin.
+
+UI/CoreStrings@ChatDisclaimer_NotModerated_Official:
+[b]Lütfen bilin:[/b] Sohbet KONTROL EDİLMEMEKTEDİR ve bu yüzden hoş olmayan mesajlar görebilir, hatta hakarete uğrayabilirsiniz. Bu sonuçlara razı değilseniz sohbeti aktif etmeyin.
+
+UI/CoreStrings@ChatDisclaimer_Title_Community:
+Bu topluluk sunucusunda oyun içi sohbeti aktif etmek ister misin?
+
+UI/CoreStrings@ChatDisclaimer_Title_Official:
+Bu sunucuda oyun içi sohbeti aktif etmek ister misin?
+
+UI/CoreStrings@ChatDisclaimer_UseBlock:
+`Uygunsuz bir mesajla karşılaşırsan lütfen bu mesaja tıklayıp "Bildir" veya "Engelle"yi seç.`
+
 UI/CoreStrings@Checkbox_DoNotAskAgain:
 Tekrar sorma
+
+UI/CoreStrings@ClanTag_Current:
+Klan etiketi:
+
+UI/CoreStrings@ClanTag_Exists:
+`Bu klan etiketi başka bir takım tarafından alınmış.
+[br]Lütfen başka seçim yapın.`
+
+UI/CoreStrings@ClanTag_FormatWithName:
+[{0}] {1}
+
+UI/CoreStrings@ClanTag_Invalid:
+Bu klan etiketi uygun değil.
+
+UI/CoreStrings@ClanTag_Requirements:
+`Klan etiketi gereksinimleri:
+[*] Latin harfleri ve sayılar barındırabilir
+[*] harfle başlar
+[*] en çok dört karakter`
+
+UI/CoreStrings@ClanTag_Select:
+Lütfen klan etiketi seçin
 
 UI/CoreStrings@ConstructionMetaInfo_Decoration:
 Bu yapı tamamen dekoratiftir.
@@ -151,6 +203,12 @@ Teknoloji menüsünde daha fazla tarif açabilirsin.`
 
 UI/CoreStrings@CraftingRecipesList_TitleRecipesUnlocked:
 Tarifler açıldı
+
+UI/CoreStrings@CrateIconControl_NoIcon:
+İkon yok
+
+UI/CoreStrings@CrateIconControl_SelectIcon:
+Bir ikon seçin
 
 UI/CoreStrings@Defense_Format_Chemical:
 Kimyasal koruma: {0}
@@ -201,11 +259,20 @@ CryoFall'un demo sürümüne hoş geldiniz. Bu demo sürümü boyunca oyunu hiç
 UI/CoreStrings@DepositAvailableForClaiming_Message:
 Şu kadar sürede ele geçirmeye uygun olacak:
 
+UI/CoreStrings@DepositCapacityStats_Depleted:
+Bu yatak bitti.
+
 UI/CoreStrings@DepositCapacityStats_Message:
 Bu yatak şu kadar sürede bitecek:
 
 UI/CoreStrings@DepositCapacityStats_Title:
 Yatak kapasitesi
+
+UI/CoreStrings@DepositCapacityStats_TitleInfinite:
+Derin yatak (düşük verim, sonsuz)
+
+UI/CoreStrings@DepositCapacityStats_TitleLimited:
+Yüzey yatağı (yüksek verim)
 
 UI/CoreStrings@Duration_Instant:
 Anında
@@ -275,6 +342,9 @@ Erkek
 
 UI/CoreStrings@HUDButtonsBar_DismountVehicle:
 Araçtan in
+
+UI/CoreStrings@HUDButtonsBar_MenuTitle_Completionist:
+Mükemmeliyetçi
 
 UI/CoreStrings@HUDButtonsBar_MenuTitle_Construction:
 İnşaat
@@ -380,6 +450,9 @@ Beni hatırla
 
 UI/CoreStrings@LoginAtomicTorchForm_Title:
 [url=atomictorch.com/Account/Register]AtomicTorch.com[/url] hesabınızla giriş yapın
+
+UI/CoreStrings@LootHacking_Progress:
+Hackleme süreci
 
 UI/CoreStrings@MainMenu_TabCredits:
 JENERİK
@@ -558,6 +631,12 @@ Savaşmaya hazır olun!`
 UI/CoreStrings@MenuServers_ServerTag_PvP_Title:
 PvP
 
+UI/CoreStrings@Meteorite_CooldownMessage_TimeRemainsFormat:
+soğuma süresine {0}
+
+UI/CoreStrings@Meteorite_CooldownMessage_TooHotForMining:
+Meteorit hâlâ madencilik için çok sıcak.
+
 UI/CoreStrings@ModsDisabledWindow_Description:
 `Bu oyunu modlarla çalıştırmak mümkün olmadığından modlar kapatıldı.
 [br]Bunun sebebi, modlardan en azından birinin eskimiş (oyunun mevcut versiyonuyla uyumsuz) veya geçersiz olması.
@@ -634,6 +713,12 @@ Yasak
 UI/CoreStrings@Notification_CannotPlaceThere_Title:
 Oraya yerleştirilemez
 
+UI/CoreStrings@Notification_ErrorCannotInteract:
+Etkileşime geçilemez
+
+UI/CoreStrings@Notification_ErrorObjectUsedByAnotherPlayer:
+Bu nesne başka bir kullanıcı tarafından kullanılıyor.
+
 UI/CoreStrings@Notification_ObstaclesOnTheWay:
 Engeller var!
 
@@ -667,6 +752,9 @@ Sahip kaldır
 UI/CoreStrings@ObjectOwnersList_Title:
 Sahipler
 
+UI/CoreStrings@ObjectOwnersList_Title2:
+Sahpler:
+
 UI/CoreStrings@ObjectTradingStationDisplay_ModeBuying:
 SATIN ALMA
 
@@ -690,9 +778,6 @@ Takım büyüklüğü
 
 UI/CoreStrings@PartyManagement_HowToInvite:
 Davet etmek için aşağıya oyuncu ismini yaz veya sohbette bir oyuncunun üstüne sağ tıkla.
-
-UI/CoreStrings@PartyManagement_InfoExperienceSharing:
-Her üyenin kazandığı eğitim puanlarının bir kısmı eşit olarak üyeler arasında paylaştırılır.
 
 UI/CoreStrings@PartyManagement_InviteMember:
 Üye davet et
@@ -768,6 +853,9 @@ Tükenmesine kalan:
 UI/CoreStrings@PowerGridState_DepletedIn_DurationNever:
 Asla
 
+UI/CoreStrings@PowerGridState_EfficiencyDescription:
+Elektrik şebekesi verimliliği üssün boyutuna göre değişir.
+
 UI/CoreStrings@PowerGridState_EfficiencyFormat:
 (verimlilik {0}%)
 
@@ -832,7 +920,7 @@ UI/CoreStrings@ScreenshotNotification_NotificationFormat:
 Ekran görüntüsü hazır: {0} (açmak için tıkla)
 
 UI/CoreStrings@SelectUsernameForm_Message:
-Lütfen AtomicTorch.com hesabınız için bir kullanıcı adı seçin
+Lütfen bir kullanıcı adı seçin
 
 UI/CoreStrings@ServerAddress:
 Adres
@@ -893,6 +981,15 @@ Mevcut teknolojiler
 
 UI/CoreStrings@TechGroupTooltip_TechnologiesUnlockedCount:
 Açılan teknolojiler
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_AvailableNow:
+Artık uygun (zaman-kapısı doldu)
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Format:
+Uygun olacağı zaman: [b]{0}[/b]
+
+UI/CoreStrings@TechGroupTooltip_TimeGate_Title:
+Zaman kapısı:
 
 UI/CoreStrings@TechNodeTooltip_Perks:
 Özellikler:
@@ -1096,6 +1193,24 @@ UI/CoreStrings@WindowAddOrEditServer_PleaseEnterServerAddress:
 UI/CoreStrings@WindowCharacterStyleCustomization_Button_Randomize:
 Rastgele
 
+UI/CoreStrings@WindowCompletionist_ButtonAccept:
+Kabul et
+
+UI/CoreStrings@WindowCompletionist_ProgressLabel:
+İlerleme:
+
+UI/CoreStrings@WindowCompletionist_TabCreatures:
+Yaratıklar
+
+UI/CoreStrings@WindowCompletionist_TabFood:
+Yiyecek
+
+UI/CoreStrings@WindowCompletionist_TabLoot:
+Yağma
+
+UI/CoreStrings@WindowCompletionist_UndiscoveredEntryTitle:
+???
+
 UI/CoreStrings@WindowConstructionMenu_BlueprintRequires:
 Tasarım gereksinimi
 
@@ -1111,6 +1226,16 @@ UI/CoreStrings@WindowConstructionMenu_PlaceBlueprint:
 
 UI/CoreStrings@WindowConstructionMenu_TotalRequired:
 Gerekli olan toplam
+
+UI/CoreStrings@WindowCrateIconSelector_CanPickIcon:
+Bu konteynera konulmuş eşyalardan herhangi bir ikonu seçebilirsin.
+
+UI/CoreStrings@WindowCrateIconSelector_NoItemsToSelectIcon:
+`Bu konteyner boş.
+[br]İkon formu alabilecek eşya yok.`
+
+UI/CoreStrings@WindowCrateIconSelector_SelectedIcon:
+Seçilen ikon
 
 UI/CoreStrings@WindowDataLog_Content:
 İçerik
@@ -1138,6 +1263,9 @@ Kaynak ve temel eşya depolamak için alan tutucu kullanamazsın.
 
 UI/CoreStrings@WindowLandClaim_DecayInfo:
 Çürüme bilgisi
+
+UI/CoreStrings@WindowLandClaim_DecayInfo_ConfirmationCheckbox:
+Çürüme sistemini farkındayım
 
 UI/CoreStrings@WindowLandClaim_SafeStorageIsShared:
 Güvenli depolanan eşyalar bu üsteki bütün alan tutucu yapılar arasında paylaştırılır.
@@ -1488,13 +1616,13 @@ UI/CoreStrings@Yes:
 Evet
 
 UI/LanguageFonts@FontCondensed:
-/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto Condensed, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontDefault:
-/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Roboto, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/LanguageFonts@FontPlayerDialogue:
-/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans
+/UI/Fonts/#Amatic SC, /UI/Fonts/#Source Han Sans, /UI/Fonts/#Twemoji Mozilla
 
 UI/Controls/Core/MasterServerConnectionIndicator.xaml@TitleConnected:
 Bağlandı
@@ -1511,6 +1639,15 @@ UI/Controls/Game/Chat/Data/ViewModelChatEntryControl@ChatNamePrefix_Developer:
 UI/Controls/Game/Chat/Data/ViewModelChatRoom@DialogClosePrivateChat_Format:
 `{0} ile olan özel sohbeti kapatmak istiyor musunuz?
 [br] Sohbet geçmişi saklanacak ve daha sonra sohbeti yeniden açabileceksiniz.`
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_CreatureDiscovered_MessageFormat:
+İlk kez öldürüldü.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_FoodDiscovered_MessageFormat:
+İlk kez tüketildi.
+
+UI/Controls/Game/Completionist/Data/ViewModelWindowCompletionist@Notification_LootDiscovered_MessageFormat:
+İlk kez bulundu.
 
 UI/Controls/Game/Crafting/Data/ViewModelCraftingQueue@NotificationCannotDegradeableCraftItem_Message:
 Bu tarifte parçalanabilir bileşenler bulunduğu için iptal edemezsin.
@@ -1531,6 +1668,15 @@ UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Message
 UI/Controls/Game/Map/ClientDroppedItemsNotifier@NotificationItemsDropped_Title:
 Eşyaların düştü
 
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Finished:
+Etkinlik tamamlandı!
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_TimeRemainingFormat:
+Kalan süre: {0}
+
+UI/Controls/Game/Map/ClientWorldMapEventVisualizer@Notification_ActiveEvent_Title:
+Aktif etkinlik
+
 UI/Controls/Game/Map/ClientWorldMapLandClaimsGroupVisualizer@NotificationBaseUnderAttack_MessageFormat:
 `Üslerinden biri baskına uğruyor!
 [br]({0};{1})`
@@ -1546,6 +1692,9 @@ UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceA
 
 UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@Notification_NewResourceAvailable_Title:
 Yeni kaynak mevcut
+
+UI/Controls/Game/Map/ClientWorldMapResourcesVisualizer@TooltipDepositSearchAreaFormat:
+Bölgeyi ara: {0}
 
 UI/Controls/Game/Map/WindowWorldMap.xaml@ContextMenuCopyCoordinates:
 Koordinatları kopyala
@@ -1639,8 +1788,17 @@ Yüz
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHair:
 Saç
 
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleHairColor:
+Saç rengi
+
+UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleSkinColor:
+Cilt rengi
+
 UI/Controls/Game/Player/Data/Face/ViewModelFaceStyleCustomizer@TitleTop:
 Üst
+
+UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@ClanTag_NotSelected:
+seçilmedi
 
 UI/Controls/Game/Politics/Data/ViewModelPartyManagementControl@DialogMessageLeavePartyConfirmation:
 Takımdan çıkmak istediğine emin misin?
@@ -1719,12 +1877,6 @@ UI/Controls/Game/WorldObjects/LandClaims/Data/ViewModelWindowLandClaim@DecayInfo
 [br]
 [br]Çürüme geciktirmesini herhangi bir alan tutucusunu daha üst aşamaya [b]yükselterek[/b] artırabilirsin.
 [br]Bütün üssün çürüme gecikmesi [b]en yüksek[/b] aşamadaki alan tutucu binasına göre düzenlenir.`
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositDepleted:
-Bu yatak bitti.
-
-UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelDepositCapacityStatsControl@TitleDepositInfinite:
-Bu yatak sonsuz.
 
 UI/Controls/Game/WorldObjects/Manufacturers/Data/ViewModelWindowObjectLight@NotificationNoFuel_Message:
 Yakıt yok
@@ -1821,6 +1973,12 @@ Araçlar
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryVehicles_Description:
 Dünyayı daha hızlı keşfetmek ve onları savaşta kullanmak için çeşitli fütüristik araçlar yap ve geliştir.
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Title:
+Dünya etkinlikleri
+
+UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryEvents_Description:
+CryoFall dünyasına yaşanan birçok etkinliğe katıl. İster meteorit çarpma alanını keşfet ister tehlikeli bir düşmanı yenmek için bir grup insan olarak toplanın.
 
 UI/Controls/Menu/FeaturesSlideshow/Data/FeaturesSlideshowEntries@EntryCreatures_Title:
 Fantastik yaratıklar

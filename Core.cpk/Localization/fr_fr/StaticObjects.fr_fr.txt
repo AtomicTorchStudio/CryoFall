@@ -61,6 +61,9 @@ Examiner
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Gather:
 Récolter
 
+Scripts/StaticObjects/Base/InteractionTooltipTexts@Hack:
+Pirater
+
 Scripts/StaticObjects/Base/InteractionTooltipTexts@Interact:
 Interagir
 
@@ -142,11 +145,8 @@ Caisse de fournitures
 Scripts/StaticObjects/Loot/ObjectLootGrass@Name:
 Herbe
 
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageLarge@Name:
-Gros tas d'ordures
-
-Scripts/StaticObjects/Loot/ObjectLootPileGarbageSmall@Name:
-Petit tas d'ordures
+Scripts/StaticObjects/Loot/ObjectLootPileGarbage1@Name:
+Tas d'ordures
 
 Scripts/StaticObjects/Loot/ObjectLootStone@Name:
 Pierre
@@ -216,6 +216,15 @@ Utilisez une pioche pour exploiter cette ressource.
 
 Scripts/StaticObjects/Misc/Environment/Base/ProtoObjectLavaCrack@Name:
 Fissure
+
+Scripts/StaticObjects/Misc/Events/ObjectMeteorite@Name:
+Météorite
+
+Scripts/StaticObjects/Misc/Events/ObjectPragmiumQueenRemains@Name:
+Restes de la Reine du pragmium
+
+Scripts/StaticObjects/Misc/Events/ObjectSpaceDebris@Name:
+Débris spatial
 
 Scripts/StaticObjects/Structures/Barrels/ObjectBarrelMetal@Description:
 Plus grand et robuste qu'un tonneau en bois. Utile pour stocker de grandes quantités de liquides.
@@ -345,25 +354,25 @@ Scripts/StaticObjects/Structures/CraftingStations/ObjectWorkbench@Name:
 Établi
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Description:
-Offre plus d'espace qu'une simple caisse en bois, tout en étant plus difficile à détruire.
+Offre plus d'espace qu'une simple caisse en bois.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateIron@Name:
 Caisse en fer
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Description:
-Un des meilleurs moyens de stocker des marchandises. Protège vos affaires dans la plupart des situations, et offre le plus d'espace.
+De toutes les caisses simples, la caisse en acier offre le plus d'espace, ce qui vous permet d'entreposer vos objets de manière compacte.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteel@Name:
 Caisse en acier
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Description:
-Une très grande caisse qui permet de mettre à l'abri une grande quantité d'objets.
+Une caisse de grande taille, très pratique pour entreposer une grande quantité d'objets.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateSteelLarge@Name:
 Grande caisse
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Description:
-La caisse la plus simple permettant d'entreposer vos affaires. N'est cependant pas très solide.
+La caisse la plus simple dont vous puissiez disposer pour stocker vos possessions.
 
 Scripts/StaticObjects/Structures/Crates/ObjectCrateWood@Name:
 Caisse en bois
@@ -380,16 +389,58 @@ Un coffre lourdement blindé, capable de résister aux explosifs les plus puissa
 Scripts/StaticObjects/Structures/Crates/ObjectSafeArmored@Name:
 Coffre blindé
 
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Description:
+Un autel de style oriental qui permet de faire brûler de l'encens.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationAltar@Name:
+Autel à encens
+
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Description:
 Quoi que puisse représenter cette bannière, elle a l'air cool !
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBannerRed@Name:
-Bannière rouge
+Bannière
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Description:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Description:
+Une baignoire classique qui permet de conserver une bonne hygiène.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBathtub@Name:
+Baignoire
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Description:
+À quoi ressemblerait une pièce sans la moindre étagère ?
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationBookshelf@Name:
+Étagère
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Description:
+Un paravent orné d'un dessin traditionnel de tigre, comme dans les contes d'antan.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationFoldingScreen@Name:
+Paravent
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Description:
+Un impressionnant tas d'or. Rangez-le dans votre chambre forte pour le mettre à l'abri !
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationGoldPileLarge@Name:
+Tas d'or
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Description:
+Un superbe piano noir, à la finition particulièrement soignée.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationPiano@Name:
+Piano
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Description:
+Montrez à tout le monde que vous êtes un véritable chasseur en décorant votre chambre avec cette luxueuse carpette.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugBear@Name:
+Peau d'ours
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Description:
 Ce charmant tapis de sol vous permettra de rendre une pièce plus chaleureuse et plus belle.
 
-Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRug@Name:
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationRugRed@Name:
 Tapis de sol
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Description:
@@ -397,6 +448,12 @@ Informe vos ennemis que vous n'êtes pas là pour rigoler. « Entrée interdite
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSkull@Name:
 Crâne sur un pieu
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Description:
+Doux et confortable, parfait pour un salon.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationSofa@Name:
+Sofa
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatueGold@Description:
 Une indéniable preuve de votre richesse. Seuls les plus riches des plus riches peuvent se permettre de construire une chose pareille !
@@ -409,6 +466,30 @@ Gaspiller ces cristaux précieux à des fins esthétiques est un bon moyen de pr
 
 Scripts/StaticObjects/Structures/Decorations/ObjectDecorationStatuePragmium@Name:
 Statue en pragmium
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Description:
+Une table simple de style classique européen.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationTable@Name:
+Table
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Description:
+Un trône royal, idéal pour votre salle d'audience. Il faut bien faire comprendre à ces pécores qui est le patron !
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationThrone@Name:
+Trône
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Description:
+Assurez-vous d'installer ceci dans une pièce à part et bien ventilée.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationToilet@Name:
+Toilettes
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Description:
+Un vase décoratif de grande valeur.
+
+Scripts/StaticObjects/Structures/Decorations/ObjectDecorationVaseOrange@Name:
+Vase
 
 Scripts/StaticObjects/Structures/Decorations/Base/ProtoObjectDecorationFloor@ErrorHasFloorDecoration:
 Il y a déjà une décoration de sol.
@@ -639,7 +720,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectFurnaceElectric@Name:
 Fourneau électrique
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Description:
-Permet l'extraction de sels de lithium des sources géothermales.
+Permet d'extraire des sels de lithium d'un réservoir souterrain ou directement d'une source géothermale pour plus d'efficacité.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectLithiumOreExtractor@Name:
 Extracteur de sels de lithium
@@ -660,7 +741,7 @@ Scripts/StaticObjects/Structures/Manufacturers/ObjectMulchbox@Name:
 Boîte à compost
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Description:
-Peut être construite au-dessus d'une nappe de pétrole afin d'en extraire du pétrole brut.
+Permet d'extraire du pétrole brut d'un réservoir souterrain ou directement d'une nappe de pétrole pour plus d'efficacité.
 
 Scripts/StaticObjects/Structures/Manufacturers/ObjectOilPump@Name:
 Pompe à pétrole
@@ -704,11 +785,17 @@ Fournit une source inépuisable d'eau fraîche. Vous ne mourrez plus jamais de s
 Scripts/StaticObjects/Structures/Manufacturers/ObjectWell@Name:
 Puits
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorRequiresGeothermalSpring:
-L'extracteur nécessite une source géothermale.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_CannotBuildTooCloseToDeposit:
+Trop proche d'un gisement de ressource. Il est possible de construire juste au-dessus.
 
-Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorRequiresOilSeep:
-Cette pompe nécessite une nappe de pétrole.
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectExtractor@Error_TooCloseToDepletedDeposit:
+Trop proche d'un gisement épuisé.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectLithiumOreExtractor@ErrorTooCloseToAnotherExtractor:
+Trop proche d'un autre extracteur.
+
+Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectOilPump@ErrorTooCloseToAnotherOilPump:
+Trop proche d'une autre pompe à pétrole.
 
 Scripts/StaticObjects/Structures/Manufacturers/Base/ProtoObjectWell@ErrorWellNotAllowed:
 Ce type de sol ne permet pas d'accéder au niveau piézométrique.
@@ -966,6 +1053,9 @@ Blé
 
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 Nécessite une parcelle agricole.
+
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
+Herbe bleue
 
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbGreen@Name:
 Herbe verte

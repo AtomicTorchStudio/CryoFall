@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Explosives;
     using AtomicTorch.CBND.CoreMod.Stats;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ItemExplosiveSystem
@@ -45,8 +46,16 @@
             var durationSeconds = ((IProtoItemExplosive)item.ProtoItem).DeployDuration.TotalSeconds;
 
             // apply stat for planting speed
-            durationSeconds *= request.Character.SharedGetFinalStatMultiplier(
-                StatName.ItemExplosivePlantingTimeMultiplier);
+            var durationSpeedMultiplier = request.Character.SharedGetFinalStatMultiplier(
+                StatName.ItemExplosivePlantingSpeedMultiplier);
+
+            if (durationSpeedMultiplier <= 0)
+            {
+                durationSpeedMultiplier = double.Epsilon;
+            }
+
+            durationSeconds /= durationSpeedMultiplier;
+            durationSeconds = Api.Shared.RoundDurationByServerFrameDuration(durationSeconds);
 
             if (IsClient)
             {

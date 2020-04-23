@@ -20,17 +20,6 @@
                 <Setter Property="TextWrapping" Value="Wrap" />
             </Style>
 
-            <DataTemplate DataType="{x:Type data:ViewModelTechGroupRequirementLearningPoints}">
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Left">
-                    <!-- Text: Learning points -->
-                    <TextBlock Text="{x:Static loc:CoreStrings.LearningPoints}" />
-                    <TextBlock Text=": " />
-                    <TextBlock Text="{Binding RequiredLearningPoints}" FontWeight="Bold" />
-                </StackPanel>
-            </DataTemplate>
-
-
             <DataTemplate DataType="{x:Type data:ViewModelTechGroupRequirementGroupUnlocked}">
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Left">
@@ -136,6 +125,17 @@
 
                     <TextBlock Text="{Binding RequiredGroupTitle}"
                                Margin="5,0,0,0" />
+                </StackPanel>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type data:ViewModelTechGroupRequirementTimeGate}">
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Left"
+                            Margin="0,5,0,0">
+                    <TextBlock Text="{x:Static loc:CoreStrings.TechGroupTooltip_TimeGate_Title}"
+                               Foreground="{StaticResource BrushColor7}"
+                               FontWeight="Bold" />
+                    <core:FormattedTextBlock Content="{Binding DurationRemainsText}" />
                 </StackPanel>
             </DataTemplate>
 

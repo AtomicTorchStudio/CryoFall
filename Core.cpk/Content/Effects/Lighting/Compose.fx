@@ -4,7 +4,7 @@
 // Ambient light fraction effect parameter (value from 0 to 1).
 // Value 0 means total darkness in non-lighted areas.
 // It's supposed to be provided by the DayNightSystem.
-float Ambient = 0;
+float AmbientFraction = 0;
 
 // Determines how much additive light we want from light sources.
 // Please note the additive light value is adjusted accordingly to ambient light value.
@@ -33,13 +33,13 @@ float4 MainPS(VSOutput input) : COLOR0
 {
     float4 color = tex2D(BaseSampler, input.TexCoord);
     float4 light = tex2D(LightmapSampler, input.TexCoord);
-    float4 result = float4(color.rgb * Ambient, 1);
+    float4 result = float4(color.rgb * AmbientFraction, 1);
 
     // multiplicative light part
-    result.rgb += color.rgb * light.rgb * (1 - Ambient);
+    result.rgb += color.rgb * light.rgb * (1 - AmbientFraction);
 
     // additive light part
-    result.rgb += light.rgb * max(MaxAdditiveLightFraction * (1 - Ambient),
+    result.rgb += light.rgb * max(MaxAdditiveLightFraction * (1 - AmbientFraction),
                                   MinAdditiveLightFraction);
 
     return result;

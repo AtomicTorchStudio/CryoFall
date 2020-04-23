@@ -32,7 +32,7 @@ Scripts/Tiles/TileRoads@Name:
 도로
 
 Scripts/Tiles/TileRocky@Name:
-암석 지대
+암석산맥
 
 Scripts/Tiles/TileRuins@Name:
 유적

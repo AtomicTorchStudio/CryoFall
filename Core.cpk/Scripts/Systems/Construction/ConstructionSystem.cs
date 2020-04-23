@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Toolboxes;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
@@ -14,6 +15,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -374,6 +376,25 @@
             }
 
             actionState = new ConstructionActionState(character, (IStaticWorldObject)worldObject, selectedHotbarItem);
+            if (!actionState.CheckIsAllowed())
+            {
+                // not allowed to construct - currently it's possible only due to PvE limitation
+                Logger.Warning(
+                    $"Construction is not allowed: {worldObject} by {character}",
+                    character);
+
+                if (Api.IsClient)
+                {
+                    NotificationSystem.ClientShowNotification(
+                        title: PveSystem.Notification_StuffBelongsToAnotherPlayer_Message,
+                        LandClaimSystem.ErrorNotLandOwner_Message,
+                        NotificationColor.Bad,
+                        selectedHotbarItem?.ProtoItem.Icon);
+                }
+
+                return;
+            }
+
             if (!actionState.CheckIsNeeded())
             {
                 // action is not needed

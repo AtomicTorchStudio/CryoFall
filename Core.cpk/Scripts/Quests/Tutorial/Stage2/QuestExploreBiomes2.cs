@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.Tiles;
 
     public class QuestExploreBiomes2 : ProtoQuest
@@ -16,16 +17,16 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementVisitTile.Require<TileForestBoreal>())
-                .Add(RequirementVisitTile.Require<TileRocky>())
-                .Add(RequirementVisitTile.Require<TileClay>())
-                .Add(RequirementVisitTile.Require<TileRoads>());
+            tasks
+                .Add(TaskVisitTile.Require<TileForestBoreal>())
+                .Add(TaskVisitTile.Require<TileRocky>())
+                .Add(TaskVisitTile.Require<TileClay>())
+                .Add(TaskVisitTile.Require<TileRoads>());
 
             prerequisites
-                .Add<QuestUseCrowbarAndDeconstructBuilding>();
+                .Add<QuestMasterHunter1>();
         }
     }
 }

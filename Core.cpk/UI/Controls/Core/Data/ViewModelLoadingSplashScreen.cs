@@ -41,8 +41,9 @@
                 {
                     case StructureCategoryFood _:
                     case StructureCategoryBuildings _:
+                    case StructureCategoryDecorations _:
                     case StructureCategoryOther _:
-                        // ignore this categories
+                        // ignore these categories
                         availableStructures.RemoveAt(index);
                         index--;
                         break;

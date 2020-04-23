@@ -6,6 +6,7 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -108,7 +109,7 @@
 
         public static void ClientCreateParty()
         {
-            Api.Assert(ClientCurrentParty == null, "Already have a party");
+            Api.Assert(ClientCurrentParty is null, "Already have a party");
             Instance.CallServer(_ => _.ServerRemote_CreateParty());
         }
 
@@ -187,6 +188,11 @@
             Instance.CallServer(_ => _.ServerRemote_RemovePartyMember(memberName));
         }
 
+        public static Task<bool> ClientSetClanTag(string clanTag)
+        {
+            return Instance.CallServer(_ => _.ServerRemote_SetClanTag(clanTag));
+        }
+
         public static ILogicObject ServerCreateParty(ICharacter character)
         {
             Api.Assert(!character.IsNpc, "NPC cannot create a party");
@@ -247,7 +253,7 @@
         public static void ServerLeaveParty(ICharacter character)
         {
             var party = ServerGetParty(character);
-            if (party == null)
+            if (party is null)
             {
                 throw new Exception("Not a member of any party");
             }
@@ -260,8 +266,8 @@
 
         public static bool SharedArePlayersInTheSameParty(ICharacter characterA, ICharacter characterB)
         {
-            if (characterA == null
-                || characterB == null
+            if (characterA is null
+                || characterB is null
                 || characterA.IsNpc
                 || characterB.IsNpc)
             {
@@ -297,6 +303,117 @@
             return false;
         }
 
+        public static bool SharedIsValidClanTag(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return true;
+            }
+
+            if (text.Length > 4)
+            {
+                return false;
+            }
+
+            text = text.ToUpperInvariant();
+            if (!IsValidLetter(text[0]))
+            {
+                return false;
+            }
+
+            foreach (var c in text)
+            {
+                if (!char.IsDigit(c)
+                    && !IsValidLetter(c))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
+            bool IsValidLetter(char c)
+                => c >= 'A'
+                   && c <= 'Z';
+        }
+
+        public ILogicObject ServerFindPartyByClanTag(string clanTag)
+        {
+            if (string.IsNullOrEmpty(clanTag))
+            {
+                return null;
+            }
+
+            var allParties = Server.World.GetGameObjectsOfProto<ILogicObject, Party>();
+            foreach (var party in allParties)
+            {
+                if (string.Equals(clanTag,
+                                  Party.GetPublicState(party).ClanTag,
+                                  StringComparison.Ordinal))
+                {
+                    return party;
+                }
+            }
+
+            return null;
+        }
+
+        public bool ServerSetClanTag(ILogicObject party, string clanTag)
+        {
+            var members = ServerGetPartyMembersReadOnly(party);
+            if (string.IsNullOrEmpty(clanTag))
+            {
+                clanTag = null;
+            }
+
+            var partyPublicState = Party.GetPublicState(party);
+            if (string.Equals(partyPublicState.ClanTag, clanTag, StringComparison.Ordinal))
+            {
+                // this party already has this clan tag
+                return true;
+            }
+
+            if (!SharedIsValidClanTag(clanTag))
+            {
+                throw new Exception("Invalid clantag");
+            }
+
+            if (ClanTagFilterHelper.IsInvalidClanTag(clanTag))
+            {
+                Logger.Warning("Attempting to set a filter containing profanity or reserved word, ignoring it: "
+                               + clanTag);
+                clanTag = null;
+                if (string.Equals(partyPublicState.ClanTag, null, StringComparison.Ordinal))
+                {
+                    // this party already has empty clan tag
+                    return true;
+                }
+            }
+
+            var otherParty = this.ServerFindPartyByClanTag(clanTag);
+            if (otherParty != null)
+            {
+                // the clan tag is already taken
+                return false;
+            }
+
+            partyPublicState.ClanTag = clanTag;
+
+            foreach (var memberName in members)
+            {
+                var member = Server.Characters.GetPlayerCharacter(memberName);
+                if (member is null)
+                {
+                    Logger.Warning("Unknown character in party: " + memberName);
+                    continue;
+                }
+
+                PlayerCharacter.GetPublicState(member).ClanTag = clanTag;
+            }
+
+            return true;
+        }
+
         internal static void ServerRegisterParty(ILogicObject party)
         {
             var members = ServerGetPartyMembersReadOnly(party);
@@ -304,7 +421,7 @@
             foreach (var memberName in members)
             {
                 var character = Server.Characters.GetPlayerCharacter(memberName);
-                if (character == null)
+                if (character is null)
                 {
                     Logger.Warning("Unknown character in party: " + memberName);
                     continue;
@@ -388,28 +505,6 @@
             }
         }
 
-        private static void RemoveParty(ILogicObject party)
-        {
-            var members = ServerGetPartyMembersReadOnly(party);
-            if (members.Count > 0)
-            {
-                // ensure all members have been removed
-                while (members.Count > 0)
-                {
-                    ServerRemoveMember(members[0], party);
-                }
-            }
-
-            if (party.IsDestroyed)
-            {
-                return;
-            }
-
-            Logger.Important("Party destroyed: " + party);
-            Server.World.DestroyObject(ServerGetPartyChat(party));
-            Server.World.DestroyObject(party);
-        }
-
         private static void ServerAddMember(ICharacter character, ILogicObject party)
         {
             Api.Assert(!character.IsNpc, "NPC cannot join a party");
@@ -435,6 +530,7 @@
 
             members.Add(character.Name);
             ServerCharacterPartyDictionary[character] = party;
+            PlayerCharacter.GetPublicState(character).ClanTag = Party.GetPublicState(party).ClanTag;
             Logger.Important($"Player joined party: {character} in {party}", character);
 
             ServerInvitations.RemoveAllInvitationsFor(character);
@@ -492,11 +588,9 @@
                 var character = Server.Characters.GetPlayerCharacter(characterName);
                 if (character != null)
                 {
-                    //if (ServerCharacterPartyDictionary.TryGetValue(character, out var currentParty)
-                    //    && currentParty == party)
-                    //{
                     ServerCharacterPartyDictionary.Remove(character);
-                    //}
+
+                    PlayerCharacter.GetPublicState(character).ClanTag = null;
 
                     // remove all requests by this character
                     ServerInvitations.RemoveAllInvitationsBy(character);
@@ -512,7 +606,7 @@
 
                 if (members.Count == 0)
                 {
-                    RemoveParty(party);
+                    ServerRemoveParty(party);
                 }
 
                 return;
@@ -521,10 +615,33 @@
             Logger.Warning($"Party member is not found: {characterName} in {party}");
         }
 
+        private static void ServerRemoveParty(ILogicObject party)
+        {
+            var members = ServerGetPartyMembersReadOnly(party);
+            if (members.Count > 0)
+            {
+                // ensure all members have been removed
+                while (members.Count > 0)
+                {
+                    ServerRemoveMember(members[0], party);
+                }
+            }
+
+            if (party.IsDestroyed)
+            {
+                return;
+            }
+
+            Logger.Important("Party destroyed: " + party);
+            Party.GetPublicState(party).ClanTag = null;
+            Server.World.DestroyObject(ServerGetPartyChat(party));
+            Server.World.DestroyObject(party);
+        }
+
         private static void ServerSendCurrentParty(ICharacter character)
         {
             var party = ServerGetParty(character);
-            if (party == null)
+            if (party is null)
             {
                 Instance.CallClient(character, _ => _.ClientRemote_CurrentParty(null));
                 return;
@@ -570,7 +687,7 @@
             try
             {
                 var inviter = Server.Characters.GetPlayerCharacter(inviterName);
-                if (inviter == null)
+                if (inviter is null)
                 {
                     throw new Exception("Inviter player not found: " + inviterName);
                 }
@@ -587,7 +704,7 @@
         private void ServerRemote_InvitationDecline(string inviterName)
         {
             var inviter = Server.Characters.GetPlayerCharacter(inviterName);
-            if (inviter == null)
+            if (inviter is null)
             {
                 throw new Exception("Inviter player not found: " + inviterName);
             }
@@ -600,7 +717,7 @@
             try
             {
                 var invitee = Server.Characters.GetPlayerCharacter(inviteeName);
-                if (invitee == null)
+                if (invitee is null)
                 {
                     return InvitationCreateResult.ErrorInviteeNotFound;
                 }
@@ -629,7 +746,7 @@
         {
             var character = ServerRemoteContext.Character;
             var party = ServerGetParty(character);
-            if (party == null)
+            if (party is null)
             {
                 return;
             }
@@ -662,6 +779,24 @@
         private ushort ServerRemote_RequestPartyMaxSize()
         {
             return PartyConstants.ServerPartyMembersMax;
+        }
+
+        private bool ServerRemote_SetClanTag(string clanTag)
+        {
+            var party = ServerGetParty(ServerRemoteContext.Character);
+            if (party is null)
+            {
+                return true;
+            }
+
+            var members = ServerGetPartyMembersReadOnly(party);
+            var ownerName = ServerRemoteContext.Character.Name;
+            if (members[0] != ownerName)
+            {
+                throw new Exception("You're not the party owner");
+            }
+
+            return this.ServerSetClanTag(party, clanTag);
         }
 
         private class Bootstrapper : BaseBootstrapper
@@ -745,7 +880,7 @@
             {
                 var inviterParty = ServerGetParty(inviter);
                 var invitation = GetInvitation(inviterParty, invitee);
-                if (invitation == null)
+                if (invitation is null)
                 {
                     return InvitationAcceptResult.ErrorNoInvitationFoundOrExpired;
                 }
@@ -826,7 +961,7 @@
             public static void Decline(ICharacter invitee, ICharacter inviter)
             {
                 var party = ServerGetParty(inviter);
-                if (party == null)
+                if (party is null)
                 {
                     throw new Exception("Player don't have a party");
                 }

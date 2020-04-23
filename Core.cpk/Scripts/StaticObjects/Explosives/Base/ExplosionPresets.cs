@@ -8,6 +8,83 @@
 
     public static class ExplosionPresets
     {
+        public static readonly ExplosionPreset Grenade
+            = ExplosionPreset.CreatePreset(
+                protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround1>(),
+                serverDamageApplyDelay: 0.8 * 0.25,
+                soundSetPath: "Explosions/ExplosionMedium",
+                spriteAnimationDuration: 0.8,
+                spriteSetPath: "FX/Explosions/ExplosionLarge3",
+                spriteAtlasColumns: 8,
+                spriteAtlasRows: 3,
+                spriteWorldSize: new Size2F(2, 2),
+                blastwaveDelay: 0.05,
+                blastwaveAnimationDuration: 0.4,
+                blastWaveColor: Color.FromRgb(0xFF, 0xBB, 0x33),
+                blastwaveWorldSizeFrom: 0.25 * new Size2F(3, 2),
+                blastwaveWorldSizeTo: 1 * new Size2F(3,      2),
+                lightDuration: 1,
+                lightWorldSize: 35,
+                lightColor: Color.FromRgb(0xFF, 0xCC, 0x66),
+                screenShakesDuration: 0.2,
+                screenShakesWorldDistanceMin: 0.15,
+                screenShakesWorldDistanceMax: 0.2,
+                soundsCuesNumber: 6);
+
+        public static readonly ExplosionPreset GrenadePragmium
+            = ExplosionPreset.CreatePreset(
+                protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround1>(),
+                serverDamageApplyDelay: 0.8 * 0.25,
+                soundSetPath: "Explosions/ExplosionMedium",
+                spriteAnimationDuration: 0.8,
+                spriteSetPath: "FX/Explosions/ExplosionLarge2",
+                spriteAtlasColumns: 8,
+                spriteAtlasRows: 3,
+                spriteWorldSize: new Size2F(2, 2),
+                blastwaveDelay: 0.05,
+                blastwaveAnimationDuration: 0.4,
+                blastWaveColor: Color.FromRgb(0xBB, 0xDD, 0xFF),
+                blastwaveWorldSizeFrom: 0.25 * new Size2F(3, 2),
+                blastwaveWorldSizeTo: 1 * new Size2F(3,      2),
+                lightDuration: 1,
+                lightWorldSize: 35,
+                lightColor: Color.FromRgb(0x88, 0xDD, 0xFF),
+                screenShakesDuration: 0.2,
+                screenShakesWorldDistanceMin: 0.15,
+                screenShakesWorldDistanceMax: 0.2,
+                spriteColorAdditive: Color.FromRgb(0x00,       0x44, 0x88),
+                spriteColorMultiplicative: Color.FromRgb(0xAA, 0xFF, 0xFF),
+                spriteBrightness: 1.33,
+                spriteDrawOrder: DrawOrder.Light + 1,
+                soundsCuesNumber: 6);
+
+        public static readonly ExplosionPreset GrenadeThermal
+            = ExplosionPreset.CreatePreset(
+                protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround1>(),
+                serverDamageApplyDelay: 0.8 * 0.25,
+                soundSetPath: "Explosions/ExplosionMedium",
+                spriteAnimationDuration: 0.8,
+                spriteSetPath: "FX/Explosions/ExplosionLarge1",
+                spriteAtlasColumns: 8,
+                spriteAtlasRows: 3,
+                spriteWorldSize: new Size2F(2, 2),
+                blastwaveDelay: 0.05,
+                blastwaveAnimationDuration: 0.4,
+                blastWaveColor: Color.FromRgb(0xFF, 0xBB, 0x33),
+                blastwaveWorldSizeFrom: 0.25 * new Size2F(3, 2),
+                blastwaveWorldSizeTo: 1 * new Size2F(3,      2),
+                lightDuration: 1,
+                lightWorldSize: 35,
+                lightColor: Color.FromRgb(0xFF, 0xCC, 0x66),
+                screenShakesDuration: 0.2,
+                screenShakesWorldDistanceMin: 0.15,
+                screenShakesWorldDistanceMax: 0.2,
+                spriteColorAdditive: Color.FromRgb(0x22,       0x22, 0x00),
+                spriteColorMultiplicative: Color.FromRgb(0xFF, 0xEE, 0xAA),
+                spriteBrightness: 1.33,
+                spriteDrawOrder: DrawOrder.Light + 1,
+                soundsCuesNumber: 6);
+
         public static readonly ExplosionPreset Large
             = ExplosionPreset.CreatePreset(
                 protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround1>(),
@@ -40,7 +117,6 @@
                 spriteAtlasColumns: 8,
                 spriteAtlasRows: 3,
                 spriteWorldSize: new Size2F(3, 3),
-                spriteDrawOrder: DrawOrder.Light + 1,
                 blastwaveDelay: 0.1,
                 blastwaveAnimationDuration: 0.75,
                 blastWaveColor: Color.FromRgb(0xBB, 0xDD, 0xFF),
@@ -54,7 +130,8 @@
                 screenShakesWorldDistanceMax: 0.25,
                 spriteColorAdditive: Color.FromRgb(0x00,       0x44, 0x88),
                 spriteColorMultiplicative: Color.FromRgb(0xAA, 0xFF, 0xFF),
-                spriteBrightness: 1.33);
+                spriteBrightness: 1.33,
+                spriteDrawOrder: DrawOrder.Light + 1);
 
         public static readonly ExplosionPreset PragmiumResonanceBomb_NodeClientOnly
             = ExplosionPreset.CreatePreset(
@@ -68,7 +145,6 @@
                 spriteAtlasColumns: 8,
                 spriteAtlasRows: 3,
                 spriteWorldSize: new Size2F(2, 2),
-                spriteDrawOrder: DrawOrder.Light,
                 blastwaveDelay: 0.1,
                 blastwaveAnimationDuration: 0.75 * 0.75,
                 blastWaveColor: Color.FromArgb(0x99, 0xBB, 0xDD, 0xFF),
@@ -82,11 +158,12 @@
                 screenShakesWorldDistanceMax: 0,
                 spriteColorAdditive: Color.FromRgb(0x00, 0x44, 0x88),
                 spriteColorMultiplicative: Color.FromArgb(0xBB, 0xAA, 0xFF, 0xFF),
-                spriteBrightness: 1.33);
+                spriteBrightness: 1.33,
+                spriteDrawOrder: DrawOrder.Light);
 
         public static readonly ExplosionPreset SpecialDepositExplosion
             = ExplosionPreset.CreatePreset(
-                protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround3Deposit>(),
+                protoObjectCharredGround: null,
                 serverDamageApplyDelay: 0.8 * 0.25,
                 soundSetPath: "Explosions/ExplosionLarge",
                 spriteAnimationDuration: 1,

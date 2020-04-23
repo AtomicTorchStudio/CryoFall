@@ -67,14 +67,6 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 @"All damage dealt from player to player (via weapons only) is multiplied on this rate.
                   It allows to decrease or increase the combat duration.
                   You can set it to 0 to disable PvP damage (doesn't apply to bombs damage!).");
-
-            if (!Api.IsServer
-                || PveSystem.ServerIsPvE)
-            {
-                // set explosives rates to zero for PvE servers and all clients
-                DamageExplosivesToCharactersMultiplier = 0;
-                DamageExplosivesToStructuresMultiplier = 0;
-            }
         }
     }
 }

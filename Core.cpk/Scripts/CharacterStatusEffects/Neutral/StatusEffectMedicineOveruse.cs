@@ -25,7 +25,7 @@
 
         protected override void ServerAddIntensity(StatusEffectData data, double intensityToAdd)
         {
-            // modify intencity change based on artificial liver or any other thing that modifies it
+            // modify intensity change based on artificial liver or any other thing that modifies it
             intensityToAdd *= data.Character.SharedGetFinalStatMultiplier(StatName.MedicineToxicityMultiplier);
             if (intensityToAdd <= 0)
             {

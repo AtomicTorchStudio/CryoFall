@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
@@ -11,6 +12,9 @@
     {
         public override string Description =>
             "Place bedroll in your base to serve as a respawn point, allowing you to respawn in a specified location after death.";
+
+        // available by default
+        public override bool IsAutoUnlocked => true;
 
         public override string Name => "Bedroll";
 
@@ -33,6 +37,8 @@
                 worldObject,
                 this.DefaultTexture,
                 drawOrder: DrawOrder.FloorCharredGround + 1);
+
+            this.ClientSetupRenderer(clientState.Renderer);
         }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
@@ -54,6 +60,9 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Clear()
+                            .Add(ConstructionTileRequirements.DefaultForPlayerStructuresOwnedOrFreeLand);
+
             category = GetCategory<StructureCategoryOther>();
 
             build.StagesCount = 1;

@@ -4,10 +4,6 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     mc:Ignorable="d">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="DefaultStyles.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <ControlTemplate x:Key="MainMenuWidgetLineTemplate">
         <Rectangle Height="1" Stretch="Fill" HorizontalAlignment="Stretch"
                    SnapsToDevicePixels="True">

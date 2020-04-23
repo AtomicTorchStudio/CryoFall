@@ -12,7 +12,7 @@
 
         public override float FoodRestore => 3; // Yes, beer has calories
 
-        public override TimeSpan FreshnessDuration => ExpirationDuration.LongLasting;
+        public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
         // Restores 1 hp, but given that you cannot drink more than a couple of bottles, it cannot be abused.
         public override float HealthRestore => 1;

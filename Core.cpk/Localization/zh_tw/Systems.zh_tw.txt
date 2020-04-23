@@ -10,6 +10,19 @@ Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUs
 Scripts/Systems/CharacterEnergySystem/CharacterEnergySystem@NotificationCannotUse_Title:
 無法使用{0}
 
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part1:
+`看起來你已經AFK了一段時間。
+ [br]渴望和饑餓降低暫停。`
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part2:
+允許聊天，製造或使用消耗品。
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Message_Part3:
+其他行動將會取消AFK模式。
+
+Scripts/Systems/CharacterIdleSystem/CharacterIdleSystem@Notification_PlayerIdle_Title:
+AFK模式
+
 Scripts/Systems/CharacterRespawn/CharacterRespawnSystem@DialogBedRespawnCooldown_Message:
 `你可以在{0}秒內在床上重生。
 [br]或者你可以現在在遊戲世界重生。`
@@ -89,6 +102,9 @@ Scripts/Systems/Chat/ChatRoom/ChatRoomGlobal@Title:
 
 Scripts/Systems/Chat/ChatRoom/ChatRoomLocal@Title:
 本地
+
+Scripts/Systems/Chat/ChatRoom/ChatRoomTrade@Title:
+交易
 
 Scripts/Systems/Construction/ConstructionPlacementSystem@NotificationCannotBuild_Title:
 無法在此處建造
@@ -251,6 +267,18 @@ Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorMuted:
 
 Scripts/Systems/Party/PartySystem@InvitationCreateResult.ErrorInviteeOffline:
 被邀請玩家處於離線狀態。只有線上玩家可以被邀請進入小隊。
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_AreYouSure:
+確定要舉報以下資訊？
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_CommunityServerDisclaimer:
+[b]請注意：[/b] 您正在社區伺服器上進行遊戲，因此聊天僅受當前伺服器管理員監管。通常聊天不被監管。
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_OfficialServersDisclaimer:
+[b]請注意：[/b] 官方伺服器無人監管。
+
+Scripts/Systems/PlayerReportSystem/PlayerReportSystem@DialogReport_Title:
+舉報資訊
 
 Scripts/Systems/PowerGridSystem/PowerGridSystem@SetPowerModeResult.CannotInteractWithObject:
 無法互動 - 太遠或建築不可用。
@@ -460,6 +488,9 @@ Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessMode@Closed:
 
 Scripts/Systems/WorldObjectAccessMode/WorldObjectAccessModeSystem@NotificationDontHaveAccess:
 你沒有存取權限！
+
+Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_AccessListSizeLimitExceeded:
+可訪問列表超過限制。
 
 Scripts/Systems/WorldObjectOwners/WorldObjectOwnersSystem@DialogCannotSetOwners_MessageCannotEdit:
 您無法編輯所有者列表。

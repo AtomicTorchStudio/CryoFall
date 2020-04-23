@@ -38,7 +38,8 @@
 
         // garage is always available in PvE
         // but in PvP it's available only if player has any vehicles in garage
-        public bool IsGarageAvailable { get; private set; } = PveSystem.ClientIsPve(logErrorIfDataIsNotYetAvailable: false);
+        public bool IsGarageAvailable { get; private set; } =
+            PveSystem.ClientIsPve(logErrorIfDataIsNotYetAvailable: false);
 
         public ViewModelGarageVehicleEntry SelectedVehicle
         {

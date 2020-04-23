@@ -26,8 +26,8 @@
             // remove all bleeding
             character.ServerRemoveStatusEffectIntensity<StatusEffectBleeding>(intensityToRemove: 1);
 
-            //add bleeding protection
-            character.ServerAddStatusEffect<StatusEffectProtectionBleeding>(intensity: 0.25); // 2.5 minutes
+            // add bleeding protection
+            character.ServerAddStatusEffect<StatusEffectProtectionBleeding>(intensity: 0.5); // 5 minutes
 
             base.ServerOnUse(character, currentStats);
         }

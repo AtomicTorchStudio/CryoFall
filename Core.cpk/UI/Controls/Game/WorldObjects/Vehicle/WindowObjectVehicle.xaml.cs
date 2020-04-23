@@ -14,6 +14,8 @@
 
         private FrameworkElement vehicleExtraControl;
 
+        private BaseViewModel vehicleExtraControlViewModel;
+
         public ViewModelWindowObjectVehicle ViewModel { get; private set; }
 
         public static void CloseActiveMenu()
@@ -23,7 +25,8 @@
 
         public static WindowObjectVehicle Open(
             IDynamicWorldObject objectVehicle,
-            FrameworkElement vehicleExtraControl = null)
+            FrameworkElement vehicleExtraControl = null,
+            BaseViewModel vehicleExtraControlViewModel = null)
         {
             if (instance != null
                 && instance.objectVehicle == objectVehicle)
@@ -35,6 +38,7 @@
             instance = window;
             window.objectVehicle = objectVehicle;
             window.vehicleExtraControl = vehicleExtraControl;
+            window.vehicleExtraControlViewModel = vehicleExtraControlViewModel;
             Api.Client.UI.LayoutRootChildren.Add(window);
             return instance;
         }
@@ -49,8 +53,11 @@
         {
             base.OnLoaded();
 
-            this.DataContext = this.ViewModel =
-                                   new ViewModelWindowObjectVehicle(this.objectVehicle, this.vehicleExtraControl);
+            this.DataContext
+                = this.ViewModel =
+                      new ViewModelWindowObjectVehicle(this.objectVehicle,
+                                                       this.vehicleExtraControl,
+                                                       this.vehicleExtraControlViewModel);
         }
 
         protected override void OnUnloaded()
@@ -60,7 +67,11 @@
             this.DataContext = null;
             this.ViewModel.Dispose();
             this.ViewModel = null;
-            instance = null;
+
+            if (instance == this)
+            {
+                instance = null;
+            }
         }
     }
 }

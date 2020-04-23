@@ -4,12 +4,17 @@
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class SkeletonStarfish : ProtoCharacterSkeletonAnimal
     {
         public override double DefaultMoveSpeed => 0.1;
 
         public override bool HasStaticAttackAnimations => false;
+
+        public override Vector2D IconOffset => (0, 25);
+
+        public override double IconScale => 0.6;
 
         public override float OrientationDownExtraAngle => 5;
 

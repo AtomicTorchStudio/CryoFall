@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
     using AtomicTorch.CBND.CoreMod.Items.Food;
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Bushes;
 
     public class QuestSecureBasicWaterSource : ProtoQuest
@@ -18,11 +19,11 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementGather.Require<ObjectBushWaterbulb>(count: 3, TaskGatherWaterbulbFruit))
-                .Add(RequirementUseItem.Require<ItemWaterbulb>());
+            tasks
+                .Add(TaskGather.Require<ObjectBushWaterbulb>(count: 3, TaskGatherWaterbulbFruit))
+                .Add(TaskUseItem.Require<ItemWaterbulb>());
 
             prerequisites
                 .Add<QuestCookAnyFood>();

@@ -68,7 +68,7 @@
                     BorderThickness="1"
                     CornerRadius="3"
                     Padding="5">
-                <Grid>
+                <Grid VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />

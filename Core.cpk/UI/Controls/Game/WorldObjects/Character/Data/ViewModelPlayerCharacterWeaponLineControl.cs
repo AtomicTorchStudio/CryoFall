@@ -90,10 +90,10 @@
             this.Visibility = Visibility.Visible;
 
             var weaponCache = weaponState.WeaponCache;
-            if (weaponCache == null)
+            if (weaponCache is null)
             {
                 // calculate new weapon cache
-                WeaponSystem.RebuildWeaponCache(this.character, weaponState);
+                WeaponSystem.SharedRebuildWeaponCache(this.character, weaponState);
                 weaponCache = weaponState.WeaponCache;
             }
 

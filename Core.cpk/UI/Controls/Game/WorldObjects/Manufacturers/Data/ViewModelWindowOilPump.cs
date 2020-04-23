@@ -24,7 +24,9 @@
                 liquidContainerState,
                 liquidContainerConfig);
 
-            this.ViewModelDepositCapacityStatsControl = new ViewModelDepositCapacityStatsControl(worldObjectDeposit);
+            this.ViewModelDepositCapacityStatsControl
+                = new ViewModelDepositCapacityStatsControl(worldObjectDeposit,
+                                                           worldObjectManufacturer.TilePosition);
         }
 
         public ViewModelDepositCapacityStatsControl ViewModelDepositCapacityStatsControl { get; }

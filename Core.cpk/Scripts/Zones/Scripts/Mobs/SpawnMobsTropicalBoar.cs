@@ -13,7 +13,7 @@
                 .Add(GetTrigger<TriggerTimeInterval>().ConfigureForSpawn(TimeSpan.FromMinutes(15)));
 
             spawnList.CreatePreset(interval: 33, padding: 0.5, useSectorDensity: false)
-                     .Add<MobTropicalBoar>()
+                     .AddExact<MobTropicalBoar>()
                      .SetCustomPaddingWithSelf(40);
         }
     }

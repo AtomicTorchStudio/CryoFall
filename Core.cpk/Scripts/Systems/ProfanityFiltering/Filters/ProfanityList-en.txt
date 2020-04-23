@@ -1,63 +1,655 @@
 #BEWARE! This is a profanity filter list, some words might be extremely rude—but that's the point!
+#Thanks to Avakyn for working on it!
 
 #blacklist
+abortion
+alla
+allah
+alligator bait
+alligatorbait
 anal
 anus*
+arab
+arabs
+areola
+argie
 arse*
+ass bagger
+ass blaster
+ass clown
+ass clown
+ass cowboy
+ass fuck
+ass fucker
+ass hat
+ass hore
+ass jockey
+ass kisser
+ass licker
+ass lover
+ass man
+ass monkey
+ass munch
+ass muncher
+ass packer
+ass pirate
+ass whore
+ass wipe
 ass
+assbagger
+assblaster
+assclown
+assclown
+asscowboy
+asses
+assfuck
+assfucker
+asshat
 asshole*
-bastard*
+asshore
+assjockey
+asskisser
+asslicker
+asslover
+assman
+assmonkey
+assmunch
+assmuncher
+asspacker
+asspirate
+asswhore
+asswipe
 b1tch*
+badfuck
+ball licker
+ball sack
+balllicker
+balls
+ballsack
+barely legal
+barelylegal
+bastard*
+bazongas
+bazooms
+beaner
+beastality
+beastiality
+beat off
+beating off
+beatingoff
+beatoff
+bestiality
+biatch
+bigass
+bigbastard
 bitch*
+blacks
 blow job*
 blowjob*
+boang
+bogan
+bohunk
+bollick
+bollock
+bondage
+boner
+boob
+boobies
+boobs
+booby
+boong
+boonga
+boonie
+booty call
+bootycall
+breastjob
+breastlover
+breastman
+brothel
+bugger
+buggered
+buggery
+bulldike
+bulldyke
+bullshit
+bumblefuck
+bumfuck
+bunga
+butch babes
+butch dike
+butch dyke
+butchbabes
+butchdike
+butchdyke
+butt bang
+butt face
+butt fuck
+butt fucker
+butt fuckers
+butt man
+butt munch
+butt muncher
+butt pirate
+butt plug
+butt stain
+buttbang
+buttface
+buttfuck
+buttfucker
+buttfuckers
+buttman
+buttmunch
+buttmuncher
+buttpirate
 buttplug*
-clit*
-cock*
-*cunt*
+buttstain
+byatch
+cacker
+camel jockey
+camel toe
+cameljockey
+cameltoe
+carpet muncher
+carpetmuncher
+chav
+cherry popper
+cherrypopper
+chinaman
+chinamen
 chink*
+chinky
+choad
+chode
+clamdigger
+clamdiver
+clit*
+clitoris
+clogwog
+cock*
+coitus
+commie
+communist
+condom
+coolie
+cooly
+coon
+coondog
+copulate
+cornhole
+crack whore
+crackwhore
+crotch*
+cum bubble
+cum dumpster
+cum fest
+cum jockey
+cum queen
+cum shot
+cum
+cumbubble
+cumdumpster
+cumfest
+cumjockey
+cumm
+cummer
+cumming
+cumqueen
+cumshot
+cunilingus
+cunillingus
+cunnie
+cunnilingus
+cunny
+cunt*
+cybersex
+dago
+darkie
+darky
+deep throat
+deepthroat
+defecate
+dego
 dick*
+dike
 dildo*
+dipshit
+dixiedike
+dixiedyke
+doggie style
+doggiestyle
+doggy style
+doggystyle
+dong
+dripdick
+dumb ass
+dumb bitch
+dumb fuck
+dumbass
+dumbbitch
+dumbfuck
+dyke
+easyslut
+eatballs
+eatcock
+eatdick
+eatpussy
+ejaculate
+ejaculated
+ejaculating 
+ejaculation
+enema
+erection
+excrement
+facefucker
+faeces
 fag*
-*fuck*
-*fuk*
+fannyfucker
+fastfuck
+fatass
+fatfuck
+fatfucker
+felatio 
+felch
+felcher
+felching
+fellatio
+feltch
+feltcher
+feltching
+fetish
+finger fuck 
+finger fucked 
+finger fucker 
+finger fuckers
+finger fucking 
+fingerfuck 
+fingerfucked 
+fingerfucker 
+fingerfuckers
+fingerfucking 
+fist fuck
+fist fucked 
+fist fucker 
+fist fucking 
+fister
+fistfuck
+fistfucked 
+fistfucker 
+fistfucking 
+fisting
+flasher
+fondle
+foot action
+foot fuck
+foot fucker
+foot licker
+footaction
+footfuck
+footfucker
+footlicker
+foreskin
+fornicate
+foursome
+freakfuck
+freakyfucker
+freefuck
+fuck*
+fugly
+fuk
+gang bang
+gang banger
+gangbang
+gangbanger
+gator bait
+gatorbait
+gaysex
+genital
+ginzo
+gipp
+golden shower
+goldenshower
+gook
+goy
+goyim
+gtfo
+gubba
+gyp
+gypo
+gypp
+gyppie
+gyppo
+gyppy
+hand job
+handjob
+hapa
+hard on
+hardon
+harem
+hebe
+heeb
+hindoo
+ho
+hodgie
+hoes
+hooker
+hookers
+hore
+horseshit
+hymen
+hymie
+incest
+interracial
 jack off
-jerk off
+jackass
 jackoff
+jackshit
+jap
+japcrap
+jerk off
 jerkoff
+jiga
+jigaboo
+jigga
+jiggabo
+jigger 
+jihad
+jism
+jiz 
+jizim
+jizjuice
+jizm 
+jizz
+jizzim
+jizzum
+junglebunny
+k k k
+k kk
+kaffer
+kaffir
+kaffre
+kafir
+kanake
+kigger
+kike
+kissass
+kk k
+kkk
+knockers
+koon
+kraut
+kum*
+kunilingus
+kunnilingus
 kunt*
+kyke
+limpdick
+loli
+lolita
+lovebone
+lovegoo
+lovejuice
+macaca
+manpaste
+mastabate
+mastabater
+masterbate
+mastrabator
 masturb*
+mattressprincess
+meatbeatter
+meatrack
+mgger
+mggor
+milf
+mockey
+mockie
+mocky
+mofo
+molest
+molestation
+molester
+molestor
+moneyshot
+mooncricket
+motha*
+motherfuck
+motherfucked
+motherfucker
+motherfuckin
+motherfucking
+motherfuckings
+muffdive
+muffdiver
+muffindiver
+mufflikcer
+mulatto
+munt
 n1gf*
 n1gg*
+nastybitch
+nastyho
+nastyslut
+nastywhore
+nazi
+negro*
+nig
+niger
 nigf*
 nigg*
+niglet
+nignog
+nigr
+nigra
+nigre
+nipple
+nipplering
+nlgg*
+nookey
+nookie
+nudger
+oral
+orgasim 
+orgasm
+orgies
+orgy
 paedo*
+paki
+palesimian
+pearlnecklace
+pecker
+peckerwood
 pedo*
+pee
+peehole
+penetration
+peni5
 penis*
-*phuc*
-*phuk*
+phonesex
+phu*
+pi55
+picaninny
+piccaninny
+pickaninny
+piker
+pikey
+piky
+pimp
+pimped
+pimper
+pimpjuic
+pimpjuice
+pimpsimp
+pindick
 piss*
+playboy
+playgirl
+pocha
+pocho
+pocketpool
+pohm
+polack
+pom
+pommie
+pommy
+poo
+poon
+poontang
+poop
+pooper
+pooping
+popimp
+porch monkey
+porchmonkey
+porn*
+prostitute
+pu55i
+pu55y
+pube
+pubic
+pubiclice
+pudboy
+puddboy
+puntang
 puss*
+pusy
+quashie
+queef
+quim
+raghead
 rape*
 rapin*
+rapist
+rectum
+reestie
 retard*
-*sex*
-*shit*
-*sh1t*
+rimjob
+rimming
+roundeye
+russki
+russkie
+sandnigger
+scag
+scat
+schlong
+scrotum
+semen
+seppo
+sex*
+sh1t
+shag
+shaggin
+shagging
+shat
+shav
+sheeney
+shemale
+shinola
+shit*
+skank*
+skinflute
+slanteye
+slopehead
 slut*
+smut
+snatch
+snatchpatch
+snig*
+snowback
+snownigger
+sodom*
+spank
+sperm*
+spic
+spick
+spig
+spigotty
+spik
+splittail
+spooge
+spunk
+squaw
+stfu
+stiffy
+strapon
+stroking
 suck*
+suicide
+swallower
+swastika
+taff
+tantra
+tarbaby
+tard
+teat
+terrorist
+teste
+testicle
+testicles
+thicklips
+thirdleg
+threesome
+threeway
+tidd*
+timbernigger
+tinkle
 tit
+titfuck
+titfucker
+titfuckin
+titjob
+titlicker
+titlover
 tits
-turd*
+tittie
+titties
+titty
 tosser*
+towel head
+towelhead
+trailer trash
+trailertrash
+tramp
+trannie
+tranny
+transvestite
+turd*
 twat*
+unfuckable
+upskirt
+urinary
+urinate
+urine
+uterus
 vagin*
+vibrater
+vibrator
 vulv*
 wank*
-*whore*
+wetb*
+whigger
+whiskeydick
+whiskydick
+white nigger
+white trash
+whitenigger
+whitetrash
+whitey
+whore*
+wigger
+willie
+wog
+wop
 wtf
-wtsf
-stfu 
+yellowman
+zigabo
+zipperhead
 
 #whitelist
 -arsenal
+-kumquat
+-rapeseed
+-sextant
+-sextillion
+-sexton
+-sperm whale
+-vulvo

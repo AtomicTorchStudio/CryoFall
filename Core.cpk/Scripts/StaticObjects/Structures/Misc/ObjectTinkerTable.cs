@@ -297,14 +297,21 @@
                 InputItemsHelper.ServerDestroyItems(character, RequiredRepairComponentItems);
             }
 
+            var resultItemProto = (IProtoItemWithDurability)inputItem1.ProtoGameObject;
             var resultDurabilityFraction = SharedCalculateResultDurabilityFraction(inputItem1, inputItem2, character);
 
-            Server.Items.DestroyItem(inputItem2);
+            // break the second input item (it will force spawning ammo in this slot if it's a loaded weapon)
+            ItemDurabilitySystem.ServerModifyDurability(inputItem2, -(double)resultItemProto.DurabilityMax, roundUp: false);
+            if (!inputItem2.IsDestroyed)
+            {
+                // ensure the second input item is destroyed
+                Server.Items.DestroyItem(inputItem2);
+            }
+
             Server.Items.MoveOrSwapItem(inputItem1,
                                         containerOutput,
                                         out _);
 
-            var resultItemProto = (IProtoItemWithDurability)inputItem1.ProtoGameObject;
             var resultItemPrivateState = inputItem1.GetPrivateState<IItemWithDurabilityPrivateState>();
             resultItemPrivateState.DurabilityCurrent = (uint)Math.Round(
                 resultDurabilityFraction * resultItemProto.DurabilityMax,

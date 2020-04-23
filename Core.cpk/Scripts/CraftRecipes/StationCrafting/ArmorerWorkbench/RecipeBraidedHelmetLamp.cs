@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.Items.Equipment.Braided;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.CoreMod.Systems;

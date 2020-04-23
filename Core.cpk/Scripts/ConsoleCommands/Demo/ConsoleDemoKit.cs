@@ -10,6 +10,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
     using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
     using AtomicTorch.CBND.CoreMod.Items.Seeds;
+    using AtomicTorch.CBND.CoreMod.Items.Tools;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Axes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Pickaxes;
@@ -37,6 +38,8 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
             w12ga,
 
             w300,
+
+            wGL, // grenade launcher
 
             wEnergy,
 
@@ -84,6 +87,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemLuger>();
                     CreateItem<ItemRevolver8mm>();
                     CreateItem<ItemMachinePistol>();
+                    CreateItem<ItemRifleBoltAction>();
                     CreateItem<ItemAmmo8mmStandard>();
                     CreateItem<ItemAmmo8mmToxic>();
                     return "Added 8mm arms and ammo.";
@@ -91,6 +95,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                 case KitCategory.w10mm:
                     CreateItem<ItemHandgun10mm>();
                     CreateItem<ItemSubmachinegun10mm>();
+                    CreateItem<ItemRifle10mm>();
                     CreateItem<ItemAmmo10mmStandard>();
                     CreateItem<ItemAmmo10mmArmorPiercing>();
                     CreateItem<ItemAmmo10mmHollowPoint>();
@@ -113,6 +118,14 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemAmmo300Incendiary>();
                     return "Added .300 arms and ammo.";
 
+                case KitCategory.wGL:
+                    CreateItem<ItemGrenadeLauncher>();
+                    CreateItem<ItemGrenadeLauncherMulti>();
+                    CreateItem<ItemAmmoGrenadeHE>();
+                    CreateItem<ItemAmmoGrenadeIncendiary>();
+                    CreateItem<ItemAmmoGrenadeFreeze>();
+                    return "Added grenade launchers and ammo.";
+
                 case KitCategory.wEnergy:
                     CreateItem<ItemLaserPistol>();
                     CreateItem<ItemLaserRifle>();
@@ -127,6 +140,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemKnifeIron>();
                     CreateItem<ItemMaceCopper>();
                     CreateItem<ItemMaceIron>();
+                    CreateItem<ItemMachete>();
                     CreateItem<ItemRapierLaserBlue>();
                     CreateItem<ItemRapierLaserGreen>();
                     CreateItem<ItemRapierLaserPurple>();
@@ -198,6 +212,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Demo
                     CreateItem<ItemPickaxeStone>();
                     CreateItem<ItemPickaxeIron>();
                     CreateItem<ItemPickaxeSteel>();
+                    CreateItem<ItemHatchetPragmium>();
                     CreateItem<ItemToolboxT1>();
                     CreateItem<ItemToolboxT2>();
                     CreateItem<ItemToolboxT3>();

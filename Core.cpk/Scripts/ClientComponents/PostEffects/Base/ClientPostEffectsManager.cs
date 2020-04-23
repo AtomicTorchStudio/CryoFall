@@ -107,7 +107,7 @@
                 // check if there is at least one post-effect which could be rendered
                 foreach (var effect in ActivePostEffects)
                 {
-                    if (effect.IsCanRender)
+                    if (effect.IsCanRenderAndNotSuppressed)
                     {
                         hasAtLeastOnePostEffect = true;
                         break;
@@ -139,7 +139,7 @@
                     var effect = ActivePostEffects[index];
                     try
                     {
-                        if (!effect.IsCanRender)
+                        if (!effect.IsCanRenderAndNotSuppressed)
                         {
                             continue;
                         }

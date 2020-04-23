@@ -10,6 +10,7 @@
     using AtomicTorch.CBND.CoreMod.ClientOptions.General;
     using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerModerator;
     using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat;
@@ -107,10 +108,11 @@
         {
             if (!Api.IsEditor
                 && !ServerOperatorSystem.ClientIsOperator()
+                && !ServerModeratorSystem.ClientIsModerator()
                 && !GeneralOptionDeveloperMode.IsEnabled)
             {
                 // 1) Not Editor.
-                // 2) Player is not a server operator.
+                // 2) Player is not a server operator or moderator.
                 // 3) And developer mode is off.
                 // Close console if opened, never open it.
                 if (Instance != null)

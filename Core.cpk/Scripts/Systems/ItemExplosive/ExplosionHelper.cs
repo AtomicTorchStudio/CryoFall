@@ -5,9 +5,13 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.FX;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Items.Weapons;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Special.Base;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.SoundCue;
@@ -60,7 +64,7 @@
                 explosionSoundEmitter.CustomMaxDistance = (float)explosionPreset.LightWorldSize;
 
                 // add sound cues
-                for (var i = 0; i < 17; i++)
+                for (var i = 0; i < explosionPreset.SoundsCuesNumber; i++)
                 {
                     ClientTimersSystem.AddAction(delaySeconds: i * 0.1,
                                                  () => ClientSoundCueManager.OnSoundEvent(position,
@@ -113,7 +117,7 @@
             if (explosionPreset.LightDuration > 0)
             {
                 var explosionLightSceneObject = Client.Scene.CreateSceneObject("Temp explosion light",
-                                                                          position);
+                                                                               position);
 
                 explosionLightSceneObject.Destroy(delay: explosionPreset.LightDuration);
 
@@ -164,7 +168,7 @@
                                                 var sizeY = MathHelper.Lerp(explosionPreset.BlastwaveSizeFrom.Y,
                                                                             explosionPreset.BlastwaveSizeTo.Y,
                                                                             alpha);
-                                                blastSpriteRenderer.Size = new Size2F(sizeX, sizeY);
+                                                blastSpriteRenderer.Size = (sizeX, sizeY);
                                             });
                     });
             }
@@ -176,7 +180,8 @@
 
         public static void ServerExplode(
             [CanBeNull] ICharacter character,
-            [CanBeNull] IProtoObjectExplosive protoObjectExplosive,
+            [CanBeNull] IProtoExplosive protoExplosive,
+            [CanBeNull] IProtoItemWeapon protoWeapon,
             ExplosionPreset explosionPreset,
             Vector2D epicenterPosition,
             DamageDescription damageDescriptionCharacters,
@@ -186,33 +191,61 @@
             ValidateIsServer();
 
             // schedule explosion charred ground spawning
-            ServerTimersSystem.AddAction(
-                delaySeconds: explosionPreset.SpriteAnimationDuration * 0.5,
-                () =>
-                {
-                    var tilePosition =
-                        (Vector2Ushort)(epicenterPosition - explosionPreset.ProtoObjectCharredGround.Layout.Center);
-
-                    // remove existing charred ground objects at the same tile
-                    foreach (var staticWorldObject in Shared.WrapInTempList(
-                        Server.World.GetTile(tilePosition).StaticObjects).EnumerateAndDispose())
+            var protoObjectCharredGround = explosionPreset.ProtoObjectCharredGround;
+            if (protoObjectCharredGround != null)
+            {
+                ServerTimersSystem.AddAction(
+                    delaySeconds: explosionPreset.SpriteAnimationDuration * 0.5,
+                    () =>
                     {
-                        if (staticWorldObject.ProtoStaticWorldObject is ProtoObjectCharredGround)
+                        var tilePosition = (Vector2Ushort)(epicenterPosition - protoObjectCharredGround.Layout.Center);
+                        var canSpawnCharredGround = true;
+
+                        // remove existing charred ground objects at the same tile
+                        foreach (var staticWorldObject in Shared.WrapInTempList(
+                                                                    Server.World.GetTile(tilePosition).StaticObjects)
+                                                                .EnumerateAndDispose())
                         {
-                            Server.World.DestroyObject(staticWorldObject);
-                        }
-                    }
+                            switch (staticWorldObject.ProtoStaticWorldObject)
+                            {
+                                case ProtoObjectCharredGround _:
+                                    Server.World.DestroyObject(staticWorldObject);
+                                    break;
 
-                    // spawn charred ground
-                    var objectCharredGround =
-                        Server.World.CreateStaticWorldObject(explosionPreset.ProtoObjectCharredGround, tilePosition);
-                    var objectCharredGroundOffset = epicenterPosition - tilePosition.ToVector2D();
-                    if (objectCharredGroundOffset != Vector2D.Zero)
-                    {
-                        ProtoObjectCharredGround.ServerSetWorldOffset(objectCharredGround,
-                                                                      (Vector2F)objectCharredGroundOffset);
-                    }
-                });
+                                case IProtoObjectDeposit _:
+                                    // don't show charred ground over resource deposits (it looks wrong)
+                                    canSpawnCharredGround = false;
+                                    break;
+                            }
+                        }
+
+                        if (canSpawnCharredGround
+                            && PveSystem.ServerIsPvE)
+                        {
+                            var bounds = protoObjectCharredGround.Layout.Bounds;
+                            if (LandClaimSystem.SharedIsLandClaimedByAnyone(
+                                    new RectangleInt(tilePosition, bounds.Size + (1,1))))
+                            {
+                                // ensure that it's not possible to create charred ground in a land claim area in PvE
+                                canSpawnCharredGround = false;
+                            }
+                        }
+
+                        if (canSpawnCharredGround)
+                        {
+                            // spawn charred ground
+                            var objectCharredGround =
+                                Server.World.CreateStaticWorldObject(protoObjectCharredGround,
+                                                                     tilePosition);
+                            var objectCharredGroundOffset = epicenterPosition - tilePosition.ToVector2D();
+                            if (objectCharredGroundOffset != Vector2D.Zero)
+                            {
+                                ProtoObjectCharredGround.ServerSetWorldOffset(objectCharredGround,
+                                                                              (Vector2F)objectCharredGroundOffset);
+                            }
+                        }
+                    });
+            }
 
             // schedule explosion damage
             ServerTimersSystem.AddAction(
@@ -226,10 +259,10 @@
                     var weaponFinalCache = new WeaponFinalCache(character,
                                                                 characterFinalStatsCache,
                                                                 weapon: null,
-                                                                protoWeapon: null,
+                                                                protoWeapon: protoWeapon,
                                                                 protoAmmo: null,
                                                                 damageDescription: damageDescriptionCharacters,
-                                                                protoObjectExplosive: protoObjectExplosive);
+                                                                protoExplosive: protoExplosive);
 
                     // execute explosion
                     executeExplosionCallback(

@@ -15,6 +15,8 @@
 
         public override TimeSpan FreshnessDuration => ExpirationDuration.Unlimited;
 
+        public override bool IsAvailableInCompletionist => false;
+
         public override string ItemUseCaption => ItemUseCaptions.Drink;
 
         public override ushort MaxItemsPerStack => ItemStackSize.Medium;

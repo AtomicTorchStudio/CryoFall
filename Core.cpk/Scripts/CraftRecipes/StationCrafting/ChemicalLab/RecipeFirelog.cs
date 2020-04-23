@@ -20,8 +20,8 @@
 
             inputItems.Add<ItemLogs>(count: 5);
             inputItems.Add<ItemCoal>(count: 2);
-            inputItems.Add<ItemFibers>(count: 10);
-            inputItems.Add<ItemPaper>(count: 10);
+            inputItems.Add<ItemFibers>(count: 5);
+            inputItems.Add<ItemPaper>(count: 5);
 
             outputItems.Add<ItemFirelog>(count: 1);
         }

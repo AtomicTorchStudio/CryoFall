@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
     using AtomicTorch.CBND.CoreMod.Systems.ItemExplosive;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.RaidingProtection;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -61,22 +62,50 @@
 
         public virtual double ServerCalculateDamageCoefByDistance(double distance)
         {
-            distance -= 1.42;
+            var distanceThreshold = 1;
+            if (distance <= distanceThreshold)
+            {
+                return 1;
+            }
+
+            distance -= distanceThreshold;
             distance = Math.Max(0, distance);
-            return 1 - (distance / this.DamageRadius);
+
+            var maxDistance = this.DamageRadius;
+            maxDistance -= distanceThreshold;
+            maxDistance = Math.Max(0, maxDistance);
+
+            return 1 - Math.Min(distance / maxDistance, 1);
         }
 
         public virtual double ServerCalculateTotalDamageByExplosive(
-            IProtoStaticWorldObject targetStaticWorldObjectProto)
+            ICharacter byCharacter,
+            IStaticWorldObject targetStaticWorldObject)
         {
-            var structureExplosiveDefenseCoef = targetStaticWorldObjectProto.StructureExplosiveDefenseCoef;
+            var structureExplosiveDefenseCoef =
+                targetStaticWorldObject.ProtoStaticWorldObject.StructureExplosiveDefenseCoef;
             structureExplosiveDefenseCoef = MathHelper.Clamp(structureExplosiveDefenseCoef, 0, 1);
 
             var explosiveDefensePenetrationCoef = this.StructureDefensePenetrationCoef;
             explosiveDefensePenetrationCoef = MathHelper.Clamp(explosiveDefensePenetrationCoef, 0, 1);
+
+            if (!PveSystem.SharedIsAllowStructureDamage(byCharacter,
+                                                        targetStaticWorldObject,
+                                                        showClientNotification: false))
+            {
+                return 0;
+            }
+
             var damage = this.StructureDamage
                          * (1 - structureExplosiveDefenseCoef * (1 - explosiveDefensePenetrationCoef));
             return damage;
+        }
+
+        public virtual void ServerOnObjectHitByExplosion(
+            IWorldObject worldObject,
+            double damage,
+            WeaponFinalCache weaponCache)
+        {
         }
 
         public void ServerSetup(IStaticWorldObject worldObject, ICharacter deployedByCharacter)
@@ -284,7 +313,8 @@
 
                 ExplosionHelper.ServerExplode(
                     character: character,
-                    protoObjectExplosive: this,
+                    protoExplosive: this,
+                    protoWeapon: null,
                     explosionPreset: this.ExplosionPreset,
                     epicenterPosition: worldObject.TilePosition.ToVector2D() + this.Layout.Center,
                     damageDescriptionCharacters: this.damageDescriptionCharacters,

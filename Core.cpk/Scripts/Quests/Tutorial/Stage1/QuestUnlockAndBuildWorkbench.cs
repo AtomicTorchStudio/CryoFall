@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations;
     using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
 
@@ -15,16 +16,14 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage1;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveTechNode.Require<TechNodeWorkbench>())
-                .Add(RequirementBuildStructure.Require<ObjectWorkbench>());
+            tasks
+                .Add(TaskHaveTechNode.Require<TechNodeWorkbench>())
+                .Add(TaskBuildStructure.Require<ObjectWorkbench>());
 
             prerequisites
-                .Add<QuestBuildABedroll>()
-                .Add<QuestSecureBasicWaterSource>()
-                .Add<QuestCraftATorch>();
+                .Add<QuestBuildABedroll>();
         }
     }
 }

@@ -13,6 +13,9 @@ Technologię już odblokowano
 Scripts/Technologies/Base/Group/TechGroupRequirementLearningPoints@DescriptionFormat:
 Wymagane PT: {0}, (masz tylko: {1}).
 
+Scripts/Technologies/Base/Group/TechGroupRequirementTimeGate@DescriptionFormat:
+Brak dostępu przez {0} po czyszczeniu serwera (poczekaj {1}).
+
 Scripts/Technologies/Base/Node/TechNode@ErrorRequiresUnlockedTechGroup:
 Wymaga odblokowanej technologii: {0}
 
@@ -99,6 +102,12 @@ Bardziej zaawansowane przepisy kulinarne pozwalające gotować nowe potrawy.
 
 Scripts/Technologies/Tier2/Cooking2/TechGroupCooking2@Name:
 Gotowanie 2
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Description:
+Dodaj trochę szyku wokoło siebie.
+
+Scripts/Technologies/Tier2/Decorations/TechGroupDecorations@Name:
+Dekoracje
 
 Scripts/Technologies/Tier2/Defense2/TechGroupDefense2@Description:
 Lepsze technologie ochronne zapewniające lepsze schematy pancerzy.
@@ -192,6 +201,12 @@ Jeszcze bardziej skomplikowane przepisy kulinarne dla prawdziwych koneserów wyk
 
 Scripts/Technologies/Tier3/Cooking3/TechGroupCooking3@Name:
 Gotowanie 3
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Description:
+Jeszcze bardziej upiększ świat wokoło!
+
+Scripts/Technologies/Tier3/Decorations2/TechGroupDecorations2@Name:
+Dekoracje 2
 
 Scripts/Technologies/Tier3/Defense3/TechGroupDefense3@Description:
 Zaawansowane technologie ochronne.

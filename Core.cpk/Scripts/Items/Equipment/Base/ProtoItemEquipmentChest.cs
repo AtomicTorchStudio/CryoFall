@@ -21,9 +21,9 @@
     {
         public sealed override EquipmentType EquipmentType => EquipmentType.Chest;
 
-        public override bool RequireEquipmentTextures => true;
-
         public abstract ObjectMaterial Material { get; }
+
+        public override bool RequireEquipmentTextures => true;
 
         /// <inheritdoc />
         public ReadOnlySoundPreset<CharacterSound> SoundPresetMovementOverride { get; private set; }

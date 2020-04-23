@@ -1,5 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
+    using AtomicTorch.CBND.CoreMod.PlayerTasks;
+
     public class QuestUnlockSkills : ProtoQuest
     {
         public const string TaskUnlockAnyCharacterSkills = "Unlock any skill";
@@ -14,15 +16,15 @@
 
         public override ushort RewardLearningPoints => QuestConstants.TutorialRewardStage2;
 
-        protected override void PrepareQuest(QuestsList prerequisites, RequirementsList requirements)
+        protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks)
         {
-            requirements
-                .Add(RequirementHaveSkills.RequireAny(count: 4,
+            tasks
+                .Add(TaskHaveSkills.RequireAny(count: 4,
                                                       minLevel: 1,
                                                       description: TaskUnlockAnyCharacterSkills));
 
             prerequisites
-                .Add<QuestBuildAPermanentBase>();
+                .Add<QuestCollectHerbsAndCraftMedicine>();
         }
     }
 }

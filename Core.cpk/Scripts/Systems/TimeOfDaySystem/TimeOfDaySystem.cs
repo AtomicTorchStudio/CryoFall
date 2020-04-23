@@ -158,10 +158,10 @@
             }
             else // if client
             {
-                Api.Client.CurrentGame.ConnectionStateChanged += ClientTryRequestTimeOfDayAsync;
-                ClientTryRequestTimeOfDayAsync();
+                Api.Client.CurrentGame.ConnectionStateChanged += Refresh;
+                Refresh();
 
-                void ClientTryRequestTimeOfDayAsync()
+                void Refresh()
                 {
                     if (Api.Client.CurrentGame.ConnectionState == ConnectionState.Connected)
                     {

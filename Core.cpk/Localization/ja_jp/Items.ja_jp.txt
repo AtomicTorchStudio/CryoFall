@@ -76,6 +76,36 @@ Scripts/Items/Ammo/ItemAmmo8mmToxic@Description:
 Scripts/Items/Ammo/ItemAmmo8mmToxic@Name:
 8mm毒素弾
 
+Scripts/Items/Ammo/ItemAmmoArrowIron@Description:
+改良型の鉄の矢。火縄銃ほど威力はありませんが、非常に簡単に作れます。
+
+Scripts/Items/Ammo/ItemAmmoArrowIron@Name:
+鉄の矢
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Description:
+シンプルな石の矢です。これほどシンプルな物はありません。
+
+Scripts/Items/Ammo/ItemAmmoArrowStone@Name:
+石の矢
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Description:
+着弾時にプラグミウム粒子を染み込ませた液体ヘリウムを飛散させ、標的を凍結させる特殊な目的のグレネード。
+
+Scripts/Items/Ammo/ItemAmmoGrenadeFreeze@Name:
+ヘリウムグレネード
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Description:
+標準的な高爆発グレネードで、着弾時小さな範囲にダメージを与えます。
+
+Scripts/Items/Ammo/ItemAmmoGrenadeHE@Name:
+HEグレネード
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Description:
+着弾時に高熱ダメージを与える特殊焼夷グレネード。
+
+Scripts/Items/Ammo/ItemAmmoGrenadeIncendiary@Name:
+焼夷グレネード
+
 Scripts/Items/Ammo/ItemAmmoPaperCartridge@Description:
 一般的な銃器の弾薬。弱い標的に対してのみ適していますが、安価で製造が容易です。
 
@@ -1013,7 +1043,7 @@ Scripts/Items/Generic/ItemExplosives@Description:
 爆発装置の製作に使用する起爆性材料。
 
 Scripts/Items/Generic/ItemExplosives@Name:
-爆薬
+爆発物
 
 Scripts/Items/Generic/ItemFertilizer@ShortDescriptionText:
 `成長速度{0}％向上
@@ -1035,7 +1065,7 @@ Scripts/Items/Generic/ItemFirelog@Description:
 特殊な方法で製造された人工丸太。自然の丸太より何倍も長く燃えます。
 
 Scripts/Items/Generic/ItemFirelog@Name:
-薪
+促成燃料
 
 Scripts/Items/Generic/ItemFlowerBlueSage@Description:
 美しい見た目で、特定の薬を作るのに役立ちます。
@@ -1267,6 +1297,12 @@ Scripts/Items/Generic/ItemPowerCell@Description:
 
 Scripts/Items/Generic/ItemPowerCell@Name:
 パワーセル
+
+Scripts/Items/Generic/ItemPragmiumHeart@Description:
+未知のプラグミウム生命体の奇妙な結晶性器官。
+
+Scripts/Items/Generic/ItemPragmiumHeart@Name:
+プラグミウムの心臓
 
 Scripts/Items/Generic/ItemPreservative@Description:
 食品の保存料。包装した食料に追加でき、より長く保存できるようになります。
@@ -1637,6 +1673,12 @@ Scripts/Items/Medical/ItemHemostatic@Description:
 Scripts/Items/Medical/ItemHemostatic@Name:
 止血剤
 
+Scripts/Items/Medical/ItemHerbBlue@Description:
+複雑な医療レシピの触媒として使用される薬草。毒素が含まれているため、生では摂取しないでください。
+
+Scripts/Items/Medical/ItemHerbBlue@Name:
+ブルーハーブ
+
 Scripts/Items/Medical/ItemHerbGreen@Description:
 独特な治癒力と抗菌性を持つ薬草。そのまま使用できますが、薬にして適切に摂取すればはるかに強力になります。
 
@@ -1874,6 +1916,12 @@ Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Message
 Scripts/Items/Tools/Lights/Base/ProtoItemToolLight@NotificationOutOfFuel_Title:
 燃料切れ
 
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Description:
+この壊れやすいプラグミウムの斧は分子共鳴力学を使用しており、従来の代替品よりもはるかに作業速度が速くなります。
+
+Scripts/Items/Tools/Pickaxes/ItemHatchetPragmium@Name:
+プラグミウムの斧
+
 Scripts/Items/Tools/Pickaxes/ItemPickaxeIron@Description:
 鉄のつるはしは、鉱物を採掘するために使用することができます。石のつるはしよりも速くて丈夫です。
 
@@ -1982,11 +2030,29 @@ Scripts/Items/Weapons/Melee/ItemRapierLaserYellow@Name:
 Scripts/Items/Weapons/Melee/Base/ProtoItemRapierLaser@Description:
 信じられないほど強力な短距離武器。作動するのにエネルギーが必要です。
 
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Description:
+昔からの技術。今でも昔と同じように機能しています。
+
+Scripts/Items/Weapons/Ranged/ItemCrossbow@Name:
+クロスボウ
+
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Description:
 原始的なピストル。弾薬に紙薬莢を使用しています。一度に2発装填され、すぐに発砲することができます。
 
 Scripts/Items/Weapons/Ranged/ItemFlintlockPistol@Name:
 フリントロックピストル
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Description:
+シングルグレネードランチャーは、着弾時に爆発し、大ダメージを与える特別に設計された大口径弾を発射します。
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncher@Name:
+グレネードランチャー
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Description:
+リボルバータイプのグレネードランチャー。アサルトミッションや重装甲の敵との戦闘に最適。
+
+Scripts/Items/Weapons/Ranged/ItemGrenadeLauncherMulti@Name:
+マルチグレネードランチャー
 
 Scripts/Items/Weapons/Ranged/ItemHandgun10mm@Description:
 10mm弾用に開発された拳銃。
@@ -2048,11 +2114,23 @@ Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Description:
 Scripts/Items/Weapons/Ranged/ItemRevolver8mm@Name:
 リボルバー
 
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Description:
+10mm弾用に開発された軽量オートマチックスナイパーライフル。
+
+Scripts/Items/Weapons/Ranged/ItemRifle10mm@Name:
+ライトライフル
+
 Scripts/Items/Weapons/Ranged/ItemRifle300@Description:
 ハイパワーの30口径弾用に開発された対重装甲用ライフル。
 
 Scripts/Items/Weapons/Ranged/ItemRifle300@Name:
 ヘビーライフル
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Description:
+一般的に使用されている8mm弾用に開発された旧式のボルトアクションライフル。
+
+Scripts/Items/Weapons/Ranged/ItemRifleBoltAction@Name:
+ボルトアクションライフル
 
 Scripts/Items/Weapons/Ranged/ItemShotgunDoublebarreled@Description:
 旧式のショットガン。12ゲージの弾薬を使用します。

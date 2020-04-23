@@ -26,11 +26,20 @@
 
         private readonly VehiclePublicState vehiclePublicState;
 
-        private bool isPrimaryTabSelected;
+        private bool isFuelContainerActive;
 
-        public ViewModelWindowObjectVehicle(IDynamicWorldObject vehicle, FrameworkElement vehicleExtraControl)
+        public ViewModelWindowObjectVehicle(
+            IDynamicWorldObject vehicle,
+            FrameworkElement vehicleExtraControl,
+            BaseViewModel vehicleExtraControlViewModel)
         {
             this.VehicleExtraControl = vehicleExtraControl;
+            this.VehicleExtraControlViewModel = vehicleExtraControlViewModel;
+            if (vehicleExtraControl != null)
+            {
+                vehicleExtraControl.DataContext = vehicleExtraControlViewModel;
+            }
+
             var currentCharacter = Api.Client.Characters.CurrentPlayerCharacter;
             this.ContainerPlayerInventory = (IClientItemsContainer)currentCharacter.SharedGetPlayerContainerInventory();
 
@@ -53,6 +62,8 @@
                     IsContainerTitleVisible = false
                 };
 
+            this.ViewModelItemsContainerExchange.IsActive = false;
+
             var isOwner = WorldObjectOwnersSystem.SharedIsOwner(
                 ClientCurrentCharacterHelper.Character,
                 vehicle);
@@ -65,11 +76,12 @@
                                                      ownersList => WorldObjectOwnersSystem.ClientSetOwners(
                                                          vehicle,
                                                          ownersList),
-                                                     title: CoreStrings.ObjectOwnersList_Title + ":");
+                                                     title: CoreStrings.ObjectOwnersList_Title2);
 
             this.RefreshCanRepair();
 
-            this.IsPrimaryTabSelected = true;
+            this.IsFuelContainerActive = true;
+            this.ViewModelItemsContainerExchange.IsActive = true;
         }
 
         public string CannotRepairErrorMessage { get; private set; }
@@ -87,20 +99,20 @@
 
         public bool IsCanRepair { get; private set; }
 
-        public bool IsPrimaryTabSelected
+        public bool IsFuelContainerActive
         {
-            get => this.isPrimaryTabSelected;
+            get => this.isFuelContainerActive;
             set
             {
-                if (this.isPrimaryTabSelected == value)
+                if (this.isFuelContainerActive == value)
                 {
                     return;
                 }
 
-                this.isPrimaryTabSelected = value;
+                this.isFuelContainerActive = value;
                 this.NotifyThisPropertyChanged();
 
-                if (this.isPrimaryTabSelected)
+                if (this.isFuelContainerActive)
                 {
                     var currentCharacter = Api.Client.Characters.CurrentPlayerCharacter;
                     ClientContainersExchangeManager.Register(
@@ -138,10 +150,12 @@
 
         public ViewModelVehicleEnergy ViewModelVehicleEnergy { get; }
 
+        private BaseViewModel VehicleExtraControlViewModel { get; }
+
         protected override void DisposeViewModel()
         {
+            this.IsFuelContainerActive = false;
             base.DisposeViewModel();
-            this.IsPrimaryTabSelected = false;
         }
 
         private static void ExecuteCommandEnterVehicle()
