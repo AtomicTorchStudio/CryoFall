@@ -267,7 +267,8 @@
                 // validate no static physics objects there except destroyed walls and opened doors
                 .Add(new ConstructionTileRequirements.Validator(
                          ConstructionTileRequirements.ErrorNoFreeSpace,
-                         c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
+                         c => c.Tile.ProtoTile.Kind == TileKind.Solid
+                              && !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
                                   c.Tile,
                                   t => t.PhysicsBody.IsStatic
                                        // allow destroyed walls physics in the tile

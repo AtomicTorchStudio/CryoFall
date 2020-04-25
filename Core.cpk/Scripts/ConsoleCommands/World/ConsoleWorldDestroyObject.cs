@@ -6,13 +6,14 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ConsoleWorldDestroyObject : BaseConsoleCommand
     {
         public override string Description =>
             @"Destroys the closest world object in the player character position or neighbor tiles.
-              You can use this to destroy any buildings or objects such as resources.";
+              You can use this to destroy any creatures, buildings or objects such as resources.";
 
         public override ConsoleCommandKinds Kind => ConsoleCommandKinds.ServerOperator;
 
@@ -35,6 +36,24 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.World
 
         private static string DestroyFirstObject(Tile tile)
         {
+            ICharacter characterNpcToDestroy = null;
+            foreach (var dynamicObject in tile.EightNeighborTiles.ConcatOne(tile).Reverse()
+                                              .SelectMany(t => t.DynamicObjects))
+            {
+                if (dynamicObject is ICharacter character
+                    && character.IsNpc)
+                {
+                    // found a mob
+                    characterNpcToDestroy = character;
+                }
+            }
+
+            if (characterNpcToDestroy != null)
+            {
+                Server.World.DestroyObject(characterNpcToDestroy);
+                return characterNpcToDestroy + " destroyed";
+            }
+
             var staticWorldObjectToDestroy = tile.StaticObjects.LastOrDefault();
             if (staticWorldObjectToDestroy == null)
             {

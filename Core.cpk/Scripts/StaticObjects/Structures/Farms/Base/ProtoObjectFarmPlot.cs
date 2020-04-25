@@ -147,7 +147,7 @@
                 .Add(ConstructionTileRequirements.ValidatorNotRestrictedArea)
                 .Add(ConstructionTileRequirements.ValidatorNoNpcsAround)
                 .Add(ConstructionTileRequirements.ValidatorNoPlayersNearby)
-                .Add(LandClaimSystem.ValidatorIsOwnedLand)
+                .Add(LandClaimSystem.ValidatorIsOwnedLandInPvEOnly)
                 .Add(LandClaimSystem.ValidatorNoRaid);
 
             this.PrepareFarmPlotConstructionConfig(tileRequirements, build, repair);

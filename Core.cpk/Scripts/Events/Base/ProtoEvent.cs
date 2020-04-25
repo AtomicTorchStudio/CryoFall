@@ -58,21 +58,7 @@
 
         public IReadOnlyList<BaseTriggerConfig> Triggers { get; private set; }
 
-        public void ServerForceCreateAndStart()
-        {
-            var activeEvent = Server.World.CreateLogicObject(this);
-            Logger.Important("Event created: " + activeEvent);
-
-            try
-            {
-                this.ServerOnEventStarted(activeEvent);
-            }
-            catch (Exception ex)
-            {
-                Logger.Exception(ex, "Error when starting an event. The event will be destroyed: " + activeEvent);
-                Server.World.DestroyObject(activeEvent);
-            }
-        }
+        public virtual bool ServerIsTriggerAllowed(ProtoTrigger trigger) => true;
 
         public sealed override void ServerOnDestroy(ILogicObject gameObject)
         {
@@ -83,10 +69,25 @@
 
         public abstract string SharedGetProgressText(ILogicObject activeEvent);
 
+        void IProtoEvent.ServerForceCreateAndStart()
+        {
+            this.ServerOnEventStartRequested(null);
+        }
+
         protected static TProtoTrigger GetTrigger<TProtoTrigger>()
             where TProtoTrigger : ProtoTrigger, new()
         {
             return Api.GetProtoEntity<TProtoTrigger>();
+        }
+
+        protected static Vector2Ushort SharedSelectRandomPositionInsideTheCircle(
+            Vector2Ushort circlePosition,
+            ushort circleRadius)
+        {
+            var offset = circleRadius * RandomHelper.NextDouble();
+            var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
+            return new Vector2Ushort((ushort)(circlePosition.X + offset * Math.Cos(angle)),
+                                     (ushort)(circlePosition.Y + offset * Math.Sin(angle)));
         }
 
         protected sealed override void PrepareProto()
@@ -105,6 +106,22 @@
                 triggerConfig.ServerRegister(
                     callback: () => this.TriggerCallback(triggerConfig),
                     $"Event.{this.GetType().Name}");
+            }
+        }
+
+        protected void ServerCreateAndStartEventInstance()
+        {
+            var activeEvent = Server.World.CreateLogicObject(this);
+            Logger.Important("Event created: " + activeEvent);
+
+            try
+            {
+                this.ServerOnEventStarted(activeEvent);
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex, "Error when starting an event. The event will be destroyed: " + activeEvent);
+                Server.World.DestroyObject(activeEvent);
             }
         }
 
@@ -139,13 +156,48 @@
 
         protected abstract void ServerInitializeEvent(ServerInitializeData data);
 
-        public virtual bool ServerIsTriggerAllowed(ProtoTrigger trigger) => true;
-
         protected abstract void ServerOnEventDestroyed(ILogicObject activeEvent);
 
         protected abstract void ServerOnEventStarted(ILogicObject activeEvent);
 
+        protected virtual void ServerOnEventStartRequested(BaseTriggerConfig triggerConfig)
+        {
+            this.ServerCreateAndStartEventInstance();
+        }
+
         protected abstract void ServerPrepareEvent(Triggers triggers);
+
+        protected IServerZone ServerSelectRandomZoneWithEvenDistribution(IReadOnlyList<IServerZone> list)
+        {
+            if (list.Count == 0)
+            {
+                return null;
+            }
+
+            // let's perform a weighted pick
+            // each zone gets a priority according to its number of positions (cells)
+            long totalPositionsCount = 0;
+            foreach (var z in list)
+            {
+                totalPositionsCount += z.PositionsCount;
+            }
+
+            var value = (long)(RandomHelper.NextDouble() * totalPositionsCount);
+            var accumulator = 0;
+
+            for (var index = 0; index < list.Count - 1; index++)
+            {
+                var zone = list[index];
+                accumulator += zone.PositionsCount;
+
+                if (value < accumulator)
+                {
+                    return zone;
+                }
+            }
+
+            return list[list.Count - 1];
+        }
 
         protected virtual void ServerTryFinishEvent(ILogicObject activeEvent)
         {
@@ -188,17 +240,7 @@
                 return;
             }
 
-            this.ServerForceCreateAndStart();
-        }
-
-        protected static Vector2Ushort SharedSelectRandomPositionInsideTheCircle(
-            Vector2Ushort circlePosition,
-            ushort circleRadius)
-        {
-            var offset = circleRadius * RandomHelper.NextDouble();
-            var angle = RandomHelper.NextDouble() * MathConstants.DoublePI;
-            return new Vector2Ushort((ushort)(circlePosition.X + offset * Math.Cos(angle)),
-                                     (ushort)(circlePosition.Y + offset * Math.Sin(angle)));
+            this.ServerOnEventStartRequested(triggerConfig);
         }
     }
 }

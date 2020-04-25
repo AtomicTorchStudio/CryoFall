@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public class ObjectLootCrateMedical : ProtoObjectLootContainer
@@ -27,6 +28,9 @@
 
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {
+            DropItemConditionDelegate T3Specialized = ServerTechTimeGateHelper.IsAvailableT3Specialized;
+            DropItemConditionDelegate T4Specialized = ServerTechTimeGateHelper.IsAvailableT4Specialized;
+
             // common loot
             droplist.Add(nestedList: new DropItemsList(outputs: 2, outputsRandom: 0)
                                      // resources
@@ -49,9 +53,10 @@
                                      .Add<ItemPsiPreExposure>(count: 1,           weight: 1 / 60.0)
                                      .Add<ItemHeatPreExposure>(count: 1,          weight: 1 / 60.0)
                                      // top tier
-                                     .Add<ItemStimpack>(count: 1,       weight: 1 / 40.0)
                                      .Add<ItemMedkit>(count: 1,         weight: 1 / 50.0)
-                                     .Add<ItemPeredozin>(count: 1,      weight: 1 / 50.0)
+                                     // don't provide Stimpack until T3 reached (even though it's T4)
+                                     .Add<ItemStimpack>(count: 1,       weight: 1 / 40.0, condition: T3Specialized)
+                                     .Add<ItemPeredozin>(count: 1,      weight: 1 / 50.0, condition: T4Specialized)
                                      .Add<ItemNeuralEnhancer>(count: 1, weight: 1 / 150.0));
 
             // extra loot from skill

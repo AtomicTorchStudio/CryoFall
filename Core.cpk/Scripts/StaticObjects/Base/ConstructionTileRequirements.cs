@@ -260,7 +260,7 @@
                                 return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
                             });
 
-        public static readonly IConstructionTileRequirementsReadOnly DefaultForPlayerStructuresOwnedLand;
+        public static readonly IConstructionTileRequirementsReadOnly DefaultForPlayerStructures;
 
         public static readonly IConstructionTileRequirementsReadOnly DefaultForPlayerStructuresOwnedOrFreeLand;
 
@@ -305,13 +305,13 @@
                                                         .Add(LandClaimSystem.ValidatorIsOwnedOrFreeLand)
                                                         .Add(LandClaimSystem.ValidatorNoRaid);
 
-            DefaultForPlayerStructuresOwnedLand = DefaultForStaticObjects
-                                                  .Clone()
-                                                  .Add(ValidatorNotRestrictedArea)
-                                                  .Add(ValidatorNoNpcsAround)
-                                                  .Add(ValidatorNoPlayersNearby)
-                                                  .Add(LandClaimSystem.ValidatorIsOwnedLand)
-                                                  .Add(LandClaimSystem.ValidatorNoRaid);
+            DefaultForPlayerStructures = DefaultForStaticObjects
+                                         .Clone()
+                                         .Add(ValidatorNotRestrictedArea)
+                                         .Add(ValidatorNoNpcsAround)
+                                         .Add(ValidatorNoPlayersNearby)
+                                         .Add(LandClaimSystem.ValidatorIsOwnedLandInPvEOnly)
+                                         .Add(LandClaimSystem.ValidatorNoRaid);
         }
 
         public ConstructionTileRequirements(ConstructionTileRequirements toClone)
@@ -509,6 +509,8 @@
         {
             public readonly DelegateCheck Function;
 
+            private readonly bool cacheTheErrorMessageFuncResult;
+
             private readonly Func<string> errorMessageFunc;
 
             private string errorMessage;
@@ -520,13 +522,33 @@
                 this.errorMessageFunc = null;
             }
 
-            public Validator(Func<string> errorMessageFunc, DelegateCheck function)
+            public Validator(
+                Func<string> errorMessageFunc,
+                DelegateCheck function,
+                bool cacheTheErrorMessageFuncResult = true)
             {
                 this.Function = function;
                 this.errorMessageFunc = errorMessageFunc;
+                this.cacheTheErrorMessageFuncResult = cacheTheErrorMessageFuncResult;
             }
 
-            public string ErrorMessage => this.errorMessage ??= this.errorMessageFunc();
+            public string ErrorMessage
+            {
+                get
+                {
+                    if (this.errorMessage != null)
+                    {
+                        return this.errorMessage;
+                    }
+
+                    if (!this.cacheTheErrorMessageFuncResult)
+                    {
+                        return this.errorMessageFunc();
+                    }
+
+                    return this.errorMessage = this.errorMessageFunc();
+                }
+            }
 
             public override string ToString()
             {

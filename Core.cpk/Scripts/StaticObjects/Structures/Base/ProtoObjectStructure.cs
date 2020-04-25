@@ -365,7 +365,7 @@
             var configUpgrade = new ConstructionUpgradeConfig();
 
             tileRequirements.Clear()
-                            .Add(ConstructionTileRequirements.DefaultForPlayerStructuresOwnedLand);
+                            .Add(ConstructionTileRequirements.DefaultForPlayerStructures);
 
             this.PrepareConstructionConfig(
                 tileRequirements,

@@ -75,6 +75,12 @@
                 }
             }
 
+            if (this.ServerIsSameEventExist())
+            {
+                Logger.Error("The same event is already running, cannot start a new one: " + this);
+                return false;
+            }
+
             return true;
         }
 

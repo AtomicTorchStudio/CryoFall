@@ -1,10 +1,13 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Events.Base
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.GameApi.Data.Logic;
     using AtomicTorch.CBND.GameApi.Data.State;
+    using AtomicTorch.CBND.GameApi.Data.Zones;
+    using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesServer;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -21,10 +24,53 @@
         where TEventPublicState : EventWithAreaPublicState, new()
         where TEventClientState : BaseClientState, new()
     {
+        protected bool ServerCheckNoEventsNearby(Vector2Ushort position, double areaRadius)
+        {
+            var position2D = position.ToVector2D();
+            using var tempEvents =
+                Api.Shared.WrapInTempList(
+                    Server.World.GetGameObjectsOfProto<ILogicObject, IProtoEventWithArea>());
+
+            foreach (var activeEvent in tempEvents.AsList())
+            {
+                var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
+                var distance = (publicState.AreaCirclePosition.ToVector2D() - position2D).Length;
+                distance -= publicState.AreaCircleRadius;
+                distance -= areaRadius;
+                if (distance <= 0)
+                {
+                    // this event is too close
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        protected bool ServerCheckNoEventsOfTypeInZone<TProtoEvent>(IServerZone zoneInstance)
+            where TProtoEvent : class, IProtoEventWithArea
+        {
+            using var tempEvents =
+                Api.Shared.WrapInTempList(
+                    Server.World.GetGameObjectsOfProto<ILogicObject, TProtoEvent>());
+
+            return ServerCheckNoEventsInZone(zoneInstance, tempEvents.AsList());
+        }
+
+        protected bool ServerCheckNoSameEventsInZone(IServerZone zoneInstance)
+        {
+            using var tempEvents =
+                Api.Shared.WrapInTempList(
+                    Server.World.GetGameObjectsOfProto<ILogicObject, IProtoEvent>(this));
+
+            return ServerCheckNoEventsInZone(zoneInstance, tempEvents.AsList());
+        }
+
         protected virtual void ServerCreateEventArea(
             ILogicObject activeEvent,
             ushort circleRadius,
-            out Vector2Ushort circlePosition)
+            out Vector2Ushort circlePosition,
+            out Vector2Ushort eventPosition)
         {
             var stopwatch = Stopwatch.StartNew();
             var world = Server.World;
@@ -33,7 +79,7 @@
             var attemptsRemains = attemptsMax;
             do
             {
-                var eventPosition = this.ServerPickEventPosition(activeEvent);
+                eventPosition = this.ServerPickEventPosition(activeEvent);
 
                 // a valid spawn position found, try to create a search area circle which is including this location
                 if (!this.ServerCreateEventSearchArea(world, eventPosition, circleRadius, out circlePosition))
@@ -65,6 +111,15 @@
                                                              maxAttempts: 100);
         }
 
+        protected bool ServerIsSameEventExist()
+        {
+            using var tempEvents =
+                Api.Shared.WrapInTempList(
+                    Server.World.GetGameObjectsOfProto<ILogicObject, IProtoEvent>(this));
+
+            return tempEvents.Count > 0;
+        }
+
         protected abstract bool ServerIsValidEventPosition(Vector2Ushort tilePosition);
 
         protected override void ServerOnEventStarted(ILogicObject activeEvent)
@@ -73,8 +128,10 @@
 
             this.ServerCreateEventArea(activeEvent,
                                        this.AreaRadius,
-                                       out var circlePosition);
+                                       out var circlePosition,
+                                       out var originalEventPosition);
 
+            publicState.AreaEventOriginalPosition = originalEventPosition;
             publicState.AreaCirclePosition = circlePosition;
             publicState.AreaCircleRadius = this.AreaRadius;
 
@@ -84,5 +141,20 @@
         protected abstract void ServerOnEventWithAreaStarted(ILogicObject activeEvent);
 
         protected abstract Vector2Ushort ServerPickEventPosition(ILogicObject activeEvent);
+
+        private static bool ServerCheckNoEventsInZone(IServerZone zoneInstance, List<ILogicObject> events)
+        {
+            foreach (var activeEvent in events)
+            {
+                var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
+                if (zoneInstance.IsContainsPosition(publicState.AreaEventOriginalPosition))
+                {
+                    // this event is in the same biome
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

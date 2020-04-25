@@ -87,6 +87,7 @@
                     }
 
                     ClientChatDisclaimerConfirmationHelper.OpenDisclaimerDialogIfNecessary();
+                    this.RefreshTextBlockPressKeyToOpenVisibility();
                 }
                 else
                 {
@@ -133,13 +134,22 @@
 
         public void RefreshState()
         {
-            this.tabItemsHolder.Visibility =
-                ClientChatDisclaimerConfirmationHelper.GetIsNeedToDisplayDisclaimerForCurrentServer(out _)
-                    ? Visibility.Hidden
-                    : Visibility.Visible;
-
-            if (ClientChatDisclaimerConfirmationHelper.IsChatAllowedForCurrentServer)
+            if (!this.isLoaded)
             {
+                return;
+            }
+
+            this.textBlockPressKeyToOpenChat.Visibility = Visibility.Collapsed;
+            
+            var isNeedToDisplayDisclaimerForCurrentServer = ClientChatDisclaimerConfirmationHelper.GetIsNeedToDisplayDisclaimerForCurrentServer(out _);
+            this.tabItemsHolder.Visibility = isNeedToDisplayDisclaimerForCurrentServer
+                                                 ? Visibility.Hidden
+                                                 : Visibility.Visible;
+
+            if (ClientChatDisclaimerConfirmationHelper.IsChatAllowedForCurrentServer
+                || isNeedToDisplayDisclaimerForCurrentServer)
+            {
+                // display the chat panel when chat is allowed or when player didn't approved/disallowed chat usage yet
                 this.Visibility = Visibility.Visible;
                 return;
             }
@@ -215,8 +225,7 @@
             this.tabsScrollViewer = visualRoot.GetByName<ScrollViewer>("TabsScrollViewer");
             this.tabItemsHolder = visualRoot.GetByName<ContentControl>("TabItemsHolder");
             this.textBlockPressKeyToOpenChat = visualRoot.GetByName<TextBlock>("TextBlockPressKeyToOpen");
-            this.textBlockPressKeyToOpenChat.Visibility = Visibility.Collapsed;
-
+            
             this.IsActive = false;
             Instance = this;
             

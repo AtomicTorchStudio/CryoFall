@@ -50,8 +50,14 @@
             {
                 return;
             }
-
+            
             VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
+
+            // restore stamina so the spectator can "run"
+            var stats = character.GetPublicState<PlayerCharacterPublicState>()
+                                 .CurrentStatsExtended;
+            stats.SharedSetStaminaCurrent(stats.StaminaMax);
+
             // the order of calls is important here
             Server.Characters.SetSpectatorMode(character, isSpectator: false, reinitilize: false);
             Server.Characters.SetProto(character, GetProtoEntity<PlayerCharacterSpectator>());

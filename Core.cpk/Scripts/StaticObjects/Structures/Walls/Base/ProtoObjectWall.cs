@@ -113,6 +113,8 @@
             ConstructionUpgradeConfig upgrade,
             out ProtoStructureCategory category)
         {
+            tileRequirements.Add(LandClaimSystem.ValidatorIsOwnedLand);
+
             this.PrepareConstructionConfig(build,
                                            repair,
                                            upgrade,

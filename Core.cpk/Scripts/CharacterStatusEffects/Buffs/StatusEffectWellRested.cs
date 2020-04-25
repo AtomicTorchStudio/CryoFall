@@ -31,6 +31,8 @@
 
         private static IProtoStatusEffect instance;
 
+        public override bool IsRemovedOnRespawn => false;
+
         public override string Description =>
             "You've been resting for a while, so you find it easier to learn new things or polish your skills. (This is a daily bonus that accumulates while you are offline for a sufficiently long time; it is used to provide special bonuses as it depletes.)";
 

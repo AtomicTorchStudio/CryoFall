@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public class ObjectLootCrateHightech : ProtoObjectLootContainer
@@ -30,6 +31,9 @@
 
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {
+            DropItemConditionDelegate T3Specialized = ServerTechTimeGateHelper.IsAvailableT3Specialized;
+            DropItemConditionDelegate T4Specialized = ServerTechTimeGateHelper.IsAvailableT4Specialized;
+
             // common loot
             droplist.Add(nestedList: new DropItemsList(outputs: 1, outputsRandom: 1)
                                      // resources
@@ -54,8 +58,11 @@
                                      .Add<ItemPowerCell>(count: 1,         countRandom: 1, weight: 1 / 10.0)
                                      // equipment
                                      .Add<ItemRespirator>(count: 1, weight: 1 / 25.0)
-                                     .Add<ItemHazmatSuit>(count: 1, weight: 1 / 50.0)
-                                     .Add<ItemApartSuit>(count: 1,  weight: 1 / 100.0)
+                                     // ensure both hazmat and A.P.A.R.T. are available only after reaching T3 timegate
+                                     // otherwise it would be too easy to loot radtowns by acquiring these early
+                                     // it's intentional that A.P.A.R.T. (T4) is available starting from T3 here
+                                     .Add<ItemHazmatSuit>(count: 1, weight: 1 / 50.0,  condition: T3Specialized)
+                                     .Add<ItemApartSuit>(count: 1,  weight: 1 / 100.0, condition: T3Specialized)
                                      // devices
                                      .Add<ItemPowerBankStandard>(count: 1, weight: 1 / 50.0)
                                      .Add<ItemPowerBankLarge>(count: 1,    weight: 1 / 100.0));

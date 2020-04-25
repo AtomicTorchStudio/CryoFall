@@ -128,8 +128,6 @@
 
         public static double ClientLearningPointsGainMultiplier { get; private set; }
 
-        public static bool ClientPvpTechTimeGateIsReceived { get; private set; }
-
         // Please note that the time gate is always specified in seconds.
         public static double PvpTechTimeGameTier3Basic { get; private set; }
 
@@ -171,7 +169,6 @@
             PvpTechTimeGameTier4Basic = timeGameTier4Basic;
             PvpTechTimeGameTier4Specialized = timeGameTier4Specialized;
 
-            ClientPvpTechTimeGateIsReceived = true;
             Api.SafeInvoke(ClientPvpTechTimeGameReceivedHandler);
         }
     }

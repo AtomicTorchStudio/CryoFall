@@ -189,8 +189,7 @@
         private static void SharedRebuildAllNodes()
         {
             if (Api.IsClient
-                && (!PveSystem.ClientIsPveFlagReceived
-                    || !TechConstants.ClientPvpTechTimeGateIsReceived))
+                && !PveSystem.ClientIsPveFlagReceived)
             {
                 AvailableTechGroups = new TechGroup[0];
                 return;

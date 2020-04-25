@@ -12,6 +12,7 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Droplists;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
+    using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public class ObjectLootCrateMilitary : ProtoObjectLootContainer
@@ -33,6 +34,9 @@
 
         protected override void PrepareLootDroplist(DropItemsList droplist)
         {
+            DropItemConditionDelegate T3Specialized = ServerTechTimeGateHelper.IsAvailableT3Specialized;
+            DropItemConditionDelegate T4Specialized = ServerTechTimeGateHelper.IsAvailableT4Specialized;
+
             // common loot
             droplist.Add(nestedList:
                          new DropItemsList(outputs: 2, outputsRandom: 1)
@@ -65,18 +69,18 @@
                              .Add<ItemRevolver8mm>(weight: 1 / 1.0)
                              .Add<ItemLuger>(weight: 1 / 1.0)
                              .Add<ItemMachinePistol>(weight: 1 / 1.0)
-                             .Add<ItemHandgun10mm>(weight: 1 / 2.0)
                              .Add<ItemShotgunDoublebarreled>(weight: 1 / 1.0)
-                             .Add<ItemSubmachinegun10mm>(weight: 1 / 4.0)
-                             .Add<ItemShotgunMilitary>(weight: 1 / 4.0)
-                             .Add<ItemSteppenHawk>(weight: 1 / 10.0)
-                             // equipment
-                             .Add<ItemMilitaryHelmet>(weight: 1 / 4.0)
-                             .Add<ItemMilitaryJacket>(weight: 1 / 4.0)
-                             .Add<ItemMilitaryPants>(weight: 1 / 4.0)
-                             .Add<ItemAssaultHelmet>(weight: 1 / 10.0)
-                             .Add<ItemAssaultJacket>(weight: 1 / 10.0)
-                             .Add<ItemAssaultPants>(weight: 1 / 10.0)
+                             .Add<ItemHandgun10mm>(weight: 1 / 2.0,       condition: T3Specialized)
+                             .Add<ItemSubmachinegun10mm>(weight: 1 / 4.0, condition: T3Specialized)
+                             .Add<ItemShotgunMilitary>(weight: 1 / 4.0,   condition: T3Specialized)
+                             .Add<ItemSteppenHawk>(weight: 1 / 10.0,      condition: T4Specialized)
+                             // equipment - require at least reaching T3 timegate to start spawning it here
+                             .Add<ItemMilitaryHelmet>(weight: 1 / 4.0, condition: T3Specialized)
+                             .Add<ItemMilitaryJacket>(weight: 1 / 4.0, condition: T3Specialized)
+                             .Add<ItemMilitaryPants>(weight: 1 / 4.0,  condition: T3Specialized)
+                             .Add<ItemAssaultHelmet>(weight: 1 / 10.0, condition: T3Specialized)
+                             .Add<ItemAssaultJacket>(weight: 1 / 10.0, condition: T3Specialized)
+                             .Add<ItemAssaultPants>(weight: 1 / 10.0,  condition: T3Specialized)
                              // misc stuff for soldiers use :)
                              .Add<ItemCigarNormal>(count: 3,        countRandom: 2, weight: 1 / 5.0)
                              .Add<ItemCigarPremium>(count: 3,       countRandom: 2, weight: 1 / 5.0)

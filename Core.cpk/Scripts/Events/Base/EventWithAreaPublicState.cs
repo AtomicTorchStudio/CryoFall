@@ -10,5 +10,7 @@
 
         [SyncToClient]
         public ushort AreaCircleRadius { get; set; }
+
+        public Vector2Ushort AreaEventOriginalPosition { get; set; }
     }
 }

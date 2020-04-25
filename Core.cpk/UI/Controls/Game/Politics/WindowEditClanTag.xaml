@@ -8,7 +8,7 @@
                                 mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
                                 xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
     <core:GameWindow x:Name="GameWindow"
-                     Width="250"
+                     Width="NaN"
                      CloseByEscapeKey="True"
                      FocusOnControl="{Binding ElementName=TextBoxServerHost}">
         <Grid x:Name="LayoutRoot">
@@ -23,6 +23,7 @@
                        FontWeight="Bold"
                        FontSize="13"
                        Foreground="{StaticResource WindowTitleForeground}"
+                       TextWrapping="Wrap"
                        HorizontalAlignment="Center" 
                        Margin="0,0,0,5" />
 
@@ -41,7 +42,7 @@
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" MinWidth="10" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 

@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.NightVision;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
+    using AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Data.State;
@@ -61,16 +62,26 @@
                                      skeletonComponents,
                                      isPreview);
 
-            if (!isPreview)
+            if (isPreview
+                || character is null
+                || !character.IsCurrentClientCharacter)
             {
-                ClientRefreshNightVisionState(item);
+                return;
             }
+
+            // don't enable the light automatically if it's not night
+            var isLightRequired = TimeOfDaySystem.IsNight;
+
+            var clientState = GetClientState(item);
+            clientState.IsNightVisionActive = isLightRequired;
+
+            ClientRefreshNightVisionState(item);
         }
 
         public void ClientToggleLight(IItem item)
         {
             var character = item.Container.OwnerAsCharacter;
-            if (character == null
+            if (character is null
                 || !character.IsCurrentClientCharacter)
             {
                 return;
@@ -116,7 +127,7 @@
             }
 
             var character = item.Container.OwnerAsCharacter;
-            if (character == null
+            if (character is null
                 || !character.IsCurrentClientCharacter)
             {
                 return;
@@ -151,8 +162,7 @@
 
         public class ClientState : BaseClientState
         {
-            // by default the night vision is active
-            public bool IsNightVisionActive { get; set; } = true;
+            public bool IsNightVisionActive { get; set; }
         }
     }
 }

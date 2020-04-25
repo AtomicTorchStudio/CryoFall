@@ -2,6 +2,7 @@
 #Thanks to Avakyn for working on it!
 
 #blacklist
+
 abortion
 alla
 allah
@@ -19,8 +20,7 @@ ass blaster
 ass clown
 ass clown
 ass cowboy
-ass fuck
-ass fucker
+ass fuck*
 ass hat
 ass hore
 ass jockey
@@ -42,8 +42,6 @@ assclown
 assclown
 asscowboy
 asses
-assfuck
-assfucker
 asshat
 asshole*
 asshore
@@ -60,7 +58,6 @@ asspirate
 asswhore
 asswipe
 b1tch*
-badfuck
 ball licker
 ball sack
 balllicker
@@ -112,8 +109,6 @@ buggery
 bulldike
 bulldyke
 bullshit
-bumblefuck
-bumfuck
 bunga
 butch babes
 butch dike
@@ -123,9 +118,7 @@ butchdike
 butchdyke
 butt bang
 butt face
-butt fuck
-butt fucker
-butt fuckers
+butt fuck*
 butt man
 butt munch
 butt muncher
@@ -134,9 +127,6 @@ butt plug
 butt stain
 buttbang
 buttface
-buttfuck
-buttfucker
-buttfuckers
 buttman
 buttmunch
 buttmuncher
@@ -200,8 +190,7 @@ cunillingus
 cunnie
 cunnilingus
 cunny
-cunt*
-cybersex
+*cunt*
 dago
 darkie
 darky
@@ -223,10 +212,9 @@ dong
 dripdick
 dumb ass
 dumb bitch
-dumb fuck
+dumb fuck*
 dumbass
 dumbbitch
-dumbfuck
 dyke
 easyslut
 eatballs
@@ -240,14 +228,9 @@ ejaculation
 enema
 erection
 excrement
-facefucker
 faeces
 fag*
-fannyfucker
-fastfuck
 fatass
-fatfuck
-fatfucker
 felatio 
 felch
 felcher
@@ -257,52 +240,29 @@ feltch
 feltcher
 feltching
 fetish
-finger fuck 
-finger fucked 
-finger fucker 
-finger fuckers
-finger fucking 
-fingerfuck 
-fingerfucked 
-fingerfucker 
-fingerfuckers
-fingerfucking 
-fist fuck
-fist fucked 
-fist fucker 
-fist fucking 
+finger fuck*
+fist fuck*
 fister
-fistfuck
-fistfucked 
-fistfucker 
-fistfucking 
 fisting
 flasher
 fondle
 foot action
-foot fuck
-foot fucker
+foot fuck*
 foot licker
 footaction
-footfuck
-footfucker
 footlicker
 foreskin
 fornicate
 foursome
-freakfuck
-freakyfucker
-freefuck
-fuck*
+*fuck*
 fugly
-fuk
+*fuk*
 gang bang
 gang banger
 gangbang
 gangbanger
 gator bait
 gatorbait
-gaysex
 genital
 ginzo
 gipp
@@ -412,12 +372,6 @@ molestor
 moneyshot
 mooncricket
 motha*
-motherfuck
-motherfucked
-motherfucker
-motherfuckin
-motherfucking
-motherfuckings
 muffdive
 muffdiver
 muffindiver
@@ -464,7 +418,6 @@ peehole
 penetration
 peni5
 penis*
-phonesex
 phu*
 pi55
 picaninny
@@ -473,12 +426,7 @@ pickaninny
 piker
 pikey
 piky
-pimp
-pimped
-pimper
-pimpjuic
-pimpjuice
-pimpsimp
+pimp*
 pindick
 piss*
 playboy
@@ -534,8 +482,8 @@ schlong
 scrotum
 semen
 seppo
-sex*
-sh1t
+*sex*
+*sh1t*
 shag
 shaggin
 shagging
@@ -544,7 +492,7 @@ shav
 sheeney
 shemale
 shinola
-shit*
+*shit*
 skank*
 skinflute
 slanteye
@@ -593,9 +541,6 @@ tidd*
 timbernigger
 tinkle
 tit
-titfuck
-titfucker
-titfuckin
 titjob
 titlicker
 titlover
@@ -614,7 +559,6 @@ tranny
 transvestite
 turd*
 twat*
-unfuckable
 upskirt
 urinary
 urinate
@@ -647,9 +591,8 @@ zipperhead
 #whitelist
 -arsenal
 -kumquat
+-pimple*
 -rapeseed
--sextant
--sextillion
--sexton
+-sext*
 -sperm whale
 -vulvo

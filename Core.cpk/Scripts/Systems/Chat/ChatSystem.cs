@@ -34,6 +34,8 @@
 
         public const string PlayerWentOnlineChatMessageFormat = "{0} joined the game";
 
+        private static readonly bool ServerIsTradeChatRoomEnabled;
+
         private static readonly Dictionary<ICharacter, List<ILogicObject>> ServerPrivateChatRoomsCache
             = new Dictionary<ICharacter, List<ILogicObject>>();
 
@@ -42,6 +44,16 @@
         private static ILogicObject sharedLocalChatRoomHolder;
 
         private static ILogicObject sharedTradeChatRoomHolder;
+
+        static ChatSystem()
+        {
+            ServerIsTradeChatRoomEnabled
+                = ServerRates.Get("IsTradeChatRoomEnabled",
+                                  defaultValue: 1,
+                                  description: @"Is ""Trade"" chat room available on this server?
+                                                 You can set it to 0 to disable it")
+                  > 0;
+        }
 
         public delegate void ClientReceivedMessageDelegate(BaseChatRoom chatRoom, in ChatEntry chatEntry);
 
@@ -502,7 +514,11 @@
             var character = ServerRemoteContext.Character;
 
             ServerAddChatRoomToPlayerScope(character, sharedGlobalChatRoomHolder);
-            ServerAddChatRoomToPlayerScope(character, sharedTradeChatRoomHolder);
+            if (ServerIsTradeChatRoomEnabled)
+            {
+                ServerAddChatRoomToPlayerScope(character, sharedTradeChatRoomHolder);
+            }
+
             ServerAddChatRoomToPlayerScope(character, sharedLocalChatRoomHolder);
 
             if (ServerPrivateChatRoomsCache.TryGetValue(character, out var characterPrivateChatRooms))

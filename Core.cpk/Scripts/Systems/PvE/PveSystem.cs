@@ -7,7 +7,8 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures;
-    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Plants;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Vegetation.Trees;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -63,8 +64,9 @@
                                           description:
                                           @"PvP / PvE mode switch.
                               Set it to 1 to make this server PvE-only. Otherwise it will default to PvP.
-                              Please note: this changes game mechanics dramatically.
-                              Do NOT change it after the server world is created as it might lead to unexpected consequences.")
+                              Please note: this changes some of the game mechanics.
+                              It's better not to change it after the server world is created
+                              as it might lead to unexpected consequences. But usually it's fine.")
                           > 0;
         }
 
@@ -178,9 +180,10 @@
 
             var protoWorldObject = targetObject.ProtoWorldObject;
             var isStructure = protoWorldObject is IProtoObjectStructure;
-            var isVegetation = protoWorldObject is IProtoObjectVegetation;
+            var isProtectedVegetation = protoWorldObject is IProtoObjectPlant
+                                        || protoWorldObject is IProtoObjectTree;
             if (!isStructure
-                && !isVegetation)
+                && !isProtectedVegetation)
             {
                 // can damage such objects everywhere
                 return true;
@@ -200,7 +203,7 @@
 
             if (LandClaimSystem.SharedIsObjectInsideOwnedOrFreeArea(targetObject, character))
             {
-                if (isVegetation)
+                if (isProtectedVegetation)
                 {
                     // allow damaging vegetation in the owned land claim area
                     return true;
@@ -310,12 +313,22 @@
                 return true;
             }
 
-            if (IsClient && writeToLog)
+            // if we're here, this is PvE and the object is inside another players' land claim area
+            // allow interacting with anything except player-built structures and plants
+            switch (worldObject.ProtoStaticWorldObject)
             {
-                ClientShowNotificationActionForbidden();
-            }
+                case IProtoObjectStructure _:
+                case IProtoObjectPlant _:
+                    if (IsClient && writeToLog)
+                    {
+                        ClientShowNotificationActionForbidden();
+                    }
 
-            return false;
+                    return false;
+
+                default:
+                    return true;
+            }
         }
 
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]

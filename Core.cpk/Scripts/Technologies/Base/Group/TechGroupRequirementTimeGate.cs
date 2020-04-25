@@ -32,8 +32,8 @@
 
         protected override bool IsSatisfied(CharacterContext context, out string errorMessage)
         {
-            var deltaTime = this.CalculateTimeRemains();
-            var isSatisfied = deltaTime <= 0;
+            var timeRemains = this.CalculateTimeRemains();
+            var isSatisfied = timeRemains <= 0;
             if (isSatisfied)
             {
                 errorMessage = null;
@@ -44,7 +44,7 @@
                                          ClientTimeFormatHelper.FormatTimeDuration(
                                              TimeSpan.FromSeconds(this.DurationSeconds),
                                              trimRemainder: true),
-                                         ClientTimeFormatHelper.FormatTimeDuration(deltaTime));
+                                         ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
             return false;
         }
     }

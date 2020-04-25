@@ -294,7 +294,7 @@
 
             if (IsServer
                 && result
-                && damageApplied > 5 / ServerBossDifficultyCoef)
+                && damageApplied > 1 / ServerBossDifficultyCoef)
             {
                 // record the last time a significant damage is dealt
                 var privateState = GetPrivateState((ICharacter)targetObject);

@@ -12,7 +12,6 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Data.Zones;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -65,15 +64,48 @@
             return false;
         }
 
+        protected override void ServerOnEventStartRequested(BaseTriggerConfig triggerConfig)
+        {
+            // create up to 2 simultaneous event instances if there are many online players
+            var eventsCount = Api.Server.Characters.OnlinePlayersCount >= 100
+                                  ? 2
+                                  : 1;
+
+            for (var i = 0; i < eventsCount; i++)
+            {
+                this.ServerCreateAndStartEventInstance();
+            }
+        }
+
         protected override Vector2Ushort ServerPickEventPosition(ILogicObject activeEvent)
         {
-            var zoneInstance = ServerSpawnZones.Value.TakeByRandom();
+            // pick up a zone which doesn't contain an active event of the same type
+            var attempts = 50;
+            IServerZone zoneInstance;
+            do
+            {
+                zoneInstance = this.ServerSelectRandomZoneWithEvenDistribution(ServerSpawnZones.Value);
+                if (this.ServerCheckNoSameEventsInZone(zoneInstance))
+                {
+                    break;
+                }
 
-            var attempts = 1000;
+                zoneInstance = null;
+            }
+            while (--attempts > 0);
+
+            if (zoneInstance is null)
+            {
+                throw new Exception("Unable to pick an event position");
+            }
+
+            // pick up a valid position inside the zone
+            attempts = 1000;
             do
             {
                 var result = zoneInstance.GetRandomPosition(RandomHelper.Instance);
-                if (this.ServerIsValidEventPosition(result))
+                if (this.ServerIsValidEventPosition(result)
+                    && this.ServerCheckNoEventsNearby(result, this.AreaRadius * 3.5))
                 {
                     return result;
                 }

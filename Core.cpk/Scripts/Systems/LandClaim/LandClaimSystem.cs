@@ -183,6 +183,36 @@
                                              out _);
                 });
 
+        public static readonly ConstructionTileRequirements.Validator ValidatorIsOwnedLandInPvEOnly
+            = new ConstructionTileRequirements.Validator(
+                () => PveSystem.SharedIsPve(false)
+                          ? ErrorCannotBuild_RequiresOwnedArea
+                          : ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed,
+                cacheTheErrorMessageFuncResult: false,
+                function: context =>
+                {
+                    var forCharacter = context.CharacterBuilder;
+                    if (forCharacter == null)
+                    {
+                        return true;
+                    }
+
+                    if (CreativeModeSystem.SharedIsInCreativeMode(forCharacter))
+                    {
+                        return true;
+                    }
+
+                    if (!PveSystem.SharedIsPve(false))
+                    {
+                        // in PvP only check whether the land is not claimed by another player
+                        return ValidatorIsOwnedOrFreeLand.Function.Invoke(context);
+                    }
+
+                    return SharedIsOwnedLand(context.Tile.Position,
+                                             forCharacter,
+                                             out _);
+                });
+
         public static readonly ConstructionTileRequirements.Validator ValidatorNoRaid
             = new ConstructionTileRequirements.Validator(
                 ErrorCannotBuild_RaidUnderWay,
@@ -1592,7 +1622,8 @@
             }
 
             // verify full coverage of all object tiles by any land claim area
-            if (bounds.Width == 1 && bounds.Height == 1)
+            if (bounds.Width == 1
+                && bounds.Height == 1)
             {
                 return true;
             }

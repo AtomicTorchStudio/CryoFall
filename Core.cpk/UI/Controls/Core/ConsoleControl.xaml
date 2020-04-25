@@ -107,7 +107,7 @@
                     <TextBox Grid.Column="1"
                              x:Name="TextBoxConsoleInput"
                              Padding="0,5"
-                             Margin="-1,0,0,0"
+                             Margin="-3,0,0,0"
                              Style="{StaticResource ConsoleLogTextBoxStyle}"
                              Text="testConsoleCommand"
                              Background="Transparent"
