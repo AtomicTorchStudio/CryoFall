@@ -117,15 +117,18 @@
 
         public static double SharedGetTileMoveSpeedMultiplier(in Tile tile)
         {
+            var moveSpeedMultiplier = ((ProtoTile)tile.ProtoTile).CharacterMoveSpeedMultiplier;
+
             foreach (var staticWorldObject in tile.StaticObjects)
             {
-                if (staticWorldObject.ProtoGameObject is IProtoObjectFloor protoFloor)
+                if (staticWorldObject.ProtoGameObject is IProtoObjectMovementSurface protoObjectMovementSurface
+                    && moveSpeedMultiplier < protoObjectMovementSurface.CharacterMoveSpeedMultiplier)
                 {
-                    return protoFloor.CharacterMoveSpeedMultiplier;
+                    moveSpeedMultiplier = protoObjectMovementSurface.CharacterMoveSpeedMultiplier;
                 }
             }
 
-            return ((ProtoTile)tile.ProtoTile).CharacterMoveSpeedMultiplier;
+            return moveSpeedMultiplier;
         }
 
         public virtual bool ClientIsBlendingWith(ProtoTile protoTile)

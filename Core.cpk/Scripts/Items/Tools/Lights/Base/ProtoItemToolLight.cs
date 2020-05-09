@@ -249,7 +249,7 @@
 
                 if (!data.IsByPlayer)
                 {
-                    // it's automatical selection (player just logged in)
+                    // it's automatic selection (player just logged in)
                     if (!TimeOfDaySystem.ClientIsInitialized)
                     {
                         Logger.Warning(nameof(TimeOfDaySystem) + " is not initialized - cannot enable a hand lamp");

@@ -12,6 +12,7 @@
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontFamily" Value="{StaticResource CondensedFontFamily}" />
         <Setter Property="Foreground" Value="{StaticResource BrushColor6}" />
         <Setter Property="noesis:Text.StrokeThickness" Value="1.5" />
         <Setter Property="noesis:Text.Stroke" Value="#AA000000" />

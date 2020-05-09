@@ -30,8 +30,9 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                 "DamageExplosivesToCharactersMultiplier",
                 defaultValue: 1.0,
                 @"All damage dealt by bombs to characters is multiplied on this rate.
-                  You can set it to 0 to disable bombs damage to characters.
-                  Applies only on PvP servers - on PvE it will be always 0.");
+                  You can set it to 0 to disable bomb/grenade damage to characters.
+                  Please note that in PvE it's always not possible to damage other characters
+                  unless the duel mode is explicitly enabled by players.");
 
             DamageExplosivesToStructuresMultiplier = ServerRates.Get(
                 "DamageExplosivesToStructuresMultiplier",

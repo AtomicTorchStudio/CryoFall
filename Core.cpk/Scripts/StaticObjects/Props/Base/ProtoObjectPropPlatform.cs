@@ -2,14 +2,20 @@
 {
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors;
     using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.CBND.GameApi.ServicesServer;
 
-    public abstract class ProtoObjectPropPlatform : ProtoObjectProp, IProtoObjectWithGroundSoundMaterial
+    public abstract class ProtoObjectPropPlatform : ProtoObjectProp, IProtoObjectMovementSurface
     {
+        /// <summary>
+        /// Same speed boost as for the road tiles by default.
+        /// </summary>
+        public virtual double CharacterMoveSpeedMultiplier => 1.15;
+
         /// <summary>
         /// Gets sound material of ground (used for movement footsteps and similar sounds).
         /// </summary>

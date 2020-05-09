@@ -65,21 +65,7 @@
                 throw new Exception("Not a gatherable resource: " + worldObject);
             }
 
-            if (!protoGatherable.SharedIsCanGather(staticWorldObject))
-            {
-                Logger.Warning("Cannot gather now: " + worldObject, character);
-                if (Api.IsClient)
-                {
-                    CannotInteractMessageDisplay.ShowOn(worldObject, NotificationNothingToHarvestYet);
-                    worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
-                               .PlaySound(ObjectSound.InteractFail);
-                }
-
-                return null;
-            }
-
             var durationSeconds = protoGatherable.DurationGatheringSeconds;
-
             var multiplier = protoGatherable.GetGatheringSpeedMultiplier(staticWorldObject, character);
             durationSeconds /= multiplier;
 
@@ -105,6 +91,24 @@
             if (!worldObject.ProtoWorldObject.SharedCanInteract(request.Character, worldObject, true))
             {
                 throw new Exception("Cannot interact with " + worldObject);
+            }
+
+            if (!(worldObject.ProtoGameObject is IProtoObjectGatherable protoGatherable))
+            {
+                throw new Exception("Not a gatherable resource: " + worldObject);
+            }
+
+            if (!protoGatherable.SharedIsCanGather((IStaticWorldObject)worldObject))
+            {
+                Logger.Warning("Cannot gather now: " + worldObject, request.Character);
+                if (Api.IsClient)
+                {
+                    CannotInteractMessageDisplay.ShowOn(worldObject, NotificationNothingToHarvestYet);
+                    worldObject.ProtoWorldObject.SharedGetObjectSoundPreset()
+                               .PlaySound(ObjectSound.InteractFail);
+                }
+
+                throw new Exception("Cannot gather now: " + worldObject);
             }
         }
     }

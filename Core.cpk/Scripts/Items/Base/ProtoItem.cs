@@ -158,6 +158,10 @@
             this.ClientItemUseStart(new ClientItemData(item));
         }
 
+        public virtual void ClientOnItemContainerSlotChanged(IItem item)
+        {
+        }
+
         public void ClientOnItemDrop(IItem item, IItemsContainer itemsContainer = null)
         {
             if (itemsContainer == null)

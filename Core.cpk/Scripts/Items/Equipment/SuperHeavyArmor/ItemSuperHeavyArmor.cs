@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.Characters;
+    using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.ClientComponents.PostEffects.NightVision;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Stats;
@@ -45,6 +46,11 @@
             return false;
         }
 
+        public override void ClientOnItemContainerSlotChanged(IItem item)
+        {
+            ClientAutoLightToggle(item);
+        }
+
         public void ClientOnRefilled(IItem item, bool isCurrentHotbarItem)
         {
         }
@@ -62,20 +68,12 @@
                                      skeletonComponents,
                                      isPreview);
 
-            if (isPreview
-                || character is null
-                || !character.IsCurrentClientCharacter)
+            if (!isPreview
+                && item.IsInitialized
+                && (character?.IsCurrentClientCharacter ?? false))
             {
-                return;
+                ClientRefreshNightVisionState(item);
             }
-
-            // don't enable the light automatically if it's not night
-            var isLightRequired = TimeOfDaySystem.IsNight;
-
-            var clientState = GetClientState(item);
-            clientState.IsNightVisionActive = isLightRequired;
-
-            ClientRefreshNightVisionState(item);
         }
 
         public void ClientToggleLight(IItem item)
@@ -95,6 +93,12 @@
             clientState.IsNightVisionActive = !clientState.IsNightVisionActive;
 
             ClientRefreshNightVisionState(item);
+        }
+
+        protected override void ClientInitialize(ClientInitializeData data)
+        {
+            base.ClientInitialize(data);
+            ClientAutoLightToggle(data.GameObject);
         }
 
         protected override void PrepareDefense(DefenseDescription defense)
@@ -117,6 +121,38 @@
 
             // movement speed
             effects.AddPercent(this, StatName.MoveSpeed, -10);
+        }
+
+        private static void ClientAutoLightToggle(IItem item)
+        {
+            if (!item.IsInitialized)
+            {
+                return;
+            }
+
+            var character = item.Container.OwnerAsCharacter;
+            var clientState = GetClientState(item);
+
+            if (character is null
+                || !character.IsCurrentClientCharacter
+                || item.Container != character.SharedGetPlayerContainerEquipment())
+            {
+                clientState.IsNightVisionActive = false;
+                return;
+            }
+
+            // the item is put into the player equipment container
+            // enable the light automatically during the night
+            var isLightRequired = TimeOfDaySystem.IsNight;
+
+            if (clientState.IsNightVisionActive == isLightRequired)
+            {
+                return;
+            }
+
+            clientState.IsNightVisionActive = isLightRequired;
+            // active state changed - invalidate skeleton renderer (so it will be rebuilt)
+            character.ClientInvalidateSkeletonRenderer();
         }
 
         private static void ClientRefreshNightVisionState(IItem item)

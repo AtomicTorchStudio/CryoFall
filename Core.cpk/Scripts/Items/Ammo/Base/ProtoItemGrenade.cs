@@ -205,7 +205,8 @@
                 weaponFinalCache: weaponFinalCache,
                 damageOnlyDynamicObjects: false,
                 isDamageThroughObstacles: false,
-                callbackCalculateDamageCoefByDistance: CalcDamageCoefByDistance,
+                callbackCalculateDamageCoefByDistanceForStaticObjects: CalcDamageCoefByDistance,
+                callbackCalculateDamageCoefByDistanceForDynamicObjects: CalcDamageCoefByDistance,
                 collisionGroup: CollisionGroups.HitboxRanged);
 
             double CalcDamageCoefByDistance(double distance)

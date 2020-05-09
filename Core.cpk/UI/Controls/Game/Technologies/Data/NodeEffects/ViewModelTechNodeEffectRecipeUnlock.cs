@@ -1,9 +1,11 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Technologies;
+    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.GameEngine.Common.Extensions;
 
     public class ViewModelTechNodeEffectRecipeUnlock : BaseViewModelTechNodeEffect
@@ -17,6 +19,21 @@
             this.effect = effect;
         }
 
+        public IReadOnlyList<IProtoItem> RequiredProtoItems
+        {
+            get
+            {
+                var items = this.effect.Recipe.InputItems;
+                var array = new IProtoItem[items.Count];
+                for (var index = 0; index < items.Count; index++)
+                {
+                    array[index] = items[index].ProtoItem;
+                }
+
+                return array;
+            }
+        }
+
         public string StationTitle
         {
             get
@@ -26,20 +43,25 @@
                     return null;
                 }
 
-                var result = GetStationTitleInternal(recipeForStation);
-                var isHandCrafting = this.effect.Recipe is Recipe.RecipeForHandCrafting;
-                if (!isHandCrafting)
-                {
-                    return result;
-                }
+                return "(" + CreateText() + ")";
 
-                // prepend handcrafting title
-                if (string.IsNullOrEmpty(result))
+                string CreateText()
                 {
-                    return TitleHandCrafting;
-                }
+                    var result = GetStationTitleInternal(recipeForStation);
+                    var isHandCrafting = this.effect.Recipe is Recipe.RecipeForHandCrafting;
+                    if (!isHandCrafting)
+                    {
+                        return result;
+                    }
 
-                return TitleHandCrafting + ", " + result;
+                    // prepend handcrafting title
+                    if (string.IsNullOrEmpty(result))
+                    {
+                        return TitleHandCrafting;
+                    }
+
+                    return TitleHandCrafting + ", " + result;
+                }
             }
         }
 

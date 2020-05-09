@@ -26,7 +26,25 @@
 
         public override string Name => "Resonance bomb";
 
-        public override double ServerCalculateDamageCoefByDistance(double distance)
+        public override double ServerCalculateDamageCoefByDistanceForDynamicObjects(double distance)
+        {
+            var distanceThreshold = 1;
+            if (distance <= distanceThreshold)
+            {
+                return 1;
+            }
+
+            distance -= distanceThreshold;
+            distance = Math.Max(0, distance);
+
+            var maxDistance = DamageRadiusDynamicObjectsOnly;
+            maxDistance -= distanceThreshold;
+            maxDistance = Math.Max(0, maxDistance);
+
+            return 1 - Math.Min(distance / maxDistance, 1);
+        }
+
+        public override double ServerCalculateDamageCoefByDistanceForStaticObjects(double distance)
         {
             var tileDistance = (int)distance;
             if (tileDistance <= DamageRadiusFullDamage)
@@ -137,27 +155,9 @@
                 damageDistanceDynamicObjectsOnly: DamageRadiusDynamicObjectsOnly,
                 weaponFinalCache: weaponFinalCache,
                 callbackCalculateDamageCoefByDistanceForStaticObjects:
-                this.ServerCalculateDamageCoefByDistance,
+                this.ServerCalculateDamageCoefByDistanceForStaticObjects,
                 callbackCalculateDamageCoefByDistanceForDynamicObjects:
-                ServerCalculateDamageCoefByDistanceForDynamicObjects);
-        }
-
-        private static double ServerCalculateDamageCoefByDistanceForDynamicObjects(double distance)
-        {
-            var distanceThreshold = 1;
-            if (distance <= distanceThreshold)
-            {
-                return 1;
-            }
-
-            distance -= distanceThreshold;
-            distance = Math.Max(0, distance);
-
-            var maxDistance = DamageRadiusDynamicObjectsOnly;
-            maxDistance -= distanceThreshold;
-            maxDistance = Math.Max(0, maxDistance);
-
-            return 1 - Math.Min(distance / maxDistance, 1);
+                this.ServerCalculateDamageCoefByDistanceForDynamicObjects);
         }
     }
 }

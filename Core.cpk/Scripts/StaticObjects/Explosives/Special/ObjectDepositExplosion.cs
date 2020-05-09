@@ -7,7 +7,7 @@
 
     public class ObjectDepositExplosion : ProtoObjectExplosive
     {
-        public override double DamageRadius => 6;
+        public override double DamageRadius => 2;
 
         public override ITextureResource DefaultTexture
             => this.ExplosionPreset.SpriteAtlasResources[0].Chunk(6, 0);
@@ -50,8 +50,9 @@
             out double damageValue,
             out double defencePenetrationCoef)
         {
-            damageValue = 100_000;
-            defencePenetrationCoef = 1;
+            // similar to the Modern bomb
+            damageValue = 12_000;
+            defencePenetrationCoef = 0.5;
         }
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)

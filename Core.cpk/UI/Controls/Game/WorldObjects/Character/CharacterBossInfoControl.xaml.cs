@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character
 {
+    using System.Windows;
     using System.Windows.Controls;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Character.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
@@ -18,6 +19,10 @@
 
         protected override void OnLoaded()
         {
+            VisualStateManager.GoToElementState(this.GetByName<Grid>("LayoutRoot"),
+                                                "Collapsed",
+                                                useTransitions: false);
+
             this.DataContext = this.viewModel = new ViewModelCharacterBossInfoControl(this.character);
             ClientUpdateHelper.UpdateCallback += this.Update;
         }

@@ -20,6 +20,8 @@
     {
         public const string ProgressTextFormat = "Progress: {0}/{1}";
 
+        public override bool ConsolidateNotifications => true;
+
         public abstract double MinDistanceBetweenSpawnedObjects { get; }
 
         public override double ServerUpdateIntervalSeconds => 1;

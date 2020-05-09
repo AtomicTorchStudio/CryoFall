@@ -50,6 +50,12 @@
 
         public abstract TimeSpan EventDuration { get; }
 
+        public virtual TimeSpan EventStartPostponeDurationFrom { get; }
+            = TimeSpan.FromMinutes(30);
+
+        public virtual TimeSpan EventStartPostponeDurationTo { get; }
+            = TimeSpan.FromMinutes(60);
+
         public virtual ITextureResource Icon { get; }
 
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
@@ -58,7 +64,12 @@
 
         public IReadOnlyList<BaseTriggerConfig> Triggers { get; private set; }
 
-        public virtual bool ServerIsTriggerAllowed(ProtoTrigger trigger) => true;
+        public abstract bool ConsolidateNotifications { get; }
+
+        public virtual bool ServerIsTriggerAllowed(ProtoTrigger trigger)
+        {
+            return true;
+        }
 
         public sealed override void ServerOnDestroy(ILogicObject gameObject)
         {
@@ -104,12 +115,15 @@
             foreach (var triggerConfig in this.Triggers)
             {
                 triggerConfig.ServerRegister(
-                    callback: () => this.TriggerCallback(triggerConfig),
+                    callback: () => this.ServerEventTriggerCallback(triggerConfig),
                     $"Event.{this.GetType().Name}");
             }
+
+            Server.World.WorldBoundsChanged += this.ServerWorldChangedHandler;
+            this.ServerWorldChangedHandler();
         }
 
-        protected void ServerCreateAndStartEventInstance()
+        protected bool ServerCreateAndStartEventInstance()
         {
             var activeEvent = Server.World.CreateLogicObject(this);
             Logger.Important("Event created: " + activeEvent);
@@ -117,12 +131,15 @@
             try
             {
                 this.ServerOnEventStarted(activeEvent);
+                return true;
             }
             catch (Exception ex)
             {
                 Logger.Exception(ex, "Error when starting an event. The event will be destroyed: " + activeEvent);
                 Server.World.DestroyObject(activeEvent);
             }
+
+            return false;
         }
 
         protected sealed override void ServerInitialize(ServerInitializeData data)
@@ -227,7 +244,11 @@
             this.ServerTryFinishEvent(data.GameObject);
         }
 
-        private void TriggerCallback(BaseTriggerConfig triggerConfig)
+        protected virtual void ServerWorldChangedHandler()
+        {
+        }
+
+        private void ServerEventTriggerCallback(BaseTriggerConfig triggerConfig)
         {
             if (Api.IsEditor)
             {
@@ -235,12 +256,39 @@
                 return;
             }
 
-            if (!this.ServerIsTriggerAllowed(triggerConfig.Trigger))
+            if (this.ServerIsTriggerAllowed(triggerConfig.Trigger))
+            {
+                this.ServerOnEventStartRequested(triggerConfig);
+                return;
+            }
+
+            if (!(triggerConfig.Trigger is TriggerTimeInterval triggerTimeInterval))
             {
                 return;
             }
 
-            this.ServerOnEventStartRequested(triggerConfig);
+            // try to postpone the event
+            double postponeDuration;
+            {
+                var postponeDurationFrom = this.EventStartPostponeDurationFrom.TotalSeconds;
+                if (postponeDurationFrom <= 0)
+                {
+                    return;
+                }
+
+                var postponeDurationTo = this.EventStartPostponeDurationTo.TotalSeconds;
+                if (postponeDurationTo <= postponeDurationFrom)
+                {
+                    postponeDurationTo = postponeDurationFrom;
+                }
+
+                postponeDuration = postponeDurationFrom
+                                   + RandomHelper.NextDouble() * (postponeDurationTo - postponeDurationFrom);
+            }
+
+            triggerTimeInterval.ApplyPostpone(triggerConfig,
+                                              postponeDuration);
+            Logger.Important($"Event start postponed on {TimeSpan.FromSeconds(postponeDuration)} - {this}");
         }
     }
 }

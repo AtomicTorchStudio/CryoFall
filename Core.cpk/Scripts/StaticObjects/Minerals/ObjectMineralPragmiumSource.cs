@@ -166,7 +166,10 @@
             }
         }
 
-        public bool ServerIsPsiSourceActive(IWorldObject worldObject) => true;
+        public bool ServerIsPsiSourceActive(IWorldObject worldObject)
+        {
+            return true;
+        }
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
@@ -298,6 +301,30 @@
         {
             base.PrepareTileRequirements(tileRequirements);
             tileRequirements.Add(ConstructionTileRequirements.ValidatorNotRestrictedAreaEvenForServer);
+        }
+
+        protected override void ServerInitialize(ServerInitializeData data)
+        {
+            base.ServerInitialize(data);
+
+            if (!data.IsFirstTimeInit)
+            {
+                return;
+            }
+
+            var worldObject = data.GameObject;
+            ServerTimersSystem.AddAction(
+                1,
+                () =>
+                {
+                    if (worldObject.IsDestroyed)
+                    {
+                        return;
+                    }
+
+                    ServerTrySpawnNodes(worldObject);
+                    ServerTrySpawnMobs(worldObject);
+                });
         }
 
         protected override void ServerOnStaticObjectZeroStructurePoints(
@@ -436,7 +463,7 @@
                 return false;
             }
 
-            // make this node to despawn automatically
+            // make this node to despawn automatically when there is no pragmium source nearby
             ObjectMineralPragmiumNode.ServerRestartDestroyTimer(
                 ObjectMineralPragmiumNode.GetPrivateState(node));
             return true;

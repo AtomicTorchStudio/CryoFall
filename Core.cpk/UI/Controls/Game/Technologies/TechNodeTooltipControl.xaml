@@ -11,7 +11,8 @@
     d:DataContext="{d:DesignInstance data:ViewModelTechNode, IsDesignTimeCreatable=True}"
     MaxWidth="300"
     MinWidth="120"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:technologies="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Technologies">
     <base:BaseUserControl.Resources>
         <ResourceDictionary>
 
@@ -58,16 +59,13 @@
                         <TextBlock Text="{Binding Title}"
                                    Style="{StaticResource RecipeNameTextStyle}" />
 
-                        <StackPanel Orientation="Horizontal"
-                                    Visibility="{Binding VisibilityStationTitle}">
-                            <TextBlock Text="("
-                                       Style="{StaticResource RecipeStationNameTextStyle}" />
-                            <TextBlock Text="{Binding StationTitle}"
-                                       Style="{StaticResource RecipeStationNameTextStyle}"
-                                       TextAlignment="Center" />
-                            <TextBlock Text=")"
-                                       Style="{StaticResource RecipeStationNameTextStyle}" />
-                        </StackPanel>
+                        <TextBlock Visibility="{Binding VisibilityStationTitle}"
+                                   Text="{Binding StationTitle}"
+                                   Style="{StaticResource RecipeStationNameTextStyle}" />
+
+                        <technologies:TechRequiredProtoItemsControl
+                            TechNode="{Binding Path=DataContext.TechNode, RelativeSource={RelativeSource AncestorType={x:Type technologies:TechNodeTooltipControl}}}"
+                            RequiredProtoItems="{Binding RequiredProtoItems}" />
                     </StackPanel>
                 </Grid>
             </DataTemplate>
@@ -79,10 +77,18 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Control Template="{StaticResource IconControlTemplate}" />
-                    <TextBlock Grid.Column="1"
-                               Text="{Binding Title}"
-                               Style="{StaticResource RecipeNameTextStyle}"
-                               Margin="5,0,0,0" />
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Vertical"
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Title}"
+                                   Style="{StaticResource RecipeNameTextStyle}" />
+
+                        <technologies:TechRequiredProtoItemsControl
+                            TechNode="{Binding Path=DataContext.TechNode, RelativeSource={RelativeSource AncestorType={x:Type technologies:TechNodeTooltipControl}}}"
+                            RequiredProtoItems="{Binding RequiredProtoItems}" />
+                    </StackPanel>
                 </Grid>
             </DataTemplate>
 
@@ -107,10 +113,18 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Control Template="{StaticResource IconControlTemplate}" />
-                    <TextBlock Grid.Column="1"
-                               Text="{Binding Title}"
-                               Style="{StaticResource RecipeNameTextStyle}"
-                               Margin="5,0,0,0" />
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Vertical"
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Title}"
+                                   Style="{StaticResource RecipeNameTextStyle}" />
+
+                        <technologies:TechRequiredProtoItemsControl
+                            TechNode="{Binding Path=DataContext.TechNode, RelativeSource={RelativeSource AncestorType={x:Type technologies:TechNodeTooltipControl}}}"
+                            RequiredProtoItems="{Binding RequiredProtoItems}" />
+                    </StackPanel>
                 </Grid>
             </DataTemplate>
 

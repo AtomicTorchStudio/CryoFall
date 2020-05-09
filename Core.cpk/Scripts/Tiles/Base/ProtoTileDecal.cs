@@ -42,6 +42,12 @@
             bool requiresCompleteProtoTileCoverage = false,
             IReadOnlyList<ProtoTileGroundTexture> requiredGroundTextures = null)
         {
+            if (size.X > ScriptingConstants.MaxTerrainDecalWidthOrHeight
+                || size.Y > ScriptingConstants.MaxTerrainDecalWidthOrHeight)
+            {
+                throw new Exception("Max decal size is 2x2");
+            }
+
             this.Size = size;
             this.Offset = offset;
             this.RequiresCompleteNoiseSelectorCoverage = requiresCompleteNoiseSelectorCoverage;

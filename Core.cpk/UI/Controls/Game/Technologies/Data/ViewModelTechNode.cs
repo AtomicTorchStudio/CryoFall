@@ -227,7 +227,10 @@
             foreach (var effect in this.TechNode.NodeEffects.OfType<TEffect>())
             {
                 var vm = effect.CreateViewModel();
-                list.Add((TViewModel)vm);
+                if (vm != null)
+                {
+                    list.Add((TViewModel)vm);
+                }
             }
 
             return list;

@@ -12,9 +12,9 @@
             config.Effects
                   .AddStructure<ObjectFurnace>()
                   .AddRecipe<RecipeIngotCopperFromOre>()
-                  .AddRecipe<RecipeIngotCopperFromConcentrate>()
+                  .AddRecipe<RecipeIngotCopperFromConcentrate>(isHidden: true)
                   .AddRecipe<RecipeIngotIronFromOre>()
-                  .AddRecipe<RecipeIngotIronFromConcentrate>();
+                  .AddRecipe<RecipeIngotIronFromConcentrate>(isHidden: true);
 
             config.SetRequiredNode<TechNodeWorkbench>();
         }

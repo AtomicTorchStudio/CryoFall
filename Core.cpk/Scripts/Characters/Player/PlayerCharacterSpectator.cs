@@ -3,6 +3,7 @@
     using System;
     using AtomicTorch.CBND.CoreMod.CharacterSkeletons;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
+    using AtomicTorch.CBND.CoreMod.Items.Implants;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.VehicleSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
@@ -50,7 +51,7 @@
             {
                 return;
             }
-            
+
             VehicleSystem.ServerCharacterExitCurrentVehicle(character, force: true);
 
             // restore stamina so the spectator can "run"
@@ -64,7 +65,7 @@
             character.ServerRemoveAllStatusEffects();
         }
 
-        public static bool SharedIsSpectator(ICharacter character)
+        public static bool SharedIsSpectator(ICharacter character) 
             => character.ProtoCharacter is PlayerCharacterSpectator;
 
         public override bool SharedOnDamage(
@@ -88,6 +89,11 @@
             {
                 return;
             }
+
+            // use artificial retina effect for current spectator character
+            // to help with the night-time vision
+            character.ClientSceneObject
+                     .AddComponent<ItemImplantArtificialRetina.ClientComponentArtificialRetinaEffect>();
 
             base.ClientInitialize(data);
         }

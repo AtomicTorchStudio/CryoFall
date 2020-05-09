@@ -80,7 +80,9 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                                          weaponFinalCache,
                                          damageOnlyDynamicObjects: true,
                                          isDamageThroughObstacles: false,
-                                         callbackCalculateDamageCoefByDistance:
+                                         callbackCalculateDamageCoefByDistanceForStaticObjects: 
+                                         callbackCalculateDamageCoefByDistanceForStaticObjects,
+                                         callbackCalculateDamageCoefByDistanceForDynamicObjects: 
                                          callbackCalculateDamageCoefByDistanceForDynamicObjects);
 
             void ProcessExplosionDirection(int xOffset, int yOffset)
@@ -106,6 +108,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     }
 
                     var distanceToDamagedObject = offsetIndex;
+                    // this explosion pattern selects only the static objects as targets
                     var damagePreMultiplier = callbackCalculateDamageCoefByDistanceForStaticObjects(
                         distanceToDamagedObject);
                     damagePreMultiplier = MathHelper.Clamp(damagePreMultiplier, 0, 1);
@@ -150,7 +153,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             WeaponFinalCache weaponFinalCache,
             bool damageOnlyDynamicObjects,
             bool isDamageThroughObstacles,
-            Func<double, double> callbackCalculateDamageCoefByDistance,
+            Func<double, double> callbackCalculateDamageCoefByDistanceForStaticObjects,
+            Func<double, double> callbackCalculateDamageCoefByDistanceForDynamicObjects,
             [CanBeNull] CollisionGroup collisionGroup = null)
         {
             var playerCharacterSkills = weaponFinalCache.Character?.SharedGetSkills();
@@ -272,7 +276,11 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
 
                 var distanceToDamagedObject = ServerCalculateDistanceToDamagedObject(positionEpicenter,
                                                                                      damagedObject);
-                var damagePreMultiplier = callbackCalculateDamageCoefByDistance(distanceToDamagedObject);
+                var damagePreMultiplier =
+                    damagedObject is IDynamicWorldObject
+                        ? callbackCalculateDamageCoefByDistanceForDynamicObjects(distanceToDamagedObject)
+                        : callbackCalculateDamageCoefByDistanceForStaticObjects(distanceToDamagedObject);
+
                 damagePreMultiplier = MathHelper.Clamp(damagePreMultiplier, 0, 1);
 
                 var damageableProto = (IDamageableProtoWorldObject)damagedObject.ProtoGameObject;

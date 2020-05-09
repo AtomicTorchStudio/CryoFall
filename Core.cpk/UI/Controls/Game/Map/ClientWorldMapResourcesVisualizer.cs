@@ -175,9 +175,9 @@
                 {
                     Width = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
                     Height = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
-                    EllipseColorStroke = Color.FromArgb(0x99, 0xBB, 0x66, 0x66),
-                    EllipseColorStart = Color.FromArgb(0x00, 0xBB, 0x66, 0x66),
-                    EllipseColorEnd = Color.FromArgb(0x55,   0xBB, 0x66, 0x66)
+                    EllipseColorStroke = Color.FromArgb(0xDD, 0xCC, 0x66, 0x66),
+                    EllipseColorStart = Color.FromArgb(0x00, 0xCC, 0x66, 0x66),
+                    EllipseColorEnd = Color.FromArgb(0x77,   0xCC, 0x66, 0x66)
                 };
 
                 var circleCanvasPosition = this.worldMapController.WorldToCanvasPosition(

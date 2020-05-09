@@ -9,6 +9,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
     using AtomicTorch.CBND.CoreMod.Systems;
     using AtomicTorch.CBND.CoreMod.Systems.Console;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
+    using AtomicTorch.CBND.CoreMod.Systems.ServerOperator;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
@@ -147,6 +148,7 @@ namespace AtomicTorch.CBND.CoreMod.ConsoleCommands.Player
                 {
                     var character = ServerRemoteContext.Character;
                     if (character.ProtoCharacter is PlayerCharacterSpectator
+                        || ServerOperatorSystem.SharedIsOperator(character)
                         || CreativeModeSystem.SharedIsInCreativeMode(character))
                     {
                         ServerTeleport(character, worldPosition);

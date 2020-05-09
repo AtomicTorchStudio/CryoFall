@@ -56,7 +56,8 @@
                 .Add<ItemInsectMeatRaw>(count: 3, countRandom: 1)
                 .Add<ItemSlime>(count: 10,        countRandom: 10)
                 .Add<ItemToxin>(count: 5,         countRandom: 5)
-                .Add<ItemSalt>(count: 5,          countRandom: 5);
+                .Add<ItemSalt>(count: 5,          countRandom: 5)
+                .Add<ItemRubberRaw>(count: 8,     countRandom: 2);
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,

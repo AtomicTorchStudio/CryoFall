@@ -22,6 +22,12 @@
             return config;
         }
 
+        public void ApplyPostpone(BaseTriggerConfig triggerConfig, double duration)
+        {
+            var config = (TriggerTimeIntervalConfig)triggerConfig;
+            config.SetNextTriggerTime(Server.Game.FrameTime + duration);
+        }
+
         public BaseTriggerConfig Configure(
             TimeSpan interval,
             bool adjustRateToPlayersNumber = false)
@@ -126,6 +132,11 @@
                 }
 
                 this.ServerInvokeTrigger();
+            }
+
+            public void SetNextTriggerTime(double time)
+            {
+                this.nextTriggerTime = time;
             }
         }
     }

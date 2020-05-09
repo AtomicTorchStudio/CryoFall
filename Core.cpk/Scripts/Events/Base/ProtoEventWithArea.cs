@@ -75,7 +75,7 @@
             var stopwatch = Stopwatch.StartNew();
             var world = Server.World;
 
-            const int attemptsMax = 1000;
+            const int attemptsMax = 5;
             var attemptsRemains = attemptsMax;
             do
             {
@@ -108,7 +108,18 @@
                                                              biome,
                                                              circleRadius,
                                                              out circlePosition,
-                                                             maxAttempts: 100);
+                                                             maxAttempts: 100,
+                                                             waterMaxRatio: 0.1);
+        }
+
+        protected bool ServerHasAnyEventOfType<TProtoEvent>()
+            where TProtoEvent : class, IProtoEvent
+        {
+            using var tempEvents =
+                Api.Shared.WrapInTempList(
+                    Server.World.GetGameObjectsOfProto<ILogicObject, TProtoEvent>());
+
+            return tempEvents.Count > 0;
         }
 
         protected bool ServerIsSameEventExist()

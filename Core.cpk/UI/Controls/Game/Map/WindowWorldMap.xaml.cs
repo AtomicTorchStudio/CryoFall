@@ -141,6 +141,7 @@
 
             var character = Api.Client.Characters.CurrentPlayerCharacter;
             if (character.ProtoCharacter is PlayerCharacterSpectator
+                || ServerOperatorSystem.SharedIsOperator(character)
                 || CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 var mapPositionWithoutOffset = this.controlWorldMap.WorldMapController.PointedMapPositionWithoutOffset;

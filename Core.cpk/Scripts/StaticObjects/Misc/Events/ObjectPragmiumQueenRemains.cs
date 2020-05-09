@@ -33,7 +33,7 @@
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
-        public override float StructurePointsMax => 2000;
+        public override float StructurePointsMax => 1500;
 
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
         {
@@ -68,25 +68,25 @@
         protected override void PrepareProtoMineral(MineralDropItemsConfig config)
         {
             config.Stage1
-                  .Add<ItemOrePragmium>(count: 3, countRandom: 1)
-                  .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
-                  .Add<ItemOreLithium>(count: 10, countRandom: 2);
+                  .Add<ItemOrePragmium>(count: 2, countRandom: 1)
+                  .Add<ItemGoldNugget>(count: 2, countRandom: 1)
+                  .Add<ItemOreLithium>(count: 5, countRandom: 1);
 
             config.Stage2
-                  .Add<ItemOrePragmium>(count: 3, countRandom: 1)
-                  .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
-                  .Add<ItemOreLithium>(count: 10, countRandom: 2);
+                  .Add<ItemOrePragmium>(count: 2, countRandom: 1)
+                  .Add<ItemGoldNugget>(count: 2, countRandom: 1)
+                  .Add<ItemOreLithium>(count: 5, countRandom: 1);
 
             config.Stage3
-                  .Add<ItemOrePragmium>(count: 3, countRandom: 1)
-                  .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
-                  .Add<ItemOreLithium>(count: 10, countRandom: 2);
+                  .Add<ItemOrePragmium>(count: 2, countRandom: 1)
+                  .Add<ItemGoldNugget>(count: 2, countRandom: 1)
+                  .Add<ItemOreLithium>(count: 5, countRandom: 1);
 
             config.Stage4
                   .Add<ItemPragmiumHeart>(count: 1)
-                  .Add<ItemOrePragmium>(count: 5, countRandom: 2)
-                  .Add<ItemGoldNugget>(count: 5,  countRandom: 2)
-                  .Add<ItemOreLithium>(count: 10, countRandom: 3);
+                  .Add<ItemOrePragmium>(count: 3, countRandom: 1)
+                  .Add<ItemGoldNugget>(count: 3,  countRandom: 1)
+                  .Add<ItemOreLithium>(count: 5, countRandom: 2);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

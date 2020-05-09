@@ -11,7 +11,7 @@
 
         public override bool IsAvailableInCompletionist => false;
 
-        public override double StatMoveSpeed => 3.33;
+        public override double StatMoveSpeed => 2.9;
 
         public override void ServerOnDeath(ICharacter character)
         {

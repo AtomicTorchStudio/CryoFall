@@ -33,6 +33,7 @@
                 new ViewModelCharacterPublicStatusEffects(this.publicState.CurrentPublicStatusEffects);
 
             ClientUpdateHelper.UpdateCallback += this.Update;
+            this.Update();
         }
 
         public ViewModelCharacterHealthBarControl ViewModelCharacterHealthBarControl { get; }

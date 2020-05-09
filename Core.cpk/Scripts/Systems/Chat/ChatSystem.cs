@@ -152,6 +152,8 @@
             [NotNull] BaseChatRoom chatRoom,
             string message)
         {
+            Logger.Important("Chat message sent: " + chatRoom + ": " + message);
+
             chatRoom.ClientOnMessageReceived(
                 new ChatEntry(
                     ClientCurrentCharacterHelper.Character.Name,

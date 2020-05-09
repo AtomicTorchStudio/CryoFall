@@ -2,13 +2,9 @@
 {
     using AtomicTorch.CBND.GameApi.Data.World;
 
-    public interface IProtoObjectFloor : IProtoObjectStructure, IProtoObjectWithGroundSoundMaterial
+    public interface IProtoObjectFloor
+        : IProtoObjectStructure, IProtoObjectMovementSurface, IProtoObjectWithGroundSoundMaterial
     {
-        /// <summary>
-        /// Characters can move faster on this floor.
-        /// </summary>
-        double CharacterMoveSpeedMultiplier { get; }
-
         void ClientRefreshRenderer(IStaticWorldObject worldObject);
     }
 }

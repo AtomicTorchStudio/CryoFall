@@ -163,14 +163,14 @@
                                       .Add<ItemSuperHeavyArmor>(count: 1, weight: 1 / 3.0, condition: T4Specialized)
                                  )
                              // devices
-                             .Add(weight: 1 / 5.0,
+                             .Add(weight: 1 / 10.0,
                                   nestedList:
                                   new DropItemsList(outputs: 1)
                                       .Add<ItemPowerBankStandard>(count: 1, weight: 1)
                                       .Add<ItemPowerBankLarge>(count: 1,    weight: 1)
                                  )
                              // implants
-                             .Add(weight: 1 / 10.0,
+                             .Add(weight: 1 / 20.0,
                                   nestedList:
                                   new DropItemsList(outputs: 1)
                                       .Add<ItemImplantArtificialLiver>(count: 1,     weight: 1)

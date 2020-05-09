@@ -5,6 +5,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Events.Base;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Misc.Events;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi;
@@ -16,10 +17,9 @@
 
     public class EventMeteoriteDrop : ProtoEventDrop
     {
-        private static readonly Lazy<IReadOnlyList<IServerZone>> ServerSpawnZones
-            = new Lazy<IReadOnlyList<IServerZone>>(ServerSetupSpawnZones);
+        private static Lazy<IReadOnlyList<IServerZone>> serverSpawnZones;
 
-        public override ushort AreaRadius => 100;
+        public override ushort AreaRadius => 80;
 
         public override string Description =>
             @"Meteorites have fallen in the highlighted map area.
@@ -27,14 +27,20 @@
 
         public override TimeSpan EventDuration => TimeSpan.FromMinutes(30);
 
-        public override double MinDistanceBetweenSpawnedObjects => 25;
+        public override double MinDistanceBetweenSpawnedObjects => 22;
 
         [NotLocalizable]
         public override string Name => "Meteorite";
 
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
-            if (ServerSpawnZones.Value.All(z => z.IsEmpty))
+            if (trigger != null
+                && this.ServerHasAnyEventOfType<ProtoEventDrop>())
+            {
+                return false;
+            }
+
+            if (serverSpawnZones.Value.All(z => z.IsEmpty))
             {
                 Logger.Error("All zones are empty (not mapped in the world), no place to start the event: " + this);
                 return false;
@@ -52,7 +58,7 @@
 
         protected override bool ServerIsValidSpawnPosition(Vector2Ushort spawnPosition)
         {
-            foreach (var serverZone in ServerSpawnZones.Value)
+            foreach (var serverZone in serverSpawnZones.Value)
             {
                 if (serverZone.IsContainsPosition(spawnPosition))
                 {
@@ -63,53 +69,69 @@
             return false;
         }
 
+        protected override void ServerOnDropEventStarted(ILogicObject activeEvent)
+        {
+            var publicState = GetPublicState(activeEvent);
+            ServerEventLocationManager.AddUsedLocation(
+                publicState.AreaCirclePosition,
+                publicState.AreaCircleRadius + 20,
+                duration: TimeSpan.FromHours(12));
+        }
+
         protected override void ServerOnEventStartRequested(BaseTriggerConfig triggerConfig)
         {
-            // create up to 2 simultaneous event instances if there are many online players
-            var eventsCount = Api.Server.Characters.OnlinePlayersCount >= 100
-                                  ? 2
-                                  : 1;
+            var eventsCount = PveSystem.ServerIsPvE
+                              || Api.Server.Characters.OnlinePlayersCount >= 100
+                                  ? 4
+                                  : 3;
 
             for (var i = 0; i < eventsCount; i++)
             {
-                this.ServerCreateAndStartEventInstance();
+                if (!this.ServerCreateAndStartEventInstance())
+                {
+                    break;
+                }
             }
         }
 
         protected override Vector2Ushort ServerPickEventPosition(ILogicObject activeEvent)
         {
-            // pick up a zone which doesn't contain an active event of the same type
-            var attempts = 50;
-            IServerZone zoneInstance;
-            do
+            for (var globalAttempt = 0; globalAttempt < 5; globalAttempt++)
             {
-                zoneInstance = this.ServerSelectRandomZoneWithEvenDistribution(ServerSpawnZones.Value);
-                if (this.ServerCheckNoSameEventsInZone(zoneInstance))
+                // pick up a zone which doesn't contain an active event of the same type
+                var attempts = 50;
+                IServerZone zoneInstance;
+                do
                 {
-                    break;
+                    zoneInstance = this.ServerSelectRandomZoneWithEvenDistribution(serverSpawnZones.Value);
+                    if (this.ServerCheckNoSameEventsInZone(zoneInstance))
+                    {
+                        break;
+                    }
+
+                    zoneInstance = null;
+                }
+                while (--attempts > 0);
+
+                if (zoneInstance is null)
+                {
+                    throw new Exception("Unable to pick an event position");
                 }
 
-                zoneInstance = null;
-            }
-            while (--attempts > 0);
-
-            if (zoneInstance is null)
-            {
-                throw new Exception("Unable to pick an event position");
-            }
-
-            // pick up a valid position inside the zone
-            attempts = 1000;
-            do
-            {
-                var result = zoneInstance.GetRandomPosition(Api.Random);
-                if (this.ServerIsValidEventPosition(result)
-                    && this.ServerCheckNoEventsNearby(result, this.AreaRadius * 3.5))
+                // pick up a valid position inside the zone
+                attempts = 250;
+                do
                 {
-                    return result;
+                    var result = zoneInstance.GetRandomPosition(Api.Random);
+                    if (this.ServerIsValidEventPosition(result)
+                        && !ServerEventLocationManager.IsLocationUsedRecently(result, this.AreaRadius)
+                        && this.ServerCheckNoEventsNearby(result, this.AreaRadius * 4))
+                    {
+                        return result;
+                    }
                 }
+                while (--attempts > 0);
             }
-            while (--attempts > 0);
 
             throw new Exception("Unable to pick an event position");
         }
@@ -126,17 +148,24 @@
                              intervalTo: TimeSpan.FromHours(6)));
 
             // 5 meteorites
-            for (var index = 0; index < 5; index++)
+            for (var index = 0; index < 7; index++)
             {
                 spawnPreset.Add(Api.GetProtoEntity<ObjectMeteorite>());
             }
         }
 
+        protected override void ServerWorldChangedHandler()
+        {
+            serverSpawnZones = new Lazy<IReadOnlyList<IServerZone>>(ServerSetupSpawnZones);
+        }
+
         private static IReadOnlyList<IServerZone> ServerSetupSpawnZones()
         {
             var result = new List<IServerZone>();
+            AddZone(Api.GetProtoEntity<ZoneTropicalForest>());
             AddZone(Api.GetProtoEntity<ZoneTemperateForest>());
             AddZone(Api.GetProtoEntity<ZoneBorealForest>());
+            AddZone(Api.GetProtoEntity<ZoneTemperateSwamp>());
             AddZone(Api.GetProtoEntity<ZoneTemperateBarren>());
 
             void AddZone(IProtoZone zone)

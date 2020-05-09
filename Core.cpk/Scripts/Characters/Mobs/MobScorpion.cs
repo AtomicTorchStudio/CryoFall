@@ -17,7 +17,7 @@
 
         public override float CharacterWorldHeight => 1.0f;
 
-        public override double MobKillExperienceMultiplier => 2.0;
+        public override double MobKillExperienceMultiplier => 4.0;
 
         public override string Name => "Scorpion";
 

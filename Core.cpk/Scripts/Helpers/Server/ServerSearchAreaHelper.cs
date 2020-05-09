@@ -22,7 +22,8 @@ namespace AtomicTorch.CBND.CoreMod.Helpers.Server
             IProtoTile biome,
             ushort circleRadius,
             out Vector2Ushort circleCenter,
-            double maxAttempts)
+            int maxAttempts,
+            double waterMaxRatio = 0.3)
         {
             var biomeSessionIndex = biome.SessionIndex;
 
@@ -87,7 +88,7 @@ namespace AtomicTorch.CBND.CoreMod.Helpers.Server
                         var biomeMatchRatio = biomeMathes / (double)totalChecks;
                         var waterOrOutOfBoundsRatio = waterOrOutOfBounds / (double)totalChecks;
                         return biomeMatchRatio >= desiredBiomeMatchRatio
-                               && waterOrOutOfBoundsRatio <= 0.3;
+                               && waterOrOutOfBoundsRatio <= waterMaxRatio;
                     }
                 }
 

@@ -17,6 +17,8 @@
             EventWithAreaPublicState,
             EmptyClientState>
     {
+        public override bool ConsolidateNotifications => false;
+
         public override double ServerUpdateIntervalSeconds => 1;
 
         public IReadOnlyList<IProtoSpawnableObject> SpawnPreset { get; private set; }

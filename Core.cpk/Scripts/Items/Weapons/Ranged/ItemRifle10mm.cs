@@ -13,9 +13,11 @@
 
         public override double AmmoReloadDuration => 3;
 
-        public override double CharacterAnimationAimingRecoilDuration => 0.6;
+        public override double CharacterAnimationAimingRecoilDuration => 0.4;
 
         public override double CharacterAnimationAimingRecoilPower => 1.1;
+
+        public override double DamageMultiplier => 1.1;
 
         public override string Description => "Light automatic sniper rifle developed for 10mm ammo.";
 
@@ -25,9 +27,9 @@
 
         public override string Name => "Light rifle";
 
-        public override double SpecialEffectProbability => 0.1;
-
         public override double RangeMultipier => 1.3; // significantly higher range
+
+        public override double SpecialEffectProbability => 0.1;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();
 
@@ -36,6 +38,11 @@
             return new WeaponFirePatternPreset(
                 initialSequence: new[] { 0.0, 0.4, -0.4 },
                 cycledSequence: new[] { 0.5, -0.3, 0.3, -0.5, 0.0 });
+        }
+
+        protected override WeaponFireTracePreset PrepareFireTracePreset()
+        {
+            return WeaponFireTracePresets.HeavySniper;
         }
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)

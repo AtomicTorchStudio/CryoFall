@@ -5,6 +5,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
 
     public class ObjectFarmingWorkbench : ProtoObjectCraftStation
     {
@@ -18,6 +19,12 @@
         public override double ObstacleBlockDamageCoef => 0.5;
 
         public override float StructurePointsMax => 1200;
+
+        protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
+        {
+            base.ClientSetupRenderer(renderer);
+            renderer.DrawOrderOffsetY = 0.2;
+        }
 
         protected override void CreateLayout(StaticObjectLayout layout)
         {
@@ -46,7 +53,7 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((2, 1))
+                .AddShapeRectangle((1.85, 1),  offset: (0.1, 0))
                 .AddShapeRectangle((2, 1),     offset: (0, 0),      group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((1.6, 0.2), offset: (0.2, 0.85), group: CollisionGroups.HitboxRanged)
                 .AddShapeRectangle((2, 1),     offset: (0, 0),      group: CollisionGroups.ClickArea);

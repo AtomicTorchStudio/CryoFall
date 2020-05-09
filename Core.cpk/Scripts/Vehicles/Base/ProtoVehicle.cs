@@ -1038,7 +1038,8 @@
                 weaponFinalCache: weaponFinalCache,
                 damageOnlyDynamicObjects: false,
                 isDamageThroughObstacles: false,
-                callbackCalculateDamageCoefByDistance: CalcDamageCoefByDistance);
+                callbackCalculateDamageCoefByDistanceForStaticObjects: CalcDamageCoefByDistance,
+                callbackCalculateDamageCoefByDistanceForDynamicObjects: CalcDamageCoefByDistance);
 
             double CalcDamageCoefByDistance(double distance)
             {

@@ -35,7 +35,7 @@
 
         public override double TimeToReadyAfterReloading => 0.25;
 
-        protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();
+        protected override ProtoSkillWeapons WeaponSkill => null;
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {

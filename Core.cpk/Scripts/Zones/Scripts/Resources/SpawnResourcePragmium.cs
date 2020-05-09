@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Zones
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Helpers.Server;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
@@ -35,8 +36,6 @@
                                                 .Add<ObjectMineralPragmiumSource>()
                                                 .SetCustomPaddingWithSelf(79);
 
-            presetPragmiumSource.SpawnLimitPerIteration = 3;
-
             // don't spawn close to oil seeps
             var restrictionPresetDepositOilSeep = spawnList.CreateRestrictedPreset()
                                                            .Add<ObjectDepositOilSeep>();
@@ -45,8 +44,8 @@
 
             // don't spawn close to roads
             var restrictionPresetRoads = spawnList.CreateRestrictedPreset()
-                                                           .Add<ObjectPropRoadHorizontal>()
-                                                           .Add<ObjectPropRoadVertical>();
+                                                  .Add<ObjectPropRoadHorizontal>()
+                                                  .Add<ObjectPropRoadVertical>();
             presetPragmiumSource.SetCustomPaddingWith(restrictionPresetRoads, 30);
 
             // special restriction preset for player land claims
@@ -75,7 +74,7 @@
             var hasCliffNeighborTile = false;
             foreach (var tileOffset in protoStaticWorldObject.Layout.TileOffsets)
             {
-                if (tileOffset.X == 0 
+                if (tileOffset.X == 0
                     && tileOffset.Y == 0)
                 {
                     continue;
@@ -104,6 +103,22 @@
             }
 
             return base.ServerSpawnStaticObject(trigger, zone, protoStaticWorldObject, tilePosition);
+        }
+
+        protected override int SharedCalculatePresetDesiredCount(
+            ObjectSpawnPreset preset,
+            IServerZone zone,
+            int currentCount,
+            int desiredCountByDensity)
+        {
+            // respawn at least half of pragmium source objects per iteration
+            // but scale automatically with the number of players online
+            var spawnMaxPerIteration = (int)Math.Ceiling(desiredCountByDensity
+                                                         * 0.5
+                                                         * ServerSpawnRateScaleHelper.CalculateCurrentRate());
+
+            return Math.Min(currentCount + spawnMaxPerIteration,
+                            desiredCountByDensity);
         }
     }
 }

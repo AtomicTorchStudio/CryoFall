@@ -49,6 +49,12 @@
 
         public override bool ServerIsTriggerAllowed(ProtoTrigger trigger)
         {
+            if (trigger != null
+                && this.ServerHasAnyEventOfType<ProtoEventBoss>())
+            {
+                return false;
+            }
+
             if (ServerSpawnZones.Value.All(z => z.IsEmpty))
             {
                 Logger.Error("All zones are empty (not mapped in the world), no place to start the event: " + this);

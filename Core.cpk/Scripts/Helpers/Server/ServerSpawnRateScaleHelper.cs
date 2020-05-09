@@ -25,18 +25,21 @@ namespace AtomicTorch.CBND.CoreMod.Helpers.Server
         public static double CalculateCurrentRate()
         {
             var playersOnlineCount = Api.Server.Characters.OnlinePlayersCount;
-            if (playersOnlineCount <= 100)
+            double minPlayers = 50,
+                   maxPlayers = 200;
+
+            if (playersOnlineCount <= minPlayers)
             {
                 return 1.0; // normal rate
             }
 
-            if (playersOnlineCount >= 200)
+            if (playersOnlineCount >= maxPlayers)
             {
                 return 2.0; // max rate;
             }
 
             // increase linearly
-            return 1.0 + (playersOnlineCount - 100) / 100.0;
+            return 1.0 + (playersOnlineCount - minPlayers) / (maxPlayers - minPlayers);
         }
     }
 }

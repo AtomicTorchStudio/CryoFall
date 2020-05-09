@@ -37,7 +37,7 @@
             // common loot
             droplist.Add(nestedList: new DropItemsList(outputs: 1, outputsRandom: 1)
                                      // resources
-                                     .Add<ItemToxin>(count: 3,        countRandom: 3,  weight: 1)
+                                     .Add<ItemToxin>(count: 5,        countRandom: 5,  weight: 1)
                                      .Add<ItemAcidSulfuric>(count: 2, countRandom: 3,  weight: 1)
                                      .Add<ItemAcidNitric>(count: 2,   countRandom: 3,  weight: 1)
                                      .Add<ItemAramidFiber>(count: 5,  countRandom: 5,  weight: 1 / 2.0)
@@ -58,11 +58,6 @@
                                      .Add<ItemPowerCell>(count: 1,         countRandom: 1, weight: 1 / 10.0)
                                      // equipment
                                      .Add<ItemRespirator>(count: 1, weight: 1 / 25.0)
-                                     // ensure both hazmat and A.P.A.R.T. are available only after reaching T3 timegate
-                                     // otherwise it would be too easy to loot radtowns by acquiring these early
-                                     // it's intentional that A.P.A.R.T. (T4) is available starting from T3 here
-                                     .Add<ItemHazmatSuit>(count: 1, weight: 1 / 50.0,  condition: T3Specialized)
-                                     .Add<ItemApartSuit>(count: 1,  weight: 1 / 100.0, condition: T3Specialized)
                                      // devices
                                      .Add<ItemPowerBankStandard>(count: 1, weight: 1 / 50.0)
                                      .Add<ItemPowerBankLarge>(count: 1,    weight: 1 / 100.0));

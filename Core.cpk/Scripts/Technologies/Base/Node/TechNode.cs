@@ -329,10 +329,10 @@
                 return this;
             }
 
-            public Effects AddRecipe<TRecipe>()
+            public Effects AddRecipe<TRecipe>(bool isHidden = false)
                 where TRecipe : Recipe, new()
             {
-                this.Add(new TechNodeEffectRecipeUnlock(GetProtoEntity<TRecipe>()));
+                this.Add(new TechNodeEffectRecipeUnlock(GetProtoEntity<TRecipe>(), isHidden));
                 return this;
             }
 

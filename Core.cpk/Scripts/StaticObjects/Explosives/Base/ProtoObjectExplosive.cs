@@ -60,7 +60,7 @@
 
         protected ExplosionPreset ExplosionPreset { get; private set; }
 
-        public virtual double ServerCalculateDamageCoefByDistance(double distance)
+        public virtual double ServerCalculateDamageCoefByDistanceForDynamicObjects(double distance)
         {
             var distanceThreshold = 1;
             if (distance <= distanceThreshold)
@@ -76,6 +76,13 @@
             maxDistance = Math.Max(0, maxDistance);
 
             return 1 - Math.Min(distance / maxDistance, 1);
+        }
+
+        public virtual double ServerCalculateDamageCoefByDistanceForStaticObjects(double distance)
+        {
+            distance -= 1.42;
+            distance = Math.Max(0, distance);
+            return 1 - (distance / this.DamageRadius);
         }
 
         public virtual double ServerCalculateTotalDamageByExplosive(
@@ -265,7 +272,10 @@
                 weaponFinalCache: weaponFinalCache,
                 damageOnlyDynamicObjects: false,
                 isDamageThroughObstacles: this.IsDamageThroughObstacles,
-                callbackCalculateDamageCoefByDistance: this.ServerCalculateDamageCoefByDistance);
+                callbackCalculateDamageCoefByDistanceForStaticObjects:
+                this.ServerCalculateDamageCoefByDistanceForStaticObjects,
+                callbackCalculateDamageCoefByDistanceForDynamicObjects:
+                ServerCalculateDamageCoefByDistanceForDynamicObjects);
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

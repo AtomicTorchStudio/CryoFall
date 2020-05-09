@@ -19,8 +19,7 @@
     HorizontalAlignment="Center"
     Margin="0,60">
 
-    <Grid x:Name="LayoutRoot"
-          Opacity="0">
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -98,29 +97,30 @@
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisibilityStates">
                 <VisualStateGroup.Transitions>
-                    <VisualTransition To="Collapsed"
-                                      GeneratedDuration="0:0:0.25" />
                     <VisualTransition To="Visible"
+                                      GeneratedDuration="0:0:0.25" />
+                    <VisualTransition To="Collapsed"
                                       GeneratedDuration="0:0:0.25" />
                 </VisualStateGroup.Transitions>
 
-                <VisualState x:Name="Collapsed" />
-                <VisualState x:Name="Visible">
+                <VisualState x:Name="Visible" />
+                <VisualState x:Name="Collapsed">
                     <Storyboard>
                         <DoubleAnimation Storyboard.TargetName="LayoutRoot"
                                          Storyboard.TargetProperty="Opacity"
-                                         To="1" />
+                                         To="0"
+                                         Duration="0" />
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
         <i:Interaction.Triggers>
-            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Collapsed">
-                <ei:GoToStateAction StateName="Collapsed" />
-            </ei:DataTrigger>
             <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Visible">
                 <ei:GoToStateAction StateName="Visible" />
+            </ei:DataTrigger>
+            <ei:DataTrigger Binding="{Binding VisualStateName}" Value="Collapsed">
+                <ei:GoToStateAction StateName="Collapsed" />
             </ei:DataTrigger>
         </i:Interaction.Triggers>
     </Grid>

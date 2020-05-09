@@ -2,12 +2,17 @@
 {
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
+    using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.Systems.BottleRefillSystem;
+    using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Technologies;
+    using AtomicTorch.CBND.CoreMod.Technologies.Tier1.Industry;
     using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
-    public class ItemBottleEmpty : ProtoItemGeneric
+    public class ItemBottleEmpty : ProtoItemGeneric, IProtoItemWithReferenceTech
     {
         private ClientInputContext helperInputListener;
 
@@ -16,6 +21,8 @@
         public override ushort MaxItemsPerStack => ItemStackSize.Medium;
 
         public override string Name => "Empty bottle";
+
+        public TechNode ReferenceTech => Api.GetProtoEntity<TechNodeGlassware>();
 
         public static void ServerSpawnEmptyBottle(ICharacter character, ushort count = 1)
         {

@@ -29,9 +29,9 @@
 
         private const double DeathSpawnMinionsRadius = 17;
 
-        private const int DeathSpawnRemainsDefaultObjectsCount = 8;
+        private const int DeathSpawnRemainsDefaultObjectsCount = 16;
 
-        private const double DeathSpawnRemainsObjectsRadius = 20;
+        private const double DeathSpawnRemainsObjectsRadius = 19;
 
         // The boss is regenerating only if it didn't receive any serious damage for a while.
         private const double HealthRegenerationPerSecond = 40;

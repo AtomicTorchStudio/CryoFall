@@ -94,7 +94,10 @@
                 weaponFinalCache: weaponState.WeaponCache,
                 damageOnlyDynamicObjects: true,
                 isDamageThroughObstacles: false,
-                callbackCalculateDamageCoefByDistance: this.ServerCalculateDamageCoefficientByDistanceToTarget,
+                callbackCalculateDamageCoefByDistanceForStaticObjects:
+                this.ServerCalculateDamageCoefficientByDistanceToTarget,
+                callbackCalculateDamageCoefByDistanceForDynamicObjects:
+                this.ServerCalculateDamageCoefficientByDistanceToTarget,
                 collisionGroup: CollisionGroups.HitboxRanged);
 
             return true;

@@ -55,6 +55,7 @@
                              .Add<ItemAmmo12gaPellets>(count: 5,       countRandom: 10, weight: 1 / 2.0)
                              .Add<ItemAmmo300ArmorPiercing>(count: 5,  countRandom: 10, weight: 1 / 10.0)
                              .Add<ItemAmmo300Incendiary>(count: 5,     countRandom: 10, weight: 1 / 10.0)
+                             .Add<ItemAmmoGrenadeHE>(count: 2,         countRandom: 3,  weight: 1 / 15.0)
                              .Add<ItemAmmo50SH>(count: 5,              countRandom: 10, weight: 1 / 5.0)
                              // trash ammo
                              .Add<ItemAmmo10mmBlank>(count: 5,      countRandom: 10, weight: 1 / 15.0)
@@ -70,8 +71,10 @@
                              .Add<ItemLuger>(weight: 1 / 1.0)
                              .Add<ItemMachinePistol>(weight: 1 / 1.0)
                              .Add<ItemShotgunDoublebarreled>(weight: 1 / 1.0)
+                             .Add<ItemRifleBoltAction>(weight: 1 / 1.0)
                              .Add<ItemHandgun10mm>(weight: 1 / 2.0,       condition: T3Specialized)
                              .Add<ItemSubmachinegun10mm>(weight: 1 / 4.0, condition: T3Specialized)
+                             .Add<ItemRifle10mm>(weight: 1 / 4.0,         condition: T3Specialized)
                              .Add<ItemShotgunMilitary>(weight: 1 / 4.0,   condition: T3Specialized)
                              .Add<ItemSteppenHawk>(weight: 1 / 10.0,      condition: T4Specialized)
                              // equipment - require at least reaching T3 timegate to start spawning it here

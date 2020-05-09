@@ -6,22 +6,18 @@
     using System.Text;
     using System.Windows;
     using System.Windows.Controls;
-    using AtomicTorch.CBND.CoreMod.CraftRecipes;
+    using AtomicTorch.CBND.CoreMod.Helpers;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelRecipeBreakdown : BaseViewModel
     {
-        private static readonly IReadOnlyList<Recipe> AvailableRecipes;
-
-        // don't perform recipe lookup for such basic items
-        private static readonly HashSet<Type> BasicItems
+        public static readonly HashSet<Type> BasicItems
             = new HashSet<Type>()
             {
                 typeof(ItemFibers),
@@ -44,63 +40,14 @@
                 typeof(ItemDough),
                 typeof(ItemMeatRoasted),
                 typeof(ItemAsh),
+                typeof(ItemRubberRaw),
                 typeof(ItemCanisterEmpty),
                 typeof(ItemCanisterGasoline),
                 typeof(ItemCanisterMineralOil),
                 typeof(ItemCanisterPetroleum)
             };
 
-        private static readonly HashSet<Type> BlacklistRecipes
-            = new HashSet<Type>()
-            {
-                typeof(RecipeFibersFromPlastic),
-                typeof(RecipeFibersFromLeaf),
-                typeof(RecipeCoinPennyRecycle),
-                typeof(RecipeCoinShinyRecycle)
-            };
-
         private readonly string recipeTimeCalculation;
-
-        static ViewModelRecipeBreakdown()
-        {
-            var availableRecipes = new List<Recipe>();
-            foreach (var recipe in Api.FindProtoEntities<Recipe>())
-            {
-                if (!recipe.IsEnabled
-                    || recipe.InputItems.Count == 0
-                    || recipe.OutputItems.Count == 0)
-                {
-                    continue;
-                }
-
-                var recipeType = recipe.GetType();
-                if (BlacklistRecipes.Contains(recipeType))
-                {
-                    continue;
-                }
-
-                switch (recipe.RecipeType)
-                {
-                    case RecipeType.Hand:
-                    case RecipeType.StationCrafting:
-                        availableRecipes.Add(recipe);
-                        continue;
-
-                    case RecipeType.Manufacturing:
-                        availableRecipes.Add(recipe);
-                        continue;
-
-                    case RecipeType.ManufacturingByproduct:
-                        // ignore
-                        continue;
-
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            AvailableRecipes = availableRecipes;
-        }
 
         public ViewModelRecipeBreakdown(Recipe recipe)
         {
@@ -186,7 +133,7 @@
                                                                 + r.ViewModelCraftingRecipe.Title))
                                          + Environment.NewLine
                                          + Environment.NewLine
-                                         + $"Please edit {nameof(BasicItems)} or {nameof(BlacklistRecipes)} lists in {nameof(ViewModelRecipeBreakdown)}.cs (Editor.mpk)"
+                                         + $"Please edit {nameof(BasicItems)} or {nameof(RecipesHelper.BlacklistRecipes)} lists in {nameof(ViewModelRecipeBreakdown)}.cs (Editor.mpk)"
                                        : null;
 
             void ProcessInputRecursive(Recipe outerRecipe, double outerMultiplier, int depth)
@@ -203,7 +150,7 @@
                         continue;
                     }
 
-                    var inputItemRecipe = FindRecipe(inputItem.ProtoItem);
+                    var inputItemRecipe = RecipesHelper.FindFirstRecipe(inputItem.ProtoItem);
                     if (inputItemRecipe == null)
                     {
                         // no recipe
@@ -328,23 +275,6 @@
 
             // entry not found - add new entry
             list.Add(entry);
-        }
-
-        private static Recipe FindRecipe(IProtoItem protoItem)
-        {
-            foreach (var availableRecipe in AvailableRecipes)
-            {
-                foreach (var outputItem in availableRecipe.OutputItems.Items)
-                {
-                    if (ReferenceEquals(outputItem.ProtoItem, protoItem))
-                    {
-                        // found a recipe
-                        return availableRecipe;
-                    }
-                }
-            }
-
-            return null;
         }
 
         private static int ListOrderComparison(ProtoItemWithCountFractional x, ProtoItemWithCountFractional y)

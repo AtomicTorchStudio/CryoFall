@@ -11,6 +11,8 @@
 
         ITextureResource Icon { get; }
 
+        bool ConsolidateNotifications { get; }
+
         void ServerForceCreateAndStart();
 
         bool ServerIsTriggerAllowed(ProtoTrigger trigger);

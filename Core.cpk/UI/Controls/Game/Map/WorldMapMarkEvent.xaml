@@ -30,6 +30,14 @@
     </base:BaseUserControl.Triggers>
 
     <Grid>
+        <!-- Background fill -->
+        <Ellipse Stretch="Fill"
+                 RenderTransformOrigin="0.5,0.5"
+                 Stroke="Transparent"
+                 StrokeThickness="4"
+                 Margin="1"
+                 Fill="#20000000" />
+
         <!-- Inner static ellipse (to outer stroke is done as a separate ellipse) -->
         <Ellipse Stretch="Fill"
                  RenderTransformOrigin="0.5,0.5"

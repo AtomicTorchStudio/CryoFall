@@ -15,16 +15,17 @@
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
+    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ClientWorldMapEventVisualizer : IWorldMapVisualizer
     {
+        public const byte FinishedEventHideDelay = 10;
+
         public const string Notification_ActiveEvent_Finished = "Event finished!";
 
         public const string Notification_ActiveEvent_TimeRemainingFormat = "Time remaining: {0}";
 
         public const string Notification_ActiveEvent_Title = "Active event";
-
-        private const byte FinishedEventHideDelay = 10;
 
         private static readonly IWorldClientService ClientWorld = Api.Client.World;
 
@@ -79,18 +80,28 @@
         private static string GetTooltipText(ILogicObject activeEvent)
         {
             var timeRemains = CalculateEventTimeRemains(activeEvent);
-            var text = GetUpdatedRecentResourceNotificationText(activeEvent, timeRemains);
+            var text = GetUpdatedEventNotificationText(activeEvent,
+                                                       timeRemains,
+                                                       addDescription: true);
             return $"[b]{Notification_ActiveEvent_Title}[/b][br]{text}";
         }
 
-        private static string GetUpdatedRecentResourceNotificationText(
+        private static string GetUpdatedEventNotificationText(
             ILogicObject activeEvent,
-            int timeRemains)
+            int timeRemains,
+            bool addDescription)
         {
             var protoEvent = (IProtoEvent)activeEvent.ProtoGameObject;
+            if (!protoEvent.ConsolidateNotifications)
+            {
+                addDescription = true;
+            }
+
             if (activeEvent.IsDestroyed)
             {
-                return $"{protoEvent.Description}[br][br][b]{Notification_ActiveEvent_Finished}[/b]";
+                return addDescription
+                           ? $"[b]{Notification_ActiveEvent_Finished}[/b]"
+                           : $"{protoEvent.Description}[br][br][b]{Notification_ActiveEvent_Finished}[/b]";
             }
 
             if (timeRemains < 1)
@@ -98,10 +109,15 @@
                 timeRemains = 1;
             }
 
-            var sb = new StringBuilder().Append(protoEvent.Description)
-                                        .Append("[br][br]")
-                                        .AppendFormat(Notification_ActiveEvent_TimeRemainingFormat,
-                                                      ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
+            var sb = new StringBuilder();
+            if (addDescription)
+            {
+                sb.Append(protoEvent.Description)
+                  .Append("[br][br]");
+            }
+
+            sb.AppendFormat(Notification_ActiveEvent_TimeRemainingFormat,
+                            ClientTimeFormatHelper.FormatTimeDuration(timeRemains));
 
             var progressText = protoEvent.SharedGetProgressText(activeEvent);
             if (progressText is null)
@@ -111,12 +127,6 @@
 
             sb.Append("[br]").Append(progressText);
             return sb.ToString();
-        }
-
-        private void AddNotification(ILogicObject activeEvent, HUDNotificationControl notification)
-        {
-            this.RemoveNotification(activeEvent, quick: true);
-            this.notifications.Add((activeEvent, notification));
         }
 
         private HUDNotificationControl FindNotification(ILogicObject activeEvent)
@@ -157,35 +167,39 @@
                 return;
             }
 
-            // add a circle for the search area
-            var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
-            var circleRadius = publicState.AreaCircleRadius;
-            var circleCanvasPosition = this.worldMapController.WorldToCanvasPosition(
-                publicState.AreaCirclePosition.ToVector2D());
-
-            var control = new WorldMapMarkEvent
+            if (activeEvent.ProtoGameObject is IProtoEventWithArea)
             {
-                Width = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
-                Height = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
-                EllipseColorStroke = Color.FromArgb(0x99, 0x77, 0xBB, 0xFF),
-                EllipseColorStart = Color.FromArgb(0x00,  0x66, 0x99, 0xCC),
-                EllipseColorEnd = Color.FromArgb(0x55,    0x66, 0x99, 0xCC)
-            };
+                // add a circle for the search area
+                var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
+                var circleRadius = publicState.AreaCircleRadius;
+                var circleCanvasPosition = this.worldMapController.WorldToCanvasPosition(
+                    publicState.AreaCirclePosition.ToVector2D());
 
-            Canvas.SetLeft(control, circleCanvasPosition.X - control.Width / 2);
-            Canvas.SetTop(control, circleCanvasPosition.Y - control.Height / 2);
-            Panel.SetZIndex(control, 1);
-            this.worldMapController.AddControl(control, scaleWithZoom: false);
-            this.visualizedSearchAreas.Add((activeEvent, control));
-            ToolTipServiceExtend.SetToolTip(
-                control,
-                new WorldMapMarkEventTooltip()
+                var control = new WorldMapMarkEvent
                 {
-                    Text = GetTooltipText(activeEvent),
-                    Icon = Api.Client.UI.GetTextureBrush(
-                        ((IProtoEvent)activeEvent.ProtoGameObject).Icon)
-                });
+                    Width = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
+                    Height = 2 * circleRadius * WorldMapTexturesProvider.WorldTileTextureSize,
+                    EllipseColorStroke = Color.FromArgb(0xDD, 0x66, 0xAA, 0xEE),
+                    EllipseColorStart = Color.FromArgb(0x00,  0x66, 0xAA, 0xEE),
+                    EllipseColorEnd = Color.FromArgb(0x77,    0x66, 0xAA, 0xEE)
+                };
 
+                Canvas.SetLeft(control, circleCanvasPosition.X - control.Width / 2);
+                Canvas.SetTop(control, circleCanvasPosition.Y - control.Height / 2);
+                Panel.SetZIndex(control, 1);
+                this.worldMapController.AddControl(control, false);
+                this.visualizedSearchAreas.Add((activeEvent, control));
+                ToolTipServiceExtend.SetToolTip(
+                    control,
+                    new WorldMapMarkEventTooltip()
+                    {
+                        Text = GetTooltipText(activeEvent),
+                        Icon = Api.Client.UI.GetTextureBrush(
+                            ((IProtoEvent)activeEvent.ProtoGameObject).Icon)
+                    });
+            }
+
+            ClientWorldMapEventVisualizerNotificationManager.RegisterEvent(activeEvent);
             this.TryCreateNotification(activeEvent);
 
             // ensure the map mark would be removed after the timeout
@@ -195,6 +209,8 @@
 
         private void OnActiveEventRemoved(ILogicObject activeEvent)
         {
+            ClientWorldMapEventVisualizerNotificationManager.UnregisterEvent(activeEvent);
+
             for (var index = 0; index < this.visualizedSearchAreas.Count; index++)
             {
                 var entry = this.visualizedSearchAreas[index];
@@ -208,11 +224,80 @@
             }
 
             var notification = this.RemoveNotification(activeEvent,
-                                                       quick: false,
-                                                       delaySeconds: FinishedEventHideDelay);
+                                                       false,
+                                                       FinishedEventHideDelay);
             notification?.SetMessage(
-                GetUpdatedRecentResourceNotificationText(activeEvent,
-                                                         CalculateEventTimeRemains(activeEvent)));
+                GetUpdatedEventNotificationText(activeEvent,
+                                                CalculateEventTimeRemains(activeEvent),
+                                                addDescription: false));
+        }
+
+        private void RefreshActiveEventInfo(ILogicObject activeEvent)
+        {
+            if (activeEvent.IsDestroyed)
+            {
+                // the notification will be automatically marked to hide after delay when active event is destroyed
+                // (a finished event)
+                return;
+            }
+
+            var notification = this.FindNotification(activeEvent);
+            if (activeEvent.ProtoGameObject is IProtoEventWithArea protoEventWithArea
+                && protoEventWithArea.ConsolidateNotifications)
+            {
+                // display the non-consolidated notification only if player is inside the event area
+                var publicState = activeEvent.GetPublicState<EventWithAreaPublicState>();
+                var playerPosition = ClientCurrentCharacterHelper.Character?.Position
+                                     ?? Vector2D.Zero;
+
+                if ((publicState.AreaCirclePosition.ToVector2D() - playerPosition).Length
+                    > publicState.AreaCircleRadius)
+                {
+                    // outside the interaction area
+                    notification?.Hide(quick: true);
+                }
+                else if (notification is null
+                         || notification.IsHiding)
+                {
+                    // inside the interaction area but has no notification displayed
+                    if (notification != null)
+                    {
+                        this.RemoveNotification(activeEvent, quick: true);
+                    }
+
+                    this.TryCreateNotification(activeEvent);
+                    notification = this.FindNotification(activeEvent);
+                }
+            }
+
+            if (notification != null)
+            {
+                var timeRemains = CalculateEventTimeRemains(activeEvent);
+                if (timeRemains <= 0)
+                {
+                    if (!notification.IsHiding)
+                    {
+                        this.RemoveNotification(activeEvent, quick: false);
+                    }
+
+                    return;
+                }
+
+                if (!notification.IsHiding)
+                {
+                    notification.SetMessage(
+                        GetUpdatedEventNotificationText(activeEvent,
+                                                        timeRemains,
+                                                        addDescription: false));
+                }
+            }
+
+            this.UpdateEventTooltip(activeEvent);
+
+            // schedule recursive update in a second
+            ClientTimersSystem.AddAction(
+                1,
+                () => this.RefreshActiveEventInfo(activeEvent));
         }
 
         private HUDNotificationControl RemoveNotification(
@@ -265,16 +350,20 @@
                 return;
             }
 
-            // notify player about the new resource
+            // notify player about the new event
+            var protoEvent = ((IProtoEvent)activeEvent.ProtoGameObject);
             notification = NotificationSystem.ClientShowNotification(
-                title: Notification_ActiveEvent_Title,
-                message: GetUpdatedRecentResourceNotificationText(activeEvent, timeRemains),
-                icon: ((IProtoEvent)activeEvent.ProtoGameObject).Icon,
-                autoHide: false);
+                Notification_ActiveEvent_Title,
+                GetUpdatedEventNotificationText(activeEvent,
+                                                timeRemains,
+                                                addDescription: false),
+                icon: protoEvent.Icon,
+                autoHide: false,
+                playSound: !protoEvent.ConsolidateNotifications);
 
-            this.RemoveNotification(activeEvent, quick: true);
+            this.RemoveNotification(activeEvent, true);
             this.notifications.Add((activeEvent, notification));
-            this.UpdateNotification(activeEvent, notification);
+            this.RefreshActiveEventInfo(activeEvent);
         }
 
         private void UpdateEventTooltip(ILogicObject activeEvent)
@@ -290,42 +379,6 @@
                 var formattedTextBlock = (WorldMapMarkEventTooltip)ToolTipServiceExtend.GetToolTip(control);
                 formattedTextBlock.Text = GetTooltipText(activeEvent);
             }
-        }
-
-        private void UpdateNotification(
-            ILogicObject activeEvent,
-            HUDNotificationControl notification)
-        {
-            if (activeEvent.IsDestroyed)
-            {
-                // the notification will be automatically marked to hide after delay when active event is destroyed
-                // (a finished event)
-                return;
-            }
-
-            var timeRemains = CalculateEventTimeRemains(activeEvent);
-            if (timeRemains <= 0)
-            {
-                if (!notification.IsHiding)
-                {
-                    this.RemoveNotification(activeEvent, quick: false);
-                }
-
-                return;
-            }
-
-            if (!notification.IsHiding)
-            {
-                notification.SetMessage(
-                    GetUpdatedRecentResourceNotificationText(activeEvent, timeRemains));
-            }
-
-            this.UpdateEventTooltip(activeEvent);
-
-            // schedule recursive update in a second
-            ClientTimersSystem.AddAction(
-                delaySeconds: 1,
-                () => this.UpdateNotification(activeEvent, notification));
         }
     }
 }
