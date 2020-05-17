@@ -362,7 +362,7 @@
 
         private void ExecuteCommandDisplayModsInfo(object obj)
         {
-            var serverInfo = ((ViewModelServerInfoListEntry)obj).ViewModelServerInfo;
+            var serverInfo = (ViewModelServerInfo)obj;
             if (!serverInfo.IsInfoReceived)
             {
                 serverInfo.RefreshAndDisplayPleaseWaitDialog(
@@ -435,7 +435,7 @@
 
         private void ExecuteCommandFavoriteToggle(object obj)
         {
-            var serverInfo = ((ViewModelServerInfoListEntry)obj).ViewModelServerInfo;
+            var serverInfo = (ViewModelServerInfo)obj;
             this.SetFavorite(serverInfo.Address, serverInfo.IsFavorite);
         }
 

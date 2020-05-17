@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skills.Data
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows;
     using System.Windows.Media;
@@ -21,8 +20,6 @@
         {
             if (IsDesignTime)
             {
-                this.SkillCategories = this.GenerateDesignTimeCategories();
-                this.selectedSkill = this.SkillCategories[0].Skills[0];
                 return;
             }
 
@@ -31,12 +28,12 @@
             this.skillsDictionary.ClientPairRemoved += this.SkillsDictionaryPairRemovedHandler;
             this.skillsDictionary.ClientDictionaryClear += this.SkillsDictionaryDictionaryClearHandler;
             var skillCategories = Api.FindProtoEntities<ProtoSkillCategory>()
-                                     .OrderBy(c => c.Order)
+                                     .OrderBy(category => category.Order)
                                      .Select(
-                                         c => new ViewModelSkillCategory(c)
-                                         {
-                                             OnVisibilityChanged = this.SkillCategoryVisibilityChangedHandler
-                                         });
+                                         category => new ViewModelSkillCategory(
+                                             category,
+                                             onCategoryVisibilityChanged: this.SkillSkillOrCategoryVisibilityChangedHandler,
+                                             onSkillVisibilityChanged: this.SkillSkillOrCategoryVisibilityChangedHandler));
 
             //// uncomment to test scrollbar
             //skillCategories = skillCategories.Concat(skillCategories);
@@ -124,7 +121,7 @@
         protected override void DisposeViewModel()
         {
             base.DisposeViewModel();
-            if (this.skillsDictionary == null)
+            if (this.skillsDictionary is null)
             {
                 return;
             }
@@ -132,29 +129,6 @@
             this.skillsDictionary.ClientPairSet -= this.SkillsDictionaryPairSetHandler;
             this.skillsDictionary.ClientPairRemoved -= this.SkillsDictionaryPairRemovedHandler;
             this.skillsDictionary.ClientDictionaryClear -= this.SkillsDictionaryDictionaryClearHandler;
-        }
-
-        [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
-        private IReadOnlyList<ViewModelSkillCategory> GenerateDesignTimeCategories()
-        {
-            return new List<ViewModelSkillCategory>()
-            {
-                new ViewModelSkillCategory(
-                    "Test category 1",
-                    new List<ViewModelSkill>()
-                    {
-                        new ViewModelSkill("Test skill 1", 5,  2500, 5000),
-                        new ViewModelSkill("Test skill 2", 10, 1000, 7000),
-                        new ViewModelSkill("Test skill 3", 15, 8000, 10000)
-                    }),
-                new ViewModelSkillCategory(
-                    "Test category 2",
-                    new List<ViewModelSkill>()
-                    {
-                        new ViewModelSkill("Test skill 4", 1,  1,    500),
-                        new ViewModelSkill("Test skill 5", 18, 9500, 1000)
-                    })
-            };
         }
 
         private void RefreshDisplays()
@@ -166,7 +140,7 @@
 
         private void RefreshSelectedSkill()
         {
-            if (this.selectedSkill == null
+            if (this.selectedSkill is null
                 || this.selectedSkill.IsDisposed
                 || this.selectedSkill.Visibility != Visibility.Visible)
             {
@@ -202,11 +176,6 @@
             this.RefreshDisplays();
         }
 
-        private void SkillCategoryVisibilityChangedHandler()
-        {
-            this.RefreshDisplays();
-        }
-
         private void SkillsDictionaryDictionaryClearHandler(
             NetworkSyncDictionary<IProtoSkill, SkillLevelData> source)
         {
@@ -226,6 +195,11 @@
             SkillLevelData value)
         {
             this.RefreshSkillsList();
+        }
+
+        private void SkillSkillOrCategoryVisibilityChangedHandler()
+        {
+            this.RefreshDisplays();
         }
     }
 }

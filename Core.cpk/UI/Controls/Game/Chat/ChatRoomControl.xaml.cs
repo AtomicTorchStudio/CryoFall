@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.Systems.Chat;
     using AtomicTorch.CBND.CoreMod.Systems.EmojiSystem;
-    using AtomicTorch.CBND.CoreMod.Systems.ProfanityFiltering;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Chat.Data;
     using AtomicTorch.CBND.CoreMod.UI.Services;
@@ -101,7 +100,7 @@
 
                     if (this.viewModelChatRoom.IsSelected)
                     {
-                        this.FocusInput();
+                        this.FocusInputIfNecessary();
                     }
                 }
                 else
@@ -149,7 +148,7 @@
                     {
                         if (isSelected && this.IsActive)
                         {
-                            this.FocusInput();
+                            this.FocusInputIfNecessary();
                         }
                     });
             }
@@ -168,14 +167,15 @@
             this.InsertTextAtCurrentCaretPosition(from, addPaddingIfNecessary: true);
         }
 
-        public void FocusInput()
+        public void FocusInputIfNecessary()
         {
-            // set focus on the next frame
+            // set focus on the next frame (if necessary)
             ClientTimersSystem.AddAction(
                 0,
                 () =>
                 {
-                    if (this.IsActive
+                    if (this.isLoaded
+                        && this.IsActive
                         && this.viewModelChatRoom.IsSelected)
                     {
                         this.textBoxChatInput.Focus();
@@ -218,6 +218,8 @@
             this.PopulateEntriesFromRoomLog();
 
             this.RefreshScrollViewerChatLogVisibility();
+
+            this.FocusInputIfNecessary();
         }
 
         protected override void OnUnloaded()
@@ -560,7 +562,7 @@
         private void RefreshScrollViewerChatLogVisibility()
         {
             this.scrollViewerChatLog.Visibility =
-                ClientChatDisclaimerConfirmationHelper.GetIsNeedToDisplayDisclaimerForCurrentServer(out _)
+                ClientChatDisclaimerConfirmationHelper.IsNeedToDisplayDisclaimerForCurrentServer
                     ? Visibility.Hidden
                     : Visibility.Visible;
         }
@@ -588,7 +590,7 @@
 
         private void ScrollViewerChatLogMouseLeftButtonUpHandler(object sender, MouseButtonEventArgs e)
         {
-            this.FocusInput();
+            this.FocusInputIfNecessary();
         }
 
         private void SendMessage(string message)

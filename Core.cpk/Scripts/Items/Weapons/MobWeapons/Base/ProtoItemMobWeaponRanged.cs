@@ -82,7 +82,7 @@
             return "AttackRangedHorizontal";
         }
 
-        public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected)
+        public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)
         {
             return character.ProtoCharacter is IProtoCharacterMob;
         }

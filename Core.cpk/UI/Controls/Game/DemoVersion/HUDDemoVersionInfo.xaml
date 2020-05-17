@@ -69,14 +69,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <!--<Image Source="/UI/Images/Icons/icon_death_protection.png"
-                       Width="24"
-                       Height="24"
-                       Stretch="Uniform"
-                       VerticalAlignment="Center"
-                       UseLayoutRounding="True"
-                       Margin="0,0,5,0" />-->
-
+        
                 <TextBlock Grid.Row="0"
                            Grid.Column="1"
                            Text="{x:Static loc:CoreStrings.Demo_Title}"

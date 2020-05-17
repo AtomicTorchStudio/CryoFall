@@ -653,7 +653,7 @@
             <param name="itemTo">Item of this prototype.</param>
             <param name="countStacked">Count subtracted from itemFrom and added to itemTo.</param>
         </member>
-        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.SharedCanSelect(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Characters.ICharacter,System.Boolean)">
+        <member name="M:AtomicTorch.CBND.GameApi.Data.Items.IProtoItem.SharedCanSelect(AtomicTorch.CBND.GameApi.Data.Items.IItem,AtomicTorch.CBND.GameApi.Data.Characters.ICharacter,System.Boolean,System.Boolean)">
             <summary>
             Checks whether the item can be selected in hotbar.
             </summary>

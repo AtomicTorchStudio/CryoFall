@@ -6,8 +6,9 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
 
     /// <summary>
-    /// This is a special player character class which
+    /// This is a special player character class that
     /// we're using to mimic the mob during the trailer recording.
+    /// It's no longer possible to use it directly but might be interesting for modders.
     /// </summary>
     public class PlayerCharacterMob : PlayerCharacter
     {

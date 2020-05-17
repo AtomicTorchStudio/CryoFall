@@ -88,9 +88,9 @@
             return false;
         }
 
-        public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected)
+        public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)
         {
-            if (!base.SharedCanSelect(item, character, isAlreadySelected))
+            if (!base.SharedCanSelect(item, character, isAlreadySelected, isByPlayer))
             {
                 return false;
             }
@@ -105,7 +105,7 @@
             }
 
             // cannot select
-            if (IsClient)
+            if (IsClient && isByPlayer)
             {
                 CharacterEnergySystem.ClientShowNotificationNotEnoughEnergyCharge(this);
             }

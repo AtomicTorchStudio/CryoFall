@@ -10,23 +10,21 @@
 
     public class ViewModelSkillCategory : BaseViewModel
     {
-        public Action OnVisibilityChanged;
+        public readonly Action OnCategoryVisibilityChanged;
+
+        public readonly Action OnSkillVisibilityChanged;
 
         private Visibility visibility;
 
-        public ViewModelSkillCategory(ProtoSkillCategory category)
+        public ViewModelSkillCategory(
+            ProtoSkillCategory category,
+            Action onCategoryVisibilityChanged,
+            Action onSkillVisibilityChanged)
         {
             this.ProtoSkillCategory = category;
+            this.OnSkillVisibilityChanged = onSkillVisibilityChanged;
+            this.OnCategoryVisibilityChanged = onCategoryVisibilityChanged;
             this.Title = category.Name;
-        }
-
-        /// <summary>
-        /// WPF design-time only constructor.
-        /// </summary>
-        public ViewModelSkillCategory(string title, List<ViewModelSkill> skills)
-        {
-            this.Title = title;
-            this.Skills = skills;
         }
 
         public ProtoSkillCategory ProtoSkillCategory { get; }
@@ -47,7 +45,7 @@
 
                 this.visibility = value;
                 this.NotifyThisPropertyChanged();
-                this.OnVisibilityChanged?.Invoke();
+                this.OnCategoryVisibilityChanged?.Invoke();
             }
         }
 
@@ -106,17 +104,24 @@
 
         private void OnSkillVisibilityChange()
         {
-            // if any skills view model is visible - the category is visible
-            foreach (var viewModelSkill in this.Skills)
+            try
             {
-                if (viewModelSkill.Visibility == Visibility.Visible)
+                // if any skills view model is visible - the category is visible
+                foreach (var viewModelSkill in this.Skills)
                 {
-                    this.Visibility = Visibility.Visible;
-                    return;
+                    if (viewModelSkill.Visibility == Visibility.Visible)
+                    {
+                        this.Visibility = Visibility.Visible;
+                        return;
+                    }
                 }
-            }
 
-            this.Visibility = Visibility.Collapsed;
+                this.Visibility = Visibility.Collapsed;
+            }
+            finally
+            {
+                this.OnSkillVisibilityChanged?.Invoke();
+            }
         }
     }
 }

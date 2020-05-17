@@ -46,7 +46,9 @@
             }
         }
 
-        public static void SharedSelectHotbarSlotId(ICharacter character, byte? slotId)
+        public static void SharedSelectHotbarSlotId(ICharacter character, 
+                                                    byte? slotId,
+                                                    bool isByPlayer)
         {
             var publicState = GetPublicState(character);
             var privateState = GetPrivateState(character);
@@ -98,7 +100,8 @@
                 if (item != null
                     && !item.ProtoItem.SharedCanSelect(item,
                                                        character,
-                                                       isAlreadySelected: publicState.SelectedItem == item))
+                                                       isAlreadySelected: publicState.SelectedItem == item,
+                                                       isByPlayer: isByPlayer))
                 {
                     item = null;
                     privateState.SelectedHotbarSlotId = slotId = null;
@@ -143,7 +146,7 @@
             }
 
             this.CallServer(_ => _.ServerRemote_SelectHotbarSlotId(slotId));
-            SharedSelectHotbarSlotId(character, slotId);
+            SharedSelectHotbarSlotId(character, slotId, isByPlayer: true);
         }
 
         public void ClientSetInput(CharacterInputUpdate data)
@@ -352,7 +355,7 @@
             ICharacter character,
             PlayerCharacterPrivateState privateState)
         {
-            SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId);
+            SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId, isByPlayer: false);
         }
 
         private static IItemsContainer TryGetVehicleHotbarContainer(
@@ -411,7 +414,7 @@
 
         private void ServerRemote_SelectHotbarSlotId(byte? slotId)
         {
-            SharedSelectHotbarSlotId(ServerRemoteContext.Character, slotId);
+            SharedSelectHotbarSlotId(ServerRemoteContext.Character, slotId, isByPlayer: true);
         }
     }
 }

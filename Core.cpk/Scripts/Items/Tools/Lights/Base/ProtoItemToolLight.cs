@@ -457,7 +457,7 @@
                 if (item.Container == characterPrivateState.ContainerHotbar)
                 {
                     // different hotbar item selected - select the required hotbar item
-                    PlayerCharacter.SharedSelectHotbarSlotId(character, item.ContainerSlotId);
+                    PlayerCharacter.SharedSelectHotbarSlotId(character, item.ContainerSlotId, isByPlayer: true);
                     selectedHotbarItem = characterPublicState.SelectedItem;
                 }
 

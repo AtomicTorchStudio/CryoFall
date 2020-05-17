@@ -21,54 +21,19 @@
             Storage = Api.Client.Storage.GetStorage("Servers/ConfirmedChatUsage");
             Storage.RegisterType(typeof(ServerAddress));
             Storage.RegisterType(typeof(AtomicGuid));
+
+            Api.Client.CurrentGame.ConnectionStateChanged += Refresh;
+            Refresh();
         }
 
-        public static bool IsChatAllowedForCurrentServer
-        {
-            get
-            {
-                if (Api.IsEditor)
-                {
-                    return true;
-                }
+        public static bool IsChatAllowedForCurrentServer { get; private set; }
 
-                if (!Storage.TryLoad(
-                        out Dictionary<ServerAddress, bool> dictionary))
-                {
-                    // chat usage is not confirmed
-                    // a dialog window will be displayed when it's opened next time
-                    return true;
-                }
-
-                var serverAddress = Api.Client.CurrentGame.ServerInfo.ServerAddress;
-                return dictionary.TryGetValue(serverAddress, out bool isAllowed)
-                       && isAllowed;
-            }
-        }
-
-        public static bool GetIsNeedToDisplayDisclaimerForCurrentServer(out bool isChatAllowed)
-        {
-            if (Api.IsEditor)
-            {
-                isChatAllowed = true;
-                return false;
-            }
-
-            if (!Storage.TryLoad(
-                    out Dictionary<ServerAddress, bool> dictionary))
-            {
-                isChatAllowed = true;
-                return true;
-            }
-
-            var serverAddress = Api.Client.CurrentGame.ServerInfo.ServerAddress;
-            return !dictionary.TryGetValue(serverAddress, out isChatAllowed);
-        }
+        public static bool IsNeedToDisplayDisclaimerForCurrentServer { get; private set; }
 
         public static void OpenDisclaimerDialogIfNecessary(bool askAgain = false)
         {
-            if (!GetIsNeedToDisplayDisclaimerForCurrentServer(out var isChatAllowed)
-                && (isChatAllowed || !askAgain))
+            if (!IsNeedToDisplayDisclaimerForCurrentServer
+                && (IsChatAllowedForCurrentServer || !askAgain))
             {
                 return;
             }
@@ -147,6 +112,44 @@
             var serverAddress = Api.Client.CurrentGame.ServerInfo.ServerAddress;
             dictionary[serverAddress] = isAllowed;
             Storage.Save(dictionary);
+
+            Refresh();
+        }
+
+        private static void Refresh()
+        {
+            if (Api.IsEditor)
+            {
+                IsChatAllowedForCurrentServer = true;
+                IsNeedToDisplayDisclaimerForCurrentServer = false;
+                return;
+            }
+
+            if (Api.Client.CurrentGame.ConnectionState != ConnectionState.Connected)
+            {
+                IsChatAllowedForCurrentServer = false;
+                IsNeedToDisplayDisclaimerForCurrentServer = false;
+                return;
+            }
+
+            if (!Storage.TryLoad(
+                    out Dictionary<ServerAddress, bool> dictionary))
+            {
+                IsChatAllowedForCurrentServer = true;
+                IsNeedToDisplayDisclaimerForCurrentServer = true;
+                return;
+            }
+
+            if (!dictionary.TryGetValue(Api.Client.CurrentGame.ServerInfo.ServerAddress,
+                                        out var isAllowedForCurrentServer))
+            {
+                IsChatAllowedForCurrentServer = true;
+                IsNeedToDisplayDisclaimerForCurrentServer = true;
+                return;
+            }
+
+            IsChatAllowedForCurrentServer = isAllowedForCurrentServer;
+            IsNeedToDisplayDisclaimerForCurrentServer = false;
         }
     }
 }

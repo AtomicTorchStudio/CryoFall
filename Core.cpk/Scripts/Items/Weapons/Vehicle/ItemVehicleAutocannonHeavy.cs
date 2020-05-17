@@ -47,9 +47,11 @@
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsHeavy>();
 
-        public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected)
+        public override bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)
         {
-            if (IsClient && !isAlreadySelected)
+            if (IsClient
+                && !isAlreadySelected
+                && isByPlayer)
             {
                 NotificationSystem.ClientShowNotification(
                     this.Name,

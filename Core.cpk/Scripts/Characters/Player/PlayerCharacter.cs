@@ -410,7 +410,7 @@
             var privateState = data.PrivateState;
 
             // re-select hotbar slot
-            SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId);
+            SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId, isByPlayer: false);
         }
 
         protected override void ServerInitializeCharacterFirstTime(ServerInitializeData data)
@@ -640,7 +640,7 @@
             this.CallServer(_ => _.ServerRemote_ResetLastInputAck());
 
             // re-select hotbar slot
-            SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId);
+            SharedSelectHotbarSlotId(character, privateState.SelectedHotbarSlotId, isByPlayer: false);
 
             WindowRespawn.EnsureClosed();
         }

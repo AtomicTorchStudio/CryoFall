@@ -273,7 +273,7 @@
             }
         }
 
-        public virtual bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected)
+        public virtual bool SharedCanSelect(IItem item, ICharacter character, bool isAlreadySelected, bool isByPlayer)
         {
             var vehicle = PlayerCharacter.GetPublicState(character).CurrentVehicle;
             if (vehicle is null)
@@ -281,7 +281,7 @@
                 return true;
             }
 
-            var protoVehicle = ((IProtoVehicle)vehicle.ProtoGameObject);
+            var protoVehicle = (IProtoVehicle)vehicle.ProtoGameObject;
             if (this.CanBeSelectedInVehicle
                 && protoVehicle.IsPlayersHotbarAndEquipmentItemsAllowed)
             {
@@ -290,7 +290,8 @@
 
             if (IsClient
                 && !isAlreadySelected
-                && protoVehicle.IsPlayersHotbarAndEquipmentItemsAllowed)
+                && protoVehicle.IsPlayersHotbarAndEquipmentItemsAllowed
+                && isByPlayer)
             {
                 NotificationSystem.ClientShowNotification(this.Name,
                                                           NotificationItemCannotBeUsedInVehicle,
