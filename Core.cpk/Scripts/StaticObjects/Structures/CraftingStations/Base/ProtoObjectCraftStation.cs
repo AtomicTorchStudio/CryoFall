@@ -1,7 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations
 {
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting;
+    using AtomicTorch.CBND.GameApi.Data.Characters;
+    using AtomicTorch.CBND.GameApi.Data.World;
 
     public abstract class ProtoObjectCraftStation
         <TPrivateState,
@@ -17,6 +20,21 @@
         where TClientState : StaticObjectClientState, new()
     {
         public override double ServerUpdateIntervalSeconds => double.MaxValue;
+
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            // don't use the base implementation as it will not work in PvE
+            // (action forbidden if player doesn't have access to the land claim)
+            if (character.GetPublicState<ICharacterPublicState>().IsDead
+                || IsServer && !character.ServerIsOnline)
+            {
+                return false;
+            }
+
+            return this.SharedIsInsideCharacterInteractionArea(character,
+                                                               worldObject,
+                                                               writeToLog);
+        }
 
         protected override void ClientInteractStart(ClientObjectData data)
         {

@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
@@ -83,7 +82,8 @@
         {
             // don't use the base implementation as it will not work in PvE
             // (action forbidden if player doesn't have access to the land claim)
-            if (character.GetPublicState<ICharacterPublicState>().IsDead)
+            if (character.GetPublicState<ICharacterPublicState>().IsDead
+                || IsServer && !character.ServerIsOnline)
             {
                 return false;
             }
@@ -282,8 +282,7 @@
                                          .ToArray(),
                 Width = controlWidth,
                 Height = controlHeight,
-                RenderTransformOrigin = new Point(0, 0),
-                RenderTransform = new ScaleTransform(scale, scale)
+                LayoutTransform = new ScaleTransform(scale, scale)
             };
 
             var textureSize = new Vector2Ushort((ushort)(scale * controlWidth),

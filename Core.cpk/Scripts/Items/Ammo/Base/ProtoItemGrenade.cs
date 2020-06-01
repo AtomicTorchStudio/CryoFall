@@ -50,14 +50,7 @@
         {
             isDamageStop = true;
 
-            var explosionWorldPosition = damagedObject switch
-            {
-                IDynamicWorldObject dynamicWorldObject => dynamicWorldObject.Position,
-                _                                      => damagedObject.TilePosition.ToVector2D(),
-            };
-
-            explosionWorldPosition += hitData.HitPoint;
-
+            var explosionWorldPosition = SharedGetExplosionWorldPosition(damagedObject, hitData);
             this.ClientExplodeAt(weaponCache, explosionWorldPosition);
         }
 
@@ -108,14 +101,7 @@
         {
             isDamageStop = true;
 
-            var explosionWorldPosition = damagedObject switch
-            {
-                IDynamicWorldObject dynamicWorldObject => dynamicWorldObject.Position,
-                _                                      => damagedObject.TilePosition.ToVector2D(),
-            };
-
-            explosionWorldPosition += hitData.HitPoint;
-
+            var explosionWorldPosition = SharedGetExplosionWorldPosition(damagedObject, hitData);
             this.ServerExplodeAt(weaponCache, explosionWorldPosition, isHit: true);
         }
 
@@ -243,6 +229,18 @@
         protected virtual double SharedPrepareStatDamageToStructures(double damageValue)
         {
             return damageValue * WeaponConstants.DamageExplosivesToStructuresMultiplier;
+        }
+
+        private static Vector2D SharedGetExplosionWorldPosition(IWorldObject damagedObject, WeaponHitData hitData)
+        {
+            var explosionWorldPosition = damagedObject switch
+            {
+                null                                   => hitData.FallbackTilePosition.ToVector2D(), // tile hit
+                IDynamicWorldObject dynamicWorldObject => dynamicWorldObject.Position,
+                _                                      => damagedObject.TilePosition.ToVector2D(),
+            };
+
+            return explosionWorldPosition + hitData.HitPoint;
         }
 
         private void ClientExplodeAt(WeaponFinalCache weaponCache, Vector2D explosionWorldPosition)

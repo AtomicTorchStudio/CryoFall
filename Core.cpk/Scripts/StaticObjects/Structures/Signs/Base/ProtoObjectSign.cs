@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using System.Windows;
     using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
@@ -207,8 +206,7 @@
             var control = new ObjectSignControl()
             {
                 Text = text,
-                RenderTransformOrigin = new Point(0.5, 0.5),
-                RenderTransform = new ScaleTransform(scale, scale)
+                LayoutTransform = new ScaleTransform(scale, scale)
             };
 
             var controlWidth = control.Width;

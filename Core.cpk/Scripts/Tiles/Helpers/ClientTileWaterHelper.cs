@@ -41,7 +41,6 @@
                 drawOrder: DrawOrder.GroundBlend);
             renderer.RenderingMaterial = protoTileWater.ClientGetWaterBlendMaterial(blendLayer);
             renderer.SortByWorldPosition = false;
-            renderer.IgnoreTextureQualityScaling = true;
             renderer.Size = ScriptingConstants.TileSizeRenderingVirtualSize;
         }
 
@@ -56,7 +55,6 @@
                 drawOrder: DrawOrder.Ground);
             renderer.RenderingMaterial = protoTileWater.ClientGetWaterPrimaryMaterial();
             renderer.SortByWorldPosition = false;
-            renderer.IgnoreTextureQualityScaling = true;
             renderer.Size = ScriptingConstants.TileSizeRenderingVirtualSize;
         }
     }

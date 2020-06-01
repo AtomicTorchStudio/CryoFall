@@ -54,24 +54,14 @@
 
         private static Vector2D GetDrawPixelsOffset(IItem item)
         {
-            switch (item.ContainerSlotId)
+            return item.ContainerSlotId switch
             {
-                case 0: // bottom-left
-                    return (254, 196);
-
-                case 1: // top-left
-                    return (254, 352);
-
-                case 2: // bottom-right
-                    return (430, 129);
-
-                case 3: // top-right
-                    return (430, 285);
-
-                default:
-                    // not supported
-                    return (256, 256);
-            }
+                0 => (254, 352), // top-left
+                1 => (430, 285), // top-right
+                2 => (254, 196), // bottom-left
+                3 => (430, 129), // bottom-right
+                _ => (256, 256)  // not supported
+            };
         }
 
         private void CreateSpriteRenderer(IItem item)

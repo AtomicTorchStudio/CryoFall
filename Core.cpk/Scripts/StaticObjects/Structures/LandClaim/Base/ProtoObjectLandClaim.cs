@@ -209,7 +209,6 @@
 
                 areaBlueprint.RenderingMaterial = renderingMaterial;
                 areaBlueprint.SortByWorldPosition = false;
-                areaBlueprint.IgnoreTextureQualityScaling = true;
                 areaBlueprint.Scale = size;
 
                 areaBlueprint.PositionOffset = (centerPosition.X - size / 2,
@@ -251,7 +250,6 @@
 
                 tileRenderer.RenderingMaterial = ClientBlueprintRestrictedTileRenderingMaterial;
                 tileRenderer.SortByWorldPosition = false;
-                tileRenderer.IgnoreTextureQualityScaling = true;
                 tileRenderer.Scale = 1;
                 tileRenderer.PositionOffset = (offsetX, offsetY);
             }

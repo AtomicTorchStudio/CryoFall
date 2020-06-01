@@ -128,8 +128,7 @@
                                       .Add<ItemNeuralEnhancer>(count: 1,   weight: 1)
                                       .Add<ItemHeatPreExposure>(count: 3,  weight: 1)
                                       .Add<ItemStrengthBoostBig>(count: 5, weight: 1)
-                                      // don't provide Stimpack until T3 reached (even though it's T4)
-                                      .Add<ItemStimpack>(count: 5, weight: 1, condition: T3Specialized)
+                                      .Add<ItemStimpack>(count: 5, weight: 1, condition: T4Specialized)
                                  )
                              // ranged weapons
                              .Add(weight: 1 / 2.0,

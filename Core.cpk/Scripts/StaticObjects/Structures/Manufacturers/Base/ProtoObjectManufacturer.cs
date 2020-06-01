@@ -224,27 +224,42 @@
                        .Replace(ObjectSound.Active, "Objects/Structures/" + this.GetType().Name + "/Active");
         }
 
+        protected virtual byte ServerGetInputSlotsCount(IStaticWorldObject worldObject)
+        {
+            return this.ContainerInputSlotsCount;
+        }
+
+        protected virtual byte ServerGetOutputSlotsCount(IStaticWorldObject worldObject)
+        {
+            return this.ContainerOutputSlotsCount;
+        }
+
         protected override void ServerInitialize(ServerInitializeData data)
         {
             base.ServerInitialize(data);
+
+            var worldObject = data.GameObject;
             var privateState = data.PrivateState;
 
             // configure manufacturing state
             var manufacturingState = privateState.ManufacturingState;
             {
-                if (manufacturingState == null)
+                var inputSlotsCount = this.ServerGetInputSlotsCount(worldObject);
+                var outputSlotsCount = this.ServerGetOutputSlotsCount(worldObject);
+
+                if (manufacturingState is null)
                 {
                     manufacturingState = new ManufacturingState(
-                        data.GameObject,
-                        containerInputSlotsCount: this.ContainerInputSlotsCount,
-                        containerOutputSlotsCount: this.ContainerOutputSlotsCount);
+                        worldObject,
+                        containerInputSlotsCount: inputSlotsCount,
+                        containerOutputSlotsCount: outputSlotsCount);
                     privateState.ManufacturingState = manufacturingState;
                 }
                 else
                 {
                     manufacturingState.SetSlotsCount(
-                        input: this.ContainerInputSlotsCount,
-                        output: this.ContainerOutputSlotsCount);
+                        input: inputSlotsCount,
+                        output: outputSlotsCount);
                 }
 
                 Server.Items.SetContainerType<ItemsContainerOutput>(
@@ -258,7 +273,7 @@
                 {
                     if (this.ContainerFuelSlotsCount > 0)
                     {
-                        fuelBurningState = new FuelBurningState(data.GameObject, this.ContainerFuelSlotsCount);
+                        fuelBurningState = new FuelBurningState(worldObject, this.ContainerFuelSlotsCount);
                         privateState.FuelBurningState = fuelBurningState;
                     }
                 }

@@ -24,6 +24,10 @@
 
         public override byte ContainerFuelSlotsCount => 0;
 
+        public override byte ContainerInputSlotsCountExtractorWithDeposit => 4;
+
+        public override byte ContainerOutputSlotsCountExtractorWithDeposit => 4;
+
         public override string Description => GetProtoEntity<ObjectOilPump>().Description;
 
         // do not change, see electricity math model

@@ -25,6 +25,10 @@
 
         public override byte ContainerFuelSlotsCount => 1;
 
+        public override byte ContainerInputSlotsCountExtractorWithDeposit => 1;
+
+        public override byte ContainerOutputSlotsCountExtractorWithDeposit => 1;
+
         public override string Description =>
             "Allows extraction of petroleum oil from underground reservoir or directly from an oil seep for increased efficiency.";
 

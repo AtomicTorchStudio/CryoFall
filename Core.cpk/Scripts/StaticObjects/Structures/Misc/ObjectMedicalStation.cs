@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc
 {
     using System;
+    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
@@ -49,6 +50,21 @@
         public static void ClientUninstall(byte slotId)
         {
             instance.CallServer(_ => _.ServerRemote_Uninstall(slotId));
+        }
+
+        public override bool SharedCanInteract(ICharacter character, IStaticWorldObject worldObject, bool writeToLog)
+        {
+            // don't use the base implementation as it will not work in PvE
+            // (action forbidden if player doesn't have access to the land claim)
+            if (character.GetPublicState<ICharacterPublicState>().IsDead
+                || IsServer && !character.ServerIsOnline)
+            {
+                return false;
+            }
+
+            return this.SharedIsInsideCharacterInteractionArea(character,
+                                                               worldObject,
+                                                               writeToLog);
         }
 
         BaseUserControlWithWindow IInteractableProtoWorldObject.ClientOpenUI(IWorldObject worldObject)

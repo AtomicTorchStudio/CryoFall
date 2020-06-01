@@ -181,7 +181,6 @@
                     this.protoFarmPlot.Texture,
                     drawOrder: DrawOrder.GroundBlend + 3);
                 renderer.SortByWorldPosition = false;
-                renderer.IgnoreTextureQualityScaling = true;
                 renderer.Size = ScriptingConstants.TileSizeRenderingVirtualSize;
 
                 data.SpriteRenderer = renderer;

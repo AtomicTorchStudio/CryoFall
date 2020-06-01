@@ -60,7 +60,14 @@
             WeaponHitData hitData,
             out bool isDamageStop)
         {
-            base.SharedOnHit(weaponCache, damagedObject, damage, hitData, out isDamageStop);
+            if (!(damagedObject is ICharacter))
+            {
+                isDamageStop = true;
+            }
+            else
+            {
+                base.SharedOnHit(weaponCache, damagedObject, damage, hitData, out isDamageStop);
+            }
 
             if (IsServer
                 && isDamageStop

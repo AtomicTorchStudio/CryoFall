@@ -301,7 +301,7 @@
 
                 if (isConsiderDestroyed
                     && o.ProtoWorldObject is ObjectWallDestroyed
-                    && ObjectWallDestroyed.GetPublicState(o).OriginalProtoObjectWall == protoWall)
+                    && ReferenceEquals(protoWall, ObjectWallDestroyed.GetPublicState(o).OriginalProtoObjectWall))
                 {
                     // destroyed wall of the same type
                     return true;

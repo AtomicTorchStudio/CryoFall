@@ -34,7 +34,8 @@
                 Grid.Row="1"
                 DataContext="{Binding ViewModelItemsContainerExchange}"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center" />
+                VerticalAlignment="Center" 
+                MaxWidth="120" />
 
             <powerGrid:PowerProducerStatsControl Grid.Row="2" />
         </Grid>

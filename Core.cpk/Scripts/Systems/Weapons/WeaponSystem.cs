@@ -815,11 +815,19 @@
 
                     // tile on the way - blocking damage ray
                     isDamageRayStopped = true;
-                    hitObjects.Add(new WeaponHitData(testResult.PhysicsBody.Position
-                                                     + SharedOffsetHitWorldPositionCloserToTileHitboxCenter(
-                                                         testResultPhysicsBody,
-                                                         testResult.Penetration,
-                                                         isRangedWeapon: !isMeleeWeapon)));
+                    var hitData = new WeaponHitData(testResult.PhysicsBody.Position
+                                                    + SharedOffsetHitWorldPositionCloserToTileHitboxCenter(
+                                                        testResultPhysicsBody,
+                                                        testResult.Penetration,
+                                                        isRangedWeapon: !isMeleeWeapon));
+                    hitObjects.Add(hitData);
+
+                    weaponCache.ProtoWeapon
+                               .SharedOnHit(weaponCache,
+                                            null,
+                                            0,
+                                            hitData,
+                                            out _);
                     break;
                 }
 

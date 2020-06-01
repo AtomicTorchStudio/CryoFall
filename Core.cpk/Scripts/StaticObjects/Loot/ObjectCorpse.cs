@@ -107,7 +107,8 @@
             IStaticWorldObject staticWorldObject,
             bool writeToLog)
         {
-            if (character.GetPublicState<ICharacterPublicState>().IsDead)
+            if (character.GetPublicState<ICharacterPublicState>().IsDead
+                || IsServer && !character.ServerIsOnline)
             {
                 return false;
             }

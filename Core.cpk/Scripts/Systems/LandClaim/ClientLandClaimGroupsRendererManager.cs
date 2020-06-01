@@ -229,7 +229,6 @@
                 drawOrder: this.drawOrder);
 
             renderer.SortByWorldPosition = false;
-            renderer.IgnoreTextureQualityScaling = true;
             return renderer;
         }
 

@@ -50,7 +50,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.LandClaim
                       Min value: 0 (extra 0 land claims, that's the default value).
                       Max value: 50 (extra 50 land claims)."),
                 min: 0,
-                max: 9);
+                max: 50);
         }
 
         public static event Action ClientRaidBlockDurationSecondsChanged;

@@ -32,17 +32,9 @@
                   ? RenderingMaterial.Create(new EffectResource("Terrain/GroundTileField"))
                   : null;
 
-        private static readonly Size2F TileRendererSize
-            = Api.IsClient
-                  ? ScriptingConstants.TileSizeRenderingVirtualSize
-                    * Api.Client.Rendering.SpriteQualitySizeMultiplier
-                  : 0;
-
-        private TextureAtlasResource cachedBlendMaskTextureAtlas;
-
         private ClientFarmPlotBlendHelper clientBlendHelper;
 
-        public TextureAtlasResource BlendMaskTextureAtlas => this.cachedBlendMaskTextureAtlas;
+        public TextureAtlasResource BlendMaskTextureAtlas { get; private set; }
 
         public override StaticObjectKind Kind => StaticObjectKind.Floor;
 
@@ -128,7 +120,7 @@
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
-            renderer.Size = TileRendererSize;
+            renderer.Size = ScriptingConstants.TileSizeRenderingVirtualSize;
         }
 
         protected sealed override void PrepareFarmConstructionConfig(
@@ -162,7 +154,7 @@
         {
             base.PrepareProtoStaticWorldObject();
 
-            this.cachedBlendMaskTextureAtlas = new TextureAtlasResource(
+            this.BlendMaskTextureAtlas = new TextureAtlasResource(
                 this.BlendMaskTexture,
                 columns: 4,
                 rows: 1);

@@ -66,6 +66,10 @@
         public override ProtoObjectConstructionSite ConstructionSitePrototype
             => Api.GetProtoEntity<ObjectConstructionSiteForExtractor>();
 
+        public abstract byte ContainerInputSlotsCountExtractorWithDeposit { get; }
+
+        public abstract byte ContainerOutputSlotsCountExtractorWithDeposit { get; }
+
         // necessary for distance checks
         public override bool HasIncreasedScopeSize => true;
 
@@ -269,6 +273,22 @@
                 amountAutoIncreasePerSecond: this.LiquidProductionAmountPerSecond,
                 // petroleum decrease happens automatically when crafting of the "canister with petroleum" recipe finishes
                 amountAutoDecreasePerSecondWhenUse: 0);
+        }
+
+        protected override byte ServerGetInputSlotsCount(IStaticWorldObject worldObject)
+        {
+            var deposit = this.SharedGetDepositWorldObject(worldObject.OccupiedTile);
+            return deposit is null
+                       ? this.ContainerInputSlotsCount
+                       : this.ContainerInputSlotsCountExtractorWithDeposit;
+        }
+
+        protected override byte ServerGetOutputSlotsCount(IStaticWorldObject worldObject)
+        {
+            var deposit = this.SharedGetDepositWorldObject(worldObject.OccupiedTile);
+            return deposit is null
+                       ? this.ContainerOutputSlotsCount
+                       : this.ContainerOutputSlotsCountExtractorWithDeposit;
         }
 
         protected override void ServerInitialize(ServerInitializeData data)

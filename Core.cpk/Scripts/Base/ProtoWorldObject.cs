@@ -165,7 +165,8 @@
                 return false;
             }
 
-            if (character.GetPublicState<ICharacterPublicState>().IsDead)
+            if (character.GetPublicState<ICharacterPublicState>().IsDead
+                || IsServer && !character.ServerIsOnline)
             {
                 return false;
             }
@@ -267,13 +268,13 @@
                 return false;
             }
 
-            if (character.GetPublicState<ICharacterPublicState>()
-                         .IsDead)
+            if (character.GetPublicState<ICharacterPublicState>().IsDead
+                || IsServer && !character.ServerIsOnline)
             {
                 if (writeToLog)
                 {
                     Logger.Warning(
-                        $"Character cannot interact with {worldObject} - character is dead.",
+                        $"Character cannot interact with {worldObject} - character is dead or offline.",
                         character);
                 }
 

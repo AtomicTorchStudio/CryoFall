@@ -271,7 +271,6 @@
                 drawOrder: DrawOrder.GroundBlend);
             renderer.RenderingMaterial = blendRenderingMaterial;
             renderer.SortByWorldPosition = false;
-            renderer.IgnoreTextureQualityScaling = true;
             renderer.Size = ScriptingConstants.TileSizeRenderingVirtualSize;
         }
 

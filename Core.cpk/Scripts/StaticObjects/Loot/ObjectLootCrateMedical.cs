@@ -53,9 +53,8 @@
                                      .Add<ItemPsiPreExposure>(count: 1,           weight: 1 / 60.0)
                                      .Add<ItemHeatPreExposure>(count: 1,          weight: 1 / 60.0)
                                      // top tier
-                                     .Add<ItemMedkit>(count: 1,         weight: 1 / 50.0)
-                                     // don't provide Stimpack until T3 reached (even though it's T4)
-                                     .Add<ItemStimpack>(count: 1,       weight: 1 / 40.0, condition: T3Specialized)
+                                     .Add<ItemMedkit>(count: 1,         weight: 1 / 40.0)
+                                     .Add<ItemStimpack>(count: 1,       weight: 1 / 40.0, condition: T4Specialized)
                                      .Add<ItemPeredozin>(count: 1,      weight: 1 / 50.0, condition: T4Specialized)
                                      .Add<ItemNeuralEnhancer>(count: 1, weight: 1 / 150.0));
 

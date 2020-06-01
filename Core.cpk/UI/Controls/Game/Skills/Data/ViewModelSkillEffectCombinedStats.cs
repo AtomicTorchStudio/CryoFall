@@ -66,8 +66,8 @@
             text.Append(" ");
             ViewModelSkillEffectStat.FormatBonusText(text, totalValueBonusNow, totalPercentBonusNow);
 
-            if (totalValueBonusNextLevel != 0
-                || totalPercentBonusNextLevel != 0)
+            if (totalValueBonusNextLevel != totalValueBonusNow
+                || totalPercentBonusNextLevel != totalPercentBonusNow)
             {
                 text.Append(" (")
                     .Append(NextLevelPrefix)

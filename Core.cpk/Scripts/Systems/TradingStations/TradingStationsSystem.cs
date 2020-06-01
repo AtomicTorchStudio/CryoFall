@@ -6,7 +6,9 @@
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.StaticObjects;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations;
+    using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectOwners;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
@@ -473,7 +475,18 @@
                     }
                 }
 
-                lot.CountAvailable = countAvailable;
+                if (PveSystem.ServerIsPvE)
+                {
+                    lot.CountAvailable = countAvailable;
+                }
+                else
+                {
+                    // It's important to not disclose this info on PvP servers.
+                    lot.CountAvailable = countAvailable >= lot.LotQuantity
+                                             ? 1u
+                                             : 0u;
+                }
+
                 lot.State = countAvailable >= lot.LotQuantity
                                 ? TradingStationLotState.Available
                                 : isStationSelling
@@ -527,7 +540,8 @@
                 throw new Exception($"{character} cannot interact with {tradingStation}");
             }
 
-            if (!WorldObjectOwnersSystem.SharedIsOwner(character, tradingStation))
+            if (!WorldObjectOwnersSystem.SharedIsOwner(character, tradingStation)
+                && !CreativeModeSystem.SharedIsInCreativeMode(character))
             {
                 throw new Exception($"{character} is not owner of {tradingStation}");
             }

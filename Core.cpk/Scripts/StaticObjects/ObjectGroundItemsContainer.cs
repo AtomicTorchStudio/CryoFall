@@ -557,7 +557,8 @@
         {
             // don't use the base implementation as it will not work in PvE
             // (action forbidden if player doesn't have access to the land claim)
-            if (character.GetPublicState<ICharacterPublicState>().IsDead)
+            if (character.GetPublicState<ICharacterPublicState>().IsDead
+                || IsServer && !character.ServerIsOnline)
             {
                 return false;
             }

@@ -44,8 +44,16 @@
         public void SetSlotsCount(byte input, byte output)
         {
             var itemsService = Api.Server.Items;
-            itemsService.SetSlotsCount(this.ContainerInput,  input);
-            itemsService.SetSlotsCount(this.ContainerOutput, output);
+
+            if (this.ContainerInput.SlotsCount < input)
+            {
+                itemsService.SetSlotsCount(this.ContainerInput, input);
+            }
+
+            if (this.ContainerOutput.SlotsCount < output)
+            {
+                itemsService.SetSlotsCount(this.ContainerOutput, output);
+            }
         }
     }
 }

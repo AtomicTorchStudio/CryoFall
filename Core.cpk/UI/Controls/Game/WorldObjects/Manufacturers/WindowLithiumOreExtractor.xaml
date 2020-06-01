@@ -90,7 +90,8 @@
 
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Center">
+                                VerticalAlignment="Center"
+                                Margin="0,-100">
                         <!-- Text: Output -->
                         <TextBlock Text="{x:Static loc:CoreStrings.ItemsContainer_TitleOutput}"
                                    Style="{StaticResource TextBlockStyleCraftingCaption}"
@@ -98,7 +99,7 @@
                                    Margin="0" />
                         <controls:ItemsContainerControl
                             Container="{Binding ViewModelManufacturingState.ContainerOutput}"
-                            MaxWidth="100"
+                            MaxWidth="120"
                             DesignTimeSlotsCount="1" />
                     </StackPanel>
                 </StackPanel>
